@@ -1,0 +1,5 @@
+*.txt
+*.dll
+*.config
+/MagicMongoDBTool/bin
+/MagicMongoDBTool/obj
