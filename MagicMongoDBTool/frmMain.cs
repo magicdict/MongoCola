@@ -80,7 +80,10 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DosCommandToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmDosCommand mfrm = new frmDosCommand();
+            mfrm.ShowDialog();
+            mfrm.Close();
+            mfrm.Dispose();
         }
     }
 }

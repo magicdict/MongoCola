@@ -39,29 +39,40 @@ namespace MagicMongoDBTool.Module
         /// MongoBin的路径，用于Dos命令
         /// </summary>
         public String MongoBinPath = String.Empty;
-
+        /// <summary>
+        /// 配置文件名称
+        /// </summary>
+        static private String ConfigFilename = "config.xml"; 
         /// <summary>
         /// 读取配置
         /// </summary>
         /// <param name="ConfigFilename"></param>
         /// <returns></returns>
-        public static ConfigHelper LoadFromConfigFile(String ConfigFilename) {
+        public static ConfigHelper LoadFromConfigFile(String mConfigFilename)
+        {
             FileStream fs = null;
-            fs = new FileStream(ConfigFilename, FileMode.Open, FileAccess.Read);
+            fs = new FileStream(mConfigFilename, FileMode.Open, FileAccess.Read);
             XmlSerializer xs = new XmlSerializer(typeof(ConfigHelper));
             ConfigHelper t = (ConfigHelper)xs.Deserialize(fs);
             fs.Close();
+            ConfigFilename = mConfigFilename;
             return t;
         }
         /// <summary>
         /// 写入配置
         /// </summary>
+        public void SaveToConfigFile() {
+            SaveToConfigFile(ConfigFilename);
+        }
+        /// <summary>
+        /// 写入配置
+        /// </summary>
         /// <param name="ConfigFilename"></param>
-        public void SaveToConfigFile(String ConfigFilename)
+        public void SaveToConfigFile(String mConfigFilename)
         {
             FileStream fs = null;
             XmlSerializer xs = new XmlSerializer(typeof(ConfigHelper));
-            fs = new FileStream(ConfigFilename, FileMode.Create, FileAccess.Write);
+            fs = new FileStream(mConfigFilename, FileMode.Create, FileAccess.Write);
             xs.Serialize(fs, this);
             fs.Close();
         }

@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
     public partial class frmOption : Form
@@ -17,8 +17,9 @@ namespace MagicMongoDBTool
         }
         private void frmOption_Load(object sender, EventArgs e)
         {
-
+            txtMongoBinPath.Text = SystemManager.mConfig.MongoBinPath;
         }
+        
         /// <summary>
         /// MongoBin路径的浏览
         /// </summary>
@@ -29,8 +30,20 @@ namespace MagicMongoDBTool
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                txtMongoBinPath.Text = fbd.SelectedPath;
+                txtMongoBinPath.Text = fbd.SelectedPath + @"\";
             }
+        }
+
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void cmdOK_Click(object sender, EventArgs e)
+        {
+            SystemManager.mConfig.MongoBinPath = txtMongoBinPath.Text ;
+            SystemManager.mConfig.SaveToConfigFile();
+            this.Close();
         }
 
 

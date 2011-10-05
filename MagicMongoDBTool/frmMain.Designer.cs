@@ -35,12 +35,12 @@
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DosCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.lstData = new System.Windows.Forms.ListView();
-            this.DosCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -95,8 +95,8 @@
             // ToolToolStripMenuItem
             // 
             this.ToolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OptionToolStripMenuItem,
-            this.DosCommandToolStripMenuItem});
+            this.DosCommandToolStripMenuItem,
+            this.OptionToolStripMenuItem});
             this.ToolToolStripMenuItem.Name = "ToolToolStripMenuItem";
             this.ToolToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.ToolToolStripMenuItem.Text = "工具（&T)";
@@ -107,6 +107,13 @@
             this.OptionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.OptionToolStripMenuItem.Text = "配置(&O)";
             this.OptionToolStripMenuItem.Click += new System.EventHandler(this.OptionToolStripMenuItem_Click);
+            // 
+            // DosCommandToolStripMenuItem
+            // 
+            this.DosCommandToolStripMenuItem.Name = "DosCommandToolStripMenuItem";
+            this.DosCommandToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DosCommandToolStripMenuItem.Text = "DOS操作";
+            this.DosCommandToolStripMenuItem.Click += new System.EventHandler(this.DosCommandToolStripMenuItem_Click);
             // 
             // toolStripMain
             // 
@@ -161,13 +168,6 @@
             this.lstData.TabIndex = 0;
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
-            // 
-            // DosCommandToolStripMenuItem
-            // 
-            this.DosCommandToolStripMenuItem.Name = "DosCommandToolStripMenuItem";
-            this.DosCommandToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.DosCommandToolStripMenuItem.Text = "DOS操作";
-            this.DosCommandToolStripMenuItem.Click += new System.EventHandler(this.DosCommandToolStripMenuItem_Click);
             // 
             // frmMain
             // 

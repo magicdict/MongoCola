@@ -31,6 +31,8 @@
             this.lblMongoBinPath = new System.Windows.Forms.Label();
             this.txtMongoBinPath = new System.Windows.Forms.TextBox();
             this.cmdMongoBinPath = new System.Windows.Forms.Button();
+            this.cmdOK = new System.Windows.Forms.Button();
+            this.cmdCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblMongoBinPath
@@ -60,11 +62,33 @@
             this.cmdMongoBinPath.UseVisualStyleBackColor = true;
             this.cmdMongoBinPath.Click += new System.EventHandler(this.cmdMongoBinPath_Click);
             // 
+            // cmdOK
+            // 
+            this.cmdOK.Location = new System.Drawing.Point(530, 224);
+            this.cmdOK.Name = "cmdOK";
+            this.cmdOK.Size = new System.Drawing.Size(75, 23);
+            this.cmdOK.TabIndex = 3;
+            this.cmdOK.Text = "确认";
+            this.cmdOK.UseVisualStyleBackColor = true;
+            this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
+            // 
+            // cmdCancel
+            // 
+            this.cmdCancel.Location = new System.Drawing.Point(627, 224);
+            this.cmdCancel.Name = "cmdCancel";
+            this.cmdCancel.Size = new System.Drawing.Size(75, 23);
+            this.cmdCancel.TabIndex = 4;
+            this.cmdCancel.Text = "取消";
+            this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            // 
             // frmOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 273);
+            this.Controls.Add(this.cmdCancel);
+            this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.cmdMongoBinPath);
             this.Controls.Add(this.txtMongoBinPath);
             this.Controls.Add(this.lblMongoBinPath);
@@ -81,5 +105,7 @@
         private System.Windows.Forms.Label lblMongoBinPath;
         private System.Windows.Forms.TextBox txtMongoBinPath;
         private System.Windows.Forms.Button cmdMongoBinPath;
+        private System.Windows.Forms.Button cmdOK;
+        private System.Windows.Forms.Button cmdCancel;
     }
 }

@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ctlMongod.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlMongod.Designer.cs">
+      <DependentUpon>ctlMongod.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAddConnection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +71,12 @@
     </Compile>
     <Compile Include="frmConnect.Designer.cs">
       <DependentUpon>frmConnect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDosCommand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDosCommand.Designer.cs">
+      <DependentUpon>frmDosCommand.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -84,11 +96,17 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ctlMongod.resx">
+      <DependentUpon>ctlMongod.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddConnection.resx">
       <DependentUpon>frmAddConnection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConnect.resx">
       <DependentUpon>frmConnect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDosCommand.resx">
+      <DependentUpon>frmDosCommand.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

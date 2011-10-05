@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using System.IO;
+
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
@@ -14,7 +15,7 @@ namespace MagicMongoDBTool.Module
     /// </remarks>
     class MongodbDosCommand
     {
-        
+
         //mongod.exe 服务端程序
         //mongodump.exe 备份程序
         //mongoexport.exe 数据导出程序
@@ -24,7 +25,8 @@ namespace MagicMongoDBTool.Module
         //mongos.exe 数据分片程序，支持数据的横向扩展
         //mongostat.exe 监视程序
 
-        public struct struMongod {
+        public class struMongod
+        {
             /// <summary>
             /// 数据库路径，必须
             /// </summary>
@@ -46,59 +48,108 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public Boolean Islogappend = false;
             /// <summary>
+            /// 日志等级
+            /// </summary>
+            public MongologLevel loglv = MongologLevel.quiet;
+            /// <summary>
             /// 是否作为Windows服务
             /// </summary>
-            public Boolean IsInstall = false; 
+            public Boolean IsInstall = false;
         }
         /// <summary>
         /// 日志等级
         /// </summary>
-        enum MongologLevel { 
-        
-        }
+        public enum MongologLevel:int   
+        {
+            /// <summary>
+            /// 最少
+            /// </summary>
+            quiet=1,
+            /// <summary>
+            /// Verb * 1
+            /// </summary>
+            v,
+            /// <summary>
+            /// Verb * 2
+            /// </summary>
+            vv,
+            /// <summary>
+            /// Verb * 3
+            /// </summary>
+            vvv,
+            /// <summary>
+            /// Verb * 4
+            /// </summary>
+            vvvv,
+            /// <summary>
+            /// Verb * 5
+            /// </summary>
+            vvvvv
+        };
 
 
         /// <summary>
         /// 部署
         /// </summary>
-        static public void StartMongod(struMongod Mongod){
+        static public String GetMongodCommandLine(struMongod Mongod)
+        {
             //mongo.exe 客户端程序
-            String DosCommand = @"mongod --dbpath @dbpath --port @port ";
+            String DosCommand = @"mongod.exe --dbpath @dbpath --port @port ";
             //数据库路径
             DosCommand = DosCommand.Replace("@dbpath", Mongod.dbpath);
             //端口号
             DosCommand = DosCommand.Replace("@port", Mongod.Port.ToString());
             //日志文件
-            if (Mongod.logpath != String.Empty) {
+            if (Mongod.logpath != String.Empty)
+            {
                 DosCommand += " --logpath " + Mongod.logpath;
+                switch (Mongod.loglv)             
+                {
+                    case MongologLevel.quiet:
+                        DosCommand += " --quiet ";
+                        break;
+                    case MongologLevel.v:
+                        DosCommand += " --verbose ";
+                        break;
+                    case MongologLevel.vv:
+                        DosCommand += " --vv ";
+                        break;
+                    case MongologLevel.vvv:
+                        DosCommand += " --vvv ";
+                        break;
+                    case MongologLevel.vvvv:
+                        DosCommand += " --vvvv ";
+                        break;
+                    case MongologLevel.vvvvv:
+                        DosCommand += " --vvvvv ";
+                        break;
+                    default:
+                        break;
+                }    
                 //日志是否为添加模式
-                if (Mongod.Islogappend) {
+                if (Mongod.Islogappend)
+                {
                     DosCommand += " --logappend ";
                 }
             }
             //是否为Master
-            if (Mongod.IsMaster) {
+            if (Mongod.IsMaster)
+            {
                 DosCommand += " --master";
             }
             //是否作为Windows服务
-            if (Mongod.IsMaster)
+            if (Mongod.IsInstall)
             {
                 DosCommand += " --install";
             }
-
-            RunDosCommand(DosCommand);
+            return DosCommand;
         }
 
-        private static void RunDosCommand(String DosCommand) {
-            Process p = new Process();
-            p.StartInfo.FileName = "cmd.exe ";
-            p.StartInfo.Arguments = DosCommand;
-            p.Start();
-        }
-
-        private static void RunDosCommandAdvance(String DosCommand,StringBuilder sb) {
+        public static void RunDosCommand(String DosCommand, StringBuilder sb)
+        {
             Process myProcess = new Process();
-            myProcess.StartInfo.FileName = "cmd.exe ";//DOS控制平台
+            myProcess.StartInfo.WorkingDirectory = SystemManager.mConfig.MongoBinPath ;//DOS控制平台
+            myProcess.StartInfo.FileName = SystemManager.mConfig.MongoBinPath + DosCommand.Split(" ".ToCharArray())[0];
             myProcess.StartInfo.UseShellExecute = false;
             myProcess.StartInfo.CreateNoWindow = true;
             myProcess.StartInfo.RedirectStandardInput = true;
@@ -109,9 +160,7 @@ namespace MagicMongoDBTool.Module
             sIn.AutoFlush = true;
             StreamReader sOut = myProcess.StandardOutput;//标准输入流
             StreamReader sErr = myProcess.StandardError;//标准错误流
-            sIn.Write("ver " + System.Environment.NewLine);//DOS控制平台上的命令
-            sIn.Write("dir " + System.Environment.NewLine);//DOS控制平台上的命令
-            sIn.Write("exit " + System.Environment.NewLine);
+            sIn.Write(DosCommand + System.Environment.NewLine);//DOS控制平台上的命令
             string s = sOut.ReadToEnd();//读取执行DOS命令后输出信息
             string er = sErr.ReadToEnd();//读取执行DOS命令后错误信息
             sb.AppendLine(s);
@@ -123,7 +172,7 @@ namespace MagicMongoDBTool.Module
             sIn.Close();
             sOut.Close();
             sErr.Close();
-            myProcess.Close(); 
+            myProcess.Close();
         }
     }
 }
