@@ -31,6 +31,8 @@
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.DataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SrvStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DataBaseStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,12 +40,12 @@
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.lstData = new System.Windows.Forms.ListView();
-            this.DataBaseStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SrvStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
+            this.statusStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -79,6 +81,20 @@
             this.AddConnectionToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.AddConnectionToolStripMenuItem.Text = "添加数据连接(&A)";
             this.AddConnectionToolStripMenuItem.Click += new System.EventHandler(this.AddConnectionToolStripMenuItem_Click);
+            // 
+            // SrvStatusToolStripMenuItem
+            // 
+            this.SrvStatusToolStripMenuItem.Name = "SrvStatusToolStripMenuItem";
+            this.SrvStatusToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.SrvStatusToolStripMenuItem.Text = "服务器状态";
+            this.SrvStatusToolStripMenuItem.Click += new System.EventHandler(this.SrvStatusToolStripMenuItem_Click);
+            // 
+            // DataBaseStatusToolStripMenuItem
+            // 
+            this.DataBaseStatusToolStripMenuItem.Name = "DataBaseStatusToolStripMenuItem";
+            this.DataBaseStatusToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.DataBaseStatusToolStripMenuItem.Text = "数据库状态";
+            this.DataBaseStatusToolStripMenuItem.Click += new System.EventHandler(this.DataBaseStatusToolStripMenuItem_Click);
             // 
             // RefreshToolStripMenuItem
             // 
@@ -129,11 +145,19 @@
             // 
             // statusStripMain
             // 
+            this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
             this.statusStripMain.Location = new System.Drawing.Point(0, 334);
             this.statusStripMain.Name = "statusStripMain";
             this.statusStripMain.Size = new System.Drawing.Size(863, 22);
             this.statusStripMain.TabIndex = 2;
             this.statusStripMain.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(31, 17);
+            this.toolStripStatusLabel1.Text = "就绪";
             // 
             // splitContainer1
             // 
@@ -159,7 +183,6 @@
             this.trvsrvlst.Name = "trvsrvlst";
             this.trvsrvlst.Size = new System.Drawing.Size(287, 285);
             this.trvsrvlst.TabIndex = 0;
-            this.trvsrvlst.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvsrvlst_AfterSelect);
             // 
             // lstData
             // 
@@ -172,20 +195,6 @@
             this.lstData.TabIndex = 0;
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
-            // 
-            // DataBaseStatusToolStripMenuItem
-            // 
-            this.DataBaseStatusToolStripMenuItem.Name = "DataBaseStatusToolStripMenuItem";
-            this.DataBaseStatusToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.DataBaseStatusToolStripMenuItem.Text = "数据库状态";
-            this.DataBaseStatusToolStripMenuItem.Click += new System.EventHandler(this.DataBaseStatusToolStripMenuItem_Click);
-            // 
-            // SrvStatusToolStripMenuItem
-            // 
-            this.SrvStatusToolStripMenuItem.Name = "SrvStatusToolStripMenuItem";
-            this.SrvStatusToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.SrvStatusToolStripMenuItem.Text = "服务器状态";
-            this.SrvStatusToolStripMenuItem.Click += new System.EventHandler(this.SrvStatusToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -201,6 +210,8 @@
             this.Text = "MagicMongoDB";
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
+            this.statusStripMain.ResumeLayout(false);
+            this.statusStripMain.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -227,6 +238,7 @@
         private System.Windows.Forms.ToolStripMenuItem DosCommandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DataBaseStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SrvStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

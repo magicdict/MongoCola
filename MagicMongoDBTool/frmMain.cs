@@ -16,20 +16,50 @@ namespace MagicMongoDBTool
         public frmMain()
         {
             InitializeComponent();
+            this.trvsrvlst.NodeMouseClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseClick);
         }
-        /// <summary>
-        /// 节点被选中
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void trvsrvlst_AfterSelect(object sender, TreeViewEventArgs e)
+        void trvsrvlst_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (trvsrvlst.SelectedNode.Tag != null) {
-                MongoDBHelpler.FillDataToListView(trvsrvlst.SelectedNode.Tag.ToString(), lstData);
+            lstData.Clear();
+            if (e.Node.Tag != null)
+            {
+                switch (e.Node.Tag.ToString().Split(":".ToCharArray())[0])
+                {
+                    case MongoDBHelpler.DocumentTag:
+                        //BsonDocument
+                        MongoDBHelpler.FillDataToListView(e.Node.Tag.ToString(), lstData);
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        statusStripMain.Items[0].Text = "选中数据:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        break;
+                    case MongoDBHelpler.GridFileSystemTag:
+                        //BsonDocument
+                        MongoDBHelpler.FillDataToListView(e.Node.Tag.ToString(), lstData);
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        statusStripMain.Items[0].Text = "文件系统:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        break;
+                    case MongoDBHelpler.UserListTag:
+                        statusStripMain.Items[0].Text = "用户列表:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        break;
+                    case MongoDBHelpler.ServiceTag:
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        statusStripMain.Items[0].Text = "选中服务器:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        break;
+                    case MongoDBHelpler.DataBaseTag:
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        statusStripMain.Items[0].Text = "选中数据库:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        break;
+                    case MongoDBHelpler.CollectionTag:
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        break;
+                    default:
+                        SystemManager.SelectObjectTag = "";
+                        break;
+                }
             }
         }
         /// <summary>
-        /// 添加链接
+        /// 添加数据库连接
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -39,7 +69,7 @@ namespace MagicMongoDBTool
             mfrm.ShowDialog();
             mfrm.Close();
             mfrm.Dispose();
-            MongoDBHelpler.FillDBToTreeView(trvsrvlst);
+            MongoDBHelpler.FillMongodbToTreeView(trvsrvlst);
             lstData.Clear();
         }
         /// <summary>
@@ -49,7 +79,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.FillDBToTreeView(trvsrvlst);
+            MongoDBHelpler.FillMongodbToTreeView(trvsrvlst);
             lstData.Clear();
         }
         /// <summary>

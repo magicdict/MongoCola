@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
     public partial class frmServiceStatus : Form
@@ -18,9 +18,9 @@ namespace MagicMongoDBTool
 
         private void frmServiceStatus_Load(object sender, EventArgs e)
         {
-
-            MagicMongoDBTool.Module.MongoDBHelpler.FillSrvStatusToList(this.lstSrvStatus);
-
+            //MongoDBHelpler.FillSomething();
+            MongoDBHelpler.FillSrvStatusToList(this.lstSrvStatus);
+            MongoDBHelpler.FillSrvOprToList(this.lstSrvOpr);
         }
     }
 }

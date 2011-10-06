@@ -34,18 +34,29 @@ namespace MagicMongoDBTool.Module
             }
         }
 
-        public static void FillDBToTreeView(TreeView trvMongoDB)
+        public const String ServiceTag = "MongoService";
+        public const String DataBaseTag = "MongoDatabase";
+        public const String CollectionTag = "MongoCollection";
+        public const String DocumentTag = "MongoDocument";
+        public const String GridFileSystemTag = "MongoGFS";
+        public const String UserListTag = "MongoUserList";
+        public const String UserTag = "MongoUser";
+
+        public static void FillMongodbToTreeView(TreeView trvMongoDB)
         {
             trvMongoDB.Nodes.Clear();
             foreach (String mongosvrKey in mongosrvlst.Keys)
             {
                 MongoServer mongosvr = mongosrvlst[mongosvrKey];
                 TreeNode mongosrvnode = new TreeNode(mongosvrKey + " [" + mongosvr.Settings.Server.Host + ":" + mongosvr.Settings.Server.Port + "]");
+                mongosrvnode.Tag = ServiceTag + ":" + mongosvrKey;
 
                 List<String> DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
                 foreach (String strDBName in DatabaseNameList)
                 {
                     TreeNode mongoDBNode = new TreeNode(strDBName);
+                    mongoDBNode.Tag = DataBaseTag + ":" + mongosvrKey + "/" + strDBName;
+
                     MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
 
                     List<String> ColNameList = Mongodb.GetCollectionNames().ToList<String>();
@@ -64,7 +75,7 @@ namespace MagicMongoDBTool.Module
                                 mongoColNode = new TreeNode(strColName);
                                 break;
                         }
-
+                        mongoColNode.Tag = CollectionTag + ":" + mongosvrKey + "/" + strDBName + "/" + strColName;
 
                         MongoCollection mongoCol = Mongodb.GetCollection(strColName);
 
@@ -87,7 +98,7 @@ namespace MagicMongoDBTool.Module
 
                         //Start Data
                         TreeNode mongoData = new TreeNode("Data");
-                        mongoData.Tag = mongosvrKey + "/" + strDBName + "/" + strColName;
+                        mongoData.Tag = DocumentTag + ":" + mongosvrKey + "/" + strDBName + "/" + strColName;
                         mongoColNode.Nodes.Add(mongoData);
                         //End Data
 
@@ -97,18 +108,20 @@ namespace MagicMongoDBTool.Module
                     //FileSystem
                     MongoGridFS mongoGridFs = Mongodb.GetGridFS(new global::MongoDB.Driver.GridFS.MongoGridFSSettings());
                     TreeNode fsNode = new TreeNode("文件系统");
-                    fsNode.Tag = mongosvrKey + "/" + strDBName + "/" + mongoGridFs.Files.Name;
+                    fsNode.Tag = GridFileSystemTag + ":" + mongosvrKey + "/" + strDBName + "/" + mongoGridFs.Files.Name;
                     mongoDBNode.Nodes.Add(fsNode);
 
 
                     //User
-                    TreeNode userNode = new TreeNode("用户");
+                    TreeNode userlstNode = new TreeNode("用户列表");
+                    userlstNode.Tag = UserListTag + ":" + mongosvrKey + "/" + strDBName + "/" + mongoGridFs.Files.Name;
                     MongoUser[] mongouserlst = Mongodb.FindAllUsers();
                     foreach (MongoUser mongouser in mongouserlst)
                     {
-                        userNode.Nodes.Add(mongouser.Username);
+                        TreeNode userNode = new TreeNode(mongouser.Username);
+                        userlstNode.Nodes.Add(userNode);
                     }
-                    mongoDBNode.Nodes.Add(userNode);
+                    mongoDBNode.Nodes.Add(userlstNode);
 
                     mongosrvnode.Nodes.Add(mongoDBNode);
                 }
@@ -116,9 +129,9 @@ namespace MagicMongoDBTool.Module
             }
         }
 
-        public static void FillDataToListView(String CollectionPath, ListView lstData)
+        public static void FillDataToListView(String strTag, ListView lstData)
         {
-            lstData.Clear();
+            String CollectionPath = strTag.Split(":".ToCharArray())[1];
             String[] cp = CollectionPath.Split("/".ToCharArray());
             List<BsonDocument> DataList = new List<BsonDocument>();
             if (cp[2] == "fs.files")
@@ -176,15 +189,15 @@ namespace MagicMongoDBTool.Module
         {
             lstData.Columns.Add("文件名称");
             lstData.Columns.Add("文件大小");
-            lstData.Columns.Add("使用空间");
+            lstData.Columns.Add("块大小");
             lstData.Columns.Add("上传日期");
             lstData.Columns.Add("MD5");
             foreach (BsonDocument docfile in DataList)
             {
                 ListViewItem lstItem = new ListViewItem();
                 lstItem.Text = docfile.GetValue("filename").ToString();
-                lstItem.SubItems.Add(docfile.GetValue("length").ToString());
-                lstItem.SubItems.Add(docfile.GetValue("chunkSize").ToString());
+                lstItem.SubItems.Add(GetSize((int)docfile.GetValue("length")));
+                lstItem.SubItems.Add(GetSize((int)docfile.GetValue("chunkSize")));
                 lstItem.SubItems.Add(docfile.GetValue("uploadDate").ToString());
                 lstItem.SubItems.Add(docfile.GetValue("md5").ToString());
                 lstData.Items.Add(lstItem);
@@ -196,10 +209,10 @@ namespace MagicMongoDBTool.Module
             lstData.Clear();
             lstData.Columns.Add("名称");
             lstData.Columns.Add("文档数量");
-            lstData.Columns.Add("实际尺寸");
-            lstData.Columns.Add("占用尺寸");
+            lstData.Columns.Add("实际大小");
+            lstData.Columns.Add("占用大小");
             lstData.Columns.Add("索引");
-            lstData.Columns.Add("平均对象尺寸");
+            lstData.Columns.Add("平均对象大小");
             lstData.Columns.Add("填充因子");
             foreach (String mongosvrKey in mongosrvlst.Keys)
             {
@@ -232,12 +245,12 @@ namespace MagicMongoDBTool.Module
             lstData.Clear();
             lstData.Columns.Add("名称");
             lstData.Columns.Add("数据集数量");
-            lstData.Columns.Add("数据尺寸");
-            lstData.Columns.Add("文件尺寸");
+            lstData.Columns.Add("数据大小");
+            lstData.Columns.Add("文件大小");
             lstData.Columns.Add("索引数量");
-            lstData.Columns.Add("索引数量尺寸");
+            lstData.Columns.Add("索引数量大小");
             lstData.Columns.Add("对象数量");
-            lstData.Columns.Add("占用尺寸");
+            lstData.Columns.Add("占用大小");
             foreach (String mongosvrKey in mongosrvlst.Keys)
             {
                 MongoServer mongosvr = mongosrvlst[mongosvrKey];
@@ -258,6 +271,51 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
+        public static void FillSrvOprToList(ListView lstData)
+        {
+            lstData.Clear();
+            Boolean HasHeader = false;
+            foreach (String mongosvrKey in mongosrvlst.Keys)
+            {
+                MongoServer mongosvr = mongosrvlst[mongosvrKey];
+                List<String> DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
+                foreach (String strDBName in DatabaseNameList)
+                {
+                    MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
+                    BsonDocument dbstatus = Mongodb.GetCurrentOp();
+                    if (!HasHeader)
+                    {
+
+                        lstData.Columns.Add("Name");
+                        foreach (String item in dbstatus.GetValue("inprog").AsBsonArray[0].AsBsonDocument.Names)
+                        {
+                            lstData.Columns.Add(item);
+
+                        }
+                        HasHeader = true;
+                    }
+
+                    BsonArray doc = dbstatus.GetValue("inprog").AsBsonArray;
+                    foreach (BsonDocument item in doc)
+                    {
+                        ListViewItem lst = new ListViewItem(mongosvrKey + "." + strDBName);
+                        foreach (String itemName in item.Names)
+                        {
+                            lst.SubItems.Add(item.GetValue(itemName).ToString());
+                        }
+                        lstData.Items.Add(lst);
+                    }
+                }
+            }
+        }
+
+        //public static void FillSomething() {
+        //    foreach (String mongosvrKey in mongosrvlst.Keys)
+        //    {
+        //        MongoServer mongosvr = mongosrvlst[mongosvrKey];
+        //    }
+        //}
+
         private static String GetSize(long mSize)
         {
             String strSize = String.Empty;
