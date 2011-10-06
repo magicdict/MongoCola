@@ -85,5 +85,21 @@ namespace MagicMongoDBTool
             mfrm.Close();
             mfrm.Dispose();
         }
+
+        private void DataBaseStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDataBaseStatus mfrm = new frmDataBaseStatus();
+            mfrm.ShowDialog();
+            mfrm.Close();
+            mfrm.Dispose();
+        }
+
+        private void SrvStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmServiceStatus mfrm = new frmServiceStatus();
+            mfrm.ShowDialog();
+            mfrm.Close();
+            mfrm.Dispose();
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace MagicMongoDBTool
 {
     public partial class frmDosCommand : Form
     {
+        public delegate void CommandChangedEventHandler(string strCommandLine);
         public frmDosCommand()
         {
             InitializeComponent();
@@ -18,14 +19,24 @@ namespace MagicMongoDBTool
 
         private void frmDosCommand_Load(object sender, EventArgs e)
         {
-            this.ctlMongodPanel.CommandChanged += new ctlMongod.CommandChangedEventHandler(ctlMongodPanel_CommandChanged);
+            //命令参数变化
+            this.ctlMongodPanel.CommandChanged += new CommandChangedEventHandler(CommandChanged);
+            this.ctlMongodumpPanel.CommandChanged += new CommandChangedEventHandler(CommandChanged);
+            this.ctlMongoImportExportPanel.CommandChanged += new CommandChangedEventHandler(CommandChanged);
         }
-
-        void ctlMongodPanel_CommandChanged(string strCommandLine)
+        /// <summary>
+        /// //命令参数变化
+        /// </summary>
+        /// <param name="strCommandLine"></param>
+        void CommandChanged(string strCommandLine)
         {
             this.txtDosCommand.Text = strCommandLine;
         }
-
+        /// <summary>
+        /// 运行
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdRunDos_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();

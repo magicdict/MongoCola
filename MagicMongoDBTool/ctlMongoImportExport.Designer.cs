@@ -1,6 +1,6 @@
 ﻿namespace MagicMongoDBTool.Module
 {
-    partial class ctlMongodump
+    partial class ctlMongoImportExport
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
-            this.ctlFilePickerOutput = new MagicMongoDBTool.ctlFilePicker();
             this.lblHostAddr = new System.Windows.Forms.Label();
             this.txtHostAddr = new System.Windows.Forms.TextBox();
             this.lblPort = new System.Windows.Forms.Label();
@@ -38,24 +36,16 @@
             this.txtDBName = new System.Windows.Forms.TextBox();
             this.lblCollectionName = new System.Windows.Forms.Label();
             this.txtCollectionName = new System.Windows.Forms.TextBox();
+            this.lblFieldList = new System.Windows.Forms.Label();
+            this.txtFieldList = new System.Windows.Forms.TextBox();
+            this.grpDirect = new System.Windows.Forms.GroupBox();
+            this.radExport = new System.Windows.Forms.RadioButton();
+            this.radImport = new System.Windows.Forms.RadioButton();
+            this.ctlFilePickerOutput = new MagicMongoDBTool.ctlFilePicker();
+            this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
+            this.grpDirect.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // ctllogLvT
-            // 
-            this.ctllogLvT.Location = new System.Drawing.Point(485, 146);
-            this.ctllogLvT.Name = "ctllogLvT";
-            this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
-            this.ctllogLvT.TabIndex = 0;
-            // 
-            // ctlFilePickerOutput
-            // 
-            this.ctlFilePickerOutput.Location = new System.Drawing.Point(34, 107);
-            this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
-            this.ctlFilePickerOutput.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
-            this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 27);
-            this.ctlFilePickerOutput.TabIndex = 1;
-            this.ctlFilePickerOutput.Title = "备份路径";
             // 
             // lblHostAddr
             // 
@@ -141,10 +131,81 @@
             this.txtCollectionName.TabIndex = 13;
             this.txtCollectionName.TextChanged += new System.EventHandler(this.txtCollectionName_TextChanged);
             // 
-            // ctlMongodump
+            // lblFieldList
+            // 
+            this.lblFieldList.AutoSize = true;
+            this.lblFieldList.Location = new System.Drawing.Point(37, 86);
+            this.lblFieldList.Name = "lblFieldList";
+            this.lblFieldList.Size = new System.Drawing.Size(55, 13);
+            this.lblFieldList.TabIndex = 14;
+            this.lblFieldList.Text = "字段列表";
+            // 
+            // txtFieldList
+            // 
+            this.txtFieldList.Location = new System.Drawing.Point(116, 83);
+            this.txtFieldList.Name = "txtFieldList";
+            this.txtFieldList.Size = new System.Drawing.Size(449, 20);
+            this.txtFieldList.TabIndex = 15;
+            this.txtFieldList.TextChanged += new System.EventHandler(this.txtFieldList_TextChanged);
+            // 
+            // grpDirect
+            // 
+            this.grpDirect.Controls.Add(this.radExport);
+            this.grpDirect.Controls.Add(this.radImport);
+            this.grpDirect.Location = new System.Drawing.Point(596, 54);
+            this.grpDirect.Name = "grpDirect";
+            this.grpDirect.Size = new System.Drawing.Size(161, 41);
+            this.grpDirect.TabIndex = 16;
+            this.grpDirect.TabStop = false;
+            this.grpDirect.Text = "操作";
+            // 
+            // radExport
+            // 
+            this.radExport.AutoSize = true;
+            this.radExport.Location = new System.Drawing.Point(90, 16);
+            this.radExport.Name = "radExport";
+            this.radExport.Size = new System.Drawing.Size(49, 17);
+            this.radExport.TabIndex = 1;
+            this.radExport.Text = "导出";
+            this.radExport.UseVisualStyleBackColor = true;
+            this.radExport.CheckedChanged += new System.EventHandler(this.radExport_CheckedChanged);
+            // 
+            // radImport
+            // 
+            this.radImport.AutoSize = true;
+            this.radImport.Checked = true;
+            this.radImport.Location = new System.Drawing.Point(26, 16);
+            this.radImport.Name = "radImport";
+            this.radImport.Size = new System.Drawing.Size(49, 17);
+            this.radImport.TabIndex = 0;
+            this.radImport.TabStop = true;
+            this.radImport.Text = "导入";
+            this.radImport.UseVisualStyleBackColor = true;
+            this.radImport.CheckedChanged += new System.EventHandler(this.radImport_CheckedChanged);
+            // 
+            // ctlFilePickerOutput
+            // 
+            this.ctlFilePickerOutput.Location = new System.Drawing.Point(34, 107);
+            this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
+            this.ctlFilePickerOutput.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.SaveFile;
+            this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 27);
+            this.ctlFilePickerOutput.TabIndex = 1;
+            this.ctlFilePickerOutput.Title = "工作文件：";
+            // 
+            // ctllogLvT
+            // 
+            this.ctllogLvT.Location = new System.Drawing.Point(485, 146);
+            this.ctllogLvT.Name = "ctllogLvT";
+            this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
+            this.ctllogLvT.TabIndex = 0;
+            // 
+            // ctlMongoImportExport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.grpDirect);
+            this.Controls.Add(this.txtFieldList);
+            this.Controls.Add(this.lblFieldList);
             this.Controls.Add(this.txtCollectionName);
             this.Controls.Add(this.lblCollectionName);
             this.Controls.Add(this.txtDBName);
@@ -155,10 +216,12 @@
             this.Controls.Add(this.lblHostAddr);
             this.Controls.Add(this.ctlFilePickerOutput);
             this.Controls.Add(this.ctllogLvT);
-            this.Name = "ctlMongodump";
+            this.Name = "ctlMongoImportExport";
             this.Size = new System.Drawing.Size(800, 195);
             this.Load += new System.EventHandler(this.ctlMongodump_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
+            this.grpDirect.ResumeLayout(false);
+            this.grpDirect.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,5 +239,10 @@
         private System.Windows.Forms.TextBox txtDBName;
         private System.Windows.Forms.Label lblCollectionName;
         private System.Windows.Forms.TextBox txtCollectionName;
+        private System.Windows.Forms.Label lblFieldList;
+        private System.Windows.Forms.TextBox txtFieldList;
+        private System.Windows.Forms.GroupBox grpDirect;
+        private System.Windows.Forms.RadioButton radExport;
+        private System.Windows.Forms.RadioButton radImport;
     }
 }

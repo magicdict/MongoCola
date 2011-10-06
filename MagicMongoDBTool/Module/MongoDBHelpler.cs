@@ -191,5 +191,102 @@ namespace MagicMongoDBTool.Module
             }
         }
 
+        public static void FillDBStatusToList(ListView lstData)
+        {
+            lstData.Clear();
+            lstData.Columns.Add("名称");
+            lstData.Columns.Add("文档数量");
+            lstData.Columns.Add("实际尺寸");
+            lstData.Columns.Add("占用尺寸");
+            lstData.Columns.Add("索引");
+            lstData.Columns.Add("平均对象尺寸");
+            lstData.Columns.Add("填充因子");
+            foreach (String mongosvrKey in mongosrvlst.Keys)
+            {
+                MongoServer mongosvr = mongosrvlst[mongosvrKey];
+                List<String> DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
+                foreach (String strDBName in DatabaseNameList)
+                {
+                    MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
+
+                    List<String> ColNameList = Mongodb.GetCollectionNames().ToList<String>();
+                    foreach (String strColName in ColNameList)
+                    {
+
+                        CollectionStatsResult dbstatus = Mongodb.GetCollection(strColName).GetStats();
+                        ListViewItem lst = new ListViewItem(strDBName + "." + strColName);
+                        lst.SubItems.Add(dbstatus.ObjectCount.ToString());
+                        lst.SubItems.Add(GetSize(dbstatus.DataSize));
+                        lst.SubItems.Add(GetSize(dbstatus.StorageSize));
+                        lst.SubItems.Add(GetSize(dbstatus.TotalIndexSize));
+                        lst.SubItems.Add(GetSize((long)dbstatus.AverageObjectSize));
+
+                        lst.SubItems.Add(dbstatus.PaddingFactor.ToString());
+                        lstData.Items.Add(lst);
+                    }
+                }
+            }
+        }
+        public static void FillSrvStatusToList(ListView lstData)
+        {
+            lstData.Clear();
+            lstData.Columns.Add("名称");
+            lstData.Columns.Add("数据集数量");
+            lstData.Columns.Add("数据尺寸");
+            lstData.Columns.Add("文件尺寸");
+            lstData.Columns.Add("索引数量");
+            lstData.Columns.Add("索引数量尺寸");
+            lstData.Columns.Add("对象数量");
+            lstData.Columns.Add("占用尺寸");
+            foreach (String mongosvrKey in mongosrvlst.Keys)
+            {
+                MongoServer mongosvr = mongosrvlst[mongosvrKey];
+                List<String> DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
+                foreach (String strDBName in DatabaseNameList)
+                {
+                    MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
+                    DatabaseStatsResult dbstatus = Mongodb.GetStats();
+                    ListViewItem lst = new ListViewItem(mongosvrKey + "." + strDBName);
+                    lst.SubItems.Add(dbstatus.CollectionCount.ToString());
+                    lst.SubItems.Add(GetSize(dbstatus.DataSize));
+                    lst.SubItems.Add(GetSize(dbstatus.FileSize));
+                    lst.SubItems.Add(dbstatus.IndexCount.ToString());
+                    lst.SubItems.Add(GetSize(dbstatus.IndexSize));
+                    lst.SubItems.Add(dbstatus.ObjectCount.ToString());
+                    lst.SubItems.Add(GetSize(dbstatus.StorageSize));
+                    lstData.Items.Add(lst);
+                }
+            }
+        }
+        private static String GetSize(long mSize)
+        {
+            String strSize = String.Empty;
+            String[] Unit = new String[]{
+                "Byte","KB","MB","GB","TB"
+            };
+            if (mSize == 0)
+            {
+                return "0 Byte";
+            }
+            byte UnitOrder = 2;
+            Double tempSize = mSize / Math.Pow(2, 20);
+            while (!(tempSize > 0.1 & tempSize < 1000))
+            {
+                if (tempSize < 0.1)
+                {
+                    tempSize = tempSize * 1024;
+                    UnitOrder--;
+                }
+                else
+                {
+
+                    tempSize = tempSize / 1024;
+                    UnitOrder++;
+                }
+            }
+            return string.Format("{0:F2}", tempSize) + " " + Unit[UnitOrder];
+        }
+
+
     }
 }

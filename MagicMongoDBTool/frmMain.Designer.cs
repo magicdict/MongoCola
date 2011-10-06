@@ -34,13 +34,15 @@
             this.RefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DosCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.lstData = new System.Windows.Forms.ListView();
+            this.DataBaseStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SrvStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -55,7 +57,7 @@
             this.ToolToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(670, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(863, 24);
             this.menuStripMain.TabIndex = 0;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -63,6 +65,8 @@
             // 
             this.DataBaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddConnectionToolStripMenuItem,
+            this.SrvStatusToolStripMenuItem,
+            this.DataBaseStatusToolStripMenuItem,
             this.RefreshToolStripMenuItem,
             this.ExitToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
@@ -101,25 +105,25 @@
             this.ToolToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.ToolToolStripMenuItem.Text = "工具（&T)";
             // 
-            // OptionToolStripMenuItem
-            // 
-            this.OptionToolStripMenuItem.Name = "OptionToolStripMenuItem";
-            this.OptionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.OptionToolStripMenuItem.Text = "配置(&O)";
-            this.OptionToolStripMenuItem.Click += new System.EventHandler(this.OptionToolStripMenuItem_Click);
-            // 
             // DosCommandToolStripMenuItem
             // 
             this.DosCommandToolStripMenuItem.Name = "DosCommandToolStripMenuItem";
-            this.DosCommandToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DosCommandToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.DosCommandToolStripMenuItem.Text = "DOS操作";
             this.DosCommandToolStripMenuItem.Click += new System.EventHandler(this.DosCommandToolStripMenuItem_Click);
+            // 
+            // OptionToolStripMenuItem
+            // 
+            this.OptionToolStripMenuItem.Name = "OptionToolStripMenuItem";
+            this.OptionToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.OptionToolStripMenuItem.Text = "配置(&O)";
+            this.OptionToolStripMenuItem.Click += new System.EventHandler(this.OptionToolStripMenuItem_Click);
             // 
             // toolStripMain
             // 
             this.toolStripMain.Location = new System.Drawing.Point(0, 24);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(670, 25);
+            this.toolStripMain.Size = new System.Drawing.Size(863, 25);
             this.toolStripMain.TabIndex = 1;
             this.toolStripMain.Text = "toolStrip1";
             // 
@@ -127,7 +131,7 @@
             // 
             this.statusStripMain.Location = new System.Drawing.Point(0, 334);
             this.statusStripMain.Name = "statusStripMain";
-            this.statusStripMain.Size = new System.Drawing.Size(670, 22);
+            this.statusStripMain.Size = new System.Drawing.Size(863, 22);
             this.statusStripMain.TabIndex = 2;
             this.statusStripMain.Text = "statusStrip1";
             // 
@@ -144,8 +148,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.lstData);
-            this.splitContainer1.Size = new System.Drawing.Size(670, 285);
-            this.splitContainer1.SplitterDistance = 223;
+            this.splitContainer1.Size = new System.Drawing.Size(863, 285);
+            this.splitContainer1.SplitterDistance = 287;
             this.splitContainer1.TabIndex = 3;
             // 
             // trvsrvlst
@@ -153,7 +157,7 @@
             this.trvsrvlst.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvsrvlst.Location = new System.Drawing.Point(0, 0);
             this.trvsrvlst.Name = "trvsrvlst";
-            this.trvsrvlst.Size = new System.Drawing.Size(223, 285);
+            this.trvsrvlst.Size = new System.Drawing.Size(287, 285);
             this.trvsrvlst.TabIndex = 0;
             this.trvsrvlst.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvsrvlst_AfterSelect);
             // 
@@ -164,16 +168,30 @@
             this.lstData.GridLines = true;
             this.lstData.Location = new System.Drawing.Point(0, 0);
             this.lstData.Name = "lstData";
-            this.lstData.Size = new System.Drawing.Size(443, 285);
+            this.lstData.Size = new System.Drawing.Size(572, 285);
             this.lstData.TabIndex = 0;
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
+            // 
+            // DataBaseStatusToolStripMenuItem
+            // 
+            this.DataBaseStatusToolStripMenuItem.Name = "DataBaseStatusToolStripMenuItem";
+            this.DataBaseStatusToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.DataBaseStatusToolStripMenuItem.Text = "数据库状态";
+            this.DataBaseStatusToolStripMenuItem.Click += new System.EventHandler(this.DataBaseStatusToolStripMenuItem_Click);
+            // 
+            // SrvStatusToolStripMenuItem
+            // 
+            this.SrvStatusToolStripMenuItem.Name = "SrvStatusToolStripMenuItem";
+            this.SrvStatusToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.SrvStatusToolStripMenuItem.Text = "服务器状态";
+            this.SrvStatusToolStripMenuItem.Click += new System.EventHandler(this.SrvStatusToolStripMenuItem_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 356);
+            this.ClientSize = new System.Drawing.Size(863, 356);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStripMain);
             this.Controls.Add(this.toolStripMain);
@@ -207,6 +225,8 @@
         private System.Windows.Forms.ToolStripMenuItem ToolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DosCommandToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DataBaseStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SrvStatusToolStripMenuItem;
     }
 }
 

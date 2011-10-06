@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ctlMongoImportExport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlMongoImportExport.Designer.cs">
+      <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctlFilePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -78,6 +84,12 @@
     <Compile Include="frmConnect.Designer.cs">
       <DependentUpon>frmConnect.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDataBaseStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDataBaseStatus.Designer.cs">
+      <DependentUpon>frmDataBaseStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDosCommand.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +107,12 @@
     </Compile>
     <Compile Include="frmOption.Designer.cs">
       <DependentUpon>frmOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmServiceStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServiceStatus.Designer.cs">
+      <DependentUpon>frmServiceStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\ConfigHelper.cs" />
     <Compile Include="ctllogLv.cs">
@@ -114,6 +132,9 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ctlMongoImportExport.resx">
+      <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctlFilePicker.resx">
       <DependentUpon>ctlFilePicker.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,6 +153,9 @@
     <EmbeddedResource Include="frmConnect.resx">
       <DependentUpon>frmConnect.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDataBaseStatus.resx">
+      <DependentUpon>frmDataBaseStatus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDosCommand.resx">
       <DependentUpon>frmDosCommand.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmOption.resx">
       <DependentUpon>frmOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServiceStatus.resx">
+      <DependentUpon>frmServiceStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -11,8 +11,8 @@ namespace MagicMongoDBTool
 {
     public partial class ctlMongod : UserControl
     {
-        public delegate void CommandChangedEventHandler(string strCommandLine);
-        public event CommandChangedEventHandler CommandChanged;
+        
+        public event MagicMongoDBTool.frmDosCommand.CommandChangedEventHandler CommandChanged;
         private MongodbDosCommand.struMongod MongodCommand = new  MongodbDosCommand.struMongod();
         public ctlMongod()
         {

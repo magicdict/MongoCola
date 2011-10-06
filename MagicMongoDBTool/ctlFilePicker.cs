@@ -66,8 +66,6 @@ namespace MagicMongoDBTool
                 default:
                     break;
             }
-
-
             PathChanged(txtLogPath.Text);
         }
         private void cmdClearLogPath_Click(object sender, EventArgs e)
