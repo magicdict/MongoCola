@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ctlFilePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlFilePicker.Designer.cs">
+      <DependentUpon>ctlFilePicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctlMongod.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,13 +97,34 @@
       <DependentUpon>frmOption.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\ConfigHelper.cs" />
+    <Compile Include="ctllogLv.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctllogLv.Designer.cs">
+      <DependentUpon>ctllogLv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctlMongodump.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlMongodump.Designer.cs">
+      <DependentUpon>ctlMongodump.cs</DependentUpon>
+    </Compile>
     <Compile Include="Module\MongodbDosCommand.cs" />
     <Compile Include="Module\MongoDBHelpler.cs" />
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ctlFilePicker.resx">
+      <DependentUpon>ctlFilePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctllogLv.resx">
+      <DependentUpon>ctllogLv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctlMongod.resx">
       <DependentUpon>ctlMongod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctlMongodump.resx">
+      <DependentUpon>ctlMongodump.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddConnection.resx">
       <DependentUpon>frmAddConnection.cs</DependentUpon>

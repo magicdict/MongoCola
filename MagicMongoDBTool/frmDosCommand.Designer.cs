@@ -31,12 +31,14 @@
             this.txtDosCommand = new System.Windows.Forms.TextBox();
             this.tabFunction = new System.Windows.Forms.TabControl();
             this.tabMongod = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabMongoDump = new System.Windows.Forms.TabPage();
             this.cmdRunDos = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.ctlMongodPanel = new MagicMongoDBTool.ctlMongod();
+            this.ctlMongodump1 = new MagicMongoDBTool.Module.ctlMongodump();
             this.tabFunction.SuspendLayout();
             this.tabMongod.SuspendLayout();
+            this.tabMongoDump.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDosCommand
@@ -50,7 +52,7 @@
             // tabFunction
             // 
             this.tabFunction.Controls.Add(this.tabMongod);
-            this.tabFunction.Controls.Add(this.tabPage2);
+            this.tabFunction.Controls.Add(this.tabMongoDump);
             this.tabFunction.Location = new System.Drawing.Point(12, 12);
             this.tabFunction.Name = "tabFunction";
             this.tabFunction.SelectedIndex = 0;
@@ -68,15 +70,16 @@
             this.tabMongod.Text = "部署（Mongod）";
             this.tabMongod.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabMongoDump
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(843, 221);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabMongoDump.Controls.Add(this.ctlMongodump1);
+            this.tabMongoDump.Location = new System.Drawing.Point(4, 22);
+            this.tabMongoDump.Name = "tabMongoDump";
+            this.tabMongoDump.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMongoDump.Size = new System.Drawing.Size(843, 221);
+            this.tabMongoDump.TabIndex = 1;
+            this.tabMongoDump.Text = "备份与恢复(mongodump)";
+            this.tabMongoDump.UseVisualStyleBackColor = true;
             // 
             // cmdRunDos
             // 
@@ -104,6 +107,13 @@
             this.ctlMongodPanel.Size = new System.Drawing.Size(831, 209);
             this.ctlMongodPanel.TabIndex = 2;
             // 
+            // ctlMongodump1
+            // 
+            this.ctlMongodump1.Location = new System.Drawing.Point(16, 6);
+            this.ctlMongodump1.Name = "ctlMongodump1";
+            this.ctlMongodump1.Size = new System.Drawing.Size(800, 200);
+            this.ctlMongodump1.TabIndex = 0;
+            // 
             // frmDosCommand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -118,6 +128,7 @@
             this.Load += new System.EventHandler(this.frmDosCommand_Load);
             this.tabFunction.ResumeLayout(false);
             this.tabMongod.ResumeLayout(false);
+            this.tabMongoDump.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,9 +139,10 @@
         private System.Windows.Forms.TextBox txtDosCommand;
         private System.Windows.Forms.TabControl tabFunction;
         private System.Windows.Forms.TabPage tabMongod;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabMongoDump;
         private ctlMongod ctlMongodPanel;
         private System.Windows.Forms.Button cmdRunDos;
         private System.Windows.Forms.Button cmdSave;
+        private Module.ctlMongodump ctlMongodump1;
     }
 }

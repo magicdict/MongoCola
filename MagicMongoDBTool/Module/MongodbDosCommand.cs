@@ -13,7 +13,7 @@ namespace MagicMongoDBTool.Module
     /// <remarks>
     /// http://www.cnblogs.com/tommyli/archive/2011/07/22/2114045.html
     /// </remarks>
-    class MongodbDosCommand
+    public class MongodbDosCommand
     {
 
         //mongod.exe 服务端程序
@@ -25,6 +25,9 @@ namespace MagicMongoDBTool.Module
         //mongos.exe 数据分片程序，支持数据的横向扩展
         //mongostat.exe 监视程序
 
+        /// <summary>
+        /// Mongod使用结构体
+        /// </summary>
         public class struMongod
         {
             /// <summary>
@@ -86,8 +89,6 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             vvvvv
         };
-
-
         /// <summary>
         /// 部署
         /// </summary>
@@ -145,6 +146,22 @@ namespace MagicMongoDBTool.Module
             return DosCommand;
         }
 
+        /// <summary>
+        /// Mongodump使用的结构
+        /// </summary>
+        public class struMongodump {
+            String HostName;
+            Int32 Port=27017;
+            String DBName = String.Empty;
+            String CollectionName = String.Empty;
+            String OutPutPath = String.Empty;
+        }
+        
+        /// <summary>
+        /// 执行Dos下的命令
+        /// </summary>
+        /// <param name="DosCommand"></param>
+        /// <param name="sb"></param>
         public static void RunDosCommand(String DosCommand, StringBuilder sb)
         {
             Process myProcess = new Process();
