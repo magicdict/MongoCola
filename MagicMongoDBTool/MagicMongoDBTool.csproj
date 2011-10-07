@@ -128,7 +128,8 @@
       <DependentUpon>ctlMongodump.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\MongodbDosCommand.cs" />
-    <Compile Include="Module\MongoDBHelpler.cs" />
+    <Compile Include="Module\MongoDBHelper_Opration.cs" />
+    <Compile Include="Module\MongoDBHelpler_View.cs" />
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

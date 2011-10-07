@@ -10,7 +10,7 @@ using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool.Module
 {
-    public static class MongoDBHelpler
+    public  static partial class MongoDBHelpler
     {
         public static Dictionary<String, MongoServer> mongosrvlst = new Dictionary<String, MongoServer>();
         public static Boolean AddServer(List<ConfigHelper.MongoConnectionConfig> connlst)
