@@ -107,6 +107,7 @@
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdConnect);
             this.Controls.Add(this.lstServerce);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "frmConnect";
             this.Text = "Connect";
             this.Load += new System.EventHandler(this.frmConnect_Load);

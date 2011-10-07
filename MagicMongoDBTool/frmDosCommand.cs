@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
-    public partial class frmDosCommand : Form
+    public partial class frmDosCommand : frmBase
     {
         public delegate void CommandChangedEventHandler(string strCommandLine);
         public frmDosCommand()

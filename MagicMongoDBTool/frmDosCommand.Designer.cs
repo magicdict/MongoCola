@@ -34,10 +34,10 @@
             this.ctlMongodPanel = new MagicMongoDBTool.ctlMongod();
             this.tabMongoDump = new System.Windows.Forms.TabPage();
             this.ctlMongodumpPanel = new MagicMongoDBTool.Module.ctlMongodump();
-            this.cmdRunDos = new System.Windows.Forms.Button();
-            this.cmdSave = new System.Windows.Forms.Button();
             this.tabMongoImportExport = new System.Windows.Forms.TabPage();
             this.ctlMongoImportExportPanel = new MagicMongoDBTool.Module.ctlMongoImportExport();
+            this.cmdRunDos = new System.Windows.Forms.Button();
+            this.cmdSave = new System.Windows.Forms.Button();
             this.tabFunction.SuspendLayout();
             this.tabMongod.SuspendLayout();
             this.tabMongoDump.SuspendLayout();
@@ -99,25 +99,6 @@
             this.ctlMongodumpPanel.Size = new System.Drawing.Size(800, 200);
             this.ctlMongodumpPanel.TabIndex = 0;
             // 
-            // cmdRunDos
-            // 
-            this.cmdRunDos.Location = new System.Drawing.Point(763, 280);
-            this.cmdRunDos.Name = "cmdRunDos";
-            this.cmdRunDos.Size = new System.Drawing.Size(96, 29);
-            this.cmdRunDos.TabIndex = 2;
-            this.cmdRunDos.Text = "运行";
-            this.cmdRunDos.UseVisualStyleBackColor = true;
-            this.cmdRunDos.Click += new System.EventHandler(this.cmdRunDos_Click);
-            // 
-            // cmdSave
-            // 
-            this.cmdSave.Location = new System.Drawing.Point(763, 319);
-            this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(96, 25);
-            this.cmdSave.TabIndex = 3;
-            this.cmdSave.Text = "保存";
-            this.cmdSave.UseVisualStyleBackColor = true;
-            // 
             // tabMongoImportExport
             // 
             this.tabMongoImportExport.Controls.Add(this.ctlMongoImportExportPanel);
@@ -135,6 +116,26 @@
             this.ctlMongoImportExportPanel.Name = "ctlMongoImportExportPanel";
             this.ctlMongoImportExportPanel.Size = new System.Drawing.Size(800, 195);
             this.ctlMongoImportExportPanel.TabIndex = 0;
+            // 
+            // cmdRunDos
+            // 
+            this.cmdRunDos.Location = new System.Drawing.Point(763, 280);
+            this.cmdRunDos.Name = "cmdRunDos";
+            this.cmdRunDos.Size = new System.Drawing.Size(96, 29);
+            this.cmdRunDos.TabIndex = 2;
+            this.cmdRunDos.Text = "运行";
+            this.cmdRunDos.UseVisualStyleBackColor = true;
+            this.cmdRunDos.Click += new System.EventHandler(this.cmdRunDos_Click);
+            // 
+            // cmdSave
+            // 
+            this.cmdSave.Enabled = false;
+            this.cmdSave.Location = new System.Drawing.Point(763, 319);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(96, 25);
+            this.cmdSave.TabIndex = 3;
+            this.cmdSave.Text = "保存";
+            this.cmdSave.UseVisualStyleBackColor = true;
             // 
             // frmDosCommand
             // 

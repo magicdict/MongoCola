@@ -10,7 +10,7 @@ using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmAddConnection : Form
+    public partial class frmAddConnection : frmBase
     {
         public frmAddConnection()
         {

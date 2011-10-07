@@ -118,6 +118,7 @@
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtIpAddr);
             this.Controls.Add(this.txtHostName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "frmAddConnection";
             this.Text = "添加链接";
             this.ResumeLayout(false);

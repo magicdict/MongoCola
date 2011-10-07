@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
-    public partial class frmConnect : Form
+    public partial class frmConnect : frmBase
     {
         private Dictionary<String, ConfigHelper.MongoConnectionConfig> ConnectionList = new Dictionary<string, ConfigHelper.MongoConnectionConfig>();
 
@@ -25,8 +25,11 @@ namespace MagicMongoDBTool
             lstServerce.Items.Clear();
             foreach (var item in SystemManager.mConfig.MongoConnectionlst)
             {
-                ConnectionList.Add(item.HostName, item);
-                lstServerce.Items.Add(item.HostName);
+                if (!ConnectionList.ContainsKey(item.HostName))
+                {
+                    ConnectionList.Add(item.HostName, item);
+                    lstServerce.Items.Add(item.HostName);
+                }
             }
             SystemManager.mConfig.SaveToConfigFile("config.xml");
         }
