@@ -76,21 +76,25 @@
             // 
             // cmdDelCon
             // 
+            this.cmdDelCon.Enabled = false;
             this.cmdDelCon.Location = new System.Drawing.Point(421, 75);
             this.cmdDelCon.Name = "cmdDelCon";
             this.cmdDelCon.Size = new System.Drawing.Size(60, 31);
             this.cmdDelCon.TabIndex = 3;
             this.cmdDelCon.Text = "删除";
             this.cmdDelCon.UseVisualStyleBackColor = true;
+            this.cmdDelCon.Click += new System.EventHandler(this.cmdDelCon_Click);
             // 
             // cmdModifyCon
             // 
+            this.cmdModifyCon.Enabled = false;
             this.cmdModifyCon.Location = new System.Drawing.Point(421, 125);
             this.cmdModifyCon.Name = "cmdModifyCon";
             this.cmdModifyCon.Size = new System.Drawing.Size(60, 31);
             this.cmdModifyCon.TabIndex = 3;
             this.cmdModifyCon.Text = "修改";
             this.cmdModifyCon.UseVisualStyleBackColor = true;
+            this.cmdModifyCon.Click += new System.EventHandler(this.cmdModifyCon_Click);
             // 
             // frmConnect
             // 

@@ -52,5 +52,15 @@ namespace MagicMongoDBTool
                 this.Close();
             }
         }
+
+        private void cmdDelCon_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void cmdModifyCon_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

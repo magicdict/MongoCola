@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using MongoDB.Driver;
 using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
-using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool.Module
 {
@@ -54,81 +52,87 @@ namespace MagicMongoDBTool.Module
                 List<String> DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
                 foreach (String strDBName in DatabaseNameList)
                 {
-                    TreeNode mongoDBNode = new TreeNode(strDBName);
-                    mongoDBNode.Tag = DataBaseTag + ":" + mongosvrKey + "/" + strDBName;
-
-                    MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
-
-                    List<String> ColNameList = Mongodb.GetCollectionNames().ToList<String>();
-                    foreach (String strColName in ColNameList)
-                    {
-                        TreeNode mongoColNode;
-                        switch (strColName)
-                        {
-                            case "system.indexes":
-                                mongoColNode = new TreeNode("索引(" + strColName + ")");
-                                break;
-                            case "system.js":
-                                mongoColNode = new TreeNode("存储Javascript(" + strColName + ")");
-                                break;
-                            default:
-                                mongoColNode = new TreeNode(strColName);
-                                break;
-                        }
-                        mongoColNode.Tag = CollectionTag + ":" + mongosvrKey + "/" + strDBName + "/" + strColName;
-
-                        MongoCollection mongoCol = Mongodb.GetCollection(strColName);
-
-                        //Start ListIndex
-                        TreeNode mongoIndex = new TreeNode("Indexes");
-                        List<BsonDocument> IndexList = mongoCol.GetIndexes().ToList<BsonDocument>();
-                        foreach (BsonDocument Indexdoc in IndexList)
-                        {
-                            TreeNode mongoIndexNode = new TreeNode("Index:" + Indexdoc.GetValue("name"));
-                            foreach (String item in Indexdoc.Names)
-                            {
-                                TreeNode mongoIndexItemNode = new TreeNode(item + ":" + Indexdoc.GetValue(item));
-
-                                mongoIndexNode.Nodes.Add(mongoIndexItemNode);
-                            }
-                            mongoIndex.Nodes.Add(mongoIndexNode);
-                        }
-                        mongoColNode.Nodes.Add(mongoIndex);
-                        //End ListIndex
-
-                        //Start Data
-                        TreeNode mongoData = new TreeNode("Data");
-                        mongoData.Tag = DocumentTag + ":" + mongosvrKey + "/" + strDBName + "/" + strColName;
-                        mongoColNode.Nodes.Add(mongoData);
-                        //End Data
-
-                        mongoDBNode.Nodes.Add(mongoColNode);
-                    }
-
-                    //FileSystem
-                    MongoGridFS mongoGridFs = Mongodb.GetGridFS(new global::MongoDB.Driver.GridFS.MongoGridFSSettings());
-                    TreeNode fsNode = new TreeNode("文件系统");
-                    fsNode.Tag = GridFileSystemTag + ":" + mongosvrKey + "/" + strDBName + "/" + mongoGridFs.Files.Name;
-                    mongoDBNode.Nodes.Add(fsNode);
-
-
-                    //User
-                    TreeNode userlstNode = new TreeNode("用户列表");
-                    userlstNode.Tag = UserListTag + ":" + mongosvrKey + "/" + strDBName + "/" + mongoGridFs.Files.Name;
-                    MongoUser[] mongouserlst = Mongodb.FindAllUsers();
-                    foreach (MongoUser mongouser in mongouserlst)
-                    {
-                        TreeNode userNode = new TreeNode(mongouser.Username);
-                        userlstNode.Nodes.Add(userNode);
-                    }
-                    mongoDBNode.Nodes.Add(userlstNode);
-
-                    mongosrvnode.Nodes.Add(mongoDBNode);
+                    mongosrvnode.Nodes.Add(FillDataBaseInfoToTreeNode(strDBName, mongosvr,mongosvrKey));
                 }
                 trvMongoDB.Nodes.Add(mongosrvnode);
             }
         }
+        private static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongosvr,String mongosvrKey)
+        {
+            TreeNode mongoDBNode = new TreeNode(strDBName);
+            mongoDBNode.Tag = DataBaseTag + ":" + mongosvrKey + "/" + strDBName;
 
+            MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
+
+            List<String> ColNameList = Mongodb.GetCollectionNames().ToList<String>();
+            foreach (String strColName in ColNameList)
+            {
+                TreeNode mongoColNode = FillCollectionInfoToTreeNode(strColName, Mongodb, mongosvrKey);
+                mongoDBNode.Nodes.Add(mongoColNode);
+            }
+
+            //FileSystem
+            MongoGridFS mongoGridFs = Mongodb.GetGridFS(new global::MongoDB.Driver.GridFS.MongoGridFSSettings());
+            TreeNode fsNode = new TreeNode("文件系统");
+            fsNode.Tag = GridFileSystemTag + ":" + mongosvrKey + "/" + strDBName + "/" + mongoGridFs.Files.Name;
+            mongoDBNode.Nodes.Add(fsNode);
+
+
+            //User
+            TreeNode userlstNode = new TreeNode("用户列表");
+            userlstNode.Tag = UserListTag + ":" + mongosvrKey + "/" + strDBName + "/" + mongoGridFs.Files.Name;
+            MongoUser[] mongouserlst = Mongodb.FindAllUsers();
+            foreach (MongoUser mongouser in mongouserlst)
+            {
+                TreeNode userNode = new TreeNode(mongouser.Username);
+                userlstNode.Nodes.Add(userNode);
+            }
+            mongoDBNode.Nodes.Add(userlstNode);
+            return mongoDBNode;
+        }
+        private static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase Mongodb, String mongosvrKey)
+        {
+            TreeNode mongoColNode;
+            switch (strColName)
+            {
+                case "system.indexes":
+                    mongoColNode = new TreeNode("索引(" + strColName + ")");
+                    break;
+                case "system.js":
+                    mongoColNode = new TreeNode("存储Javascript(" + strColName + ")");
+                    break;
+                default:
+                    mongoColNode = new TreeNode(strColName);
+                    break;
+            }
+            mongoColNode.Tag = CollectionTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strColName;
+
+            MongoCollection mongoCol = Mongodb.GetCollection(strColName);
+
+            //Start ListIndex
+            TreeNode mongoIndex = new TreeNode("Indexes");
+            List<BsonDocument> IndexList = mongoCol.GetIndexes().ToList<BsonDocument>();
+            foreach (BsonDocument Indexdoc in IndexList)
+            {
+                TreeNode mongoIndexNode = new TreeNode("Index:" + Indexdoc.GetValue("name"));
+                foreach (String item in Indexdoc.Names)
+                {
+                    TreeNode mongoIndexItemNode = new TreeNode(item + ":" + Indexdoc.GetValue(item));
+
+                    mongoIndexNode.Nodes.Add(mongoIndexItemNode);
+                }
+                mongoIndex.Nodes.Add(mongoIndexNode);
+            }
+            mongoColNode.Nodes.Add(mongoIndex);
+            //End ListIndex
+
+            //Start Data
+            TreeNode mongoData = new TreeNode("Data");
+            mongoData.Tag = DocumentTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strColName;
+            mongoColNode.Nodes.Add(mongoData);
+            //End Data
+            return mongoColNode;
+        }
         public static void FillDataToListView(String strTag, ListView lstData)
         {
             String CollectionPath = strTag.Split(":".ToCharArray())[1];
