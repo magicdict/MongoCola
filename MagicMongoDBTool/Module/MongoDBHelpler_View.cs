@@ -5,10 +5,10 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
-
+using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool.Module
 {
-    public  static partial class MongoDBHelpler
+    public static partial class MongoDBHelpler
     {
         public static Dictionary<String, MongoServer> mongosrvlst = new Dictionary<String, MongoServer>();
         public static Boolean AddServer(List<ConfigHelper.MongoConnectionConfig> connlst)
@@ -52,12 +52,12 @@ namespace MagicMongoDBTool.Module
                 List<String> DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
                 foreach (String strDBName in DatabaseNameList)
                 {
-                    mongosrvnode.Nodes.Add(FillDataBaseInfoToTreeNode(strDBName, mongosvr,mongosvrKey));
+                    mongosrvnode.Nodes.Add(FillDataBaseInfoToTreeNode(strDBName, mongosvr, mongosvrKey));
                 }
                 trvMongoDB.Nodes.Add(mongosrvnode);
             }
         }
-        private static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongosvr,String mongosvrKey)
+        private static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongosvr, String mongosvrKey)
         {
             TreeNode mongoDBNode = new TreeNode(strDBName);
             mongoDBNode.Tag = DataBaseTag + ":" + mongosvrKey + "/" + strDBName;
@@ -133,21 +133,87 @@ namespace MagicMongoDBTool.Module
             //End Data
             return mongoColNode;
         }
+        /// <summary>
+        /// 数据集总记录数
+        /// </summary>
+        public static long CurrentCollectionTotalCnt = 0;
+        /// <summary>
+        /// Skip记录数
+        /// </summary>
+        public static int SkipCnt = 0;
+        /// <summary>
+        /// 是否存在下一页
+        /// </summary>
+        public static Boolean HasNextPage;
+        /// <summary>
+        /// 是否存在上一页
+        /// </summary>
+        public static Boolean HasPrePage;
+        /// <summary>
+        /// 换页操作
+        /// </summary>
+        /// <param name="IsNext"></param>
+        /// <param name="strTag"></param>
+        /// <param name="lstData"></param>
+        public static void PageChanged(Boolean IsNext, String strTag, ListView lstData)
+        {
+            if (IsNext)
+            {
+                SkipCnt += SystemManager.mConfig.LimitCnt;
+            }
+            else
+            {
+                SkipCnt -= SystemManager.mConfig.LimitCnt;
+            }
+            FillDataToListView(strTag, lstData);
+        }
+        public static void SetPageEnable()
+        {
+            if (SkipCnt == 0)
+            {
+                HasPrePage = false;
+            }
+            else
+            {
+                HasPrePage = true;
+            }
+            if ((SkipCnt + SystemManager.mConfig.LimitCnt) >= CurrentCollectionTotalCnt)
+            {
+                HasNextPage = false;
+            }
+            else
+            {
+                HasNextPage = true;
+            }
+        }
         public static void FillDataToListView(String strTag, ListView lstData)
         {
             String CollectionPath = strTag.Split(":".ToCharArray())[1];
             String[] cp = CollectionPath.Split("/".ToCharArray());
             List<BsonDocument> DataList = new List<BsonDocument>();
+            lstData.Clear();
             if (cp[2] == "fs.files")
             {
-                DataList = mongosrvlst[cp[0]].GetDatabase(cp[1]).GetGridFS(new global::MongoDB.Driver.GridFS.MongoGridFSSettings())
-                                                                .Files.FindAllAs<BsonDocument>().ToList<BsonDocument>();
+                MongoGridFS mongogfs = mongosrvlst[cp[0]].GetDatabase(cp[1]).GetGridFS(new global::MongoDB.Driver.GridFS.MongoGridFSSettings());
+                if (SkipCnt == 0)
+                {
+                    //第一次显示，获得整个记录集的长度
+                    CurrentCollectionTotalCnt = mongogfs.Files.FindAllAs<BsonDocument>().Count();
+                }
+                DataList = mongogfs.Files.FindAllAs<BsonDocument>().SetSkip(SkipCnt).SetLimit(SystemManager.mConfig.LimitCnt).ToList<BsonDocument>();
                 if (DataList.Count == 0) { return; }
                 SetGridFileToListView(DataList, lstData);
             }
             else
             {
-                DataList = mongosrvlst[cp[0]].GetDatabase(cp[1]).GetCollection(cp[2]).FindAllAs<BsonDocument>().ToList<BsonDocument>();
+                MongoCollection mongoCol = mongosrvlst[cp[0]].GetDatabase(cp[1]).GetCollection(cp[2]);
+                if (SkipCnt == 0)
+                {
+                    //第一次显示，获得整个记录集的长度
+                    CurrentCollectionTotalCnt = mongoCol.FindAllAs<BsonDocument>().Count();
+                }
+                SetPageEnable();
+                DataList = mongoCol.FindAllAs<BsonDocument>().SetSkip(SkipCnt).SetLimit(SystemManager.mConfig.LimitCnt).ToList<BsonDocument>();
                 if (DataList.Count == 0) { return; }
                 List<String> Columnlist = new List<String>();
                 foreach (BsonDocument Docitem in DataList)

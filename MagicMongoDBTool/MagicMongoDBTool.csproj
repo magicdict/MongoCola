@@ -55,83 +55,89 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ctlMongoImportExport.cs">
+    <Compile Include="Form\frnImportOleDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frnImportOleDB.Designer.cs">
+      <DependentUpon>frnImportOleDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserController\ctlMongoImportExport.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctlMongoImportExport.Designer.cs">
+    <Compile Include="UserController\ctlMongoImportExport.Designer.cs">
       <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctlFilePicker.cs">
+    <Compile Include="UserController\ctlFilePicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctlFilePicker.Designer.cs">
+    <Compile Include="UserController\ctlFilePicker.Designer.cs">
       <DependentUpon>ctlFilePicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctlMongod.cs">
+    <Compile Include="UserController\ctlMongod.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctlMongod.Designer.cs">
+    <Compile Include="UserController\ctlMongod.Designer.cs">
       <DependentUpon>ctlMongod.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAddConnection.cs">
+    <Compile Include="Form\frmAddConnection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddConnection.Designer.cs">
+    <Compile Include="Form\frmAddConnection.Designer.cs">
       <DependentUpon>frmAddConnection.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmBase.cs">
+    <Compile Include="Form\frmBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmBase.Designer.cs">
+    <Compile Include="Form\frmBase.Designer.cs">
       <DependentUpon>frmBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConnect.cs">
+    <Compile Include="Form\frmConnect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConnect.Designer.cs">
+    <Compile Include="Form\frmConnect.Designer.cs">
       <DependentUpon>frmConnect.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDataBaseStatus.cs">
+    <Compile Include="Form\frmDataBaseStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDataBaseStatus.Designer.cs">
+    <Compile Include="Form\frmDataBaseStatus.Designer.cs">
       <DependentUpon>frmDataBaseStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDosCommand.cs">
+    <Compile Include="Form\frmDosCommand.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDosCommand.Designer.cs">
+    <Compile Include="Form\frmDosCommand.Designer.cs">
       <DependentUpon>frmDosCommand.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="Form\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
+    <Compile Include="Form\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmOption.cs">
+    <Compile Include="Form\frmOption.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmOption.Designer.cs">
+    <Compile Include="Form\frmOption.Designer.cs">
       <DependentUpon>frmOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmServiceStatus.cs">
+    <Compile Include="Form\frmServiceStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmServiceStatus.Designer.cs">
+    <Compile Include="Form\frmServiceStatus.Designer.cs">
       <DependentUpon>frmServiceStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\ConfigHelper.cs" />
-    <Compile Include="ctllogLv.cs">
+    <Compile Include="UserController\ctllogLv.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctllogLv.Designer.cs">
+    <Compile Include="UserController\ctllogLv.Designer.cs">
       <DependentUpon>ctllogLv.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctlMongodump.cs">
+    <Compile Include="UserController\ctlMongodump.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ctlMongodump.Designer.cs">
+    <Compile Include="UserController\ctlMongodump.Designer.cs">
       <DependentUpon>ctlMongodump.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\MongodbDosCommand.cs" />
@@ -141,43 +147,46 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ctlMongoImportExport.resx">
+    <EmbeddedResource Include="Form\frnImportOleDB.resx">
+      <DependentUpon>frnImportOleDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserController\ctlMongoImportExport.resx">
       <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ctlFilePicker.resx">
+    <EmbeddedResource Include="UserController\ctlFilePicker.resx">
       <DependentUpon>ctlFilePicker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ctllogLv.resx">
+    <EmbeddedResource Include="UserController\ctllogLv.resx">
       <DependentUpon>ctllogLv.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ctlMongod.resx">
+    <EmbeddedResource Include="UserController\ctlMongod.resx">
       <DependentUpon>ctlMongod.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ctlMongodump.resx">
+    <EmbeddedResource Include="UserController\ctlMongodump.resx">
       <DependentUpon>ctlMongodump.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddConnection.resx">
+    <EmbeddedResource Include="Form\frmAddConnection.resx">
       <DependentUpon>frmAddConnection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmBase.resx">
+    <EmbeddedResource Include="Form\frmBase.resx">
       <DependentUpon>frmBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConnect.resx">
+    <EmbeddedResource Include="Form\frmConnect.resx">
       <DependentUpon>frmConnect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDataBaseStatus.resx">
+    <EmbeddedResource Include="Form\frmDataBaseStatus.resx">
       <DependentUpon>frmDataBaseStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDosCommand.resx">
+    <EmbeddedResource Include="Form\frmDosCommand.resx">
       <DependentUpon>frmDosCommand.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
+    <EmbeddedResource Include="Form\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmOption.resx">
+    <EmbeddedResource Include="Form\frmOption.resx">
       <DependentUpon>frmOption.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmServiceStatus.resx">
+    <EmbeddedResource Include="Form\frmServiceStatus.resx">
       <DependentUpon>frmServiceStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

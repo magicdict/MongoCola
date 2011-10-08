@@ -146,7 +146,10 @@ namespace MagicMongoDBTool.Module
             Boolean rtnCode = false;
 
             MongoServer Mongosrv = GetMongoServerBySvrPath(strSvrPath);
-            MongoDatabase mongodb = Mongosrv.GetDatabase("JpDic");
+            String[] FileName = Accessfilename.Split(@"\".ToCharArray());
+            String FileMain = FileName[FileName.Length - 1];
+            String InsertDBName = FileMain.Split(".".ToCharArray())[0];
+            MongoDatabase mongodb = Mongosrv.GetDatabase(InsertDBName);
             OleDbConnection conn = new OleDbConnection(AccessConnectionString.Replace("@AccessPath", Accessfilename));
             try
             {
@@ -253,7 +256,7 @@ namespace MagicMongoDBTool.Module
                     mongoCollection.Insert<BsonDocument>(InsertDoc);
                 }
             }
-            CurrentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode("JpDic", Mongosrv, strSvrPath.Split("/".ToCharArray())[0]));
+            CurrentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(InsertDBName, Mongosrv, strSvrPath.Split("/".ToCharArray())[0]));
             rtnCode = true;
             }
             catch (Exception ex)

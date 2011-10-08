@@ -22,8 +22,11 @@ namespace MagicMongoDBTool
                 {
                     case MongoDBHelpler.DocumentTag:
                         //BsonDocument
-                        MongoDBHelpler.FillDataToListView(e.Node.Tag.ToString(), lstData);
+                        MongoDBHelpler.SkipCnt = 0;
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        MongoDBHelpler.FillDataToListView(SystemManager.SelectObjectTag, lstData);
+                        PrePageToolStripMenuItem.Enabled = MongoDBHelpler.HasPrePage;
+                        NextPageToolStripMenuItem.Enabled =MongoDBHelpler.HasNextPage;
                         statusStripMain.Items[0].Text = "选中数据:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         break;
                     case MongoDBHelpler.GridFileSystemTag:
@@ -210,7 +213,29 @@ namespace MagicMongoDBTool
         private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-            MongoDBHelpler.ImportAccessDataBase(@"C:\Documents and Settings\Administrator\Desktop\JpDic.mdb", strPath,trvsrvlst.SelectedNode);
+            frmImportOleDB mfrm = new frmImportOleDB();
+            mfrm.ShowDialog();
+            String DBFilename = mfrm.DataBaseFileName;
+            if (DBFilename != string.Empty)
+            {
+                MongoDBHelpler.ImportAccessDataBase(DBFilename, strPath, trvsrvlst.SelectedNode);
+            }
+            mfrm.Close();
+            mfrm.Dispose();
+        }
+
+        private void PrePageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MongoDBHelpler.PageChanged(false,SystemManager.SelectObjectTag, lstData);
+            PrePageToolStripMenuItem.Enabled = MongoDBHelpler.HasPrePage;
+            NextPageToolStripMenuItem.Enabled = MongoDBHelpler.HasNextPage;
+        }
+
+        private void NextPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MongoDBHelpler.PageChanged(true, SystemManager.SelectObjectTag, lstData);
+            PrePageToolStripMenuItem.Enabled = MongoDBHelpler.HasPrePage;
+            NextPageToolStripMenuItem.Enabled = MongoDBHelpler.HasNextPage;
         }
     }
 }
