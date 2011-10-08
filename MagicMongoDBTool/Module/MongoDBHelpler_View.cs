@@ -236,7 +236,15 @@ namespace MagicMongoDBTool.Module
                         lst.SubItems.Add(GetSize(dbstatus.DataSize));
                         lst.SubItems.Add(GetSize(dbstatus.StorageSize));
                         lst.SubItems.Add(GetSize(dbstatus.TotalIndexSize));
-                        lst.SubItems.Add(GetSize((long)dbstatus.AverageObjectSize));
+                        try
+                        {
+                            //在某些条件下，这个值会抛出异常，IndexKeyNotFound
+                            lst.SubItems.Add(GetSize((long)dbstatus.AverageObjectSize));
+                        }
+                        catch (Exception)
+                        {
+                            lst.SubItems.Add(GetSize(0));
+                        }
 
                         lst.SubItems.Add(dbstatus.PaddingFactor.ToString());
                         lstData.Items.Add(lst);

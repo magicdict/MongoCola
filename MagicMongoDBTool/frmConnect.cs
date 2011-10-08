@@ -28,8 +28,8 @@ namespace MagicMongoDBTool
                 if (!ConnectionList.ContainsKey(item.HostName))
                 {
                     ConnectionList.Add(item.HostName, item);
-                    lstServerce.Items.Add(item.HostName);
                 }
+                lstServerce.Items.Add(item.HostName);
             }
             SystemManager.mConfig.SaveToConfigFile("config.xml");
         }
@@ -64,6 +64,11 @@ namespace MagicMongoDBTool
         private void cmdModifyCon_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.wojilu.com");
         }
     }
 }

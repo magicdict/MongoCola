@@ -40,6 +40,7 @@ namespace MagicMongoDBTool
                         statusStripMain.Items[0].Text = "选中服务器:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         //解禁 创建数据库
                         this.CreateMongoDBToolStripMenuItem.Enabled = true;
+                        this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
                         break;
                     case MongoDBHelpler.DataBaseTag:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
@@ -65,6 +66,7 @@ namespace MagicMongoDBTool
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
             this.CreateMongoCollectionToolStripMenuItem.Enabled = false;
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
+            this.ImportDataFromAccessToolStripMenuItem.Enabled = false;
         }
         /// <summary>
         /// 添加数据库连接
@@ -203,6 +205,12 @@ namespace MagicMongoDBTool
                 DisableAllOpr();
                 lstData.Clear();
             }
+        }
+
+        private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            MongoDBHelpler.ImportAccessDataBase(@"C:\Documents and Settings\Administrator\Desktop\JpDic.mdb", strPath,trvsrvlst.SelectedNode);
         }
     }
 }

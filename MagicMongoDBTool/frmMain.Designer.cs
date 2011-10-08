@@ -36,6 +36,12 @@
             this.RefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DelMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DelMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DosCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
@@ -44,12 +50,8 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.lstData = new System.Windows.Forms.ListView();
-            this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DelMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DelMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CreateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CreateMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CreateMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ImportDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ImportDataFromAccessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -124,10 +126,57 @@
             this.CreateToolStripMenuItem,
             this.DeleteToolStripMenuItem,
             this.DosCommandToolStripMenuItem,
-            this.OptionToolStripMenuItem});
+            this.OptionToolStripMenuItem,
+            this.ImportDataToolStripMenuItem});
             this.ToolToolStripMenuItem.Name = "ToolToolStripMenuItem";
             this.ToolToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.ToolToolStripMenuItem.Text = "工具（&T)";
+            // 
+            // CreateToolStripMenuItem
+            // 
+            this.CreateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CreateMongoDBToolStripMenuItem,
+            this.CreateMongoCollectionToolStripMenuItem});
+            this.CreateToolStripMenuItem.Name = "CreateToolStripMenuItem";
+            this.CreateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.CreateToolStripMenuItem.Text = "创建";
+            // 
+            // CreateMongoDBToolStripMenuItem
+            // 
+            this.CreateMongoDBToolStripMenuItem.Name = "CreateMongoDBToolStripMenuItem";
+            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.CreateMongoDBToolStripMenuItem.Text = "数据库";
+            this.CreateMongoDBToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoDBToolStripMenuItem_Click);
+            // 
+            // CreateMongoCollectionToolStripMenuItem
+            // 
+            this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
+            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.CreateMongoCollectionToolStripMenuItem.Text = "数据集";
+            this.CreateMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoCollectionToolStripMenuItem_Click);
+            // 
+            // DeleteToolStripMenuItem
+            // 
+            this.DeleteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DelMongoDBToolStripMenuItem,
+            this.DelMongoCollectionToolStripMenuItem});
+            this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
+            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DeleteToolStripMenuItem.Text = "删除";
+            // 
+            // DelMongoDBToolStripMenuItem
+            // 
+            this.DelMongoDBToolStripMenuItem.Name = "DelMongoDBToolStripMenuItem";
+            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.DelMongoDBToolStripMenuItem.Text = "数据库";
+            this.DelMongoDBToolStripMenuItem.Click += new System.EventHandler(this.DelMongoDBToolStripMenuItem_Click);
+            // 
+            // DelMongoCollectionToolStripMenuItem
+            // 
+            this.DelMongoCollectionToolStripMenuItem.Name = "DelMongoCollectionToolStripMenuItem";
+            this.DelMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.DelMongoCollectionToolStripMenuItem.Text = "数据集";
+            this.DelMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.DelMongoCollectionToolStripMenuItem_Click);
             // 
             // DosCommandToolStripMenuItem
             // 
@@ -204,51 +253,20 @@
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
             // 
-            // DeleteToolStripMenuItem
+            // ImportDataToolStripMenuItem
             // 
-            this.DeleteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.DelMongoDBToolStripMenuItem,
-            this.DelMongoCollectionToolStripMenuItem});
-            this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
-            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.DeleteToolStripMenuItem.Text = "删除";
+            this.ImportDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ImportDataFromAccessToolStripMenuItem});
+            this.ImportDataToolStripMenuItem.Name = "ImportDataToolStripMenuItem";
+            this.ImportDataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ImportDataToolStripMenuItem.Text = "导入";
             // 
-            // DelMongoDBToolStripMenuItem
+            // ImportDataFromAccessToolStripMenuItem
             // 
-            this.DelMongoDBToolStripMenuItem.Name = "DelMongoDBToolStripMenuItem";
-            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.DelMongoDBToolStripMenuItem.Text = "数据库";
-            this.DelMongoDBToolStripMenuItem.Click += new System.EventHandler(this.DelMongoDBToolStripMenuItem_Click);
-            // 
-            // DelMongoCollectionToolStripMenuItem
-            // 
-            this.DelMongoCollectionToolStripMenuItem.Name = "DelMongoCollectionToolStripMenuItem";
-            this.DelMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.DelMongoCollectionToolStripMenuItem.Text = "数据集";
-            this.DelMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.DelMongoCollectionToolStripMenuItem_Click);
-            // 
-            // CreateToolStripMenuItem
-            // 
-            this.CreateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CreateMongoDBToolStripMenuItem,
-            this.CreateMongoCollectionToolStripMenuItem});
-            this.CreateToolStripMenuItem.Name = "CreateToolStripMenuItem";
-            this.CreateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.CreateToolStripMenuItem.Text = "创建";
-            // 
-            // CreateMongoCollectionToolStripMenuItem
-            // 
-            this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
-            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.CreateMongoCollectionToolStripMenuItem.Text = "数据集";
-            this.CreateMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoCollectionToolStripMenuItem_Click);
-            // 
-            // CreateMongoDBToolStripMenuItem
-            // 
-            this.CreateMongoDBToolStripMenuItem.Name = "CreateMongoDBToolStripMenuItem";
-            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.CreateMongoDBToolStripMenuItem.Text = "数据库";
-            this.CreateMongoDBToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoDBToolStripMenuItem_Click);
+            this.ImportDataFromAccessToolStripMenuItem.Name = "ImportDataFromAccessToolStripMenuItem";
+            this.ImportDataFromAccessToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ImportDataFromAccessToolStripMenuItem.Text = "Access";
+            this.ImportDataFromAccessToolStripMenuItem.Click += new System.EventHandler(this.ImportDataFromAccessToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -299,6 +317,8 @@
         private System.Windows.Forms.ToolStripMenuItem CreateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CreateMongoDBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CreateMongoCollectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ImportDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ImportDataFromAccessToolStripMenuItem;
     }
 }
 

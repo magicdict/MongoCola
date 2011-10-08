@@ -34,9 +34,13 @@ namespace MagicMongoDBTool
                     break;
                 case "System.Windows.Forms.TrackBar":
                     TrackBar trackbar = (TrackBar)item;
-                    trackbar.BackColor = Color.White;
+                    trackbar.BackColor = this.BackColor;
+                    break;
+                case "System.Windows.Forms.TextBox":
+                    TextBox textbox = (TextBox)item;
                     break;
                 default:
+                    item.BackColor = this.BackColor;
                     foreach (Control ctl in item.Controls)
                     {
                         ColorfulControl(ctl);

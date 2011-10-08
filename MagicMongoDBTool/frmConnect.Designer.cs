@@ -34,6 +34,7 @@
             this.cmdAddCon = new System.Windows.Forms.Button();
             this.cmdDelCon = new System.Windows.Forms.Button();
             this.cmdModifyCon = new System.Windows.Forms.Button();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // lstServerce
@@ -47,7 +48,7 @@
             // 
             // cmdConnect
             // 
-            this.cmdConnect.Location = new System.Drawing.Point(213, 199);
+            this.cmdConnect.Location = new System.Drawing.Point(220, 208);
             this.cmdConnect.Name = "cmdConnect";
             this.cmdConnect.Size = new System.Drawing.Size(82, 27);
             this.cmdConnect.TabIndex = 1;
@@ -57,7 +58,7 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(315, 199);
+            this.cmdCancel.Location = new System.Drawing.Point(322, 208);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(88, 27);
             this.cmdCancel.TabIndex = 2;
@@ -96,11 +97,23 @@
             this.cmdModifyCon.UseVisualStyleBackColor = true;
             this.cmdModifyCon.Click += new System.EventHandler(this.cmdModifyCon_Click);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(38, 183);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(303, 13);
+            this.linkLabel1.TabIndex = 4;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "希望大家支持我的好朋友的CMS框架wojilu www.wojilu.com";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // frmConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(487, 247);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.cmdModifyCon);
             this.Controls.Add(this.cmdDelCon);
             this.Controls.Add(this.cmdAddCon);
@@ -109,9 +122,10 @@
             this.Controls.Add(this.lstServerce);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "frmConnect";
-            this.Text = "Connect";
+            this.Text = "数据连接";
             this.Load += new System.EventHandler(this.frmConnect_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -123,5 +137,6 @@
         private System.Windows.Forms.Button cmdAddCon;
         private System.Windows.Forms.Button cmdDelCon;
         private System.Windows.Forms.Button cmdModifyCon;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
