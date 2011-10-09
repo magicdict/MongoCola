@@ -10,19 +10,30 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelpler
     {
-        public static Dictionary<String, MongoServer> mongosrvlst = new Dictionary<String, MongoServer>();
+        /// <summary>
+        /// 管理中服务器列表
+        /// </summary>
+        private static Dictionary<String, MongoServer> mongosrvlst = new Dictionary<String, MongoServer>();
+        /// <summary>
+        /// 增加管理服务器
+        /// </summary>
+        /// <param name="connlst"></param>
+        /// <returns></returns>
         public static Boolean AddServer(List<ConfigHelper.MongoConnectionConfig> connlst)
         {
             try
             {
                 foreach (ConfigHelper.MongoConnectionConfig item in connlst)
                 {
-                    MongoServerSettings mongosvrsetting_Master = new MongoServerSettings();
-                    mongosvrsetting_Master.ConnectionMode = ConnectionMode.Direct;
-                    mongosvrsetting_Master.SlaveOk = true;
-                    mongosvrsetting_Master.Server = new MongoServerAddress(item.IpAddr, item.Port);
-                    MongoServer Mastermongosvr = new MongoServer(mongosvrsetting_Master);
-                    mongosrvlst.Add(item.HostName, Mastermongosvr);
+                    if (!mongosrvlst.ContainsKey(item.HostName))
+                    {
+                        MongoServerSettings mongosvrsetting_Master = new MongoServerSettings();
+                        mongosvrsetting_Master.ConnectionMode = ConnectionMode.Direct;
+                        mongosvrsetting_Master.SlaveOk = true;
+                        mongosvrsetting_Master.Server = new MongoServerAddress(item.IpAddr, item.Port);
+                        MongoServer Mastermongosvr = new MongoServer(mongosvrsetting_Master);
+                        mongosrvlst.Add(item.HostName, Mastermongosvr);
+                    }
                 }
                 return true;
             }

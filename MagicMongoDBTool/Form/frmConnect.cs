@@ -11,8 +11,6 @@ namespace MagicMongoDBTool
 {
     public partial class frmConnect : frmBase
     {
-        private Dictionary<String, ConfigHelper.MongoConnectionConfig> ConnectionList = new Dictionary<string, ConfigHelper.MongoConnectionConfig>();
-
         public frmConnect()
         {
             InitializeComponent();
@@ -23,12 +21,8 @@ namespace MagicMongoDBTool
         }
         private void RefreshConnection() {
             lstServerce.Items.Clear();
-            foreach (var item in SystemManager.mConfig.MongoConnectionlst)
+            foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.mConfig.ConnectionList.Values)
             {
-                if (!ConnectionList.ContainsKey(item.HostName))
-                {
-                    ConnectionList.Add(item.HostName, item);
-                }
                 lstServerce.Items.Add(item.HostName);
             }
             SystemManager.mConfig.SaveToConfigFile("config.xml");
@@ -49,21 +43,33 @@ namespace MagicMongoDBTool
             if (lstServerce.SelectedItems.Count > 0) {
                 foreach (String item in lstServerce.SelectedItems)
                 {
-                    connlst.Add(ConnectionList[item]);
+                    connlst.Add(SystemManager.mConfig.ConnectionList[item]);
                 }
                 MongoDBHelpler.AddServer(connlst);
                 this.Close();
             }
         }
-
         private void cmdDelCon_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            foreach (String item in lstServerce.SelectedItems)
+            {
+                if (SystemManager.mConfig.ConnectionList.ContainsKey(item)) {
+                    SystemManager.mConfig.ConnectionList.Remove(item);
+                }   
+            }
+            RefreshConnection(); 
         }
 
         private void cmdModifyCon_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (lstServerce.SelectedItems.Count ==1)
+            {
+                    frmAddConnection mfrm = new frmAddConnection(lstServerce.SelectedItem.ToString());
+                    mfrm.ShowDialog();
+                    mfrm.Close();
+                    mfrm.Dispose();
+                    RefreshConnection(); 
+            }
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

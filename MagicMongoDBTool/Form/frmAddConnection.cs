@@ -12,14 +12,35 @@ namespace MagicMongoDBTool
 {
     public partial class frmAddConnection : frmBase
     {
+        public ConfigHelper.MongoConnectionConfig ModifyConn = new ConfigHelper.MongoConnectionConfig();
         public frmAddConnection()
         {
             InitializeComponent();
         }
+        public frmAddConnection(String ConnectionName)
+        {
+            InitializeComponent();
+            //Modify Mode
+            ModifyConn = SystemManager.mConfig.ConnectionList[ConnectionName];
+            txtHostName.Text = ModifyConn.HostName;
+            txtHostName.Enabled = false;
+            txtIpAddr.Text = ModifyConn.IpAddr;
+            txtPort.Text = ModifyConn.Port.ToString();
+            cmdAdd.Text = "修改";
+        }
         private void cmdAdd_Click(object sender, EventArgs e)
         {
-            //仅仅将链接参数放入配置文件中，这里并不实际获得服务器实例
-            SystemManager.mConfig.AddConnection(txtHostName.Text, txtIpAddr.Text, Convert.ToInt32( txtPort.Text));
+            ModifyConn.HostName = txtHostName.Text;
+            ModifyConn.IpAddr = txtIpAddr.Text;
+            ModifyConn.Port = Convert.ToInt32(txtPort.Text);
+            if (SystemManager.mConfig.ConnectionList.ContainsKey(ModifyConn.HostName))
+            {
+                SystemManager.mConfig.ConnectionList[ModifyConn.HostName] = ModifyConn;
+            }
+            else
+            {
+                SystemManager.mConfig.ConnectionList.Add(ModifyConn.HostName, ModifyConn);
+            }
             this.Close();
         }
     }

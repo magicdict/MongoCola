@@ -77,7 +77,6 @@
             // 
             // cmdDelCon
             // 
-            this.cmdDelCon.Enabled = false;
             this.cmdDelCon.Location = new System.Drawing.Point(421, 75);
             this.cmdDelCon.Name = "cmdDelCon";
             this.cmdDelCon.Size = new System.Drawing.Size(60, 31);
@@ -88,7 +87,6 @@
             // 
             // cmdModifyCon
             // 
-            this.cmdModifyCon.Enabled = false;
             this.cmdModifyCon.Location = new System.Drawing.Point(421, 125);
             this.cmdModifyCon.Name = "cmdModifyCon";
             this.cmdModifyCon.Size = new System.Drawing.Size(60, 31);
