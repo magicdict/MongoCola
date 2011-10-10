@@ -55,10 +55,10 @@
             // 
             // txtLogPath
             // 
-            this.txtLogPath.Location = new System.Drawing.Point(74, 2);
+            this.txtLogPath.Location = new System.Drawing.Point(120, 2);
             this.txtLogPath.Name = "txtLogPath";
             this.txtLogPath.ReadOnly = true;
-            this.txtLogPath.Size = new System.Drawing.Size(485, 20);
+            this.txtLogPath.Size = new System.Drawing.Size(439, 20);
             this.txtLogPath.TabIndex = 8;
             // 
             // cmdLogPath

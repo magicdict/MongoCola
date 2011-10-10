@@ -42,7 +42,7 @@ namespace MagicMongoDBTool.Module
                 return false;
             }
         }
-
+        //各种节点的Tag前缀
         public const String ServiceTag = "MongoService";
         public const String DataBaseTag = "MongoDatabase";
         public const String CollectionTag = "MongoCollection";
@@ -51,7 +51,12 @@ namespace MagicMongoDBTool.Module
         public const String UserListTag = "MongoUserList";
         public const String UserTag = "MongoUser";
 
-        public static void FillMongodbToTreeView(TreeView trvMongoDB)
+        #region"展示数据"
+        /// <summary>
+        /// 将Mongodb的服务器在树形控件中展示
+        /// </summary>
+        /// <param name="trvMongoDB"></param>
+        public static void FillMongoServiceToTreeView(TreeView trvMongoDB)
         {
             trvMongoDB.Nodes.Clear();
             foreach (String mongosvrKey in mongosrvlst.Keys)
@@ -68,49 +73,66 @@ namespace MagicMongoDBTool.Module
                 trvMongoDB.Nodes.Add(mongosrvnode);
             }
         }
+        /// <summary>
+        /// 获得一个表示数据库结构的节点
+        /// </summary>
+        /// <param name="strDBName"></param>
+        /// <param name="mongosvr"></param>
+        /// <param name="mongosvrKey"></param>
+        /// <returns></returns>
         private static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongosvr, String mongosvrKey)
         {
-            TreeNode mongoDBNode = new TreeNode(strDBName);
+            TreeNode mongoDBNode;
+            switch (strDBName)
+            {
+                case "admin":
+                    mongoDBNode = new TreeNode("管理员权限(admin)"); 
+                    break;
+                case "local":
+                    mongoDBNode = new TreeNode("本地(local)");
+                    break;
+                default:
+                    mongoDBNode = new TreeNode(strDBName);
+                    break;
+            }
+
+
             mongoDBNode.Tag = DataBaseTag + ":" + mongosvrKey + "/" + strDBName;
-
             MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
-
             List<String> ColNameList = Mongodb.GetCollectionNames().ToList<String>();
             foreach (String strColName in ColNameList)
             {
                 TreeNode mongoColNode = FillCollectionInfoToTreeNode(strColName, Mongodb, mongosvrKey);
                 mongoDBNode.Nodes.Add(mongoColNode);
             }
-
-            //FileSystem
-            MongoGridFS mongoGridFs = Mongodb.GetGridFS(new global::MongoDB.Driver.GridFS.MongoGridFSSettings());
-            TreeNode fsNode = new TreeNode("文件系统");
-            fsNode.Tag = GridFileSystemTag + ":" + mongosvrKey + "/" + strDBName + "/" + mongoGridFs.Files.Name;
-            mongoDBNode.Nodes.Add(fsNode);
-
-
-            //User
-            TreeNode userlstNode = new TreeNode("用户列表");
-            userlstNode.Tag = UserListTag + ":" + mongosvrKey + "/" + strDBName + "/" + mongoGridFs.Files.Name;
-            MongoUser[] mongouserlst = Mongodb.FindAllUsers();
-            foreach (MongoUser mongouser in mongouserlst)
-            {
-                TreeNode userNode = new TreeNode(mongouser.Username);
-                userlstNode.Nodes.Add(userNode);
-            }
-            mongoDBNode.Nodes.Add(userlstNode);
             return mongoDBNode;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strColName"></param>
+        /// <param name="Mongodb"></param>
+        /// <param name="mongosvrKey"></param>
+        /// <returns></returns>
         private static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase Mongodb, String mongosvrKey)
         {
             TreeNode mongoColNode;
             switch (strColName)
             {
+                case "fs.chunks":
+                    mongoColNode = new TreeNode("文件块(" + strColName + ")");
+                    break;
+                case "fs.files":
+                    mongoColNode = new TreeNode("文件系统(" + strColName + ")");
+                    break;
                 case "system.indexes":
                     mongoColNode = new TreeNode("索引(" + strColName + ")");
                     break;
                 case "system.js":
                     mongoColNode = new TreeNode("存储Javascript(" + strColName + ")");
+                    break;
+                case "system.users":
+                    mongoColNode = new TreeNode("用户列表(" + strColName + ")");
                     break;
                 default:
                     mongoColNode = new TreeNode(strColName);
@@ -145,129 +167,103 @@ namespace MagicMongoDBTool.Module
             return mongoColNode;
         }
         /// <summary>
-        /// 数据集总记录数
+        /// 
         /// </summary>
-        public static long CurrentCollectionTotalCnt = 0;
-        /// <summary>
-        /// Skip记录数
-        /// </summary>
-        public static int SkipCnt = 0;
-        /// <summary>
-        /// 是否存在下一页
-        /// </summary>
-        public static Boolean HasNextPage;
-        /// <summary>
-        /// 是否存在上一页
-        /// </summary>
-        public static Boolean HasPrePage;
-        /// <summary>
-        /// 换页操作
-        /// </summary>
-        /// <param name="IsNext"></param>
         /// <param name="strTag"></param>
         /// <param name="lstData"></param>
-        public static void PageChanged(Boolean IsNext, String strTag, ListView lstData)
-        {
-            if (IsNext)
-            {
-                SkipCnt += SystemManager.mConfig.LimitCnt;
-            }
-            else
-            {
-                SkipCnt -= SystemManager.mConfig.LimitCnt;
-            }
-            FillDataToListView(strTag, lstData);
-        }
-        public static void SetPageEnable()
-        {
-            if (SkipCnt == 0)
-            {
-                HasPrePage = false;
-            }
-            else
-            {
-                HasPrePage = true;
-            }
-            if ((SkipCnt + SystemManager.mConfig.LimitCnt) >= CurrentCollectionTotalCnt)
-            {
-                HasNextPage = false;
-            }
-            else
-            {
-                HasNextPage = true;
-            }
-        }
         public static void FillDataToListView(String strTag, ListView lstData)
         {
             String CollectionPath = strTag.Split(":".ToCharArray())[1];
             String[] cp = CollectionPath.Split("/".ToCharArray());
             List<BsonDocument> DataList = new List<BsonDocument>();
             lstData.Clear();
-            if (cp[2] == "fs.files")
+            MongoCollection mongoCol = mongosrvlst[cp[0]].GetDatabase(cp[1]).GetCollection(cp[2]);
+            DataList = mongoCol.FindAllAs<BsonDocument>().SetSkip(SkipCnt).SetLimit(SystemManager.mConfig.LimitCnt).ToList<BsonDocument>();
+            if (DataList.Count == 0) { return; }
+            if (SkipCnt == 0)
             {
-                MongoGridFS mongogfs = mongosrvlst[cp[0]].GetDatabase(cp[1]).GetGridFS(new global::MongoDB.Driver.GridFS.MongoGridFSSettings());
-                if (SkipCnt == 0)
-                {
-                    //第一次显示，获得整个记录集的长度
-                    CurrentCollectionTotalCnt = mongogfs.Files.FindAllAs<BsonDocument>().Count();
-                }
-                DataList = mongogfs.Files.FindAllAs<BsonDocument>().SetSkip(SkipCnt).SetLimit(SystemManager.mConfig.LimitCnt).ToList<BsonDocument>();
-                if (DataList.Count == 0) { return; }
-                SetGridFileToListView(DataList, lstData);
+                //第一次显示，获得整个记录集的长度
+                CurrentCollectionTotalCnt = (int)mongoCol.FindAllAs<BsonDocument>().Count();
             }
-            else
+            SetPageEnable();
+            switch (cp[2])
             {
-                MongoCollection mongoCol = mongosrvlst[cp[0]].GetDatabase(cp[1]).GetCollection(cp[2]);
-                if (SkipCnt == 0)
-                {
-                    //第一次显示，获得整个记录集的长度
-                    CurrentCollectionTotalCnt = mongoCol.FindAllAs<BsonDocument>().Count();
-                }
-                SetPageEnable();
-                DataList = mongoCol.FindAllAs<BsonDocument>().SetSkip(SkipCnt).SetLimit(SystemManager.mConfig.LimitCnt).ToList<BsonDocument>();
-                if (DataList.Count == 0) { return; }
-                List<String> Columnlist = new List<String>();
-                foreach (BsonDocument Docitem in DataList)
-                {
-                    ListViewItem lstItem = new ListViewItem();
-                    foreach (String item in Docitem.Names)
+                case "fs.files":
+                    SetGridFileToListView(DataList, lstData);
+                    break;
+                case "system.users":
+                    SetUserListToListView(DataList, lstData);
+                    break;
+                case "fs.chunks":
+                default:
+                    DataList = mongoCol.FindAllAs<BsonDocument>().SetSkip(SkipCnt).SetLimit(SystemManager.mConfig.LimitCnt).ToList<BsonDocument>();
+                    if (DataList.Count == 0) { return; }
+                    List<String> Columnlist = new List<String>();
+                    foreach (BsonDocument Docitem in DataList)
                     {
-                        if (!Columnlist.Contains(item))
+                        ListViewItem lstItem = new ListViewItem();
+                        foreach (String item in Docitem.Names)
                         {
-                            Columnlist.Add(item);
-                            lstData.Columns.Add(item);
-                        }
-                    }
-                    //Key:_id
-                    lstItem.Text = Docitem.GetValue(Columnlist[0]).ToString();
-                    //OtherItems
-                    for (int i = 1; i < Columnlist.Count; i++)
-                    {
-                        BsonValue val;
-                        Docitem.TryGetValue(Columnlist[i].ToString(), out val);
-                        if (val == null)
-                        {
-                            lstItem.SubItems.Add("");
-                        }
-                        else
-                        {
-                            if (val.IsBsonDocument)
+                            if (!Columnlist.Contains(item))
                             {
-                                lstItem.SubItems.Add(val.ToString() + "[包含" + val.ToBsonDocument().ElementCount + "个元素的文档]");
+                                Columnlist.Add(item);
+                                lstData.Columns.Add(item);
+                            }
+                        }
+                        //Key:_id
+                        lstItem.Text = Docitem.GetValue(Columnlist[0]).ToString();
+                        //OtherItems
+                        for (int i = 1; i < Columnlist.Count; i++)
+                        {
+                            BsonValue val;
+                            Docitem.TryGetValue(Columnlist[i].ToString(), out val);
+                            if (val == null)
+                            {
+                                lstItem.SubItems.Add("");
                             }
                             else
                             {
-                                lstItem.SubItems.Add(val.ToString());
+                                if (val.IsBsonDocument)
+                                {
+                                    lstItem.SubItems.Add(val.ToString() + "[包含" + val.ToBsonDocument().ElementCount + "个元素的文档]");
+                                }
+                                else
+                                {
+                                    lstItem.SubItems.Add(val.ToString());
+                                }
                             }
                         }
+                        lstData.Items.Add(lstItem);
                     }
-                    lstData.Items.Add(lstItem);
-                }
+                    break;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="DataList"></param>
+        /// <param name="lstData"></param>
+        private static void SetUserListToListView(List<BsonDocument> DataList, ListView lstData)
+        {
+            lstData.Clear();
+            lstData.Columns.Add("用户名");
+            lstData.Columns.Add("是否只读");
+            foreach (BsonDocument docfile in DataList)
+            {
+                ListViewItem lstItem = new ListViewItem();
+                lstItem.Text = docfile.GetValue("user").ToString();
+                lstItem.SubItems.Add(docfile.GetValue("readOnly").ToString());
+                lstData.Items.Add(lstItem);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="DataList"></param>
+        /// <param name="lstData"></param>
         private static void SetGridFileToListView(List<BsonDocument> DataList, ListView lstData)
         {
+            lstData.Clear();
             lstData.Columns.Add("文件名称");
             lstData.Columns.Add("文件大小");
             lstData.Columns.Add("块大小");
@@ -284,7 +280,9 @@ namespace MagicMongoDBTool.Module
                 lstData.Items.Add(lstItem);
             }
         }
+        #endregion
 
+        #region"展示状态"
         public static void FillDBStatusToList(ListView lstData)
         {
             lstData.Clear();
@@ -397,14 +395,107 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
+        #endregion
 
-        //public static void FillSomething() {
-        //    foreach (String mongosvrKey in mongosrvlst.Keys)
-        //    {
-        //        MongoServer mongosvr = mongosrvlst[mongosvrKey];
-        //    }
-        //}
+        #region"数据导航"
+        /// <summary>
+        /// 数据集总记录数
+        /// </summary>
+        public static int CurrentCollectionTotalCnt = 0;
+        /// <summary>
+        /// Skip记录数
+        /// </summary>
+        public static int SkipCnt = 0;
+        /// <summary>
+        /// 是否存在下一页
+        /// </summary>
+        public static Boolean HasNextPage;
+        /// <summary>
+        /// 是否存在上一页
+        /// </summary>
+        public static Boolean HasPrePage;
+        /// <summary>
+        /// 数据导航
+        /// </summary>
+        public enum PageChangeOpr
+        {
+            /// <summary>
+            /// 第一页
+            /// </summary>
+            FirstPage,
+            /// <summary>
+            /// 最后一页
+            /// </summary>
+            LastPage,
+            /// <summary>
+            /// 上一页
+            /// </summary>
+            PrePage,
+            /// <summary>
+            /// 下一页
+            /// </summary>
+            NextPage
+        }
 
+        /// <summary>
+        /// 换页操作
+        /// </summary>
+        /// <param name="IsNext"></param>
+        /// <param name="strTag"></param>
+        /// <param name="lstData"></param>
+        public static void PageChanged(PageChangeOpr PageChangeMode, String strTag, ListView lstData)
+        {
+            switch (PageChangeMode)
+            {
+                case PageChangeOpr.FirstPage:
+                    SkipCnt = 0;
+                    break;
+                case PageChangeOpr.LastPage:
+                    if (CurrentCollectionTotalCnt % SystemManager.mConfig.LimitCnt == 0)
+                    {
+                        //没有余数的时候，600 % 100 == 0  => Skip = 600-100 = 500
+                        SkipCnt = CurrentCollectionTotalCnt - SystemManager.mConfig.LimitCnt;
+                    }
+                    else
+                    {
+                        // 630 % 100 == 30  => Skip = 630-30 = 600  
+                        SkipCnt = CurrentCollectionTotalCnt - CurrentCollectionTotalCnt % SystemManager.mConfig.LimitCnt;
+                    }
+                    break;
+                case PageChangeOpr.NextPage:
+                    SkipCnt += SystemManager.mConfig.LimitCnt;
+                    break;
+                case PageChangeOpr.PrePage:
+                    SkipCnt -= SystemManager.mConfig.LimitCnt;
+                    break;
+                default:
+                    break;
+            }
+            FillDataToListView(strTag, lstData);
+        }
+        public static void SetPageEnable()
+        {
+            if (SkipCnt == 0)
+            {
+                HasPrePage = false;
+            }
+            else
+            {
+                HasPrePage = true;
+            }
+            if ((SkipCnt + SystemManager.mConfig.LimitCnt) >= CurrentCollectionTotalCnt)
+            {
+                HasNextPage = false;
+            }
+            else
+            {
+                HasNextPage = true;
+            }
+        }
+
+        #endregion
+
+        #region "辅助方法"
         private static String GetSize(long mSize)
         {
             String strSize = String.Empty;
@@ -433,7 +524,7 @@ namespace MagicMongoDBTool.Module
             }
             return string.Format("{0:F2}", tempSize) + " " + Unit[UnitOrder];
         }
-
+        #endregion
 
     }
 }

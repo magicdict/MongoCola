@@ -5,6 +5,9 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelpler
     {
+        /// <summary>
+        /// 操作模式
+        /// </summary>
         public enum Oprcode
         {
             Create,
@@ -53,7 +56,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="CollectionName"></param>
         /// <param name="Func"></param>
         /// <returns></returns>
-        public static Boolean CollectionOpration(String strSvrPath, String CollectionName, Oprcode Func,TreeNode tr)
+        public static Boolean CollectionOpration(String strSvrPath, String CollectionName, Oprcode Func, TreeNode tr)
         {
             Boolean rtnResult = false;
             MongoDatabase Mongodb = GetMongoDBBySvrPath(strSvrPath);
@@ -83,15 +86,18 @@ namespace MagicMongoDBTool.Module
             }
             return rtnResult;
         }
-
-
         /// <summary>
         /// 根据路径字符获得服务器
         /// </summary>
         /// <param name="strSvrPath">[Service/DBName/Collection]</param>
+        /// <param name="WithTag">是否带有标签</param>
         /// <returns></returns>
-        public static MongoServer GetMongoServerBySvrPath(String strSvrPath)
+        public static MongoServer GetMongoServerBySvrPath(String strSvrPath, Boolean WithTag = false)
         {
+            if (WithTag)
+            {
+                strSvrPath = strSvrPath.Split(":".ToCharArray())[1];
+            }
             MongoServer rtnMongoSrv = null;
             String[] strPath = strSvrPath.Split("/".ToCharArray());
             if (strPath.Length > 0)
@@ -103,14 +109,17 @@ namespace MagicMongoDBTool.Module
             }
             return rtnMongoSrv;
         }
-
         /// <summary>
         /// 根据路径字符获得数据库
         /// </summary>
         /// <param name="strSvrPath">[Service/DBName/Collection]</param>
+        /// <param name="WithTag">是否带有标签</param>
         /// <returns></returns>
-        public static MongoDatabase GetMongoDBBySvrPath(String strSvrPath)
+        public static MongoDatabase GetMongoDBBySvrPath(String strSvrPath,Boolean WithTag = false)
         {
+            if (WithTag) {
+                strSvrPath = strSvrPath.Split(":".ToCharArray())[1];
+            }
             MongoDatabase rtnMongoDb = null;
             MongoServer MongoSrv = GetMongoServerBySvrPath(strSvrPath);
             if (MongoSrv != null)
@@ -126,6 +135,5 @@ namespace MagicMongoDBTool.Module
             }
             return rtnMongoDb;
         }
-
     }
 }

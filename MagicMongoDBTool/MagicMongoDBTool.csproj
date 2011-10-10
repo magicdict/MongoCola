@@ -61,6 +61,7 @@
     <Compile Include="Form\frnImportOleDB.Designer.cs">
       <DependentUpon>frnImportOleDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module\MongoDBHelper_Auth.cs" />
     <Compile Include="UserController\ctlMongoImportExport.cs">
       <SubType>UserControl</SubType>
     </Compile>

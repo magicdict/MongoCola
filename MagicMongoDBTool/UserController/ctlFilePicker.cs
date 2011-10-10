@@ -12,15 +12,28 @@ namespace MagicMongoDBTool
     public partial class ctlFilePicker : UserControl
     {
         private DialogType mDialogType = DialogType.Directory;
+        /// <summary>
+        /// 标题
+        /// </summary>
         public String Title
         {
             get { return lblTitle.Text; }
             set { lblTitle.Text = value; }
         }
+        /// <summary>
+        /// 选择类型
+        /// </summary>
         public DialogType PickType
         {
             get { return mDialogType; }
             set { mDialogType = value; }
+        }
+        /// <summary>
+        /// 选中路径
+        /// </summary>
+        public String SelectedPath {
+            get { return txtLogPath.Text; }
+            set { txtLogPath.Text = value; }
         }
         public enum DialogType
         {

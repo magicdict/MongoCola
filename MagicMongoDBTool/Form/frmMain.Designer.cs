@@ -46,15 +46,20 @@
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportDataFromAccessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.数据视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PrePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.NextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FirstPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LastPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.lstData = new System.Windows.Forms.ListView();
-            this.数据视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PrePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.NextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -131,7 +136,8 @@
             this.DeleteToolStripMenuItem,
             this.DosCommandToolStripMenuItem,
             this.OptionToolStripMenuItem,
-            this.ImportDataToolStripMenuItem});
+            this.ImportDataToolStripMenuItem,
+            this.UserToolStripMenuItem});
             this.ToolToolStripMenuItem.Name = "ToolToolStripMenuItem";
             this.ToolToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.ToolToolStripMenuItem.Text = "工具（&T)";
@@ -148,14 +154,14 @@
             // CreateMongoDBToolStripMenuItem
             // 
             this.CreateMongoDBToolStripMenuItem.Name = "CreateMongoDBToolStripMenuItem";
-            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.CreateMongoDBToolStripMenuItem.Text = "数据库";
             this.CreateMongoDBToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoDBToolStripMenuItem_Click);
             // 
             // CreateMongoCollectionToolStripMenuItem
             // 
             this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
-            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.CreateMongoCollectionToolStripMenuItem.Text = "数据集";
             this.CreateMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoCollectionToolStripMenuItem_Click);
             // 
@@ -210,6 +216,49 @@
             this.ImportDataFromAccessToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.ImportDataFromAccessToolStripMenuItem.Text = "Access";
             this.ImportDataFromAccessToolStripMenuItem.Click += new System.EventHandler(this.ImportDataFromAccessToolStripMenuItem_Click);
+            // 
+            // 数据视图ToolStripMenuItem
+            // 
+            this.数据视图ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.PrePageToolStripMenuItem,
+            this.NextPageToolStripMenuItem,
+            this.FirstPageToolStripMenuItem,
+            this.LastPageToolStripMenuItem});
+            this.数据视图ToolStripMenuItem.Name = "数据视图ToolStripMenuItem";
+            this.数据视图ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.数据视图ToolStripMenuItem.Text = "数据视图";
+            // 
+            // PrePageToolStripMenuItem
+            // 
+            this.PrePageToolStripMenuItem.Name = "PrePageToolStripMenuItem";
+            this.PrePageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
+            this.PrePageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.PrePageToolStripMenuItem.Text = "上一页";
+            this.PrePageToolStripMenuItem.Click += new System.EventHandler(this.PrePageToolStripMenuItem_Click);
+            // 
+            // NextPageToolStripMenuItem
+            // 
+            this.NextPageToolStripMenuItem.Name = "NextPageToolStripMenuItem";
+            this.NextPageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.NextPageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.NextPageToolStripMenuItem.Text = "下一页";
+            this.NextPageToolStripMenuItem.Click += new System.EventHandler(this.NextPageToolStripMenuItem_Click);
+            // 
+            // FirstPageToolStripMenuItem
+            // 
+            this.FirstPageToolStripMenuItem.Name = "FirstPageToolStripMenuItem";
+            this.FirstPageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F9;
+            this.FirstPageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.FirstPageToolStripMenuItem.Text = "第一页";
+            this.FirstPageToolStripMenuItem.Click += new System.EventHandler(this.FirstPageToolStripMenuItem_Click);
+            // 
+            // LastPageToolStripMenuItem
+            // 
+            this.LastPageToolStripMenuItem.Name = "LastPageToolStripMenuItem";
+            this.LastPageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
+            this.LastPageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.LastPageToolStripMenuItem.Text = "最后一页";
+            this.LastPageToolStripMenuItem.Click += new System.EventHandler(this.LastPageToolStripMenuItem_Click);
             // 
             // toolStripMain
             // 
@@ -272,30 +321,28 @@
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
             // 
-            // 数据视图ToolStripMenuItem
+            // UserToolStripMenuItem
             // 
-            this.数据视图ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.PrePageToolStripMenuItem,
-            this.NextPageToolStripMenuItem});
-            this.数据视图ToolStripMenuItem.Name = "数据视图ToolStripMenuItem";
-            this.数据视图ToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.数据视图ToolStripMenuItem.Text = "数据视图";
+            this.UserToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddUserToolStripMenuItem,
+            this.RemoveUserToolStripMenuItem});
+            this.UserToolStripMenuItem.Name = "UserToolStripMenuItem";
+            this.UserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.UserToolStripMenuItem.Text = "用户";
             // 
-            // PrePageToolStripMenuItem
+            // AddUserToolStripMenuItem
             // 
-            this.PrePageToolStripMenuItem.Name = "PrePageToolStripMenuItem";
-            this.PrePageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.PrePageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.PrePageToolStripMenuItem.Text = "上一页";
-            this.PrePageToolStripMenuItem.Click += new System.EventHandler(this.PrePageToolStripMenuItem_Click);
+            this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
+            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AddUserToolStripMenuItem.Text = "添加用户";
+            this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
             // 
-            // NextPageToolStripMenuItem
+            // RemoveUserToolStripMenuItem
             // 
-            this.NextPageToolStripMenuItem.Name = "NextPageToolStripMenuItem";
-            this.NextPageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.NextPageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.NextPageToolStripMenuItem.Text = "下一页";
-            this.NextPageToolStripMenuItem.Click += new System.EventHandler(this.NextPageToolStripMenuItem_Click);
+            this.RemoveUserToolStripMenuItem.Name = "RemoveUserToolStripMenuItem";
+            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RemoveUserToolStripMenuItem.Text = "删除用户";
+            this.RemoveUserToolStripMenuItem.Click += new System.EventHandler(this.RemoveUserToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -351,6 +398,11 @@
         private System.Windows.Forms.ToolStripMenuItem 数据视图ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PrePageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem NextPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FirstPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LastPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RemoveUserToolStripMenuItem;
     }
 }
 

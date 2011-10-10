@@ -17,35 +17,17 @@ namespace MagicMongoDBTool
         }
         private void frmOption_Load(object sender, EventArgs e)
         {
-            txtMongoBinPath.Text = SystemManager.mConfig.MongoBinPath;
+            this.ctlFilePickerMongoBinPath.SelectedPath= SystemManager.mConfig.MongoBinPath;
         }
-        
-        /// <summary>
-        /// MongoBin路径的浏览
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdMongoBinPath_Click(object sender, EventArgs e)
+        private void cmdOK_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                txtMongoBinPath.Text = fbd.SelectedPath + @"\";
-            }
+            SystemManager.mConfig.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPath;
+            SystemManager.mConfig.SaveToConfigFile();
+            this.Close();
         }
-
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void cmdOK_Click(object sender, EventArgs e)
-        {
-            SystemManager.mConfig.MongoBinPath = txtMongoBinPath.Text ;
-            SystemManager.mConfig.SaveToConfigFile();
-            this.Close();
-        }
-
-
     }
 }

@@ -11,7 +11,13 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelpler
     {
+        /// <summary>
+        /// 数据连接字符串
+        /// </summary>
         const String AccessConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=@AccessPath;Persist Security Info=True";
+        /// <summary>
+        /// 列信息
+        /// </summary>
         enum ColumnInfo
         {
             TABLE_CATALOG,
@@ -43,6 +49,14 @@ namespace MagicMongoDBTool.Module
             DOMAIN_NAME,
             DESCRIPTION
         }
+        /// <summary>
+        /// 获得数据类型
+        /// </summary>
+        /// <param name="OLEDataType"></param>
+        /// <param name="ColumnSize"></param>
+        /// <param name="NumericPrecision"></param>
+        /// <param name="NumericScale"></param>
+        /// <returns></returns>
         private static string GetDataType(int OLEDataType, long ColumnSize, int NumericPrecision, int NumericScale)
         {
 
@@ -141,6 +155,13 @@ namespace MagicMongoDBTool.Module
             }
             return null;
         }
+        /// <summary>
+        /// 导入数据
+        /// </summary>
+        /// <param name="Accessfilename"></param>
+        /// <param name="strSvrPath"></param>
+        /// <param name="CurrentTreeNode"></param>
+        /// <returns></returns>
         public static Boolean ImportAccessDataBase(String Accessfilename, String strSvrPath, TreeNode CurrentTreeNode)
         {
             Boolean rtnCode = false;
