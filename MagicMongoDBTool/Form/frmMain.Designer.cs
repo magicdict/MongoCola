@@ -46,6 +46,10 @@
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportDataFromAccessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReplicaSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,9 +61,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.lstData = new System.Windows.Forms.ListView();
-            this.UserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.RemoveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddShardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -137,7 +139,9 @@
             this.DosCommandToolStripMenuItem,
             this.OptionToolStripMenuItem,
             this.ImportDataToolStripMenuItem,
-            this.UserToolStripMenuItem});
+            this.UserToolStripMenuItem,
+            this.ReplicaSetToolStripMenuItem,
+            this.AddShardingToolStripMenuItem});
             this.ToolToolStripMenuItem.Name = "ToolToolStripMenuItem";
             this.ToolToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.ToolToolStripMenuItem.Text = "工具（&T)";
@@ -148,20 +152,20 @@
             this.CreateMongoDBToolStripMenuItem,
             this.CreateMongoCollectionToolStripMenuItem});
             this.CreateToolStripMenuItem.Name = "CreateToolStripMenuItem";
-            this.CreateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.CreateToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.CreateToolStripMenuItem.Text = "创建";
             // 
             // CreateMongoDBToolStripMenuItem
             // 
             this.CreateMongoDBToolStripMenuItem.Name = "CreateMongoDBToolStripMenuItem";
-            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.CreateMongoDBToolStripMenuItem.Text = "数据库";
             this.CreateMongoDBToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoDBToolStripMenuItem_Click);
             // 
             // CreateMongoCollectionToolStripMenuItem
             // 
             this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
-            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.CreateMongoCollectionToolStripMenuItem.Text = "数据集";
             this.CreateMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoCollectionToolStripMenuItem_Click);
             // 
@@ -171,7 +175,7 @@
             this.DelMongoDBToolStripMenuItem,
             this.DelMongoCollectionToolStripMenuItem});
             this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
-            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.DeleteToolStripMenuItem.Text = "删除";
             // 
             // DelMongoDBToolStripMenuItem
@@ -191,14 +195,14 @@
             // DosCommandToolStripMenuItem
             // 
             this.DosCommandToolStripMenuItem.Name = "DosCommandToolStripMenuItem";
-            this.DosCommandToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DosCommandToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.DosCommandToolStripMenuItem.Text = "DOS操作";
             this.DosCommandToolStripMenuItem.Click += new System.EventHandler(this.DosCommandToolStripMenuItem_Click);
             // 
             // OptionToolStripMenuItem
             // 
             this.OptionToolStripMenuItem.Name = "OptionToolStripMenuItem";
-            this.OptionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.OptionToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.OptionToolStripMenuItem.Text = "配置(&O)";
             this.OptionToolStripMenuItem.Click += new System.EventHandler(this.OptionToolStripMenuItem_Click);
             // 
@@ -207,7 +211,7 @@
             this.ImportDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ImportDataFromAccessToolStripMenuItem});
             this.ImportDataToolStripMenuItem.Name = "ImportDataToolStripMenuItem";
-            this.ImportDataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ImportDataToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.ImportDataToolStripMenuItem.Text = "导入";
             // 
             // ImportDataFromAccessToolStripMenuItem
@@ -216,6 +220,36 @@
             this.ImportDataFromAccessToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.ImportDataFromAccessToolStripMenuItem.Text = "Access";
             this.ImportDataFromAccessToolStripMenuItem.Click += new System.EventHandler(this.ImportDataFromAccessToolStripMenuItem_Click);
+            // 
+            // UserToolStripMenuItem
+            // 
+            this.UserToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddUserToolStripMenuItem,
+            this.RemoveUserToolStripMenuItem});
+            this.UserToolStripMenuItem.Name = "UserToolStripMenuItem";
+            this.UserToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.UserToolStripMenuItem.Text = "用户";
+            // 
+            // AddUserToolStripMenuItem
+            // 
+            this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
+            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.AddUserToolStripMenuItem.Text = "添加用户";
+            this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
+            // 
+            // RemoveUserToolStripMenuItem
+            // 
+            this.RemoveUserToolStripMenuItem.Name = "RemoveUserToolStripMenuItem";
+            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.RemoveUserToolStripMenuItem.Text = "删除用户";
+            this.RemoveUserToolStripMenuItem.Click += new System.EventHandler(this.RemoveUserToolStripMenuItem_Click);
+            // 
+            // ReplicaSetToolStripMenuItem
+            // 
+            this.ReplicaSetToolStripMenuItem.Name = "ReplicaSetToolStripMenuItem";
+            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.ReplicaSetToolStripMenuItem.Text = "初始化副本";
+            this.ReplicaSetToolStripMenuItem.Click += new System.EventHandler(this.ReplicaSetToolStripMenuItem_Click);
             // 
             // 数据视图ToolStripMenuItem
             // 
@@ -321,28 +355,12 @@
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
             // 
-            // UserToolStripMenuItem
+            // AddShardingToolStripMenuItem
             // 
-            this.UserToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AddUserToolStripMenuItem,
-            this.RemoveUserToolStripMenuItem});
-            this.UserToolStripMenuItem.Name = "UserToolStripMenuItem";
-            this.UserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.UserToolStripMenuItem.Text = "用户";
-            // 
-            // AddUserToolStripMenuItem
-            // 
-            this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
-            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.AddUserToolStripMenuItem.Text = "添加用户";
-            this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
-            // 
-            // RemoveUserToolStripMenuItem
-            // 
-            this.RemoveUserToolStripMenuItem.Name = "RemoveUserToolStripMenuItem";
-            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.RemoveUserToolStripMenuItem.Text = "删除用户";
-            this.RemoveUserToolStripMenuItem.Click += new System.EventHandler(this.RemoveUserToolStripMenuItem_Click);
+            this.AddShardingToolStripMenuItem.Name = "AddShardingToolStripMenuItem";
+            this.AddShardingToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.AddShardingToolStripMenuItem.Text = "添加副本[路由]";
+            this.AddShardingToolStripMenuItem.Click += new System.EventHandler(this.AddShardingToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -403,6 +421,8 @@
         private System.Windows.Forms.ToolStripMenuItem UserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AddUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RemoveUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ReplicaSetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddShardingToolStripMenuItem;
     }
 }
 

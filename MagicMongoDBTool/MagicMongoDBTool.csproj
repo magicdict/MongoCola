@@ -61,6 +61,18 @@
     <Compile Include="Form\frnImportOleDB.Designer.cs">
       <DependentUpon>frnImportOleDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmAddSharding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmAddSharding.Designer.cs">
+      <DependentUpon>frmAddSharding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmReplset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmReplset.Designer.cs">
+      <DependentUpon>frmReplset.cs</DependentUpon>
+    </Compile>
     <Compile Include="Module\MongoDBHelper_Auth.cs" />
     <Compile Include="UserController\ctlMongoImportExport.cs">
       <SubType>UserControl</SubType>
@@ -150,6 +162,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form\frnImportOleDB.resx">
       <DependentUpon>frnImportOleDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmAddSharding.resx">
+      <DependentUpon>frmAddSharding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmReplset.resx">
+      <DependentUpon>frmReplset.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlMongoImportExport.resx">
       <DependentUpon>ctlMongoImportExport.cs</DependentUpon>

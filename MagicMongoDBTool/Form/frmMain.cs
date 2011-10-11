@@ -283,5 +283,21 @@ namespace MagicMongoDBTool
 
         }
 
+        private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReplset mfrm = new frmReplset();
+            mfrm.ShowDialog();
+            mfrm.Close();
+            mfrm.Dispose();
+        }
+
+        private void AddShardingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddSharding mfrm = new frmAddSharding();
+            mfrm.ShowDialog();
+            mfrm.Close();
+            mfrm.Dispose();
+        }
+
     }
 }

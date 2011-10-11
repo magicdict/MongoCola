@@ -125,11 +125,17 @@ namespace MagicMongoDBTool.Module
                 case "fs.files":
                     mongoColNode = new TreeNode("文件系统(" + strColName + ")");
                     break;
+                case "oplog.rs":
+                    mongoColNode = new TreeNode("操作结果(" + strColName + ")");
+                    break;
                 case "system.indexes":
                     mongoColNode = new TreeNode("索引(" + strColName + ")");
                     break;
                 case "system.js":
                     mongoColNode = new TreeNode("存储Javascript(" + strColName + ")");
+                    break;
+                case "system.replset":
+                    mongoColNode = new TreeNode("副本组(" + strColName + ")");
                     break;
                 case "system.users":
                     mongoColNode = new TreeNode("用户列表(" + strColName + ")");
@@ -347,7 +353,17 @@ namespace MagicMongoDBTool.Module
                     MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
                     DatabaseStatsResult dbstatus = Mongodb.GetStats();
                     ListViewItem lst = new ListViewItem(mongosvrKey + "." + strDBName);
-                    lst.SubItems.Add(dbstatus.CollectionCount.ToString());
+                    try
+                    {
+                        lst.SubItems.Add(dbstatus.CollectionCount.ToString());
+
+                    }
+                    catch (Exception)
+                    {
+
+                        lst.SubItems.Add(string.Empty);
+                    }
+
                     lst.SubItems.Add(GetSize(dbstatus.DataSize));
                     lst.SubItems.Add(GetSize(dbstatus.FileSize));
                     lst.SubItems.Add(dbstatus.IndexCount.ToString());
