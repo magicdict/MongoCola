@@ -28,7 +28,7 @@ namespace MagicMongoDBTool
             txtPort.Text = ModifyConn.Port.ToString();
             cmdAdd.Text = "修改";
             chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
-
+            txtReplSet.Text = ModifyConn.ReplSetName;
 
 
             switch (ModifyConn.ServerType) { 
@@ -51,6 +51,7 @@ namespace MagicMongoDBTool
             ModifyConn.IpAddr = txtIpAddr.Text;
             ModifyConn.Port = Convert.ToInt32(txtPort.Text);
             ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
+            ModifyConn.ReplSetName = txtReplSet.Text;
             if (radDataSrv.Checked) { 
                 ModifyConn.ServerType = ConfigHelper.SrvType.DataSrv; 
             }

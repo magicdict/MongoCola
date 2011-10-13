@@ -25,16 +25,31 @@ namespace MagicMongoDBTool
         {
             PrmSrv = MongoDBHelpler.GetMongoServerBySvrPath(SystemManager.SelectObjectTag, true);
             String strPrmKey = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-            foreach (var item in SystemManager.mConfig.ConnectionList)
+            foreach (var item in SystemManager.mConfig.ConnectionList.Values)
             {
-                if (strPrmKey != item.Key)
+                if (item.ReplSetName != null)
                 {
-                    lstShard.Items.Add(item.Key);
+                    if (!cmbReplsetName.Items.Contains(item.ReplSetName))
+                    {
+                        cmbReplsetName.Items.Add(item.ReplSetName);
+                    }
                 }
-
             }
         }
-
+        private void RefreshSrv()
+        {
+            lstShard.Items.Clear();
+            foreach (var item in SystemManager.mConfig.ConnectionList.Values)
+            {
+                if (item.ReplSetName != null)
+                {
+                    if (item.ReplSetName == cmbReplsetName.Text)
+                    {
+                        lstShard.Items.Add(item.HostName);
+                    }
+                }
+            }
+        }
         private void cmdInitReplset_Click(object sender, EventArgs e)
         {
             List<String> srvKeys = new List<string>();
@@ -45,7 +60,12 @@ namespace MagicMongoDBTool
                     srvKeys.Add(item);
                 }
             }
-            MongoDBHelpler.AddSharding(PrmSrv,txtReplsetName.Text,srvKeys,txtDBName.Text,txtDBcollection.Text);
+            MongoDBHelpler.AddSharding(PrmSrv, cmbReplsetName.Text, srvKeys, txtDBName.Text, txtDBcollection.Text);
+        }
+
+        private void cmbReplsetName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshSrv();
         }
     }
 }

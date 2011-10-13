@@ -57,6 +57,10 @@ namespace MagicMongoDBTool.Module
             /// 服务器类型
             /// </summary>
             public SrvType ServerType;
+            /// <summary>
+            /// 副本名称
+            /// </summary>
+            public String ReplSetName;
         }
         /// <summary>
         /// 连接配置列表(管理用）

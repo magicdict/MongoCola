@@ -44,11 +44,13 @@
             this.radDataSrv = new System.Windows.Forms.RadioButton();
             this.radConfigSrv = new System.Windows.Forms.RadioButton();
             this.radRouteSrv = new System.Windows.Forms.RadioButton();
+            this.lblReplsetName = new System.Windows.Forms.Label();
+            this.txtReplSet = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtHostName
             // 
-            this.txtHostName.Location = new System.Drawing.Point(88, 18);
+            this.txtHostName.Location = new System.Drawing.Point(97, 18);
             this.txtHostName.Name = "txtHostName";
             this.txtHostName.Size = new System.Drawing.Size(100, 20);
             this.txtHostName.TabIndex = 0;
@@ -96,7 +98,7 @@
             // 
             // cmdAdd
             // 
-            this.cmdAdd.Location = new System.Drawing.Point(142, 121);
+            this.cmdAdd.Location = new System.Drawing.Point(142, 184);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 23);
             this.cmdAdd.TabIndex = 6;
@@ -106,7 +108,7 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(239, 121);
+            this.cmdCancel.Location = new System.Drawing.Point(239, 184);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 7;
@@ -116,7 +118,7 @@
             // chkSlaveOk
             // 
             this.chkSlaveOk.AutoSize = true;
-            this.chkSlaveOk.Location = new System.Drawing.Point(369, 87);
+            this.chkSlaveOk.Location = new System.Drawing.Point(369, 106);
             this.chkSlaveOk.Name = "chkSlaveOk";
             this.chkSlaveOk.Size = new System.Drawing.Size(74, 17);
             this.chkSlaveOk.TabIndex = 8;
@@ -125,14 +127,14 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(88, 46);
+            this.txtUsername.Location = new System.Drawing.Point(97, 56);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(100, 20);
             this.txtUsername.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(260, 46);
+            this.txtPassword.Location = new System.Drawing.Point(260, 56);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(100, 20);
             this.txtPassword.TabIndex = 1;
@@ -140,7 +142,7 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(36, 49);
+            this.lblUsername.Location = new System.Drawing.Point(36, 59);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(43, 13);
             this.lblUsername.TabIndex = 3;
@@ -149,7 +151,7 @@
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(211, 49);
+            this.lblPassword.Location = new System.Drawing.Point(211, 59);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(31, 13);
             this.lblPassword.TabIndex = 4;
@@ -158,7 +160,7 @@
             // radDataSrv
             // 
             this.radDataSrv.AutoSize = true;
-            this.radDataSrv.Location = new System.Drawing.Point(39, 88);
+            this.radDataSrv.Location = new System.Drawing.Point(39, 105);
             this.radDataSrv.Name = "radDataSrv";
             this.radDataSrv.Size = new System.Drawing.Size(85, 17);
             this.radDataSrv.TabIndex = 9;
@@ -169,7 +171,7 @@
             // radConfigSrv
             // 
             this.radConfigSrv.AutoSize = true;
-            this.radConfigSrv.Location = new System.Drawing.Point(142, 87);
+            this.radConfigSrv.Location = new System.Drawing.Point(142, 104);
             this.radConfigSrv.Name = "radConfigSrv";
             this.radConfigSrv.Size = new System.Drawing.Size(85, 17);
             this.radConfigSrv.TabIndex = 10;
@@ -180,7 +182,7 @@
             // radRouteSrv
             // 
             this.radRouteSrv.AutoSize = true;
-            this.radRouteSrv.Location = new System.Drawing.Point(260, 87);
+            this.radRouteSrv.Location = new System.Drawing.Point(260, 104);
             this.radRouteSrv.Name = "radRouteSrv";
             this.radRouteSrv.Size = new System.Drawing.Size(85, 17);
             this.radRouteSrv.TabIndex = 11;
@@ -188,11 +190,29 @@
             this.radRouteSrv.Text = "路由服务器";
             this.radRouteSrv.UseVisualStyleBackColor = true;
             // 
+            // lblReplsetName
+            // 
+            this.lblReplsetName.AutoSize = true;
+            this.lblReplsetName.Location = new System.Drawing.Point(36, 143);
+            this.lblReplsetName.Name = "lblReplsetName";
+            this.lblReplsetName.Size = new System.Drawing.Size(55, 13);
+            this.lblReplsetName.TabIndex = 12;
+            this.lblReplsetName.Text = "副本名称";
+            // 
+            // txtReplSet
+            // 
+            this.txtReplSet.Location = new System.Drawing.Point(97, 140);
+            this.txtReplSet.Name = "txtReplSet";
+            this.txtReplSet.Size = new System.Drawing.Size(100, 20);
+            this.txtReplSet.TabIndex = 13;
+            // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 158);
+            this.ClientSize = new System.Drawing.Size(558, 230);
+            this.Controls.Add(this.txtReplSet);
+            this.Controls.Add(this.lblReplsetName);
             this.Controls.Add(this.radRouteSrv);
             this.Controls.Add(this.radConfigSrv);
             this.Controls.Add(this.radDataSrv);
@@ -235,5 +255,7 @@
         private System.Windows.Forms.RadioButton radDataSrv;
         private System.Windows.Forms.RadioButton radConfigSrv;
         private System.Windows.Forms.RadioButton radRouteSrv;
+        private System.Windows.Forms.Label lblReplsetName;
+        private System.Windows.Forms.TextBox txtReplSet;
     }
 }

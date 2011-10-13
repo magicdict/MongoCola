@@ -111,7 +111,6 @@ namespace MagicMongoDBTool.Module
                     break;
             }
 
-
             mongoDBNode.Tag = DataBaseTag + ":" + mongosvrKey + "/" + strDBName;
             MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
             List<String> ColNameList = Mongodb.GetCollectionNames().ToList<String>();
@@ -209,13 +208,13 @@ namespace MagicMongoDBTool.Module
                 case "me":
                     if (Mongodb.Name == "local")
                     {
-                        strColName = "副本组[从属信息](" + strColName + ")";
+                        strColName = "副本组[从属机信息](" + strColName + ")";
                     }
                     break;
                 case "slaves":
                     if (Mongodb.Name == "local")
                     {
-                        strColName = "副本组[本机信息](" + strColName + ")";
+                        strColName = "副本组[主机信息](" + strColName + ")";
                     }
                     break;
                 default:
