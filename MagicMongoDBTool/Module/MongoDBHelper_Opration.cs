@@ -135,5 +135,59 @@ namespace MagicMongoDBTool.Module
             }
             return rtnMongoDb;
         }
+
+        public static MongoCollection GetMongoCollectionBySvrPath(String strSvrPath, Boolean WithTag = false)
+        {
+            if (WithTag)
+            {
+                strSvrPath = strSvrPath.Split(":".ToCharArray())[1];
+            }
+            MongoCollection rtnMongoCollection = null;
+            MongoServer MongoSrv = GetMongoServerBySvrPath(strSvrPath);
+            if (MongoSrv != null)
+            {
+                String[] strPath = strSvrPath.Split("/".ToCharArray());
+                if (strPath.Length > 1)
+                {
+                    if (MongoSrv.DatabaseExists(strPath[(int)PathLv.DatabaseLv]))
+                    {
+                        rtnMongoCollection = MongoSrv.GetDatabase(strPath[(int)PathLv.DatabaseLv]).GetCollection(strPath[(int)PathLv.CollectionLV]);
+                    }
+                }
+            }
+            return rtnMongoCollection;
+
+        }
+        /// <summary>
+        /// 添加索引
+        /// </summary>
+        /// <param name="KeyName">索引名称</param>
+        /// <param name="IsAccending">是否为升序</param>
+        /// <returns></returns>
+        public static Boolean CreateMongoIndex(String KeyName, Boolean IsAccending = true) {
+            MongoCollection mongoCol = SystemManager.getCurrentCollection();
+            IndexKeysDocument index = new IndexKeysDocument();
+            if (!mongoCol.IndexExists(KeyName))
+            {
+                index.Add(KeyName, IsAccending ? 1 : 0);
+                mongoCol.CreateIndex(index);
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 删除索引
+        /// </summary>
+        /// <param name="indexName"></param>
+        /// <returns></returns>
+        public static Boolean DropMongoIndex(String indexName)
+        {
+            MongoCollection mongoCol = SystemManager.getCurrentCollection();
+            if (mongoCol.IndexExistsByName(indexName))
+            {
+                mongoCol.DropIndexByName(indexName);
+            }
+            return true;
+        }
     }
 }

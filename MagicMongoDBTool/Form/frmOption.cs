@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
-    public partial class frmOption : Form
+    public partial class frmOption : frmBase
     {
         public frmOption()
         {
@@ -18,10 +18,12 @@ namespace MagicMongoDBTool
         private void frmOption_Load(object sender, EventArgs e)
         {
             this.ctlFilePickerMongoBinPath.SelectedPath= SystemManager.mConfig.MongoBinPath;
+            this.numLimitCnt.Value = SystemManager.mConfig.LimitCnt;
         }
         private void cmdOK_Click(object sender, EventArgs e)
         {
             SystemManager.mConfig.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPath;
+            SystemManager.mConfig.LimitCnt = (int)this.numLimitCnt.Value;
             SystemManager.mConfig.SaveToConfigFile();
             this.Close();
         }

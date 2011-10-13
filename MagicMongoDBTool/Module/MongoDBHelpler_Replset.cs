@@ -9,7 +9,13 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelpler
     {
-        public static void SetReplica(MongoServer mongosrv, String ReplicaSetName, List<String> SecondaryNames)
+        /// <summary>
+        /// 初始化副本
+        /// </summary>
+        /// <param name="mongosrv">副本组主服务器</param>
+        /// <param name="ReplicaSetName">副本名称</param>
+        /// <param name="SecondaryNames">从属服务器列表</param>
+        public static void InitReplicaSet(MongoServer mongosrv, String ReplicaSetName, List<String> SecondaryNames)
         {
             BsonDocument config = new BsonDocument();
             BsonArray hosts = new BsonArray();
@@ -39,7 +45,15 @@ namespace MagicMongoDBTool.Module
 
             mongosrv.RunAdminCommand(Mongocmd);
         }
-        public static void AddSharding(MongoServer routesrv, String ReplicaSetName, List<String> ShardingNames, String shardingDB = "", String SharingCollection = "")
+        /// <summary>
+        /// 增加数据分片
+        /// </summary>
+        /// <param name="routesrv"></param>
+        /// <param name="ReplicaSetName"></param>
+        /// <param name="ShardingNames"></param>
+        /// <param name="shardingDB"></param>
+        /// <param name="SharingCollection"></param>
+        public static CommandResult AddSharding(MongoServer routesrv, String ReplicaSetName, List<String> ShardingNames)
         {
             BsonDocument config = new BsonDocument();
             BsonDocument cmd = new BsonDocument();
@@ -52,25 +66,37 @@ namespace MagicMongoDBTool.Module
             strCmdPara = strCmdPara.TrimEnd(",".ToCharArray());
             CommandDocument Mongocmd = new CommandDocument();
             Mongocmd.Add("addshard", strCmdPara);
-            routesrv.RunAdminCommand(Mongocmd);
-
-            if (shardingDB != String.Empty)
-            {
-                ///可分片数据库
-                Mongocmd = new CommandDocument();
-                Mongocmd.Add("enablesharding", shardingDB);
-                routesrv.RunAdminCommand(Mongocmd);
-            }
-
-            if (SharingCollection != String.Empty)
-            {
-                ///可分片数据集
-                Mongocmd = new CommandDocument();
-                Mongocmd.Add("shardcollection", SharingCollection);
-                Mongocmd.Add("key", new BsonDocument().Add("_id", 1));
-                routesrv.RunAdminCommand(Mongocmd);
-            }
+            return routesrv.RunAdminCommand(Mongocmd);
         }
-
+        /// <summary>
+        /// 数据库分片
+        /// </summary>
+        /// <param name="routesrv"></param>
+        /// <param name="shardingDB"></param>
+        /// <returns></returns>
+        public static CommandResult EnableSharding(MongoServer routesrv, String shardingDB)
+        {
+            CommandDocument Mongocmd = new CommandDocument();
+            ///可分片数据库
+            Mongocmd = new CommandDocument();
+            Mongocmd.Add("enablesharding", shardingDB);
+            return routesrv.RunAdminCommand(Mongocmd);
+        }
+        /// <summary>
+        /// 数据集分片
+        /// </summary>
+        /// <param name="routesrv"></param>
+        /// <param name="SharingCollection"></param>
+        /// <param name="ShardingKey"></param>
+        /// <returns></returns>
+        public static CommandResult shardcollection(MongoServer routesrv, String SharingCollection,BsonDocument ShardingKey)
+        {
+            CommandDocument Mongocmd = new CommandDocument();
+            ///可分片数据集
+            Mongocmd = new CommandDocument();
+            Mongocmd.Add("shardcollection", SharingCollection);
+            Mongocmd.Add("key", ShardingKey);
+            return routesrv.RunAdminCommand(Mongocmd);
+        }
     }
 }

@@ -106,6 +106,9 @@ namespace MagicMongoDBTool.Module
                 case "local":
                     mongoDBNode = new TreeNode("本地(local)");
                     break;
+                case "config":
+                    mongoDBNode = new TreeNode("配置(config)");
+                    break;
                 default:
                     mongoDBNode = new TreeNode(strDBName);
                     break;
@@ -138,6 +141,12 @@ namespace MagicMongoDBTool.Module
                     if (Mongodb.Name == "config")
                     {
                         strColName = "数据块(" + strColName + ")";
+                    }
+                    break;
+                case "collections":
+                    if (Mongodb.Name == "config")
+                    {
+                        strColName = "数据集(" + strColName + ")";
                     }
                     break;
                 case "databases":

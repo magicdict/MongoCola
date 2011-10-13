@@ -57,6 +57,7 @@ namespace MagicMongoDBTool
                         if (SystemManager.getSelectedSrvProByName().ServerType == ConfigHelper.SrvType.RouteSrv) {
                             //Route用
                             this.AddShardingToolStripMenuItem.Enabled = true;
+                            this.ShardConfigToolStripMenuItem.Enabled = true;
                         }
                         break;
                     case MongoDBHelpler.DataBaseTag:
@@ -74,6 +75,7 @@ namespace MagicMongoDBTool
                         statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         //解禁 删除数据集
                         this.DelMongoCollectionToolStripMenuItem.Enabled = true;
+                        this.CreateMongoIndexToolStripMenuItem.Enabled = true;
                         break;
                     default:
                         SystemManager.SelectObjectTag = "";
@@ -90,6 +92,7 @@ namespace MagicMongoDBTool
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
             this.CreateMongoCollectionToolStripMenuItem.Enabled = false;
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
+            this.CreateMongoIndexToolStripMenuItem.Enabled = false;
             this.ImportDataFromAccessToolStripMenuItem.Enabled = false;
 
             this.AddUserToolStripMenuItem.Enabled = false;
@@ -102,6 +105,8 @@ namespace MagicMongoDBTool
 
             this.ReplicaSetToolStripMenuItem.Enabled = false;
             this.AddShardingToolStripMenuItem.Enabled = false;
+            this.ShardConfigToolStripMenuItem.Enabled = false;
+
             this.ShutDownToolStripMenuItem.Enabled = false;
         }
 
@@ -330,5 +335,25 @@ namespace MagicMongoDBTool
             LastPageToolStripMenuItem.Enabled = MongoDBHelpler.HasNextPage;
         }
         #endregion
+
+        private void ShardConfigToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmShardingConfig mfrm = new frmShardingConfig();
+            mfrm.ShowDialog();
+            mfrm.Close();
+            mfrm.Dispose();
+        }
+
+        private void CreateMongoIndexToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCollectionIndex frm = new frmCollectionIndex();
+            frm.ShowDialog();
+            //MongoDBHelpler.CreateMongoIndex("TestIndex", true);
+        }
+
+        private void DropMongoIndexToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //MongoDBHelpler.DropMongoIndex("TestIndex");
+        }
     }
 }

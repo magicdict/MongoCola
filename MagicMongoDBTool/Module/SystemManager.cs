@@ -1,5 +1,5 @@
 ﻿using System;
-
+using MongoDB.Driver;
 namespace MagicMongoDBTool.Module
 {
     public static class SystemManager
@@ -19,6 +19,29 @@ namespace MagicMongoDBTool.Module
                 rtnMongoConnectionConfig = mConfig.ConnectionList[SrvName];
             }
             return rtnMongoConnectionConfig;
+        }
+        /// <summary>
+        /// 获得当前服务器
+        /// </summary>
+        /// <returns></returns>
+        public static MongoServer getCurrentService() {
+            return MongoDBHelpler.GetMongoServerBySvrPath(SelectObjectTag, true);
+        }
+        /// <summary>
+        /// 获得当前数据库
+        /// </summary>
+        /// <returns></returns>
+        public static MongoDatabase getCurrentDataBase()
+        {
+            return MongoDBHelpler.GetMongoDBBySvrPath(SelectObjectTag, true);
+        }
+        /// <summary>
+        /// 获得当前数据集
+        /// </summary>
+        /// <returns></returns>
+        public static MongoCollection getCurrentCollection()
+        {
+            return MongoDBHelpler.GetMongoCollectionBySvrPath(SelectObjectTag, true);
         }
     }
 }

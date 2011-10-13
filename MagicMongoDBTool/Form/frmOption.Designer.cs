@@ -31,6 +31,9 @@
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.ctlFilePickerMongoBinPath = new MagicMongoDBTool.ctlFilePicker();
+            this.lblLimitCnt = new System.Windows.Forms.Label();
+            this.numLimitCnt = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numLimitCnt)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdOK
@@ -58,22 +61,59 @@
             this.ctlFilePickerMongoBinPath.Location = new System.Drawing.Point(12, 12);
             this.ctlFilePickerMongoBinPath.Name = "ctlFilePickerMongoBinPath";
             this.ctlFilePickerMongoBinPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
+            this.ctlFilePickerMongoBinPath.SelectedPath = "";
             this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(739, 27);
             this.ctlFilePickerMongoBinPath.TabIndex = 5;
             this.ctlFilePickerMongoBinPath.Title = "Mongodb的Bin路径";
+            // 
+            // lblLimitCnt
+            // 
+            this.lblLimitCnt.AutoSize = true;
+            this.lblLimitCnt.Location = new System.Drawing.Point(12, 42);
+            this.lblLimitCnt.Name = "lblLimitCnt";
+            this.lblLimitCnt.Size = new System.Drawing.Size(91, 13);
+            this.lblLimitCnt.TabIndex = 6;
+            this.lblLimitCnt.Text = "每页显示数据数";
+            // 
+            // numLimitCnt
+            // 
+            this.numLimitCnt.Location = new System.Drawing.Point(131, 40);
+            this.numLimitCnt.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numLimitCnt.Minimum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
+            this.numLimitCnt.Name = "numLimitCnt";
+            this.numLimitCnt.Size = new System.Drawing.Size(74, 20);
+            this.numLimitCnt.TabIndex = 7;
+            this.numLimitCnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numLimitCnt.Value = new decimal(new int[] {
+            40,
+            0,
+            0,
+            0});
             // 
             // frmOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(767, 273);
+            this.Controls.Add(this.numLimitCnt);
+            this.Controls.Add(this.lblLimitCnt);
             this.Controls.Add(this.ctlFilePickerMongoBinPath);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
             this.Name = "frmOption";
             this.Text = "配置";
             this.Load += new System.EventHandler(this.frmOption_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numLimitCnt)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -82,5 +122,7 @@
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.Button cmdCancel;
         private ctlFilePicker ctlFilePickerMongoBinPath;
+        private System.Windows.Forms.Label lblLimitCnt;
+        private System.Windows.Forms.NumericUpDown numLimitCnt;
     }
 }

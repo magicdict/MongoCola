@@ -19,7 +19,7 @@ namespace MagicMongoDBTool
         MongoServer PrmSrv;
         private void frmReplset_Load(object sender, EventArgs e)
         {
-            PrmSrv = MongoDBHelpler.GetMongoServerBySvrPath(SystemManager.SelectObjectTag,true);
+            PrmSrv = SystemManager.getCurrentService();
             ConfigHelper.MongoConnectionConfig PrmKeyPro = SystemManager.getSelectedSrvProByName();
             lblPrmInfo.Text = "主机为:" + PrmKeyPro.HostName + "  副本名：" + PrmKeyPro.ReplSetName;
             foreach (var item in SystemManager.mConfig.ConnectionList.Values)
@@ -40,7 +40,7 @@ namespace MagicMongoDBTool
                     srvKeys.Add(item);
                 }
             }
-            MongoDBHelpler.SetReplica(PrmSrv, SystemManager.getSelectedSrvProByName().ReplSetName, srvKeys);
+            MongoDBHelpler.InitReplicaSet(PrmSrv, SystemManager.getSelectedSrvProByName().ReplSetName, srvKeys);
         }
     }
 }

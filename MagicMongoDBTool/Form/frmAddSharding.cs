@@ -17,13 +17,10 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-
-
-
         MongoServer PrmSrv;
         private void frmAddSharding_Load(object sender, EventArgs e)
         {
-            PrmSrv = MongoDBHelpler.GetMongoServerBySvrPath(SystemManager.SelectObjectTag, true);
+            PrmSrv = SystemManager.getCurrentService();
             String strPrmKey = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             foreach (var item in SystemManager.mConfig.ConnectionList.Values)
             {
@@ -60,7 +57,7 @@ namespace MagicMongoDBTool
                     srvKeys.Add(item);
                 }
             }
-            MongoDBHelpler.AddSharding(PrmSrv, cmbReplsetName.Text, srvKeys, txtDBName.Text, txtDBcollection.Text);
+            MongoDBHelpler.AddSharding(PrmSrv, cmbReplsetName.Text, srvKeys);
         }
 
         private void cmbReplsetName_SelectedIndexChanged(object sender, EventArgs e)

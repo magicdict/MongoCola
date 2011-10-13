@@ -39,6 +39,11 @@ namespace MagicMongoDBTool
                 case "System.Windows.Forms.TextBox":
                     TextBox textbox = (TextBox)item;
                     break;
+                case "System.Windows.Forms.ListView":
+                    ListView listview = (ListView)item;
+                    listview.FullRowSelect = true;
+                    listview.GridLines = true;
+                    break;
                 default:
                     item.BackColor = this.BackColor;
                     foreach (Control ctl in item.Controls)
