@@ -27,11 +27,17 @@ namespace MagicMongoDBTool.Module
                 {
                     if (!mongosrvlst.ContainsKey(item.HostName))
                     {
-                        MongoServerSettings mongosvrsetting_Master = new MongoServerSettings();
-                        mongosvrsetting_Master.ConnectionMode = ConnectionMode.Direct;
-                        mongosvrsetting_Master.SlaveOk = true;
-                        mongosvrsetting_Master.Server = new MongoServerAddress(item.IpAddr, item.Port);
-                        MongoServer Mastermongosvr = new MongoServer(mongosvrsetting_Master);
+                        MongoServerSettings mongosvrsetting = new MongoServerSettings();
+                        mongosvrsetting.ConnectionMode = ConnectionMode.Direct;
+                        //Can't Use SlaveOk to a Route！！！
+                        mongosvrsetting.SlaveOk = item.IsSlaveOk;
+                        mongosvrsetting.Server = new MongoServerAddress(item.IpAddr, item.Port);
+                        if ((item.UserName == String.Empty) | (item.Password == String.Empty))
+                        {
+                            //认证的设定
+                            mongosvrsetting.DefaultCredentials = new MongoCredentials(item.UserName, item.Password);
+                        }
+                        MongoServer Mastermongosvr = new MongoServer(mongosvrsetting);
                         mongosrvlst.Add(item.HostName, Mastermongosvr);
                     }
                 }
@@ -51,6 +57,15 @@ namespace MagicMongoDBTool.Module
         public const String UserListTag = "MongoUserList";
         public const String UserTag = "MongoUser";
 
+        /// <summary>
+        /// 路径阶层[考虑到以后可能阶层会变换]
+        /// </summary>
+        enum PathLv:int
+        {
+            ServerLV = 0,
+            DatabaseLv = 1,
+            CollectionLV = 2
+        }
         #region"展示数据"
         /// <summary>
         /// 将Mongodb的服务器在树形控件中展示
@@ -86,7 +101,7 @@ namespace MagicMongoDBTool.Module
             switch (strDBName)
             {
                 case "admin":
-                    mongoDBNode = new TreeNode("管理员权限(admin)"); 
+                    mongoDBNode = new TreeNode("管理员权限(admin)");
                     break;
                 case "local":
                     mongoDBNode = new TreeNode("本地(local)");
@@ -117,36 +132,99 @@ namespace MagicMongoDBTool.Module
         private static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase Mongodb, String mongosvrKey)
         {
             TreeNode mongoColNode;
+            String strTagColName = strColName;
             switch (strColName)
             {
+                case "chunks":
+                    if (Mongodb.Name == "config")
+                    {
+                        strColName = "数据块(" + strColName + ")";
+                    }
+                    break;
+                case "databases":
+                    if (Mongodb.Name == "config") {
+                        strColName = "数据库(" + strColName + ")";
+                    }
+                    break;
+                case "lockpings":
+                    if (Mongodb.Name == "config")
+                    {
+                        strColName = "数据锁(" + strColName + ")";
+                    }
+                    break;
+                case "locks":
+                    if (Mongodb.Name == "config")
+                    {
+                        strColName = "数据锁(" + strColName + ")";
+                    }
+                    break;
+                case "mongos":
+                    if (Mongodb.Name == "config")
+                    {
+                        strColName = "路由服务器(" + strColName + ")";
+                    }
+                    break;
+                case "settings":
+                    if (Mongodb.Name == "config")
+                    {
+                        strColName = "配置(" + strColName + ")";
+                    }
+                    break;
+                case "shards":
+                    if (Mongodb.Name == "config")
+                    {
+                        strColName = "分片(" + strColName + ")";
+                    }
+                    break;
+                case "version":
+                    if (Mongodb.Name == "config")
+                    {
+                        strColName = "版本(" + strColName + ")";
+                    }
+                    break;
                 case "fs.chunks":
-                    mongoColNode = new TreeNode("文件块(" + strColName + ")");
+                    strColName = "数据块(" + strColName + ")";
                     break;
                 case "fs.files":
-                    mongoColNode = new TreeNode("文件系统(" + strColName + ")");
+                    strColName = "文件系统(" + strColName + ")";
                     break;
                 case "oplog.rs":
-                    mongoColNode = new TreeNode("操作结果(" + strColName + ")");
+                    strColName = "操作结果(" + strColName + ")";
                     break;
                 case "system.indexes":
-                    mongoColNode = new TreeNode("索引(" + strColName + ")");
+                    strColName = "索引(" + strColName + ")";
                     break;
                 case "system.js":
-                    mongoColNode = new TreeNode("存储Javascript(" + strColName + ")");
+                    strColName = "存储Javascript(" + strColName + ")";
                     break;
                 case "system.replset":
-                    mongoColNode = new TreeNode("副本组(" + strColName + ")");
+                    strColName = "副本组(" + strColName + ")";
+                    break;
+                case "replset.minvalid":
+                    strColName = "初始化同步(" + strColName + ")";
                     break;
                 case "system.users":
-                    mongoColNode = new TreeNode("用户列表(" + strColName + ")");
+                    strColName = "用户列表(" + strColName + ")";
+                    break;
+                case "me":
+                    if (Mongodb.Name == "local")
+                    {
+                        strColName = "副本组[从属信息](" + strColName + ")";
+                    }
+                    break;
+                case "slaves":
+                    if (Mongodb.Name == "local")
+                    {
+                        strColName = "副本组[本机信息](" + strColName + ")";
+                    }
                     break;
                 default:
-                    mongoColNode = new TreeNode(strColName);
                     break;
             }
-            mongoColNode.Tag = CollectionTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strColName;
+            mongoColNode = new TreeNode(strColName);
+            mongoColNode.Tag = CollectionTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strTagColName;
 
-            MongoCollection mongoCol = Mongodb.GetCollection(strColName);
+            MongoCollection mongoCol = Mongodb.GetCollection(strTagColName);
 
             //Start ListIndex
             TreeNode mongoIndex = new TreeNode("Indexes");
@@ -167,7 +245,7 @@ namespace MagicMongoDBTool.Module
 
             //Start Data
             TreeNode mongoData = new TreeNode("Data");
-            mongoData.Tag = DocumentTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strColName;
+            mongoData.Tag = DocumentTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strTagColName;
             mongoColNode.Nodes.Add(mongoData);
             //End Data
             return mongoColNode;
@@ -183,7 +261,7 @@ namespace MagicMongoDBTool.Module
             String[] cp = CollectionPath.Split("/".ToCharArray());
             List<BsonDocument> DataList = new List<BsonDocument>();
             lstData.Clear();
-            MongoCollection mongoCol = mongosrvlst[cp[0]].GetDatabase(cp[1]).GetCollection(cp[2]);
+            MongoCollection mongoCol = mongosrvlst[cp[(int)PathLv.ServerLV]].GetDatabase(cp[(int)PathLv.DatabaseLv]).GetCollection(cp[(int)PathLv.CollectionLV]);
             DataList = mongoCol.FindAllAs<BsonDocument>().SetSkip(SkipCnt).SetLimit(SystemManager.mConfig.LimitCnt).ToList<BsonDocument>();
             if (DataList.Count == 0) { return; }
             if (SkipCnt == 0)

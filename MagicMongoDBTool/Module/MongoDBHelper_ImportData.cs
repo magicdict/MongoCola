@@ -183,9 +183,8 @@ namespace MagicMongoDBTool.Module
                     {
                         //不支持UTF....,执行会失败，但是Collection已经添加了
                         mongodb.CreateCollection(strTableName);
-
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         if (mongodb.CollectionExists(strTableName))
                         {
@@ -252,7 +251,6 @@ namespace MagicMongoDBTool.Module
                                         if ((Boolean)itemRow[ColName[i]])
                                         {
                                             InsertDoc.Add(ColName[i], BsonBoolean.True, true);
-
                                         }
                                         else
                                         {
@@ -267,7 +265,8 @@ namespace MagicMongoDBTool.Module
                                         InsertDoc.Add(ColName[i], (BsonInt32)itemRow[ColName[i]], true);
                                         break;
                                     case "Long":
-                                        InsertDoc.Add(ColName[i], (BsonInt64)itemRow[ColName[i]], true);
+                                        //itemRow[ColName[i]] the default is Int32 without convert
+                                        InsertDoc.Add(ColName[i], (BsonInt64)(long)itemRow[ColName[i]], true);
                                         break;
                                     default:
                                         break;
@@ -280,7 +279,7 @@ namespace MagicMongoDBTool.Module
                 CurrentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(InsertDBName, Mongosrv, strSvrPath.Split("/".ToCharArray())[0]));
                 rtnCode = true;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 throw;
             }

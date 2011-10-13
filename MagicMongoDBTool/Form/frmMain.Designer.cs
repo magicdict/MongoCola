@@ -50,6 +50,7 @@
             this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReplicaSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddShardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.数据视图ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,7 +62,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.lstData = new System.Windows.Forms.ListView();
-            this.AddShardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -141,7 +142,8 @@
             this.ImportDataToolStripMenuItem,
             this.UserToolStripMenuItem,
             this.ReplicaSetToolStripMenuItem,
-            this.AddShardingToolStripMenuItem});
+            this.AddShardingToolStripMenuItem,
+            this.ShutDownToolStripMenuItem});
             this.ToolToolStripMenuItem.Name = "ToolToolStripMenuItem";
             this.ToolToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.ToolToolStripMenuItem.Text = "工具（&T)";
@@ -251,6 +253,13 @@
             this.ReplicaSetToolStripMenuItem.Text = "初始化副本";
             this.ReplicaSetToolStripMenuItem.Click += new System.EventHandler(this.ReplicaSetToolStripMenuItem_Click);
             // 
+            // AddShardingToolStripMenuItem
+            // 
+            this.AddShardingToolStripMenuItem.Name = "AddShardingToolStripMenuItem";
+            this.AddShardingToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.AddShardingToolStripMenuItem.Text = "添加副本[路由]";
+            this.AddShardingToolStripMenuItem.Click += new System.EventHandler(this.AddShardingToolStripMenuItem_Click);
+            // 
             // 数据视图ToolStripMenuItem
             // 
             this.数据视图ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -355,12 +364,12 @@
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
             // 
-            // AddShardingToolStripMenuItem
+            // ShutDownToolStripMenuItem
             // 
-            this.AddShardingToolStripMenuItem.Name = "AddShardingToolStripMenuItem";
-            this.AddShardingToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.AddShardingToolStripMenuItem.Text = "添加副本[路由]";
-            this.AddShardingToolStripMenuItem.Click += new System.EventHandler(this.AddShardingToolStripMenuItem_Click);
+            this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
+            this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.ShutDownToolStripMenuItem.Text = "关闭服务器";
+            this.ShutDownToolStripMenuItem.Click += new System.EventHandler(this.ShutDownToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -423,6 +432,7 @@
         private System.Windows.Forms.ToolStripMenuItem RemoveUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ReplicaSetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AddShardingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ShutDownToolStripMenuItem;
     }
 }
 

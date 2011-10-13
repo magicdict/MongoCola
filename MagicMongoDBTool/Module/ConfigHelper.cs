@@ -8,12 +8,55 @@ namespace MagicMongoDBTool.Module
     public class ConfigHelper
     {
         /// <summary>
+        /// 服务器类型
+        /// </summary>
+        public enum SrvType
+        { 
+            /// <summary>
+            /// 数据服务器[mongod]
+            /// </summary>
+            DataSrv,
+            /// <summary>
+            /// 配置服务器[mongod]
+            /// </summary>
+            ConfigSrv,
+            /// <summary>
+            /// 路由服务器[mongos]
+            /// </summary>
+            RouteSrv
+        }
+        /// <summary>
         /// 链接结构体
         /// </summary>
         public struct MongoConnectionConfig{
+            /// <summary>
+            /// Host名称
+            /// </summary>
             public String HostName;
+            /// <summary>
+            /// IP地址
+            /// </summary>
             public String IpAddr;
+            /// <summary>
+            /// 端口号
+            /// </summary>
             public int Port;
+            /// <summary>
+            /// 是否启用主从模式[Route的时候，不能设置为True]
+            /// </summary>
+            public Boolean IsSlaveOk;
+            /// <summary>
+            /// 用户名
+            /// </summary>
+            public String UserName;
+            /// <summary>
+            /// 密码
+            /// </summary>
+            public String Password;
+            /// <summary>
+            /// 服务器类型
+            /// </summary>
+            public SrvType ServerType;
         }
         /// <summary>
         /// 连接配置列表(管理用）

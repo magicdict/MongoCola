@@ -45,14 +45,19 @@ namespace MagicMongoDBTool
                     case MongoDBHelpler.ServiceTag:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "选中服务器:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        //解禁 创建数据库
+                        //解禁 创建数据库,关闭服务器
                         this.CreateMongoDBToolStripMenuItem.Enabled = true;
                         this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
+                        this.ShutDownToolStripMenuItem.Enabled = true;
+                        //TODO:Route服务器不能进行这样的操作！
+                        this.AddShardingToolStripMenuItem.Enabled = true;
+                        this.ReplicaSetToolStripMenuItem.Enabled = true;
                         break;
                     case MongoDBHelpler.DataBaseTag:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "选中数据库:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         //解禁 删除数据库 创建数据集
+                        //TODO:Slave和候补服务器不能进行这样的操作
                         this.DelMongoDBToolStripMenuItem.Enabled = true;
                         this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                         this.AddUserToolStripMenuItem.Enabled = true;
@@ -88,6 +93,10 @@ namespace MagicMongoDBTool
             this.LastPageToolStripMenuItem.Enabled = false;
             this.NextPageToolStripMenuItem.Enabled = false;
             this.PrePageToolStripMenuItem.Enabled = false;
+
+            this.ReplicaSetToolStripMenuItem.Enabled = false;
+            this.AddShardingToolStripMenuItem.Enabled = false;
+            this.ShutDownToolStripMenuItem.Enabled = false;
         }
         /// <summary>
         /// 添加数据库连接
@@ -275,12 +284,15 @@ namespace MagicMongoDBTool
 
         private void AddUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.AddUserForDB(SystemManager.SelectObjectTag, "magicHu", "211228", false);
+            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "创建用户");
+            String strPassword = Microsoft.VisualBasic.Interaction.InputBox("请输入密码：", "创建用户");
+            MongoDBHelpler.AddUserForDB(SystemManager.SelectObjectTag, strUserName, strPassword,false);
         }
 
         private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
+            MongoDBHelpler.RemoveUserForDB(SystemManager.SelectObjectTag, strUserName);
         }
 
         private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
@@ -297,6 +309,13 @@ namespace MagicMongoDBTool
             mfrm.ShowDialog();
             mfrm.Close();
             mfrm.Dispose();
+        }
+
+        private void ShutDownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO:
+            MongoDBHelpler.Shutdown();
+            trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
         }
 
     }

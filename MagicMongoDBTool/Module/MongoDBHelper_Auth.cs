@@ -15,14 +15,16 @@ namespace MagicMongoDBTool.Module
         /// <param name="strUser">用户名</param>
         /// <param name="Pw">密码</param>
         /// <param name="IsReadOnly">是否为只读</param>
-        public static void AddUserForDB(String strDBPath,String strUser,String Pw,Boolean IsReadOnly){
-            MongoDatabase mongodb = GetMongoDBBySvrPath(strDBPath,true);
+        public static void AddUserForDB(String strDBPath, String strUser, String Pw, Boolean IsReadOnly)
+        {
+            MongoDatabase mongodb = GetMongoDBBySvrPath(strDBPath, true);
             MongoUser newUser = new MongoUser(strUser, Pw, IsReadOnly);
-            if (mongodb.FindUser(strUser) == null) {
+            if (mongodb.FindUser(strUser) == null)
+            {
                 mongodb.AddUser(newUser);
             }
         }
-        public static void ChangePwForDB(String strDBPath, String strUser, String OldPw,String NewPw )
+        public static void ChangePwForDB(String strDBPath, String strUser, String OldPw, String NewPw)
         {
             MongoDatabase mongodb = GetMongoDBBySvrPath(strDBPath, true);
             //TODO:
@@ -40,7 +42,24 @@ namespace MagicMongoDBTool.Module
                 mongodb.RemoveUser(strUser);
             }
         }
-        public static void SetReplica(MongoServer mongosrv, String ReplicaSetName,List<String> SecondaryNames)
+        public static void Shutdown()
+        {
+            MongoServer mongosrv = GetMongoServerBySvrPath(SystemManager.SelectObjectTag, true);
+            try
+            {
+                //the server will be  shutdown with exception
+                mongosrv.Shutdown();
+            }
+            catch (System.IO.IOException)
+            {
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public static void SetReplica(MongoServer mongosrv, String ReplicaSetName, List<String> SecondaryNames)
         {
             BsonDocument config = new BsonDocument();
             BsonArray hosts = new BsonArray();
@@ -62,15 +81,15 @@ namespace MagicMongoDBTool.Module
             }
 
             config.Add("_id", ReplicaSetName);
-            config.Add("members",hosts);
+            config.Add("members", hosts);
 
-            cmd.Add("replSetInitiate",config);
+            cmd.Add("replSetInitiate", config);
 
             CommandDocument Mongocmd = new CommandDocument() { cmd };
 
             mongosrv.RunAdminCommand(Mongocmd);
         }
-        public static void AddSharding(MongoServer routesrv, String ReplicaSetName, List<String> ShardingNames,String shardingDB,String SharingCollection)
+        public static void AddSharding(MongoServer routesrv, String ReplicaSetName, List<String> ShardingNames, String shardingDB = "", String SharingCollection = "")
         {
             BsonDocument config = new BsonDocument();
             BsonDocument cmd = new BsonDocument();
@@ -78,21 +97,30 @@ namespace MagicMongoDBTool.Module
             String strCmdPara = ReplicaSetName + "/";
             foreach (var item in ShardingNames)
             {
-                strCmdPara += SystemManager.mConfig.ConnectionList[item].IpAddr + ":" + SystemManager.mConfig.ConnectionList[item].Port.ToString() + ","; 
+                strCmdPara += SystemManager.mConfig.ConnectionList[item].IpAddr + ":" + SystemManager.mConfig.ConnectionList[item].Port.ToString() + ",";
             }
             strCmdPara = strCmdPara.TrimEnd(",".ToCharArray());
             CommandDocument Mongocmd = new CommandDocument();
             Mongocmd.Add("addshard", strCmdPara);
             routesrv.RunAdminCommand(Mongocmd);
 
-            Mongocmd = new CommandDocument();
-            Mongocmd.Add("enablesharding", shardingDB);
-            routesrv.RunAdminCommand(Mongocmd);
+            if (shardingDB == string.Empty)
+            {
+                Mongocmd = new CommandDocument();
+                Mongocmd.Add("enablesharding", shardingDB);
+                routesrv.RunAdminCommand(Mongocmd);
+            }
 
-            Mongocmd = new CommandDocument();
-            Mongocmd.Add("shardcollection", SharingCollection);
-            Mongocmd.Add("key", new BsonDocument().Add("_id",1));
-            routesrv.RunAdminCommand(Mongocmd);
+            if (SharingCollection == string.Empty)
+            {
+                Mongocmd = new CommandDocument();
+                Mongocmd.Add("shardcollection", SharingCollection);
+                Mongocmd.Add("key", new BsonDocument().Add("_id", 1));
+                routesrv.RunAdminCommand(Mongocmd);
+            }
+        }
+        public static void Mongos()
+        {
 
         }
     }

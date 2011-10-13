@@ -102,9 +102,9 @@ namespace MagicMongoDBTool.Module
             String[] strPath = strSvrPath.Split("/".ToCharArray());
             if (strPath.Length > 0)
             {
-                if (mongosrvlst.ContainsKey(strPath[0]))
+                if (mongosrvlst.ContainsKey(strPath[(int)PathLv.ServerLV]))
                 {
-                    rtnMongoSrv = mongosrvlst[strPath[0]];
+                    rtnMongoSrv = mongosrvlst[strPath[(int)PathLv.ServerLV]];
                 }
             }
             return rtnMongoSrv;
@@ -127,9 +127,9 @@ namespace MagicMongoDBTool.Module
                 String[] strPath = strSvrPath.Split("/".ToCharArray());
                 if (strPath.Length > 1)
                 {
-                    if (MongoSrv.DatabaseExists(strPath[1]))
+                    if (MongoSrv.DatabaseExists(strPath[(int)PathLv.DatabaseLv]))
                     {
-                        rtnMongoDb = MongoSrv.GetDatabase(strPath[1]);
+                        rtnMongoDb = MongoSrv.GetDatabase(strPath[(int)PathLv.DatabaseLv]);
                     }
                 }
             }
