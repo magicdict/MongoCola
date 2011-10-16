@@ -4,8 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoDB.Driver.GridFS;
-using MagicMongoDBTool.Module;
+using MongoDB.Driver.Builders;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelpler
@@ -60,7 +59,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 路径阶层[考虑到以后可能阶层会变换]
         /// </summary>
-        enum PathLv:int
+        enum PathLv : int
         {
             ServerLV = 0,
             DatabaseLv = 1,
@@ -119,7 +118,16 @@ namespace MagicMongoDBTool.Module
             List<String> ColNameList = Mongodb.GetCollectionNames().ToList<String>();
             foreach (String strColName in ColNameList)
             {
-                TreeNode mongoColNode = FillCollectionInfoToTreeNode(strColName, Mongodb, mongosvrKey);
+                TreeNode mongoColNode = new TreeNode();
+                try
+                {
+                    mongoColNode = FillCollectionInfoToTreeNode(strColName, Mongodb, mongosvrKey);
+                }
+                catch (Exception)
+                {
+                    mongoColNode = new TreeNode(strColName + "[访问异常]");
+                    throw;
+                }
                 mongoDBNode.Nodes.Add(mongoColNode);
             }
             return mongoDBNode;
@@ -150,7 +158,8 @@ namespace MagicMongoDBTool.Module
                     }
                     break;
                 case "databases":
-                    if (Mongodb.Name == "config") {
+                    if (Mongodb.Name == "config")
+                    {
                         strColName = "数据库(" + strColName + ")";
                     }
                     break;
@@ -258,27 +267,157 @@ namespace MagicMongoDBTool.Module
             //End Data
             return mongoColNode;
         }
+
         /// <summary>
-        /// 
+        /// 是否有二进制数据
+        /// </summary>
+        private static Boolean HasBSonBinary;
+        /// <summary>
+        /// 在第一次展示数据的时候，记录下字段名称，用于在Query的时候使用
+        /// </summary>
+        public static List<String> columnList = new List<string>();
+        /// <summary>
+        /// 展示数据
         /// </summary>
         /// <param name="strTag"></param>
-        /// <param name="lstData"></param>
-        public static void FillDataToListView(String strTag, ListView lstData)
+        /// <param name="controls"></param>
+        public static void FillDataToControl(String strTag, List<Control> controls)
         {
             String CollectionPath = strTag.Split(":".ToCharArray())[1];
             String[] cp = CollectionPath.Split("/".ToCharArray());
-            List<BsonDocument> DataList = new List<BsonDocument>();
-            lstData.Clear();
             MongoCollection mongoCol = mongosrvlst[cp[(int)PathLv.ServerLV]].GetDatabase(cp[(int)PathLv.DatabaseLv]).GetCollection(cp[(int)PathLv.CollectionLV]);
-            DataList = mongoCol.FindAllAs<BsonDocument>().SetSkip(SkipCnt).SetLimit(SystemManager.mConfig.LimitCnt).ToList<BsonDocument>();
-            if (DataList.Count == 0) { return; }
+            List<BsonDocument> DataList = new List<BsonDocument>();
+            //Query condition:
+            DataList = mongoCol.FindAs<BsonDocument>(GetQuery()).SetSkip(SkipCnt).SetLimit(SystemManager.mConfig.LimitCnt).ToList<BsonDocument>();
+            if (DataList.Count == 0)
+            {
+                return;
+            }
             if (SkipCnt == 0)
             {
                 //第一次显示，获得整个记录集的长度
                 CurrentCollectionTotalCnt = (int)mongoCol.FindAllAs<BsonDocument>().Count();
+                columnList.Clear();
             }
             SetPageEnable();
-            switch (cp[2])
+            HasBSonBinary = false;
+            foreach (var control in controls)
+            {
+                switch (control.GetType().ToString())
+                {
+                    case "System.Windows.Forms.ListView":
+                        FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, DataList);
+                        break;
+                    case "System.Windows.Forms.TextBox":
+                        FillDataToTextBox(cp[(int)PathLv.CollectionLV], (TextBox)control, DataList);
+                        break;
+                    case "System.Windows.Forms.TreeView":
+                        FillDataToTreeView(cp[(int)PathLv.CollectionLV], (TreeView)control, DataList);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        /// <summary>
+        /// BsonValue转展示用字符
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static String ConvertForShow(BsonValue val)
+        {
+            String strVal;
+            if (val.IsBsonBinaryData)
+            {
+                HasBSonBinary = true;
+                return "[二进制数据]";
+            }
+            if (val.IsBsonNull) { return "[空值]"; }
+            if (val.IsBsonDocument)
+            {
+                strVal = val.ToString() + "[包含" + val.ToBsonDocument().ElementCount + "个元素的文档]";
+            }
+            else
+            {
+                strVal = val.ToString();
+            }
+            return strVal;
+        }
+        /// <summary>
+        /// 将数据放入TextBox里进行展示
+        /// </summary>
+        /// <param name="CollectionName"></param>
+        /// <param name="txtData"></param>
+        /// <param name="DataList"></param>
+        public static void FillDataToTextBox(String CollectionName, TextBox txtData, List<BsonDocument> DataList)
+        {
+            txtData.Clear();
+            if (HasBSonBinary)
+            {
+                txtData.Text = "二进制数据块";
+            }
+            else
+            {
+                foreach (var item in DataList)
+                {
+                    txtData.Text += item.ToString() + "\r\n";
+                }
+            }
+        }
+        /// <summary>
+        /// 将数据放入TreeView里进行展示
+        /// </summary>
+        /// <param name="CollectionName"></param>
+        /// <param name="trvData"></param>
+        /// <param name="DataList"></param>
+        public static void FillDataToTreeView(String CollectionName, TreeView trvData, List<BsonDocument> DataList)
+        {
+            trvData.Nodes.Clear();
+            foreach (BsonDocument item in DataList)
+            {
+                BsonValue _id;
+                item.TryGetValue("_id",out _id);
+                if (_id==null) {
+                    item.TryGetValue("name", out _id);
+                }
+                if (_id == null) {
+                    _id = "ID不明";
+                }
+                TreeNode dataNode = new TreeNode("数据 : " + _id.ToString());
+                FillBsonDocToTreeNode(dataNode, item);
+                trvData.Nodes.Add(dataNode);
+            }
+        }
+        /// <summary>
+        /// 将数据放入TreeNode里进行展示
+        /// </summary>
+        /// <param name="trvnode"></param>
+        /// <param name="doc"></param>
+        private static void FillBsonDocToTreeNode(TreeNode trvnode, BsonDocument doc)
+        {
+            foreach (var item in doc.Elements)
+            {
+                if (item.Value.IsBsonDocument)
+                {
+                    TreeNode t = new TreeNode(item.Name);
+                    FillBsonDocToTreeNode(t, item.Value.ToBsonDocument());
+                    trvnode.Nodes.Add(t);
+                }
+                else
+                {
+                    trvnode.Nodes.Add(item.Name + ":" + ConvertForShow(item.Value));
+                }
+            }
+        }
+        /// <summary>
+        /// 将数据放入ListView中进行展示
+        /// </summary>
+        /// <param name="strTag"></param>
+        /// <param name="lstData"></param>
+        public static void FillDataToListView(String CollectionName, ListView lstData, List<BsonDocument> DataList)
+        {
+            lstData.Clear();
+            switch (CollectionName)
             {
                 case "fs.files":
                     SetGridFileToListView(DataList, lstData);
@@ -288,8 +427,6 @@ namespace MagicMongoDBTool.Module
                     break;
                 case "fs.chunks":
                 default:
-                    DataList = mongoCol.FindAllAs<BsonDocument>().SetSkip(SkipCnt).SetLimit(SystemManager.mConfig.LimitCnt).ToList<BsonDocument>();
-                    if (DataList.Count == 0) { return; }
                     List<String> Columnlist = new List<String>();
                     foreach (BsonDocument Docitem in DataList)
                     {
@@ -300,6 +437,7 @@ namespace MagicMongoDBTool.Module
                             {
                                 Columnlist.Add(item);
                                 lstData.Columns.Add(item);
+                                columnList.Add(item);
                             }
                         }
                         //Key:_id
@@ -315,14 +453,7 @@ namespace MagicMongoDBTool.Module
                             }
                             else
                             {
-                                if (val.IsBsonDocument)
-                                {
-                                    lstItem.SubItems.Add(val.ToString() + "[包含" + val.ToBsonDocument().ElementCount + "个元素的文档]");
-                                }
-                                else
-                                {
-                                    lstItem.SubItems.Add(val.ToString());
-                                }
+                                lstItem.SubItems.Add(ConvertForShow(val));
                             }
                         }
                         lstData.Items.Add(lstItem);
@@ -367,8 +498,8 @@ namespace MagicMongoDBTool.Module
                 lstItem.Text = docfile.GetValue("filename").ToString();
                 lstItem.SubItems.Add(GetSize((int)docfile.GetValue("length")));
                 lstItem.SubItems.Add(GetSize((int)docfile.GetValue("chunkSize")));
-                lstItem.SubItems.Add(docfile.GetValue("uploadDate").ToString());
-                lstItem.SubItems.Add(docfile.GetValue("md5").ToString());
+                lstItem.SubItems.Add(ConvertForShow(docfile.GetValue("uploadDate")));
+                lstItem.SubItems.Add(ConvertForShow(docfile.GetValue("md5")));
                 lstData.Items.Add(lstItem);
             }
         }
@@ -544,8 +675,8 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="IsNext"></param>
         /// <param name="strTag"></param>
-        /// <param name="lstData"></param>
-        public static void PageChanged(PageChangeOpr PageChangeMode, String strTag, ListView lstData)
+        /// <param name="DataShower"></param>
+        public static void PageChanged(PageChangeOpr PageChangeMode, String strTag, List<Control> DataShower)
         {
             switch (PageChangeMode)
             {
@@ -573,7 +704,7 @@ namespace MagicMongoDBTool.Module
                 default:
                     break;
             }
-            FillDataToListView(strTag, lstData);
+            FillDataToControl(strTag, DataShower);
         }
         public static void SetPageEnable()
         {

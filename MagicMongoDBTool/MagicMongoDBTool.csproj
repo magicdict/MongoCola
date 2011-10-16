@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserController\ctlQueryCondition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ctlQueryCondition.Designer.cs">
+      <DependentUpon>ctlQueryCondition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\frnImportOleDB.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,7 +91,15 @@
     <Compile Include="Form\frmCollectionIndex.Designer.cs">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmQuery.Designer.cs">
+      <DependentUpon>frmQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module\CloneMeunToolItem.cs" />
     <Compile Include="Module\MongoDBHelper_Auth.cs" />
+    <Compile Include="Module\MongoDBHelper_Query.cs" />
     <Compile Include="Module\MongoDBHelpler_Replset.cs" />
     <Compile Include="UserController\ctlMongoImportExport.cs">
       <SubType>UserControl</SubType>
@@ -173,6 +187,9 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UserController\ctlQueryCondition.resx">
+      <DependentUpon>ctlQueryCondition.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmShardingConfig.resx">
       <DependentUpon>frmShardingConfig.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmCollectionIndex.resx">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmQuery.resx">
+      <DependentUpon>frmQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlMongoImportExport.resx">
       <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
