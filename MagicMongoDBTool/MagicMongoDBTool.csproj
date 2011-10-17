@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserController\ctlFieldInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ctlFieldInfo.Designer.cs">
+      <DependentUpon>ctlFieldInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\ctlQueryCondition.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UserController\ctlFieldInfo.resx">
+      <DependentUpon>ctlFieldInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlQueryCondition.resx">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </EmbeddedResource>

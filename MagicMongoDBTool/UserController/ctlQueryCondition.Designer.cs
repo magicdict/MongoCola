@@ -28,96 +28,73 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblCaption = new System.Windows.Forms.Label();
             this.txtValue = new System.Windows.Forms.TextBox();
             this.cmbCompareOpr = new System.Windows.Forms.ComboBox();
-            this.radString = new System.Windows.Forms.RadioButton();
-            this.radInt = new System.Windows.Forms.RadioButton();
-            this.radDate = new System.Windows.Forms.RadioButton();
-            this.radBoolean = new System.Windows.Forms.RadioButton();
+            this.cmbColName = new System.Windows.Forms.ComboBox();
+            this.cmbEndMark = new System.Windows.Forms.ComboBox();
+            this.cmbStartMark = new System.Windows.Forms.ComboBox();
+            this.cmbDataType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // lblCaption
-            // 
-            this.lblCaption.AutoSize = true;
-            this.lblCaption.Location = new System.Drawing.Point(12, 6);
-            this.lblCaption.Name = "lblCaption";
-            this.lblCaption.Size = new System.Drawing.Size(43, 13);
-            this.lblCaption.TabIndex = 8;
-            this.lblCaption.Text = "条件1：";
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(244, 4);
+            this.txtValue.Location = new System.Drawing.Point(244, 1);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(179, 20);
-            this.txtValue.TabIndex = 7;
+            this.txtValue.Size = new System.Drawing.Size(134, 20);
+            this.txtValue.TabIndex = 3;
             // 
             // cmbCompareOpr
             // 
             this.cmbCompareOpr.FormattingEnabled = true;
-            this.cmbCompareOpr.Location = new System.Drawing.Point(82, 3);
+            this.cmbCompareOpr.Location = new System.Drawing.Point(142, 1);
             this.cmbCompareOpr.Name = "cmbCompareOpr";
-            this.cmbCompareOpr.Size = new System.Drawing.Size(153, 21);
-            this.cmbCompareOpr.TabIndex = 6;
+            this.cmbCompareOpr.Size = new System.Drawing.Size(96, 21);
+            this.cmbCompareOpr.TabIndex = 2;
             // 
-            // radString
+            // cmbColName
             // 
-            this.radString.AutoSize = true;
-            this.radString.Location = new System.Drawing.Point(430, 5);
-            this.radString.Name = "radString";
-            this.radString.Size = new System.Drawing.Size(49, 17);
-            this.radString.TabIndex = 9;
-            this.radString.TabStop = true;
-            this.radString.Text = "文字";
-            this.radString.UseVisualStyleBackColor = true;
+            this.cmbColName.FormattingEnabled = true;
+            this.cmbColName.Location = new System.Drawing.Point(45, 1);
+            this.cmbColName.Name = "cmbColName";
+            this.cmbColName.Size = new System.Drawing.Size(91, 21);
+            this.cmbColName.TabIndex = 1;
             // 
-            // radInt
+            // cmbEndMark
             // 
-            this.radInt.AutoSize = true;
-            this.radInt.Location = new System.Drawing.Point(484, 5);
-            this.radInt.Name = "radInt";
-            this.radInt.Size = new System.Drawing.Size(49, 17);
-            this.radInt.TabIndex = 10;
-            this.radInt.TabStop = true;
-            this.radInt.Text = "数字";
-            this.radInt.UseVisualStyleBackColor = true;
+            this.cmbEndMark.FormattingEnabled = true;
+            this.cmbEndMark.Location = new System.Drawing.Point(455, 1);
+            this.cmbEndMark.Name = "cmbEndMark";
+            this.cmbEndMark.Size = new System.Drawing.Size(72, 21);
+            this.cmbEndMark.TabIndex = 5;
             // 
-            // radDate
+            // cmbStartMark
             // 
-            this.radDate.AutoSize = true;
-            this.radDate.Location = new System.Drawing.Point(539, 5);
-            this.radDate.Name = "radDate";
-            this.radDate.Size = new System.Drawing.Size(49, 17);
-            this.radDate.TabIndex = 11;
-            this.radDate.TabStop = true;
-            this.radDate.Text = "日期";
-            this.radDate.UseVisualStyleBackColor = true;
+            this.cmbStartMark.FormattingEnabled = true;
+            this.cmbStartMark.Location = new System.Drawing.Point(2, 1);
+            this.cmbStartMark.Name = "cmbStartMark";
+            this.cmbStartMark.Size = new System.Drawing.Size(39, 21);
+            this.cmbStartMark.TabIndex = 0;
             // 
-            // radBoolean
+            // cmbDataType
             // 
-            this.radBoolean.AutoSize = true;
-            this.radBoolean.Location = new System.Drawing.Point(603, 4);
-            this.radBoolean.Name = "radBoolean";
-            this.radBoolean.Size = new System.Drawing.Size(61, 17);
-            this.radBoolean.TabIndex = 12;
-            this.radBoolean.TabStop = true;
-            this.radBoolean.Text = "布尔值";
-            this.radBoolean.UseVisualStyleBackColor = true;
+            this.cmbDataType.FormattingEnabled = true;
+            this.cmbDataType.Location = new System.Drawing.Point(384, 1);
+            this.cmbDataType.Name = "cmbDataType";
+            this.cmbDataType.Size = new System.Drawing.Size(65, 21);
+            this.cmbDataType.TabIndex = 4;
             // 
-            // ctlQueryConditio_n
+            // ctlQueryCondition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radBoolean);
-            this.Controls.Add(this.radDate);
-            this.Controls.Add(this.radInt);
-            this.Controls.Add(this.radString);
-            this.Controls.Add(this.lblCaption);
+            this.Controls.Add(this.cmbDataType);
+            this.Controls.Add(this.cmbStartMark);
+            this.Controls.Add(this.cmbEndMark);
+            this.Controls.Add(this.cmbColName);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.cmbCompareOpr);
-            this.Name = "ctlQueryConditio_n";
-            this.Size = new System.Drawing.Size(678, 30);
+            this.Name = "ctlQueryCondition";
+            this.Size = new System.Drawing.Size(533, 22);
             this.Load += new System.EventHandler(this.ctlQueryCondition_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -126,13 +103,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblCaption;
         private System.Windows.Forms.TextBox txtValue;
         private System.Windows.Forms.ComboBox cmbCompareOpr;
-        private System.Windows.Forms.RadioButton radString;
-        private System.Windows.Forms.RadioButton radInt;
-        private System.Windows.Forms.RadioButton radDate;
-        private System.Windows.Forms.RadioButton radBoolean;
+        private System.Windows.Forms.ComboBox cmbColName;
+        private System.Windows.Forms.ComboBox cmbEndMark;
+        private System.Windows.Forms.ComboBox cmbStartMark;
+        private System.Windows.Forms.ComboBox cmbDataType;
 
     }
 }

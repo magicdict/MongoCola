@@ -285,10 +285,26 @@ namespace MagicMongoDBTool.Module
         {
             String CollectionPath = strTag.Split(":".ToCharArray())[1];
             String[] cp = CollectionPath.Split("/".ToCharArray());
-            MongoCollection mongoCol = mongosrvlst[cp[(int)PathLv.ServerLV]].GetDatabase(cp[(int)PathLv.DatabaseLv]).GetCollection(cp[(int)PathLv.CollectionLV]);
+            MongoCollection mongoCol = mongosrvlst[cp[(int)PathLv.ServerLV]]
+                                      .GetDatabase(cp[(int)PathLv.DatabaseLv])
+                                      .GetCollection(cp[(int)PathLv.CollectionLV]);
             List<BsonDocument> DataList = new List<BsonDocument>();
             //Query condition:
-            DataList = mongoCol.FindAs<BsonDocument>(GetQuery()).SetSkip(SkipCnt).SetLimit(SystemManager.mConfig.LimitCnt).ToList<BsonDocument>();
+            if (IsUseFilter)
+            {
+                DataList = mongoCol.FindAs<BsonDocument>(GetQuery())
+                                   .SetSkip(SkipCnt)
+                                   .SetFields(getOutputFields())
+                                   .SetSortOrder(getSort())
+                                   .SetLimit(SystemManager.mConfig.LimitCnt)
+                                   .ToList<BsonDocument>();
+            }
+            else { 
+                DataList = mongoCol.FindAllAs<BsonDocument>()
+                                   .SetSkip(SkipCnt)
+                                   .SetLimit(SystemManager.mConfig.LimitCnt)
+                                   .ToList<BsonDocument>();
+            }
             if (DataList.Count == 0)
             {
                 return;

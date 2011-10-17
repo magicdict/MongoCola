@@ -40,7 +40,7 @@ namespace MagicMongoDBTool
                 {
                     case MongoDBHelpler.DocumentTag:
                         //BsonDocument
-                        MongoDBHelpler.SkipCnt = 0;
+                        MongoDBHelpler.clearFilter();
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, DataShower);
                         SetDataNav();

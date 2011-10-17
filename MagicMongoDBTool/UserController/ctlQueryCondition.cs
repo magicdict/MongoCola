@@ -21,66 +21,101 @@ namespace MagicMongoDBTool
                 return(cmbCompareOpr.SelectedIndex != -1);
             }
         }
-        public MongoDBHelpler.QueryCompareItem CompareItem
+        public MongoDBHelpler.QueryConditionInputItem CompareItem
         { 
             get{
                 if (cmbCompareOpr.SelectedIndex != -1)
                 {
-                    MongoDBHelpler.QueryCompareItem rtn = new MongoDBHelpler.QueryCompareItem();
+                    MongoDBHelpler.QueryConditionInputItem rtn = new MongoDBHelpler.QueryConditionInputItem();
                     rtn.comp = (MongoDBHelpler.CompareEnum)cmbCompareOpr.SelectedIndex;
-                    if (radString.Checked)
+                    if (cmbDataType.SelectedIndex == 0)
                     {
                         rtn.type = BsonType.String;
                     }
-                    if (radInt.Checked)
+                    if (cmbDataType.SelectedIndex == 1)
                     {
                         rtn.type = BsonType.Int32;
                     }
-                    if (radBoolean.Checked)
-                    {
-                        rtn.type = BsonType.Boolean;
-                    }
-                    if (radDate.Checked)
+                    if (cmbDataType.SelectedIndex == 2)
                     {
                         rtn.type = BsonType.DateTime;
                     }
+                    if (cmbDataType.SelectedIndex == 3)
+                    {
+                        rtn.type = BsonType.Boolean;
+                    }
                     rtn.Value = txtValue.Text;
+                    rtn.StartMark = cmbStartMark.Text;
+                    rtn.EndMark = cmbEndMark.Text;
+                    rtn.ColName = cmbColName.Text;
                     return rtn;
                 }
                 else {
-                    return new MongoDBHelpler.QueryCompareItem();
+                    return new MongoDBHelpler.QueryConditionInputItem();
                 }
             }
             set{
-                radString.Checked = true;
+                cmbColName.Text = value.ColName;
+                cmbDataType.SelectedIndex = 0;
                 if (value.type == BsonType.String)
                 {
-                    radString.Checked = true;
-                }
-                if (value.type == BsonType.DateTime)
-                {
-                    radDate.Checked = true;
+                    cmbDataType.SelectedIndex = 0;
                 }
                 if (value.type == BsonType.Int32)
                 {
-                    radInt.Checked = true;
+                    cmbDataType.SelectedIndex = 1;
+                }
+                if (value.type == BsonType.DateTime)
+                {
+                    cmbDataType.SelectedIndex = 2;
                 }
                 if (value.type == BsonType.Boolean)
                 {
-                    radBoolean.Checked = true;
+                    cmbDataType.SelectedIndex = 3;
                 }
                 txtValue.Text = value.Value.ToString();
                 cmbCompareOpr.SelectedIndex = (int)value.comp;
+                cmbStartMark.Text = value.StartMark;
+                cmbEndMark.Text = value.EndMark;
             }
         }
+        /// <summary>
+        /// 清除控件
+        /// </summary>
         public void clear() {
             txtValue.Text = "";
             cmbCompareOpr.SelectedIndex = -1;
             cmbCompareOpr.Text = "";
-            radString.Checked = true;
+            cmbDataType.SelectedIndex = 0;
+            cmbStartMark.SelectedIndex = 0;
+            cmbEndMark.SelectedIndex = 0;
         }
         private void ctlQueryCondition_Load(object sender, EventArgs e)
         {
+            cmbStartMark.Items.Add(" ");
+            cmbStartMark.Items.Add("(");
+            cmbStartMark.SelectedIndex = 0;
+
+            cmbEndMark.Items.Add(" ");    
+            cmbEndMark.Items.Add(" AND ");    
+            cmbEndMark.Items.Add(" OR ");    
+            cmbEndMark.Items.Add(") AND ");    
+            cmbEndMark.Items.Add(") OR ");    
+            cmbEndMark.Items.Add(")");
+            cmbEndMark.SelectedIndex = 0;
+
+            //数据类型
+            cmbDataType.Items.Add("字符");
+            cmbDataType.Items.Add("整形");
+            cmbDataType.Items.Add("日期");
+            cmbDataType.Items.Add("布尔");
+
+            //字段表的载入
+            foreach (var item in MongoDBHelpler.columnList)
+            {
+                this.cmbColName.Items.Add(item);
+            }
+            //逻辑操作符号的载入
             foreach (var item in Enum.GetNames(typeof(MongoDBHelpler.CompareEnum)))
             {
                 cmbCompareOpr.Items.Add(item);
