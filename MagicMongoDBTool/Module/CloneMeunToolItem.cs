@@ -24,7 +24,10 @@ namespace MagicMongoDBTool.Module
             CloneMenuItem.Click += new EventHandler(
                     (x, y) => { _List[0].DynamicInvoke(x,y); }
             );
+
             CloneMenuItem.Text = OrgMenuItem.Text;
+            CloneMenuItem.Enabled = OrgMenuItem.Enabled;
+            
             return CloneMenuItem;
         }
 

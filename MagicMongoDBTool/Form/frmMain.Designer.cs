@@ -54,6 +54,7 @@
             this.IndexManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DelRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DosCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportDataFromAccessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,17 +63,18 @@
             this.ReplicaSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddShardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShardConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mapReduceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.tabDataShower = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabTreeView = new System.Windows.Forms.TabPage();
             this.trvData = new System.Windows.Forms.TreeView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabTableView = new System.Windows.Forms.TabPage();
             this.lstData = new System.Windows.Forms.ListView();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabTextView = new System.Windows.Forms.TabPage();
             this.txtData = new System.Windows.Forms.TextBox();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStripMain.SuspendLayout();
@@ -82,9 +84,9 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tabDataShower.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabTreeView.SuspendLayout();
+            this.tabTableView.SuspendLayout();
+            this.tabTextView.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -166,7 +168,7 @@
             // 
             this.PrePageToolStripMenuItem.Name = "PrePageToolStripMenuItem";
             this.PrePageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.PrePageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.PrePageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.PrePageToolStripMenuItem.Text = "上一页";
             this.PrePageToolStripMenuItem.Click += new System.EventHandler(this.PrePageToolStripMenuItem_Click);
             // 
@@ -174,7 +176,7 @@
             // 
             this.NextPageToolStripMenuItem.Name = "NextPageToolStripMenuItem";
             this.NextPageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.NextPageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.NextPageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.NextPageToolStripMenuItem.Text = "下一页";
             this.NextPageToolStripMenuItem.Click += new System.EventHandler(this.NextPageToolStripMenuItem_Click);
             // 
@@ -182,7 +184,7 @@
             // 
             this.FirstPageToolStripMenuItem.Name = "FirstPageToolStripMenuItem";
             this.FirstPageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F9;
-            this.FirstPageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.FirstPageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.FirstPageToolStripMenuItem.Text = "第一页";
             this.FirstPageToolStripMenuItem.Click += new System.EventHandler(this.FirstPageToolStripMenuItem_Click);
             // 
@@ -190,14 +192,14 @@
             // 
             this.LastPageToolStripMenuItem.Name = "LastPageToolStripMenuItem";
             this.LastPageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
-            this.LastPageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LastPageToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.LastPageToolStripMenuItem.Text = "最后一页";
             this.LastPageToolStripMenuItem.Click += new System.EventHandler(this.LastPageToolStripMenuItem_Click);
             // 
             // QueryDataToolStripMenuItem
             // 
             this.QueryDataToolStripMenuItem.Name = "QueryDataToolStripMenuItem";
-            this.QueryDataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.QueryDataToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.QueryDataToolStripMenuItem.Text = "数据查询";
             this.QueryDataToolStripMenuItem.Click += new System.EventHandler(this.QueryDataToolStripMenuItem_Click);
             // 
@@ -217,7 +219,7 @@
             this.ShutDownToolStripMenuItem,
             this.CreateMongoDBToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
-            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ServerToolStripMenuItem.Text = "服务器";
             // 
             // ShutDownToolStripMenuItem
@@ -240,7 +242,7 @@
             this.DelMongoDBToolStripMenuItem,
             this.CreateMongoCollectionToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
-            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataBaseToolStripMenuItem.Text = "数据库";
             // 
             // DelMongoDBToolStripMenuItem
@@ -263,38 +265,46 @@
             this.DelMongoCollectionToolStripMenuItem,
             this.IndexManageToolStripMenuItem,
             this.AddUserToolStripMenuItem,
-            this.RemoveUserToolStripMenuItem});
+            this.RemoveUserToolStripMenuItem,
+            this.DelRecordToolStripMenuItem});
             this.DataCollectionOprToolStripMenuItem.Name = "DataCollectionOprToolStripMenuItem";
-            this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataCollectionOprToolStripMenuItem.Text = "数据集";
             // 
             // DelMongoCollectionToolStripMenuItem
             // 
             this.DelMongoCollectionToolStripMenuItem.Name = "DelMongoCollectionToolStripMenuItem";
-            this.DelMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.DelMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DelMongoCollectionToolStripMenuItem.Text = "删除数据集";
             this.DelMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.DelMongoCollectionToolStripMenuItem_Click);
             // 
             // IndexManageToolStripMenuItem
             // 
             this.IndexManageToolStripMenuItem.Name = "IndexManageToolStripMenuItem";
-            this.IndexManageToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.IndexManageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.IndexManageToolStripMenuItem.Text = "索引管理";
             this.IndexManageToolStripMenuItem.Click += new System.EventHandler(this.IndexManageToolStripMenuItem_Click);
             // 
             // AddUserToolStripMenuItem
             // 
             this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
-            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.AddUserToolStripMenuItem.Text = "添加用户";
             this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
             // 
             // RemoveUserToolStripMenuItem
             // 
             this.RemoveUserToolStripMenuItem.Name = "RemoveUserToolStripMenuItem";
-            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.RemoveUserToolStripMenuItem.Text = "删除用户";
             this.RemoveUserToolStripMenuItem.Click += new System.EventHandler(this.RemoveUserToolStripMenuItem_Click);
+            // 
+            // DelRecordToolStripMenuItem
+            // 
+            this.DelRecordToolStripMenuItem.Name = "DelRecordToolStripMenuItem";
+            this.DelRecordToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DelRecordToolStripMenuItem.Text = "删除选中数据";
+            this.DelRecordToolStripMenuItem.Click += new System.EventHandler(this.DelRecordToolStripMenuItem_Click);
             // 
             // ToolToolStripMenuItem
             // 
@@ -331,7 +341,8 @@
             this.ShardingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ReplicaSetToolStripMenuItem,
             this.AddShardingToolStripMenuItem,
-            this.ShardConfigToolStripMenuItem});
+            this.ShardConfigToolStripMenuItem,
+            this.mapReduceToolStripMenuItem});
             this.ShardingToolStripMenuItem.Name = "ShardingToolStripMenuItem";
             this.ShardingToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.ShardingToolStripMenuItem.Text = "分布式";
@@ -356,6 +367,13 @@
             this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.ShardConfigToolStripMenuItem.Text = "配置分片数据";
             this.ShardConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardConfigToolStripMenuItem_Click);
+            // 
+            // mapReduceToolStripMenuItem
+            // 
+            this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.mapReduceToolStripMenuItem.Text = "MapReduce";
+            this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
             // 
             // toolStripMain
             // 
@@ -408,9 +426,9 @@
             // 
             // tabDataShower
             // 
-            this.tabDataShower.Controls.Add(this.tabPage1);
-            this.tabDataShower.Controls.Add(this.tabPage2);
-            this.tabDataShower.Controls.Add(this.tabPage3);
+            this.tabDataShower.Controls.Add(this.tabTreeView);
+            this.tabDataShower.Controls.Add(this.tabTableView);
+            this.tabDataShower.Controls.Add(this.tabTextView);
             this.tabDataShower.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabDataShower.Location = new System.Drawing.Point(0, 0);
             this.tabDataShower.Name = "tabDataShower";
@@ -418,16 +436,16 @@
             this.tabDataShower.Size = new System.Drawing.Size(596, 394);
             this.tabDataShower.TabIndex = 0;
             // 
-            // tabPage1
+            // tabTreeView
             // 
-            this.tabPage1.Controls.Add(this.trvData);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(588, 368);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "TreeView";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabTreeView.Controls.Add(this.trvData);
+            this.tabTreeView.Location = new System.Drawing.Point(4, 22);
+            this.tabTreeView.Name = "tabTreeView";
+            this.tabTreeView.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTreeView.Size = new System.Drawing.Size(588, 368);
+            this.tabTreeView.TabIndex = 0;
+            this.tabTreeView.Text = "TreeView";
+            this.tabTreeView.UseVisualStyleBackColor = true;
             // 
             // trvData
             // 
@@ -437,16 +455,16 @@
             this.trvData.Size = new System.Drawing.Size(582, 362);
             this.trvData.TabIndex = 0;
             // 
-            // tabPage2
+            // tabTableView
             // 
-            this.tabPage2.Controls.Add(this.lstData);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(588, 368);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "TableView";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabTableView.Controls.Add(this.lstData);
+            this.tabTableView.Location = new System.Drawing.Point(4, 22);
+            this.tabTableView.Name = "tabTableView";
+            this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTableView.Size = new System.Drawing.Size(588, 368);
+            this.tabTableView.TabIndex = 1;
+            this.tabTableView.Text = "TableView";
+            this.tabTableView.UseVisualStyleBackColor = true;
             // 
             // lstData
             // 
@@ -460,16 +478,16 @@
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
             // 
-            // tabPage3
+            // tabTextView
             // 
-            this.tabPage3.Controls.Add(this.txtData);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(588, 368);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "TextView";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabTextView.Controls.Add(this.txtData);
+            this.tabTextView.Location = new System.Drawing.Point(4, 22);
+            this.tabTextView.Name = "tabTextView";
+            this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTextView.Size = new System.Drawing.Size(588, 368);
+            this.tabTextView.TabIndex = 2;
+            this.tabTextView.Text = "TextView";
+            this.tabTextView.UseVisualStyleBackColor = true;
             // 
             // txtData
             // 
@@ -508,10 +526,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tabDataShower.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabTreeView.ResumeLayout(false);
+            this.tabTableView.ResumeLayout(false);
+            this.tabTextView.ResumeLayout(false);
+            this.tabTextView.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -558,13 +576,15 @@
         private System.Windows.Forms.ToolStripMenuItem RemoveUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ImportDataFromAccessToolStripMenuItem;
         private System.Windows.Forms.TabControl tabDataShower;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabTreeView;
         private System.Windows.Forms.TreeView trvData;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabTableView;
         private System.Windows.Forms.ListView lstData;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabTextView;
         private System.Windows.Forms.TextBox txtData;
         private System.Windows.Forms.ToolStripMenuItem QueryDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mapReduceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DelRecordToolStripMenuItem;
     }
 }
 

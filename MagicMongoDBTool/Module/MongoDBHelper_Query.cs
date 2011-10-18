@@ -115,8 +115,9 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static SortByBuilder getSort(){
             var sort = new SortByBuilder();
-            List<String> asc = new List<string>();
-            List<String> dec = new List<string>();
+            List<String> AscendingList = new List<string>();
+            List<String> DescendingList = new List<string>();
+            //_id将以文字的形式排序，所以不要排序_id!!
             foreach (var item in QueryFieldList)
             {
                 switch (item.sortType)
@@ -124,17 +125,17 @@ namespace MagicMongoDBTool.Module
                     case SortType.NoSort:
                         break;
                     case SortType.Ascending:
-                        asc.Add(item.ColName);
+                        AscendingList.Add(item.ColName);
                         break;
                     case SortType.Descending:
-                        dec.Add(item.ColName);
+                        DescendingList.Add(item.ColName);
                         break;
                     default:
                         break;
                 }   
             }
-            sort.Ascending(asc.ToArray());
-            sort.Descending(dec.ToArray());
+            sort.Ascending(AscendingList.ToArray());
+            sort.Descending(DescendingList.ToArray());
             return sort;
         }
         /// <summary>
@@ -311,6 +312,16 @@ namespace MagicMongoDBTool.Module
             {
                 return Query.And(querylst.ToArray());
             }
+        }
+        /// <summary>
+        /// 是否存在某个数据
+        /// </summary>
+        /// <param name="Field"></param>
+        /// <param name="mongoCol"></param>
+        /// <returns></returns>
+        public static Boolean IsExistByField(MongoCollection mongoCol,BsonValue strKey, String Field = "_id")
+        {
+            return mongoCol.FindAs<BsonDocument>(Query.EQ(Field, strKey)).Count() > 0;
         }
     }
 }

@@ -43,5 +43,14 @@ namespace MagicMongoDBTool.Module
         {
             return MongoDBHelpler.GetMongoCollectionBySvrPath(SelectObjectTag, true);
         }
+        /// <summary>
+        /// 获得系统JS数据集
+        /// </summary>
+        /// <returns></returns>
+        public static MongoCollection getCurrentJsCollection() {
+            MongoDatabase Mongodb = getCurrentDataBase();
+            MongoCollection MongoJsCol = Mongodb.GetCollection("system.js");
+            return MongoJsCol;
+        }
     }
 }

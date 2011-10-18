@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\frmMapReduce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmMapReduce.Designer.cs">
+      <DependentUpon>frmMapReduce.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\ctlFieldInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -193,6 +199,9 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form\frmMapReduce.resx">
+      <DependentUpon>frmMapReduce.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlFieldInfo.resx">
       <DependentUpon>ctlFieldInfo.cs</DependentUpon>
     </EmbeddedResource>

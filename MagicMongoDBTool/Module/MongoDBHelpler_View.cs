@@ -391,15 +391,9 @@ namespace MagicMongoDBTool.Module
             trvData.Nodes.Clear();
             foreach (BsonDocument item in DataList)
             {
-                BsonValue _id;
-                item.TryGetValue("_id",out _id);
-                if (_id==null) {
-                    item.TryGetValue("name", out _id);
-                }
-                if (_id == null) {
-                    _id = "ID不明";
-                }
-                TreeNode dataNode = new TreeNode("数据 : " + _id.ToString());
+                TreeNode dataNode = new TreeNode("数据 : " + item.GetElement(0).Value.ToString());
+                //这里保存真实的主Key数据，删除的时候使用
+                dataNode.Tag = item.GetElement(0).Value;
                 FillBsonDocToTreeNode(dataNode, item);
                 trvData.Nodes.Add(dataNode);
             }
@@ -421,7 +415,19 @@ namespace MagicMongoDBTool.Module
                 }
                 else
                 {
-                    trvnode.Nodes.Add(item.Name + ":" + ConvertForShow(item.Value));
+                    if (item.Value.IsBsonArray) {
+                        TreeNode t = new TreeNode(item.Name);
+                        foreach (var SubItem in item.Value.AsBsonArray)
+                        {
+                            TreeNode m = new TreeNode(SubItem.ToString());
+                            t.Nodes.Add(m);
+                        }
+                        trvnode.Nodes.Add(t);
+                    }
+                    else
+                    {
+                        trvnode.Nodes.Add(item.Name + ":" + ConvertForShow(item.Value));
+                    }
                 }
             }
         }
@@ -458,6 +464,8 @@ namespace MagicMongoDBTool.Module
                         }
                         //Key:_id
                         lstItem.Text = Docitem.GetValue(Columnlist[0]).ToString();
+                        //这里保存真实的主Key数据，删除的时候使用
+                        lstItem.Tag = Docitem.GetValue(Columnlist[0]);
                         //OtherItems
                         for (int i = 1; i < Columnlist.Count; i++)
                         {
