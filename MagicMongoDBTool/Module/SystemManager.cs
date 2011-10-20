@@ -1,5 +1,7 @@
 ﻿using System;
 using MongoDB.Driver;
+using MongoDB.Bson;
+using System.Collections.Generic;
 namespace MagicMongoDBTool.Module
 {
     public static class SystemManager
@@ -51,6 +53,15 @@ namespace MagicMongoDBTool.Module
             MongoDatabase Mongodb = getCurrentDataBase();
             MongoCollection MongoJsCol = Mongodb.GetCollection("system.js");
             return MongoJsCol;
+        }
+        public static List<String> getJsNameList(){
+            List<String> JsNamelst = new List<String>();
+            foreach (var item in getCurrentJsCollection().FindAllAs<BsonDocument>())
+            {
+                JsNamelst.Add(item.GetValue("_id").ToString());
+            }
+            return JsNamelst;
+
         }
     }
 }

@@ -31,6 +31,10 @@ namespace MagicMongoDBTool.Module
                         //Can't Use SlaveOk to a Route！！！
                         mongosvrsetting.SlaveOk = item.IsSlaveOk;
                         mongosvrsetting.Server = new MongoServerAddress(item.IpAddr, item.Port);
+                        //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
+                        //mongosvrsetting.ConnectTimeout = new TimeSpan(0, 10, 0);
+                        mongosvrsetting.SocketTimeout = new TimeSpan(0, 10, 0);
+                       
                         if ((item.UserName == String.Empty) | (item.Password == String.Empty))
                         {
                             //认证的设定
@@ -299,7 +303,8 @@ namespace MagicMongoDBTool.Module
                                    .SetLimit(SystemManager.mConfig.LimitCnt)
                                    .ToList<BsonDocument>();
             }
-            else { 
+            else
+            {
                 DataList = mongoCol.FindAllAs<BsonDocument>()
                                    .SetSkip(SkipCnt)
                                    .SetLimit(SystemManager.mConfig.LimitCnt)
@@ -391,7 +396,17 @@ namespace MagicMongoDBTool.Module
             trvData.Nodes.Clear();
             foreach (BsonDocument item in DataList)
             {
-                TreeNode dataNode = new TreeNode("数据 : " + item.GetElement(0).Value.ToString());
+                String TreeText = String.Empty;
+                if (!item.GetElement(0).Value.IsBsonArray)
+                {
+                    TreeText = item.GetElement(0).Name + ":" + item.GetElement(0).Value.ToString();
+                }
+                else
+                {
+                    TreeText = item.GetElement(0).Name + ":" + CollectionName;
+                }
+                TreeNode dataNode = new TreeNode(TreeText);
+
                 //这里保存真实的主Key数据，删除的时候使用
                 dataNode.Tag = item.GetElement(0).Value;
                 FillBsonDocToTreeNode(dataNode, item);
@@ -415,7 +430,8 @@ namespace MagicMongoDBTool.Module
                 }
                 else
                 {
-                    if (item.Value.IsBsonArray) {
+                    if (item.Value.IsBsonArray)
+                    {
                         TreeNode t = new TreeNode(item.Name);
                         foreach (var SubItem in item.Value.AsBsonArray)
                         {
@@ -565,10 +581,17 @@ namespace MagicMongoDBTool.Module
                         }
                         catch (Exception)
                         {
-                            lst.SubItems.Add(GetSize(0));
+                            lst.SubItems.Add("-");
                         }
-
-                        lst.SubItems.Add(dbstatus.PaddingFactor.ToString());
+                        try
+                        {
+                            //在某些条件下，这个值会抛出异常，IndexKeyNotFound
+                            lst.SubItems.Add(dbstatus.PaddingFactor.ToString());
+                        }
+                        catch (Exception)
+                        {
+                            lst.SubItems.Add("-");
+                        }
                         lstData.Items.Add(lst);
                     }
                 }

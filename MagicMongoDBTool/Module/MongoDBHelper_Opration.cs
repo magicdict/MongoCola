@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MongoDB.Driver;
 using MongoDB.Bson;
 using MongoDB.Driver.Builders;
+using MongoDB.Driver.GridFS;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelpler
@@ -16,7 +17,7 @@ namespace MagicMongoDBTool.Module
             Drop
         }
         /// <summary>
-        /// 是否为系统数据集[无法删除，添加]
+        /// 是否为系统数据集[无法删除]
         /// </summary>
         /// <param name="mongoCol"></param>
         /// <returns></returns>
@@ -26,6 +27,23 @@ namespace MagicMongoDBTool.Module
             if (mongoCol.Name.StartsWith("system.")) { return true; }
             //文件
             if (mongoCol.Name.StartsWith("fs.")) { return true; }
+            //local数据库,默认为系统
+            if (mongoCol.Database.Name == "local") { return true; }
+            //config数据库,默认为系统
+            if (mongoCol.Database.Name == "config") { return true; }
+            return false;
+        }
+        /// <summary>
+        /// 是否为系统数据库[无法删除]
+        /// </summary>
+        /// <param name="mongoDB"></param>
+        /// <returns></returns>
+        public static Boolean IsSystemDataBase(MongoDatabase mongoDB)
+        {
+            //local数据库,默认为系统
+            if (mongoDB.Name == "local") { return true; }
+            //config数据库,默认为系统
+            if (mongoDB.Name == "config") { return true; }
             return false;
         }
         /// <summary>
@@ -216,16 +234,30 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="JsName"></param>
         /// <param name="JsCode"></param>
-        public static Boolean InsertJs(String JsName, String JsCode)
+        public static Boolean SaveJavascript(String JsName, String JsCode)
         {
             //标准的JS库格式未知
             MongoCollection JsCol = SystemManager.getCurrentJsCollection();
-            if (IsExistByField(JsCol,JsName))
+            if (!IsExistByField(JsCol,JsName))
             {
                 JsCol.Insert<BsonDocument>(new BsonDocument().Add("_id", JsName).Add("value", JsCode));
                 return true;
             }
             return false;
+        }
+        /// <summary>
+        /// 获得JS代码
+        /// </summary>
+        /// <param name="JsName"></param>
+        /// <returns></returns>
+        public static String LoadJavascript(String JsName)
+        {
+            MongoCollection JsCol = SystemManager.getCurrentJsCollection();
+            if (IsExistByField(JsCol, JsName))
+            {
+                return JsCol.FindOneAs<BsonDocument>(Query.EQ("_id", JsName)).GetValue("value").ToString();
+            }
+            return String.Empty;
         }
         /// <summary>
         /// 删除数据
@@ -240,6 +272,42 @@ namespace MagicMongoDBTool.Module
                 MongoCol.Remove(Query.EQ(KeyField, (BsonValue)strKey));
             }
             return true;
+        }
+
+        ///在使用GirdFileSystem的时候，请注意：
+        ///1.Windows 系统的文件名不区分大小写，不过，filename一定是区分大小写的，如果大小写不匹配的话，会发生无法找到文件的问题
+        ///2.Download的时候，不能使用SlaveOk选项！
+
+        /// <summary>
+        /// 打开文件
+        /// </summary>
+        /// <param name="strFileName"></param>
+        public static void OpenFile(String strRemoteFileName)
+        {
+            MongoDatabase MongoDB = SystemManager.getCurrentDataBase();
+            MongoGridFS gfs = MongoDB.GetGridFS(new MongoGridFSSettings());
+            
+            String[] strLocalFileName = strRemoteFileName.Split(@"\".ToCharArray());
+            gfs.Download(strLocalFileName[strLocalFileName.Length-1], strRemoteFileName);
+            System.Diagnostics.Process.Start(strLocalFileName[strLocalFileName.Length - 1]);
+        }
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        /// <param name="strFileName"></param>
+        public static void DownloadFile(String strFileName) {
+            MongoDatabase MongoDB = SystemManager.getCurrentDataBase();
+            MongoGridFS gfs = MongoDB.GetGridFS(new MongoGridFSSettings());
+            gfs.Download(strFileName);   
+        }
+        /// <summary>
+        /// 上传文件
+        /// </summary>
+        /// <param name="strFileName"></param>
+        public static void UpLoadFile(String strFileName) {
+            MongoDatabase MongoDB = SystemManager.getCurrentDataBase();
+            MongoGridFS gfs = MongoDB.GetGridFS(new MongoGridFSSettings());
+            gfs.Upload(strFileName); 
         }
     }
 }

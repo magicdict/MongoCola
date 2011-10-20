@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
-    public partial class frmServiceStatus : Form
+    public partial class frmServiceStatus : frmBase
     {
         public frmServiceStatus()
         {

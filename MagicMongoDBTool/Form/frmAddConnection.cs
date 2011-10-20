@@ -60,6 +60,7 @@ namespace MagicMongoDBTool
                 if (ModifyConn.IsSlaveOk)
                 {
                     //Config和Route不能设置为SlaveOK模式
+                    //文件下载的时候也不能使用SlaveOK模式
                     ModifyConn.IsSlaveOk = false;
                 }
             }
@@ -67,6 +68,7 @@ namespace MagicMongoDBTool
                 ModifyConn.ServerType = ConfigHelper.SrvType.RouteSrv;
                 if (ModifyConn.IsSlaveOk) {
                     //Config和Route不能设置为SlaveOK模式
+                    //文件下载的时候也不能使用SlaveOK模式
                     ModifyConn.IsSlaveOk = false;
                 }
             }

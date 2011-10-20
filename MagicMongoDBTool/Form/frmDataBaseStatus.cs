@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 namespace MagicMongoDBTool
 {
-    public partial class frmDataBaseStatus : Form
+    public partial class frmDataBaseStatus : frmBase
     {
         public frmDataBaseStatus()
         {

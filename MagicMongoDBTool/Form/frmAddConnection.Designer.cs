@@ -120,9 +120,9 @@
             this.chkSlaveOk.AutoSize = true;
             this.chkSlaveOk.Location = new System.Drawing.Point(369, 106);
             this.chkSlaveOk.Name = "chkSlaveOk";
-            this.chkSlaveOk.Size = new System.Drawing.Size(74, 17);
+            this.chkSlaveOk.Size = new System.Drawing.Size(152, 17);
             this.chkSlaveOk.TabIndex = 8;
-            this.chkSlaveOk.Text = "主从模式";
+            this.chkSlaveOk.Text = "主从模式[GFS 操作限制]";
             this.chkSlaveOk.UseVisualStyleBackColor = true;
             // 
             // txtUsername
