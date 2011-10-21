@@ -51,7 +51,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoCollection getCurrentJsCollection() {
             MongoDatabase Mongodb = getCurrentDataBase();
-            MongoCollection MongoJsCol = Mongodb.GetCollection("system.js");
+            MongoCollection MongoJsCol = Mongodb.GetCollection(MongoDBHelpler.CollectionName_JavaScript);
             return MongoJsCol;
         }
         public static List<String> getJsNameList(){

@@ -51,24 +51,9 @@ namespace MagicMongoDBTool.Module
                 return false;
             }
         }
-        //各种节点的Tag前缀
-        public const String ServiceTag = "MongoService";
-        public const String DataBaseTag = "MongoDatabase";
-        public const String CollectionTag = "MongoCollection";
-        public const String DocumentTag = "MongoDocument";
-        public const String GridFileSystemTag = "MongoGFS";
-        public const String UserListTag = "MongoUserList";
-        public const String UserTag = "MongoUser";
 
-        /// <summary>
-        /// 路径阶层[考虑到以后可能阶层会变换]
-        /// </summary>
-        enum PathLv : int
-        {
-            ServerLV = 0,
-            DatabaseLv = 1,
-            CollectionLV = 2
-        }
+
+
         #region"展示数据"
         /// <summary>
         /// 将Mongodb的服务器在树形控件中展示
@@ -206,7 +191,7 @@ namespace MagicMongoDBTool.Module
                 case "fs.chunks":
                     strColName = "数据块(" + strColName + ")";
                     break;
-                case "fs.files":
+                case CollectionName_GridFileSystem:
                     strColName = "文件系统(" + strColName + ")";
                     break;
                 case "oplog.rs":
@@ -215,7 +200,7 @@ namespace MagicMongoDBTool.Module
                 case "system.indexes":
                     strColName = "索引(" + strColName + ")";
                     break;
-                case "system.js":
+                case CollectionName_JavaScript:
                     strColName = "存储Javascript(" + strColName + ")";
                     break;
                 case "system.replset":
@@ -224,7 +209,7 @@ namespace MagicMongoDBTool.Module
                 case "replset.minvalid":
                     strColName = "初始化同步(" + strColName + ")";
                     break;
-                case "system.users":
+                case CollectionName_User:
                     strColName = "用户列表(" + strColName + ")";
                     break;
                 case "me":
@@ -243,8 +228,14 @@ namespace MagicMongoDBTool.Module
                     break;
             }
             mongoColNode = new TreeNode(strColName);
-            mongoColNode.Tag = CollectionTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strTagColName;
-
+            if (strTagColName == CollectionName_GridFileSystem)
+            {
+                mongoColNode.Tag = GridFileSystemTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strTagColName;
+            }
+            else
+            {
+                mongoColNode.Tag = CollectionTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strTagColName;
+            }
             MongoCollection mongoCol = Mongodb.GetCollection(strTagColName);
 
             //Start ListIndex
@@ -455,15 +446,15 @@ namespace MagicMongoDBTool.Module
         public static void FillDataToListView(String CollectionName, ListView lstData, List<BsonDocument> DataList)
         {
             lstData.Clear();
+            lstData.SmallImageList = null;
             switch (CollectionName)
             {
-                case "fs.files":
+                case CollectionName_GridFileSystem:
                     SetGridFileToListView(DataList, lstData);
                     break;
-                case "system.users":
+                case CollectionName_User:
                     SetUserListToListView(DataList, lstData);
                     break;
-                case "fs.chunks":
                 default:
                     List<String> Columnlist = new List<String>();
                     foreach (BsonDocument Docitem in DataList)
@@ -532,9 +523,11 @@ namespace MagicMongoDBTool.Module
             lstData.Columns.Add("块大小");
             lstData.Columns.Add("上传日期");
             lstData.Columns.Add("MD5");
+            lstData.SmallImageList = GetSystemIcon.iconImagelist;
             foreach (BsonDocument docfile in DataList)
             {
                 ListViewItem lstItem = new ListViewItem();
+                lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(docfile.GetValue("filename").ToString(),false);
                 lstItem.Text = docfile.GetValue("filename").ToString();
                 lstItem.SubItems.Add(GetSize((int)docfile.GetValue("length")));
                 lstItem.SubItems.Add(GetSize((int)docfile.GetValue("chunkSize")));

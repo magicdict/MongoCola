@@ -13,8 +13,22 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public enum Oprcode
         {
+            /// <summary>
+            /// 新建
+            /// </summary>
             Create,
-            Drop
+            /// <summary>
+            /// 删除
+            /// </summary>
+            Drop,
+            /// <summary>
+            /// 压缩
+            /// </summary>
+            Repair,
+            /// <summary>
+            /// 重命名
+            /// </summary>
+            Rename
         }
         /// <summary>
         /// 是否为系统数据集[无法删除]
@@ -76,6 +90,9 @@ namespace MagicMongoDBTool.Module
                             rtnResult = true;
                         }
                         break;
+                    case Oprcode.Repair:
+                        //How To Compress?Run Command？？    
+                        break;
                     default:
                         break;
                 }
@@ -89,7 +106,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="CollectionName"></param>
         /// <param name="Func"></param>
         /// <returns></returns>
-        public static Boolean CollectionOpration(String strSvrPath, String CollectionName, Oprcode Func, TreeNode tr)
+        public static Boolean CollectionOpration(String strSvrPath, String CollectionName, Oprcode Func, TreeNode mTreenode,String NewCollectionName ="")
         {
             Boolean rtnResult = false;
             MongoDatabase Mongodb = GetMongoDBBySvrPath(strSvrPath);
@@ -101,7 +118,7 @@ namespace MagicMongoDBTool.Module
                         if (!Mongodb.CollectionExists(CollectionName))
                         {
                             Mongodb.CreateCollection(CollectionName);
-                            tr.Nodes.Add(FillCollectionInfoToTreeNode(CollectionName, Mongodb, strSvrPath.Split("/".ToCharArray())[0]));
+                            mTreenode.Nodes.Add(FillCollectionInfoToTreeNode(CollectionName, Mongodb, strSvrPath.Split("/".ToCharArray())[0]));
                             rtnResult = true;
                         }
                         break;
@@ -109,7 +126,19 @@ namespace MagicMongoDBTool.Module
                         if (Mongodb.CollectionExists(CollectionName))
                         {
                             Mongodb.DropCollection(CollectionName);
-                            tr.TreeView.Nodes.Remove(tr);
+                            mTreenode.TreeView.Nodes.Remove(mTreenode);
+                            rtnResult = true;
+                        }
+                        break;
+                    case Oprcode.Rename:
+                        if (!Mongodb.CollectionExists(NewCollectionName))
+                        {
+                            Mongodb.RenameCollection(CollectionName,NewCollectionName);
+                            mTreenode.Text = NewCollectionName;
+                            //添加新节点
+                            mTreenode.Parent.Nodes.Add(FillCollectionInfoToTreeNode(NewCollectionName, Mongodb, strSvrPath.Split("/".ToCharArray())[0]));
+                            //删除旧节点
+                            mTreenode.TreeView.Nodes.Remove(mTreenode);
                             rtnResult = true;
                         }
                         break;
@@ -288,17 +317,26 @@ namespace MagicMongoDBTool.Module
             MongoGridFS gfs = MongoDB.GetGridFS(new MongoGridFSSettings());
             
             String[] strLocalFileName = strRemoteFileName.Split(@"\".ToCharArray());
-            gfs.Download(strLocalFileName[strLocalFileName.Length-1], strRemoteFileName);
-            System.Diagnostics.Process.Start(strLocalFileName[strLocalFileName.Length - 1]);
+            try
+            {
+                gfs.Download(strLocalFileName[strLocalFileName.Length - 1], strRemoteFileName);
+                System.Diagnostics.Process.Start(strLocalFileName[strLocalFileName.Length - 1]);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
         /// <summary>
         /// 下载文件
         /// </summary>
         /// <param name="strFileName"></param>
-        public static void DownloadFile(String strFileName) {
+        public static void DownloadFile(String strLocalFileName,String strRemoteFileName)
+        {
             MongoDatabase MongoDB = SystemManager.getCurrentDataBase();
             MongoGridFS gfs = MongoDB.GetGridFS(new MongoGridFSSettings());
-            gfs.Download(strFileName);   
+            gfs.Download(strLocalFileName,strRemoteFileName);   
         }
         /// <summary>
         /// 上传文件
@@ -308,6 +346,16 @@ namespace MagicMongoDBTool.Module
             MongoDatabase MongoDB = SystemManager.getCurrentDataBase();
             MongoGridFS gfs = MongoDB.GetGridFS(new MongoGridFSSettings());
             gfs.Upload(strFileName); 
+        }
+        /// <summary>
+        /// 删除文件
+        /// </summary>
+        /// <param name="strFileName"></param>
+        public static void DelFile(String strFileName)
+        {
+            MongoDatabase MongoDB = SystemManager.getCurrentDataBase();
+            MongoGridFS gfs = MongoDB.GetGridFS(new MongoGridFSSettings());
+            gfs.Delete(strFileName);
         }
     }
 }

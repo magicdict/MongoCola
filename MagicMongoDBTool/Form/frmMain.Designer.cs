@@ -55,6 +55,11 @@
             this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GridFsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UploadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DownloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DosCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportDataFromAccessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,6 +82,7 @@
             this.tabTextView = new System.Windows.Forms.TabPage();
             this.txtData = new System.Windows.Forms.TextBox();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.RenameCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -208,7 +214,8 @@
             this.ManageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ServerToolStripMenuItem,
             this.DataBaseToolStripMenuItem,
-            this.DataCollectionOprToolStripMenuItem});
+            this.DataCollectionOprToolStripMenuItem,
+            this.GridFsToolStripMenuItem});
             this.ManageToolStripMenuItem.Name = "ManageToolStripMenuItem";
             this.ManageToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.ManageToolStripMenuItem.Text = "管理";
@@ -266,7 +273,8 @@
             this.IndexManageToolStripMenuItem,
             this.AddUserToolStripMenuItem,
             this.RemoveUserToolStripMenuItem,
-            this.DelRecordToolStripMenuItem});
+            this.DelRecordToolStripMenuItem,
+            this.RenameCollectionToolStripMenuItem});
             this.DataCollectionOprToolStripMenuItem.Name = "DataCollectionOprToolStripMenuItem";
             this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataCollectionOprToolStripMenuItem.Text = "数据集";
@@ -305,6 +313,45 @@
             this.DelRecordToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DelRecordToolStripMenuItem.Text = "删除选中数据";
             this.DelRecordToolStripMenuItem.Click += new System.EventHandler(this.DelRecordToolStripMenuItem_Click);
+            // 
+            // GridFsToolStripMenuItem
+            // 
+            this.GridFsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.UploadFileToolStripMenuItem,
+            this.DownloadFileToolStripMenuItem,
+            this.OpenFileToolStripMenuItem,
+            this.DelFileToolStripMenuItem});
+            this.GridFsToolStripMenuItem.Name = "GridFsToolStripMenuItem";
+            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GridFsToolStripMenuItem.Text = "文件系统";
+            // 
+            // UploadFileToolStripMenuItem
+            // 
+            this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
+            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.UploadFileToolStripMenuItem.Text = "上传文件";
+            this.UploadFileToolStripMenuItem.Click += new System.EventHandler(this.UploadFileToolStripMenuItem_Click);
+            // 
+            // DownloadFileToolStripMenuItem
+            // 
+            this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
+            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.DownloadFileToolStripMenuItem.Text = "下载文件";
+            this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(this.DownloadFileToolStripMenuItem_Click);
+            // 
+            // OpenFileToolStripMenuItem
+            // 
+            this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
+            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.OpenFileToolStripMenuItem.Text = "打开文件";
+            this.OpenFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
+            // 
+            // DelFileToolStripMenuItem
+            // 
+            this.DelFileToolStripMenuItem.Name = "DelFileToolStripMenuItem";
+            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.DelFileToolStripMenuItem.Text = "删除文件";
+            this.DelFileToolStripMenuItem.Click += new System.EventHandler(this.DelFileToolStripMenuItem_Click);
             // 
             // ToolToolStripMenuItem
             // 
@@ -471,6 +518,7 @@
             this.lstData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstData.FullRowSelect = true;
             this.lstData.GridLines = true;
+            this.lstData.HideSelection = false;
             this.lstData.Location = new System.Drawing.Point(3, 3);
             this.lstData.Name = "lstData";
             this.lstData.Size = new System.Drawing.Size(582, 362);
@@ -503,6 +551,13 @@
             // 
             this.contextMenuStripMain.Name = "contextMenuStripMain";
             this.contextMenuStripMain.Size = new System.Drawing.Size(61, 4);
+            // 
+            // RenameCollectionToolStripMenuItem
+            // 
+            this.RenameCollectionToolStripMenuItem.Name = "RenameCollectionToolStripMenuItem";
+            this.RenameCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RenameCollectionToolStripMenuItem.Text = "重命名数据集";
+            this.RenameCollectionToolStripMenuItem.Click += new System.EventHandler(this.RenameCollectionToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -585,6 +640,12 @@
         private System.Windows.Forms.ToolStripMenuItem QueryDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mapReduceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DelRecordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem GridFsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem UploadFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DownloadFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OpenFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DelFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RenameCollectionToolStripMenuItem;
     }
 }
 

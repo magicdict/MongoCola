@@ -61,6 +61,8 @@
     <Compile Include="Form\frmMapReduce.Designer.cs">
       <DependentUpon>frmMapReduce.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module\GetSystemIcon.cs" />
+    <Compile Include="Module\MongoDBHelper_Const.cs" />
     <Compile Include="UserController\ctlFieldInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>

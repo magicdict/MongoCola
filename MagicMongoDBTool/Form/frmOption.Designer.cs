@@ -33,12 +33,15 @@
             this.ctlFilePickerMongoBinPath = new MagicMongoDBTool.ctlFilePicker();
             this.lblLimitCnt = new System.Windows.Forms.Label();
             this.numLimitCnt = new System.Windows.Forms.NumericUpDown();
+            this.lblRefreshForStatus = new System.Windows.Forms.Label();
+            this.numRefreshForStatus = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numLimitCnt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(530, 224);
+            this.cmdOK.Location = new System.Drawing.Point(565, 111);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(75, 23);
             this.cmdOK.TabIndex = 3;
@@ -48,7 +51,7 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(627, 224);
+            this.cmdCancel.Location = new System.Drawing.Point(662, 111);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 4;
@@ -77,7 +80,7 @@
             // 
             // numLimitCnt
             // 
-            this.numLimitCnt.Location = new System.Drawing.Point(131, 40);
+            this.numLimitCnt.Location = new System.Drawing.Point(132, 40);
             this.numLimitCnt.Maximum = new decimal(new int[] {
             500,
             0,
@@ -89,7 +92,7 @@
             0,
             0});
             this.numLimitCnt.Name = "numLimitCnt";
-            this.numLimitCnt.Size = new System.Drawing.Size(74, 20);
+            this.numLimitCnt.Size = new System.Drawing.Size(66, 20);
             this.numLimitCnt.TabIndex = 7;
             this.numLimitCnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numLimitCnt.Value = new decimal(new int[] {
@@ -98,11 +101,45 @@
             0,
             0});
             // 
+            // lblRefreshForStatus
+            // 
+            this.lblRefreshForStatus.AutoSize = true;
+            this.lblRefreshForStatus.Location = new System.Drawing.Point(299, 42);
+            this.lblRefreshForStatus.Name = "lblRefreshForStatus";
+            this.lblRefreshForStatus.Size = new System.Drawing.Size(156, 13);
+            this.lblRefreshForStatus.TabIndex = 8;
+            this.lblRefreshForStatus.Text = "服务器/数据库状态刷新间隔";
+            // 
+            // numRefreshForStatus
+            // 
+            this.numRefreshForStatus.Location = new System.Drawing.Point(482, 40);
+            this.numRefreshForStatus.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.numRefreshForStatus.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numRefreshForStatus.Name = "numRefreshForStatus";
+            this.numRefreshForStatus.Size = new System.Drawing.Size(66, 20);
+            this.numRefreshForStatus.TabIndex = 9;
+            this.numRefreshForStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numRefreshForStatus.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
             // frmOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(767, 273);
+            this.ClientSize = new System.Drawing.Size(767, 163);
+            this.Controls.Add(this.numRefreshForStatus);
+            this.Controls.Add(this.lblRefreshForStatus);
             this.Controls.Add(this.numLimitCnt);
             this.Controls.Add(this.lblLimitCnt);
             this.Controls.Add(this.ctlFilePickerMongoBinPath);
@@ -112,6 +149,7 @@
             this.Text = "配置";
             this.Load += new System.EventHandler(this.frmOption_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numLimitCnt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,5 +162,7 @@
         private ctlFilePicker ctlFilePickerMongoBinPath;
         private System.Windows.Forms.Label lblLimitCnt;
         private System.Windows.Forms.NumericUpDown numLimitCnt;
+        private System.Windows.Forms.Label lblRefreshForStatus;
+        private System.Windows.Forms.NumericUpDown numRefreshForStatus;
     }
 }

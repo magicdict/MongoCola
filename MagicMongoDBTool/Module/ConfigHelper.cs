@@ -90,6 +90,8 @@ namespace MagicMongoDBTool.Module
         /// 
         /// </summary>
         public int LimitCnt = 100;
+        public int RefreshStatusTimer = 30;
+
         /// <summary>
         /// 配置文件名称
         /// </summary>
