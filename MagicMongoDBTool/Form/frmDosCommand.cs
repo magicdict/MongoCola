@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
-    public partial class frmDosCommand : frmBase
+    public partial class frmDosCommand : QLFUI.QLFForm
     {
         public delegate void CommandChangedEventHandler(string strCommandLine);
         public frmDosCommand()
@@ -40,11 +40,14 @@ namespace MagicMongoDBTool
         private void cmdRunDos_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
-            if (this.txtDosCommand.Text != String.Empty) {
+            if (this.txtDosCommand.Text != String.Empty)
+            {
                 MongodbDosCommand.RunDosCommand(txtDosCommand.Text, sb);
                 this.txtDosCommand.Text += System.Environment.NewLine;
-                this.txtDosCommand.Text += sb.ToString();       
+                this.txtDosCommand.Text += sb.ToString();
             }
         }
+
+
     }
 }

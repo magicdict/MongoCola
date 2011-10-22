@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using MongoDB.Driver;
-using MongoDB.Bson;
 using MagicMongoDBTool.Module;
+using MongoDB.Bson;
+using MongoDB.Driver;
 namespace MagicMongoDBTool
 {
-    public partial class frmMapReduce : frmBase
+    public partial class frmMapReduce : QLFUI.QLFForm
     {
         public frmMapReduce()
         {
@@ -20,20 +14,20 @@ namespace MagicMongoDBTool
         MongoCollection mongocol = SystemManager.getCurrentCollection();
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
-//            //Start Test
-//            txtMapJs.Text = @"function Map(){
-//                                emit(this.Age,1);
-//                            }";
-//            txtReduceJs.Text = @"function Reduce(key, arr_values) {
-//                        var total = 0;
-//                        for(var i in arr_values){
-//                            temp = arr_values[i];
-//                            total += temp;
-//                        }
-//                        return total;
-//                }";
-//            //End Test
-            cmbForMap.SelectedIndexChanged+=new EventHandler(
+            //            //Start Test
+            //            txtMapJs.Text = @"function Map(){
+            //                                emit(this.Age,1);
+            //                            }";
+            //            txtReduceJs.Text = @"function Reduce(key, arr_values) {
+            //                        var total = 0;
+            //                        for(var i in arr_values){
+            //                            temp = arr_values[i];
+            //                            total += temp;
+            //                        }
+            //                        return total;
+            //                }";
+            //            //End Test
+            cmbForMap.SelectedIndexChanged += new EventHandler(
                 (x, y) => { txtMapJs.Text = MongoDBHelpler.LoadJavascript(cmbForMap.Text); }
             );
             cmbForReduce.SelectedIndexChanged += new EventHandler(
@@ -54,7 +48,7 @@ namespace MagicMongoDBTool
             //TODO:这里可能会超时，失去响应
             //需要设置SocketTimeOut
             MapReduceResult rtn = mongocol.MapReduce(map, reduce);
-            
+
             List<BsonDocument> Result = new List<BsonDocument>();
             Result.Add(rtn.Response);
             MongoDBHelpler.FillDataToTreeView("MapReduce Result", trvResult, Result);
@@ -62,7 +56,8 @@ namespace MagicMongoDBTool
         }
         private void cmdSaveMapJs_Click(object sender, EventArgs e)
         {
-            if(txtMapJs.Text != string.Empty){
+            if (txtMapJs.Text != string.Empty)
+            {
                 String strJsName = Microsoft.VisualBasic.Interaction.InputBox("请输入Javascript名称：", "保存Javascript");
                 MongoDBHelpler.SaveJavascript(strJsName, txtMapJs.Text);
             }
@@ -75,5 +70,8 @@ namespace MagicMongoDBTool
                 MongoDBHelpler.SaveJavascript(strJsName, txtReduceJs.Text);
             }
         }
+
+
+
     }
 }

@@ -10,7 +10,7 @@ using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmAddConnection : frmBase
+    public partial class frmAddConnection : QLFUI.QLFForm
     {
         public ConfigHelper.MongoConnectionConfig ModifyConn = new ConfigHelper.MongoConnectionConfig();
         public frmAddConnection()
@@ -31,7 +31,8 @@ namespace MagicMongoDBTool
             txtReplSet.Text = ModifyConn.ReplSetName;
 
 
-            switch (ModifyConn.ServerType) { 
+            switch (ModifyConn.ServerType)
+            {
                 case ConfigHelper.SrvType.ConfigSrv:
                     radConfigSrv.Checked = true;
                     break;
@@ -42,8 +43,11 @@ namespace MagicMongoDBTool
                 default:
                     radDataSrv.Checked = true;
                     break;
-            }   
-               
+            }
+
+        }
+        private void cmdCancel_Click(object sender, EventArgs e) { 
+        
         }
         private void cmdAdd_Click(object sender, EventArgs e)
         {
@@ -52,10 +56,12 @@ namespace MagicMongoDBTool
             ModifyConn.Port = Convert.ToInt32(txtPort.Text);
             ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
             ModifyConn.ReplSetName = txtReplSet.Text;
-            if (radDataSrv.Checked) { 
-                ModifyConn.ServerType = ConfigHelper.SrvType.DataSrv; 
+            if (radDataSrv.Checked)
+            {
+                ModifyConn.ServerType = ConfigHelper.SrvType.DataSrv;
             }
-            if (radConfigSrv.Checked) { 
+            if (radConfigSrv.Checked)
+            {
                 ModifyConn.ServerType = ConfigHelper.SrvType.ConfigSrv;
                 if (ModifyConn.IsSlaveOk)
                 {
@@ -64,9 +70,11 @@ namespace MagicMongoDBTool
                     ModifyConn.IsSlaveOk = false;
                 }
             }
-            if (radRouteSrv.Checked) { 
+            if (radRouteSrv.Checked)
+            {
                 ModifyConn.ServerType = ConfigHelper.SrvType.RouteSrv;
-                if (ModifyConn.IsSlaveOk) {
+                if (ModifyConn.IsSlaveOk)
+                {
                     //Config和Route不能设置为SlaveOK模式
                     //文件下载的时候也不能使用SlaveOK模式
                     ModifyConn.IsSlaveOk = false;

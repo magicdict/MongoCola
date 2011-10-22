@@ -28,17 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReplset));
+            this.lblPrmInfo = new System.Windows.Forms.Label();
             this.cmdInitReplset = new System.Windows.Forms.Button();
             this.lstShard = new System.Windows.Forms.ListBox();
-            this.lblPrmInfo = new System.Windows.Forms.Label();
+            this.contentPanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // contentPanel
+            // 
+            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
+            this.contentPanel.Controls.Add(this.lblPrmInfo);
+            this.contentPanel.Controls.Add(this.cmdInitReplset);
+            this.contentPanel.Controls.Add(this.lstShard);
+            this.contentPanel.Location = new System.Drawing.Point(1, 38);
+            this.contentPanel.Size = new System.Drawing.Size(383, 260);
+            // 
+            // lblPrmInfo
+            // 
+            this.lblPrmInfo.AutoSize = true;
+            this.lblPrmInfo.BackColor = System.Drawing.Color.Transparent;
+            this.lblPrmInfo.Location = new System.Drawing.Point(22, 47);
+            this.lblPrmInfo.Name = "lblPrmInfo";
+            this.lblPrmInfo.Size = new System.Drawing.Size(53, 13);
+            this.lblPrmInfo.TabIndex = 8;
+            this.lblPrmInfo.Text = "lblPrmInfo";
             // 
             // cmdInitReplset
             // 
-            this.cmdInitReplset.Location = new System.Drawing.Point(98, 153);
+            this.cmdInitReplset.Location = new System.Drawing.Point(90, 191);
             this.cmdInitReplset.Name = "cmdInitReplset";
             this.cmdInitReplset.Size = new System.Drawing.Size(187, 23);
-            this.cmdInitReplset.TabIndex = 3;
+            this.cmdInitReplset.TabIndex = 7;
             this.cmdInitReplset.Text = "初始化副本";
             this.cmdInitReplset.UseVisualStyleBackColor = true;
             this.cmdInitReplset.Click += new System.EventHandler(this.cmdInitReplset_Click);
@@ -46,41 +67,31 @@
             // lstShard
             // 
             this.lstShard.FormattingEnabled = true;
-            this.lstShard.Location = new System.Drawing.Point(33, 34);
+            this.lstShard.Location = new System.Drawing.Point(25, 72);
             this.lstShard.Name = "lstShard";
             this.lstShard.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lstShard.Size = new System.Drawing.Size(335, 95);
-            this.lstShard.TabIndex = 1;
-            // 
-            // lblPrmInfo
-            // 
-            this.lblPrmInfo.AutoSize = true;
-            this.lblPrmInfo.Location = new System.Drawing.Point(30, 9);
-            this.lblPrmInfo.Name = "lblPrmInfo";
-            this.lblPrmInfo.Size = new System.Drawing.Size(53, 13);
-            this.lblPrmInfo.TabIndex = 5;
-            this.lblPrmInfo.Text = "lblPrmInfo";
+            this.lstShard.TabIndex = 6;
             // 
             // frmReplset
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 212);
-            this.Controls.Add(this.lblPrmInfo);
-            this.Controls.Add(this.cmdInitReplset);
-            this.Controls.Add(this.lstShard);
+            this.ClientSize = new System.Drawing.Size(385, 323);
+            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmReplset";
-            this.Text = "初始化副本组";
+            this.Text = "frmReplset";
             this.Load += new System.EventHandler(this.frmReplset_Load);
+            this.contentPanel.ResumeLayout(false);
+            this.contentPanel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox lstShard;
-        private System.Windows.Forms.Button cmdInitReplset;
         private System.Windows.Forms.Label lblPrmInfo;
+        private System.Windows.Forms.Button cmdInitReplset;
+        private System.Windows.Forms.ListBox lstShard;
     }
 }

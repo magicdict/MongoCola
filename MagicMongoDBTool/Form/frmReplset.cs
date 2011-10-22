@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 namespace MagicMongoDBTool
 {
-    public partial class frmReplset : frmBase
+    public partial class frmReplset : QLFUI.QLFForm
     {
         public frmReplset()
         {
@@ -34,7 +28,8 @@ namespace MagicMongoDBTool
         private void cmdInitReplset_Click(object sender, EventArgs e)
         {
             List<String> srvKeys = new List<string>();
-            if (lstShard.SelectedItems.Count > 0) {
+            if (lstShard.SelectedItems.Count > 0)
+            {
                 foreach (String item in lstShard.SelectedItems)
                 {
                     srvKeys.Add(item);
@@ -42,5 +37,7 @@ namespace MagicMongoDBTool
             }
             MongoDBHelpler.InitReplicaSet(PrmSrv, SystemManager.getSelectedSrvProByName().ReplSetName, srvKeys);
         }
+
+
     }
 }

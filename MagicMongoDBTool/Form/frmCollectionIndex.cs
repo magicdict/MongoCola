@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using MongoDB.Driver;
 using MagicMongoDBTool.Module;
+using MongoDB.Driver;
 namespace MagicMongoDBTool
 {
-    public partial class frmCollectionIndex : frmBase
+    public partial class frmCollectionIndex : QLFUI.QLFForm
     {
         public frmCollectionIndex()
         {
@@ -29,7 +23,8 @@ namespace MagicMongoDBTool
 
         private void cmdDelIndex_Click(object sender, EventArgs e)
         {
-            if (lstIndex.SelectedItems.Count > 0) {
+            if (lstIndex.SelectedItems.Count > 0)
+            {
                 MongoDBHelpler.DropMongoIndex(lstIndex.SelectedItems[0].SubItems[0].Text.ToString());
                 lstIndex.Items.Remove(lstIndex.SelectedItems[0]);
             }
@@ -40,7 +35,8 @@ namespace MagicMongoDBTool
             MongoDBHelpler.CreateMongoIndex(txtIndexKey.Text, chkAsc.Checked);
             RefreshList();
         }
-        private void RefreshList() {
+        private void RefreshList()
+        {
 
             lstIndex.Items.Clear();
             foreach (var item in mongoCollection.GetIndexes())

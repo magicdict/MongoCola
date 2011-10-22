@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+
 namespace MagicMongoDBTool
 {
-    public partial class frmConnect : frmBase
+    public partial class frmConnect : QLFUI.QLFForm
     {
         public frmConnect()
         {
@@ -19,7 +20,8 @@ namespace MagicMongoDBTool
         {
             RefreshConnection();
         }
-        private void RefreshConnection() {
+        private void RefreshConnection()
+        {
             lstServerce.Items.Clear();
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.mConfig.ConnectionList.Values)
             {
@@ -40,7 +42,8 @@ namespace MagicMongoDBTool
         private void cmdConnect_Click(object sender, EventArgs e)
         {
             List<ConfigHelper.MongoConnectionConfig> connlst = new List<ConfigHelper.MongoConnectionConfig>();
-            if (lstServerce.SelectedItems.Count > 0) {
+            if (lstServerce.SelectedItems.Count > 0)
+            {
                 foreach (String item in lstServerce.SelectedItems)
                 {
                     connlst.Add(SystemManager.mConfig.ConnectionList[item]);
@@ -53,22 +56,23 @@ namespace MagicMongoDBTool
         {
             foreach (String item in lstServerce.SelectedItems)
             {
-                if (SystemManager.mConfig.ConnectionList.ContainsKey(item)) {
+                if (SystemManager.mConfig.ConnectionList.ContainsKey(item))
+                {
                     SystemManager.mConfig.ConnectionList.Remove(item);
-                }   
+                }
             }
-            RefreshConnection(); 
+            RefreshConnection();
         }
 
         private void cmdModifyCon_Click(object sender, EventArgs e)
         {
-            if (lstServerce.SelectedItems.Count ==1)
+            if (lstServerce.SelectedItems.Count == 1)
             {
-                    frmAddConnection mfrm = new frmAddConnection(lstServerce.SelectedItem.ToString());
-                    mfrm.ShowDialog();
-                    mfrm.Close();
-                    mfrm.Dispose();
-                    RefreshConnection(); 
+                frmAddConnection mfrm = new frmAddConnection(lstServerce.SelectedItem.ToString());
+                mfrm.ShowDialog();
+                mfrm.Close();
+                mfrm.Dispose();
+                RefreshConnection();
             }
         }
 
@@ -76,5 +80,12 @@ namespace MagicMongoDBTool
         {
             System.Diagnostics.Process.Start("http://www.wojilu.com");
         }
+
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

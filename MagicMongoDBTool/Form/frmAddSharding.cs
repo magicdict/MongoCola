@@ -11,7 +11,7 @@ using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmAddSharding : frmBase
+    public partial class frmAddSharding : QLFUI.QLFForm
     {
         public frmAddSharding()
         {

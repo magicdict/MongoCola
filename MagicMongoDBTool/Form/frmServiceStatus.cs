@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
-    public partial class frmServiceStatus : frmBase
+    public partial class frmServiceStatus : QLFUI.QLFForm
     {
         public frmServiceStatus()
         {
@@ -20,7 +14,8 @@ namespace MagicMongoDBTool
         {
             Timer RefreshTimer = new Timer();
             RefreshTimer.Interval = SystemManager.mConfig.RefreshStatusTimer * 1000;
-            RefreshTimer.Tick += new EventHandler((x, y) => {
+            RefreshTimer.Tick += new EventHandler((x, y) =>
+            {
                 MongoDBHelpler.FillSrvStatusToList(this.lstSrvStatus);
                 MongoDBHelpler.FillSrvOprToList(this.lstSrvOpr);
             });
@@ -28,5 +23,7 @@ namespace MagicMongoDBTool
             MongoDBHelpler.FillSrvStatusToList(this.lstSrvStatus);
             MongoDBHelpler.FillSrvOprToList(this.lstSrvOpr);
         }
+
+
     }
 }

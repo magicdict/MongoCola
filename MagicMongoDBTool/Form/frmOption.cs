@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
-    public partial class frmOption : frmBase
+    public partial class frmOption : QLFUI.QLFForm
     {
         public frmOption()
         {
@@ -17,7 +10,7 @@ namespace MagicMongoDBTool
         }
         private void frmOption_Load(object sender, EventArgs e)
         {
-            this.ctlFilePickerMongoBinPath.SelectedPath= SystemManager.mConfig.MongoBinPath;
+            this.ctlFilePickerMongoBinPath.SelectedPath = SystemManager.mConfig.MongoBinPath;
             this.numLimitCnt.Value = SystemManager.mConfig.LimitCnt;
             this.numRefreshForStatus.Value = SystemManager.mConfig.RefreshStatusTimer;
         }
@@ -33,5 +26,7 @@ namespace MagicMongoDBTool
         {
             this.Close();
         }
+
+
     }
 }

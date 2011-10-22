@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using MongoDB.Driver;
-using MongoDB.Bson;
 using MagicMongoDBTool.Module;
+using MongoDB.Bson;
+using MongoDB.Driver;
 namespace MagicMongoDBTool
 {
-    public partial class frmShardingConfig : frmBase
+    public partial class frmShardingConfig : QLFUI.QLFForm
     {
         public frmShardingConfig()
         {
@@ -77,5 +70,7 @@ namespace MagicMongoDBTool
         {
             MongoDBHelpler.shardcollection(mongosrv, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument());
         }
+
+       
     }
 }

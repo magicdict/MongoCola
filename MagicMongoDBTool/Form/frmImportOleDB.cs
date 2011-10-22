@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmImportOleDB : frmBase
+    public partial class frmImportOleDB : QLFUI.QLFForm
     {
         public String DataBaseFileName = String.Empty;
         public frmImportOleDB()

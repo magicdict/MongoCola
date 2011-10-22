@@ -2,9 +2,10 @@
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using System.Collections.Generic;
+
 namespace MagicMongoDBTool
 {
-    public partial class frmMain : Form
+    public partial class frmMain : QLFUI.QLFForm
     {
         public frmMain()
         {
@@ -49,6 +50,7 @@ namespace MagicMongoDBTool
             trvData.Nodes.Clear();
             lstData.ContextMenuStrip = null;
             trvData.ContextMenuStrip = null;
+            trvsrvlst.ContextMenuStrip = null;
             if (e.Node.Tag != null)
             {
                 //先禁用所有的操作，然后根据选中对象解禁
@@ -718,6 +720,8 @@ namespace MagicMongoDBTool
             this.QueryDataToolStripMenuItem.Enabled = true;
         }
         #endregion
+
+
 
     }
 }

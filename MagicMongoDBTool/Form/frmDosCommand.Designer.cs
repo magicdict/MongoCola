@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtDosCommand = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDosCommand));
+            this.cmdSave = new System.Windows.Forms.Button();
+            this.cmdRunDos = new System.Windows.Forms.Button();
             this.tabFunction = new System.Windows.Forms.TabControl();
             this.tabMongod = new System.Windows.Forms.TabPage();
             this.ctlMongodPanel = new MagicMongoDBTool.ctlMongod();
@@ -36,32 +38,54 @@
             this.ctlMongodumpPanel = new MagicMongoDBTool.Module.ctlMongodump();
             this.tabMongoImportExport = new System.Windows.Forms.TabPage();
             this.ctlMongoImportExportPanel = new MagicMongoDBTool.Module.ctlMongoImportExport();
-            this.cmdRunDos = new System.Windows.Forms.Button();
-            this.cmdSave = new System.Windows.Forms.Button();
+            this.txtDosCommand = new System.Windows.Forms.TextBox();
+            this.contentPanel.SuspendLayout();
             this.tabFunction.SuspendLayout();
             this.tabMongod.SuspendLayout();
             this.tabMongoDump.SuspendLayout();
             this.tabMongoImportExport.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtDosCommand
+            // contentPanel
             // 
-            this.txtDosCommand.Location = new System.Drawing.Point(12, 280);
-            this.txtDosCommand.Multiline = true;
-            this.txtDosCommand.Name = "txtDosCommand";
-            this.txtDosCommand.Size = new System.Drawing.Size(737, 138);
-            this.txtDosCommand.TabIndex = 0;
+            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
+            this.contentPanel.Controls.Add(this.cmdSave);
+            this.contentPanel.Controls.Add(this.cmdRunDos);
+            this.contentPanel.Controls.Add(this.tabFunction);
+            this.contentPanel.Controls.Add(this.txtDosCommand);
+            this.contentPanel.Location = new System.Drawing.Point(1, 38);
+            this.contentPanel.Size = new System.Drawing.Size(869, 436);
+            // 
+            // cmdSave
+            // 
+            this.cmdSave.Enabled = false;
+            this.cmdSave.Location = new System.Drawing.Point(760, 322);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(96, 25);
+            this.cmdSave.TabIndex = 7;
+            this.cmdSave.Text = "保存";
+            this.cmdSave.UseVisualStyleBackColor = true;
+            // 
+            // cmdRunDos
+            // 
+            this.cmdRunDos.Location = new System.Drawing.Point(760, 283);
+            this.cmdRunDos.Name = "cmdRunDos";
+            this.cmdRunDos.Size = new System.Drawing.Size(96, 29);
+            this.cmdRunDos.TabIndex = 6;
+            this.cmdRunDos.Text = "运行";
+            this.cmdRunDos.UseVisualStyleBackColor = true;
+            this.cmdRunDos.Click += new System.EventHandler(this.cmdRunDos_Click);
             // 
             // tabFunction
             // 
             this.tabFunction.Controls.Add(this.tabMongod);
             this.tabFunction.Controls.Add(this.tabMongoDump);
             this.tabFunction.Controls.Add(this.tabMongoImportExport);
-            this.tabFunction.Location = new System.Drawing.Point(12, 12);
+            this.tabFunction.Location = new System.Drawing.Point(9, 15);
             this.tabFunction.Name = "tabFunction";
             this.tabFunction.SelectedIndex = 0;
             this.tabFunction.Size = new System.Drawing.Size(851, 247);
-            this.tabFunction.TabIndex = 1;
+            this.tabFunction.TabIndex = 5;
             // 
             // tabMongod
             // 
@@ -117,58 +141,44 @@
             this.ctlMongoImportExportPanel.Size = new System.Drawing.Size(800, 195);
             this.ctlMongoImportExportPanel.TabIndex = 0;
             // 
-            // cmdRunDos
+            // txtDosCommand
             // 
-            this.cmdRunDos.Location = new System.Drawing.Point(763, 280);
-            this.cmdRunDos.Name = "cmdRunDos";
-            this.cmdRunDos.Size = new System.Drawing.Size(96, 29);
-            this.cmdRunDos.TabIndex = 2;
-            this.cmdRunDos.Text = "运行";
-            this.cmdRunDos.UseVisualStyleBackColor = true;
-            this.cmdRunDos.Click += new System.EventHandler(this.cmdRunDos_Click);
-            // 
-            // cmdSave
-            // 
-            this.cmdSave.Enabled = false;
-            this.cmdSave.Location = new System.Drawing.Point(763, 319);
-            this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(96, 25);
-            this.cmdSave.TabIndex = 3;
-            this.cmdSave.Text = "保存";
-            this.cmdSave.UseVisualStyleBackColor = true;
+            this.txtDosCommand.Location = new System.Drawing.Point(9, 283);
+            this.txtDosCommand.Multiline = true;
+            this.txtDosCommand.Name = "txtDosCommand";
+            this.txtDosCommand.Size = new System.Drawing.Size(737, 138);
+            this.txtDosCommand.TabIndex = 4;
             // 
             // frmDosCommand
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 445);
-            this.Controls.Add(this.cmdSave);
-            this.Controls.Add(this.cmdRunDos);
-            this.Controls.Add(this.tabFunction);
-            this.Controls.Add(this.txtDosCommand);
+            this.ClientSize = new System.Drawing.Size(871, 499);
+            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmDosCommand";
             this.Text = "frmDosCommand";
             this.Load += new System.EventHandler(this.frmDosCommand_Load);
+            this.contentPanel.ResumeLayout(false);
+            this.contentPanel.PerformLayout();
             this.tabFunction.ResumeLayout(false);
             this.tabMongod.ResumeLayout(false);
             this.tabMongoDump.ResumeLayout(false);
             this.tabMongoImportExport.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtDosCommand;
+        private System.Windows.Forms.Button cmdSave;
+        private System.Windows.Forms.Button cmdRunDos;
         private System.Windows.Forms.TabControl tabFunction;
         private System.Windows.Forms.TabPage tabMongod;
-        private System.Windows.Forms.TabPage tabMongoDump;
         private ctlMongod ctlMongodPanel;
-        private System.Windows.Forms.Button cmdRunDos;
-        private System.Windows.Forms.Button cmdSave;
+        private System.Windows.Forms.TabPage tabMongoDump;
         private Module.ctlMongodump ctlMongodumpPanel;
         private System.Windows.Forms.TabPage tabMongoImportExport;
         private Module.ctlMongoImportExport ctlMongoImportExportPanel;
+        private System.Windows.Forms.TextBox txtDosCommand;
     }
 }

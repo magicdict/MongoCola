@@ -28,72 +28,83 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.grpFilter = new System.Windows.Forms.GroupBox();
-            this.cmdOK = new System.Windows.Forms.Button();
-            this.grpFieldInfo = new System.Windows.Forms.GroupBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQuery));
             this.cmdAddCondition = new System.Windows.Forms.Button();
+            this.grpFieldInfo = new System.Windows.Forms.GroupBox();
+            this.cmdOK = new System.Windows.Forms.Button();
+            this.grpFilter = new System.Windows.Forms.GroupBox();
+            this.contentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // grpFilter
+            // contentPanel
             // 
-            this.grpFilter.Location = new System.Drawing.Point(415, 12);
-            this.grpFilter.Name = "grpFilter";
-            this.grpFilter.Size = new System.Drawing.Size(552, 390);
-            this.grpFilter.TabIndex = 6;
-            this.grpFilter.TabStop = false;
-            this.grpFilter.Text = "字段过滤条件";
+            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
+            this.contentPanel.Controls.Add(this.cmdAddCondition);
+            this.contentPanel.Controls.Add(this.grpFieldInfo);
+            this.contentPanel.Controls.Add(this.cmdOK);
+            this.contentPanel.Controls.Add(this.grpFilter);
+            this.contentPanel.Location = new System.Drawing.Point(1, 38);
+            this.contentPanel.Size = new System.Drawing.Size(947, 459);
+            // 
+            // cmdAddCondition
+            // 
+            this.cmdAddCondition.Location = new System.Drawing.Point(688, 426);
+            this.cmdAddCondition.Name = "cmdAddCondition";
+            this.cmdAddCondition.Size = new System.Drawing.Size(114, 23);
+            this.cmdAddCondition.TabIndex = 14;
+            this.cmdAddCondition.Text = "新增过滤条件";
+            this.cmdAddCondition.UseVisualStyleBackColor = true;
+            this.cmdAddCondition.Click += new System.EventHandler(this.cmdAddCondition_Click);
+            // 
+            // grpFieldInfo
+            // 
+            this.grpFieldInfo.BackColor = System.Drawing.Color.Transparent;
+            this.grpFieldInfo.Location = new System.Drawing.Point(4, 17);
+            this.grpFieldInfo.Name = "grpFieldInfo";
+            this.grpFieldInfo.Size = new System.Drawing.Size(380, 390);
+            this.grpFieldInfo.TabIndex = 13;
+            this.grpFieldInfo.TabStop = false;
+            this.grpFieldInfo.Text = "字段表示和排序";
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(859, 417);
+            this.cmdOK.Location = new System.Drawing.Point(808, 426);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(108, 23);
-            this.cmdOK.TabIndex = 8;
+            this.cmdOK.TabIndex = 12;
             this.cmdOK.Text = "确定";
             this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
-            // grpFieldInfo
+            // grpFilter
             // 
-            this.grpFieldInfo.Location = new System.Drawing.Point(29, 12);
-            this.grpFieldInfo.Name = "grpFieldInfo";
-            this.grpFieldInfo.Size = new System.Drawing.Size(380, 390);
-            this.grpFieldInfo.TabIndex = 9;
-            this.grpFieldInfo.TabStop = false;
-            this.grpFieldInfo.Text = "字段表示和排序";
-            // 
-            // cmdAddCondition
-            // 
-            this.cmdAddCondition.Location = new System.Drawing.Point(739, 417);
-            this.cmdAddCondition.Name = "cmdAddCondition";
-            this.cmdAddCondition.Size = new System.Drawing.Size(114, 23);
-            this.cmdAddCondition.TabIndex = 10;
-            this.cmdAddCondition.Text = "新增过滤条件";
-            this.cmdAddCondition.UseVisualStyleBackColor = true;
-            this.cmdAddCondition.Click += new System.EventHandler(this.cmdAddCondition_Click);
+            this.grpFilter.BackColor = System.Drawing.Color.Transparent;
+            this.grpFilter.Location = new System.Drawing.Point(390, 17);
+            this.grpFilter.Name = "grpFilter";
+            this.grpFilter.Size = new System.Drawing.Size(552, 390);
+            this.grpFilter.TabIndex = 11;
+            this.grpFilter.TabStop = false;
+            this.grpFilter.Text = "字段过滤条件";
             // 
             // frmQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 462);
-            this.Controls.Add(this.cmdAddCondition);
-            this.Controls.Add(this.grpFieldInfo);
-            this.Controls.Add(this.cmdOK);
-            this.Controls.Add(this.grpFilter);
+            this.ClientSize = new System.Drawing.Size(949, 522);
+            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmQuery";
             this.Text = "frmQuery";
             this.Load += new System.EventHandler(this.frmQuery_Load);
+            this.contentPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox grpFilter;
-        private System.Windows.Forms.Button cmdOK;
-        private System.Windows.Forms.GroupBox grpFieldInfo;
         private System.Windows.Forms.Button cmdAddCondition;
-
+        private System.Windows.Forms.GroupBox grpFieldInfo;
+        private System.Windows.Forms.Button cmdOK;
+        private System.Windows.Forms.GroupBox grpFilter;
     }
 }

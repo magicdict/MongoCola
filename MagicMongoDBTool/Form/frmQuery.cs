@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using MongoDB.Driver;
 using MagicMongoDBTool.Module;
+using MongoDB.Driver;
 namespace MagicMongoDBTool
 {
-    public partial class frmQuery : frmBase
+    public partial class frmQuery : QLFUI.QLFForm
     {
         MongoCollection mongocol = SystemManager.getCurrentCollection();
         /// <summary>
@@ -49,7 +43,7 @@ namespace MagicMongoDBTool
 
                 ctlQueryCondition First = new ctlQueryCondition();
                 First.Location = ConditionPos;
-                First.Name="Condition" + ConditionCount.ToString();
+                First.Name = "Condition" + ConditionCount.ToString();
                 grpFilter.Controls.Add(First);
             }
         }
@@ -65,7 +59,8 @@ namespace MagicMongoDBTool
             for (int i = 0; i < ConditionCount; i++)
             {
                 ctlQueryCondition ctl = (ctlQueryCondition)Controls.Find("Condition" + (i + 1).ToString(), true)[0];
-                if (ctl.IsSeted) {
+                if (ctl.IsSeted)
+                {
                     MongoDBHelpler.QueryCompareList.Add(ctl.CompareItem);
                 }
             }
@@ -83,5 +78,7 @@ namespace MagicMongoDBTool
             NewCondition.Name = "Condition" + ConditionCount.ToString();
             grpFilter.Controls.Add(NewCondition);
         }
+
+
     }
 }

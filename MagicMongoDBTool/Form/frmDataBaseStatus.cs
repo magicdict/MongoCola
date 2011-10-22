@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
-    public partial class frmDataBaseStatus : frmBase
+    public partial class frmDataBaseStatus : QLFUI.QLFForm
     {
         public frmDataBaseStatus()
         {
             InitializeComponent();
         }
-
         private void frmDataBaseStatus_Load(object sender, EventArgs e)
         {
             Timer RefreshTimer = new Timer();
@@ -24,5 +17,7 @@ namespace MagicMongoDBTool
             RefreshTimer.Enabled = true;
             MongoDBHelpler.FillDBStatusToList(this.lstDBStatus);
         }
+
+
     }
 }
