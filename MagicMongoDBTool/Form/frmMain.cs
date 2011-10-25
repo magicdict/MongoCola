@@ -17,6 +17,8 @@ namespace MagicMongoDBTool
         /// </summary>
         private void frmMain_Load(object sender, EventArgs e)
         {
+            this.menuStripMain.Renderer = new CRD.WinUI.Misc.ToolStripRenderer(new ProfessionalColorTable());
+
             this.trvsrvlst.NodeMouseClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseClick);
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
             this.lstData.MouseDoubleClick += new MouseEventHandler(lstData_MouseDoubleClick);
@@ -35,6 +37,9 @@ namespace MagicMongoDBTool
             DataShower.Add(lstData);
             DataShower.Add(trvData);
             DataShower.Add(txtData);
+
+            MaximizeBox = true;
+            MinimizeBox = true;
         }
 
 
@@ -50,7 +55,7 @@ namespace MagicMongoDBTool
             trvData.Nodes.Clear();
             lstData.ContextMenuStrip = null;
             trvData.ContextMenuStrip = null;
-            trvsrvlst.ContextMenuStrip = null;
+            this.contextMenuStripMain = null;
             if (e.Node.Tag != null)
             {
                 //先禁用所有的操作，然后根据选中对象解禁
@@ -72,6 +77,7 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.UploadFileToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
@@ -91,6 +97,8 @@ namespace MagicMongoDBTool
                         this.CreateMongoDBToolStripMenuItem.Enabled = true;
                         this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
                         this.ShutDownToolStripMenuItem.Enabled = true;
+                        this.AddUserToAdminToolStripMenuItem.Enabled = true;
+                        this.RemoveUserFromAdminToolStripMenuItem.Enabled = true;
                         if (SystemManager.getSelectedSrvProByName().ServerType == ConfigHelper.SrvType.DataSrv)
                         {
                             //Route,Config服务器不能进行这样的操作！
@@ -106,6 +114,9 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+                            this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.RemoveUserFromAdminToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
@@ -132,6 +143,7 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.DelMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.CreateMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
@@ -156,6 +168,7 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.DelMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RenameCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
@@ -181,6 +194,9 @@ namespace MagicMongoDBTool
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
             this.AddUserToolStripMenuItem.Enabled = false;
             this.RemoveUserToolStripMenuItem.Enabled = false;
+            this.AddUserToAdminToolStripMenuItem.Enabled = false;
+            this.RemoveUserFromAdminToolStripMenuItem.Enabled = false;
+
             this.IndexManageToolStripMenuItem.Enabled = false;
             this.DelRecordToolStripMenuItem.Enabled = false;
             this.RenameCollectionToolStripMenuItem.Enabled = false;
@@ -547,6 +563,28 @@ namespace MagicMongoDBTool
         }
 
         /// <summary>
+        /// 建立Admin用户
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddUserToAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "创建用户");
+            String strPassword = Microsoft.VisualBasic.Interaction.InputBox("请输入密码：", "创建用户");
+            MongoDBHelpler.AddUserToSrv(SystemManager.SelectObjectTag, strUserName, strPassword, false);
+        }
+        /// <summary>
+        /// 删除Admin用户
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DelUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
+            MongoDBHelpler.RemoveUserFromSrv(SystemManager.SelectObjectTag, strUserName);
+        }
+
+        /// <summary>
         /// 建立用户
         /// </summary>
         /// <param name="sender"></param>
@@ -555,7 +593,7 @@ namespace MagicMongoDBTool
         {
             String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "创建用户");
             String strPassword = Microsoft.VisualBasic.Interaction.InputBox("请输入密码：", "创建用户");
-            MongoDBHelpler.AddUserForDB(SystemManager.SelectObjectTag, strUserName, strPassword, false);
+            MongoDBHelpler.AddUserToDB(SystemManager.SelectObjectTag, strUserName, strPassword, false);
         }
         /// <summary>
         /// 删除用户
@@ -565,7 +603,7 @@ namespace MagicMongoDBTool
         private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
-            MongoDBHelpler.RemoveUserForDB(SystemManager.SelectObjectTag, strUserName);
+            MongoDBHelpler.RemoveUserFromDB(SystemManager.SelectObjectTag, strUserName);
         }
         /// <summary>
         /// 索引管理
@@ -721,7 +759,12 @@ namespace MagicMongoDBTool
         }
         #endregion
 
-
-
+        #region "帮助"
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strThanks = "感谢皮肤控件的作者：qianlifeng\r\n感谢10gen的C# Driver";
+            MessageBox.Show(strThanks,"关于");
+        }
+        #endregion
     }
 }

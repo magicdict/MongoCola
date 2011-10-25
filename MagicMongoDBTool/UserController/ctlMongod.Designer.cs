@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grpLog = new System.Windows.Forms.GroupBox();
+            this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
             this.chkIsAppend = new System.Windows.Forms.CheckBox();
             this.lblPort = new System.Windows.Forms.Label();
             this.numPort = new System.Windows.Forms.NumericUpDown();
@@ -36,7 +37,6 @@
             this.chkIsSlave = new System.Windows.Forms.CheckBox();
             this.ctlFilePickerDBPath = new MagicMongoDBTool.ctlFilePicker();
             this.ctlFilePickerLogPath = new MagicMongoDBTool.ctlFilePicker();
-            this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
             this.grpLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.SuspendLayout();
@@ -52,10 +52,17 @@
             this.grpLog.TabStop = false;
             this.grpLog.Text = "日志";
             // 
+            // ctllogLvT
+            // 
+            this.ctllogLvT.Location = new System.Drawing.Point(256, 13);
+            this.ctllogLvT.Name = "ctllogLvT";
+            this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
+            this.ctllogLvT.TabIndex = 14;
+            // 
             // chkIsAppend
             // 
             this.chkIsAppend.AutoSize = true;
-            this.chkIsAppend.Location = new System.Drawing.Point(44, 19);
+            this.chkIsAppend.Location = new System.Drawing.Point(43, 25);
             this.chkIsAppend.Name = "chkIsAppend";
             this.chkIsAppend.Size = new System.Drawing.Size(206, 17);
             this.chkIsAppend.TabIndex = 0;
@@ -118,33 +125,31 @@
             // 
             // ctlFilePickerDBPath
             // 
+            this.ctlFilePickerDBPath.BackColor = System.Drawing.Color.Transparent;
             this.ctlFilePickerDBPath.Location = new System.Drawing.Point(26, 54);
             this.ctlFilePickerDBPath.Name = "ctlFilePickerDBPath";
             this.ctlFilePickerDBPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
+            this.ctlFilePickerDBPath.SelectedPath = "";
             this.ctlFilePickerDBPath.Size = new System.Drawing.Size(739, 27);
             this.ctlFilePickerDBPath.TabIndex = 15;
             this.ctlFilePickerDBPath.Title = "数据库路径";
             // 
             // ctlFilePickerLogPath
             // 
+            this.ctlFilePickerLogPath.BackColor = System.Drawing.Color.Transparent;
             this.ctlFilePickerLogPath.Location = new System.Drawing.Point(26, 83);
             this.ctlFilePickerLogPath.Name = "ctlFilePickerLogPath";
             this.ctlFilePickerLogPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.SaveFile;
+            this.ctlFilePickerLogPath.SelectedPath = "";
             this.ctlFilePickerLogPath.Size = new System.Drawing.Size(739, 37);
             this.ctlFilePickerLogPath.TabIndex = 14;
             this.ctlFilePickerLogPath.Title = "日志路径";
-            // 
-            // ctllogLvT
-            // 
-            this.ctllogLvT.Location = new System.Drawing.Point(256, 13);
-            this.ctllogLvT.Name = "ctllogLvT";
-            this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
-            this.ctllogLvT.TabIndex = 14;
             // 
             // ctlMongod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.ctlFilePickerDBPath);
             this.Controls.Add(this.ctlFilePickerLogPath);
             this.Controls.Add(this.chkIsSlave);

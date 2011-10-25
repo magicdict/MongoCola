@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShardingConfig));
             this.label1 = new System.Windows.Forms.Label();
             this.cmbKeyList = new System.Windows.Forms.ComboBox();
-            this.cmdCollectionSharding = new System.Windows.Forms.Button();
-            this.cmdEnableSharding = new System.Windows.Forms.Button();
+            this.cmdCollectionSharding = new System.Windows.Forms.VistaButton();
+            this.cmdEnableSharding = new System.Windows.Forms.VistaButton();
             this.cmbCollection = new System.Windows.Forms.ComboBox();
             this.cmbDataBase = new System.Windows.Forms.ComboBox();
             this.lblCollection = new System.Windows.Forms.Label();
@@ -52,12 +52,13 @@
             this.contentPanel.Controls.Add(this.lblCollection);
             this.contentPanel.Controls.Add(this.lblDBName);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(723, 316);
+            this.contentPanel.Size = new System.Drawing.Size(723, 149);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(91, 114);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(22, 109);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 26;
@@ -66,37 +67,37 @@
             // cmbKeyList
             // 
             this.cmbKeyList.FormattingEnabled = true;
-            this.cmbKeyList.Location = new System.Drawing.Point(173, 106);
+            this.cmbKeyList.Location = new System.Drawing.Point(106, 106);
             this.cmbKeyList.Name = "cmbKeyList";
-            this.cmbKeyList.Size = new System.Drawing.Size(286, 21);
+            this.cmbKeyList.Size = new System.Drawing.Size(353, 21);
             this.cmbKeyList.TabIndex = 25;
             // 
             // cmdCollectionSharding
             // 
+            this.cmdCollectionSharding.BackColor = System.Drawing.Color.Transparent;
             this.cmdCollectionSharding.Location = new System.Drawing.Point(485, 70);
             this.cmdCollectionSharding.Name = "cmdCollectionSharding";
-            this.cmdCollectionSharding.Size = new System.Drawing.Size(85, 21);
+            this.cmdCollectionSharding.Size = new System.Drawing.Size(85, 30);
             this.cmdCollectionSharding.TabIndex = 24;
             this.cmdCollectionSharding.Text = "数据集分片";
-            this.cmdCollectionSharding.UseVisualStyleBackColor = true;
             this.cmdCollectionSharding.Click += new System.EventHandler(this.cmdCollectionSharding_Click);
             // 
             // cmdEnableSharding
             // 
+            this.cmdEnableSharding.BackColor = System.Drawing.Color.Transparent;
             this.cmdEnableSharding.Location = new System.Drawing.Point(485, 31);
             this.cmdEnableSharding.Name = "cmdEnableSharding";
-            this.cmdEnableSharding.Size = new System.Drawing.Size(85, 23);
+            this.cmdEnableSharding.Size = new System.Drawing.Size(85, 33);
             this.cmdEnableSharding.TabIndex = 23;
             this.cmdEnableSharding.Text = "数据库分片";
-            this.cmdEnableSharding.UseVisualStyleBackColor = true;
             this.cmdEnableSharding.Click += new System.EventHandler(this.cmdEnableSharding_Click);
             // 
             // cmbCollection
             // 
             this.cmbCollection.FormattingEnabled = true;
-            this.cmbCollection.Location = new System.Drawing.Point(145, 70);
+            this.cmbCollection.Location = new System.Drawing.Point(106, 70);
             this.cmbCollection.Name = "cmbCollection";
-            this.cmbCollection.Size = new System.Drawing.Size(314, 21);
+            this.cmbCollection.Size = new System.Drawing.Size(353, 21);
             this.cmbCollection.TabIndex = 22;
             // 
             // cmbDataBase
@@ -110,7 +111,8 @@
             // lblCollection
             // 
             this.lblCollection.AutoSize = true;
-            this.lblCollection.Location = new System.Drawing.Point(55, 74);
+            this.lblCollection.BackColor = System.Drawing.Color.Transparent;
+            this.lblCollection.Location = new System.Drawing.Point(22, 70);
             this.lblCollection.Name = "lblCollection";
             this.lblCollection.Size = new System.Drawing.Size(67, 13);
             this.lblCollection.TabIndex = 20;
@@ -119,6 +121,7 @@
             // lblDBName
             // 
             this.lblDBName.AutoSize = true;
+            this.lblDBName.BackColor = System.Drawing.Color.Transparent;
             this.lblDBName.Location = new System.Drawing.Point(22, 34);
             this.lblDBName.Name = "lblDBName";
             this.lblDBName.Size = new System.Drawing.Size(67, 13);
@@ -129,9 +132,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 379);
+            this.ClientSize = new System.Drawing.Size(725, 212);
             this.Location = new System.Drawing.Point(0, 0);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmShardingConfig";
+            this.ShowSelectSkinButton = false;
             this.Text = "frmShardingConfig";
             this.Load += new System.EventHandler(this.frmShardingConfig_Load);
             this.contentPanel.ResumeLayout(false);
@@ -144,8 +150,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbKeyList;
-        private System.Windows.Forms.Button cmdCollectionSharding;
-        private System.Windows.Forms.Button cmdEnableSharding;
+        private System.Windows.Forms.VistaButton cmdCollectionSharding;
+        private System.Windows.Forms.VistaButton cmdEnableSharding;
         private System.Windows.Forms.ComboBox cmbCollection;
         private System.Windows.Forms.ComboBox cmbDataBase;
         private System.Windows.Forms.Label lblCollection;

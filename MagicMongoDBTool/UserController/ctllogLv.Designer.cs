@@ -44,6 +44,7 @@
             // 
             // trbLogLv
             // 
+            this.trbLogLv.BackColor = System.Drawing.Color.White;
             this.trbLogLv.LargeChange = 1;
             this.trbLogLv.Location = new System.Drawing.Point(109, 3);
             this.trbLogLv.Name = "trbLogLv";

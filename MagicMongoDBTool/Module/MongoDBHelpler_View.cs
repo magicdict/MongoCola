@@ -500,13 +500,18 @@ namespace MagicMongoDBTool.Module
         private static void SetUserListToListView(List<BsonDocument> DataList, ListView lstData)
         {
             lstData.Clear();
+            lstData.Columns.Add("ID");
             lstData.Columns.Add("用户名");
             lstData.Columns.Add("是否只读");
+            //密码是明码表示的，这里可能会有安全隐患
+            lstData.Columns.Add("密码");
             foreach (BsonDocument docfile in DataList)
             {
                 ListViewItem lstItem = new ListViewItem();
-                lstItem.Text = docfile.GetValue("user").ToString();
+                lstItem.Text = docfile.GetValue("_id").ToString();
+                lstItem.SubItems.Add(docfile.GetValue("user").ToString());
                 lstItem.SubItems.Add(docfile.GetValue("readOnly").ToString());
+                lstItem.SubItems.Add(docfile.GetValue("pwd").ToString());
                 lstData.Items.Add(lstItem);
             }
         }

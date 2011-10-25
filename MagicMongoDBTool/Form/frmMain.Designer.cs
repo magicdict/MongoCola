@@ -50,6 +50,8 @@
             this.ServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddUserToAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveUserFromAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +76,8 @@
             this.AddShardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShardConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapReduceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
@@ -140,7 +144,8 @@
             this.DataNaviToolStripMenuItem,
             this.ManageToolStripMenuItem,
             this.ToolToolStripMenuItem,
-            this.ShardingToolStripMenuItem});
+            this.ShardingToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
             this.menuStripMain.Size = new System.Drawing.Size(915, 24);
@@ -149,6 +154,7 @@
             // 
             // ConnectionStatusToolStripMenuItem
             // 
+            this.ConnectionStatusToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.ConnectionStatusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddConnectionToolStripMenuItem,
             this.SrvStatusToolStripMenuItem,
@@ -161,6 +167,7 @@
             // 
             // AddConnectionToolStripMenuItem
             // 
+            this.AddConnectionToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.AddConnectionToolStripMenuItem.Name = "AddConnectionToolStripMenuItem";
             this.AddConnectionToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.AddConnectionToolStripMenuItem.Text = "添加数据连接(&A)";
@@ -262,7 +269,9 @@
             // 
             this.ServerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ShutDownToolStripMenuItem,
-            this.CreateMongoDBToolStripMenuItem});
+            this.CreateMongoDBToolStripMenuItem,
+            this.AddUserToAdminToolStripMenuItem,
+            this.RemoveUserFromAdminToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
             this.ServerToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.ServerToolStripMenuItem.Text = "服务器";
@@ -270,16 +279,30 @@
             // ShutDownToolStripMenuItem
             // 
             this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
-            this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.ShutDownToolStripMenuItem.Text = "关闭服务器";
             this.ShutDownToolStripMenuItem.Click += new System.EventHandler(this.ShutDownToolStripMenuItem_Click);
             // 
             // CreateMongoDBToolStripMenuItem
             // 
             this.CreateMongoDBToolStripMenuItem.Name = "CreateMongoDBToolStripMenuItem";
-            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.CreateMongoDBToolStripMenuItem.Text = "添加数据库";
             this.CreateMongoDBToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoDBToolStripMenuItem_Click);
+            // 
+            // AddUserToAdminToolStripMenuItem
+            // 
+            this.AddUserToAdminToolStripMenuItem.Name = "AddUserToAdminToolStripMenuItem";
+            this.AddUserToAdminToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.AddUserToAdminToolStripMenuItem.Text = "添加用户到Admin";
+            this.AddUserToAdminToolStripMenuItem.Click += new System.EventHandler(this.AddUserToAdminToolStripMenuItem_Click);
+            // 
+            // RemoveUserFromAdminToolStripMenuItem
+            // 
+            this.RemoveUserFromAdminToolStripMenuItem.Name = "RemoveUserFromAdminToolStripMenuItem";
+            this.RemoveUserFromAdminToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.RemoveUserFromAdminToolStripMenuItem.Text = "从Admin删除用户";
+            this.RemoveUserFromAdminToolStripMenuItem.Click += new System.EventHandler(this.DelUserFromAdminToolStripMenuItem_Click);
             // 
             // DataBaseToolStripMenuItem
             // 
@@ -439,30 +462,45 @@
             // ReplicaSetToolStripMenuItem
             // 
             this.ReplicaSetToolStripMenuItem.Name = "ReplicaSetToolStripMenuItem";
-            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ReplicaSetToolStripMenuItem.Text = "初始化副本";
             this.ReplicaSetToolStripMenuItem.Click += new System.EventHandler(this.ReplicaSetToolStripMenuItem_Click);
             // 
             // AddShardingToolStripMenuItem
             // 
             this.AddShardingToolStripMenuItem.Name = "AddShardingToolStripMenuItem";
-            this.AddShardingToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.AddShardingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.AddShardingToolStripMenuItem.Text = "添加分片";
             this.AddShardingToolStripMenuItem.Click += new System.EventHandler(this.AddShardingToolStripMenuItem_Click);
             // 
             // ShardConfigToolStripMenuItem
             // 
             this.ShardConfigToolStripMenuItem.Name = "ShardConfigToolStripMenuItem";
-            this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ShardConfigToolStripMenuItem.Text = "配置分片数据";
             this.ShardConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardConfigToolStripMenuItem_Click);
             // 
             // mapReduceToolStripMenuItem
             // 
             this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
-            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mapReduceToolStripMenuItem.Text = "MapReduce";
             this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.helpToolStripMenuItem.Text = "帮助";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "关于";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // contextMenuStripMain
             // 
@@ -489,6 +527,7 @@
             // 
             // trvsrvlst
             // 
+            this.trvsrvlst.BackColor = System.Drawing.Color.White;
             this.trvsrvlst.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvsrvlst.Location = new System.Drawing.Point(0, 0);
             this.trvsrvlst.Name = "trvsrvlst";
@@ -509,14 +548,15 @@
             // 
             // tabTreeView
             // 
+            this.tabTreeView.BackColor = System.Drawing.Color.Orange;
             this.tabTreeView.Controls.Add(this.trvData);
+            this.tabTreeView.ForeColor = System.Drawing.Color.Orange;
             this.tabTreeView.Location = new System.Drawing.Point(4, 22);
             this.tabTreeView.Name = "tabTreeView";
             this.tabTreeView.Padding = new System.Windows.Forms.Padding(3);
             this.tabTreeView.Size = new System.Drawing.Size(600, 432);
             this.tabTreeView.TabIndex = 0;
             this.tabTreeView.Text = "TreeView";
-            this.tabTreeView.UseVisualStyleBackColor = true;
             // 
             // trvData
             // 
@@ -528,14 +568,15 @@
             // 
             // tabTableView
             // 
+            this.tabTableView.BackColor = System.Drawing.Color.LightSkyBlue;
             this.tabTableView.Controls.Add(this.lstData);
+            this.tabTableView.ForeColor = System.Drawing.Color.LightSkyBlue;
             this.tabTableView.Location = new System.Drawing.Point(4, 22);
             this.tabTableView.Name = "tabTableView";
             this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
             this.tabTableView.Size = new System.Drawing.Size(600, 432);
             this.tabTableView.TabIndex = 1;
             this.tabTableView.Text = "TableView";
-            this.tabTableView.UseVisualStyleBackColor = true;
             // 
             // lstData
             // 
@@ -552,14 +593,15 @@
             // 
             // tabTextView
             // 
+            this.tabTextView.BackColor = System.Drawing.Color.Yellow;
             this.tabTextView.Controls.Add(this.txtData);
+            this.tabTextView.ForeColor = System.Drawing.Color.Yellow;
             this.tabTextView.Location = new System.Drawing.Point(4, 22);
             this.tabTextView.Name = "tabTextView";
             this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
             this.tabTextView.Size = new System.Drawing.Size(600, 432);
             this.tabTextView.TabIndex = 2;
             this.tabTextView.Text = "TextView";
-            this.tabTextView.UseVisualStyleBackColor = true;
             // 
             // txtData
             // 
@@ -579,8 +621,11 @@
             this.ClientSize = new System.Drawing.Size(917, 570);
             this.Controls.Add(this.statusStripMain);
             this.Location = new System.Drawing.Point(0, 0);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMain";
-            this.Text = "frmMain";
+            this.ShowSelectSkinButton = false;
+            this.Text = "MagicMongoDBTool-Beta1";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.Controls.SetChildIndex(this.contentPanel, 0);
             this.Controls.SetChildIndex(this.statusStripMain, 0);
@@ -660,5 +705,9 @@
         private System.Windows.Forms.ListView lstData;
         private System.Windows.Forms.TabPage tabTextView;
         private System.Windows.Forms.TextBox txtData;
+        private System.Windows.Forms.ToolStripMenuItem AddUserToAdminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RemoveUserFromAdminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }

@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddSharding));
             this.cmbReplsetName = new System.Windows.Forms.ComboBox();
             this.lblReplsetName = new System.Windows.Forms.Label();
-            this.cmdInitReplset = new System.Windows.Forms.Button();
+            this.cmdInitReplset = new System.Windows.Forms.VistaButton();
             this.lstShard = new System.Windows.Forms.ListBox();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
@@ -66,12 +66,11 @@
             // 
             // cmdInitReplset
             // 
-            this.cmdInitReplset.Location = new System.Drawing.Point(124, 188);
+            this.cmdInitReplset.Location = new System.Drawing.Point(155, 187);
             this.cmdInitReplset.Name = "cmdInitReplset";
-            this.cmdInitReplset.Size = new System.Drawing.Size(187, 23);
+            this.cmdInitReplset.Size = new System.Drawing.Size(119, 29);
             this.cmdInitReplset.TabIndex = 13;
             this.cmdInitReplset.Text = "添加Sharding";
-            this.cmdInitReplset.UseVisualStyleBackColor = true;
             this.cmdInitReplset.Click += new System.EventHandler(this.cmdInitReplset_Click);
             // 
             // lstShard
@@ -89,7 +88,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 323);
             this.Location = new System.Drawing.Point(0, 0);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmAddSharding";
+            this.ShowSelectSkinButton = false;
             this.Text = "frmAddSharding";
             this.Load += new System.EventHandler(this.frmAddSharding_Load);
             this.contentPanel.ResumeLayout(false);
@@ -102,7 +104,7 @@
 
         private System.Windows.Forms.ComboBox cmbReplsetName;
         private System.Windows.Forms.Label lblReplsetName;
-        private System.Windows.Forms.Button cmdInitReplset;
+        private System.Windows.Forms.VistaButton cmdInitReplset;
         private System.Windows.Forms.ListBox lstShard;
     }
 }

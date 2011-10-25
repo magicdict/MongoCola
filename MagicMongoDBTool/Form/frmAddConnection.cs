@@ -16,6 +16,7 @@ namespace MagicMongoDBTool
         public frmAddConnection()
         {
             InitializeComponent();
+            cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
         }
         public frmAddConnection(String ConnectionName)
         {
@@ -29,8 +30,7 @@ namespace MagicMongoDBTool
             cmdAdd.Text = "修改";
             chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
             txtReplSet.Text = ModifyConn.ReplSetName;
-
-
+            cmdCancel.Click +=new EventHandler((x,y)=>{this.Close();});
             switch (ModifyConn.ServerType)
             {
                 case ConfigHelper.SrvType.ConfigSrv:
@@ -46,9 +46,7 @@ namespace MagicMongoDBTool
             }
 
         }
-        private void cmdCancel_Click(object sender, EventArgs e) { 
-        
-        }
+
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             ModifyConn.HostName = txtHostName.Text;

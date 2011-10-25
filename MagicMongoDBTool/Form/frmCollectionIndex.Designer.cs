@@ -32,8 +32,8 @@
             this.chkAsc = new System.Windows.Forms.CheckBox();
             this.txtIndexKey = new System.Windows.Forms.TextBox();
             this.lblIndexKey = new System.Windows.Forms.Label();
-            this.cmdAddIndex = new System.Windows.Forms.Button();
-            this.cmdDelIndex = new System.Windows.Forms.Button();
+            this.cmdAddIndex = new System.Windows.Forms.VistaButton();
+            this.cmdDelIndex = new System.Windows.Forms.VistaButton();
             this.lstIndex = new System.Windows.Forms.ListView();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +53,7 @@
             // chkAsc
             // 
             this.chkAsc.AutoSize = true;
+            this.chkAsc.BackColor = System.Drawing.Color.Transparent;
             this.chkAsc.Checked = true;
             this.chkAsc.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkAsc.Location = new System.Drawing.Point(179, 223);
@@ -60,7 +61,7 @@
             this.chkAsc.Size = new System.Drawing.Size(50, 17);
             this.chkAsc.TabIndex = 11;
             this.chkAsc.Text = "升序";
-            this.chkAsc.UseVisualStyleBackColor = true;
+            this.chkAsc.UseVisualStyleBackColor = false;
             // 
             // txtIndexKey
             // 
@@ -72,6 +73,7 @@
             // lblIndexKey
             // 
             this.lblIndexKey.AutoSize = true;
+            this.lblIndexKey.BackColor = System.Drawing.Color.Transparent;
             this.lblIndexKey.Location = new System.Drawing.Point(21, 224);
             this.lblIndexKey.Name = "lblIndexKey";
             this.lblIndexKey.Size = new System.Drawing.Size(43, 13);
@@ -80,22 +82,22 @@
             // 
             // cmdAddIndex
             // 
-            this.cmdAddIndex.Location = new System.Drawing.Point(257, 219);
+            this.cmdAddIndex.BackColor = System.Drawing.Color.Transparent;
+            this.cmdAddIndex.Location = new System.Drawing.Point(245, 221);
             this.cmdAddIndex.Name = "cmdAddIndex";
-            this.cmdAddIndex.Size = new System.Drawing.Size(75, 23);
+            this.cmdAddIndex.Size = new System.Drawing.Size(75, 35);
             this.cmdAddIndex.TabIndex = 8;
             this.cmdAddIndex.Text = "添加索引";
-            this.cmdAddIndex.UseVisualStyleBackColor = true;
             this.cmdAddIndex.Click += new System.EventHandler(this.cmdAddIndex_Click);
             // 
             // cmdDelIndex
             // 
-            this.cmdDelIndex.Location = new System.Drawing.Point(351, 219);
+            this.cmdDelIndex.BackColor = System.Drawing.Color.Transparent;
+            this.cmdDelIndex.Location = new System.Drawing.Point(326, 221);
             this.cmdDelIndex.Name = "cmdDelIndex";
-            this.cmdDelIndex.Size = new System.Drawing.Size(75, 23);
+            this.cmdDelIndex.Size = new System.Drawing.Size(75, 35);
             this.cmdDelIndex.TabIndex = 7;
             this.cmdDelIndex.Text = "删除索引";
-            this.cmdDelIndex.UseVisualStyleBackColor = true;
             this.cmdDelIndex.Click += new System.EventHandler(this.cmdDelIndex_Click);
             // 
             // lstIndex
@@ -113,7 +115,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 357);
             this.Location = new System.Drawing.Point(0, 0);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmCollectionIndex";
+            this.ShowSelectSkinButton = false;
             this.Text = "frmCollectionIndex";
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
@@ -126,8 +131,8 @@
         private System.Windows.Forms.CheckBox chkAsc;
         private System.Windows.Forms.TextBox txtIndexKey;
         private System.Windows.Forms.Label lblIndexKey;
-        private System.Windows.Forms.Button cmdAddIndex;
-        private System.Windows.Forms.Button cmdDelIndex;
+        private System.Windows.Forms.VistaButton cmdAddIndex;
+        private System.Windows.Forms.VistaButton cmdDelIndex;
         private System.Windows.Forms.ListView lstIndex;
     }
 }

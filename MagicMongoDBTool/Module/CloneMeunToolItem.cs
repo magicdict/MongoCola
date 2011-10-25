@@ -27,7 +27,7 @@ namespace MagicMongoDBTool.Module
 
             CloneMenuItem.Text = OrgMenuItem.Text;
             CloneMenuItem.Enabled = OrgMenuItem.Enabled;
-            
+            CloneMenuItem.BackgroundImage = OrgMenuItem.BackgroundImage;
             return CloneMenuItem;
         }
 

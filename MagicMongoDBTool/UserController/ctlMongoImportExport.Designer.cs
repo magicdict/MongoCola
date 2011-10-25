@@ -185,10 +185,12 @@
             // 
             // ctlFilePickerOutput
             // 
+            this.ctlFilePickerOutput.BackColor = System.Drawing.Color.Transparent;
             this.ctlFilePickerOutput.Location = new System.Drawing.Point(34, 107);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
             this.ctlFilePickerOutput.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.SaveFile;
-            this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 27);
+            this.ctlFilePickerOutput.SelectedPath = "";
+            this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 33);
             this.ctlFilePickerOutput.TabIndex = 1;
             this.ctlFilePickerOutput.Title = "工作文件：";
             // 
@@ -203,6 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.grpDirect);
             this.Controls.Add(this.txtFieldList);
             this.Controls.Add(this.lblFieldList);

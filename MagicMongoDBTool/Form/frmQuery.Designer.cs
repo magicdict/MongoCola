@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQuery));
-            this.cmdAddCondition = new System.Windows.Forms.Button();
+            this.cmdAddCondition = new System.Windows.Forms.VistaButton();
             this.grpFieldInfo = new System.Windows.Forms.GroupBox();
-            this.cmdOK = new System.Windows.Forms.Button();
+            this.cmdOK = new System.Windows.Forms.VistaButton();
             this.grpFilter = new System.Windows.Forms.GroupBox();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +53,7 @@
             this.cmdAddCondition.Size = new System.Drawing.Size(114, 23);
             this.cmdAddCondition.TabIndex = 14;
             this.cmdAddCondition.Text = "新增过滤条件";
-            this.cmdAddCondition.UseVisualStyleBackColor = true;
+            //this.cmdAddCondition.UseVisualStyleBackColor = true;
             this.cmdAddCondition.Click += new System.EventHandler(this.cmdAddCondition_Click);
             // 
             // grpFieldInfo
@@ -73,7 +73,7 @@
             this.cmdOK.Size = new System.Drawing.Size(108, 23);
             this.cmdOK.TabIndex = 12;
             this.cmdOK.Text = "确定";
-            this.cmdOK.UseVisualStyleBackColor = true;
+            //this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // grpFilter
@@ -102,9 +102,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button cmdAddCondition;
+        private System.Windows.Forms.VistaButton cmdAddCondition;
         private System.Windows.Forms.GroupBox grpFieldInfo;
-        private System.Windows.Forms.Button cmdOK;
+        private System.Windows.Forms.VistaButton cmdOK;
         private System.Windows.Forms.GroupBox grpFilter;
     }
 }

@@ -50,10 +50,12 @@
             // 
             // ctlFilePickerOutput
             // 
-            this.ctlFilePickerOutput.Location = new System.Drawing.Point(34, 107);
+            this.ctlFilePickerOutput.BackColor = System.Drawing.Color.Transparent;
+            this.ctlFilePickerOutput.Location = new System.Drawing.Point(33, 98);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
             this.ctlFilePickerOutput.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
-            this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 27);
+            this.ctlFilePickerOutput.SelectedPath = "";
+            this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 41);
             this.ctlFilePickerOutput.TabIndex = 1;
             this.ctlFilePickerOutput.Title = "备份路径";
             // 
@@ -145,6 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.txtCollectionName);
             this.Controls.Add(this.lblCollectionName);
             this.Controls.Add(this.txtDBName);
@@ -156,7 +159,7 @@
             this.Controls.Add(this.ctlFilePickerOutput);
             this.Controls.Add(this.ctllogLvT);
             this.Name = "ctlMongodump";
-            this.Size = new System.Drawing.Size(800, 195);
+            this.Size = new System.Drawing.Size(800, 200);
             this.Load += new System.EventHandler(this.ctlMongodump_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
             this.ResumeLayout(false);

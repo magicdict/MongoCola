@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmImportOleDB));
-            this.cmdOK = new System.Windows.Forms.Button();
+            this.cmdOK = new System.Windows.Forms.VistaButton();
             this.ctlFilePickerDBName = new MagicMongoDBTool.ctlFilePicker();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
@@ -44,31 +44,35 @@
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(601, 60);
+            this.cmdOK.BackColor = System.Drawing.Color.Transparent;
+            this.cmdOK.Location = new System.Drawing.Point(607, 66);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(84, 25);
+            this.cmdOK.Size = new System.Drawing.Size(78, 29);
             this.cmdOK.TabIndex = 3;
             this.cmdOK.Text = "确定";
-            this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // ctlFilePickerDBName
             // 
+            this.ctlFilePickerDBName.BackColor = System.Drawing.Color.Transparent;
             this.ctlFilePickerDBName.Location = new System.Drawing.Point(38, 27);
             this.ctlFilePickerDBName.Name = "ctlFilePickerDBName";
             this.ctlFilePickerDBName.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.OpenFile;
             this.ctlFilePickerDBName.SelectedPath = "";
-            this.ctlFilePickerDBName.Size = new System.Drawing.Size(739, 27);
+            this.ctlFilePickerDBName.Size = new System.Drawing.Size(739, 33);
             this.ctlFilePickerDBName.TabIndex = 2;
             this.ctlFilePickerDBName.Title = "数据库文件";
             // 
-            // frnImportOleDB
+            // frmImportOleDB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(851, 172);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "frnImportOleDB";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmImportOleDB";
+            this.ShowSelectSkinButton = false;
             this.Text = "frnImportOleDB";
             this.contentPanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -77,7 +81,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button cmdOK;
+        private System.Windows.Forms.VistaButton cmdOK;
         private ctlFilePicker ctlFilePickerDBName;
     }
 }
