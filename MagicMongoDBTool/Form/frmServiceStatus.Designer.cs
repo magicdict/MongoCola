@@ -70,8 +70,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 467);
             this.Location = new System.Drawing.Point(0, 0);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmServiceStatus";
-            this.Text = "frmServiceStatus";
+            this.ShowSelectSkinButton = false;
+            this.Text = "服务器状态";
             this.Load += new System.EventHandler(this.frmServiceStatus_Load);
             this.contentPanel.ResumeLayout(false);
             this.ResumeLayout(false);

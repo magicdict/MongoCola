@@ -73,7 +73,7 @@
             this.MinimizeBox = false;
             this.Name = "frmImportOleDB";
             this.ShowSelectSkinButton = false;
-            this.Text = "frnImportOleDB";
+            this.Text = "数据导入";
             this.contentPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 

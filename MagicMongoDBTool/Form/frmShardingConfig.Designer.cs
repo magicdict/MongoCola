@@ -70,7 +70,7 @@
             this.cmbKeyList.Location = new System.Drawing.Point(106, 106);
             this.cmbKeyList.Name = "cmbKeyList";
             this.cmbKeyList.Size = new System.Drawing.Size(353, 21);
-            this.cmbKeyList.TabIndex = 25;
+            this.cmbKeyList.TabIndex = 3;
             // 
             // cmdCollectionSharding
             // 
@@ -78,7 +78,7 @@
             this.cmdCollectionSharding.Location = new System.Drawing.Point(485, 70);
             this.cmdCollectionSharding.Name = "cmdCollectionSharding";
             this.cmdCollectionSharding.Size = new System.Drawing.Size(85, 30);
-            this.cmdCollectionSharding.TabIndex = 24;
+            this.cmdCollectionSharding.TabIndex = 4;
             this.cmdCollectionSharding.Text = "数据集分片";
             this.cmdCollectionSharding.Click += new System.EventHandler(this.cmdCollectionSharding_Click);
             // 
@@ -88,7 +88,7 @@
             this.cmdEnableSharding.Location = new System.Drawing.Point(485, 31);
             this.cmdEnableSharding.Name = "cmdEnableSharding";
             this.cmdEnableSharding.Size = new System.Drawing.Size(85, 33);
-            this.cmdEnableSharding.TabIndex = 23;
+            this.cmdEnableSharding.TabIndex = 1;
             this.cmdEnableSharding.Text = "数据库分片";
             this.cmdEnableSharding.Click += new System.EventHandler(this.cmdEnableSharding_Click);
             // 
@@ -98,7 +98,7 @@
             this.cmbCollection.Location = new System.Drawing.Point(106, 70);
             this.cmbCollection.Name = "cmbCollection";
             this.cmbCollection.Size = new System.Drawing.Size(353, 21);
-            this.cmbCollection.TabIndex = 22;
+            this.cmbCollection.TabIndex = 2;
             // 
             // cmbDataBase
             // 
@@ -106,7 +106,7 @@
             this.cmbDataBase.Location = new System.Drawing.Point(106, 31);
             this.cmbDataBase.Name = "cmbDataBase";
             this.cmbDataBase.Size = new System.Drawing.Size(353, 21);
-            this.cmbDataBase.TabIndex = 21;
+            this.cmbDataBase.TabIndex = 0;
             // 
             // lblCollection
             // 
@@ -138,7 +138,7 @@
             this.MinimizeBox = false;
             this.Name = "frmShardingConfig";
             this.ShowSelectSkinButton = false;
-            this.Text = "frmShardingConfig";
+            this.Text = "数据分片管理";
             this.Load += new System.EventHandler(this.frmShardingConfig_Load);
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();

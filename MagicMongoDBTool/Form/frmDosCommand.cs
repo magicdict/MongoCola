@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+using System.IO;
 namespace MagicMongoDBTool
 {
     public partial class frmDosCommand : QLFUI.QLFForm
     {
+        public String strSaveText = string.Empty; 
         public delegate void CommandChangedEventHandler(string strCommandLine);
         public frmDosCommand()
         {
@@ -31,6 +33,7 @@ namespace MagicMongoDBTool
         void CommandChanged(string strCommandLine)
         {
             this.txtDosCommand.Text = strCommandLine;
+            strSaveText = strCommandLine;
         }
         /// <summary>
         /// 运行
@@ -47,7 +50,19 @@ namespace MagicMongoDBTool
                 this.txtDosCommand.Text += sb.ToString();
             }
         }
-
-
+        /// <summary>
+        /// 保存配置文件内容
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog savefile = new SaveFileDialog();
+            if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                StreamWriter save = new StreamWriter(savefile.FileName);
+                save.Write(strSaveText);
+                save.Close();
+            }
+        }
     }
 }

@@ -462,28 +462,28 @@
             // ReplicaSetToolStripMenuItem
             // 
             this.ReplicaSetToolStripMenuItem.Name = "ReplicaSetToolStripMenuItem";
-            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.ReplicaSetToolStripMenuItem.Text = "初始化副本";
             this.ReplicaSetToolStripMenuItem.Click += new System.EventHandler(this.ReplicaSetToolStripMenuItem_Click);
             // 
             // AddShardingToolStripMenuItem
             // 
             this.AddShardingToolStripMenuItem.Name = "AddShardingToolStripMenuItem";
-            this.AddShardingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AddShardingToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.AddShardingToolStripMenuItem.Text = "添加分片";
             this.AddShardingToolStripMenuItem.Click += new System.EventHandler(this.AddShardingToolStripMenuItem_Click);
             // 
             // ShardConfigToolStripMenuItem
             // 
             this.ShardConfigToolStripMenuItem.Name = "ShardConfigToolStripMenuItem";
-            this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.ShardConfigToolStripMenuItem.Text = "配置分片数据";
             this.ShardConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardConfigToolStripMenuItem_Click);
             // 
             // mapReduceToolStripMenuItem
             // 
             this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
-            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.mapReduceToolStripMenuItem.Text = "MapReduce";
             this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
             // 
@@ -498,7 +498,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.aboutToolStripMenuItem.Text = "关于";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -621,8 +621,6 @@
             this.ClientSize = new System.Drawing.Size(917, 570);
             this.Controls.Add(this.statusStripMain);
             this.Location = new System.Drawing.Point(0, 0);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmMain";
             this.ShowSelectSkinButton = false;
             this.Text = "MagicMongoDBTool-Beta1";

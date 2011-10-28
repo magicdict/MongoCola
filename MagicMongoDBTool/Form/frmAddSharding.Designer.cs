@@ -52,12 +52,13 @@
             this.cmbReplsetName.Location = new System.Drawing.Point(135, 49);
             this.cmbReplsetName.Name = "cmbReplsetName";
             this.cmbReplsetName.Size = new System.Drawing.Size(246, 21);
-            this.cmbReplsetName.TabIndex = 15;
+            this.cmbReplsetName.TabIndex = 0;
             this.cmbReplsetName.SelectedIndexChanged += new System.EventHandler(this.cmbReplsetName_SelectedIndexChanged);
             // 
             // lblReplsetName
             // 
             this.lblReplsetName.AutoSize = true;
+            this.lblReplsetName.BackColor = System.Drawing.Color.Transparent;
             this.lblReplsetName.Location = new System.Drawing.Point(49, 52);
             this.lblReplsetName.Name = "lblReplsetName";
             this.lblReplsetName.Size = new System.Drawing.Size(55, 13);
@@ -66,10 +67,11 @@
             // 
             // cmdInitReplset
             // 
+            this.cmdInitReplset.BackColor = System.Drawing.Color.Transparent;
             this.cmdInitReplset.Location = new System.Drawing.Point(155, 187);
             this.cmdInitReplset.Name = "cmdInitReplset";
             this.cmdInitReplset.Size = new System.Drawing.Size(119, 29);
-            this.cmdInitReplset.TabIndex = 13;
+            this.cmdInitReplset.TabIndex = 2;
             this.cmdInitReplset.Text = "添加Sharding";
             this.cmdInitReplset.Click += new System.EventHandler(this.cmdInitReplset_Click);
             // 
@@ -80,7 +82,7 @@
             this.lstShard.Name = "lstShard";
             this.lstShard.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lstShard.Size = new System.Drawing.Size(335, 95);
-            this.lstShard.TabIndex = 12;
+            this.lstShard.TabIndex = 1;
             // 
             // frmAddSharding
             // 
@@ -92,7 +94,7 @@
             this.MinimizeBox = false;
             this.Name = "frmAddSharding";
             this.ShowSelectSkinButton = false;
-            this.Text = "frmAddSharding";
+            this.Text = "添加分片";
             this.Load += new System.EventHandler(this.frmAddSharding_Load);
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();

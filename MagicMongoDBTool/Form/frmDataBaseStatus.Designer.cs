@@ -57,8 +57,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 428);
             this.Location = new System.Drawing.Point(0, 0);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmDataBaseStatus";
-            this.Text = "frmDataBaseStatus";
+            this.ShowSelectSkinButton = false;
+            this.Text = "数据库状态";
             this.Load += new System.EventHandler(this.frmDataBaseStatus_Load);
             this.contentPanel.ResumeLayout(false);
             this.ResumeLayout(false);

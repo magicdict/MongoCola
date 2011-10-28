@@ -45,7 +45,7 @@
             // 
             this.grpLog.Controls.Add(this.ctllogLvT);
             this.grpLog.Controls.Add(this.chkIsAppend);
-            this.grpLog.Location = new System.Drawing.Point(19, 122);
+            this.grpLog.Location = new System.Drawing.Point(19, 123);
             this.grpLog.Name = "grpLog";
             this.grpLog.Size = new System.Drawing.Size(730, 70);
             this.grpLog.TabIndex = 0;
@@ -126,18 +126,18 @@
             // ctlFilePickerDBPath
             // 
             this.ctlFilePickerDBPath.BackColor = System.Drawing.Color.Transparent;
-            this.ctlFilePickerDBPath.Location = new System.Drawing.Point(26, 54);
+            this.ctlFilePickerDBPath.Location = new System.Drawing.Point(26, 52);
             this.ctlFilePickerDBPath.Name = "ctlFilePickerDBPath";
             this.ctlFilePickerDBPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
             this.ctlFilePickerDBPath.SelectedPath = "";
-            this.ctlFilePickerDBPath.Size = new System.Drawing.Size(739, 27);
+            this.ctlFilePickerDBPath.Size = new System.Drawing.Size(739, 35);
             this.ctlFilePickerDBPath.TabIndex = 15;
             this.ctlFilePickerDBPath.Title = "数据库路径";
             // 
             // ctlFilePickerLogPath
             // 
             this.ctlFilePickerLogPath.BackColor = System.Drawing.Color.Transparent;
-            this.ctlFilePickerLogPath.Location = new System.Drawing.Point(26, 83);
+            this.ctlFilePickerLogPath.Location = new System.Drawing.Point(26, 87);
             this.ctlFilePickerLogPath.Name = "ctlFilePickerLogPath";
             this.ctlFilePickerLogPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.SaveFile;
             this.ctlFilePickerLogPath.SelectedPath = "";

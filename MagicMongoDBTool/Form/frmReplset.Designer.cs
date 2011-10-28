@@ -56,12 +56,12 @@
             // 
             // cmdInitReplset
             // 
+            this.cmdInitReplset.BackColor = System.Drawing.Color.Transparent;
             this.cmdInitReplset.Location = new System.Drawing.Point(116, 191);
             this.cmdInitReplset.Name = "cmdInitReplset";
             this.cmdInitReplset.Size = new System.Drawing.Size(138, 28);
             this.cmdInitReplset.TabIndex = 7;
             this.cmdInitReplset.Text = "初始化副本";
-            //this.cmdInitReplset.UseVisualStyleBackColor = true;
             this.cmdInitReplset.Click += new System.EventHandler(this.cmdInitReplset_Click);
             // 
             // lstShard
@@ -83,7 +83,7 @@
             this.MinimizeBox = false;
             this.Name = "frmReplset";
             this.ShowSelectSkinButton = false;
-            this.Text = "frmReplset";
+            this.Text = "初始化副本";
             this.Load += new System.EventHandler(this.frmReplset_Load);
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();

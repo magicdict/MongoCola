@@ -19,11 +19,12 @@ namespace MagicMongoDBTool.Module
         public static void AddUserToSrv(String strDBPath, String strUser, String Password, Boolean IsReadOnly)
         {
             MongoServer mongosrv = SystemManager.getCurrentService();
-            MongoDatabase mongodb = mongosrv.GetDatabase("admin");
-            MongoUser newUser = new MongoUser(strUser, Password, IsReadOnly);
-            if (mongodb.FindUser(strUser) == null)
+            //必须使用MongoCredentials来添加用户不然的话，Password将使用明文登入到数据库中！
+            //这样的话，在使用MongoCredentials登入的时候，会发生密码错误引发的认证失败
+            MongoCredentials newUser = new MongoCredentials(strUser, Password,true);
+            if (mongosrv.AdminDatabase.FindUser(strUser) == null)
             {
-                mongodb.AddUser(newUser);
+                mongosrv.AdminDatabase.AddUser(newUser,IsReadOnly);
             }
         }
         /// <summary>
@@ -34,10 +35,9 @@ namespace MagicMongoDBTool.Module
         public static void RemoveUserFromSrv(String strDBPath, String strUser)
         {
             MongoServer mongosrv = SystemManager.getCurrentService();
-            MongoDatabase mongodb = mongosrv.GetDatabase("admin");
-            if (mongodb.FindUser(strUser) != null)
+            if (mongosrv.AdminDatabase.FindUser(strUser) != null)
             {
-                mongodb.RemoveUser(strUser);
+                mongosrv.AdminDatabase.RemoveUser(strUser);
             }
         }
         /// <summary>
@@ -50,10 +50,10 @@ namespace MagicMongoDBTool.Module
         public static void AddUserToDB(String strDBPath, String strUser, String Password, Boolean IsReadOnly)
         {
             MongoDatabase mongodb = GetMongoDBBySvrPath(strDBPath, true);
-            MongoUser newUser = new MongoUser(strUser, Password, IsReadOnly);
+            MongoCredentials newUser = new MongoCredentials(strUser, Password, false);
             if (mongodb.FindUser(strUser) == null)
             {
-                mongodb.AddUser(newUser);
+                mongodb.AddUser(newUser,IsReadOnly);
             }
         }
 

@@ -33,12 +33,12 @@
             this.cmdRunDos = new System.Windows.Forms.VistaButton();
             this.tabFunction = new System.Windows.Forms.TabControl();
             this.tabMongod = new System.Windows.Forms.TabPage();
-            this.tabMongoDump = new System.Windows.Forms.TabPage();
-            this.tabMongoImportExport = new System.Windows.Forms.TabPage();
-            this.txtDosCommand = new System.Windows.Forms.TextBox();
             this.ctlMongodPanel = new MagicMongoDBTool.ctlMongod();
+            this.tabMongoDump = new System.Windows.Forms.TabPage();
             this.ctlMongodumpPanel = new MagicMongoDBTool.Module.ctlMongodump();
+            this.tabMongoImportExport = new System.Windows.Forms.TabPage();
             this.ctlMongoImportExportPanel = new MagicMongoDBTool.Module.ctlMongoImportExport();
+            this.txtDosCommand = new System.Windows.Forms.TextBox();
             this.contentPanel.SuspendLayout();
             this.tabFunction.SuspendLayout();
             this.tabMongod.SuspendLayout();
@@ -58,16 +58,19 @@
             // 
             // cmdSave
             // 
+            this.cmdSave.BackColor = System.Drawing.Color.Transparent;
             this.cmdSave.Enabled = false;
-            this.cmdSave.Location = new System.Drawing.Point(760, 322);
+            this.cmdSave.Location = new System.Drawing.Point(760, 283);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(96, 25);
+            this.cmdSave.Size = new System.Drawing.Size(96, 28);
             this.cmdSave.TabIndex = 7;
             this.cmdSave.Text = "保存";
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // cmdRunDos
             // 
-            this.cmdRunDos.Location = new System.Drawing.Point(760, 283);
+            this.cmdRunDos.BackColor = System.Drawing.Color.Transparent;
+            this.cmdRunDos.Location = new System.Drawing.Point(760, 317);
             this.cmdRunDos.Name = "cmdRunDos";
             this.cmdRunDos.Size = new System.Drawing.Size(96, 29);
             this.cmdRunDos.TabIndex = 6;
@@ -96,6 +99,14 @@
             this.tabMongod.Text = "部署（Mongod）";
             this.tabMongod.UseVisualStyleBackColor = true;
             // 
+            // ctlMongodPanel
+            // 
+            this.ctlMongodPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ctlMongodPanel.Location = new System.Drawing.Point(6, 6);
+            this.ctlMongodPanel.Name = "ctlMongodPanel";
+            this.ctlMongodPanel.Size = new System.Drawing.Size(831, 209);
+            this.ctlMongodPanel.TabIndex = 2;
+            // 
             // tabMongoDump
             // 
             this.tabMongoDump.Controls.Add(this.ctlMongodumpPanel);
@@ -106,6 +117,14 @@
             this.tabMongoDump.TabIndex = 1;
             this.tabMongoDump.Text = "备份与恢复(mongodump)";
             this.tabMongoDump.UseVisualStyleBackColor = true;
+            // 
+            // ctlMongodumpPanel
+            // 
+            this.ctlMongodumpPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ctlMongodumpPanel.Location = new System.Drawing.Point(16, 6);
+            this.ctlMongodumpPanel.Name = "ctlMongodumpPanel";
+            this.ctlMongodumpPanel.Size = new System.Drawing.Size(800, 200);
+            this.ctlMongodumpPanel.TabIndex = 0;
             // 
             // tabMongoImportExport
             // 
@@ -118,30 +137,6 @@
             this.tabMongoImportExport.Text = "导入于导出（mongoImport/mongoExport)";
             this.tabMongoImportExport.UseVisualStyleBackColor = true;
             // 
-            // txtDosCommand
-            // 
-            this.txtDosCommand.Location = new System.Drawing.Point(9, 283);
-            this.txtDosCommand.Multiline = true;
-            this.txtDosCommand.Name = "txtDosCommand";
-            this.txtDosCommand.Size = new System.Drawing.Size(737, 138);
-            this.txtDosCommand.TabIndex = 4;
-            // 
-            // ctlMongodPanel
-            // 
-            this.ctlMongodPanel.BackColor = System.Drawing.Color.Transparent;
-            this.ctlMongodPanel.Location = new System.Drawing.Point(6, 6);
-            this.ctlMongodPanel.Name = "ctlMongodPanel";
-            this.ctlMongodPanel.Size = new System.Drawing.Size(831, 209);
-            this.ctlMongodPanel.TabIndex = 2;
-            // 
-            // ctlMongodumpPanel
-            // 
-            this.ctlMongodumpPanel.BackColor = System.Drawing.Color.Transparent;
-            this.ctlMongodumpPanel.Location = new System.Drawing.Point(16, 6);
-            this.ctlMongodumpPanel.Name = "ctlMongodumpPanel";
-            this.ctlMongodumpPanel.Size = new System.Drawing.Size(800, 200);
-            this.ctlMongodumpPanel.TabIndex = 0;
-            // 
             // ctlMongoImportExportPanel
             // 
             this.ctlMongoImportExportPanel.BackColor = System.Drawing.Color.Transparent;
@@ -149,6 +144,16 @@
             this.ctlMongoImportExportPanel.Name = "ctlMongoImportExportPanel";
             this.ctlMongoImportExportPanel.Size = new System.Drawing.Size(800, 195);
             this.ctlMongoImportExportPanel.TabIndex = 0;
+            // 
+            // txtDosCommand
+            // 
+            this.txtDosCommand.BackColor = System.Drawing.Color.Black;
+            this.txtDosCommand.ForeColor = System.Drawing.Color.White;
+            this.txtDosCommand.Location = new System.Drawing.Point(9, 283);
+            this.txtDosCommand.Multiline = true;
+            this.txtDosCommand.Name = "txtDosCommand";
+            this.txtDosCommand.Size = new System.Drawing.Size(737, 138);
+            this.txtDosCommand.TabIndex = 4;
             // 
             // frmDosCommand
             // 
@@ -160,7 +165,7 @@
             this.MinimizeBox = false;
             this.Name = "frmDosCommand";
             this.ShowSelectSkinButton = false;
-            this.Text = "frmDosCommand";
+            this.Text = "配置文件";
             this.Load += new System.EventHandler(this.frmDosCommand_Load);
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();

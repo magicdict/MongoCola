@@ -92,7 +92,7 @@
             this.radRouteSrv.Location = new System.Drawing.Point(273, 81);
             this.radRouteSrv.Name = "radRouteSrv";
             this.radRouteSrv.Size = new System.Drawing.Size(85, 17);
-            this.radRouteSrv.TabIndex = 28;
+            this.radRouteSrv.TabIndex = 8;
             this.radRouteSrv.TabStop = true;
             this.radRouteSrv.Text = "路由服务器";
             this.radRouteSrv.UseVisualStyleBackColor = false;
@@ -104,7 +104,7 @@
             this.radConfigSrv.Location = new System.Drawing.Point(155, 81);
             this.radConfigSrv.Name = "radConfigSrv";
             this.radConfigSrv.Size = new System.Drawing.Size(85, 17);
-            this.radConfigSrv.TabIndex = 27;
+            this.radConfigSrv.TabIndex = 7;
             this.radConfigSrv.TabStop = true;
             this.radConfigSrv.Text = "配置服务器";
             this.radConfigSrv.UseVisualStyleBackColor = false;
@@ -116,7 +116,7 @@
             this.radDataSrv.Location = new System.Drawing.Point(52, 82);
             this.radDataSrv.Name = "radDataSrv";
             this.radDataSrv.Size = new System.Drawing.Size(85, 17);
-            this.radDataSrv.TabIndex = 26;
+            this.radDataSrv.TabIndex = 6;
             this.radDataSrv.TabStop = true;
             this.radDataSrv.Text = "数据服务器";
             this.radDataSrv.UseVisualStyleBackColor = false;
@@ -128,7 +128,7 @@
             this.chkSlaveOk.Location = new System.Drawing.Point(382, 83);
             this.chkSlaveOk.Name = "chkSlaveOk";
             this.chkSlaveOk.Size = new System.Drawing.Size(152, 17);
-            this.chkSlaveOk.TabIndex = 25;
+            this.chkSlaveOk.TabIndex = 9;
             this.chkSlaveOk.Text = "主从模式[GFS 操作限制]";
             this.chkSlaveOk.UseVisualStyleBackColor = false;
             // 
@@ -138,7 +138,7 @@
             this.cmdCancel.Location = new System.Drawing.Point(471, 120);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 37);
-            this.cmdCancel.TabIndex = 24;
+            this.cmdCancel.TabIndex = 11;
             this.cmdCancel.Text = "取消";
             // 
             // cmdAdd
@@ -147,7 +147,7 @@
             this.cmdAdd.Location = new System.Drawing.Point(382, 120);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 37);
-            this.cmdAdd.TabIndex = 23;
+            this.cmdAdd.TabIndex = 10;
             this.cmdAdd.Text = "添加";
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
@@ -214,7 +214,7 @@
             this.txtHostName.Radius = 3;
             this.txtHostName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtHostName.Size = new System.Drawing.Size(103, 29);
-            this.txtHostName.TabIndex = 32;
+            this.txtHostName.TabIndex = 0;
             this.txtHostName.UseSystemPasswordChar = false;
             this.txtHostName.WaterMark = "服务器表示名称";
             this.txtHostName.WaterMarkColor = System.Drawing.Color.Silver;
@@ -232,7 +232,7 @@
             this.txtPassword.Radius = 3;
             this.txtPassword.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtPassword.Size = new System.Drawing.Size(103, 29);
-            this.txtPassword.TabIndex = 33;
+            this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.WaterMark = "密码（可选项）";
             this.txtPassword.WaterMarkColor = System.Drawing.Color.Silver;
@@ -250,7 +250,7 @@
             this.txtUsername.Radius = 3;
             this.txtUsername.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtUsername.Size = new System.Drawing.Size(103, 29);
-            this.txtUsername.TabIndex = 34;
+            this.txtUsername.TabIndex = 3;
             this.txtUsername.UseSystemPasswordChar = false;
             this.txtUsername.WaterMark = "用户名（可选项）";
             this.txtUsername.WaterMarkColor = System.Drawing.Color.Silver;
@@ -268,7 +268,7 @@
             this.txtIpAddr.Radius = 3;
             this.txtIpAddr.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtIpAddr.Size = new System.Drawing.Size(103, 29);
-            this.txtIpAddr.TabIndex = 35;
+            this.txtIpAddr.TabIndex = 1;
             this.txtIpAddr.UseSystemPasswordChar = false;
             this.txtIpAddr.WaterMark = "服务器IP地址";
             this.txtIpAddr.WaterMarkColor = System.Drawing.Color.Silver;
@@ -286,7 +286,7 @@
             this.txtPort.Radius = 3;
             this.txtPort.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtPort.Size = new System.Drawing.Size(103, 29);
-            this.txtPort.TabIndex = 36;
+            this.txtPort.TabIndex = 2;
             this.txtPort.UseSystemPasswordChar = false;
             this.txtPort.WaterMark = "服务器端口号";
             this.txtPort.WaterMarkColor = System.Drawing.Color.Silver;
@@ -304,7 +304,7 @@
             this.txtReplSet.Radius = 3;
             this.txtReplSet.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtReplSet.Size = new System.Drawing.Size(103, 29);
-            this.txtReplSet.TabIndex = 37;
+            this.txtReplSet.TabIndex = 5;
             this.txtReplSet.UseSystemPasswordChar = false;
             this.txtReplSet.WaterMark = "副本名称（可选项）";
             this.txtReplSet.WaterMarkColor = System.Drawing.Color.Silver;

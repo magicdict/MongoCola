@@ -32,13 +32,11 @@ namespace MagicMongoDBTool.Module
                         mongosvrsetting.SlaveOk = item.IsSlaveOk;
                         mongosvrsetting.Server = new MongoServerAddress(item.IpAddr, item.Port);
                         //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
-                        //mongosvrsetting.ConnectTimeout = new TimeSpan(0, 10, 0);
                         mongosvrsetting.SocketTimeout = new TimeSpan(0, 10, 0);
-                       
-                        if ((item.UserName == String.Empty) | (item.Password == String.Empty))
+                        if ((item.UserName != String.Empty) & (item.Password != String.Empty))
                         {
-                            //认证的设定
-                            mongosvrsetting.DefaultCredentials = new MongoCredentials(item.UserName, item.Password);
+                            //认证的设定:注意，这里的密码是明文
+                            mongosvrsetting.DefaultCredentials = new MongoCredentials(item.UserName, item.Password, true);
                         }
                         MongoServer Mastermongosvr = new MongoServer(mongosvrsetting);
                         mongosrvlst.Add(item.HostName, Mastermongosvr);
@@ -67,7 +65,7 @@ namespace MagicMongoDBTool.Module
                 MongoServer mongosvr = mongosrvlst[mongosvrKey];
                 TreeNode mongosrvnode = new TreeNode(mongosvrKey + " [" + mongosvr.Settings.Server.Host + ":" + mongosvr.Settings.Server.Port + "]");
                 mongosrvnode.Tag = ServiceTag + ":" + mongosvrKey;
-
+            
                 List<String> DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
                 foreach (String strDBName in DatabaseNameList)
                 {
@@ -104,6 +102,7 @@ namespace MagicMongoDBTool.Module
 
             mongoDBNode.Tag = DataBaseTag + ":" + mongosvrKey + "/" + strDBName;
             MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
+            
             List<String> ColNameList = Mongodb.GetCollectionNames().ToList<String>();
             foreach (String strColName in ColNameList)
             {

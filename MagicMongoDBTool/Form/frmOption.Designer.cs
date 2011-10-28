@@ -69,7 +69,7 @@
             0});
             this.numRefreshForStatus.Name = "numRefreshForStatus";
             this.numRefreshForStatus.Size = new System.Drawing.Size(66, 20);
-            this.numRefreshForStatus.TabIndex = 16;
+            this.numRefreshForStatus.TabIndex = 2;
             this.numRefreshForStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numRefreshForStatus.Value = new decimal(new int[] {
             30,
@@ -102,7 +102,7 @@
             0});
             this.numLimitCnt.Name = "numLimitCnt";
             this.numLimitCnt.Size = new System.Drawing.Size(66, 20);
-            this.numLimitCnt.TabIndex = 14;
+            this.numLimitCnt.TabIndex = 1;
             this.numLimitCnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numLimitCnt.Value = new decimal(new int[] {
             40,
@@ -128,7 +128,7 @@
             this.ctlFilePickerMongoBinPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
             this.ctlFilePickerMongoBinPath.SelectedPath = "";
             this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(739, 31);
-            this.ctlFilePickerMongoBinPath.TabIndex = 12;
+            this.ctlFilePickerMongoBinPath.TabIndex = 0;
             this.ctlFilePickerMongoBinPath.Title = "Mongodb的Bin路径";
             // 
             // cmdCancel
@@ -137,7 +137,7 @@
             this.cmdCancel.Location = new System.Drawing.Point(669, 82);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 30);
-            this.cmdCancel.TabIndex = 11;
+            this.cmdCancel.TabIndex = 4;
             this.cmdCancel.Text = "取消";
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
@@ -147,7 +147,7 @@
             this.cmdOK.Location = new System.Drawing.Point(578, 83);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(75, 30);
-            this.cmdOK.TabIndex = 10;
+            this.cmdOK.TabIndex = 3;
             this.cmdOK.Text = "确认";
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
@@ -161,7 +161,7 @@
             this.MinimizeBox = false;
             this.Name = "frmOption";
             this.ShowSelectSkinButton = false;
-            this.Text = "frmOption";
+            this.Text = "选项";
             this.Load += new System.EventHandler(this.frmOption_Load);
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();

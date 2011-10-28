@@ -66,7 +66,7 @@
             this.cmbForMap.Location = new System.Drawing.Point(100, 28);
             this.cmbForMap.Name = "cmbForMap";
             this.cmbForMap.Size = new System.Drawing.Size(151, 21);
-            this.cmbForMap.TabIndex = 19;
+            this.cmbForMap.TabIndex = 0;
             // 
             // cmbForReduce
             // 
@@ -74,7 +74,7 @@
             this.cmbForReduce.Location = new System.Drawing.Point(101, 239);
             this.cmbForReduce.Name = "cmbForReduce";
             this.cmbForReduce.Size = new System.Drawing.Size(151, 21);
-            this.cmbForReduce.TabIndex = 20;
+            this.cmbForReduce.TabIndex = 2;
             // 
             // cmdSaveReduceJs
             // 
@@ -131,7 +131,7 @@
             this.trvResult.Location = new System.Drawing.Point(333, 28);
             this.trvResult.Name = "trvResult";
             this.trvResult.Size = new System.Drawing.Size(363, 404);
-            this.trvResult.TabIndex = 13;
+            this.trvResult.TabIndex = 4;
             // 
             // txtMapJs
             // 
@@ -139,7 +139,7 @@
             this.txtMapJs.Multiline = true;
             this.txtMapJs.Name = "txtMapJs";
             this.txtMapJs.Size = new System.Drawing.Size(299, 172);
-            this.txtMapJs.TabIndex = 12;
+            this.txtMapJs.TabIndex = 1;
             // 
             // txtReduceJs
             // 
@@ -147,7 +147,7 @@
             this.txtReduceJs.Multiline = true;
             this.txtReduceJs.Name = "txtReduceJs";
             this.txtReduceJs.Size = new System.Drawing.Size(299, 169);
-            this.txtReduceJs.TabIndex = 11;
+            this.txtReduceJs.TabIndex = 3;
             // 
             // cmdRun
             // 
@@ -155,7 +155,7 @@
             this.cmdRun.Location = new System.Drawing.Point(621, 438);
             this.cmdRun.Name = "cmdRun";
             this.cmdRun.Size = new System.Drawing.Size(75, 34);
-            this.cmdRun.TabIndex = 10;
+            this.cmdRun.TabIndex = 5;
             this.cmdRun.Text = "运行";
             this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
             // 
@@ -169,7 +169,7 @@
             this.MinimizeBox = false;
             this.Name = "frmMapReduce";
             this.ShowSelectSkinButton = false;
-            this.Text = "frmMapReduce";
+            this.Text = "MapReduce";
             this.Load += new System.EventHandler(this.frmMapReduce_Load);
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();

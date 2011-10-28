@@ -119,7 +119,7 @@
             this.MinimizeBox = false;
             this.Name = "frmCollectionIndex";
             this.ShowSelectSkinButton = false;
-            this.Text = "frmCollectionIndex";
+            this.Text = "数据集索引";
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             this.ResumeLayout(false);

@@ -27,6 +27,8 @@ namespace MagicMongoDBTool
             txtHostName.Enabled = false;
             txtIpAddr.Text = ModifyConn.IpAddr;
             txtPort.Text = ModifyConn.Port.ToString();
+            txtUsername.Text = ModifyConn.UserName;
+            txtPassword.Text = ModifyConn.Password;
             cmdAdd.Text = "修改";
             chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
             txtReplSet.Text = ModifyConn.ReplSetName;
@@ -54,6 +56,8 @@ namespace MagicMongoDBTool
             ModifyConn.Port = Convert.ToInt32(txtPort.Text);
             ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
             ModifyConn.ReplSetName = txtReplSet.Text;
+            ModifyConn.UserName = txtUsername.Text;
+            ModifyConn.Password = txtPassword.Text;
             if (radDataSrv.Checked)
             {
                 ModifyConn.ServerType = ConfigHelper.SrvType.DataSrv;
