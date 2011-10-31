@@ -1,7 +1,7 @@
 *.txt
-*.dll
 *.config
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
 /QLFUI
 /HugeData
+/GUIResource

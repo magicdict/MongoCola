@@ -10,6 +10,67 @@ namespace MagicMongoDBTool
         public frmMain()
         {
             InitializeComponent();
+            SetMenuImages();
+            SetToolBar();
+        }
+        /// <summary>
+        /// 设置图标
+        /// </summary>
+        private void SetMenuImages()
+        {
+            this.PrePageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.PrePage);
+            this.NextPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.NextPage);
+            this.FirstPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.FirstPage);
+            this.LastPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.LastPage);
+            this.QueryDataToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Query);
+
+            this.ImportDataFromAccessToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.AccessDB);
+            this.RefreshToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Refresh);
+            this.OptionToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Option);
+        }
+
+        ToolStripButton ImportDataFromAccessToolStripButton;
+        ToolStripButton RefreshToolStripButton;
+        ToolStripButton OptionToolStripButton;
+
+        ToolStripButton NextPageToolStripButton;
+        ToolStripButton PrePageToolStripButton;
+        ToolStripButton FirstPageToolStripButton;
+        ToolStripButton LastPageToolStripButton;
+        ToolStripButton QueryDataToolStripButton;
+        /// <summary>
+        /// 工具栏
+        /// </summary>
+        private void SetToolBar()
+        {
+            this.toolStripMain.Items.Clear();
+
+            FirstPageToolStripButton = this.FirstPageToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(FirstPageToolStripButton);
+
+            PrePageToolStripButton = this.PrePageToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(PrePageToolStripButton);
+            
+            NextPageToolStripButton = this.NextPageToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(NextPageToolStripButton);
+            
+            LastPageToolStripButton = this.LastPageToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(LastPageToolStripButton);
+
+            QueryDataToolStripButton = this.QueryDataToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(QueryDataToolStripButton);
+
+            this.toolStripMain.Items.Add(new ToolStripSeparator());
+
+            RefreshToolStripButton = this.RefreshToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(RefreshToolStripButton);
+
+            ImportDataFromAccessToolStripButton = this.ImportDataFromAccessToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
+
+            OptionToolStripButton = this.OptionToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(OptionToolStripButton);
+
         }
         List<Control> DataShower = new List<Control>();
         /// <summary>
@@ -30,19 +91,13 @@ namespace MagicMongoDBTool
                     (x, y) =>
                     {
                         this.DelRecordToolStripMenuItem.Enabled = false;
-                        //MessageBox.Show(tabDataShower.SelectedTab.Name);
                     }
                 );
             DisableAllOpr();
             DataShower.Add(lstData);
             DataShower.Add(trvData);
             DataShower.Add(txtData);
-
-            MaximizeBox = true;
-            MinimizeBox = true;
         }
-
-
         /// <summary>
         /// 鼠标选中节点
         /// </summary>
@@ -56,6 +111,9 @@ namespace MagicMongoDBTool
             lstData.ContextMenuStrip = null;
             trvData.ContextMenuStrip = null;
             this.contextMenuStripMain = null;
+            if (this.trvData.SelectedNode != null) {
+                this.trvData.SelectedNode.ContextMenuStrip = null;
+            }
             if (e.Node.Tag != null)
             {
                 //先禁用所有的操作，然后根据选中对象解禁
@@ -195,6 +253,7 @@ namespace MagicMongoDBTool
                         break;
                 }
             }
+            SetToolBar();
         }
         /// <summary>
         /// 禁止所有操作
@@ -221,13 +280,20 @@ namespace MagicMongoDBTool
 
 
             this.ImportDataFromAccessToolStripMenuItem.Enabled = false;
+            this.ImportDataFromAccessToolStripButton.Enabled = false;
+
             this.ShutDownToolStripMenuItem.Enabled = false;
 
             this.FirstPageToolStripMenuItem.Enabled = false;
+            this.FirstPageToolStripButton.Enabled = false;
             this.LastPageToolStripMenuItem.Enabled = false;
+            this.LastPageToolStripButton.Enabled = false;
             this.NextPageToolStripMenuItem.Enabled = false;
+            this.NextPageToolStripButton.Enabled = false;
             this.PrePageToolStripMenuItem.Enabled = false;
+            this.PrePageToolStripButton.Enabled = false;
             this.QueryDataToolStripMenuItem.Enabled = false;
+            this.QueryDataToolStripButton.Enabled = false;
 
             this.ReplicaSetToolStripMenuItem.Enabled = false;
             this.AddShardingToolStripMenuItem.Enabled = false;
@@ -531,7 +597,8 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 刷新数据
         /// </summary>
-        private void RefreshData() {
+        private void RefreshData()
+        {
             MongoDBHelpler.clearFilter();
             MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, DataShower);
             SetDataNav();
@@ -649,7 +716,8 @@ namespace MagicMongoDBTool
         private void UploadFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog upfile = new OpenFileDialog();
-            if (upfile.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+            if (upfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
                 MongoDBHelpler.UpLoadFile(upfile.FileName);
             }
             RefreshData();
@@ -663,7 +731,7 @@ namespace MagicMongoDBTool
         {
             SaveFileDialog downfile = new SaveFileDialog();
             String strFileName = lstData.SelectedItems[0].Text;
-            downfile.FileName = strFileName.Split(@"\".ToCharArray())[strFileName.Split(@"\".ToCharArray()).Length-1]; 
+            downfile.FileName = strFileName.Split(@"\".ToCharArray())[strFileName.Split(@"\".ToCharArray()).Length - 1];
             if (downfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 MongoDBHelpler.DownloadFile(downfile.FileName, strFileName);
@@ -768,14 +836,21 @@ namespace MagicMongoDBTool
             FirstPageToolStripMenuItem.Enabled = MongoDBHelpler.HasPrePage;
             LastPageToolStripMenuItem.Enabled = MongoDBHelpler.HasNextPage;
             this.QueryDataToolStripMenuItem.Enabled = true;
+            SetToolBar();
         }
         #endregion
 
         #region "帮助"
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strThanks = "感谢皮肤控件的作者：qianlifeng\r\n感谢10gen的C# Driver";
-            MessageBox.Show(strThanks,"关于");
+            String strThanks = "MagicMongoDBTool 开发者：MagicHu";
+            MessageBox.Show(strThanks, "关于");
+        }
+
+        private void ThanksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strThanks = "感谢皮肤控件的作者：qianlifeng\r\n感谢10gen的C# Driver\r\n感谢Dragon同志的测试";
+            MessageBox.Show(strThanks, "感谢");
         }
         #endregion
     }

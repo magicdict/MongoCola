@@ -296,6 +296,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GUIResource\GUIResource.csproj">
+      <Project>{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}</Project>
+      <Name>GUIResource</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QLFUI\QLFUI.csproj">
       <Project>{0858850B-3B29-405C-A2B7-9DBF093CF219}</Project>
       <Name>QLFUI</Name>

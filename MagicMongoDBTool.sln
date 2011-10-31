@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLFUI", "QLFUI\QLFUI.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HugeData", "HugeData\HugeData.csproj", "{0438DEBB-513B-4083-B97E-2DE8EF006D38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIResource", "GUIResource\GUIResource.csproj", "{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{0438DEBB-513B-4083-B97E-2DE8EF006D38}.Release|Mixed Platforms.Build.0 = Release|x86
 		{0438DEBB-513B-4083-B97E-2DE8EF006D38}.Release|x86.ActiveCfg = Release|x86
 		{0438DEBB-513B-4083-B97E-2DE8EF006D38}.Release|x86.Build.0 = Release|x86
+		{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

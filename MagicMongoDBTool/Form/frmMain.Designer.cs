@@ -78,6 +78,7 @@
             this.mapReduceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ThanksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
@@ -308,7 +309,9 @@
             // 
             this.DataBaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DelMongoDBToolStripMenuItem,
-            this.CreateMongoCollectionToolStripMenuItem});
+            this.CreateMongoCollectionToolStripMenuItem,
+            this.AddUserToolStripMenuItem,
+            this.RemoveUserToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
             this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.DataBaseToolStripMenuItem.Text = "数据库";
@@ -332,8 +335,6 @@
             this.DataCollectionOprToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DelMongoCollectionToolStripMenuItem,
             this.IndexManageToolStripMenuItem,
-            this.AddUserToolStripMenuItem,
-            this.RemoveUserToolStripMenuItem,
             this.DelRecordToolStripMenuItem,
             this.RenameCollectionToolStripMenuItem});
             this.DataCollectionOprToolStripMenuItem.Name = "DataCollectionOprToolStripMenuItem";
@@ -490,7 +491,8 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.ThanksToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.helpToolStripMenuItem.Text = "帮助";
@@ -501,6 +503,13 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
             this.aboutToolStripMenuItem.Text = "关于";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // ThanksToolStripMenuItem
+            // 
+            this.ThanksToolStripMenuItem.Name = "ThanksToolStripMenuItem";
+            this.ThanksToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.ThanksToolStripMenuItem.Text = "感谢";
+            this.ThanksToolStripMenuItem.Click += new System.EventHandler(this.ThanksToolStripMenuItem_Click);
             // 
             // contextMenuStripMain
             // 
@@ -710,5 +719,6 @@
         private System.Windows.Forms.ToolStripMenuItem RemoveUserFromAdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ThanksToolStripMenuItem;
     }
 }
