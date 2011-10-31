@@ -27,7 +27,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <returns></returns>
         public static MongoServer getCurrentService() {
-            return MongoDBHelpler.GetMongoServerBySvrPath(SelectObjectTag, true);
+            return MongoDBHelpler.GetMongoServerBySvrPath(SelectObjectTag);
         }
         /// <summary>
         /// 获得当前数据库
@@ -35,7 +35,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoDatabase getCurrentDataBase()
         {
-            return MongoDBHelpler.GetMongoDBBySvrPath(SelectObjectTag, true);
+            return MongoDBHelpler.GetMongoDBBySvrPath(SelectObjectTag);
         }
         /// <summary>
         /// 获得当前数据集
@@ -43,7 +43,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoCollection getCurrentCollection()
         {
-            return MongoDBHelpler.GetMongoCollectionBySvrPath(SelectObjectTag, true);
+            return MongoDBHelpler.GetMongoCollectionBySvrPath(SelectObjectTag);
         }
         /// <summary>
         /// 获得系统JS数据集

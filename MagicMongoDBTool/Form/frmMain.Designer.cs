@@ -550,13 +550,13 @@
             // 
             this.tabTreeView.BackColor = System.Drawing.Color.Orange;
             this.tabTreeView.Controls.Add(this.trvData);
-            this.tabTreeView.ForeColor = System.Drawing.Color.Orange;
+            this.tabTreeView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabTreeView.Location = new System.Drawing.Point(4, 22);
             this.tabTreeView.Name = "tabTreeView";
             this.tabTreeView.Padding = new System.Windows.Forms.Padding(3);
             this.tabTreeView.Size = new System.Drawing.Size(600, 432);
             this.tabTreeView.TabIndex = 0;
-            this.tabTreeView.Text = "TreeView";
+            this.tabTreeView.Text = "树形视图";
             // 
             // trvData
             // 
@@ -570,13 +570,13 @@
             // 
             this.tabTableView.BackColor = System.Drawing.Color.LightSkyBlue;
             this.tabTableView.Controls.Add(this.lstData);
-            this.tabTableView.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.tabTableView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabTableView.Location = new System.Drawing.Point(4, 22);
             this.tabTableView.Name = "tabTableView";
             this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
             this.tabTableView.Size = new System.Drawing.Size(600, 432);
             this.tabTableView.TabIndex = 1;
-            this.tabTableView.Text = "TableView";
+            this.tabTableView.Text = "表格视图";
             // 
             // lstData
             // 
@@ -595,13 +595,13 @@
             // 
             this.tabTextView.BackColor = System.Drawing.Color.Yellow;
             this.tabTextView.Controls.Add(this.txtData);
-            this.tabTextView.ForeColor = System.Drawing.Color.Yellow;
+            this.tabTextView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabTextView.Location = new System.Drawing.Point(4, 22);
             this.tabTextView.Name = "tabTextView";
             this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
             this.tabTextView.Size = new System.Drawing.Size(600, 432);
             this.tabTextView.TabIndex = 2;
-            this.tabTextView.Text = "TextView";
+            this.tabTextView.Text = "文本视图";
             // 
             // txtData
             // 
@@ -621,8 +621,11 @@
             this.ClientSize = new System.Drawing.Size(917, 570);
             this.Controls.Add(this.statusStripMain);
             this.Location = new System.Drawing.Point(0, 0);
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
             this.Name = "frmMain";
             this.ShowSelectSkinButton = false;
+            this.SizeAble = true;
             this.Text = "MagicMongoDBTool-Beta1";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.Controls.SetChildIndex(this.contentPanel, 0);

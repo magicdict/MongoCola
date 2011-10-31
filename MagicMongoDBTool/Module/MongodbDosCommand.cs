@@ -43,6 +43,14 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public Boolean IsMaster = false;
             /// <summary>
+            /// 是否为Master
+            /// </summary>
+            public Boolean IsSlave = false;
+            /// <summary>
+            /// 
+            /// </summary>
+            public String Source = String.Empty;
+            /// <summary>
             /// 日志文件
             /// </summary>
             public String logpath = String.Empty;
@@ -58,6 +66,10 @@ namespace MagicMongoDBTool.Module
             /// 是否作为Windows服务
             /// </summary>
             public Boolean IsInstall = false;
+            /// <summary>
+            /// 是否采用认证模式
+            /// </summary>
+            public Boolean IsAuth = false;
         }
         /// <summary>
         /// 日志等级
@@ -138,10 +150,22 @@ namespace MagicMongoDBTool.Module
             {
                 DosCommand += " --master";
             }
+            if (Mongod.IsSlave)
+            {
+                DosCommand += " --slave";
+                if (Mongod.Source != String.Empty) {
+                    DosCommand += " --source " + Mongod.Source;
+                }
+            }
             //是否作为Windows服务
             if (Mongod.IsInstall)
             {
                 DosCommand += " --install";
+            }
+            //是否使用认证服务
+            if (Mongod.IsAuth)
+            {
+                DosCommand += " --auth";
             }
             return DosCommand;
         }

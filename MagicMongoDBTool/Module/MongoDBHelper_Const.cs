@@ -8,8 +8,19 @@ namespace MagicMongoDBTool.Module
     public static partial class MongoDBHelpler
     {
         //各种节点的Tag前缀
+        /// <summary>
+        /// 普通服务器Tag
+        /// </summary>
         public const String ServiceTag = "MongoService";
+        /// <summary>
+        /// 该服务器只允许操作其下的某个数据库
+        /// </summary>
+        public const String SingleDBServiceTag = "MongoSingleDBService";
+
         public const String DataBaseTag = "MongoDatabase";
+        public const String SingleDataBaseTag = "SingleMongoDatabase";
+
+        
         public const String CollectionTag = "MongoCollection";
         public const String DocumentTag = "MongoDocument";
         public const String GridFileSystemTag = "MongoGFS";

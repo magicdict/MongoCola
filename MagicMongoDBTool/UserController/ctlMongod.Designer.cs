@@ -29,14 +29,17 @@
         private void InitializeComponent()
         {
             this.grpLog = new System.Windows.Forms.GroupBox();
-            this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
             this.chkIsAppend = new System.Windows.Forms.CheckBox();
             this.lblPort = new System.Windows.Forms.Label();
             this.numPort = new System.Windows.Forms.NumericUpDown();
             this.chkIsMaster = new System.Windows.Forms.CheckBox();
             this.chkIsSlave = new System.Windows.Forms.CheckBox();
+            this.chkAuth = new System.Windows.Forms.CheckBox();
+            this.lblSource = new System.Windows.Forms.Label();
+            this.txtSource = new QLFUI.TextBoxEx();
             this.ctlFilePickerDBPath = new MagicMongoDBTool.ctlFilePicker();
             this.ctlFilePickerLogPath = new MagicMongoDBTool.ctlFilePicker();
+            this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
             this.grpLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.SuspendLayout();
@@ -51,13 +54,6 @@
             this.grpLog.TabIndex = 0;
             this.grpLog.TabStop = false;
             this.grpLog.Text = "日志";
-            // 
-            // ctllogLvT
-            // 
-            this.ctllogLvT.Location = new System.Drawing.Point(256, 13);
-            this.ctllogLvT.Name = "ctllogLvT";
-            this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
-            this.ctllogLvT.TabIndex = 14;
             // 
             // chkIsAppend
             // 
@@ -101,6 +97,7 @@
             0,
             0,
             0});
+            this.numPort.ValueChanged += new System.EventHandler(this.numPort_ValueChanged);
             // 
             // chkIsMaster
             // 
@@ -122,6 +119,46 @@
             this.chkIsSlave.TabIndex = 13;
             this.chkIsSlave.Text = "Slave数据库";
             this.chkIsSlave.UseVisualStyleBackColor = true;
+            this.chkIsSlave.CheckedChanged += new System.EventHandler(this.chkIsSlave_CheckedChanged);
+            // 
+            // chkAuth
+            // 
+            this.chkAuth.AutoSize = true;
+            this.chkAuth.Location = new System.Drawing.Point(547, 28);
+            this.chkAuth.Name = "chkAuth";
+            this.chkAuth.Size = new System.Drawing.Size(98, 17);
+            this.chkAuth.TabIndex = 16;
+            this.chkAuth.Text = "启用认证模式";
+            this.chkAuth.UseVisualStyleBackColor = true;
+            this.chkAuth.CheckedChanged += new System.EventHandler(this.chkAuth_CheckedChanged);
+            // 
+            // lblSource
+            // 
+            this.lblSource.AutoSize = true;
+            this.lblSource.Location = new System.Drawing.Point(370, 31);
+            this.lblSource.Name = "lblSource";
+            this.lblSource.Size = new System.Drawing.Size(58, 13);
+            this.lblSource.TabIndex = 17;
+            this.lblSource.Text = "Slave源头";
+            // 
+            // txtSource
+            // 
+            this.txtSource.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txtSource.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txtSource.BackColor = System.Drawing.Color.Transparent;
+            this.txtSource.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
+            this.txtSource.ForeImage = null;
+            this.txtSource.Location = new System.Drawing.Point(434, 22);
+            this.txtSource.Multiline = false;
+            this.txtSource.Name = "txtSource";
+            this.txtSource.Radius = 3;
+            this.txtSource.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
+            this.txtSource.Size = new System.Drawing.Size(105, 29);
+            this.txtSource.TabIndex = 18;
+            this.txtSource.UseSystemPasswordChar = false;
+            this.txtSource.WaterMark = "Master地址";
+            this.txtSource.WaterMarkColor = System.Drawing.Color.Silver;
+            this.txtSource.TextChanged += new QLFUI.TextBoxEx.TextChangedHandler(this.txtSource_TextChanged);
             // 
             // ctlFilePickerDBPath
             // 
@@ -145,11 +182,21 @@
             this.ctlFilePickerLogPath.TabIndex = 14;
             this.ctlFilePickerLogPath.Title = "日志路径";
             // 
+            // ctllogLvT
+            // 
+            this.ctllogLvT.Location = new System.Drawing.Point(256, 13);
+            this.ctllogLvT.Name = "ctllogLvT";
+            this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
+            this.ctllogLvT.TabIndex = 14;
+            // 
             // ctlMongod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.txtSource);
+            this.Controls.Add(this.lblSource);
+            this.Controls.Add(this.chkAuth);
             this.Controls.Add(this.ctlFilePickerDBPath);
             this.Controls.Add(this.ctlFilePickerLogPath);
             this.Controls.Add(this.chkIsSlave);
@@ -179,5 +226,8 @@
         private Module.ctllogLv ctllogLvT;
         private ctlFilePicker ctlFilePickerLogPath;
         private ctlFilePicker ctlFilePickerDBPath;
+        private System.Windows.Forms.CheckBox chkAuth;
+        private System.Windows.Forms.Label lblSource;
+        private QLFUI.TextBoxEx txtSource;
     }
 }

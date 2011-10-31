@@ -47,6 +47,9 @@
             this.txtIpAddr = new QLFUI.TextBoxEx();
             this.txtPort = new QLFUI.TextBoxEx();
             this.txtReplSet = new QLFUI.TextBoxEx();
+            this.lblDataBaseName = new System.Windows.Forms.Label();
+            this.txtDataBaseName = new QLFUI.TextBoxEx();
+            this.chkLoginAsAdmin = new System.Windows.Forms.CheckBox();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +57,9 @@
             // 
             this.contentPanel.BackColor = System.Drawing.Color.Transparent;
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
+            this.contentPanel.Controls.Add(this.chkLoginAsAdmin);
+            this.contentPanel.Controls.Add(this.txtDataBaseName);
+            this.contentPanel.Controls.Add(this.lblDataBaseName);
             this.contentPanel.Controls.Add(this.txtReplSet);
             this.contentPanel.Controls.Add(this.txtPort);
             this.contentPanel.Controls.Add(this.txtIpAddr);
@@ -73,13 +79,13 @@
             this.contentPanel.Controls.Add(this.lblPort);
             this.contentPanel.Controls.Add(this.lblHostName);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(572, 170);
+            this.contentPanel.Size = new System.Drawing.Size(572, 205);
             // 
             // lblReplsetName
             // 
             this.lblReplsetName.AutoSize = true;
             this.lblReplsetName.BackColor = System.Drawing.Color.Transparent;
-            this.lblReplsetName.Location = new System.Drawing.Point(381, 54);
+            this.lblReplsetName.Location = new System.Drawing.Point(49, 87);
             this.lblReplsetName.Name = "lblReplsetName";
             this.lblReplsetName.Size = new System.Drawing.Size(55, 13);
             this.lblReplsetName.TabIndex = 29;
@@ -89,7 +95,7 @@
             // 
             this.radRouteSrv.AutoSize = true;
             this.radRouteSrv.BackColor = System.Drawing.Color.Transparent;
-            this.radRouteSrv.Location = new System.Drawing.Point(273, 81);
+            this.radRouteSrv.Location = new System.Drawing.Point(397, 85);
             this.radRouteSrv.Name = "radRouteSrv";
             this.radRouteSrv.Size = new System.Drawing.Size(85, 17);
             this.radRouteSrv.TabIndex = 8;
@@ -101,7 +107,7 @@
             // 
             this.radConfigSrv.AutoSize = true;
             this.radConfigSrv.BackColor = System.Drawing.Color.Transparent;
-            this.radConfigSrv.Location = new System.Drawing.Point(155, 81);
+            this.radConfigSrv.Location = new System.Drawing.Point(306, 87);
             this.radConfigSrv.Name = "radConfigSrv";
             this.radConfigSrv.Size = new System.Drawing.Size(85, 17);
             this.radConfigSrv.TabIndex = 7;
@@ -113,7 +119,7 @@
             // 
             this.radDataSrv.AutoSize = true;
             this.radDataSrv.BackColor = System.Drawing.Color.Transparent;
-            this.radDataSrv.Location = new System.Drawing.Point(52, 82);
+            this.radDataSrv.Location = new System.Drawing.Point(225, 87);
             this.radDataSrv.Name = "radDataSrv";
             this.radDataSrv.Size = new System.Drawing.Size(85, 17);
             this.radDataSrv.TabIndex = 6;
@@ -125,7 +131,7 @@
             // 
             this.chkSlaveOk.AutoSize = true;
             this.chkSlaveOk.BackColor = System.Drawing.Color.Transparent;
-            this.chkSlaveOk.Location = new System.Drawing.Point(382, 83);
+            this.chkSlaveOk.Location = new System.Drawing.Point(116, 113);
             this.chkSlaveOk.Name = "chkSlaveOk";
             this.chkSlaveOk.Size = new System.Drawing.Size(152, 17);
             this.chkSlaveOk.TabIndex = 9;
@@ -135,7 +141,7 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(471, 120);
+            this.cmdCancel.Location = new System.Drawing.Point(471, 143);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 37);
             this.cmdCancel.TabIndex = 11;
@@ -144,7 +150,7 @@
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(382, 120);
+            this.cmdAdd.Location = new System.Drawing.Point(382, 143);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 37);
             this.cmdAdd.TabIndex = 10;
@@ -175,7 +181,7 @@
             // 
             this.lblPort.AutoSize = true;
             this.lblPort.BackColor = System.Drawing.Color.Transparent;
-            this.lblPort.Location = new System.Drawing.Point(379, 23);
+            this.lblPort.Location = new System.Drawing.Point(381, 26);
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(43, 13);
             this.lblPort.TabIndex = 22;
@@ -187,9 +193,9 @@
             this.lblHostName.BackColor = System.Drawing.Color.Transparent;
             this.lblHostName.Location = new System.Drawing.Point(49, 26);
             this.lblHostName.Name = "lblHostName";
-            this.lblHostName.Size = new System.Drawing.Size(31, 13);
+            this.lblHostName.Size = new System.Drawing.Size(67, 13);
             this.lblHostName.TabIndex = 20;
-            this.lblHostName.Text = "名称";
+            this.lblHostName.Text = "服务器名称";
             // 
             // lblIpAddr
             // 
@@ -208,7 +214,7 @@
             this.txtHostName.BackColor = System.Drawing.Color.Transparent;
             this.txtHostName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtHostName.ForeImage = null;
-            this.txtHostName.Location = new System.Drawing.Point(110, 17);
+            this.txtHostName.Location = new System.Drawing.Point(115, 17);
             this.txtHostName.Multiline = false;
             this.txtHostName.Name = "txtHostName";
             this.txtHostName.Radius = 3;
@@ -244,7 +250,7 @@
             this.txtUsername.BackColor = System.Drawing.Color.Transparent;
             this.txtUsername.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtUsername.ForeImage = null;
-            this.txtUsername.Location = new System.Drawing.Point(110, 48);
+            this.txtUsername.Location = new System.Drawing.Point(115, 48);
             this.txtUsername.Multiline = false;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Radius = 3;
@@ -280,7 +286,7 @@
             this.txtPort.BackColor = System.Drawing.Color.Transparent;
             this.txtPort.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtPort.ForeImage = null;
-            this.txtPort.Location = new System.Drawing.Point(442, 17);
+            this.txtPort.Location = new System.Drawing.Point(449, 17);
             this.txtPort.Multiline = false;
             this.txtPort.Name = "txtPort";
             this.txtPort.Radius = 3;
@@ -298,7 +304,7 @@
             this.txtReplSet.BackColor = System.Drawing.Color.Transparent;
             this.txtReplSet.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtReplSet.ForeImage = null;
-            this.txtReplSet.Location = new System.Drawing.Point(442, 45);
+            this.txtReplSet.Location = new System.Drawing.Point(116, 78);
             this.txtReplSet.Multiline = false;
             this.txtReplSet.Name = "txtReplSet";
             this.txtReplSet.Radius = 3;
@@ -309,14 +315,49 @@
             this.txtReplSet.WaterMark = "副本名称（可选项）";
             this.txtReplSet.WaterMarkColor = System.Drawing.Color.Silver;
             // 
+            // lblDataBaseName
+            // 
+            this.lblDataBaseName.AutoSize = true;
+            this.lblDataBaseName.Location = new System.Drawing.Point(379, 57);
+            this.lblDataBaseName.Name = "lblDataBaseName";
+            this.lblDataBaseName.Size = new System.Drawing.Size(67, 13);
+            this.lblDataBaseName.TabIndex = 32;
+            this.lblDataBaseName.Text = "数据库名称";
+            // 
+            // txtDataBaseName
+            // 
+            this.txtDataBaseName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txtDataBaseName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txtDataBaseName.BackColor = System.Drawing.Color.Transparent;
+            this.txtDataBaseName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
+            this.txtDataBaseName.ForeImage = null;
+            this.txtDataBaseName.Location = new System.Drawing.Point(449, 48);
+            this.txtDataBaseName.Multiline = false;
+            this.txtDataBaseName.Name = "txtDataBaseName";
+            this.txtDataBaseName.Radius = 3;
+            this.txtDataBaseName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
+            this.txtDataBaseName.Size = new System.Drawing.Size(105, 29);
+            this.txtDataBaseName.TabIndex = 33;
+            this.txtDataBaseName.UseSystemPasswordChar = false;
+            this.txtDataBaseName.WaterMark = "数据库名（可选）";
+            this.txtDataBaseName.WaterMarkColor = System.Drawing.Color.Silver;
+            // 
+            // chkLoginAsAdmin
+            // 
+            this.chkLoginAsAdmin.AutoSize = true;
+            this.chkLoginAsAdmin.Location = new System.Drawing.Point(274, 113);
+            this.chkLoginAsAdmin.Name = "chkLoginAsAdmin";
+            this.chkLoginAsAdmin.Size = new System.Drawing.Size(103, 17);
+            this.chkLoginAsAdmin.TabIndex = 34;
+            this.chkLoginAsAdmin.Text = "作为Admin登陆";
+            this.chkLoginAsAdmin.UseVisualStyleBackColor = true;
+            // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 233);
+            this.ClientSize = new System.Drawing.Size(574, 268);
             this.Location = new System.Drawing.Point(0, 0);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmAddConnection";
             this.ShowSelectSkinButton = false;
             this.Text = "数据连接";
@@ -346,5 +387,8 @@
         private QLFUI.TextBoxEx txtUsername;
         private QLFUI.TextBoxEx txtPassword;
         private QLFUI.TextBoxEx txtReplSet;
+        private QLFUI.TextBoxEx txtDataBaseName;
+        private System.Windows.Forms.Label lblDataBaseName;
+        private System.Windows.Forms.CheckBox chkLoginAsAdmin;
     }
 }

@@ -32,6 +32,8 @@ namespace MagicMongoDBTool
             cmdAdd.Text = "修改";
             chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
             txtReplSet.Text = ModifyConn.ReplSetName;
+            txtDataBaseName.Text  = ModifyConn.DataBaseName;
+            chkLoginAsAdmin.Checked = ModifyConn.LoginAsAdmin;
             cmdCancel.Click +=new EventHandler((x,y)=>{this.Close();});
             switch (ModifyConn.ServerType)
             {
@@ -58,6 +60,12 @@ namespace MagicMongoDBTool
             ModifyConn.ReplSetName = txtReplSet.Text;
             ModifyConn.UserName = txtUsername.Text;
             ModifyConn.Password = txtPassword.Text;
+            ModifyConn.DataBaseName = txtDataBaseName.Text;
+            ModifyConn.LoginAsAdmin = chkLoginAsAdmin.Checked;
+            if (txtDataBaseName.Text == string.Empty) {
+                //没有数据库的时候，只能以Admin登陆
+                ModifyConn.LoginAsAdmin = true;
+            }
             if (radDataSrv.Checked)
             {
                 ModifyConn.ServerType = ConfigHelper.SrvType.DataSrv;

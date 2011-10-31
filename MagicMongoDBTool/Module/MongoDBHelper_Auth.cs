@@ -49,7 +49,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="IsReadOnly">是否为只读</param>
         public static void AddUserToDB(String strDBPath, String strUser, String Password, Boolean IsReadOnly)
         {
-            MongoDatabase mongodb = GetMongoDBBySvrPath(strDBPath, true);
+            MongoDatabase mongodb = GetMongoDBBySvrPath(strDBPath);
             MongoCredentials newUser = new MongoCredentials(strUser, Password, false);
             if (mongodb.FindUser(strUser) == null)
             {
@@ -64,7 +64,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="strUser">用户名</param>
         public static void RemoveUserFromDB(String strDBPath, String strUser)
         {
-            MongoDatabase mongodb = GetMongoDBBySvrPath(strDBPath, true);
+            MongoDatabase mongodb = GetMongoDBBySvrPath(strDBPath);
             if (mongodb.FindUser(strUser) != null)
             {
                 mongodb.RemoveUser(strUser);
@@ -72,7 +72,7 @@ namespace MagicMongoDBTool.Module
         }
         public static void Shutdown()
         {
-            MongoServer mongosrv = GetMongoServerBySvrPath(SystemManager.SelectObjectTag, true);
+            MongoServer mongosrv = GetMongoServerBySvrPath(SystemManager.SelectObjectTag);
             try
             {
                 //the server will be  shutdown with exception

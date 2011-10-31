@@ -46,6 +46,10 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public Boolean IsSlaveOk;
             /// <summary>
+            /// 作为Admin登陆
+            /// </summary>
+            public Boolean LoginAsAdmin;
+            /// <summary>
             /// 用户名
             /// </summary>
             public String UserName;
@@ -61,6 +65,10 @@ namespace MagicMongoDBTool.Module
             /// 副本名称
             /// </summary>
             public String ReplSetName;
+            /// <summary>
+            /// 数据库名称
+            /// </summary>
+            public String DataBaseName;
         }
         /// <summary>
         /// 连接配置列表(管理用）
@@ -87,11 +95,13 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public String MongoBinPath = String.Empty;
         /// <summary>
-        /// 
+        /// 每页显示数
         /// </summary>
         public int LimitCnt = 100;
+        /// <summary>
+        /// 状态刷新间隔时间
+        /// </summary>
         public int RefreshStatusTimer = 30;
-
         /// <summary>
         /// 配置文件名称
         /// </summary>

@@ -16,31 +16,32 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 增加管理服务器
         /// </summary>
-        /// <param name="connlst"></param>
+        /// <param name="configlst"></param>
         /// <returns></returns>
-        public static Boolean AddServer(List<ConfigHelper.MongoConnectionConfig> connlst)
+        public static Boolean AddServer(List<ConfigHelper.MongoConnectionConfig> configlst)
         {
             try
             {
-                foreach (ConfigHelper.MongoConnectionConfig item in connlst)
+                foreach (ConfigHelper.MongoConnectionConfig mConfig in configlst)
                 {
-                    if (!mongosrvlst.ContainsKey(item.HostName))
+                    if (mongosrvlst.ContainsKey(mConfig.HostName))
                     {
-                        MongoServerSettings mongosvrsetting = new MongoServerSettings();
-                        mongosvrsetting.ConnectionMode = ConnectionMode.Direct;
-                        //Can't Use SlaveOk to a Route！！！
-                        mongosvrsetting.SlaveOk = item.IsSlaveOk;
-                        mongosvrsetting.Server = new MongoServerAddress(item.IpAddr, item.Port);
-                        //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
-                        mongosvrsetting.SocketTimeout = new TimeSpan(0, 10, 0);
-                        if ((item.UserName != String.Empty) & (item.Password != String.Empty))
-                        {
-                            //认证的设定:注意，这里的密码是明文
-                            mongosvrsetting.DefaultCredentials = new MongoCredentials(item.UserName, item.Password, true);
-                        }
-                        MongoServer Mastermongosvr = new MongoServer(mongosvrsetting);
-                        mongosrvlst.Add(item.HostName, Mastermongosvr);
+                        mongosrvlst.Remove(mConfig.HostName);
                     }
+                    MongoServerSettings mongosvrsetting = new MongoServerSettings();
+                    mongosvrsetting.ConnectionMode = ConnectionMode.Direct;
+                    //Can't Use SlaveOk to a Route！！！
+                    mongosvrsetting.SlaveOk = mConfig.IsSlaveOk;
+                    mongosvrsetting.Server = new MongoServerAddress(mConfig.IpAddr, mConfig.Port);
+                    //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
+                    mongosvrsetting.SocketTimeout = new TimeSpan(0, 10, 0);
+                    if ((mConfig.UserName != String.Empty) & (mConfig.Password != String.Empty))
+                    {
+                        //认证的设定:注意，这里的密码是明文
+                        mongosvrsetting.DefaultCredentials = new MongoCredentials(mConfig.UserName, mConfig.Password, mConfig.LoginAsAdmin);
+                    }
+                    MongoServer Mastermongosvr = new MongoServer(mongosvrsetting);
+                    mongosrvlst.Add(mConfig.HostName, Mastermongosvr);
                 }
                 return true;
             }
@@ -49,9 +50,6 @@ namespace MagicMongoDBTool.Module
                 return false;
             }
         }
-
-
-
         #region"展示数据"
         /// <summary>
         /// 将Mongodb的服务器在树形控件中展示
@@ -64,14 +62,34 @@ namespace MagicMongoDBTool.Module
             {
                 MongoServer mongosvr = mongosrvlst[mongosvrKey];
                 TreeNode mongosrvnode = new TreeNode(mongosvrKey + " [" + mongosvr.Settings.Server.Host + ":" + mongosvr.Settings.Server.Port + "]");
-                mongosrvnode.Tag = ServiceTag + ":" + mongosvrKey;
-            
-                List<String> DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
-                foreach (String strDBName in DatabaseNameList)
+                try
                 {
-                    mongosrvnode.Nodes.Add(FillDataBaseInfoToTreeNode(strDBName, mongosvr, mongosvrKey));
+                    List<String> DatabaseNameList = new List<string>();
+                    if (SystemManager.mConfig.ConnectionList[mongosvrKey].DataBaseName != String.Empty)
+                    {
+                        TreeNode mongoDBnode = FillDataBaseInfoToTreeNode(SystemManager.mConfig.ConnectionList[mongosvrKey].DataBaseName, mongosvr, mongosvrKey);
+                        mongoDBnode.Tag = SingleDataBaseTag + ":" + mongosvrKey + "/" + SystemManager.mConfig.ConnectionList[mongosvrKey].DataBaseName;
+                        mongosrvnode.Nodes.Add(mongoDBnode);
+                        //单数据库模式
+                        mongosrvnode.Tag = SingleDBServiceTag + ":" + mongosvrKey;
+                    }
+                    else
+                    {
+                        DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
+                        foreach (String strDBName in DatabaseNameList)
+                        {
+                            TreeNode mongoDBnode = FillDataBaseInfoToTreeNode(strDBName, mongosvr, mongosvrKey);
+                            mongosrvnode.Nodes.Add(mongoDBnode);
+                        }
+                        mongosrvnode.Tag = ServiceTag + ":" + mongosvrKey;
+                    }
+                    trvMongoDB.Nodes.Add(mongosrvnode);
                 }
-                trvMongoDB.Nodes.Add(mongosrvnode);
+                catch (MongoAuthenticationException)
+                {
+                    //需要验证的数据服务器，没有Admin权限无法获得数据库列表
+                    MessageBox.Show("认证信息错误，请检查Admin数据库的用户名和密码", "认证失败");
+                }
             }
         }
         /// <summary>
@@ -102,7 +120,7 @@ namespace MagicMongoDBTool.Module
 
             mongoDBNode.Tag = DataBaseTag + ":" + mongosvrKey + "/" + strDBName;
             MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
-            
+
             List<String> ColNameList = Mongodb.GetCollectionNames().ToList<String>();
             foreach (String strColName in ColNameList)
             {
@@ -531,7 +549,7 @@ namespace MagicMongoDBTool.Module
             foreach (BsonDocument docfile in DataList)
             {
                 ListViewItem lstItem = new ListViewItem();
-                lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(docfile.GetValue("filename").ToString(),false);
+                lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(docfile.GetValue("filename").ToString(), false);
                 lstItem.Text = docfile.GetValue("filename").ToString();
                 lstItem.SubItems.Add(GetSize((int)docfile.GetValue("length")));
                 lstItem.SubItems.Add(GetSize((int)docfile.GetValue("chunkSize")));

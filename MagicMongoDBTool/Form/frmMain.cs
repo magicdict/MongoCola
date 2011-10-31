@@ -60,7 +60,8 @@ namespace MagicMongoDBTool
             {
                 //先禁用所有的操作，然后根据选中对象解禁
                 DisableAllOpr();
-                switch (e.Node.Tag.ToString().Split(":".ToCharArray())[0])
+                String strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
+                switch (strNodeType)
                 {
                     case MongoDBHelpler.DocumentTag:
                         //BsonDocument
@@ -89,6 +90,11 @@ namespace MagicMongoDBTool
                         SetDataNav();
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "用户列表:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        break;
+                    case MongoDBHelpler.SingleDBServiceTag:
+                        //单数据库模式,禁止所有服务器操作
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        statusStripMain.Items[0].Text = "选中服务器[单数据库]:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         break;
                     case MongoDBHelpler.ServiceTag:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
@@ -128,16 +134,23 @@ namespace MagicMongoDBTool
                         }
                         break;
                     case MongoDBHelpler.DataBaseTag:
+                    case MongoDBHelpler.SingleDataBaseTag:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "选中数据库:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         //解禁 删除数据库 创建数据集
                         if (!MongoDBHelpler.IsSystemDataBase(SystemManager.getCurrentDataBase()))
                         {
-                            //Config,Local不能操作
+                            //系统库不允许修改
                             this.DelMongoDBToolStripMenuItem.Enabled = true;
                             this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                             this.AddUserToolStripMenuItem.Enabled = true;
                             this.RemoveUserToolStripMenuItem.Enabled = true;
+                        }
+
+                        if (strNodeType == MongoDBHelpler.SingleDataBaseTag)
+                        {
+                            //单一数据库模式
+                            this.DelMongoDBToolStripMenuItem.Enabled = false;
                         }
 
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -418,7 +431,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            String strPath = SystemManager.SelectObjectTag;
             frmImportOleDB mfrm = new frmImportOleDB();
             mfrm.ShowDialog();
             String DBFilename = mfrm.DataBaseFileName;
@@ -450,7 +463,7 @@ namespace MagicMongoDBTool
             String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             String strCollection = strPath.Split("/".ToCharArray())[2];
             String strNewCollectionName = Microsoft.VisualBasic.Interaction.InputBox("请输入新数据集名称：", "数据集改名");
-            if (MongoDBHelpler.CollectionOpration(strPath, strCollection, MongoDBHelpler.Oprcode.Rename, trvsrvlst.SelectedNode, strNewCollectionName))
+            if (MongoDBHelpler.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelpler.Oprcode.Rename, trvsrvlst.SelectedNode, strNewCollectionName))
             {
                 DisableAllOpr();
                 lstData.Clear();
@@ -468,7 +481,7 @@ namespace MagicMongoDBTool
         {
             String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             String strDBName = strPath.Split("/".ToCharArray())[1];
-            if (MongoDBHelpler.DataBaseOpration(strPath, strDBName, MongoDBHelpler.Oprcode.Drop, trvsrvlst.SelectedNode))
+            if (MongoDBHelpler.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelpler.Oprcode.Drop, trvsrvlst.SelectedNode))
             {
                 DisableAllOpr();
                 lstData.Clear();
@@ -483,7 +496,7 @@ namespace MagicMongoDBTool
         {
             String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             String strCollection = strPath.Split("/".ToCharArray())[2];
-            if (MongoDBHelpler.CollectionOpration(strPath, strCollection, MongoDBHelpler.Oprcode.Drop, trvsrvlst.SelectedNode))
+            if (MongoDBHelpler.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelpler.Oprcode.Drop, trvsrvlst.SelectedNode))
             {
                 DisableAllOpr();
                 lstData.Clear();
@@ -530,13 +543,12 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CreateMongoCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             String strCollection = Microsoft.VisualBasic.Interaction.InputBox("请输入数据集名称：", "创建数据集");
             if (strCollection == string.Empty)
             {
                 return;
             }
-            if (MongoDBHelpler.CollectionOpration(strPath, strCollection, MongoDBHelpler.Oprcode.Create, trvsrvlst.SelectedNode))
+            if (MongoDBHelpler.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelpler.Oprcode.Create, trvsrvlst.SelectedNode))
             {
                 DisableAllOpr();
                 lstData.Clear();
@@ -555,7 +567,7 @@ namespace MagicMongoDBTool
             {
                 return;
             }
-            if (MongoDBHelpler.DataBaseOpration(strPath, strDBName, MongoDBHelpler.Oprcode.Create, trvsrvlst.SelectedNode))
+            if (MongoDBHelpler.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelpler.Oprcode.Create, trvsrvlst.SelectedNode))
             {
                 DisableAllOpr();
                 lstData.Clear();

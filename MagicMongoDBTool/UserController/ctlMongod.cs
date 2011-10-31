@@ -51,8 +51,37 @@ namespace MagicMongoDBTool
         }
         private void chkIsMaster_CheckedChanged(object sender, EventArgs e)
         {
+            if (chkIsMaster.Checked) { chkIsSlave.Checked = false; }
             MongodCommand.IsMaster = chkIsMaster.Checked;
+            MongodCommand.IsSlave = chkIsSlave.Checked;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+        }
+        private void chkIsSlave_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkIsSlave.Checked) { chkIsMaster.Checked = false; }
+            MongodCommand.IsMaster = chkIsMaster.Checked;
+            MongodCommand.IsSlave = chkIsSlave.Checked;
+            CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+        }
+        private void chkAuth_CheckedChanged(object sender, EventArgs e)
+        {
+            MongodCommand.IsAuth = chkAuth.Checked;
+            CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+        }
+
+        private void numPort_ValueChanged(object sender, EventArgs e)
+        {
+            MongodCommand.Port = (int)numPort.Value;
+            CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+        }
+
+        private void txtSource_TextChanged(string strNewText)
+        {
+            MongodCommand.Source = strNewText;
+            if (MongodCommand != null)
+            {
+                CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+            }
         }
     }
 }
