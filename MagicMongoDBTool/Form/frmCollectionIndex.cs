@@ -10,7 +10,7 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-        MongoCollection mongoCollection = SystemManager.getCurrentCollection();
+        MongoCollection mongoCollection = SystemManager.GetCurrentCollection();
         private void frmCollectionIndex_Load(object sender, EventArgs e)
         {
             lstIndex.Columns.Add("名称");

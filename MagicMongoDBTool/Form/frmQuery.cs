@@ -6,7 +6,7 @@ namespace MagicMongoDBTool
 {
     public partial class frmQuery : QLFUI.QLFForm
     {
-        MongoCollection mongocol = SystemManager.getCurrentCollection();
+        MongoCollection mongocol = SystemManager.GetCurrentCollection();
         /// <summary>
         /// 条件输入器数量
         /// </summary>
@@ -25,7 +25,7 @@ namespace MagicMongoDBTool
         private void frmQuery_Load(object sender, EventArgs e)
         {
             Point Pos = new Point(5, 20);
-            foreach (var item in MongoDBHelpler.columnList)
+            foreach (var item in MongoDBHelpler.ColumnList)
             {
                 //输出配置的初始化
                 MongoDBHelpler.QueryFieldItem mQueryFieldList = new MongoDBHelpler.QueryFieldItem();
@@ -51,8 +51,8 @@ namespace MagicMongoDBTool
         private void cmdOK_Click(object sender, EventArgs e)
         {
             //清除以前的结果和内部变量，重要！
-            MongoDBHelpler.clearFilter();
-            foreach (var item in MongoDBHelpler.columnList)
+            MongoDBHelpler.ClearFilter();
+            foreach (var item in MongoDBHelpler.ColumnList)
             {
                 MongoDBHelpler.QueryFieldList.Add(((ctlFieldInfo)Controls.Find(item, true)[0]).QueryFieldItem);
             }

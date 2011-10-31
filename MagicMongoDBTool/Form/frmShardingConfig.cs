@@ -13,7 +13,7 @@ namespace MagicMongoDBTool
         MongoServer mongosrv;
         private void frmShardingConfig_Load(object sender, EventArgs e)
         {
-            mongosrv = SystemManager.getCurrentService();
+            mongosrv = SystemManager.GetCurrentService();
             MongoDatabase mongoDb = mongosrv.GetDatabase("config");
             MongoCollection mongoCol = mongoDb.GetCollection("databases");
             foreach (var item in mongoCol.FindAllAs<BsonDocument>())
@@ -68,7 +68,7 @@ namespace MagicMongoDBTool
         }
         private void cmdCollectionSharding_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.shardcollection(mongosrv, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument());
+            MongoDBHelpler.ShardCollection(mongosrv, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument());
         }
 
        

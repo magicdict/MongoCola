@@ -11,7 +11,7 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-        MongoCollection mongocol = SystemManager.getCurrentCollection();
+        MongoCollection mongocol = SystemManager.GetCurrentCollection();
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
             //            //Start Test
@@ -34,7 +34,7 @@ namespace MagicMongoDBTool
                 (x, y) => { txtReduceJs.Text = MongoDBHelpler.LoadJavascript(cmbForReduce.Text); }
             );
 
-            foreach (var item in SystemManager.getJsNameList())
+            foreach (var item in SystemManager.GetJsNameList())
             {
                 cmbForMap.Items.Add(item);
                 cmbForReduce.Items.Add(item);

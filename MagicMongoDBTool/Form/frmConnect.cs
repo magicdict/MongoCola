@@ -23,11 +23,11 @@ namespace MagicMongoDBTool
         private void RefreshConnection()
         {
             lstServerce.Items.Clear();
-            foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.mConfig.ConnectionList.Values)
+            foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
                 lstServerce.Items.Add(item.HostName);
             }
-            SystemManager.mConfig.SaveToConfigFile("config.xml");
+            SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
         }
 
         private void cmdAddCon_Click(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace MagicMongoDBTool
             {
                 foreach (String item in lstServerce.SelectedItems)
                 {
-                    connlst.Add(SystemManager.mConfig.ConnectionList[item]);
+                    connlst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item]);
                 }
                 MongoDBHelpler.AddServer(connlst);
                 this.Close();
@@ -56,9 +56,9 @@ namespace MagicMongoDBTool
         {
             foreach (String item in lstServerce.SelectedItems)
             {
-                if (SystemManager.mConfig.ConnectionList.ContainsKey(item))
+                if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(item))
                 {
-                    SystemManager.mConfig.ConnectionList.Remove(item);
+                    SystemManager.ConfigHelperInstance.ConnectionList.Remove(item);
                 }
             }
             RefreshConnection();

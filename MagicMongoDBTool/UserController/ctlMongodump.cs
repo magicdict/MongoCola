@@ -12,7 +12,7 @@ namespace MagicMongoDBTool.Module
     public partial class ctlMongodump : UserControl
     {
         public event MagicMongoDBTool.frmDosCommand.CommandChangedEventHandler CommandChanged;
-        private MongodbDosCommand.struMongodump MongodumpCommand = new MongodbDosCommand.struMongodump();
+        private MongodbDosCommand.StruMongoDump MongodumpCommand = new MongodbDosCommand.StruMongoDump();
         public ctlMongodump()
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace MagicMongoDBTool.Module
         }
         void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
-            MongodumpCommand.loglv = logLv;
+            MongodumpCommand.LogLV = logLv;
             CommandChanged(MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand));
         }
         private void txtHostAddr_TextChanged(object sender, EventArgs e)

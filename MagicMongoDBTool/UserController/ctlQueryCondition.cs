@@ -27,22 +27,22 @@ namespace MagicMongoDBTool
                 if (cmbCompareOpr.SelectedIndex != -1)
                 {
                     MongoDBHelpler.QueryConditionInputItem rtn = new MongoDBHelpler.QueryConditionInputItem();
-                    rtn.comp = (MongoDBHelpler.CompareEnum)cmbCompareOpr.SelectedIndex;
+                    rtn.Comp = (MongoDBHelpler.CompareEnum)cmbCompareOpr.SelectedIndex;
                     if (cmbDataType.SelectedIndex == 0)
                     {
-                        rtn.type = BsonType.String;
+                        rtn.Type = BsonType.String;
                     }
                     if (cmbDataType.SelectedIndex == 1)
                     {
-                        rtn.type = BsonType.Int32;
+                        rtn.Type = BsonType.Int32;
                     }
                     if (cmbDataType.SelectedIndex == 2)
                     {
-                        rtn.type = BsonType.DateTime;
+                        rtn.Type = BsonType.DateTime;
                     }
                     if (cmbDataType.SelectedIndex == 3)
                     {
-                        rtn.type = BsonType.Boolean;
+                        rtn.Type = BsonType.Boolean;
                     }
                     rtn.Value = txtValue.Text;
                     rtn.StartMark = cmbStartMark.Text;
@@ -57,24 +57,24 @@ namespace MagicMongoDBTool
             set{
                 cmbColName.Text = value.ColName;
                 cmbDataType.SelectedIndex = 0;
-                if (value.type == BsonType.String)
+                if (value.Type == BsonType.String)
                 {
                     cmbDataType.SelectedIndex = 0;
                 }
-                if (value.type == BsonType.Int32)
+                if (value.Type == BsonType.Int32)
                 {
                     cmbDataType.SelectedIndex = 1;
                 }
-                if (value.type == BsonType.DateTime)
+                if (value.Type == BsonType.DateTime)
                 {
                     cmbDataType.SelectedIndex = 2;
                 }
-                if (value.type == BsonType.Boolean)
+                if (value.Type == BsonType.Boolean)
                 {
                     cmbDataType.SelectedIndex = 3;
                 }
                 txtValue.Text = value.Value.ToString();
-                cmbCompareOpr.SelectedIndex = (int)value.comp;
+                cmbCompareOpr.SelectedIndex = (int)value.Comp;
                 cmbStartMark.Text = value.StartMark;
                 cmbEndMark.Text = value.EndMark;
             }
@@ -111,7 +111,7 @@ namespace MagicMongoDBTool
             cmbDataType.Items.Add("布尔");
 
             //字段表的载入
-            foreach (var item in MongoDBHelpler.columnList)
+            foreach (var item in MongoDBHelpler.ColumnList)
             {
                 this.cmbColName.Items.Add(item);
             }

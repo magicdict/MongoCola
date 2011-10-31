@@ -23,22 +23,22 @@ namespace MagicMongoDBTool.Module
             lblLogLv.Text = "日志等级：";
             switch (trbLogLv.Value)
             {
-                case (int)MongodbDosCommand.MongologLevel.quiet:
+                case (int)MongodbDosCommand.MongologLevel.Quiet:
                     lblLogLv.Text += "最少";
                     break;
-                case (int)MongodbDosCommand.MongologLevel.v:
+                case (int)MongodbDosCommand.MongologLevel.V:
                     lblLogLv.Text += "1级";
                     break;
-                case (int)MongodbDosCommand.MongologLevel.vv:
+                case (int)MongodbDosCommand.MongologLevel.VV:
                     lblLogLv.Text += "2级";
                     break;
-                case (int)MongodbDosCommand.MongologLevel.vvv:
+                case (int)MongodbDosCommand.MongologLevel.VVV:
                     lblLogLv.Text += "3级";
                     break;
-                case (int)MongodbDosCommand.MongologLevel.vvvv:
+                case (int)MongodbDosCommand.MongologLevel.VVVV:
                     lblLogLv.Text += "4级";
                     break;
-                case (int)MongodbDosCommand.MongologLevel.vvvvv:
+                case (int)MongodbDosCommand.MongologLevel.VVVVV:
                     lblLogLv.Text += "最多";
                     break;
                 default:
@@ -49,8 +49,8 @@ namespace MagicMongoDBTool.Module
 
         private void ctllogLv_Load(object sender, EventArgs e)
         {
-            trbLogLv.Minimum = (int)MongodbDosCommand.MongologLevel.quiet;
-            trbLogLv.Maximum = (int)MongodbDosCommand.MongologLevel.vvvvv;
+            trbLogLv.Minimum = (int)MongodbDosCommand.MongologLevel.Quiet;
+            trbLogLv.Maximum = (int)MongodbDosCommand.MongologLevel.VVVVV;
         }
     }
 }

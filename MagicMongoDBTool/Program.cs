@@ -16,12 +16,12 @@ namespace MagicMongoDBTool
         {
             if (File.Exists("config.xml"))
             {
-                SystemManager.mConfig = ConfigHelper.LoadFromConfigFile("config.xml");
+                SystemManager.ConfigHelperInstance = ConfigHelper.LoadFromConfigFile("config.xml");
             }
             else
             {
-                SystemManager.mConfig = new ConfigHelper();
-                SystemManager.mConfig.SaveToConfigFile("config.xml");
+                SystemManager.ConfigHelperInstance = new ConfigHelper();
+                SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

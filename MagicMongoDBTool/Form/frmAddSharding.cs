@@ -20,9 +20,9 @@ namespace MagicMongoDBTool
         MongoServer PrmSrv;
         private void frmAddSharding_Load(object sender, EventArgs e)
         {
-            PrmSrv = SystemManager.getCurrentService();
+            PrmSrv = SystemManager.GetCurrentService();
             String strPrmKey = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-            foreach (var item in SystemManager.mConfig.ConnectionList.Values)
+            foreach (var item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
                 if (item.ReplSetName != null)
                 {
@@ -36,7 +36,7 @@ namespace MagicMongoDBTool
         private void RefreshSrv()
         {
             lstShard.Items.Clear();
-            foreach (var item in SystemManager.mConfig.ConnectionList.Values)
+            foreach (var item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
                 if (item.ReplSetName != null)
                 {

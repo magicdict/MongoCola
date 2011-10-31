@@ -22,7 +22,7 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
             //Modify Mode
-            ModifyConn = SystemManager.mConfig.ConnectionList[ConnectionName];
+            ModifyConn = SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName];
             txtHostName.Text = ModifyConn.HostName;
             txtHostName.Enabled = false;
             txtIpAddr.Text = ModifyConn.IpAddr;
@@ -91,13 +91,13 @@ namespace MagicMongoDBTool
                 }
             }
 
-            if (SystemManager.mConfig.ConnectionList.ContainsKey(ModifyConn.HostName))
+            if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.HostName))
             {
-                SystemManager.mConfig.ConnectionList[ModifyConn.HostName] = ModifyConn;
+                SystemManager.ConfigHelperInstance.ConnectionList[ModifyConn.HostName] = ModifyConn;
             }
             else
             {
-                SystemManager.mConfig.ConnectionList.Add(ModifyConn.HostName, ModifyConn);
+                SystemManager.ConfigHelperInstance.ConnectionList.Add(ModifyConn.HostName, ModifyConn);
             }
             this.Close();
         }

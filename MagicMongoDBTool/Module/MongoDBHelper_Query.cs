@@ -79,7 +79,8 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 清除过滤器
         /// </summary>
-        public static void clearFilter(){
+        public static void ClearFilter()
+        {
             MongoDBHelpler.SkipCnt = 0;
             QueryFieldList.Clear();
             QueryCompareList.Clear();
@@ -97,26 +98,27 @@ namespace MagicMongoDBTool.Module
         /// 获得输出字段名称
         /// </summary>
         /// <returns></returns>
-        public static String[] getOutputFields()
+        public static String[] GetOutputFields()
         {
-            List<String> OutputFieldlst = new List<string>();
+            List<String> outputFieldLst = new List<string>();
             foreach (var item in QueryFieldList)
             {
                 if (item.IsShow)
                 {
-                    OutputFieldlst.Add(item.ColName);
+                    outputFieldLst.Add(item.ColName);
                 }
             }
-            return OutputFieldlst.ToArray();
+            return outputFieldLst.ToArray();
         }
         /// <summary>
         /// 获得排序
         /// </summary>
         /// <returns></returns>
-        public static SortByBuilder getSort(){
+        public static SortByBuilder GetSort()
+        {
             var sort = new SortByBuilder();
-            List<String> AscendingList = new List<string>();
-            List<String> DescendingList = new List<string>();
+            List<string> ascendingList = new List<string>();
+            List<string> descendingList = new List<string>();
             //_id将以文字的形式排序，所以不要排序_id!!
             foreach (var item in QueryFieldList)
             {
@@ -125,17 +127,17 @@ namespace MagicMongoDBTool.Module
                     case SortType.NoSort:
                         break;
                     case SortType.Ascending:
-                        AscendingList.Add(item.ColName);
+                        ascendingList.Add(item.ColName);
                         break;
                     case SortType.Descending:
-                        DescendingList.Add(item.ColName);
+                        descendingList.Add(item.ColName);
                         break;
                     default:
                         break;
-                }   
+                }
             }
-            sort.Ascending(AscendingList.ToArray());
-            sort.Descending(DescendingList.ToArray());
+            sort.Ascending(ascendingList.ToArray());
+            sort.Descending(descendingList.ToArray());
             return sort;
         }
         /// <summary>
@@ -143,12 +145,12 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public struct QueryConditionInputItem
         {
-            public String StartMark;
-            public String ColName;
-            public CompareEnum comp;
-            public String Value;
-            public BsonType type;
-            public String EndMark;
+            public string StartMark;
+            public string ColName;
+            public CompareEnum Comp;
+            public string Value;
+            public BsonType Type;
+            public string EndMark;
         }
         /// <summary>
         /// 输出条件配置
@@ -161,51 +163,52 @@ namespace MagicMongoDBTool.Module
         public static IMongoQuery GetQuery()
         {
             //遍历所有条件，分组
-            List<List<QueryConditionInputItem>> ConditiongrpList = new List<List<QueryConditionInputItem>>();
-            List<QueryConditionInputItem> CurrGrp = null;
+            List<List<QueryConditionInputItem>> conditiongrpList = new List<List<QueryConditionInputItem>>();
+            List<QueryConditionInputItem> currGrp = null;
             for (int i = 0; i < QueryCompareList.Count; i++)
             {
                 if (i == 0 || QueryCompareList[i].StartMark == "(" || QueryCompareList[i - 1].EndMark.StartsWith(")"))
                 {
                     List<QueryConditionInputItem> NewGroup = new List<QueryConditionInputItem>();
-                    ConditiongrpList.Add(NewGroup);
-                    CurrGrp = NewGroup;
-                    CurrGrp.Add(QueryCompareList[i]);
+                    conditiongrpList.Add(NewGroup);
+                    currGrp = NewGroup;
+                    currGrp.Add(QueryCompareList[i]);
                 }
                 else
                 {
-                    CurrGrp.Add(QueryCompareList[i]);
+                    currGrp.Add(QueryCompareList[i]);
                 }
             }
             //将每个分组总结为1个IMongoQuery和1个连接符号
             IMongoQuery rtnQuery = null;
-            if (ConditiongrpList.Count == 1) {
-                return GetGroupQuery(ConditiongrpList[0]);
-            }
-            for (int i = 0; i < ConditiongrpList.Count - 1; i++)
+            if (conditiongrpList.Count == 1)
             {
-                String JoinMark = ConditiongrpList[i][ConditiongrpList[i].Count() - 1].EndMark;
-                if (JoinMark == ") AND ")
+                return GetGroupQuery(conditiongrpList[0]);
+            }
+            for (int i = 0; i < conditiongrpList.Count - 1; i++)
+            {
+                string joinMark = conditiongrpList[i][conditiongrpList[i].Count() - 1].EndMark;
+                if (joinMark == ") AND ")
                 {
                     if (i == 0)
                     {
-                        rtnQuery = Query.And(new IMongoQuery[] { GetGroupQuery(ConditiongrpList[i]), GetGroupQuery(ConditiongrpList[i + 1]) });
+                        rtnQuery = Query.And(new IMongoQuery[] { GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1]) });
                     }
                     else
                     {
-                        rtnQuery = Query.And(new IMongoQuery[] { rtnQuery, GetGroupQuery(ConditiongrpList[i + 1]) });
+                        rtnQuery = Query.And(new IMongoQuery[] { rtnQuery, GetGroupQuery(conditiongrpList[i + 1]) });
                     }
                 }
 
-                if (JoinMark ==") OR ")
+                if (joinMark == ") OR ")
                 {
                     if (i == 0)
                     {
-                        rtnQuery = Query.Or(new IMongoQuery[] { GetGroupQuery(ConditiongrpList[i]), GetGroupQuery(ConditiongrpList[i + 1]) });
+                        rtnQuery = Query.Or(new IMongoQuery[] { GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1]) });
                     }
                     else
                     {
-                        rtnQuery = Query.Or(new IMongoQuery[] { rtnQuery, GetGroupQuery(ConditiongrpList[i + 1]) });
+                        rtnQuery = Query.Or(new IMongoQuery[] { rtnQuery, GetGroupQuery(conditiongrpList[i + 1]) });
                     }
                 }
             }
@@ -214,38 +217,38 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 将每个分组合并为一个IMongoQuery
         /// </summary>
-        /// <param name="ConditionGroup"></param>
+        /// <param name="conditionGroup"></param>
         /// <returns></returns>
-        private static IMongoQuery GetGroupQuery(List<QueryConditionInputItem> ConditionGroup)
+        private static IMongoQuery GetGroupQuery(List<QueryConditionInputItem> conditionGroup)
         {
-            List<QueryConditionInputItem> OrGrp = new List<QueryConditionInputItem>();
-            List<QueryConditionInputItem> AndGrp = new List<QueryConditionInputItem>();
-            for (int i = 0; i < ConditionGroup.Count; i++)
+            List<QueryConditionInputItem> orGrp = new List<QueryConditionInputItem>();
+            List<QueryConditionInputItem> andGrp = new List<QueryConditionInputItem>();
+            for (int i = 0; i < conditionGroup.Count; i++)
             {
                 if (i == 0)
                 {
                     //第一条强制放入OrGroup
-                    AndGrp.Add(ConditionGroup[i]);
+                    andGrp.Add(conditionGroup[i]);
                 }
                 else
                 {
                     //第二条到最终条，参考上一条
-                    if (ConditionGroup[i - 1].EndMark == " AND ")
+                    if (conditionGroup[i - 1].EndMark == " AND ")
                     {
-                        AndGrp.Add(ConditionGroup[i]);
+                        andGrp.Add(conditionGroup[i]);
                     }
-                    if (ConditionGroup[i - 1].EndMark == " OR ")
+                    if (conditionGroup[i - 1].EndMark == " OR ")
                     {
-                        OrGrp.Add(ConditionGroup[i]);
+                        orGrp.Add(conditionGroup[i]);
                     }
                 }
             }
             //将OR条件转化为一个IMongoQuery
-            IMongoQuery OrResutl = GetGroup(OrGrp, "OR");
+            IMongoQuery orResutl = GetGroup(orGrp, "OR");
             //将AND条件转化为一个IMongoQuery
-            IMongoQuery AndResutl = GetGroup(AndGrp, "AND");
+            IMongoQuery andResutl = GetGroup(andGrp, "AND");
             //将AND和OR条件合并
-            return Query.And(new IMongoQuery[] { OrResutl, AndResutl });
+            return Query.And(new IMongoQuery[] { orResutl, andResutl });
         }
         /// <summary>
         /// 将And和Or组里面的最基本条件转化为一个IMongoQuery
@@ -255,12 +258,12 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         private static IMongoQuery GetGroup(List<QueryConditionInputItem> oprGrp, String strOPR)
         {
-            List<IMongoQuery> querylst = new List<IMongoQuery>();
+            List<IMongoQuery> queryLst = new List<IMongoQuery>();
             foreach (var item in oprGrp)
             {
                 IMongoQuery query;
                 BsonValue queryvalue;
-                switch (item.type)
+                switch (item.Type)
                 {
                     case BsonType.Boolean:
                         queryvalue = (BsonBoolean)item.Value;
@@ -278,7 +281,7 @@ namespace MagicMongoDBTool.Module
                         queryvalue = (BsonString)item.Value;
                         break;
                 }
-                switch (item.comp)
+                switch (item.Comp)
                 {
                     case CompareEnum.EQ:
                         query = Query.EQ(item.ColName, queryvalue);
@@ -302,15 +305,15 @@ namespace MagicMongoDBTool.Module
                         query = Query.EQ(item.ColName, queryvalue);
                         break;
                 }
-                querylst.Add(query);
+                queryLst.Add(query);
             }
             if (strOPR == "OR")
             {
-                return Query.Or(querylst.ToArray());
+                return Query.Or(queryLst.ToArray());
             }
             else
             {
-                return Query.And(querylst.ToArray());
+                return Query.And(queryLst.ToArray());
             }
         }
         /// <summary>
@@ -319,7 +322,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="Field"></param>
         /// <param name="mongoCol"></param>
         /// <returns></returns>
-        public static Boolean IsExistByField(MongoCollection mongoCol,BsonValue strKey, String Field = "_id")
+        public static Boolean IsExistByField(MongoCollection mongoCol, BsonValue strKey, string Field = "_id")
         {
             return mongoCol.FindAs<BsonDocument>(Query.EQ(Field, strKey)).Count() > 0;
         }

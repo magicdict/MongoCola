@@ -14,7 +14,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 数据连接字符串
         /// </summary>
-        const String AccessConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=@AccessPath;Persist Security Info=True";
+        private const string ACCESS_CONNECTION_STRING = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=@AccessPath;Persist Security Info=True";
         /// <summary>
         /// 列信息
         /// </summary>
@@ -52,15 +52,15 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 获得数据类型
         /// </summary>
-        /// <param name="OLEDataType"></param>
-        /// <param name="ColumnSize"></param>
-        /// <param name="NumericPrecision"></param>
-        /// <param name="NumericScale"></param>
+        /// <param name="oleDataType"></param>
+        /// <param name="columnSize"></param>
+        /// <param name="numericPrecision"></param>
+        /// <param name="numericScale"></param>
         /// <returns></returns>
-        private static string GetDataType(int OLEDataType, long ColumnSize, int NumericPrecision, int NumericScale)
+        private static string GetDataType(int oleDataType, long columnSize, int numericPrecision, int numericScale)
         {
 
-            switch (OLEDataType)
+            switch (oleDataType)
             {
 
                 case 2:
@@ -68,7 +68,7 @@ namespace MagicMongoDBTool.Module
 
                 case 3:
                     //Long
-                    switch (ColumnSize)
+                    switch (columnSize)
                     {
                         case -1:
                             return "Long";
@@ -78,7 +78,7 @@ namespace MagicMongoDBTool.Module
                         default:
                             return "Long";
                     }
-                    break;
+                //break;
 
                 case 4:
                     return "Single";
@@ -104,11 +104,11 @@ namespace MagicMongoDBTool.Module
                     return "MEMO";
 
                 case 130:
-                    if (ColumnSize == 0)
+                    if (columnSize == 0)
                     {
                         return "MEMO";
                     }
-                    else if (ColumnSize == -1)
+                    else if (columnSize == -1)
                     {
                         return "MEMO";
                     }
@@ -117,18 +117,18 @@ namespace MagicMongoDBTool.Module
                         return "VARCHAR";
                         //return "VARCHAR(" + ColumnSize + ")";
                     }
-                    break;
+                //break;
 
                 case 131:
                     //decimal
-                    return "decimal(" + NumericPrecision + "," + NumericScale + ")";
+                    return "decimal(" + numericPrecision + "," + numericScale + ")";
 
                 case 128:
-                    if (ColumnSize == -1)
+                    if (columnSize == -1)
                     {
                         return "MEMO";
                     }
-                    else if (ColumnSize == 0)
+                    else if (columnSize == 0)
                     {
                         return "MENO";
                         //OLE Object
@@ -138,10 +138,10 @@ namespace MagicMongoDBTool.Module
                         return "VARCHAR";
                         //return "VARCHAR(" + ColumnSize + ")";
                     }
-                    break;
+                //break;
 
                 default:
-                    if (ColumnSize == -1)
+                    if (columnSize == -1)
                     {
                         return "MEMO";
                     }
@@ -150,28 +150,28 @@ namespace MagicMongoDBTool.Module
                         return "VARCHAR";
                         //return "VARCHAR(" + ColumnSize + ")";
                     }
-                    break;
+                //break;
 
             }
-            return null;
+            //return null;
         }
         /// <summary>
         /// 导入数据
         /// </summary>
-        /// <param name="Accessfilename"></param>
+        /// <param name="accessFileName"></param>
         /// <param name="strSvrPath"></param>
-        /// <param name="CurrentTreeNode"></param>
+        /// <param name="currentTreeNode"></param>
         /// <returns></returns>
-        public static Boolean ImportAccessDataBase(String Accessfilename, String strSvrPath, TreeNode CurrentTreeNode)
+        public static Boolean ImportAccessDataBase(string accessFileName, string strSvrPath, TreeNode currentTreeNode)
         {
             Boolean rtnCode = false;
 
-            MongoServer Mongosrv = GetMongoServerBySvrPath(strSvrPath);
-            String[] FileName = Accessfilename.Split(@"\".ToCharArray());
-            String FileMain = FileName[FileName.Length - 1];
-            String InsertDBName = FileMain.Split(".".ToCharArray())[0];
-            MongoDatabase mongodb = Mongosrv.GetDatabase(InsertDBName);
-            OleDbConnection conn = new OleDbConnection(AccessConnectionString.Replace("@AccessPath", Accessfilename));
+            MongoServer mongoSvr = GetMongoServerBySvrPath(strSvrPath);
+            string[] fileName = accessFileName.Split(@"\".ToCharArray());
+            string fileMain = fileName[fileName.Length - 1];
+            string insertDBName = fileMain.Split(".".ToCharArray())[0];
+            MongoDatabase mongoDB = mongoSvr.GetDatabase(insertDBName);
+            OleDbConnection conn = new OleDbConnection(ACCESS_CONNECTION_STRING.Replace("@AccessPath", accessFileName));
             try
             {
                 conn.Open();
@@ -182,104 +182,104 @@ namespace MagicMongoDBTool.Module
                     try
                     {
                         //不支持UTF....,执行会失败，但是Collection已经添加了
-                        mongodb.CreateCollection(strTableName);
+                        mongoDB.CreateCollection(strTableName);
                     }
                     catch (Exception)
                     {
-                        if (mongodb.CollectionExists(strTableName))
+                        if (mongoDB.CollectionExists(strTableName))
                         {
-                            mongodb.DropCollection(strTableName);
+                            mongoDB.DropCollection(strTableName);
                         }
                         continue;
                     }
 
-                    MongoCollection mongoCollection = mongodb.GetCollection(strTableName);
+                    MongoCollection mongoCollection = mongoDB.GetCollection(strTableName);
                     DataTable tblSchema = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Columns, new object[] { null, null, strTableName, null });
-                    Dictionary<String, String> ColPro = new Dictionary<String, String>();
-                    List<String> ColName = new List<string>();
+                    Dictionary<string, string> colPro = new Dictionary<string, string>();
+                    List<string> colName = new List<string>();
                     foreach (DataRow item in tblSchema.Rows)
                     {
-                        long ColumnWidth;
+                        long columnWidth;
                         switch ((long)item["COLUMN_FLAGS"])
                         {
                             case 122:
-                                ColumnWidth = -1;
+                                columnWidth = -1;
                                 break;
                             case 90:
                                 //AutoNumber
-                                ColumnWidth = -2;
+                                columnWidth = -2;
                                 break;
                             default:
                                 if (item["CHARACTER_MAXIMUM_LENGTH"] is DBNull)
                                 {
-                                    ColumnWidth = -3;
+                                    columnWidth = -3;
                                 }
                                 else
                                 {
-                                    ColumnWidth = (long)item["CHARACTER_MAXIMUM_LENGTH"];
+                                    columnWidth = (long)item["CHARACTER_MAXIMUM_LENGTH"];
                                 }
                                 break;
                         }
-                        ColName.Add(item["COLUMN_NAME"].ToString());
-                        ColPro.Add(item["COLUMN_NAME"].ToString(), GetDataType((int)item["DATA_TYPE"], ColumnWidth,
+                        colName.Add(item["COLUMN_NAME"].ToString());
+                        colPro.Add(item["COLUMN_NAME"].ToString(), GetDataType((int)item["DATA_TYPE"], columnWidth,
                                    item["NUMERIC_PRECISION"] is DBNull ? 0 : (int)item["NUMERIC_PRECISION"],
                                    item["NUMERIC_SCALE"] is DBNull ? 0 : (int)item["NUMERIC_SCALE"]));
                     }
-                    OleDbCommand mCommand = new OleDbCommand();
-                    mCommand.Connection = conn;
-                    mCommand.CommandText = "Select * from " + strTableName;
-                    OleDbDataAdapter mAdapter = new OleDbDataAdapter();
-                    DataSet mDataSet = new DataSet();
-                    mAdapter.SelectCommand = mCommand;
-                    mAdapter.Fill(mDataSet, strTableName);
-                    DataTable tblAccessData = mDataSet.Tables[0];
+                    OleDbCommand cmd = new OleDbCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "Select * from " + strTableName;
+                    OleDbDataAdapter adapter = new OleDbDataAdapter();
+                    DataSet dateSet = new DataSet();
+                    adapter.SelectCommand = cmd;
+                    adapter.Fill(dateSet, strTableName);
+                    DataTable tblAccessData = dateSet.Tables[0];
                     foreach (DataRow itemRow in tblAccessData.Rows)
                     {
-                        BsonDocument InsertDoc = new BsonDocument();
-                        for (int i = 0; i < ColName.Count; i++)
+                        BsonDocument insertDoc = new BsonDocument();
+                        for (int i = 0; i < colName.Count; i++)
                         {
-                            if (!(itemRow[ColName[i]] is DBNull))
+                            if (!(itemRow[colName[i]] is DBNull))
                             {
-                                switch (ColPro[ColName[i]])
+                                switch (colPro[colName[i]])
                                 {
                                     case "VARCHAR":
-                                        InsertDoc.Add(ColName[i], new BsonString(itemRow[ColName[i]].ToString()), true);
+                                        insertDoc.Add(colName[i], new BsonString(itemRow[colName[i]].ToString()), true);
                                         break;
                                     case "BIT":
                                         //System.Boolean Can't Cast To BSonBoolean....
                                         //O,My LadyGaga
-                                        if ((Boolean)itemRow[ColName[i]])
+                                        if ((Boolean)itemRow[colName[i]])
                                         {
-                                            InsertDoc.Add(ColName[i], BsonBoolean.True, true);
+                                            insertDoc.Add(colName[i], BsonBoolean.True, true);
                                         }
                                         else
                                         {
-                                            InsertDoc.Add(ColName[i], BsonBoolean.False, true);
+                                            insertDoc.Add(colName[i], BsonBoolean.False, true);
                                         }
                                         break;
                                     case "DATETIME":
                                         //O,My LadyGaga
-                                        InsertDoc.Add(ColName[i], new BsonDateTime((DateTime)itemRow[ColName[i]]), true);
+                                        insertDoc.Add(colName[i], new BsonDateTime((DateTime)itemRow[colName[i]]), true);
                                         break;
                                     case "Integer":
-                                        InsertDoc.Add(ColName[i], (BsonInt32)itemRow[ColName[i]], true);
+                                        insertDoc.Add(colName[i], (BsonInt32)itemRow[colName[i]], true);
                                         break;
                                     case "Long":
                                         //itemRow[ColName[i]] the default is Int32 without convert
-                                        InsertDoc.Add(ColName[i], (BsonInt64)(long)itemRow[ColName[i]], true);
+                                        insertDoc.Add(colName[i], (BsonInt64)(long)itemRow[colName[i]], true);
                                         break;
                                     default:
                                         break;
                                 }
                             }
                         }
-                        mongoCollection.Insert<BsonDocument>(InsertDoc);
+                        mongoCollection.Insert<BsonDocument>(insertDoc);
                     }
                 }
-                CurrentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(InsertDBName, Mongosrv, strSvrPath.Split("/".ToCharArray())[0]));
+                currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, strSvrPath.Split("/".ToCharArray())[0]));
                 rtnCode = true;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 throw;
             }

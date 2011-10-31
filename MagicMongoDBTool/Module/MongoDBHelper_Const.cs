@@ -11,21 +11,21 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 普通服务器Tag
         /// </summary>
-        public const String ServiceTag = "MongoService";
+        public const string SERVICE_TAG = "MongoService";
         /// <summary>
         /// 该服务器只允许操作其下的某个数据库
         /// </summary>
-        public const String SingleDBServiceTag = "MongoSingleDBService";
+        public const string SINGLE_DB_SERVICE_TAG = "MongoSingleDBService";
 
-        public const String DataBaseTag = "MongoDatabase";
-        public const String SingleDataBaseTag = "SingleMongoDatabase";
+        public const string DATABASE_TAG = "MongoDatabase";
+        public const string SINGLE_DATABASE_TAG = "SingleMongoDatabase";
 
-        
-        public const String CollectionTag = "MongoCollection";
-        public const String DocumentTag = "MongoDocument";
-        public const String GridFileSystemTag = "MongoGFS";
-        public const String UserListTag = "MongoUserList";
-        public const String UserTag = "MongoUser";
+
+        public const string COLLECTION_TAG = "MongoCollection";
+        public const string DOCUMENT_TAG = "MongoDocument";
+        public const string GRID_FILE_SYSTEM_TAG = "MongoGFS";
+        public const string USER_LIST_TAG = "MongoUserList";
+        public const string USER_TAG = "MongoUser";
 
 
         /// <summary>
@@ -39,8 +39,8 @@ namespace MagicMongoDBTool.Module
         }
 
 
-        public const String CollectionName_GridFileSystem = "fs.files";
-        public const String CollectionName_User = "system.users";
-        public const String CollectionName_JavaScript = "system.js";
+        public const string COLLECTION_NAME_GRID_FILE_SYSTEM = "fs.files";
+        public const string COLLECTION_NAME_USER = "system.users";
+        public const string COLLECTION_NAME_JAVASCRIPT = "system.js";
     }
 }
