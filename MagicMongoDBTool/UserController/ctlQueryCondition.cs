@@ -16,14 +16,17 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-        public Boolean IsSeted{
-            get { 
-                return(cmbCompareOpr.SelectedIndex != -1);
+        public Boolean IsSeted
+        {
+            get
+            {
+                return (cmbCompareOpr.SelectedIndex != -1);
             }
         }
         public MongoDBHelpler.QueryConditionInputItem CompareItem
-        { 
-            get{
+        {
+            get
+            {
                 if (cmbCompareOpr.SelectedIndex != -1)
                 {
                     MongoDBHelpler.QueryConditionInputItem rtn = new MongoDBHelpler.QueryConditionInputItem();
@@ -50,11 +53,13 @@ namespace MagicMongoDBTool
                     rtn.ColName = cmbColName.Text;
                     return rtn;
                 }
-                else {
+                else
+                {
                     return new MongoDBHelpler.QueryConditionInputItem();
                 }
             }
-            set{
+            set
+            {
                 cmbColName.Text = value.ColName;
                 cmbDataType.SelectedIndex = 0;
                 if (value.Type == BsonType.String)
@@ -82,7 +87,8 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 清除控件
         /// </summary>
-        public void clear() {
+        public void clear()
+        {
             txtValue.Text = "";
             cmbCompareOpr.SelectedIndex = -1;
             cmbCompareOpr.Text = "";
@@ -96,11 +102,11 @@ namespace MagicMongoDBTool
             cmbStartMark.Items.Add("(");
             cmbStartMark.SelectedIndex = 0;
 
-            cmbEndMark.Items.Add(" ");    
-            cmbEndMark.Items.Add(" AND ");    
-            cmbEndMark.Items.Add(" OR ");    
-            cmbEndMark.Items.Add(") AND ");    
-            cmbEndMark.Items.Add(") OR ");    
+            cmbEndMark.Items.Add(" ");
+            cmbEndMark.Items.Add(" AND ");
+            cmbEndMark.Items.Add(" OR ");
+            cmbEndMark.Items.Add(") AND ");
+            cmbEndMark.Items.Add(") OR ");
             cmbEndMark.Items.Add(")");
             cmbEndMark.SelectedIndex = 0;
 

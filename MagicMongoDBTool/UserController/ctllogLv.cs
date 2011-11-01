@@ -15,7 +15,7 @@ namespace MagicMongoDBTool.Module
         {
             InitializeComponent();
         }
-        public delegate void LogLvChangedHandler(MongodbDosCommand.MongologLevel logLv);
+        public delegate void LogLvChangedHandler(MongodbDosCommand.MongologLevel logLV);
         public event LogLvChangedHandler LoglvChanged;
 
         private void trbLogLv_Scroll(object sender, EventArgs e)

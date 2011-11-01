@@ -65,11 +65,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 字段名称
             /// </summary>
-            public String ColName;
+            public string ColName;
             /// <summary>
             /// 是否表示
             /// </summary>
-            public Boolean IsShow;
+            public bool IsShow;
             /// <summary>
             /// 排序类型
             /// </summary>
@@ -88,7 +88,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 是否使用过滤器
         /// </summary>
-        public static Boolean IsUseFilter = false;
+        public static bool IsUseFilter = false;
         /// <summary>
         /// 输出项目配置
         /// </summary>
@@ -168,9 +168,9 @@ namespace MagicMongoDBTool.Module
             {
                 if (i == 0 || QueryCompareList[i].StartMark == "(" || QueryCompareList[i - 1].EndMark.StartsWith(")"))
                 {
-                    List<QueryConditionInputItem> NewGroup = new List<QueryConditionInputItem>();
-                    conditiongrpList.Add(NewGroup);
-                    currGrp = NewGroup;
+                    List<QueryConditionInputItem> newGroup = new List<QueryConditionInputItem>();
+                    conditiongrpList.Add(newGroup);
+                    currGrp = newGroup;
                     currGrp.Add(QueryCompareList[i]);
                 }
                 else
@@ -243,11 +243,11 @@ namespace MagicMongoDBTool.Module
                 }
             }
             //将OR条件转化为一个IMongoQuery
-            IMongoQuery orResutl = GetGroup(orGrp, "OR");
+            IMongoQuery orResult = GetGroup(orGrp, "OR");
             //将AND条件转化为一个IMongoQuery
-            IMongoQuery andResutl = GetGroup(andGrp, "AND");
+            IMongoQuery andResult = GetGroup(andGrp, "AND");
             //将AND和OR条件合并
-            return Query.And(new IMongoQuery[] { orResutl, andResutl });
+            return Query.And(new IMongoQuery[] { orResult, andResult });
         }
         /// <summary>
         /// 将And和Or组里面的最基本条件转化为一个IMongoQuery
@@ -255,7 +255,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="oprGrp"></param>
         /// <param name="strOPR"></param>
         /// <returns></returns>
-        private static IMongoQuery GetGroup(List<QueryConditionInputItem> oprGrp, String strOPR)
+        private static IMongoQuery GetGroup(List<QueryConditionInputItem> oprGrp, string strOPR)
         {
             List<IMongoQuery> queryLst = new List<IMongoQuery>();
             foreach (var item in oprGrp)

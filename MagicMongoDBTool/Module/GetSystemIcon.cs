@@ -17,10 +17,11 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// Image转换为Icon
         /// </summary>
-        /// <param name="OrgImg"></param>
+        /// <param name="orgImg"></param>
         /// <returns></returns>
-        public static Icon ConvertImgToIcon(Image OrgImg){
-            Bitmap bmp=new Bitmap(OrgImg);
+        public static Icon ConvertImgToIcon(Image orgImg)
+        {
+            Bitmap bmp = new Bitmap(orgImg);
             IntPtr h = bmp.GetHicon();
             Icon icon = System.Drawing.Icon.FromHandle(h);
             DeleteObject(h);// 释放IntPtr
@@ -40,7 +41,7 @@ namespace MagicMongoDBTool.Module
             {
                 return null;
             }
-            if (!File.Exists(fileName)) 
+            if (!File.Exists(fileName))
             {
                 return null;
             }
@@ -60,7 +61,7 @@ namespace MagicMongoDBTool.Module
             string GetIcon = string.Empty;
             if (ext.Length > 0)
             {
-                GetIcon = "." +  ext[ext.Length - 1];
+                GetIcon = "." + ext[ext.Length - 1];
             }
 
             if (IconList.ContainsKey(GetIcon))
@@ -69,7 +70,7 @@ namespace MagicMongoDBTool.Module
             }
             else
             {
-                IconImagelist.Images.Add(GetIconByFileType(GetIcon,isLarge));
+                IconImagelist.Images.Add(GetIconByFileType(GetIcon, isLarge));
                 IconList.Add(GetIcon, IconImagelist.Images.Count - 1);
                 return IconImagelist.Images.Count - 1;
             }

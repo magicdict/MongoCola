@@ -58,7 +58,10 @@ namespace MagicMongoDBTool
         }
         private void chkIsSlave_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkIsSlave.Checked) { chkIsMaster.Checked = false; }
+            if (chkIsSlave.Checked)
+            { 
+                chkIsMaster.Checked = false;
+            }
             MongodCommand.IsMaster = chkIsMaster.Checked;
             MongodCommand.IsSlave = chkIsSlave.Checked;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));

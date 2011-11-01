@@ -12,7 +12,7 @@ namespace MagicMongoDBTool
 {
     public partial class frmDosCommand : QLFUI.QLFForm
     {
-        public String strSaveText = string.Empty; 
+        public string StrSaveText = string.Empty;
         public delegate void CommandChangedEventHandler(string strCommandLine);
         public frmDosCommand()
         {
@@ -33,7 +33,7 @@ namespace MagicMongoDBTool
         void CommandChanged(string strCommandLine)
         {
             this.txtDosCommand.Text = strCommandLine;
-            strSaveText = strCommandLine;
+            StrSaveText = strCommandLine;
         }
         /// <summary>
         /// 运行
@@ -43,7 +43,7 @@ namespace MagicMongoDBTool
         private void cmdRunDos_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
-            if (this.txtDosCommand.Text != String.Empty)
+            if (this.txtDosCommand.Text != string.Empty)
             {
                 MongodbDosCommand.RunDosCommand(txtDosCommand.Text, sb);
                 this.txtDosCommand.Text += System.Environment.NewLine;
@@ -58,9 +58,10 @@ namespace MagicMongoDBTool
         private void cmdSave_Click(object sender, EventArgs e)
         {
             SaveFileDialog savefile = new SaveFileDialog();
-            if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+            if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
                 StreamWriter save = new StreamWriter(savefile.FileName);
-                save.Write(strSaveText);
+                save.Write(StrSaveText);
                 save.Close();
             }
         }

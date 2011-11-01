@@ -37,13 +37,13 @@ namespace MagicMongoDBTool
             cmdCancel.Click +=new EventHandler((x,y)=>{this.Close();});
             switch (ModifyConn.ServerType)
             {
-                case ConfigHelper.SrvType.ConfigSrv:
+                case ConfigHelper.SvrType.ConfigSvr:
                     radConfigSrv.Checked = true;
                     break;
-                case ConfigHelper.SrvType.RouteSrv:
+                case ConfigHelper.SvrType.RouteSvr:
                     radRouteSrv.Checked = true;
                     break;
-                case ConfigHelper.SrvType.DataSrv:
+                case ConfigHelper.SvrType.DataSvr:
                 default:
                     radDataSrv.Checked = true;
                     break;
@@ -76,11 +76,11 @@ namespace MagicMongoDBTool
             }
             if (radDataSrv.Checked)
             {
-                ModifyConn.ServerType = ConfigHelper.SrvType.DataSrv;
+                ModifyConn.ServerType = ConfigHelper.SvrType.DataSvr;
             }
             if (radConfigSrv.Checked)
             {
-                ModifyConn.ServerType = ConfigHelper.SrvType.ConfigSrv;
+                ModifyConn.ServerType = ConfigHelper.SvrType.ConfigSvr;
                 if (ModifyConn.IsSlaveOk)
                 {
                     //Config和Route不能设置为SlaveOK模式
@@ -90,7 +90,7 @@ namespace MagicMongoDBTool
             }
             if (radRouteSrv.Checked)
             {
-                ModifyConn.ServerType = ConfigHelper.SrvType.RouteSrv;
+                ModifyConn.ServerType = ConfigHelper.SvrType.RouteSvr;
                 if (ModifyConn.IsSlaveOk)
                 {
                     //Config和Route不能设置为SlaveOK模式

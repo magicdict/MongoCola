@@ -7,20 +7,20 @@ namespace MagicMongoDBTool.Module
     public static class SystemManager
     {
         public static ConfigHelper ConfigHelperInstance = new ConfigHelper();
-        public static string SelectObjectTag = String.Empty;
+        public static string SelectObjectTag = string.Empty;
         /// <summary>
         /// 通过服务器名称获得服务器配置
         /// </summary>
         /// <param name="SrvName"></param>
         /// <returns></returns>
-        public static ConfigHelper.MongoConnectionConfig getSelectedSrvProByName()
+        public static ConfigHelper.MongoConnectionConfig GetSelectedSvrProByName()
         {
-            string srvName = SelectObjectTag.Split(":".ToCharArray())[1];
-            srvName = srvName.Split("/".ToCharArray())[0];
+            string svrName = SelectObjectTag.Split(":".ToCharArray())[1];
+            svrName = svrName.Split("/".ToCharArray())[0];
             ConfigHelper.MongoConnectionConfig rtnMongoConnectionConfig = new ConfigHelper.MongoConnectionConfig();
-            if (ConfigHelperInstance.ConnectionList.ContainsKey(srvName))
+            if (ConfigHelperInstance.ConnectionList.ContainsKey(svrName))
             {
-                rtnMongoConnectionConfig = ConfigHelperInstance.ConnectionList[srvName];
+                rtnMongoConnectionConfig = ConfigHelperInstance.ConnectionList[svrName];
             }
             return rtnMongoConnectionConfig;
         }
@@ -54,9 +54,9 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoCollection GetCurrentJsCollection()
         {
-            MongoDatabase Mongodb = GetCurrentDataBase();
-            MongoCollection MongoJsCol = Mongodb.GetCollection(MongoDBHelpler.COLLECTION_NAME_JAVASCRIPT);
-            return MongoJsCol;
+            MongoDatabase mongoDB = GetCurrentDataBase();
+            MongoCollection mongoJsCol = mongoDB.GetCollection(MongoDBHelpler.COLLECTION_NAME_JAVASCRIPT);
+            return mongoJsCol;
         }
 
         public static List<string> GetJsNameList()

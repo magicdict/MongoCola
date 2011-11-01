@@ -11,11 +11,11 @@ namespace MagicMongoDBTool
 {
     public partial class ctlFilePicker : UserControl
     {
-        private DialogType mDialogType = DialogType.Directory;
+        private DialogType _dialogType = DialogType.Directory;
         /// <summary>
         /// 标题
         /// </summary>
-        public String Title
+        public string Title
         {
             get { return lblTitle.Text; }
             set { lblTitle.Text = value; }
@@ -25,16 +25,18 @@ namespace MagicMongoDBTool
         /// </summary>
         public DialogType PickType
         {
-            get { return mDialogType; }
-            set { mDialogType = value; }
+            get { return _dialogType; }
+            set { _dialogType = value; }
         }
         /// <summary>
         /// 选中路径
         /// </summary>
-        public String SelectedPath {
+        public string SelectedPath 
+        {
             get { return txtLogPath.Text; }
             set { txtLogPath.Text = value; }
         }
+
         public enum DialogType
         {
             OpenFile,
@@ -47,13 +49,12 @@ namespace MagicMongoDBTool
             InitializeComponent();
         }
 
-        public delegate void PathChangedHandler(String FilePath);
+        public delegate void PathChangedHandler(string FilePath);
         public event PathChangedHandler PathChanged;
 
         private void cmdLogPath_Click(object sender, EventArgs e)
         {
-
-            switch (mDialogType)
+            switch (_dialogType)
             {
                 case DialogType.OpenFile:
                     OpenFileDialog Openfd = new OpenFileDialog();

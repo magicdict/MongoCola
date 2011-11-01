@@ -32,29 +32,29 @@ namespace MagicMongoDBTool
 
         private void cmdAddCon_Click(object sender, EventArgs e)
         {
-            frmAddConnection mfrm = new frmAddConnection();
-            mfrm.ShowDialog();
-            mfrm.Close();
-            mfrm.Dispose();
+            frmAddConnection frmAddCon = new frmAddConnection();
+            frmAddCon.ShowDialog();
+            frmAddCon.Close();
+            frmAddCon.Dispose();
             RefreshConnection();
         }
 
         private void cmdConnect_Click(object sender, EventArgs e)
         {
-            List<ConfigHelper.MongoConnectionConfig> connlst = new List<ConfigHelper.MongoConnectionConfig>();
+            List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
             if (lstServerce.SelectedItems.Count > 0)
             {
-                foreach (String item in lstServerce.SelectedItems)
+                foreach (string item in lstServerce.SelectedItems)
                 {
-                    connlst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item]);
+                    connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item]);
                 }
-                MongoDBHelpler.AddServer(connlst);
+                MongoDBHelpler.AddServer(connLst);
                 this.Close();
             }
         }
         private void cmdDelCon_Click(object sender, EventArgs e)
         {
-            foreach (String item in lstServerce.SelectedItems)
+            foreach (string item in lstServerce.SelectedItems)
             {
                 if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(item))
                 {
