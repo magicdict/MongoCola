@@ -3,6 +3,9 @@
 *.config
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
-/QLFUI
-/HugeData
-/GUIResource
+/QLFUI/bin
+/QLFUI/obj
+/HugeData/bin
+/HugeData/obj
+/GUIResource/bin
+/GUIResource/obj
