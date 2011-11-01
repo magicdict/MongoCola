@@ -12,8 +12,8 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 复制菜单项目
         /// </summary>
-        /// <param name="orgMenuItem"></param>
-        /// <returns></returns>
+        /// <param name="orgMenuItem">原始的菜单</param>
+        /// <returns>克隆的菜单</returns>
         public static ToolStripMenuItem Clone(this ToolStripMenuItem orgMenuItem)
         {
             ToolStripMenuItem cloneMenuItem = new ToolStripMenuItem();
@@ -22,15 +22,20 @@ namespace MagicMongoDBTool.Module
             ///坑爹啊。。。。。。。。
             Delegate[] list = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));
             cloneMenuItem.Click += new EventHandler(
-                    (x, y) => { list[0].DynamicInvoke(x,y); }
+                    (x, y) => { list[0].DynamicInvoke(x, y); }
             );
             cloneMenuItem.Text = orgMenuItem.Text;
             cloneMenuItem.Enabled = orgMenuItem.Enabled;
             cloneMenuItem.BackgroundImage = orgMenuItem.BackgroundImage;
             return cloneMenuItem;
         }
-
-        public static ToolStripButton CloneFromMenuItem(this ToolStripMenuItem OrgMenuItem) {
+        /// <summary>
+        /// 复制菜单项目StripButton
+        /// </summary>
+        /// <param name="OrgMenuItem">原始的菜单</param>
+        /// <returns>克隆的菜单StripButton</returns>
+        public static ToolStripButton CloneFromMenuItem(this ToolStripMenuItem OrgMenuItem)
+        {
             ToolStripButton CloneButton = new ToolStripButton();
             //!!!typeof的参数必须是ToolStripMenuItem的基类!!!如果使用Control则不能取到值!!!
             ///感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
@@ -76,6 +81,6 @@ namespace MagicMongoDBTool.Module
                 }
             }
             return null;
-        }  
+        }
     }
 }
