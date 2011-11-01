@@ -62,9 +62,17 @@ namespace MagicMongoDBTool
             ModifyConn.Password = txtPassword.Text;
             ModifyConn.DataBaseName = txtDataBaseName.Text;
             ModifyConn.LoginAsAdmin = chkLoginAsAdmin.Checked;
-            if (txtDataBaseName.Text == string.Empty) {
+            if (txtUsername.Text != string.Empty && txtPassword.Text == String.Empty) {
+                MessageBox.Show("请输入密码");
+            }
+            if (txtDataBaseName.Text == string.Empty)
+            {
                 //没有数据库的时候，只能以Admin登陆
                 ModifyConn.LoginAsAdmin = true;
+            }
+            else {
+                //数据库的时候，默认不以Admin登陆
+                ModifyConn.LoginAsAdmin = false;
             }
             if (radDataSrv.Checked)
             {

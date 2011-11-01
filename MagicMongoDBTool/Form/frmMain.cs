@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
-using System.Collections.Generic;
 
 namespace MagicMongoDBTool
 {
@@ -499,6 +499,7 @@ namespace MagicMongoDBTool
         {
             String strPath = SystemManager.SelectObjectTag;
             frmImportOleDB mfrm = new frmImportOleDB();
+            mfrm.Icon = GetSystemIcon.ConvertImgToIcon(ImportDataFromAccessToolStripMenuItem.Image);
             mfrm.ShowDialog();
             String DBFilename = mfrm.DataBaseFileName;
             if (DBFilename != string.Empty)

@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
-using Microsoft.Win32;
-using System.Collections.Generic;
 using System.Windows.Forms;
+using Microsoft.Win32;
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
@@ -12,6 +12,21 @@ namespace MagicMongoDBTool.Module
     /// </summary>
     public static class GetSystemIcon
     {
+        [DllImport("gdi32.dll")]
+        public static extern Boolean DeleteObject(IntPtr hObject);
+        /// <summary>
+        /// Image转换为Icon
+        /// </summary>
+        /// <param name="OrgImg"></param>
+        /// <returns></returns>
+        public static Icon ConvertImgToIcon(Image OrgImg){
+            Bitmap bmp=new Bitmap(OrgImg);
+            IntPtr h = bmp.GetHicon();
+            Icon icon = System.Drawing.Icon.FromHandle(h);
+            DeleteObject(h);// 释放IntPtr
+            return icon;
+        }
+
         public static Dictionary<String, Int32> IconList = new Dictionary<string, Int32>();
         public static ImageList IconImagelist = new ImageList();
         /// <summary>
@@ -138,7 +153,6 @@ namespace MagicMongoDBTool.Module
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
         public string szTypeName;
     };
-
     ///
     /// 定义调用的API方法
     ///
@@ -152,7 +166,6 @@ namespace MagicMongoDBTool.Module
         public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
         [DllImport("shell32.dll")]
         public static extern uint ExtractIconEx(string lpszFile, int nIconIndex, int[] phiconLarge, int[] phiconSmall, uint nIcons);
-
     }
 }
 

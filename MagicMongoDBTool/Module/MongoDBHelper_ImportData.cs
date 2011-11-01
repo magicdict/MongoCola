@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;

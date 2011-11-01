@@ -144,7 +144,7 @@
             this.cmdCancel.Location = new System.Drawing.Point(471, 143);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 37);
-            this.cmdCancel.TabIndex = 11;
+            this.cmdCancel.TabIndex = 9;
             this.cmdCancel.Text = "取消";
             // 
             // cmdAdd
@@ -153,7 +153,7 @@
             this.cmdAdd.Location = new System.Drawing.Point(382, 143);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 37);
-            this.cmdAdd.TabIndex = 10;
+            this.cmdAdd.TabIndex = 8;
             this.cmdAdd.Text = "添加";
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
@@ -220,7 +220,7 @@
             this.txtHostName.Radius = 3;
             this.txtHostName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtHostName.Size = new System.Drawing.Size(103, 29);
-            this.txtHostName.TabIndex = 0;
+            this.txtHostName.TabIndex = 1;
             this.txtHostName.UseSystemPasswordChar = false;
             this.txtHostName.WaterMark = "服务器表示名称";
             this.txtHostName.WaterMarkColor = System.Drawing.Color.Silver;
@@ -238,7 +238,7 @@
             this.txtPassword.Radius = 3;
             this.txtPassword.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtPassword.Size = new System.Drawing.Size(103, 29);
-            this.txtPassword.TabIndex = 4;
+            this.txtPassword.TabIndex = 5;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.WaterMark = "密码（可选项）";
             this.txtPassword.WaterMarkColor = System.Drawing.Color.Silver;
@@ -256,7 +256,7 @@
             this.txtUsername.Radius = 3;
             this.txtUsername.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtUsername.Size = new System.Drawing.Size(103, 29);
-            this.txtUsername.TabIndex = 3;
+            this.txtUsername.TabIndex = 4;
             this.txtUsername.UseSystemPasswordChar = false;
             this.txtUsername.WaterMark = "用户名（可选项）";
             this.txtUsername.WaterMarkColor = System.Drawing.Color.Silver;
@@ -274,7 +274,7 @@
             this.txtIpAddr.Radius = 3;
             this.txtIpAddr.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtIpAddr.Size = new System.Drawing.Size(103, 29);
-            this.txtIpAddr.TabIndex = 1;
+            this.txtIpAddr.TabIndex = 2;
             this.txtIpAddr.UseSystemPasswordChar = false;
             this.txtIpAddr.WaterMark = "服务器IP地址";
             this.txtIpAddr.WaterMarkColor = System.Drawing.Color.Silver;
@@ -292,7 +292,7 @@
             this.txtPort.Radius = 3;
             this.txtPort.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtPort.Size = new System.Drawing.Size(103, 29);
-            this.txtPort.TabIndex = 2;
+            this.txtPort.TabIndex = 3;
             this.txtPort.UseSystemPasswordChar = false;
             this.txtPort.WaterMark = "服务器端口号";
             this.txtPort.WaterMarkColor = System.Drawing.Color.Silver;
@@ -310,7 +310,7 @@
             this.txtReplSet.Radius = 3;
             this.txtReplSet.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtReplSet.Size = new System.Drawing.Size(103, 29);
-            this.txtReplSet.TabIndex = 5;
+            this.txtReplSet.TabIndex = 7;
             this.txtReplSet.UseSystemPasswordChar = false;
             this.txtReplSet.WaterMark = "副本名称（可选项）";
             this.txtReplSet.WaterMarkColor = System.Drawing.Color.Silver;
@@ -337,7 +337,7 @@
             this.txtDataBaseName.Radius = 3;
             this.txtDataBaseName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtDataBaseName.Size = new System.Drawing.Size(105, 29);
-            this.txtDataBaseName.TabIndex = 33;
+            this.txtDataBaseName.TabIndex = 6;
             this.txtDataBaseName.UseSystemPasswordChar = false;
             this.txtDataBaseName.WaterMark = "数据库名（可选）";
             this.txtDataBaseName.WaterMarkColor = System.Drawing.Color.Silver;
