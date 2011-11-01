@@ -664,27 +664,29 @@ namespace MagicMongoDBTool.Module
                 {
                     MongoDatabase mongoDB = mongosvr.GetDatabase(strDBName);
                     BsonDocument dbStatus = mongoDB.GetCurrentOp();
-                    if (!hasHeader)
+                    if (dbStatus.GetValue("inprog").AsBsonArray.Count > 0)
                     {
-
-                        lstData.Columns.Add("Name");
-                        foreach (String item in dbStatus.GetValue("inprog").AsBsonArray[0].AsBsonDocument.Names)
+                        if (!hasHeader)
                         {
-                            lstData.Columns.Add(item);
 
+                            lstData.Columns.Add("Name");
+                            foreach (String item in dbStatus.GetValue("inprog").AsBsonArray[0].AsBsonDocument.Names)
+                            {
+                                lstData.Columns.Add(item);
+                            }
+                            hasHeader = true;
                         }
-                        hasHeader = true;
-                    }
 
-                    BsonArray doc = dbStatus.GetValue("inprog").AsBsonArray;
-                    foreach (BsonDocument item in doc)
-                    {
-                        ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
-                        foreach (String itemName in item.Names)
+                        BsonArray doc = dbStatus.GetValue("inprog").AsBsonArray;
+                        foreach (BsonDocument item in doc)
                         {
-                            lst.SubItems.Add(item.GetValue(itemName).ToString());
+                            ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
+                            foreach (String itemName in item.Names)
+                            {
+                                lst.SubItems.Add(item.GetValue(itemName).ToString());
+                            }
+                            lstData.Items.Add(lst);
                         }
-                        lstData.Items.Add(lst);
                     }
                 }
             }

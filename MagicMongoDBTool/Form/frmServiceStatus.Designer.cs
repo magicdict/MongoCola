@@ -46,9 +46,9 @@
             // 
             this.lstSrvOpr.FullRowSelect = true;
             this.lstSrvOpr.GridLines = true;
-            this.lstSrvOpr.Location = new System.Drawing.Point(16, 264);
+            this.lstSrvOpr.Location = new System.Drawing.Point(16, 230);
             this.lstSrvOpr.Name = "lstSrvOpr";
-            this.lstSrvOpr.Size = new System.Drawing.Size(771, 118);
+            this.lstSrvOpr.Size = new System.Drawing.Size(771, 152);
             this.lstSrvOpr.TabIndex = 3;
             this.lstSrvOpr.UseCompatibleStateImageBehavior = false;
             this.lstSrvOpr.View = System.Windows.Forms.View.Details;
@@ -59,7 +59,7 @@
             this.lstSrvStatus.GridLines = true;
             this.lstSrvStatus.Location = new System.Drawing.Point(16, 24);
             this.lstSrvStatus.Name = "lstSrvStatus";
-            this.lstSrvStatus.Size = new System.Drawing.Size(771, 222);
+            this.lstSrvStatus.Size = new System.Drawing.Size(771, 179);
             this.lstSrvStatus.TabIndex = 2;
             this.lstSrvStatus.UseCompatibleStateImageBehavior = false;
             this.lstSrvStatus.View = System.Windows.Forms.View.Details;
@@ -70,8 +70,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 467);
             this.Location = new System.Drawing.Point(0, 0);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmServiceStatus";
             this.ShowSelectSkinButton = false;
             this.Text = "服务器状态";
