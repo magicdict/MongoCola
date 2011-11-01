@@ -597,14 +597,9 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 刷新数据
         /// </summary>
-<<<<<<< HEAD
         private void RefreshData()
         {
-            MongoDBHelpler.clearFilter();
-=======
-        private void RefreshData() {
             MongoDBHelpler.ClearFilter();
->>>>>>> MagicMongoDBTool/master
             MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, DataShower);
             SetDataNav();
         }

@@ -24,19 +24,10 @@ namespace MagicMongoDBTool.Module
             cloneMenuItem.Click += new EventHandler(
                     (x, y) => { list[0].DynamicInvoke(x,y); }
             );
-
-<<<<<<< HEAD
-            CloneMenuItem.Text = OrgMenuItem.Text;
-            CloneMenuItem.Enabled = OrgMenuItem.Enabled;
-            CloneMenuItem.BackgroundImage = OrgMenuItem.BackgroundImage;
-            CloneMenuItem.Image = OrgMenuItem.Image;
-            return CloneMenuItem;
-=======
             cloneMenuItem.Text = orgMenuItem.Text;
             cloneMenuItem.Enabled = orgMenuItem.Enabled;
             cloneMenuItem.BackgroundImage = orgMenuItem.BackgroundImage;
             return cloneMenuItem;
->>>>>>> MagicMongoDBTool/master
         }
 
         public static ToolStripButton CloneFromMenuItem(this ToolStripMenuItem OrgMenuItem) {
