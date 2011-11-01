@@ -5,8 +5,6 @@
 /MagicMongoDBTool/obj
 /QLFUI/bin
 /QLFUI/obj
-/HugeData/bin
-/HugeData/obj
 /GUIResource/bin
 /GUIResource/obj
 !app.config
