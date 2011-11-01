@@ -28,12 +28,12 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// Mongod使用结构体
         /// </summary>
-        public class struMongod
+        public class StruMongod
         {
             /// <summary>
             /// 数据库路径，必须
             /// </summary>
-            public String dbpath = string.Empty;
+            public string DBPath = string.Empty;
             /// <summary>
             /// 端口号
             /// </summary>
@@ -41,35 +41,35 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 是否为Master
             /// </summary>
-            public Boolean IsMaster = false;
+            public bool IsMaster = false;
             /// <summary>
             /// 是否为Master
             /// </summary>
-            public Boolean IsSlave = false;
+            public bool IsSlave = false;
             /// <summary>
             /// 
             /// </summary>
-            public String Source = String.Empty;
+            public string Source = string.Empty;
             /// <summary>
             /// 日志文件
             /// </summary>
-            public String logpath = String.Empty;
+            public string LogPath = string.Empty;
             /// <summary>
             /// 日志是否为添加模式
             /// </summary>
-            public Boolean Islogappend = false;
+            public bool Islogappend = false;
             /// <summary>
             /// 日志等级
             /// </summary>
-            public MongologLevel loglv = MongologLevel.quiet;
+            public MongologLevel LogLV = MongologLevel.Quiet;
             /// <summary>
             /// 是否作为Windows服务
             /// </summary>
-            public Boolean IsInstall = false;
+            public bool IsInstall = false;
             /// <summary>
             /// 是否采用认证模式
             /// </summary>
-            public Boolean IsAuth = false;
+            public bool IsAuth = false;
         }
         /// <summary>
         /// 日志等级
@@ -79,187 +79,193 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 最少
             /// </summary>
-            quiet = 1,
+            Quiet = 1,
             /// <summary>
             /// Verb * 1
             /// </summary>
-            v,
+            V,
             /// <summary>
             /// Verb * 2
             /// </summary>
-            vv,
+            VV,
             /// <summary>
             /// Verb * 3
             /// </summary>
-            vvv,
+            VVV,
             /// <summary>
             /// Verb * 4
             /// </summary>
-            vvvv,
+            VVVV,
             /// <summary>
             /// Verb * 5
             /// </summary>
-            vvvvv
+            VVVVV
         };
         /// <summary>
         /// 部署
         /// </summary>
-        static public String GetMongodCommandLine(struMongod Mongod)
+        static public string GetMongodCommandLine(StruMongod mongoD)
         {
             //mongo.exe 客户端程序
-            String DosCommand = @"mongod --dbpath @dbpath --port @port ";
+            string dosCommand = @"mongod --dbpath @dbpath --port @port ";
             //数据库路径
-            DosCommand = DosCommand.Replace("@dbpath", Mongod.dbpath);
+            dosCommand = dosCommand.Replace("@dbpath", mongoD.DBPath);
             //端口号
-            DosCommand = DosCommand.Replace("@port", Mongod.Port.ToString());
+            dosCommand = dosCommand.Replace("@port", mongoD.Port.ToString());
             //日志文件
-            if (Mongod.logpath != String.Empty)
+            if (mongoD.LogPath != string.Empty)
             {
-                DosCommand += " --logpath " + Mongod.logpath;
-                switch (Mongod.loglv)
+                dosCommand += " --logpath " + mongoD.LogPath;
+                switch (mongoD.LogLV)
                 {
-                    case MongologLevel.quiet:
-                        DosCommand += " --quiet ";
+                    case MongologLevel.Quiet:
+                        dosCommand += " --quiet ";
                         break;
-                    case MongologLevel.v:
-                        DosCommand += " --verbose ";
+                    case MongologLevel.V:
+                        dosCommand += " --verbose ";
                         break;
-                    case MongologLevel.vv:
-                        DosCommand += " --vv ";
+                    case MongologLevel.VV:
+                        dosCommand += " --vv ";
                         break;
-                    case MongologLevel.vvv:
-                        DosCommand += " --vvv ";
+                    case MongologLevel.VVV:
+                        dosCommand += " --vvv ";
                         break;
-                    case MongologLevel.vvvv:
-                        DosCommand += " --vvvv ";
+                    case MongologLevel.VVVV:
+                        dosCommand += " --vvvv ";
                         break;
-                    case MongologLevel.vvvvv:
-                        DosCommand += " --vvvvv ";
+                    case MongologLevel.VVVVV:
+                        dosCommand += " --vvvvv ";
                         break;
                     default:
                         break;
                 }
                 //日志是否为添加模式
-                if (Mongod.Islogappend)
+                if (mongoD.Islogappend)
                 {
-                    DosCommand += " --logappend ";
+                    dosCommand += " --logappend ";
                 }
             }
             //是否为Master
-            if (Mongod.IsMaster)
+            if (mongoD.IsMaster)
             {
-                DosCommand += " --master";
+                dosCommand += " --master";
             }
-            if (Mongod.IsSlave)
+            if (mongoD.IsSlave)
             {
-                DosCommand += " --slave";
-                if (Mongod.Source != String.Empty) {
-                    DosCommand += " --source " + Mongod.Source;
+                dosCommand += " --slave";
+                if (mongoD.Source != String.Empty)
+                {
+                    dosCommand += " --source " + mongoD.Source;
                 }
             }
             //是否作为Windows服务
-            if (Mongod.IsInstall)
+            if (mongoD.IsInstall)
             {
-                DosCommand += " --install";
+                dosCommand += " --install";
             }
             //是否使用认证服务
-            if (Mongod.IsAuth)
+            if (mongoD.IsAuth)
             {
-                DosCommand += " --auth";
+                dosCommand += " --auth";
             }
-            return DosCommand;
+            return dosCommand;
         }
 
         /// <summary>
         /// Mongodump使用的结构
         /// </summary>
-        public class struMongodump
+        public class StruMongoDump
         {
-            public String HostAddr = string.Empty;
+            public string HostAddr = string.Empty;
             public Int32 Port = 27017;
-            public String DBName = String.Empty;
-            public String CollectionName = String.Empty;
-            public String OutPutPath = String.Empty;
-            public MongologLevel loglv = MongologLevel.quiet;
+            public string DBName = string.Empty;
+            public string CollectionName = string.Empty;
+            public string OutPutPath = String.Empty;
+            public MongologLevel LogLV = MongologLevel.Quiet;
         }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="Mongodump"></param>
+        /// <param name="mongoDump"></param>
         /// <returns></returns>
-        static public String GetMongodumpCommandLine(struMongodump Mongodump)
+        static public string GetMongodumpCommandLine(StruMongoDump mongoDump)
         {
             //mongodump.exe 备份程序
-            String DosCommand = @"mongodump -h @hostaddr:@port -d @dbname";
-            DosCommand = DosCommand.Replace("@hostaddr", Mongodump.HostAddr);
-            DosCommand = DosCommand.Replace("@port", Mongodump.Port.ToString());
-            DosCommand = DosCommand.Replace("@dbname", Mongodump.DBName);
-            if (Mongodump.CollectionName != string.Empty)
+            string dosCommand = @"mongodump -h @hostaddr:@port -d @dbname";
+            dosCommand = dosCommand.Replace("@hostaddr", mongoDump.HostAddr);
+            dosCommand = dosCommand.Replace("@port", mongoDump.Port.ToString());
+            dosCommand = dosCommand.Replace("@dbname", mongoDump.DBName);
+            if (mongoDump.CollectionName != string.Empty)
             {
                 //-c CollectionName Or --collection CollectionName
-                DosCommand += " --collection " + Mongodump.CollectionName;
+                dosCommand += " --collection " + mongoDump.CollectionName;
             }
-            if (Mongodump.OutPutPath != string.Empty)
+            if (mongoDump.OutPutPath != string.Empty)
             {
                 //-o CollectionName Or --out CollectionName
-                DosCommand += " --out " + Mongodump.OutPutPath;
+                dosCommand += " --out " + mongoDump.OutPutPath;
             }
-            return DosCommand;
+            return dosCommand;
         }
 
-        public enum ImprotExport { 
+        public enum ImprotExport
+        {
             Import,
             Export
         }
-        public class struImportExport {
-            public String HostAddr = string.Empty;
+        public class StruImportExport
+        {
+            public string HostAddr = string.Empty;
             public Int32 Port = 27017;
-            public String DBName = String.Empty;
-            public String CollectionName = String.Empty;
-            public String FieldList = String.Empty;
-            public String FileName = String.Empty;
-            public MongologLevel loglv = MongologLevel.quiet;
+            public string DBName = string.Empty;
+            public string CollectionName = string.Empty;
+            public string FieldList = string.Empty;
+            public string FileName = string.Empty;
+            public MongologLevel LogLV = MongologLevel.Quiet;
             public ImprotExport Direct = ImprotExport.Import;
         }
 
-        static public String GetMongoImportExportCommandLine(struImportExport MongoImprotExport)
+        static public string GetMongoImportExportCommandLine(StruImportExport mongoImprotExport)
         {
             //mongodump.exe 备份程序
-            String DosCommand;
-            if (MongoImprotExport.Direct == ImprotExport.Import) {
-                DosCommand = @"mongoimport -h @hostaddr:@port -d @dbname";
-                if (MongoImprotExport.FieldList != string.Empty)
+            string dosCommand;
+            if (mongoImprotExport.Direct == ImprotExport.Import)
+            {
+                dosCommand = @"mongoimport -h @hostaddr:@port -d @dbname";
+                if (mongoImprotExport.FieldList != string.Empty)
                 {
-                    DosCommand += " --fields " + MongoImprotExport.FieldList;
+                    dosCommand += " --fields " + mongoImprotExport.FieldList;
                 }
-                if (MongoImprotExport.FileName != string.Empty)
+                if (mongoImprotExport.FileName != string.Empty)
                 {
-                    DosCommand += " --file " + MongoImprotExport.FileName;
-                }
-            } else {
-                DosCommand = @"mongoexport -h @hostaddr:@port -d @dbname";
-                if (MongoImprotExport.FileName != string.Empty)
-                {
-                    DosCommand += " --out " + MongoImprotExport.FileName;
+                    dosCommand += " --file " + mongoImprotExport.FileName;
                 }
             }
-            DosCommand = DosCommand.Replace("@hostaddr", MongoImprotExport.HostAddr);
-            DosCommand = DosCommand.Replace("@port", MongoImprotExport.Port.ToString());
-            DosCommand = DosCommand.Replace("@dbname", MongoImprotExport.DBName);
-            if (MongoImprotExport.CollectionName != string.Empty)
+            else
+            {
+                dosCommand = @"mongoexport -h @hostaddr:@port -d @dbname";
+                if (mongoImprotExport.FileName != string.Empty)
+                {
+                    dosCommand += " --out " + mongoImprotExport.FileName;
+                }
+            }
+            dosCommand = dosCommand.Replace("@hostaddr", mongoImprotExport.HostAddr);
+            dosCommand = dosCommand.Replace("@port", mongoImprotExport.Port.ToString());
+            dosCommand = dosCommand.Replace("@dbname", mongoImprotExport.DBName);
+            if (mongoImprotExport.CollectionName != string.Empty)
             {
                 //-c CollectionName Or --collection CollectionName
-                DosCommand += " --collection " + MongoImprotExport.CollectionName;
+                dosCommand += " --collection " + mongoImprotExport.CollectionName;
             }
-            return DosCommand;
+            return dosCommand;
         }
 
         /// <summary>
         /// 执行Dos下的命令
         /// </summary>
-        /// <param name="DosCommand"></param>
+        /// <param name="dosCommand"></param>
         /// <param name="sb"></param>
-        public static void RunDosCommand(String DosCommand, StringBuilder sb)
+        public static void RunDosCommand(string dosCommand, StringBuilder sb)
         {
             Process myProcess = new Process();
             //myProcess.StartInfo.WorkingDirectory = SystemManager.mConfig.MongoBinPath;//DOS控制平台
@@ -274,9 +280,9 @@ namespace MagicMongoDBTool.Module
             sIn.AutoFlush = true;
             StreamReader sOut = myProcess.StandardOutput;//标准输入流
             StreamReader sErr = myProcess.StandardError;//标准错误流
-            sIn.Write(DosCommand + System.Environment.NewLine);//DOS控制平台上的命令
-            sIn.Write(@"cd " + SystemManager.mConfig.MongoBinPath + System.Environment.NewLine);//DOS控制平台上的命令
-            sIn.Write(DosCommand + System.Environment.NewLine);//DOS控制平台上的命令
+            sIn.Write(dosCommand + System.Environment.NewLine);//DOS控制平台上的命令
+            sIn.Write(@"cd " + SystemManager.ConfigHelperInstance.MongoBinPath + System.Environment.NewLine);//DOS控制平台上的命令
+            sIn.Write(dosCommand + System.Environment.NewLine);//DOS控制平台上的命令
             sIn.Write("exit" + System.Environment.NewLine);
             string s = sOut.ReadToEnd();//读取执行DOS命令后输出信息
             string er = sErr.ReadToEnd();//读取执行DOS命令后错误信息

@@ -12,36 +12,36 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 管理中服务器列表
         /// </summary>
-        private static Dictionary<String, MongoServer> mongosrvlst = new Dictionary<String, MongoServer>();
+        private static Dictionary<string, MongoServer> _mongoSrvLst = new Dictionary<String, MongoServer>();
         /// <summary>
         /// 增加管理服务器
         /// </summary>
-        /// <param name="configlst"></param>
+        /// <param name="configLst"></param>
         /// <returns></returns>
-        public static Boolean AddServer(List<ConfigHelper.MongoConnectionConfig> configlst)
+        public static Boolean AddServer(List<ConfigHelper.MongoConnectionConfig> configLst)
         {
             try
             {
-                foreach (ConfigHelper.MongoConnectionConfig mConfig in configlst)
+                foreach (ConfigHelper.MongoConnectionConfig config in configLst)
                 {
-                    if (mongosrvlst.ContainsKey(mConfig.HostName))
+                    if (_mongoSrvLst.ContainsKey(config.HostName))
                     {
-                        mongosrvlst.Remove(mConfig.HostName);
+                        _mongoSrvLst.Remove(config.HostName);
                     }
-                    MongoServerSettings mongosvrsetting = new MongoServerSettings();
-                    mongosvrsetting.ConnectionMode = ConnectionMode.Direct;
+                    MongoServerSettings mongoSvrSetting = new MongoServerSettings();
+                    mongoSvrSetting.ConnectionMode = ConnectionMode.Direct;
                     //Can't Use SlaveOk to a Route！！！
-                    mongosvrsetting.SlaveOk = mConfig.IsSlaveOk;
-                    mongosvrsetting.Server = new MongoServerAddress(mConfig.IpAddr, mConfig.Port);
+                    mongoSvrSetting.SlaveOk = config.IsSlaveOk;
+                    mongoSvrSetting.Server = new MongoServerAddress(config.IpAddr, config.Port);
                     //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
-                    mongosvrsetting.SocketTimeout = new TimeSpan(0, 10, 0);
-                    if ((mConfig.UserName != String.Empty) & (mConfig.Password != String.Empty))
+                    mongoSvrSetting.SocketTimeout = new TimeSpan(0, 10, 0);
+                    if ((config.UserName != string.Empty) & (config.Password != string.Empty))
                     {
                         //认证的设定:注意，这里的密码是明文
-                        mongosvrsetting.DefaultCredentials = new MongoCredentials(mConfig.UserName, mConfig.Password, mConfig.LoginAsAdmin);
+                        mongoSvrSetting.DefaultCredentials = new MongoCredentials(config.UserName, config.Password, config.LoginAsAdmin);
                     }
-                    MongoServer Mastermongosvr = new MongoServer(mongosvrsetting);
-                    mongosrvlst.Add(mConfig.HostName, Mastermongosvr);
+                    MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
+                    _mongoSrvLst.Add(config.HostName, masterMongoSvr);
                 }
                 return true;
             }
@@ -58,32 +58,32 @@ namespace MagicMongoDBTool.Module
         public static void FillMongoServiceToTreeView(TreeView trvMongoDB)
         {
             trvMongoDB.Nodes.Clear();
-            foreach (String mongosvrKey in mongosrvlst.Keys)
+            foreach (string mongoSvrKey in _mongoSrvLst.Keys)
             {
-                MongoServer mongosvr = mongosrvlst[mongosvrKey];
-                TreeNode mongosrvnode = new TreeNode(mongosvrKey + " [" + mongosvr.Settings.Server.Host + ":" + mongosvr.Settings.Server.Port + "]");
+                MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                TreeNode mongoSrvNode = new TreeNode(mongoSvrKey + " [" + mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port + "]");
                 try
                 {
-                    List<String> DatabaseNameList = new List<string>();
-                    if (SystemManager.mConfig.ConnectionList[mongosvrKey].DataBaseName != String.Empty)
+                    List<string> databaseNameList = new List<string>();
+                    if (SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName != String.Empty)
                     {
-                        TreeNode mongoDBnode = FillDataBaseInfoToTreeNode(SystemManager.mConfig.ConnectionList[mongosvrKey].DataBaseName, mongosvr, mongosvrKey);
-                        mongoDBnode.Tag = SingleDataBaseTag + ":" + mongosvrKey + "/" + SystemManager.mConfig.ConnectionList[mongosvrKey].DataBaseName;
-                        mongosrvnode.Nodes.Add(mongoDBnode);
+                        TreeNode mongoDBNode = FillDataBaseInfoToTreeNode(SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName, mongoSvr, mongoSvrKey);
+                        mongoDBNode.Tag = SINGLE_DATABASE_TAG + ":" + mongoSvrKey + "/" + SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName;
+                        mongoSrvNode.Nodes.Add(mongoDBNode);
                         //单数据库模式
-                        mongosrvnode.Tag = SingleDBServiceTag + ":" + mongosvrKey;
+                        mongoSrvNode.Tag = SINGLE_DB_SERVICE_TAG + ":" + mongoSvrKey;
                     }
                     else
                     {
-                        DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
-                        foreach (String strDBName in DatabaseNameList)
+                        databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
+                        foreach (String strDBName in databaseNameList)
                         {
-                            TreeNode mongoDBnode = FillDataBaseInfoToTreeNode(strDBName, mongosvr, mongosvrKey);
-                            mongosrvnode.Nodes.Add(mongoDBnode);
+                            TreeNode mongoDBnode = FillDataBaseInfoToTreeNode(strDBName, mongoSvr, mongoSvrKey);
+                            mongoSrvNode.Nodes.Add(mongoDBnode);
                         }
-                        mongosrvnode.Tag = ServiceTag + ":" + mongosvrKey;
+                        mongoSrvNode.Tag = SERVICE_TAG + ":" + mongoSvrKey;
                     }
-                    trvMongoDB.Nodes.Add(mongosrvnode);
+                    trvMongoDB.Nodes.Add(mongoSrvNode);
                 }
                 catch (MongoAuthenticationException)
                 {
@@ -96,10 +96,10 @@ namespace MagicMongoDBTool.Module
         /// 获得一个表示数据库结构的节点
         /// </summary>
         /// <param name="strDBName"></param>
-        /// <param name="mongosvr"></param>
-        /// <param name="mongosvrKey"></param>
+        /// <param name="mongoSvr"></param>
+        /// <param name="mongoSvrKey"></param>
         /// <returns></returns>
-        private static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongosvr, String mongosvrKey)
+        private static TreeNode FillDataBaseInfoToTreeNode(string strDBName, MongoServer mongoSvr, string mongoSvrKey)
         {
             TreeNode mongoDBNode;
             switch (strDBName)
@@ -118,16 +118,16 @@ namespace MagicMongoDBTool.Module
                     break;
             }
 
-            mongoDBNode.Tag = DataBaseTag + ":" + mongosvrKey + "/" + strDBName;
-            MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
+            mongoDBNode.Tag = DATABASE_TAG + ":" + mongoSvrKey + "/" + strDBName;
+            MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
 
-            List<String> ColNameList = Mongodb.GetCollectionNames().ToList<String>();
+            List<String> ColNameList = mongoDB.GetCollectionNames().ToList<String>();
             foreach (String strColName in ColNameList)
             {
                 TreeNode mongoColNode = new TreeNode();
                 try
                 {
-                    mongoColNode = FillCollectionInfoToTreeNode(strColName, Mongodb, mongosvrKey);
+                    mongoColNode = FillCollectionInfoToTreeNode(strColName, mongoDB, mongoSvrKey);
                 }
                 catch (Exception)
                 {
@@ -142,65 +142,65 @@ namespace MagicMongoDBTool.Module
         /// 
         /// </summary>
         /// <param name="strColName"></param>
-        /// <param name="Mongodb"></param>
-        /// <param name="mongosvrKey"></param>
+        /// <param name="mongoDB"></param>
+        /// <param name="mongoSvrKey"></param>
         /// <returns></returns>
-        private static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase Mongodb, String mongosvrKey)
+        private static TreeNode FillCollectionInfoToTreeNode(string strColName, MongoDatabase mongoDB, string mongoSvrKey)
         {
             TreeNode mongoColNode;
             String strTagColName = strColName;
             switch (strColName)
             {
                 case "chunks":
-                    if (Mongodb.Name == "config")
+                    if (mongoDB.Name == "config")
                     {
                         strColName = "数据块(" + strColName + ")";
                     }
                     break;
                 case "collections":
-                    if (Mongodb.Name == "config")
+                    if (mongoDB.Name == "config")
                     {
                         strColName = "数据集(" + strColName + ")";
                     }
                     break;
                 case "databases":
-                    if (Mongodb.Name == "config")
+                    if (mongoDB.Name == "config")
                     {
                         strColName = "数据库(" + strColName + ")";
                     }
                     break;
                 case "lockpings":
-                    if (Mongodb.Name == "config")
+                    if (mongoDB.Name == "config")
                     {
                         strColName = "数据锁(" + strColName + ")";
                     }
                     break;
                 case "locks":
-                    if (Mongodb.Name == "config")
+                    if (mongoDB.Name == "config")
                     {
                         strColName = "数据锁(" + strColName + ")";
                     }
                     break;
                 case "mongos":
-                    if (Mongodb.Name == "config")
+                    if (mongoDB.Name == "config")
                     {
                         strColName = "路由服务器(" + strColName + ")";
                     }
                     break;
                 case "settings":
-                    if (Mongodb.Name == "config")
+                    if (mongoDB.Name == "config")
                     {
                         strColName = "配置(" + strColName + ")";
                     }
                     break;
                 case "shards":
-                    if (Mongodb.Name == "config")
+                    if (mongoDB.Name == "config")
                     {
                         strColName = "分片(" + strColName + ")";
                     }
                     break;
                 case "version":
-                    if (Mongodb.Name == "config")
+                    if (mongoDB.Name == "config")
                     {
                         strColName = "版本(" + strColName + ")";
                     }
@@ -208,7 +208,7 @@ namespace MagicMongoDBTool.Module
                 case "fs.chunks":
                     strColName = "数据块(" + strColName + ")";
                     break;
-                case CollectionName_GridFileSystem:
+                case COLLECTION_NAME_GRID_FILE_SYSTEM:
                     strColName = "文件系统(" + strColName + ")";
                     break;
                 case "oplog.rs":
@@ -217,7 +217,7 @@ namespace MagicMongoDBTool.Module
                 case "system.indexes":
                     strColName = "索引(" + strColName + ")";
                     break;
-                case CollectionName_JavaScript:
+                case COLLECTION_NAME_JAVASCRIPT:
                     strColName = "存储Javascript(" + strColName + ")";
                     break;
                 case "system.replset":
@@ -226,17 +226,17 @@ namespace MagicMongoDBTool.Module
                 case "replset.minvalid":
                     strColName = "初始化同步(" + strColName + ")";
                     break;
-                case CollectionName_User:
+                case COLLECTION_NAME_USER:
                     strColName = "用户列表(" + strColName + ")";
                     break;
                 case "me":
-                    if (Mongodb.Name == "local")
+                    if (mongoDB.Name == "local")
                     {
                         strColName = "副本组[从属机信息](" + strColName + ")";
                     }
                     break;
                 case "slaves":
-                    if (Mongodb.Name == "local")
+                    if (mongoDB.Name == "local")
                     {
                         strColName = "副本组[主机信息](" + strColName + ")";
                     }
@@ -245,25 +245,25 @@ namespace MagicMongoDBTool.Module
                     break;
             }
             mongoColNode = new TreeNode(strColName);
-            if (strTagColName == CollectionName_GridFileSystem)
+            if (strTagColName == COLLECTION_NAME_GRID_FILE_SYSTEM)
             {
-                mongoColNode.Tag = GridFileSystemTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strTagColName;
+                mongoColNode.Tag = GRID_FILE_SYSTEM_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strTagColName;
             }
             else
             {
-                mongoColNode.Tag = CollectionTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strTagColName;
+                mongoColNode.Tag = COLLECTION_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strTagColName;
             }
-            MongoCollection mongoCol = Mongodb.GetCollection(strTagColName);
+            MongoCollection mongoCol = mongoDB.GetCollection(strTagColName);
 
             //Start ListIndex
             TreeNode mongoIndex = new TreeNode("Indexes");
-            List<BsonDocument> IndexList = mongoCol.GetIndexes().ToList<BsonDocument>();
-            foreach (BsonDocument Indexdoc in IndexList)
+            List<BsonDocument> indexList = mongoCol.GetIndexes().ToList<BsonDocument>();
+            foreach (BsonDocument indexDoc in indexList)
             {
-                TreeNode mongoIndexNode = new TreeNode("Index:" + Indexdoc.GetValue("name"));
-                foreach (String item in Indexdoc.Names)
+                TreeNode mongoIndexNode = new TreeNode("Index:" + indexDoc.GetValue("name"));
+                foreach (String item in indexDoc.Names)
                 {
-                    TreeNode mongoIndexItemNode = new TreeNode(item + ":" + Indexdoc.GetValue(item));
+                    TreeNode mongoIndexItemNode = new TreeNode(item + ":" + indexDoc.GetValue(item));
 
                     mongoIndexNode.Nodes.Add(mongoIndexItemNode);
                 }
@@ -274,7 +274,7 @@ namespace MagicMongoDBTool.Module
 
             //Start Data
             TreeNode mongoData = new TreeNode("Data");
-            mongoData.Tag = DocumentTag + ":" + mongosvrKey + "/" + Mongodb.Name + "/" + strTagColName;
+            mongoData.Tag = DOCUMENT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strTagColName;
             mongoColNode.Nodes.Add(mongoData);
             //End Data
             return mongoColNode;
@@ -283,42 +283,42 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 是否有二进制数据
         /// </summary>
-        private static Boolean HasBSonBinary;
+        private static Boolean _hasBSonBinary;
         /// <summary>
         /// 在第一次展示数据的时候，记录下字段名称，用于在Query的时候使用
         /// </summary>
-        public static List<String> columnList = new List<string>();
+        public static List<string> ColumnList = new List<string>();
         /// <summary>
         /// 展示数据
         /// </summary>
         /// <param name="strTag"></param>
         /// <param name="controls"></param>
-        public static void FillDataToControl(String strTag, List<Control> controls)
+        public static void FillDataToControl(string strTag, List<Control> controls)
         {
-            String CollectionPath = strTag.Split(":".ToCharArray())[1];
-            String[] cp = CollectionPath.Split("/".ToCharArray());
-            MongoCollection mongoCol = mongosrvlst[cp[(int)PathLv.ServerLV]]
+            string collectionPath = strTag.Split(":".ToCharArray())[1];
+            String[] cp = collectionPath.Split("/".ToCharArray());
+            MongoCollection mongoCol = _mongoSrvLst[cp[(int)PathLv.ServerLV]]
                                       .GetDatabase(cp[(int)PathLv.DatabaseLv])
                                       .GetCollection(cp[(int)PathLv.CollectionLV]);
-            List<BsonDocument> DataList = new List<BsonDocument>();
+            List<BsonDocument> dataList = new List<BsonDocument>();
             //Query condition:
             if (IsUseFilter)
             {
-                DataList = mongoCol.FindAs<BsonDocument>(GetQuery())
+                dataList = mongoCol.FindAs<BsonDocument>(GetQuery())
                                    .SetSkip(SkipCnt)
-                                   .SetFields(getOutputFields())
-                                   .SetSortOrder(getSort())
-                                   .SetLimit(SystemManager.mConfig.LimitCnt)
+                                   .SetFields(GetOutputFields())
+                                   .SetSortOrder(GetSort())
+                                   .SetLimit(SystemManager.ConfigHelperInstance.LimitCnt)
                                    .ToList<BsonDocument>();
             }
             else
             {
-                DataList = mongoCol.FindAllAs<BsonDocument>()
+                dataList = mongoCol.FindAllAs<BsonDocument>()
                                    .SetSkip(SkipCnt)
-                                   .SetLimit(SystemManager.mConfig.LimitCnt)
+                                   .SetLimit(SystemManager.ConfigHelperInstance.LimitCnt)
                                    .ToList<BsonDocument>();
             }
-            if (DataList.Count == 0)
+            if (dataList.Count == 0)
             {
                 return;
             }
@@ -326,22 +326,22 @@ namespace MagicMongoDBTool.Module
             {
                 //第一次显示，获得整个记录集的长度
                 CurrentCollectionTotalCnt = (int)mongoCol.FindAllAs<BsonDocument>().Count();
-                columnList.Clear();
+                ColumnList.Clear();
             }
             SetPageEnable();
-            HasBSonBinary = false;
+            _hasBSonBinary = false;
             foreach (var control in controls)
             {
                 switch (control.GetType().ToString())
                 {
                     case "System.Windows.Forms.ListView":
-                        FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, DataList);
+                        FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, dataList);
                         break;
                     case "System.Windows.Forms.TextBox":
-                        FillDataToTextBox(cp[(int)PathLv.CollectionLV], (TextBox)control, DataList);
+                        FillDataToTextBox(cp[(int)PathLv.CollectionLV], (TextBox)control, dataList);
                         break;
                     case "System.Windows.Forms.TreeView":
-                        FillDataToTreeView(cp[(int)PathLv.CollectionLV], (TreeView)control, DataList);
+                        FillDataToTreeView(cp[(int)PathLv.CollectionLV], (TreeView)control, dataList);
                         break;
                     default:
                         break;
@@ -353,12 +353,12 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public static String ConvertForShow(BsonValue val)
+        public static string ConvertForShow(BsonValue val)
         {
             String strVal;
             if (val.IsBsonBinaryData)
             {
-                HasBSonBinary = true;
+                _hasBSonBinary = true;
                 return "[二进制数据]";
             }
             if (val.IsBsonNull) { return "[空值]"; }
@@ -375,19 +375,19 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 将数据放入TextBox里进行展示
         /// </summary>
-        /// <param name="CollectionName"></param>
+        /// <param name="collectionName"></param>
         /// <param name="txtData"></param>
-        /// <param name="DataList"></param>
-        public static void FillDataToTextBox(String CollectionName, TextBox txtData, List<BsonDocument> DataList)
+        /// <param name="dataList"></param>
+        public static void FillDataToTextBox(string collectionName, TextBox txtData, List<BsonDocument> dataList)
         {
             txtData.Clear();
-            if (HasBSonBinary)
+            if (_hasBSonBinary)
             {
                 txtData.Text = "二进制数据块";
             }
             else
             {
-                foreach (var item in DataList)
+                foreach (var item in dataList)
                 {
                     txtData.Text += item.ToString() + "\r\n";
                 }
@@ -396,13 +396,13 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 将数据放入TreeView里进行展示
         /// </summary>
-        /// <param name="CollectionName"></param>
+        /// <param name="collectionName"></param>
         /// <param name="trvData"></param>
-        /// <param name="DataList"></param>
-        public static void FillDataToTreeView(String CollectionName, TreeView trvData, List<BsonDocument> DataList)
+        /// <param name="dataList"></param>
+        public static void FillDataToTreeView(string collectionName, TreeView trvData, List<BsonDocument> dataList)
         {
             trvData.Nodes.Clear();
-            foreach (BsonDocument item in DataList)
+            foreach (BsonDocument item in dataList)
             {
                 String TreeText = String.Empty;
                 if (!item.GetElement(0).Value.IsBsonArray)
@@ -411,7 +411,7 @@ namespace MagicMongoDBTool.Module
                 }
                 else
                 {
-                    TreeText = item.GetElement(0).Name + ":" + CollectionName;
+                    TreeText = item.GetElement(0).Name + ":" + collectionName;
                 }
                 TreeNode dataNode = new TreeNode(TreeText);
 
@@ -460,21 +460,21 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="strTag"></param>
         /// <param name="lstData"></param>
-        public static void FillDataToListView(String CollectionName, ListView lstData, List<BsonDocument> DataList)
+        public static void FillDataToListView(string collectionName, ListView lstData, List<BsonDocument> dataList)
         {
             lstData.Clear();
             lstData.SmallImageList = null;
-            switch (CollectionName)
+            switch (collectionName)
             {
-                case CollectionName_GridFileSystem:
-                    SetGridFileToListView(DataList, lstData);
+                case COLLECTION_NAME_GRID_FILE_SYSTEM:
+                    SetGridFileToListView(dataList, lstData);
                     break;
-                case CollectionName_User:
-                    SetUserListToListView(DataList, lstData);
+                case COLLECTION_NAME_USER:
+                    SetUserListToListView(dataList, lstData);
                     break;
                 default:
                     List<String> Columnlist = new List<String>();
-                    foreach (BsonDocument Docitem in DataList)
+                    foreach (BsonDocument Docitem in dataList)
                     {
                         ListViewItem lstItem = new ListViewItem();
                         foreach (String item in Docitem.Names)
@@ -483,7 +483,7 @@ namespace MagicMongoDBTool.Module
                             {
                                 Columnlist.Add(item);
                                 lstData.Columns.Add(item);
-                                columnList.Add(item);
+                                ColumnList.Add(item);
                             }
                         }
                         //Key:_id
@@ -512,9 +512,9 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="DataList"></param>
+        /// <param name="dataList"></param>
         /// <param name="lstData"></param>
-        private static void SetUserListToListView(List<BsonDocument> DataList, ListView lstData)
+        private static void SetUserListToListView(List<BsonDocument> dataList, ListView lstData)
         {
             lstData.Clear();
             lstData.Columns.Add("ID");
@@ -522,22 +522,22 @@ namespace MagicMongoDBTool.Module
             lstData.Columns.Add("是否只读");
             //密码是明码表示的，这里可能会有安全隐患
             lstData.Columns.Add("密码");
-            foreach (BsonDocument docfile in DataList)
+            foreach (BsonDocument docFile in dataList)
             {
                 ListViewItem lstItem = new ListViewItem();
-                lstItem.Text = docfile.GetValue("_id").ToString();
-                lstItem.SubItems.Add(docfile.GetValue("user").ToString());
-                lstItem.SubItems.Add(docfile.GetValue("readOnly").ToString());
-                lstItem.SubItems.Add(docfile.GetValue("pwd").ToString());
+                lstItem.Text = docFile.GetValue("_id").ToString();
+                lstItem.SubItems.Add(docFile.GetValue("user").ToString());
+                lstItem.SubItems.Add(docFile.GetValue("readOnly").ToString());
+                lstItem.SubItems.Add(docFile.GetValue("pwd").ToString());
                 lstData.Items.Add(lstItem);
             }
         }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="DataList"></param>
+        /// <param name="dataList"></param>
         /// <param name="lstData"></param>
-        private static void SetGridFileToListView(List<BsonDocument> DataList, ListView lstData)
+        private static void SetGridFileToListView(List<BsonDocument> dataList, ListView lstData)
         {
             lstData.Clear();
             lstData.Columns.Add("文件名称");
@@ -545,16 +545,16 @@ namespace MagicMongoDBTool.Module
             lstData.Columns.Add("块大小");
             lstData.Columns.Add("上传日期");
             lstData.Columns.Add("MD5");
-            lstData.SmallImageList = GetSystemIcon.iconImagelist;
-            foreach (BsonDocument docfile in DataList)
+            lstData.SmallImageList = GetSystemIcon.IconImagelist;
+            foreach (BsonDocument docFile in dataList)
             {
                 ListViewItem lstItem = new ListViewItem();
-                lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(docfile.GetValue("filename").ToString(), false);
-                lstItem.Text = docfile.GetValue("filename").ToString();
-                lstItem.SubItems.Add(GetSize((int)docfile.GetValue("length")));
-                lstItem.SubItems.Add(GetSize((int)docfile.GetValue("chunkSize")));
-                lstItem.SubItems.Add(ConvertForShow(docfile.GetValue("uploadDate")));
-                lstItem.SubItems.Add(ConvertForShow(docfile.GetValue("md5")));
+                lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(docFile.GetValue("filename").ToString(), false);
+                lstItem.Text = docFile.GetValue("filename").ToString();
+                lstItem.SubItems.Add(GetSize((int)docFile.GetValue("length")));
+                lstItem.SubItems.Add(GetSize((int)docFile.GetValue("chunkSize")));
+                lstItem.SubItems.Add(ConvertForShow(docFile.GetValue("uploadDate")));
+                lstItem.SubItems.Add(ConvertForShow(docFile.GetValue("md5")));
                 lstData.Items.Add(lstItem);
             }
         }
@@ -571,28 +571,28 @@ namespace MagicMongoDBTool.Module
             lstData.Columns.Add("索引");
             lstData.Columns.Add("平均对象大小");
             lstData.Columns.Add("填充因子");
-            foreach (String mongosvrKey in mongosrvlst.Keys)
+            foreach (String mongoSvrKey in _mongoSrvLst.Keys)
             {
-                MongoServer mongosvr = mongosrvlst[mongosvrKey];
-                List<String> DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
-                foreach (String strDBName in DatabaseNameList)
+                MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                List<string> databaseNameList = mongoSvr.GetDatabaseNames().ToList<string>();
+                foreach (String strDBName in databaseNameList)
                 {
-                    MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
+                    MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
 
-                    List<String> ColNameList = Mongodb.GetCollectionNames().ToList<String>();
-                    foreach (String strColName in ColNameList)
+                    List<String> colNameList = mongoDB.GetCollectionNames().ToList<String>();
+                    foreach (String strColName in colNameList)
                     {
 
-                        CollectionStatsResult dbstatus = Mongodb.GetCollection(strColName).GetStats();
+                        CollectionStatsResult dbStatus = mongoDB.GetCollection(strColName).GetStats();
                         ListViewItem lst = new ListViewItem(strDBName + "." + strColName);
-                        lst.SubItems.Add(dbstatus.ObjectCount.ToString());
-                        lst.SubItems.Add(GetSize(dbstatus.DataSize));
-                        lst.SubItems.Add(GetSize(dbstatus.StorageSize));
-                        lst.SubItems.Add(GetSize(dbstatus.TotalIndexSize));
+                        lst.SubItems.Add(dbStatus.ObjectCount.ToString());
+                        lst.SubItems.Add(GetSize(dbStatus.DataSize));
+                        lst.SubItems.Add(GetSize(dbStatus.StorageSize));
+                        lst.SubItems.Add(GetSize(dbStatus.TotalIndexSize));
                         try
                         {
                             //在某些条件下，这个值会抛出异常，IndexKeyNotFound
-                            lst.SubItems.Add(GetSize((long)dbstatus.AverageObjectSize));
+                            lst.SubItems.Add(GetSize((long)dbStatus.AverageObjectSize));
                         }
                         catch (Exception)
                         {
@@ -601,7 +601,7 @@ namespace MagicMongoDBTool.Module
                         try
                         {
                             //在某些条件下，这个值会抛出异常，IndexKeyNotFound
-                            lst.SubItems.Add(dbstatus.PaddingFactor.ToString());
+                            lst.SubItems.Add(dbStatus.PaddingFactor.ToString());
                         }
                         catch (Exception)
                         {
@@ -623,18 +623,18 @@ namespace MagicMongoDBTool.Module
             lstData.Columns.Add("索引数量大小");
             lstData.Columns.Add("对象数量");
             lstData.Columns.Add("占用大小");
-            foreach (String mongosvrKey in mongosrvlst.Keys)
+            foreach (String mongoSvrKey in _mongoSrvLst.Keys)
             {
-                MongoServer mongosvr = mongosrvlst[mongosvrKey];
-                List<String> DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
-                foreach (String strDBName in DatabaseNameList)
+                MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
+                foreach (String strDBName in databaseNameList)
                 {
-                    MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
-                    DatabaseStatsResult dbstatus = Mongodb.GetStats();
-                    ListViewItem lst = new ListViewItem(mongosvrKey + "." + strDBName);
+                    MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
+                    DatabaseStatsResult dbStatus = mongoDB.GetStats();
+                    ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
                     try
                     {
-                        lst.SubItems.Add(dbstatus.CollectionCount.ToString());
+                        lst.SubItems.Add(dbStatus.CollectionCount.ToString());
 
                     }
                     catch (Exception)
@@ -643,12 +643,12 @@ namespace MagicMongoDBTool.Module
                         lst.SubItems.Add(string.Empty);
                     }
 
-                    lst.SubItems.Add(GetSize(dbstatus.DataSize));
-                    lst.SubItems.Add(GetSize(dbstatus.FileSize));
-                    lst.SubItems.Add(dbstatus.IndexCount.ToString());
-                    lst.SubItems.Add(GetSize(dbstatus.IndexSize));
-                    lst.SubItems.Add(dbstatus.ObjectCount.ToString());
-                    lst.SubItems.Add(GetSize(dbstatus.StorageSize));
+                    lst.SubItems.Add(GetSize(dbStatus.DataSize));
+                    lst.SubItems.Add(GetSize(dbStatus.FileSize));
+                    lst.SubItems.Add(dbStatus.IndexCount.ToString());
+                    lst.SubItems.Add(GetSize(dbStatus.IndexSize));
+                    lst.SubItems.Add(dbStatus.ObjectCount.ToString());
+                    lst.SubItems.Add(GetSize(dbStatus.StorageSize));
                     lstData.Items.Add(lst);
                 }
             }
@@ -656,31 +656,31 @@ namespace MagicMongoDBTool.Module
         public static void FillSrvOprToList(ListView lstData)
         {
             lstData.Clear();
-            Boolean HasHeader = false;
-            foreach (String mongosvrKey in mongosrvlst.Keys)
+            Boolean hasHeader = false;
+            foreach (String mongoSvrKey in _mongoSrvLst.Keys)
             {
-                MongoServer mongosvr = mongosrvlst[mongosvrKey];
-                List<String> DatabaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
-                foreach (String strDBName in DatabaseNameList)
+                MongoServer mongosvr = _mongoSrvLst[mongoSvrKey];
+                List<String> databaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
+                foreach (String strDBName in databaseNameList)
                 {
-                    MongoDatabase Mongodb = mongosvr.GetDatabase(strDBName);
-                    BsonDocument dbstatus = Mongodb.GetCurrentOp();
-                    if (!HasHeader)
+                    MongoDatabase mongoDB = mongosvr.GetDatabase(strDBName);
+                    BsonDocument dbStatus = mongoDB.GetCurrentOp();
+                    if (!hasHeader)
                     {
 
                         lstData.Columns.Add("Name");
-                        foreach (String item in dbstatus.GetValue("inprog").AsBsonArray[0].AsBsonDocument.Names)
+                        foreach (String item in dbStatus.GetValue("inprog").AsBsonArray[0].AsBsonDocument.Names)
                         {
                             lstData.Columns.Add(item);
 
                         }
-                        HasHeader = true;
+                        hasHeader = true;
                     }
 
-                    BsonArray doc = dbstatus.GetValue("inprog").AsBsonArray;
+                    BsonArray doc = dbStatus.GetValue("inprog").AsBsonArray;
                     foreach (BsonDocument item in doc)
                     {
-                        ListViewItem lst = new ListViewItem(mongosvrKey + "." + strDBName);
+                        ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
                         foreach (String itemName in item.Names)
                         {
                             lst.SubItems.Add(item.GetValue(itemName).ToString());
@@ -737,36 +737,36 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="IsNext"></param>
         /// <param name="strTag"></param>
-        /// <param name="DataShower"></param>
-        public static void PageChanged(PageChangeOpr PageChangeMode, String strTag, List<Control> DataShower)
+        /// <param name="dataShower"></param>
+        public static void PageChanged(PageChangeOpr pageChangeMode, string strTag, List<Control> dataShower)
         {
-            switch (PageChangeMode)
+            switch (pageChangeMode)
             {
                 case PageChangeOpr.FirstPage:
                     SkipCnt = 0;
                     break;
                 case PageChangeOpr.LastPage:
-                    if (CurrentCollectionTotalCnt % SystemManager.mConfig.LimitCnt == 0)
+                    if (CurrentCollectionTotalCnt % SystemManager.ConfigHelperInstance.LimitCnt == 0)
                     {
                         //没有余数的时候，600 % 100 == 0  => Skip = 600-100 = 500
-                        SkipCnt = CurrentCollectionTotalCnt - SystemManager.mConfig.LimitCnt;
+                        SkipCnt = CurrentCollectionTotalCnt - SystemManager.ConfigHelperInstance.LimitCnt;
                     }
                     else
                     {
                         // 630 % 100 == 30  => Skip = 630-30 = 600  
-                        SkipCnt = CurrentCollectionTotalCnt - CurrentCollectionTotalCnt % SystemManager.mConfig.LimitCnt;
+                        SkipCnt = CurrentCollectionTotalCnt - CurrentCollectionTotalCnt % SystemManager.ConfigHelperInstance.LimitCnt;
                     }
                     break;
                 case PageChangeOpr.NextPage:
-                    SkipCnt += SystemManager.mConfig.LimitCnt;
+                    SkipCnt += SystemManager.ConfigHelperInstance.LimitCnt;
                     break;
                 case PageChangeOpr.PrePage:
-                    SkipCnt -= SystemManager.mConfig.LimitCnt;
+                    SkipCnt -= SystemManager.ConfigHelperInstance.LimitCnt;
                     break;
                 default:
                     break;
             }
-            FillDataToControl(strTag, DataShower);
+            FillDataToControl(strTag, dataShower);
         }
         public static void SetPageEnable()
         {
@@ -778,7 +778,7 @@ namespace MagicMongoDBTool.Module
             {
                 HasPrePage = true;
             }
-            if ((SkipCnt + SystemManager.mConfig.LimitCnt) >= CurrentCollectionTotalCnt)
+            if ((SkipCnt + SystemManager.ConfigHelperInstance.LimitCnt) >= CurrentCollectionTotalCnt)
             {
                 HasNextPage = false;
             }
@@ -791,33 +791,33 @@ namespace MagicMongoDBTool.Module
         #endregion
 
         #region "辅助方法"
-        private static String GetSize(long mSize)
+        private static String GetSize(long size)
         {
             String strSize = String.Empty;
             String[] Unit = new String[]{
                 "Byte","KB","MB","GB","TB"
             };
-            if (mSize == 0)
+            if (size == 0)
             {
                 return "0 Byte";
             }
-            byte UnitOrder = 2;
-            Double tempSize = mSize / Math.Pow(2, 20);
+            byte unitOrder = 2;
+            Double tempSize = size / Math.Pow(2, 20);
             while (!(tempSize > 0.1 & tempSize < 1000))
             {
                 if (tempSize < 0.1)
                 {
                     tempSize = tempSize * 1024;
-                    UnitOrder--;
+                    unitOrder--;
                 }
                 else
                 {
 
                     tempSize = tempSize / 1024;
-                    UnitOrder++;
+                    unitOrder++;
                 }
             }
-            return string.Format("{0:F2}", tempSize) + " " + Unit[UnitOrder];
+            return string.Format("{0:F2}", tempSize) + " " + Unit[unitOrder];
         }
         #endregion
 

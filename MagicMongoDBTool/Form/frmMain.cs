@@ -121,13 +121,13 @@ namespace MagicMongoDBTool
                 String strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
                 switch (strNodeType)
                 {
-                    case MongoDBHelpler.DocumentTag:
+                    case MongoDBHelpler.DOCUMENT_TAG:
                         //BsonDocument
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "选中数据:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         RefreshData();
                         break;
-                    case MongoDBHelpler.GridFileSystemTag:
+                    case MongoDBHelpler.GRID_FILE_SYSTEM_TAG:
                         //GridFileSystem
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "文件系统:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
@@ -142,19 +142,19 @@ namespace MagicMongoDBTool
                             contextMenuStripMain.Show();
                         }
                         break;
-                    case MongoDBHelpler.UserListTag:
+                    case MongoDBHelpler.USER_LIST_TAG:
                         //BsonDocument
                         MongoDBHelpler.FillDataToControl(e.Node.Tag.ToString(), DataShower);
                         SetDataNav();
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "用户列表:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         break;
-                    case MongoDBHelpler.SingleDBServiceTag:
+                    case MongoDBHelpler.SINGLE_DB_SERVICE_TAG:
                         //单数据库模式,禁止所有服务器操作
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "选中服务器[单数据库]:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         break;
-                    case MongoDBHelpler.ServiceTag:
+                    case MongoDBHelpler.SERVICE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "选中服务器:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         //解禁 创建数据库,关闭服务器
@@ -191,12 +191,12 @@ namespace MagicMongoDBTool
                             contextMenuStripMain.Show();
                         }
                         break;
-                    case MongoDBHelpler.DataBaseTag:
-                    case MongoDBHelpler.SingleDataBaseTag:
+                    case MongoDBHelpler.DATABASE_TAG:
+                    case MongoDBHelpler.SINGLE_DATABASE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "选中数据库:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         //解禁 删除数据库 创建数据集
-                        if (!MongoDBHelpler.IsSystemDataBase(SystemManager.getCurrentDataBase()))
+                        if (!MongoDBHelpler.IsSystemDataBase(SystemManager.GetCurrentDataBase()))
                         {
                             //系统库不允许修改
                             this.DelMongoDBToolStripMenuItem.Enabled = true;
@@ -205,7 +205,7 @@ namespace MagicMongoDBTool
                             this.RemoveUserToolStripMenuItem.Enabled = true;
                         }
 
-                        if (strNodeType == MongoDBHelpler.SingleDataBaseTag)
+                        if (strNodeType == MongoDBHelpler.SINGLE_DATABASE_TAG)
                         {
                             //单一数据库模式
                             this.DelMongoDBToolStripMenuItem.Enabled = false;
@@ -224,11 +224,11 @@ namespace MagicMongoDBTool
                             contextMenuStripMain.Show();
                         }
                         break;
-                    case MongoDBHelpler.CollectionTag:
+                    case MongoDBHelpler.COLLECTION_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         //解禁 删除数据集
-                        if (!MongoDBHelpler.IsSystemCollection(SystemManager.getCurrentCollection()))
+                        if (!MongoDBHelpler.IsSystemCollection(SystemManager.GetCurrentCollection()))
                         {
                             //系统数据库无法删除！！
                             this.DelMongoCollectionToolStripMenuItem.Enabled = true;
@@ -309,7 +309,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         void lstData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SystemManager.getCurrentCollection().Name == MongoDBHelpler.CollectionName_GridFileSystem)
+            if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GRID_FILE_SYSTEM)
             {
                 //文件系统
                 UploadFileToolStripMenuItem.Enabled = true;
@@ -341,7 +341,7 @@ namespace MagicMongoDBTool
                 //数据系统
                 if (lstData.SelectedItems.Count > 0)
                 {
-                    if (!MongoDBHelpler.IsSystemCollection(SystemManager.getCurrentCollection()))
+                    if (!MongoDBHelpler.IsSystemCollection(SystemManager.GetCurrentCollection()))
                     {
                         //系统数据禁止删除
                         DelRecordToolStripMenuItem.Enabled = true;
@@ -359,7 +359,7 @@ namespace MagicMongoDBTool
         }
         void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (SystemManager.getCurrentCollection().Name == MongoDBHelpler.CollectionName_GridFileSystem)
+            if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GRID_FILE_SYSTEM)
             {
                 String strFileName = lstData.SelectedItems[0].Text;
                 MongoDBHelpler.OpenFile(strFileName);
@@ -377,7 +377,7 @@ namespace MagicMongoDBTool
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
-                    if (SystemManager.getCurrentCollection().Name == MongoDBHelpler.CollectionName_GridFileSystem)
+                    if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GRID_FILE_SYSTEM)
                     {
                         //文件系统
                         this.contextMenuStripMain.Items.Add(this.DownloadFileToolStripMenuItem.Clone());
@@ -581,14 +581,14 @@ namespace MagicMongoDBTool
                 String strKey = lstData.Columns[0].Text;
                 foreach (ListViewItem item in lstData.SelectedItems)
                 {
-                    MongoDBHelpler.DropRecord(SystemManager.getCurrentCollection(), item.Tag, strKey);
+                    MongoDBHelpler.DropRecord(SystemManager.GetCurrentCollection(), item.Tag, strKey);
                 }
                 lstData.ContextMenuStrip = null;
             }
             else
             {
                 String strKey = trvData.SelectedNode.Text.Split(":".ToCharArray())[0];
-                MongoDBHelpler.DropRecord(SystemManager.getCurrentCollection(), trvData.SelectedNode.Tag, strKey);
+                MongoDBHelpler.DropRecord(SystemManager.GetCurrentCollection(), trvData.SelectedNode.Tag, strKey);
                 trvData.ContextMenuStrip = null;
             }
             DelRecordToolStripMenuItem.Enabled = false;
@@ -597,9 +597,14 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 刷新数据
         /// </summary>
+<<<<<<< HEAD
         private void RefreshData()
         {
             MongoDBHelpler.clearFilter();
+=======
+        private void RefreshData() {
+            MongoDBHelpler.ClearFilter();
+>>>>>>> MagicMongoDBTool/master
             MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, DataShower);
             SetDataNav();
         }

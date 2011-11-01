@@ -12,24 +12,31 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 复制菜单项目
         /// </summary>
-        /// <param name="OrgMenuItem"></param>
+        /// <param name="orgMenuItem"></param>
         /// <returns></returns>
-        public static ToolStripMenuItem Clone(this ToolStripMenuItem OrgMenuItem)
+        public static ToolStripMenuItem Clone(this ToolStripMenuItem orgMenuItem)
         {
-            ToolStripMenuItem CloneMenuItem = new ToolStripMenuItem();
+            ToolStripMenuItem cloneMenuItem = new ToolStripMenuItem();
             //!!!typeof的参数必须是ToolStripMenuItem的基类!!!如果使用Control则不能取到值!!!
             ///感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
             ///坑爹啊。。。。。。。。
-            Delegate[] _List = GetObjectEventList(OrgMenuItem, "EventClick", typeof(ToolStripItem));
-            CloneMenuItem.Click += new EventHandler(
-                    (x, y) => { _List[0].DynamicInvoke(x,y); }
+            Delegate[] list = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));
+            cloneMenuItem.Click += new EventHandler(
+                    (x, y) => { list[0].DynamicInvoke(x,y); }
             );
 
+<<<<<<< HEAD
             CloneMenuItem.Text = OrgMenuItem.Text;
             CloneMenuItem.Enabled = OrgMenuItem.Enabled;
             CloneMenuItem.BackgroundImage = OrgMenuItem.BackgroundImage;
             CloneMenuItem.Image = OrgMenuItem.Image;
             return CloneMenuItem;
+=======
+            cloneMenuItem.Text = orgMenuItem.Text;
+            cloneMenuItem.Enabled = orgMenuItem.Enabled;
+            cloneMenuItem.BackgroundImage = orgMenuItem.BackgroundImage;
+            return cloneMenuItem;
+>>>>>>> MagicMongoDBTool/master
         }
 
         public static ToolStripButton CloneFromMenuItem(this ToolStripMenuItem OrgMenuItem) {
@@ -52,23 +59,29 @@ namespace MagicMongoDBTool.Module
         /// 获取控件事件  zgke@sina.com qq:116149   
         /// </summary>   
         /// <param name="p_Control">对象</param>   
-        /// <param name="p_EventName">事件名 EventClick EventDoubleClick  这个需要看control.事件 是哪个类的名字是什么</param> 
-        /// <param name="p_EventType">如果是WINFROM控件  使用typeof(Control)</param> 
+        /// <param name="eventName">事件名 EventClick EventDoubleClick  这个需要看control.事件 是哪个类的名字是什么</param> 
+        /// <param name="eventType">如果是WINFROM控件  使用typeof(Control)</param> 
         /// <returns>委托列</returns>   
-        public static Delegate[] GetObjectEventList(object p_Object, string p_EventName, Type p_EventType)
+        public static Delegate[] GetObjectEventList(object obj, string eventName, Type eventType)
         {
-            PropertyInfo _PropertyInfo = p_Object.GetType().GetProperty("Events", BindingFlags.Instance | BindingFlags.NonPublic);
-            if (_PropertyInfo != null)
+            PropertyInfo propertyInfo = obj.GetType().GetProperty("Events", BindingFlags.Instance | BindingFlags.NonPublic);
+            if (propertyInfo != null)
             {
-                object _EventList = _PropertyInfo.GetValue(p_Object, null);
-                if (_EventList != null && _EventList is EventHandlerList)
+                object eventList = propertyInfo.GetValue(obj, null);
+                if (eventList != null && eventList is EventHandlerList)
                 {
-                    EventHandlerList _List = (EventHandlerList)_EventList;
-                    FieldInfo _FieldInfo = p_EventType.GetField(p_EventName, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.IgnoreCase);
-                    if (_FieldInfo == null) return null;
-                    Delegate _ObjectDelegate = _List[_FieldInfo.GetValue(p_Object)];
-                    if (_ObjectDelegate == null) return null;
-                    return _ObjectDelegate.GetInvocationList();
+                    EventHandlerList list = (EventHandlerList)eventList;
+                    FieldInfo fieldInfo = eventType.GetField(eventName, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.IgnoreCase);
+                    if (fieldInfo == null)
+                    {
+                        return null;
+                    }
+                    Delegate objDelegate = list[fieldInfo.GetValue(obj)];
+                    if (objDelegate == null)
+                    {
+                        return null;
+                    }
+                    return objDelegate.GetInvocationList();
                 }
             }
             return null;

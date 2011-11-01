@@ -14,11 +14,14 @@ namespace MagicMongoDBTool
         [STAThread]
         static void Main()
         {
-            if (File.Exists("config.xml")) {
-                SystemManager.mConfig = ConfigHelper.LoadFromConfigFile("config.xml");
-            } else {
-                SystemManager.mConfig = new ConfigHelper();
-                SystemManager.mConfig.SaveToConfigFile("config.xml");
+            if (File.Exists("config.xml"))
+            {
+                SystemManager.ConfigHelperInstance = ConfigHelper.LoadFromConfigFile("config.xml");
+            }
+            else
+            {
+                SystemManager.ConfigHelperInstance = new ConfigHelper();
+                SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

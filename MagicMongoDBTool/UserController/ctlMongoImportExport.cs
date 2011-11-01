@@ -12,7 +12,7 @@ namespace MagicMongoDBTool.Module
     public partial class ctlMongoImportExport : UserControl
     {
         public event MagicMongoDBTool.frmDosCommand.CommandChangedEventHandler CommandChanged;
-        private MongodbDosCommand.struImportExport MongoImportExportCommand = new MongodbDosCommand.struImportExport();
+        private MongodbDosCommand.StruImportExport MongoImportExportCommand = new MongodbDosCommand.StruImportExport();
         public ctlMongoImportExport()
         {
             InitializeComponent();
@@ -30,7 +30,7 @@ namespace MagicMongoDBTool.Module
         }
         void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
-            MongoImportExportCommand.loglv = logLv;
+            MongoImportExportCommand.LogLV = logLv;
             CommandChanged(MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand));
         }
         private void txtHostAddr_TextChanged(object sender, EventArgs e)

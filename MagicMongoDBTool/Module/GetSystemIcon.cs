@@ -13,7 +13,7 @@ namespace MagicMongoDBTool.Module
     public static class GetSystemIcon
     {
         public static Dictionary<String, Int32> IconList = new Dictionary<string, Int32>();
-        public static ImageList iconImagelist = new ImageList();
+        public static ImageList IconImagelist = new ImageList();
         /// <summary>
         /// 依据文件名读取图标，若指定文件不存在，则返回空值。
         /// </summary>
@@ -21,25 +21,31 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Icon GetIconByFileName(string fileName)
         {
-            if (fileName == null || fileName.Equals(string.Empty)) return null;
-            if (!File.Exists(fileName)) return null;
+            if (fileName == null || fileName.Equals(string.Empty))
+            {
+                return null;
+            }
+            if (!File.Exists(fileName)) 
+            {
+                return null;
+            }
 
-            SHFILEINFO shinfo = new SHFILEINFO();
+            SHFILEINFO shInfo = new SHFILEINFO();
             //Use this to get the small Icon
-            Win32.SHGetFileInfo(fileName, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.SHGFI_ICON | Win32.SHGFI_SMALLICON);
+            Win32.SHGetFileInfo(fileName, 0, ref shInfo, (uint)Marshal.SizeOf(shInfo), Win32.SHGFI_ICON | Win32.SHGFI_SMALLICON);
             //The icon is returned in the hIcon member of the shinfo struct
-            System.Drawing.Icon myIcon = System.Drawing.Icon.FromHandle(shinfo.hIcon);
+            System.Drawing.Icon myIcon = System.Drawing.Icon.FromHandle(shInfo.hIcon);
             return myIcon;
         }
         public static Int32 GetIconIndexByFileName(string fileName, bool isLarge)
         {
-            String[] ExtName = fileName.Split(@"\".ToCharArray());
-            String FileName = ExtName[ExtName.Length - 1];
-            String[] ExT = fileName.Split(".".ToCharArray());
-            String GetIcon = String.Empty;
-            if (ExT.Length > 0)
+            string[] extName = fileName.Split(@"\".ToCharArray());
+            string extFileName = extName[extName.Length - 1];
+            string[] ext = fileName.Split(".".ToCharArray());
+            string GetIcon = string.Empty;
+            if (ext.Length > 0)
             {
-                GetIcon = "." +  ExT[ExT.Length - 1];
+                GetIcon = "." +  ext[ext.Length - 1];
             }
 
             if (IconList.ContainsKey(GetIcon))
@@ -48,9 +54,9 @@ namespace MagicMongoDBTool.Module
             }
             else
             {
-                iconImagelist.Images.Add(GetIconByFileType(GetIcon,isLarge));
-                IconList.Add(GetIcon, iconImagelist.Images.Count - 1);
-                return iconImagelist.Images.Count - 1;
+                IconImagelist.Images.Add(GetIconByFileType(GetIcon,isLarge));
+                IconList.Add(GetIcon, IconImagelist.Images.Count - 1);
+                return IconImagelist.Images.Count - 1;
             }
         }
         /// <summary>
@@ -62,7 +68,10 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Icon GetIconByFileType(string fileType, bool isLarge)
         {
-            if (fileType == null || fileType.Equals(string.Empty)) return null;
+            if (fileType == null || fileType.Equals(string.Empty))
+            {
+                return null;
+            }
 
             RegistryKey regVersion = null;
             string regFileType = null;

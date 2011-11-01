@@ -38,13 +38,26 @@ namespace MagicMongoDBTool.Module
         public static Boolean IsSystemCollection(MongoCollection mongoCol)
         {
             //系统
-            if (mongoCol.Name.StartsWith("system.")) { return true; }
+            if (mongoCol.Name.StartsWith("system."))
+            { 
+                return true;
+            }
             //文件
-            if (mongoCol.Name.StartsWith("fs.")) { return true; }
+            if (mongoCol.Name.StartsWith("fs.")) 
+            { 
+                return true;
+            }
             //local数据库,默认为系统
-            if (mongoCol.Database.Name == "local") { return true; }
+            if (mongoCol.Database.Name == "local") 
+            { 
+                return true; 
+            }
             //config数据库,默认为系统
-            if (mongoCol.Database.Name == "config") { return true; }
+            if (mongoCol.Database.Name == "config") 
+            { 
+                return true;
+            }
+
             return false;
         }
         /// <summary>
@@ -55,39 +68,46 @@ namespace MagicMongoDBTool.Module
         public static Boolean IsSystemDataBase(MongoDatabase mongoDB)
         {
             //local数据库,默认为系统
-            if (mongoDB.Name == "local") { return true; }
+            if (mongoDB.Name == "local") 
+            {
+                return true;
+            }
             //config数据库,默认为系统
-            if (mongoDB.Name == "config") { return true; }
+            if (mongoDB.Name == "config") 
+            {
+                return true; 
+            }
+
             return false;
         }
         /// <summary>
         /// 数据库操作
         /// </summary>
         /// <param name="strSvrPath"></param>
-        /// <param name="DBName"></param>
+        /// <param name="dbName"></param>
         /// <returns></returns>
-        public static Boolean DataBaseOpration(String strSvrPathWithTag, String DBName, Oprcode Func, TreeNode tr)
+        public static Boolean DataBaseOpration(String strSvrPathWithTag, string dbName, Oprcode func, TreeNode tr)
         {
             Boolean rtnResult = false;
-            MongoServer Mongosrv = GetMongoServerBySvrPath(strSvrPathWithTag);
-            String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
-            String Srvkey = strSvrPath.Split("/".ToCharArray())[0];
-            if (Mongosrv != null)
+            MongoServer mongoSvr = GetMongoServerBySvrPath(strSvrPathWithTag);
+            string strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
+            string svrkey = strSvrPath.Split("/".ToCharArray())[0];
+            if (mongoSvr != null)
             {
-                switch (Func)
+                switch (func)
                 {
                     case Oprcode.Create:
-                        if (!Mongosrv.DatabaseExists(DBName))
+                        if (!mongoSvr.DatabaseExists(dbName))
                         {
-                            Mongosrv.GetDatabase(DBName);
-                            tr.Nodes.Add(FillDataBaseInfoToTreeNode(DBName, Mongosrv, Srvkey));
+                            mongoSvr.GetDatabase(dbName);
+                            tr.Nodes.Add(FillDataBaseInfoToTreeNode(dbName, mongoSvr, svrkey));
                             rtnResult = true;
                         }
                         break;
                     case Oprcode.Drop:
-                        if (Mongosrv.DatabaseExists(DBName))
+                        if (mongoSvr.DatabaseExists(dbName))
                         {
-                            Mongosrv.DropDatabase(DBName);
+                            mongoSvr.DropDatabase(dbName);
                             tr.TreeView.Nodes.Remove(tr);
                             rtnResult = true;
                         }
@@ -105,45 +125,45 @@ namespace MagicMongoDBTool.Module
         /// 数据集操作
         /// </summary>
         /// <param name="strSvrPath"></param>
-        /// <param name="CollectionName"></param>
-        /// <param name="Func"></param>
+        /// <param name="collectionName"></param>
+        /// <param name="func"></param>
         /// <returns></returns>
-        public static Boolean CollectionOpration(String strSvrPathWithTag, String CollectionName, Oprcode Func, TreeNode mTreenode, String NewCollectionName = "")
+        public static Boolean CollectionOpration(String strSvrPathWithTag, string collectionName, Oprcode func, TreeNode treeNode, string newCollectionName = "")
         {
             Boolean rtnResult = false;
-            MongoDatabase Mongodb = GetMongoDBBySvrPath(strSvrPathWithTag);
+            MongoDatabase mongoDB = GetMongoDBBySvrPath(strSvrPathWithTag);
 
-            String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
-            String Srvkey = strSvrPath.Split("/".ToCharArray())[0];
-            if (Mongodb != null)
+            string strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
+            string svrkey = strSvrPath.Split("/".ToCharArray())[0];
+            if (mongoDB != null)
             {
-                switch (Func)
+                switch (func)
                 {
                     case Oprcode.Create:
-                        if (!Mongodb.CollectionExists(CollectionName))
+                        if (!mongoDB.CollectionExists(collectionName))
                         {
-                            Mongodb.CreateCollection(CollectionName);
-                            mTreenode.Nodes.Add(FillCollectionInfoToTreeNode(CollectionName, Mongodb,Srvkey));
+                            mongoDB.CreateCollection(collectionName);
+                            treeNode.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
                             rtnResult = true;
                         }
                         break;
                     case Oprcode.Drop:
-                        if (Mongodb.CollectionExists(CollectionName))
+                        if (mongoDB.CollectionExists(collectionName))
                         {
-                            Mongodb.DropCollection(CollectionName);
-                            mTreenode.TreeView.Nodes.Remove(mTreenode);
+                            mongoDB.DropCollection(collectionName);
+                            treeNode.TreeView.Nodes.Remove(treeNode);
                             rtnResult = true;
                         }
                         break;
                     case Oprcode.Rename:
-                        if (!Mongodb.CollectionExists(NewCollectionName))
+                        if (!mongoDB.CollectionExists(newCollectionName))
                         {
-                            Mongodb.RenameCollection(CollectionName, NewCollectionName);
-                            mTreenode.Text = NewCollectionName;
+                            mongoDB.RenameCollection(collectionName, newCollectionName);
+                            treeNode.Text = newCollectionName;
                             //添加新节点
-                            mTreenode.Parent.Nodes.Add(FillCollectionInfoToTreeNode(NewCollectionName, Mongodb, Srvkey));
+                            treeNode.Parent.Nodes.Add(FillCollectionInfoToTreeNode(newCollectionName, mongoDB, svrkey));
                             //删除旧节点
-                            mTreenode.TreeView.Nodes.Remove(mTreenode);
+                            treeNode.TreeView.Nodes.Remove(treeNode);
                             rtnResult = true;
                         }
                         break;
@@ -166,9 +186,9 @@ namespace MagicMongoDBTool.Module
             String[] strPath = strSvrPath.Split("/".ToCharArray());
             if (strPath.Length > 0)
             {
-                if (mongosrvlst.ContainsKey(strPath[(int)PathLv.ServerLV]))
+                if (_mongoSrvLst.ContainsKey(strPath[(int)PathLv.ServerLV]))
                 {
-                    rtnMongoSrv = mongosrvlst[strPath[(int)PathLv.ServerLV]];
+                    rtnMongoSrv = _mongoSrvLst[strPath[(int)PathLv.ServerLV]];
                 }
             }
             return rtnMongoSrv;
@@ -204,28 +224,28 @@ namespace MagicMongoDBTool.Module
         public static MongoCollection GetMongoCollectionBySvrPath(String strSvrPathWithTag)
         {
             MongoCollection rtnMongoCollection = null;
-            MongoDatabase Mongodb = GetMongoDBBySvrPath(strSvrPathWithTag);
-            if (Mongodb != null)
+            MongoDatabase mongoDB = GetMongoDBBySvrPath(strSvrPathWithTag);
+            if (mongoDB != null)
             {
-                String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
-                String[] strPathArray = strSvrPath.Split("/".ToCharArray());
-                rtnMongoCollection = Mongodb.GetCollection(strPathArray[(int)PathLv.CollectionLV]);
-            } 
+                string strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
+                string[] strPathArray = strSvrPath.Split("/".ToCharArray());
+                rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int)PathLv.CollectionLV]);
+            }
             return rtnMongoCollection;
         }
         /// <summary>
         /// 添加索引
         /// </summary>
-        /// <param name="KeyName">索引名称</param>
-        /// <param name="IsAccending">是否为升序</param>
+        /// <param name="keyName">索引名称</param>
+        /// <param name="isAccending">是否为升序</param>
         /// <returns></returns>
-        public static Boolean CreateMongoIndex(String KeyName, Boolean IsAccending = true)
+        public static Boolean CreateMongoIndex(string keyName, bool isAccending = true)
         {
-            MongoCollection mongoCol = SystemManager.getCurrentCollection();
+            MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             IndexKeysDocument index = new IndexKeysDocument();
-            if (!mongoCol.IndexExists(KeyName))
+            if (!mongoCol.IndexExists(keyName))
             {
-                index.Add(KeyName, IsAccending ? 1 : 0);
+                index.Add(keyName, isAccending ? 1 : 0);
                 mongoCol.CreateIndex(index);
                 return true;
             }
@@ -238,7 +258,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Boolean DropMongoIndex(String indexName)
         {
-            MongoCollection mongoCol = SystemManager.getCurrentCollection();
+            MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             if (mongoCol.IndexExistsByName(indexName))
             {
                 mongoCol.DropIndexByName(indexName);
@@ -248,15 +268,15 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 插入JS到系统JS库
         /// </summary>
-        /// <param name="JsName"></param>
-        /// <param name="JsCode"></param>
-        public static Boolean SaveJavascript(String JsName, String JsCode)
+        /// <param name="jsName"></param>
+        /// <param name="jsCode"></param>
+        public static Boolean SaveJavascript(string jsName, string jsCode)
         {
             //标准的JS库格式未知
-            MongoCollection JsCol = SystemManager.getCurrentJsCollection();
-            if (!IsExistByField(JsCol, JsName))
+            MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
+            if (!IsExistByField(jsCol, jsName))
             {
-                JsCol.Insert<BsonDocument>(new BsonDocument().Add("_id", JsName).Add("value", JsCode));
+                jsCol.Insert<BsonDocument>(new BsonDocument().Add("_id", jsName).Add("value", jsCode));
                 return true;
             }
             return false;
@@ -264,29 +284,29 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 获得JS代码
         /// </summary>
-        /// <param name="JsName"></param>
+        /// <param name="jsName"></param>
         /// <returns></returns>
-        public static String LoadJavascript(String JsName)
+        public static String LoadJavascript(string jsName)
         {
-            MongoCollection JsCol = SystemManager.getCurrentJsCollection();
-            if (IsExistByField(JsCol, JsName))
+            MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
+            if (IsExistByField(jsCol, jsName))
             {
-                return JsCol.FindOneAs<BsonDocument>(Query.EQ("_id", JsName)).GetValue("value").ToString();
+                return jsCol.FindOneAs<BsonDocument>(Query.EQ("_id", jsName)).GetValue("value").ToString();
             }
             return String.Empty;
         }
         /// <summary>
         /// 删除数据
         /// </summary>
-        /// <param name="MongoCol"></param>
+        /// <param name="mongoCol"></param>
         /// <param name="strKey"></param>
-        /// <param name="KeyField"></param>
+        /// <param name="keyField"></param>
         /// <returns></returns>
-        public static Boolean DropRecord(MongoCollection MongoCol, Object strKey, String KeyField = "_id")
+        public static Boolean DropRecord(MongoCollection mongoCol, object strKey, string keyField = "_id")
         {
-            if (IsExistByField(MongoCol, (BsonValue)strKey, KeyField))
+            if (IsExistByField(mongoCol, (BsonValue)strKey, keyField))
             {
-                MongoCol.Remove(Query.EQ(KeyField, (BsonValue)strKey));
+                mongoCol.Remove(Query.EQ(keyField, (BsonValue)strKey));
             }
             return true;
         }
@@ -301,8 +321,8 @@ namespace MagicMongoDBTool.Module
         /// <param name="strFileName"></param>
         public static void OpenFile(String strRemoteFileName)
         {
-            MongoDatabase MongoDB = SystemManager.getCurrentDataBase();
-            MongoGridFS gfs = MongoDB.GetGridFS(new MongoGridFSSettings());
+            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
+            MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
 
             String[] strLocalFileName = strRemoteFileName.Split(@"\".ToCharArray());
             try
@@ -322,8 +342,8 @@ namespace MagicMongoDBTool.Module
         /// <param name="strFileName"></param>
         public static void DownloadFile(String strLocalFileName, String strRemoteFileName)
         {
-            MongoDatabase MongoDB = SystemManager.getCurrentDataBase();
-            MongoGridFS gfs = MongoDB.GetGridFS(new MongoGridFSSettings());
+            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
+            MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
             gfs.Download(strLocalFileName, strRemoteFileName);
         }
         /// <summary>
@@ -332,8 +352,8 @@ namespace MagicMongoDBTool.Module
         /// <param name="strFileName"></param>
         public static void UpLoadFile(String strFileName)
         {
-            MongoDatabase MongoDB = SystemManager.getCurrentDataBase();
-            MongoGridFS gfs = MongoDB.GetGridFS(new MongoGridFSSettings());
+            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
+            MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
             gfs.Upload(strFileName);
         }
         /// <summary>
@@ -342,8 +362,8 @@ namespace MagicMongoDBTool.Module
         /// <param name="strFileName"></param>
         public static void DelFile(String strFileName)
         {
-            MongoDatabase MongoDB = SystemManager.getCurrentDataBase();
-            MongoGridFS gfs = MongoDB.GetGridFS(new MongoGridFSSettings());
+            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
+            MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
             gfs.Delete(strFileName);
         }
     }

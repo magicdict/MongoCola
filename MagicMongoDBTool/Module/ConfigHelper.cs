@@ -11,7 +11,7 @@ namespace MagicMongoDBTool.Module
         /// 服务器类型
         /// </summary>
         public enum SrvType
-        { 
+        {
             /// <summary>
             /// 数据服务器[mongod]
             /// </summary>
@@ -28,15 +28,16 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 链接结构体
         /// </summary>
-        public struct MongoConnectionConfig{
+        public struct MongoConnectionConfig
+        {
             /// <summary>
             /// Host名称
             /// </summary>
-            public String HostName;
+            public string HostName;
             /// <summary>
             /// IP地址
             /// </summary>
-            public String IpAddr;
+            public string IpAddr;
             /// <summary>
             /// 端口号
             /// </summary>
@@ -44,19 +45,19 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 是否启用主从模式[Route的时候，不能设置为True]
             /// </summary>
-            public Boolean IsSlaveOk;
+            public bool IsSlaveOk;
             /// <summary>
             /// 作为Admin登陆
             /// </summary>
-            public Boolean LoginAsAdmin;
+            public bool LoginAsAdmin;
             /// <summary>
             /// 用户名
             /// </summary>
-            public String UserName;
+            public string UserName;
             /// <summary>
             /// 密码
             /// </summary>
-            public String Password;
+            public string Password;
             /// <summary>
             /// 服务器类型
             /// </summary>
@@ -64,11 +65,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 副本名称
             /// </summary>
-            public String ReplSetName;
+            public string ReplSetName;
             /// <summary>
             /// 数据库名称
             /// </summary>
-            public String DataBaseName;
+            public string DataBaseName;
         }
         /// <summary>
         /// 连接配置列表(管理用）
@@ -86,14 +87,15 @@ namespace MagicMongoDBTool.Module
         /// <param name="mIpAddr"></param>
         /// <param name="mPort"></param>
         /// <returns></returns>
-        public Boolean AddConnection(MongoConnectionConfig mConnection) {
-            ConnectionList.Add(mConnection.HostName, mConnection);
+        public Boolean AddConnection(MongoConnectionConfig con)
+        {
+            ConnectionList.Add(con.HostName, con);
             return true;
         }
         /// <summary>
         /// MongoBin的路径，用于Dos命令
         /// </summary>
-        public String MongoBinPath = String.Empty;
+        public string MongoBinPath = string.Empty;
         /// <summary>
         /// 每页显示数
         /// </summary>
@@ -105,16 +107,16 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 配置文件名称
         /// </summary>
-        static private String ConfigFilename = "config.xml"; 
+        private static string _configFilename = "config.xml";
         /// <summary>
         /// 读取配置
         /// </summary>
         /// <param name="ConfigFilename"></param>
         /// <returns></returns>
-        public static ConfigHelper LoadFromConfigFile(String mConfigFilename)
+        public static ConfigHelper LoadFromConfigFile(string configFileName)
         {
             FileStream fs = null;
-            fs = new FileStream(mConfigFilename, FileMode.Open, FileAccess.Read);
+            fs = new FileStream(configFileName, FileMode.Open, FileAccess.Read);
             XmlSerializer xs = new XmlSerializer(typeof(ConfigHelper));
             ConfigHelper t = (ConfigHelper)xs.Deserialize(fs);
             foreach (MongoConnectionConfig item in t.SaveConnectionList)
@@ -122,20 +124,21 @@ namespace MagicMongoDBTool.Module
                 t.ConnectionList.Add(item.HostName, item);
             }
             fs.Close();
-            ConfigFilename = mConfigFilename;
+            _configFilename = configFileName;
             return t;
         }
         /// <summary>
         /// 写入配置
         /// </summary>
-        public void SaveToConfigFile() {
-            SaveToConfigFile(ConfigFilename);
+        public void SaveToConfigFile()
+        {
+            SaveToConfigFile(_configFilename);
         }
         /// <summary>
         /// 写入配置
         /// </summary>
         /// <param name="ConfigFilename"></param>
-        public void SaveToConfigFile(String mConfigFilename)
+        public void SaveToConfigFile(string configFileName)
         {
             FileStream fs = null;
             XmlSerializer xs = new XmlSerializer(typeof(ConfigHelper));
@@ -145,7 +148,7 @@ namespace MagicMongoDBTool.Module
             {
                 SaveConnectionList.Add(item);
             }
-            fs = new FileStream(mConfigFilename, FileMode.Create, FileAccess.Write);
+            fs = new FileStream(configFileName, FileMode.Create, FileAccess.Write);
             xs.Serialize(fs, this);
             fs.Close();
         }

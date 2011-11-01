@@ -14,17 +14,17 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="strDBPath"></param>
         /// <param name="strUser"></param>
-        /// <param name="Password"></param>
-        /// <param name="IsReadOnly"></param>
-        public static void AddUserToSrv(String strDBPath, String strUser, String Password, Boolean IsReadOnly)
+        /// <param name="password"></param>
+        /// <param name="isReadOnly"></param>
+        public static void AddUserToSrv(string strDBPath, string strUser, string password, bool isReadOnly)
         {
-            MongoServer mongosrv = SystemManager.getCurrentService();
+            MongoServer mongoSvr = SystemManager.GetCurrentService();
             //必须使用MongoCredentials来添加用户不然的话，Password将使用明文登入到数据库中！
             //这样的话，在使用MongoCredentials登入的时候，会发生密码错误引发的认证失败
-            MongoCredentials newUser = new MongoCredentials(strUser, Password,true);
-            if (mongosrv.AdminDatabase.FindUser(strUser) == null)
+            MongoCredentials newUser = new MongoCredentials(strUser, password,true);
+            if (mongoSvr.AdminDatabase.FindUser(strUser) == null)
             {
-                mongosrv.AdminDatabase.AddUser(newUser,IsReadOnly);
+                mongoSvr.AdminDatabase.AddUser(newUser,isReadOnly);
             }
         }
         /// <summary>
@@ -34,10 +34,10 @@ namespace MagicMongoDBTool.Module
         /// <param name="strUser"></param>
         public static void RemoveUserFromSrv(String strDBPath, String strUser)
         {
-            MongoServer mongosrv = SystemManager.getCurrentService();
-            if (mongosrv.AdminDatabase.FindUser(strUser) != null)
+            MongoServer mongoSvr = SystemManager.GetCurrentService();
+            if (mongoSvr.AdminDatabase.FindUser(strUser) != null)
             {
-                mongosrv.AdminDatabase.RemoveUser(strUser);
+                mongoSvr.AdminDatabase.RemoveUser(strUser);
             }
         }
         /// <summary>
@@ -45,15 +45,15 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="strDBPath">数据库路径</param>
         /// <param name="strUser">用户名</param>
-        /// <param name="Password">密码</param>
-        /// <param name="IsReadOnly">是否为只读</param>
-        public static void AddUserToDB(String strDBPath, String strUser, String Password, Boolean IsReadOnly)
+        /// <param name="password">密码</param>
+        /// <param name="isReadOnly">是否为只读</param>
+        public static void AddUserToDB(string strDBPath, string strUser, string password, bool isReadOnly)
         {
-            MongoDatabase mongodb = GetMongoDBBySvrPath(strDBPath);
-            MongoCredentials newUser = new MongoCredentials(strUser, Password, false);
-            if (mongodb.FindUser(strUser) == null)
+            MongoDatabase mongoDB = GetMongoDBBySvrPath(strDBPath);
+            MongoCredentials newUser = new MongoCredentials(strUser, password, false);
+            if (mongoDB.FindUser(strUser) == null)
             {
-                mongodb.AddUser(newUser,IsReadOnly);
+                mongoDB.AddUser(newUser,isReadOnly);
             }
         }
 
@@ -62,21 +62,21 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="strDBPath">数据库路径</param>
         /// <param name="strUser">用户名</param>
-        public static void RemoveUserFromDB(String strDBPath, String strUser)
+        public static void RemoveUserFromDB(string strDBPath, string strUser)
         {
-            MongoDatabase mongodb = GetMongoDBBySvrPath(strDBPath);
-            if (mongodb.FindUser(strUser) != null)
+            MongoDatabase mongoDB = GetMongoDBBySvrPath(strDBPath);
+            if (mongoDB.FindUser(strUser) != null)
             {
-                mongodb.RemoveUser(strUser);
+                mongoDB.RemoveUser(strUser);
             }
         }
         public static void Shutdown()
         {
-            MongoServer mongosrv = GetMongoServerBySvrPath(SystemManager.SelectObjectTag);
+            MongoServer mongoSvr = GetMongoServerBySvrPath(SystemManager.SelectObjectTag);
             try
             {
                 //the server will be  shutdown with exception
-                mongosrv.Shutdown();
+                mongoSvr.Shutdown();
             }
             catch (System.IO.IOException)
             {

@@ -13,7 +13,7 @@ namespace MagicMongoDBTool
     {
         
         public event MagicMongoDBTool.frmDosCommand.CommandChangedEventHandler CommandChanged;
-        private MongodbDosCommand.struMongod MongodCommand = new  MongodbDosCommand.struMongod();
+        private MongodbDosCommand.StruMongod MongodCommand = new  MongodbDosCommand.StruMongod();
         public ctlMongod()
         {
             InitializeComponent();
@@ -28,19 +28,19 @@ namespace MagicMongoDBTool
 
         void ctlFilePickerDBPath_PathChanged(string FilePath)
         {
-            MongodCommand.dbpath = FilePath;
+            MongodCommand.DBPath = FilePath;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
 
         void ctlFilePickerT_PathChanged(string FilePath)
         {
-            MongodCommand.logpath = FilePath;
+            MongodCommand.LogPath = FilePath;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
 
         void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
-            MongodCommand.loglv = logLv;
+            MongodCommand.LogLV = logLv;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
 

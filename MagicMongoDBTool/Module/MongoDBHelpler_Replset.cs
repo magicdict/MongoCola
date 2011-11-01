@@ -12,10 +12,10 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 初始化副本
         /// </summary>
-        /// <param name="mongosrv">副本组主服务器</param>
-        /// <param name="ReplicaSetName">副本名称</param>
-        /// <param name="SecondaryNames">从属服务器列表</param>
-        public static void InitReplicaSet(MongoServer mongosrv, String ReplicaSetName, List<String> SecondaryNames)
+        /// <param name="mongoSvr">副本组主服务器</param>
+        /// <param name="replicaSetName">副本名称</param>
+        /// <param name="secondaryNames">从属服务器列表</param>
+        public static void InitReplicaSet(MongoServer mongoSvr, string replicaSetName, List<string> secondaryNames)
         {
             BsonDocument config = new BsonDocument();
             BsonArray hosts = new BsonArray();
@@ -24,79 +24,79 @@ namespace MagicMongoDBTool.Module
 
             byte _id = 1;
             host.Add("_id", _id);
-            host.Add("host", mongosrv.Settings.Server.Host + ":" + mongosrv.Settings.Server.Port.ToString());
+            host.Add("host", mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port.ToString());
             hosts.Add(host);
 
-            foreach (var item in SecondaryNames)
+            foreach (var item in secondaryNames)
             {
                 _id++;
                 host = new BsonDocument();
                 host.Add("_id", _id);
-                host.Add("host", SystemManager.mConfig.ConnectionList[item].IpAddr + ":" + SystemManager.mConfig.ConnectionList[item].Port.ToString());
+                host.Add("host", SystemManager.ConfigHelperInstance.ConnectionList[item].IpAddr + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString());
                 hosts.Add(host);
             }
 
-            config.Add("_id", ReplicaSetName);
+            config.Add("_id", replicaSetName);
             config.Add("members", hosts);
 
             cmd.Add("replSetInitiate", config);
 
-            CommandDocument Mongocmd = new CommandDocument() { cmd };
+            CommandDocument mongoCmd = new CommandDocument() { cmd };
 
-            mongosrv.RunAdminCommand(Mongocmd);
+            mongoSvr.RunAdminCommand(mongoCmd);
         }
         /// <summary>
         /// 增加数据分片
         /// </summary>
         /// <param name="routesrv"></param>
-        /// <param name="ReplicaSetName"></param>
-        /// <param name="ShardingNames"></param>
+        /// <param name="replicaSetName"></param>
+        /// <param name="shardingNames"></param>
         /// <param name="shardingDB"></param>
         /// <param name="SharingCollection"></param>
-        public static CommandResult AddSharding(MongoServer routesrv, String ReplicaSetName, List<String> ShardingNames)
+        public static CommandResult AddSharding(MongoServer routesrv, string replicaSetName, List<string> shardingNames)
         {
             BsonDocument config = new BsonDocument();
             BsonDocument cmd = new BsonDocument();
             BsonDocument host = new BsonDocument();
-            String strCmdPara = ReplicaSetName + "/";
-            foreach (var item in ShardingNames)
+            string cmdPara = replicaSetName + "/";
+            foreach (var item in shardingNames)
             {
-                strCmdPara += SystemManager.mConfig.ConnectionList[item].IpAddr + ":" + SystemManager.mConfig.ConnectionList[item].Port.ToString() + ",";
+                cmdPara += SystemManager.ConfigHelperInstance.ConnectionList[item].IpAddr + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString() + ",";
             }
-            strCmdPara = strCmdPara.TrimEnd(",".ToCharArray());
-            CommandDocument Mongocmd = new CommandDocument();
-            Mongocmd.Add("addshard", strCmdPara);
-            return routesrv.RunAdminCommand(Mongocmd);
+            cmdPara = cmdPara.TrimEnd(",".ToCharArray());
+            CommandDocument mongoCmd = new CommandDocument();
+            mongoCmd.Add("addshard", cmdPara);
+            return routesrv.RunAdminCommand(mongoCmd);
         }
         /// <summary>
         /// 数据库分片
         /// </summary>
-        /// <param name="routesrv"></param>
+        /// <param name="routeSvr"></param>
         /// <param name="shardingDB"></param>
         /// <returns></returns>
-        public static CommandResult EnableSharding(MongoServer routesrv, String shardingDB)
+        public static CommandResult EnableSharding(MongoServer routeSvr, String shardingDB)
         {
-            CommandDocument Mongocmd = new CommandDocument();
+            CommandDocument mongoCmd = new CommandDocument();
             ///可分片数据库
-            Mongocmd = new CommandDocument();
-            Mongocmd.Add("enablesharding", shardingDB);
-            return routesrv.RunAdminCommand(Mongocmd);
+            mongoCmd = new CommandDocument();
+            mongoCmd.Add("enablesharding", shardingDB);
+            return routeSvr.RunAdminCommand(mongoCmd);
         }
         /// <summary>
         /// 数据集分片
         /// </summary>
-        /// <param name="routesrv"></param>
-        /// <param name="SharingCollection"></param>
-        /// <param name="ShardingKey"></param>
+        /// <param name="routeSvr"></param>
+        /// <param name="sharingCollection"></param>
+        /// <param name="shardingKey"></param>
         /// <returns></returns>
-        public static CommandResult shardcollection(MongoServer routesrv, String SharingCollection,BsonDocument ShardingKey)
+        public static CommandResult ShardCollection(MongoServer routeSvr, String sharingCollection,BsonDocument shardingKey)
         {
-            CommandDocument Mongocmd = new CommandDocument();
+            CommandDocument mongoCmd = new CommandDocument();
             ///可分片数据集
-            Mongocmd = new CommandDocument();
-            Mongocmd.Add("shardcollection", SharingCollection);
-            Mongocmd.Add("key", ShardingKey);
-            return routesrv.RunAdminCommand(Mongocmd);
+            //mongoCmd = new CommandDocument();
+            mongoCmd.Add("shardcollection", sharingCollection);
+            mongoCmd.Add("key", shardingKey);
+            return routeSvr.RunAdminCommand(mongoCmd);
         }
     }
 }

@@ -13,10 +13,10 @@ namespace MagicMongoDBTool
         MongoServer PrmSrv;
         private void frmReplset_Load(object sender, EventArgs e)
         {
-            PrmSrv = SystemManager.getCurrentService();
+            PrmSrv = SystemManager.GetCurrentService();
             ConfigHelper.MongoConnectionConfig PrmKeyPro = SystemManager.getSelectedSrvProByName();
             lblPrmInfo.Text = "主机为:" + PrmKeyPro.HostName + "  副本名：" + PrmKeyPro.ReplSetName;
-            foreach (var item in SystemManager.mConfig.ConnectionList.Values)
+            foreach (var item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
                 if ((PrmKeyPro.HostName != item.HostName) & (PrmKeyPro.ReplSetName == item.ReplSetName))
                 {
