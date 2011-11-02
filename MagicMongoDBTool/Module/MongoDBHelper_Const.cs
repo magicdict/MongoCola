@@ -30,7 +30,7 @@ namespace MagicMongoDBTool.Module
         enum PathLv : int
         {
             ServerLV = 0,
-            DatabaseLv = 1,
+            DatabaseLV = 1,
             CollectionLV = 2
         }
 

@@ -11,7 +11,7 @@ namespace MagicMongoDBTool
 {
     public partial class frmImportOleDB : QLFUI.QLFForm
     {
-        public String DataBaseFileName = String.Empty;
+        public string DataBaseFileName = string.Empty;
         public frmImportOleDB()
         {
             InitializeComponent();

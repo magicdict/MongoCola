@@ -32,23 +32,23 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 复制菜单项目StripButton
         /// </summary>
-        /// <param name="OrgMenuItem">原始的菜单</param>
+        /// <param name="orgMenuItem">原始的菜单</param>
         /// <returns>克隆的菜单StripButton</returns>
-        public static ToolStripButton CloneFromMenuItem(this ToolStripMenuItem OrgMenuItem)
+        public static ToolStripButton CloneFromMenuItem(this ToolStripMenuItem orgMenuItem)
         {
-            ToolStripButton CloneButton = new ToolStripButton();
+            ToolStripButton cloneButton = new ToolStripButton();
             //!!!typeof的参数必须是ToolStripMenuItem的基类!!!如果使用Control则不能取到值!!!
             ///感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
             ///坑爹啊。。。。。。。。
-            Delegate[] _List = GetObjectEventList(OrgMenuItem, "EventClick", typeof(ToolStripItem));
-            CloneButton.Click += new EventHandler(
+            Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));
+            cloneButton.Click += new EventHandler(
                     (x, y) => { _List[0].DynamicInvoke(x, y); }
             );
-            CloneButton.Image = OrgMenuItem.Image;
-            CloneButton.Enabled = OrgMenuItem.Enabled;
-            CloneButton.Text = OrgMenuItem.Text;
-            CloneButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            return CloneButton;
+            cloneButton.Image = orgMenuItem.Image;
+            cloneButton.Enabled = orgMenuItem.Enabled;
+            cloneButton.Text = orgMenuItem.Text;
+            cloneButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            return cloneButton;
         }
 
         /// <summary>   

@@ -29,15 +29,15 @@ namespace MagicMongoDBTool
             this.OptionToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Option);
         }
 
-        ToolStripButton ImportDataFromAccessToolStripButton;
-        ToolStripButton RefreshToolStripButton;
-        ToolStripButton OptionToolStripButton;
+        private ToolStripButton ImportDataFromAccessToolStripButton;
+        private ToolStripButton RefreshToolStripButton;
+        private ToolStripButton OptionToolStripButton;
 
-        ToolStripButton NextPageToolStripButton;
-        ToolStripButton PrePageToolStripButton;
-        ToolStripButton FirstPageToolStripButton;
-        ToolStripButton LastPageToolStripButton;
-        ToolStripButton QueryDataToolStripButton;
+        private ToolStripButton NextPageToolStripButton;
+        private ToolStripButton PrePageToolStripButton;
+        private ToolStripButton FirstPageToolStripButton;
+        private ToolStripButton LastPageToolStripButton;
+        private ToolStripButton QueryDataToolStripButton;
         /// <summary>
         /// 工具栏
         /// </summary>
@@ -50,10 +50,10 @@ namespace MagicMongoDBTool
 
             PrePageToolStripButton = this.PrePageToolStripMenuItem.CloneFromMenuItem();
             this.toolStripMain.Items.Add(PrePageToolStripButton);
-            
+
             NextPageToolStripButton = this.NextPageToolStripMenuItem.CloneFromMenuItem();
             this.toolStripMain.Items.Add(NextPageToolStripButton);
-            
+
             LastPageToolStripButton = this.LastPageToolStripMenuItem.CloneFromMenuItem();
             this.toolStripMain.Items.Add(LastPageToolStripButton);
 
@@ -72,7 +72,7 @@ namespace MagicMongoDBTool
             this.toolStripMain.Items.Add(OptionToolStripButton);
 
         }
-        List<Control> DataShower = new List<Control>();
+        private List<Control> _dataShower = new List<Control>();
         /// <summary>
         /// 数据展示控件
         /// </summary>
@@ -94,9 +94,9 @@ namespace MagicMongoDBTool
                     }
                 );
             DisableAllOpr();
-            DataShower.Add(lstData);
-            DataShower.Add(trvData);
-            DataShower.Add(txtData);
+            _dataShower.Add(lstData);
+            _dataShower.Add(trvData);
+            _dataShower.Add(txtData);
         }
         /// <summary>
         /// 鼠标选中节点
@@ -111,14 +111,15 @@ namespace MagicMongoDBTool
             lstData.ContextMenuStrip = null;
             trvData.ContextMenuStrip = null;
             this.contextMenuStripMain = null;
-            if (this.trvData.SelectedNode != null) {
+            if (this.trvData.SelectedNode != null)
+            {
                 this.trvData.SelectedNode.ContextMenuStrip = null;
             }
             if (e.Node.Tag != null)
             {
                 //先禁用所有的操作，然后根据选中对象解禁
                 DisableAllOpr();
-                String strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
+                string strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
                 switch (strNodeType)
                 {
                     case MongoDBHelpler.DOCUMENT_TAG:
@@ -144,7 +145,7 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelpler.USER_LIST_TAG:
                         //BsonDocument
-                        MongoDBHelpler.FillDataToControl(e.Node.Tag.ToString(), DataShower);
+                        MongoDBHelpler.FillDataToControl(e.Node.Tag.ToString(), _dataShower);
                         SetDataNav();
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "用户列表:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
@@ -163,12 +164,12 @@ namespace MagicMongoDBTool
                         this.ShutDownToolStripMenuItem.Enabled = true;
                         this.AddUserToAdminToolStripMenuItem.Enabled = true;
                         this.RemoveUserFromAdminToolStripMenuItem.Enabled = true;
-                        if (SystemManager.getSelectedSrvProByName().ServerType == ConfigHelper.SrvType.DataSrv)
+                        if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.DataSvr)
                         {
                             //Route,Config服务器不能进行这样的操作！
                             this.ReplicaSetToolStripMenuItem.Enabled = true;
                         }
-                        if (SystemManager.getSelectedSrvProByName().ServerType == ConfigHelper.SrvType.RouteSrv)
+                        if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.RouteSvr)
                         {
                             //Route用
                             this.AddShardingToolStripMenuItem.Enabled = true;
@@ -601,7 +602,7 @@ namespace MagicMongoDBTool
         private void RefreshData()
         {
             MongoDBHelpler.ClearFilter();
-            MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, DataShower);
+            MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
         }
         /// <summary>
@@ -651,7 +652,7 @@ namespace MagicMongoDBTool
         {
             String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "创建用户");
             String strPassword = Microsoft.VisualBasic.Interaction.InputBox("请输入密码：", "创建用户");
-            MongoDBHelpler.AddUserToSrv(SystemManager.SelectObjectTag, strUserName, strPassword, false);
+            MongoDBHelpler.AddUserToSvr(SystemManager.SelectObjectTag, strUserName, strPassword, false);
         }
         /// <summary>
         /// 删除Admin用户
@@ -661,7 +662,7 @@ namespace MagicMongoDBTool
         private void DelUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
-            MongoDBHelpler.RemoveUserFromSrv(SystemManager.SelectObjectTag, strUserName);
+            MongoDBHelpler.RemoveUserFromSvr(SystemManager.SelectObjectTag, strUserName);
         }
 
         /// <summary>
@@ -797,25 +798,25 @@ namespace MagicMongoDBTool
         #region"数据导航"
         private void PrePageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.PageChanged(MongoDBHelpler.PageChangeOpr.PrePage, SystemManager.SelectObjectTag, DataShower);
+            MongoDBHelpler.PageChanged(MongoDBHelpler.PageChangeOpr.PrePage, SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
         }
 
         private void NextPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.PageChanged(MongoDBHelpler.PageChangeOpr.NextPage, SystemManager.SelectObjectTag, DataShower);
+            MongoDBHelpler.PageChanged(MongoDBHelpler.PageChangeOpr.NextPage, SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
         }
 
         private void FirstPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.PageChanged(MongoDBHelpler.PageChangeOpr.FirstPage, SystemManager.SelectObjectTag, DataShower);
+            MongoDBHelpler.PageChanged(MongoDBHelpler.PageChangeOpr.FirstPage, SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
         }
 
         private void LastPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.PageChanged(MongoDBHelpler.PageChangeOpr.LastPage, SystemManager.SelectObjectTag, DataShower);
+            MongoDBHelpler.PageChanged(MongoDBHelpler.PageChangeOpr.LastPage, SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
         }
 
@@ -826,7 +827,7 @@ namespace MagicMongoDBTool
             mfrm.Close();
             mfrm.Dispose();
             //重新展示数据
-            MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, DataShower);
+            MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
         }
 

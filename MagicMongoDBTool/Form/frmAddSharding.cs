@@ -17,11 +17,11 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-        MongoServer PrmSrv;
+        private MongoServer _prmSvr;
         private void frmAddSharding_Load(object sender, EventArgs e)
         {
-            PrmSrv = SystemManager.GetCurrentService();
-            String strPrmKey = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            _prmSvr = SystemManager.GetCurrentService();
+            string strPrmKey = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             foreach (var item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
                 if (item.ReplSetName != null)
@@ -49,15 +49,15 @@ namespace MagicMongoDBTool
         }
         private void cmdInitReplset_Click(object sender, EventArgs e)
         {
-            List<String> srvKeys = new List<string>();
+            List<string> srvKeys = new List<string>();
             if (lstShard.SelectedItems.Count > 0)
             {
-                foreach (String item in lstShard.SelectedItems)
+                foreach (string item in lstShard.SelectedItems)
                 {
                     srvKeys.Add(item);
                 }
             }
-            MongoDBHelpler.AddSharding(PrmSrv, cmbReplsetName.Text, srvKeys);
+            MongoDBHelpler.AddSharding(_prmSvr, cmbReplsetName.Text, srvKeys);
         }
 
         private void cmbReplsetName_SelectedIndexChanged(object sender, EventArgs e)

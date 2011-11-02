@@ -20,16 +20,16 @@ namespace MagicMongoDBTool.Module
             BsonDocument cmd = new BsonDocument();
             BsonDocument host = new BsonDocument();
 
-            byte _id = 1;
-            host.Add("_id", _id);
+            byte id = 1;
+            host.Add("_id", id);
             host.Add("host", mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port.ToString());
             hosts.Add(host);
 
             foreach (var item in secondaryNames)
             {
-                _id++;
+                id++;
                 host = new BsonDocument();
-                host.Add("_id", _id);
+                host.Add("_id", id);
                 host.Add("host", SystemManager.ConfigHelperInstance.ConnectionList[item].IpAddr + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString());
                 hosts.Add(host);
             }
@@ -43,15 +43,15 @@ namespace MagicMongoDBTool.Module
 
             mongoSvr.RunAdminCommand(mongoCmd);
         }
+
         /// <summary>
         /// 增加数据分片
         /// </summary>
-        /// <param name="routesrv"></param>
+        /// <param name="routeSvr"></param>
         /// <param name="replicaSetName"></param>
         /// <param name="shardingNames"></param>
-        /// <param name="shardingDB"></param>
-        /// <param name="SharingCollection"></param>
-        public static CommandResult AddSharding(MongoServer routesrv, string replicaSetName, List<string> shardingNames)
+        /// <returns></returns>
+        public static CommandResult AddSharding(MongoServer routeSvr, string replicaSetName, List<string> shardingNames)
         {
             BsonDocument config = new BsonDocument();
             BsonDocument cmd = new BsonDocument();
@@ -64,7 +64,7 @@ namespace MagicMongoDBTool.Module
             cmdPara = cmdPara.TrimEnd(",".ToCharArray());
             CommandDocument mongoCmd = new CommandDocument();
             mongoCmd.Add("addshard", cmdPara);
-            return routesrv.RunAdminCommand(mongoCmd);
+            return routeSvr.RunAdminCommand(mongoCmd);
         }
         /// <summary>
         /// 数据库分片

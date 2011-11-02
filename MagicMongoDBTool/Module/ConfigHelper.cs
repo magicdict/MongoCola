@@ -10,20 +10,20 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 服务器类型
         /// </summary>
-        public enum SrvType
+        public enum SvrType
         {
             /// <summary>
             /// 数据服务器[mongod]
             /// </summary>
-            DataSrv,
+            DataSvr,
             /// <summary>
             /// 配置服务器[mongod]
             /// </summary>
-            ConfigSrv,
+            ConfigSvr,
             /// <summary>
             /// 路由服务器[mongos]
             /// </summary>
-            RouteSrv
+            RouteSvr
         }
         /// <summary>
         /// 链接结构体
@@ -61,7 +61,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 服务器类型
             /// </summary>
-            public SrvType ServerType;
+            public SvrType ServerType;
             /// <summary>
             /// 副本名称
             /// </summary>
@@ -83,9 +83,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 添加链接
         /// </summary>
-        /// <param name="mHostName"></param>
-        /// <param name="mIpAddr"></param>
-        /// <param name="mPort"></param>
+        /// <param name="con"></param>
         /// <returns></returns>
         public Boolean AddConnection(MongoConnectionConfig con)
         {
@@ -111,12 +109,11 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 读取配置
         /// </summary>
-        /// <param name="ConfigFilename"></param>
+        /// <param name="configFileName"></param>
         /// <returns></returns>
         public static ConfigHelper LoadFromConfigFile(string configFileName)
         {
-            FileStream fs = null;
-            fs = new FileStream(configFileName, FileMode.Open, FileAccess.Read);
+            FileStream fs = new FileStream(configFileName, FileMode.Open, FileAccess.Read);
             XmlSerializer xs = new XmlSerializer(typeof(ConfigHelper));
             ConfigHelper t = (ConfigHelper)xs.Deserialize(fs);
             foreach (MongoConnectionConfig item in t.SaveConnectionList)
@@ -137,7 +134,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 写入配置
         /// </summary>
-        /// <param name="ConfigFilename"></param>
+        /// <param name="configFileName"></param>
         public void SaveToConfigFile(string configFileName)
         {
             FileStream fs = null;

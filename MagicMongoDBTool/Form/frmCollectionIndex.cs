@@ -10,7 +10,7 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-        MongoCollection mongoCollection = SystemManager.GetCurrentCollection();
+        private MongoCollection _mongoCollection = SystemManager.GetCurrentCollection();
         private void frmCollectionIndex_Load(object sender, EventArgs e)
         {
             lstIndex.Columns.Add("名称");
@@ -37,9 +37,8 @@ namespace MagicMongoDBTool
         }
         private void RefreshList()
         {
-
             lstIndex.Items.Clear();
-            foreach (var item in mongoCollection.GetIndexes())
+            foreach (var item in _mongoCollection.GetIndexes())
             {
                 ListViewItem lst = new ListViewItem(item.GetValue("name").ToString());
                 lst.SubItems.Add(item.GetValue("v").ToString());

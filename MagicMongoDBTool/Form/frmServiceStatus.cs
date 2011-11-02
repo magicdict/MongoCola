@@ -12,14 +12,14 @@ namespace MagicMongoDBTool
 
         private void frmServiceStatus_Load(object sender, EventArgs e)
         {
-            Timer RefreshTimer = new Timer();
-            RefreshTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer * 1000;
-            RefreshTimer.Tick += new EventHandler((x, y) =>
+            Timer refreshTimer = new Timer();
+            refreshTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer * 1000;
+            refreshTimer.Tick += new EventHandler((x, y) =>
             {
                 MongoDBHelpler.FillSrvStatusToList(this.lstSrvStatus);
                 MongoDBHelpler.FillSrvOprToList(this.lstSrvOpr);
             });
-            RefreshTimer.Enabled = true;
+            refreshTimer.Enabled = true;
             MongoDBHelpler.FillSrvStatusToList(this.lstSrvStatus);
             MongoDBHelpler.FillSrvOprToList(this.lstSrvOpr);
         }

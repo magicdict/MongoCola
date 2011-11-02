@@ -11,7 +11,7 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-        MongoCollection mongocol = SystemManager.GetCurrentCollection();
+        private MongoCollection _mongocol = SystemManager.GetCurrentCollection();
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
             //            //Start Test
@@ -47,11 +47,11 @@ namespace MagicMongoDBTool
             BsonJavaScript reduce = new BsonJavaScript(txtReduceJs.Text);
             //TODO:这里可能会超时，失去响应
             //需要设置SocketTimeOut
-            MapReduceResult rtn = mongocol.MapReduce(map, reduce);
+            MapReduceResult rtn = _mongocol.MapReduce(map, reduce);
 
-            List<BsonDocument> Result = new List<BsonDocument>();
-            Result.Add(rtn.Response);
-            MongoDBHelpler.FillDataToTreeView("MapReduce Result", trvResult, Result);
+            List<BsonDocument> result = new List<BsonDocument>();
+            result.Add(rtn.Response);
+            MongoDBHelpler.FillDataToTreeView("MapReduce Result", trvResult, result);
             trvResult.ExpandAll();
         }
         private void cmdSaveMapJs_Click(object sender, EventArgs e)

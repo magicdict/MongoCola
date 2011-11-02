@@ -10,12 +10,12 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-        MongoServer mongosrv;
+        private MongoServer _mongoSvr;
         private void frmShardingConfig_Load(object sender, EventArgs e)
         {
-            mongosrv = SystemManager.GetCurrentService();
-            MongoDatabase mongoDb = mongosrv.GetDatabase("config");
-            MongoCollection mongoCol = mongoDb.GetCollection("databases");
+            _mongoSvr = SystemManager.GetCurrentService();
+            MongoDatabase mongoDB = _mongoSvr.GetDatabase("config");
+            MongoCollection mongoCol = mongoDB.GetCollection("databases");
             foreach (var item in mongoCol.FindAllAs<BsonDocument>())
             {
                 if (item.GetValue("_id") != "admin")
@@ -29,10 +29,10 @@ namespace MagicMongoDBTool
         {
             try
             {
-                MongoDatabase mongoDb = mongosrv.GetDatabase(cmbDataBase.Text);
+                MongoDatabase mongoDB = _mongoSvr.GetDatabase(cmbDataBase.Text);
                 cmbCollection.Items.Clear();
                 cmbCollection.Text = String.Empty;
-                foreach (var item in mongoDb.GetCollectionNames())
+                foreach (var item in mongoDB.GetCollectionNames())
                 {
                     cmbCollection.Items.Add(item);
                 }
@@ -49,10 +49,10 @@ namespace MagicMongoDBTool
         {
             try
             {
-                MongoDatabase mongoDb = mongosrv.GetDatabase(cmbDataBase.Text);
+                MongoDatabase mongoDB = _mongoSvr.GetDatabase(cmbDataBase.Text);
                 cmbKeyList.Items.Clear();
-                cmbKeyList.Text = String.Empty;
-                foreach (var Indexitem in mongoDb.GetCollection(cmbCollection.Text).GetIndexes())
+                cmbKeyList.Text = string.Empty;
+                foreach (var Indexitem in mongoDB.GetCollection(cmbCollection.Text).GetIndexes())
                 {
                     cmbKeyList.Items.Add(Indexitem[1]);
                 }
@@ -64,13 +64,13 @@ namespace MagicMongoDBTool
         }
         private void cmdEnableSharding_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.EnableSharding(mongosrv, cmbDataBase.Text);
+            MongoDBHelpler.EnableSharding(_mongoSvr, cmbDataBase.Text);
         }
         private void cmdCollectionSharding_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.ShardCollection(mongosrv, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument());
+            MongoDBHelpler.ShardCollection(_mongoSvr, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument());
         }
 
-       
+
     }
 }

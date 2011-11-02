@@ -176,7 +176,7 @@ namespace MagicMongoDBTool.Module
                 DataTable tblTableList = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "Table" });
                 foreach (DataRow recTable in tblTableList.Rows)
                 {
-                    String strTableName = recTable[2].ToString();
+                    string strTableName = recTable[2].ToString();
                     try
                     {
                         //不支持UTF....,执行会失败，但是Collection已经添加了
@@ -246,7 +246,7 @@ namespace MagicMongoDBTool.Module
                                     case "BIT":
                                         //System.Boolean Can't Cast To BSonBoolean....
                                         //O,My LadyGaga
-                                        if ((Boolean)itemRow[colName[i]])
+                                        if ((bool)itemRow[colName[i]])
                                         {
                                             insertDoc.Add(colName[i], BsonBoolean.True, true);
                                         }

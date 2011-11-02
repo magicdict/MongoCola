@@ -102,19 +102,19 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 部署
         /// </summary>
-        static public string GetMongodCommandLine(StruMongod mongoD)
+        public static string GetMongodCommandLine(StruMongod mongod)
         {
             //mongo.exe 客户端程序
             string dosCommand = @"mongod --dbpath @dbpath --port @port ";
             //数据库路径
-            dosCommand = dosCommand.Replace("@dbpath", mongoD.DBPath);
+            dosCommand = dosCommand.Replace("@dbpath", mongod.DBPath);
             //端口号
-            dosCommand = dosCommand.Replace("@port", mongoD.Port.ToString());
+            dosCommand = dosCommand.Replace("@port", mongod.Port.ToString());
             //日志文件
-            if (mongoD.LogPath != string.Empty)
+            if (mongod.LogPath != string.Empty)
             {
-                dosCommand += " --logpath " + mongoD.LogPath;
-                switch (mongoD.LogLV)
+                dosCommand += " --logpath " + mongod.LogPath;
+                switch (mongod.LogLV)
                 {
                     case MongologLevel.Quiet:
                         dosCommand += " --quiet ";
@@ -138,31 +138,31 @@ namespace MagicMongoDBTool.Module
                         break;
                 }
                 //日志是否为添加模式
-                if (mongoD.Islogappend)
+                if (mongod.Islogappend)
                 {
                     dosCommand += " --logappend ";
                 }
             }
             //是否为Master
-            if (mongoD.IsMaster)
+            if (mongod.IsMaster)
             {
                 dosCommand += " --master";
             }
-            if (mongoD.IsSlave)
+            if (mongod.IsSlave)
             {
                 dosCommand += " --slave";
-                if (mongoD.Source != String.Empty)
+                if (mongod.Source != String.Empty)
                 {
-                    dosCommand += " --source " + mongoD.Source;
+                    dosCommand += " --source " + mongod.Source;
                 }
             }
             //是否作为Windows服务
-            if (mongoD.IsInstall)
+            if (mongod.IsInstall)
             {
                 dosCommand += " --install";
             }
             //是否使用认证服务
-            if (mongoD.IsAuth)
+            if (mongod.IsAuth)
             {
                 dosCommand += " --auth";
             }
@@ -181,6 +181,7 @@ namespace MagicMongoDBTool.Module
             public string OutPutPath = String.Empty;
             public MongologLevel LogLV = MongologLevel.Quiet;
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -223,7 +224,7 @@ namespace MagicMongoDBTool.Module
             public ImprotExport Direct = ImprotExport.Import;
         }
 
-        static public string GetMongoImportExportCommandLine(StruImportExport mongoImprotExport)
+        public static string GetMongoImportExportCommandLine(StruImportExport mongoImprotExport)
         {
             //mongodump.exe 备份程序
             string dosCommand;
@@ -274,25 +275,25 @@ namespace MagicMongoDBTool.Module
             myProcess.StartInfo.RedirectStandardOutput = true;
             myProcess.StartInfo.RedirectStandardError = true;
             myProcess.Start();
-            StreamWriter sIn = myProcess.StandardInput;//标准输入流
-            sIn.AutoFlush = true;
-            StreamReader sOut = myProcess.StandardOutput;//标准输入流
-            StreamReader sErr = myProcess.StandardError;//标准错误流
-            sIn.Write(dosCommand + System.Environment.NewLine);//DOS控制平台上的命令
-            sIn.Write(@"cd " + SystemManager.ConfigHelperInstance.MongoBinPath + System.Environment.NewLine);//DOS控制平台上的命令
-            sIn.Write(dosCommand + System.Environment.NewLine);//DOS控制平台上的命令
-            sIn.Write("exit" + System.Environment.NewLine);
-            string s = sOut.ReadToEnd();//读取执行DOS命令后输出信息
-            string er = sErr.ReadToEnd();//读取执行DOS命令后错误信息
+            StreamWriter stringWriter = myProcess.StandardInput;//标准输出流
+            stringWriter.AutoFlush = true;
+            StreamReader stringReader = myProcess.StandardOutput;//标准输入流
+            StreamReader streamReaderError = myProcess.StandardError;//标准错误流
+            stringWriter.Write(dosCommand + System.Environment.NewLine);//DOS控制平台上的命令
+            stringWriter.Write(@"cd " + SystemManager.ConfigHelperInstance.MongoBinPath + System.Environment.NewLine);//DOS控制平台上的命令
+            stringWriter.Write(dosCommand + System.Environment.NewLine);//DOS控制平台上的命令
+            stringWriter.Write("exit" + System.Environment.NewLine);
+            string s = stringReader.ReadToEnd();//读取执行DOS命令后输出信息
+            string er = streamReaderError.ReadToEnd();//读取执行DOS命令后错误信息
             sb.AppendLine(s);
             sb.AppendLine(er);
             if (myProcess.HasExited == false)
             {
                 myProcess.Kill();
             }
-            sIn.Close();
-            sOut.Close();
-            sErr.Close();
+            stringWriter.Close();
+            stringReader.Close();
+            streamReaderError.Close();
             myProcess.Close();
         }
     }
