@@ -39,22 +39,22 @@ namespace MagicMongoDBTool.Module
         {
             //系统
             if (mongoCol.Name.StartsWith("system."))
-            { 
+            {
                 return true;
             }
             //文件
-            if (mongoCol.Name.StartsWith("fs.")) 
-            { 
+            if (mongoCol.Name.StartsWith("fs."))
+            {
                 return true;
             }
             //local数据库,默认为系统
-            if (mongoCol.Database.Name == "local") 
-            { 
-                return true; 
+            if (mongoCol.Database.Name == "local")
+            {
+                return true;
             }
             //config数据库,默认为系统
-            if (mongoCol.Database.Name == "config") 
-            { 
+            if (mongoCol.Database.Name == "config")
+            {
                 return true;
             }
 
@@ -68,19 +68,17 @@ namespace MagicMongoDBTool.Module
         public static Boolean IsSystemDataBase(MongoDatabase mongoDB)
         {
             //local数据库,默认为系统
-            if (mongoDB.Name == "local") 
+            if (mongoDB.Name == "local")
             {
                 return true;
             }
             //config数据库,默认为系统
-            if (mongoDB.Name == "config") 
+            if (mongoDB.Name == "config")
             {
-                return true; 
+                return true;
             }
-
             return false;
         }
-
         /// <summary>
         /// 数据库操作
         /// </summary>
@@ -368,5 +366,17 @@ namespace MagicMongoDBTool.Module
             MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
             gfs.Delete(strFileName);
         }
+        /// <summary>
+        /// GFS初始化
+        /// </summary>
+        public static void InitGFS()
+        {
+            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
+            if (!mongoDB.CollectionExists(COLLECTION_NAME_GRID_FILE_SYSTEM))
+            {
+                mongoDB.CreateCollection(COLLECTION_NAME_GRID_FILE_SYSTEM);
+            }
+        }
+
     }
 }

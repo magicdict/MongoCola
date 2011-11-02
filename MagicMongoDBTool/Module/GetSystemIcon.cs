@@ -27,8 +27,13 @@ namespace MagicMongoDBTool.Module
             DeleteObject(h);// 释放IntPtr
             return icon;
         }
-
+        /// <summary>
+        /// 扩展名和图片下标关联
+        /// </summary>
         public static Dictionary<String, Int32> IconList = new Dictionary<string, Int32>();
+        /// <summary>
+        /// 图片数组
+        /// </summary>
         public static ImageList IconImagelist = new ImageList();
         /// <summary>
         /// 依据文件名读取图标，若指定文件不存在，则返回空值。
@@ -53,17 +58,15 @@ namespace MagicMongoDBTool.Module
             System.Drawing.Icon myIcon = System.Drawing.Icon.FromHandle(shInfo.hIcon);
             return myIcon;
         }
+        /// <summary>
+        /// 根据文件名获得图片数组下标
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="isLarge"></param>
+        /// <returns></returns>
         public static Int32 GetIconIndexByFileName(string fileName, bool isLarge)
         {
-            string[] extName = fileName.Split(@"\".ToCharArray());
-            string extFileName = extName[extName.Length - 1];
-            string[] ext = fileName.Split(".".ToCharArray());
-            string GetIcon = string.Empty;
-            if (ext.Length > 0)
-            {
-                GetIcon = "." + ext[ext.Length - 1];
-            }
-
+            string GetIcon = new FileInfo(fileName).Extension;
             if (IconList.ContainsKey(GetIcon))
             {
                 return IconList[GetIcon];

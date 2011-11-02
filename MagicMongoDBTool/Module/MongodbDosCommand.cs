@@ -183,7 +183,7 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// 
+        /// 获得备份的配置
         /// </summary>
         /// <param name="mongoDump"></param>
         /// <returns></returns>
@@ -209,7 +209,13 @@ namespace MagicMongoDBTool.Module
 
         public enum ImprotExport
         {
+            /// <summary>
+            /// 导入
+            /// </summary>
             Import,
+            /// <summary>
+            /// 导出
+            /// </summary>
             Export
         }
         public class StruImportExport

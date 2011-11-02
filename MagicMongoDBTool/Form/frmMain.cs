@@ -204,6 +204,7 @@ namespace MagicMongoDBTool
                             this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                             this.AddUserToolStripMenuItem.Enabled = true;
                             this.RemoveUserToolStripMenuItem.Enabled = true;
+                            this.InitGFSToolStripMenuItem.Enabled = true;
                         }
 
                         if (strNodeType == MongoDBHelpler.SINGLE_DATABASE_TAG)
@@ -220,6 +221,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.CreateMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
 
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
@@ -235,8 +237,8 @@ namespace MagicMongoDBTool
                             this.DelMongoCollectionToolStripMenuItem.Enabled = true;
                             this.RenameCollectionToolStripMenuItem.Enabled = true;
                             this.IndexManageToolStripMenuItem.Enabled = true;
+                            this.mapReduceToolStripMenuItem.Enabled = true;
                         }
-                        this.mapReduceToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -760,7 +762,10 @@ namespace MagicMongoDBTool
             MongoDBHelpler.DelFile(strFileName);
             RefreshData();
         }
-
+        private void InitGFSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MongoDBHelpler.InitGFS();
+        }
         #endregion
 
         #region"分布式"
