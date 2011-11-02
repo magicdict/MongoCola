@@ -20,16 +20,28 @@ namespace MagicMongoDBTool
             lstIndex.Columns.Add("名字空间");
             RefreshList();
         }
-
+        /// <summary>
+        /// 删除索引
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdDelIndex_Click(object sender, EventArgs e)
         {
             if (lstIndex.SelectedItems.Count > 0)
             {
+                if (lstIndex.SelectedIndices[0] == 0) {
+                    MessageBox.Show("无法删除默认索引");
+                    return;
+                }
                 MongoDBHelpler.DropMongoIndex(lstIndex.SelectedItems[0].SubItems[0].Text.ToString());
                 lstIndex.Items.Remove(lstIndex.SelectedItems[0]);
             }
         }
-
+        /// <summary>
+        /// 增加索引
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdAddIndex_Click(object sender, EventArgs e)
         {
             MongoDBHelpler.CreateMongoIndex(txtIndexKey.Text, chkAsc.Checked);

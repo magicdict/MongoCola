@@ -258,12 +258,13 @@ namespace MagicMongoDBTool.Module
             return false;
         }
         /// <summary>
-        /// 删除索引
+        /// 删除索引["_id"]以外
         /// </summary>
         /// <param name="indexName"></param>
         /// <returns></returns>
         public static Boolean DropMongoIndex(String indexName)
         {
+            if (indexName == "_id") { return false; }
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             if (mongoCol.IndexExistsByName(indexName))
             {

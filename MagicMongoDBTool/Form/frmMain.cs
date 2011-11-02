@@ -454,13 +454,6 @@ namespace MagicMongoDBTool
             MongoDBHelpler.FillMongoServiceToTreeView(trvsrvlst);
             lstData.Clear();
         }
-        private void DataBaseStatusToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmDataBaseStatus mfrm = new frmDataBaseStatus();
-            mfrm.ShowDialog();
-            mfrm.Close();
-            mfrm.Dispose();
-        }
         private void SrvStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmServiceStatus mfrm = new frmServiceStatus();

@@ -115,11 +115,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 357);
             this.Location = new System.Drawing.Point(0, 0);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmCollectionIndex";
             this.ShowSelectSkinButton = false;
             this.Text = "数据集索引";
+            this.Load += new System.EventHandler(this.frmCollectionIndex_Load);
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             this.ResumeLayout(false);

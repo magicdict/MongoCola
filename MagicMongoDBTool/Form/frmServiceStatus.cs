@@ -18,10 +18,23 @@ namespace MagicMongoDBTool
             {
                 MongoDBHelpler.FillSrvStatusToList(this.lstSrvStatus);
                 MongoDBHelpler.FillSrvOprToList(this.lstSrvOpr);
+                MongoDBHelpler.FillDBStatusToList(this.lstDBStatus);
             });
             refreshTimer.Enabled = true;
             MongoDBHelpler.FillSrvStatusToList(this.lstSrvStatus);
             MongoDBHelpler.FillSrvOprToList(this.lstSrvOpr);
+            MongoDBHelpler.FillDBStatusToList(this.lstDBStatus);
+        }
+        /// <summary>
+        /// 立刻刷新数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdRefresh_Click(object sender, EventArgs e)
+        {
+            MongoDBHelpler.FillSrvStatusToList(this.lstSrvStatus);
+            MongoDBHelpler.FillSrvOprToList(this.lstSrvOpr);
+            MongoDBHelpler.FillDBStatusToList(this.lstDBStatus);
         }
 
 

@@ -103,12 +103,6 @@
     <Compile Include="Form\frmCollectionIndex.Designer.cs">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmDataBaseStatus.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\frmDataBaseStatus.Designer.cs">
-      <DependentUpon>frmDataBaseStatus.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\frmDosCommand.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,9 +224,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmCollectionIndex.resx">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmDataBaseStatus.resx">
-      <DependentUpon>frmDataBaseStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmDosCommand.resx">
       <DependentUpon>frmDosCommand.cs</DependentUpon>
