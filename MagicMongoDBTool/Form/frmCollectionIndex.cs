@@ -18,6 +18,10 @@ namespace MagicMongoDBTool
             lstIndex.Columns.Add("索引键");
             lstIndex.Columns.Add("升降序");
             lstIndex.Columns.Add("名字空间");
+            lstIndex.Columns.Add("IsBackground");
+            lstIndex.Columns.Add("IsSparse");
+            lstIndex.Columns.Add("IsUnique");
+            lstIndex.Columns.Add("DroppedDups");
             RefreshList();
         }
         /// <summary>
@@ -50,13 +54,17 @@ namespace MagicMongoDBTool
         private void RefreshList()
         {
             lstIndex.Items.Clear();
-            foreach (var item in _mongoCollection.GetIndexes())
+            foreach (IndexInfo item in _mongoCollection.GetIndexes())
             {
-                ListViewItem lst = new ListViewItem(item.GetValue("name").ToString());
-                lst.SubItems.Add(item.GetValue("v").ToString());
-                lst.SubItems.Add(item.GetValue("key").AsBsonDocument.GetElement(0).Name);
-                lst.SubItems.Add(item.GetValue("key").AsBsonDocument.GetElement(0).Value.ToInt32() == 1 ? "升序" : "降序");
-                lst.SubItems.Add(item.GetValue("ns").ToString());
+                ListViewItem lst = new ListViewItem(item.Name);
+                lst.SubItems.Add(item.Version.ToString());
+                lst.SubItems.Add(item.Key.GetElement(0).Name);
+                lst.SubItems.Add(item.Key.GetElement(0).Value == 1 ? "升序" : "降序");
+                lst.SubItems.Add(item.Namespace.ToString());
+                lst.SubItems.Add(item.IsBackground.ToString());
+                lst.SubItems.Add(item.IsSparse.ToString());
+                lst.SubItems.Add(item.IsUnique.ToString());
+                lst.SubItems.Add(item.DroppedDups.ToString());
                 lstIndex.Items.Add(lst);
             }
         }

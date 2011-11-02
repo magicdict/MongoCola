@@ -35,15 +35,18 @@ namespace MagicMongoDBTool.Module
                     //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
                     mongoSvrSetting.SocketTimeout = new TimeSpan(0, 10, 0);
                     //ReplsetName居然不是固有属性，可以设置的。。。。。
-                    if (config.ReplSetName != string.Empty) {
-                        mongoSvrSetting.ReplicaSetName = config.ReplSetName;
-                    }
+
                     if ((config.UserName != string.Empty) & (config.Password != string.Empty))
                     {
                         //认证的设定:注意，这里的密码是明文
                         mongoSvrSetting.DefaultCredentials = new MongoCredentials(config.UserName, config.Password, config.LoginAsAdmin);
                     }
+                    if (config.ReplSetName != string.Empty)
+                    {
+                        mongoSvrSetting.ReplicaSetName = config.ReplSetName;
+                    }
                     MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
+                    //masterMongoSvr.ReplicaSetName = config.ReplSetName;
                     _mongoSrvLst.Add(config.HostName, masterMongoSvr);
 
                 }
@@ -271,16 +274,17 @@ namespace MagicMongoDBTool.Module
 
             //Start ListIndex
             TreeNode mongoIndex = new TreeNode("Indexes");
-            List<BsonDocument> indexList = mongoCol.GetIndexes().ToList<BsonDocument>();
-            foreach (BsonDocument indexDoc in indexList)
+            GetIndexesResult indexList = mongoCol.GetIndexes();
+            foreach (IndexInfo indexDoc in indexList.ToList<IndexInfo>())
             {
-                TreeNode mongoIndexNode = new TreeNode("Index:" + indexDoc.GetValue("name"));
-                foreach (String item in indexDoc.Names)
-                {
-                    TreeNode mongoIndexItemNode = new TreeNode(item + ":" + indexDoc.GetValue(item));
-
-                    mongoIndexNode.Nodes.Add(mongoIndexItemNode);
-                }
+                TreeNode mongoIndexNode = new TreeNode("Index:" + indexDoc.Name);
+                mongoIndexNode.Nodes.Add(indexDoc.Key.ToString());
+                mongoIndexNode.Nodes.Add("DroppedDups :" + indexDoc.DroppedDups.ToString());
+                mongoIndexNode.Nodes.Add("IsBackground:" + indexDoc.IsBackground.ToString());
+                mongoIndexNode.Nodes.Add("IsSparse    :" + indexDoc.IsSparse.ToString());
+                mongoIndexNode.Nodes.Add("IsUnique    :" + indexDoc.IsUnique.ToString());
+                mongoIndexNode.Nodes.Add("Namespace   :" + indexDoc.Namespace.ToString());
+                mongoIndexNode.Nodes.Add("Version     :" + indexDoc.Version.ToString());
                 mongoIndex.Nodes.Add(mongoIndexNode);
             }
             mongoColNode.Nodes.Add(mongoIndex);

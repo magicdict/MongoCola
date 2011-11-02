@@ -54,7 +54,7 @@ namespace MagicMongoDBTool
                 cmbKeyList.Text = string.Empty;
                 foreach (var Indexitem in mongoDB.GetCollection(cmbCollection.Text).GetIndexes())
                 {
-                    cmbKeyList.Items.Add(Indexitem[1]);
+                    cmbKeyList.Items.Add(Indexitem.Name);
                 }
             }
             catch (Exception)
