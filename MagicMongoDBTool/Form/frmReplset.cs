@@ -10,7 +10,7 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-       private  MongoServer _prmSvr;
+        private MongoServer _prmSvr;
         private void frmReplset_Load(object sender, EventArgs e)
         {
             _prmSvr = SystemManager.GetCurrentService();

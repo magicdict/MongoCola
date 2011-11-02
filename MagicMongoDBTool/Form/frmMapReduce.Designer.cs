@@ -140,6 +140,7 @@
             this.txtMapJs.Name = "txtMapJs";
             this.txtMapJs.Size = new System.Drawing.Size(299, 172);
             this.txtMapJs.TabIndex = 1;
+            this.txtMapJs.Text = "function Map(){\r\n     emit(this.Age,1);\r\n     }\r\n";
             // 
             // txtReduceJs
             // 
@@ -148,6 +149,9 @@
             this.txtReduceJs.Name = "txtReduceJs";
             this.txtReduceJs.Size = new System.Drawing.Size(299, 169);
             this.txtReduceJs.TabIndex = 3;
+            this.txtReduceJs.Text = "function Reduce(key, arr_values) {\r\n     var total = 0;\r\n     for(var i in arr_va" +
+    "lues){\r\n         temp = arr_values[i];\r\n         total += temp;\r\n     }\r\n     re" +
+    "turn total;\r\n     }\r\n";
             // 
             // cmdRun
             // 
@@ -165,8 +169,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 552);
             this.Location = new System.Drawing.Point(0, 0);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmMapReduce";
             this.ShowSelectSkinButton = false;
             this.Text = "MapReduce";

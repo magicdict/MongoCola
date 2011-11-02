@@ -34,9 +34,15 @@ namespace MagicMongoDBTool.Module
             CollectionLV = 2
         }
 
-
-        public const string COLLECTION_NAME_GRID_FILE_SYSTEM = "fs.files";
+        #region"系统数据集名称常量"
+        public const string COLLECTION_NAME_SYSTEM_INDEXES = "system.indexes";
+        public const string COLLECTION_NAME_SYSTEM_REPLSET = "system.replset";
+        public const string COLLECTION_NAME_REPLSET_MINVALID = "replset.minvalid";
+        public const string COLLECTION_NAME_OPERATION_LOG = "oplog.rs";
+        public const string COLLECTION_NAME_GFS_CHUNKS = "fs.chunks";
+        public const string COLLECTION_NAME_GFS_FILES = "fs.files";
         public const string COLLECTION_NAME_USER = "system.users";
         public const string COLLECTION_NAME_JAVASCRIPT = "system.js";
+        #endregion
     }
 }

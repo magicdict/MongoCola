@@ -17,11 +17,11 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="configLst"></param>
         /// <returns></returns>
-        public static Boolean AddServer(List<ConfigHelper.MongoConnectionConfig> configLst)
+        public static void AddServer(List<ConfigHelper.MongoConnectionConfig> configLst)
         {
-            try
+            foreach (ConfigHelper.MongoConnectionConfig config in configLst)
             {
-                foreach (ConfigHelper.MongoConnectionConfig config in configLst)
+                try
                 {
                     if (_mongoSrvLst.ContainsKey(config.HostName))
                     {
@@ -41,14 +41,15 @@ namespace MagicMongoDBTool.Module
                     }
                     MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
                     _mongoSrvLst.Add(config.HostName, masterMongoSvr);
+
                 }
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
+
         #region"展示数据"
         /// <summary>
         /// 将Mongodb的服务器在树形控件中展示
@@ -204,34 +205,16 @@ namespace MagicMongoDBTool.Module
                         strColName = "版本(" + strColName + ")";
                     }
                     break;
-                case "fs.chunks":
-                    strColName = "数据块(" + strColName + ")";
-                    break;
-                case COLLECTION_NAME_GRID_FILE_SYSTEM:
-                    strColName = "文件系统(" + strColName + ")";
-                    break;
-                case "oplog.rs":
-                    strColName = "操作结果(" + strColName + ")";
-                    break;
-                case "system.indexes":
-                    strColName = "索引(" + strColName + ")";
-                    break;
-                case COLLECTION_NAME_JAVASCRIPT:
-                    strColName = "存储Javascript(" + strColName + ")";
-                    break;
-                case "system.replset":
-                    strColName = "副本组(" + strColName + ")";
-                    break;
-                case "replset.minvalid":
-                    strColName = "初始化同步(" + strColName + ")";
-                    break;
-                case COLLECTION_NAME_USER:
-                    strColName = "用户列表(" + strColName + ")";
-                    break;
                 case "me":
                     if (mongoDB.Name == "local")
                     {
                         strColName = "副本组[从属机信息](" + strColName + ")";
+                    }
+                    break;
+                case "sources":
+                    if (mongoDB.Name == "local")
+                    {
+                        strColName = "主机地址(" + strColName + ")";
                     }
                     break;
                 case "slaves":
@@ -240,11 +223,35 @@ namespace MagicMongoDBTool.Module
                         strColName = "副本组[主机信息](" + strColName + ")";
                     }
                     break;
+                case COLLECTION_NAME_GFS_CHUNKS:
+                    strColName = "数据块(" + strColName + ")";
+                    break;
+                case COLLECTION_NAME_GFS_FILES:
+                    strColName = "文件系统(" + strColName + ")";
+                    break;
+                case COLLECTION_NAME_OPERATION_LOG:
+                    strColName = "操作结果(" + strColName + ")";
+                    break;
+                case COLLECTION_NAME_SYSTEM_INDEXES:
+                    strColName = "索引(" + strColName + ")";
+                    break;
+                case COLLECTION_NAME_JAVASCRIPT:
+                    strColName = "存储Javascript(" + strColName + ")";
+                    break;
+                case COLLECTION_NAME_SYSTEM_REPLSET:
+                    strColName = "副本组(" + strColName + ")";
+                    break;
+                case COLLECTION_NAME_REPLSET_MINVALID:
+                    strColName = "初始化同步(" + strColName + ")";
+                    break;
+                case COLLECTION_NAME_USER:
+                    strColName = "用户列表(" + strColName + ")";
+                    break;
                 default:
                     break;
             }
             mongoColNode = new TreeNode(strColName);
-            if (strTagColName == COLLECTION_NAME_GRID_FILE_SYSTEM)
+            if (strTagColName == COLLECTION_NAME_GFS_FILES)
             {
                 mongoColNode.Tag = GRID_FILE_SYSTEM_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strTagColName;
             }
@@ -360,9 +367,9 @@ namespace MagicMongoDBTool.Module
                 _hasBSonBinary = true;
                 return "[二进制数据]";
             }
-            if (val.IsBsonNull) 
-            { 
-                return "[空值]"; 
+            if (val.IsBsonNull)
+            {
+                return "[空值]";
             }
             if (val.IsBsonDocument)
             {
@@ -457,7 +464,7 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
- 
+
         /// <summary>
         /// 将数据放入ListView中进行展示
         /// </summary>
@@ -470,7 +477,7 @@ namespace MagicMongoDBTool.Module
             lstData.SmallImageList = null;
             switch (collectionName)
             {
-                case COLLECTION_NAME_GRID_FILE_SYSTEM:
+                case COLLECTION_NAME_GFS_FILES:
                     SetGridFileToListView(dataList, lstData);
                     break;
                 case COLLECTION_NAME_USER:

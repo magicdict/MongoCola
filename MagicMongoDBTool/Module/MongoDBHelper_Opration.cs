@@ -77,6 +77,11 @@ namespace MagicMongoDBTool.Module
             {
                 return true;
             }
+            //admin数据库,默认为系统
+            if (mongoDB.Name == "admin")
+            {
+                return true;
+            }
             return false;
         }
         /// <summary>
@@ -372,9 +377,9 @@ namespace MagicMongoDBTool.Module
         public static void InitGFS()
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
-            if (!mongoDB.CollectionExists(COLLECTION_NAME_GRID_FILE_SYSTEM))
+            if (!mongoDB.CollectionExists(COLLECTION_NAME_GFS_FILES))
             {
-                mongoDB.CreateCollection(COLLECTION_NAME_GRID_FILE_SYSTEM);
+                mongoDB.CreateCollection(COLLECTION_NAME_GFS_FILES);
             }
         }
 

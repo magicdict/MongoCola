@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 
@@ -32,9 +26,9 @@ namespace MagicMongoDBTool
             cmdAdd.Text = "修改";
             chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
             txtReplSet.Text = ModifyConn.ReplSetName;
-            txtDataBaseName.Text  = ModifyConn.DataBaseName;
+            txtDataBaseName.Text = ModifyConn.DataBaseName;
             chkLoginAsAdmin.Checked = ModifyConn.LoginAsAdmin;
-            cmdCancel.Click +=new EventHandler((x,y)=>{this.Close();});
+            cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
             switch (ModifyConn.ServerType)
             {
                 case ConfigHelper.SvrType.ConfigSvr:
@@ -62,17 +56,37 @@ namespace MagicMongoDBTool
             ModifyConn.Password = txtPassword.Text;
             ModifyConn.DataBaseName = txtDataBaseName.Text;
             ModifyConn.LoginAsAdmin = chkLoginAsAdmin.Checked;
-            if (txtUsername.Text != string.Empty && txtPassword.Text == String.Empty) {
+            //仅有用户名或密码
+            if (txtUsername.Text != string.Empty && txtPassword.Text == String.Empty)
+            {
                 MessageBox.Show("请输入密码");
+                return;
             }
-            if (txtDataBaseName.Text == string.Empty)
+            if (txtUsername.Text == string.Empty && txtPassword.Text != String.Empty)
+            {
+                MessageBox.Show("请输入用户名");
+                return;
+            }
+            //数据库名称存在
+            if (txtDataBaseName.Text != string.Empty)
+            {
+                //用户名或者密码为空
+                if (txtUsername.Text == string.Empty || txtPassword.Text == String.Empty)
+                {
+                    MessageBox.Show("请输入用户名或密码");
+                    return;
+                }
+            }
+
+            if (txtDataBaseName.Text != string.Empty)
             {
                 //没有数据库的时候，只能以Admin登陆
-                ModifyConn.LoginAsAdmin = true;
-            }
-            else {
-                //数据库的时候，默认不以Admin登陆
                 ModifyConn.LoginAsAdmin = false;
+            }
+            else
+            {
+                //数据库的时候，默认不以Admin登陆
+                ModifyConn.LoginAsAdmin = true;
             }
             if (radDataSrv.Checked)
             {
@@ -81,24 +95,19 @@ namespace MagicMongoDBTool
             if (radConfigSrv.Checked)
             {
                 ModifyConn.ServerType = ConfigHelper.SvrType.ConfigSvr;
-                if (ModifyConn.IsSlaveOk)
-                {
-                    //Config和Route不能设置为SlaveOK模式
-                    //文件下载的时候也不能使用SlaveOK模式
-                    ModifyConn.IsSlaveOk = false;
-                }
+                //Config和Route不能设置为SlaveOK模式,必须设置为Admin模式
+                //文件下载的时候也不能使用SlaveOK模式
+                ModifyConn.LoginAsAdmin = true;
+                ModifyConn.IsSlaveOk = false;
             }
             if (radRouteSrv.Checked)
             {
+                //Config和Route不能设置为SlaveOK模式,必须设置为Admin模式
+                //文件下载的时候也不能使用SlaveOK模式
                 ModifyConn.ServerType = ConfigHelper.SvrType.RouteSvr;
-                if (ModifyConn.IsSlaveOk)
-                {
-                    //Config和Route不能设置为SlaveOK模式
-                    //文件下载的时候也不能使用SlaveOK模式
-                    ModifyConn.IsSlaveOk = false;
-                }
+                ModifyConn.LoginAsAdmin = true;
+                ModifyConn.IsSlaveOk = false;
             }
-
             if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.HostName))
             {
                 SystemManager.ConfigHelperInstance.ConnectionList[ModifyConn.HostName] = ModifyConn;

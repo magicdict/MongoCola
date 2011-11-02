@@ -14,19 +14,6 @@ namespace MagicMongoDBTool
         private MongoCollection _mongocol = SystemManager.GetCurrentCollection();
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
-            //            //Start Test
-            //            txtMapJs.Text = @"function Map(){
-            //                                emit(this.Age,1);
-            //                            }";
-            //            txtReduceJs.Text = @"function Reduce(key, arr_values) {
-            //                        var total = 0;
-            //                        for(var i in arr_values){
-            //                            temp = arr_values[i];
-            //                            total += temp;
-            //                        }
-            //                        return total;
-            //                }";
-            //            //End Test
             cmbForMap.SelectedIndexChanged += new EventHandler(
                 (x, y) => { txtMapJs.Text = MongoDBHelpler.LoadJavascript(cmbForMap.Text); }
             );

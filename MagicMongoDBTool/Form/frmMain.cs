@@ -280,7 +280,7 @@ namespace MagicMongoDBTool
             this.DownloadFileToolStripMenuItem.Enabled = false;
             this.OpenFileToolStripMenuItem.Enabled = false;
             this.DelFileToolStripMenuItem.Enabled = false;
-
+            this.InitGFSToolStripMenuItem.Enabled = false;
 
             this.ImportDataFromAccessToolStripMenuItem.Enabled = false;
             this.ImportDataFromAccessToolStripButton.Enabled = false;
@@ -312,7 +312,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         void lstData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GRID_FILE_SYSTEM)
+            if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GFS_FILES)
             {
                 //文件系统
                 UploadFileToolStripMenuItem.Enabled = true;
@@ -362,7 +362,7 @@ namespace MagicMongoDBTool
         }
         void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GRID_FILE_SYSTEM)
+            if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GFS_FILES)
             {
                 String strFileName = lstData.SelectedItems[0].Text;
                 MongoDBHelpler.OpenFile(strFileName);
@@ -380,7 +380,7 @@ namespace MagicMongoDBTool
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
-                    if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GRID_FILE_SYSTEM)
+                    if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GFS_FILES)
                     {
                         //文件系统
                         this.contextMenuStripMain.Items.Add(this.DownloadFileToolStripMenuItem.Clone());

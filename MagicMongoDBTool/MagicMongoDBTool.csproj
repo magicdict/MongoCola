@@ -327,6 +327,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="dll\GUIResource.dll" />
+    <Content Include="dll\MongoDB.Bson.dll" />
+    <Content Include="dll\MongoDB.Driver.dll" />
     <Content Include="dll\QLFUI.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

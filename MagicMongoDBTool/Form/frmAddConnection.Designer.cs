@@ -79,7 +79,7 @@
             this.contentPanel.Controls.Add(this.lblPort);
             this.contentPanel.Controls.Add(this.lblHostName);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(572, 205);
+            this.contentPanel.Size = new System.Drawing.Size(572, 229);
             // 
             // lblReplsetName
             // 
@@ -99,7 +99,6 @@
             this.radRouteSrv.Name = "radRouteSrv";
             this.radRouteSrv.Size = new System.Drawing.Size(85, 17);
             this.radRouteSrv.TabIndex = 8;
-            this.radRouteSrv.TabStop = true;
             this.radRouteSrv.Text = "路由服务器";
             this.radRouteSrv.UseVisualStyleBackColor = false;
             // 
@@ -111,7 +110,6 @@
             this.radConfigSrv.Name = "radConfigSrv";
             this.radConfigSrv.Size = new System.Drawing.Size(85, 17);
             this.radConfigSrv.TabIndex = 7;
-            this.radConfigSrv.TabStop = true;
             this.radConfigSrv.Text = "配置服务器";
             this.radConfigSrv.UseVisualStyleBackColor = false;
             // 
@@ -119,6 +117,7 @@
             // 
             this.radDataSrv.AutoSize = true;
             this.radDataSrv.BackColor = System.Drawing.Color.Transparent;
+            this.radDataSrv.Checked = true;
             this.radDataSrv.Location = new System.Drawing.Point(225, 87);
             this.radDataSrv.Name = "radDataSrv";
             this.radDataSrv.Size = new System.Drawing.Size(85, 17);
@@ -131,17 +130,17 @@
             // 
             this.chkSlaveOk.AutoSize = true;
             this.chkSlaveOk.BackColor = System.Drawing.Color.Transparent;
-            this.chkSlaveOk.Location = new System.Drawing.Point(116, 113);
+            this.chkSlaveOk.Location = new System.Drawing.Point(52, 113);
             this.chkSlaveOk.Name = "chkSlaveOk";
-            this.chkSlaveOk.Size = new System.Drawing.Size(152, 17);
+            this.chkSlaveOk.Size = new System.Drawing.Size(424, 17);
             this.chkSlaveOk.TabIndex = 9;
-            this.chkSlaveOk.Text = "主从模式[GFS 操作限制]";
+            this.chkSlaveOk.Text = "主从模式[GFS 操作限制，集群的非Route，Config服务器；Slave服务器，请选择]";
             this.chkSlaveOk.UseVisualStyleBackColor = false;
             // 
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(471, 143);
+            this.cmdCancel.Location = new System.Drawing.Point(279, 165);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 37);
             this.cmdCancel.TabIndex = 9;
@@ -150,7 +149,7 @@
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(382, 143);
+            this.cmdAdd.Location = new System.Drawing.Point(190, 165);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 37);
             this.cmdAdd.TabIndex = 8;
@@ -345,18 +344,19 @@
             // chkLoginAsAdmin
             // 
             this.chkLoginAsAdmin.AutoSize = true;
-            this.chkLoginAsAdmin.Location = new System.Drawing.Point(274, 113);
+            this.chkLoginAsAdmin.Enabled = false;
+            this.chkLoginAsAdmin.Location = new System.Drawing.Point(52, 136);
             this.chkLoginAsAdmin.Name = "chkLoginAsAdmin";
-            this.chkLoginAsAdmin.Size = new System.Drawing.Size(103, 17);
+            this.chkLoginAsAdmin.Size = new System.Drawing.Size(421, 17);
             this.chkLoginAsAdmin.TabIndex = 34;
-            this.chkLoginAsAdmin.Text = "作为Admin登陆";
+            this.chkLoginAsAdmin.Text = "作为Admin登陆[系统自动配置，只有在数据库名称，用户名，密码填写时无效]";
             this.chkLoginAsAdmin.UseVisualStyleBackColor = true;
             // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 268);
+            this.ClientSize = new System.Drawing.Size(574, 292);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmAddConnection";
             this.ShowSelectSkinButton = false;
