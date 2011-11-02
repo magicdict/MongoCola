@@ -493,14 +493,13 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strPath = SystemManager.SelectObjectTag;
             frmImportOleDB mfrm = new frmImportOleDB();
             mfrm.Icon = GetSystemIcon.ConvertImgToIcon(ImportDataFromAccessToolStripMenuItem.Image);
             mfrm.ShowDialog();
             String DBFilename = mfrm.DataBaseFileName;
             if (DBFilename != string.Empty)
             {
-                MongoDBHelpler.ImportAccessDataBase(DBFilename, strPath, trvsrvlst.SelectedNode);
+                MongoDBHelpler.ImportAccessDataBase(DBFilename, SystemManager.SelectObjectTag, trvsrvlst.SelectedNode);
             }
             mfrm.Close();
             mfrm.Dispose();

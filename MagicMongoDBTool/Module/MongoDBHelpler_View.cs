@@ -34,6 +34,10 @@ namespace MagicMongoDBTool.Module
                     mongoSvrSetting.Server = new MongoServerAddress(config.IpAddr, config.Port);
                     //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
                     mongoSvrSetting.SocketTimeout = new TimeSpan(0, 10, 0);
+                    //ReplsetName居然不是固有属性，可以设置的。。。。。
+                    if (config.ReplSetName != string.Empty) {
+                        mongoSvrSetting.ReplicaSetName = config.ReplSetName;
+                    }
                     if ((config.UserName != string.Empty) & (config.Password != string.Empty))
                     {
                         //认证的设定:注意，这里的密码是明文
@@ -61,7 +65,11 @@ namespace MagicMongoDBTool.Module
             foreach (string mongoSvrKey in _mongoSrvLst.Keys)
             {
                 MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                TreeNode mongoSvrNode = new TreeNode(mongoSvrKey + " [" + mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port + "]");
+                //这里始终无法获得ReplsetName。。。。很奇怪
+                TreeNode mongoSvrNode = new TreeNode(mongoSvrKey + " [" + 
+                                                     mongoSvr.Settings.Server.Host + ":" + 
+                                                     mongoSvr.Settings.Server.Port + "]" + 
+                                                     (mongoSvr.ReplicaSetName != null?"副本名称：" + mongoSvr.ReplicaSetName:String.Empty));
                 try
                 {
                     List<string> databaseNameList = new List<string>();

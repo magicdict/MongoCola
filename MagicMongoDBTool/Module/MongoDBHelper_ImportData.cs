@@ -157,14 +157,14 @@ namespace MagicMongoDBTool.Module
         /// 导入数据
         /// </summary>
         /// <param name="accessFileName"></param>
-        /// <param name="strSvrPath"></param>
+        /// <param name="strSvrPathWithTag"></param>
         /// <param name="currentTreeNode"></param>
         /// <returns></returns>
-        public static Boolean ImportAccessDataBase(string accessFileName, string strSvrPath, TreeNode currentTreeNode)
+        public static Boolean ImportAccessDataBase(string accessFileName, string strSvrPathWithTag, TreeNode currentTreeNode)
         {
             Boolean rtnCode = false;
 
-            MongoServer mongoSvr = GetMongoServerBySvrPath(strSvrPath);
+            MongoServer mongoSvr = GetMongoServerBySvrPath(strSvrPathWithTag);
             string[] fileName = accessFileName.Split(@"\".ToCharArray());
             string fileMain = fileName[fileName.Length - 1];
             string insertDBName = fileMain.Split(".".ToCharArray())[0];
@@ -274,7 +274,9 @@ namespace MagicMongoDBTool.Module
                         mongoCollection.Insert<BsonDocument>(insertDoc);
                     }
                 }
-                currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, strSvrPath.Split("/".ToCharArray())[0]));
+                string strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
+                string svrKey = strSvrPath.Split("/".ToCharArray())[0];
+                currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, svrKey));
                 rtnCode = true;
             }
             catch (Exception)
