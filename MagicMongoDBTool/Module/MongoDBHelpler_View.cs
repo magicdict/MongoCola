@@ -34,19 +34,17 @@ namespace MagicMongoDBTool.Module
                     mongoSvrSetting.Server = new MongoServerAddress(config.IpAddr, config.Port);
                     //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
                     mongoSvrSetting.SocketTimeout = new TimeSpan(0, 10, 0);
-                    //ReplsetName居然不是固有属性，可以设置的。。。。。
-
                     if ((config.UserName != string.Empty) & (config.Password != string.Empty))
                     {
                         //认证的设定:注意，这里的密码是明文
                         mongoSvrSetting.DefaultCredentials = new MongoCredentials(config.UserName, config.Password, config.LoginAsAdmin);
                     }
+                    //ReplsetName不是固有属性，可以设置的。
                     if (config.ReplSetName != string.Empty)
                     {
                         mongoSvrSetting.ReplicaSetName = config.ReplSetName;
                     }
                     MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
-                    //masterMongoSvr.ReplicaSetName = config.ReplSetName;
                     _mongoSrvLst.Add(config.HostName, masterMongoSvr);
 
                 }
@@ -68,7 +66,8 @@ namespace MagicMongoDBTool.Module
             foreach (string mongoSvrKey in _mongoSrvLst.Keys)
             {
                 MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                //这里始终无法获得ReplsetName。。。。很奇怪
+                //这里始终无法获得ReplsetName,通过沟通，确认是驱动程序的Bug
+                //https://jira.mongodb.org/browse/CSHARP-349
                 TreeNode mongoSvrNode = new TreeNode(mongoSvrKey + " [" + 
                                                      mongoSvr.Settings.Server.Host + ":" + 
                                                      mongoSvr.Settings.Server.Port + "]" + 
@@ -279,12 +278,12 @@ namespace MagicMongoDBTool.Module
             {
                 TreeNode mongoIndexNode = new TreeNode("Index:" + indexDoc.Name);
                 mongoIndexNode.Nodes.Add(indexDoc.Key.ToString());
-                mongoIndexNode.Nodes.Add("DroppedDups :" + indexDoc.DroppedDups.ToString());
-                mongoIndexNode.Nodes.Add("IsBackground:" + indexDoc.IsBackground.ToString());
-                mongoIndexNode.Nodes.Add("IsSparse    :" + indexDoc.IsSparse.ToString());
-                mongoIndexNode.Nodes.Add("IsUnique    :" + indexDoc.IsUnique.ToString());
-                mongoIndexNode.Nodes.Add("Namespace   :" + indexDoc.Namespace.ToString());
-                mongoIndexNode.Nodes.Add("Version     :" + indexDoc.Version.ToString());
+                mongoIndexNode.Nodes.Add("删除重复索引(DroppedDups) :" + indexDoc.DroppedDups.ToString());
+                mongoIndexNode.Nodes.Add("背景索引(IsBackground):" + indexDoc.IsBackground.ToString());
+                mongoIndexNode.Nodes.Add("稀疏索引(IsSparse):" + indexDoc.IsSparse.ToString());
+                mongoIndexNode.Nodes.Add("统一索引(IsUnique):" + indexDoc.IsUnique.ToString());
+                mongoIndexNode.Nodes.Add("名字空间:" + indexDoc.Namespace.ToString());
+                mongoIndexNode.Nodes.Add("版本:" + indexDoc.Version.ToString());
                 mongoIndex.Nodes.Add(mongoIndexNode);
             }
             mongoColNode.Nodes.Add(mongoIndex);

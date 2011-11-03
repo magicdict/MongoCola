@@ -79,6 +79,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ctlIndexCreate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctlIndexCreate.Designer.cs">
+      <DependentUpon>ctlIndexCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\frmAddConnection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +219,9 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ctlIndexCreate.resx">
+      <DependentUpon>ctlIndexCreate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmAddConnection.resx">
       <DependentUpon>frmAddConnection.cs</DependentUpon>
     </EmbeddedResource>

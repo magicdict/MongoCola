@@ -2,26 +2,42 @@
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
+using System.Collections.Generic;
 namespace MagicMongoDBTool
 {
     public partial class frmCollectionIndex : QLFUI.QLFForm
     {
+        /// <summary>
+        /// 当前数据集名称
+        /// </summary>
+        private MongoCollection _mongoCollection = SystemManager.GetCurrentCollection();
+        /// <summary>
+        /// 
+        /// </summary>
         public frmCollectionIndex()
         {
             InitializeComponent();
         }
-        private MongoCollection _mongoCollection = SystemManager.GetCurrentCollection();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmCollectionIndex_Load(object sender, EventArgs e)
         {
+            this.tabIndexMgr.SelectedIndexChanged += new EventHandler(
+                //初始的时候，不能原因的问题，界面的背景色不正确，强制刷新背景色
+                (x, y) => { tabIndexMgr.SelectedTab.Invalidate(); }
+              );
             lstIndex.Columns.Add("名称");
             lstIndex.Columns.Add("版本");
             lstIndex.Columns.Add("索引键");
             lstIndex.Columns.Add("升降序");
             lstIndex.Columns.Add("名字空间");
-            lstIndex.Columns.Add("IsBackground");
-            lstIndex.Columns.Add("IsSparse");
-            lstIndex.Columns.Add("IsUnique");
-            lstIndex.Columns.Add("DroppedDups");
+            lstIndex.Columns.Add("背景索引");
+            lstIndex.Columns.Add("稀疏索引");
+            lstIndex.Columns.Add("统一索引");
+            lstIndex.Columns.Add("删除重复索引");
             RefreshList();
         }
         /// <summary>
@@ -31,14 +47,17 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdDelIndex_Click(object sender, EventArgs e)
         {
-            if (lstIndex.SelectedItems.Count > 0)
+            if (lstIndex.CheckedItems.Count > 0)
             {
-                if (lstIndex.SelectedIndices[0] == 0) {
+                if (lstIndex.CheckedItems[0].Index == 0) {
                     MessageBox.Show("无法删除默认索引");
                     return;
                 }
-                MongoDBHelpler.DropMongoIndex(lstIndex.SelectedItems[0].SubItems[0].Text.ToString());
-                lstIndex.Items.Remove(lstIndex.SelectedItems[0]);
+                foreach (ListViewItem item in lstIndex.CheckedItems)
+                {
+                    MongoDBHelpler.DropMongoIndex(item.SubItems[0].Text.ToString());
+                }
+                RefreshList();
             }
         }
         /// <summary>
@@ -48,8 +67,25 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdAddIndex_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.CreateMongoIndex(txtIndexKey.Text, chkAsc.Checked);
+            List<String> AscendingKey = new List<String>();
+            List<String> DescendingKey = new List<String>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                ctlIndexCreate ctl = (ctlIndexCreate)Controls.Find("ctlIndexCreate" + (i + 1).ToString(), true)[0];
+                if (ctl.KeyName != String.Empty)
+                {
+                    if (ctl.IsAscendingKey) {
+                        AscendingKey.Add(ctl.KeyName);
+                    } else {
+                        DescendingKey.Add(ctl.KeyName);
+                    }
+                }
+            }
+            MongoDBHelpler.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(),
+                chkIsBackground.Checked,chkDroppedDups.Checked,chkIsSparse.Checked,chkIsUnique.Checked,txtIndexName.Text);
             RefreshList();
+            MessageBox.Show("添加索引操作完毕");    
         }
         private void RefreshList()
         {

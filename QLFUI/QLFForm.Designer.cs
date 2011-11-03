@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.contentPanel = new System.Windows.Forms.Panel();
-            this.skinContextMenu = new System.Windows.Forms.ContextMenuStrip();
+            this.skinContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.selectSkinButton = new QLFUI.BaseButton();
             this.closeButton = new QLFUI.BaseButton();
             this.maxButton = new QLFUI.BaseButton();
@@ -38,6 +39,7 @@
             // 
             // contentPanel
             // 
+            this.contentPanel.BackColor = System.Drawing.Color.White;
             this.contentPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.contentPanel.Location = new System.Drawing.Point(62, 108);
             this.contentPanel.Name = "contentPanel";
@@ -114,6 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(385, 323);
             this.Controls.Add(this.selectSkinButton);
             this.Controls.Add(this.closeButton);

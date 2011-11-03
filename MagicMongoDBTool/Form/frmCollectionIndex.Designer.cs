@@ -29,63 +29,42 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCollectionIndex));
-            this.chkAsc = new System.Windows.Forms.CheckBox();
-            this.txtIndexKey = new System.Windows.Forms.TextBox();
-            this.lblIndexKey = new System.Windows.Forms.Label();
             this.cmdAddIndex = new System.Windows.Forms.VistaButton();
             this.cmdDelIndex = new System.Windows.Forms.VistaButton();
             this.lstIndex = new System.Windows.Forms.ListView();
+            this.tabIndexMgr = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chkIsUnique = new System.Windows.Forms.CheckBox();
+            this.chkIsSparse = new System.Windows.Forms.CheckBox();
+            this.chkDroppedDups = new System.Windows.Forms.CheckBox();
+            this.chkIsBackground = new System.Windows.Forms.CheckBox();
+            this.ctlIndexCreate1 = new MagicMongoDBTool.ctlIndexCreate();
+            this.ctlIndexCreate2 = new MagicMongoDBTool.ctlIndexCreate();
+            this.ctlIndexCreate3 = new MagicMongoDBTool.ctlIndexCreate();
+            this.ctlIndexCreate4 = new MagicMongoDBTool.ctlIndexCreate();
+            this.ctlIndexCreate5 = new MagicMongoDBTool.ctlIndexCreate();
+            this.lblIndexName = new System.Windows.Forms.Label();
+            this.txtIndexName = new QLFUI.TextBoxEx();
             this.contentPanel.SuspendLayout();
+            this.tabIndexMgr.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // contentPanel
             // 
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.chkAsc);
-            this.contentPanel.Controls.Add(this.txtIndexKey);
-            this.contentPanel.Controls.Add(this.lblIndexKey);
-            this.contentPanel.Controls.Add(this.cmdAddIndex);
-            this.contentPanel.Controls.Add(this.cmdDelIndex);
-            this.contentPanel.Controls.Add(this.lstIndex);
+            this.contentPanel.Controls.Add(this.tabIndexMgr);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(465, 294);
-            // 
-            // chkAsc
-            // 
-            this.chkAsc.AutoSize = true;
-            this.chkAsc.BackColor = System.Drawing.Color.Transparent;
-            this.chkAsc.Checked = true;
-            this.chkAsc.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAsc.Location = new System.Drawing.Point(179, 223);
-            this.chkAsc.Name = "chkAsc";
-            this.chkAsc.Size = new System.Drawing.Size(50, 17);
-            this.chkAsc.TabIndex = 11;
-            this.chkAsc.Text = "升序";
-            this.chkAsc.UseVisualStyleBackColor = false;
-            // 
-            // txtIndexKey
-            // 
-            this.txtIndexKey.Location = new System.Drawing.Point(73, 221);
-            this.txtIndexKey.Name = "txtIndexKey";
-            this.txtIndexKey.Size = new System.Drawing.Size(100, 20);
-            this.txtIndexKey.TabIndex = 10;
-            // 
-            // lblIndexKey
-            // 
-            this.lblIndexKey.AutoSize = true;
-            this.lblIndexKey.BackColor = System.Drawing.Color.Transparent;
-            this.lblIndexKey.Location = new System.Drawing.Point(21, 224);
-            this.lblIndexKey.Name = "lblIndexKey";
-            this.lblIndexKey.Size = new System.Drawing.Size(43, 13);
-            this.lblIndexKey.TabIndex = 9;
-            this.lblIndexKey.Text = "索引键";
+            this.contentPanel.Size = new System.Drawing.Size(616, 337);
             // 
             // cmdAddIndex
             // 
             this.cmdAddIndex.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddIndex.Location = new System.Drawing.Point(245, 221);
+            this.cmdAddIndex.Location = new System.Drawing.Point(407, 192);
             this.cmdAddIndex.Name = "cmdAddIndex";
-            this.cmdAddIndex.Size = new System.Drawing.Size(75, 35);
+            this.cmdAddIndex.Size = new System.Drawing.Size(108, 35);
             this.cmdAddIndex.TabIndex = 8;
             this.cmdAddIndex.Text = "添加索引";
             this.cmdAddIndex.Click += new System.EventHandler(this.cmdAddIndex_Click);
@@ -93,45 +72,211 @@
             // cmdDelIndex
             // 
             this.cmdDelIndex.BackColor = System.Drawing.Color.Transparent;
-            this.cmdDelIndex.Location = new System.Drawing.Point(326, 221);
+            this.cmdDelIndex.Location = new System.Drawing.Point(413, 185);
             this.cmdDelIndex.Name = "cmdDelIndex";
-            this.cmdDelIndex.Size = new System.Drawing.Size(75, 35);
+            this.cmdDelIndex.Size = new System.Drawing.Size(113, 35);
             this.cmdDelIndex.TabIndex = 7;
-            this.cmdDelIndex.Text = "删除索引";
+            this.cmdDelIndex.Text = "删除选中索引";
             this.cmdDelIndex.Click += new System.EventHandler(this.cmdDelIndex_Click);
             // 
             // lstIndex
             // 
-            this.lstIndex.Location = new System.Drawing.Point(11, 25);
+            this.lstIndex.CheckBoxes = true;
+            this.lstIndex.Location = new System.Drawing.Point(6, 6);
             this.lstIndex.Name = "lstIndex";
-            this.lstIndex.Size = new System.Drawing.Size(429, 180);
+            this.lstIndex.Size = new System.Drawing.Size(520, 173);
             this.lstIndex.TabIndex = 6;
             this.lstIndex.UseCompatibleStateImageBehavior = false;
             this.lstIndex.View = System.Windows.Forms.View.Details;
+            // 
+            // tabIndexMgr
+            // 
+            this.tabIndexMgr.Controls.Add(this.tabPage1);
+            this.tabIndexMgr.Controls.Add(this.tabPage2);
+            this.tabIndexMgr.Location = new System.Drawing.Point(34, 23);
+            this.tabIndexMgr.Name = "tabIndexMgr";
+            this.tabIndexMgr.SelectedIndex = 0;
+            this.tabIndexMgr.Size = new System.Drawing.Size(540, 259);
+            this.tabIndexMgr.TabIndex = 12;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.cmdDelIndex);
+            this.tabPage1.Controls.Add(this.lstIndex);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(532, 233);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "现有索引";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.txtIndexName);
+            this.tabPage2.Controls.Add(this.lblIndexName);
+            this.tabPage2.Controls.Add(this.ctlIndexCreate5);
+            this.tabPage2.Controls.Add(this.ctlIndexCreate4);
+            this.tabPage2.Controls.Add(this.ctlIndexCreate3);
+            this.tabPage2.Controls.Add(this.ctlIndexCreate2);
+            this.tabPage2.Controls.Add(this.ctlIndexCreate1);
+            this.tabPage2.Controls.Add(this.chkIsUnique);
+            this.tabPage2.Controls.Add(this.chkIsSparse);
+            this.tabPage2.Controls.Add(this.chkDroppedDups);
+            this.tabPage2.Controls.Add(this.chkIsBackground);
+            this.tabPage2.Controls.Add(this.cmdAddIndex);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(532, 233);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "管理索引";
+            // 
+            // chkIsUnique
+            // 
+            this.chkIsUnique.AutoSize = true;
+            this.chkIsUnique.Location = new System.Drawing.Point(283, 163);
+            this.chkIsUnique.Name = "chkIsUnique";
+            this.chkIsUnique.Size = new System.Drawing.Size(74, 17);
+            this.chkIsUnique.TabIndex = 16;
+            this.chkIsUnique.Text = "统一索引";
+            this.chkIsUnique.UseVisualStyleBackColor = true;
+            // 
+            // chkIsSparse
+            // 
+            this.chkIsSparse.AutoSize = true;
+            this.chkIsSparse.Location = new System.Drawing.Point(203, 163);
+            this.chkIsSparse.Name = "chkIsSparse";
+            this.chkIsSparse.Size = new System.Drawing.Size(74, 17);
+            this.chkIsSparse.TabIndex = 15;
+            this.chkIsSparse.Text = "稀疏索引";
+            this.chkIsSparse.UseVisualStyleBackColor = true;
+            // 
+            // chkDroppedDups
+            // 
+            this.chkDroppedDups.AutoSize = true;
+            this.chkDroppedDups.Location = new System.Drawing.Point(99, 163);
+            this.chkDroppedDups.Name = "chkDroppedDups";
+            this.chkDroppedDups.Size = new System.Drawing.Size(98, 17);
+            this.chkDroppedDups.TabIndex = 14;
+            this.chkDroppedDups.Text = "重复删除索引";
+            this.chkDroppedDups.UseVisualStyleBackColor = true;
+            // 
+            // chkIsBackground
+            // 
+            this.chkIsBackground.AutoSize = true;
+            this.chkIsBackground.Location = new System.Drawing.Point(19, 163);
+            this.chkIsBackground.Name = "chkIsBackground";
+            this.chkIsBackground.Size = new System.Drawing.Size(74, 17);
+            this.chkIsBackground.TabIndex = 13;
+            this.chkIsBackground.Text = "背景索引";
+            this.chkIsBackground.UseVisualStyleBackColor = true;
+            // 
+            // ctlIndexCreate1
+            // 
+            this.ctlIndexCreate1.BackColor = System.Drawing.Color.Transparent;
+            this.ctlIndexCreate1.Location = new System.Drawing.Point(6, 19);
+            this.ctlIndexCreate1.Name = "ctlIndexCreate1";
+            this.ctlIndexCreate1.Size = new System.Drawing.Size(405, 25);
+            this.ctlIndexCreate1.TabIndex = 13;
+            // 
+            // ctlIndexCreate2
+            // 
+            this.ctlIndexCreate2.BackColor = System.Drawing.Color.Transparent;
+            this.ctlIndexCreate2.Location = new System.Drawing.Point(6, 44);
+            this.ctlIndexCreate2.Name = "ctlIndexCreate2";
+            this.ctlIndexCreate2.Size = new System.Drawing.Size(405, 25);
+            this.ctlIndexCreate2.TabIndex = 13;
+            // 
+            // ctlIndexCreate3
+            // 
+            this.ctlIndexCreate3.BackColor = System.Drawing.Color.Transparent;
+            this.ctlIndexCreate3.Location = new System.Drawing.Point(6, 69);
+            this.ctlIndexCreate3.Name = "ctlIndexCreate3";
+            this.ctlIndexCreate3.Size = new System.Drawing.Size(405, 25);
+            this.ctlIndexCreate3.TabIndex = 13;
+            // 
+            // ctlIndexCreate4
+            // 
+            this.ctlIndexCreate4.BackColor = System.Drawing.Color.Transparent;
+            this.ctlIndexCreate4.Location = new System.Drawing.Point(6, 94);
+            this.ctlIndexCreate4.Name = "ctlIndexCreate4";
+            this.ctlIndexCreate4.Size = new System.Drawing.Size(405, 25);
+            this.ctlIndexCreate4.TabIndex = 13;
+            // 
+            // ctlIndexCreate5
+            // 
+            this.ctlIndexCreate5.BackColor = System.Drawing.Color.Transparent;
+            this.ctlIndexCreate5.Location = new System.Drawing.Point(6, 119);
+            this.ctlIndexCreate5.Name = "ctlIndexCreate5";
+            this.ctlIndexCreate5.Size = new System.Drawing.Size(405, 25);
+            this.ctlIndexCreate5.TabIndex = 13;
+            // 
+            // lblIndexName
+            // 
+            this.lblIndexName.AutoSize = true;
+            this.lblIndexName.Location = new System.Drawing.Point(19, 195);
+            this.lblIndexName.Name = "lblIndexName";
+            this.lblIndexName.Size = new System.Drawing.Size(55, 13);
+            this.lblIndexName.TabIndex = 18;
+            this.lblIndexName.Text = "索引名称";
+            // 
+            // txtIndexName
+            // 
+            this.txtIndexName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txtIndexName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txtIndexName.BackColor = System.Drawing.Color.Transparent;
+            this.txtIndexName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
+            this.txtIndexName.ForeImage = null;
+            this.txtIndexName.Location = new System.Drawing.Point(80, 186);
+            this.txtIndexName.Multiline = false;
+            this.txtIndexName.Name = "txtIndexName";
+            this.txtIndexName.Radius = 3;
+            this.txtIndexName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
+            this.txtIndexName.Size = new System.Drawing.Size(197, 29);
+            this.txtIndexName.TabIndex = 19;
+            this.txtIndexName.UseSystemPasswordChar = false;
+            this.txtIndexName.WaterMark = "索引名称(可选参数)";
+            this.txtIndexName.WaterMarkColor = System.Drawing.Color.Silver;
             // 
             // frmCollectionIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(467, 357);
+            this.ClientSize = new System.Drawing.Size(618, 400);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmCollectionIndex";
             this.ShowSelectSkinButton = false;
             this.Text = "数据集索引";
             this.Load += new System.EventHandler(this.frmCollectionIndex_Load);
             this.contentPanel.ResumeLayout(false);
-            this.contentPanel.PerformLayout();
+            this.tabIndexMgr.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.CheckBox chkAsc;
-        private System.Windows.Forms.TextBox txtIndexKey;
-        private System.Windows.Forms.Label lblIndexKey;
         private System.Windows.Forms.VistaButton cmdAddIndex;
         private System.Windows.Forms.VistaButton cmdDelIndex;
         private System.Windows.Forms.ListView lstIndex;
+        private System.Windows.Forms.TabControl tabIndexMgr;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.CheckBox chkDroppedDups;
+        private System.Windows.Forms.CheckBox chkIsBackground;
+        private System.Windows.Forms.CheckBox chkIsSparse;
+        private System.Windows.Forms.CheckBox chkIsUnique;
+        private ctlIndexCreate ctlIndexCreate1;
+        private ctlIndexCreate ctlIndexCreate5;
+        private ctlIndexCreate ctlIndexCreate4;
+        private ctlIndexCreate ctlIndexCreate3;
+        private ctlIndexCreate ctlIndexCreate2;
+        private QLFUI.TextBoxEx txtIndexName;
+        private System.Windows.Forms.Label lblIndexName;
     }
 }

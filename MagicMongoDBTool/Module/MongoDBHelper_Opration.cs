@@ -242,20 +242,32 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 添加索引
         /// </summary>
-        /// <param name="keyName">索引名称</param>
-        /// <param name="isAccending">是否为升序</param>
+        /// <param name="AscendingKey"></param>
+        /// <param name="DescendingKey"></param>
+        /// <param name="IsBackground"></param>
+        /// <param name="IsDropDups"></param>
+        /// <param name="IsSparse"></param>
+        /// <param name="IsUnique"></param>
+        /// <param name="IndexName"></param>
         /// <returns></returns>
-        public static Boolean CreateMongoIndex(string keyName, bool isAccending = true)
+        public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey,
+            Boolean IsBackground = false, Boolean IsDropDups = false, Boolean IsSparse = false, Boolean IsUnique = false, String IndexName = "")
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
-            IndexKeysDocument index = new IndexKeysDocument();
-            if (!mongoCol.IndexExists(keyName))
+            IndexKeysBuilder indexkeys = new IndexKeysBuilder();
+            indexkeys.Ascending(AscendingKey);
+            indexkeys.Descending(DescendingKey);
+            IndexOptionsBuilder option = new IndexOptionsBuilder();
+            option.SetBackground(IsBackground);
+            option.SetDropDups(IsDropDups);
+            option.SetSparse(IsSparse);
+            option.SetUnique(IsUnique);
+            if (IndexName != String.Empty && !mongoCol.IndexExists(IndexName))
             {
-                index.Add(keyName, isAccending ? 1 : 0);
-                mongoCol.CreateIndex(index);
-                return true;
+                option.SetName(IndexName);
             }
-            return false;
+            mongoCol.CreateIndex(indexkeys, option);
+            return true;
         }
         /// <summary>
         /// 删除索引["_id"]以外
