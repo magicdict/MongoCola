@@ -73,7 +73,6 @@
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReplicaSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddShardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShardConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapReduceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -457,7 +456,6 @@
             // 
             this.ShardingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ReplicaSetToolStripMenuItem,
-            this.AddShardingToolStripMenuItem,
             this.ShardConfigToolStripMenuItem,
             this.mapReduceToolStripMenuItem});
             this.ShardingToolStripMenuItem.Name = "ShardingToolStripMenuItem";
@@ -467,28 +465,21 @@
             // ReplicaSetToolStripMenuItem
             // 
             this.ReplicaSetToolStripMenuItem.Name = "ReplicaSetToolStripMenuItem";
-            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ReplicaSetToolStripMenuItem.Text = "初始化副本";
             this.ReplicaSetToolStripMenuItem.Click += new System.EventHandler(this.ReplicaSetToolStripMenuItem_Click);
-            // 
-            // AddShardingToolStripMenuItem
-            // 
-            this.AddShardingToolStripMenuItem.Name = "AddShardingToolStripMenuItem";
-            this.AddShardingToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.AddShardingToolStripMenuItem.Text = "添加分片";
-            this.AddShardingToolStripMenuItem.Click += new System.EventHandler(this.AddShardingToolStripMenuItem_Click);
             // 
             // ShardConfigToolStripMenuItem
             // 
             this.ShardConfigToolStripMenuItem.Name = "ShardConfigToolStripMenuItem";
-            this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ShardConfigToolStripMenuItem.Text = "配置分片数据";
             this.ShardConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardConfigToolStripMenuItem_Click);
             // 
             // mapReduceToolStripMenuItem
             // 
             this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
-            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mapReduceToolStripMenuItem.Text = "MapReduce";
             this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
             // 
@@ -705,7 +696,6 @@
         private System.Windows.Forms.ToolStripMenuItem OptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ShardingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ReplicaSetToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem AddShardingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ShardConfigToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mapReduceToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;

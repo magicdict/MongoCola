@@ -167,12 +167,16 @@ namespace MagicMongoDBTool
                         if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.DataSvr)
                         {
                             //Route,Config服务器不能进行这样的操作！
-                            this.ReplicaSetToolStripMenuItem.Enabled = true;
+                            ConfigHelper.MongoConnectionConfig prmKeyPro = SystemManager.GetSelectedSvrProByName();
+                            if (prmKeyPro.ReplSetName != String.Empty)
+                            {
+                                //需要这个服务器具有Replset设置
+                                this.ReplicaSetToolStripMenuItem.Enabled = true;
+                            }
                         }
                         if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.RouteSvr)
                         {
                             //Route用
-                            this.AddShardingToolStripMenuItem.Enabled = true;
                             this.ShardConfigToolStripMenuItem.Enabled = true;
                         }
 
@@ -185,7 +189,6 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.AddShardingToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShardConfigToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -299,7 +302,6 @@ namespace MagicMongoDBTool
             this.QueryDataToolStripButton.Enabled = false;
 
             this.ReplicaSetToolStripMenuItem.Enabled = false;
-            this.AddShardingToolStripMenuItem.Enabled = false;
             this.ShardConfigToolStripMenuItem.Enabled = false;
             this.mapReduceToolStripMenuItem.Enabled = false;
         }
@@ -769,13 +771,6 @@ namespace MagicMongoDBTool
             mfrm.Dispose();
         }
 
-        private void AddShardingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmAddSharding mfrm = new frmAddSharding();
-            mfrm.ShowDialog();
-            mfrm.Close();
-            mfrm.Dispose();
-        }
         private void ShardConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmShardingConfig mfrm = new frmShardingConfig();
@@ -852,5 +847,7 @@ namespace MagicMongoDBTool
             MessageBox.Show(strThanks, "感谢");
         }
         #endregion
+
+
     }
 }

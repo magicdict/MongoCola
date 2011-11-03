@@ -91,11 +91,11 @@
     <Compile Include="Form\frmAddConnection.Designer.cs">
       <DependentUpon>frmAddConnection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmAddSharding.cs">
+    <Compile Include="Form\frmShardingConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmAddSharding.Designer.cs">
-      <DependentUpon>frmAddSharding.cs</DependentUpon>
+    <Compile Include="Form\frmShardingConfig.Designer.cs">
+      <DependentUpon>frmShardingConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmConnect.cs">
       <SubType>Form</SubType>
@@ -150,12 +150,6 @@
     </Compile>
     <Compile Include="Form\frmServiceStatus.Designer.cs">
       <DependentUpon>frmServiceStatus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\frmShardingConfig.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\frmShardingConfig.Designer.cs">
-      <DependentUpon>frmShardingConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmMain.cs">
       <SubType>Form</SubType>
@@ -225,8 +219,8 @@
     <EmbeddedResource Include="Form\frmAddConnection.resx">
       <DependentUpon>frmAddConnection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmAddSharding.resx">
-      <DependentUpon>frmAddSharding.cs</DependentUpon>
+    <EmbeddedResource Include="Form\frmShardingConfig.resx">
+      <DependentUpon>frmShardingConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmConnect.resx">
       <DependentUpon>frmConnect.cs</DependentUpon>
@@ -254,9 +248,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmServiceStatus.resx">
       <DependentUpon>frmServiceStatus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmShardingConfig.resx">
-      <DependentUpon>frmShardingConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

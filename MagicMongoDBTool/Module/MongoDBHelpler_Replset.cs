@@ -75,7 +75,6 @@ namespace MagicMongoDBTool.Module
         public static CommandResult EnableSharding(MongoServer routeSvr, String shardingDB)
         {
             CommandDocument mongoCmd = new CommandDocument();
-            ///可分片数据库
             mongoCmd = new CommandDocument();
             mongoCmd.Add("enablesharding", shardingDB);
             return routeSvr.RunAdminCommand(mongoCmd);
@@ -90,8 +89,6 @@ namespace MagicMongoDBTool.Module
         public static CommandResult ShardCollection(MongoServer routeSvr, String sharingCollection,BsonDocument shardingKey)
         {
             CommandDocument mongoCmd = new CommandDocument();
-            ///可分片数据集
-            //mongoCmd = new CommandDocument();
             mongoCmd.Add("shardcollection", sharingCollection);
             mongoCmd.Add("key", shardingKey);
             return routeSvr.RunAdminCommand(mongoCmd);

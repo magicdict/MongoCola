@@ -32,7 +32,6 @@ namespace MagicMongoDBTool
             lstIndex.Columns.Add("名称");
             lstIndex.Columns.Add("版本");
             lstIndex.Columns.Add("索引键");
-            lstIndex.Columns.Add("升降序");
             lstIndex.Columns.Add("名字空间");
             lstIndex.Columns.Add("背景索引");
             lstIndex.Columns.Add("稀疏索引");
@@ -94,8 +93,7 @@ namespace MagicMongoDBTool
             {
                 ListViewItem lst = new ListViewItem(item.Name);
                 lst.SubItems.Add(item.Version.ToString());
-                lst.SubItems.Add(item.Key.GetElement(0).Name);
-                lst.SubItems.Add(item.Key.GetElement(0).Value == 1 ? "升序" : "降序");
+                lst.SubItems.Add(item.Key.ToString());
                 lst.SubItems.Add(item.Namespace.ToString());
                 lst.SubItems.Add(item.IsBackground.ToString());
                 lst.SubItems.Add(item.IsSparse.ToString());

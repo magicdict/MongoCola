@@ -10,7 +10,15 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Master服务器
+        /// </summary>
         private MongoServer _prmSvr;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmReplset_Load(object sender, EventArgs e)
         {
             _prmSvr = SystemManager.GetCurrentService();
@@ -24,7 +32,11 @@ namespace MagicMongoDBTool
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdInitReplset_Click(object sender, EventArgs e)
         {
             List<String> svrKeys = new List<string>();
@@ -35,9 +47,8 @@ namespace MagicMongoDBTool
                     svrKeys.Add(item);
                 }
             }
+            //初始化副本，将多个服务器组合成一个副本组
             MongoDBHelpler.InitReplicaSet(_prmSvr, SystemManager.GetSelectedSvrProByName().ReplSetName, svrKeys);
         }
-
-
     }
 }
