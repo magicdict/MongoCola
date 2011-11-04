@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
+using System.Windows.Forms;
 namespace MagicMongoDBTool
 {
     public partial class frmReplset : QLFUI.QLFForm
@@ -26,7 +27,9 @@ namespace MagicMongoDBTool
             lblPrmInfo.Text = "主机为:" + prmKeyPro.HostName + "  副本名：" + prmKeyPro.ReplSetName;
             foreach (var item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
-                if ((prmKeyPro.HostName != item.HostName) & (prmKeyPro.ReplSetName == item.ReplSetName))
+                if ((prmKeyPro.HostName != item.HostName) && 
+                    (prmKeyPro.ReplSetName == item.ReplSetName) &&
+                    (item.ServerType == ConfigHelper.SvrType.DataSvr))
                 {
                     lstShard.Items.Add(item.HostName);
                 }
@@ -48,7 +51,14 @@ namespace MagicMongoDBTool
                 }
             }
             //初始化副本，将多个服务器组合成一个副本组
-            MongoDBHelpler.InitReplicaSet(_prmSvr, SystemManager.GetSelectedSvrProByName().ReplSetName, svrKeys);
+            CommandResult rtn = MongoDBHelpler.InitReplicaSet(_prmSvr, SystemManager.GetSelectedSvrProByName().ReplSetName, svrKeys);
+            if (rtn.Ok)
+            {
+                MessageBox.Show("初始化成功");
+            }
+            else {
+                MessageBox.Show("初始化失败\r\n" + rtn.Response );
+            }
         }
     }
 }

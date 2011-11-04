@@ -58,9 +58,9 @@ namespace MagicMongoDBTool.Module
                     _mongoSrvLst.Add(config.HostName, masterMongoSvr);
                     masterMongoSvr.Connect();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show(ex.ToString());
+                    MessageBox.Show("无法链接到服务器：" + config.HostName);
                 }
             }
         }
@@ -104,8 +104,12 @@ namespace MagicMongoDBTool.Module
                 catch (MongoAuthenticationException)
                 {
                     //需要验证的数据服务器，没有Admin权限无法获得数据库列表
-                    MessageBox.Show("认证信息错误，请检查Admin数据库的用户名和密码", "认证失败");
+                    MessageBox.Show("认证信息错误，请检查数据库的用户名和密码", "认证失败");
                 }
+                catch (Exception) { 
+                    //暂时不处理任何异常，简单跳过
+                    mongoSvrNode.Text += "[无法连接]";
+                }  
             }
         }
         /// <summary>
@@ -177,6 +181,12 @@ namespace MagicMongoDBTool.Module
                     if (mongoDB.Name == "config")
                     {
                         strColName = "数据集(" + strColName + ")";
+                    }
+                    break;
+                case "changelog":
+                    if (mongoDB.Name == "config")
+                    {
+                        strColName = "变更日志(" + strColName + ")";
                     }
                     break;
                 case "databases":

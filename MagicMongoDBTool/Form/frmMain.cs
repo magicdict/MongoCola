@@ -97,6 +97,7 @@ namespace MagicMongoDBTool
             _dataShower.Add(lstData);
             _dataShower.Add(trvData);
             _dataShower.Add(txtData);
+            statusStripMain.Items[1].Text = string.Empty;
         }
         /// <summary>
         /// 鼠标选中节点
@@ -105,6 +106,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void trvsrvlst_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            statusStripMain.Items[0].Text = string.Empty;
+            statusStripMain.Items[1].Text = string.Empty;
             lstData.Clear();
             txtData.Text = "";
             trvData.Nodes.Clear();
@@ -446,7 +449,7 @@ namespace MagicMongoDBTool
             lstData.Clear();
         }
         /// <summary>
-        /// 
+        /// 刷新
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -456,12 +459,35 @@ namespace MagicMongoDBTool
             MongoDBHelpler.FillMongoServiceToTreeView(trvsrvlst);
             lstData.Clear();
         }
+        /// <summary>
+        /// 服务器状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SrvStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmServiceStatus mfrm = new frmServiceStatus();
             mfrm.ShowDialog();
             mfrm.Close();
             mfrm.Dispose();
+        }
+        /// <summary>
+        /// 展开所有
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExpandAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.trvsrvlst.ExpandAll();
+        }
+        /// <summary>
+        /// 折叠所有
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CollapseAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.trvsrvlst.CollapseAll();
         }
         /// <summary>
         /// 退出程序
@@ -831,6 +857,7 @@ namespace MagicMongoDBTool
             LastPageToolStripMenuItem.Enabled = MongoDBHelpler.HasNextPage;
             this.QueryDataToolStripMenuItem.Enabled = true;
             SetToolBar();
+            statusStripMain.Items[1].Text = "数据视图：" + (MongoDBHelpler.SkipCnt + 1).ToString() + "/" + MongoDBHelpler.CurrentCollectionTotalCnt.ToString();
         }
         #endregion
 
@@ -843,11 +870,10 @@ namespace MagicMongoDBTool
 
         private void ThanksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strThanks = "感谢皮肤控件的作者：qianlifeng\r\n感谢10gen的C# Driver\r\n感谢Dragon同志的测试";
+            String strThanks = "感谢皮肤控件的作者：qianlifeng\r\n感谢10gen的C# Driver开发者的技术支持\r\n感谢Dragon同志的测试";
             MessageBox.Show(strThanks, "感谢");
         }
         #endregion
-
 
     }
 }

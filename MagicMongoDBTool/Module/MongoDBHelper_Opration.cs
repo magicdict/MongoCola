@@ -114,7 +114,10 @@ namespace MagicMongoDBTool.Module
                         if (mongoSvr.DatabaseExists(dbName))
                         {
                             mongoSvr.DropDatabase(dbName);
-                            tr.TreeView.Nodes.Remove(tr);
+                            if (tr != null)
+                            {
+                                tr.TreeView.Nodes.Remove(tr);
+                            }
                             rtnResult = true;
                         }
                         break;

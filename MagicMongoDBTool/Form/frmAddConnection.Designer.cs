@@ -101,7 +101,7 @@
             // 
             this.radRouteSrv.AutoSize = true;
             this.radRouteSrv.BackColor = System.Drawing.Color.Transparent;
-            this.radRouteSrv.Location = new System.Drawing.Point(224, 213);
+            this.radRouteSrv.Location = new System.Drawing.Point(52, 149);
             this.radRouteSrv.Name = "radRouteSrv";
             this.radRouteSrv.Size = new System.Drawing.Size(85, 17);
             this.radRouteSrv.TabIndex = 8;
@@ -112,7 +112,7 @@
             // 
             this.radConfigSrv.AutoSize = true;
             this.radConfigSrv.BackColor = System.Drawing.Color.Transparent;
-            this.radConfigSrv.Location = new System.Drawing.Point(133, 213);
+            this.radConfigSrv.Location = new System.Drawing.Point(154, 126);
             this.radConfigSrv.Name = "radConfigSrv";
             this.radConfigSrv.Size = new System.Drawing.Size(85, 17);
             this.radConfigSrv.TabIndex = 7;
@@ -124,7 +124,7 @@
             this.radDataSrv.AutoSize = true;
             this.radDataSrv.BackColor = System.Drawing.Color.Transparent;
             this.radDataSrv.Checked = true;
-            this.radDataSrv.Location = new System.Drawing.Point(52, 213);
+            this.radDataSrv.Location = new System.Drawing.Point(52, 126);
             this.radDataSrv.Name = "radDataSrv";
             this.radDataSrv.Size = new System.Drawing.Size(85, 17);
             this.radDataSrv.TabIndex = 6;
@@ -136,7 +136,7 @@
             // 
             this.chkSlaveOk.AutoSize = true;
             this.chkSlaveOk.BackColor = System.Drawing.Color.Transparent;
-            this.chkSlaveOk.Location = new System.Drawing.Point(52, 238);
+            this.chkSlaveOk.Location = new System.Drawing.Point(52, 198);
             this.chkSlaveOk.Name = "chkSlaveOk";
             this.chkSlaveOk.Size = new System.Drawing.Size(424, 17);
             this.chkSlaveOk.TabIndex = 9;
@@ -146,7 +146,7 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(289, 284);
+            this.cmdCancel.Location = new System.Drawing.Point(286, 258);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 37);
             this.cmdCancel.TabIndex = 9;
@@ -155,7 +155,7 @@
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(200, 284);
+            this.cmdAdd.Location = new System.Drawing.Point(197, 258);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 37);
             this.cmdAdd.TabIndex = 8;
@@ -351,7 +351,7 @@
             // 
             this.chkLoginAsAdmin.AutoSize = true;
             this.chkLoginAsAdmin.Enabled = false;
-            this.chkLoginAsAdmin.Location = new System.Drawing.Point(52, 261);
+            this.chkLoginAsAdmin.Location = new System.Drawing.Point(52, 221);
             this.chkLoginAsAdmin.Name = "chkLoginAsAdmin";
             this.chkLoginAsAdmin.Size = new System.Drawing.Size(421, 17);
             this.chkLoginAsAdmin.TabIndex = 34;
@@ -362,7 +362,7 @@
             // 
             this.radReplSet.AutoSize = true;
             this.radReplSet.BackColor = System.Drawing.Color.Transparent;
-            this.radReplSet.Location = new System.Drawing.Point(315, 212);
+            this.radReplSet.Location = new System.Drawing.Point(154, 149);
             this.radReplSet.Name = "radReplSet";
             this.radReplSet.Size = new System.Drawing.Size(85, 17);
             this.radReplSet.TabIndex = 8;
@@ -372,17 +372,17 @@
             // lstServerce
             // 
             this.lstServerce.FormattingEnabled = true;
-            this.lstServerce.Location = new System.Drawing.Point(116, 136);
+            this.lstServerce.Location = new System.Drawing.Point(324, 88);
             this.lstServerce.Name = "lstServerce";
             this.lstServerce.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lstServerce.Size = new System.Drawing.Size(445, 69);
+            this.lstServerce.Size = new System.Drawing.Size(228, 95);
             this.lstServerce.TabIndex = 35;
             // 
             // lblReplsetList
             // 
             this.lblReplsetList.AutoSize = true;
             this.lblReplsetList.BackColor = System.Drawing.Color.Transparent;
-            this.lblReplsetList.Location = new System.Drawing.Point(49, 114);
+            this.lblReplsetList.Location = new System.Drawing.Point(227, 88);
             this.lblReplsetList.Name = "lblReplsetList";
             this.lblReplsetList.Size = new System.Drawing.Size(91, 13);
             this.lblReplsetList.TabIndex = 36;

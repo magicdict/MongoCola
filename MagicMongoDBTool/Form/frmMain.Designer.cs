@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusSelectedObj = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.ConnectionStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,6 +88,9 @@
             this.lstData = new System.Windows.Forms.ListView();
             this.tabTextView = new System.Windows.Forms.TabPage();
             this.txtData = new System.Windows.Forms.TextBox();
+            this.toolStripStatusDataNavi = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ExpandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CollapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentPanel.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
@@ -114,18 +117,20 @@
             // 
             this.statusStripMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("statusStripMain.BackgroundImage")));
             this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.toolStripStatusSelectedObj,
+            this.toolStripStatusDataNavi});
             this.statusStripMain.Location = new System.Drawing.Point(0, 548);
             this.statusStripMain.Name = "statusStripMain";
             this.statusStripMain.Size = new System.Drawing.Size(917, 22);
             this.statusStripMain.TabIndex = 8;
             this.statusStripMain.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // toolStripStatusSelectedObj
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(31, 17);
-            this.toolStripStatusLabel1.Text = "就绪";
+            this.toolStripStatusSelectedObj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(130)))));
+            this.toolStripStatusSelectedObj.Name = "toolStripStatusSelectedObj";
+            this.toolStripStatusSelectedObj.Size = new System.Drawing.Size(31, 17);
+            this.toolStripStatusSelectedObj.Text = "就绪";
             // 
             // toolStripMain
             // 
@@ -159,6 +164,8 @@
             this.AddConnectionToolStripMenuItem,
             this.SrvStatusToolStripMenuItem,
             this.RefreshToolStripMenuItem,
+            this.ExpandAllToolStripMenuItem,
+            this.CollapseAllToolStripMenuItem,
             this.ExitToolStripMenuItem});
             this.ConnectionStatusToolStripMenuItem.Name = "ConnectionStatusToolStripMenuItem";
             this.ConnectionStatusToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
@@ -265,7 +272,7 @@
             this.AddUserToAdminToolStripMenuItem,
             this.RemoveUserFromAdminToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
-            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ServerToolStripMenuItem.Text = "服务器";
             // 
             // ShutDownToolStripMenuItem
@@ -304,7 +311,7 @@
             this.AddUserToolStripMenuItem,
             this.RemoveUserToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
-            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataBaseToolStripMenuItem.Text = "数据库";
             // 
             // DelMongoDBToolStripMenuItem
@@ -343,7 +350,7 @@
             this.DelRecordToolStripMenuItem,
             this.RenameCollectionToolStripMenuItem});
             this.DataCollectionOprToolStripMenuItem.Name = "DataCollectionOprToolStripMenuItem";
-            this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataCollectionOprToolStripMenuItem.Text = "数据集";
             // 
             // DelMongoCollectionToolStripMenuItem
@@ -383,41 +390,41 @@
             this.DelFileToolStripMenuItem,
             this.InitGFSToolStripMenuItem});
             this.GridFsToolStripMenuItem.Name = "GridFsToolStripMenuItem";
-            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.GridFsToolStripMenuItem.Text = "文件系统";
             // 
             // UploadFileToolStripMenuItem
             // 
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
-            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.UploadFileToolStripMenuItem.Text = "上传文件";
             this.UploadFileToolStripMenuItem.Click += new System.EventHandler(this.UploadFileToolStripMenuItem_Click);
             // 
             // DownloadFileToolStripMenuItem
             // 
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
-            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DownloadFileToolStripMenuItem.Text = "下载文件";
             this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(this.DownloadFileToolStripMenuItem_Click);
             // 
             // OpenFileToolStripMenuItem
             // 
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
-            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.OpenFileToolStripMenuItem.Text = "打开文件";
             this.OpenFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
             // DelFileToolStripMenuItem
             // 
             this.DelFileToolStripMenuItem.Name = "DelFileToolStripMenuItem";
-            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DelFileToolStripMenuItem.Text = "删除文件";
             this.DelFileToolStripMenuItem.Click += new System.EventHandler(this.DelFileToolStripMenuItem_Click);
             // 
             // InitGFSToolStripMenuItem
             // 
             this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
-            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.InitGFSToolStripMenuItem.Text = "初始化GFS";
             this.InitGFSToolStripMenuItem.Click += new System.EventHandler(this.InitGFSToolStripMenuItem_Click);
             // 
@@ -617,6 +624,27 @@
             this.txtData.Size = new System.Drawing.Size(594, 426);
             this.txtData.TabIndex = 0;
             // 
+            // toolStripStatusDataNavi
+            // 
+            this.toolStripStatusDataNavi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(130)))));
+            this.toolStripStatusDataNavi.Name = "toolStripStatusDataNavi";
+            this.toolStripStatusDataNavi.Size = new System.Drawing.Size(61, 17);
+            this.toolStripStatusDataNavi.Text = "数据视图：";
+            // 
+            // ExpandAllToolStripMenuItem
+            // 
+            this.ExpandAllToolStripMenuItem.Name = "ExpandAllToolStripMenuItem";
+            this.ExpandAllToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.ExpandAllToolStripMenuItem.Text = "全部展开";
+            this.ExpandAllToolStripMenuItem.Click += new System.EventHandler(this.ExpandAllToolStripMenuItem_Click);
+            // 
+            // CollapseAllToolStripMenuItem
+            // 
+            this.CollapseAllToolStripMenuItem.Name = "CollapseAllToolStripMenuItem";
+            this.CollapseAllToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.CollapseAllToolStripMenuItem.Text = "全部折叠";
+            this.CollapseAllToolStripMenuItem.Click += new System.EventHandler(this.CollapseAllToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -657,7 +685,7 @@
         #endregion
 
         private System.Windows.Forms.StatusStrip statusStripMain;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusSelectedObj;
         private System.Windows.Forms.ToolStrip toolStripMain;
         private System.Windows.Forms.MenuStrip menuStripMain;
         private System.Windows.Forms.ToolStripMenuItem ConnectionStatusToolStripMenuItem;
@@ -714,5 +742,8 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ThanksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem InitGFSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusDataNavi;
+        private System.Windows.Forms.ToolStripMenuItem ExpandAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CollapseAllToolStripMenuItem;
     }
 }

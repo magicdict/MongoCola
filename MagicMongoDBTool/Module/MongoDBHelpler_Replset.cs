@@ -13,7 +13,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="mongoSvr">副本组主服务器</param>
         /// <param name="replicaSetName">副本名称</param>
         /// <param name="secondaryNames">从属服务器列表</param>
-        public static void InitReplicaSet(MongoServer mongoSvr, string replicaSetName, List<string> secondaryNames)
+        public static CommandResult InitReplicaSet(MongoServer mongoSvr, string replicaSetName, List<string> secondaryNames)
         {
             BsonDocument config = new BsonDocument();
             BsonArray hosts = new BsonArray();
@@ -40,8 +40,25 @@ namespace MagicMongoDBTool.Module
             cmd.Add("replSetInitiate", config);
 
             CommandDocument mongoCmd = new CommandDocument() { cmd };
-
-            mongoSvr.RunAdminCommand(mongoCmd);
+            return ExecuteMongoCommand(mongoCmd, mongoSvr);
+        }
+        /// <summary>
+        /// 执行MongoCommand
+        /// </summary>
+        /// <param name="mongoCmd">命令Doc</param>
+        /// <param name="mongoSvr">目标服务器</param>
+        /// <returns></returns>
+        public static CommandResult ExecuteMongoCommand(CommandDocument mongoCmd,MongoServer mongoSvr){
+            CommandResult rtn;
+            try
+            {
+               rtn = mongoSvr.RunAdminCommand(mongoCmd);
+            }
+            catch (MongoCommandException ex)
+            {
+                rtn = ex.CommandResult;                
+            }
+            return rtn;
         }
 
         /// <summary>
@@ -64,7 +81,7 @@ namespace MagicMongoDBTool.Module
             cmdPara = cmdPara.TrimEnd(",".ToCharArray());
             CommandDocument mongoCmd = new CommandDocument();
             mongoCmd.Add("addshard", cmdPara);
-            return routeSvr.RunAdminCommand(mongoCmd);
+            return ExecuteMongoCommand(mongoCmd, routeSvr);
         }
         /// <summary>
         /// 数据库分片
@@ -77,7 +94,7 @@ namespace MagicMongoDBTool.Module
             CommandDocument mongoCmd = new CommandDocument();
             mongoCmd = new CommandDocument();
             mongoCmd.Add("enablesharding", shardingDB);
-            return routeSvr.RunAdminCommand(mongoCmd);
+            return ExecuteMongoCommand(mongoCmd, routeSvr);
         }
         /// <summary>
         /// 数据集分片
@@ -91,7 +108,7 @@ namespace MagicMongoDBTool.Module
             CommandDocument mongoCmd = new CommandDocument();
             mongoCmd.Add("shardcollection", sharingCollection);
             mongoCmd.Add("key", shardingKey);
-            return routeSvr.RunAdminCommand(mongoCmd);
+            return ExecuteMongoCommand(mongoCmd, routeSvr);
         }
     }
 }

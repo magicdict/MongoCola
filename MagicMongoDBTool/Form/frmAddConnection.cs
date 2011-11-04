@@ -21,15 +21,22 @@ namespace MagicMongoDBTool
         {
 
             InitializeComponent();
+
+            //Modify Mode
+            ModifyConn = SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName];
+
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
                 lstServerce.Items.Add(item.HostName);
+
+                if (ModifyConn.ServerType == ConfigHelper.SvrType.ReplsetSvr && ModifyConn.ReplsetList.Contains(item.HostName))
+                {
+                    lstServerce.SetSelected(lstServerce.Items.Count - 1, true); 
+                }
             }
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
 
-            
-            //Modify Mode
-            ModifyConn = SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName];
+
             txtHostName.Text = ModifyConn.HostName;
             txtHostName.Enabled = false;
             txtIpAddr.Text = ModifyConn.IpAddr;
@@ -39,7 +46,8 @@ namespace MagicMongoDBTool
             cmdAdd.Text = "修改";
             chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
             txtReplSet.Text = ModifyConn.ReplSetName;
- 
+
+
             txtDataBaseName.Text = ModifyConn.DataBaseName;
             chkLoginAsAdmin.Checked = ModifyConn.LoginAsAdmin;
 
@@ -61,9 +69,14 @@ namespace MagicMongoDBTool
             }
 
         }
-
+        /// <summary>
+        /// 新建或者修改
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdAdd_Click(object sender, EventArgs e)
         {
+            ModifyConn.ReplsetList = new List<String>();
             ModifyConn.HostName = txtHostName.Text;
             ModifyConn.IpAddr = txtIpAddr.Text;
             if (txtPort.Text != String.Empty)
@@ -132,11 +145,11 @@ namespace MagicMongoDBTool
             //副本
             if (this.radReplSet.Checked)
             {
-                if (lstServerce.SelectedItems.Count == 0) {
+                if (lstServerce.SelectedItems.Count == 0)
+                {
                     MessageBox.Show("请输入用户名或密码");
                     return;
                 }
-                ModifyConn.ReplsetList = new List<String>();
                 foreach (String item in lstServerce.SelectedItems)
                 {
                     ModifyConn.ReplsetList.Add(item);
