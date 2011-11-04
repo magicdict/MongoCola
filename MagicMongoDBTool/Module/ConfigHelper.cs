@@ -23,7 +23,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 路由服务器[mongos]
             /// </summary>
-            RouteSvr
+            RouteSvr,
+            /// <summary>
+            /// 副本服务器[Virtul]
+            /// </summary>
+            ReplsetSvr
         }
         /// <summary>
         /// 链接结构体
@@ -70,6 +74,10 @@ namespace MagicMongoDBTool.Module
             /// 数据库名称
             /// </summary>
             public string DataBaseName;
+            /// <summary>
+            /// 副本服务器列表
+            /// </summary>
+            public List<String> ReplsetList;
         }
         /// <summary>
         /// 连接配置列表(管理用）

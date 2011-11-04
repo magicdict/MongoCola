@@ -50,6 +50,9 @@
             this.lblDataBaseName = new System.Windows.Forms.Label();
             this.txtDataBaseName = new QLFUI.TextBoxEx();
             this.chkLoginAsAdmin = new System.Windows.Forms.CheckBox();
+            this.radReplSet = new System.Windows.Forms.RadioButton();
+            this.lstServerce = new System.Windows.Forms.ListBox();
+            this.lblReplsetList = new System.Windows.Forms.Label();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +60,8 @@
             // 
             this.contentPanel.BackColor = System.Drawing.Color.Transparent;
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
+            this.contentPanel.Controls.Add(this.lblReplsetList);
+            this.contentPanel.Controls.Add(this.lstServerce);
             this.contentPanel.Controls.Add(this.chkLoginAsAdmin);
             this.contentPanel.Controls.Add(this.txtDataBaseName);
             this.contentPanel.Controls.Add(this.lblDataBaseName);
@@ -68,6 +73,7 @@
             this.contentPanel.Controls.Add(this.txtHostName);
             this.contentPanel.Controls.Add(this.lblIpAddr);
             this.contentPanel.Controls.Add(this.lblReplsetName);
+            this.contentPanel.Controls.Add(this.radReplSet);
             this.contentPanel.Controls.Add(this.radRouteSrv);
             this.contentPanel.Controls.Add(this.radConfigSrv);
             this.contentPanel.Controls.Add(this.radDataSrv);
@@ -79,13 +85,13 @@
             this.contentPanel.Controls.Add(this.lblPort);
             this.contentPanel.Controls.Add(this.lblHostName);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(572, 229);
+            this.contentPanel.Size = new System.Drawing.Size(572, 333);
             // 
             // lblReplsetName
             // 
             this.lblReplsetName.AutoSize = true;
             this.lblReplsetName.BackColor = System.Drawing.Color.Transparent;
-            this.lblReplsetName.Location = new System.Drawing.Point(49, 87);
+            this.lblReplsetName.Location = new System.Drawing.Point(49, 88);
             this.lblReplsetName.Name = "lblReplsetName";
             this.lblReplsetName.Size = new System.Drawing.Size(55, 13);
             this.lblReplsetName.TabIndex = 29;
@@ -95,7 +101,7 @@
             // 
             this.radRouteSrv.AutoSize = true;
             this.radRouteSrv.BackColor = System.Drawing.Color.Transparent;
-            this.radRouteSrv.Location = new System.Drawing.Point(397, 85);
+            this.radRouteSrv.Location = new System.Drawing.Point(224, 213);
             this.radRouteSrv.Name = "radRouteSrv";
             this.radRouteSrv.Size = new System.Drawing.Size(85, 17);
             this.radRouteSrv.TabIndex = 8;
@@ -106,7 +112,7 @@
             // 
             this.radConfigSrv.AutoSize = true;
             this.radConfigSrv.BackColor = System.Drawing.Color.Transparent;
-            this.radConfigSrv.Location = new System.Drawing.Point(306, 87);
+            this.radConfigSrv.Location = new System.Drawing.Point(133, 213);
             this.radConfigSrv.Name = "radConfigSrv";
             this.radConfigSrv.Size = new System.Drawing.Size(85, 17);
             this.radConfigSrv.TabIndex = 7;
@@ -118,7 +124,7 @@
             this.radDataSrv.AutoSize = true;
             this.radDataSrv.BackColor = System.Drawing.Color.Transparent;
             this.radDataSrv.Checked = true;
-            this.radDataSrv.Location = new System.Drawing.Point(225, 87);
+            this.radDataSrv.Location = new System.Drawing.Point(52, 213);
             this.radDataSrv.Name = "radDataSrv";
             this.radDataSrv.Size = new System.Drawing.Size(85, 17);
             this.radDataSrv.TabIndex = 6;
@@ -130,7 +136,7 @@
             // 
             this.chkSlaveOk.AutoSize = true;
             this.chkSlaveOk.BackColor = System.Drawing.Color.Transparent;
-            this.chkSlaveOk.Location = new System.Drawing.Point(52, 113);
+            this.chkSlaveOk.Location = new System.Drawing.Point(52, 238);
             this.chkSlaveOk.Name = "chkSlaveOk";
             this.chkSlaveOk.Size = new System.Drawing.Size(424, 17);
             this.chkSlaveOk.TabIndex = 9;
@@ -140,7 +146,7 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(279, 165);
+            this.cmdCancel.Location = new System.Drawing.Point(289, 284);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 37);
             this.cmdCancel.TabIndex = 9;
@@ -149,7 +155,7 @@
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(190, 165);
+            this.cmdAdd.Location = new System.Drawing.Point(200, 284);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 37);
             this.cmdAdd.TabIndex = 8;
@@ -345,18 +351,48 @@
             // 
             this.chkLoginAsAdmin.AutoSize = true;
             this.chkLoginAsAdmin.Enabled = false;
-            this.chkLoginAsAdmin.Location = new System.Drawing.Point(52, 136);
+            this.chkLoginAsAdmin.Location = new System.Drawing.Point(52, 261);
             this.chkLoginAsAdmin.Name = "chkLoginAsAdmin";
             this.chkLoginAsAdmin.Size = new System.Drawing.Size(421, 17);
             this.chkLoginAsAdmin.TabIndex = 34;
             this.chkLoginAsAdmin.Text = "作为Admin登陆[系统自动配置，只有在数据库名称，用户名，密码填写时无效]";
             this.chkLoginAsAdmin.UseVisualStyleBackColor = true;
             // 
+            // radReplSet
+            // 
+            this.radReplSet.AutoSize = true;
+            this.radReplSet.BackColor = System.Drawing.Color.Transparent;
+            this.radReplSet.Location = new System.Drawing.Point(315, 212);
+            this.radReplSet.Name = "radReplSet";
+            this.radReplSet.Size = new System.Drawing.Size(85, 17);
+            this.radReplSet.TabIndex = 8;
+            this.radReplSet.Text = "副本服务器";
+            this.radReplSet.UseVisualStyleBackColor = false;
+            // 
+            // lstServerce
+            // 
+            this.lstServerce.FormattingEnabled = true;
+            this.lstServerce.Location = new System.Drawing.Point(116, 136);
+            this.lstServerce.Name = "lstServerce";
+            this.lstServerce.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.lstServerce.Size = new System.Drawing.Size(445, 69);
+            this.lstServerce.TabIndex = 35;
+            // 
+            // lblReplsetList
+            // 
+            this.lblReplsetList.AutoSize = true;
+            this.lblReplsetList.BackColor = System.Drawing.Color.Transparent;
+            this.lblReplsetList.Location = new System.Drawing.Point(49, 114);
+            this.lblReplsetList.Name = "lblReplsetList";
+            this.lblReplsetList.Size = new System.Drawing.Size(91, 13);
+            this.lblReplsetList.TabIndex = 36;
+            this.lblReplsetList.Text = "副本服务器列表";
+            // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(574, 292);
+            this.ClientSize = new System.Drawing.Size(574, 396);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmAddConnection";
             this.ShowSelectSkinButton = false;
@@ -390,5 +426,8 @@
         private QLFUI.TextBoxEx txtDataBaseName;
         private System.Windows.Forms.Label lblDataBaseName;
         private System.Windows.Forms.CheckBox chkLoginAsAdmin;
+        private System.Windows.Forms.Label lblReplsetList;
+        private System.Windows.Forms.ListBox lstServerce;
+        private System.Windows.Forms.RadioButton radReplSet;
     }
 }

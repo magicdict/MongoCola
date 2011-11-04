@@ -40,13 +40,23 @@ namespace MagicMongoDBTool.Module
                         mongoSvrSetting.DefaultCredentials = new MongoCredentials(config.UserName, config.Password, config.LoginAsAdmin);
                     }
                     //ReplsetName不是固有属性，可以设置的。
-                    if (config.ReplSetName != string.Empty)
+                    if (config.ServerType == ConfigHelper.SvrType.ReplsetSvr)
                     {
                         mongoSvrSetting.ReplicaSetName = config.ReplSetName;
+                        mongoSvrSetting.ConnectionMode = ConnectionMode.ReplicaSet;
+                        List<MongoServerAddress> ReplsetSvrList = new List<MongoServerAddress>();
+                        foreach (String item in config.ReplsetList)
+                        {
+                            MongoServerAddress ReplSrv = new MongoServerAddress(
+                                            SystemManager.ConfigHelperInstance.ConnectionList[item].IpAddr,
+                                            SystemManager.ConfigHelperInstance.ConnectionList[item].Port);
+                            ReplsetSvrList.Add(ReplSrv);
+                        }
+                        mongoSvrSetting.Servers = ReplsetSvrList;
                     }
                     MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
                     _mongoSrvLst.Add(config.HostName, masterMongoSvr);
-
+                    masterMongoSvr.Connect();
                 }
                 catch (Exception ex)
                 {
@@ -66,12 +76,8 @@ namespace MagicMongoDBTool.Module
             foreach (string mongoSvrKey in _mongoSrvLst.Keys)
             {
                 MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                //这里始终无法获得ReplsetName,通过沟通，确认是驱动程序的Bug
-                //https://jira.mongodb.org/browse/CSHARP-349
-                TreeNode mongoSvrNode = new TreeNode(mongoSvrKey + " [" + 
-                                                     mongoSvr.Settings.Server.Host + ":" + 
-                                                     mongoSvr.Settings.Server.Port + "]" + 
-                                                     (mongoSvr.ReplicaSetName != null?"副本名称：" + mongoSvr.ReplicaSetName:String.Empty));
+                TreeNode mongoSvrNode = new TreeNode(mongoSvr.ReplicaSetName != null ? "副本名称：" + mongoSvr.ReplicaSetName :
+                                                     (mongoSvrKey + " [" + mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port + "]"));
                 try
                 {
                     List<string> databaseNameList = new List<string>();

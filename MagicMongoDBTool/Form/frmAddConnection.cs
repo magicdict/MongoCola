@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+using System.Collections.Generic;
 
 namespace MagicMongoDBTool
 {
@@ -10,11 +11,23 @@ namespace MagicMongoDBTool
         public frmAddConnection()
         {
             InitializeComponent();
+            foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
+            {
+                lstServerce.Items.Add(item.HostName);
+            }
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
         }
         public frmAddConnection(String ConnectionName)
         {
+
             InitializeComponent();
+            foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
+            {
+                lstServerce.Items.Add(item.HostName);
+            }
+            cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
+
+            
             //Modify Mode
             ModifyConn = SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName];
             txtHostName.Text = ModifyConn.HostName;
@@ -26,9 +39,10 @@ namespace MagicMongoDBTool
             cmdAdd.Text = "修改";
             chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
             txtReplSet.Text = ModifyConn.ReplSetName;
+ 
             txtDataBaseName.Text = ModifyConn.DataBaseName;
             chkLoginAsAdmin.Checked = ModifyConn.LoginAsAdmin;
-            cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
+
             switch (ModifyConn.ServerType)
             {
                 case ConfigHelper.SvrType.ConfigSvr:
@@ -36,6 +50,9 @@ namespace MagicMongoDBTool
                     break;
                 case ConfigHelper.SvrType.RouteSvr:
                     radRouteSrv.Checked = true;
+                    break;
+                case ConfigHelper.SvrType.ReplsetSvr:
+                    radReplSet.Checked = true;
                     break;
                 case ConfigHelper.SvrType.DataSvr:
                 default:
@@ -49,7 +66,10 @@ namespace MagicMongoDBTool
         {
             ModifyConn.HostName = txtHostName.Text;
             ModifyConn.IpAddr = txtIpAddr.Text;
-            ModifyConn.Port = Convert.ToInt32(txtPort.Text);
+            if (txtPort.Text != String.Empty)
+            {
+                ModifyConn.Port = Convert.ToInt32(txtPort.Text);
+            }
             ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
             ModifyConn.ReplSetName = txtReplSet.Text;
             ModifyConn.UserName = txtUsername.Text;
@@ -108,6 +128,22 @@ namespace MagicMongoDBTool
                 ModifyConn.LoginAsAdmin = true;
                 ModifyConn.IsSlaveOk = false;
             }
+
+            //副本
+            if (this.radReplSet.Checked)
+            {
+                if (lstServerce.SelectedItems.Count == 0) {
+                    MessageBox.Show("请输入用户名或密码");
+                    return;
+                }
+                ModifyConn.ReplsetList = new List<String>();
+                foreach (String item in lstServerce.SelectedItems)
+                {
+                    ModifyConn.ReplsetList.Add(item);
+                }
+                ModifyConn.ServerType = ConfigHelper.SvrType.ReplsetSvr;
+            }
+
             if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.HostName))
             {
                 SystemManager.ConfigHelperInstance.ConnectionList[ModifyConn.HostName] = ModifyConn;
@@ -116,6 +152,7 @@ namespace MagicMongoDBTool
             {
                 SystemManager.ConfigHelperInstance.ConnectionList.Add(ModifyConn.HostName, ModifyConn);
             }
+
             this.Close();
         }
     }
