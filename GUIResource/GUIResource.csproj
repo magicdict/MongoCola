@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\MagicMongoDBTool\dll\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -72,6 +72,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\%2845,12%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2842,48%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2831,20%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2811,18%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2800,48%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2841,49%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2845,07%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\%2818,27%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

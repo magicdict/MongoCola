@@ -11,45 +11,41 @@ namespace MagicMongoDBTool
         public frmAddConnection()
         {
             InitializeComponent();
-            foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
-            {
-                lstServerce.Items.Add(item.HostName);
-            }
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
         }
         public frmAddConnection(String ConnectionName)
         {
 
             InitializeComponent();
-
             //Modify Mode
             ModifyConn = SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName];
 
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
-                lstServerce.Items.Add(item.HostName);
-
-                if (ModifyConn.ServerType == ConfigHelper.SvrType.ReplsetSvr && ModifyConn.ReplsetList.Contains(item.HostName))
+                if (item.MainReplSetName == ModifyConn.ReplSetName)
                 {
-                    lstServerce.SetSelected(lstServerce.Items.Count - 1, true); 
+                    lstServerce.Items.Add(item.ConnectionName);
+                    if (ModifyConn.ServerType == ConfigHelper.SvrType.ReplsetSvr && ModifyConn.ReplsetList.Contains(item.ConnectionName))
+                    {
+                        lstServerce.SetSelected(lstServerce.Items.Count - 1, true);
+                    }
                 }
             }
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
 
 
-            txtHostName.Text = ModifyConn.HostName;
+            txtHostName.Text = ModifyConn.ConnectionName;
             txtHostName.Enabled = false;
             txtIpAddr.Text = ModifyConn.IpAddr;
+            txtMainReplsetName.Text = ModifyConn.MainReplSetName;
             txtPort.Text = ModifyConn.Port.ToString();
             txtUsername.Text = ModifyConn.UserName;
             txtPassword.Text = ModifyConn.Password;
             cmdAdd.Text = "修改";
             chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
+            chkSafeMode.Checked = ModifyConn.IsSafeMode;
             txtReplSet.Text = ModifyConn.ReplSetName;
-
-
             txtDataBaseName.Text = ModifyConn.DataBaseName;
-            chkLoginAsAdmin.Checked = ModifyConn.LoginAsAdmin;
 
             switch (ModifyConn.ServerType)
             {
@@ -58,9 +54,6 @@ namespace MagicMongoDBTool
                     break;
                 case ConfigHelper.SvrType.RouteSvr:
                     radRouteSrv.Checked = true;
-                    break;
-                case ConfigHelper.SvrType.ReplsetSvr:
-                    radReplSet.Checked = true;
                     break;
                 case ConfigHelper.SvrType.DataSvr:
                 default:
@@ -77,18 +70,20 @@ namespace MagicMongoDBTool
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             ModifyConn.ReplsetList = new List<String>();
-            ModifyConn.HostName = txtHostName.Text;
+            ModifyConn.ConnectionName = txtHostName.Text;
             ModifyConn.IpAddr = txtIpAddr.Text;
             if (txtPort.Text != String.Empty)
             {
                 ModifyConn.Port = Convert.ToInt32(txtPort.Text);
             }
             ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
+            ModifyConn.IsSafeMode = chkSafeMode.Checked;
             ModifyConn.ReplSetName = txtReplSet.Text;
             ModifyConn.UserName = txtUsername.Text;
             ModifyConn.Password = txtPassword.Text;
             ModifyConn.DataBaseName = txtDataBaseName.Text;
-            ModifyConn.LoginAsAdmin = chkLoginAsAdmin.Checked;
+            ModifyConn.MainReplSetName = txtMainReplsetName.Text;
+
             //仅有用户名或密码
             if (txtUsername.Text != string.Empty && txtPassword.Text == String.Empty)
             {
@@ -100,7 +95,8 @@ namespace MagicMongoDBTool
                 MessageBox.Show("请输入用户名");
                 return;
             }
-            //数据库名称存在
+
+            //数据库名称存在，则必须输入用户名和密码
             if (txtDataBaseName.Text != string.Empty)
             {
                 //用户名或者密码为空
@@ -113,18 +109,21 @@ namespace MagicMongoDBTool
 
             if (txtDataBaseName.Text != string.Empty)
             {
-                //没有数据库的时候，只能以Admin登陆
+                //没有数据库名称的时候，只能以Admin登陆
                 ModifyConn.LoginAsAdmin = false;
             }
             else
             {
-                //数据库的时候，默认不以Admin登陆
+                //有数据库的时候，不能以Admin登陆
                 ModifyConn.LoginAsAdmin = true;
             }
+
+            //普通服务器
             if (radDataSrv.Checked)
             {
                 ModifyConn.ServerType = ConfigHelper.SvrType.DataSvr;
             }
+            //配置服务器
             if (radConfigSrv.Checked)
             {
                 ModifyConn.ServerType = ConfigHelper.SvrType.ConfigSvr;
@@ -133,6 +132,7 @@ namespace MagicMongoDBTool
                 ModifyConn.LoginAsAdmin = true;
                 ModifyConn.IsSlaveOk = false;
             }
+            //路由服务器
             if (radRouteSrv.Checked)
             {
                 //Config和Route不能设置为SlaveOK模式,必须设置为Admin模式
@@ -142,31 +142,51 @@ namespace MagicMongoDBTool
                 ModifyConn.IsSlaveOk = false;
             }
 
-            //副本
-            if (this.radReplSet.Checked)
+            //如果输入了副本名称
+            if (this.txtReplSet.Text != String.Empty)
             {
                 if (lstServerce.SelectedItems.Count == 0)
                 {
-                    MessageBox.Show("请输入用户名或密码");
+                    MessageBox.Show("请选择副本服务器");
                     return;
                 }
                 foreach (String item in lstServerce.SelectedItems)
                 {
                     ModifyConn.ReplsetList.Add(item);
                 }
+                //这里将自动选择为副本服务器
                 ModifyConn.ServerType = ConfigHelper.SvrType.ReplsetSvr;
             }
 
-            if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.HostName))
+            if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.ConnectionName))
             {
-                SystemManager.ConfigHelperInstance.ConnectionList[ModifyConn.HostName] = ModifyConn;
+                SystemManager.ConfigHelperInstance.ConnectionList[ModifyConn.ConnectionName] = ModifyConn;
             }
             else
             {
-                SystemManager.ConfigHelperInstance.ConnectionList.Add(ModifyConn.HostName, ModifyConn);
+                SystemManager.ConfigHelperInstance.ConnectionList.Add(ModifyConn.ConnectionName, ModifyConn);
             }
-
             this.Close();
+        }
+        /// <summary>
+        /// 动态更新主副本为指定副本的服务器列表
+        /// </summary>
+        /// <param name="strNewText"></param>
+        private void txtReplSet_TextChanged(string strNewText)
+        {
+            lstServerce.Items.Clear();
+            if (txtReplSet.Text == String.Empty) { return; }
+            foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
+            {
+                if (item.MainReplSetName == txtReplSet.Text)
+                {
+                    lstServerce.Items.Add(item.ConnectionName);
+                    if (ModifyConn.ServerType == ConfigHelper.SvrType.ReplsetSvr && ModifyConn.ReplsetList.Contains(item.ConnectionName))
+                    {
+                        lstServerce.SetSelected(lstServerce.Items.Count - 1, true);
+                    }
+                }
+            }
         }
     }
 }

@@ -24,14 +24,14 @@ namespace MagicMongoDBTool
         {
             _prmSvr = SystemManager.GetCurrentService();
             ConfigHelper.MongoConnectionConfig prmKeyPro = SystemManager.GetSelectedSvrProByName();
-            lblPrmInfo.Text = "主机为:" + prmKeyPro.HostName + "  副本名：" + prmKeyPro.ReplSetName;
+            lblPrmInfo.Text = "主机为:" + prmKeyPro.ConnectionName + "  副本名：" + prmKeyPro.ReplSetName;
             foreach (var item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
-                if ((prmKeyPro.HostName != item.HostName) && 
+                if ((prmKeyPro.ConnectionName != item.ConnectionName) && 
                     (prmKeyPro.ReplSetName == item.ReplSetName) &&
                     (item.ServerType == ConfigHelper.SvrType.DataSvr))
                 {
-                    lstShard.Items.Add(item.HostName);
+                    lstShard.Items.Add(item.ConnectionName);
                 }
             }
         }

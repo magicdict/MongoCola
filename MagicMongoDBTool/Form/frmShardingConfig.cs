@@ -48,7 +48,7 @@ namespace MagicMongoDBTool
                 {
                     if (item.ReplSetName == cmbReplsetName.Text)
                     {
-                        lstShard.Items.Add(item.HostName);
+                        lstShard.Items.Add(item.ConnectionName);
                     }
                 }
             }

@@ -23,14 +23,17 @@ namespace MagicMongoDBTool.Module
             {
                 try
                 {
-                    if (_mongoSrvLst.ContainsKey(config.HostName))
+                    if (_mongoSrvLst.ContainsKey(config.ConnectionName))
                     {
-                        _mongoSrvLst.Remove(config.HostName);
+                        _mongoSrvLst.Remove(config.ConnectionName);
                     }
                     MongoServerSettings mongoSvrSetting = new MongoServerSettings();
                     mongoSvrSetting.ConnectionMode = ConnectionMode.Direct;
-                    //Can't Use SlaveOk to a Route！！！
+                    //当一个服务器作为从属服务器，副本组中的备用服务器，这里一定要设置为SlaveOK
                     mongoSvrSetting.SlaveOk = config.IsSlaveOk;
+                    //安全模式
+                    mongoSvrSetting.SafeMode = new SafeMode(config.IsSafeMode);
+                    //Replset时候可以不用设置吗？                    
                     mongoSvrSetting.Server = new MongoServerAddress(config.IpAddr, config.Port);
                     //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
                     mongoSvrSetting.SocketTimeout = new TimeSpan(0, 10, 0);
@@ -39,14 +42,16 @@ namespace MagicMongoDBTool.Module
                         //认证的设定:注意，这里的密码是明文
                         mongoSvrSetting.DefaultCredentials = new MongoCredentials(config.UserName, config.Password, config.LoginAsAdmin);
                     }
-                    //ReplsetName不是固有属性，可以设置的。
                     if (config.ServerType == ConfigHelper.SvrType.ReplsetSvr)
                     {
+                        //ReplsetName不是固有属性,可以设置，不过必须保持与配置文件的一致
                         mongoSvrSetting.ReplicaSetName = config.ReplSetName;
                         mongoSvrSetting.ConnectionMode = ConnectionMode.ReplicaSet;
+                        //添加Replset服务器，注意，这里可能需要事先初始化副本
                         List<MongoServerAddress> ReplsetSvrList = new List<MongoServerAddress>();
                         foreach (String item in config.ReplsetList)
                         {
+                            //如果这里的服务器在启动的时候没有--Replset参数，将会出错，当然作为单体的服务器，启动是没有任何问题的
                             MongoServerAddress ReplSrv = new MongoServerAddress(
                                             SystemManager.ConfigHelperInstance.ConnectionList[item].IpAddr,
                                             SystemManager.ConfigHelperInstance.ConnectionList[item].Port);
@@ -55,12 +60,17 @@ namespace MagicMongoDBTool.Module
                         mongoSvrSetting.Servers = ReplsetSvrList;
                     }
                     MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
-                    _mongoSrvLst.Add(config.HostName, masterMongoSvr);
-                    masterMongoSvr.Connect();
+                    _mongoSrvLst.Add(config.ConnectionName, masterMongoSvr);
+                    if (config.ServerType == ConfigHelper.SvrType.ReplsetSvr) {
+                        //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
+                        if (masterMongoSvr.State == MongoServerState.Disconnected) {
+                            masterMongoSvr.Connect();
+                        }
+                    }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("无法链接到服务器：" + config.HostName);
+                    MessageBox.Show("无法链接到服务器：" + config.ConnectionName + ex.ToString());
                 }
             }
         }
@@ -76,6 +86,7 @@ namespace MagicMongoDBTool.Module
             foreach (string mongoSvrKey in _mongoSrvLst.Keys)
             {
                 MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
                 TreeNode mongoSvrNode = new TreeNode(mongoSvr.ReplicaSetName != null ? "副本名称：" + mongoSvr.ReplicaSetName :
                                                      (mongoSvrKey + " [" + mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port + "]"));
                 try
@@ -83,21 +94,29 @@ namespace MagicMongoDBTool.Module
                     List<string> databaseNameList = new List<string>();
                     if (SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName != String.Empty)
                     {
-                        TreeNode mongoDBNode = FillDataBaseInfoToTreeNode(SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName, mongoSvr, mongoSvrKey);
-                        mongoDBNode.Tag = SINGLE_DATABASE_TAG + ":" + mongoSvrKey + "/" + SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName;
-                        mongoSvrNode.Nodes.Add(mongoDBNode);
+                        TreeNode mongoSingleDBNode = FillDataBaseInfoToTreeNode(SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName, mongoSvr, mongoSvrKey);
+                        mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + mongoSvrKey + "/" + SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName;
+                        mongoSingleDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                        mongoSingleDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                        mongoSvrNode.Nodes.Add(mongoSingleDBNode);
                         //单数据库模式
                         mongoSvrNode.Tag = SINGLE_DB_SERVICE_TAG + ":" + mongoSvrKey;
+                        mongoSvrNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+                        mongoSvrNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
                     }
                     else
                     {
                         databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                         foreach (String strDBName in databaseNameList)
                         {
-                            TreeNode mongoDBnode = FillDataBaseInfoToTreeNode(strDBName, mongoSvr, mongoSvrKey);
-                            mongoSvrNode.Nodes.Add(mongoDBnode);
+                            TreeNode mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, mongoSvr, mongoSvrKey);
+                            mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                            mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                            mongoSvrNode.Nodes.Add(mongoDBNode);
                         }
                         mongoSvrNode.Tag = SERVICE_TAG + ":" + mongoSvrKey;
+                        mongoSvrNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+                        mongoSvrNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
                     }
                     trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
@@ -154,6 +173,8 @@ namespace MagicMongoDBTool.Module
                     mongoColNode = new TreeNode(strColName + "[访问异常]");
                     throw;
                 }
+                mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+                mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
                 mongoDBNode.Nodes.Add(mongoColNode);
             }
             return mongoDBNode;
@@ -302,11 +323,15 @@ namespace MagicMongoDBTool.Module
                 mongoIndexNode.Nodes.Add("版本:" + indexDoc.Version.ToString());
                 mongoIndex.Nodes.Add(mongoIndexNode);
             }
+            mongoIndex.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
+            mongoIndex.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
             mongoColNode.Nodes.Add(mongoIndex);
             //End ListIndex
 
             //Start Data
             TreeNode mongoData = new TreeNode("Data");
+            mongoData.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Document;
+            mongoData.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Document;
             mongoData.Tag = DOCUMENT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strTagColName;
             mongoColNode.Nodes.Add(mongoData);
             //End Data

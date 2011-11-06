@@ -35,9 +35,9 @@ namespace MagicMongoDBTool.Module
         public struct MongoConnectionConfig
         {
             /// <summary>
-            /// Host名称
+            /// 连接名称
             /// </summary>
-            public string HostName;
+            public string ConnectionName;
             /// <summary>
             /// IP地址
             /// </summary>
@@ -47,9 +47,17 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public int Port;
             /// <summary>
+            /// 主副本名称
+            /// </summary>
+            public String MainReplSetName;
+            /// <summary>
             /// 是否启用主从模式[Route的时候，不能设置为True]
             /// </summary>
             public bool IsSlaveOk;
+            /// <summary>
+            /// 是否为安全模式
+            /// </summary>
+            public bool IsSafeMode;
             /// <summary>
             /// 作为Admin登陆
             /// </summary>
@@ -95,7 +103,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public Boolean AddConnection(MongoConnectionConfig con)
         {
-            ConnectionList.Add(con.HostName, con);
+            ConnectionList.Add(con.ConnectionName, con);
             return true;
         }
         /// <summary>
@@ -126,7 +134,7 @@ namespace MagicMongoDBTool.Module
             ConfigHelper t = (ConfigHelper)xs.Deserialize(fs);
             foreach (MongoConnectionConfig item in t.SaveConnectionList)
             {
-                t.ConnectionList.Add(item.HostName, item);
+                t.ConnectionList.Add(item.ConnectionName, item);
             }
             fs.Close();
             _configFilename = configFileName;

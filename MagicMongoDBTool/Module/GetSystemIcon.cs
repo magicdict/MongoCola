@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using GUIResource;
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
@@ -35,6 +36,28 @@ namespace MagicMongoDBTool.Module
         /// 图片数组
         /// </summary>
         public static ImageList IconImagelist = new ImageList();
+
+        public static ImageList MainTreeImage = new ImageList();
+        public enum MainTreeImageType : int
+        {
+            Blank = 0,
+            WebServer = 1,
+            Database = 2,
+            Collection = 3,
+            Keys = 4,
+            Document = 5
+        }
+        public static void InitMainTreeImage()
+        {
+            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Blank));
+            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.WebServer));
+            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Database));
+            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Collection));
+            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Keys));
+            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Document));
+
+        }
+
         /// <summary>
         /// 依据文件名读取图标，若指定文件不存在，则返回空值。
         /// </summary>

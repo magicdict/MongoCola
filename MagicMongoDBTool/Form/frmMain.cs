@@ -10,6 +10,8 @@ namespace MagicMongoDBTool
         public frmMain()
         {
             InitializeComponent();
+            GetSystemIcon.InitMainTreeImage();
+            trvsrvlst.ImageList = GetSystemIcon.MainTreeImage;
             SetMenuImages();
             SetToolBar();
         }
@@ -100,20 +102,26 @@ namespace MagicMongoDBTool
             statusStripMain.Items[1].Text = string.Empty;
         }
         /// <summary>
-        /// 鼠标选中节点
+        /// 清除数据显示区
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void trvsrvlst_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            statusStripMain.Items[0].Text = string.Empty;
-            statusStripMain.Items[1].Text = string.Empty;
+        private void clearDataShower() {
             lstData.Clear();
             txtData.Text = "";
             trvData.Nodes.Clear();
             lstData.ContextMenuStrip = null;
             trvData.ContextMenuStrip = null;
             this.contextMenuStripMain = null;
+            statusStripMain.Items[0].Text = string.Empty;
+            statusStripMain.Items[1].Text = string.Empty;
+        }
+        /// <summary>
+        /// 鼠标选中节点
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trvsrvlst_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            clearDataShower();
             if (this.trvData.SelectedNode != null)
             {
                 this.trvData.SelectedNode.ContextMenuStrip = null;
@@ -433,7 +441,7 @@ namespace MagicMongoDBTool
 
         #endregion
 
-        #region"Connection"
+        #region"数据库连接"
         /// <summary>
         /// 添加数据库连接
         /// </summary>
@@ -445,8 +453,7 @@ namespace MagicMongoDBTool
             mfrm.ShowDialog();
             mfrm.Close();
             mfrm.Dispose();
-            MongoDBHelpler.FillMongoServiceToTreeView(trvsrvlst);
-            lstData.Clear();
+            RefreshToolStripMenuItem_Click(sender,e);
         }
         /// <summary>
         /// 刷新
@@ -456,8 +463,8 @@ namespace MagicMongoDBTool
         private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DisableAllOpr();
+            clearDataShower();
             MongoDBHelpler.FillMongoServiceToTreeView(trvsrvlst);
-            lstData.Clear();
         }
         /// <summary>
         /// 服务器状态
@@ -501,7 +508,7 @@ namespace MagicMongoDBTool
 
         #endregion
 
-        #region"Tool"
+        #region"工具"
         /// <summary>
         /// 配置
         /// </summary>

@@ -19,7 +19,7 @@ namespace MagicMongoDBTool
             lstServerce.Items.Clear();
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
-                lstServerce.Items.Add(item.HostName);
+                lstServerce.Items.Add(item.ConnectionName);
             }
             SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
         }
