@@ -96,7 +96,6 @@
             this.Controls.Add(this.cmbCompareOpr);
             this.Name = "ctlQueryCondition";
             this.Size = new System.Drawing.Size(533, 22);
-            this.Load += new System.EventHandler(this.ctlQueryCondition_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -16,6 +16,7 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
+        public List<String> ColumnList;
         public Boolean IsSeted
         {
             get
@@ -96,7 +97,7 @@ namespace MagicMongoDBTool
             cmbStartMark.SelectedIndex = 0;
             cmbEndMark.SelectedIndex = 0;
         }
-        private void ctlQueryCondition_Load(object sender, EventArgs e)
+        public void Init(List<String> ColumnList)
         {
             cmbStartMark.Items.Add(" ");
             cmbStartMark.Items.Add("(");
@@ -117,7 +118,7 @@ namespace MagicMongoDBTool
             cmbDataType.Items.Add("布尔");
 
             //字段表的载入
-            foreach (var item in MongoDBHelpler.ColumnList)
+            foreach (var item in ColumnList)
             {
                 this.cmbColName.Items.Add(item);
             }

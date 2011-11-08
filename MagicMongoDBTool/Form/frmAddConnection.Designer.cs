@@ -441,7 +441,7 @@
             this.lblAttention.Name = "lblAttention";
             this.lblAttention.Size = new System.Drawing.Size(219, 13);
             this.lblAttention.TabIndex = 42;
-            this.lblAttention.Text = "密码将于明文形式保存于配置文件中!";
+            this.lblAttention.Text = "密码将以明文形式保存于配置文件中!";
             // 
             // frmAddConnection
             // 

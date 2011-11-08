@@ -29,6 +29,9 @@ namespace MagicMongoDBTool
             this.ImportDataFromAccessToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.AccessDB);
             this.RefreshToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Refresh);
             this.OptionToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Option);
+
+            this.ThanksToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Smile);
+
         }
 
         private ToolStripButton ImportDataFromAccessToolStripButton;

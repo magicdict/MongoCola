@@ -61,9 +61,11 @@ namespace MagicMongoDBTool.Module
                     }
                     MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
                     _mongoSrvLst.Add(config.ConnectionName, masterMongoSvr);
-                    if (config.ServerType == ConfigHelper.SvrType.ReplsetSvr) {
+                    if (config.ServerType == ConfigHelper.SvrType.ReplsetSvr)
+                    {
                         //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
-                        if (masterMongoSvr.State == MongoServerState.Disconnected) {
+                        if (masterMongoSvr.State == MongoServerState.Disconnected)
+                        {
                             masterMongoSvr.Connect();
                         }
                     }
@@ -125,10 +127,11 @@ namespace MagicMongoDBTool.Module
                     //需要验证的数据服务器，没有Admin权限无法获得数据库列表
                     MessageBox.Show("认证信息错误，请检查数据库的用户名和密码", "认证失败");
                 }
-                catch (Exception) { 
+                catch (Exception)
+                {
                     //暂时不处理任何异常，简单跳过
                     mongoSvrNode.Text += "[无法连接]";
-                }  
+                }
             }
         }
         /// <summary>
@@ -345,7 +348,52 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 在第一次展示数据的时候，记录下字段名称，用于在Query的时候使用
         /// </summary>
-        public static List<string> ColumnList = new List<string>();
+        //public static List<string> ColumnList = new List<string>();
+
+        /// <summary>
+        /// 通过读取N条记录来确定数据集结构
+        /// </summary>
+        /// <param name="mongoCol">数据集</param>
+        /// <param name="CheckRecordCnt">使用数据量，省略时为全部，海量数据时相当消耗性能</param>
+        /// <returns></returns>
+        public static List<string> GetCollectionSchame(MongoCollection mongoCol, int CheckRecordCnt = 100)
+        {
+            List<string> _ColumnList = new List<string>();
+            List<BsonDocument> _dataList = new List<BsonDocument>();
+            _dataList = mongoCol.FindAllAs<BsonDocument>()
+                                 .SetLimit(CheckRecordCnt)
+                                 .ToList<BsonDocument>();
+            foreach (BsonDocument doc in _dataList)
+            {
+                foreach (var item in getBsonNameList(String.Empty, doc))
+                {
+                    if (!_ColumnList.Contains(item)){
+                        _ColumnList.Add(item);
+                    }
+                } 
+            }
+            return _ColumnList;
+        }
+        public static List<string> getBsonNameList(String docName, BsonDocument doc)
+        {
+            List<string> _ColumnList = new List<string>();
+            foreach (String strName in doc.Names)
+            {
+                if (doc.GetValue(strName).IsBsonDocument)
+                {
+                    //包含子文档的时候
+                    foreach (var item in getBsonNameList(strName, doc.GetValue(strName).AsBsonDocument))
+                    {
+                        _ColumnList.Add(item);
+                    }
+                }
+                else
+                {
+                    _ColumnList.Add(docName + (docName != string.Empty ? "." : String.Empty) + strName);
+                }
+            }
+            return _ColumnList;
+        }
         /// <summary>
         /// 展示数据
         /// </summary>
@@ -358,6 +406,7 @@ namespace MagicMongoDBTool.Module
             MongoCollection mongoCol = _mongoSrvLst[cp[(int)PathLv.ServerLV]]
                                       .GetDatabase(cp[(int)PathLv.DatabaseLV])
                                       .GetCollection(cp[(int)PathLv.CollectionLV]);
+
             List<BsonDocument> dataList = new List<BsonDocument>();
             //Query condition:
             if (IsUseFilter)
@@ -384,7 +433,6 @@ namespace MagicMongoDBTool.Module
             {
                 //第一次显示，获得整个记录集的长度
                 CurrentCollectionTotalCnt = (int)mongoCol.FindAllAs<BsonDocument>().Count();
-                ColumnList.Clear();
             }
             SetPageEnable();
             _hasBSonBinary = false;
@@ -536,28 +584,27 @@ namespace MagicMongoDBTool.Module
                     SetUserListToListView(dataList, lstData);
                     break;
                 default:
-                    List<string> columnlist = new List<string>();
+                    List<string> _columnlist = new List<string>();
                     foreach (BsonDocument docItem in dataList)
                     {
                         ListViewItem lstItem = new ListViewItem();
                         foreach (String item in docItem.Names)
                         {
-                            if (!columnlist.Contains(item))
+                            if (!_columnlist.Contains(item))
                             {
-                                columnlist.Add(item);
+                                _columnlist.Add(item);
                                 lstData.Columns.Add(item);
-                                ColumnList.Add(item);
                             }
                         }
                         //Key:_id
-                        lstItem.Text = docItem.GetValue(columnlist[0]).ToString();
+                        lstItem.Text = docItem.GetValue(_columnlist[0]).ToString();
                         //这里保存真实的主Key数据，删除的时候使用
-                        lstItem.Tag = docItem.GetValue(columnlist[0]);
+                        lstItem.Tag = docItem.GetValue(_columnlist[0]);
                         //OtherItems
-                        for (int i = 1; i < columnlist.Count; i++)
+                        for (int i = 1; i < _columnlist.Count; i++)
                         {
                             BsonValue val;
-                            docItem.TryGetValue(columnlist[i].ToString(), out val);
+                            docItem.TryGetValue(_columnlist[i].ToString(), out val);
                             if (val == null)
                             {
                                 lstItem.SubItems.Add("");

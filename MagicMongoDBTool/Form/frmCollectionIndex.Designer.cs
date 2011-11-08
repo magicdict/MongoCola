@@ -35,17 +35,17 @@
             this.tabIndexMgr = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtIndexName = new QLFUI.TextBoxEx();
+            this.lblIndexName = new System.Windows.Forms.Label();
             this.chkIsUnique = new System.Windows.Forms.CheckBox();
             this.chkIsSparse = new System.Windows.Forms.CheckBox();
             this.chkDroppedDups = new System.Windows.Forms.CheckBox();
             this.chkIsBackground = new System.Windows.Forms.CheckBox();
-            this.ctlIndexCreate1 = new MagicMongoDBTool.ctlIndexCreate();
-            this.ctlIndexCreate2 = new MagicMongoDBTool.ctlIndexCreate();
-            this.ctlIndexCreate3 = new MagicMongoDBTool.ctlIndexCreate();
-            this.ctlIndexCreate4 = new MagicMongoDBTool.ctlIndexCreate();
             this.ctlIndexCreate5 = new MagicMongoDBTool.ctlIndexCreate();
-            this.lblIndexName = new System.Windows.Forms.Label();
-            this.txtIndexName = new QLFUI.TextBoxEx();
+            this.ctlIndexCreate4 = new MagicMongoDBTool.ctlIndexCreate();
+            this.ctlIndexCreate3 = new MagicMongoDBTool.ctlIndexCreate();
+            this.ctlIndexCreate2 = new MagicMongoDBTool.ctlIndexCreate();
+            this.ctlIndexCreate1 = new MagicMongoDBTool.ctlIndexCreate();
             this.contentPanel.SuspendLayout();
             this.tabIndexMgr.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -133,95 +133,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "管理索引";
             // 
-            // chkIsUnique
-            // 
-            this.chkIsUnique.AutoSize = true;
-            this.chkIsUnique.Location = new System.Drawing.Point(283, 163);
-            this.chkIsUnique.Name = "chkIsUnique";
-            this.chkIsUnique.Size = new System.Drawing.Size(74, 17);
-            this.chkIsUnique.TabIndex = 16;
-            this.chkIsUnique.Text = "统一索引";
-            this.chkIsUnique.UseVisualStyleBackColor = true;
-            // 
-            // chkIsSparse
-            // 
-            this.chkIsSparse.AutoSize = true;
-            this.chkIsSparse.Location = new System.Drawing.Point(203, 163);
-            this.chkIsSparse.Name = "chkIsSparse";
-            this.chkIsSparse.Size = new System.Drawing.Size(74, 17);
-            this.chkIsSparse.TabIndex = 15;
-            this.chkIsSparse.Text = "稀疏索引";
-            this.chkIsSparse.UseVisualStyleBackColor = true;
-            // 
-            // chkDroppedDups
-            // 
-            this.chkDroppedDups.AutoSize = true;
-            this.chkDroppedDups.Location = new System.Drawing.Point(99, 163);
-            this.chkDroppedDups.Name = "chkDroppedDups";
-            this.chkDroppedDups.Size = new System.Drawing.Size(98, 17);
-            this.chkDroppedDups.TabIndex = 14;
-            this.chkDroppedDups.Text = "重复删除索引";
-            this.chkDroppedDups.UseVisualStyleBackColor = true;
-            // 
-            // chkIsBackground
-            // 
-            this.chkIsBackground.AutoSize = true;
-            this.chkIsBackground.Location = new System.Drawing.Point(19, 163);
-            this.chkIsBackground.Name = "chkIsBackground";
-            this.chkIsBackground.Size = new System.Drawing.Size(74, 17);
-            this.chkIsBackground.TabIndex = 13;
-            this.chkIsBackground.Text = "背景索引";
-            this.chkIsBackground.UseVisualStyleBackColor = true;
-            // 
-            // ctlIndexCreate1
-            // 
-            this.ctlIndexCreate1.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate1.Location = new System.Drawing.Point(6, 19);
-            this.ctlIndexCreate1.Name = "ctlIndexCreate1";
-            this.ctlIndexCreate1.Size = new System.Drawing.Size(405, 25);
-            this.ctlIndexCreate1.TabIndex = 13;
-            // 
-            // ctlIndexCreate2
-            // 
-            this.ctlIndexCreate2.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate2.Location = new System.Drawing.Point(6, 44);
-            this.ctlIndexCreate2.Name = "ctlIndexCreate2";
-            this.ctlIndexCreate2.Size = new System.Drawing.Size(405, 25);
-            this.ctlIndexCreate2.TabIndex = 13;
-            // 
-            // ctlIndexCreate3
-            // 
-            this.ctlIndexCreate3.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate3.Location = new System.Drawing.Point(6, 69);
-            this.ctlIndexCreate3.Name = "ctlIndexCreate3";
-            this.ctlIndexCreate3.Size = new System.Drawing.Size(405, 25);
-            this.ctlIndexCreate3.TabIndex = 13;
-            // 
-            // ctlIndexCreate4
-            // 
-            this.ctlIndexCreate4.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate4.Location = new System.Drawing.Point(6, 94);
-            this.ctlIndexCreate4.Name = "ctlIndexCreate4";
-            this.ctlIndexCreate4.Size = new System.Drawing.Size(405, 25);
-            this.ctlIndexCreate4.TabIndex = 13;
-            // 
-            // ctlIndexCreate5
-            // 
-            this.ctlIndexCreate5.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate5.Location = new System.Drawing.Point(6, 119);
-            this.ctlIndexCreate5.Name = "ctlIndexCreate5";
-            this.ctlIndexCreate5.Size = new System.Drawing.Size(405, 25);
-            this.ctlIndexCreate5.TabIndex = 13;
-            // 
-            // lblIndexName
-            // 
-            this.lblIndexName.AutoSize = true;
-            this.lblIndexName.Location = new System.Drawing.Point(19, 195);
-            this.lblIndexName.Name = "lblIndexName";
-            this.lblIndexName.Size = new System.Drawing.Size(55, 13);
-            this.lblIndexName.TabIndex = 18;
-            this.lblIndexName.Text = "索引名称";
-            // 
             // txtIndexName
             // 
             this.txtIndexName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
@@ -229,7 +140,7 @@
             this.txtIndexName.BackColor = System.Drawing.Color.Transparent;
             this.txtIndexName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtIndexName.ForeImage = null;
-            this.txtIndexName.Location = new System.Drawing.Point(80, 186);
+            this.txtIndexName.Location = new System.Drawing.Point(81, 195);
             this.txtIndexName.Multiline = false;
             this.txtIndexName.Name = "txtIndexName";
             this.txtIndexName.Radius = 3;
@@ -239,6 +150,95 @@
             this.txtIndexName.UseSystemPasswordChar = false;
             this.txtIndexName.WaterMark = "索引名称(可选参数)";
             this.txtIndexName.WaterMarkColor = System.Drawing.Color.Silver;
+            // 
+            // lblIndexName
+            // 
+            this.lblIndexName.AutoSize = true;
+            this.lblIndexName.Location = new System.Drawing.Point(20, 204);
+            this.lblIndexName.Name = "lblIndexName";
+            this.lblIndexName.Size = new System.Drawing.Size(55, 13);
+            this.lblIndexName.TabIndex = 18;
+            this.lblIndexName.Text = "索引名称";
+            // 
+            // chkIsUnique
+            // 
+            this.chkIsUnique.AutoSize = true;
+            this.chkIsUnique.Location = new System.Drawing.Point(284, 172);
+            this.chkIsUnique.Name = "chkIsUnique";
+            this.chkIsUnique.Size = new System.Drawing.Size(74, 17);
+            this.chkIsUnique.TabIndex = 16;
+            this.chkIsUnique.Text = "统一索引";
+            this.chkIsUnique.UseVisualStyleBackColor = true;
+            // 
+            // chkIsSparse
+            // 
+            this.chkIsSparse.AutoSize = true;
+            this.chkIsSparse.Location = new System.Drawing.Point(204, 172);
+            this.chkIsSparse.Name = "chkIsSparse";
+            this.chkIsSparse.Size = new System.Drawing.Size(74, 17);
+            this.chkIsSparse.TabIndex = 15;
+            this.chkIsSparse.Text = "稀疏索引";
+            this.chkIsSparse.UseVisualStyleBackColor = true;
+            // 
+            // chkDroppedDups
+            // 
+            this.chkDroppedDups.AutoSize = true;
+            this.chkDroppedDups.Location = new System.Drawing.Point(100, 172);
+            this.chkDroppedDups.Name = "chkDroppedDups";
+            this.chkDroppedDups.Size = new System.Drawing.Size(98, 17);
+            this.chkDroppedDups.TabIndex = 14;
+            this.chkDroppedDups.Text = "重复删除索引";
+            this.chkDroppedDups.UseVisualStyleBackColor = true;
+            // 
+            // chkIsBackground
+            // 
+            this.chkIsBackground.AutoSize = true;
+            this.chkIsBackground.Location = new System.Drawing.Point(20, 172);
+            this.chkIsBackground.Name = "chkIsBackground";
+            this.chkIsBackground.Size = new System.Drawing.Size(74, 17);
+            this.chkIsBackground.TabIndex = 13;
+            this.chkIsBackground.Text = "背景索引";
+            this.chkIsBackground.UseVisualStyleBackColor = true;
+            // 
+            // ctlIndexCreate5
+            // 
+            this.ctlIndexCreate5.BackColor = System.Drawing.Color.Transparent;
+            this.ctlIndexCreate5.Location = new System.Drawing.Point(23, 135);
+            this.ctlIndexCreate5.Name = "ctlIndexCreate5";
+            this.ctlIndexCreate5.Size = new System.Drawing.Size(405, 32);
+            this.ctlIndexCreate5.TabIndex = 13;
+            // 
+            // ctlIndexCreate4
+            // 
+            this.ctlIndexCreate4.BackColor = System.Drawing.Color.Transparent;
+            this.ctlIndexCreate4.Location = new System.Drawing.Point(23, 103);
+            this.ctlIndexCreate4.Name = "ctlIndexCreate4";
+            this.ctlIndexCreate4.Size = new System.Drawing.Size(405, 32);
+            this.ctlIndexCreate4.TabIndex = 13;
+            // 
+            // ctlIndexCreate3
+            // 
+            this.ctlIndexCreate3.BackColor = System.Drawing.Color.Transparent;
+            this.ctlIndexCreate3.Location = new System.Drawing.Point(23, 71);
+            this.ctlIndexCreate3.Name = "ctlIndexCreate3";
+            this.ctlIndexCreate3.Size = new System.Drawing.Size(405, 32);
+            this.ctlIndexCreate3.TabIndex = 13;
+            // 
+            // ctlIndexCreate2
+            // 
+            this.ctlIndexCreate2.BackColor = System.Drawing.Color.Transparent;
+            this.ctlIndexCreate2.Location = new System.Drawing.Point(23, 39);
+            this.ctlIndexCreate2.Name = "ctlIndexCreate2";
+            this.ctlIndexCreate2.Size = new System.Drawing.Size(405, 32);
+            this.ctlIndexCreate2.TabIndex = 13;
+            // 
+            // ctlIndexCreate1
+            // 
+            this.ctlIndexCreate1.BackColor = System.Drawing.Color.Transparent;
+            this.ctlIndexCreate1.Location = new System.Drawing.Point(23, 7);
+            this.ctlIndexCreate1.Name = "ctlIndexCreate1";
+            this.ctlIndexCreate1.Size = new System.Drawing.Size(405, 32);
+            this.ctlIndexCreate1.TabIndex = 13;
             // 
             // frmCollectionIndex
             // 

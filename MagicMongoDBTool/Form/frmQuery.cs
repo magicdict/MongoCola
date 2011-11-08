@@ -2,11 +2,14 @@
 using System.Drawing;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
+using System.Collections.Generic;
 namespace MagicMongoDBTool
 {
     public partial class frmQuery : QLFUI.QLFForm
     {
         private MongoCollection _mongoCol = SystemManager.GetCurrentCollection();
+        private List<String> ColumnList = new List<String>();
+
         /// <summary>
         /// 条件输入器数量
         /// </summary>
@@ -24,8 +27,9 @@ namespace MagicMongoDBTool
         /// </summary>
         private void frmQuery_Load(object sender, EventArgs e)
         {
-            Point pos = new Point(5, 20);
-            foreach (var item in MongoDBHelpler.ColumnList)
+            ColumnList = MongoDBHelpler.GetCollectionSchame(_mongoCol);
+            
+            foreach (var item in ColumnList)
             {
                 //输出配置的初始化
                 MongoDBHelpler.QueryFieldItem queryFieldList = new MongoDBHelpler.QueryFieldItem();
@@ -35,24 +39,26 @@ namespace MagicMongoDBTool
                 //动态加载控件
                 ctlFieldInfo ctrItem = new ctlFieldInfo();
                 ctrItem.Name = item;
-                ctrItem.Location = pos;
+                ctrItem.Location = _conditionPos;
                 ctrItem.QueryFieldItem = queryFieldList;
                 grpFieldInfo.Controls.Add(ctrItem);
                 //纵向位置的累加
-                pos.Y += ctrItem.Height;
-
-                ctlQueryCondition First = new ctlQueryCondition();
-                First.Location = _conditionPos;
-                First.Name = "Condition" + _conditionCount.ToString();
-                grpFilter.Controls.Add(First);
+                _conditionPos.Y += ctrItem.Height;
             }
+            _conditionPos = new Point(5, 20);
+            ctlQueryCondition First = new ctlQueryCondition();
+            First.Init(ColumnList);
+            First.Location = _conditionPos;
+            First.Name = "Condition" + _conditionCount.ToString();
+            grpFilter.Controls.Add(First);
+
         }
 
         private void cmdOK_Click(object sender, EventArgs e)
         {
             //清除以前的结果和内部变量，重要！
             MongoDBHelpler.ClearFilter();
-            foreach (var item in MongoDBHelpler.ColumnList)
+            foreach (var item in ColumnList)
             {
                 MongoDBHelpler.QueryFieldList.Add(((ctlFieldInfo)Controls.Find(item, true)[0]).QueryFieldItem);
             }

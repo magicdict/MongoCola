@@ -58,6 +58,9 @@ namespace GUIResource
                 case ImageType.Document:
                     micon = GUIResource.Properties.Resources.Document;
                     break;
+                case ImageType.Smile:
+                    micon = GUIResource.Properties.Resources.Smile;
+                    break;
                 default:
                     break;
             }
@@ -92,9 +95,9 @@ namespace GUIResource
         Collection,
 
         Keys,
-        Document
+        Document,
 
-
+        Smile
 
     }
 }
