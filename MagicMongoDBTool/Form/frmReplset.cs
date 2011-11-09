@@ -12,5 +12,63 @@ namespace MagicMongoDBTool
             InitializeComponent();
         }
 
+        private void frmReplset_Load(object sender, EventArgs e)
+        {
+            RefreshSvr();
+        }
+        MongoServer _prmSvr = SystemManager.GetCurrentService();
+        /// <summary>
+        /// 刷新服务器
+        /// </summary>
+        private void RefreshSvr() {
+            //刷新连接信息
+            _prmSvr.Reconnect();
+            List<String> HostPortList = new List<string>();
+            lstServerInReplset.Items.Clear();
+            lstServerOutReplset.Items.Clear();
+            foreach (MongoServerInstance srv in _prmSvr.Instances)
+            {
+                lstServerInReplset.Items.Add(SystemManager.ConfigHelperInstance.GetCollectionNameByHost(srv.Address.Host, srv.Address.Port));
+                HostPortList.Add(srv.Address.Host + ":" + srv.Address.Port);
+            }
+            foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
+            {
+                if (item.MainReplSetName == _prmSvr.ReplicaSetName)
+                {
+                    if (!HostPortList.Contains(item.IpAddr + ":" + item.Port))
+                    {
+                        lstServerOutReplset.Items.Add(item.ConnectionName);
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// 添加服务器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdAddSvr_Click(object sender, EventArgs e)
+        {
+            foreach (String item in lstServerOutReplset.SelectedItems)
+            {
+                ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
+                MongoDBHelpler.AddToReplsetServer(_prmSvr,config.IpAddr + ":" + config.Port,config.ServerType == ConfigHelper.SvrType.ArbiterSvr);
+            }
+            RefreshSvr();
+        }
+        /// <summary>
+        /// 删除服务器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdRemove_Click(object sender, EventArgs e)
+        {
+            foreach (String item in lstServerInReplset.SelectedItems)
+            {
+                ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
+                MongoDBHelpler.RemoveFromReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port);
+            }
+            RefreshSvr();
+        }
     }
 }

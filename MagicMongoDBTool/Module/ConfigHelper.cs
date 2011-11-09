@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using MongoDB.Driver;
 namespace MagicMongoDBTool.Module
 {
     [Serializable]
@@ -94,6 +95,37 @@ namespace MagicMongoDBTool.Module
             /// 副本主机裁决优先度
             /// </summary>
             public int Priority;
+        }
+        /// <summary>
+        /// 通过Host信息获得连接名称
+        /// </summary>
+        /// <param name="Addr"></param>
+        /// <param name="port"></param>
+        /// <returns></returns>
+        public String GetCollectionNameByHost(String Addr, int port)
+        {
+            foreach (var item in ConnectionList.Values)
+            {
+                if (item.IpAddr == Addr && item.Port == port)
+                {
+                    return item.ConnectionName;
+                }
+            }
+            return String.Empty;
+        }
+        /// <summary>
+        /// 通过连接名称获得Host信息
+        /// </summary>
+        /// <param name="ConnectionName"></param>
+        /// <returns></returns>
+        public MongoServerAddress GetMongoSvrAddrByConnectionName(String ConnectionName)
+        {
+            MongoServerAddress mongosrvAddr = null;
+            if (ConnectionList.ContainsKey(ConnectionName))
+            {
+                mongosrvAddr = new MongoServerAddress(ConnectionList[ConnectionName].IpAddr, ConnectionList[ConnectionName].Port);
+            }
+            return mongosrvAddr;
         }
         /// <summary>
         /// 连接配置列表(管理用）

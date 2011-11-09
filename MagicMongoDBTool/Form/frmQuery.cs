@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
-using System.Collections.Generic;
 namespace MagicMongoDBTool
 {
     public partial class frmQuery : QLFUI.QLFForm
@@ -28,7 +28,7 @@ namespace MagicMongoDBTool
         private void frmQuery_Load(object sender, EventArgs e)
         {
             ColumnList = MongoDBHelpler.GetCollectionSchame(_mongoCol);
-            
+
             foreach (var item in ColumnList)
             {
                 //输出配置的初始化

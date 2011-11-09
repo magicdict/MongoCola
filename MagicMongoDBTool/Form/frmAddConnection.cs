@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
-using System.Collections.Generic;
 using MongoDB.Driver;
 
 namespace MagicMongoDBTool
@@ -57,7 +57,7 @@ namespace MagicMongoDBTool
                 case ConfigHelper.SvrType.RouteSvr:
                     radRouteSrv.Checked = true;
                     break;
-                case  ConfigHelper.SvrType.ArbiterSvr:
+                case ConfigHelper.SvrType.ArbiterSvr:
                     radArbiters.Checked = true;
                     break;
                 case ConfigHelper.SvrType.DataSvr:
@@ -146,7 +146,7 @@ namespace MagicMongoDBTool
                 ModifyConn.LoginAsAdmin = true;
                 ModifyConn.IsSlaveOk = false;
             }
-             //路由服务器
+            //仲裁服务器
             if (this.radArbiters.Checked)
             {
                 ModifyConn.ServerType = ConfigHelper.SvrType.ArbiterSvr;
@@ -166,7 +166,9 @@ namespace MagicMongoDBTool
                 //这里将自动选择为副本服务器
                 ModifyConn.ServerType = ConfigHelper.SvrType.ReplsetSvr;
             }
-
+            if (ModifyConn.MainReplSetName != String.Empty && ModifyConn.Priority == 0) {
+                MessageBox.Show("由于优先度为 0 ，所以当前服务器无法成为Primary服务器！");
+            }
             if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.ConnectionName))
             {
                 SystemManager.ConfigHelperInstance.ConnectionList[ModifyConn.ConnectionName] = ModifyConn;

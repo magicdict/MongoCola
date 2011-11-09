@@ -179,28 +179,17 @@ namespace MagicMongoDBTool
                         this.ShutDownToolStripMenuItem.Enabled = true;
                         this.AddUserToAdminToolStripMenuItem.Enabled = true;
                         this.RemoveUserFromAdminToolStripMenuItem.Enabled = true;
-
-                        if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.DataSvr)
-                        {
-                            //Route,Config服务器不能进行这样的操作！
-                            ConfigHelper.MongoConnectionConfig prmKeyPro = SystemManager.GetSelectedSvrProByName();
-                            if (prmKeyPro.MainReplSetName != String.Empty)
-                            {
-                                //需要这个服务器具有Replset设置
-                                this.ReplicaSetToolStripMenuItem.Enabled = true;
-                            }
-                        }
                         if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.ReplsetSvr)
                         {
+                            //副本服务器专用。
+                            //副本初始化的操作 改在连接设置里面完成
                             this.ReplicaSetToolStripMenuItem.Enabled = true;
                         }
-
                         if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.RouteSvr)
                         {
                             //Route用
                             this.ShardConfigToolStripMenuItem.Enabled = true;
                         }
-
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();

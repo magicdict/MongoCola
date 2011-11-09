@@ -10,6 +10,8 @@ namespace MagicMongoDBTool.Module
 
         //查看命令方法：http://localhost:29018/_commands
         //假设28018为端口号，同时使用 --rest 选项
+        //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
+
 
         /// <summary>
         /// 初始化副本
@@ -19,9 +21,11 @@ namespace MagicMongoDBTool.Module
         /// <param name="HostList">从属服务器列表</param>
         public static CommandResult InitReplicaSet(string replicaSetName, List<string> HostList)
         {
+            //第一台服务器作为Primary服务器
             MongoServerSettings PrimarySetting = new MongoServerSettings();
             PrimarySetting.Server = new MongoServerAddress(SystemManager.ConfigHelperInstance.ConnectionList[HostList[0]].IpAddr,
                                                            SystemManager.ConfigHelperInstance.ConnectionList[HostList[0]].Port);
+            //如果不设置的话，会有错误：不是Primary服务器，SlaveOK 是 False
             PrimarySetting.SlaveOk = true;
 
             MongoServer PrimarySvr = new MongoServer(PrimarySetting);
@@ -29,7 +33,7 @@ namespace MagicMongoDBTool.Module
             BsonArray hosts = new BsonArray();
             BsonDocument cmd = new BsonDocument();
             BsonDocument host = new BsonDocument();
-
+            //生成命令
             byte id = 0;
             foreach (var item in HostList)
             {
@@ -57,15 +61,45 @@ namespace MagicMongoDBTool.Module
             return ExecuteMongoCommand(mongoCmd, PrimarySvr);
         }
         /// <summary>
-        /// 增加仲裁服务器
+        /// 增加服务器
         /// </summary>
         /// <param name="mongoSvr">副本组主服务器</param>
+        /// <param name="HostPort">服务器信息</param>
+        /// <param name="IsArb">是否为仲裁服务器</param>
         /// <returns></returns>
-        public static CommandResult addArb(MongoServer mongoSvr, String HostPort)
+        public static CommandResult AddToReplsetServer(MongoServer mongoSvr, String HostPort, Boolean IsArb = false)
         {
-            //使用Shell Helper命令
+            if (!IsArb)
+            {
+                return ExecuteJsShell("rs.add('" + HostPort + "');", mongoSvr);
+            }
+            else
+            {
+                //其实addArb最后也只是调用了add方法
+                return ExecuteJsShell("rs.addArb('" + HostPort + "');", mongoSvr);
+            }
+        }
+        /// <summary>
+        /// 删除服务器
+        /// </summary>
+        /// <param name="mongoSvr">副本组主服务器</param>
+        /// <param name="HostPort">服务器信息</param>
+        /// <returns></returns>
+        public static CommandResult RemoveFromReplsetServer(MongoServer mongoSvr, String HostPort)
+        {
+            return ExecuteJsShell("rs.remove('" + HostPort + "');", mongoSvr);
+        }
+        /// <summary>
+        /// 使用Shell Helper命令
+        /// </summary>
+        /// <param name="JsShell"></param>
+        /// <param name="mongoSvr"></param>
+        /// <returns></returns>
+        public static CommandResult ExecuteJsShell(String JsShell, MongoServer mongoSvr)
+        {
             BsonDocument cmd = new BsonDocument();
-            cmd.Add("$eval", new BsonJavaScript("rs.addArb('" + HostPort + "');"));
+            cmd.Add("$eval", new BsonJavaScript(JsShell));
+            //必须nolock
             cmd.Add("nolock", true);
             CommandDocument mongoCmd = new CommandDocument() { cmd };
             return ExecuteMongoCommand(mongoCmd, mongoSvr);

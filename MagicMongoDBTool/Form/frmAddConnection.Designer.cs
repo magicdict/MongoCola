@@ -53,14 +53,15 @@
             this.lblReplsetList = new System.Windows.Forms.Label();
             this.chkSafeMode = new System.Windows.Forms.CheckBox();
             this.grpReplset = new System.Windows.Forms.GroupBox();
+            this.cmdInitReplset = new System.Windows.Forms.VistaButton();
             this.grpShardingSvrType = new System.Windows.Forms.GroupBox();
             this.radArbiters = new System.Windows.Forms.RadioButton();
             this.lblMainReplsetName = new System.Windows.Forms.Label();
             this.txtMainReplsetName = new QLFUI.TextBoxEx();
             this.lblAttention = new System.Windows.Forms.Label();
-            this.cmdInitReplset = new System.Windows.Forms.VistaButton();
             this.lblpriority = new System.Windows.Forms.Label();
             this.numPriority = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.contentPanel.SuspendLayout();
             this.grpReplset.SuspendLayout();
             this.grpShardingSvrType.SuspendLayout();
@@ -73,6 +74,7 @@
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
             this.contentPanel.Controls.Add(this.numPriority);
             this.contentPanel.Controls.Add(this.lblpriority);
+            this.contentPanel.Controls.Add(this.label1);
             this.contentPanel.Controls.Add(this.lblAttention);
             this.contentPanel.Controls.Add(this.txtMainReplsetName);
             this.contentPanel.Controls.Add(this.lblMainReplsetName);
@@ -95,7 +97,7 @@
             this.contentPanel.Controls.Add(this.lblPort);
             this.contentPanel.Controls.Add(this.lblHostName);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(539, 417);
+            this.contentPanel.Size = new System.Drawing.Size(537, 441);
             // 
             // lblReplsetName
             // 
@@ -156,7 +158,7 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(280, 371);
+            this.cmdCancel.Location = new System.Drawing.Point(282, 391);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 37);
             this.cmdCancel.TabIndex = 9;
@@ -165,7 +167,7 @@
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(191, 371);
+            this.cmdAdd.Location = new System.Drawing.Point(193, 391);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 37);
             this.cmdAdd.TabIndex = 8;
@@ -401,6 +403,16 @@
             this.grpReplset.TabStop = false;
             this.grpReplset.Text = "副本服务器";
             // 
+            // cmdInitReplset
+            // 
+            this.cmdInitReplset.BackColor = System.Drawing.Color.Transparent;
+            this.cmdInitReplset.Location = new System.Drawing.Point(275, 20);
+            this.cmdInitReplset.Name = "cmdInitReplset";
+            this.cmdInitReplset.Size = new System.Drawing.Size(102, 28);
+            this.cmdInitReplset.TabIndex = 37;
+            this.cmdInitReplset.Text = "初始化副本";
+            this.cmdInitReplset.Click += new System.EventHandler(this.cmdInitReplset_Click);
+            // 
             // grpShardingSvrType
             // 
             this.grpShardingSvrType.Controls.Add(this.radArbiters);
@@ -457,49 +469,50 @@
             this.lblAttention.AutoSize = true;
             this.lblAttention.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttention.ForeColor = System.Drawing.Color.Red;
-            this.lblAttention.Location = new System.Drawing.Point(248, 130);
+            this.lblAttention.Location = new System.Drawing.Point(49, 370);
             this.lblAttention.Name = "lblAttention";
-            this.lblAttention.Size = new System.Drawing.Size(219, 13);
+            this.lblAttention.Size = new System.Drawing.Size(253, 13);
             this.lblAttention.TabIndex = 42;
-            this.lblAttention.Text = "密码将以明文形式保存于配置文件中!";
-            // 
-            // cmdInitReplset
-            // 
-            this.cmdInitReplset.BackColor = System.Drawing.Color.Transparent;
-            this.cmdInitReplset.Location = new System.Drawing.Point(275, 20);
-            this.cmdInitReplset.Name = "cmdInitReplset";
-            this.cmdInitReplset.Size = new System.Drawing.Size(102, 28);
-            this.cmdInitReplset.TabIndex = 37;
-            this.cmdInitReplset.Text = "初始化副本";
-            this.cmdInitReplset.Click += new System.EventHandler(this.cmdInitReplset_Click);
+            this.lblAttention.Text = "[注意]密码将以明文形式保存于配置文件中.";
             // 
             // lblpriority
             // 
             this.lblpriority.AutoSize = true;
-            this.lblpriority.Location = new System.Drawing.Point(190, 79);
+            this.lblpriority.Location = new System.Drawing.Point(196, 79);
             this.lblpriority.Name = "lblpriority";
-            this.lblpriority.Size = new System.Drawing.Size(121, 13);
+            this.lblpriority.Size = new System.Drawing.Size(43, 13);
             this.lblpriority.TabIndex = 43;
-            this.lblpriority.Text = "优先度(副本主机裁决)";
+            this.lblpriority.Text = "优先度";
             // 
             // numPriority
             // 
-            this.numPriority.Location = new System.Drawing.Point(311, 77);
+            this.numPriority.Location = new System.Drawing.Point(245, 75);
             this.numPriority.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
             this.numPriority.Name = "numPriority";
-            this.numPriority.Size = new System.Drawing.Size(35, 20);
+            this.numPriority.Size = new System.Drawing.Size(44, 20);
             this.numPriority.TabIndex = 44;
             this.numPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(299, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(221, 13);
+            this.label1.TabIndex = 42;
+            this.label1.Text = "优先度为 0 时,无法成为副本主服务器";
             // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(541, 480);
+            this.ClientSize = new System.Drawing.Size(539, 504);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmAddConnection";
             this.ShowSelectSkinButton = false;
@@ -549,5 +562,6 @@
         private System.Windows.Forms.VistaButton cmdInitReplset;
         private System.Windows.Forms.NumericUpDown numPriority;
         private System.Windows.Forms.Label lblpriority;
+        private System.Windows.Forms.Label label1;
     }
 }
