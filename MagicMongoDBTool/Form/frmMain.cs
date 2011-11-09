@@ -107,7 +107,8 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 清除数据显示区
         /// </summary>
-        private void clearDataShower() {
+        private void clearDataShower()
+        {
             lstData.Clear();
             txtData.Text = "";
             trvData.Nodes.Clear();
@@ -178,16 +179,22 @@ namespace MagicMongoDBTool
                         this.ShutDownToolStripMenuItem.Enabled = true;
                         this.AddUserToAdminToolStripMenuItem.Enabled = true;
                         this.RemoveUserFromAdminToolStripMenuItem.Enabled = true;
+
                         if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.DataSvr)
                         {
                             //Route,Config服务器不能进行这样的操作！
                             ConfigHelper.MongoConnectionConfig prmKeyPro = SystemManager.GetSelectedSvrProByName();
-                            if (prmKeyPro.ReplSetName != String.Empty)
+                            if (prmKeyPro.MainReplSetName != String.Empty)
                             {
                                 //需要这个服务器具有Replset设置
                                 this.ReplicaSetToolStripMenuItem.Enabled = true;
                             }
                         }
+                        if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.ReplsetSvr)
+                        {
+                            this.ReplicaSetToolStripMenuItem.Enabled = true;
+                        }
+
                         if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.RouteSvr)
                         {
                             //Route用
@@ -456,7 +463,7 @@ namespace MagicMongoDBTool
             mfrm.ShowDialog();
             mfrm.Close();
             mfrm.Dispose();
-            RefreshToolStripMenuItem_Click(sender,e);
+            RefreshToolStripMenuItem_Click(sender, e);
         }
         /// <summary>
         /// 刷新

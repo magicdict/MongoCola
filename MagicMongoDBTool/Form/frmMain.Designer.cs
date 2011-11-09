@@ -32,12 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusSelectedObj = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusDataNavi = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.ConnectionStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SrvStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExpandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CollapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataNaviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PrePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,9 +91,6 @@
             this.lstData = new System.Windows.Forms.ListView();
             this.tabTextView = new System.Windows.Forms.TabPage();
             this.txtData = new System.Windows.Forms.TextBox();
-            this.toolStripStatusDataNavi = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ExpandAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CollapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentPanel.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
@@ -131,6 +131,13 @@
             this.toolStripStatusSelectedObj.Name = "toolStripStatusSelectedObj";
             this.toolStripStatusSelectedObj.Size = new System.Drawing.Size(31, 17);
             this.toolStripStatusSelectedObj.Text = "就绪";
+            // 
+            // toolStripStatusDataNavi
+            // 
+            this.toolStripStatusDataNavi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(130)))));
+            this.toolStripStatusDataNavi.Name = "toolStripStatusDataNavi";
+            this.toolStripStatusDataNavi.Size = new System.Drawing.Size(61, 17);
+            this.toolStripStatusDataNavi.Text = "数据视图：";
             // 
             // toolStripMain
             // 
@@ -193,6 +200,20 @@
             this.RefreshToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.RefreshToolStripMenuItem.Text = "刷新";
             this.RefreshToolStripMenuItem.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
+            // 
+            // ExpandAllToolStripMenuItem
+            // 
+            this.ExpandAllToolStripMenuItem.Name = "ExpandAllToolStripMenuItem";
+            this.ExpandAllToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.ExpandAllToolStripMenuItem.Text = "全部展开";
+            this.ExpandAllToolStripMenuItem.Click += new System.EventHandler(this.ExpandAllToolStripMenuItem_Click);
+            // 
+            // CollapseAllToolStripMenuItem
+            // 
+            this.CollapseAllToolStripMenuItem.Name = "CollapseAllToolStripMenuItem";
+            this.CollapseAllToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.CollapseAllToolStripMenuItem.Text = "全部折叠";
+            this.CollapseAllToolStripMenuItem.Click += new System.EventHandler(this.CollapseAllToolStripMenuItem_Click);
             // 
             // ExitToolStripMenuItem
             // 
@@ -272,7 +293,7 @@
             this.AddUserToAdminToolStripMenuItem,
             this.RemoveUserFromAdminToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
-            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.ServerToolStripMenuItem.Text = "服务器";
             // 
             // ShutDownToolStripMenuItem
@@ -311,7 +332,7 @@
             this.AddUserToolStripMenuItem,
             this.RemoveUserToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
-            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.DataBaseToolStripMenuItem.Text = "数据库";
             // 
             // DelMongoDBToolStripMenuItem
@@ -350,7 +371,7 @@
             this.DelRecordToolStripMenuItem,
             this.RenameCollectionToolStripMenuItem});
             this.DataCollectionOprToolStripMenuItem.Name = "DataCollectionOprToolStripMenuItem";
-            this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.DataCollectionOprToolStripMenuItem.Text = "数据集";
             // 
             // DelMongoCollectionToolStripMenuItem
@@ -390,41 +411,41 @@
             this.DelFileToolStripMenuItem,
             this.InitGFSToolStripMenuItem});
             this.GridFsToolStripMenuItem.Name = "GridFsToolStripMenuItem";
-            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.GridFsToolStripMenuItem.Text = "文件系统";
             // 
             // UploadFileToolStripMenuItem
             // 
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
-            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.UploadFileToolStripMenuItem.Text = "上传文件";
             this.UploadFileToolStripMenuItem.Click += new System.EventHandler(this.UploadFileToolStripMenuItem_Click);
             // 
             // DownloadFileToolStripMenuItem
             // 
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
-            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.DownloadFileToolStripMenuItem.Text = "下载文件";
             this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(this.DownloadFileToolStripMenuItem_Click);
             // 
             // OpenFileToolStripMenuItem
             // 
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
-            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.OpenFileToolStripMenuItem.Text = "打开文件";
             this.OpenFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
             // DelFileToolStripMenuItem
             // 
             this.DelFileToolStripMenuItem.Name = "DelFileToolStripMenuItem";
-            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.DelFileToolStripMenuItem.Text = "删除文件";
             this.DelFileToolStripMenuItem.Click += new System.EventHandler(this.DelFileToolStripMenuItem_Click);
             // 
             // InitGFSToolStripMenuItem
             // 
             this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
-            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.InitGFSToolStripMenuItem.Text = "初始化GFS";
             this.InitGFSToolStripMenuItem.Click += new System.EventHandler(this.InitGFSToolStripMenuItem_Click);
             // 
@@ -473,7 +494,7 @@
             // 
             this.ReplicaSetToolStripMenuItem.Name = "ReplicaSetToolStripMenuItem";
             this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.ReplicaSetToolStripMenuItem.Text = "初始化副本";
+            this.ReplicaSetToolStripMenuItem.Text = "副本设定";
             this.ReplicaSetToolStripMenuItem.Click += new System.EventHandler(this.ReplicaSetToolStripMenuItem_Click);
             // 
             // ShardConfigToolStripMenuItem
@@ -623,27 +644,6 @@
             this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtData.Size = new System.Drawing.Size(594, 426);
             this.txtData.TabIndex = 0;
-            // 
-            // toolStripStatusDataNavi
-            // 
-            this.toolStripStatusDataNavi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(130)))));
-            this.toolStripStatusDataNavi.Name = "toolStripStatusDataNavi";
-            this.toolStripStatusDataNavi.Size = new System.Drawing.Size(61, 17);
-            this.toolStripStatusDataNavi.Text = "数据视图：";
-            // 
-            // ExpandAllToolStripMenuItem
-            // 
-            this.ExpandAllToolStripMenuItem.Name = "ExpandAllToolStripMenuItem";
-            this.ExpandAllToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.ExpandAllToolStripMenuItem.Text = "全部展开";
-            this.ExpandAllToolStripMenuItem.Click += new System.EventHandler(this.ExpandAllToolStripMenuItem_Click);
-            // 
-            // CollapseAllToolStripMenuItem
-            // 
-            this.CollapseAllToolStripMenuItem.Name = "CollapseAllToolStripMenuItem";
-            this.CollapseAllToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.CollapseAllToolStripMenuItem.Text = "全部折叠";
-            this.CollapseAllToolStripMenuItem.Click += new System.EventHandler(this.CollapseAllToolStripMenuItem_Click);
             // 
             // frmMain
             // 

@@ -152,6 +152,7 @@
             this.ShowSelectSkinButton = false;
             this.Text = "服务器状态";
             this.Load += new System.EventHandler(this.frmServiceStatus_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(frmServiceStatus_FormClosing);
             this.contentPanel.ResumeLayout(false);
             this.tabSvrStatus.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -160,6 +161,7 @@
             this.ResumeLayout(false);
 
         }
+
 
         #endregion
 

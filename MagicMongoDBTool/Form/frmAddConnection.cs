@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using System.Collections.Generic;
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
@@ -46,6 +47,7 @@ namespace MagicMongoDBTool
             chkSafeMode.Checked = ModifyConn.IsSafeMode;
             txtReplSet.Text = ModifyConn.ReplSetName;
             txtDataBaseName.Text = ModifyConn.DataBaseName;
+            numPriority.Value = ModifyConn.Priority;
 
             switch (ModifyConn.ServerType)
             {
@@ -54,6 +56,9 @@ namespace MagicMongoDBTool
                     break;
                 case ConfigHelper.SvrType.RouteSvr:
                     radRouteSrv.Checked = true;
+                    break;
+                case  ConfigHelper.SvrType.ArbiterSvr:
+                    radArbiters.Checked = true;
                     break;
                 case ConfigHelper.SvrType.DataSvr:
                 default:
@@ -83,7 +88,7 @@ namespace MagicMongoDBTool
             ModifyConn.Password = txtPassword.Text;
             ModifyConn.DataBaseName = txtDataBaseName.Text;
             ModifyConn.MainReplSetName = txtMainReplsetName.Text;
-
+            ModifyConn.Priority = (int)numPriority.Value;
             //仅有用户名或密码
             if (txtUsername.Text != string.Empty && txtPassword.Text == String.Empty)
             {
@@ -141,7 +146,11 @@ namespace MagicMongoDBTool
                 ModifyConn.LoginAsAdmin = true;
                 ModifyConn.IsSlaveOk = false;
             }
-
+             //路由服务器
+            if (this.radArbiters.Checked)
+            {
+                ModifyConn.ServerType = ConfigHelper.SvrType.ArbiterSvr;
+            }
             //如果输入了副本名称
             if (this.txtReplSet.Text != String.Empty)
             {
@@ -186,6 +195,28 @@ namespace MagicMongoDBTool
                         lstServerce.SetSelected(lstServerce.Items.Count - 1, true);
                     }
                 }
+            }
+        }
+
+        private void cmdInitReplset_Click(object sender, EventArgs e)
+        {
+            List<String> svrKeys = new List<string>();
+            if (lstServerce.SelectedItems.Count > 0)
+            {
+                foreach (String item in lstServerce.SelectedItems)
+                {
+                    svrKeys.Add(item);
+                }
+            }
+            //初始化副本，将多个服务器组合成一个副本组
+            CommandResult rtn = MongoDBHelpler.InitReplicaSet(txtReplSet.Text, svrKeys);
+            if (rtn.Ok)
+            {
+                SystemManager.ShowErrMsg("初始化成功,请稍等片刻后连接服务器", rtn.Response.ToString());
+            }
+            else
+            {
+                SystemManager.ShowErrMsg("初始化失败", rtn.Response.ToString());
             }
         }
     }

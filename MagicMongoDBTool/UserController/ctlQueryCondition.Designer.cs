@@ -38,9 +38,9 @@
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(244, 1);
+            this.txtValue.Location = new System.Drawing.Point(202, 1);
             this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(134, 20);
+            this.txtValue.Size = new System.Drawing.Size(120, 20);
             this.txtValue.TabIndex = 3;
             // 
             // cmbCompareOpr
@@ -48,7 +48,7 @@
             this.cmbCompareOpr.FormattingEnabled = true;
             this.cmbCompareOpr.Location = new System.Drawing.Point(142, 1);
             this.cmbCompareOpr.Name = "cmbCompareOpr";
-            this.cmbCompareOpr.Size = new System.Drawing.Size(96, 21);
+            this.cmbCompareOpr.Size = new System.Drawing.Size(54, 21);
             this.cmbCompareOpr.TabIndex = 2;
             // 
             // cmbColName
@@ -62,9 +62,9 @@
             // cmbEndMark
             // 
             this.cmbEndMark.FormattingEnabled = true;
-            this.cmbEndMark.Location = new System.Drawing.Point(455, 1);
+            this.cmbEndMark.Location = new System.Drawing.Point(399, 0);
             this.cmbEndMark.Name = "cmbEndMark";
-            this.cmbEndMark.Size = new System.Drawing.Size(72, 21);
+            this.cmbEndMark.Size = new System.Drawing.Size(45, 21);
             this.cmbEndMark.TabIndex = 5;
             // 
             // cmbStartMark
@@ -78,7 +78,7 @@
             // cmbDataType
             // 
             this.cmbDataType.FormattingEnabled = true;
-            this.cmbDataType.Location = new System.Drawing.Point(384, 1);
+            this.cmbDataType.Location = new System.Drawing.Point(328, 1);
             this.cmbDataType.Name = "cmbDataType";
             this.cmbDataType.Size = new System.Drawing.Size(65, 21);
             this.cmbDataType.TabIndex = 4;
@@ -95,7 +95,7 @@
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.cmbCompareOpr);
             this.Name = "ctlQueryCondition";
-            this.Size = new System.Drawing.Size(533, 22);
+            this.Size = new System.Drawing.Size(454, 22);
             this.ResumeLayout(false);
             this.PerformLayout();
 

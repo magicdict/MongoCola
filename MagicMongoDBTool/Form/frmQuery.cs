@@ -17,7 +17,7 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 条件输入器位置
         /// </summary>
-        private Point _conditionPos = new Point(5, 20);
+        private Point _conditionPos = new Point(50, 20);
         public frmQuery()
         {
             InitializeComponent();
@@ -41,16 +41,16 @@ namespace MagicMongoDBTool
                 ctrItem.Name = item;
                 ctrItem.Location = _conditionPos;
                 ctrItem.QueryFieldItem = queryFieldList;
-                grpFieldInfo.Controls.Add(ctrItem);
+                tabFieldInfo.Controls.Add(ctrItem);
                 //纵向位置的累加
                 _conditionPos.Y += ctrItem.Height;
             }
             _conditionPos = new Point(5, 20);
-            ctlQueryCondition First = new ctlQueryCondition();
-            First.Init(ColumnList);
-            First.Location = _conditionPos;
-            First.Name = "Condition" + _conditionCount.ToString();
-            grpFilter.Controls.Add(First);
+            ctlQueryCondition firstQueryCtl = new ctlQueryCondition();
+            firstQueryCtl.Init(ColumnList);
+            firstQueryCtl.Location = _conditionPos;
+            firstQueryCtl.Name = "Condition" + _conditionCount.ToString();
+            tabFilter.Controls.Add(firstQueryCtl);
 
         }
 
@@ -82,7 +82,7 @@ namespace MagicMongoDBTool
             _conditionPos.Y += newCondition.Height;
             newCondition.Location = _conditionPos;
             newCondition.Name = "Condition" + _conditionCount.ToString();
-            grpFilter.Controls.Add(newCondition);
+            tabFilter.Controls.Add(newCondition);
         }
 
 

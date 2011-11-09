@@ -27,7 +27,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 副本服务器[Virtul]
             /// </summary>
-            ReplsetSvr
+            ReplsetSvr,
+            /// <summary>
+            /// 仲裁服务器[mongod --replset,without data]
+            /// </summary>
+            ArbiterSvr
         }
         /// <summary>
         /// 链接结构体
@@ -86,6 +90,10 @@ namespace MagicMongoDBTool.Module
             /// 副本服务器列表
             /// </summary>
             public List<String> ReplsetList;
+            /// <summary>
+            /// 副本主机裁决优先度
+            /// </summary>
+            public int Priority;
         }
         /// <summary>
         /// 连接配置列表(管理用）

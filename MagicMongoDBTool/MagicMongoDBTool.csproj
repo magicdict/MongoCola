@@ -79,6 +79,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\frmErrMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmErrMsg.Designer.cs">
+      <DependentUpon>frmErrMsg.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\ctlIndexCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -213,6 +219,9 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form\frmErrMsg.resx">
+      <DependentUpon>frmErrMsg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlIndexCreate.resx">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
     </EmbeddedResource>

@@ -90,7 +90,7 @@ namespace MagicMongoDBTool.Module
                 MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
                 //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
                 TreeNode mongoSvrNode = new TreeNode(mongoSvr.ReplicaSetName != null ? "副本名称：" + mongoSvr.ReplicaSetName :
-                                                     (mongoSvrKey + " [" + mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port + "]"));
+                                                    (mongoSvrKey + " [" + mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port + "]"));
                 try
                 {
                     List<string> databaseNameList = new List<string>();
@@ -367,10 +367,11 @@ namespace MagicMongoDBTool.Module
             {
                 foreach (var item in getBsonNameList(String.Empty, doc))
                 {
-                    if (!_ColumnList.Contains(item)){
+                    if (!_ColumnList.Contains(item))
+                    {
                         _ColumnList.Add(item);
                     }
-                } 
+                }
             }
             return _ColumnList;
         }
@@ -683,43 +684,51 @@ namespace MagicMongoDBTool.Module
             lstData.Columns.Add("填充因子");
             foreach (String mongoSvrKey in _mongoSrvLst.Keys)
             {
-                MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                List<string> databaseNameList = mongoSvr.GetDatabaseNames().ToList<string>();
-                foreach (string strDBName in databaseNameList)
+                try
                 {
-                    MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
-
-                    List<string> colNameList = mongoDB.GetCollectionNames().ToList<string>();
-                    foreach (string strColName in colNameList)
+                    MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                    List<string> databaseNameList = mongoSvr.GetDatabaseNames().ToList<string>();
+                    foreach (string strDBName in databaseNameList)
                     {
+                        MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
 
-                        CollectionStatsResult dbStatus = mongoDB.GetCollection(strColName).GetStats();
-                        ListViewItem lst = new ListViewItem(strDBName + "." + strColName);
-                        lst.SubItems.Add(dbStatus.ObjectCount.ToString());
-                        lst.SubItems.Add(GetSize(dbStatus.DataSize));
-                        lst.SubItems.Add(GetSize(dbStatus.StorageSize));
-                        lst.SubItems.Add(GetSize(dbStatus.TotalIndexSize));
-                        try
+                        List<string> colNameList = mongoDB.GetCollectionNames().ToList<string>();
+                        foreach (string strColName in colNameList)
                         {
-                            //在某些条件下，这个值会抛出异常，IndexKeyNotFound
-                            lst.SubItems.Add(GetSize((long)dbStatus.AverageObjectSize));
+
+                            CollectionStatsResult dbStatus = mongoDB.GetCollection(strColName).GetStats();
+                            ListViewItem lst = new ListViewItem(strDBName + "." + strColName);
+                            lst.SubItems.Add(dbStatus.ObjectCount.ToString());
+                            lst.SubItems.Add(GetSize(dbStatus.DataSize));
+                            lst.SubItems.Add(GetSize(dbStatus.StorageSize));
+                            lst.SubItems.Add(GetSize(dbStatus.TotalIndexSize));
+                            try
+                            {
+                                //在某些条件下，这个值会抛出异常，IndexKeyNotFound
+                                lst.SubItems.Add(GetSize((long)dbStatus.AverageObjectSize));
+                            }
+                            catch (Exception)
+                            {
+                                lst.SubItems.Add("-");
+                            }
+                            try
+                            {
+                                //在某些条件下，这个值会抛出异常，IndexKeyNotFound
+                                lst.SubItems.Add(dbStatus.PaddingFactor.ToString());
+                            }
+                            catch (Exception)
+                            {
+                                lst.SubItems.Add("-");
+                            }
+                            lstData.Items.Add(lst);
                         }
-                        catch (Exception)
-                        {
-                            lst.SubItems.Add("-");
-                        }
-                        try
-                        {
-                            //在某些条件下，这个值会抛出异常，IndexKeyNotFound
-                            lst.SubItems.Add(dbStatus.PaddingFactor.ToString());
-                        }
-                        catch (Exception)
-                        {
-                            lst.SubItems.Add("-");
-                        }
-                        lstData.Items.Add(lst);
                     }
                 }
+                catch (Exception)
+                {
+                    //throw;
+                }
+
             }
         }
         public static void FillSrvStatusToList(ListView lstData)
@@ -735,31 +744,39 @@ namespace MagicMongoDBTool.Module
             lstData.Columns.Add("占用大小");
             foreach (String mongoSvrKey in _mongoSrvLst.Keys)
             {
-                MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                List<string> databaseNameList = mongoSvr.GetDatabaseNames().ToList<string>();
-                foreach (String strDBName in databaseNameList)
+                try
                 {
-                    MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
-                    DatabaseStatsResult dbStatus = mongoDB.GetStats();
-                    ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
-                    try
+                    MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                    List<string> databaseNameList = mongoSvr.GetDatabaseNames().ToList<string>();
+                    foreach (String strDBName in databaseNameList)
                     {
-                        lst.SubItems.Add(dbStatus.CollectionCount.ToString());
+                        MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
+                        DatabaseStatsResult dbStatus = mongoDB.GetStats();
+                        ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
+                        try
+                        {
+                            lst.SubItems.Add(dbStatus.CollectionCount.ToString());
 
+                        }
+                        catch (Exception)
+                        {
+
+                            lst.SubItems.Add(string.Empty);
+                        }
+
+                        lst.SubItems.Add(GetSize(dbStatus.DataSize));
+                        lst.SubItems.Add(GetSize(dbStatus.FileSize));
+                        lst.SubItems.Add(dbStatus.IndexCount.ToString());
+                        lst.SubItems.Add(GetSize(dbStatus.IndexSize));
+                        lst.SubItems.Add(dbStatus.ObjectCount.ToString());
+                        lst.SubItems.Add(GetSize(dbStatus.StorageSize));
+                        lstData.Items.Add(lst);
                     }
-                    catch (Exception)
-                    {
 
-                        lst.SubItems.Add(string.Empty);
-                    }
-
-                    lst.SubItems.Add(GetSize(dbStatus.DataSize));
-                    lst.SubItems.Add(GetSize(dbStatus.FileSize));
-                    lst.SubItems.Add(dbStatus.IndexCount.ToString());
-                    lst.SubItems.Add(GetSize(dbStatus.IndexSize));
-                    lst.SubItems.Add(dbStatus.ObjectCount.ToString());
-                    lst.SubItems.Add(GetSize(dbStatus.StorageSize));
-                    lstData.Items.Add(lst);
+                }
+                catch (Exception)
+                {
+                    //throw;
                 }
             }
         }
@@ -769,37 +786,46 @@ namespace MagicMongoDBTool.Module
             Boolean hasHeader = false;
             foreach (string mongoSvrKey in _mongoSrvLst.Keys)
             {
-                MongoServer mongosvr = _mongoSrvLst[mongoSvrKey];
-                List<string> databaseNameList = mongosvr.GetDatabaseNames().ToList<string>();
-                foreach (string strDBName in databaseNameList)
+                try
                 {
-                    MongoDatabase mongoDB = mongosvr.GetDatabase(strDBName);
-                    BsonDocument dbStatus = mongoDB.GetCurrentOp();
-                    if (dbStatus.GetValue("inprog").AsBsonArray.Count > 0)
+                    MongoServer mongosvr = _mongoSrvLst[mongoSvrKey];
+                    List<string> databaseNameList = mongosvr.GetDatabaseNames().ToList<string>();
+                    foreach (string strDBName in databaseNameList)
                     {
-                        if (!hasHeader)
+                        MongoDatabase mongoDB = mongosvr.GetDatabase(strDBName);
+                        BsonDocument dbStatus = mongoDB.GetCurrentOp();
+                        if (dbStatus.GetValue("inprog").AsBsonArray.Count > 0)
                         {
-
-                            lstData.Columns.Add("Name");
-                            foreach (string item in dbStatus.GetValue("inprog").AsBsonArray[0].AsBsonDocument.Names)
+                            if (!hasHeader)
                             {
-                                lstData.Columns.Add(item);
-                            }
-                            hasHeader = true;
-                        }
 
-                        BsonArray doc = dbStatus.GetValue("inprog").AsBsonArray;
-                        foreach (BsonDocument item in doc)
-                        {
-                            ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
-                            foreach (string itemName in item.Names)
-                            {
-                                lst.SubItems.Add(item.GetValue(itemName).ToString());
+                                lstData.Columns.Add("Name");
+                                foreach (string item in dbStatus.GetValue("inprog").AsBsonArray[0].AsBsonDocument.Names)
+                                {
+                                    lstData.Columns.Add(item);
+                                }
+                                hasHeader = true;
                             }
-                            lstData.Items.Add(lst);
+
+                            BsonArray doc = dbStatus.GetValue("inprog").AsBsonArray;
+                            foreach (BsonDocument item in doc)
+                            {
+                                ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
+                                foreach (string itemName in item.Names)
+                                {
+                                    lst.SubItems.Add(item.GetValue(itemName).ToString());
+                                }
+                                lstData.Items.Add(lst);
+                            }
                         }
                     }
                 }
+                catch (Exception)
+                {
+                    //throw;
+                }
+
+
             }
         }
         #endregion

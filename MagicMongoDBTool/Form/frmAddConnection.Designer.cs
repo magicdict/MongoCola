@@ -52,25 +52,32 @@
             this.lstServerce = new System.Windows.Forms.ListBox();
             this.lblReplsetList = new System.Windows.Forms.Label();
             this.chkSafeMode = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpReplset = new System.Windows.Forms.GroupBox();
+            this.grpShardingSvrType = new System.Windows.Forms.GroupBox();
+            this.radArbiters = new System.Windows.Forms.RadioButton();
             this.lblMainReplsetName = new System.Windows.Forms.Label();
             this.txtMainReplsetName = new QLFUI.TextBoxEx();
             this.lblAttention = new System.Windows.Forms.Label();
+            this.cmdInitReplset = new System.Windows.Forms.VistaButton();
+            this.lblpriority = new System.Windows.Forms.Label();
+            this.numPriority = new System.Windows.Forms.NumericUpDown();
             this.contentPanel.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.grpReplset.SuspendLayout();
+            this.grpShardingSvrType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPriority)).BeginInit();
             this.SuspendLayout();
             // 
             // contentPanel
             // 
             this.contentPanel.BackColor = System.Drawing.Color.Transparent;
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
+            this.contentPanel.Controls.Add(this.numPriority);
+            this.contentPanel.Controls.Add(this.lblpriority);
             this.contentPanel.Controls.Add(this.lblAttention);
             this.contentPanel.Controls.Add(this.txtMainReplsetName);
             this.contentPanel.Controls.Add(this.lblMainReplsetName);
-            this.contentPanel.Controls.Add(this.groupBox2);
-            this.contentPanel.Controls.Add(this.groupBox1);
+            this.contentPanel.Controls.Add(this.grpShardingSvrType);
+            this.contentPanel.Controls.Add(this.grpReplset);
             this.contentPanel.Controls.Add(this.chkSafeMode);
             this.contentPanel.Controls.Add(this.txtDataBaseName);
             this.contentPanel.Controls.Add(this.lblDataBaseName);
@@ -104,7 +111,7 @@
             // 
             this.radRouteSrv.AutoSize = true;
             this.radRouteSrv.BackColor = System.Drawing.Color.Transparent;
-            this.radRouteSrv.Location = new System.Drawing.Point(244, 23);
+            this.radRouteSrv.Location = new System.Drawing.Point(215, 21);
             this.radRouteSrv.Name = "radRouteSrv";
             this.radRouteSrv.Size = new System.Drawing.Size(85, 17);
             this.radRouteSrv.TabIndex = 8;
@@ -149,7 +156,7 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(256, 371);
+            this.cmdCancel.Location = new System.Drawing.Point(280, 371);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 37);
             this.cmdCancel.TabIndex = 9;
@@ -158,7 +165,7 @@
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(167, 371);
+            this.cmdAdd.Location = new System.Drawing.Point(191, 371);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 37);
             this.cmdAdd.TabIndex = 8;
@@ -312,12 +319,12 @@
             this.txtReplSet.BackColor = System.Drawing.Color.Transparent;
             this.txtReplSet.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtReplSet.ForeImage = null;
-            this.txtReplSet.Location = new System.Drawing.Point(117, 19);
+            this.txtReplSet.Location = new System.Drawing.Point(116, 19);
             this.txtReplSet.Multiline = false;
             this.txtReplSet.Name = "txtReplSet";
             this.txtReplSet.Radius = 3;
             this.txtReplSet.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
-            this.txtReplSet.Size = new System.Drawing.Size(294, 29);
+            this.txtReplSet.Size = new System.Drawing.Size(153, 29);
             this.txtReplSet.TabIndex = 7;
             this.txtReplSet.UseSystemPasswordChar = false;
             this.txtReplSet.WaterMark = "副本名称（可选项）";
@@ -357,7 +364,7 @@
             this.lstServerce.Location = new System.Drawing.Point(117, 54);
             this.lstServerce.Name = "lstServerce";
             this.lstServerce.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lstServerce.Size = new System.Drawing.Size(294, 95);
+            this.lstServerce.Size = new System.Drawing.Size(377, 95);
             this.lstServerce.TabIndex = 35;
             // 
             // lblReplsetList
@@ -380,30 +387,43 @@
             this.chkSafeMode.Text = "安全模式[保证数据安全，性能有损失]";
             this.chkSafeMode.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // grpReplset
             // 
-            this.groupBox1.Controls.Add(this.txtReplSet);
-            this.groupBox1.Controls.Add(this.lblReplsetName);
-            this.groupBox1.Controls.Add(this.lblReplsetList);
-            this.groupBox1.Controls.Add(this.lstServerce);
-            this.groupBox1.Location = new System.Drawing.Point(20, 205);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(500, 162);
-            this.groupBox1.TabIndex = 38;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "副本服务器";
+            this.grpReplset.Controls.Add(this.cmdInitReplset);
+            this.grpReplset.Controls.Add(this.txtReplSet);
+            this.grpReplset.Controls.Add(this.lblReplsetName);
+            this.grpReplset.Controls.Add(this.lblReplsetList);
+            this.grpReplset.Controls.Add(this.lstServerce);
+            this.grpReplset.Location = new System.Drawing.Point(20, 205);
+            this.grpReplset.Name = "grpReplset";
+            this.grpReplset.Size = new System.Drawing.Size(500, 162);
+            this.grpReplset.TabIndex = 38;
+            this.grpReplset.TabStop = false;
+            this.grpReplset.Text = "副本服务器";
             // 
-            // groupBox2
+            // grpShardingSvrType
             // 
-            this.groupBox2.Controls.Add(this.radDataSrv);
-            this.groupBox2.Controls.Add(this.radConfigSrv);
-            this.groupBox2.Controls.Add(this.radRouteSrv);
-            this.groupBox2.Location = new System.Drawing.Point(20, 149);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(502, 50);
-            this.groupBox2.TabIndex = 39;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "分片系统服务器类型【如果不是分片系统，请不要更改这里的选项】";
+            this.grpShardingSvrType.Controls.Add(this.radArbiters);
+            this.grpShardingSvrType.Controls.Add(this.radDataSrv);
+            this.grpShardingSvrType.Controls.Add(this.radConfigSrv);
+            this.grpShardingSvrType.Controls.Add(this.radRouteSrv);
+            this.grpShardingSvrType.Location = new System.Drawing.Point(20, 149);
+            this.grpShardingSvrType.Name = "grpShardingSvrType";
+            this.grpShardingSvrType.Size = new System.Drawing.Size(502, 50);
+            this.grpShardingSvrType.TabIndex = 39;
+            this.grpShardingSvrType.TabStop = false;
+            this.grpShardingSvrType.Text = "分片系统/副本 服务器类型 ";
+            // 
+            // radArbiters
+            // 
+            this.radArbiters.AutoSize = true;
+            this.radArbiters.Location = new System.Drawing.Point(310, 21);
+            this.radArbiters.Name = "radArbiters";
+            this.radArbiters.Size = new System.Drawing.Size(85, 17);
+            this.radArbiters.TabIndex = 37;
+            this.radArbiters.TabStop = true;
+            this.radArbiters.Text = "仲裁服务器";
+            this.radArbiters.UseVisualStyleBackColor = true;
             // 
             // lblMainReplsetName
             // 
@@ -437,11 +457,43 @@
             this.lblAttention.AutoSize = true;
             this.lblAttention.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttention.ForeColor = System.Drawing.Color.Red;
-            this.lblAttention.Location = new System.Drawing.Point(196, 78);
+            this.lblAttention.Location = new System.Drawing.Point(248, 130);
             this.lblAttention.Name = "lblAttention";
             this.lblAttention.Size = new System.Drawing.Size(219, 13);
             this.lblAttention.TabIndex = 42;
             this.lblAttention.Text = "密码将以明文形式保存于配置文件中!";
+            // 
+            // cmdInitReplset
+            // 
+            this.cmdInitReplset.BackColor = System.Drawing.Color.Transparent;
+            this.cmdInitReplset.Location = new System.Drawing.Point(275, 20);
+            this.cmdInitReplset.Name = "cmdInitReplset";
+            this.cmdInitReplset.Size = new System.Drawing.Size(102, 28);
+            this.cmdInitReplset.TabIndex = 37;
+            this.cmdInitReplset.Text = "初始化副本";
+            this.cmdInitReplset.Click += new System.EventHandler(this.cmdInitReplset_Click);
+            // 
+            // lblpriority
+            // 
+            this.lblpriority.AutoSize = true;
+            this.lblpriority.Location = new System.Drawing.Point(190, 79);
+            this.lblpriority.Name = "lblpriority";
+            this.lblpriority.Size = new System.Drawing.Size(121, 13);
+            this.lblpriority.TabIndex = 43;
+            this.lblpriority.Text = "优先度(副本主机裁决)";
+            // 
+            // numPriority
+            // 
+            this.numPriority.Location = new System.Drawing.Point(311, 77);
+            this.numPriority.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numPriority.Name = "numPriority";
+            this.numPriority.Size = new System.Drawing.Size(35, 20);
+            this.numPriority.TabIndex = 44;
+            this.numPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // frmAddConnection
             // 
@@ -454,10 +506,11 @@
             this.Text = "数据连接";
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.grpReplset.ResumeLayout(false);
+            this.grpReplset.PerformLayout();
+            this.grpShardingSvrType.ResumeLayout(false);
+            this.grpShardingSvrType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPriority)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -487,10 +540,14 @@
         private System.Windows.Forms.Label lblReplsetList;
         private System.Windows.Forms.ListBox lstServerce;
         private System.Windows.Forms.CheckBox chkSafeMode;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpShardingSvrType;
+        private System.Windows.Forms.GroupBox grpReplset;
         private System.Windows.Forms.Label lblMainReplsetName;
         private QLFUI.TextBoxEx txtMainReplsetName;
         private System.Windows.Forms.Label lblAttention;
+        private System.Windows.Forms.RadioButton radArbiters;
+        private System.Windows.Forms.VistaButton cmdInitReplset;
+        private System.Windows.Forms.NumericUpDown numPriority;
+        private System.Windows.Forms.Label lblpriority;
     }
 }

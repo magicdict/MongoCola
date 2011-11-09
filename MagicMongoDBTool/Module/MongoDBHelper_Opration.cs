@@ -188,7 +188,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 根据路径字符获得服务器
         /// </summary>
-        /// <param name="strSvrPathWithTag">[Service/DBName/Collection]</param>
+        /// <param name="strSvrPathWithTag">[Tag:Service/DBName/Collection]</param>
         /// <returns></returns>
         public static MongoServer GetMongoServerBySvrPath(string strSvrPathWithTag)
         {
@@ -207,7 +207,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 根据路径字符获得数据库
         /// </summary>
-        /// <param name="strSvrPath">[Service/DBName/Collection]</param>
+        /// <param name="strSvrPath">[Tag:Service/DBName/Collection]</param>
         /// <returns></returns>
         public static MongoDatabase GetMongoDBBySvrPath(String strSvrPathWithTag)
         {
@@ -228,7 +228,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 通过路径获得数据集
         /// </summary>
-        /// <param name="strSvrPath"></param>
+        /// <param name="strSvrPath">[Tag:Service/DBName/Collection]</param>
         /// <returns></returns>
         public static MongoCollection GetMongoCollectionBySvrPath(String strSvrPathWithTag)
         {
@@ -333,6 +333,8 @@ namespace MagicMongoDBTool.Module
             return true;
         }
 
+        #region"GFS操作"
+
         ///在使用GirdFileSystem的时候，请注意：
         ///1.Windows 系统的文件名不区分大小写，不过，filename一定是区分大小写的，如果大小写不匹配的话，会发生无法找到文件的问题
         ///2.Download的时候，不能使用SlaveOk选项！
@@ -398,6 +400,6 @@ namespace MagicMongoDBTool.Module
                 mongoDB.CreateCollection(COLLECTION_NAME_GFS_FILES);
             }
         }
-
+        #endregion
     }
 }

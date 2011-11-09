@@ -7,6 +7,15 @@ namespace MagicMongoDBTool.Module
     public static class SystemManager
     {
         public static ConfigHelper ConfigHelperInstance = new ConfigHelper();
+        public static frmErrMsg _frmErrMsg;
+        public static void ShowErrMsg(String Message, String Details = "")
+        {
+            if (_frmErrMsg == null) { 
+                _frmErrMsg = new frmErrMsg(); 
+            }
+            _frmErrMsg.SetMessage(Message, Details);
+            _frmErrMsg.ShowDialog();
+        }
         public static string SelectObjectTag = string.Empty;
         /// <summary>
         /// 通过服务器名称获得服务器配置

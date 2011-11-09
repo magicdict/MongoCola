@@ -9,10 +9,10 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
+        Timer refreshTimer = new Timer();
 
         private void frmServiceStatus_Load(object sender, EventArgs e)
         {
-            Timer refreshTimer = new Timer();
             refreshTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer * 1000;
             refreshTimer.Tick += new EventHandler((x, y) =>
             {
@@ -35,6 +35,15 @@ namespace MagicMongoDBTool
             MongoDBHelpler.FillSrvStatusToList(this.lstSrvStatus);
             MongoDBHelpler.FillSrvOprToList(this.lstSrvOpr);
             MongoDBHelpler.FillDBStatusToList(this.lstDBStatus);
+        }
+        /// <summary>
+        /// Timer停止
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void frmServiceStatus_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            refreshTimer.Stop();
         }
 
 
