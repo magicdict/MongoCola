@@ -6,4 +6,5 @@
 /QLFUI/obj
 /GUIResource/bin
 /GUIResource/obj
+!readme.txt
 !app.config

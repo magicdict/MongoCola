@@ -179,6 +179,7 @@ namespace MagicMongoDBTool
                         this.ShutDownToolStripMenuItem.Enabled = true;
                         this.AddUserToAdminToolStripMenuItem.Enabled = true;
                         this.RemoveUserFromAdminToolStripMenuItem.Enabled = true;
+                        this.SvrPropertyToolStripMenuItem.Enabled = true;
                         if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.ReplsetSvr)
                         {
                             //副本服务器专用。
@@ -201,6 +202,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShardConfigToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.SvrPropertyToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
                         }
@@ -280,6 +282,8 @@ namespace MagicMongoDBTool
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
             this.CreateMongoCollectionToolStripMenuItem.Enabled = false;
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
+            this.SvrPropertyToolStripMenuItem.Enabled = false;
+
             this.AddUserToolStripMenuItem.Enabled = false;
             this.RemoveUserToolStripMenuItem.Enabled = false;
             this.AddUserToAdminToolStripMenuItem.Enabled = false;
@@ -599,6 +603,15 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
+        /// 服务器属性
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SvrPropertyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(MongoDBHelpler.GetCurrentSvrInfo(),"服务器属性");
+        }
+        /// <summary>
         /// 删除数据
         /// </summary>
         /// <param name="sender"></param>
@@ -880,6 +893,8 @@ namespace MagicMongoDBTool
             MessageBox.Show(strThanks, "感谢");
         }
         #endregion
+
+
 
     }
 }

@@ -91,6 +91,7 @@
             this.lstData = new System.Windows.Forms.ListView();
             this.tabTextView = new System.Windows.Forms.TabPage();
             this.txtData = new System.Windows.Forms.TextBox();
+            this.SvrPropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentPanel.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
@@ -291,9 +292,10 @@
             this.ShutDownToolStripMenuItem,
             this.CreateMongoDBToolStripMenuItem,
             this.AddUserToAdminToolStripMenuItem,
-            this.RemoveUserFromAdminToolStripMenuItem});
+            this.RemoveUserFromAdminToolStripMenuItem,
+            this.SvrPropertyToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
-            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ServerToolStripMenuItem.Text = "服务器";
             // 
             // ShutDownToolStripMenuItem
@@ -332,7 +334,7 @@
             this.AddUserToolStripMenuItem,
             this.RemoveUserToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
-            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataBaseToolStripMenuItem.Text = "数据库";
             // 
             // DelMongoDBToolStripMenuItem
@@ -371,7 +373,7 @@
             this.DelRecordToolStripMenuItem,
             this.RenameCollectionToolStripMenuItem});
             this.DataCollectionOprToolStripMenuItem.Name = "DataCollectionOprToolStripMenuItem";
-            this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataCollectionOprToolStripMenuItem.Text = "数据集";
             // 
             // DelMongoCollectionToolStripMenuItem
@@ -411,7 +413,7 @@
             this.DelFileToolStripMenuItem,
             this.InitGFSToolStripMenuItem});
             this.GridFsToolStripMenuItem.Name = "GridFsToolStripMenuItem";
-            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.GridFsToolStripMenuItem.Text = "文件系统";
             // 
             // UploadFileToolStripMenuItem
@@ -493,21 +495,21 @@
             // ReplicaSetToolStripMenuItem
             // 
             this.ReplicaSetToolStripMenuItem.Name = "ReplicaSetToolStripMenuItem";
-            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.ReplicaSetToolStripMenuItem.Text = "副本设定";
             this.ReplicaSetToolStripMenuItem.Click += new System.EventHandler(this.ReplicaSetToolStripMenuItem_Click);
             // 
             // ShardConfigToolStripMenuItem
             // 
             this.ShardConfigToolStripMenuItem.Name = "ShardConfigToolStripMenuItem";
-            this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.ShardConfigToolStripMenuItem.Text = "配置分片数据";
             this.ShardConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardConfigToolStripMenuItem_Click);
             // 
             // mapReduceToolStripMenuItem
             // 
             this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
-            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.mapReduceToolStripMenuItem.Text = "MapReduce";
             this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
             // 
@@ -645,6 +647,13 @@
             this.txtData.Size = new System.Drawing.Size(594, 426);
             this.txtData.TabIndex = 0;
             // 
+            // SvrPropertyToolStripMenuItem
+            // 
+            this.SvrPropertyToolStripMenuItem.Name = "SvrPropertyToolStripMenuItem";
+            this.SvrPropertyToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.SvrPropertyToolStripMenuItem.Text = "属性";
+            this.SvrPropertyToolStripMenuItem.Click += new System.EventHandler(this.SvrPropertyToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -745,5 +754,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusDataNavi;
         private System.Windows.Forms.ToolStripMenuItem ExpandAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CollapseAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SvrPropertyToolStripMenuItem;
     }
 }

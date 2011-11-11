@@ -8,6 +8,7 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelpler
     {
+        #region"服务器管理"
         /// <summary>
         /// 管理中服务器列表
         /// </summary>
@@ -76,8 +77,25 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
+        #endregion
 
         #region"展示数据"
+
+        /// <summary>
+        /// 获得当前服务器信息
+        /// </summary>
+        /// <returns></returns>
+        public static String GetCurrentSvrInfo() {
+            String rtnSvrInfo = String.Empty;
+            MongoServer mongosvr = SystemManager.GetCurrentService();
+            rtnSvrInfo = "仲裁服务器：" + mongosvr.Instance.IsArbiter.ToString() + "\r\n";
+            rtnSvrInfo += "副本主服务器：" + mongosvr.Instance.IsPrimary.ToString() + "\r\n";
+            rtnSvrInfo += "副本次服务器：" + mongosvr.Instance.IsSecondary.ToString() + "\r\n";
+            rtnSvrInfo += "服务器地址：" + mongosvr.Instance.Address.ToString() + "\r\n";
+            rtnSvrInfo += "服务器版本：" + mongosvr.Instance.BuildInfo.VersionString + "\r\n";
+            rtnSvrInfo += "系统信息：" + mongosvr.Instance.BuildInfo.SysInfo + "\r\n";
+            return rtnSvrInfo;
+        }
         /// <summary>
         /// 将Mongodb的服务器在树形控件中展示
         /// </summary>
@@ -176,8 +194,6 @@ namespace MagicMongoDBTool.Module
                     mongoColNode = new TreeNode(strColName + "[访问异常]");
                     throw;
                 }
-                mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
-                mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
                 mongoDBNode.Nodes.Add(mongoColNode);
             }
             return mongoDBNode;
@@ -336,20 +352,13 @@ namespace MagicMongoDBTool.Module
             mongoData.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Document;
             mongoData.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Document;
             mongoData.Tag = DOCUMENT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strTagColName;
+
+            mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+            mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
             mongoColNode.Nodes.Add(mongoData);
             //End Data
             return mongoColNode;
         }
-
-        /// <summary>
-        /// 是否有二进制数据
-        /// </summary>
-        private static Boolean _hasBSonBinary;
-        /// <summary>
-        /// 在第一次展示数据的时候，记录下字段名称，用于在Query的时候使用
-        /// </summary>
-        //public static List<string> ColumnList = new List<string>();
-
         /// <summary>
         /// 通过读取N条记录来确定数据集结构
         /// </summary>
@@ -375,6 +384,12 @@ namespace MagicMongoDBTool.Module
             }
             return _ColumnList;
         }
+        /// <summary>
+        /// 取得名称列表[递归获得嵌套]
+        /// </summary>
+        /// <param name="docName"></param>
+        /// <param name="doc"></param>
+        /// <returns></returns>
         public static List<string> getBsonNameList(String docName, BsonDocument doc)
         {
             List<string> _ColumnList = new List<string>();
@@ -395,6 +410,10 @@ namespace MagicMongoDBTool.Module
             }
             return _ColumnList;
         }
+        /// <summary>
+        /// 是否有二进制数据
+        /// </summary>
+        private static Boolean _hasBSonBinary;
         /// <summary>
         /// 展示数据
         /// </summary>
@@ -631,7 +650,7 @@ namespace MagicMongoDBTool.Module
             lstData.Columns.Add("ID");
             lstData.Columns.Add("用户名");
             lstData.Columns.Add("是否只读");
-            //密码是明码表示的，这里可能会有安全隐患
+            //密码是密文表示的，这里没有安全隐患
             lstData.Columns.Add("密码");
             foreach (BsonDocument docFile in dataList)
             {

@@ -43,10 +43,12 @@ namespace MagicMongoDBTool.Module
                 host.Add("host", SystemManager.ConfigHelperInstance.ConnectionList[item].IpAddr + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString());
                 if (SystemManager.ConfigHelperInstance.ConnectionList[item].ServerType == ConfigHelper.SvrType.ArbiterSvr)
                 {
+                    //仲裁服务器
                     host.Add("arbiterOnly", true);
                 }
                 else
                 {
+                    //优先度
                     host.Add("priority", SystemManager.ConfigHelperInstance.ConnectionList[item].Priority);
                 }
                 hosts.Add(host);
