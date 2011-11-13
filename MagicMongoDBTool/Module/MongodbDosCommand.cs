@@ -229,7 +229,11 @@ namespace MagicMongoDBTool.Module
             public MongologLevel LogLV = MongologLevel.Quiet;
             public ImprotExport Direct = ImprotExport.Import;
         }
-
+        /// <summary>
+        /// 获得MongoImportExport命令
+        /// </summary>
+        /// <param name="mongoImprotExport"></param>
+        /// <returns></returns>
         public static string GetMongoImportExportCommandLine(StruImportExport mongoImprotExport)
         {
             //mongodump.exe 备份程序
@@ -264,13 +268,19 @@ namespace MagicMongoDBTool.Module
             }
             return dosCommand;
         }
-
+        /// <summary>
+        /// Mongo可执行文件目录的检查
+        /// </summary>
+        /// <returns></returns>
+        public static Boolean IsMongoPathExist(){
+            return Directory.Exists(SystemManager.ConfigHelperInstance.MongoBinPath);
+        } 
         /// <summary>
         /// 执行Dos下的命令
         /// </summary>
-        /// <param name="dosCommand"></param>
+        /// <param name="DosCommand"></param>
         /// <param name="sb"></param>
-        public static void RunDosCommand(string dosCommand, StringBuilder sb)
+        public static void RunDosCommand(String DosCommand, StringBuilder sb)
         {
             Process myProcess = new Process();
             //myProcess.StartInfo.WorkingDirectory = SystemManager.mConfig.MongoBinPath;//DOS控制平台
@@ -285,9 +295,9 @@ namespace MagicMongoDBTool.Module
             stringWriter.AutoFlush = true;
             StreamReader stringReader = myProcess.StandardOutput;//标准输入流
             StreamReader streamReaderError = myProcess.StandardError;//标准错误流
-            stringWriter.Write(dosCommand + System.Environment.NewLine);//DOS控制平台上的命令
+            stringWriter.Write(DosCommand + System.Environment.NewLine);//DOS控制平台上的命令
             stringWriter.Write(@"cd " + SystemManager.ConfigHelperInstance.MongoBinPath + System.Environment.NewLine);//DOS控制平台上的命令
-            stringWriter.Write(dosCommand + System.Environment.NewLine);//DOS控制平台上的命令
+            stringWriter.Write(DosCommand + System.Environment.NewLine);//DOS控制平台上的命令
             stringWriter.Write("exit" + System.Environment.NewLine);
             string s = stringReader.ReadToEnd();//读取执行DOS命令后输出信息
             string er = streamReaderError.ReadToEnd();//读取执行DOS命令后错误信息

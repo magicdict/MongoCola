@@ -80,7 +80,6 @@ namespace MagicMongoDBTool.Module
         #endregion
 
         #region"展示数据"
-
         /// <summary>
         /// 获得当前服务器信息
         /// </summary>
@@ -588,7 +587,6 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
-
         /// <summary>
         /// 将数据放入ListView中进行展示
         /// </summary>
@@ -755,7 +753,6 @@ namespace MagicMongoDBTool.Module
                 {
                     //throw;
                 }
-
             }
         }
         /// <summary>

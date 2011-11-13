@@ -56,5 +56,6 @@ namespace MagicMongoDBTool.Module
             MongodumpCommand.Port = (int)numPort.Value;
             CommandChanged(MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand));
         }
+
     }
 }

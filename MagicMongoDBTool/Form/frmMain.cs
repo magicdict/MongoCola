@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+using System.Text;
 
 namespace MagicMongoDBTool
 {
@@ -221,7 +222,8 @@ namespace MagicMongoDBTool
                             this.RemoveUserToolStripMenuItem.Enabled = true;
                             this.InitGFSToolStripMenuItem.Enabled = true;
                         }
-
+                        //备份数据库
+                        this.DumpDatabaseToolStripMenuItem.Enabled = true;
                         if (strNodeType == MongoDBHelpler.SINGLE_DATABASE_TAG)
                         {
                             //单一数据库模式
@@ -237,7 +239,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
-
+                            this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
                         }
@@ -288,6 +290,7 @@ namespace MagicMongoDBTool
             this.RemoveUserToolStripMenuItem.Enabled = false;
             this.AddUserToAdminToolStripMenuItem.Enabled = false;
             this.RemoveUserFromAdminToolStripMenuItem.Enabled = false;
+            this.DumpDatabaseToolStripMenuItem.Enabled = false;
 
             this.IndexManageToolStripMenuItem.Enabled = false;
             this.DelRecordToolStripMenuItem.Enabled = false;
@@ -560,37 +563,70 @@ namespace MagicMongoDBTool
         }
         #endregion
 
-        #region"管理"
-
-        private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-            String strCollection = strPath.Split("/".ToCharArray())[2];
-            String strNewCollectionName = Microsoft.VisualBasic.Interaction.InputBox("请输入新数据集名称：", "数据集改名");
-            if (MongoDBHelpler.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelpler.Oprcode.Rename, trvsrvlst.SelectedNode, strNewCollectionName))
-            {
-                DisableAllOpr();
-                lstData.Clear();
-                SystemManager.SelectObjectTag = trvsrvlst.SelectedNode.Tag.ToString();
-                statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-            }
-        }
-
+        #region"管理：服务器"
         /// <summary>
-        /// 删除MongoDB
+        /// 建立数据库
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DelMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CreateMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-            String strDBName = strPath.Split("/".ToCharArray())[1];
-            if (MongoDBHelpler.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelpler.Oprcode.Drop, trvsrvlst.SelectedNode))
+            String strDBName = Microsoft.VisualBasic.Interaction.InputBox("请输入数据库名称：", "创建数据库");
+            if (strDBName == string.Empty)
+            {
+                return;
+            }
+            if (MongoDBHelpler.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelpler.Oprcode.Create, trvsrvlst.SelectedNode))
             {
                 DisableAllOpr();
                 lstData.Clear();
             }
         }
+        /// <summary>
+        /// 建立Admin用户
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddUserToAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "创建用户");
+            String strPassword = Microsoft.VisualBasic.Interaction.InputBox("请输入密码：", "创建用户");
+            MongoDBHelpler.AddUserToSvr(SystemManager.SelectObjectTag, strUserName, strPassword, false);
+        }
+        /// <summary>
+        /// 删除Admin用户
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DelUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
+            MongoDBHelpler.RemoveUserFromSvr(SystemManager.SelectObjectTag, strUserName);
+        }
+        /// <summary>
+        /// 服务器属性
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SvrPropertyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(MongoDBHelpler.GetCurrentSvrInfo(), "服务器属性");
+        }
+        /// <summary>
+        /// 关闭服务器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShutDownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO:可能有异常
+            MongoDBHelpler.Shutdown();
+            trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
+        }
+        #endregion
+
+        #region"管理：数据集"
         /// <summary>
         /// 删除Mongo数据集
         /// </summary>
@@ -607,13 +643,16 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 服务器属性
+        /// 索引管理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SvrPropertyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void IndexManageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(MongoDBHelpler.GetCurrentSvrInfo(),"服务器属性");
+            frmCollectionIndex mfrm = new frmCollectionIndex();
+            mfrm.ShowDialog();
+            mfrm.Close();
+            mfrm.Dispose();
         }
         /// <summary>
         /// 删除数据
@@ -642,6 +681,24 @@ namespace MagicMongoDBTool
             RefreshData();
         }
         /// <summary>
+        /// 重命名数据集
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            String strCollection = strPath.Split("/".ToCharArray())[2];
+            String strNewCollectionName = Microsoft.VisualBasic.Interaction.InputBox("请输入新数据集名称：", "数据集改名");
+            if (MongoDBHelpler.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelpler.Oprcode.Rename, trvsrvlst.SelectedNode, strNewCollectionName))
+            {
+                DisableAllOpr();
+                lstData.Clear();
+                SystemManager.SelectObjectTag = trvsrvlst.SelectedNode.Tag.ToString();
+                statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            }
+        }
+        /// <summary>
         /// 刷新数据
         /// </summary>
         private void RefreshData()
@@ -650,111 +707,9 @@ namespace MagicMongoDBTool
             MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
         }
-        /// <summary>
-        /// 建立数据集
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CreateMongoCollectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strCollection = Microsoft.VisualBasic.Interaction.InputBox("请输入数据集名称：", "创建数据集");
-            if (strCollection == string.Empty)
-            {
-                return;
-            }
-            if (MongoDBHelpler.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelpler.Oprcode.Create, trvsrvlst.SelectedNode))
-            {
-                DisableAllOpr();
-                lstData.Clear();
-            }
-        }
-        /// <summary>
-        /// 建立数据库
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CreateMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-            String strDBName = Microsoft.VisualBasic.Interaction.InputBox("请输入数据库名称：", "创建数据库");
-            if (strDBName == string.Empty)
-            {
-                return;
-            }
-            if (MongoDBHelpler.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelpler.Oprcode.Create, trvsrvlst.SelectedNode))
-            {
-                DisableAllOpr();
-                lstData.Clear();
-            }
-        }
+        #endregion
 
-        /// <summary>
-        /// 建立Admin用户
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddUserToAdminToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "创建用户");
-            String strPassword = Microsoft.VisualBasic.Interaction.InputBox("请输入密码：", "创建用户");
-            MongoDBHelpler.AddUserToSvr(SystemManager.SelectObjectTag, strUserName, strPassword, false);
-        }
-        /// <summary>
-        /// 删除Admin用户
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DelUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
-            MongoDBHelpler.RemoveUserFromSvr(SystemManager.SelectObjectTag, strUserName);
-        }
-
-        /// <summary>
-        /// 建立用户
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "创建用户");
-            String strPassword = Microsoft.VisualBasic.Interaction.InputBox("请输入密码：", "创建用户");
-            MongoDBHelpler.AddUserToDB(SystemManager.SelectObjectTag, strUserName, strPassword, false);
-        }
-        /// <summary>
-        /// 删除用户
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
-            MongoDBHelpler.RemoveUserFromDB(SystemManager.SelectObjectTag, strUserName);
-        }
-        /// <summary>
-        /// 索引管理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void IndexManageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmCollectionIndex mfrm = new frmCollectionIndex();
-            mfrm.ShowDialog();
-            mfrm.Close();
-            mfrm.Dispose();
-        }
-        /// <summary>
-        /// 关闭服务器
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ShutDownToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //TODO:
-            MongoDBHelpler.Shutdown();
-            trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
-        }
-
+        #region"管理：GFS"
         /// <summary>
         /// 上传文件
         /// </summary>
@@ -808,6 +763,89 @@ namespace MagicMongoDBTool
         private void InitGFSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MongoDBHelpler.InitGFS();
+        }
+        #endregion
+
+        #region"管理：数据库"
+
+        /// <summary>
+        /// 删除MongoDB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DelMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            String strDBName = strPath.Split("/".ToCharArray())[1];
+            if (MongoDBHelpler.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelpler.Oprcode.Drop, trvsrvlst.SelectedNode))
+            {
+                DisableAllOpr();
+                lstData.Clear();
+            }
+        }
+        /// <summary>
+        /// 建立数据集
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CreateMongoCollectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strCollection = Microsoft.VisualBasic.Interaction.InputBox("请输入数据集名称：", "创建数据集");
+            if (strCollection == string.Empty)
+            {
+                return;
+            }
+            if (MongoDBHelpler.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelpler.Oprcode.Create, trvsrvlst.SelectedNode))
+            {
+                DisableAllOpr();
+                lstData.Clear();
+            }
+        }
+        /// <summary>
+        /// 建立用户
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "创建用户");
+            String strPassword = Microsoft.VisualBasic.Interaction.InputBox("请输入密码：", "创建用户");
+            MongoDBHelpler.AddUserToDB(SystemManager.SelectObjectTag, strUserName, strPassword, false);
+        }
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
+            MongoDBHelpler.RemoveUserFromDB(SystemManager.SelectObjectTag, strUserName);
+        }
+        /// <summary>
+        /// 备份数据库
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DumpDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!MongodbDosCommand.IsMongoPathExist()) {
+                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                return;
+            }
+            MongodbDosCommand.StruMongoDump MongoDump = new MongodbDosCommand.StruMongoDump();
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoDump.HostAddr = Mongosrv.Address.Host;
+            MongoDump.Port = Mongosrv.Address.Port;
+            MongoDump.DBName = SystemManager.GetCurrentDataBase().Name;
+            FolderBrowserDialog dumpFile = new FolderBrowserDialog();
+            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                MongoDump.OutPutPath = dumpFile.SelectedPath;
+            }
+            String DosCommand = MongodbDosCommand.GetMongodumpCommandLine(MongoDump);
+            StringBuilder  Info = new StringBuilder();
+            MongodbDosCommand.RunDosCommand(DosCommand, Info);
+            SystemManager.ShowErrMsg("执行结果",Info.ToString());
         }
         #endregion
 
@@ -907,6 +945,8 @@ namespace MagicMongoDBTool
             MessageBox.Show(strThanks, "感谢");
         }
         #endregion
+
+
 
     }
 }
