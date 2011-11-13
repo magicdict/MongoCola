@@ -6,8 +6,19 @@ namespace MagicMongoDBTool.Module
 {
     public static class SystemManager
     {
+        /// <summary>
+        /// 配置实例
+        /// </summary>
         public static ConfigHelper ConfigHelperInstance = new ConfigHelper();
+        /// <summary>
+        /// 消息窗体
+        /// </summary>
         public static frmErrMsg _frmErrMsg;
+        /// <summary>
+        /// 消息表示
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Details"></param>
         public static void ShowErrMsg(String Message, String Details = "")
         {
             if (_frmErrMsg == null) { 
@@ -16,6 +27,9 @@ namespace MagicMongoDBTool.Module
             _frmErrMsg.SetMessage(Message, Details);
             _frmErrMsg.ShowDialog();
         }
+        /// <summary>
+        /// 选择对象标签
+        /// </summary>
         public static string SelectObjectTag = string.Empty;
         /// <summary>
         /// 通过服务器名称获得服务器配置
@@ -67,7 +81,10 @@ namespace MagicMongoDBTool.Module
             MongoCollection mongoJsCol = mongoDB.GetCollection(MongoDBHelpler.COLLECTION_NAME_JAVASCRIPT);
             return mongoJsCol;
         }
-
+        /// <summary>
+        /// 获得JS名称列表
+        /// </summary>
+        /// <returns></returns>
         public static List<string> GetJsNameList()
         {
             List<string> jsNamelst = new List<string>();

@@ -85,7 +85,8 @@ namespace MagicMongoDBTool.Module
         /// 获得当前服务器信息
         /// </summary>
         /// <returns></returns>
-        public static String GetCurrentSvrInfo() {
+        public static String GetCurrentSvrInfo()
+        {
             String rtnSvrInfo = String.Empty;
             MongoServer mongosvr = SystemManager.GetCurrentService();
             rtnSvrInfo = "仲裁服务器：" + mongosvr.Instance.IsArbiter.ToString() + "\r\n";
@@ -561,21 +562,24 @@ namespace MagicMongoDBTool.Module
             {
                 if (item.Value.IsBsonDocument)
                 {
-                    TreeNode t = new TreeNode(item.Name);
-                    FillBsonDocToTreeNode(t, item.Value.ToBsonDocument());
-                    treeNode.Nodes.Add(t);
+                    TreeNode newItem = new TreeNode(item.Name);
+                    FillBsonDocToTreeNode(newItem, item.Value.ToBsonDocument());
+                    treeNode.Nodes.Add(newItem);
                 }
                 else
                 {
                     if (item.Value.IsBsonArray)
                     {
-                        TreeNode t = new TreeNode(item.Name);
-                        foreach (var SubItem in item.Value.AsBsonArray)
+                        TreeNode newItem = new TreeNode(item.Name);
+                        int count = 1;
+                        foreach (BsonValue SubItem in item.Value.AsBsonArray)
                         {
-                            TreeNode m = new TreeNode(SubItem.ToString());
-                            t.Nodes.Add(m);
+                            TreeNode newSubItem = new TreeNode(item.Name + "[" + count + "]");
+                            FillBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument());
+                            newItem.Nodes.Add(newSubItem);
+                            count++;
                         }
-                        treeNode.Nodes.Add(t);
+                        treeNode.Nodes.Add(newItem);
                     }
                     else
                     {
@@ -663,7 +667,7 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
-        /// 
+        /// GFS系统
         /// </summary>
         /// <param name="dataList"></param>
         /// <param name="lstData"></param>
@@ -691,6 +695,10 @@ namespace MagicMongoDBTool.Module
         #endregion
 
         #region"展示状态"
+        /// <summary>
+        /// 将DB状态放入ListView
+        /// </summary>
+        /// <param name="lstData"></param>
         public static void FillDBStatusToList(ListView lstData)
         {
             lstData.Clear();
@@ -750,17 +758,21 @@ namespace MagicMongoDBTool.Module
 
             }
         }
-        public static void FillSrvStatusToList(ListView lstData)
+        /// <summary>
+        /// 将服务器状态放入ListView
+        /// </summary>
+        /// <param name="lstSvr"></param>
+        public static void FillSrvStatusToList(ListView lstSvr)
         {
-            lstData.Clear();
-            lstData.Columns.Add("名称");
-            lstData.Columns.Add("数据集数量");
-            lstData.Columns.Add("数据大小");
-            lstData.Columns.Add("文件大小");
-            lstData.Columns.Add("索引数量");
-            lstData.Columns.Add("索引数量大小");
-            lstData.Columns.Add("对象数量");
-            lstData.Columns.Add("占用大小");
+            lstSvr.Clear();
+            lstSvr.Columns.Add("名称");
+            lstSvr.Columns.Add("数据集数量");
+            lstSvr.Columns.Add("数据大小");
+            lstSvr.Columns.Add("文件大小");
+            lstSvr.Columns.Add("索引数量");
+            lstSvr.Columns.Add("索引数量大小");
+            lstSvr.Columns.Add("对象数量");
+            lstSvr.Columns.Add("占用大小");
             foreach (String mongoSvrKey in _mongoSrvLst.Keys)
             {
                 try
@@ -789,7 +801,7 @@ namespace MagicMongoDBTool.Module
                         lst.SubItems.Add(GetSize(dbStatus.IndexSize));
                         lst.SubItems.Add(dbStatus.ObjectCount.ToString());
                         lst.SubItems.Add(GetSize(dbStatus.StorageSize));
-                        lstData.Items.Add(lst);
+                        lstSvr.Items.Add(lst);
                     }
 
                 }
@@ -799,9 +811,13 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
-        public static void FillSrvOprToList(ListView lstData)
+        /// <summary>
+        /// 将数据Opr放入ListView
+        /// </summary>
+        /// <param name="lstSrvOpr"></param>
+        public static void FillSrvOprToList(ListView lstSrvOpr)
         {
-            lstData.Clear();
+            lstSrvOpr.Clear();
             Boolean hasHeader = false;
             foreach (string mongoSvrKey in _mongoSrvLst.Keys)
             {
@@ -818,10 +834,10 @@ namespace MagicMongoDBTool.Module
                             if (!hasHeader)
                             {
 
-                                lstData.Columns.Add("Name");
+                                lstSrvOpr.Columns.Add("Name");
                                 foreach (string item in dbStatus.GetValue("inprog").AsBsonArray[0].AsBsonDocument.Names)
                                 {
-                                    lstData.Columns.Add(item);
+                                    lstSrvOpr.Columns.Add(item);
                                 }
                                 hasHeader = true;
                             }
@@ -834,7 +850,7 @@ namespace MagicMongoDBTool.Module
                                 {
                                     lst.SubItems.Add(item.GetValue(itemName).ToString());
                                 }
-                                lstData.Items.Add(lst);
+                                lstSrvOpr.Items.Add(lst);
                             }
                         }
                     }
@@ -925,6 +941,9 @@ namespace MagicMongoDBTool.Module
             }
             FillDataToControl(strTag, dataShower);
         }
+        /// <summary>
+        /// 设置导航状态
+        /// </summary>
         public static void SetPageEnable()
         {
             if (SkipCnt == 0)
@@ -948,6 +967,11 @@ namespace MagicMongoDBTool.Module
         #endregion
 
         #region "辅助方法"
+        /// <summary>
+        /// Size的文字表达
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
         private static string GetSize(long size)
         {
             string strSize = string.Empty;

@@ -66,6 +66,9 @@ namespace MagicMongoDBTool.Module
                 mongoDB.RemoveUser(strUser);
             }
         }
+        /// <summary>
+        /// 关闭服务器
+        /// </summary>
         public static void Shutdown()
         {
             MongoServer mongoSvr = GetMongoServerBySvrPath(SystemManager.SelectObjectTag);

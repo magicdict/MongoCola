@@ -314,6 +314,8 @@ namespace MagicMongoDBTool
             this.PrePageToolStripButton.Enabled = false;
             this.QueryDataToolStripMenuItem.Enabled = false;
             this.QueryDataToolStripButton.Enabled = false;
+            this.ExpandAllDataToolStripMenuItem.Enabled = false;
+            this.CollapseAllDataToolStripMenuItem.Enabled = false;
 
             this.ReplicaSetToolStripMenuItem.Enabled = false;
             this.ShardConfigToolStripMenuItem.Enabled = false;
@@ -396,6 +398,7 @@ namespace MagicMongoDBTool
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
+                    this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                     if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GFS_FILES)
                     {
                         //文件系统
@@ -435,6 +438,7 @@ namespace MagicMongoDBTool
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
+                    this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                     this.contextMenuStripMain.Items.Add(this.DelRecordToolStripMenuItem.Clone());
                     trvData.ContextMenuStrip = this.contextMenuStripMain;
                     contextMenuStripMain.Show();
@@ -856,7 +860,15 @@ namespace MagicMongoDBTool
             MongoDBHelpler.PageChanged(MongoDBHelpler.PageChangeOpr.LastPage, SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
         }
+        private void ExpandAllDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            trvData.ExpandAll();
+        }
 
+        private void CollapseAllDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            trvData.CollapseAll();
+        }
         private void QueryDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmQuery mfrm = new frmQuery();
@@ -875,6 +887,8 @@ namespace MagicMongoDBTool
             FirstPageToolStripMenuItem.Enabled = MongoDBHelpler.HasPrePage;
             LastPageToolStripMenuItem.Enabled = MongoDBHelpler.HasNextPage;
             this.QueryDataToolStripMenuItem.Enabled = true;
+            this.ExpandAllDataToolStripMenuItem.Enabled = true;
+            this.CollapseAllDataToolStripMenuItem.Enabled = true;
             SetToolBar();
             statusStripMain.Items[1].Text = "数据视图：" + (MongoDBHelpler.SkipCnt + 1).ToString() + "/" + MongoDBHelpler.CurrentCollectionTotalCnt.ToString();
         }
@@ -893,8 +907,6 @@ namespace MagicMongoDBTool
             MessageBox.Show(strThanks, "感谢");
         }
         #endregion
-
-
 
     }
 }
