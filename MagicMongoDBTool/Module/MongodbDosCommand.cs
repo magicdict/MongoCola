@@ -174,11 +174,29 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public class StruMongoDump
         {
+            /// <summary>
+            /// 主机地址
+            /// </summary>
             public string HostAddr = string.Empty;
+            /// <summary>
+            /// 主机端口
+            /// </summary>
             public Int32 Port = 27017;
+            /// <summary>
+            /// 数据库名称
+            /// </summary>
             public string DBName = string.Empty;
+            /// <summary>
+            /// 数据集名称
+            /// </summary>
             public string CollectionName = string.Empty;
+            /// <summary>
+            /// 输出路径
+            /// </summary>
             public string OutPutPath = String.Empty;
+            /// <summary>
+            /// 日志等级
+            /// </summary>
             public MongologLevel LogLV = MongologLevel.Quiet;
         }
 
@@ -211,9 +229,18 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public class StruMongoRestore 
         {
+            /// <summary>
+            /// 主机地址
+            /// </summary>
             public string HostAddr = string.Empty;
+            /// <summary>
+            /// 主机端口
+            /// </summary>
             public Int32 Port = 27017;
-            public string OutPutPath = String.Empty;
+            /// <summary>
+            /// 备份数据库路径
+            /// </summary>
+            public string PerDB = String.Empty;
         }
         /// <summary>
         /// 获得恢复的配置
@@ -222,11 +249,11 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         static public string GetMongoRestoreCommandLine(StruMongoRestore MongoRestore)
         {
-            //mongodump.exe 备份程序
+            //mongorestore.exe 恢复程序
             string dosCommand = @"mongorestore -h @hostaddr:@port --directoryperdb @dbname";
             dosCommand = dosCommand.Replace("@hostaddr", MongoRestore.HostAddr);
             dosCommand = dosCommand.Replace("@port", MongoRestore.Port.ToString());
-            dosCommand = dosCommand.Replace("@dbname", MongoRestore.OutPutPath);
+            dosCommand = dosCommand.Replace("@dbname", MongoRestore.PerDB);
             return dosCommand;
         }
         public enum ImprotExport
@@ -245,17 +272,41 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public class StruImportExport
         {
+            /// <summary>
+            /// 主机地址
+            /// </summary>
             public string HostAddr = string.Empty;
+            /// <summary>
+            /// 主机端口
+            /// </summary>
             public Int32 Port = 27017;
+            /// <summary>
+            /// 数据库名称
+            /// </summary>
             public string DBName = string.Empty;
+            /// <summary>
+            /// 数据集名称
+            /// </summary>
             public string CollectionName = string.Empty;
+            /// <summary>
+            /// 字段列表
+            /// </summary>
             public string FieldList = string.Empty;
+            /// <summary>
+            /// 文件名称
+            /// </summary>
             public string FileName = string.Empty;
+            /// <summary>
+            /// 日志等级
+            /// </summary>
             public MongologLevel LogLV = MongologLevel.Quiet;
+            /// <summary>
+            /// 导入导出标志
+            /// </summary>
             public ImprotExport Direct = ImprotExport.Import;
         }
         /// <summary>
-        /// 获得MongoImportExport命令
+        /// 获得MongoImportExport命令[必须指定数据集名称！！]
         /// </summary>
         /// <param name="mongoImprotExport"></param>
         /// <returns></returns>
@@ -308,7 +359,6 @@ namespace MagicMongoDBTool.Module
         public static void RunDosCommand(String DosCommand, StringBuilder sb)
         {
             Process myProcess = new Process();
-            //myProcess.StartInfo.WorkingDirectory = SystemManager.mConfig.MongoBinPath;//DOS控制平台
             myProcess.StartInfo.FileName = "cmd";
             myProcess.StartInfo.UseShellExecute = false;
             myProcess.StartInfo.CreateNoWindow = true;
@@ -320,7 +370,6 @@ namespace MagicMongoDBTool.Module
             stringWriter.AutoFlush = true;
             StreamReader stringReader = myProcess.StandardOutput;//标准输入流
             StreamReader streamReaderError = myProcess.StandardError;//标准错误流
-            stringWriter.Write(DosCommand + System.Environment.NewLine);//DOS控制平台上的命令
             stringWriter.Write(@"cd " + SystemManager.ConfigHelperInstance.MongoBinPath + System.Environment.NewLine);//DOS控制平台上的命令
             stringWriter.Write(DosCommand + System.Environment.NewLine);//DOS控制平台上的命令
             stringWriter.Write("exit" + System.Environment.NewLine);

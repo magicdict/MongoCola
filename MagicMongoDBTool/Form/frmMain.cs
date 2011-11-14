@@ -75,6 +75,8 @@ namespace MagicMongoDBTool
             }
             if (e.Node.Tag != null)
             {
+                //选中节点的设置
+                this.trvsrvlst.SelectedNode = e.Node;
                 //先禁用所有的操作，然后根据选中对象解禁
                 DisableAllOpr();
                 string strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
@@ -202,6 +204,9 @@ namespace MagicMongoDBTool
                             this.mapReduceToolStripMenuItem.Enabled = true;
                         }
                         this.DumpCollectionToolStripMenuItem.Enabled = true;
+                        this.ImportCollectionToolStripMenuItem.Enabled = true;
+                        this.ExportCollectionToolStripMenuItem.Enabled = true;
+
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -211,6 +216,8 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DumpCollectionToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.ImportCollectionToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.ExportCollectionToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
                         }
@@ -245,6 +252,8 @@ namespace MagicMongoDBTool
             this.DelRecordToolStripMenuItem.Enabled = false;
             this.RenameCollectionToolStripMenuItem.Enabled = false;
             this.DumpCollectionToolStripMenuItem.Enabled = false;
+            this.ImportCollectionToolStripMenuItem.Enabled = false;
+            this.ExportCollectionToolStripMenuItem.Enabled = false;
 
             this.UploadFileToolStripMenuItem.Enabled = false;
             this.DownloadFileToolStripMenuItem.Enabled = false;
@@ -281,7 +290,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void lstData_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstData_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GFS_FILES)
             {
@@ -331,7 +340,12 @@ namespace MagicMongoDBTool
                 }
             }
         }
-        void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (SystemManager.GetCurrentCollection().Name == MongoDBHelpler.COLLECTION_NAME_GFS_FILES)
             {
@@ -344,7 +358,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void lstData_MouseClick(object sender, MouseEventArgs e)
+        private void lstData_MouseClick(object sender, MouseEventArgs e)
         {
             if (lstData.SelectedItems.Count > 0)
             {
@@ -368,7 +382,12 @@ namespace MagicMongoDBTool
                 }
             }
         }
-        void trvData_AfterSelect(object sender, TreeViewEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trvData_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (trvData.SelectedNode.Level == 0)
             {
@@ -380,8 +399,12 @@ namespace MagicMongoDBTool
                 DelRecordToolStripMenuItem.Enabled = false;
             }
         }
-
-        void trvData_MouseClick(object sender, MouseEventArgs e)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trvData_MouseClick(object sender, MouseEventArgs e)
         {
             TreeNode node = this.trvData.GetNodeAt(e.Location);
             trvData.SelectedNode = node;
@@ -552,7 +575,7 @@ namespace MagicMongoDBTool
             FolderBrowserDialog dumpFile = new FolderBrowserDialog();
             if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                MongoRestore.OutPutPath = dumpFile.SelectedPath;
+                MongoRestore.PerDB = dumpFile.SelectedPath;
             }
             String DosCommand = MongodbDosCommand.GetMongoRestoreCommandLine(MongoRestore);
             StringBuilder Info = new StringBuilder();
@@ -612,10 +635,14 @@ namespace MagicMongoDBTool
         {
             String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             String strCollection = strPath.Split("/".ToCharArray())[2];
+            if (trvsrvlst.SelectedNode == null)
+            {
+                trvsrvlst.SelectedNode = null;
+            }
             if (MongoDBHelpler.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelpler.Oprcode.Drop, trvsrvlst.SelectedNode))
             {
                 DisableAllOpr();
-                lstData.Clear();
+                clearDataShower();
             }
         }
         /// <summary>
@@ -669,7 +696,7 @@ namespace MagicMongoDBTool
             if (MongoDBHelpler.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelpler.Oprcode.Rename, trvsrvlst.SelectedNode, strNewCollectionName))
             {
                 DisableAllOpr();
-                lstData.Clear();
+                clearDataShower();
                 SystemManager.SelectObjectTag = trvsrvlst.SelectedNode.Tag.ToString();
                 statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             }
@@ -703,11 +730,65 @@ namespace MagicMongoDBTool
             SystemManager.ShowErrMsg("执行结果", Info.ToString());
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExportCollectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!MongodbDosCommand.IsMongoPathExist())
+            {
+                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                return;
+            }
+            MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoImportExport.HostAddr = Mongosrv.Address.Host;
+            MongoImportExport.Port = Mongosrv.Address.Port;
+            MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
+            MongoImportExport.CollectionName = SystemManager.GetCurrentCollection().Name;
+            OpenFileDialog dumpFile = new OpenFileDialog();
+            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MongoImportExport.FileName = dumpFile.FileName;
+            }
+            MongoImportExport.Direct = MongodbDosCommand.ImprotExport.Export;
+            String DosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExport);
+            StringBuilder Info = new StringBuilder();
+            MongodbDosCommand.RunDosCommand(DosCommand, Info);
+            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+        }
+        private void ImportCollectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!MongodbDosCommand.IsMongoPathExist())
+            {
+                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                return;
+            }
+            MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoImportExport.HostAddr = Mongosrv.Address.Host;
+            MongoImportExport.Port = Mongosrv.Address.Port;
+            MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
+            MongoImportExport.CollectionName = SystemManager.GetCurrentCollection().Name;
+            OpenFileDialog dumpFile = new OpenFileDialog();
+            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MongoImportExport.FileName = dumpFile.FileName;
+            }
+            MongoImportExport.Direct = MongodbDosCommand.ImprotExport.Import;
+            String DosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExport);
+            StringBuilder Info = new StringBuilder();
+            MongodbDosCommand.RunDosCommand(DosCommand, Info);
+            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+        }
+        /// <summary>
         /// 刷新数据
         /// </summary>
         private void RefreshData()
         {
             MongoDBHelpler.ClearFilter();
+            clearDataShower();
             MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
         }
@@ -781,6 +862,9 @@ namespace MagicMongoDBTool
         {
             String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             String strDBName = strPath.Split("/".ToCharArray())[1];
+            if (trvsrvlst.SelectedNode == null) {
+                trvsrvlst.SelectedNode = null;
+            }
             if (MongoDBHelpler.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelpler.Oprcode.Drop, trvsrvlst.SelectedNode))
             {
                 DisableAllOpr();
@@ -833,7 +917,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DumpDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!MongodbDosCommand.IsMongoPathExist()) {
+            if (!MongodbDosCommand.IsMongoPathExist())
+            {
                 SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
                 return;
             }
@@ -843,14 +928,16 @@ namespace MagicMongoDBTool
             MongoDump.Port = Mongosrv.Address.Port;
             MongoDump.DBName = SystemManager.GetCurrentDataBase().Name;
             FolderBrowserDialog dumpFile = new FolderBrowserDialog();
-            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
                 MongoDump.OutPutPath = dumpFile.SelectedPath;
             }
             String DosCommand = MongodbDosCommand.GetMongodumpCommandLine(MongoDump);
-            StringBuilder  Info = new StringBuilder();
+            StringBuilder Info = new StringBuilder();
             MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            SystemManager.ShowErrMsg("执行结果",Info.ToString());
+            SystemManager.ShowErrMsg("执行结果", Info.ToString());
         }
+        
         #endregion
 
         #region"分布式"
@@ -949,9 +1036,5 @@ namespace MagicMongoDBTool
             MessageBox.Show(strThanks, "感谢");
         }
         #endregion
-
-
-
-
     }
 }
