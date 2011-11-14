@@ -1,5 +1,9 @@
-﻿namespace MagicMongoDBTool
+﻿using System.Windows.Forms;
+using MagicMongoDBTool.Module;
+using GUIResource;
+namespace MagicMongoDBTool
 {
+    
     partial class frmMain
     {
         /// <summary>
@@ -35,7 +39,7 @@
             this.toolStripStatusDataNavi = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
-            this.ConnectionStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SrvStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,18 +54,19 @@
             this.QueryDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExpandAllDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CollapseAllDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OperationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddUserToAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveUserFromAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SvrPropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DumpDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataCollectionOprToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IndexManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,16 +78,16 @@
             this.OpenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InitGFSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DosCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportDataFromAccessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ShardingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DistributedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReplicaSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShardConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapReduceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ThanksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -94,7 +99,6 @@
             this.lstData = new System.Windows.Forms.ListView();
             this.tabTextView = new System.Windows.Forms.TabPage();
             this.txtData = new System.Windows.Forms.TextBox();
-            this.DumpDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentPanel.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
@@ -150,17 +154,17 @@
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(915, 25);
             this.toolStripMain.TabIndex = 7;
-            this.toolStripMain.Text = "toolStrip1";
+            this.toolStripMain.Text = "工具栏";
             // 
             // menuStripMain
             // 
             this.menuStripMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("menuStripMain.BackgroundImage")));
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ConnectionStatusToolStripMenuItem,
+            this.ManagerToolStripMenuItem,
             this.DataNaviToolStripMenuItem,
-            this.ManageToolStripMenuItem,
-            this.ToolToolStripMenuItem,
-            this.ShardingToolStripMenuItem,
+            this.OperationToolStripMenuItem,
+            this.ToolsToolStripMenuItem,
+            this.DistributedToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
@@ -168,19 +172,19 @@
             this.menuStripMain.TabIndex = 6;
             this.menuStripMain.Text = "menuStrip1";
             // 
-            // ConnectionStatusToolStripMenuItem
+            // ManagerToolStripMenuItem
             // 
-            this.ConnectionStatusToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
-            this.ConnectionStatusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ManagerToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
+            this.ManagerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddConnectionToolStripMenuItem,
             this.SrvStatusToolStripMenuItem,
             this.RefreshToolStripMenuItem,
             this.ExpandAllConnectionToolStripMenuItem,
             this.CollapseAllConnectionToolStripMenuItem,
             this.ExitToolStripMenuItem});
-            this.ConnectionStatusToolStripMenuItem.Name = "ConnectionStatusToolStripMenuItem";
-            this.ConnectionStatusToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.ConnectionStatusToolStripMenuItem.Text = "连接和状态(&S)";
+            this.ManagerToolStripMenuItem.Name = "ManagerToolStripMenuItem";
+            this.ManagerToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.ManagerToolStripMenuItem.Text = "管理(&S)";
             // 
             // AddConnectionToolStripMenuItem
             // 
@@ -294,16 +298,16 @@
             this.CollapseAllDataToolStripMenuItem.Text = "折叠";
             this.CollapseAllDataToolStripMenuItem.Click += new System.EventHandler(this.CollapseAllDataToolStripMenuItem_Click);
             // 
-            // ManageToolStripMenuItem
+            // OperationToolStripMenuItem
             // 
-            this.ManageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OperationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ServerToolStripMenuItem,
             this.DataBaseToolStripMenuItem,
             this.DataCollectionOprToolStripMenuItem,
             this.GridFsToolStripMenuItem});
-            this.ManageToolStripMenuItem.Name = "ManageToolStripMenuItem";
-            this.ManageToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.ManageToolStripMenuItem.Text = "管理";
+            this.OperationToolStripMenuItem.Name = "OperationToolStripMenuItem";
+            this.OperationToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.OperationToolStripMenuItem.Text = "操作";
             // 
             // ServerToolStripMenuItem
             // 
@@ -314,21 +318,14 @@
             this.ShutDownToolStripMenuItem,
             this.SvrPropertyToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
-            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.ServerToolStripMenuItem.Text = "服务器";
-            // 
-            // ShutDownToolStripMenuItem
-            // 
-            this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
-            this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.ShutDownToolStripMenuItem.Text = "关闭服务器";
-            this.ShutDownToolStripMenuItem.Click += new System.EventHandler(this.ShutDownToolStripMenuItem_Click);
             // 
             // CreateMongoDBToolStripMenuItem
             // 
             this.CreateMongoDBToolStripMenuItem.Name = "CreateMongoDBToolStripMenuItem";
             this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.CreateMongoDBToolStripMenuItem.Text = "添加数据库";
+            this.CreateMongoDBToolStripMenuItem.Text = "新建数据库";
             this.CreateMongoDBToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoDBToolStripMenuItem_Click);
             // 
             // AddUserToAdminToolStripMenuItem
@@ -344,6 +341,13 @@
             this.RemoveUserFromAdminToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.RemoveUserFromAdminToolStripMenuItem.Text = "从Admin删除用户";
             this.RemoveUserFromAdminToolStripMenuItem.Click += new System.EventHandler(this.DelUserFromAdminToolStripMenuItem_Click);
+            // 
+            // ShutDownToolStripMenuItem
+            // 
+            this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
+            this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.ShutDownToolStripMenuItem.Text = "关闭服务器";
+            this.ShutDownToolStripMenuItem.Click += new System.EventHandler(this.ShutDownToolStripMenuItem_Click);
             // 
             // SvrPropertyToolStripMenuItem
             // 
@@ -361,36 +365,43 @@
             this.RemoveUserToolStripMenuItem,
             this.DumpDatabaseToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
-            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.DataBaseToolStripMenuItem.Text = "数据库";
             // 
             // DelMongoDBToolStripMenuItem
             // 
             this.DelMongoDBToolStripMenuItem.Name = "DelMongoDBToolStripMenuItem";
-            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.DelMongoDBToolStripMenuItem.Text = "删除数据库";
             this.DelMongoDBToolStripMenuItem.Click += new System.EventHandler(this.DelMongoDBToolStripMenuItem_Click);
             // 
             // CreateMongoCollectionToolStripMenuItem
             // 
             this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
-            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.CreateMongoCollectionToolStripMenuItem.Text = "添加数据集";
             this.CreateMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoCollectionToolStripMenuItem_Click);
             // 
             // AddUserToolStripMenuItem
             // 
             this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
-            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.AddUserToolStripMenuItem.Text = "添加用户";
             this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
             // 
             // RemoveUserToolStripMenuItem
             // 
             this.RemoveUserToolStripMenuItem.Name = "RemoveUserToolStripMenuItem";
-            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.RemoveUserToolStripMenuItem.Text = "删除用户";
             this.RemoveUserToolStripMenuItem.Click += new System.EventHandler(this.RemoveUserToolStripMenuItem_Click);
+            // 
+            // DumpDatabaseToolStripMenuItem
+            // 
+            this.DumpDatabaseToolStripMenuItem.Name = "DumpDatabaseToolStripMenuItem";
+            this.DumpDatabaseToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.DumpDatabaseToolStripMenuItem.Text = "备份数据库";
+            this.DumpDatabaseToolStripMenuItem.Click += new System.EventHandler(this.DumpDatabaseToolStripMenuItem_Click);
             // 
             // DataCollectionOprToolStripMenuItem
             // 
@@ -400,7 +411,7 @@
             this.DelRecordToolStripMenuItem,
             this.RenameCollectionToolStripMenuItem});
             this.DataCollectionOprToolStripMenuItem.Name = "DataCollectionOprToolStripMenuItem";
-            this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.DataCollectionOprToolStripMenuItem.Text = "数据集";
             // 
             // DelMongoCollectionToolStripMenuItem
@@ -440,7 +451,7 @@
             this.DelFileToolStripMenuItem,
             this.InitGFSToolStripMenuItem});
             this.GridFsToolStripMenuItem.Name = "GridFsToolStripMenuItem";
-            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.GridFsToolStripMenuItem.Text = "文件系统";
             // 
             // UploadFileToolStripMenuItem
@@ -480,13 +491,13 @@
             // 
             // ToolToolStripMenuItem
             // 
-            this.ToolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DosCommandToolStripMenuItem,
             this.ImportDataFromAccessToolStripMenuItem,
             this.OptionToolStripMenuItem});
-            this.ToolToolStripMenuItem.Name = "ToolToolStripMenuItem";
-            this.ToolToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.ToolToolStripMenuItem.Text = "工具（&T)";
+            this.ToolsToolStripMenuItem.Name = "ToolToolStripMenuItem";
+            this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.ToolsToolStripMenuItem.Text = "工具（&T)";
             // 
             // DosCommandToolStripMenuItem
             // 
@@ -509,52 +520,52 @@
             this.OptionToolStripMenuItem.Text = "配置(&O)";
             this.OptionToolStripMenuItem.Click += new System.EventHandler(this.OptionToolStripMenuItem_Click);
             // 
-            // ShardingToolStripMenuItem
+            // DistributedToolStripMenuItem
             // 
-            this.ShardingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DistributedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ReplicaSetToolStripMenuItem,
             this.ShardConfigToolStripMenuItem,
             this.mapReduceToolStripMenuItem});
-            this.ShardingToolStripMenuItem.Name = "ShardingToolStripMenuItem";
-            this.ShardingToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.ShardingToolStripMenuItem.Text = "分布式";
+            this.DistributedToolStripMenuItem.Name = "DistributedToolStripMenuItem";
+            this.DistributedToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.DistributedToolStripMenuItem.Text = "分布式";
             // 
             // ReplicaSetToolStripMenuItem
             // 
             this.ReplicaSetToolStripMenuItem.Name = "ReplicaSetToolStripMenuItem";
-            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ReplicaSetToolStripMenuItem.Text = "副本设定";
             this.ReplicaSetToolStripMenuItem.Click += new System.EventHandler(this.ReplicaSetToolStripMenuItem_Click);
             // 
             // ShardConfigToolStripMenuItem
             // 
             this.ShardConfigToolStripMenuItem.Name = "ShardConfigToolStripMenuItem";
-            this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ShardConfigToolStripMenuItem.Text = "配置分片数据";
             this.ShardConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardConfigToolStripMenuItem_Click);
             // 
             // mapReduceToolStripMenuItem
             // 
             this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
-            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.mapReduceToolStripMenuItem.Text = "MapReduce";
             this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem,
+            this.AboutToolStripMenuItem,
             this.ThanksToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.helpToolStripMenuItem.Text = "帮助";
             // 
-            // aboutToolStripMenuItem
+            // AboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
-            this.aboutToolStripMenuItem.Text = "关于";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.AboutToolStripMenuItem.Text = "关于";
+            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // ThanksToolStripMenuItem
             // 
@@ -674,13 +685,6 @@
             this.txtData.Size = new System.Drawing.Size(594, 426);
             this.txtData.TabIndex = 0;
             // 
-            // DumpDatabaseToolStripMenuItem
-            // 
-            this.DumpDatabaseToolStripMenuItem.Name = "DumpDatabaseToolStripMenuItem";
-            this.DumpDatabaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.DumpDatabaseToolStripMenuItem.Text = "备份数据库";
-            this.DumpDatabaseToolStripMenuItem.Click += new System.EventHandler(this.DumpDatabaseToolStripMenuItem_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -717,14 +721,110 @@
             this.PerformLayout();
 
         }
+        /// <summary>
+        /// 设置图标
+        /// </summary>
+        private void SetMenuImage()
+        {
+            this.PrePageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.PrePage);
+            this.NextPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.NextPage);
+            this.FirstPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.FirstPage);
+            this.LastPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.LastPage);
+            this.QueryDataToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Query);
 
+            this.ImportDataFromAccessToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.AccessDB);
+            this.RefreshToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Refresh);
+            this.OptionToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Option);
+
+            this.ThanksToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Smile);
+
+        }
+        /// <summary>
+        /// 设置文字
+        /// </summary>
+        private void SetMenuText() { 
+            Language lan = SystemManager.ConfigHelperInstance.Language;
+            lan = Language.Japanese;
+
+            //管理
+            this.ExpandAllConnectionToolStripMenuItem.Text = GetResource.GetText(TextType.Expand, lan);
+            this.CollapseAllConnectionToolStripMenuItem.Text = GetResource.GetText(TextType.Collapse, lan);
+
+
+            //数据视图
+            this.PrePageToolStripMenuItem.Text = GetResource.GetText(TextType.PrePage, lan);
+            this.NextPageToolStripMenuItem.Text = GetResource.GetText(TextType.NextPage, lan);
+            this.FirstPageToolStripMenuItem.Text = GetResource.GetText(TextType.FirstPage, lan);
+            this.LastPageToolStripMenuItem.Text = GetResource.GetText(TextType.LastPage, lan);
+            this.QueryDataToolStripMenuItem.Text = GetResource.GetText(TextType.QueryData, lan);
+            this.ExpandAllDataToolStripMenuItem.Text = GetResource.GetText(TextType.Expand, lan);
+            this.CollapseAllDataToolStripMenuItem.Text = GetResource.GetText(TextType.Collapse, lan);
+
+
+            //操作
+            this.CreateMongoDBToolStripMenuItem.Text = GetResource.GetText(TextType.CreateDataBase, lan);
+            this.InitGFSToolStripMenuItem.Text = GetResource.GetText(TextType.InitGFS, lan);
+
+
+            //工具
+            this.ToolsToolStripMenuItem.Text = GetResource.GetText(TextType.Tools, lan);
+            this.ImportDataFromAccessToolStripMenuItem.Text = GetResource.GetText(TextType.ImportDataFromAccess, lan);
+            this.DosCommandToolStripMenuItem.Text = GetResource.GetText(TextType.DosCommand, lan);
+            this.OptionToolStripMenuItem.Text = GetResource.GetText(TextType.Option, lan);
+
+            //分布式
+            this.DistributedToolStripMenuItem.Text = GetResource.GetText(TextType.Distributed, lan);
+            this.ReplicaSetToolStripMenuItem.Text = GetResource.GetText(TextType.ReplicaSet, lan);
+            this.ShardConfigToolStripMenuItem.Text = GetResource.GetText(TextType.ShardingConfig, lan);
+            this.mapReduceToolStripMenuItem.Text = GetResource.GetText(TextType.MapReduce, lan);
+
+            //帮助
+            this.helpToolStripMenuItem.Text = GetResource.GetText(TextType.Help, lan);
+            this.AboutToolStripMenuItem.Text = GetResource.GetText(TextType.About, lan);
+            this.ThanksToolStripMenuItem.Text = GetResource.GetText(TextType.Thanks, lan);
+
+        }
+        /// <summary>
+        /// 工具栏
+        /// </summary>
+        private void SetToolBar()
+        {
+            this.toolStripMain.Items.Clear();
+
+            FirstPageToolStripButton = this.FirstPageToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(FirstPageToolStripButton);
+
+            PrePageToolStripButton = this.PrePageToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(PrePageToolStripButton);
+
+            NextPageToolStripButton = this.NextPageToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(NextPageToolStripButton);
+
+            LastPageToolStripButton = this.LastPageToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(LastPageToolStripButton);
+
+            QueryDataToolStripButton = this.QueryDataToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(QueryDataToolStripButton);
+
+            this.toolStripMain.Items.Add(new ToolStripSeparator());
+
+            RefreshToolStripButton = this.RefreshToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(RefreshToolStripButton);
+
+            ImportDataFromAccessToolStripButton = this.ImportDataFromAccessToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
+
+            OptionToolStripButton = this.OptionToolStripMenuItem.CloneFromMenuItem();
+            this.toolStripMain.Items.Add(OptionToolStripButton);
+
+        }
         #endregion
 
         private System.Windows.Forms.StatusStrip statusStripMain;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusSelectedObj;
         private System.Windows.Forms.ToolStrip toolStripMain;
         private System.Windows.Forms.MenuStrip menuStripMain;
-        private System.Windows.Forms.ToolStripMenuItem ConnectionStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AddConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SrvStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RefreshToolStripMenuItem;
@@ -735,7 +835,7 @@
         private System.Windows.Forms.ToolStripMenuItem FirstPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem LastPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem QueryDataToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ManageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OperationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ServerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ShutDownToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CreateMongoDBToolStripMenuItem;
@@ -754,11 +854,11 @@
         private System.Windows.Forms.ToolStripMenuItem DownloadFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DelFileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ToolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DosCommandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ImportDataFromAccessToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OptionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ShardingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DistributedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ReplicaSetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ShardConfigToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mapReduceToolStripMenuItem;
@@ -775,7 +875,7 @@
         private System.Windows.Forms.ToolStripMenuItem AddUserToAdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RemoveUserFromAdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ThanksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem InitGFSToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusDataNavi;
@@ -785,5 +885,15 @@
         private System.Windows.Forms.ToolStripMenuItem ExpandAllDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CollapseAllDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DumpDatabaseToolStripMenuItem;
+
+        private ToolStripButton ImportDataFromAccessToolStripButton;
+        private ToolStripButton RefreshToolStripButton;
+        private ToolStripButton OptionToolStripButton;
+
+        private ToolStripButton NextPageToolStripButton;
+        private ToolStripButton PrePageToolStripButton;
+        private ToolStripButton FirstPageToolStripButton;
+        private ToolStripButton LastPageToolStripButton;
+        private ToolStripButton QueryDataToolStripButton;
     }
 }

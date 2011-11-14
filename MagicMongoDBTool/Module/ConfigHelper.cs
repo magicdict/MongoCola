@@ -159,6 +159,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public int RefreshStatusTimer = 30;
         /// <summary>
+        /// 语言
+        /// </summary>
+        public GUIResource.Language Language = GUIResource.Language.English;
+        /// <summary>
         /// 配置文件名称
         /// </summary>
         private static string _configFilename = "config.xml";

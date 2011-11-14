@@ -13,71 +13,13 @@ namespace MagicMongoDBTool
             InitializeComponent();
             GetSystemIcon.InitMainTreeImage();
             trvsrvlst.ImageList = GetSystemIcon.MainTreeImage;
-            SetMenuImages();
+            SetMenuImage();
+            SetMenuText();
             SetToolBar();
         }
         /// <summary>
-        /// 设置图标
+        /// 数据展示
         /// </summary>
-        private void SetMenuImages()
-        {
-            this.PrePageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.PrePage);
-            this.NextPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.NextPage);
-            this.FirstPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.FirstPage);
-            this.LastPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.LastPage);
-            this.QueryDataToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Query);
-
-            this.ImportDataFromAccessToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.AccessDB);
-            this.RefreshToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Refresh);
-            this.OptionToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Option);
-
-            this.ThanksToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Smile);
-
-        }
-
-        private ToolStripButton ImportDataFromAccessToolStripButton;
-        private ToolStripButton RefreshToolStripButton;
-        private ToolStripButton OptionToolStripButton;
-
-        private ToolStripButton NextPageToolStripButton;
-        private ToolStripButton PrePageToolStripButton;
-        private ToolStripButton FirstPageToolStripButton;
-        private ToolStripButton LastPageToolStripButton;
-        private ToolStripButton QueryDataToolStripButton;
-        /// <summary>
-        /// 工具栏
-        /// </summary>
-        private void SetToolBar()
-        {
-            this.toolStripMain.Items.Clear();
-
-            FirstPageToolStripButton = this.FirstPageToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(FirstPageToolStripButton);
-
-            PrePageToolStripButton = this.PrePageToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(PrePageToolStripButton);
-
-            NextPageToolStripButton = this.NextPageToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(NextPageToolStripButton);
-
-            LastPageToolStripButton = this.LastPageToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(LastPageToolStripButton);
-
-            QueryDataToolStripButton = this.QueryDataToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(QueryDataToolStripButton);
-
-            this.toolStripMain.Items.Add(new ToolStripSeparator());
-
-            RefreshToolStripButton = this.RefreshToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(RefreshToolStripButton);
-
-            ImportDataFromAccessToolStripButton = this.ImportDataFromAccessToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
-
-            OptionToolStripButton = this.OptionToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(OptionToolStripButton);
-
-        }
         private List<Control> _dataShower = new List<Control>();
         /// <summary>
         /// 数据展示控件
@@ -933,7 +875,7 @@ namespace MagicMongoDBTool
         #endregion
 
         #region "帮助"
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strThanks = "MagicMongoDBTool 开发者：MagicHu";
             MessageBox.Show(strThanks, "关于");
@@ -945,8 +887,5 @@ namespace MagicMongoDBTool
             MessageBox.Show(strThanks, "感谢");
         }
         #endregion
-
-
-
     }
 }

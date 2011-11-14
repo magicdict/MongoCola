@@ -5,7 +5,7 @@ using System.Text;
 using System.Drawing;
 namespace GUIResource
 {
-    public class GetResource
+    public partial class GetResource
     {
         public static Image GetIcon(ImageType theImage)
         {
