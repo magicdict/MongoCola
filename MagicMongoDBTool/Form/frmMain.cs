@@ -118,11 +118,13 @@ namespace MagicMongoDBTool
                         statusStripMain.Items[0].Text = "选中服务器:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         //解禁 创建数据库,关闭服务器
                         this.CreateMongoDBToolStripMenuItem.Enabled = true;
+                        this.RestoreMongoDBToolStripMenuItem.Enabled = true;
                         this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
                         this.ShutDownToolStripMenuItem.Enabled = true;
                         this.AddUserToAdminToolStripMenuItem.Enabled = true;
                         this.RemoveUserFromAdminToolStripMenuItem.Enabled = true;
                         this.SvrPropertyToolStripMenuItem.Enabled = true;
+
                         if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.ReplsetSvr)
                         {
                             //副本服务器专用。
@@ -138,9 +140,10 @@ namespace MagicMongoDBTool
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
                             this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+                            this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.RestoreMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RemoveUserFromAdminToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShardConfigToolStripMenuItem.Clone());
@@ -198,6 +201,7 @@ namespace MagicMongoDBTool
                             this.IndexManageToolStripMenuItem.Enabled = true;
                             this.mapReduceToolStripMenuItem.Enabled = true;
                         }
+                        this.DumpCollectionToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -206,6 +210,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.RenameCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.DumpCollectionToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
                         }
@@ -215,6 +220,7 @@ namespace MagicMongoDBTool
                         break;
                 }
             }
+            //重新Reset工具栏
             SetToolBar();
         }
         /// <summary>
@@ -227,6 +233,7 @@ namespace MagicMongoDBTool
             this.CreateMongoCollectionToolStripMenuItem.Enabled = false;
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
             this.SvrPropertyToolStripMenuItem.Enabled = false;
+            this.RestoreMongoDBToolStripMenuItem.Enabled = false;
 
             this.AddUserToolStripMenuItem.Enabled = false;
             this.RemoveUserToolStripMenuItem.Enabled = false;
@@ -237,6 +244,7 @@ namespace MagicMongoDBTool
             this.IndexManageToolStripMenuItem.Enabled = false;
             this.DelRecordToolStripMenuItem.Enabled = false;
             this.RenameCollectionToolStripMenuItem.Enabled = false;
+            this.DumpCollectionToolStripMenuItem.Enabled = false;
 
             this.UploadFileToolStripMenuItem.Enabled = false;
             this.DownloadFileToolStripMenuItem.Enabled = false;
@@ -526,6 +534,32 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
+        /// 恢复数据库
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RestoreMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!MongodbDosCommand.IsMongoPathExist())
+            {
+                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                return;
+            }
+            MongodbDosCommand.StruMongoRestore MongoRestore = new MongodbDosCommand.StruMongoRestore();
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoRestore.HostAddr = Mongosrv.Address.Host;
+            MongoRestore.Port = Mongosrv.Address.Port;
+            FolderBrowserDialog dumpFile = new FolderBrowserDialog();
+            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MongoRestore.OutPutPath = dumpFile.SelectedPath;
+            }
+            String DosCommand = MongodbDosCommand.GetMongoRestoreCommandLine(MongoRestore);
+            StringBuilder Info = new StringBuilder();
+            MongodbDosCommand.RunDosCommand(DosCommand, Info);
+            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+        }
+        /// <summary>
         /// 建立Admin用户
         /// </summary>
         /// <param name="sender"></param>
@@ -639,6 +673,34 @@ namespace MagicMongoDBTool
                 SystemManager.SelectObjectTag = trvsrvlst.SelectedNode.Tag.ToString();
                 statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             }
+        }
+        /// <summary>
+        /// 备份数据集
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DumpCollectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!MongodbDosCommand.IsMongoPathExist())
+            {
+                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                return;
+            }
+            MongodbDosCommand.StruMongoDump MongoDump = new MongodbDosCommand.StruMongoDump();
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoDump.HostAddr = Mongosrv.Address.Host;
+            MongoDump.Port = Mongosrv.Address.Port;
+            MongoDump.DBName = SystemManager.GetCurrentDataBase().Name;
+            MongoDump.CollectionName = SystemManager.GetCurrentCollection().Name;
+            FolderBrowserDialog dumpFile = new FolderBrowserDialog();
+            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MongoDump.OutPutPath = dumpFile.SelectedPath;
+            }
+            String DosCommand = MongodbDosCommand.GetMongodumpCommandLine(MongoDump);
+            StringBuilder Info = new StringBuilder();
+            MongodbDosCommand.RunDosCommand(DosCommand, Info);
+            SystemManager.ShowErrMsg("执行结果", Info.ToString());
         }
         /// <summary>
         /// 刷新数据
@@ -887,5 +949,9 @@ namespace MagicMongoDBTool
             MessageBox.Show(strThanks, "感谢");
         }
         #endregion
+
+
+
+
     }
 }

@@ -206,7 +206,29 @@ namespace MagicMongoDBTool.Module
             }
             return dosCommand;
         }
-
+        /// <summary>
+        /// MongoRestore使用的结构
+        /// </summary>
+        public class StruMongoRestore 
+        {
+            public string HostAddr = string.Empty;
+            public Int32 Port = 27017;
+            public string OutPutPath = String.Empty;
+        }
+        /// <summary>
+        /// 获得恢复的配置
+        /// </summary>
+        /// <param name="mongoDump"></param>
+        /// <returns></returns>
+        static public string GetMongoRestoreCommandLine(StruMongoRestore MongoRestore)
+        {
+            //mongodump.exe 备份程序
+            string dosCommand = @"mongorestore -h @hostaddr:@port --directoryperdb @dbname";
+            dosCommand = dosCommand.Replace("@hostaddr", MongoRestore.HostAddr);
+            dosCommand = dosCommand.Replace("@port", MongoRestore.Port.ToString());
+            dosCommand = dosCommand.Replace("@dbname", MongoRestore.OutPutPath);
+            return dosCommand;
+        }
         public enum ImprotExport
         {
             /// <summary>
@@ -218,6 +240,9 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             Export
         }
+        /// <summary>
+        /// ImportExport使用的结构
+        /// </summary>
         public class StruImportExport
         {
             public string HostAddr = string.Empty;
