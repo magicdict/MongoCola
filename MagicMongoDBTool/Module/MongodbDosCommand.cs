@@ -240,10 +240,12 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 备份数据库路径
             /// </summary>
-            public string PerDB = String.Empty;
+            public string DirectoryPerDB = String.Empty;
         }
         /// <summary>
         /// 获得恢复的配置
+        /// 和恢复数据库是相同的操作，只是根据目录结构不同进行不同恢复操作
+        /// 目录名称表示数据库名称，BSON文件表示数据集
         /// </summary>
         /// <param name="mongoDump"></param>
         /// <returns></returns>
@@ -253,7 +255,7 @@ namespace MagicMongoDBTool.Module
             string dosCommand = @"mongorestore -h @hostaddr:@port --directoryperdb @dbname";
             dosCommand = dosCommand.Replace("@hostaddr", MongoRestore.HostAddr);
             dosCommand = dosCommand.Replace("@port", MongoRestore.Port.ToString());
-            dosCommand = dosCommand.Replace("@dbname", MongoRestore.PerDB);
+            dosCommand = dosCommand.Replace("@dbname", MongoRestore.DirectoryPerDB);
             return dosCommand;
         }
         public enum ImprotExport

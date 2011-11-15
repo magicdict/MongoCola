@@ -79,6 +79,8 @@ namespace MagicMongoDBTool
                 this.trvsrvlst.SelectedNode = e.Node;
                 //先禁用所有的操作，然后根据选中对象解禁
                 DisableAllOpr();
+                //恢复数据：这个操作可以针对服务器，数据库，数据集，所以可以放在共通
+                this.RestoreMongoToolStripMenuItem.Enabled = true;
                 string strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
                 switch (strNodeType)
                 {
@@ -120,7 +122,6 @@ namespace MagicMongoDBTool
                         statusStripMain.Items[0].Text = "选中服务器:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         //解禁 创建数据库,关闭服务器
                         this.CreateMongoDBToolStripMenuItem.Enabled = true;
-                        this.RestoreMongoDBToolStripMenuItem.Enabled = true;
                         this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
                         this.ShutDownToolStripMenuItem.Enabled = true;
                         this.AddUserToAdminToolStripMenuItem.Enabled = true;
@@ -143,7 +144,6 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain = new ContextMenuStrip();
                             this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.RestoreMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RemoveUserFromAdminToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
@@ -171,6 +171,7 @@ namespace MagicMongoDBTool
                         }
                         //备份数据库
                         this.DumpDatabaseToolStripMenuItem.Enabled = true;
+
                         if (strNodeType == MongoDBHelpler.SINGLE_DATABASE_TAG)
                         {
                             //单一数据库模式
@@ -240,13 +241,14 @@ namespace MagicMongoDBTool
             this.CreateMongoCollectionToolStripMenuItem.Enabled = false;
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
             this.SvrPropertyToolStripMenuItem.Enabled = false;
-            this.RestoreMongoDBToolStripMenuItem.Enabled = false;
+            this.ShutDownToolStripMenuItem.Enabled = false;
 
             this.AddUserToolStripMenuItem.Enabled = false;
             this.RemoveUserToolStripMenuItem.Enabled = false;
             this.AddUserToAdminToolStripMenuItem.Enabled = false;
             this.RemoveUserFromAdminToolStripMenuItem.Enabled = false;
             this.DumpDatabaseToolStripMenuItem.Enabled = false;
+            this.RestoreMongoToolStripMenuItem.Enabled = false;
 
             this.IndexManageToolStripMenuItem.Enabled = false;
             this.DelRecordToolStripMenuItem.Enabled = false;
@@ -264,7 +266,6 @@ namespace MagicMongoDBTool
             this.ImportDataFromAccessToolStripMenuItem.Enabled = false;
             this.ImportDataFromAccessToolStripButton.Enabled = false;
 
-            this.ShutDownToolStripMenuItem.Enabled = false;
 
             this.FirstPageToolStripMenuItem.Enabled = false;
             this.FirstPageToolStripButton.Enabled = false;
@@ -557,32 +558,6 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 恢复数据库
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RestoreMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!MongodbDosCommand.IsMongoPathExist())
-            {
-                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
-                return;
-            }
-            MongodbDosCommand.StruMongoRestore MongoRestore = new MongodbDosCommand.StruMongoRestore();
-            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
-            MongoRestore.HostAddr = Mongosrv.Address.Host;
-            MongoRestore.Port = Mongosrv.Address.Port;
-            FolderBrowserDialog dumpFile = new FolderBrowserDialog();
-            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                MongoRestore.PerDB = dumpFile.SelectedPath;
-            }
-            String DosCommand = MongodbDosCommand.GetMongoRestoreCommandLine(MongoRestore);
-            StringBuilder Info = new StringBuilder();
-            MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            SystemManager.ShowErrMsg("执行结果", Info.ToString());
-        }
-        /// <summary>
         /// 建立Admin用户
         /// </summary>
         /// <param name="sender"></param>
@@ -701,87 +676,7 @@ namespace MagicMongoDBTool
                 statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             }
         }
-        /// <summary>
-        /// 备份数据集
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DumpCollectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!MongodbDosCommand.IsMongoPathExist())
-            {
-                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
-                return;
-            }
-            MongodbDosCommand.StruMongoDump MongoDump = new MongodbDosCommand.StruMongoDump();
-            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
-            MongoDump.HostAddr = Mongosrv.Address.Host;
-            MongoDump.Port = Mongosrv.Address.Port;
-            MongoDump.DBName = SystemManager.GetCurrentDataBase().Name;
-            MongoDump.CollectionName = SystemManager.GetCurrentCollection().Name;
-            FolderBrowserDialog dumpFile = new FolderBrowserDialog();
-            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                MongoDump.OutPutPath = dumpFile.SelectedPath;
-            }
-            String DosCommand = MongodbDosCommand.GetMongodumpCommandLine(MongoDump);
-            StringBuilder Info = new StringBuilder();
-            MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            SystemManager.ShowErrMsg("执行结果", Info.ToString());
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ExportCollectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!MongodbDosCommand.IsMongoPathExist())
-            {
-                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
-                return;
-            }
-            MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
-            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
-            MongoImportExport.HostAddr = Mongosrv.Address.Host;
-            MongoImportExport.Port = Mongosrv.Address.Port;
-            MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
-            MongoImportExport.CollectionName = SystemManager.GetCurrentCollection().Name;
-            OpenFileDialog dumpFile = new OpenFileDialog();
-            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                MongoImportExport.FileName = dumpFile.FileName;
-            }
-            MongoImportExport.Direct = MongodbDosCommand.ImprotExport.Export;
-            String DosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExport);
-            StringBuilder Info = new StringBuilder();
-            MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            SystemManager.ShowErrMsg("执行结果", Info.ToString());
-        }
-        private void ImportCollectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!MongodbDosCommand.IsMongoPathExist())
-            {
-                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
-                return;
-            }
-            MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
-            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
-            MongoImportExport.HostAddr = Mongosrv.Address.Host;
-            MongoImportExport.Port = Mongosrv.Address.Port;
-            MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
-            MongoImportExport.CollectionName = SystemManager.GetCurrentCollection().Name;
-            OpenFileDialog dumpFile = new OpenFileDialog();
-            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                MongoImportExport.FileName = dumpFile.FileName;
-            }
-            MongoImportExport.Direct = MongodbDosCommand.ImprotExport.Import;
-            String DosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExport);
-            StringBuilder Info = new StringBuilder();
-            MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            SystemManager.ShowErrMsg("执行结果", Info.ToString());
-        }
+
         /// <summary>
         /// 刷新数据
         /// </summary>
@@ -910,34 +805,7 @@ namespace MagicMongoDBTool
             String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
             MongoDBHelpler.RemoveUserFromDB(SystemManager.SelectObjectTag, strUserName);
         }
-        /// <summary>
-        /// 备份数据库
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DumpDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!MongodbDosCommand.IsMongoPathExist())
-            {
-                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
-                return;
-            }
-            MongodbDosCommand.StruMongoDump MongoDump = new MongodbDosCommand.StruMongoDump();
-            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
-            MongoDump.HostAddr = Mongosrv.Address.Host;
-            MongoDump.Port = Mongosrv.Address.Port;
-            MongoDump.DBName = SystemManager.GetCurrentDataBase().Name;
-            FolderBrowserDialog dumpFile = new FolderBrowserDialog();
-            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                MongoDump.OutPutPath = dumpFile.SelectedPath;
-            }
-            String DosCommand = MongodbDosCommand.GetMongodumpCommandLine(MongoDump);
-            StringBuilder Info = new StringBuilder();
-            MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            SystemManager.ShowErrMsg("执行结果", Info.ToString());
-        }
-        
+
         #endregion
 
         #region"分布式"
@@ -1034,6 +902,149 @@ namespace MagicMongoDBTool
         {
             String strThanks = "感谢皮肤控件的作者：qianlifeng\r\n感谢10gen的C# Driver开发者的技术支持\r\n感谢Dragon同志的测试";
             MessageBox.Show(strThanks, "感谢");
+        }
+        #endregion
+
+        #region"管理：备份和恢复"
+        /// <summary>
+        /// 恢复数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RestoreMongoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!MongodbDosCommand.IsMongoPathExist())
+            {
+                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                return;
+            }
+            MongodbDosCommand.StruMongoRestore MongoRestore = new MongodbDosCommand.StruMongoRestore();
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoRestore.HostAddr = Mongosrv.Address.Host;
+            MongoRestore.Port = Mongosrv.Address.Port;
+            FolderBrowserDialog dumpFile = new FolderBrowserDialog();
+            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MongoRestore.DirectoryPerDB = dumpFile.SelectedPath;
+            }
+            String DosCommand = MongodbDosCommand.GetMongoRestoreCommandLine(MongoRestore);
+            StringBuilder Info = new StringBuilder();
+            MongodbDosCommand.RunDosCommand(DosCommand, Info);
+            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+            RefreshToolStripMenuItem_Click(null, null);
+        }
+        /// <summary>
+        /// 备份数据库
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DumpDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!MongodbDosCommand.IsMongoPathExist())
+            {
+                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                return;
+            }
+            MongodbDosCommand.StruMongoDump MongoDump = new MongodbDosCommand.StruMongoDump();
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoDump.HostAddr = Mongosrv.Address.Host;
+            MongoDump.Port = Mongosrv.Address.Port;
+            MongoDump.DBName = SystemManager.GetCurrentDataBase().Name;
+            FolderBrowserDialog dumpFile = new FolderBrowserDialog();
+            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MongoDump.OutPutPath = dumpFile.SelectedPath;
+            }
+            String DosCommand = MongodbDosCommand.GetMongodumpCommandLine(MongoDump);
+            StringBuilder Info = new StringBuilder();
+            MongodbDosCommand.RunDosCommand(DosCommand, Info);
+            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+        }
+        /// <summary>
+        /// 备份数据集
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DumpCollectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!MongodbDosCommand.IsMongoPathExist())
+            {
+                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                return;
+            }
+            MongodbDosCommand.StruMongoDump MongoDump = new MongodbDosCommand.StruMongoDump();
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoDump.HostAddr = Mongosrv.Address.Host;
+            MongoDump.Port = Mongosrv.Address.Port;
+            MongoDump.DBName = SystemManager.GetCurrentDataBase().Name;
+            MongoDump.CollectionName = SystemManager.GetCurrentCollection().Name;
+            FolderBrowserDialog dumpFile = new FolderBrowserDialog();
+            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MongoDump.OutPutPath = dumpFile.SelectedPath;
+            }
+            String DosCommand = MongodbDosCommand.GetMongodumpCommandLine(MongoDump);
+            StringBuilder Info = new StringBuilder();
+            MongodbDosCommand.RunDosCommand(DosCommand, Info);
+            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ExportCollectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!MongodbDosCommand.IsMongoPathExist())
+            {
+                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                return;
+            }
+            MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoImportExport.HostAddr = Mongosrv.Address.Host;
+            MongoImportExport.Port = Mongosrv.Address.Port;
+            MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
+            MongoImportExport.CollectionName = SystemManager.GetCurrentCollection().Name;
+            OpenFileDialog dumpFile = new OpenFileDialog();
+            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MongoImportExport.FileName = dumpFile.FileName;
+            }
+            MongoImportExport.Direct = MongodbDosCommand.ImprotExport.Export;
+            String DosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExport);
+            StringBuilder Info = new StringBuilder();
+            MongodbDosCommand.RunDosCommand(DosCommand, Info);
+            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportCollectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!MongodbDosCommand.IsMongoPathExist())
+            {
+                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                return;
+            }
+            MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoImportExport.HostAddr = Mongosrv.Address.Host;
+            MongoImportExport.Port = Mongosrv.Address.Port;
+            MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
+            MongoImportExport.CollectionName = SystemManager.GetCurrentCollection().Name;
+            OpenFileDialog dumpFile = new OpenFileDialog();
+            if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MongoImportExport.FileName = dumpFile.FileName;
+            }
+            MongoImportExport.Direct = MongodbDosCommand.ImprotExport.Import;
+            String DosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExport);
+            StringBuilder Info = new StringBuilder();
+            MongodbDosCommand.RunDosCommand(DosCommand, Info);
+            SystemManager.ShowErrMsg("执行结果", Info.ToString());
         }
         #endregion
     }

@@ -196,6 +196,8 @@ namespace MagicMongoDBTool.Module
                 }
                 mongoDBNode.Nodes.Add(mongoColNode);
             }
+            mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+            mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
             return mongoDBNode;
         }
         /// <summary>
@@ -337,9 +339,11 @@ namespace MagicMongoDBTool.Module
                 mongoIndexNode.Nodes.Add("删除重复索引(DroppedDups) :" + indexDoc.DroppedDups.ToString());
                 mongoIndexNode.Nodes.Add("背景索引(IsBackground):" + indexDoc.IsBackground.ToString());
                 mongoIndexNode.Nodes.Add("稀疏索引(IsSparse):" + indexDoc.IsSparse.ToString());
-                mongoIndexNode.Nodes.Add("统一索引(IsUnique):" + indexDoc.IsUnique.ToString());
+                mongoIndexNode.Nodes.Add("唯一索引(IsUnique):" + indexDoc.IsUnique.ToString());
                 mongoIndexNode.Nodes.Add("名字空间:" + indexDoc.Namespace.ToString());
                 mongoIndexNode.Nodes.Add("版本:" + indexDoc.Version.ToString());
+                mongoIndexNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
+                mongoIndexNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
                 mongoIndex.Nodes.Add(mongoIndexNode);
             }
             mongoIndex.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;

@@ -36,8 +36,13 @@ namespace MagicMongoDBTool.Module
         /// 图片数组
         /// </summary>
         public static ImageList IconImagelist = new ImageList();
-
+        /// <summary>
+        /// 主树形控件图标数组
+        /// </summary>
         public static ImageList MainTreeImage = new ImageList();
+        /// <summary>
+        /// 主树形控件图标类型
+        /// </summary>
         public enum MainTreeImageType : int
         {
             Blank = 0,
@@ -45,8 +50,12 @@ namespace MagicMongoDBTool.Module
             Database = 2,
             Collection = 3,
             Keys = 4,
-            Document = 5
+            Document = 5,
+            DBKey = 6
         }
+        /// <summary>
+        /// 主树形控件图标数组初始化
+        /// </summary>
         public static void InitMainTreeImage()
         {
             MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Blank));
@@ -55,7 +64,7 @@ namespace MagicMongoDBTool.Module
             MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Collection));
             MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Keys));
             MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Document));
-
+            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.DBKey));
         }
 
         /// <summary>
