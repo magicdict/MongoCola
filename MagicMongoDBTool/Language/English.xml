@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+  <!--frmMain-->
+<language>
+<Main_Menu_Mangt>Management(&amp;S)</Main_Menu_Mangt>
+<Main_Menu_Mangt_AddConnection>Add Connection(&amp;A)</Main_Menu_Mangt_AddConnection>
+<Main_Menu_Mangt_Status>Status</Main_Menu_Mangt_Status>
+<Main_Menu_Mangt_Refresh>Refresh(&amp;F5)</Main_Menu_Mangt_Refresh>
+<Main_Menu_Mangt_Collapse>Collapse</Main_Menu_Mangt_Collapse>
+<Main_Menu_Mangt_Expansion>Expansion</Main_Menu_Mangt_Expansion>
+<Main_Menu_Mangt_Exit>Exit</Main_Menu_Mangt_Exit>
+
+
+<Main_Menu_DataView>DataView</Main_Menu_DataView>
+<Main_Menu_DataView_Previous>Previous(&amp;F3)</Main_Menu_DataView_Previous>
+<Main_Menu_DataView_Next>Next(&amp;F4)</Main_Menu_DataView_Next>
+<Main_Menu_DataView_First>First(&amp;F9)</Main_Menu_DataView_First>
+<Main_Menu_DataView_Last>Last(&amp;F10)</Main_Menu_DataView_Last>
+<Main_Menu_DataView_Query>Query</Main_Menu_DataView_Query>
+<Main_Menu_DataView_Collapse>Collapse</Main_Menu_DataView_Collapse>
+<Main_Menu_DataView_Expansion>Expansion</Main_Menu_DataView_Expansion>
+
+<Main_Menu_Operation>Operation</Main_Menu_Operation>
+<Main_Menu_Operation_Server_NewDB>New Database</Main_Menu_Operation_Server_NewDB>
+<Main_Menu_Operation_Server_AddUserToAdmin>Add User To Admin Group</Main_Menu_Operation_Server_AddUserToAdmin>
+<Main_Menu_Operation_Server_DelFromAdmin>Del User From Admin Group</Main_Menu_Operation_Server_DelFromAdmin>
+<Main_Menu_Operation_Server_CloseServer>Close Server</Main_Menu_Operation_Server_CloseServer>
+<Main_Menu_Operation_Server_Properties>Properties</Main_Menu_Operation_Server_Properties>
+
+<Main_Menu_Operation_Database>Database</Main_Menu_Operation_Database>
+<Main_Menu_Operation_Database_DelDB>Del Database</Main_Menu_Operation_Database_DelDB>
+<Main_Menu_Operation_Database_AddDC>Add DataCollection</Main_Menu_Operation_Database_AddDC>
+<Main_Menu_Operation_Database_AddUser>Add User</Main_Menu_Operation_Database_AddUser>
+<Main_Menu_Operation_Database_DelUser>Del User</Main_Menu_Operation_Database_DelUser>
+
+<Main_Menu_Operation_DataCollection>DataCollection</Main_Menu_Operation_DataCollection>
+<Main_Menu_Operation_DataCollection_DelDC>Del DataCollection</Main_Menu_Operation_DataCollection_DelDC>
+<Main_Menu_Operation_DataCollection_Index>Index</Main_Menu_Operation_DataCollection_Index>
+<Main_Menu_Operation_DataCollection_DelSelect>Del Select Data</Main_Menu_Operation_DataCollection_DelSelect>
+<Main_Menu_Operation_DataCollection_Rename>Rename</Main_Menu_Operation_DataCollection_Rename>
+
+
+<Main_Menu_Operation_FileSystem>FileSystem</Main_Menu_Operation_FileSystem>
+<Main_Menu_Operation_FileSystem_Upload>Upload</Main_Menu_Operation_FileSystem_Upload>
+<Main_Menu_Operation_FileSystem_Download>Download</Main_Menu_Operation_FileSystem_Download>
+<Main_Menu_Operation_FileSystem_Open>Open</Main_Menu_Operation_FileSystem_Open>
+<Main_Menu_Operation_FileSystem_Del>Del</Main_Menu_Operation_FileSystem_Del>
+<Main_Menu_Operation_FileSystem_InitGFS>InitGFS</Main_Menu_Operation_FileSystem_InitGFS>
+
+<Main_Menu_Operation_BackupAndRestore>BackupAndRestore</Main_Menu_Operation_BackupAndRestore>
+
+<Main_Menu_Operation_BackupAndRestore_Restore>Restore</Main_Menu_Operation_BackupAndRestore_Restore>
+<Main_Menu_Operation_BackupAndRestore_BackupDB>Backup Database</Main_Menu_Operation_BackupAndRestore_BackupDB>
+<Main_Menu_Operation_BackupAndRestore_BackupDC>Backup DataCollection</Main_Menu_Operation_BackupAndRestore_BackupDC>
+<Main_Menu_Operation_BackupAndRestore_Import>Import DataCollection</Main_Menu_Operation_BackupAndRestore_Import>
+<Main_Menu_Operation_BackupAndRestore_Export>Export DataCollection</Main_Menu_Operation_BackupAndRestore_Export>
+
+
+
+<Main_Menu_Tool>Tools(&amp;T)</Main_Menu_Tool>
+<Main_Menu_Tool_DOS>DOS Operation</Main_Menu_Tool_DOS>
+<Main_Menu_Tool_Access>Import Access Database</Main_Menu_Tool_Access>
+<Main_Menu_Tool_Setting>Setting</Main_Menu_Tool_Setting>
+
+
+
+
+<Main_Menu_Distributed>Distributed</Main_Menu_Distributed>
+<Main_Menu_Help>Help</Main_Menu_Help>
+<Main_Tab_Tree>TreeView</Main_Tab_Tree>
+<Main_Tab_Table>TableView</Main_Tab_Table>
+<Main_Tab_Text>TextView</Main_Tab_Text>
+<Main_StatusBar_Text>Ready</Main_StatusBar_Text>
+
+</language>
