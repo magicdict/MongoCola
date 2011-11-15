@@ -16,7 +16,10 @@ namespace MagicMongoDBTool
             trvsrvlst.ImageList = GetSystemIcon.MainTreeImage;
             SetMenuImage();
             SetMenuText();
-            SetToolBar();
+            //初始化ToolBar
+            InitToolBar();
+            //设定工具栏
+            SetToolBarEnabled();
         }
         /// <summary>
         /// 数据展示
@@ -46,7 +49,7 @@ namespace MagicMongoDBTool
             _dataShower.Add(lstData);
             _dataShower.Add(trvData);
             _dataShower.Add(txtData);
-            statusStripMain.Items[1].Text = string.Empty;
+            DataNaviToolStripLabel.Text = string.Empty;
         }
         /// <summary>
         /// 鼠标选中节点
@@ -55,10 +58,15 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void trvsrvlst_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            String strNodeType = String.Empty;
             clearDataShower();
             if (this.trvData.SelectedNode != null)
             {
                 this.trvData.SelectedNode.ContextMenuStrip = null;
+            }
+            if (e.Node.ImageIndex != -1)
+            {
+                statusStripMain.Items[0].Image = GetSystemIcon.MainTreeImage.Images[e.Node.ImageIndex];
             }
             if (e.Node.Tag != null)
             {
@@ -68,7 +76,7 @@ namespace MagicMongoDBTool
                 DisableAllOpr();
                 //恢复数据：这个操作可以针对服务器，数据库，数据集，所以可以放在共通
                 this.RestoreMongoToolStripMenuItem.Enabled = true;
-                string strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
+                strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
                 switch (strNodeType)
                 {
                     case MongoDBHelpler.DOCUMENT_TAG:
@@ -212,11 +220,19 @@ namespace MagicMongoDBTool
                         break;
                     default:
                         SystemManager.SelectObjectTag = "";
+                        statusStripMain.Items[0].Text = "选中对象:" + e.Node.Text;
                         break;
                 }
             }
+            else {
+                statusStripMain.Items[0].Text = "选中对象:" + e.Node.Text;
+            }
             //重新Reset工具栏
-            SetToolBar();
+            SetToolBarEnabled();
+            if (strNodeType != MongoDBHelpler.DOCUMENT_TAG)
+            {
+                DataNaviToolStripLabel.Text = String.Empty;
+            }
         }
         /// <summary>
         /// 禁止所有操作
@@ -429,8 +445,6 @@ namespace MagicMongoDBTool
             lstData.ContextMenuStrip = null;
             trvData.ContextMenuStrip = null;
             this.contextMenuStripMain = null;
-            statusStripMain.Items[0].Text = string.Empty;
-            statusStripMain.Items[1].Text = string.Empty;
         }
         #endregion
 
@@ -1039,8 +1053,8 @@ namespace MagicMongoDBTool
             this.QueryDataToolStripMenuItem.Enabled = true;
             this.ExpandAllDataToolStripMenuItem.Enabled = true;
             this.CollapseAllDataToolStripMenuItem.Enabled = true;
-            SetToolBar();
-            statusStripMain.Items[1].Text = "数据视图：" + (MongoDBHelpler.SkipCnt + 1).ToString() + "/" + MongoDBHelpler.CurrentCollectionTotalCnt.ToString();
+            SetToolBarEnabled();
+            DataNaviToolStripLabel.Text = "数据视图：" + (MongoDBHelpler.SkipCnt + 1).ToString() + "/" + MongoDBHelpler.CurrentCollectionTotalCnt.ToString();
         }
         #endregion
 
