@@ -391,6 +391,7 @@
             // 
             // grpReplset
             // 
+            this.grpReplset.BackColor = System.Drawing.Color.Transparent;
             this.grpReplset.Controls.Add(this.cmdInitReplset);
             this.grpReplset.Controls.Add(this.txtReplSet);
             this.grpReplset.Controls.Add(this.lblReplsetName);
@@ -415,6 +416,7 @@
             // 
             // grpShardingSvrType
             // 
+            this.grpShardingSvrType.BackColor = System.Drawing.Color.Transparent;
             this.grpShardingSvrType.Controls.Add(this.radArbiters);
             this.grpShardingSvrType.Controls.Add(this.radDataSrv);
             this.grpShardingSvrType.Controls.Add(this.radConfigSrv);
@@ -469,7 +471,7 @@
             this.lblAttention.AutoSize = true;
             this.lblAttention.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttention.ForeColor = System.Drawing.Color.Red;
-            this.lblAttention.Location = new System.Drawing.Point(49, 370);
+            this.lblAttention.Location = new System.Drawing.Point(25, 374);
             this.lblAttention.Name = "lblAttention";
             this.lblAttention.Size = new System.Drawing.Size(253, 13);
             this.lblAttention.TabIndex = 42;
@@ -478,7 +480,7 @@
             // lblpriority
             // 
             this.lblpriority.AutoSize = true;
-            this.lblpriority.Location = new System.Drawing.Point(196, 79);
+            this.lblpriority.Location = new System.Drawing.Point(194, 77);
             this.lblpriority.Name = "lblpriority";
             this.lblpriority.Size = new System.Drawing.Size(43, 13);
             this.lblpriority.TabIndex = 43;
@@ -502,7 +504,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(299, 82);
+            this.label1.Location = new System.Drawing.Point(299, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(221, 13);
             this.label1.TabIndex = 42;

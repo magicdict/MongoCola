@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Text;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelpler
@@ -109,20 +110,20 @@ namespace MagicMongoDBTool.Module
                 //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
                 TreeNode mongoSvrNode = new TreeNode(mongoSvr.ReplicaSetName != null ? "副本名称：" + mongoSvr.ReplicaSetName :
                                                     (mongoSvrKey + " [" + mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port + "]"));
+                mongoSvrNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+                mongoSvrNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
                 try
                 {
                     List<string> databaseNameList = new List<string>();
                     if (SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName != String.Empty)
                     {
+                        //单数据库模式
                         TreeNode mongoSingleDBNode = FillDataBaseInfoToTreeNode(SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName, mongoSvr, mongoSvrKey);
                         mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + mongoSvrKey + "/" + SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName;
                         mongoSingleDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         mongoSingleDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         mongoSvrNode.Nodes.Add(mongoSingleDBNode);
-                        //单数据库模式
                         mongoSvrNode.Tag = SINGLE_DB_SERVICE_TAG + ":" + mongoSvrKey;
-                        mongoSvrNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
-                        mongoSvrNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
                     }
                     else
                     {
@@ -135,8 +136,6 @@ namespace MagicMongoDBTool.Module
                             mongoSvrNode.Nodes.Add(mongoDBNode);
                         }
                         mongoSvrNode.Tag = SERVICE_TAG + ":" + mongoSvrKey;
-                        mongoSvrNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
-                        mongoSvrNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
                     }
                     trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
@@ -144,11 +143,17 @@ namespace MagicMongoDBTool.Module
                 {
                     //需要验证的数据服务器，没有Admin权限无法获得数据库列表
                     MessageBox.Show("认证信息错误，请检查数据库的用户名和密码", "认证失败");
+                    //暂时不处理任何异常，简单跳过
+                    mongoSvrNode.Text += "[认证信息错误]";
+                    mongoSvrNode.Tag = null;
+                    trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
                 catch (Exception)
                 {
                     //暂时不处理任何异常，简单跳过
                     mongoSvrNode.Text += "[无法连接]";
+                    mongoSvrNode.Tag = null;
+                    trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
             }
         }
@@ -520,10 +525,21 @@ namespace MagicMongoDBTool.Module
             }
             else
             {
-                foreach (var item in dataList)
+                int Count = 1;
+                StringBuilder sb = new StringBuilder(); 
+                foreach (BsonDocument BsonDoc in dataList)
                 {
-                    txtData.Text += item.ToString() + "\r\n";
+                    sb.AppendLine("/* " + (SkipCnt + Count).ToString() + " */");
+                    sb.AppendLine("{");
+                    foreach (String Nameitem in BsonDoc.Names)
+                    {
+                        sb.AppendLine("  \"" + Nameitem + "\":  \"" + BsonDoc.GetValue(Nameitem).ToString() + "\"");
+                    }
+                    sb.AppendLine("}");
+                    sb.AppendLine("");
+                    Count++;
                 }
+                txtData.Text = sb.ToString();
             }
         }
         /// <summary>
@@ -535,23 +551,15 @@ namespace MagicMongoDBTool.Module
         public static void FillDataToTreeView(string collectionName, TreeView trvData, List<BsonDocument> dataList)
         {
             trvData.Nodes.Clear();
+            int Count = 1;
             foreach (BsonDocument item in dataList)
             {
-                string treeText = string.Empty;
-                if (!item.GetElement(0).Value.IsBsonArray)
-                {
-                    treeText = item.GetElement(0).Name + ":" + item.GetElement(0).Value.ToString();
-                }
-                else
-                {
-                    treeText = item.GetElement(0).Name + ":" + collectionName;
-                }
-                TreeNode dataNode = new TreeNode(treeText);
-
+                TreeNode dataNode = new TreeNode("RecordNo:" + (SkipCnt + Count).ToString());
                 //这里保存真实的主Key数据，删除的时候使用
                 dataNode.Tag = item.GetElement(0).Value;
                 FillBsonDocToTreeNode(dataNode, item);
                 trvData.Nodes.Add(dataNode);
+                Count++;
             }
         }
         /// <summary>

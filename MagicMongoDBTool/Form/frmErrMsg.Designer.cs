@@ -32,17 +32,20 @@
             this.txtException = new System.Windows.Forms.TextBox();
             this.lblMessage = new System.Windows.Forms.Label();
             this.cmdOK = new System.Windows.Forms.VistaButton();
+            this.cmdDetails = new System.Windows.Forms.VistaButton();
+            this.panForBgcolor = new System.Windows.Forms.Panel();
             this.contentPanel.SuspendLayout();
+            this.panForBgcolor.SuspendLayout();
             this.SuspendLayout();
             // 
             // contentPanel
             // 
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.cmdOK);
             this.contentPanel.Controls.Add(this.lblMessage);
             this.contentPanel.Controls.Add(this.txtException);
+            this.contentPanel.Controls.Add(this.panForBgcolor);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(475, 240);
+            this.contentPanel.Size = new System.Drawing.Size(475, 273);
             // 
             // txtException
             // 
@@ -50,12 +53,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtException.BackColor = System.Drawing.Color.White;
-            this.txtException.Location = new System.Drawing.Point(11, 41);
+            this.txtException.Location = new System.Drawing.Point(11, 56);
             this.txtException.Multiline = true;
             this.txtException.Name = "txtException";
             this.txtException.ReadOnly = true;
             this.txtException.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtException.Size = new System.Drawing.Size(453, 150);
+            this.txtException.Size = new System.Drawing.Size(453, 166);
             this.txtException.TabIndex = 5;
             // 
             // lblMessage
@@ -72,24 +75,47 @@
             // 
             this.cmdOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(183, 197);
+            this.cmdOK.Location = new System.Drawing.Point(349, 8);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 7;
             this.cmdOK.Text = "确定";
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
+            // cmdDetails
+            // 
+            this.cmdDetails.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.cmdDetails.BackColor = System.Drawing.Color.Transparent;
+            this.cmdDetails.Location = new System.Drawing.Point(30, 8);
+            this.cmdDetails.Name = "cmdDetails";
+            this.cmdDetails.Size = new System.Drawing.Size(100, 32);
+            this.cmdDetails.TabIndex = 8;
+            this.cmdDetails.Text = "细节";
+            this.cmdDetails.Click += new System.EventHandler(this.cmdDetails_Click);
+            // 
+            // panForBgcolor
+            // 
+            this.panForBgcolor.BackColor = System.Drawing.Color.YellowGreen;
+            this.panForBgcolor.Controls.Add(this.cmdOK);
+            this.panForBgcolor.Controls.Add(this.cmdDetails);
+            this.panForBgcolor.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panForBgcolor.Location = new System.Drawing.Point(0, 230);
+            this.panForBgcolor.Name = "panForBgcolor";
+            this.panForBgcolor.Size = new System.Drawing.Size(475, 43);
+            this.panForBgcolor.TabIndex = 9;
+            // 
             // frmErrMsg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 303);
+            this.ClientSize = new System.Drawing.Size(477, 336);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmErrMsg";
             this.ShowSelectSkinButton = false;
             this.Text = "执行结果";
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
+            this.panForBgcolor.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -99,5 +125,7 @@
         private System.Windows.Forms.TextBox txtException;
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.VistaButton cmdOK;
+        private System.Windows.Forms.VistaButton cmdDetails;
+        private System.Windows.Forms.Panel panForBgcolor;
     }
 }
