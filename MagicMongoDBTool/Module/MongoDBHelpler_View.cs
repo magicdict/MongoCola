@@ -526,21 +526,115 @@ namespace MagicMongoDBTool.Module
             else
             {
                 int Count = 1;
-                StringBuilder sb = new StringBuilder(); 
+                StringBuilder sb = new StringBuilder();
                 foreach (BsonDocument BsonDoc in dataList)
                 {
                     sb.AppendLine("/* " + (SkipCnt + Count).ToString() + " */");
                     sb.AppendLine("{");
-                    foreach (String Nameitem in BsonDoc.Names)
+                    foreach (String itemName in BsonDoc.Names)
                     {
-                        sb.AppendLine("  \"" + Nameitem + "\":  \"" + BsonDoc.GetValue(Nameitem).ToString() + "\"");
+                        BsonValue value = BsonDoc.GetValue(itemName);
+                        sb.Append(GetValueText(itemName, value, 0));
                     }
-                    sb.AppendLine("}");
+                    sb.Append("}");
+                    sb.AppendLine("");
                     sb.AppendLine("");
                     Count++;
                 }
                 txtData.Text = sb.ToString();
             }
+        }
+        private static String GetValueText(String itemName, BsonValue value, int DeepLv)
+        {
+            //   "itemName":
+            String rtnText = String.Empty;
+            if (value.IsBsonArray)
+            {
+                int count = 1;
+                BsonArray mBsonlst = value.AsBsonArray;
+                for (int BsonNo = 0; BsonNo < mBsonlst.Count; BsonNo++)
+                {
+                    if (BsonNo == 0)
+                    {
+                        if (itemName != String.Empty)
+                        {
+                            for (int i = 0; i < DeepLv; i++)
+                            {
+                                rtnText += "  ";
+                            }
+                            rtnText += "  \"" + itemName + "\":";
+                        }
+                        rtnText += "[";
+                        rtnText += "\r\n";
+                        DeepLv++;
+                    }
+                    DeepLv++;
+                    rtnText += GetValueText(String.Empty, mBsonlst[BsonNo], DeepLv);
+                    DeepLv--;
+                    if (BsonNo == mBsonlst.Count - 1)
+                    {
+                        DeepLv--;
+                        //   "itemName": "Value"
+                        for (int i = 0; i < DeepLv; i++)
+                        {
+                            rtnText += "  ";
+                        }
+                        rtnText += "  ]";
+                        rtnText += "\r\n";
+                    }
+                    count++;
+                }
+            }
+            else
+            {
+                if (value.IsBsonDocument)
+                {
+                    if (itemName != String.Empty)
+                    {
+                        //   "itemName": "Value"
+                        for (int i = 0; i < DeepLv; i++)
+                        {
+                            rtnText += "  ";
+                        }
+                        rtnText += "  \"" + itemName + "\":";
+                        rtnText += "\r\n";
+                    }
+                    DeepLv++;
+                    for (int i = 0; i < DeepLv; i++)
+                    {
+                        rtnText += "  ";
+                    }
+                    rtnText += "{";
+                    rtnText += "\r\n";
+                    BsonDocument SubDoc = value.ToBsonDocument();
+                    foreach (String SubitemName in SubDoc.Names)
+                    {
+                        BsonValue Subvalue = SubDoc.GetValue(SubitemName);
+                        rtnText += GetValueText(SubitemName, SubDoc.GetValue(SubitemName), DeepLv);
+                    }
+                    for (int i = 0; i < DeepLv; i++)
+                    {
+                        rtnText += "  ";
+                    }
+                    rtnText += "}";
+                    rtnText += "\r\n";
+                    DeepLv--;
+                }
+                else
+                {
+                    if (itemName != String.Empty)
+                    {
+                        //   "itemName": "Value"
+                        for (int i = 0; i < DeepLv; i++)
+                        {
+                            rtnText += "  ";
+                        }
+                        rtnText += "  \"" + itemName + "\":";
+                    }
+                    rtnText += "\"" + value.ToString() + "\"\r\n";
+                }
+            }
+            return rtnText;
         }
         /// <summary>
         /// 将数据放入TreeView里进行展示

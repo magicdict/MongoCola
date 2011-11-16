@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
   <!--frmMain-->
-  
+<Language>
 <Main_Menu_Mangt>Management(&amp;S)</Main_Menu_Mangt>
 <Main_Menu_Mangt_AddConnection>Add Connection(&amp;A)</Main_Menu_Mangt_AddConnection>
 <Main_Menu_Mangt_Status>Status</Main_Menu_Mangt_Status>
@@ -70,4 +70,4 @@
 <Main_Tab_Table>TableView</Main_Tab_Table>
 <Main_Tab_Text>TextView</Main_Tab_Text>
 <Main_StatusBar_Text>Ready</Main_StatusBar_Text>
-
+</Language>
