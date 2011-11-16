@@ -330,6 +330,7 @@
     <Content Include="dll\MongoDB.Bson.dll" />
     <Content Include="dll\MongoDB.Driver.dll" />
     <Content Include="dll\QLFUI.dll" />
+    <Content Include="Language\English.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
