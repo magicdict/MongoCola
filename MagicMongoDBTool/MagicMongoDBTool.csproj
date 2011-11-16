@@ -59,14 +59,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="QLFUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\QLFUI.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -334,6 +328,16 @@
     <ProjectReference Include="..\GUIResource\GUIResource.csproj">
       <Project>{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}</Project>
       <Name>GUIResource</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GUIResource\GUIResource.csproj">
+      <Project>{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}</Project>
+      <Name>GUIResource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QLFUI\QLFUI.csproj">
+      <Project>{0858850B-3B29-405C-A2B7-9DBF093CF219}</Project>
+      <Name>QLFUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
