@@ -166,6 +166,11 @@ namespace MagicMongoDBTool
             this.menuStripMain.Size = new System.Drawing.Size(915, 24);
             this.menuStripMain.TabIndex = 6;
             this.menuStripMain.Text = "menuStrip1";
+            
+            //TODO:Load the language setting
+            StringResources stringResource = new StringResources("English");
+            
+
             // 
             // ManagerToolStripMenuItem
             // 
@@ -179,7 +184,8 @@ namespace MagicMongoDBTool
             this.ExitToolStripMenuItem});
             this.ManagerToolStripMenuItem.Name = "ManagerToolStripMenuItem";
             this.ManagerToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
-            this.ManagerToolStripMenuItem.Text = "管理(&S)";
+            //this.ManagerToolStripMenuItem.Text = "管理(&S)";
+            this.ManagerToolStripMenuItem.Text =stringResource.GetText("Main_Menu_Mangt");
             // 
             // AddConnectionToolStripMenuItem
             // 
