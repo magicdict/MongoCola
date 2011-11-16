@@ -36,7 +36,6 @@ namespace MagicMongoDBTool
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusSelectedObj = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusDataNavi = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.ManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,13 +129,11 @@ namespace MagicMongoDBTool
             // 
             this.statusStripMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("statusStripMain.BackgroundImage")));
             this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusSelectedObj,
-            this.toolStripStatusDataNavi});
+            this.toolStripStatusSelectedObj});
             this.statusStripMain.Location = new System.Drawing.Point(0, 548);
             this.statusStripMain.Name = "statusStripMain";
             this.statusStripMain.Size = new System.Drawing.Size(917, 22);
             this.statusStripMain.TabIndex = 8;
-            this.statusStripMain.Text = "statusStrip1";
             // 
             // toolStripStatusSelectedObj
             // 
@@ -144,13 +141,6 @@ namespace MagicMongoDBTool
             this.toolStripStatusSelectedObj.Name = "toolStripStatusSelectedObj";
             this.toolStripStatusSelectedObj.Size = new System.Drawing.Size(31, 17);
             this.toolStripStatusSelectedObj.Text = "就绪";
-            // 
-            // toolStripStatusDataNavi
-            // 
-            this.toolStripStatusDataNavi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(130)))));
-            this.toolStripStatusDataNavi.Name = "toolStripStatusDataNavi";
-            this.toolStripStatusDataNavi.Size = new System.Drawing.Size(61, 17);
-            this.toolStripStatusDataNavi.Text = "数据视图：";
             // 
             // toolStripMain
             // 
@@ -678,6 +668,7 @@ namespace MagicMongoDBTool
             // trvData
             // 
             this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trvData.Location = new System.Drawing.Point(3, 3);
             this.trvData.Name = "trvData";
             this.trvData.Size = new System.Drawing.Size(594, 426);
@@ -698,6 +689,7 @@ namespace MagicMongoDBTool
             // lstData
             // 
             this.lstData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstData.FullRowSelect = true;
             this.lstData.GridLines = true;
             this.lstData.HideSelection = false;
@@ -723,7 +715,7 @@ namespace MagicMongoDBTool
             // txtData
             // 
             this.txtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtData.Location = new System.Drawing.Point(3, 3);
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
@@ -831,38 +823,43 @@ namespace MagicMongoDBTool
 
         }
         /// <summary>
-        /// 工具栏
+        /// 初始化Toolbar
         /// </summary>
-        private void SetToolBar()
-        {
-            this.toolStripMain.Items.Clear();
-
+        private void InitToolBar() {
             FirstPageToolStripButton = this.FirstPageToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(FirstPageToolStripButton);
-
             PrePageToolStripButton = this.PrePageToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(PrePageToolStripButton);
-
             NextPageToolStripButton = this.NextPageToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(NextPageToolStripButton);
-
             LastPageToolStripButton = this.LastPageToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(LastPageToolStripButton);
-
             QueryDataToolStripButton = this.QueryDataToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(QueryDataToolStripButton);
-
-            this.toolStripMain.Items.Add(new ToolStripSeparator());
-
+            DataNaviToolStripLabel = new ToolStripLabel();
             RefreshToolStripButton = this.RefreshToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(RefreshToolStripButton);
-
             ImportDataFromAccessToolStripButton = this.ImportDataFromAccessToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
-
             OptionToolStripButton = this.OptionToolStripMenuItem.CloneFromMenuItem();
-            this.toolStripMain.Items.Add(OptionToolStripButton);
 
+            this.toolStripMain.Items.Add(FirstPageToolStripButton);
+            this.toolStripMain.Items.Add(PrePageToolStripButton);
+            this.toolStripMain.Items.Add(NextPageToolStripButton);
+            this.toolStripMain.Items.Add(LastPageToolStripButton);
+            this.toolStripMain.Items.Add(QueryDataToolStripButton);
+            this.toolStripMain.Items.Add(DataNaviToolStripLabel);
+            this.toolStripMain.Items.Add(new ToolStripSeparator());
+            this.toolStripMain.Items.Add(RefreshToolStripButton);
+            this.toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
+            this.toolStripMain.Items.Add(OptionToolStripButton);
+        }
+        /// <summary>
+        /// 设定工具栏
+        /// </summary>
+        private void SetToolBarEnabled()
+        {
+            FirstPageToolStripButton.Enabled = this.FirstPageToolStripMenuItem.Enabled;
+            PrePageToolStripButton.Enabled = this.PrePageToolStripMenuItem.Enabled;
+            NextPageToolStripButton.Enabled = this.NextPageToolStripMenuItem.Enabled;
+            LastPageToolStripButton.Enabled = this.LastPageToolStripMenuItem.Enabled;
+            QueryDataToolStripButton.Enabled = this.QueryDataToolStripMenuItem.Enabled;
+            RefreshToolStripButton.Enabled = this.RefreshToolStripMenuItem.Enabled;
+            ImportDataFromAccessToolStripButton.Enabled = this.ImportDataFromAccessToolStripMenuItem.Enabled;
+            OptionToolStripButton.Enabled = this.OptionToolStripMenuItem.Enabled;
         }
         #endregion
 
@@ -924,7 +921,6 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ThanksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem InitGFSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusDataNavi;
         private System.Windows.Forms.ToolStripMenuItem ExpandAllConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CollapseAllConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SvrPropertyToolStripMenuItem;
@@ -940,6 +936,7 @@ namespace MagicMongoDBTool
         private ToolStripButton FirstPageToolStripButton;
         private ToolStripButton LastPageToolStripButton;
         private ToolStripButton QueryDataToolStripButton;
+        private ToolStripLabel DataNaviToolStripLabel;
         private ToolStripMenuItem DumpAndRestoreToolStripMenuItem;
         private ToolStripMenuItem RestoreMongoToolStripMenuItem;
         private ToolStripMenuItem DumpDatabaseToolStripMenuItem;

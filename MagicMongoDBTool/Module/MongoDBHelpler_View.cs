@@ -526,21 +526,83 @@ namespace MagicMongoDBTool.Module
             else
             {
                 int Count = 1;
-                StringBuilder sb = new StringBuilder(); 
+                StringBuilder sb = new StringBuilder();
                 foreach (BsonDocument BsonDoc in dataList)
                 {
                     sb.AppendLine("/* " + (SkipCnt + Count).ToString() + " */");
                     sb.AppendLine("{");
-                    foreach (String Nameitem in BsonDoc.Names)
+                    foreach (String itemName in BsonDoc.Names)
                     {
-                        sb.AppendLine("  \"" + Nameitem + "\":  \"" + BsonDoc.GetValue(Nameitem).ToString() + "\"");
+                        BsonValue value = BsonDoc.GetValue(itemName);
+                        sb.Append(GetValueText(itemName, value, 0));
                     }
-                    sb.AppendLine("}");
+                    sb.Append("}");
+                    sb.AppendLine("");
                     sb.AppendLine("");
                     Count++;
                 }
                 txtData.Text = sb.ToString();
             }
+        }
+        private static String GetValueText(String itemName, BsonValue value, int DeepLv)
+        {
+            //   "itemName":
+            String rtnText = String.Empty;
+            if (itemName != String.Empty)
+            {
+                rtnText = "  \"" + itemName + "\":";
+            }
+            if (value.IsBsonArray)
+            {
+                //   "itemName":
+                //         itemName[1]  "AAA":"111"
+                int count = 1;
+                foreach (BsonValue item in value.AsBsonArray)
+                {
+                    rtnText += "\r\n";
+                    rtnText += "{";
+                    rtnText += "\r\n";
+                    DeepLv++;
+                    rtnText += itemName + "[" + count + "]" + GetValueText(String.Empty, item, DeepLv);
+                    rtnText += "}";
+                    rtnText += "\r\n";
+                    count++;
+                }
+            }
+            else
+            {
+                if (value.IsBsonDocument)
+                {
+                    //   "itemName":{
+                    //
+                    rtnText += "\r\n";
+                    rtnText += "{";
+                    rtnText += "\r\n";
+                    DeepLv++;
+                    BsonDocument SubDoc = value.ToBsonDocument();
+                    //   "itemName":{
+                    //                  "AAA":"111"
+                    //                  "BBB":"222"
+
+                    foreach (String SubitemName in SubDoc.Names)
+                    {
+                        BsonValue Subvalue = SubDoc.GetValue(SubitemName);
+                        rtnText += GetValueText(SubitemName, SubDoc.GetValue(SubitemName), DeepLv);
+                    }
+                    //   "itemName":{
+                    //                  "AAA":"111"
+                    //                  "BBB":"222"
+                    //               }   
+                    rtnText += "}";
+                    rtnText += "\r\n";
+                }
+                else
+                {
+                    //   "itemName": "Value"
+                    rtnText += "\"" + value.ToString() + "\"\r\n";
+                }
+            }
+            return rtnText;
         }
         /// <summary>
         /// 将数据放入TreeView里进行展示
