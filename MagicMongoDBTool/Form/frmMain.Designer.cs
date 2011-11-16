@@ -185,7 +185,7 @@ namespace MagicMongoDBTool
             this.ManagerToolStripMenuItem.Name = "ManagerToolStripMenuItem";
             this.ManagerToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             //this.ManagerToolStripMenuItem.Text = "管理(&S)";
-            this.ManagerToolStripMenuItem.Text =stringResource.GetText("Main_Menu_Mangt");
+            this.ManagerToolStripMenuItem.Text =XMLUtility.XMLDecode(stringResource.GetText("Main_Menu_Mangt"));
             // 
             // AddConnectionToolStripMenuItem
             // 
