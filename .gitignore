@@ -9,3 +9,4 @@
 !readme.txt
 !app.config
 /MagicMongoDBTool.suo
+*.suo
