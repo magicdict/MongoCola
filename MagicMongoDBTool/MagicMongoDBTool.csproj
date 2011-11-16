@@ -50,10 +50,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GUIResource, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\GUIResource.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MongoDB.Bson, Version=1.2.0.4274, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -63,14 +59,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dll\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="QLFUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\QLFUI.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -331,6 +321,16 @@
     <Content Include="dll\MongoDB.Driver.dll" />
     <Content Include="dll\QLFUI.dll" />
     <Content Include="Language\English.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GUIResource\GUIResource.csproj">
+      <Project>{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}</Project>
+      <Name>GUIResource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QLFUI\QLFUI.csproj">
+      <Project>{0858850B-3B29-405C-A2B7-9DBF093CF219}</Project>
+      <Name>QLFUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
