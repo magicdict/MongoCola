@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.IO;
 
 namespace GUIResource
 {
@@ -14,7 +15,15 @@ namespace GUIResource
         {
             string tag = string.Empty;
             string text = string.Empty;
-            XmlTextReader reader = new XmlTextReader(string.Format("Language\\{0}.xml",currentLanguage));
+            string fileName = string.Format("Language\\{0}.xml", currentLanguage);
+
+            if (!File.Exists(fileName))
+            {
+                //TODO:Add error handle here
+                throw new Exception();
+            }
+            
+            XmlTextReader reader = new XmlTextReader(fileName);
             while (reader.Read())
             {
                 switch (reader.NodeType)
@@ -32,11 +41,9 @@ namespace GUIResource
                         }
                         break;
                 }
-                
-                
+
             }
         }
-
 
 
         public string GetText(string tag)
