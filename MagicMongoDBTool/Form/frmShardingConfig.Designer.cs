@@ -64,7 +64,6 @@
             this.cmbReplsetName.Name = "cmbReplsetName";
             this.cmbReplsetName.Size = new System.Drawing.Size(186, 21);
             this.cmbReplsetName.TabIndex = 0;
-            this.cmbReplsetName.SelectedIndexChanged += new System.EventHandler(this.cmbReplsetName_SelectedIndexChanged);
             // 
             // lblReplsetName
             // 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Drawing;
 namespace MagicMongoDBTool.Module
 {
     public static class SystemManager
@@ -13,18 +14,69 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 消息窗体
         /// </summary>
-        public static frmErrMsg _frmErrMsg;
+        private static frmErrMsg _frmErrMsg;
         /// <summary>
         /// 消息表示
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Details"></param>
-        public static void ShowErrMsg(String Message, String Details = "")
+        public static void ShowErrMsg(String Title,String Message, String Details = "")
         {
             if (_frmErrMsg == null) { 
                 _frmErrMsg = new frmErrMsg(); 
             }
-            _frmErrMsg.SetMessage(Message, Details);
+            _frmErrMsg.Text = Title;
+            _frmErrMsg.SetMessage(Message, Details,false);
+            _frmErrMsg.ShowDialog();
+        }
+        /// <summary>
+        /// 消息表示
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Details"></param>
+        public static void ShowErrMsg(String Title, String Message, String Details, Boolean IsShowDetail)
+        {
+            if (_frmErrMsg == null)
+            {
+                _frmErrMsg = new frmErrMsg();
+            }
+            _frmErrMsg.Text = Title;
+            _frmErrMsg.SetMessage(Message, Details, IsShowDetail);
+            _frmErrMsg.ShowDialog();
+        }
+        /// <summary>
+        /// 消息表示
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Details"></param>
+        public static void ShowErrMsg(String Title, String Message, Image img, String Details = "")
+        {
+            if (_frmErrMsg == null)
+            {
+                _frmErrMsg = new frmErrMsg();
+            }
+            _frmErrMsg.Text = Title;
+            _frmErrMsg.SetMessage(Message, img,Details);
+            _frmErrMsg.ShowDialog();
+        }
+        /// <summary>
+        /// 消息表示
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Details"></param>
+        public static void ShowErrMsg(String Title, String Message, List<CommandResult> Resultlst)
+        {
+            if (_frmErrMsg == null)
+            {
+                _frmErrMsg = new frmErrMsg();
+            }
+            _frmErrMsg.Text = Title;
+            String Details = String.Empty;
+            foreach (CommandResult item in Resultlst)
+            {
+                Details += item.ToString() + "\r\n"; 
+            }
+            _frmErrMsg.SetMessage(Message,Details );
             _frmErrMsg.ShowDialog();
         }
         /// <summary>

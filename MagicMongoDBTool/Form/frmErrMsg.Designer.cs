@@ -34,8 +34,10 @@
             this.cmdOK = new System.Windows.Forms.VistaButton();
             this.cmdDetails = new System.Windows.Forms.VistaButton();
             this.panForBgcolor = new System.Windows.Forms.Panel();
+            this.picImage = new System.Windows.Forms.PictureBox();
             this.contentPanel.SuspendLayout();
             this.panForBgcolor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
             // 
             // contentPanel
@@ -44,6 +46,7 @@
             this.contentPanel.Controls.Add(this.lblMessage);
             this.contentPanel.Controls.Add(this.txtException);
             this.contentPanel.Controls.Add(this.panForBgcolor);
+            this.contentPanel.Controls.Add(this.picImage);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
             this.contentPanel.Size = new System.Drawing.Size(475, 273);
             // 
@@ -65,9 +68,10 @@
             // 
             this.lblMessage.AutoSize = true;
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
-            this.lblMessage.Location = new System.Drawing.Point(14, 16);
+            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Location = new System.Drawing.Point(67, 10);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(31, 13);
+            this.lblMessage.Size = new System.Drawing.Size(33, 15);
             this.lblMessage.TabIndex = 6;
             this.lblMessage.Text = "信息";
             // 
@@ -104,6 +108,16 @@
             this.panForBgcolor.Size = new System.Drawing.Size(475, 43);
             this.panForBgcolor.TabIndex = 9;
             // 
+            // picImage
+            // 
+            this.picImage.BackColor = System.Drawing.Color.Transparent;
+            this.picImage.Location = new System.Drawing.Point(30, 10);
+            this.picImage.Name = "picImage";
+            this.picImage.Size = new System.Drawing.Size(24, 24);
+            this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImage.TabIndex = 5;
+            this.picImage.TabStop = false;
+            // 
             // frmErrMsg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -116,6 +130,7 @@
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             this.panForBgcolor.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -127,5 +142,6 @@
         private System.Windows.Forms.VistaButton cmdOK;
         private System.Windows.Forms.VistaButton cmdDetails;
         private System.Windows.Forms.Panel panForBgcolor;
+        private System.Windows.Forms.PictureBox picImage;
     }
 }

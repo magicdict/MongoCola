@@ -112,12 +112,6 @@
     <Compile Include="Form\frmDosCommand.Designer.cs">
       <DependentUpon>frmDosCommand.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmImportOleDB.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\frmImportOleDB.Designer.cs">
-      <DependentUpon>frmImportOleDB.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\frmMapReduce.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,9 +224,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmDosCommand.resx">
       <DependentUpon>frmDosCommand.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmImportOleDB.resx">
-      <DependentUpon>frmImportOleDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmMapReduce.resx">
       <DependentUpon>frmMapReduce.cs</DependentUpon>

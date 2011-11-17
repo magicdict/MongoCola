@@ -1,5 +1,10 @@
 *.txt
 *.config
+*.suo
+QLFUI.pdb
+QLFUI.dll
+GUIResource.pdb
+GUIResource.dll
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
 /QLFUI/bin
@@ -8,5 +13,3 @@
 /GUIResource/obj
 !readme.txt
 !app.config
-/MagicMongoDBTool.suo
-*.suo

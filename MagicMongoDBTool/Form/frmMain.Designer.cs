@@ -168,7 +168,9 @@ namespace MagicMongoDBTool
             this.menuStripMain.Text = "menuStrip1";
             
             //TODO:Load the language setting
-            StringResources stringResource = new StringResources("English");
+            //TO Moning:如果把代码放在这里的话，IDE无法打开。
+            //          建议把国际化代码放到其他的地方，这里正常初始化（默认简体中文）
+            //StringResources stringResource = new StringResources("English");
             
 
             // 
@@ -184,8 +186,8 @@ namespace MagicMongoDBTool
             this.ExitToolStripMenuItem});
             this.ManagerToolStripMenuItem.Name = "ManagerToolStripMenuItem";
             this.ManagerToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
-            //this.ManagerToolStripMenuItem.Text = "管理(&S)";
-            this.ManagerToolStripMenuItem.Text =XMLUtility.XMLDecode(stringResource.GetText("Main_Menu_Mangt"));
+            this.ManagerToolStripMenuItem.Text = "管理(&S)";
+            //this.ManagerToolStripMenuItem.Text =XMLUtility.XMLDecode(stringResource.GetText("Main_Menu_Mangt"));
             // 
             // AddConnectionToolStripMenuItem
             // 

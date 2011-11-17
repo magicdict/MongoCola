@@ -535,16 +535,11 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmImportOleDB mfrm = new frmImportOleDB();
-            mfrm.Icon = GetSystemIcon.ConvertImgToIcon(ImportDataFromAccessToolStripMenuItem.Image);
-            mfrm.ShowDialog();
-            String DBFilename = mfrm.DataBaseFileName;
-            if (DBFilename != string.Empty)
+            OpenFileDialog AccessFile = new OpenFileDialog();
+            if (AccessFile.ShowDialog()== System.Windows.Forms.DialogResult.OK)
             {
-                MongoDBHelpler.ImportAccessDataBase(DBFilename, SystemManager.SelectObjectTag, trvsrvlst.SelectedNode);
+                MongoDBHelpler.ImportAccessDataBase(AccessFile.FileName, SystemManager.SelectObjectTag, trvsrvlst.SelectedNode);
             }
-            mfrm.Close();
-            mfrm.Dispose();
         }
         /// <summary>
         /// DOS控制台
@@ -834,17 +829,27 @@ namespace MagicMongoDBTool
 
         #region"管理：备份和恢复"
         /// <summary>
+        /// 检查MongoDB执行目录是否存在
+        /// </summary>
+        /// <returns></returns>
+        private Boolean MongoPathCheck() {
+            if (!MongodbDosCommand.IsMongoPathExist())
+            {
+                SystemManager.ShowErrMsg("异常", 
+                                         "Mongo目录没有找到，请确认", 
+                                         "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
         /// 恢复数据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void RestoreMongoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!MongodbDosCommand.IsMongoPathExist())
-            {
-                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
-                return;
-            }
+            if (!MongoPathCheck()) { return; }
             MongodbDosCommand.StruMongoRestore MongoRestore = new MongodbDosCommand.StruMongoRestore();
             MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
             MongoRestore.HostAddr = Mongosrv.Address.Host;
@@ -867,11 +872,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DumpDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!MongodbDosCommand.IsMongoPathExist())
-            {
-                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
-                return;
-            }
+            if (!MongoPathCheck()) { return; }
             MongodbDosCommand.StruMongoDump MongoDump = new MongodbDosCommand.StruMongoDump();
             MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
             MongoDump.HostAddr = Mongosrv.Address.Host;
@@ -894,11 +895,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DumpCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!MongodbDosCommand.IsMongoPathExist())
-            {
-                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
-                return;
-            }
+            if (!MongoPathCheck()) { return; }
             MongodbDosCommand.StruMongoDump MongoDump = new MongodbDosCommand.StruMongoDump();
             MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
             MongoDump.HostAddr = Mongosrv.Address.Host;
@@ -922,11 +919,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ExportCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!MongodbDosCommand.IsMongoPathExist())
-            {
-                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
-                return;
-            }
+            if (!MongoPathCheck()) { return; }
             MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
             MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
             MongoImportExport.HostAddr = Mongosrv.Address.Host;
@@ -951,11 +944,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ImportCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!MongodbDosCommand.IsMongoPathExist())
-            {
-                SystemManager.ShowErrMsg("Mongo目录没有找到，请确认", "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
-                return;
-            }
+            if (!MongoPathCheck()) { return; }
             MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
             MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
             MongoImportExport.HostAddr = Mongosrv.Address.Host;
@@ -1059,16 +1048,31 @@ namespace MagicMongoDBTool
         #endregion
 
         #region "帮助"
+        /// <summary>
+        /// 关于
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strThanks = "MagicMongoDBTool 开发者：MagicHu";
-            MessageBox.Show(strThanks, "关于");
+            SystemManager.ShowErrMsg("关于","MagicMongoDBTool", 
+                                     GUIResource.GetResource.GetIcon(GUIResource.ImageType.Smile),
+                                     "GitHub地址： https://github.com/magicdict/MagicMongoDBTool");    
         }
-
+        /// <summary>
+        /// 感谢
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ThanksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strThanks = "感谢皮肤控件的作者：qianlifeng\r\n感谢10gen的C# Driver开发者的技术支持\r\n感谢Dragon同志的测试";
-            MessageBox.Show(strThanks, "感谢");
+            String strThanks = "感谢皮肤控件的作者：qianlifeng\r\n";
+            strThanks +=       "感谢10gen的C# Driver开发者的技术支持\r\n";
+            strThanks +=       "感谢Dragon同志的测试和代码规范化";
+            strThanks +=       "感谢MoLing同志的国际化";
+            SystemManager.ShowErrMsg("感谢","MagicMongoDBTool",
+                                     GUIResource.GetResource.GetIcon(GUIResource.ImageType.Smile),
+                                     strThanks);
         }
         #endregion
 

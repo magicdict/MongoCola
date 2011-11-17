@@ -60,5 +60,11 @@ namespace MagicMongoDBTool
             }
             _ShowDetails = !_ShowDetails;
         }
+
+        internal void SetMessage(string Message, System.Drawing.Image img, string Details)
+        {
+            this.picImage.Image = img;
+            SetMessage(Message, Details);
+        }
     }
 }

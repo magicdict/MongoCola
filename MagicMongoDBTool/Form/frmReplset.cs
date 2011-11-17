@@ -49,11 +49,13 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdAddSvr_Click(object sender, EventArgs e)
         {
+            List<CommandResult> Resultlst = new List<CommandResult>();
             foreach (String item in lstServerOutReplset.SelectedItems)
             {
                 ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
-                MongoDBHelpler.AddToReplsetServer(_prmSvr,config.IpAddr + ":" + config.Port,config.ServerType == ConfigHelper.SvrType.ArbiterSvr);
+                Resultlst.Add(MongoDBHelpler.AddToReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port, config.ServerType == ConfigHelper.SvrType.ArbiterSvr));
             }
+            SystemManager.ShowErrMsg("添加服务器", "执行结果", Resultlst);
             RefreshSvr();
         }
         /// <summary>
@@ -63,11 +65,13 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdRemove_Click(object sender, EventArgs e)
         {
+            List<CommandResult> Resultlst = new List<CommandResult>();
             foreach (String item in lstServerInReplset.SelectedItems)
             {
                 ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
-                MongoDBHelpler.RemoveFromReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port);
+                Resultlst.Add(MongoDBHelpler.RemoveFromReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port));
             }
+            SystemManager.ShowErrMsg("删除服务器", "执行结果", Resultlst);
             RefreshSvr();
         }
     }

@@ -11,6 +11,9 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 数据集
+        /// </summary>
         private MongoCollection _mongocol = SystemManager.GetCurrentCollection();
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
@@ -27,7 +30,11 @@ namespace MagicMongoDBTool
                 cmbForReduce.Items.Add(item);
             }
         }
-
+        /// <summary>
+        /// 运行
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdRun_Click(object sender, EventArgs e)
         {
             BsonJavaScript map = new BsonJavaScript(txtMapJs.Text);
@@ -41,6 +48,11 @@ namespace MagicMongoDBTool
             MongoDBHelpler.FillDataToTreeView("MapReduce Result", trvResult, result);
             trvResult.ExpandAll();
         }
+        /// <summary>
+        /// 保存MapJs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdSaveMapJs_Click(object sender, EventArgs e)
         {
             if (txtMapJs.Text != string.Empty)
@@ -49,6 +61,11 @@ namespace MagicMongoDBTool
                 MongoDBHelpler.SaveJavascript(strJsName, txtMapJs.Text);
             }
         }
+        /// <summary>
+        /// 保存ReduceJs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdSaveReduceJs_Click(object sender, EventArgs e)
         {
             if (this.txtReduceJs.Text != string.Empty)
@@ -57,8 +74,5 @@ namespace MagicMongoDBTool
                 MongoDBHelpler.SaveJavascript(strJsName, txtReduceJs.Text);
             }
         }
-
-
-
     }
 }

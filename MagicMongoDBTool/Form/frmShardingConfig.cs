@@ -8,11 +8,22 @@ namespace MagicMongoDBTool
 {
     public partial class frmShardingConfig : QLFUI.QLFForm
     {
+        /// <summary>
+        /// 初期化
+        /// </summary>
         public frmShardingConfig()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Mongo服务器
+        /// </summary>
         private MongoServer _prmSvr;
+        /// <summary>
+        /// 加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmAddSharding_Load(object sender, EventArgs e)
         {
             _prmSvr = SystemManager.GetCurrentService();
@@ -26,7 +37,9 @@ namespace MagicMongoDBTool
                     cmbDataBase.Items.Add(item.GetValue("_id"));
                 };
             }
-
+            cmbReplsetName.SelectedIndexChanged += new EventHandler(
+                (x, y) => { RefreshSrv(); }
+                );
             string strPrmKey = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             foreach (var item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
@@ -39,6 +52,9 @@ namespace MagicMongoDBTool
                 }
             }
         }
+        /// <summary>
+        /// 刷新服务器
+        /// </summary>
         private void RefreshSrv()
         {
             lstShard.Items.Clear();
@@ -53,6 +69,11 @@ namespace MagicMongoDBTool
                 }
             }
         }
+        /// <summary>
+        /// 增加分片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdAddSharding_Click(object sender, EventArgs e)
         {
             List<string> srvKeys = new List<string>();
@@ -63,13 +84,14 @@ namespace MagicMongoDBTool
                     srvKeys.Add(item);
                 }
             }
-            MongoDBHelpler.AddSharding(_prmSvr, cmbReplsetName.Text, srvKeys);
+            List<CommandResult> Resultlst = new List<CommandResult>();
+            Resultlst.Add(MongoDBHelpler.AddSharding(_prmSvr, cmbReplsetName.Text, srvKeys));
         }
-
-        private void cmbReplsetName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            RefreshSrv();
-        }
+        /// <summary>
+        /// 数据库切换
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbDataBase_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -84,12 +106,14 @@ namespace MagicMongoDBTool
             }
             catch (Exception)
             {
-
                 throw;
             }
-
         }
-
+        /// <summary>
+        /// 数据集变换时，实时更新主键列表
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbCollection_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -108,13 +132,27 @@ namespace MagicMongoDBTool
                 throw;
             }
         }
+        /// <summary>
+        /// 分片配置(数据库)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdEnableSharding_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.EnableSharding(_prmSvr, cmbDataBase.Text);
+            List<CommandResult> Resultlst = new List<CommandResult>();
+            Resultlst.Add(MongoDBHelpler.EnableSharding(_prmSvr, cmbDataBase.Text));
+            SystemManager.ShowErrMsg("添加分片", "执行结果", Resultlst);
         }
+        /// <summary>
+        /// 分片配置(数据集)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdCollectionSharding_Click(object sender, EventArgs e)
         {
-            MongoDBHelpler.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument());
+            List<CommandResult> Resultlst = new List<CommandResult>();
+            Resultlst.Add(MongoDBHelpler.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument()));
+            SystemManager.ShowErrMsg("添加分片", "执行结果", Resultlst);
         }
     }
 }
