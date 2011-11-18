@@ -4,102 +4,24 @@ using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
+
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelpler
     {
-        /// <summary>
-        /// 比较符号
-        /// </summary>
-        public enum CompareEnum
-        {
-            /// <summary>
-            /// 等于
-            /// </summary>
-            EQ,
-            /// <summary>
-            /// 大于
-            /// </summary>
-            GT,
-            /// <summary>
-            /// 大于等于
-            /// </summary>
-            GTE,
-            /// <summary>
-            /// 小于
-            /// </summary>
-            LT,
-            /// <summary>
-            /// 小于等于
-            /// </summary>
-            LTE,
-            /// <summary>
-            /// 不等于
-            /// </summary>
-            NE
-
-        }
-        /// <summary>
-        /// 排序类型
-        /// </summary>
-        public enum SortType
-        {
-            /// <summary>
-            /// 不排序
-            /// </summary>
-            NoSort,
-            /// <summary>
-            /// 升序
-            /// </summary>
-            Ascending,
-            /// <summary>
-            /// 降序
-            /// </summary>
-            Descending
-        }
-        /// <summary>
-        /// 字段信息
-        /// </summary>
-        public struct QueryFieldItem
-        {
-            /// <summary>
-            /// 字段名称
-            /// </summary>
-            public string ColName;
-            /// <summary>
-            /// 是否表示
-            /// </summary>
-            public bool IsShow;
-            /// <summary>
-            /// 排序类型
-            /// </summary>
-            public SortType sortType;
-        }
-        /// <summary>
-        /// 清除过滤器
-        /// </summary>
-        public static void ClearFilter()
-        {
-            MongoDBHelpler.SkipCnt = 0;
-            QueryFieldList.Clear();
-            QueryCompareList.Clear();
-        }
+  
         /// <summary>
         /// 是否使用过滤器
         /// </summary>
         public static bool IsUseFilter = false;
         /// <summary>
-        /// 输出项目配置
-        /// </summary>
-        public static List<QueryFieldItem> QueryFieldList = new List<QueryFieldItem>();
-        /// <summary>
         /// 获得输出字段名称
         /// </summary>
         /// <returns></returns>
-        public static String[] GetOutputFields()
+        public static String[] GetOutputFields(List<DataFilter.QueryFieldItem> FieldItemLst)
         {
             List<String> outputFieldLst = new List<string>();
-            foreach (var item in QueryFieldList)
+            foreach (var item in FieldItemLst)
             {
                 if (item.IsShow)
                 {
@@ -112,22 +34,22 @@ namespace MagicMongoDBTool.Module
         /// 获得排序
         /// </summary>
         /// <returns></returns>
-        public static SortByBuilder GetSort()
+        public static SortByBuilder GetSort(List<DataFilter.QueryFieldItem> FieldItemLst)
         {
             var sort = new SortByBuilder();
             List<string> ascendingList = new List<string>();
             List<string> descendingList = new List<string>();
             //_id将以文字的形式排序，所以不要排序_id!!
-            foreach (var item in QueryFieldList)
+            foreach (var item in FieldItemLst)
             {
                 switch (item.sortType)
                 {
-                    case SortType.NoSort:
+                    case DataFilter.SortType.NoSort:
                         break;
-                    case SortType.Ascending:
+                    case DataFilter.SortType.Ascending:
                         ascendingList.Add(item.ColName);
                         break;
-                    case SortType.Descending:
+                    case DataFilter.SortType.Descending:
                         descendingList.Add(item.ColName);
                         break;
                     default:
@@ -139,35 +61,19 @@ namespace MagicMongoDBTool.Module
             return sort;
         }
         /// <summary>
-        /// 比较条件[输入]
-        /// </summary>
-        public struct QueryConditionInputItem
-        {
-            public string StartMark;
-            public string ColName;
-            public CompareEnum Comp;
-            public string Value;
-            public BsonType Type;
-            public string EndMark;
-        }
-        /// <summary>
-        /// 输出条件配置
-        /// </summary>
-        public static List<QueryConditionInputItem> QueryCompareList = new List<QueryConditionInputItem>();
-        /// <summary>
         /// 检索过滤器
         /// </summary>
         /// <returns></returns>
-        public static IMongoQuery GetQuery()
+        public static IMongoQuery GetQuery(List<DataFilter.QueryConditionInputItem> QueryCompareList)
         {
             //遍历所有条件，分组
-            List<List<QueryConditionInputItem>> conditiongrpList = new List<List<QueryConditionInputItem>>();
-            List<QueryConditionInputItem> currGrp = null;
+            List<List<DataFilter.QueryConditionInputItem>> conditiongrpList = new List<List<DataFilter.QueryConditionInputItem>>();
+            List<DataFilter.QueryConditionInputItem> currGrp = null;
             for (int i = 0; i < QueryCompareList.Count; i++)
             {
                 if (i == 0 || QueryCompareList[i].StartMark == "(" || QueryCompareList[i - 1].EndMark.StartsWith(")"))
                 {
-                    List<QueryConditionInputItem> newGroup = new List<QueryConditionInputItem>();
+                    List<DataFilter.QueryConditionInputItem> newGroup = new List<DataFilter.QueryConditionInputItem>();
                     conditiongrpList.Add(newGroup);
                     currGrp = newGroup;
                     currGrp.Add(QueryCompareList[i]);
@@ -217,10 +123,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="conditionGroup"></param>
         /// <returns></returns>
-        private static IMongoQuery GetGroupQuery(List<QueryConditionInputItem> conditionGroup)
+        private static IMongoQuery GetGroupQuery(List<DataFilter.QueryConditionInputItem> conditionGroup)
         {
-            List<QueryConditionInputItem> orGrp = new List<QueryConditionInputItem>();
-            List<QueryConditionInputItem> andGrp = new List<QueryConditionInputItem>();
+            List<DataFilter.QueryConditionInputItem> orGrp = new List<DataFilter.QueryConditionInputItem>();
+            List<DataFilter.QueryConditionInputItem> andGrp = new List<DataFilter.QueryConditionInputItem>();
             for (int i = 0; i < conditionGroup.Count; i++)
             {
                 if (i == 0)
@@ -254,7 +160,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="oprGrp"></param>
         /// <param name="strOPR"></param>
         /// <returns></returns>
-        private static IMongoQuery GetGroup(List<QueryConditionInputItem> oprGrp, string strOPR)
+        private static IMongoQuery GetGroup(List<DataFilter.QueryConditionInputItem> oprGrp, string strOPR)
         {
             List<IMongoQuery> queryLst = new List<IMongoQuery>();
             foreach (var item in oprGrp)
@@ -281,22 +187,22 @@ namespace MagicMongoDBTool.Module
                 }
                 switch (item.Comp)
                 {
-                    case CompareEnum.EQ:
+                    case DataFilter.CompareEnum.EQ:
                         query = Query.EQ(item.ColName, queryvalue);
                         break;
-                    case CompareEnum.GT:
+                    case DataFilter.CompareEnum.GT:
                         query = Query.GT(item.ColName, queryvalue);
                         break;
-                    case CompareEnum.GTE:
+                    case DataFilter.CompareEnum.GTE:
                         query = Query.GTE(item.ColName, queryvalue);
                         break;
-                    case CompareEnum.LT:
+                    case DataFilter.CompareEnum.LT:
                         query = Query.LT(item.ColName, queryvalue);
                         break;
-                    case CompareEnum.LTE:
+                    case DataFilter.CompareEnum.LTE:
                         query = Query.LTE(item.ColName, queryvalue);
                         break;
-                    case CompareEnum.NE:
+                    case DataFilter.CompareEnum.NE:
                         query = Query.NE(item.ColName, queryvalue);
                         break;
                     default:

@@ -64,7 +64,7 @@
             this.cmbEndMark.FormattingEnabled = true;
             this.cmbEndMark.Location = new System.Drawing.Point(399, 0);
             this.cmbEndMark.Name = "cmbEndMark";
-            this.cmbEndMark.Size = new System.Drawing.Size(45, 21);
+            this.cmbEndMark.Size = new System.Drawing.Size(52, 21);
             this.cmbEndMark.TabIndex = 5;
             // 
             // cmbStartMark

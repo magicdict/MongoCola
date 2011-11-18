@@ -15,7 +15,7 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-        public MongoDBHelpler.QueryFieldItem QueryFieldItem
+        public DataFilter.QueryFieldItem QueryFieldItem
         {
             set
             {
@@ -23,13 +23,13 @@ namespace MagicMongoDBTool
                 chkIsShow.Checked = value.IsShow;
                 switch (value.sortType)
                 {
-                    case MongoDBHelpler.SortType.NoSort:
+                    case DataFilter.SortType.NoSort:
                         radNoSort.Checked = true;
                         break;
-                    case MongoDBHelpler.SortType.Ascending:
+                    case DataFilter.SortType.Ascending:
                         radSortAcs.Checked = true;
                         break;
-                    case MongoDBHelpler.SortType.Descending:
+                    case DataFilter.SortType.Descending:
                         radSortDes.Checked = true;
                         break;
                     default:
@@ -38,20 +38,20 @@ namespace MagicMongoDBTool
             }
             get
             {
-                MongoDBHelpler.QueryFieldItem rtn = new MongoDBHelpler.QueryFieldItem();
+                DataFilter.QueryFieldItem rtn = new DataFilter.QueryFieldItem();
                 rtn.IsShow = chkIsShow.Checked;
                 rtn.ColName = lblFieldName.Text;
                 if (this.radNoSort.Checked) 
-                { 
-                    rtn.sortType = MongoDBHelpler.SortType.NoSort;
+                {
+                    rtn.sortType = DataFilter.SortType.NoSort;
                 }
                 if (this.radSortAcs.Checked) 
-                { 
-                    rtn.sortType = MongoDBHelpler.SortType.Ascending; 
+                {
+                    rtn.sortType = DataFilter.SortType.Ascending; 
                 }
                 if (this.radSortDes.Checked) 
-                { 
-                    rtn.sortType = MongoDBHelpler.SortType.Descending; 
+                {
+                    rtn.sortType = DataFilter.SortType.Descending; 
                 }
                 return rtn;
             }

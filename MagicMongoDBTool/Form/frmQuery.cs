@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
+using System.Windows.Forms;
 namespace MagicMongoDBTool
 {
     public partial class frmQuery : QLFUI.QLFForm
@@ -32,15 +33,15 @@ namespace MagicMongoDBTool
             foreach (var item in ColumnList)
             {
                 //输出配置的初始化
-                MongoDBHelpler.QueryFieldItem queryFieldList = new MongoDBHelpler.QueryFieldItem();
-                queryFieldList.ColName = item;
-                queryFieldList.IsShow = true;
-                queryFieldList.sortType = MongoDBHelpler.SortType.NoSort;
+                DataFilter.QueryFieldItem queryFieldItem = new DataFilter.QueryFieldItem();
+                queryFieldItem.ColName = item;
+                queryFieldItem.IsShow = true;
+                queryFieldItem.sortType = DataFilter.SortType.NoSort;
                 //动态加载控件
                 ctlFieldInfo ctrItem = new ctlFieldInfo();
                 ctrItem.Name = item;
                 ctrItem.Location = _conditionPos;
-                ctrItem.QueryFieldItem = queryFieldList;
+                ctrItem.QueryFieldItem = queryFieldItem;
                 tabFieldInfo.Controls.Add(ctrItem);
                 //纵向位置的累加
                 _conditionPos.Y += ctrItem.Height;
@@ -50,41 +51,113 @@ namespace MagicMongoDBTool
             firstQueryCtl.Init(ColumnList);
             firstQueryCtl.Location = _conditionPos;
             firstQueryCtl.Name = "Condition" + _conditionCount.ToString();
-            tabFilter.Controls.Add(firstQueryCtl);
+            panFilter.Controls.Add(firstQueryCtl);
 
         }
-
+        /// <summary>
+        /// 新增条件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdAddCondition_Click(object sender, EventArgs e)
+        {
+            _conditionCount++;
+            ctlQueryCondition newCondition = new ctlQueryCondition();
+            newCondition.Init(ColumnList);
+            _conditionPos.Y += newCondition.Height;
+            newCondition.Location = _conditionPos;
+            newCondition.Name = "Condition" + _conditionCount.ToString();
+            panFilter.Controls.Add(newCondition);
+        }
+        /// <summary>
+        /// 确定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
+            // 设置DataFilter
+            SetCurrDataFilter();
+            //启用过滤器
+            MongoDBHelpler.IsUseFilter = true;
+            this.Close();
+        }
+        /// <summary>
+        /// 设置DataFilter
+        /// </summary>
+        private void SetCurrDataFilter()
+        {
             //清除以前的结果和内部变量，重要！
-            MongoDBHelpler.ClearFilter();
+            SystemManager.CurrDataFilter.Clear();
             foreach (var item in ColumnList)
             {
-                MongoDBHelpler.QueryFieldList.Add(((ctlFieldInfo)Controls.Find(item, true)[0]).QueryFieldItem);
+                SystemManager.CurrDataFilter.QueryFieldList.Add(((ctlFieldInfo)Controls.Find(item, true)[0]).QueryFieldItem);
             }
             for (int i = 0; i < _conditionCount; i++)
             {
                 ctlQueryCondition ctl = (ctlQueryCondition)Controls.Find("Condition" + (i + 1).ToString(), true)[0];
                 if (ctl.IsSeted)
                 {
-                    MongoDBHelpler.QueryCompareList.Add(ctl.CompareItem);
+                    SystemManager.CurrDataFilter.QueryConditionList.Add(ctl.ConditionItem);
                 }
             }
-            //启用过滤器
-            MongoDBHelpler.IsUseFilter = true;
-            this.Close();
         }
-
-        private void cmdAddCondition_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdSave_Click(object sender, EventArgs e)
         {
-            _conditionCount++;
-            ctlQueryCondition newCondition = new ctlQueryCondition();
-            _conditionPos.Y += newCondition.Height;
-            newCondition.Location = _conditionPos;
-            newCondition.Name = "Condition" + _conditionCount.ToString();
-            tabFilter.Controls.Add(newCondition);
+            SaveFileDialog savefile = new SaveFileDialog();
+            if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                // 设置DataFilter
+                SetCurrDataFilter();
+                DataFilter NewDataFilter = SystemManager.CurrDataFilter;
+                NewDataFilter.SaveFilter(savefile.FileName);
+            }
         }
-
-
+        /// <summary>
+        /// 加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdLoad_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog openFile = new SaveFileDialog();
+            if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
+                SystemManager.CurrDataFilter = NewDataFilter;
+                //清除所有的控件
+                tabFieldInfo.Controls.Clear();
+                foreach (DataFilter.QueryFieldItem queryFieldItem in NewDataFilter.QueryFieldList)
+                {
+                    //动态加载控件
+                    ctlFieldInfo ctrItem = new ctlFieldInfo();
+                    ctrItem.Name = queryFieldItem.ColName;
+                    ctrItem.Location = _conditionPos;
+                    ctrItem.QueryFieldItem = queryFieldItem;
+                    tabFieldInfo.Controls.Add(ctrItem);
+                    //纵向位置的累加
+                    _conditionPos.Y += ctrItem.Height;
+                }
+                panFilter.Controls.Clear();
+                _conditionPos = new Point(5, 20);
+                _conditionCount = 1;
+                foreach (DataFilter.QueryConditionInputItem queryConditionItem in NewDataFilter.QueryConditionList)
+                {
+                    ctlQueryCondition newCondition = new ctlQueryCondition();
+                    newCondition.Init(ColumnList);
+                    newCondition.Location = _conditionPos;
+                    newCondition.ConditionItem = queryConditionItem;
+                    newCondition.Name = "Condition" + _conditionCount.ToString();
+                    panFilter.Controls.Add(newCondition);
+                    _conditionPos.Y += newCondition.Height;
+                    _conditionCount++;
+                }
+            }
+        }
     }
 }

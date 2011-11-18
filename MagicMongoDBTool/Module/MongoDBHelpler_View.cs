@@ -440,10 +440,10 @@ namespace MagicMongoDBTool.Module
             //Query condition:
             if (IsUseFilter)
             {
-                dataList = mongoCol.FindAs<BsonDocument>(GetQuery())
+                dataList = mongoCol.FindAs<BsonDocument>(GetQuery(SystemManager.CurrDataFilter.QueryConditionList))
                                    .SetSkip(SkipCnt)
-                                   .SetFields(GetOutputFields())
-                                   .SetSortOrder(GetSort())
+                                   .SetFields(GetOutputFields(SystemManager.CurrDataFilter.QueryFieldList))
+                                   .SetSortOrder(GetSort(SystemManager.CurrDataFilter.QueryFieldList))
                                    .SetLimit(SystemManager.ConfigHelperInstance.LimitCnt)
                                    .ToList<BsonDocument>();
             }
@@ -490,21 +490,25 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static string ConvertForShow(BsonValue val)
         {
+            //二进制数据
             if (val.IsBsonBinaryData)
             {
                 _hasBSonBinary = true;
                 return "[二进制数据]";
             }
+            //空值
             if (val.IsBsonNull)
             {
                 return "[空值]";
             }
 
+            //文档
             if (val.IsBsonDocument)
             {
                 return val.ToString() + "[包含" + val.ToBsonDocument().ElementCount + "个元素的文档]";
             }
 
+            //时间
             if (val.IsBsonDateTime)
             {
                 DateTime bsonData = val.AsDateTime;
@@ -512,11 +516,14 @@ namespace MagicMongoDBTool.Module
                 return bsonData.ToLocalTime().ToString();
             }
 
+            //字符
             if (val.IsString)
             {
                 //只有在字符的时候加上""
                 return "\"" + val.ToString() + "\"";
             }
+
+            //其他
             return val.ToString();
         }
         /// <summary>
@@ -553,9 +560,15 @@ namespace MagicMongoDBTool.Module
                 txtData.Text = sb.ToString();
             }
         }
+        /// <summary>
+        /// 单个文档的TextView表示整理
+        /// </summary>
+        /// <param name="itemName"></param>
+        /// <param name="value"></param>
+        /// <param name="DeepLv"></param>
+        /// <returns></returns>
         private static String GetValueText(String itemName, BsonValue value, int DeepLv)
         {
-            //   "itemName":
             String rtnText = String.Empty;
             if (value.IsBsonArray)
             {
@@ -757,7 +770,7 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
-        /// 
+        /// 用户列表
         /// </summary>
         /// <param name="dataList"></param>
         /// <param name="lstData"></param>

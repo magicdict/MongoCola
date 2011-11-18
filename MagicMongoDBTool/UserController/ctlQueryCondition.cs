@@ -24,14 +24,14 @@ namespace MagicMongoDBTool
                 return (cmbCompareOpr.SelectedIndex != -1);
             }
         }
-        public MongoDBHelpler.QueryConditionInputItem CompareItem
+        public DataFilter.QueryConditionInputItem ConditionItem
         {
             get
             {
                 if (cmbCompareOpr.SelectedIndex != -1)
                 {
-                    MongoDBHelpler.QueryConditionInputItem rtn = new MongoDBHelpler.QueryConditionInputItem();
-                    rtn.Comp = (MongoDBHelpler.CompareEnum)cmbCompareOpr.SelectedIndex;
+                    DataFilter.QueryConditionInputItem rtn = new DataFilter.QueryConditionInputItem();
+                    rtn.Comp = (DataFilter.CompareEnum)cmbCompareOpr.SelectedIndex;
                     if (cmbDataType.SelectedIndex == 0)
                     {
                         rtn.Type = BsonType.String;
@@ -56,7 +56,7 @@ namespace MagicMongoDBTool
                 }
                 else
                 {
-                    return new MongoDBHelpler.QueryConditionInputItem();
+                    return new DataFilter.QueryConditionInputItem();
                 }
             }
             set
@@ -123,7 +123,7 @@ namespace MagicMongoDBTool
                 this.cmbColName.Items.Add(item);
             }
             //逻辑操作符号的载入
-            foreach (var item in Enum.GetNames(typeof(MongoDBHelpler.CompareEnum)))
+            foreach (var item in Enum.GetNames(typeof(DataFilter.CompareEnum)))
             {
                 cmbCompareOpr.Items.Add(item);
             }

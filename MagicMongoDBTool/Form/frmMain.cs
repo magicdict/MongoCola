@@ -86,7 +86,7 @@ namespace MagicMongoDBTool
                         
                         MongoDBHelpler.IsUseFilter = false;
                         this.DataFilterToolStripMenuItem.Checked = MongoDBHelpler.IsUseFilter;
-                        MongoDBHelpler.ClearFilter();
+                        SystemManager.CurrDataFilter.Clear();
                         RefreshData();
 
                         break;
@@ -97,7 +97,7 @@ namespace MagicMongoDBTool
 
                         MongoDBHelpler.IsUseFilter = false;
                         this.DataFilterToolStripMenuItem.Checked = MongoDBHelpler.IsUseFilter;
-                        MongoDBHelpler.ClearFilter();
+                        SystemManager.CurrDataFilter.Clear();
                         RefreshData();
 
                         UploadFileToolStripMenuItem.Enabled = true;

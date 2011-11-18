@@ -8,6 +8,10 @@ namespace MagicMongoDBTool.Module
     public static class SystemManager
     {
         /// <summary>
+        /// 数据过滤器
+        /// </summary>
+        public static DataFilter CurrDataFilter = new DataFilter();
+        /// <summary>
         /// 配置实例
         /// </summary>
         public static ConfigHelper ConfigHelperInstance = new ConfigHelper();
