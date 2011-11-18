@@ -858,6 +858,16 @@ namespace MagicMongoDBTool
             return true;
         }
         /// <summary>
+        /// 执行DOS命令
+        /// </summary>
+        /// <param name="DosCommand"></param>
+        private void RunCommand(String DosCommand)
+        {
+            StringBuilder Info = new StringBuilder();
+            MongodbDosCommand.RunDosCommand(DosCommand, Info);
+            SystemManager.ShowErrMsg("DOS", "Dos命令执行结果：",Info.ToString(),true);
+        }
+        /// <summary>
         /// 恢复数据
         /// </summary>
         /// <param name="sender"></param>
@@ -875,9 +885,7 @@ namespace MagicMongoDBTool
                 MongoRestore.DirectoryPerDB = dumpFile.SelectedPath;
             }
             String DosCommand = MongodbDosCommand.GetMongoRestoreCommandLine(MongoRestore);
-            StringBuilder Info = new StringBuilder();
-            MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+            RunCommand(DosCommand);
             RefreshToolStripMenuItem_Click(null, null);
         }
         /// <summary>
@@ -899,9 +907,7 @@ namespace MagicMongoDBTool
                 MongoDump.OutPutPath = dumpFile.SelectedPath;
             }
             String DosCommand = MongodbDosCommand.GetMongodumpCommandLine(MongoDump);
-            StringBuilder Info = new StringBuilder();
-            MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+            RunCommand(DosCommand);
         }
         /// <summary>
         /// 备份数据集
@@ -923,9 +929,7 @@ namespace MagicMongoDBTool
                 MongoDump.OutPutPath = dumpFile.SelectedPath;
             }
             String DosCommand = MongodbDosCommand.GetMongodumpCommandLine(MongoDump);
-            StringBuilder Info = new StringBuilder();
-            MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+            RunCommand(DosCommand);
         }
         /// <summary>
         /// 导出数据集
@@ -948,9 +952,7 @@ namespace MagicMongoDBTool
             }
             MongoImportExport.Direct = MongodbDosCommand.ImprotExport.Export;
             String DosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExport);
-            StringBuilder Info = new StringBuilder();
-            MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+            RunCommand(DosCommand);
         }
         /// <summary>
         /// 导入数据集
@@ -973,9 +975,7 @@ namespace MagicMongoDBTool
             }
             MongoImportExport.Direct = MongodbDosCommand.ImprotExport.Import;
             String DosCommand = MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExport);
-            StringBuilder Info = new StringBuilder();
-            MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            SystemManager.ShowErrMsg("执行结果", Info.ToString());
+            RunCommand(DosCommand);
         }
         #endregion
 
