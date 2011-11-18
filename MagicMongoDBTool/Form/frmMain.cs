@@ -609,6 +609,11 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DelUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //@那一剑风情 提出的删除前确认
+            if (MessageBox.Show("删除Admin确认", "确认", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
             String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
             MongoDBHelpler.RemoveUserFromSvr(SystemManager.SelectObjectTag, strUserName);
         }
@@ -643,6 +648,11 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DelMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //@那一剑风情 提出的删除前确认
+            if (MessageBox.Show("删除数据库确认", "确认", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
             String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             String strDBName = strPath.Split("/".ToCharArray())[1];
             if (trvsrvlst.SelectedNode == null)
@@ -691,6 +701,11 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //@那一剑风情 提出的删除前确认
+            if (MessageBox.Show("删除用户确认", "确认", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
             String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
             MongoDBHelpler.RemoveUserFromDB(SystemManager.SelectObjectTag, strUserName);
         }
@@ -705,6 +720,11 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DelMongoCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //@那一剑风情 提出的删除前确认
+            if (MessageBox.Show("删除数据库确认", "确认", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
             String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             String strCollection = strPath.Split("/".ToCharArray())[2];
             if (trvsrvlst.SelectedNode == null)
@@ -735,7 +755,13 @@ namespace MagicMongoDBTool
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DelRecordToolStripMenuItem_Click(object sender, EventArgs e)
+
         {
+            //@那一剑风情 提出的删除前确认
+            if (MessageBox.Show("删除数据确认", "确认", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
             if (tabDataShower.SelectedTab == tabTableView)
             {
                 //lstData
@@ -831,6 +857,11 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DelFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //@那一剑风情 提出的删除前确认
+            if (MessageBox.Show("删除文件确认", "确认", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
             String strFileName = lstData.SelectedItems[0].Text;
             MongoDBHelpler.DelFile(strFileName);
             RefreshData();
@@ -874,6 +905,11 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RestoreMongoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //@那一剑风情 提出的删除前确认
+            if (MessageBox.Show("恢复数据确认", "确认", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
             if (!MongoPathCheck()) { return; }
             MongodbDosCommand.StruMongoRestore MongoRestore = new MongodbDosCommand.StruMongoRestore();
             MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
@@ -961,6 +997,11 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ImportCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //@那一剑风情 提出的删除前确认
+            if (MessageBox.Show("导入数据集确认", "确认", MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return;
+            }
             if (!MongoPathCheck()) { return; }
             MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
             MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
@@ -1104,8 +1145,6 @@ namespace MagicMongoDBTool
                                      strThanks);
         }
         #endregion
-
-
 
     }
 }

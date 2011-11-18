@@ -490,7 +490,6 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static string ConvertForShow(BsonValue val)
         {
-            string strVal;
             if (val.IsBsonBinaryData)
             {
                 _hasBSonBinary = true;
@@ -500,15 +499,25 @@ namespace MagicMongoDBTool.Module
             {
                 return "[空值]";
             }
+
             if (val.IsBsonDocument)
             {
-                strVal = val.ToString() + "[包含" + val.ToBsonDocument().ElementCount + "个元素的文档]";
+                return val.ToString() + "[包含" + val.ToBsonDocument().ElementCount + "个元素的文档]";
             }
-            else
+
+            if (val.IsBsonDateTime)
             {
-                strVal = val.ToString();
+                DateTime bsonData = val.AsDateTime;
+                //@flydreamer提出的本地化时间要求
+                return bsonData.ToLocalTime().ToString();
             }
-            return strVal;
+
+            if (val.IsString)
+            {
+                //只有在字符的时候加上""
+                return "\"" + val.ToString() + "\"";
+            }
+            return val.ToString();
         }
         /// <summary>
         /// 将数据放入TextBox里进行展示
@@ -631,7 +640,7 @@ namespace MagicMongoDBTool.Module
                         }
                         rtnText += "  \"" + itemName + "\":";
                     }
-                    rtnText += "\"" + value.ToString() + "\"\r\n";
+                    rtnText += ConvertForShow(value) + "\r\n";
                 }
             }
             return rtnText;
