@@ -230,20 +230,21 @@ namespace QLFUI
                     label.BackColor = Color.Transparent;
                     break;
                 case "System.Windows.Forms.MenuStrip":
-                    MenuStrip menustrip = (MenuStrip)item;
-                    foreach (ToolStripMenuItem meunitem in menustrip.Items)
-                    {
-                        meunitem.BackgroundImage = _topMiddle.BackgroundBitmap;
-                        meunitem.ImageScaling = ToolStripItemImageScaling.SizeToFit;
-                        foreach (ToolStripMenuItem Submeunitem in meunitem.DropDownItems)
-                        {
-                            Submeunitem.BackgroundImage = _topMiddle.BackgroundBitmap;
-                            foreach (ToolStripMenuItem DeepSubmeunitem in Submeunitem.DropDownItems)
-                            {
-                                DeepSubmeunitem.BackgroundImage = _topMiddle.BackgroundBitmap;
-                            }
-                        }
-                    }
+                    //使用了ToolStripRenderer来美化
+                    //MenuStrip menustrip = (MenuStrip)item;
+                    //foreach (ToolStripMenuItem meunitem in menustrip.Items)
+                    //{
+                    //    meunitem.BackgroundImage = _topMiddle.BackgroundBitmap;
+                    //    meunitem.ImageScaling = ToolStripItemImageScaling.SizeToFit;
+                    //    foreach (ToolStripMenuItem Submeunitem in meunitem.DropDownItems)
+                    //    {
+                    //        Submeunitem.BackgroundImage = _topMiddle.BackgroundBitmap;
+                    //        foreach (ToolStripMenuItem DeepSubmeunitem in Submeunitem.DropDownItems)
+                    //        {
+                    //            DeepSubmeunitem.BackgroundImage = _topMiddle.BackgroundBitmap;
+                    //        }
+                    //    }
+                    //}
                     break;
                 default:
                     //item.BackColor = this.BackColor;

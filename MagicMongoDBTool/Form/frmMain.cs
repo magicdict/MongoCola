@@ -83,13 +83,23 @@ namespace MagicMongoDBTool
                         //BsonDocument
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "选中数据:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        
+                        MongoDBHelpler.IsUseFilter = false;
+                        this.DataFilterToolStripMenuItem.Checked = MongoDBHelpler.IsUseFilter;
+                        MongoDBHelpler.ClearFilter();
                         RefreshData();
+
                         break;
                     case MongoDBHelpler.GRID_FILE_SYSTEM_TAG:
                         //GridFileSystem
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "文件系统:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+
+                        MongoDBHelpler.IsUseFilter = false;
+                        this.DataFilterToolStripMenuItem.Checked = MongoDBHelpler.IsUseFilter;
+                        MongoDBHelpler.ClearFilter();
                         RefreshData();
+
                         UploadFileToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
@@ -224,7 +234,8 @@ namespace MagicMongoDBTool
                         break;
                 }
             }
-            else {
+            else
+            {
                 statusStripMain.Items[0].Text = "选中对象:" + e.Node.Text;
             }
             //重新Reset工具栏
@@ -285,6 +296,11 @@ namespace MagicMongoDBTool
             this.QueryDataToolStripButton.Enabled = false;
             this.ExpandAllDataToolStripMenuItem.Enabled = false;
             this.CollapseAllDataToolStripMenuItem.Enabled = false;
+            this.DataFilterToolStripMenuItem.Enabled = false;
+            this.DataFilterToolStripMenuItem.Checked = false;
+            this.DataFilterToolStripButton.Enabled = false;
+            this.DataFilterToolStripButton.Checked = false;
+
 
             //工具
             this.ImportDataFromAccessToolStripMenuItem.Enabled = false;
@@ -536,7 +552,7 @@ namespace MagicMongoDBTool
         private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog AccessFile = new OpenFileDialog();
-            if (AccessFile.ShowDialog()== System.Windows.Forms.DialogResult.OK)
+            if (AccessFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 MongoDBHelpler.ImportAccessDataBase(AccessFile.FileName, SystemManager.SelectObjectTag, trvsrvlst.SelectedNode);
             }
@@ -757,13 +773,11 @@ namespace MagicMongoDBTool
                 statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             }
         }
-
         /// <summary>
         /// 刷新数据
         /// </summary>
         private void RefreshData()
         {
-            MongoDBHelpler.ClearFilter();
             clearDataShower();
             MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
@@ -832,11 +846,12 @@ namespace MagicMongoDBTool
         /// 检查MongoDB执行目录是否存在
         /// </summary>
         /// <returns></returns>
-        private Boolean MongoPathCheck() {
+        private Boolean MongoPathCheck()
+        {
             if (!MongodbDosCommand.IsMongoPathExist())
             {
-                SystemManager.ShowErrMsg("异常", 
-                                         "Mongo目录没有找到，请确认", 
+                SystemManager.ShowErrMsg("异常",
+                                         "Mongo目录没有找到，请确认",
                                          "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
                 return false;
             }
@@ -1028,11 +1043,24 @@ namespace MagicMongoDBTool
             mfrm.ShowDialog();
             mfrm.Close();
             mfrm.Dispose();
+            this.DataFilterToolStripMenuItem.Checked = MongoDBHelpler.IsUseFilter;
             //重新展示数据
             MongoDBHelpler.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
         }
-
+        /// <summary>
+        /// 过滤切换
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataFilterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MongoDBHelpler.IsUseFilter = !MongoDBHelpler.IsUseFilter;
+            this.DataFilterToolStripMenuItem.Checked = MongoDBHelpler.IsUseFilter;
+            //过滤变更后，重新刷新
+            MongoDBHelpler.SkipCnt = 0;
+            RefreshData();
+        }
         private void SetDataNav()
         {
             PrePageToolStripMenuItem.Enabled = MongoDBHelpler.HasPrePage;
@@ -1042,6 +1070,7 @@ namespace MagicMongoDBTool
             this.QueryDataToolStripMenuItem.Enabled = true;
             this.ExpandAllDataToolStripMenuItem.Enabled = true;
             this.CollapseAllDataToolStripMenuItem.Enabled = true;
+            this.DataFilterToolStripMenuItem.Enabled = true;
             SetToolBarEnabled();
             DataNaviToolStripLabel.Text = "数据视图：" + (MongoDBHelpler.SkipCnt + 1).ToString() + "/" + MongoDBHelpler.CurrentCollectionTotalCnt.ToString();
         }
@@ -1055,9 +1084,9 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.ShowErrMsg("关于","MagicMongoDBTool", 
+            SystemManager.ShowErrMsg("关于", "MagicMongoDBTool",
                                      GUIResource.GetResource.GetIcon(GUIResource.ImageType.Smile),
-                                     "GitHub地址： https://github.com/magicdict/MagicMongoDBTool");    
+                                     "GitHub地址： https://github.com/magicdict/MagicMongoDBTool");
         }
         /// <summary>
         /// 感谢
@@ -1067,14 +1096,16 @@ namespace MagicMongoDBTool
         private void ThanksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strThanks = "感谢皮肤控件的作者：qianlifeng\r\n";
-            strThanks +=       "感谢10gen的C# Driver开发者的技术支持\r\n";
-            strThanks +=       "感谢Dragon同志的测试和代码规范化";
-            strThanks +=       "感谢MoLing同志的国际化";
-            SystemManager.ShowErrMsg("感谢","MagicMongoDBTool",
+            strThanks += "感谢10gen的C# Driver开发者的技术支持\r\n";
+            strThanks += "感谢Dragon同志的测试和代码规范化";
+            strThanks += "感谢MoLing同志的国际化";
+            SystemManager.ShowErrMsg("感谢", "MagicMongoDBTool",
                                      GUIResource.GetResource.GetIcon(GUIResource.ImageType.Smile),
                                      strThanks);
         }
         #endregion
+
+
 
     }
 }

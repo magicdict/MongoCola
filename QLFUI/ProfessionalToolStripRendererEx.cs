@@ -35,12 +35,13 @@ namespace CRD.WinUI.Misc
         }
         protected override void OnRenderSeparator(ToolStripSeparatorRenderEventArgs e)
         {
+            e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(200, 230, 130)), new Rectangle(0, 0, e.Item.Width, e.Item.Height));
             if ((e.ToolStrip is ContextMenuStrip) ||
             (e.ToolStrip is ToolStripDropDownMenu))
             {
-                using (Pen lightPen = new Pen(Color.FromArgb(208, 234, 247)), darkPen = new Pen(Color.FromArgb(219, 238, 252)))
+                using (Pen lightPen = new Pen(Color.Green), darkPen = new Pen(Color.LightGreen))
                 {
-                    DrawSeparator(e.Graphics, e.Vertical, new Rectangle(0, 0, e.Item.Width - 5, 3), lightPen, darkPen, 31, (e.ToolStrip.RightToLeft == RightToLeft.Yes));
+                    DrawSeparator(e.Graphics, e.Vertical, new Rectangle(0, 0, e.Item.Width - 5, 3), lightPen, darkPen, 0, (e.ToolStrip.RightToLeft == RightToLeft.Yes));
                 }
             }
             else if (e.ToolStrip is System.Windows.Forms.StatusStrip)
@@ -90,7 +91,15 @@ namespace CRD.WinUI.Misc
                 e.Item.ForeColor = Color.Black;
                 e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(200, 230, 130)), new Rectangle(5, 1, e.Item.Width - 2 * SystemInformation.BorderSize.Width - 6, e.Item.Height - 2));
             }
-            e.Graphics.DrawPath(new Pen(Color.Green), CreateRoundedRectanglePath(new Rectangle(4, 1, e.Item.Width - 2 * SystemInformation.BorderSize.Width - 5, e.Item.Height - 2), 3));
+            int IconSize = 0;
+            //if (e.Item.Image == null)
+            //{
+            //    IconSize = 0;
+            //}
+            //else {
+            //    IconSize = e.Item.Image.Width;
+            //}
+            e.Graphics.DrawPath(new Pen(Color.Green), CreateRoundedRectanglePath(new Rectangle(4 + IconSize, 1, e.Item.Width - 2 * SystemInformation.BorderSize.Width - 5 - IconSize, e.Item.Height - 2), 3));
             // base.OnRenderMenuItemBackground(e);
         }
         internal static GraphicsPath CreateRoundedRectanglePath(Rectangle rect, int cornerRadius)

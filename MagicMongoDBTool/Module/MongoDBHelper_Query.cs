@@ -83,7 +83,6 @@ namespace MagicMongoDBTool.Module
             MongoDBHelpler.SkipCnt = 0;
             QueryFieldList.Clear();
             QueryCompareList.Clear();
-            IsUseFilter = false;
         }
         /// <summary>
         /// 是否使用过滤器

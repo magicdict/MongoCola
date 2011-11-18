@@ -43,6 +43,9 @@ namespace GUIResource
                 case ImageType.Query:
                     micon = GUIResource.Properties.Resources.Query;
                     break;
+                case ImageType.Filter:
+                    micon = GUIResource.Properties.Resources.Filter;
+                    break;
                 case ImageType.WebServer:
                     micon = GUIResource.Properties.Resources.WebServer;
                     break;
@@ -85,13 +88,14 @@ namespace GUIResource
         PrePage,
         FirstPage,
         LastPage,
+        Query,
+        Filter,
 
         Option,
         /// <summary>
         /// 刷新
         /// </summary>
         Refresh,
-        Query,
 
         WebServer,
         Database,

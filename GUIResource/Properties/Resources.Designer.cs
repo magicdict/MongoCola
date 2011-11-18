@@ -102,6 +102,13 @@ namespace GUIResource.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Filter {
+            get {
+                object obj = ResourceManager.GetObject("Filter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Keys {
             get {
                 object obj = ResourceManager.GetObject("Keys", resourceCulture);

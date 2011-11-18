@@ -50,7 +50,6 @@ namespace MagicMongoDBTool.Module
             cloneButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             return cloneButton;
         }
-
         /// <summary>   
         /// 获取控件事件  zgke@sina.com qq:116149   
         /// </summary>   

@@ -1,10 +1,7 @@
 *.txt
 *.config
 *.suo
-QLFUI.pdb
-QLFUI.dll
-GUIResource.pdb
-GUIResource.dll
+/MagicMongoDBTool/dll
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
 /QLFUI/bin
