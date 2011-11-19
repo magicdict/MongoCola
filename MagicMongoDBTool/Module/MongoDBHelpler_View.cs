@@ -456,7 +456,19 @@ namespace MagicMongoDBTool.Module
                                    .SetLimit(SystemManager.ConfigHelperInstance.LimitCnt)
                                    .ToList<BsonDocument>();
             }
-            CurrentCollectionTotalCnt = dataList.Count;
+            if (SkipCnt == 0)
+            {
+                if (IsUseFilter)
+                {
+                    CurrentCollectionTotalCnt = mongoCol.FindAs<BsonDocument>(GetQuery(SystemManager.CurrDataFilter.QueryConditionList))
+                                                        .ToList<BsonDocument>().Count;
+
+                }
+                else
+                {
+                    CurrentCollectionTotalCnt = mongoCol.FindAllAs<BsonDocument>().ToList<BsonDocument>().Count;
+                }
+            }
             if (dataList.Count == 0)
             {
                 return;
@@ -471,7 +483,7 @@ namespace MagicMongoDBTool.Module
                         FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, dataList);
                         break;
                     case "System.Windows.Forms.TextBox":
-                        FillDataToTextBox(cp[(int)PathLv.CollectionLV], (TextBox)control, dataList);
+                        FillDataToTextBox((TextBox)control, dataList);
                         break;
                     case "System.Windows.Forms.TreeView":
                         FillDataToTreeView(cp[(int)PathLv.CollectionLV], (TreeView)control, dataList);
@@ -530,7 +542,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="collectionName"></param>
         /// <param name="txtData"></param>
         /// <param name="dataList"></param>
-        public static void FillDataToTextBox(string collectionName, TextBox txtData, List<BsonDocument> dataList)
+        public static void FillDataToTextBox(TextBox txtData, List<BsonDocument> dataList)
         {
             txtData.Clear();
             if (_hasBSonBinary)

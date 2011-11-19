@@ -69,11 +69,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserController\ctlAddBsonEl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ctlAddBsonEl.Designer.cs">
+      <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\frmErrMsg.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\frmErrMsg.Designer.cs">
       <DependentUpon>frmErrMsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmDistinct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmDistinct.Designer.cs">
+      <DependentUpon>frmDistinct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmGroup.Designer.cs">
+      <DependentUpon>frmGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\DataFilter.cs" />
     <Compile Include="Module\XMLUtility.cs" />
@@ -205,8 +223,17 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UserController\ctlAddBsonEl.resx">
+      <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmErrMsg.resx">
       <DependentUpon>frmErrMsg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmDistinct.resx">
+      <DependentUpon>frmDistinct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmGroup.resx">
+      <DependentUpon>frmGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlIndexCreate.resx">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>

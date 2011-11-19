@@ -1144,7 +1144,10 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void distinctToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmDistinct mfrm = new frmDistinct();
+            mfrm.ShowDialog();
+            mfrm.Close();
+            mfrm.Dispose();
         }
         /// <summary>
         /// Group
@@ -1153,6 +1156,10 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void groupToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmGroup mfrm = new frmGroup();
+            mfrm.ShowDialog();
+            mfrm.Close();
+            mfrm.Dispose();
 
         }
         /// <summary>
