@@ -53,9 +53,9 @@ namespace MagicMongoDBTool
             foreach (String item in lstServerOutReplset.SelectedItems)
             {
                 ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
-                Resultlst.Add(MongoDBHelpler.AddToReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port, config.ServerType == ConfigHelper.SvrType.ArbiterSvr));
+                Resultlst.Add(MongoDBHelper.AddToReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port, config.ServerType == ConfigHelper.SvrType.ArbiterSvr));
             }
-            SystemManager.ShowErrMsg("添加服务器", "执行结果", Resultlst);
+            SystemManager.ShowMessage("添加服务器", "执行结果", Resultlst);
             RefreshSvr();
         }
         /// <summary>
@@ -69,9 +69,9 @@ namespace MagicMongoDBTool
             foreach (String item in lstServerInReplset.SelectedItems)
             {
                 ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
-                Resultlst.Add(MongoDBHelpler.RemoveFromReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port));
+                Resultlst.Add(MongoDBHelper.RemoveFromReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port));
             }
-            SystemManager.ShowErrMsg("删除服务器", "执行结果", Resultlst);
+            SystemManager.ShowMessage("删除服务器", "执行结果", Resultlst);
             RefreshSvr();
         }
     }

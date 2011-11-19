@@ -55,7 +55,7 @@ namespace MagicMongoDBTool
                 }
                 foreach (ListViewItem item in lstIndex.CheckedItems)
                 {
-                    MongoDBHelpler.DropMongoIndex(item.SubItems[0].Text.ToString());
+                    MongoDBHelper.DropMongoIndex(item.SubItems[0].Text.ToString());
                 }
                 RefreshList();
             }
@@ -85,7 +85,7 @@ namespace MagicMongoDBTool
                     }
                 }
             }
-            MongoDBHelpler.CreateMongoIndex(AscendingKey.ToArray(),
+            MongoDBHelper.CreateMongoIndex(AscendingKey.ToArray(),
                                             DescendingKey.ToArray(),
                                             chkIsBackground.Checked,
                                             chkDroppedDups.Checked,

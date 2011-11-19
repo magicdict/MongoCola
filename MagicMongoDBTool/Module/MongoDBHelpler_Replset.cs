@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelpler
+    public static partial class MongoDBHelper
     {
 
         //查看命令方法：http://localhost:29018/_commands

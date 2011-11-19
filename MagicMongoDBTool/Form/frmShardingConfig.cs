@@ -85,7 +85,7 @@ namespace MagicMongoDBTool
                 }
             }
             List<CommandResult> Resultlst = new List<CommandResult>();
-            Resultlst.Add(MongoDBHelpler.AddSharding(_prmSvr, cmbReplsetName.Text, srvKeys));
+            Resultlst.Add(MongoDBHelper.AddSharding(_prmSvr, cmbReplsetName.Text, srvKeys));
         }
         /// <summary>
         /// 数据库切换
@@ -140,8 +140,8 @@ namespace MagicMongoDBTool
         private void cmdEnableSharding_Click(object sender, EventArgs e)
         {
             List<CommandResult> Resultlst = new List<CommandResult>();
-            Resultlst.Add(MongoDBHelpler.EnableSharding(_prmSvr, cmbDataBase.Text));
-            SystemManager.ShowErrMsg("添加分片", "执行结果", Resultlst);
+            Resultlst.Add(MongoDBHelper.EnableSharding(_prmSvr, cmbDataBase.Text));
+            SystemManager.ShowMessage("添加分片", "执行结果", Resultlst);
         }
         /// <summary>
         /// 分片配置(数据集)
@@ -151,8 +151,8 @@ namespace MagicMongoDBTool
         private void cmdCollectionSharding_Click(object sender, EventArgs e)
         {
             List<CommandResult> Resultlst = new List<CommandResult>();
-            Resultlst.Add(MongoDBHelpler.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument()));
-            SystemManager.ShowErrMsg("添加分片", "执行结果", Resultlst);
+            Resultlst.Add(MongoDBHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument()));
+            SystemManager.ShowMessage("添加分片", "执行结果", Resultlst);
         }
     }
 }

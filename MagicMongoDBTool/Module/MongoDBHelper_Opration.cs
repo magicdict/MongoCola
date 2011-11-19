@@ -6,7 +6,7 @@ using MongoDB.Driver.Builders;
 using MongoDB.Driver.GridFS;
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelpler
+    public static partial class MongoDBHelper
     {
         /// <summary>
         /// 操作模式

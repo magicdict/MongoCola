@@ -24,7 +24,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Details"></param>
-        public static void ShowErrMsg(String Title,String Message, String Details = "")
+        public static void ShowMessage(String Title,String Message, String Details = "")
         {
             if (_frmErrMsg == null) { 
                 _frmErrMsg = new frmErrMsg(); 
@@ -38,7 +38,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Details"></param>
-        public static void ShowErrMsg(String Title, String Message, String Details, Boolean IsShowDetail)
+        public static void ShowMessage(String Title, String Message, String Details, Boolean IsShowDetail)
         {
             if (_frmErrMsg == null)
             {
@@ -53,7 +53,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Details"></param>
-        public static void ShowErrMsg(String Title, String Message, Image img, String Details = "")
+        public static void ShowMessage(String Title, String Message, Image img, String Details = "")
         {
             if (_frmErrMsg == null)
             {
@@ -68,7 +68,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Details"></param>
-        public static void ShowErrMsg(String Title, String Message, List<CommandResult> Resultlst)
+        public static void ShowMessage(String Title, String Message, List<CommandResult> Resultlst)
         {
             if (_frmErrMsg == null)
             {
@@ -109,7 +109,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoServer GetCurrentService()
         {
-            return MongoDBHelpler.GetMongoServerBySvrPath(SelectObjectTag);
+            return MongoDBHelper.GetMongoServerBySvrPath(SelectObjectTag);
         }
         /// <summary>
         /// 获得当前数据库
@@ -117,7 +117,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoDatabase GetCurrentDataBase()
         {
-            return MongoDBHelpler.GetMongoDBBySvrPath(SelectObjectTag);
+            return MongoDBHelper.GetMongoDBBySvrPath(SelectObjectTag);
         }
         /// <summary>
         /// 获得当前数据集
@@ -125,7 +125,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoCollection GetCurrentCollection()
         {
-            return MongoDBHelpler.GetMongoCollectionBySvrPath(SelectObjectTag);
+            return MongoDBHelper.GetMongoCollectionBySvrPath(SelectObjectTag);
         }
         /// <summary>
         /// 获得系统JS数据集
@@ -134,7 +134,7 @@ namespace MagicMongoDBTool.Module
         public static MongoCollection GetCurrentJsCollection()
         {
             MongoDatabase mongoDB = GetCurrentDataBase();
-            MongoCollection mongoJsCol = mongoDB.GetCollection(MongoDBHelpler.COLLECTION_NAME_JAVASCRIPT);
+            MongoCollection mongoJsCol = mongoDB.GetCollection(MongoDBHelper.COLLECTION_NAME_JAVASCRIPT);
             return mongoJsCol;
         }
         /// <summary>

@@ -211,14 +211,14 @@ namespace MagicMongoDBTool
                 }
             }
             //初始化副本，将多个服务器组合成一个副本组
-            CommandResult rtn = MongoDBHelpler.InitReplicaSet(txtReplSet.Text, svrKeys);
+            CommandResult rtn = MongoDBHelper.InitReplicaSet(txtReplSet.Text, svrKeys);
             if (rtn.Ok)
             {
-                SystemManager.ShowErrMsg("初始化成功,请稍等片刻后连接服务器", rtn.Response.ToString());
+                SystemManager.ShowMessage("初始化成功,请稍等片刻后连接服务器", rtn.Response.ToString());
             }
             else
             {
-                SystemManager.ShowErrMsg("初始化失败", rtn.Response.ToString());
+                SystemManager.ShowMessage("初始化失败", rtn.Response.ToString());
             }
         }
     }

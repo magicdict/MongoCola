@@ -27,6 +27,11 @@ namespace MagicMongoDBTool.Module
             cloneMenuItem.Text = orgMenuItem.Text;
             cloneMenuItem.Enabled = orgMenuItem.Enabled;
             cloneMenuItem.BackgroundImage = orgMenuItem.BackgroundImage;
+            //子菜单的复制
+            foreach (ToolStripMenuItem item in orgMenuItem.DropDownItems)
+            {
+                cloneMenuItem.DropDownItems.Add(item.Clone());
+            }
             return cloneMenuItem;
         }
         /// <summary>
@@ -47,6 +52,7 @@ namespace MagicMongoDBTool.Module
             cloneButton.Image = orgMenuItem.Image;
             cloneButton.Enabled = orgMenuItem.Enabled;
             cloneButton.Text = orgMenuItem.Text;
+            cloneButton.Checked = orgMenuItem.Checked;
             cloneButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
             return cloneButton;
         }

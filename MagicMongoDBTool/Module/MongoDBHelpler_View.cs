@@ -7,7 +7,7 @@ using MongoDB.Driver;
 using System.Text;
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelpler
+    public static partial class MongoDBHelper
     {
         #region"服务器管理"
         /// <summary>
@@ -335,25 +335,27 @@ namespace MagicMongoDBTool.Module
             MongoCollection mongoCol = mongoDB.GetCollection(strTagColName);
 
             //Start ListIndex
-            TreeNode mongoIndex = new TreeNode("Indexes");
+            TreeNode mongoIndexes = new TreeNode("Indexes");
             GetIndexesResult indexList = mongoCol.GetIndexes();
             foreach (IndexInfo indexDoc in indexList.ToList<IndexInfo>())
             {
-                TreeNode mongoIndexNode = new TreeNode("Index:" + indexDoc.Name);
-                mongoIndexNode.Nodes.Add(indexDoc.Key.ToString());
-                mongoIndexNode.Nodes.Add("删除重复索引(DroppedDups) :" + indexDoc.DroppedDups.ToString());
-                mongoIndexNode.Nodes.Add("背景索引(IsBackground):" + indexDoc.IsBackground.ToString());
-                mongoIndexNode.Nodes.Add("稀疏索引(IsSparse):" + indexDoc.IsSparse.ToString());
-                mongoIndexNode.Nodes.Add("唯一索引(IsUnique):" + indexDoc.IsUnique.ToString());
-                mongoIndexNode.Nodes.Add("名字空间:" + indexDoc.Namespace.ToString());
-                mongoIndexNode.Nodes.Add("版本:" + indexDoc.Version.ToString());
-                mongoIndexNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
-                mongoIndexNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
-                mongoIndex.Nodes.Add(mongoIndexNode);
+                TreeNode mongoIndex = new TreeNode("Index:" + indexDoc.Name);
+                mongoIndex.Nodes.Add(indexDoc.Key.ToString());
+                mongoIndex.Nodes.Add("删除重复索引(DroppedDups) :" + indexDoc.DroppedDups.ToString());
+                mongoIndex.Nodes.Add("背景索引(IsBackground):" + indexDoc.IsBackground.ToString());
+                mongoIndex.Nodes.Add("稀疏索引(IsSparse):" + indexDoc.IsSparse.ToString());
+                mongoIndex.Nodes.Add("唯一索引(IsUnique):" + indexDoc.IsUnique.ToString());
+                mongoIndex.Nodes.Add("名字空间:" + indexDoc.Namespace.ToString());
+                mongoIndex.Nodes.Add("版本:" + indexDoc.Version.ToString());
+                mongoIndex.ImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
+                mongoIndex.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
+                mongoIndex.Tag = INDEX_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strTagColName + "/" + indexDoc.Name;
+                mongoIndexes.Nodes.Add(mongoIndex);
             }
-            mongoIndex.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
-            mongoIndex.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
-            mongoColNode.Nodes.Add(mongoIndex);
+            mongoIndexes.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
+            mongoIndexes.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
+            mongoIndexes.Tag = INDEXES_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strTagColName;
+            mongoColNode.Nodes.Add(mongoIndexes);
             //End ListIndex
 
             //Start Data
@@ -454,14 +456,10 @@ namespace MagicMongoDBTool.Module
                                    .SetLimit(SystemManager.ConfigHelperInstance.LimitCnt)
                                    .ToList<BsonDocument>();
             }
+            CurrentCollectionTotalCnt = dataList.Count;
             if (dataList.Count == 0)
             {
                 return;
-            }
-            if (SkipCnt == 0)
-            {
-                //第一次显示，获得整个记录集的长度
-                CurrentCollectionTotalCnt = (int)mongoCol.FindAllAs<BsonDocument>().Count();
             }
             SetPageEnable();
             _hasBSonBinary = false;

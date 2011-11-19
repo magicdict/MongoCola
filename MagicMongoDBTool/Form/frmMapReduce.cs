@@ -18,10 +18,10 @@ namespace MagicMongoDBTool
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
             cmbForMap.SelectedIndexChanged += new EventHandler(
-                (x, y) => { txtMapJs.Text = MongoDBHelpler.LoadJavascript(cmbForMap.Text); }
+                (x, y) => { txtMapJs.Text = MongoDBHelper.LoadJavascript(cmbForMap.Text); }
             );
             cmbForReduce.SelectedIndexChanged += new EventHandler(
-                (x, y) => { txtReduceJs.Text = MongoDBHelpler.LoadJavascript(cmbForReduce.Text); }
+                (x, y) => { txtReduceJs.Text = MongoDBHelper.LoadJavascript(cmbForReduce.Text); }
             );
 
             foreach (var item in SystemManager.GetJsNameList())
@@ -45,7 +45,7 @@ namespace MagicMongoDBTool
 
             List<BsonDocument> result = new List<BsonDocument>();
             result.Add(rtn.Response);
-            MongoDBHelpler.FillDataToTreeView("MapReduce Result", trvResult, result);
+            MongoDBHelper.FillDataToTreeView("MapReduce Result", trvResult, result);
             trvResult.ExpandAll();
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace MagicMongoDBTool
             if (txtMapJs.Text != string.Empty)
             {
                 String strJsName = Microsoft.VisualBasic.Interaction.InputBox("请输入Javascript名称：", "保存Javascript");
-                MongoDBHelpler.SaveJavascript(strJsName, txtMapJs.Text);
+                MongoDBHelper.SaveJavascript(strJsName, txtMapJs.Text);
             }
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace MagicMongoDBTool
             if (this.txtReduceJs.Text != string.Empty)
             {
                 String strJsName = Microsoft.VisualBasic.Interaction.InputBox("请输入Javascript名称：", "保存Javascript");
-                MongoDBHelpler.SaveJavascript(strJsName, txtReduceJs.Text);
+                MongoDBHelper.SaveJavascript(strJsName, txtReduceJs.Text);
             }
         }
     }

@@ -28,9 +28,9 @@ namespace MagicMongoDBTool
         /// </summary>
         private void frmQuery_Load(object sender, EventArgs e)
         {
-            ColumnList = MongoDBHelpler.GetCollectionSchame(_mongoCol);
+            ColumnList = MongoDBHelper.GetCollectionSchame(_mongoCol);
 
-            foreach (var item in ColumnList)
+            foreach (String item in ColumnList)
             {
                 //输出配置的初始化
                 DataFilter.QueryFieldItem queryFieldItem = new DataFilter.QueryFieldItem();
@@ -52,7 +52,6 @@ namespace MagicMongoDBTool
             firstQueryCtl.Location = _conditionPos;
             firstQueryCtl.Name = "Condition" + _conditionCount.ToString();
             panFilter.Controls.Add(firstQueryCtl);
-
         }
         /// <summary>
         /// 新增条件
@@ -79,7 +78,7 @@ namespace MagicMongoDBTool
             // 设置DataFilter
             SetCurrDataFilter();
             //启用过滤器
-            MongoDBHelpler.IsUseFilter = true;
+            MongoDBHelper.IsUseFilter = true;
             this.Close();
         }
         /// <summary>
@@ -125,9 +124,16 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdLoad_Click(object sender, EventArgs e)
         {
-            SaveFileDialog openFile = new SaveFileDialog();
+            OpenFileDialog openFile = new OpenFileDialog();
             if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                String strErrMsg = String.Empty;
+                List<String> ShowColumnList = new List<String>();
+                foreach (String item in ColumnList)
+                {
+                    ShowColumnList.Add(item);
+                }
+
                 DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
                 SystemManager.CurrDataFilter = NewDataFilter;
                 //清除所有的控件
@@ -135,14 +141,40 @@ namespace MagicMongoDBTool
                 foreach (DataFilter.QueryFieldItem queryFieldItem in NewDataFilter.QueryFieldList)
                 {
                     //动态加载控件
+                    if (!ColumnList.Contains(queryFieldItem.ColName))
+                    {
+                        strErrMsg += queryFieldItem.ColName + "显示设置字段已经在当前数据集中不存在了" + "\r\n";
+                    }
+                    else {
+                        ctlFieldInfo ctrItem = new ctlFieldInfo();
+                        ctrItem.Name = queryFieldItem.ColName;
+                        ctrItem.Location = _conditionPos;
+                        ctrItem.QueryFieldItem = queryFieldItem;
+                        tabFieldInfo.Controls.Add(ctrItem);
+                        //纵向位置的累加
+                        _conditionPos.Y += ctrItem.Height;
+                        ShowColumnList.Remove(queryFieldItem.ColName);
+                    }
+                }
+                //新增字段
+                foreach (String item in ShowColumnList)
+                {
+                    strErrMsg += "新增加" + item + "显示设置字段" + "\r\n";
+                    //输出配置的初始化
+                    DataFilter.QueryFieldItem queryFieldItem = new DataFilter.QueryFieldItem();
+                    queryFieldItem.ColName = item;
+                    queryFieldItem.IsShow = true;
+                    queryFieldItem.sortType = DataFilter.SortType.NoSort;
+                    //动态加载控件
                     ctlFieldInfo ctrItem = new ctlFieldInfo();
-                    ctrItem.Name = queryFieldItem.ColName;
+                    ctrItem.Name = item;
                     ctrItem.Location = _conditionPos;
                     ctrItem.QueryFieldItem = queryFieldItem;
                     tabFieldInfo.Controls.Add(ctrItem);
                     //纵向位置的累加
                     _conditionPos.Y += ctrItem.Height;
                 }
+                
                 panFilter.Controls.Clear();
                 _conditionPos = new Point(5, 20);
                 _conditionCount = 1;
@@ -156,6 +188,14 @@ namespace MagicMongoDBTool
                     panFilter.Controls.Add(newCondition);
                     _conditionPos.Y += newCondition.Height;
                     _conditionCount++;
+                    if (!ColumnList.Contains(queryConditionItem.ColName))
+                    {
+                        strErrMsg += queryConditionItem.ColName + "条件查询字段已经在当前数据集中不存在了" + "\r\n";
+                    }
+                }
+
+                if (strErrMsg != String.Empty) {
+                    SystemManager.ShowMessage("加载错误", "加载检索设置时发生错误", strErrMsg, true);
                 }
             }
         }

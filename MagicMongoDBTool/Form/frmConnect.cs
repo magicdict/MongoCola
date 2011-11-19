@@ -42,7 +42,7 @@ namespace MagicMongoDBTool
                 {
                     connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item]);
                 }
-                MongoDBHelpler.AddServer(connLst);
+                MongoDBHelper.AddServer(connLst);
                 this.Close();
             }
         }

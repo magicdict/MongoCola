@@ -7,7 +7,7 @@ using MongoDB.Driver.Builders;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelpler
+    public static partial class MongoDBHelper
     {
   
         /// <summary>

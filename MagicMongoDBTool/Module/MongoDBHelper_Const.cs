@@ -1,7 +1,7 @@
 ﻿
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelpler
+    public static partial class MongoDBHelper
     {
         //各种节点的Tag前缀
         /// <summary>
@@ -40,8 +40,14 @@ namespace MagicMongoDBTool.Module
         /// 用户
         /// </summary>
         public const string USER_TAG = "MongoUser";
-
-
+        /// <summary>
+        /// 索引集
+        /// </summary>
+        public const string INDEXES_TAG = "MongoIndexes";
+        /// <summary>
+        /// 索引
+        /// </summary>
+        public const string INDEX_TAG = "MongoIndex";
         /// <summary>
         /// 路径阶层[考虑到以后可能阶层会变换]
         /// </summary>

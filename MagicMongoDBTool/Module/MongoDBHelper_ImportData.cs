@@ -7,7 +7,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelpler
+    public static partial class MongoDBHelper
     {
         /// <summary>
         /// 数据连接字符串
