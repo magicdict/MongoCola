@@ -110,7 +110,32 @@
 <AddConnection_Action_Cancel>Cancel</AddConnection_Action_Cancel>
 
 
+  <!--frmCollectionIndex-->
+<CollectionIndex_Tab_Current>Current</CollectionIndex_Tab_Current>
+<CollectionIndex_Tab_Current_Del>Delete Selected</CollectionIndex_Tab_Current_Del>
 
+<CollectionIndex_TabMangt_Index>Index</CollectionIndex_TabMangt_Index>
+<CollectionIndex_TabMangt_Asce>Asce</CollectionIndex_TabMangt_Asce>
+<CollectionIndex_TabMangt_Desc>Desc</CollectionIndex_TabMangt_Desc>
+<CollectionIndex_TabMangt_Description>Please input the column name here</CollectionIndex_TabMangt_Description>
+<CollectionIndex_TabMangtIndex_Background>Background</CollectionIndex_TabMangtIndex_Background>
+<CollectionIndex_TabMangtIndex_RepeatDel>Repeat Delete</CollectionIndex_TabMangtIndex_RepeatDel>
+<CollectionIndex_TabMangtIndex_Sparse>Sparse</CollectionIndex_TabMangtIndex_Sparse>
+<CollectionIndex_TabMangtIndex_Unify>Unify</CollectionIndex_TabMangtIndex_Unify>
+<CollectionIndex_TabMangt_IndexName>Index Name</CollectionIndex_TabMangt_IndexName>
+<CollectionIndex_TabMangt_IndexName_Description>Index Name(Option)</CollectionIndex_TabMangt_IndexName_Description>
+
+
+  <!--frmConnect-->
+<Connect_Action_Add>Add</Connect_Action_Add>
+<Connect_Action_Del>Delete</Connect_Action_Del>
+<Connect_Action_Modify>Modify</Connect_Action_Modify>
+<Connect_Action_OK>OK</Connect_Action_OK>
+<Connect_Action_Cancel>Cancel</Connect_Action_Cancel>
+
+  <!--frmDistinct-->
+<Distinct_Action_OK>OK</Distinct_Action_OK>
+<Distinct_Label>Please select Distinct</Distinct_Label>
 
 
 
