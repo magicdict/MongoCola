@@ -70,4 +70,52 @@
 <Main_Tab_Table>TableView</Main_Tab_Table>
 <Main_Tab_Text>TextView</Main_Tab_Text>
 <Main_StatusBar_Text>Ready</Main_StatusBar_Text>
+
+
+  <!--frmAddConnection-->
+<AddConnection_Name>Name</AddConnection_Name>
+<AddConnection_Name_Description>Nick Name</AddConnection_Name_Description>
+<AddConnection_Address>Address</AddConnection_Address>
+<AddConnection_Address_Description>Server IP Address</AddConnection_Address_Description>
+<AddConnection_Port>Port</AddConnection_Port>
+<AddConnection_Port_Description>Server Port</AddConnection_Port_Description>
+<AddConnection_UserName>UserName</AddConnection_UserName>
+<AddConnection_UserName_Description>User Name(Option)</AddConnection_UserName_Description>
+<AddConnection_Password>Password</AddConnection_Password>
+<AddConnection_Password_Description>Password(Option)</AddConnection_Password_Description>
+<AddConnection_DBName>DB Name</AddConnection_DBName>
+<AddConnection_DBName_Description>Database Name(Option)</AddConnection_DBName_Description>
+<AddConnection_ReplaceSetName>ReplaceSet Name</AddConnection_ReplaceSetName>
+<AddConnection_ReplaceSetName_Description>ReplaceSet Name(Option)</AddConnection_ReplaceSetName_Description>
+<AddConnection_Priority>Priority</AddConnection_Priority>
+<AddConnection_Priority_Description>If Priority=0,then it can't be the ReplaceSet server</AddConnection_Priority_Description>
+
+
+<AddConnection_MasterSlave>MasterSlave Mode(GFS operation limition,Cluster of non-Route,Configuration Server,Slave Server)</AddConnection_MasterSlave>
+<AddConnection_SafeMode>Safe Mode(More data safe, less performance)</AddConnection_SafeMode>
+<AddConnection_ShardingSvrType>Sharding Service Type</AddConnection_ShardingSvrType>
+<AddConnection_ServerType_Data>Data</AddConnection_ServerType_Data>
+<AddConnection_ServerType_Configuration>Configuration</AddConnection_ServerType_Configuration>
+<AddConnection_ServerType_Route>Route</AddConnection_ServerType_Route>
+<AddConnection_ServerType_Arbitration>Arbitration</AddConnection_ServerType_Arbitration>
+
+
+<AddConnection_Region_ReplaceSet>ReplaceSet Server</AddConnection_Region_ReplaceSet>
+<AddConnection_Region_ReplaceSetName>ReplaceSet Name</AddConnection_Region_ReplaceSetName>
+<AddConnection_Region_ReplaceSetName_Description>ReplaceSet Name(Option)</AddConnection_Region_ReplaceSetName_Description>
+<AddConnection_Region_ReplaceSetList>ReplaceSet Server List</AddConnection_Region_ReplaceSetList>
+<AddConnection_Region_ReplaceSetInit>Init ReplaceSet</AddConnection_Region_ReplaceSetInit>
+
+<AddConnection_Action_Add>Add</AddConnection_Action_Add>
+<AddConnection_Action_Cancel>Cancel</AddConnection_Action_Cancel>
+
+
+
+
+
+
+
+
+
+
 </Language>
