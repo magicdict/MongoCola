@@ -94,7 +94,6 @@
       <DependentUpon>frmGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\DataFilter.cs" />
-    <Compile Include="Module\XMLUtility.cs" />
     <Compile Include="UserController\ctlIndexCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -336,10 +335,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dll\GUIResource.dll" />
     <Content Include="dll\MongoDB.Bson.dll" />
     <Content Include="dll\MongoDB.Driver.dll" />
-    <Content Include="dll\QLFUI.dll" />
     <Content Include="Language\English.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

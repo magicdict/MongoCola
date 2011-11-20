@@ -5,31 +5,38 @@ using System.Text;
 using System.Xml;
 using System.IO;
 
+
 namespace GUIResource
 {
-    public class StringResources
+    /// <summary>
+    /// 字符资源
+    /// </summary>
+    ///<remarks>
+    ///这个功能的负责人是MoLing。
+    ///有任何翻译上的问题，或者您想共享某个语种的翻译文件，请在Github上给MoLing留言
+    ///</remarks>
+      public partial class StringResource
     {
+        /// <summary>
+        /// 国际化文字字典
+        /// </summary>
         Dictionary<string, string> _stringDic = new Dictionary<string, string>();
-
-        public StringResources(string currentLanguage)
+        /// <summary>
+        /// 字符资源
+        /// </summary>
+        /// <param name="currentLanguage">当前语言</param>
+        public void InitLanguage(Language currentLanguage)
         {
             string tag = string.Empty;
             string text = string.Empty;
-            string fileName = string.Format("Language\\{0}.xml", currentLanguage);
-
-            if (!File.Exists(fileName))
-            {
-                //TODO:Add error handle here
-                throw new Exception();
-            }
-            
+            string fileName = string.Format("Language\\{0}.xml", currentLanguage.ToString());
             XmlTextReader reader = new XmlTextReader(fileName);
             while (reader.Read())
             {
                 switch (reader.NodeType)
                 {
                     case XmlNodeType.Element: // The node is an element.
-                        if (reader.Name=="Language")
+                        if (reader.Name == "Language")
                         {
                             continue;
                         }
@@ -44,13 +51,25 @@ namespace GUIResource
 
             }
         }
-
-
-        public string GetText(string tag)
+        /// <summary>
+        /// 获得国际化文字
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public string GetText(TextType tag)
         {
-            return _stringDic[tag];
+             String strText = String.Empty ;
+            //使用TryGetValue方法防止出现不存在的字符，同时比Exist提高效率
+            _stringDic.TryGetValue(tag.ToString(),out strText);
+            if (strText == String.Empty)
+            {
+                strText = tag.ToString();
+            }
+            else
+            {
+                strText = XMLUtility.XMLDecode(strText);
+            }
+            return strText;
         }
-
-        
     }
 }

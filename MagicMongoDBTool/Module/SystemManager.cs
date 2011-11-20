@@ -4,6 +4,8 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Drawing;
 using QLFUI;
+using System.IO;
+using GUIResource;
 namespace MagicMongoDBTool.Module
 {
     public static class SystemManager
@@ -20,6 +22,10 @@ namespace MagicMongoDBTool.Module
         /// 选择对象标签
         /// </summary>
         public static string SelectObjectTag = string.Empty;
+        /// <summary>
+        /// 文字资源
+        /// </summary>
+        public static StringResource mStringResource = new GUIResource.StringResource();
         /// <summary>
         /// 通过服务器名称获得服务器配置
         /// </summary>
@@ -83,6 +89,22 @@ namespace MagicMongoDBTool.Module
             }
             return jsNamelst;
 
+        }
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        internal static void Init()
+        {
+            GUIResource.StringResource.Language currentLan = SystemManager.ConfigHelperInstance.currentLanguage;
+            string fileName = string.Format("Language\\{0}.xml", currentLan.ToString());
+            if (File.Exists(fileName))
+            {
+                //语言的导入
+                mStringResource.InitLanguage(currentLan);
+            }
+            else {
+                currentLan = StringResource.Language.Default;
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using System.Text;
 using QLFUI;
+using GUIResource;
 
 namespace MagicMongoDBTool
 {
@@ -16,11 +17,21 @@ namespace MagicMongoDBTool
             GetSystemIcon.InitMainTreeImage();
             trvsrvlst.ImageList = GetSystemIcon.MainTreeImage;
             SetMenuImage();
-            SetMenuText();
+            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            {
+                SetMenuText();
+            }
             //初始化ToolBar
             InitToolBar();
             //设定工具栏
             SetToolBarEnabled();
+        }
+        /// <summary>
+        /// 设置文字
+        /// </summary>
+        private void SetMenuText() { 
+            //管理
+            this.ManagerToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt);
         }
         /// <summary>
         /// 数据展示

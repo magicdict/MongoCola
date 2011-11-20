@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
-using MongoDB.Driver;
 
 namespace QLFUI
 {
@@ -75,26 +71,6 @@ namespace QLFUI
             }
             _frmMessage.Text = Title;
             _frmMessage.SetMessage(Message, img, Details);
-            _frmMessage.ShowDialog();
-        }
-        /// <summary>
-        /// 消息表示
-        /// </summary>
-        /// <param name="Message"></param>
-        /// <param name="Details"></param>
-        public static void ShowMessage(String Title, String Message, List<CommandResult> Resultlst)
-        {
-            if (_frmMessage == null)
-            {
-                _frmMessage = new frmMesssage();
-            }
-            _frmMessage.Text = Title;
-            String Details = String.Empty;
-            foreach (CommandResult item in Resultlst)
-            {
-                Details += item.ToString() + "\r\n";
-            }
-            _frmMessage.SetMessage(Message, Details);
             _frmMessage.ShowDialog();
         }
     }

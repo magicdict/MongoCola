@@ -1103,6 +1103,20 @@ namespace MagicMongoDBTool.Module
 
         #region "辅助方法"
         /// <summary>
+        /// 将执行结果转化为细节报告文字列
+        /// </summary>
+        /// <param name="Resultlst"></param>
+        /// <returns></returns>
+        public static String ConvertCommandResultlstToString(List<CommandResult> Resultlst)
+        {
+            String Details = String.Empty;
+            foreach (CommandResult item in Resultlst)
+            {
+                Details += item.ToString() + "\r\n";
+            }
+            return Details;
+        }
+        /// <summary>
         /// Size的文字表达
         /// </summary>
         /// <param name="size"></param>

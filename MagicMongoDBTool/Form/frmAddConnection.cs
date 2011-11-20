@@ -9,12 +9,22 @@ namespace MagicMongoDBTool
 {
     public partial class frmAddConnection : QLFUI.QLFForm
     {
+        /// <summary>
+        /// 连接配置
+        /// </summary>
         public ConfigHelper.MongoConnectionConfig ModifyConn = new ConfigHelper.MongoConnectionConfig();
+        /// <summary>
+        /// 初始化（新建）
+        /// </summary>
         public frmAddConnection()
         {
             InitializeComponent();
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
         }
+        /// <summary>
+        /// 初始化（修改）
+        /// </summary>
+        /// <param name="ConnectionName"></param>
         public frmAddConnection(String ConnectionName)
         {
 
@@ -167,7 +177,8 @@ namespace MagicMongoDBTool
                 //这里将自动选择为副本服务器
                 ModifyConn.ServerType = ConfigHelper.SvrType.ReplsetSvr;
             }
-            if (ModifyConn.MainReplSetName != String.Empty && ModifyConn.Priority == 0) {
+            if (ModifyConn.MainReplSetName != String.Empty && ModifyConn.Priority == 0)
+            {
                 MessageBox.Show("由于优先度为 0 ，所以当前服务器无法成为Primary服务器！");
             }
             if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.ConnectionName))
@@ -200,7 +211,11 @@ namespace MagicMongoDBTool
                 }
             }
         }
-
+        /// <summary>
+        /// 初始化副本
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdInitReplset_Click(object sender, EventArgs e)
         {
             List<String> svrKeys = new List<string>();

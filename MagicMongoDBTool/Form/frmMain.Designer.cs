@@ -903,51 +903,6 @@ namespace MagicMongoDBTool
 
         }
         /// <summary>
-        /// 设置文字
-        /// </summary>
-        private void SetMenuText() { 
-            Language lan = SystemManager.ConfigHelperInstance.Language;
-            lan = Language.Japanese;
-
-            //管理
-            this.ExpandAllConnectionToolStripMenuItem.Text = GetResource.GetText(TextType.Expand, lan);
-            this.CollapseAllConnectionToolStripMenuItem.Text = GetResource.GetText(TextType.Collapse, lan);
-
-
-            //数据视图
-            this.PrePageToolStripMenuItem.Text = GetResource.GetText(TextType.PrePage, lan);
-            this.NextPageToolStripMenuItem.Text = GetResource.GetText(TextType.NextPage, lan);
-            this.FirstPageToolStripMenuItem.Text = GetResource.GetText(TextType.FirstPage, lan);
-            this.LastPageToolStripMenuItem.Text = GetResource.GetText(TextType.LastPage, lan);
-            this.QueryDataToolStripMenuItem.Text = GetResource.GetText(TextType.QueryData, lan);
-            this.ExpandAllDataToolStripMenuItem.Text = GetResource.GetText(TextType.Expand, lan);
-            this.CollapseAllDataToolStripMenuItem.Text = GetResource.GetText(TextType.Collapse, lan);
-
-
-            //操作
-            this.CreateMongoDBToolStripMenuItem.Text = GetResource.GetText(TextType.CreateDataBase, lan);
-            this.InitGFSToolStripMenuItem.Text = GetResource.GetText(TextType.InitGFS, lan);
-
-
-            //工具
-            this.ToolsToolStripMenuItem.Text = GetResource.GetText(TextType.Tools, lan);
-            this.ImportDataFromAccessToolStripMenuItem.Text = GetResource.GetText(TextType.ImportDataFromAccess, lan);
-            this.DosCommandToolStripMenuItem.Text = GetResource.GetText(TextType.DosCommand, lan);
-            this.OptionToolStripMenuItem.Text = GetResource.GetText(TextType.Option, lan);
-
-            //分布式
-            this.DistributedToolStripMenuItem.Text = GetResource.GetText(TextType.Distributed, lan);
-            this.ReplicaSetToolStripMenuItem.Text = GetResource.GetText(TextType.ReplicaSet, lan);
-            this.ShardConfigToolStripMenuItem.Text = GetResource.GetText(TextType.ShardingConfig, lan);
-            this.mapReduceToolStripMenuItem.Text = GetResource.GetText(TextType.MapReduce, lan);
-
-            //帮助
-            this.helpToolStripMenuItem.Text = GetResource.GetText(TextType.Help, lan);
-            this.AboutToolStripMenuItem.Text = GetResource.GetText(TextType.About, lan);
-            this.ThanksToolStripMenuItem.Text = GetResource.GetText(TextType.Thanks, lan);
-
-        }
-        /// <summary>
         /// 初始化Toolbar
         /// </summary>
         private void InitToolBar() {
