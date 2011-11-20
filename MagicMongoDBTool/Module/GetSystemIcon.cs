@@ -58,13 +58,13 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public static void InitMainTreeImage()
         {
-            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Blank));
-            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.WebServer));
-            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Database));
-            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Collection));
-            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Keys));
-            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.Document));
-            MainTreeImage.Images.Add(GetResource.GetIcon(ImageType.DBKey));
+            MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Blank));
+            MainTreeImage.Images.Add(GetResource.GetImage(ImageType.WebServer));
+            MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Database));
+            MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Collection));
+            MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Keys));
+            MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Document));
+            MainTreeImage.Images.Add(GetResource.GetImage(ImageType.DBKey));
         }
 
         /// <summary>

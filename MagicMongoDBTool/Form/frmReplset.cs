@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 using System.Windows.Forms;
+using QLFUI;
 namespace MagicMongoDBTool
 {
     public partial class frmReplset : QLFUI.QLFForm
@@ -55,7 +56,7 @@ namespace MagicMongoDBTool
                 ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
                 Resultlst.Add(MongoDBHelper.AddToReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port, config.ServerType == ConfigHelper.SvrType.ArbiterSvr));
             }
-            SystemManager.ShowMessage("添加服务器", "执行结果", Resultlst);
+            MyMessageBox.ShowMessage("添加服务器", "执行结果", Resultlst);
             RefreshSvr();
         }
         /// <summary>
@@ -71,7 +72,7 @@ namespace MagicMongoDBTool
                 ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
                 Resultlst.Add(MongoDBHelper.RemoveFromReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port));
             }
-            SystemManager.ShowMessage("删除服务器", "执行结果", Resultlst);
+            MyMessageBox.ShowMessage("删除服务器", "执行结果", Resultlst);
             RefreshSvr();
         }
     }

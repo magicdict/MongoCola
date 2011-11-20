@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using System.Drawing;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using QLFUI;
 
 namespace MagicMongoDBTool
 {
@@ -14,7 +15,11 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// 确认
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
@@ -49,7 +54,7 @@ namespace MagicMongoDBTool
             }
             catch (Exception ex)
             {
-                SystemManager.ShowMessage("异常", "发生异常", ex.ToString(), true);                
+                MyMessageBox.ShowMessage("异常", "发生异常", ex.ToString(), true);                
             }
         }
         /// <summary>
@@ -95,7 +100,11 @@ namespace MagicMongoDBTool
             panBsonEl.Controls.Add(firstQueryCtl);
 
         }
-
+        /// <summary>
+        /// 保存Reduce
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdSaveReduceJs_Click(object sender, EventArgs e)
         {
             if (this.txtReduceJs.Text != string.Empty)
@@ -104,7 +113,11 @@ namespace MagicMongoDBTool
                 MongoDBHelper.SaveJavascript(strJsName, txtReduceJs.Text);
             }
         }
-
+        /// <summary>
+        /// 保存finalize
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdForSavefinalize_Click(object sender, EventArgs e)
         {
             if (this.txtfinalizeJs.Text != string.Empty)
@@ -114,7 +127,11 @@ namespace MagicMongoDBTool
             }
         }
 
-
+        /// <summary>
+        /// 添加初始化字段
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdAddFld_Click(object sender, EventArgs e)
         {
             _conditionCount++;

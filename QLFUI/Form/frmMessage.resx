@@ -117,56 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AccessDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(09,03).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(41,49).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Collection" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(31,20).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Database" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(42,48).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DBkey" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\database_key.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Document" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(18,27).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keys" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(45,07).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LastPage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(32,01).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NextPage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(00,21).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Option" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(01,18).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Query" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(45,12).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(00,27).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Smile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(11,18).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="WebServer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(00,48).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Filter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(03,05).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DELETE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DELETE.ICO;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ok.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="contentPanel.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAoAAAALCAYAAABGbhwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAJRJREFUKFONygsK
+        wjAQBNDtVRVFFFFEEfFamtS2ftp7JKmt91gnsTaxfjDwmJ3dRMVty+Re9AhqatPaKOoNd+XYheydLvWa
+        /0HnasnvVth5J/yhY7Xg1hXzF5SVM87KuZOGDHqAUjPFwkswf0KJmfDBjMHmqxj9iWI9YvmDwM0iqYcs
+        lSfUgAV6F+11nx0V6rm+C9wBXJ8zZ25eVTYAAAAASUVORK5CYII=
+</value>
   </data>
 </root>

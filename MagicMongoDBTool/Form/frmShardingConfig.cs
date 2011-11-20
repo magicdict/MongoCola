@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using QLFUI;
 
 namespace MagicMongoDBTool
 {
@@ -141,7 +142,7 @@ namespace MagicMongoDBTool
         {
             List<CommandResult> Resultlst = new List<CommandResult>();
             Resultlst.Add(MongoDBHelper.EnableSharding(_prmSvr, cmbDataBase.Text));
-            SystemManager.ShowMessage("添加分片", "执行结果", Resultlst);
+            MyMessageBox.ShowMessage("添加分片", "执行结果", Resultlst);
         }
         /// <summary>
         /// 分片配置(数据集)
@@ -152,7 +153,7 @@ namespace MagicMongoDBTool
         {
             List<CommandResult> Resultlst = new List<CommandResult>();
             Resultlst.Add(MongoDBHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument()));
-            SystemManager.ShowMessage("添加分片", "执行结果", Resultlst);
+            MyMessageBox.ShowMessage("添加分片", "执行结果", Resultlst);
         }
     }
 }

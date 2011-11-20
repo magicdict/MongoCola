@@ -5,6 +5,7 @@ using MagicMongoDBTool.Module;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using QLFUI;
 namespace MagicMongoDBTool
 {
     public partial class frmDistinct : QLFUI.QLFForm
@@ -41,17 +42,17 @@ namespace MagicMongoDBTool
                 }
             }
             if (strKey == String.Empty) {
-                SystemManager.ShowMessage("Distinct", "请选择字段");
+                MyMessageBox.ShowMessage("Distinct", "请选择字段");
                 return;
             }
             if (SystemManager.CurrDataFilter.QueryConditionList.Count == 0)
             {
-                SystemManager.ShowMessage("Distinct", "Distinct:" + SystemManager.GetCurrentCollection().Distinct(strKey).ToString());
+                MyMessageBox.ShowMessage("Distinct", "Distinct:" + SystemManager.GetCurrentCollection().Distinct(strKey).ToString());
             }
             else
             {
                 MongoDB.Driver.IMongoQuery mQuery = MongoDBHelper.GetQuery(SystemManager.CurrDataFilter.QueryConditionList);
-                SystemManager.ShowMessage("Distinct",
+                MyMessageBox.ShowMessage("Distinct",
                 "Distinct:" + SystemManager.GetCurrentCollection().Distinct(strKey, mQuery).ToString(),
                 mQuery.ToString(), true);
             }

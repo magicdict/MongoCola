@@ -4,6 +4,7 @@ using System.Drawing;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 using System.Windows.Forms;
+using QLFUI;
 namespace MagicMongoDBTool
 {
     public partial class frmQuery : QLFUI.QLFForm
@@ -195,7 +196,7 @@ namespace MagicMongoDBTool
                 }
 
                 if (strErrMsg != String.Empty) {
-                    SystemManager.ShowMessage("加载错误", "加载检索设置时发生错误", strErrMsg, true);
+                    MyMessageBox.ShowMessage("加载错误", "加载检索设置时发生错误", strErrMsg, true);
                 }
             }
         }

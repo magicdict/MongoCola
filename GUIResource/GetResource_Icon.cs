@@ -7,7 +7,22 @@ namespace GUIResource
 {
     public partial class GetResource
     {
-        public static Image GetIcon(ImageType theImage)
+        public static Icon GetIcon(IconType theIcon)
+        {
+            Icon micon = null;
+
+            switch (theIcon)
+            {
+                case IconType.Yes:
+                    micon = GUIResource.Properties.Resources.ok;
+                    break;
+                case IconType.No:
+                    micon = GUIResource.Properties.Resources.DELETE;
+                    break;
+            }
+            return micon;
+        }
+        public static Image GetImage(ImageType theImage)
         {
             Image micon = null;
             switch (theImage)
@@ -67,15 +82,21 @@ namespace GUIResource
                 case ImageType.Smile:
                     micon = GUIResource.Properties.Resources.Smile;
                     break;
+
+
                 default:
                     break;
             }
             return micon;
         }
     }
+    public enum IconType
+    {
+        Yes,
+        No
+    }
     public enum ImageType
     {
-
         Blank,
         /// <summary>
         /// Access数据库

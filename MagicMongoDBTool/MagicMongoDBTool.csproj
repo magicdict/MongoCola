@@ -69,17 +69,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\frmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmUser.Designer.cs">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\ctlAddBsonEl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserController\ctlAddBsonEl.Designer.cs">
       <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\frmErrMsg.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\frmErrMsg.Designer.cs">
-      <DependentUpon>frmErrMsg.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmDistinct.cs">
       <SubType>Form</SubType>
@@ -223,11 +223,11 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form\frmUser.resx">
+      <DependentUpon>frmUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlAddBsonEl.resx">
       <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmErrMsg.resx">
-      <DependentUpon>frmErrMsg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmDistinct.resx">
       <DependentUpon>frmDistinct.cs</DependentUpon>

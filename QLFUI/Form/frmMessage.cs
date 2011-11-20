@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace MagicMongoDBTool
+namespace QLFUI
 {
-    public partial class frmErrMsg : QLFUI.QLFForm
+    public partial class frmMesssage : QLFUI.QLFForm
     {
         /// <summary>
         /// 是否显示细节
@@ -31,7 +31,7 @@ namespace MagicMongoDBTool
                 this.Height = 168;
             }
         }
-        public frmErrMsg()
+        public frmMesssage()
         {
             InitializeComponent();
         }

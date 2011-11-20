@@ -1,6 +1,6 @@
-﻿namespace MagicMongoDBTool
+﻿namespace QLFUI
 {
-    partial class frmErrMsg
+    partial class frmMesssage
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmErrMsg));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMesssage));
             this.txtException = new System.Windows.Forms.TextBox();
             this.lblMessage = new System.Windows.Forms.Label();
             this.cmdOK = new System.Windows.Forms.VistaButton();

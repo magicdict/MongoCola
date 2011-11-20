@@ -95,6 +95,13 @@ namespace GUIResource.Properties {
             }
         }
         
+        internal static System.Drawing.Icon DELETE {
+            get {
+                object obj = ResourceManager.GetObject("DELETE", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Document {
             get {
                 object obj = ResourceManager.GetObject("Document", resourceCulture);
@@ -127,6 +134,13 @@ namespace GUIResource.Properties {
             get {
                 object obj = ResourceManager.GetObject("NextPage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Icon ok {
+            get {
+                object obj = ResourceManager.GetObject("ok", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

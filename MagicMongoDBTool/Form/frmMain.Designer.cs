@@ -888,18 +888,18 @@ namespace MagicMongoDBTool
         /// </summary>
         private void SetMenuImage()
         {
-            this.PrePageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.PrePage);
-            this.NextPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.NextPage);
-            this.FirstPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.FirstPage);
-            this.LastPageToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.LastPage);
-            this.QueryDataToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Query);
-            this.DataFilterToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Filter);
+            this.PrePageToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.PrePage);
+            this.NextPageToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.NextPage);
+            this.FirstPageToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.FirstPage);
+            this.LastPageToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.LastPage);
+            this.QueryDataToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Query);
+            this.DataFilterToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Filter);
 
-            this.ImportDataFromAccessToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.AccessDB);
-            this.RefreshToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Refresh);
-            this.OptionToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Option);
+            this.ImportDataFromAccessToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.AccessDB);
+            this.RefreshToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Refresh);
+            this.OptionToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Option);
 
-            this.ThanksToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(GUIResource.ImageType.Smile);
+            this.ThanksToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Smile);
 
         }
         /// <summary>

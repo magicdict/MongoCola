@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
+using QLFUI;
 
 namespace MagicMongoDBTool
 {
@@ -214,11 +215,11 @@ namespace MagicMongoDBTool
             CommandResult rtn = MongoDBHelper.InitReplicaSet(txtReplSet.Text, svrKeys);
             if (rtn.Ok)
             {
-                SystemManager.ShowMessage("初始化成功,请稍等片刻后连接服务器", rtn.Response.ToString());
+                MyMessageBox.ShowMessage("初始化成功,请稍等片刻后连接服务器", rtn.Response.ToString());
             }
             else
             {
-                SystemManager.ShowMessage("初始化失败", rtn.Response.ToString());
+                MyMessageBox.ShowMessage("初始化失败", rtn.Response.ToString());
             }
         }
     }

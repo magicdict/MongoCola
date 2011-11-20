@@ -117,56 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AccessDB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(09,03).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="contentPanel.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAoAAAALCAYAAABGbhwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAJRJREFUKFONygsK
+        wjAQBNDtVRVFFFFEEfFamtS2ftp7JKmt91gnsTaxfjDwmJ3dRMVty+Re9AhqatPaKOoNd+XYheydLvWa
+        /0HnasnvVth5J/yhY7Xg1hXzF5SVM87KuZOGDHqAUjPFwkswf0KJmfDBjMHmqxj9iWI9YvmDwM0iqYcs
+        lSfUgAV6F+11nx0V6rm+C9wBXJ8zZ25eVTYAAAAASUVORK5CYII=
+</value>
   </data>
-  <data name="Blank" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(41,49).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cmdNo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAOpJREFUOE9jYKAG
+        eChg9v+hju9/ss16IOv4/z6D5v/Dmm7kG3JG3BJsyDa3KJyGPHeIB6vB6VJ8hoA185n+70nKwu/KsxJW
+        GC55JO/8/66GF2HNMKeBDLnBrgf2zgN+s//XbCOJ1wwz5CaHPtglR7TdSdf8Kr4SrPk6m87/a6zapBnw
+        OqEKEqXmgf/jAoL/HxcyBhuEL3bgsQLXbBH0PyUlBR7ayGGCMwphzr4kY/s/Pj4eI6rwGgLTfJvL4H+W
+        X/D/1NRUrHENSqlYExvMgGUa9jg1w5y+KSAJHMUYXsnLy/sPwmRnKHI1AgDXhKRwKeRyrAAAAABJRU5E
+        rkJggg==
+</value>
   </data>
-  <data name="Collection" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(31,20).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Database" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(42,48).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DBkey" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\database_key.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Document" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(18,27).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Keys" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(45,07).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LastPage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(32,01).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NextPage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(00,21).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Option" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(01,18).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Query" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(45,12).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(00,27).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Smile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(11,18).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="WebServer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(00,48).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Filter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\(03,05).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DELETE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DELETE.ICO;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ok.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="cmdYes.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAblJREFUOE/Vk89L
+        k3Ecx78gdBBFVAyP/g16CvyBJVROSLDs4E1lijyzgYNN557plkOip1mP6GS46R4WLNoMNYpd6uDoUogM
+        C9SJjwS2sYMHGd5eLqFgRLJ163P8wOv9eX9+CfHfhDf5DPtLBwEtQMmm+zbvk+QdOp9RfozxwH+PZW25
+        OCF5XeZ5tp+ZTDfjR7eYOr7L0G4HrYk21Hn1apFIPMKjnR7c6S4cuoFI5jHuryOIoKDB2YDP5ysU8Mf9
+        xNZiv5O97w24vncxcXibtYzC3P44IiCod9bj8XgKYWfeqn6eQkkohLUwxjcDOFIGxr618OpkFnVv8rJy
+        3XQdLperEHZsTGLavklQt7F1+oGn614WDqYZ3blBSHeydDB1Cde6a5Fl+c++jV4j/rSNid1O4ukVsucZ
+        1JTEQspM8DBvdUVQPVuN3W7/+9DaFpv5eBbClryD8UsjL/aHWT3Kw6uCqidVWK3WqyeuhTUGPz0kkYvw
+        NrtI7GSespCgUqnEYrEUt3OTx8RmLsBW7jXXtDIq5iowm83Fwb/Os0Nt5/pGDeVqOZIklQb/FIlGozTJ
+        TUij/wCX/CR54AIu+QSCgxt00QAAAABJRU5ErkJggg==
+</value>
   </data>
 </root>
