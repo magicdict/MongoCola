@@ -98,6 +98,7 @@
             // 
             // txtReduceJs
             // 
+            this.txtReduceJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReduceJs.Location = new System.Drawing.Point(17, 61);
             this.txtReduceJs.Multiline = true;
             this.txtReduceJs.Name = "txtReduceJs";
@@ -117,6 +118,7 @@
             // 
             // txtfinalizeJs
             // 
+            this.txtfinalizeJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtfinalizeJs.Location = new System.Drawing.Point(17, 53);
             this.txtfinalizeJs.Multiline = true;
             this.txtfinalizeJs.Name = "txtfinalizeJs";

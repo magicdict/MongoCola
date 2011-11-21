@@ -135,6 +135,7 @@
             // 
             // txtMapJs
             // 
+            this.txtMapJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMapJs.Location = new System.Drawing.Point(28, 55);
             this.txtMapJs.Multiline = true;
             this.txtMapJs.Name = "txtMapJs";
@@ -144,6 +145,7 @@
             // 
             // txtReduceJs
             // 
+            this.txtReduceJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReduceJs.Location = new System.Drawing.Point(28, 263);
             this.txtReduceJs.Multiline = true;
             this.txtReduceJs.Name = "txtReduceJs";

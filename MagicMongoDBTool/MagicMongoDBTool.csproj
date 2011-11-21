@@ -69,6 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\frmevalJS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmevalJS.Designer.cs">
+      <DependentUpon>frmevalJS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\frmUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form\frmevalJS.resx">
+      <DependentUpon>frmevalJS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
     </EmbeddedResource>

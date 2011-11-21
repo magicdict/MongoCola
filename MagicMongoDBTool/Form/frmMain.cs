@@ -223,6 +223,7 @@ namespace MagicMongoDBTool
                             this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                             this.AddUserToolStripMenuItem.Enabled = true;
                             this.RemoveUserToolStripMenuItem.Enabled = true;
+                            this.evalJSToolStripMenuItem.Enabled = true;
                             this.InitGFSToolStripMenuItem.Enabled = true;
                         }
                         //备份数据库
@@ -242,6 +243,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.CreateMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.evalJSToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -309,6 +311,7 @@ namespace MagicMongoDBTool
             this.DelMongoDBToolStripMenuItem.Enabled = false;
             this.AddUserToolStripMenuItem.Enabled = false;
             this.RemoveUserToolStripMenuItem.Enabled = false;
+            this.evalJSToolStripMenuItem.Enabled = false;
 
             //管理-数据集
             this.IndexManageToolStripMenuItem.Enabled = false;
@@ -316,9 +319,6 @@ namespace MagicMongoDBTool
             this.RenameCollectionToolStripMenuItem.Enabled = false;
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
             this.DelRecordToolStripMenuItem.Enabled = false;
-
-            this.AggregationToolStripMenuItem.Enabled = false;
-
 
             //管理-GFS
             this.UploadFileToolStripMenuItem.Enabled = false;
@@ -351,6 +351,7 @@ namespace MagicMongoDBTool
             this.DataFilterToolStripMenuItem.Checked = false;
             this.DataFilterToolStripButton.Enabled = false;
             this.DataFilterToolStripButton.Checked = false;
+            this.AggregationToolStripMenuItem.Enabled = false;
 
 
             //工具
@@ -740,7 +741,15 @@ namespace MagicMongoDBTool
                 MongoDBHelper.RemoveUserFromDB(SystemManager.SelectObjectTag, strUserName);
             }
         }
-
+        /// <summary>
+        /// 执行JS
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void evalJSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmevalJS());
+        }
         #endregion
 
         #region"管理：数据集"
@@ -1222,5 +1231,7 @@ namespace MagicMongoDBTool
                                      strThanks);
         }
         #endregion
+
+
     }
 }
