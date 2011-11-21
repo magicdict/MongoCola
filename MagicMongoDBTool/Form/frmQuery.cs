@@ -89,6 +89,9 @@ namespace MagicMongoDBTool
         {
             //清除以前的结果和内部变量，重要！
             SystemManager.CurrDataFilter.Clear();
+            SystemManager.CurrDataFilter.DBName = SystemManager.GetCurrentDataBase().Name;
+            SystemManager.CurrDataFilter.CollectionName = SystemManager.GetCurrentCollection().Name;
+
             foreach (var item in ColumnList)
             {
                 SystemManager.CurrDataFilter.QueryFieldList.Add(((ctlFieldInfo)Controls.Find(item, true)[0]).QueryFieldItem);

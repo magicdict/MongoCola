@@ -106,6 +106,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         internal static void Init()
         {
+            //语言的初始化
             GUIResource.StringResource.Language currentLan = SystemManager.ConfigHelperInstance.currentLanguage;
             string fileName = string.Format("Language\\{0}.xml", currentLan.ToString());
             if (File.Exists(fileName))

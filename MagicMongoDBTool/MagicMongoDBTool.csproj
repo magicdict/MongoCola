@@ -81,6 +81,13 @@
     <Compile Include="Form\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmRunSql.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmRunSql.Designer.cs">
+      <DependentUpon>frmRunSql.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module\MongoDBHelper_Sql.cs" />
     <Compile Include="UserController\ctlAddBsonEl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -189,7 +196,7 @@
     <Compile Include="Module\CloneMeunToolItem.cs" />
     <Compile Include="Module\MongoDBHelper_Auth.cs" />
     <Compile Include="Module\MongoDBHelper_Query.cs" />
-    <Compile Include="Module\MongoDBHelpler_Replset.cs" />
+    <Compile Include="Module\MongoDBHelper_Replset.cs" />
     <Compile Include="UserController\ctlMongoImportExport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -224,12 +231,15 @@
     <Compile Include="Module\MongodbDosCommand.cs" />
     <Compile Include="Module\MongoDBHelper_ImportData.cs" />
     <Compile Include="Module\MongoDBHelper_Opration.cs" />
-    <Compile Include="Module\MongoDBHelpler_View.cs" />
+    <Compile Include="Module\MongoDBHelper_View.cs" />
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form\frmevalJS.resx">
       <DependentUpon>frmevalJS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmRunSql.resx">
+      <DependentUpon>frmRunSql.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>

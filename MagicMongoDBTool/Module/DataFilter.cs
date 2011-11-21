@@ -15,6 +15,14 @@ namespace MagicMongoDBTool.Module
     public class DataFilter
     {
         /// <summary>
+        /// 数据库名称
+        /// </summary>
+        public String DBName = String.Empty;
+        /// <summary>
+        /// 数据集名称
+        /// </summary>
+        public String CollectionName = String.Empty;
+        /// <summary>
         /// 比较符号
         /// </summary>
         public enum CompareEnum

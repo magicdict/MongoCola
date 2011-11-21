@@ -124,12 +124,15 @@ namespace MagicMongoDBTool
                         statusStripMain.Items[0].Text = "选中数据:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
+                            SetDataNav();
                             this.contextMenuStripMain = new ContextMenuStrip();
                             this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.countToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.distinctToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.QueryDataToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.RunSqlToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
                         }
@@ -273,6 +276,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.DumpCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ExportCollectionToolStripMenuItem.Clone());
+                            
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
                         }
@@ -345,6 +349,8 @@ namespace MagicMongoDBTool
             this.PrePageToolStripButton.Enabled = false;
             this.QueryDataToolStripMenuItem.Enabled = false;
             this.QueryDataToolStripButton.Enabled = false;
+            this.RunSqlToolStripMenuItem.Enabled = false;
+
             this.ExpandAllDataToolStripMenuItem.Enabled = false;
             this.CollapseAllDataToolStripMenuItem.Enabled = false;
             this.DataFilterToolStripMenuItem.Enabled = false;
@@ -749,6 +755,15 @@ namespace MagicMongoDBTool
         private void evalJSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SystemManager.OpenForm(new frmevalJS());
+        }
+        /// <summary>
+        /// 执行RunSql
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RunSqlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmRunSql());
         }
         #endregion
 
@@ -1194,6 +1209,8 @@ namespace MagicMongoDBTool
             FirstPageToolStripMenuItem.Enabled = MongoDBHelper.HasPrePage;
             LastPageToolStripMenuItem.Enabled = MongoDBHelper.HasNextPage;
             this.QueryDataToolStripMenuItem.Enabled = true;
+            this.RunSqlToolStripMenuItem.Enabled = true;
+
             this.ExpandAllDataToolStripMenuItem.Enabled = true;
             this.CollapseAllDataToolStripMenuItem.Enabled = true;
             this.DataFilterToolStripMenuItem.Enabled = true;
@@ -1231,7 +1248,6 @@ namespace MagicMongoDBTool
                                      strThanks);
         }
         #endregion
-
 
     }
 }
