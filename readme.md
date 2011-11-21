@@ -5,8 +5,9 @@
     任何对这个项目感兴趣的朋友，熟悉C#的Winform开发的朋友，都可以申请加入这个项目的开发。	
     如果有兴趣作为项目开发的协助者，请使用GitHub的站内消息和我联系。
     
-    通知：DLL引用方式修改为引用工程了	
 
     感谢s021368   的加入  代码规范
     感谢billmoling的加入  国际化功能
-    
+    	    
+
+    GitHub 地址 <http://magicdict.github.com/MagicMongoDBTool/>
