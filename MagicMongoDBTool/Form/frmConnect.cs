@@ -14,6 +14,9 @@ namespace MagicMongoDBTool
         {
             RefreshConnection();
         }
+        /// <summary>
+        /// 刷新连接
+        /// </summary>
         private void RefreshConnection()
         {
             lstServerce.Items.Clear();
@@ -23,16 +26,21 @@ namespace MagicMongoDBTool
             }
             SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
         }
-
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdAddCon_Click(object sender, EventArgs e)
         {
-            frmAddConnection frmAddCon = new frmAddConnection();
-            frmAddCon.ShowDialog();
-            frmAddCon.Close();
-            frmAddCon.Dispose();
+            SystemManager.OpenForm(new frmAddConnection());
             RefreshConnection();
         }
-
+        /// <summary>
+        /// 连接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdConnect_Click(object sender, EventArgs e)
         {
             List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
@@ -46,6 +54,11 @@ namespace MagicMongoDBTool
                 this.Close();
             }
         }
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdDelCon_Click(object sender, EventArgs e)
         {
             foreach (string item in lstServerce.SelectedItems)
@@ -57,19 +70,24 @@ namespace MagicMongoDBTool
             }
             RefreshConnection();
         }
-
+        /// <summary>
+        /// 修改
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdModifyCon_Click(object sender, EventArgs e)
         {
             if (lstServerce.SelectedItems.Count == 1)
             {
-                frmAddConnection mfrm = new frmAddConnection(lstServerce.SelectedItem.ToString());
-                mfrm.ShowDialog();
-                mfrm.Close();
-                mfrm.Dispose();
+                SystemManager.OpenForm(new frmAddConnection(lstServerce.SelectedItem.ToString()));
                 RefreshConnection();
             }
         }
-
+        /// <summary>
+        /// 关闭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             this.Close();

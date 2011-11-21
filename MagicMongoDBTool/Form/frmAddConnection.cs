@@ -59,6 +59,7 @@ namespace MagicMongoDBTool
             txtReplSet.Text = ModifyConn.ReplSetName;
             txtDataBaseName.Text = ModifyConn.DataBaseName;
             numPriority.Value = ModifyConn.Priority;
+            numTimeOut.Value = ModifyConn.TimeOut;
 
             switch (ModifyConn.ServerType)
             {
@@ -100,6 +101,8 @@ namespace MagicMongoDBTool
             ModifyConn.DataBaseName = txtDataBaseName.Text;
             ModifyConn.MainReplSetName = txtMainReplsetName.Text;
             ModifyConn.Priority = (int)numPriority.Value;
+            ModifyConn.TimeOut = (int)numTimeOut.Value;
+
             //仅有用户名或密码
             if (txtUsername.Text != string.Empty && txtPassword.Text == String.Empty)
             {

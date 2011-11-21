@@ -32,16 +32,16 @@
             this.lstSrvOpr = new System.Windows.Forms.ListView();
             this.lstSrvStatus = new System.Windows.Forms.ListView();
             this.tabSvrStatus = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.cmdRefresh = new System.Windows.Forms.VistaButton();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabSvrInfo = new System.Windows.Forms.TabPage();
+            this.tabReplInfo = new System.Windows.Forms.TabPage();
+            this.tabDBInfo = new System.Windows.Forms.TabPage();
             this.lstDBStatus = new System.Windows.Forms.ListView();
+            this.cmdRefresh = new System.Windows.Forms.VistaButton();
             this.contentPanel.SuspendLayout();
             this.tabSvrStatus.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabSvrInfo.SuspendLayout();
+            this.tabReplInfo.SuspendLayout();
+            this.tabDBInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // contentPanel
@@ -78,57 +78,47 @@
             // 
             // tabSvrStatus
             // 
-            this.tabSvrStatus.Controls.Add(this.tabPage1);
-            this.tabSvrStatus.Controls.Add(this.tabPage2);
-            this.tabSvrStatus.Controls.Add(this.tabPage3);
+            this.tabSvrStatus.Controls.Add(this.tabSvrInfo);
+            this.tabSvrStatus.Controls.Add(this.tabDBInfo);
+            this.tabSvrStatus.Controls.Add(this.tabReplInfo);
             this.tabSvrStatus.Location = new System.Drawing.Point(11, 20);
             this.tabSvrStatus.Name = "tabSvrStatus";
             this.tabSvrStatus.SelectedIndex = 0;
             this.tabSvrStatus.Size = new System.Drawing.Size(792, 371);
             this.tabSvrStatus.TabIndex = 5;
             // 
-            // tabPage1
+            // tabSvrInfo
             // 
-            this.tabPage1.Controls.Add(this.lstSrvStatus);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(784, 345);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "服务器基本信息";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabSvrInfo.Controls.Add(this.lstSrvStatus);
+            this.tabSvrInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabSvrInfo.Name = "tabSvrInfo";
+            this.tabSvrInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSvrInfo.Size = new System.Drawing.Size(784, 345);
+            this.tabSvrInfo.TabIndex = 0;
+            this.tabSvrInfo.Text = "服务器基本信息";
+            this.tabSvrInfo.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabReplInfo
             // 
-            this.tabPage2.Controls.Add(this.lstSrvOpr);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(784, 345);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "集群扩展信息";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabReplInfo.Controls.Add(this.lstSrvOpr);
+            this.tabReplInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabReplInfo.Name = "tabReplInfo";
+            this.tabReplInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabReplInfo.Size = new System.Drawing.Size(784, 345);
+            this.tabReplInfo.TabIndex = 1;
+            this.tabReplInfo.Text = "集群扩展信息";
+            this.tabReplInfo.UseVisualStyleBackColor = true;
             // 
-            // cmdRefresh
+            // tabDBInfo
             // 
-            this.cmdRefresh.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRefresh.Location = new System.Drawing.Point(695, 4);
-            this.cmdRefresh.Name = "cmdRefresh";
-            this.cmdRefresh.Size = new System.Drawing.Size(100, 32);
-            this.cmdRefresh.TabIndex = 5;
-            this.cmdRefresh.Text = "刷新";
-            this.cmdRefresh.Click += new System.EventHandler(this.cmdRefresh_Click);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.lstDBStatus);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(784, 345);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "各数据库状态";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabDBInfo.Controls.Add(this.lstDBStatus);
+            this.tabDBInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabDBInfo.Name = "tabDBInfo";
+            this.tabDBInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDBInfo.Size = new System.Drawing.Size(784, 345);
+            this.tabDBInfo.TabIndex = 2;
+            this.tabDBInfo.Text = "各数据库状态";
+            this.tabDBInfo.UseVisualStyleBackColor = true;
             // 
             // lstDBStatus
             // 
@@ -142,6 +132,16 @@
             this.lstDBStatus.UseCompatibleStateImageBehavior = false;
             this.lstDBStatus.View = System.Windows.Forms.View.Details;
             // 
+            // cmdRefresh
+            // 
+            this.cmdRefresh.BackColor = System.Drawing.Color.Transparent;
+            this.cmdRefresh.Location = new System.Drawing.Point(695, 4);
+            this.cmdRefresh.Name = "cmdRefresh";
+            this.cmdRefresh.Size = new System.Drawing.Size(100, 32);
+            this.cmdRefresh.TabIndex = 5;
+            this.cmdRefresh.Text = "刷新";
+            this.cmdRefresh.Click += new System.EventHandler(this.cmdRefresh_Click);
+            // 
             // frmServiceStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -151,13 +151,13 @@
             this.Name = "frmServiceStatus";
             this.ShowSelectSkinButton = false;
             this.Text = "服务器状态";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmServiceStatus_FormClosing);
             this.Load += new System.EventHandler(this.frmServiceStatus_Load);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(frmServiceStatus_FormClosing);
             this.contentPanel.ResumeLayout(false);
             this.tabSvrStatus.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
+            this.tabSvrInfo.ResumeLayout(false);
+            this.tabReplInfo.ResumeLayout(false);
+            this.tabDBInfo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -168,10 +168,10 @@
         private System.Windows.Forms.ListView lstSrvOpr;
         private System.Windows.Forms.ListView lstSrvStatus;
         private System.Windows.Forms.TabControl tabSvrStatus;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabSvrInfo;
+        private System.Windows.Forms.TabPage tabReplInfo;
         private System.Windows.Forms.VistaButton cmdRefresh;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabDBInfo;
         private System.Windows.Forms.ListView lstDBStatus;
     }
 }

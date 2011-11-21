@@ -61,20 +61,23 @@
             this.lblAttention = new System.Windows.Forms.Label();
             this.lblpriority = new System.Windows.Forms.Label();
             this.numPriority = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTimeOut = new System.Windows.Forms.Label();
+            this.numTimeOut = new System.Windows.Forms.NumericUpDown();
             this.contentPanel.SuspendLayout();
             this.grpReplset.SuspendLayout();
             this.grpShardingSvrType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPriority)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTimeOut)).BeginInit();
             this.SuspendLayout();
             // 
             // contentPanel
             // 
             this.contentPanel.BackColor = System.Drawing.Color.Transparent;
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
+            this.contentPanel.Controls.Add(this.numTimeOut);
+            this.contentPanel.Controls.Add(this.lblTimeOut);
             this.contentPanel.Controls.Add(this.numPriority);
             this.contentPanel.Controls.Add(this.lblpriority);
-            this.contentPanel.Controls.Add(this.label1);
             this.contentPanel.Controls.Add(this.lblAttention);
             this.contentPanel.Controls.Add(this.txtMainReplsetName);
             this.contentPanel.Controls.Add(this.lblMainReplsetName);
@@ -158,7 +161,7 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(282, 391);
+            this.cmdCancel.Location = new System.Drawing.Point(419, 401);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 37);
             this.cmdCancel.TabIndex = 9;
@@ -167,7 +170,7 @@
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(193, 391);
+            this.cmdAdd.Location = new System.Drawing.Point(322, 401);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 37);
             this.cmdAdd.TabIndex = 8;
@@ -473,14 +476,14 @@
             this.lblAttention.ForeColor = System.Drawing.Color.Red;
             this.lblAttention.Location = new System.Drawing.Point(25, 374);
             this.lblAttention.Name = "lblAttention";
-            this.lblAttention.Size = new System.Drawing.Size(253, 13);
+            this.lblAttention.Size = new System.Drawing.Size(253, 26);
             this.lblAttention.TabIndex = 42;
-            this.lblAttention.Text = "[注意]密码将以明文形式保存于配置文件中.";
+            this.lblAttention.Text = "[注意]密码将以明文形式保存于配置文件中.\r\n优先度为 0 时,无法成为副本主服务器";
             // 
             // lblpriority
             // 
             this.lblpriority.AutoSize = true;
-            this.lblpriority.Location = new System.Drawing.Point(194, 77);
+            this.lblpriority.Location = new System.Drawing.Point(193, 77);
             this.lblpriority.Name = "lblpriority";
             this.lblpriority.Size = new System.Drawing.Size(43, 13);
             this.lblpriority.TabIndex = 43;
@@ -495,20 +498,36 @@
             0,
             0});
             this.numPriority.Name = "numPriority";
-            this.numPriority.Size = new System.Drawing.Size(44, 20);
+            this.numPriority.Size = new System.Drawing.Size(100, 20);
             this.numPriority.TabIndex = 44;
             this.numPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label1
+            // lblTimeOut
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(299, 78);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(221, 13);
-            this.label1.TabIndex = 42;
-            this.label1.Text = "优先度为 0 时,无法成为副本主服务器";
+            this.lblTimeOut.AutoSize = true;
+            this.lblTimeOut.Location = new System.Drawing.Point(351, 77);
+            this.lblTimeOut.Name = "lblTimeOut";
+            this.lblTimeOut.Size = new System.Drawing.Size(55, 13);
+            this.lblTimeOut.TabIndex = 45;
+            this.lblTimeOut.Text = "延时（秒）";
+            // 
+            // numTimeOut
+            // 
+            this.numTimeOut.Location = new System.Drawing.Point(419, 75);
+            this.numTimeOut.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numTimeOut.Name = "numTimeOut";
+            this.numTimeOut.Size = new System.Drawing.Size(101, 20);
+            this.numTimeOut.TabIndex = 46;
+            this.numTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTimeOut.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
             // 
             // frmAddConnection
             // 
@@ -526,6 +545,7 @@
             this.grpShardingSvrType.ResumeLayout(false);
             this.grpShardingSvrType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPriority)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numTimeOut)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -564,6 +584,7 @@
         private System.Windows.Forms.VistaButton cmdInitReplset;
         private System.Windows.Forms.NumericUpDown numPriority;
         private System.Windows.Forms.Label lblpriority;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown numTimeOut;
+        private System.Windows.Forms.Label lblTimeOut;
     }
 }

@@ -29,7 +29,8 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 设置文字
         /// </summary>
-        private void SetMenuText() { 
+        private void SetMenuText()
+        {
             //管理
             this.ManagerToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt);
         }
@@ -101,6 +102,21 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.INDEXES_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "选中索引集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+
+                        if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
+                        {
+                            this.IndexManageToolStripMenuItem.Enabled = true;
+                            this.ReIndexToolStripMenuItem.Enabled = true;
+                        }
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            this.contextMenuStripMain = new ContextMenuStrip();
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+                            this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show();
+                        }
                         break;
                     case MongoDBHelper.DOCUMENT_TAG:
                         //BsonDocument
@@ -241,8 +257,6 @@ namespace MagicMongoDBTool
                             //系统数据库无法删除！！
                             this.DelMongoCollectionToolStripMenuItem.Enabled = true;
                             this.RenameCollectionToolStripMenuItem.Enabled = true;
-                            this.IndexManageToolStripMenuItem.Enabled = true;
-                            this.ReIndexToolStripMenuItem.Enabled = true;
                         }
                         this.DumpCollectionToolStripMenuItem.Enabled = true;
                         this.ImportCollectionToolStripMenuItem.Enabled = true;
@@ -254,8 +268,6 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.DelMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RenameCollectionToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DumpCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ExportCollectionToolStripMenuItem.Clone());
@@ -348,16 +360,6 @@ namespace MagicMongoDBTool
             //分布式
             this.ReplicaSetToolStripMenuItem.Enabled = false;
             this.ShardConfigToolStripMenuItem.Enabled = false;
-        }
-        /// <summary>
-        /// 对话框子窗体的统一管理
-        /// </summary>
-        /// <param name="frm"></param>
-        private void OpenForm(Form mfrm)
-        {
-            mfrm.ShowDialog();
-            mfrm.Close();
-            mfrm.Dispose();
         }
         #endregion
 
@@ -520,7 +522,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddConnectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmConnect());
+            SystemManager.OpenForm(new frmConnect());
             RefreshToolStripMenuItem_Click(sender, e);
         }
         /// <summary>
@@ -541,7 +543,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void SrvStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmServiceStatus());
+            SystemManager.OpenForm(new frmServiceStatus());
         }
         /// <summary>
         /// 展开所有
@@ -581,7 +583,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void OptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmOption());
+            SystemManager.OpenForm(new frmOption());
         }
         /// <summary>
         /// 导入数据
@@ -603,7 +605,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DosCommandToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmDosCommand());
+            SystemManager.OpenForm(new frmDosCommand());
         }
         #endregion
 
@@ -633,7 +635,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddUserToAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmUser());
+            SystemManager.OpenForm(new frmUser());
         }
         /// <summary>
         /// 删除Admin用户
@@ -722,7 +724,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmUser());
+            SystemManager.OpenForm(new frmUser());
         }
         /// <summary>
         /// 删除用户
@@ -790,7 +792,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void IndexManageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmCollectionIndex());
+            SystemManager.OpenForm(new frmCollectionIndex());
         }
         /// <summary>
         /// 重新索引
@@ -1057,7 +1059,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmReplset());
+            SystemManager.OpenForm(new frmReplset());
         }
         /// <summary>
         /// 分片管理
@@ -1066,7 +1068,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ShardConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmShardingConfig());
+            SystemManager.OpenForm(new frmShardingConfig());
         }
 
         #endregion
@@ -1106,7 +1108,7 @@ namespace MagicMongoDBTool
         }
         private void QueryDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmQuery());
+            SystemManager.OpenForm(new frmQuery());
             this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
             //重新展示数据
             MongoDBHelper.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
@@ -1139,7 +1141,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void distinctToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmDistinct());
+            SystemManager.OpenForm(new frmDistinct());
         }
         /// <summary>
         /// Group
@@ -1148,7 +1150,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void groupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmGroup());
+            SystemManager.OpenForm(new frmGroup());
         }
         /// <summary>
         /// MapReduce
@@ -1157,7 +1159,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void mapReduceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenForm(new frmMapReduce());
+            SystemManager.OpenForm(new frmMapReduce());
         }
         #endregion
         /// <summary>

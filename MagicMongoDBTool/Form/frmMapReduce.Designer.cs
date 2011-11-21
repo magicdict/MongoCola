@@ -110,7 +110,7 @@
             // 
             this.lblResult.AutoSize = true;
             this.lblResult.BackColor = System.Drawing.Color.Transparent;
-            this.lblResult.Location = new System.Drawing.Point(330, 11);
+            this.lblResult.Location = new System.Drawing.Point(333, 28);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(31, 13);
             this.lblResult.TabIndex = 15;
@@ -128,9 +128,9 @@
             // 
             // trvResult
             // 
-            this.trvResult.Location = new System.Drawing.Point(333, 28);
+            this.trvResult.Location = new System.Drawing.Point(333, 55);
             this.trvResult.Name = "trvResult";
-            this.trvResult.Size = new System.Drawing.Size(363, 404);
+            this.trvResult.Size = new System.Drawing.Size(363, 377);
             this.trvResult.TabIndex = 4;
             // 
             // txtMapJs

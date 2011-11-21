@@ -36,6 +36,8 @@
             this.ctlFilePickerMongoBinPath = new MagicMongoDBTool.ctlFilePicker();
             this.cmdCancel = new System.Windows.Forms.VistaButton();
             this.cmdOK = new System.Windows.Forms.VistaButton();
+            this.lblLanguage = new System.Windows.Forms.Label();
+            this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLimitCnt)).BeginInit();
@@ -44,6 +46,8 @@
             // contentPanel
             // 
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
+            this.contentPanel.Controls.Add(this.cmbLanguage);
+            this.contentPanel.Controls.Add(this.lblLanguage);
             this.contentPanel.Controls.Add(this.numRefreshForStatus);
             this.contentPanel.Controls.Add(this.lblRefreshForStatus);
             this.contentPanel.Controls.Add(this.numLimitCnt);
@@ -56,7 +60,7 @@
             // 
             // numRefreshForStatus
             // 
-            this.numRefreshForStatus.Location = new System.Drawing.Point(481, 47);
+            this.numRefreshForStatus.Location = new System.Drawing.Point(374, 53);
             this.numRefreshForStatus.Maximum = new decimal(new int[] {
             180,
             0,
@@ -81,7 +85,7 @@
             // 
             this.lblRefreshForStatus.AutoSize = true;
             this.lblRefreshForStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblRefreshForStatus.Location = new System.Drawing.Point(298, 49);
+            this.lblRefreshForStatus.Location = new System.Drawing.Point(212, 55);
             this.lblRefreshForStatus.Name = "lblRefreshForStatus";
             this.lblRefreshForStatus.Size = new System.Drawing.Size(156, 13);
             this.lblRefreshForStatus.TabIndex = 15;
@@ -89,7 +93,7 @@
             // 
             // numLimitCnt
             // 
-            this.numLimitCnt.Location = new System.Drawing.Point(131, 47);
+            this.numLimitCnt.Location = new System.Drawing.Point(131, 53);
             this.numLimitCnt.Maximum = new decimal(new int[] {
             500,
             0,
@@ -114,7 +118,7 @@
             // 
             this.lblLimitCnt.AutoSize = true;
             this.lblLimitCnt.BackColor = System.Drawing.Color.Transparent;
-            this.lblLimitCnt.Location = new System.Drawing.Point(11, 49);
+            this.lblLimitCnt.Location = new System.Drawing.Point(11, 55);
             this.lblLimitCnt.Name = "lblLimitCnt";
             this.lblLimitCnt.Size = new System.Drawing.Size(91, 13);
             this.lblLimitCnt.TabIndex = 13;
@@ -151,14 +155,30 @@
             this.cmdOK.Text = "确认";
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
+            // lblLanguage
+            // 
+            this.lblLanguage.AutoSize = true;
+            this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
+            this.lblLanguage.Location = new System.Drawing.Point(458, 56);
+            this.lblLanguage.Name = "lblLanguage";
+            this.lblLanguage.Size = new System.Drawing.Size(31, 13);
+            this.lblLanguage.TabIndex = 16;
+            this.lblLanguage.Text = "语言";
+            // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Location = new System.Drawing.Point(495, 52);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(121, 21);
+            this.cmbLanguage.TabIndex = 17;
+            // 
             // frmOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 211);
             this.Location = new System.Drawing.Point(0, 0);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmOption";
             this.ShowSelectSkinButton = false;
             this.Text = "选项";
@@ -180,6 +200,8 @@
         private ctlFilePicker ctlFilePickerMongoBinPath;
         private System.Windows.Forms.VistaButton cmdCancel;
         private System.Windows.Forms.VistaButton cmdOK;
+        private System.Windows.Forms.ComboBox cmbLanguage;
+        private System.Windows.Forms.Label lblLanguage;
 
     }
 }

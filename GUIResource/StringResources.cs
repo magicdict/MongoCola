@@ -61,7 +61,7 @@ namespace GUIResource
              String strText = String.Empty ;
             //使用TryGetValue方法防止出现不存在的字符，同时比Exist提高效率
             _stringDic.TryGetValue(tag.ToString(),out strText);
-            if (strText == String.Empty)
+            if (strText == null)
             {
                 strText = tag.ToString();
             }

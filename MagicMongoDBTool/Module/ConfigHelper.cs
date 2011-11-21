@@ -95,6 +95,10 @@ namespace MagicMongoDBTool.Module
             /// 副本主机裁决优先度
             /// </summary>
             public int Priority;
+            /// <summary>
+            /// 超时
+            /// </summary>
+            public int TimeOut;
         }
         /// <summary>
         /// 通过Host信息获得连接名称

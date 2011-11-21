@@ -38,7 +38,10 @@ namespace MagicMongoDBTool.Module
                     //Replset时候可以不用设置吗？                    
                     mongoSvrSetting.Server = new MongoServerAddress(config.IpAddr, config.Port);
                     //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
-                    mongoSvrSetting.SocketTimeout = new TimeSpan(0, 10, 0);
+                    if (config.TimeOut != 0)
+                    {
+                        mongoSvrSetting.SocketTimeout = new TimeSpan(0,0,config.TimeOut);
+                    }
                     if ((config.UserName != string.Empty) & (config.Password != string.Empty))
                     {
                         //认证的设定:注意，这里的密码是明文

@@ -7,7 +7,7 @@ namespace MagicMongoDBTool
     {
         public Boolean IsSetted {
             get {
-                if (txtElName.Text == "[Name]" | txtElValue.Text == "[value]" | cmbDataType.Text == String.Empty)
+                if (txtElName.Text == String.Empty | txtElValue.Text == String.Empty | cmbDataType.Text == String.Empty)
                 {
                     return false;
                 }

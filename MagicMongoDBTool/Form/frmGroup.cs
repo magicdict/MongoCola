@@ -48,12 +48,21 @@ namespace MagicMongoDBTool
             try
             {
                 var Result = mongoCol.Group(query, groupdoc, Initial, reduce, finalize);
-
+                //防止错误的条件造成的海量数据
+                int Count = 0;
                 foreach (var item in Result)
                 {
+                    if (Count == 1000)
+                    {
+                        break;
+                    }
                     resultlst.Add(item);
+                    Count++;
                 };
                 MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst);
+                if (Count == 1001) {
+                    this.txtResult.Text = "显示前1000条记录" + "\r\n" + this.txtResult.Text;
+                }
                 this.txtResult.Select(0, 0);
                 tabGroup.SelectedIndex = 4;
             }

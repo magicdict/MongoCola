@@ -6,6 +6,7 @@ using System.Drawing;
 using QLFUI;
 using System.IO;
 using GUIResource;
+using System.Windows.Forms;
 namespace MagicMongoDBTool.Module
 {
     public static class SystemManager
@@ -26,6 +27,16 @@ namespace MagicMongoDBTool.Module
         /// 文字资源
         /// </summary>
         public static StringResource mStringResource = new GUIResource.StringResource();
+        /// <summary>
+        /// 对话框子窗体的统一管理
+        /// </summary>
+        /// <param name="frm"></param>
+        public static void OpenForm(Form mfrm)
+        {
+            mfrm.ShowDialog();
+            mfrm.Close();
+            mfrm.Dispose();
+        }
         /// <summary>
         /// 通过服务器名称获得服务器配置
         /// </summary>

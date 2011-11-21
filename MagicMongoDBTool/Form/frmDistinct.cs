@@ -18,7 +18,7 @@ namespace MagicMongoDBTool
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             List<String> MongoColumn = MongoDBHelper.GetCollectionSchame(mongoCol);
-            Point _conditionPos = new Point(50, 20);
+            Point _conditionPos = new Point(20, 20);
             foreach (String item in MongoColumn)
             {
                 //动态加载控件
@@ -70,9 +70,18 @@ namespace MagicMongoDBTool
             }
 
             String strResult = String.Empty;
+
+            //防止错误的条件造成的海量数据
+            int Count = 0;
             foreach (BsonValue item in result)
             {
+                if (Count == 1000)
+                {
+                    strResult = "显示前1000条记录" + "\r\n" + strResult;
+                    break;
+                }
                 strResult += MongoDBHelper.GetBsonElementText(strKey, item, 0);
+                Count++;
             }
             MyMessageBox.ShowMessage("Distinct", "Distinct:" + strKey, strResult, true);
 
