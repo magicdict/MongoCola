@@ -5,6 +5,17 @@ namespace MagicMongoDBTool
 {
     public partial class ctlAddBsonEl : UserControl
     {
+        public Boolean IsSetted {
+            get {
+                if (txtElName.Text == "[Name]" | txtElValue.Text == "[value]" | cmbDataType.Text == String.Empty)
+                {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+        }
         public BsonElement Element
         {
             get
@@ -36,18 +47,38 @@ namespace MagicMongoDBTool
                 BsonElement el = new BsonElement(txtElName.Text, value);
                 return el;
             }
+            set {
+                txtElName.Text = value.Name;
+                txtElValue.Text = value.Value.ToString();
+                if (value.Value.IsString)
+                {
+                    cmbDataType.SelectedIndex = 0;
+                }
+                if (value.Value.IsInt32)
+                {
+                    cmbDataType.SelectedIndex = 1;
+                }
+                if (value.Value.IsDateTime)
+                {
+                    cmbDataType.SelectedIndex = 2;
+                }
+                if (value.Value.IsBoolean)
+                {
+                    cmbDataType.SelectedIndex = 3;
+                }
+            }
         }
         public ctlAddBsonEl()
         {
             InitializeComponent();
-        }
-        private void ctlAddBsonEl_Load(object sender, EventArgs e)
-        {
             //数据类型
             cmbDataType.Items.Add("字符");
             cmbDataType.Items.Add("整形");
             cmbDataType.Items.Add("日期");
             cmbDataType.Items.Add("布尔");
+        }
+        private void ctlAddBsonEl_Load(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -560,7 +560,7 @@ namespace MagicMongoDBTool.Module
                     foreach (String itemName in BsonDoc.Names)
                     {
                         BsonValue value = BsonDoc.GetValue(itemName);
-                        sb.Append(GetValueText(itemName, value, 0));
+                        sb.Append(GetBsonElementText(itemName, value, 0));
                     }
                     sb.Append("}");
                     sb.AppendLine("");
@@ -577,7 +577,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="value"></param>
         /// <param name="DeepLv"></param>
         /// <returns></returns>
-        private static String GetValueText(String itemName, BsonValue value, int DeepLv)
+        public static String GetBsonElementText(String itemName, BsonValue value, int DeepLv)
         {
             String rtnText = String.Empty;
             if (value.IsBsonArray)
@@ -601,7 +601,7 @@ namespace MagicMongoDBTool.Module
                         DeepLv++;
                     }
                     DeepLv++;
-                    rtnText += GetValueText(String.Empty, mBsonlst[BsonNo], DeepLv);
+                    rtnText += GetBsonElementText(String.Empty, mBsonlst[BsonNo], DeepLv);
                     DeepLv--;
                     if (BsonNo == mBsonlst.Count - 1)
                     {
@@ -642,7 +642,7 @@ namespace MagicMongoDBTool.Module
                     foreach (String SubitemName in SubDoc.Names)
                     {
                         BsonValue Subvalue = SubDoc.GetValue(SubitemName);
-                        rtnText += GetValueText(SubitemName, SubDoc.GetValue(SubitemName), DeepLv);
+                        rtnText += GetBsonElementText(SubitemName, SubDoc.GetValue(SubitemName), DeepLv);
                     }
                     for (int i = 0; i < DeepLv; i++)
                     {

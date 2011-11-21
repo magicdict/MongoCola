@@ -31,31 +31,51 @@ namespace MagicMongoDBTool
                 _conditionPos.Y += ctrItem.Height;
             }
         }
+        /// <summary>
+        /// 运行
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
             String strKey = String.Empty;
 
             foreach (RadioButton item in panColumn.Controls)
             {
-                if (item.Checked) {
+                if (item.Checked)
+                {
                     strKey = item.Name;
                 }
             }
-            if (strKey == String.Empty) {
+            if (strKey == String.Empty)
+            {
                 MyMessageBox.ShowMessage("Distinct", "请选择字段");
                 return;
             }
+            List<BsonValue> result = new List<BsonValue>();
             if (SystemManager.CurrDataFilter.QueryConditionList.Count == 0)
             {
-                MyMessageBox.ShowMessage("Distinct", "Distinct:" + SystemManager.GetCurrentCollection().Distinct(strKey).ToString());
+                foreach (BsonValue item in SystemManager.GetCurrentCollection().Distinct(strKey))
+                {
+                    result.Add(item);
+                }
             }
             else
             {
                 MongoDB.Driver.IMongoQuery mQuery = MongoDBHelper.GetQuery(SystemManager.CurrDataFilter.QueryConditionList);
-                MyMessageBox.ShowMessage("Distinct",
-                "Distinct:" + SystemManager.GetCurrentCollection().Distinct(strKey, mQuery).ToString(),
-                mQuery.ToString(), true);
+                foreach (BsonValue item in SystemManager.GetCurrentCollection().Distinct(strKey, mQuery))
+                {
+                    result.Add(item);
+                }
             }
+
+            String strResult = String.Empty;
+            foreach (BsonValue item in result)
+            {
+                strResult += MongoDBHelper.GetBsonElementText(strKey, item, 0);
+            }
+            MyMessageBox.ShowMessage("Distinct", "Distinct:" + strKey, strResult, true);
+
         }
     }
 }

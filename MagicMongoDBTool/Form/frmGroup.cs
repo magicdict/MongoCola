@@ -36,7 +36,10 @@ namespace MagicMongoDBTool
             for (int i = 0; i < _conditionCount; i++)
             {
                 ctlAddBsonEl ctl = (ctlAddBsonEl)Controls.Find("BsonEl" + (i + 1).ToString(), true)[0];
-                Initial.Add(ctl.Element);
+                if (ctl.IsSetted)
+                {
+                    Initial.Add(ctl.Element);
+                }
             }
 
             BsonJavaScript reduce = new BsonJavaScript(txtReduceJs.Text);
@@ -51,10 +54,12 @@ namespace MagicMongoDBTool
                     resultlst.Add(item);
                 };
                 MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst);
+                this.txtResult.Select(0, 0);
+                tabGroup.SelectedIndex = 4;
             }
             catch (Exception ex)
             {
-                MyMessageBox.ShowMessage("异常", "发生异常", ex.ToString(), true);                
+                MyMessageBox.ShowMessage("异常", "发生异常", ex.ToString(), true);
             }
         }
         /// <summary>
@@ -65,6 +70,7 @@ namespace MagicMongoDBTool
         /// 条件输入器位置
         /// </summary>
         private Point _conditionPos = new Point(50, 20);
+
         private void frmGroup_Load(object sender, EventArgs e)
         {
             this.cmbForfinalize.SelectedIndexChanged += new EventHandler(
@@ -93,11 +99,13 @@ namespace MagicMongoDBTool
                 //纵向位置的累加
                 _conditionPos.Y += ctrItem.Height;
             }
-            _conditionPos = new Point(5, 20);
-            ctlAddBsonEl firstQueryCtl = new ctlAddBsonEl();
-            firstQueryCtl.Location = _conditionPos;
-            firstQueryCtl.Name = "BsonEl" + _conditionCount.ToString();
-            panBsonEl.Controls.Add(firstQueryCtl);
+            _conditionPos = new Point(50, 20);
+            ctlAddBsonEl firstAddBsonElCtl = new ctlAddBsonEl();
+            firstAddBsonElCtl.Location = _conditionPos;
+            firstAddBsonElCtl.Name = "BsonEl" + _conditionCount.ToString();
+            BsonElement el = new BsonElement("count", new BsonInt32(0));
+            firstAddBsonElCtl.Element = el;
+            panBsonEl.Controls.Add(firstAddBsonElCtl);
 
         }
         /// <summary>
