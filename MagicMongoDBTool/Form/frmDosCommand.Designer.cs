@@ -134,7 +134,7 @@
             this.tabMongoImportExport.Padding = new System.Windows.Forms.Padding(3);
             this.tabMongoImportExport.Size = new System.Drawing.Size(843, 221);
             this.tabMongoImportExport.TabIndex = 2;
-            this.tabMongoImportExport.Text = "导入于导出（mongoImport/mongoExport)";
+            this.tabMongoImportExport.Text = "导入与导出（mongoImport/mongoExport)";
             this.tabMongoImportExport.UseVisualStyleBackColor = true;
             // 
             // ctlMongoImportExportPanel
