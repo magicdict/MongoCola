@@ -181,17 +181,17 @@ namespace MagicMongoDBTool
                 
                 panFilter.Controls.Clear();
                 _conditionPos = new Point(5, 20);
-                _conditionCount = 1;
+                _conditionCount = 0;
                 foreach (DataFilter.QueryConditionInputItem queryConditionItem in NewDataFilter.QueryConditionList)
                 {
                     ctlQueryCondition newCondition = new ctlQueryCondition();
                     newCondition.Init(ColumnList);
                     newCondition.Location = _conditionPos;
                     newCondition.ConditionItem = queryConditionItem;
+                    _conditionCount++;
                     newCondition.Name = "Condition" + _conditionCount.ToString();
                     panFilter.Controls.Add(newCondition);
                     _conditionPos.Y += newCondition.Height;
-                    _conditionCount++;
                     if (!ColumnList.Contains(queryConditionItem.ColName))
                     {
                         strErrMsg += queryConditionItem.ColName + "条件查询字段已经在当前数据集中不存在了" + "\r\n";

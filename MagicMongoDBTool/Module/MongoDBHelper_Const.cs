@@ -1,4 +1,5 @@
 ﻿
+using System;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -101,5 +102,13 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public const string COLLECTION_NAME_JAVASCRIPT = "system.js";
         #endregion
+
+
+            public const String EndMark_AND = " AND ";
+            public const String EndMark_OR = " OR ";
+            public const String EndMark_AND_T = ") AND ";
+            public const String EndMark_OR_T = ") OR ";
+            public const String EndMark_T = ")";
+
     }
 }

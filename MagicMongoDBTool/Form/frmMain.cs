@@ -25,6 +25,15 @@ namespace MagicMongoDBTool
             InitToolBar();
             //设定工具栏
             SetToolBarEnabled();
+
+            if (true)
+            {
+                //测试用自动连接
+                List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
+                connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList["Master"]);
+                MongoDBHelper.AddServer(connLst);
+                RefreshToolStripMenuItem_Click(null, null);
+            }
         }
         /// <summary>
         /// 设置文字
@@ -132,7 +141,6 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.QueryDataToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.RunSqlToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
                         }
@@ -249,6 +257,10 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.evalJSToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
+
+                            this.contextMenuStripMain.Items.Add(this.RunSqlToolStripMenuItem.Clone());
+
+
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
                         }
@@ -276,7 +288,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.DumpCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ExportCollectionToolStripMenuItem.Clone());
-                            
+
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
                         }
@@ -349,7 +361,9 @@ namespace MagicMongoDBTool
             this.PrePageToolStripButton.Enabled = false;
             this.QueryDataToolStripMenuItem.Enabled = false;
             this.QueryDataToolStripButton.Enabled = false;
-            this.RunSqlToolStripMenuItem.Enabled = false;
+
+            //this.RunSqlToolStripMenuItem.Enabled = false;
+            this.RunSqlToolStripMenuItem.Enabled = true;
 
             this.ExpandAllDataToolStripMenuItem.Enabled = false;
             this.CollapseAllDataToolStripMenuItem.Enabled = false;
@@ -1209,7 +1223,6 @@ namespace MagicMongoDBTool
             FirstPageToolStripMenuItem.Enabled = MongoDBHelper.HasPrePage;
             LastPageToolStripMenuItem.Enabled = MongoDBHelper.HasNextPage;
             this.QueryDataToolStripMenuItem.Enabled = true;
-            this.RunSqlToolStripMenuItem.Enabled = true;
 
             this.ExpandAllDataToolStripMenuItem.Enabled = true;
             this.CollapseAllDataToolStripMenuItem.Enabled = true;

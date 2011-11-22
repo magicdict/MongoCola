@@ -104,11 +104,11 @@ namespace MagicMongoDBTool
             cmbStartMark.SelectedIndex = 0;
 
             cmbEndMark.Items.Add(" ");
-            cmbEndMark.Items.Add(" AND ");
-            cmbEndMark.Items.Add(" OR ");
-            cmbEndMark.Items.Add(") AND ");
-            cmbEndMark.Items.Add(") OR ");
-            cmbEndMark.Items.Add(")");
+            cmbEndMark.Items.Add(MongoDBHelper.EndMark_AND);
+            cmbEndMark.Items.Add(MongoDBHelper.EndMark_OR);
+            cmbEndMark.Items.Add(MongoDBHelper.EndMark_AND_T);
+            cmbEndMark.Items.Add(MongoDBHelper.EndMark_OR_T);
+            cmbEndMark.Items.Add(MongoDBHelper.EndMark_T);
             cmbEndMark.SelectedIndex = 0;
 
             //数据类型

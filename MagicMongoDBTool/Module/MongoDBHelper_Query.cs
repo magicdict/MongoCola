@@ -92,7 +92,7 @@ namespace MagicMongoDBTool.Module
             for (int i = 0; i < conditiongrpList.Count - 1; i++)
             {
                 string joinMark = conditiongrpList[i][conditiongrpList[i].Count() - 1].EndMark;
-                if (joinMark == ") AND ")
+                if (joinMark == EndMark_AND_T)
                 {
                     if (i == 0)
                     {
@@ -104,7 +104,7 @@ namespace MagicMongoDBTool.Module
                     }
                 }
 
-                if (joinMark == ") OR ")
+                if (joinMark == EndMark_OR_T)
                 {
                     if (i == 0)
                     {
@@ -137,11 +137,11 @@ namespace MagicMongoDBTool.Module
                 else
                 {
                     //第二条到最终条，参考上一条
-                    if (conditionGroup[i - 1].EndMark == " AND ")
+                    if (conditionGroup[i - 1].EndMark == EndMark_AND)
                     {
                         andGrp.Add(conditionGroup[i]);
                     }
-                    if (conditionGroup[i - 1].EndMark == " OR ")
+                    if (conditionGroup[i - 1].EndMark == EndMark_OR)
                     {
                         orGrp.Add(conditionGroup[i]);
                     }

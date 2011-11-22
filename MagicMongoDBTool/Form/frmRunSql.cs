@@ -19,21 +19,24 @@ namespace MagicMongoDBTool
             InitializeComponent();
         }
 
-        private void contentPanel_Paint(object sender, PaintEventArgs e)
-        {
-            MongoCollection mongoCol = SystemManager.GetCurrentCollection();
-            txtSql.Text = "select * from " + mongoCol.Name;
-
-        }
-
         private void frmRunSql_Load(object sender, EventArgs e)
         {
-
+            txtSql.Text = "select * from aaa where (Code=1 or Question=\"  A \") AND ID=\" 3 \" order by Code asc,Question des Group by e";
         }
 
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            DataFilter datafilter = MongoDBHelper.ConvertFromSql(txtSql.Text);
+            DataFilter datafilter = MongoDBHelper.ConvertQuerySql(txtSql.Text);
+        }
+
+        private void cmdSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog savefile = new SaveFileDialog();
+            if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                DataFilter NewDataFilter = MongoDBHelper.ConvertQuerySql(txtSql.Text);
+                NewDataFilter.SaveFilter(savefile.FileName);
+            }
         }
     }
 }

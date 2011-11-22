@@ -114,7 +114,8 @@ namespace MagicMongoDBTool.Module
                 //语言的导入
                 mStringResource.InitLanguage(currentLan);
             }
-            else {
+            else
+            {
                 currentLan = StringResource.Language.Default;
             }
         }
