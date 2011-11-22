@@ -14,6 +14,8 @@ namespace QLFUI
 {
     public partial class QLFForm : Form
     {
+        public event SkinChangedEventHandler SkinChanged;
+        public delegate void SkinChangedEventHandler();
         #region 变量
 
         private PartBase _topLeft;
@@ -748,7 +750,7 @@ namespace QLFUI
                 TransparencyKey = IniHelper.trans;   //透明处理
                 Invalidate();
             }
-
+            SkinChanged();
         }
 
         #endregion

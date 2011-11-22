@@ -146,7 +146,7 @@ namespace MagicMongoDBTool
             // 
             // statusStripMain
             // 
-            this.statusStripMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("statusStripMain.BackgroundImage")));
+            this.statusStripMain.BackColor = System.Drawing.Color.Transparent;
             this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusSelectedObj});
             this.statusStripMain.Location = new System.Drawing.Point(0, 548);
@@ -156,14 +156,13 @@ namespace MagicMongoDBTool
             // 
             // toolStripStatusSelectedObj
             // 
-            this.toolStripStatusSelectedObj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(130)))));
+            this.toolStripStatusSelectedObj.BackColor = System.Drawing.Color.Transparent;
             this.toolStripStatusSelectedObj.Name = "toolStripStatusSelectedObj";
             this.toolStripStatusSelectedObj.Size = new System.Drawing.Size(31, 17);
             this.toolStripStatusSelectedObj.Text = "就绪";
             // 
             // toolStripMain
             // 
-            this.toolStripMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStripMain.BackgroundImage")));
             this.toolStripMain.Location = new System.Drawing.Point(0, 24);
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(915, 25);
@@ -172,7 +171,6 @@ namespace MagicMongoDBTool
             // 
             // menuStripMain
             // 
-            this.menuStripMain.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("menuStripMain.BackgroundImage")));
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ManagerToolStripMenuItem,
             this.DataNaviToolStripMenuItem,
@@ -765,7 +763,6 @@ namespace MagicMongoDBTool
             // 
             // splitContainer1
             // 
-            this.splitContainer1.BackColor = System.Drawing.Color.YellowGreen;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 49);
             this.splitContainer1.Name = "splitContainer1";
