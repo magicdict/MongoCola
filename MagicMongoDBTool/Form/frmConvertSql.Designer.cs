@@ -1,6 +1,6 @@
 ﻿namespace MagicMongoDBTool
 {
-    partial class frmRunSql
+    partial class frmConvertSql
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRunSql));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConvertSql));
             this.txtSql = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.VistaButton();
             this.cmdSave = new System.Windows.Forms.VistaButton();
@@ -46,7 +46,7 @@
             // 
             // txtSql
             // 
-            this.txtSql.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSql.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSql.Location = new System.Drawing.Point(20, 19);
             this.txtSql.Multiline = true;
             this.txtSql.Name = "txtSql";
@@ -56,30 +56,30 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(324, 223);
+            this.cmdOK.Location = new System.Drawing.Point(269, 223);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 6;
-            this.cmdOK.Text = "确定";
+            this.cmdOK.Text = "取消";
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // cmdSave
             // 
             this.cmdSave.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSave.Location = new System.Drawing.Point(192, 223);
+            this.cmdSave.Location = new System.Drawing.Point(102, 223);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(100, 32);
             this.cmdSave.TabIndex = 7;
             this.cmdSave.Text = "保存";
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
-            // frmRunSql
+            // frmConvertSql
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(488, 331);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "frmRunSql";
+            this.Name = "frmConvertSql";
             this.ShowSelectSkinButton = false;
             this.Text = "frmRunSql";
             this.Load += new System.EventHandler(this.frmRunSql_Load);

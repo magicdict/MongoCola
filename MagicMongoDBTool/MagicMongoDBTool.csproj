@@ -81,11 +81,11 @@
     <Compile Include="Form\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmRunSql.cs">
+    <Compile Include="Form\frmConvertSql.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmRunSql.Designer.cs">
-      <DependentUpon>frmRunSql.cs</DependentUpon>
+    <Compile Include="Form\frmConvertSql.Designer.cs">
+      <DependentUpon>frmConvertSql.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\MongoDBHelper_Sql.cs" />
     <Compile Include="UserController\ctlAddBsonEl.cs">
@@ -238,8 +238,8 @@
     <EmbeddedResource Include="Form\frmevalJS.resx">
       <DependentUpon>frmevalJS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmRunSql.resx">
-      <DependentUpon>frmRunSql.cs</DependentUpon>
+    <EmbeddedResource Include="Form\frmConvertSql.resx">
+      <DependentUpon>frmConvertSql.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>

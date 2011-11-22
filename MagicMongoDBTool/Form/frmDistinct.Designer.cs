@@ -32,12 +32,14 @@
             this.panColumn = new System.Windows.Forms.Panel();
             this.cmdOK = new System.Windows.Forms.VistaButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.cmdQuery = new System.Windows.Forms.VistaButton();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // contentPanel
             // 
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
+            this.contentPanel.Controls.Add(this.cmdQuery);
             this.contentPanel.Controls.Add(this.label1);
             this.contentPanel.Controls.Add(this.cmdOK);
             this.contentPanel.Controls.Add(this.panColumn);
@@ -55,7 +57,7 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(98, 349);
+            this.cmdOK.Location = new System.Drawing.Point(168, 349);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 0;
@@ -71,6 +73,16 @@
             this.label1.Size = new System.Drawing.Size(102, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "请选择Distinct字段";
+            // 
+            // cmdQuery
+            // 
+            this.cmdQuery.BackColor = System.Drawing.Color.Transparent;
+            this.cmdQuery.Location = new System.Drawing.Point(62, 349);
+            this.cmdQuery.Name = "cmdQuery";
+            this.cmdQuery.Size = new System.Drawing.Size(100, 32);
+            this.cmdQuery.TabIndex = 6;
+            this.cmdQuery.Text = "载入查询条件";
+            this.cmdQuery.Click += new System.EventHandler(this.cmdQuery_Click);
             // 
             // frmDistinct
             // 
@@ -93,5 +105,6 @@
         private System.Windows.Forms.VistaButton cmdOK;
         private System.Windows.Forms.Panel panColumn;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.VistaButton cmdQuery;
     }
 }

@@ -14,6 +14,10 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Distinct条件
+        /// </summary>
+        public List<DataFilter.QueryConditionInputItem> DistinctConditionList = new List<DataFilter.QueryConditionInputItem>();
         private void frmSelectKey_Load(object sender, EventArgs e)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
@@ -52,23 +56,12 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Distinct", "请选择字段");
                 return;
             }
+            var ResultLst = SystemManager.GetCurrentCollection().Distinct(strKey, MongoDBHelper.GetQuery(DistinctConditionList));
             List<BsonValue> result = new List<BsonValue>();
-            if (SystemManager.CurrDataFilter.QueryConditionList.Count == 0)
+            foreach (BsonValue item in ResultLst)
             {
-                foreach (BsonValue item in SystemManager.GetCurrentCollection().Distinct(strKey))
-                {
-                    result.Add(item);
-                }
+                result.Add(item);
             }
-            else
-            {
-                MongoDB.Driver.IMongoQuery mQuery = MongoDBHelper.GetQuery(SystemManager.CurrDataFilter.QueryConditionList);
-                foreach (BsonValue item in SystemManager.GetCurrentCollection().Distinct(strKey, mQuery))
-                {
-                    result.Add(item);
-                }
-            }
-
             String strResult = String.Empty;
 
             //防止错误的条件造成的海量数据
@@ -85,6 +78,16 @@ namespace MagicMongoDBTool
             }
             MyMessageBox.ShowMessage("Distinct", "Distinct:" + strKey, strResult, true);
 
+        }
+
+        private void cmdQuery_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
+                DistinctConditionList = NewDataFilter.QueryConditionList;
+            }
         }
     }
 }

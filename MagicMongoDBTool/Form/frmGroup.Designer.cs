@@ -51,6 +51,7 @@
             this.tabGroupField = new System.Windows.Forms.TabPage();
             this.tabInitialize = new System.Windows.Forms.TabPage();
             this.tabResult = new System.Windows.Forms.TabPage();
+            this.cmdQuery = new System.Windows.Forms.VistaButton();
             this.contentPanel.SuspendLayout();
             this.tabGroup.SuspendLayout();
             this.tabReduce.SuspendLayout();
@@ -65,6 +66,7 @@
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
             this.contentPanel.Controls.Add(this.tabGroup);
             this.contentPanel.Controls.Add(this.cmdOK);
+            this.contentPanel.Controls.Add(this.cmdQuery);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
             this.contentPanel.Size = new System.Drawing.Size(509, 559);
             // 
@@ -296,6 +298,16 @@
             this.tabResult.Text = "执行结果";
             this.tabResult.UseVisualStyleBackColor = true;
             // 
+            // cmdQuery
+            // 
+            this.cmdQuery.BackColor = System.Drawing.Color.Transparent;
+            this.cmdQuery.Location = new System.Drawing.Point(263, 521);
+            this.cmdQuery.Name = "cmdQuery";
+            this.cmdQuery.Size = new System.Drawing.Size(100, 32);
+            this.cmdQuery.TabIndex = 5;
+            this.cmdQuery.Text = "载入查询条件";
+            this.cmdQuery.Click += new System.EventHandler(this.cmdQuery_Click);
+            // 
             // frmGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,5 +358,6 @@
         private System.Windows.Forms.TabPage tabGroupField;
         private System.Windows.Forms.TabPage tabInitialize;
         private System.Windows.Forms.TabPage tabResult;
+        private System.Windows.Forms.VistaButton cmdQuery;
     }
 }

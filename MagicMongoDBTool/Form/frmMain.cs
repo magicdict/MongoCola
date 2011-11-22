@@ -26,7 +26,7 @@ namespace MagicMongoDBTool
             //设定工具栏
             SetToolBarEnabled();
 
-            if (true)
+            if (SystemManager.DEBUG_MODE)
             {
                 //测试用自动连接
                 List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
@@ -236,6 +236,7 @@ namespace MagicMongoDBTool
                             this.RemoveUserToolStripMenuItem.Enabled = true;
                             this.evalJSToolStripMenuItem.Enabled = true;
                             this.InitGFSToolStripMenuItem.Enabled = true;
+                            this.ConvertSqlToolStripMenuItem.Enabled = true;
                         }
                         //备份数据库
                         this.DumpDatabaseToolStripMenuItem.Enabled = true;
@@ -257,9 +258,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.evalJSToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
-
-                            this.contextMenuStripMain.Items.Add(this.RunSqlToolStripMenuItem.Clone());
-
+                            this.contextMenuStripMain.Items.Add(this.ConvertSqlToolStripMenuItem.Clone());
 
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
@@ -361,10 +360,9 @@ namespace MagicMongoDBTool
             this.PrePageToolStripButton.Enabled = false;
             this.QueryDataToolStripMenuItem.Enabled = false;
             this.QueryDataToolStripButton.Enabled = false;
+            this.ConvertSqlToolStripMenuItem.Enabled = false;
 
-            //this.RunSqlToolStripMenuItem.Enabled = false;
-            this.RunSqlToolStripMenuItem.Enabled = true;
-
+            
             this.ExpandAllDataToolStripMenuItem.Enabled = false;
             this.CollapseAllDataToolStripMenuItem.Enabled = false;
             this.DataFilterToolStripMenuItem.Enabled = false;
@@ -771,13 +769,13 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmevalJS());
         }
         /// <summary>
-        /// 执行RunSql
+        /// 转换Sql到Query
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RunSqlToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ConvertSqlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmRunSql());
+            SystemManager.OpenForm(new frmConvertSql());
         }
         #endregion
 

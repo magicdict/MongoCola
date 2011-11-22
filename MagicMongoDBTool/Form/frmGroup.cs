@@ -1,10 +1,10 @@
 ﻿using System;
-using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Windows.Forms;
+using MongoDB.Driver;
 using QLFUI;
 
 namespace MagicMongoDBTool
@@ -16,6 +16,10 @@ namespace MagicMongoDBTool
             InitializeComponent();
         }
         /// <summary>
+        /// Group条件
+        /// </summary>
+        public List<DataFilter.QueryConditionInputItem> GroupConditionList = new List<DataFilter.QueryConditionInputItem>();
+        /// <summary>
         /// 确认
         /// </summary>
         /// <param name="sender"></param>
@@ -23,7 +27,7 @@ namespace MagicMongoDBTool
         private void cmdOK_Click(object sender, EventArgs e)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
-            IMongoQuery query = MongoDBHelper.GetQuery(SystemManager.CurrDataFilter.QueryConditionList);
+            IMongoQuery query = MongoDBHelper.GetQuery(GroupConditionList);
             GroupByDocument groupdoc = new GroupByDocument();
             foreach (CheckBox item in panColumn.Controls)
             {
@@ -60,7 +64,8 @@ namespace MagicMongoDBTool
                     Count++;
                 };
                 MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst);
-                if (Count == 1001) {
+                if (Count == 1001)
+                {
                     this.txtResult.Text = "显示前1000条记录" + "\r\n" + this.txtResult.Text;
                 }
                 this.txtResult.Select(0, 0);
@@ -157,6 +162,20 @@ namespace MagicMongoDBTool
             newCondition.Location = _conditionPos;
             newCondition.Name = "BsonEl" + _conditionCount.ToString();
             panBsonEl.Controls.Add(newCondition);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdQuery_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog();
+            if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
+                GroupConditionList = NewDataFilter.QueryConditionList;
+            }
         }
     }
 }
