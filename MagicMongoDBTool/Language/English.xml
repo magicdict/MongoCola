@@ -137,8 +137,70 @@
 <Distinct_Action_OK>OK</Distinct_Action_OK>
 <Distinct_Label>Please select Distinct</Distinct_Label>
 
+  <!--frmDosCommand-->
+<DosCommand_Tab_Deploy>Deploy(Mongod)</DosCommand_Tab_Deploy>
+<DosCommand_Tab_Deploy_Port>Port</DosCommand_Tab_Deploy_Port>
+<DosCommand_Tab_Deploy_MasterDB>Master Database</DosCommand_Tab_Deploy_MasterDB>
+<DosCommand_Tab_Deploy_SlaveDB>Slave Database</DosCommand_Tab_Deploy_SlaveDB>
+<DosCommand_Tab_Deploy_SlaveSource>Slave Source</DosCommand_Tab_Deploy_SlaveSource>
+<DosCommand_Tab_Deploy_DBPath>Database path</DosCommand_Tab_Deploy_DBPath>
+<DosCommand_Tab_Deploy_LogPath>Log Path</DosCommand_Tab_Deploy_LogPath>
+<DosCommand_Tab_Deploy_Log>Log</DosCommand_Tab_Deploy_Log>
+<DosCommand_Tab_Deploy_AddingMode>Adding Mode(default is overwrite mode)</DosCommand_Tab_Deploy_AddingMode>
 
 
+
+<DosCommand_Tab_Backup>Backup and Restore(Mongodmp)</DosCommand_Tab_Backup>
+<DosCommand_Tab_Backup_Server>Server</DosCommand_Tab_Backup_Server>
+<DosCommand_Tab_Backup_Port>Port</DosCommand_Tab_Backup_Port>
+<DosCommand_Tab_Backup_DBName>Database Name</DosCommand_Tab_Backup_DBName>
+<DosCommand_Tab_Backup_DCName>DataCollection Name</DosCommand_Tab_Backup_DCName>
+<DosCommand_Tab_Backup_Path>Backup Path</DosCommand_Tab_Backup_Path>
+
+
+
+<DosCommand_Tab_ExIn>Import and Export(mongoImport/mongoExport)</DosCommand_Tab_ExIn>
+<DosCommand_Tab_ExIn_Server>Server</DosCommand_Tab_ExIn_Server>
+<DosCommand_Tab_ExIn_Port>Port</DosCommand_Tab_ExIn_Port>
+<DosCommand_Tab_ExIn_DBName>Database Name</DosCommand_Tab_ExIn_DBName>
+<DosCommand_Tab_ExIn_DCName>DataCollection Name</DosCommand_Tab_ExIn_DCName>
+<DosCommand_Tab_ExIn_ColumnList>Column List</DosCommand_Tab_ExIn_ColumnList>
+<DosCommand_Tab_ExIn_Workfile>Work File</DosCommand_Tab_ExIn_Workfile>
+<DosCommand_Tab_ExIn_Import>Import</DosCommand_Tab_ExIn_Import>
+<DosCommand_Tab_ExIn_Export>Export</DosCommand_Tab_ExIn_Export>
+<DosCommand_Tab_ExIn_Operation>Operation</DosCommand_Tab_ExIn_Operation>
+
+
+<DosCommand_Save>Save</DosCommand_Save>
+<DosCommand_Run>Run</DosCommand_Run>
+<DosCommand_Browse>Browse...</DosCommand_Browse>
+<DosCommand_Clean>Clean</DosCommand_Clean>
+<DosCommand_LogLevel>Log Level</DosCommand_LogLevel>
+
+  <!--frmevalJS-->
+<EvalJS_Method>Method</EvalJS_Method>
+<EvalJS_Save>Save</EvalJS_Save>
+<EvalJS_Run>Run</EvalJS_Run>
+<EvalJS_Parameter>Parameter(seperate by ',')</EvalJS_Parameter>
+  
+  <!--frmGroup-->
+<Group_Tab_Reduce>Reduce</Group_Tab_Reduce>  
+
+<Group_Tab_Finalize>Finalize</Group_Tab_Finalize>  
+
+<Group_Tab_Group>Group Column</Group_Tab_Group>  
+<Group_Tab_Group_Notes>Please select Group</Group_Tab_Group_Notes>  
+
+<Group_Tab_InitColumn>Init Column</Group_Tab_InitColumn> 
+<Group_Tab_InitColumn_Note>Please add Initalize column</Group_Tab_InitColumn_Note> 
+ 
+<Group_Tab_Result>Result</Group_Tab_Result> 
+
+<Group_Save>Save</Group_Save> 
+<Group_Add>Add</Group_Add> 
+<Group_LoadQuery>Load Query</Group_LoadQuery> 
+<Group_OK>OK</Group_OK> 
+ 
 
 
 
