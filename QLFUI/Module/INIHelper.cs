@@ -35,7 +35,8 @@ namespace QLFUI
         /// </summary>
         public static void Init()
         {
-            if (IsInited) {
+            if (IsInited)
+            {
                 return;
             }
             IsInited = true;
@@ -70,9 +71,9 @@ namespace QLFUI
             ImageDic.Add("SelectSkinNormal", new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.SelectSkinNormal.bmp"))));
             ImageDic.Add("SelectSkinMove", new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.SelectSkinMove.bmp"))));
             ImageDic.Add("SelectSkinDown", new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.SelectSkinDown.bmp"))));
-            
-           
-            
+
+
+
             _trans = Color.FromArgb(255, 0, 255);
         }
 
@@ -93,9 +94,9 @@ namespace QLFUI
             ImageDic.Add("_bottomMiddle", Image.FromFile(skinFolder + "\\BottomMiddle.bmp") as Bitmap);
             ImageDic.Add("_bottomRight", Image.FromFile(skinFolder + "\\BottomRight.bmp") as Bitmap);
 
-            ImageDic.Add("MinNormal",Image.FromFile(skinFolder + "\\MinNormal.bmp") as Bitmap);
-            ImageDic.Add("MinMove",Image.FromFile(skinFolder + "\\MinMove.bmp") as Bitmap);
-            ImageDic.Add("MinDown",Image.FromFile(skinFolder + "\\MinDown.bmp") as Bitmap);
+            ImageDic.Add("MinNormal", Image.FromFile(skinFolder + "\\MinNormal.bmp") as Bitmap);
+            ImageDic.Add("MinMove", Image.FromFile(skinFolder + "\\MinMove.bmp") as Bitmap);
+            ImageDic.Add("MinDown", Image.FromFile(skinFolder + "\\MinDown.bmp") as Bitmap);
 
             ImageDic.Add("MaxNormal", Image.FromFile(skinFolder + "\\MaxNormal.bmp") as Bitmap);
             ImageDic.Add("MaxMove", Image.FromFile(skinFolder + "\\MaxMove.bmp") as Bitmap);
@@ -114,13 +115,26 @@ namespace QLFUI
             int g = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "TransparentColorG"));
             int b = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "TransparentColorB"));
             _trans = Color.FromArgb(r, g, b);
-
+            r = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "BackColorR"));
+            g = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "BackColorG"));
+            b = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "BackColorB"));
+            _backcolor = Color.FromArgb(r, g, b);
         }
 
-        static Color _trans; 
-        public static Color trans {
-            get {
+        static Color _trans;
+        public static Color trans
+        {
+            get
+            {
                 return _trans;
+            }
+        }
+        static Color _backcolor = Color.FromArgb(200, 230, 130);
+        public static Color BackColor
+        {
+            get
+            {
+                return _backcolor;
             }
         }
 

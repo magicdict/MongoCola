@@ -26,6 +26,18 @@ namespace MagicMongoDBTool
             //设定工具栏
             SetToolBarEnabled();
 
+            this.menuStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
+            this.toolStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
+            this.statusStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
+            this.splitContainer1.BackColor = QLFUI.IniHelper.BackColor;
+            this.SkinChanged += new SkinChangedEventHandler(() =>
+            {
+                this.menuStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
+                this.toolStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
+                this.statusStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
+                this.splitContainer1.BackColor = System.Drawing.Color.GreenYellow;
+                this.splitContainer1.BackColor = QLFUI.IniHelper.BackColor;
+            });
             if (SystemManager.DEBUG_MODE)
             {
                 //测试用自动连接
