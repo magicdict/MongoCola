@@ -167,6 +167,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public GUIResource.StringResource.Language currentLanguage = GUIResource.StringResource.Language.English;
         /// <summary>
+        /// 皮肤目录
+        /// </summary>
+        public String SkipFolder = "";
+        /// <summary>
         /// 配置文件名称
         /// </summary>
         private static string _configFilename = "config.xml";

@@ -115,10 +115,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 295);
             this.Location = new System.Drawing.Point(0, 0);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmConnect";
-            this.ShowSelectSkinButton = false;
             this.Text = "数据库连接";
             this.Load += new System.EventHandler(this.frmConnect_Load);
             this.contentPanel.ResumeLayout(false);

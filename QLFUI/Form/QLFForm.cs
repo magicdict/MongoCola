@@ -31,7 +31,7 @@ namespace QLFUI
         private string _skinFolder;   //使用的皮肤目录路径
         private Point _titlePoint = new Point(6, 8);
         private bool _canMove = true;
-        private bool _showSelectSkinButton = true;
+        private bool _showSelectSkinButton = false;
 
         //窗体的最大化，最小化状态
         FormState _formState = FormState.Normal;
@@ -69,7 +69,8 @@ namespace QLFUI
                         if (ReadIniFile(value))
                         {
                             CaculatePartLocation();
-                            ReadBitmap(value);
+                            IniHelper.ChangeSkin(value);
+                            SetImages();
                             Validate();
                         }
                     }
@@ -118,7 +119,7 @@ namespace QLFUI
             }
         }
 
-        [Browsable(true), Description("是否允许调整窗体大小"), Category("QLFUI"),DefaultValue(false)]
+        [Browsable(true), Description("是否允许调整窗体大小"), Category("QLFUI"), DefaultValue(false)]
         public bool SizeAble
         {
             get;
@@ -153,6 +154,10 @@ namespace QLFUI
                 ControlStyles.OptimizedDoubleBuffer |
                 ControlStyles.ResizeRedraw |
                 ControlStyles.AllPaintingInWmPaint, true);
+            //皮肤初始化
+            IniHelper.Init();
+
+
 
             InitializeComponent();
 
@@ -186,9 +191,9 @@ namespace QLFUI
             //初始化这里的时候skinfolder没有初始化，总为null。
             //所以这里直接初始化默认皮肤。在后面初始化的skinfolder
             //的时候会自动重新初始化皮肤
+
             InitDefaultSkin();
-            //  ShowIcon = false;
-            ShowSelectSkinButton = false;
+            
             foreach (Control item in this.Controls)
             {
                 ColorfulControl(item);
@@ -213,7 +218,6 @@ namespace QLFUI
                     break;
                 case "System.Windows.Forms.TrackBar":
                     TrackBar trackbar = (TrackBar)item;
-                    //trackbar.BackColor = this.BackColor;
                     break;
                 case "System.Windows.Forms.TextBox":
                     TextBox textbox = (TextBox)item;
@@ -229,23 +233,8 @@ namespace QLFUI
                     break;
                 case "System.Windows.Forms.MenuStrip":
                     //使用了ToolStripRenderer来美化
-                    //MenuStrip menustrip = (MenuStrip)item;
-                    //foreach (ToolStripMenuItem meunitem in menustrip.Items)
-                    //{
-                    //    meunitem.BackgroundImage = _topMiddle.BackgroundBitmap;
-                    //    meunitem.ImageScaling = ToolStripItemImageScaling.SizeToFit;
-                    //    foreach (ToolStripMenuItem Submeunitem in meunitem.DropDownItems)
-                    //    {
-                    //        Submeunitem.BackgroundImage = _topMiddle.BackgroundBitmap;
-                    //        foreach (ToolStripMenuItem DeepSubmeunitem in Submeunitem.DropDownItems)
-                    //        {
-                    //            DeepSubmeunitem.BackgroundImage = _topMiddle.BackgroundBitmap;
-                    //        }
-                    //    }
-                    //}
                     break;
                 default:
-                    //item.BackColor = this.BackColor;
                     foreach (Control ctl in item.Controls)
                     {
                         ColorfulControl(ctl);
@@ -255,9 +244,7 @@ namespace QLFUI
         }
         protected override void OnPaint(PaintEventArgs e)
         {
-            CaculatePartLocation();
             DrawBackground(e.Graphics);
-
             base.OnPaint(e);
         }
 
@@ -288,7 +275,7 @@ namespace QLFUI
         protected virtual void selectSkinButton_Click(object sender, EventArgs e)
         {
             List<String> skinNames = GetAllSkinName();
-
+            skinContextMenu.Renderer = new CRD.WinUI.Misc.ToolStripRenderer(new ProfessionalColorTable());
             skinContextMenu.Items.Clear();
             for (int i = 0; i < skinNames.Count; i++)
             {
@@ -430,87 +417,79 @@ namespace QLFUI
         private void InitDefaultSkin()
         {
             #region 设置位置
+            if (IniHelper.skinName != String.Empty)
+            {
+                ReadIniFile(Application.StartupPath + @"\Skin\" + IniHelper.skinName);
+            }
+            else
+            {
+                //顶部
+                _topLeft.Height = _topMiddle.Height = _topRight.Height = 38;
+                _topLeft.Width = 1;
+                _topRight.Width = 3;
 
-            //顶部
-            _topLeft.Height = _topMiddle.Height = _topRight.Height = 38;
-            _topLeft.Width = 1;
-            _topRight.Width = 3;
+                //底部
+                _bottomLeft.Height = _bottomMiddle.Height = _bottomRight.Height = 25;
+                _bottomRight.Width = 1;
 
-            //底部
-            _bottomLeft.Height = _bottomMiddle.Height = _bottomRight.Height = 25;
-            _bottomRight.Width = 1;
-
-            //中部
-            _centerLeft.Width = 1;
-            _centerRight.Width = 1;
-
-
-            minButton.Width = 27;
-            minButton.Height = 18;
-            minButton.XOffset = 71;
-            minButton.Top = 0;
-
-            maxButton.Width = 27;
-            maxButton.Height = 18;
-            maxButton.XOffset = 45;
-            maxButton.Top = 0;
+                //中部
+                _centerLeft.Width = 1;
+                _centerRight.Width = 1;
 
 
-            closeButton.Width = 45;
-            closeButton.Height = 18;
-            closeButton.XOffset = 4;
-            closeButton.Top = 0;
+                minButton.Width = 27;
+                minButton.Height = 18;
+                minButton.XOffset = 71;
+                minButton.Top = 0;
 
-            selectSkinButton.Width = 16;
-            selectSkinButton.Height = 16;
-            selectSkinButton.XOffset = 106;
-            selectSkinButton.Top = 1;
+                maxButton.Width = 27;
+                maxButton.Height = 18;
+                maxButton.XOffset = 45;
+                maxButton.Top = 0;
 
+
+                closeButton.Width = 45;
+                closeButton.Height = 18;
+                closeButton.XOffset = 4;
+                closeButton.Top = 0;
+
+                selectSkinButton.Width = 16;
+                selectSkinButton.Height = 16;
+                selectSkinButton.XOffset = 106;
+                selectSkinButton.Top = 1;
+            }
             #endregion
 
             CaculatePartLocation();
+            //读取图片
+            SetImages();
+        }
 
+        private void SetImages() {
             #region 读取图片
 
-            _topLeft.BackgroundBitmap = new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.TopLeft.bmp")));
-            _topMiddle.BackgroundBitmap = new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.TopMiddle.bmp")));
-            _topRight.BackgroundBitmap = new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.TopRight.bmp")));
+            _topLeft.BackgroundBitmap = IniHelper.getImage("_topLeft");
+            _topMiddle.BackgroundBitmap = IniHelper.getImage("_topMiddle");
+            _topRight.BackgroundBitmap = IniHelper.getImage("_topRight");
 
-            _centerLeft.BackgroundBitmap = new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.MiddleLeft.bmp")));
-            _centerMiddle.BackgroundBitmap = new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.Middle.bmp")));
-            _centerRight.BackgroundBitmap = new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.MiddleRight.bmp")));
+            _centerLeft.BackgroundBitmap = IniHelper.getImage("_centerLeft");
+            _centerMiddle.BackgroundBitmap = IniHelper.getImage("_centerMiddle");
+            _centerRight.BackgroundBitmap = IniHelper.getImage("_centerRight");
 
 
-            _bottomLeft.BackgroundBitmap = new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.BottomLeft.bmp")));
-            _bottomMiddle.BackgroundBitmap = new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.BottomMiddle.bmp")));
-            _bottomRight.BackgroundBitmap = new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.BottomRight.bmp")));
+            _bottomLeft.BackgroundBitmap = IniHelper.getImage("_bottomLeft");
+            _bottomMiddle.BackgroundBitmap = IniHelper.getImage("_bottomMiddle");
+            _bottomRight.BackgroundBitmap = IniHelper.getImage("_bottomRight");
 
-            minButton.ReadButtonImage(
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.MinNormal.bmp"))),
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.MinMove.bmp"))),
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.MinDown.bmp")))
-                );
-
-            maxButton.ReadButtonImage(
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.MaxNormal.bmp"))),
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.MaxMove.bmp"))),
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.MaxDown.bmp")))
-                );
-            closeButton.ReadButtonImage(
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.CloseNormal.bmp"))),
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.CloseMove.bmp"))),
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.CloseDown.bmp")))
-                );
-            selectSkinButton.ReadButtonImage(
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.SelectSkinNormal.bmp"))),
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.SelectSkinMove.bmp"))),
-                new Bitmap(Image.FromStream(Assembly.GetExecutingAssembly().GetManifestResourceStream(@"QLFUI.Resources.SelectSkinDown.bmp")))
-                );
+            minButton.ReadButtonImage(IniHelper.getImage("MinNormal"), IniHelper.getImage("MinMove"), IniHelper.getImage("MinDown"));
+            maxButton.ReadButtonImage(IniHelper.getImage("MaxNormal"), IniHelper.getImage("MaxMove"), IniHelper.getImage("MaxDown"));
+            closeButton.ReadButtonImage(IniHelper.getImage("CloseNormal"), IniHelper.getImage("CloseMove"), IniHelper.getImage("CloseDown"));
+            selectSkinButton.ReadButtonImage(IniHelper.getImage("SelectSkinNormal"), IniHelper.getImage("SelectSkinMove"), IniHelper.getImage("SelectSkinDown"));
 
 
             #endregion
-        }
 
+        }
         private bool ReadIniFile(string skinFolder)
         {
             try
@@ -562,34 +541,12 @@ namespace QLFUI
             }
         }
 
-        private void ReadBitmap(string skinFolder)
+        void QLFForm_Resize(object sender, System.EventArgs e)
         {
-            //读取需要透明的颜色值
-            int r = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "TransparentColorR"));
-            int g = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "TransparentColorG"));
-            int b = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "TransparentColorB"));
-            Color trans = Color.FromArgb(r, g, b);
-
-
-            TransparencyKey = trans;   //透明处理
-
-            _topLeft.BackgroundBitmap = Image.FromFile(skinFolder + "\\TopLeft.bmp") as Bitmap;
-            _topMiddle.BackgroundBitmap = Image.FromFile(skinFolder + "\\TopMiddle.bmp") as Bitmap;
-            _topRight.BackgroundBitmap = Image.FromFile(skinFolder + "\\TopRight.bmp") as Bitmap;
-
-            _centerLeft.BackgroundBitmap = Image.FromFile(skinFolder + "\\MiddleLeft.bmp") as Bitmap;
-            _centerMiddle.BackgroundBitmap = Image.FromFile(skinFolder + "\\Middle.bmp") as Bitmap;
-            _centerRight.BackgroundBitmap = Image.FromFile(skinFolder + "\\MiddleRight.bmp") as Bitmap;
-
-
-            _bottomLeft.BackgroundBitmap = Image.FromFile(skinFolder + "\\BottomLeft.bmp") as Bitmap;
-            _bottomMiddle.BackgroundBitmap = Image.FromFile(skinFolder + "\\BottomMiddle.bmp") as Bitmap;
-            _bottomRight.BackgroundBitmap = Image.FromFile(skinFolder + "\\BottomRight.bmp") as Bitmap;
-
-            minButton.ReadButtonImage(skinFolder + "\\MinNormal.bmp", skinFolder + "\\MinMove.bmp", skinFolder + "\\MinDown.bmp");
-            maxButton.ReadButtonImage(skinFolder + "\\MaxNormal.bmp", skinFolder + "\\MaxMove.bmp", skinFolder + "\\MaxDown.bmp");
-            closeButton.ReadButtonImage(skinFolder + "\\CloseNormal.bmp", skinFolder + "\\CloseMove.bmp", skinFolder + "\\CloseDown.bmp");
-            selectSkinButton.ReadButtonImage(skinFolder + "\\SelectSkinNormal.bmp", skinFolder + "\\SelectSkinMove.bmp", skinFolder + "\\SelectSkinDown.bmp");
+            if (_topLeft != null)
+            {
+                CaculatePartLocation();
+            }
         }
 
         private void CaculatePartLocation()
@@ -777,7 +734,7 @@ namespace QLFUI
         {
             //读取配置文件
             _skinFolder = Application.StartupPath + @"\Skin\" + skinName;
-
+            IniHelper.skinName = skinName;
             if (ReadIniFile(_skinFolder))  //成功读取皮肤配置文件
             {
                 if (_formState == FormState.Max)
@@ -785,7 +742,10 @@ namespace QLFUI
                     NormalWindow();  //窗体恢复正常
                 }
                 CaculatePartLocation();
-                ReadBitmap(_skinFolder);
+
+                IniHelper.ChangeSkin(_skinFolder);
+                SetImages();
+                TransparencyKey = IniHelper.trans;   //透明处理
                 Invalidate();
             }
 

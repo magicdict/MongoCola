@@ -130,11 +130,14 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QLFForm";
             this.Load += new System.EventHandler(this.QLFForm_Load);
+            this.Resize += new System.EventHandler(QLFForm_Resize);
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.QLFForm_MouseDoubleClick);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.QLFForm_MouseMove);
             this.ResumeLayout(false);
 
         }
+
+
 
         #endregion
 
