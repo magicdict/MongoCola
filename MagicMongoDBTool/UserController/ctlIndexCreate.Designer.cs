@@ -38,7 +38,7 @@
             // 
             this.radAscendingKey.AutoSize = true;
             this.radAscendingKey.Checked = true;
-            this.radAscendingKey.Location = new System.Drawing.Point(301, 3);
+            this.radAscendingKey.Location = new System.Drawing.Point(301, 4);
             this.radAscendingKey.Name = "radAscendingKey";
             this.radAscendingKey.Size = new System.Drawing.Size(49, 17);
             this.radAscendingKey.TabIndex = 1;
@@ -49,7 +49,7 @@
             // radDescendingKey
             // 
             this.radDescendingKey.AutoSize = true;
-            this.radDescendingKey.Location = new System.Drawing.Point(356, 3);
+            this.radDescendingKey.Location = new System.Drawing.Point(356, 4);
             this.radDescendingKey.Name = "radDescendingKey";
             this.radDescendingKey.Size = new System.Drawing.Size(49, 17);
             this.radDescendingKey.TabIndex = 2;
@@ -59,7 +59,7 @@
             // lblKeyName
             // 
             this.lblKeyName.AutoSize = true;
-            this.lblKeyName.Location = new System.Drawing.Point(8, 5);
+            this.lblKeyName.Location = new System.Drawing.Point(8, 6);
             this.lblKeyName.Name = "lblKeyName";
             this.lblKeyName.Size = new System.Drawing.Size(55, 13);
             this.lblKeyName.TabIndex = 3;
@@ -72,7 +72,7 @@
             this.txtKeyName.BackColor = System.Drawing.Color.Transparent;
             this.txtKeyName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtKeyName.ForeImage = null;
-            this.txtKeyName.Location = new System.Drawing.Point(69, 1);
+            this.txtKeyName.Location = new System.Drawing.Point(69, -1);
             this.txtKeyName.Multiline = false;
             this.txtKeyName.Name = "txtKeyName";
             this.txtKeyName.Radius = 3;
@@ -93,7 +93,7 @@
             this.Controls.Add(this.radDescendingKey);
             this.Controls.Add(this.radAscendingKey);
             this.Name = "ctlIndexCreate";
-            this.Size = new System.Drawing.Size(412, 32);
+            this.Size = new System.Drawing.Size(412, 30);
             this.ResumeLayout(false);
             this.PerformLayout();
 

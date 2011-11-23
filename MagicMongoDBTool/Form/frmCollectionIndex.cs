@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using GUIResource;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
+
 namespace MagicMongoDBTool
 {
     public partial class frmCollectionIndex : QLFUI.QLFForm
@@ -25,18 +27,52 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void frmCollectionIndex_Load(object sender, EventArgs e)
         {
+            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            {
+                this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Title);
+                tabCurrentIndex.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current);
+                cmdDelIndex.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current_Del);
+                tabIndexManager.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Manager);
+                cmdAddIndex.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Manager_ADD);
+
+                chkDroppedDups.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel);
+                chkIsBackground.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Background);
+                chkIsSparse.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse);
+                chkIsUnique.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify);
+
+                lblIndexName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_TabMangt_IndexName);
+                txtIndexName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_TabMangt_IndexName_Description);
+
+
+                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name));
+                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Version));
+                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Keys));
+                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_NameSpace));
+
+                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Background));
+                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse));
+                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify));
+                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel));
+
+            }
+            else
+            {
+
+                lstIndex.Columns.Add("名称");
+                lstIndex.Columns.Add("版本");
+                lstIndex.Columns.Add("索引键");
+                lstIndex.Columns.Add("名字空间");
+                lstIndex.Columns.Add("背景索引");
+                lstIndex.Columns.Add("稀疏索引");
+                lstIndex.Columns.Add("唯一索引");
+                lstIndex.Columns.Add("删除重复索引");
+
+            }
+
             this.tabIndexMgr.SelectedIndexChanged += new EventHandler(
                 //初始的时候，原因不明的问题造成界面的背景色不正确，所以强制刷新背景色
                 (x, y) => { tabIndexMgr.SelectedTab.Invalidate(); }
               );
-            lstIndex.Columns.Add("名称");
-            lstIndex.Columns.Add("版本");
-            lstIndex.Columns.Add("索引键");
-            lstIndex.Columns.Add("名字空间");
-            lstIndex.Columns.Add("背景索引");
-            lstIndex.Columns.Add("稀疏索引");
-            lstIndex.Columns.Add("唯一索引");
-            lstIndex.Columns.Add("删除重复索引");
             RefreshList();
         }
         /// <summary>

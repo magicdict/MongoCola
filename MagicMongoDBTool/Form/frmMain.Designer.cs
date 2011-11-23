@@ -81,13 +81,13 @@ namespace MagicMongoDBTool
             this.RemoveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
             this.evalJSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DataCollectionOprToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DataCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RenameCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IndexManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReIndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
-            this.DelRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DelSelectRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GridFsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UploadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DownloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -395,7 +395,7 @@ namespace MagicMongoDBTool
             this.OperationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ServerToolStripMenuItem,
             this.DataBaseToolStripMenuItem,
-            this.DataCollectionOprToolStripMenuItem,
+            this.DataCollectionToolStripMenuItem,
             this.GridFsToolStripMenuItem,
             this.DumpAndRestoreToolStripMenuItem});
             this.OperationToolStripMenuItem.Name = "OperationToolStripMenuItem";
@@ -440,7 +440,7 @@ namespace MagicMongoDBTool
             this.RemoveUserFromAdminToolStripMenuItem.Name = "RemoveUserFromAdminToolStripMenuItem";
             this.RemoveUserFromAdminToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.RemoveUserFromAdminToolStripMenuItem.Text = "从Admin删除用户";
-            this.RemoveUserFromAdminToolStripMenuItem.Click += new System.EventHandler(this.DelUserFromAdminToolStripMenuItem_Click);
+            this.RemoveUserFromAdminToolStripMenuItem.Click += new System.EventHandler(this.RemoveUserFromAdminToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -522,16 +522,16 @@ namespace MagicMongoDBTool
             // 
             // DataCollectionOprToolStripMenuItem
             // 
-            this.DataCollectionOprToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DataCollectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DelMongoCollectionToolStripMenuItem,
             this.RenameCollectionToolStripMenuItem,
             this.IndexManageToolStripMenuItem,
             this.ReIndexToolStripMenuItem,
             this.toolStripMenuItem8,
-            this.DelRecordToolStripMenuItem});
-            this.DataCollectionOprToolStripMenuItem.Name = "DataCollectionOprToolStripMenuItem";
-            this.DataCollectionOprToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
-            this.DataCollectionOprToolStripMenuItem.Text = "数据集";
+            this.DelSelectRecordToolStripMenuItem});
+            this.DataCollectionToolStripMenuItem.Name = "DataCollectionOprToolStripMenuItem";
+            this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.DataCollectionToolStripMenuItem.Text = "数据集";
             // 
             // DelMongoCollectionToolStripMenuItem
             // 
@@ -568,10 +568,10 @@ namespace MagicMongoDBTool
             // 
             // DelRecordToolStripMenuItem
             // 
-            this.DelRecordToolStripMenuItem.Name = "DelRecordToolStripMenuItem";
-            this.DelRecordToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.DelRecordToolStripMenuItem.Text = "删除选中数据";
-            this.DelRecordToolStripMenuItem.Click += new System.EventHandler(this.DelRecordToolStripMenuItem_Click);
+            this.DelSelectRecordToolStripMenuItem.Name = "DelRecordToolStripMenuItem";
+            this.DelSelectRecordToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.DelSelectRecordToolStripMenuItem.Text = "删除选中数据";
+            this.DelSelectRecordToolStripMenuItem.Click += new System.EventHandler(this.DelRecordToolStripMenuItem_Click);
             // 
             // GridFsToolStripMenuItem
             // 
@@ -991,12 +991,12 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.ToolStripMenuItem DataBaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DelMongoDBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CreateMongoCollectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DataCollectionOprToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DataCollectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DelMongoCollectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem IndexManageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AddUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RemoveUserToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DelRecordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DelSelectRecordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RenameCollectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GridFsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem UploadFileToolStripMenuItem;

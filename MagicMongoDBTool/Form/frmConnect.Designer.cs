@@ -33,7 +33,7 @@
             this.cmdDelCon = new System.Windows.Forms.VistaButton();
             this.cmdAddCon = new System.Windows.Forms.VistaButton();
             this.cmdCancel = new System.Windows.Forms.VistaButton();
-            this.cmdConnect = new System.Windows.Forms.VistaButton();
+            this.cmdOK = new System.Windows.Forms.VistaButton();
             this.lstServerce = new System.Windows.Forms.ListBox();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
@@ -45,7 +45,7 @@
             this.contentPanel.Controls.Add(this.cmdDelCon);
             this.contentPanel.Controls.Add(this.cmdAddCon);
             this.contentPanel.Controls.Add(this.cmdCancel);
-            this.contentPanel.Controls.Add(this.cmdConnect);
+            this.contentPanel.Controls.Add(this.cmdOK);
             this.contentPanel.Controls.Add(this.lstServerce);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
             this.contentPanel.Size = new System.Drawing.Size(445, 232);
@@ -90,15 +90,15 @@
             this.cmdCancel.Text = "取消";
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
-            // cmdConnect
+            // cmdOK
             // 
-            this.cmdConnect.BackColor = System.Drawing.Color.Transparent;
-            this.cmdConnect.Location = new System.Drawing.Point(109, 180);
-            this.cmdConnect.Name = "cmdConnect";
-            this.cmdConnect.Size = new System.Drawing.Size(60, 31);
-            this.cmdConnect.TabIndex = 6;
-            this.cmdConnect.Text = "确定";
-            this.cmdConnect.Click += new System.EventHandler(this.cmdConnect_Click);
+            this.cmdOK.BackColor = System.Drawing.Color.Transparent;
+            this.cmdOK.Location = new System.Drawing.Point(109, 180);
+            this.cmdOK.Name = "cmdOK";
+            this.cmdOK.Size = new System.Drawing.Size(60, 31);
+            this.cmdOK.TabIndex = 6;
+            this.cmdOK.Text = "确定";
+            this.cmdOK.Click += new System.EventHandler(this.cmdConnect_Click);
             // 
             // lstServerce
             // 
@@ -129,7 +129,7 @@
         private System.Windows.Forms.VistaButton cmdDelCon;
         private System.Windows.Forms.VistaButton cmdAddCon;
         private System.Windows.Forms.VistaButton cmdCancel;
-        private System.Windows.Forms.VistaButton cmdConnect;
+        private System.Windows.Forms.VistaButton cmdOK;
         private System.Windows.Forms.ListBox lstServerce;
     }
 }

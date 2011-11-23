@@ -46,7 +46,7 @@
             this.txtUsername = new QLFUI.TextBoxEx();
             this.txtIpAddr = new QLFUI.TextBoxEx();
             this.txtPort = new QLFUI.TextBoxEx();
-            this.txtReplSet = new QLFUI.TextBoxEx();
+            this.txtReplSetName = new QLFUI.TextBoxEx();
             this.lblDataBaseName = new System.Windows.Forms.Label();
             this.txtDataBaseName = new QLFUI.TextBoxEx();
             this.lstServerce = new System.Windows.Forms.ListBox();
@@ -163,7 +163,7 @@
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
             this.cmdCancel.Location = new System.Drawing.Point(419, 401);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(75, 37);
+            this.cmdCancel.Size = new System.Drawing.Size(75, 27);
             this.cmdCancel.TabIndex = 9;
             this.cmdCancel.Text = "取消";
             // 
@@ -172,7 +172,7 @@
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
             this.cmdAdd.Location = new System.Drawing.Point(322, 401);
             this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(75, 37);
+            this.cmdAdd.Size = new System.Drawing.Size(75, 27);
             this.cmdAdd.TabIndex = 8;
             this.cmdAdd.Text = "添加";
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
@@ -181,7 +181,7 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lblPassword.Location = new System.Drawing.Point(194, 52);
+            this.lblPassword.Location = new System.Drawing.Point(193, 52);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(31, 13);
             this.lblPassword.TabIndex = 21;
@@ -221,7 +221,7 @@
             // 
             this.lblIpAddr.AutoSize = true;
             this.lblIpAddr.BackColor = System.Drawing.Color.Transparent;
-            this.lblIpAddr.Location = new System.Drawing.Point(194, 26);
+            this.lblIpAddr.Location = new System.Drawing.Point(193, 26);
             this.lblIpAddr.Name = "lblIpAddr";
             this.lblIpAddr.Size = new System.Drawing.Size(31, 13);
             this.lblIpAddr.TabIndex = 31;
@@ -317,29 +317,29 @@
             this.txtPort.WaterMark = "服务器端口号";
             this.txtPort.WaterMarkColor = System.Drawing.Color.Silver;
             // 
-            // txtReplSet
+            // txtReplSetName
             // 
-            this.txtReplSet.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtReplSet.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txtReplSet.BackColor = System.Drawing.Color.Transparent;
-            this.txtReplSet.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
-            this.txtReplSet.ForeImage = null;
-            this.txtReplSet.Location = new System.Drawing.Point(116, 19);
-            this.txtReplSet.Multiline = false;
-            this.txtReplSet.Name = "txtReplSet";
-            this.txtReplSet.Radius = 3;
-            this.txtReplSet.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
-            this.txtReplSet.Size = new System.Drawing.Size(153, 29);
-            this.txtReplSet.TabIndex = 7;
-            this.txtReplSet.UseSystemPasswordChar = false;
-            this.txtReplSet.WaterMark = "副本名称（可选项）";
-            this.txtReplSet.WaterMarkColor = System.Drawing.Color.Silver;
-            this.txtReplSet.TextChanged += new QLFUI.TextBoxEx.TextChangedHandler(this.txtReplSet_TextChanged);
+            this.txtReplSetName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txtReplSetName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txtReplSetName.BackColor = System.Drawing.Color.Transparent;
+            this.txtReplSetName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
+            this.txtReplSetName.ForeImage = null;
+            this.txtReplSetName.Location = new System.Drawing.Point(116, 19);
+            this.txtReplSetName.Multiline = false;
+            this.txtReplSetName.Name = "txtReplSetName";
+            this.txtReplSetName.Radius = 3;
+            this.txtReplSetName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
+            this.txtReplSetName.Size = new System.Drawing.Size(153, 29);
+            this.txtReplSetName.TabIndex = 7;
+            this.txtReplSetName.UseSystemPasswordChar = false;
+            this.txtReplSetName.WaterMark = "副本名称（可选项）";
+            this.txtReplSetName.WaterMarkColor = System.Drawing.Color.Silver;
+            this.txtReplSetName.TextChanged += new QLFUI.TextBoxEx.TextChangedHandler(this.txtReplSet_TextChanged);
             // 
             // lblDataBaseName
             // 
             this.lblDataBaseName.AutoSize = true;
-            this.lblDataBaseName.Location = new System.Drawing.Point(349, 55);
+            this.lblDataBaseName.Location = new System.Drawing.Point(351, 51);
             this.lblDataBaseName.Name = "lblDataBaseName";
             this.lblDataBaseName.Size = new System.Drawing.Size(67, 13);
             this.lblDataBaseName.TabIndex = 32;
@@ -395,11 +395,11 @@
             // grpReplset
             // 
             this.grpReplset.BackColor = System.Drawing.Color.Transparent;
+            this.grpReplset.Controls.Add(this.lstServerce);
             this.grpReplset.Controls.Add(this.cmdInitReplset);
-            this.grpReplset.Controls.Add(this.txtReplSet);
+            this.grpReplset.Controls.Add(this.txtReplSetName);
             this.grpReplset.Controls.Add(this.lblReplsetName);
             this.grpReplset.Controls.Add(this.lblReplsetList);
-            this.grpReplset.Controls.Add(this.lstServerce);
             this.grpReplset.Location = new System.Drawing.Point(20, 205);
             this.grpReplset.Name = "grpReplset";
             this.grpReplset.Size = new System.Drawing.Size(500, 162);
@@ -447,9 +447,9 @@
             this.lblMainReplsetName.AutoSize = true;
             this.lblMainReplsetName.Location = new System.Drawing.Point(19, 77);
             this.lblMainReplsetName.Name = "lblMainReplsetName";
-            this.lblMainReplsetName.Size = new System.Drawing.Size(67, 13);
+            this.lblMainReplsetName.Size = new System.Drawing.Size(55, 13);
             this.lblMainReplsetName.TabIndex = 40;
-            this.lblMainReplsetName.Text = "主副本名称";
+            this.lblMainReplsetName.Text = "副本名称";
             // 
             // txtMainReplsetName
             // 
@@ -466,7 +466,7 @@
             this.txtMainReplsetName.Size = new System.Drawing.Size(105, 29);
             this.txtMainReplsetName.TabIndex = 41;
             this.txtMainReplsetName.UseSystemPasswordChar = false;
-            this.txtMainReplsetName.WaterMark = "主副本名称(可选项)";
+            this.txtMainReplsetName.WaterMark = "副本名称(可选项)";
             this.txtMainReplsetName.WaterMarkColor = System.Drawing.Color.Silver;
             // 
             // lblAttention
@@ -505,7 +505,7 @@
             // lblTimeOut
             // 
             this.lblTimeOut.AutoSize = true;
-            this.lblTimeOut.Location = new System.Drawing.Point(351, 77);
+            this.lblTimeOut.Location = new System.Drawing.Point(351, 76);
             this.lblTimeOut.Name = "lblTimeOut";
             this.lblTimeOut.Size = new System.Drawing.Size(55, 13);
             this.lblTimeOut.TabIndex = 45;
@@ -536,7 +536,6 @@
             this.ClientSize = new System.Drawing.Size(539, 504);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmAddConnection";
-            this.ShowSelectSkinButton = false;
             this.Text = "数据连接";
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
@@ -569,7 +568,7 @@
         private QLFUI.TextBoxEx txtIpAddr;
         private QLFUI.TextBoxEx txtUsername;
         private QLFUI.TextBoxEx txtPassword;
-        private QLFUI.TextBoxEx txtReplSet;
+        private QLFUI.TextBoxEx txtReplSetName;
         private QLFUI.TextBoxEx txtDataBaseName;
         private System.Windows.Forms.Label lblDataBaseName;
         private System.Windows.Forms.Label lblReplsetList;

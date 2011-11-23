@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GUIResource;
 using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
@@ -13,6 +14,15 @@ namespace MagicMongoDBTool
         private void frmConnect_Load(object sender, EventArgs e)
         {
             RefreshConnection();
+            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            {
+                this.cmdAddCon.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Connect_Action_Add);
+                this.cmdDelCon.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Connect_Action_Del);
+                this.cmdModifyCon.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Connect_Action_Modify);
+                this.cmdCancel.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Connect_Action_Cancel);
+                this.cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Connect_Action_OK);
+                this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Connect_Title);
+            }
         }
         /// <summary>
         /// 刷新连接

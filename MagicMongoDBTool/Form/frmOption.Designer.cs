@@ -56,7 +56,7 @@
             this.contentPanel.Controls.Add(this.cmdCancel);
             this.contentPanel.Controls.Add(this.cmdOK);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(839, 148);
+            this.contentPanel.Size = new System.Drawing.Size(765, 148);
             // 
             // numRefreshForStatus
             // 
@@ -138,7 +138,7 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(669, 82);
+            this.cmdCancel.Location = new System.Drawing.Point(397, 114);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 30);
             this.cmdCancel.TabIndex = 4;
@@ -148,7 +148,7 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(578, 83);
+            this.cmdOK.Location = new System.Drawing.Point(306, 115);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(75, 30);
             this.cmdOK.TabIndex = 3;
@@ -177,10 +177,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(841, 211);
+            this.ClientSize = new System.Drawing.Size(767, 211);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmOption";
-            this.ShowSelectSkinButton = false;
             this.Text = "选项";
             this.Load += new System.EventHandler(this.frmOption_Load);
             this.contentPanel.ResumeLayout(false);

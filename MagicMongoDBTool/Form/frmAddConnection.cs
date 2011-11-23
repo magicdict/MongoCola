@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 using QLFUI;
+using GUIResource;
 
 namespace MagicMongoDBTool
 {
@@ -20,6 +21,53 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
+            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            {
+                SetText();
+            }
+        }
+        /// <summary>
+        /// 国际化
+        /// </summary>
+        private void SetText()
+        {
+            this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Title);
+            lblHostName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Name);
+            txtHostName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Name_Description);
+            lblIpAddr.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Address);
+            txtIpAddr.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Address_Description);
+            lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Port);
+            txtPort.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Port_Description);
+            lblUsername.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_UserName);
+            txtUsername.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_UserName_Description);
+            lblPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Password);
+            txtPassword.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
+            lblDataBaseName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_DBName);
+            txtDataBaseName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_DBName_Description);
+            lblMainReplsetName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName);
+            txtMainReplsetName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName_Description);
+            lblpriority.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Priority);
+            chkSlaveOk.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MasterSlave);
+            chkSafeMode.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SafeMode);
+            lblTimeOut.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_TimeOut);
+
+            grpShardingSvrType.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ShardingSvrType);
+            radArbiters.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ServerType_Arbitration);
+            radConfigSrv.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ServerType_Configuration);
+            radDataSrv.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ServerType_Data);
+            radRouteSrv.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ServerType_Route);
+
+            grpReplset.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSet);
+            lblReplsetName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetName);
+            txtReplSetName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetName_Description);
+            cmdInitReplset.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetInit);
+            lblReplsetList.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetList);
+
+
+            cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Action_Add);
+            cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Action_Cancel);
+            lblAttention.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention_Description)
+                    + "\r\n"  + SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention2_Description);
         }
         /// <summary>
         /// 初始化（修改）
@@ -45,6 +93,11 @@ namespace MagicMongoDBTool
             }
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
 
+            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            {
+                SetText();
+            }
+
 
             txtHostName.Text = ModifyConn.ConnectionName;
             txtHostName.Enabled = false;
@@ -53,10 +106,17 @@ namespace MagicMongoDBTool
             txtPort.Text = ModifyConn.Port.ToString();
             txtUsername.Text = ModifyConn.UserName;
             txtPassword.Text = ModifyConn.Password;
-            cmdAdd.Text = "修改";
+            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            {
+                cmdAdd.Text = "修改";
+            }
+            else
+            {
+                cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Action_Modify);
+            }
             chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
             chkSafeMode.Checked = ModifyConn.IsSafeMode;
-            txtReplSet.Text = ModifyConn.ReplSetName;
+            txtReplSetName.Text = ModifyConn.ReplSetName;
             txtDataBaseName.Text = ModifyConn.DataBaseName;
             numPriority.Value = ModifyConn.Priority;
             numTimeOut.Value = ModifyConn.TimeOut;
@@ -95,7 +155,7 @@ namespace MagicMongoDBTool
             }
             ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
             ModifyConn.IsSafeMode = chkSafeMode.Checked;
-            ModifyConn.ReplSetName = txtReplSet.Text;
+            ModifyConn.ReplSetName = txtReplSetName.Text;
             ModifyConn.UserName = txtUsername.Text;
             ModifyConn.Password = txtPassword.Text;
             ModifyConn.DataBaseName = txtDataBaseName.Text;
@@ -166,7 +226,7 @@ namespace MagicMongoDBTool
                 ModifyConn.ServerType = ConfigHelper.SvrType.ArbiterSvr;
             }
             //如果输入了副本名称
-            if (this.txtReplSet.Text != String.Empty)
+            if (this.txtReplSetName.Text != String.Empty)
             {
                 if (lstServerce.SelectedItems.Count == 0)
                 {
@@ -201,10 +261,10 @@ namespace MagicMongoDBTool
         private void txtReplSet_TextChanged(string strNewText)
         {
             lstServerce.Items.Clear();
-            if (txtReplSet.Text == String.Empty) { return; }
+            if (txtReplSetName.Text == String.Empty) { return; }
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
-                if (item.MainReplSetName == txtReplSet.Text)
+                if (item.MainReplSetName == txtReplSetName.Text)
                 {
                     lstServerce.Items.Add(item.ConnectionName);
                     if (ModifyConn.ServerType == ConfigHelper.SvrType.ReplsetSvr && ModifyConn.ReplsetList.Contains(item.ConnectionName))
@@ -230,7 +290,7 @@ namespace MagicMongoDBTool
                 }
             }
             //初始化副本，将多个服务器组合成一个副本组
-            CommandResult rtn = MongoDBHelper.InitReplicaSet(txtReplSet.Text, svrKeys);
+            CommandResult rtn = MongoDBHelper.InitReplicaSet(txtReplSetName.Text, svrKeys);
             if (rtn.Ok)
             {
                 MyMessageBox.ShowMessage("初始化成功,请稍等片刻后连接服务器", rtn.Response.ToString());

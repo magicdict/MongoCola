@@ -1,25 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using GUIResource;
+using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
     public partial class ctlIndexCreate : UserControl
     {
-        public Boolean IsAscendingKey {
+        public Boolean IsAscendingKey
+        {
             get { return radAscendingKey.Checked; }
         }
-        public String KeyName {
+        public String KeyName
+        {
             get { return txtKeyName.Text; }
         }
         public ctlIndexCreate()
         {
             InitializeComponent();
+            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            {
+                this.lblKeyName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_ctlIndexCreate_Index);
+                this.txtKeyName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_ctlIndexCreate_Description);
+                this.radAscendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_ctlIndexCreate_Asce);
+                this.radDescendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_ctlIndexCreate_Desc);
+            }
+
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Text;
+using GUIResource;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -40,7 +41,7 @@ namespace MagicMongoDBTool.Module
                     //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
                     if (config.TimeOut != 0)
                     {
-                        mongoSvrSetting.SocketTimeout = new TimeSpan(0,0,config.TimeOut);
+                        mongoSvrSetting.SocketTimeout = new TimeSpan(0, 0, config.TimeOut);
                     }
                     if ((config.UserName != string.Empty) & (config.Password != string.Empty))
                     {
@@ -342,14 +343,30 @@ namespace MagicMongoDBTool.Module
             GetIndexesResult indexList = mongoCol.GetIndexes();
             foreach (IndexInfo indexDoc in indexList.ToList<IndexInfo>())
             {
-                TreeNode mongoIndex = new TreeNode("Index:" + indexDoc.Name);
-                mongoIndex.Nodes.Add(indexDoc.Key.ToString());
-                mongoIndex.Nodes.Add("删除重复索引(DroppedDups) :" + indexDoc.DroppedDups.ToString());
-                mongoIndex.Nodes.Add("背景索引(IsBackground):" + indexDoc.IsBackground.ToString());
-                mongoIndex.Nodes.Add("稀疏索引(IsSparse):" + indexDoc.IsSparse.ToString());
-                mongoIndex.Nodes.Add("唯一索引(IsUnique):" + indexDoc.IsUnique.ToString());
-                mongoIndex.Nodes.Add("名字空间:" + indexDoc.Namespace.ToString());
-                mongoIndex.Nodes.Add("版本:" + indexDoc.Version.ToString());
+                TreeNode mongoIndex = new TreeNode();
+                if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+                {
+                    mongoIndex.Text = (SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name) + ":" + indexDoc.Name);
+                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Keys) + ":" + indexDoc.Key.ToString());
+                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel) + ":" + indexDoc.DroppedDups.ToString());
+                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Background) + ":" + indexDoc.IsBackground.ToString());
+                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse) + ":" + indexDoc.IsSparse.ToString());
+                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify) + ":" + indexDoc.IsUnique.ToString());
+                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_NameSpace) + ":" + indexDoc.Namespace.ToString());
+                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Version) + ":" + indexDoc.Version.ToString());
+
+                }
+                else
+                {
+                    mongoIndex.Text = ("名称:" + indexDoc.Name);
+                    mongoIndex.Nodes.Add("主键:" + indexDoc.Key.ToString());
+                    mongoIndex.Nodes.Add("删除重复索引(DroppedDups) :" + indexDoc.DroppedDups.ToString());
+                    mongoIndex.Nodes.Add("背景索引(IsBackground):" + indexDoc.IsBackground.ToString());
+                    mongoIndex.Nodes.Add("稀疏索引(IsSparse):" + indexDoc.IsSparse.ToString());
+                    mongoIndex.Nodes.Add("唯一索引(IsUnique):" + indexDoc.IsUnique.ToString());
+                    mongoIndex.Nodes.Add("名字空间:" + indexDoc.Namespace.ToString());
+                    mongoIndex.Nodes.Add("版本:" + indexDoc.Version.ToString());
+                }
                 mongoIndex.ImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
                 mongoIndex.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
                 mongoIndex.Tag = INDEX_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strTagColName + "/" + indexDoc.Name;

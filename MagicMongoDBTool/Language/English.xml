@@ -23,6 +23,7 @@
 <Main_Menu_DataView_Expansion>Expansion</Main_Menu_DataView_Expansion>
 
 <Main_Menu_Operation>Operation</Main_Menu_Operation>
+<Main_Menu_Operation_Server>Server</Main_Menu_Operation_Server>
 <Main_Menu_Operation_Server_NewDB>New Database</Main_Menu_Operation_Server_NewDB>
 <Main_Menu_Operation_Server_AddUserToAdmin>Add User To Admin Group</Main_Menu_Operation_Server_AddUserToAdmin>
 <Main_Menu_Operation_Server_DelFromAdmin>Del User From Admin Group</Main_Menu_Operation_Server_DelFromAdmin>
@@ -34,10 +35,13 @@
 <Main_Menu_Operation_Database_AddDC>Add DataCollection</Main_Menu_Operation_Database_AddDC>
 <Main_Menu_Operation_Database_AddUser>Add User</Main_Menu_Operation_Database_AddUser>
 <Main_Menu_Operation_Database_DelUser>Del User</Main_Menu_Operation_Database_DelUser>
-
+<Main_Menu_Operation_Database_EvalJs>Eval JavaScript</Main_Menu_Operation_Database_EvalJs>
+  
 <Main_Menu_Operation_DataCollection>DataCollection</Main_Menu_Operation_DataCollection>
 <Main_Menu_Operation_DataCollection_DelDC>Del DataCollection</Main_Menu_Operation_DataCollection_DelDC>
-<Main_Menu_Operation_DataCollection_Index>Index</Main_Menu_Operation_DataCollection_Index>
+<Main_Menu_Operation_DataCollection_ReIndex>ReIndex</Main_Menu_Operation_DataCollection_ReIndex>
+<Main_Menu_Operation_DataCollection_Index>Index Manager</Main_Menu_Operation_DataCollection_Index>
+
 <Main_Menu_Operation_DataCollection_DelSelect>Del Select Data</Main_Menu_Operation_DataCollection_DelSelect>
 <Main_Menu_Operation_DataCollection_Rename>Rename</Main_Menu_Operation_DataCollection_Rename>
 
@@ -80,6 +84,7 @@
 
 
   <!--frmAddConnection-->
+<AddConnection_Title>Connection Manager</AddConnection_Title>  
 <AddConnection_Name>Name</AddConnection_Name>
 <AddConnection_Name_Description>Nick Name</AddConnection_Name_Description>
 <AddConnection_Address>Address</AddConnection_Address>
@@ -92,11 +97,10 @@
 <AddConnection_Password_Description>Password(Option)</AddConnection_Password_Description>
 <AddConnection_DBName>DB Name</AddConnection_DBName>
 <AddConnection_DBName_Description>Database Name(Option)</AddConnection_DBName_Description>
-<AddConnection_ReplaceSetName>ReplaceSet Name</AddConnection_ReplaceSetName>
-<AddConnection_ReplaceSetName_Description>ReplaceSet Name(Option)</AddConnection_ReplaceSetName_Description>
+<AddConnection_MainReplsetName>ReplaceSet Name</AddConnection_MainReplsetName>
+<AddConnection_MainReplsetName_Description>ReplaceSet Name(Option)</AddConnection_MainReplsetName_Description>
 <AddConnection_Priority>Priority</AddConnection_Priority>
-<AddConnection_Priority_Description>If Priority=0,then it can't be the ReplaceSet server</AddConnection_Priority_Description>
-
+<AddConnection_TimeOut>TimeOut(Second)</AddConnection_TimeOut>
 
 <AddConnection_MasterSlave>MasterSlave Mode(GFS operation limition,Cluster of non-Route,Configuration Server,Slave Server)</AddConnection_MasterSlave>
 <AddConnection_SafeMode>Safe Mode(More data safe, less performance)</AddConnection_SafeMode>
@@ -113,27 +117,40 @@
 <AddConnection_Region_ReplaceSetList>ReplaceSet Server List</AddConnection_Region_ReplaceSetList>
 <AddConnection_Region_ReplaceSetInit>Init ReplaceSet</AddConnection_Region_ReplaceSetInit>
 
+<AddConnection_Attention_Description>If Priority=0,then it can't be the ReplaceSet server</AddConnection_Attention_Description>
+<AddConnection_Attention2_Description>Password is saved in config file without Encryption</AddConnection_Attention2_Description>
+
 <AddConnection_Action_Add>Add</AddConnection_Action_Add>
 <AddConnection_Action_Cancel>Cancel</AddConnection_Action_Cancel>
+<AddConnection_Action_Modify>Modify</AddConnection_Action_Modify>
 
-
-  <!--frmCollectionIndex-->
+ <!--frmCollectionIndex-->
+<CollectionIndex_Title>Index Manager</CollectionIndex_Title>  
 <CollectionIndex_Tab_Current>Current</CollectionIndex_Tab_Current>
 <CollectionIndex_Tab_Current_Del>Delete Selected</CollectionIndex_Tab_Current_Del>
 
-<CollectionIndex_TabMangt_Index>Index</CollectionIndex_TabMangt_Index>
-<CollectionIndex_TabMangt_Asce>Asce</CollectionIndex_TabMangt_Asce>
-<CollectionIndex_TabMangt_Desc>Desc</CollectionIndex_TabMangt_Desc>
-<CollectionIndex_TabMangt_Description>Please input the column name here</CollectionIndex_TabMangt_Description>
-<CollectionIndex_TabMangtIndex_Background>Background</CollectionIndex_TabMangtIndex_Background>
-<CollectionIndex_TabMangtIndex_RepeatDel>Repeat Delete</CollectionIndex_TabMangtIndex_RepeatDel>
-<CollectionIndex_TabMangtIndex_Sparse>Sparse</CollectionIndex_TabMangtIndex_Sparse>
-<CollectionIndex_TabMangtIndex_Unify>Unify</CollectionIndex_TabMangtIndex_Unify>
-<CollectionIndex_TabMangt_IndexName>Index Name</CollectionIndex_TabMangt_IndexName>
+<CollectionIndex_Tab_Manager>Manager</CollectionIndex_Tab_Manager>
+<CollectionIndex_Tab_Manager_ADD>Add Index</CollectionIndex_Tab_Manager_ADD>
+
+<Index_Background>Background</Index_Background>
+<Index_RepeatDel>Repeat Delete</Index_RepeatDel>
+<Index_Sparse>Sparse</Index_Sparse>
+<Index_Unify>Unify</Index_Unify>
+<Index_Name>Index Name</Index_Name>
+<Index_Keys>Keys</Index_Keys>
+<Index_Version>Version</Index_Version>
+<Index_NameSpace>NameSpace</Index_NameSpace>
+  
 <CollectionIndex_TabMangt_IndexName_Description>Index Name(Option)</CollectionIndex_TabMangt_IndexName_Description>
 
+ <!--ctlIndexCreate-->
+<CollectionIndex_ctlIndexCreate_Index>Index</CollectionIndex_ctlIndexCreate_Index>
+<CollectionIndex_ctlIndexCreate_Asce>Asce</CollectionIndex_ctlIndexCreate_Asce>
+<CollectionIndex_ctlIndexCreate_Desc>Desc</CollectionIndex_ctlIndexCreate_Desc>
+<CollectionIndex_ctlIndexCreate_Description>Please input the column name here</CollectionIndex_ctlIndexCreate_Description>
 
-  <!--frmConnect-->
+ <!--frmConnect-->
+<Connect_Title>Connection</Connect_Title>  
 <Connect_Action_Add>Add</Connect_Action_Add>
 <Connect_Action_Del>Delete</Connect_Action_Del>
 <Connect_Action_Modify>Modify</Connect_Action_Modify>

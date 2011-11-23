@@ -77,6 +77,45 @@ namespace MagicMongoDBTool
             this.CollapseAllDataToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Collapse);
             this.ExpandAllDataToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Expansion);
 
+
+            //Operation
+            this.OperationToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation);
+            
+            this.ServerToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server);
+            this.CreateMongoDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_NewDB);
+            this.AddUserToAdminToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
+            this.RemoveUserFromAdminToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_DelFromAdmin);
+            this.ShutDownToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_CloseServer);
+            this.SvrPropertyToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties);
+
+            this.DataBaseToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database);
+            this.DelMongoDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelDB);
+            this.CreateMongoCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddDC);
+            this.AddUserToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+            this.RemoveUserToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
+            this.evalJSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_EvalJs);
+
+            this.DataCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection);
+            this.DelMongoCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DelDC);
+            this.RenameCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Rename);
+            this.IndexManageToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Index);
+            this.ReIndexToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_ReIndex);
+            this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DelSelect);
+
+            this.GridFsToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem);
+            this.DelFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Del);
+            this.UploadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Upload);
+            this.DownloadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
+            this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Open);
+            this.InitGFSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_InitGFS);
+
+            this.DumpAndRestoreToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore);
+            this.RestoreMongoToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Restore);
+            this.DumpCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore_BackupDC);
+            this.DumpDatabaseToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore_BackupDB);
+            this.ImportCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Import);
+            this.ExportCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Export);
+
             //Tool
             this.ToolsToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Tool);
             this.DosCommandToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Tool_DOS);
@@ -122,7 +161,7 @@ namespace MagicMongoDBTool
                 //变换TAB时候，选中项目自动消失，所以删除数据也消失
                     (x, y) =>
                     {
-                        this.DelRecordToolStripMenuItem.Enabled = false;
+                        this.DelSelectRecordToolStripMenuItem.Enabled = false;
                     }
                 );
             DisableAllOpr();
@@ -391,7 +430,7 @@ namespace MagicMongoDBTool
             this.ReIndexToolStripMenuItem.Enabled = false;
             this.RenameCollectionToolStripMenuItem.Enabled = false;
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
-            this.DelRecordToolStripMenuItem.Enabled = false;
+            this.DelSelectRecordToolStripMenuItem.Enabled = false;
 
             //管理-GFS
             this.UploadFileToolStripMenuItem.Enabled = false;
@@ -483,16 +522,16 @@ namespace MagicMongoDBTool
                     if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
                     {
                         //系统数据禁止删除
-                        DelRecordToolStripMenuItem.Enabled = true;
+                        DelSelectRecordToolStripMenuItem.Enabled = true;
                     }
                     else
                     {
-                        DelRecordToolStripMenuItem.Enabled = false;
+                        DelSelectRecordToolStripMenuItem.Enabled = false;
                     }
                 }
                 else
                 {
-                    DelRecordToolStripMenuItem.Enabled = false;
+                    DelSelectRecordToolStripMenuItem.Enabled = false;
                 }
             }
         }
@@ -531,7 +570,7 @@ namespace MagicMongoDBTool
                     }
                     else
                     {
-                        this.contextMenuStripMain.Items.Add(this.DelRecordToolStripMenuItem.Clone());
+                        this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
                     }
                     lstData.ContextMenuStrip = this.contextMenuStripMain;
                     contextMenuStripMain.Show();
@@ -548,11 +587,11 @@ namespace MagicMongoDBTool
             if (trvData.SelectedNode.Level == 0)
             {
                 //顶层可以删除的节点
-                DelRecordToolStripMenuItem.Enabled = true;
+                DelSelectRecordToolStripMenuItem.Enabled = true;
             }
             else
             {
-                DelRecordToolStripMenuItem.Enabled = false;
+                DelSelectRecordToolStripMenuItem.Enabled = false;
             }
         }
         /// <summary>
@@ -566,12 +605,12 @@ namespace MagicMongoDBTool
             trvData.SelectedNode = node;
             if (trvData.SelectedNode != null && trvData.SelectedNode.Level == 0)
             {
-                DelRecordToolStripMenuItem.Enabled = true;
+                DelSelectRecordToolStripMenuItem.Enabled = true;
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
                     this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
-                    this.contextMenuStripMain.Items.Add(this.DelRecordToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
                     trvData.ContextMenuStrip = this.contextMenuStripMain;
                     contextMenuStripMain.Show();
                 }
@@ -719,7 +758,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DelUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RemoveUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //@那一剑风情 提出的删除前确认
             String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
@@ -923,7 +962,7 @@ namespace MagicMongoDBTool
                     MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), trvData.SelectedNode.Tag, strKey);
                     trvData.ContextMenuStrip = null;
                 }
-                DelRecordToolStripMenuItem.Enabled = false;
+                DelSelectRecordToolStripMenuItem.Enabled = false;
                 RefreshData();
             }
         }
