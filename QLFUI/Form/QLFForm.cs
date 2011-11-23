@@ -212,8 +212,10 @@ namespace QLFUI
                 case "System.Windows.Forms.VistaButton":
                     VistaButton vistabutton = (VistaButton)item;
                     vistabutton.BackColor = System.Drawing.Color.Transparent;
-                    vistabutton.BaseColor = System.Drawing.Color.YellowGreen;
-                    vistabutton.ButtonColor = System.Drawing.Color.YellowGreen;
+                    vistabutton.BaseColor = IniHelper.BackColor;
+                    vistabutton.ButtonColor = IniHelper.DeepColor;
+                    vistabutton.ButtonStyle = VistaButton.Style.Default;
+                    vistabutton.BorderStyle = BorderStyle.None;
                     vistabutton.ForeColor = System.Drawing.Color.Black;
                     vistabutton.GlowColor = System.Drawing.Color.Orange;
                     vistabutton.Height = 30;

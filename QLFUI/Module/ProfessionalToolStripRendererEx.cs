@@ -35,7 +35,7 @@ namespace CRD.WinUI.Misc
             if ((e.ToolStrip is ContextMenuStrip) ||
             (e.ToolStrip is ToolStripDropDownMenu))
             {
-                using (Pen lightPen = new Pen(QLFUI.IniHelper.BackColor), darkPen = new Pen(QLFUI.IniHelper.BackColor))
+                using (Pen lightPen = new Pen(QLFUI.IniHelper.DeepColor), darkPen = new Pen(QLFUI.IniHelper.DeepColor))
                 {
                     DrawSeparator(e.Graphics, e.Vertical, new Rectangle(0, 0, e.Item.Width - 5, 3), lightPen, darkPen, 0, (e.ToolStrip.RightToLeft == RightToLeft.Yes));
                 }
@@ -83,12 +83,12 @@ namespace CRD.WinUI.Misc
             }
             else
             {
-                //选中项目
+                //非选中项目
                 e.Item.ForeColor = Color.Black;
                 e.Graphics.FillRectangle(new SolidBrush(QLFUI.IniHelper.BackColor), new Rectangle(5, 1, e.Item.Width - 2 * SystemInformation.BorderSize.Width - 6, e.Item.Height - 2));
             }
             int IconSize = 0;
-            e.Graphics.DrawPath(new Pen(QLFUI.IniHelper.BackColor), CreateRoundedRectanglePath(new Rectangle(4 + IconSize, 1, e.Item.Width - 2 * SystemInformation.BorderSize.Width - 5 - IconSize, e.Item.Height - 2), 3));
+            e.Graphics.DrawPath(new Pen(QLFUI.IniHelper.DeepColor), CreateRoundedRectanglePath(new Rectangle(4 + IconSize, 1, e.Item.Width - 2 * SystemInformation.BorderSize.Width - 5 - IconSize, e.Item.Height - 2), 3));
         }
         internal static GraphicsPath CreateRoundedRectanglePath(Rectangle rect, int cornerRadius)
         {

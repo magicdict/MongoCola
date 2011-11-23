@@ -115,13 +115,22 @@ namespace QLFUI
             int g = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "TransparentColorG"));
             int b = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "TransparentColorB"));
             _trans = Color.FromArgb(r, g, b);
+
             r = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "BackColorR"));
             g = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "BackColorG"));
             b = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "BackColorB"));
             _backcolor = Color.FromArgb(r, g, b);
+
+            r = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "DeepColorR"));
+            g = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "DeepColorG"));
+            b = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "DeepColorB"));
+            _deepcolor = Color.FromArgb(r, g, b);
         }
 
         static Color _trans;
+        /// <summary>
+        /// 透明色
+        /// </summary>
         public static Color trans
         {
             get
@@ -130,6 +139,9 @@ namespace QLFUI
             }
         }
         static Color _backcolor = Color.FromArgb(200, 230, 130);
+        /// <summary>
+        /// 背景色
+        /// </summary>
         public static Color BackColor
         {
             get
@@ -138,8 +150,24 @@ namespace QLFUI
             }
         }
 
-        public static String skinName = String.Empty;
+        static Color _deepcolor = Color.FromArgb(115, 145, 60);
+        public static Color DeepColor
+        {
+            get
+            {
+                return _deepcolor;
+            }
+        }
 
+        /// <summary>
+        /// 皮肤名称
+        /// </summary>
+        public static String skinName = String.Empty;
+        /// <summary>
+        /// 图片
+        /// </summary>
+        /// <param name="strTag"></param>
+        /// <returns></returns>
         public static Bitmap getImage(String strTag)
         {
             return ImageDic[strTag];
