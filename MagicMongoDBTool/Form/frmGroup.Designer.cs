@@ -35,16 +35,16 @@
             this.txtReduceJs = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.VistaButton();
             this.txtfinalizeJs = new System.Windows.Forms.TextBox();
-            this.lblfinalize = new System.Windows.Forms.Label();
-            this.cmdForSavefinalize = new System.Windows.Forms.VistaButton();
+            this.lblfinalizeFunction = new System.Windows.Forms.Label();
+            this.cmdSavefinalizeJs = new System.Windows.Forms.VistaButton();
             this.cmbForfinalize = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSelectGroupField = new System.Windows.Forms.Label();
             this.panColumn = new System.Windows.Forms.Panel();
             this.txtResult = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblAddInitField = new System.Windows.Forms.Label();
             this.panBsonEl = new System.Windows.Forms.Panel();
-            this.cmdAddFld = new System.Windows.Forms.VistaButton();
-            this.label3 = new System.Windows.Forms.Label();
+            this.cmdAddInitField = new System.Windows.Forms.VistaButton();
+            this.lblResult = new System.Windows.Forms.Label();
             this.tabGroup = new System.Windows.Forms.TabControl();
             this.tabReduce = new System.Windows.Forms.TabPage();
             this.tabFinalize = new System.Windows.Forms.TabPage();
@@ -127,25 +127,25 @@
             this.txtfinalizeJs.Size = new System.Drawing.Size(411, 402);
             this.txtfinalizeJs.TabIndex = 19;
             // 
-            // lblfinalize
+            // lblfinalizeFunction
             // 
-            this.lblfinalize.AutoSize = true;
-            this.lblfinalize.BackColor = System.Drawing.Color.Transparent;
-            this.lblfinalize.Location = new System.Drawing.Point(21, 29);
-            this.lblfinalize.Name = "lblfinalize";
-            this.lblfinalize.Size = new System.Drawing.Size(63, 13);
-            this.lblfinalize.TabIndex = 20;
-            this.lblfinalize.Text = "finalize函数";
+            this.lblfinalizeFunction.AutoSize = true;
+            this.lblfinalizeFunction.BackColor = System.Drawing.Color.Transparent;
+            this.lblfinalizeFunction.Location = new System.Drawing.Point(21, 29);
+            this.lblfinalizeFunction.Name = "lblfinalizeFunction";
+            this.lblfinalizeFunction.Size = new System.Drawing.Size(63, 13);
+            this.lblfinalizeFunction.TabIndex = 20;
+            this.lblfinalizeFunction.Text = "finalize函数";
             // 
-            // cmdForSavefinalize
+            // cmdSavefinalizeJs
             // 
-            this.cmdForSavefinalize.BackColor = System.Drawing.Color.Transparent;
-            this.cmdForSavefinalize.Location = new System.Drawing.Point(246, 20);
-            this.cmdForSavefinalize.Name = "cmdForSavefinalize";
-            this.cmdForSavefinalize.Size = new System.Drawing.Size(70, 30);
-            this.cmdForSavefinalize.TabIndex = 21;
-            this.cmdForSavefinalize.Text = "保存";
-            this.cmdForSavefinalize.Click += new System.EventHandler(this.cmdForSavefinalize_Click);
+            this.cmdSavefinalizeJs.BackColor = System.Drawing.Color.Transparent;
+            this.cmdSavefinalizeJs.Location = new System.Drawing.Point(246, 20);
+            this.cmdSavefinalizeJs.Name = "cmdSavefinalizeJs";
+            this.cmdSavefinalizeJs.Size = new System.Drawing.Size(70, 30);
+            this.cmdSavefinalizeJs.TabIndex = 21;
+            this.cmdSavefinalizeJs.Text = "保存";
+            this.cmdSavefinalizeJs.Click += new System.EventHandler(this.cmdForSavefinalize_Click);
             // 
             // cmbForfinalize
             // 
@@ -155,15 +155,15 @@
             this.cmbForfinalize.Size = new System.Drawing.Size(151, 21);
             this.cmbForfinalize.TabIndex = 18;
             // 
-            // label1
+            // lblSelectGroupField
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(17, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 13);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "请选择Group字段";
+            this.lblSelectGroupField.AutoSize = true;
+            this.lblSelectGroupField.BackColor = System.Drawing.Color.Transparent;
+            this.lblSelectGroupField.Location = new System.Drawing.Point(17, 12);
+            this.lblSelectGroupField.Name = "lblSelectGroupField";
+            this.lblSelectGroupField.Size = new System.Drawing.Size(96, 13);
+            this.lblSelectGroupField.TabIndex = 27;
+            this.lblSelectGroupField.Text = "请选择Group字段";
             // 
             // panColumn
             // 
@@ -183,15 +183,15 @@
             this.txtResult.Size = new System.Drawing.Size(425, 424);
             this.txtResult.TabIndex = 0;
             // 
-            // label2
+            // lblAddInitField
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(18, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 13);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "请添加初始化字段";
+            this.lblAddInitField.AutoSize = true;
+            this.lblAddInitField.BackColor = System.Drawing.Color.Transparent;
+            this.lblAddInitField.Location = new System.Drawing.Point(18, 21);
+            this.lblAddInitField.Name = "lblAddInitField";
+            this.lblAddInitField.Size = new System.Drawing.Size(103, 13);
+            this.lblAddInitField.TabIndex = 27;
+            this.lblAddInitField.Text = "请添加初始化字段";
             // 
             // panBsonEl
             // 
@@ -200,25 +200,25 @@
             this.panBsonEl.Size = new System.Drawing.Size(436, 394);
             this.panBsonEl.TabIndex = 29;
             // 
-            // cmdAddFld
+            // cmdAddInitField
             // 
-            this.cmdAddFld.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddFld.Location = new System.Drawing.Point(148, 11);
-            this.cmdAddFld.Name = "cmdAddFld";
-            this.cmdAddFld.Size = new System.Drawing.Size(70, 27);
-            this.cmdAddFld.TabIndex = 22;
-            this.cmdAddFld.Text = "添加";
-            this.cmdAddFld.Click += new System.EventHandler(this.cmdAddFld_Click);
+            this.cmdAddInitField.BackColor = System.Drawing.Color.Transparent;
+            this.cmdAddInitField.Location = new System.Drawing.Point(148, 11);
+            this.cmdAddInitField.Name = "cmdAddInitField";
+            this.cmdAddInitField.Size = new System.Drawing.Size(70, 27);
+            this.cmdAddInitField.TabIndex = 22;
+            this.cmdAddInitField.Text = "添加";
+            this.cmdAddInitField.Click += new System.EventHandler(this.cmdAddFld_Click);
             // 
-            // label3
+            // lblResult
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(24, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "执行结果";
+            this.lblResult.AutoSize = true;
+            this.lblResult.BackColor = System.Drawing.Color.Transparent;
+            this.lblResult.Location = new System.Drawing.Point(24, 22);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(55, 13);
+            this.lblResult.TabIndex = 27;
+            this.lblResult.Text = "执行结果";
             // 
             // tabGroup
             // 
@@ -249,9 +249,9 @@
             // 
             // tabFinalize
             // 
-            this.tabFinalize.Controls.Add(this.lblfinalize);
+            this.tabFinalize.Controls.Add(this.lblfinalizeFunction);
             this.tabFinalize.Controls.Add(this.txtfinalizeJs);
-            this.tabFinalize.Controls.Add(this.cmdForSavefinalize);
+            this.tabFinalize.Controls.Add(this.cmdSavefinalizeJs);
             this.tabFinalize.Controls.Add(this.cmbForfinalize);
             this.tabFinalize.Location = new System.Drawing.Point(4, 22);
             this.tabFinalize.Name = "tabFinalize";
@@ -263,7 +263,7 @@
             // 
             // tabGroupField
             // 
-            this.tabGroupField.Controls.Add(this.label1);
+            this.tabGroupField.Controls.Add(this.lblSelectGroupField);
             this.tabGroupField.Controls.Add(this.panColumn);
             this.tabGroupField.Location = new System.Drawing.Point(4, 22);
             this.tabGroupField.Name = "tabGroupField";
@@ -275,9 +275,9 @@
             // 
             // tabInitialize
             // 
-            this.tabInitialize.Controls.Add(this.cmdAddFld);
+            this.tabInitialize.Controls.Add(this.cmdAddInitField);
             this.tabInitialize.Controls.Add(this.panBsonEl);
-            this.tabInitialize.Controls.Add(this.label2);
+            this.tabInitialize.Controls.Add(this.lblAddInitField);
             this.tabInitialize.Location = new System.Drawing.Point(4, 22);
             this.tabInitialize.Name = "tabInitialize";
             this.tabInitialize.Padding = new System.Windows.Forms.Padding(3);
@@ -288,7 +288,7 @@
             // 
             // tabResult
             // 
-            this.tabResult.Controls.Add(this.label3);
+            this.tabResult.Controls.Add(this.lblResult);
             this.tabResult.Controls.Add(this.txtResult);
             this.tabResult.Location = new System.Drawing.Point(4, 22);
             this.tabResult.Name = "tabResult";
@@ -315,7 +315,6 @@
             this.ClientSize = new System.Drawing.Size(511, 622);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmGroup";
-            this.ShowSelectSkinButton = false;
             this.Text = "Group";
             this.Load += new System.EventHandler(this.frmGroup_Load);
             this.contentPanel.ResumeLayout(false);
@@ -342,16 +341,16 @@
         private System.Windows.Forms.Label lblReduceFunction;
         private System.Windows.Forms.TextBox txtReduceJs;
         private System.Windows.Forms.ComboBox cmbForfinalize;
-        private System.Windows.Forms.VistaButton cmdForSavefinalize;
-        private System.Windows.Forms.Label lblfinalize;
+        private System.Windows.Forms.VistaButton cmdSavefinalizeJs;
+        private System.Windows.Forms.Label lblfinalizeFunction;
         private System.Windows.Forms.TextBox txtfinalizeJs;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSelectGroupField;
         private System.Windows.Forms.Panel panColumn;
         private System.Windows.Forms.TextBox txtResult;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblAddInitField;
         private System.Windows.Forms.Panel panBsonEl;
-        private System.Windows.Forms.VistaButton cmdAddFld;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.VistaButton cmdAddInitField;
+        private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.TabControl tabGroup;
         private System.Windows.Forms.TabPage tabReduce;
         private System.Windows.Forms.TabPage tabFinalize;

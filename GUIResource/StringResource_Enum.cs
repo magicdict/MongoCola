@@ -139,8 +139,12 @@ namespace GUIResource
             Connect_Action_Modify,
             Connect_Action_OK,
             Connect_Action_Cancel,
+
+
             Distinct_Action_OK,
-            Distinct_Label,
+            Distinct_Action_LoadQuery,
+            Distinct_SelectField,
+
             DosCommand_Tab_Deploy,
             DosCommand_Tab_Deploy_Port,
             DosCommand_Tab_Deploy_MasterDB,
@@ -186,6 +190,7 @@ namespace GUIResource
             Group_Add,
             Group_LoadQuery,
             Group_OK,
+            //异常
             Exception_NotConnected,
             Exception_AuthenticationException
         }

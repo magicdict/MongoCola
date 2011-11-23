@@ -21,8 +21,15 @@ namespace MagicMongoDBTool
 
         private void frmevalJS_Load(object sender, EventArgs e)
         {
-            cmbForMap.SelectedIndexChanged += new EventHandler(
-             (x, y) => { txtevalJs.Text = MongoDBHelper.LoadJavascript(cmbForMap.Text); }
+            if (SystemManager.ConfigHelperInstance.currentLanguage != GUIResource.StringResource.Language.Default) {
+                lblFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Method);
+                lblParm.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Parameter);
+                cmdEval.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Run);
+                cmdSaveJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Save);
+            }
+
+            cmbFuncLst.SelectedIndexChanged += new EventHandler(
+             (x, y) => { txtevalJs.Text = MongoDBHelper.LoadJavascript(cmbFuncLst.Text); }
             );
         }
 

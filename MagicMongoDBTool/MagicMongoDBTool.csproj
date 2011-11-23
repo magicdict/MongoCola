@@ -367,6 +367,7 @@
     <Content Include="dll\MongoDB.Driver.dll" />
     <Content Include="Language\English.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Skin\green\BottomLeft.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

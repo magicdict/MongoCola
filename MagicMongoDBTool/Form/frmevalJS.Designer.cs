@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmevalJS));
-            this.cmbForMap = new System.Windows.Forms.ComboBox();
-            this.cmdSaveMapJs = new System.Windows.Forms.VistaButton();
-            this.lblMapFunction = new System.Windows.Forms.Label();
+            this.cmbFuncLst = new System.Windows.Forms.ComboBox();
+            this.cmdSaveJs = new System.Windows.Forms.VistaButton();
+            this.lblFunction = new System.Windows.Forms.Label();
             this.txtevalJs = new System.Windows.Forms.TextBox();
             this.cmdEval = new System.Windows.Forms.VistaButton();
             this.txtParm = new System.Windows.Forms.TextBox();
@@ -44,41 +44,41 @@
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
             this.contentPanel.Controls.Add(this.lblParm);
             this.contentPanel.Controls.Add(this.cmdEval);
-            this.contentPanel.Controls.Add(this.cmbForMap);
-            this.contentPanel.Controls.Add(this.cmdSaveMapJs);
-            this.contentPanel.Controls.Add(this.lblMapFunction);
+            this.contentPanel.Controls.Add(this.cmbFuncLst);
+            this.contentPanel.Controls.Add(this.cmdSaveJs);
+            this.contentPanel.Controls.Add(this.lblFunction);
             this.contentPanel.Controls.Add(this.txtevalJs);
             this.contentPanel.Controls.Add(this.txtParm);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
             this.contentPanel.Size = new System.Drawing.Size(573, 292);
             // 
-            // cmbForMap
+            // cmbFuncLst
             // 
-            this.cmbForMap.FormattingEnabled = true;
-            this.cmbForMap.Location = new System.Drawing.Point(114, 32);
-            this.cmbForMap.Name = "cmbForMap";
-            this.cmbForMap.Size = new System.Drawing.Size(151, 21);
-            this.cmbForMap.TabIndex = 18;
+            this.cmbFuncLst.FormattingEnabled = true;
+            this.cmbFuncLst.Location = new System.Drawing.Point(114, 32);
+            this.cmbFuncLst.Name = "cmbFuncLst";
+            this.cmbFuncLst.Size = new System.Drawing.Size(151, 21);
+            this.cmbFuncLst.TabIndex = 18;
             // 
-            // cmdSaveMapJs
+            // cmdSaveJs
             // 
-            this.cmdSaveMapJs.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSaveMapJs.Location = new System.Drawing.Point(271, 28);
-            this.cmdSaveMapJs.Name = "cmdSaveMapJs";
-            this.cmdSaveMapJs.Size = new System.Drawing.Size(70, 30);
-            this.cmdSaveMapJs.TabIndex = 21;
-            this.cmdSaveMapJs.Text = "保存";
-            this.cmdSaveMapJs.Click += new System.EventHandler(this.cmdSaveMapJs_Click);
+            this.cmdSaveJs.BackColor = System.Drawing.Color.Transparent;
+            this.cmdSaveJs.Location = new System.Drawing.Point(271, 28);
+            this.cmdSaveJs.Name = "cmdSaveJs";
+            this.cmdSaveJs.Size = new System.Drawing.Size(70, 30);
+            this.cmdSaveJs.TabIndex = 21;
+            this.cmdSaveJs.Text = "保存";
+            this.cmdSaveJs.Click += new System.EventHandler(this.cmdSaveMapJs_Click);
             // 
-            // lblMapFunction
+            // lblFunction
             // 
-            this.lblMapFunction.AutoSize = true;
-            this.lblMapFunction.BackColor = System.Drawing.Color.Transparent;
-            this.lblMapFunction.Location = new System.Drawing.Point(46, 37);
-            this.lblMapFunction.Name = "lblMapFunction";
-            this.lblMapFunction.Size = new System.Drawing.Size(55, 13);
-            this.lblMapFunction.TabIndex = 20;
-            this.lblMapFunction.Text = "执行函数";
+            this.lblFunction.AutoSize = true;
+            this.lblFunction.BackColor = System.Drawing.Color.Transparent;
+            this.lblFunction.Location = new System.Drawing.Point(46, 37);
+            this.lblFunction.Name = "lblFunction";
+            this.lblFunction.Size = new System.Drawing.Size(55, 13);
+            this.lblFunction.TabIndex = 20;
+            this.lblFunction.Text = "执行函数";
             // 
             // txtevalJs
             // 
@@ -124,7 +124,6 @@
             this.ClientSize = new System.Drawing.Size(575, 355);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmevalJS";
-            this.ShowSelectSkinButton = false;
             this.Text = "执行Javascript";
             this.Load += new System.EventHandler(this.frmevalJS_Load);
             this.contentPanel.ResumeLayout(false);
@@ -135,9 +134,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbForMap;
-        private System.Windows.Forms.VistaButton cmdSaveMapJs;
-        private System.Windows.Forms.Label lblMapFunction;
+        private System.Windows.Forms.ComboBox cmbFuncLst;
+        private System.Windows.Forms.VistaButton cmdSaveJs;
+        private System.Windows.Forms.Label lblFunction;
         private System.Windows.Forms.TextBox txtevalJs;
         private System.Windows.Forms.VistaButton cmdEval;
         private System.Windows.Forms.Label lblParm;

@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDistinct));
             this.panColumn = new System.Windows.Forms.Panel();
             this.cmdOK = new System.Windows.Forms.VistaButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSelectField = new System.Windows.Forms.Label();
             this.cmdQuery = new System.Windows.Forms.VistaButton();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
@@ -40,7 +40,7 @@
             // 
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
             this.contentPanel.Controls.Add(this.cmdQuery);
-            this.contentPanel.Controls.Add(this.label1);
+            this.contentPanel.Controls.Add(this.lblSelectField);
             this.contentPanel.Controls.Add(this.cmdOK);
             this.contentPanel.Controls.Add(this.panColumn);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
@@ -64,15 +64,15 @@
             this.cmdOK.Text = "确定";
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
-            // label1
+            // lblSelectField
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(11, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "请选择Distinct字段";
+            this.lblSelectField.AutoSize = true;
+            this.lblSelectField.BackColor = System.Drawing.Color.Transparent;
+            this.lblSelectField.Location = new System.Drawing.Point(11, 16);
+            this.lblSelectField.Name = "lblSelectField";
+            this.lblSelectField.Size = new System.Drawing.Size(102, 13);
+            this.lblSelectField.TabIndex = 0;
+            this.lblSelectField.Text = "请选择Distinct字段";
             // 
             // cmdQuery
             // 
@@ -91,7 +91,6 @@
             this.ClientSize = new System.Drawing.Size(318, 455);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmDistinct";
-            this.ShowSelectSkinButton = false;
             this.Text = "Distinct";
             this.Load += new System.EventHandler(this.frmSelectKey_Load);
             this.contentPanel.ResumeLayout(false);
@@ -104,7 +103,7 @@
 
         private System.Windows.Forms.VistaButton cmdOK;
         private System.Windows.Forms.Panel panColumn;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSelectField;
         private System.Windows.Forms.VistaButton cmdQuery;
     }
 }

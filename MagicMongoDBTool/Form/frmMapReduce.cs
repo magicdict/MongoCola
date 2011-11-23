@@ -24,11 +24,17 @@ namespace MagicMongoDBTool
                 (x, y) => { txtReduceJs.Text = MongoDBHelper.LoadJavascript(cmbForReduce.Text); }
             );
 
-            foreach (var item in SystemManager.GetJsNameList())
+            foreach (String item in SystemManager.GetJsNameList())
             {
                 cmbForMap.Items.Add(item);
                 cmbForReduce.Items.Add(item);
             }
+
+            if (SystemManager.ConfigHelperInstance.currentLanguage != GUIResource.StringResource.Language.Default) { 
+                
+            
+            }
+
         }
         /// <summary>
         /// 运行

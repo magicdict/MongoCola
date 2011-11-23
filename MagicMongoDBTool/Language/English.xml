@@ -159,7 +159,8 @@
 
   <!--frmDistinct-->
 <Distinct_Action_OK>OK</Distinct_Action_OK>
-<Distinct_Label>Please select Distinct</Distinct_Label>
+<Distinct_Action_LoadQuery>Load Query</Distinct_Action_LoadQuery>
+<Distinct_SelectField>Please select Distinct</Distinct_SelectField>
 
   <!--frmDosCommand-->
 <DosCommand_Tab_Deploy>Deploy(Mongod)</DosCommand_Tab_Deploy>
@@ -215,8 +216,8 @@
 <Group_Tab_Group>Group Column</Group_Tab_Group>  
 <Group_Tab_Group_Notes>Please select Group</Group_Tab_Group_Notes>  
 
-<Group_Tab_InitColumn>Init Column</Group_Tab_InitColumn> 
-<Group_Tab_InitColumn_Note>Please add Initalize column</Group_Tab_InitColumn_Note> 
+<Group_Tab_InitColumn>Add Var</Group_Tab_InitColumn> 
+<Group_Tab_InitColumn_Note>Please add Initalize Var</Group_Tab_InitColumn_Note> 
  
 <Group_Tab_Result>Result</Group_Tab_Result> 
 

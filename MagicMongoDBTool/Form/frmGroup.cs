@@ -121,6 +121,19 @@ namespace MagicMongoDBTool
             firstAddBsonElCtl.Element = el;
             panBsonEl.Controls.Add(firstAddBsonElCtl);
 
+            if (SystemManager.ConfigHelperInstance.currentLanguage != GUIResource.StringResource.Language.Default) {
+                lblReduceFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Reduce);
+                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Save);
+                lblfinalizeFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Finalize);
+                cmdSavefinalizeJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Save);
+                lblSelectGroupField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Group_Notes);
+                lblAddInitField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_InitColumn_Note);
+                cmdAddInitField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_InitColumn);
+                lblResult.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Result);
+                cmdQuery.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_LoadQuery);
+                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_OK);
+            }
+
         }
         /// <summary>
         /// 保存Reduce
