@@ -223,10 +223,10 @@
 <Group_Save>Save</Group_Save> 
 <Group_Add>Add</Group_Add> 
 <Group_LoadQuery>Load Query</Group_LoadQuery> 
-<Group_OK>OK</Group_OK> 
- 
+<Group_OK>OK</Group_OK>
 
 
-
+<Exception_NotConnected>Not Connected</Exception_NotConnected>
+<Exception_AuthenticationException>AuthenticationException</Exception_AuthenticationException>
 
 </Language>

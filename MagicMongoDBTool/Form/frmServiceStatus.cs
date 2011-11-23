@@ -19,11 +19,14 @@ namespace MagicMongoDBTool
                 MongoDBHelper.FillSrvStatusToList(this.lstSrvStatus);
                 MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
                 MongoDBHelper.FillDBStatusToList(this.lstDBStatus);
+                //防止在查看树形状态的时候被打扰
+                //MongoDBHelper.FillExtraSrvStatusToList(trvSvrStatus);
             });
             refreshTimer.Enabled = true;
             MongoDBHelper.FillSrvStatusToList(this.lstSrvStatus);
             MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
             MongoDBHelper.FillDBStatusToList(this.lstDBStatus);
+            MongoDBHelper.FillExtraSrvStatusToList(trvSvrStatus);
         }
         /// <summary>
         /// 立刻刷新数据
@@ -35,6 +38,7 @@ namespace MagicMongoDBTool
             MongoDBHelper.FillSrvStatusToList(this.lstSrvStatus);
             MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
             MongoDBHelper.FillDBStatusToList(this.lstDBStatus);
+            MongoDBHelper.FillExtraSrvStatusToList(trvSvrStatus);
         }
         /// <summary>
         /// Timer停止

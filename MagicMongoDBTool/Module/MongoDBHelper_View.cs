@@ -148,14 +148,30 @@ namespace MagicMongoDBTool.Module
                     //需要验证的数据服务器，没有Admin权限无法获得数据库列表
                     MessageBox.Show("认证信息错误，请检查数据库的用户名和密码", "认证失败");
                     //暂时不处理任何异常，简单跳过
-                    mongoSvrNode.Text += "[认证信息错误]";
+
+                    if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+                    {
+                        mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]";
+                    }
+                    else
+                    {
+                        mongoSvrNode.Text += "[认证信息错误]";
+
+                    }
                     mongoSvrNode.Tag = null;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
                 catch (Exception)
                 {
                     //暂时不处理任何异常，简单跳过
-                    mongoSvrNode.Text += "[无法连接]";
+                    if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+                    {
+                        mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
+                    }
+                    else
+                    {
+                        mongoSvrNode.Text += "[无法连接]";
+                    } 
                     mongoSvrNode.Tag = null;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
@@ -851,6 +867,31 @@ namespace MagicMongoDBTool.Module
         #endregion
 
         #region"展示状态"
+        /// <summary>
+        /// 数据库基本信息
+        /// </summary>
+        /// <param name="trvSvrStatus"></param>
+        public static void FillExtraSrvStatusToList(TreeView trvSvrStatus)
+        {
+            List<BsonDocument> SrvDocList = new List<BsonDocument>();
+            foreach (string mongoSvrKey in _mongoSrvLst.Keys)
+            {
+                try
+                {
+                    MongoServer mongosvr = _mongoSrvLst[mongoSvrKey];
+                    List<string> databaseNameList = mongosvr.GetDatabaseNames().ToList<string>();
+                    //flydreamer提供的代码
+                    var serverStatusCommand = new CommandDocument { { "serverStatus", 1 } };
+                    BsonDocument cr = mongosvr.RunAdminCommand(serverStatusCommand).Response;
+                    SrvDocList.Add(cr);
+                }
+                catch (Exception)
+                {
+                    //throw;
+                }
+            }
+            FillDataToTreeView("Server Status", trvSvrStatus, SrvDocList);
+        }
         /// <summary>
         /// 将DB状态放入ListView
         /// </summary>

@@ -185,7 +185,9 @@ namespace GUIResource
             Group_Save,
             Group_Add,
             Group_LoadQuery,
-            Group_OK
+            Group_OK,
+            Exception_NotConnected,
+            Exception_AuthenticationException
         }
         /// <summary>
         /// 语言
