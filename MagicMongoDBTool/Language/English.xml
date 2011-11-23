@@ -4,18 +4,21 @@
 <Main_Menu_Mangt>Management(&amp;S)</Main_Menu_Mangt>
 <Main_Menu_Mangt_AddConnection>Add Connection(&amp;A)</Main_Menu_Mangt_AddConnection>
 <Main_Menu_Mangt_Status>Status</Main_Menu_Mangt_Status>
-<Main_Menu_Mangt_Refresh>Refresh(&amp;F5)</Main_Menu_Mangt_Refresh>
+<Main_Menu_Mangt_Refresh>Refresh</Main_Menu_Mangt_Refresh>
 <Main_Menu_Mangt_Collapse>Collapse</Main_Menu_Mangt_Collapse>
 <Main_Menu_Mangt_Expansion>Expansion</Main_Menu_Mangt_Expansion>
 <Main_Menu_Mangt_Exit>Exit</Main_Menu_Mangt_Exit>
 
 
 <Main_Menu_DataView>DataView</Main_Menu_DataView>
-<Main_Menu_DataView_Previous>Previous(&amp;F3)</Main_Menu_DataView_Previous>
-<Main_Menu_DataView_Next>Next(&amp;F4)</Main_Menu_DataView_Next>
-<Main_Menu_DataView_First>First(&amp;F9)</Main_Menu_DataView_First>
-<Main_Menu_DataView_Last>Last(&amp;F10)</Main_Menu_DataView_Last>
+<Main_Menu_DataView_Previous>Previous</Main_Menu_DataView_Previous>
+<Main_Menu_DataView_Next>Next</Main_Menu_DataView_Next>
+<Main_Menu_DataView_First>First</Main_Menu_DataView_First>
+<Main_Menu_DataView_Last>Last</Main_Menu_DataView_Last>
 <Main_Menu_DataView_Query>Query</Main_Menu_DataView_Query>
+<Main_Menu_DataView_Aggregation>Aggregation</Main_Menu_DataView_Aggregation>
+<Main_Menu_DataView_ConvertSql>ConvertSql</Main_Menu_DataView_ConvertSql>
+<Main_Menu_DataView_DataFilter>Data Filter</Main_Menu_DataView_DataFilter>
 <Main_Menu_DataView_Collapse>Collapse</Main_Menu_DataView_Collapse>
 <Main_Menu_DataView_Expansion>Expansion</Main_Menu_DataView_Expansion>
 
@@ -61,15 +64,19 @@
 <Main_Menu_Tool_Access>Import Access Database</Main_Menu_Tool_Access>
 <Main_Menu_Tool_Setting>Setting</Main_Menu_Tool_Setting>
 
-
-
-
 <Main_Menu_Distributed>Distributed</Main_Menu_Distributed>
+<Main_Menu_Distributed_ReplicaSet>ReplicaSet</Main_Menu_Distributed_ReplicaSet>
+<Main_Menu_Distributed_ShardingConfig>Sharding Config</Main_Menu_Distributed_ShardingConfig>
+
+
 <Main_Menu_Help>Help</Main_Menu_Help>
+<Main_Menu_Help_About>About</Main_Menu_Help_About>
+<Main_Menu_Help_Thanks>Thanks</Main_Menu_Help_Thanks>
+
 <Main_Tab_Tree>TreeView</Main_Tab_Tree>
 <Main_Tab_Table>TableView</Main_Tab_Table>
 <Main_Tab_Text>TextView</Main_Tab_Text>
-<Main_StatusBar_Text>Ready</Main_StatusBar_Text>
+<Main_StatusBar_Text_Ready>Ready</Main_StatusBar_Text_Ready>
 
 
   <!--frmAddConnection-->

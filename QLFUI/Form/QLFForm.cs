@@ -158,17 +158,10 @@ namespace QLFUI
                 ControlStyles.AllPaintingInWmPaint, true);
             //皮肤初始化
             IniHelper.Init();
-
-
-
             InitializeComponent();
-
             //设置系统菜单（在构造函数中没有用，我也不懂为什么）
             Win32.SetWindowLong(Handle, -16, Win32.WS_SYSMENU + Win32.WS_MINIMIZEBOX);
-
-
-            #region 初始化各部分
-
+           //初始化各部分
             _topLeft = new PartBase();
             _topMiddle = new PartBase();
             _topRight = new PartBase();
@@ -178,9 +171,6 @@ namespace QLFUI
             _bottomLeft = new PartBase();
             _bottomMiddle = new PartBase();
             _bottomRight = new PartBase();
-
-            #endregion
-
         }
 
         #endregion
@@ -191,11 +181,9 @@ namespace QLFUI
         {
 
             //初始化这里的时候skinfolder没有初始化，总为null。
-            //所以这里直接初始化默认皮肤。在后面初始化的skinfolder
-            //的时候会自动重新初始化皮肤
-
+            //所以这里直接初始化默认皮肤。在后面初始化的skinfolder的时候会自动重新初始化皮肤
             InitDefaultSkin();
-            
+
             foreach (Control item in this.Controls)
             {
                 ColorfulControl(item);
@@ -420,58 +408,65 @@ namespace QLFUI
         /// </summary>
         private void InitDefaultSkin()
         {
-            #region 设置位置
             if (IniHelper.skinName != String.Empty)
             {
                 ReadIniFile(Application.StartupPath + @"\Skin\" + IniHelper.skinName);
             }
             else
             {
-                //顶部
-                _topLeft.Height = _topMiddle.Height = _topRight.Height = 38;
-                _topLeft.Width = 1;
-                _topRight.Width = 3;
-
-                //底部
-                _bottomLeft.Height = _bottomMiddle.Height = _bottomRight.Height = 25;
-                _bottomRight.Width = 1;
-
-                //中部
-                _centerLeft.Width = 1;
-                _centerRight.Width = 1;
-
-
-                minButton.Width = 27;
-                minButton.Height = 18;
-                minButton.XOffset = 71;
-                minButton.Top = 0;
-
-                maxButton.Width = 27;
-                maxButton.Height = 18;
-                maxButton.XOffset = 45;
-                maxButton.Top = 0;
-
-
-                closeButton.Width = 45;
-                closeButton.Height = 18;
-                closeButton.XOffset = 4;
-                closeButton.Top = 0;
-
-                selectSkinButton.Width = 16;
-                selectSkinButton.Height = 16;
-                selectSkinButton.XOffset = 106;
-                selectSkinButton.Top = 1;
+                SetDefaultIni();
             }
-            #endregion
-
             CaculatePartLocation();
             //读取图片
             SetImages();
         }
 
-        private void SetImages() {
-            #region 读取图片
+        /// <summary>
+        /// 设置位置
+        /// </summary>
+        private void SetDefaultIni()
+        {
+            //顶部
+            _topLeft.Height = _topMiddle.Height = _topRight.Height = 38;
+            _topLeft.Width = 1;
+            _topRight.Width = 3;
 
+            //底部
+            _bottomLeft.Height = _bottomMiddle.Height = _bottomRight.Height = 25;
+            _bottomRight.Width = 1;
+
+            //中部
+            _centerLeft.Width = 1;
+            _centerRight.Width = 1;
+
+
+            minButton.Width = 27;
+            minButton.Height = 18;
+            minButton.XOffset = 71;
+            minButton.Top = 0;
+
+            maxButton.Width = 27;
+            maxButton.Height = 18;
+            maxButton.XOffset = 45;
+            maxButton.Top = 0;
+
+
+            closeButton.Width = 45;
+            closeButton.Height = 18;
+            closeButton.XOffset = 4;
+            closeButton.Top = 0;
+
+            selectSkinButton.Width = 16;
+            selectSkinButton.Height = 16;
+            selectSkinButton.XOffset = 106;
+            selectSkinButton.Top = 1;
+
+        }
+        /// <summary>
+        /// 读取图片
+        /// </summary>
+        private void SetImages()
+        {
             _topLeft.BackgroundBitmap = IniHelper.getImage("_topLeft");
             _topMiddle.BackgroundBitmap = IniHelper.getImage("_topMiddle");
             _topRight.BackgroundBitmap = IniHelper.getImage("_topRight");
@@ -490,10 +485,12 @@ namespace QLFUI
             closeButton.ReadButtonImage(IniHelper.getImage("CloseNormal"), IniHelper.getImage("CloseMove"), IniHelper.getImage("CloseDown"));
             selectSkinButton.ReadButtonImage(IniHelper.getImage("SelectSkinNormal"), IniHelper.getImage("SelectSkinMove"), IniHelper.getImage("SelectSkinDown"));
 
-
-            #endregion
-
         }
+        /// <summary>
+        /// 从配置中读取位置信息
+        /// </summary>
+        /// <param name="skinFolder"></param>
+        /// <returns></returns>
         private bool ReadIniFile(string skinFolder)
         {
             try
@@ -544,15 +541,22 @@ namespace QLFUI
                 return false;
             }
         }
-
+        /// <summary>
+        /// Resize事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void QLFForm_Resize(object sender, System.EventArgs e)
         {
             if (_topLeft != null)
             {
+                //IDE设计器打开的时候，有一个Resize的动作，这个时候会出错
                 CaculatePartLocation();
             }
         }
-
+        /// <summary>
+        /// 重新计算各个控件的位置
+        /// </summary>
         private void CaculatePartLocation()
         {
             //顶部

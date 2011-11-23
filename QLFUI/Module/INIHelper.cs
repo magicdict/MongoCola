@@ -110,7 +110,7 @@ namespace QLFUI
             ImageDic.Add("SelectSkinMove", Image.FromFile(skinFolder + "\\SelectSkinMove.bmp") as Bitmap);
             ImageDic.Add("SelectSkinDown", Image.FromFile(skinFolder + "\\SelectSkinDown.bmp") as Bitmap);
 
-            //读取需要透明的颜色值
+            //读取各种颜色值
             int r = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "TransparentColorR"));
             int g = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "TransparentColorG"));
             int b = int.Parse(IniHelper.ReadIniValue(skinFolder + "\\config.ini", "Main", "TransparentColorB"));
@@ -149,8 +149,11 @@ namespace QLFUI
                 return _backcolor;
             }
         }
-
+        
         static Color _deepcolor = Color.FromArgb(115, 145, 60);
+        /// <summary>
+        /// 深颜色
+        /// </summary>
         public static Color DeepColor
         {
             get

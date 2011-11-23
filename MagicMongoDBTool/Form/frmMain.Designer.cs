@@ -108,8 +108,8 @@ namespace MagicMongoDBTool
             this.OptionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DistributedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReplicaSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ShardConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShardingConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ThanksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -177,7 +177,7 @@ namespace MagicMongoDBTool
             this.OperationToolStripMenuItem,
             this.ToolsToolStripMenuItem,
             this.DistributedToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.HelpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
             this.menuStripMain.Size = new System.Drawing.Size(915, 24);
@@ -714,7 +714,7 @@ namespace MagicMongoDBTool
             // 
             this.DistributedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ReplicaSetToolStripMenuItem,
-            this.ShardConfigToolStripMenuItem});
+            this.ShardingConfigToolStripMenuItem});
             this.DistributedToolStripMenuItem.Name = "DistributedToolStripMenuItem";
             this.DistributedToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.DistributedToolStripMenuItem.Text = "分布式";
@@ -728,19 +728,19 @@ namespace MagicMongoDBTool
             // 
             // ShardConfigToolStripMenuItem
             // 
-            this.ShardConfigToolStripMenuItem.Name = "ShardConfigToolStripMenuItem";
-            this.ShardConfigToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.ShardConfigToolStripMenuItem.Text = "配置分片数据";
-            this.ShardConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardConfigToolStripMenuItem_Click);
+            this.ShardingConfigToolStripMenuItem.Name = "ShardConfigToolStripMenuItem";
+            this.ShardingConfigToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.ShardingConfigToolStripMenuItem.Text = "配置分片数据";
+            this.ShardingConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardConfigToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AboutToolStripMenuItem,
             this.ThanksToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
-            this.helpToolStripMenuItem.Text = "帮助";
+            this.HelpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.HelpToolStripMenuItem.Text = "帮助";
             // 
             // AboutToolStripMenuItem
             // 
@@ -1009,7 +1009,7 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.ToolStripMenuItem OptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DistributedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ReplicaSetToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ShardConfigToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ShardingConfigToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mapReduceToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
         private System.Windows.Forms.SplitContainer splitContainer1;
@@ -1023,7 +1023,7 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.TextBox txtData;
         private System.Windows.Forms.ToolStripMenuItem AddUserToAdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RemoveUserFromAdminToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ThanksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem InitGFSToolStripMenuItem;

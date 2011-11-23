@@ -45,6 +45,7 @@ namespace GUIResource
                         if (!string.IsNullOrEmpty(tag) && !string.IsNullOrEmpty(text))
                         {
                             _stringDic.Add(tag, text);
+                            //System.Diagnostics.Debug.WriteLine(tag + ",");
                         }
                         break;
                 }
