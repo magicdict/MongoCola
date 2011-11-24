@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
+using GUIResource;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using System.Drawing;
 using QLFUI;
-using System.IO;
-using GUIResource;
-using System.Windows.Forms;
 namespace MagicMongoDBTool.Module
 {
     public static class SystemManager
@@ -109,25 +108,27 @@ namespace MagicMongoDBTool.Module
         /// 是否使用默认语言
         /// </summary>
         /// <returns></returns>
-        internal static Boolean IsUseDefaultLanguage() {
-            return ConfigHelperInstance.currentLanguage == StringResource.Language.Default;
-        } 
+        internal static Boolean IsUseDefaultLanguage()
+        {
+            return ConfigHelperInstance.LanguageFileName == "";
+        }
         /// <summary>
         /// 初始化
         /// </summary>
-        internal static void Init()
+        internal static void InitLanguage()
         {
             //语言的初始化
-            GUIResource.StringResource.Language currentLan = SystemManager.ConfigHelperInstance.currentLanguage;
-            string fileName = string.Format("Language\\{0}.xml", currentLan.ToString());
-            if (File.Exists(fileName))
+            if (SystemManager.ConfigHelperInstance.LanguageFileName != String.Empty)
             {
-                //语言的导入
-                mStringResource.InitLanguage(currentLan);
-            }
-            else
-            {
-                currentLan = StringResource.Language.Default;
+                if (File.Exists("Language\\" + SystemManager.ConfigHelperInstance.LanguageFileName))
+                {
+                    SystemManager.mStringResource.InitLanguage("Language\\" + SystemManager.ConfigHelperInstance.LanguageFileName);
+                    MyMessageBox.SwitchLanguage(mStringResource);
+                }
+                else
+                {
+                    ConfigHelperInstance.LanguageFileName = "";
+                }
             }
         }
     }

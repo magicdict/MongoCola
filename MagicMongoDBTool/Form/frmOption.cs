@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
@@ -13,19 +14,29 @@ namespace MagicMongoDBTool
             this.ctlFilePickerMongoBinPath.SelectedPath = SystemManager.ConfigHelperInstance.MongoBinPath;
             this.numLimitCnt.Value = SystemManager.ConfigHelperInstance.LimitCnt;
             this.numRefreshForStatus.Value = SystemManager.ConfigHelperInstance.RefreshStatusTimer;
-
-            foreach (String item in (Enum.GetNames(typeof(GUIResource.StringResource.Language))))
+            this.cmbLanguage.Items.Add(String.Empty);
+            if (Directory.Exists("Language"))
             {
-                this.cmbLanguage.Items.Add(item);
+                foreach (String FileName in Directory.GetFiles("Language"))
+                {
+                    this.cmbLanguage.Items.Add(new FileInfo(FileName).Name);
+                }
             }
-            this.cmbLanguage.SelectedIndex = (int)SystemManager.ConfigHelperInstance.currentLanguage;
+            if (File.Exists("Language\\" + SystemManager.ConfigHelperInstance.LanguageFileName))
+            {
+                this.cmbLanguage.Text = SystemManager.ConfigHelperInstance.LanguageFileName;
+            }
+            else
+            {
+                this.cmbLanguage.Text = "";
+            }
         }
         private void cmdOK_Click(object sender, EventArgs e)
         {
             SystemManager.ConfigHelperInstance.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPath;
             SystemManager.ConfigHelperInstance.LimitCnt = (int)this.numLimitCnt.Value;
             SystemManager.ConfigHelperInstance.RefreshStatusTimer = (int)this.numRefreshForStatus.Value;
-            SystemManager.ConfigHelperInstance.currentLanguage = (GUIResource.StringResource.Language)cmbLanguage.SelectedIndex;
+            SystemManager.ConfigHelperInstance.LanguageFileName = this.cmbLanguage.Text;
             SystemManager.ConfigHelperInstance.SaveToConfigFile();
             this.Close();
         }
@@ -33,7 +44,5 @@ namespace MagicMongoDBTool
         {
             this.Close();
         }
-
-
     }
 }

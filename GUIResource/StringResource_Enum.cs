@@ -240,19 +240,10 @@ namespace GUIResource
             Common_ReadOnly,
             Common_OK,
             Common_Cancel,
-            Common_Refresh
-
-
-        }
-        /// <summary>
-        /// 语言
-        /// </summary>
-        public enum Language
-        {
-            Chinese,
-            English,
-            Japanese,
-            Default
+            Common_Refresh,
+            Common_Yes,
+            Common_No,
+            Common_Detail
         }
     }
 }

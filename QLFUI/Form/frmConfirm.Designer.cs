@@ -104,7 +104,6 @@ namespace QLFUI
             this.Name = "frmconfirm";
             this.ShowSelectSkinButton = false;
             this.Text = "frmconfirm";
-            this.Load += new System.EventHandler(this.frmconfirm_Load);
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();

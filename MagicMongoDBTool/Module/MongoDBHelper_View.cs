@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
+using GUIResource;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using System.Text;
-using GUIResource;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -149,7 +149,7 @@ namespace MagicMongoDBTool.Module
                     MessageBox.Show("认证信息错误，请检查数据库的用户名和密码", "认证失败");
                     //暂时不处理任何异常，简单跳过
 
-                    if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+                    if (!SystemManager.IsUseDefaultLanguage())
                     {
                         mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]";
                     }
@@ -164,14 +164,14 @@ namespace MagicMongoDBTool.Module
                 catch (Exception)
                 {
                     //暂时不处理任何异常，简单跳过
-                    if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+                    if (!SystemManager.IsUseDefaultLanguage())
                     {
                         mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
                     }
                     else
                     {
                         mongoSvrNode.Text += "[无法连接]";
-                    } 
+                    }
                     mongoSvrNode.Tag = null;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
@@ -360,7 +360,7 @@ namespace MagicMongoDBTool.Module
             foreach (IndexInfo indexDoc in indexList.ToList<IndexInfo>())
             {
                 TreeNode mongoIndex = new TreeNode();
-                if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+                if (!SystemManager.IsUseDefaultLanguage())
                 {
                     mongoIndex.Text = (SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name) + ":" + indexDoc.Name);
                     mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Keys) + ":" + indexDoc.Key.ToString());

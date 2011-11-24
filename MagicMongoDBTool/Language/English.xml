@@ -278,7 +278,10 @@
   <Common_Username>Username</Common_Username>
   <Common_Password>Password</Common_Password>
   <Common_ReadOnly>ReadOnly</Common_ReadOnly>
-  <Common_OK>ReadOnly</Common_OK>
-  <Common_Cancel>ReadOnly</Common_Cancel>
+  <Common_OK>OK</Common_OK>
+  <Common_Cancel>Cancel</Common_Cancel>
   <Common_Refresh>Refresh</Common_Refresh>
+  <Common_Yes>Yes</Common_Yes>
+  <Common_No>No</Common_No>
+  <Common_Detail>Detail</Common_Detail>
 </Language>

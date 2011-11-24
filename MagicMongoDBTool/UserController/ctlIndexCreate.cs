@@ -18,7 +18,7 @@ namespace MagicMongoDBTool
         public ctlIndexCreate()
         {
             InitializeComponent();
-            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            if (!SystemManager.IsUseDefaultLanguage())
             {
                 this.lblKeyName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
                 this.txtKeyName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Description);

@@ -11,13 +11,19 @@ namespace QLFUI
 {
     public partial class frmConfirm : QLFForm
     {
-        public Boolean Result;        
+        /// <summary>
+        /// 返回结果
+        /// </summary>
+        public Boolean Result;
+        /// <summary>
+        /// 
+        /// </summary>
         public frmConfirm()
         {
             InitializeComponent();
         }
         /// <summary>
-        /// Yes
+        /// Yes按钮
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -27,7 +33,7 @@ namespace QLFUI
             this.Close();
         }
         /// <summary>
-        /// No
+        /// No按钮
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -36,10 +42,6 @@ namespace QLFUI
             Result = false;
             this.Close();
         }
-        private void frmconfirm_Load(object sender, EventArgs e)
-        {
-
-        }
         /// <summary>
         /// 设定消息
         /// </summary>
@@ -47,6 +49,15 @@ namespace QLFUI
         public void SetMessage(String strMessage)
         {
             this.lblMessage.Text = strMessage;
+        }
+        /// <summary>
+        /// 设置YES NO 文字
+        /// </summary>
+        /// <param name="Yes"></param>
+        /// <param name="No"></param>
+        public void SetText(String Yes,String No) {
+            cmdYes.Text = Yes;
+            cmdNo.Text = No;
         }
     }
 }

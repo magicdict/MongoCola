@@ -24,9 +24,9 @@ namespace MagicMongoDBTool
                 SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
             }
             SystemManager.DEBUG_MODE = false;
-            SystemManager.Init();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            SystemManager.InitLanguage();
             Application.Run(new frmMain());
         }
     }

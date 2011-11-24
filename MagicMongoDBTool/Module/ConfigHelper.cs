@@ -165,7 +165,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 语言
         /// </summary>
-        public GUIResource.StringResource.Language currentLanguage = GUIResource.StringResource.Language.English;
+        public String LanguageFileName = String.Empty;
         /// <summary>
         /// 皮肤目录
         /// </summary>

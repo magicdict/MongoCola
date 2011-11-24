@@ -21,7 +21,7 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
-            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            if (!SystemManager.IsUseDefaultLanguage())
             {
                 SetText();
             }

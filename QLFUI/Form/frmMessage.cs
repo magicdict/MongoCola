@@ -60,11 +60,26 @@ namespace QLFUI
             }
             _ShowDetails = !_ShowDetails;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="img"></param>
+        /// <param name="Details"></param>
         internal void SetMessage(string Message, System.Drawing.Image img, string Details)
         {
             this.picImage.Image = img;
             SetMessage(Message, Details);
+        }
+        /// <summary>
+        /// 设置文字
+        /// </summary>
+        /// <param name="Yes"></param>
+        /// <param name="No"></param>
+        public void SetText(String Detail, String OK)
+        {
+            cmdDetails.Text = Detail;
+            cmdOK.Text = OK;
         }
     }
 }
