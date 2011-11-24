@@ -37,7 +37,7 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 cmdQuery.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Distinct_Action_LoadQuery);
-                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Distinct_Action_OK);
+                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
                 lblSelectField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Distinct_SelectField);
             }
         }

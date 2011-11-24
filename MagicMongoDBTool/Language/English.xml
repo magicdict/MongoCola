@@ -121,7 +121,6 @@
   <AddConnection_Attention2_Description>Password is saved in config file without Encryption</AddConnection_Attention2_Description>
 
   <AddConnection_Action_Add>Add</AddConnection_Action_Add>
-  <AddConnection_Action_Cancel>Cancel</AddConnection_Action_Cancel>
   <AddConnection_Action_Modify>Modify</AddConnection_Action_Modify>
 
   <!--frmCollectionIndex-->
@@ -138,11 +137,8 @@
   <Connect_Action_Add>Add</Connect_Action_Add>
   <Connect_Action_Del>Delete</Connect_Action_Del>
   <Connect_Action_Modify>Modify</Connect_Action_Modify>
-  <Connect_Action_OK>OK</Connect_Action_OK>
-  <Connect_Action_Cancel>Cancel</Connect_Action_Cancel>
 
   <!--frmDistinct-->
-  <Distinct_Action_OK>OK</Distinct_Action_OK>
   <Distinct_Action_LoadQuery>Load Query</Distinct_Action_LoadQuery>
   <Distinct_SelectField>Please select Distinct</Distinct_SelectField>
 
@@ -208,7 +204,6 @@
   <Group_Save>Save</Group_Save>
   <Group_Add>Add</Group_Add>
   <Group_LoadQuery>Load Query</Group_LoadQuery>
-  <Group_OK>OK</Group_OK>
 
   <!--frmMapReduce-->
   <MapReduce_MapFunction>Map Function</MapReduce_MapFunction>
@@ -224,7 +219,6 @@
   <Query_FieldInfo>OutPut Field</Query_FieldInfo>
   <Query_Action_Load>Load</Query_Action_Load>
   <Query_Action_Save>Save</Query_Action_Save>
-  <Query_Action_OK>OK</Query_Action_OK>
 
   <!--frmReplset-->
   <Replset_AddServer>Add Server</Replset_AddServer>

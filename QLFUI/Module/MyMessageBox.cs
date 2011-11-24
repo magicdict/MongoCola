@@ -18,11 +18,11 @@ namespace QLFUI
         /// </summary>
         private static frmMesssage _frmMessage = new frmMesssage();
         /// <summary>
-        /// 消息窗体
+        /// 确认窗体
         /// </summary>
         private static frmConfirm _frmConfirm = new frmConfirm();
         /// <summary>
-        /// 确认信息
+        /// 确认信息表示
         /// </summary>
         public static Boolean ShowConfirm(String Title, String Message)
         {

@@ -30,13 +30,15 @@ namespace MagicMongoDBTool
             this.toolStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
             this.statusStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
             this.splitContainer1.BackColor = QLFUI.IniHelper.BackColor;
-            this.SkinChanged += new SkinChangedEventHandler(() =>
+            this.SkinChanged += new SkinChangedEventHandler((skinName) =>
             {
                 this.menuStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
                 this.toolStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
                 this.statusStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
                 this.splitContainer1.BackColor = System.Drawing.Color.GreenYellow;
                 this.splitContainer1.BackColor = QLFUI.IniHelper.BackColor;
+                SystemManager.ConfigHelperInstance.SkipFolder = skinName;
+                SystemManager.ConfigHelperInstance.SaveToConfigFile();
             });
             if (SystemManager.DEBUG_MODE)
             {
@@ -52,7 +54,6 @@ namespace MagicMongoDBTool
         /// </summary>
         private void SetMenuText()
         {
-
             //管理
             this.ManagerToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt);
             this.AddConnectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_AddConnection);
@@ -149,6 +150,10 @@ namespace MagicMongoDBTool
         /// </summary>
         private void frmMain_Load(object sender, EventArgs e)
         {
+            if (SystemManager.ConfigHelperInstance.SkipFolder != String.Empty) {
+                this.ChangeSkin(SystemManager.ConfigHelperInstance.SkipFolder);
+            }
+            //菜单美化
             this.menuStripMain.Renderer = new CRD.WinUI.Misc.ToolStripRenderer(new ProfessionalColorTable());
 
             this.trvsrvlst.NodeMouseClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseClick);

@@ -132,7 +132,7 @@ namespace MagicMongoDBTool
                 cmdAddInitField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_InitColumn);
                 lblResult.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Result);
                 cmdQuery.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_LoadQuery);
-                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_OK);
+                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
             }
 
         }

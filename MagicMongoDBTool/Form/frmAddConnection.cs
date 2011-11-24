@@ -65,7 +65,7 @@ namespace MagicMongoDBTool
 
 
             cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Action_Add);
-            cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Action_Cancel);
+            cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
             lblAttention.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention_Description)
                     + "\r\n"  + SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention2_Description);
         }

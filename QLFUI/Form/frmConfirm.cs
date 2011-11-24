@@ -14,9 +14,9 @@ namespace QLFUI
         /// <summary>
         /// 返回结果
         /// </summary>
-        public Boolean Result;
+        public Boolean Result = false;
         /// <summary>
-        /// 
+        /// 初始化
         /// </summary>
         public frmConfirm()
         {
@@ -48,6 +48,7 @@ namespace QLFUI
         /// <param name="strMessage"></param>
         public void SetMessage(String strMessage)
         {
+            Result = false;
             this.lblMessage.Text = strMessage;
         }
         /// <summary>

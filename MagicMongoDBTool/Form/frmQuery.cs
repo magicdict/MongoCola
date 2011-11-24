@@ -56,12 +56,12 @@ namespace MagicMongoDBTool
 
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                tabFieldInfo.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Qeery_FieldInfo);
+                tabFieldInfo.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_FieldInfo);
                 tabFilter.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Filter);
                 cmdAddCondition.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Filter_AddCondition);
-                cmdLoad.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Qeery_Action_Load);
-                cmdSave.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Qeery_Action_Save);
-                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Qeery_Action_OK);
+                cmdLoad.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Action_Load);
+                cmdSave.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Action_Save);
+                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
             }
 
         }

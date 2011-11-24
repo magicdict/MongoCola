@@ -75,6 +75,7 @@ namespace GUIResource
             Main_Tab_Table,
             Main_Tab_Text,
             Main_StatusBar_Text_Ready,
+
             AddConnection_Title,
             AddConnection_Name,
             AddConnection_Name_Description,
@@ -105,7 +106,6 @@ namespace GUIResource
             AddConnection_Region_ReplaceSetList,
             AddConnection_Region_ReplaceSetInit,
             AddConnection_Action_Add,
-            AddConnection_Action_Cancel,
             AddConnection_Action_Modify,
             AddConnection_Attention_Description,
             AddConnection_Attention2_Description,
@@ -123,11 +123,8 @@ namespace GUIResource
             Connect_Action_Add,
             Connect_Action_Del,
             Connect_Action_Modify,
-            Connect_Action_OK,
             Connect_Action_Cancel,
-
-
-            Distinct_Action_OK,
+            
             Distinct_Action_LoadQuery,
             Distinct_SelectField,
 
@@ -175,7 +172,6 @@ namespace GUIResource
             Group_Save,
             Group_Add,
             Group_LoadQuery,
-            Group_OK,
 
             //MapReduce
             MapReduce_MapFunction,
@@ -187,10 +183,9 @@ namespace GUIResource
 
             Query_Filter,
             Query_Filter_AddCondition,
-            Qeery_FieldInfo,
-            Qeery_Action_Load,
-            Qeery_Action_Save,
-            Qeery_Action_OK,
+            Query_FieldInfo,
+            Query_Action_Load,
+            Query_Action_Save,
 
             Replset_AddServer,
             Replset_RemoveServer,
