@@ -21,7 +21,8 @@ namespace MagicMongoDBTool
 
         private void frmevalJS_Load(object sender, EventArgs e)
         {
-            if (SystemManager.ConfigHelperInstance.currentLanguage != GUIResource.StringResource.Language.Default) {
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
                 lblFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Method);
                 lblParm.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Parameter);
                 cmdEval.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Run);

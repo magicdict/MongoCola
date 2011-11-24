@@ -33,21 +33,21 @@
             this.lblReplsetName = new System.Windows.Forms.Label();
             this.cmdAddSharding = new System.Windows.Forms.VistaButton();
             this.lstShard = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblField = new System.Windows.Forms.Label();
             this.cmbKeyList = new System.Windows.Forms.ComboBox();
-            this.cmdCollectionSharding = new System.Windows.Forms.VistaButton();
-            this.cmdEnableSharding = new System.Windows.Forms.VistaButton();
+            this.cmdEnableCollectionSharding = new System.Windows.Forms.VistaButton();
+            this.cmdEnableDBSharding = new System.Windows.Forms.VistaButton();
             this.cmbCollection = new System.Windows.Forms.ComboBox();
             this.cmbDataBase = new System.Windows.Forms.ComboBox();
             this.lblCollection = new System.Windows.Forms.Label();
             this.lblDBName = new System.Windows.Forms.Label();
             this.tabSharding = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabAddSharding = new System.Windows.Forms.TabPage();
+            this.tabShardingConfig = new System.Windows.Forms.TabPage();
             this.contentPanel.SuspendLayout();
             this.tabSharding.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabAddSharding.SuspendLayout();
+            this.tabShardingConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // contentPanel
@@ -94,15 +94,15 @@
             this.lstShard.Size = new System.Drawing.Size(368, 82);
             this.lstShard.TabIndex = 1;
             // 
-            // label1
+            // lblField
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(21, 98);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "索引名称";
+            this.lblField.AutoSize = true;
+            this.lblField.BackColor = System.Drawing.Color.Transparent;
+            this.lblField.Location = new System.Drawing.Point(21, 98);
+            this.lblField.Name = "lblField";
+            this.lblField.Size = new System.Drawing.Size(55, 13);
+            this.lblField.TabIndex = 34;
+            this.lblField.Text = "索引名称";
             // 
             // cmbKeyList
             // 
@@ -112,25 +112,25 @@
             this.cmbKeyList.Size = new System.Drawing.Size(220, 21);
             this.cmbKeyList.TabIndex = 30;
             // 
-            // cmdCollectionSharding
+            // cmdEnableCollectionSharding
             // 
-            this.cmdCollectionSharding.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCollectionSharding.Location = new System.Drawing.Point(331, 64);
-            this.cmdCollectionSharding.Name = "cmdCollectionSharding";
-            this.cmdCollectionSharding.Size = new System.Drawing.Size(85, 30);
-            this.cmdCollectionSharding.TabIndex = 31;
-            this.cmdCollectionSharding.Text = "数据集分片";
-            this.cmdCollectionSharding.Click += new System.EventHandler(this.cmdCollectionSharding_Click);
+            this.cmdEnableCollectionSharding.BackColor = System.Drawing.Color.Transparent;
+            this.cmdEnableCollectionSharding.Location = new System.Drawing.Point(331, 64);
+            this.cmdEnableCollectionSharding.Name = "cmdEnableCollectionSharding";
+            this.cmdEnableCollectionSharding.Size = new System.Drawing.Size(85, 30);
+            this.cmdEnableCollectionSharding.TabIndex = 31;
+            this.cmdEnableCollectionSharding.Text = "数据集分片";
+            this.cmdEnableCollectionSharding.Click += new System.EventHandler(this.cmdEnableCollectionSharding_Click);
             // 
-            // cmdEnableSharding
+            // cmdEnableDBSharding
             // 
-            this.cmdEnableSharding.BackColor = System.Drawing.Color.Transparent;
-            this.cmdEnableSharding.Location = new System.Drawing.Point(331, 23);
-            this.cmdEnableSharding.Name = "cmdEnableSharding";
-            this.cmdEnableSharding.Size = new System.Drawing.Size(85, 33);
-            this.cmdEnableSharding.TabIndex = 28;
-            this.cmdEnableSharding.Text = "数据库分片";
-            this.cmdEnableSharding.Click += new System.EventHandler(this.cmdEnableSharding_Click);
+            this.cmdEnableDBSharding.BackColor = System.Drawing.Color.Transparent;
+            this.cmdEnableDBSharding.Location = new System.Drawing.Point(331, 23);
+            this.cmdEnableDBSharding.Name = "cmdEnableDBSharding";
+            this.cmdEnableDBSharding.Size = new System.Drawing.Size(85, 33);
+            this.cmdEnableDBSharding.TabIndex = 28;
+            this.cmdEnableDBSharding.Text = "数据库分片";
+            this.cmdEnableDBSharding.Click += new System.EventHandler(this.cmdEnableSharding_Click);
             // 
             // cmbCollection
             // 
@@ -172,45 +172,45 @@
             // 
             // tabSharding
             // 
-            this.tabSharding.Controls.Add(this.tabPage1);
-            this.tabSharding.Controls.Add(this.tabPage2);
+            this.tabSharding.Controls.Add(this.tabAddSharding);
+            this.tabSharding.Controls.Add(this.tabShardingConfig);
             this.tabSharding.Location = new System.Drawing.Point(11, 18);
             this.tabSharding.Name = "tabSharding";
             this.tabSharding.SelectedIndex = 0;
             this.tabSharding.Size = new System.Drawing.Size(450, 185);
             this.tabSharding.TabIndex = 35;
             // 
-            // tabPage1
+            // tabAddSharding
             // 
-            this.tabPage1.Controls.Add(this.lblReplsetName);
-            this.tabPage1.Controls.Add(this.lstShard);
-            this.tabPage1.Controls.Add(this.cmdAddSharding);
-            this.tabPage1.Controls.Add(this.cmbReplsetName);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(442, 159);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "添加分片";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabAddSharding.Controls.Add(this.lblReplsetName);
+            this.tabAddSharding.Controls.Add(this.lstShard);
+            this.tabAddSharding.Controls.Add(this.cmdAddSharding);
+            this.tabAddSharding.Controls.Add(this.cmbReplsetName);
+            this.tabAddSharding.Location = new System.Drawing.Point(4, 22);
+            this.tabAddSharding.Name = "tabAddSharding";
+            this.tabAddSharding.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAddSharding.Size = new System.Drawing.Size(442, 159);
+            this.tabAddSharding.TabIndex = 0;
+            this.tabAddSharding.Text = "添加分片";
+            this.tabAddSharding.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabShardingConfig
             // 
-            this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.lblDBName);
-            this.tabPage2.Controls.Add(this.cmbKeyList);
-            this.tabPage2.Controls.Add(this.lblCollection);
-            this.tabPage2.Controls.Add(this.cmdCollectionSharding);
-            this.tabPage2.Controls.Add(this.cmbDataBase);
-            this.tabPage2.Controls.Add(this.cmdEnableSharding);
-            this.tabPage2.Controls.Add(this.cmbCollection);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(442, 159);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "分片设置";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabShardingConfig.Controls.Add(this.lblField);
+            this.tabShardingConfig.Controls.Add(this.lblDBName);
+            this.tabShardingConfig.Controls.Add(this.cmbKeyList);
+            this.tabShardingConfig.Controls.Add(this.lblCollection);
+            this.tabShardingConfig.Controls.Add(this.cmdEnableCollectionSharding);
+            this.tabShardingConfig.Controls.Add(this.cmbDataBase);
+            this.tabShardingConfig.Controls.Add(this.cmdEnableDBSharding);
+            this.tabShardingConfig.Controls.Add(this.cmbCollection);
+            this.tabShardingConfig.Location = new System.Drawing.Point(4, 22);
+            this.tabShardingConfig.Name = "tabShardingConfig";
+            this.tabShardingConfig.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShardingConfig.Size = new System.Drawing.Size(442, 159);
+            this.tabShardingConfig.TabIndex = 1;
+            this.tabShardingConfig.Text = "分片设置";
+            this.tabShardingConfig.UseVisualStyleBackColor = true;
             // 
             // frmShardingConfig
             // 
@@ -219,15 +219,14 @@
             this.ClientSize = new System.Drawing.Size(476, 295);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmShardingConfig";
-            this.ShowSelectSkinButton = false;
             this.Text = "分片管理";
             this.Load += new System.EventHandler(this.frmAddSharding_Load);
             this.contentPanel.ResumeLayout(false);
             this.tabSharding.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabAddSharding.ResumeLayout(false);
+            this.tabAddSharding.PerformLayout();
+            this.tabShardingConfig.ResumeLayout(false);
+            this.tabShardingConfig.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -238,16 +237,16 @@
         private System.Windows.Forms.Label lblReplsetName;
         private System.Windows.Forms.VistaButton cmdAddSharding;
         private System.Windows.Forms.ListBox lstShard;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblField;
         private System.Windows.Forms.ComboBox cmbKeyList;
-        private System.Windows.Forms.VistaButton cmdCollectionSharding;
-        private System.Windows.Forms.VistaButton cmdEnableSharding;
+        private System.Windows.Forms.VistaButton cmdEnableCollectionSharding;
+        private System.Windows.Forms.VistaButton cmdEnableDBSharding;
         private System.Windows.Forms.ComboBox cmbCollection;
         private System.Windows.Forms.ComboBox cmbDataBase;
         private System.Windows.Forms.Label lblCollection;
         private System.Windows.Forms.Label lblDBName;
         private System.Windows.Forms.TabControl tabSharding;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabAddSharding;
+        private System.Windows.Forms.TabPage tabShardingConfig;
     }
 }

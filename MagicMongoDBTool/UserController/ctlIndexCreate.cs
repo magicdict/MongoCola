@@ -20,10 +20,10 @@ namespace MagicMongoDBTool
             InitializeComponent();
             if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
             {
-                this.lblKeyName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_ctlIndexCreate_Index);
-                this.txtKeyName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_ctlIndexCreate_Description);
-                this.radAscendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_ctlIndexCreate_Asce);
-                this.radDescendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_ctlIndexCreate_Desc);
+                this.lblKeyName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
+                this.txtKeyName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Description);
+                this.radAscendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Asce);
+                this.radDescendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Desc);
             }
 
         }

@@ -146,8 +146,8 @@
             this.ClientSize = new System.Drawing.Size(364, 234);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmUser";
-            this.ShowSelectSkinButton = false;
             this.Text = "添加用户";
+            this.Load += new System.EventHandler(this.frmUser_Load);
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             this.ResumeLayout(false);

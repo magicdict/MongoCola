@@ -34,7 +34,7 @@ namespace MagicMongoDBTool
                 //纵向位置的累加
                 _conditionPos.Y += ctrItem.Height;
             }
-            if (SystemManager.ConfigHelperInstance.currentLanguage != GUIResource.StringResource.Language.Default)
+            if (!SystemManager.IsUseDefaultLanguage())
             {
                 cmdQuery.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Distinct_Action_LoadQuery);
                 cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Distinct_Action_OK);

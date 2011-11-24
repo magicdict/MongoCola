@@ -121,7 +121,8 @@ namespace MagicMongoDBTool
             firstAddBsonElCtl.Element = el;
             panBsonEl.Controls.Add(firstAddBsonElCtl);
 
-            if (SystemManager.ConfigHelperInstance.currentLanguage != GUIResource.StringResource.Language.Default) {
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
                 lblReduceFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Reduce);
                 cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Save);
                 lblfinalizeFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Finalize);

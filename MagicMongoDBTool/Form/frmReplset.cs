@@ -16,6 +16,13 @@ namespace MagicMongoDBTool
         private void frmReplset_Load(object sender, EventArgs e)
         {
             RefreshSvr();
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                tabAddSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_AddServer);
+                tabRemoveSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_RemoveServer);
+                cmdAddSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_Add);
+                cmdRemove.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_Remove);
+            }
         }
         MongoServer _prmSvr = SystemManager.GetCurrentService();
         /// <summary>

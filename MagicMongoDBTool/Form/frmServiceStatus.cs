@@ -27,6 +27,14 @@ namespace MagicMongoDBTool
             MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
             MongoDBHelper.FillDBStatusToList(this.lstDBStatus);
             MongoDBHelper.FillExtraSrvStatusToList(trvSvrStatus);
+
+            if (!SystemManager.IsUseDefaultLanguage()) {
+                cmdRefresh.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Refresh);
+                this.tabSvrBasicInfo.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ServiceStatus_ServerInfo);
+                this.tabDBBasicInfo.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ServiceStatus_DataBaseInfo);
+                this.tabCollectionInfo.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ServiceStatus_CollectionInfo);
+                this.tabClusterInfo.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ServiceStatus_ClusterInfo);
+            }
         }
         /// <summary>
         /// 立刻刷新数据

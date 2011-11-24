@@ -116,20 +116,6 @@ namespace GUIResource
             CollectionIndex_Tab_Manager,
             CollectionIndex_Tab_Manager_ADD,
             
-            CollectionIndex_ctlIndexCreate_Index,
-            CollectionIndex_ctlIndexCreate_Asce,
-            CollectionIndex_ctlIndexCreate_Desc,
-            CollectionIndex_ctlIndexCreate_Description,
-
-            Index_Background,
-            Index_RepeatDel,
-            Index_Sparse,
-            Index_Unify,
-            Index_Name,
-            Index_Keys,
-            Index_Version,
-            Index_NameSpace,
-
             CollectionIndex_TabMangt_IndexName,
             CollectionIndex_TabMangt_IndexName_Description,
 
@@ -190,9 +176,73 @@ namespace GUIResource
             Group_Add,
             Group_LoadQuery,
             Group_OK,
+
+            //MapReduce
+            MapReduce_MapFunction,
+            MapReduce_SaveMap,
+            MapReduce_ReduceFunction,
+            MapReduce_SaveReduce,
+            MapReduce_Result,
+            MapReduce_Run,
+
+            Query_Filter,
+            Query_Filter_AddCondition,
+            Qeery_FieldInfo,
+            Qeery_Action_Load,
+            Qeery_Action_Save,
+            Qeery_Action_OK,
+
+            Replset_AddServer,
+            Replset_RemoveServer,
+            Replset_Add,
+            Replset_Remove,
+
+            ServiceStatus_ServerInfo,
+            ServiceStatus_DataBaseInfo,
+            ServiceStatus_CollectionInfo,
+            ServiceStatus_ClusterInfo,
+
+            ShardingConfig_AddSharding,
+            ShardingConfig_ReplsetName,
+            ShardingConfig_Action_Add,
+            ShardingConfig_EnableSharding,
+            ShardingConfig_DBName,
+            ShardingConfig_CollectionName,
+            ShardingConfig_FieldName,
+            ShardingConfig_Action_DBSharding,
+            ShardingConfig_Action_CollectionSharding,
+
+            //Controller
+            ctlIndexCreate_Index,
+            ctlIndexCreate_Description,
+            ctlFieldInfo_Show,
+
             //异常
             Exception_NotConnected,
-            Exception_AuthenticationException
+            Exception_AuthenticationException,
+
+            Index_Asce,
+            Index_Desc,
+            Index_NoSort,
+
+            Index_Background,
+            Index_RepeatDel,
+            Index_Sparse,
+            Index_Unify,
+            Index_Name,
+            Index_Keys,
+            Index_Version,
+            Index_NameSpace,
+
+            //公共
+            Common_Username,
+            Common_Password,
+            Common_ReadOnly,
+            Common_OK,
+            Common_Cancel,
+            Common_Refresh
+
+
         }
         /// <summary>
         /// 语言

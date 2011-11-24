@@ -93,12 +93,10 @@ namespace MagicMongoDBTool
             }
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
 
-            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            if (!SystemManager.IsUseDefaultLanguage())
             {
                 SetText();
             }
-
-
             txtHostName.Text = ModifyConn.ConnectionName;
             txtHostName.Enabled = false;
             txtIpAddr.Text = ModifyConn.IpAddr;
@@ -106,7 +104,7 @@ namespace MagicMongoDBTool
             txtPort.Text = ModifyConn.Port.ToString();
             txtUsername.Text = ModifyConn.UserName;
             txtPassword.Text = ModifyConn.Password;
-            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            if (!SystemManager.IsUseDefaultLanguage())
             {
                 cmdAdd.Text = "修改";
             }

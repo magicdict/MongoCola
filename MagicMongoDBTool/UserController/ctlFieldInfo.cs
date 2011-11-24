@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+using GUIResource;
 namespace MagicMongoDBTool
 {
     public partial class ctlFieldInfo : UserControl
@@ -14,6 +15,14 @@ namespace MagicMongoDBTool
         public ctlFieldInfo()
         {
             InitializeComponent();
+            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            {
+                this.lblFieldName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
+                this.radSortAcs.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Asce);
+                this.radSortDes.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Desc);
+                this.radNoSort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_NoSort);
+                this.chkIsShow.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlFieldInfo_Show);
+            }
         }
         public DataFilter.QueryFieldItem QueryFieldItem
         {

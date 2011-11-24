@@ -30,9 +30,14 @@ namespace MagicMongoDBTool
                 cmbForReduce.Items.Add(item);
             }
 
-            if (SystemManager.ConfigHelperInstance.currentLanguage != GUIResource.StringResource.Language.Default) { 
-                
-            
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                lblMapFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_MapFunction);
+                lblReduceFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_ReduceFunction);
+                lblResult.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_Result);
+                cmdRun.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_Run);
+                cmdSaveMapJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_SaveMap);
+                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_SaveReduce);
             }
 
         }

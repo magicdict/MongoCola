@@ -27,8 +27,19 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void frmAddSharding_Load(object sender, EventArgs e)
         {
-            _prmSvr = SystemManager.GetCurrentService();
+            if (!SystemManager.IsUseDefaultLanguage()) {
+                tabAddSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_AddSharding);
+                lblReplsetName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_ReplsetName);
+                cmdAddSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_Action_Add);
 
+                tabShardingConfig.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_EnableSharding);
+                lblDBName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_DBName);
+                lblCollection.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_CollectionName);
+                lblField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_FieldName);
+                cmdEnableCollectionSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_Action_CollectionSharding);
+                cmdEnableDBSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_Action_DBSharding);
+            }
+            _prmSvr = SystemManager.GetCurrentService();
             MongoDatabase mongoDB = _prmSvr.GetDatabase("config");
             MongoCollection mongoCol = mongoDB.GetCollection("databases");
             foreach (var item in mongoCol.FindAllAs<BsonDocument>())
@@ -149,7 +160,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdCollectionSharding_Click(object sender, EventArgs e)
+        private void cmdEnableCollectionSharding_Click(object sender, EventArgs e)
         {
             List<CommandResult> Resultlst = new List<CommandResult>();
             Resultlst.Add(MongoDBHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument()));

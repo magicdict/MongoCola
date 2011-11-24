@@ -106,6 +106,13 @@ namespace MagicMongoDBTool.Module
 
         }
         /// <summary>
+        /// 是否使用默认语言
+        /// </summary>
+        /// <returns></returns>
+        internal static Boolean IsUseDefaultLanguage() {
+            return ConfigHelperInstance.currentLanguage == StringResource.Language.Default;
+        } 
+        /// <summary>
         /// 初始化
         /// </summary>
         internal static void Init()

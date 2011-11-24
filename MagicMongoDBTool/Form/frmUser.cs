@@ -35,5 +35,16 @@ namespace MagicMongoDBTool
         {
             this.Close();
         }
+
+        private void frmUser_Load(object sender, EventArgs e)
+        {
+            if (!SystemManager.IsUseDefaultLanguage()) {
+                lblPassword.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Password);
+                lblUserName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Username);
+                chkReadOnly.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_ReadOnly);
+                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Cancel);
+            }
+        }
     }
 }

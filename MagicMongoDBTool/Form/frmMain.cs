@@ -17,7 +17,7 @@ namespace MagicMongoDBTool
             GetSystemIcon.InitMainTreeImage();
             trvsrvlst.ImageList = GetSystemIcon.MainTreeImage;
             SetMenuImage();
-            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            if (!SystemManager.IsUseDefaultLanguage())
             {
                 SetMenuText();
             }

@@ -14,7 +14,7 @@ namespace MagicMongoDBTool
         private void frmConnect_Load(object sender, EventArgs e)
         {
             RefreshConnection();
-            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            if (!SystemManager.IsUseDefaultLanguage())
             {
                 this.cmdAddCon.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Connect_Action_Add);
                 this.cmdDelCon.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Connect_Action_Del);

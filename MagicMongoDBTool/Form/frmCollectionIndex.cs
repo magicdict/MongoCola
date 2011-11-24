@@ -27,7 +27,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void frmCollectionIndex_Load(object sender, EventArgs e)
         {
-            if (SystemManager.ConfigHelperInstance.currentLanguage != StringResource.Language.Default)
+            if (!SystemManager.IsUseDefaultLanguage())
             {
                 this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Title);
                 tabCurrentIndex.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current);
