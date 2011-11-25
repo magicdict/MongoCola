@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--frmMain-->
-<Language>
+<Language Type="English">
   <Main_Menu_Mangt>Management(&amp;S)</Main_Menu_Mangt>
   <Main_Menu_Mangt_AddConnection>Add Connection(&amp;A)</Main_Menu_Mangt_AddConnection>
   <Main_Menu_Mangt_Status>Status</Main_Menu_Mangt_Status>
@@ -8,7 +8,6 @@
   <Main_Menu_Mangt_Collapse>Collapse</Main_Menu_Mangt_Collapse>
   <Main_Menu_Mangt_Expansion>Expansion</Main_Menu_Mangt_Expansion>
   <Main_Menu_Mangt_Exit>Exit</Main_Menu_Mangt_Exit>
-
 
   <Main_Menu_DataView>DataView</Main_Menu_DataView>
   <Main_Menu_DataView_Previous>Previous</Main_Menu_DataView_Previous>
@@ -45,7 +44,6 @@
   <Main_Menu_Operation_DataCollection_DelSelect>Del Select Data</Main_Menu_Operation_DataCollection_DelSelect>
   <Main_Menu_Operation_DataCollection_Rename>Rename</Main_Menu_Operation_DataCollection_Rename>
 
-
   <Main_Menu_Operation_FileSystem>FileSystem</Main_Menu_Operation_FileSystem>
   <Main_Menu_Operation_FileSystem_Upload>Upload</Main_Menu_Operation_FileSystem_Upload>
   <Main_Menu_Operation_FileSystem_Download>Download</Main_Menu_Operation_FileSystem_Download>
@@ -61,8 +59,6 @@
   <Main_Menu_Operation_BackupAndRestore_Import>Import DataCollection</Main_Menu_Operation_BackupAndRestore_Import>
   <Main_Menu_Operation_BackupAndRestore_Export>Export DataCollection</Main_Menu_Operation_BackupAndRestore_Export>
 
-
-
   <Main_Menu_Tool>Tools(&amp;T)</Main_Menu_Tool>
   <Main_Menu_Tool_DOS>DOS Operation</Main_Menu_Tool_DOS>
   <Main_Menu_Tool_Access>Import Access Database</Main_Menu_Tool_Access>
@@ -72,7 +68,6 @@
   <Main_Menu_Distributed_ReplicaSet>ReplicaSet</Main_Menu_Distributed_ReplicaSet>
   <Main_Menu_Distributed_ShardingConfig>Sharding Config</Main_Menu_Distributed_ShardingConfig>
 
-
   <Main_Menu_Help>Help</Main_Menu_Help>
   <Main_Menu_Help_About>About</Main_Menu_Help_About>
   <Main_Menu_Help_Thanks>Thanks</Main_Menu_Help_Thanks>
@@ -81,7 +76,6 @@
   <Main_Tab_Table>TableView</Main_Tab_Table>
   <Main_Tab_Text>TextView</Main_Tab_Text>
   <Main_StatusBar_Text_Ready>Ready</Main_StatusBar_Text_Ready>
-
 
   <!--frmAddConnection-->
   <AddConnection_Title>Connection Manager</AddConnection_Title>
@@ -110,7 +104,6 @@
   <AddConnection_ServerType_Route>Route</AddConnection_ServerType_Route>
   <AddConnection_ServerType_Arbitration>Arbitration</AddConnection_ServerType_Arbitration>
 
-
   <AddConnection_Region_ReplaceSet>ReplaceSet Server</AddConnection_Region_ReplaceSet>
   <AddConnection_Region_ReplaceSetName>ReplaceSet Name</AddConnection_Region_ReplaceSetName>
   <AddConnection_Region_ReplaceSetName_Description>ReplaceSet Name(Option)</AddConnection_Region_ReplaceSetName_Description>
@@ -119,10 +112,7 @@
 
   <AddConnection_Attention_Description>If Priority=0,then it can't be the ReplaceSet server</AddConnection_Attention_Description>
   <AddConnection_Attention2_Description>Password is saved in config file without Encryption</AddConnection_Attention2_Description>
-
-  <AddConnection_Action_Add>Add</AddConnection_Action_Add>
-  <AddConnection_Action_Modify>Modify</AddConnection_Action_Modify>
-
+ 
   <!--frmCollectionIndex-->
   <CollectionIndex_Title>Index Manager</CollectionIndex_Title>
   <CollectionIndex_Tab_Current>Current</CollectionIndex_Tab_Current>
@@ -134,9 +124,7 @@
 
   <!--frmConnect-->
   <Connect_Title>Connection</Connect_Title>
-  <Connect_Action_Add>Add</Connect_Action_Add>
   <Connect_Action_Del>Delete</Connect_Action_Del>
-  <Connect_Action_Modify>Modify</Connect_Action_Modify>
 
   <!--frmDistinct-->
   <Distinct_Action_LoadQuery>Load Query</Distinct_Action_LoadQuery>
@@ -153,16 +141,12 @@
   <DosCommand_Tab_Deploy_Log>Log</DosCommand_Tab_Deploy_Log>
   <DosCommand_Tab_Deploy_AddingMode>Adding Mode(default is overwrite mode)</DosCommand_Tab_Deploy_AddingMode>
 
-
-
   <DosCommand_Tab_Backup>Backup and Restore(Mongodmp)</DosCommand_Tab_Backup>
   <DosCommand_Tab_Backup_Server>Server</DosCommand_Tab_Backup_Server>
   <DosCommand_Tab_Backup_Port>Port</DosCommand_Tab_Backup_Port>
   <DosCommand_Tab_Backup_DBName>Database Name</DosCommand_Tab_Backup_DBName>
   <DosCommand_Tab_Backup_DCName>DataCollection Name</DosCommand_Tab_Backup_DCName>
   <DosCommand_Tab_Backup_Path>Backup Path</DosCommand_Tab_Backup_Path>
-
-
 
   <DosCommand_Tab_ExIn>Import and Export(mongoImport/mongoExport)</DosCommand_Tab_ExIn>
   <DosCommand_Tab_ExIn_Server>Server</DosCommand_Tab_ExIn_Server>
@@ -175,8 +159,6 @@
   <DosCommand_Tab_ExIn_Export>Export</DosCommand_Tab_ExIn_Export>
   <DosCommand_Tab_ExIn_Operation>Operation</DosCommand_Tab_ExIn_Operation>
 
-
-  <DosCommand_Save>Save</DosCommand_Save>
   <DosCommand_Run>Run</DosCommand_Run>
   <DosCommand_Browse>Browse...</DosCommand_Browse>
   <DosCommand_Clean>Clean</DosCommand_Clean>
@@ -184,32 +166,22 @@
 
   <!--frmevalJS-->
   <EvalJS_Method>Method</EvalJS_Method>
-  <EvalJS_Save>Save</EvalJS_Save>
   <EvalJS_Run>Run</EvalJS_Run>
   <EvalJS_Parameter>Parameter(seperate by ',')</EvalJS_Parameter>
 
   <!--frmGroup-->
   <Group_Tab_Reduce>Reduce</Group_Tab_Reduce>
-
   <Group_Tab_Finalize>Finalize</Group_Tab_Finalize>
-
   <Group_Tab_Group>Group Column</Group_Tab_Group>
   <Group_Tab_Group_Notes>Please select Group</Group_Tab_Group_Notes>
-
   <Group_Tab_InitColumn>Add Var</Group_Tab_InitColumn>
   <Group_Tab_InitColumn_Note>Please add Initalize Var</Group_Tab_InitColumn_Note>
-
   <Group_Tab_Result>Result</Group_Tab_Result>
-
-  <Group_Save>Save</Group_Save>
-  <Group_Add>Add</Group_Add>
   <Group_LoadQuery>Load Query</Group_LoadQuery>
 
   <!--frmMapReduce-->
   <MapReduce_MapFunction>Map Function</MapReduce_MapFunction>
-  <MapReduce_SaveMap>Save</MapReduce_SaveMap>
   <MapReduce_ReduceFunction>Reduce Function</MapReduce_ReduceFunction>
-  <MapReduce_SaveReduce>Save</MapReduce_SaveReduce>
   <MapReduce_Result>Result</MapReduce_Result>
   <MapReduce_Run>Run</MapReduce_Run>
 
@@ -218,24 +190,21 @@
   <Query_Filter_AddCondition>Add Condition</Query_Filter_AddCondition>
   <Query_FieldInfo>OutPut Field</Query_FieldInfo>
   <Query_Action_Load>Load</Query_Action_Load>
-  <Query_Action_Save>Save</Query_Action_Save>
 
   <!--frmReplset-->
   <Replset_AddServer>Add Server</Replset_AddServer>
   <Replset_RemoveServer>Remove Server</Replset_RemoveServer>
-  <Replset_Add>Add</Replset_Add>
   <Replset_Remove>Remove</Replset_Remove>
 
   <!--frmServiceStatus-->
-  <ServiceStatus_ServerInfo>Server Information[need manual refresh ]</ServiceStatus_ServerInfo>
-  <ServiceStatus_DataBaseInfo>DB Basic Information</ServiceStatus_DataBaseInfo>
-  <ServiceStatus_DataBaseStatusInfo>DB Status Information</ServiceStatus_DataBaseStatusInfo>
+  <ServiceStatus_ServerInfo>Server Status Information[need manual refresh ]</ServiceStatus_ServerInfo>
+  <ServiceStatus_DataBaseInfo>DB Status Information</ServiceStatus_DataBaseInfo>
+  <ServiceStatus_CollectionInfo>Collection Status Information</ServiceStatus_CollectionInfo>
   <ServiceStatus_ClusterInfo>Cluster Information</ServiceStatus_ClusterInfo>
 
   <!--frmShardingConfig-->
   <ShardingConfig_AddSharding>Add Sharding</ShardingConfig_AddSharding>
   <ShardingConfig_ReplsetName>ReplsetName</ShardingConfig_ReplsetName>
-  <ShardingConfig_Action_Add>Add</ShardingConfig_Action_Add>
 
   <ShardingConfig_EnableSharding>Enable Sharding</ShardingConfig_EnableSharding>
   <ShardingConfig_Action_DBSharding>Enable DB Sharding</ShardingConfig_Action_DBSharding>
@@ -250,6 +219,32 @@
   <ctlIndexCreate_Description>Please input the column name here</ctlIndexCreate_Description>
   <!--ctlFieldInfo-->
   <ctlFieldInfo_Show>Show</ctlFieldInfo_Show>
+  
+  <!--DataBase_Status-->
+  <DataBase_Status_DataBaseName>DataBaseName</DataBase_Status_DataBaseName>
+  <DataBase_Status_CollectionCount>CollectionCount</DataBase_Status_CollectionCount>
+  <DataBase_Status_DataSize>DataSize</DataBase_Status_DataSize>
+  <DataBase_Status_FileSize>FileSize</DataBase_Status_FileSize>
+  <DataBase_Status_IndexCount>IndexCount</DataBase_Status_IndexCount>
+  <DataBase_Status_IndexSize>IndexSize</DataBase_Status_IndexSize>
+  <DataBase_Status_ObjectCount>ObjectCount</DataBase_Status_ObjectCount>
+  <DataBase_Status_StorageSize>StorageSize</DataBase_Status_StorageSize>
+
+  <!--Collection_Status-->
+  <Collection_Status_CollectionName>CollectionName</Collection_Status_CollectionName>
+  <Collection_Status_ObjectCount>ObjectCount</Collection_Status_ObjectCount>
+  <Collection_Status_DataSize>DataSize</Collection_Status_DataSize>
+  <Collection_Status_StorageSize>StorageSize</Collection_Status_StorageSize>
+  <Collection_Status_TotalIndexSize>TotalIndexSize</Collection_Status_TotalIndexSize>
+  <Collection_Status_AverageObjectSize>AverageObjectSize</Collection_Status_AverageObjectSize>
+  <Collection_Status_PaddingFactor>PaddingFactor</Collection_Status_PaddingFactor>
+  
+  <!--GFS-->
+  <GFS_filename>filename</GFS_filename>
+  <GFS_length>length</GFS_length>
+  <GFS_chunkSize>chunkSize</GFS_chunkSize>
+  <GFS_uploadDate>uploadDate</GFS_uploadDate>
+  <GFS_md5>md5</GFS_md5>
 
   <!--Index-->
   <Index_Background>Background</Index_Background>
@@ -278,4 +273,7 @@
   <Common_Yes>Yes</Common_Yes>
   <Common_No>No</Common_No>
   <Common_Detail>Detail</Common_Detail>
+  <Common_Save>Save</Common_Save>
+  <Common_Modify>Modify</Common_Modify>
+  <Common_Add>Add</Common_Add>
 </Language>

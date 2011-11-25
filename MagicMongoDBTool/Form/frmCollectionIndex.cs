@@ -33,7 +33,7 @@ namespace MagicMongoDBTool
                 tabCurrentIndex.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current);
                 cmdDelIndex.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current_Del);
                 tabIndexManager.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Manager);
-                cmdAddIndex.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Manager_ADD);
+                cmdAddIndex.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
 
                 chkDroppedDups.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel);
                 chkIsBackground.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Background);

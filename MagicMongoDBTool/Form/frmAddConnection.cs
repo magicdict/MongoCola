@@ -64,7 +64,7 @@ namespace MagicMongoDBTool
             lblReplsetList.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetList);
 
 
-            cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Action_Add);
+            cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
             cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
             lblAttention.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention_Description)
                     + "\r\n"  + SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention2_Description);
@@ -110,7 +110,7 @@ namespace MagicMongoDBTool
             }
             else
             {
-                cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Action_Modify);
+                cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Modify);
             }
             chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
             chkSafeMode.Checked = ModifyConn.IsSafeMode;

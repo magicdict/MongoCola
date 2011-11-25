@@ -20,6 +20,10 @@ namespace GUIResource
         /// </summary>
         Dictionary<string, string> _stringDic = new Dictionary<string, string>();
         /// <summary>
+        /// 语种
+        /// </summary>
+        public String LanguageType = String.Empty;
+        /// <summary>
         /// 字符资源
         /// </summary>
         /// <param name="LanguageFileName">当前语言文件</param>
@@ -37,6 +41,7 @@ namespace GUIResource
                         // The node is an element.
                         if (reader.Name == "Language")
                         {
+                            LanguageType = reader.GetAttribute("Type");
                             continue;
                         }
                         tag = reader.Name.Trim();

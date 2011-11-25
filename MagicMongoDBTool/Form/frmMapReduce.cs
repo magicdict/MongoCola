@@ -36,8 +36,8 @@ namespace MagicMongoDBTool
                 lblReduceFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_ReduceFunction);
                 lblResult.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_Result);
                 cmdRun.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_Run);
-                cmdSaveMapJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_SaveMap);
-                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_SaveReduce);
+                cmdSaveMapJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
+                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
             }
 
         }

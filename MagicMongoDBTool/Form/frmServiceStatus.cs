@@ -16,17 +16,17 @@ namespace MagicMongoDBTool
             refreshTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer * 1000;
             refreshTimer.Tick += new EventHandler((x, y) =>
             {
-                MongoDBHelper.FillSrvStatusToList(this.lstSrvStatus);
+                MongoDBHelper.FillDataBaseStatusToList(this.lstSrvStatus);
                 MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
-                MongoDBHelper.FillDBStatusToList(this.lstDBStatus);
+                MongoDBHelper.FillCollectionStatusToList(this.lstDBStatus);
                 //防止在查看树形状态的时候被打扰
                 //MongoDBHelper.FillExtraSrvStatusToList(trvSvrStatus);
             });
             refreshTimer.Enabled = true;
-            MongoDBHelper.FillSrvStatusToList(this.lstSrvStatus);
+            MongoDBHelper.FillDataBaseStatusToList(this.lstSrvStatus);
             MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
-            MongoDBHelper.FillDBStatusToList(this.lstDBStatus);
-            MongoDBHelper.FillExtraSrvStatusToList(trvSvrStatus);
+            MongoDBHelper.FillCollectionStatusToList(this.lstDBStatus);
+            MongoDBHelper.FillSrvStatusToList(trvSvrStatus);
 
             if (!SystemManager.IsUseDefaultLanguage()) {
                 cmdRefresh.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Refresh);
@@ -43,10 +43,10 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdRefresh_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.FillSrvStatusToList(this.lstSrvStatus);
+            MongoDBHelper.FillDataBaseStatusToList(this.lstSrvStatus);
             MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
-            MongoDBHelper.FillDBStatusToList(this.lstDBStatus);
-            MongoDBHelper.FillExtraSrvStatusToList(trvSvrStatus);
+            MongoDBHelper.FillCollectionStatusToList(this.lstDBStatus);
+            MongoDBHelper.FillSrvStatusToList(trvSvrStatus);
         }
         /// <summary>
         /// Timer停止

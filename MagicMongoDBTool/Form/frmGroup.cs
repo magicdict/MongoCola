@@ -124,9 +124,9 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 lblReduceFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Reduce);
-                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Save);
+                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
                 lblfinalizeFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Finalize);
-                cmdSavefinalizeJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Save);
+                cmdSavefinalizeJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
                 lblSelectGroupField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Group_Notes);
                 lblAddInitField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_InitColumn_Note);
                 cmdAddInitField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_InitColumn);

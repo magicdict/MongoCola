@@ -60,7 +60,7 @@ namespace MagicMongoDBTool
                 tabFilter.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Filter);
                 cmdAddCondition.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Filter_AddCondition);
                 cmdLoad.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Action_Load);
-                cmdSave.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Action_Save);
+                cmdSave.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
                 cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
             }
 

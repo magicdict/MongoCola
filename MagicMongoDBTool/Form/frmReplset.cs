@@ -20,7 +20,7 @@ namespace MagicMongoDBTool
             {
                 tabAddSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_AddServer);
                 tabRemoveSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_RemoveServer);
-                cmdAddSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_Add);
+                cmdAddSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Add);
                 cmdRemove.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_Remove);
             }
         }

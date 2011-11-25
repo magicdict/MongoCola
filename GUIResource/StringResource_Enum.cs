@@ -105,8 +105,6 @@ namespace GUIResource
             AddConnection_Region_ReplaceSetName_Description,
             AddConnection_Region_ReplaceSetList,
             AddConnection_Region_ReplaceSetInit,
-            AddConnection_Action_Add,
-            AddConnection_Action_Modify,
             AddConnection_Attention_Description,
             AddConnection_Attention2_Description,
 
@@ -114,15 +112,12 @@ namespace GUIResource
             CollectionIndex_Tab_Current,
             CollectionIndex_Tab_Current_Del,
             CollectionIndex_Tab_Manager,
-            CollectionIndex_Tab_Manager_ADD,
             
             CollectionIndex_TabMangt_IndexName,
             CollectionIndex_TabMangt_IndexName_Description,
 
             Connect_Title,
-            Connect_Action_Add,
             Connect_Action_Del,
-            Connect_Action_Modify,
             Connect_Action_Cancel,
             
             Distinct_Action_LoadQuery,
@@ -153,13 +148,11 @@ namespace GUIResource
             DosCommand_Tab_ExIn_Import,
             DosCommand_Tab_ExIn_Export,
             DosCommand_Tab_ExIn_Operation,
-            DosCommand_Save,
             DosCommand_Run,
             DosCommand_Browse,
             DosCommand_Clean,
             DosCommand_LogLevel,
             EvalJS_Method,
-            EvalJS_Save,
             EvalJS_Run,
             EvalJS_Parameter,
             Group_Tab_Reduce,
@@ -169,15 +162,11 @@ namespace GUIResource
             Group_Tab_InitColumn,
             Group_Tab_InitColumn_Note,
             Group_Tab_Result,
-            Group_Save,
-            Group_Add,
             Group_LoadQuery,
 
             //MapReduce
             MapReduce_MapFunction,
-            MapReduce_SaveMap,
             MapReduce_ReduceFunction,
-            MapReduce_SaveReduce,
             MapReduce_Result,
             MapReduce_Run,
 
@@ -185,11 +174,9 @@ namespace GUIResource
             Query_Filter_AddCondition,
             Query_FieldInfo,
             Query_Action_Load,
-            Query_Action_Save,
 
             Replset_AddServer,
             Replset_RemoveServer,
-            Replset_Add,
             Replset_Remove,
 
             ServiceStatus_ServerInfo,
@@ -199,7 +186,6 @@ namespace GUIResource
 
             ShardingConfig_AddSharding,
             ShardingConfig_ReplsetName,
-            ShardingConfig_Action_Add,
             ShardingConfig_EnableSharding,
             ShardingConfig_DBName,
             ShardingConfig_CollectionName,
@@ -212,10 +198,37 @@ namespace GUIResource
             ctlIndexCreate_Description,
             ctlFieldInfo_Show,
 
+            //GFS
+            GFS_filename,
+            GFS_length,
+            GFS_chunkSize,
+            GFS_uploadDate,
+            GFS_md5,
+
+            //DataBase_Status
+            DataBase_Status_DataBaseName,
+            DataBase_Status_CollectionCount,
+            DataBase_Status_DataSize,
+            DataBase_Status_FileSize,
+            DataBase_Status_IndexCount,
+            DataBase_Status_IndexSize,
+            DataBase_Status_ObjectCount,
+            DataBase_Status_StorageSize,
+
+            //Collection_Status
+            Collection_Status_CollectionName,
+            Collection_Status_ObjectCount,
+            Collection_Status_DataSize,
+            Collection_Status_StorageSize,
+            Collection_Status_TotalIndexSize,
+            Collection_Status_AverageObjectSize,
+            Collection_Status_PaddingFactor,
+
             //异常
             Exception_NotConnected,
             Exception_AuthenticationException,
 
+            //Index
             Index_Asce,
             Index_Desc,
             Index_NoSort,
@@ -238,7 +251,10 @@ namespace GUIResource
             Common_Refresh,
             Common_Yes,
             Common_No,
-            Common_Detail
+            Common_Detail,
+            Common_Save,
+            Common_Modify,
+            Common_Add
         }
     }
 }

@@ -16,9 +16,9 @@ namespace MagicMongoDBTool
             RefreshConnection();
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                this.cmdAddCon.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Connect_Action_Add);
+                this.cmdAddCon.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Add);
                 this.cmdDelCon.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Connect_Action_Del);
-                this.cmdModifyCon.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Connect_Action_Modify);
+                this.cmdModifyCon.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Modify);
                 this.cmdCancel.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Cancel);
                 this.cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
                 this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Connect_Title);

@@ -26,7 +26,7 @@ namespace MagicMongoDBTool
                 lblFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Method);
                 lblParm.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Parameter);
                 cmdEval.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Run);
-                cmdSaveJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Save);
+                cmdSaveJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
             }
 
             cmbFuncLst.SelectedIndexChanged += new EventHandler(

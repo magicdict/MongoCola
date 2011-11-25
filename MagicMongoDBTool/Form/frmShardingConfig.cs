@@ -30,7 +30,7 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage()) {
                 tabAddSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_AddSharding);
                 lblReplsetName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_ReplsetName);
-                cmdAddSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_Action_Add);
+                cmdAddSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Add);
 
                 tabShardingConfig.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_EnableSharding);
                 lblDBName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_DBName);
