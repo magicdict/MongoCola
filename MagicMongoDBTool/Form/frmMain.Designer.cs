@@ -682,7 +682,7 @@ namespace MagicMongoDBTool
             this.OptionToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.ToolsToolStripMenuItem.Text = "工具（&T)";
+            this.ToolsToolStripMenuItem.Text = "工具(&T)";
             // 
             // DosCommandToolStripMenuItem
             // 
