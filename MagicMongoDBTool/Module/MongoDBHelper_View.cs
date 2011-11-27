@@ -97,8 +97,12 @@ namespace MagicMongoDBTool.Module
             rtnSvrInfo += "副本主服务器：" + mongosvr.Instance.IsPrimary.ToString() + "\r\n";
             rtnSvrInfo += "副本次服务器：" + mongosvr.Instance.IsSecondary.ToString() + "\r\n";
             rtnSvrInfo += "服务器地址：" + mongosvr.Instance.Address.ToString() + "\r\n";
-            rtnSvrInfo += "服务器版本：" + mongosvr.Instance.BuildInfo.VersionString + "\r\n";
-            rtnSvrInfo += "系统信息：" + mongosvr.Instance.BuildInfo.SysInfo + "\r\n";
+            if (mongosvr.Instance.BuildInfo != null)
+            {
+                //某种情况下，可能出现这个值为空
+                rtnSvrInfo += "服务器版本：" + mongosvr.Instance.BuildInfo.VersionString + "\r\n";
+                rtnSvrInfo += "系统信息：" + mongosvr.Instance.BuildInfo.SysInfo + "\r\n";
+            }
             return rtnSvrInfo;
         }
         /// <summary>
@@ -922,7 +926,7 @@ namespace MagicMongoDBTool.Module
                     List<string> databaseNameList = mongosvr.GetDatabaseNames().ToList<string>();
                     //flydreamer提供的代码
                     var serverStatusCommand = new CommandDocument { { "serverStatus", 1 } };
-                    BsonDocument cr = mongosvr.RunAdminCommand(serverStatusCommand).Response;
+                    BsonDocument cr = ExecuteMongoCommand(serverStatusCommand, mongosvr).Response;
                     SrvDocList.Add(cr);
                 }
                 catch (Exception)
@@ -1011,6 +1015,7 @@ namespace MagicMongoDBTool.Module
                 lstData.Columns.Add("数据集名称");
                 lstData.Columns.Add("文档数量");
                 lstData.Columns.Add("实际大小");
+                lstData.Columns.Add("最新扩展大小");
                 lstData.Columns.Add("占用大小");
                 lstData.Columns.Add("索引");
                 lstData.Columns.Add("平均对象大小");
@@ -1021,6 +1026,7 @@ namespace MagicMongoDBTool.Module
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_ObjectCount));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_DataSize));
+                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_LastExtentSize));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_StorageSize));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_TotalIndexSize));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_AverageObjectSize));
@@ -1044,14 +1050,16 @@ namespace MagicMongoDBTool.Module
                             ListViewItem lst = new ListViewItem(strDBName + "." + strColName);
                             lst.SubItems.Add(CollectionStatus.ObjectCount.ToString());
                             lst.SubItems.Add(GetSize(CollectionStatus.DataSize));
+                            lst.SubItems.Add(GetSize(CollectionStatus.LastExtentSize));
                             lst.SubItems.Add(GetSize(CollectionStatus.StorageSize));
                             lst.SubItems.Add(GetSize(CollectionStatus.TotalIndexSize));
-                            try
+                            if (CollectionStatus.ObjectCount != 0)
                             {
                                 //在某些条件下，这个值会抛出异常，IndexKeyNotFound
+                                //同时发现,这个时候Count = 0,TryCatch可能会消耗时间，所以改为条件判断
                                 lst.SubItems.Add(GetSize((long)CollectionStatus.AverageObjectSize));
                             }
-                            catch (Exception)
+                            else
                             {
                                 lst.SubItems.Add("-");
                             }

@@ -27,7 +27,7 @@
   <Main_Menu_Operation_Server_AddUserToAdmin>Add User To Admin Group</Main_Menu_Operation_Server_AddUserToAdmin>
   <Main_Menu_Operation_Server_DelFromAdmin>Del User From Admin Group</Main_Menu_Operation_Server_DelFromAdmin>
   <Main_Menu_Operation_Server_CloseServer>Close Server</Main_Menu_Operation_Server_CloseServer>
-  <Main_Menu_Operation_Server_Properties>Properties</Main_Menu_Operation_Server_Properties>
+  <Main_Menu_Operation_Server_Properties>Server Properties</Main_Menu_Operation_Server_Properties>
 
   <Main_Menu_Operation_Database>Database</Main_Menu_Operation_Database>
   <Main_Menu_Operation_Database_DelDB>Del Database</Main_Menu_Operation_Database_DelDB>
@@ -234,6 +234,7 @@
   <Collection_Status_CollectionName>CollectionName</Collection_Status_CollectionName>
   <Collection_Status_ObjectCount>ObjectCount</Collection_Status_ObjectCount>
   <Collection_Status_DataSize>DataSize</Collection_Status_DataSize>
+  <Collection_Status_LastExtentSize>LastExtentSize</Collection_Status_LastExtentSize>
   <Collection_Status_StorageSize>StorageSize</Collection_Status_StorageSize>
   <Collection_Status_TotalIndexSize>TotalIndexSize</Collection_Status_TotalIndexSize>
   <Collection_Status_AverageObjectSize>AverageObjectSize</Collection_Status_AverageObjectSize>
@@ -262,7 +263,16 @@
   <!--Exception-->
   <Exception_NotConnected>Not Connected</Exception_NotConnected>
   <Exception_AuthenticationException>AuthenticationException</Exception_AuthenticationException>
-
+  
+  <!--StatusBar-->
+  <Selected_Server>Selected Server</Selected_Server>
+  <Selected_DataBase>Selected DataBase</Selected_DataBase>
+  <Selected_Collection>Selected Collection</Selected_Collection>
+  <Selected_Data>Selected Data</Selected_Data>
+  <Selected_Indexes>Selected Indexes</Selected_Indexes>
+  <Selected_Index>Selected Index</Selected_Index>
+  <Selected_GFS>Selected GFS</Selected_GFS>
+  <Selected_UserList>Selected UserList</Selected_UserList>
   <!--Common-->
   <Common_Username>Username</Common_Username>
   <Common_Password>Password</Common_Password>
@@ -276,4 +286,13 @@
   <Common_Save>Save</Common_Save>
   <Common_Modify>Modify</Common_Modify>
   <Common_Add>Add</Common_Add>
+  
+  <Common_Server>Server</Common_Server>
+  <Common_DataBase>DataBase</Common_DataBase>
+  <Common_Collection>Collection</Common_Collection>
+  
+  <!--Create New DataBase-->
+  <Create_New_DataBase>Create New Database</Create_New_DataBase>
+  <Create_New_DataBase_Input>Please input New Database Name:</Create_New_DataBase_Input> 
+  
 </Language>

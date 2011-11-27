@@ -16,17 +16,17 @@ namespace MagicMongoDBTool
             refreshTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer * 1000;
             refreshTimer.Tick += new EventHandler((x, y) =>
             {
-                MongoDBHelper.FillDataBaseStatusToList(this.lstSrvStatus);
-                MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
-                MongoDBHelper.FillCollectionStatusToList(this.lstDBStatus);
                 //防止在查看树形状态的时候被打扰
                 //MongoDBHelper.FillExtraSrvStatusToList(trvSvrStatus);
+                MongoDBHelper.FillDataBaseStatusToList(this.lstDBStatus);
+                MongoDBHelper.FillCollectionStatusToList(this.lstCollectionStatus);
+                MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
             });
             refreshTimer.Enabled = true;
-            MongoDBHelper.FillDataBaseStatusToList(this.lstSrvStatus);
-            MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
-            MongoDBHelper.FillCollectionStatusToList(this.lstDBStatus);
             MongoDBHelper.FillSrvStatusToList(trvSvrStatus);
+            MongoDBHelper.FillDataBaseStatusToList(this.lstDBStatus);
+            MongoDBHelper.FillCollectionStatusToList(this.lstCollectionStatus);
+            MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
 
             if (!SystemManager.IsUseDefaultLanguage()) {
                 cmdRefresh.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Refresh);
@@ -43,10 +43,11 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdRefresh_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.FillDataBaseStatusToList(this.lstSrvStatus);
-            MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
-            MongoDBHelper.FillCollectionStatusToList(this.lstDBStatus);
             MongoDBHelper.FillSrvStatusToList(trvSvrStatus);
+            MongoDBHelper.FillDataBaseStatusToList(this.lstDBStatus);
+            MongoDBHelper.FillCollectionStatusToList(this.lstCollectionStatus);
+            MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
+
         }
         /// <summary>
         /// Timer停止
@@ -57,7 +58,5 @@ namespace MagicMongoDBTool
         {
             refreshTimer.Stop();
         }
-
-
     }
 }

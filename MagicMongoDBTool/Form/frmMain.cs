@@ -150,7 +150,8 @@ namespace MagicMongoDBTool
         /// </summary>
         private void frmMain_Load(object sender, EventArgs e)
         {
-            if (SystemManager.ConfigHelperInstance.SkipFolder != String.Empty) {
+            if (SystemManager.ConfigHelperInstance.SkipFolder != String.Empty)
+            {
                 this.ChangeSkin(SystemManager.ConfigHelperInstance.SkipFolder);
             }
             //菜单美化
@@ -208,12 +209,27 @@ namespace MagicMongoDBTool
                 {
                     case MongoDBHelper.INDEX_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = "选中索引:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "选中索引:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Index) +
+                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
                         break;
                     case MongoDBHelper.INDEXES_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = "选中索引集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "选中索引集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Indexes) +
+                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
                         if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
                         {
                             this.IndexManageToolStripMenuItem.Enabled = true;
@@ -232,7 +248,15 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.DOCUMENT_TAG:
                         //BsonDocument
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = "选中数据:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "选中数据:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Data) +
+                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             SetDataNav();
@@ -257,8 +281,15 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
                         //GridFileSystem
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = "文件系统:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "选中文件系统:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_GFS) +
+                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
                         MongoDBHelper.IsUseFilter = false;
                         this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
                         SystemManager.CurrDataFilter.Clear();
@@ -279,7 +310,15 @@ namespace MagicMongoDBTool
                         MongoDBHelper.FillDataToControl(e.Node.Tag.ToString(), _dataShower);
                         SetDataNav();
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = "用户列表:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "用户列表:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_UserList) +
+                                 ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
                         break;
                     case MongoDBHelper.SINGLE_DB_SERVICE_TAG:
                         //单数据库模式,禁止所有服务器操作
@@ -288,7 +327,15 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelper.SERVICE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = "选中服务器:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "选中服务器:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Server) +
+                                  ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
                         //解禁 创建数据库,关闭服务器
                         this.CreateMongoDBToolStripMenuItem.Enabled = true;
                         this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
@@ -327,7 +374,15 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.DATABASE_TAG:
                     case MongoDBHelper.SINGLE_DATABASE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = "选中数据库:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "选中数据库:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_DataBase) +
+                                  ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
                         //解禁 删除数据库 创建数据集
                         if (!MongoDBHelper.IsSystemDataBase(SystemManager.GetCurrentDataBase()))
                         {
@@ -368,7 +423,16 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelper.COLLECTION_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Collection) +
+                                  ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+
                         //解禁 删除数据集
                         if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
                         {
@@ -744,7 +808,16 @@ namespace MagicMongoDBTool
         private void CreateMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-            String strDBName = Microsoft.VisualBasic.Interaction.InputBox("请输入数据库名称：", "创建数据库");
+            String strDBName = String.Empty;
+            if (SystemManager.IsUseDefaultLanguage())
+            {
+                strDBName = Microsoft.VisualBasic.Interaction.InputBox("请输入数据库名称：", "创建数据库");
+            }
+            else
+            {
+                strDBName = Microsoft.VisualBasic.Interaction.InputBox(SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_DataBase_Input),
+                                                                       SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_DataBase));
+            }
             if (strDBName != string.Empty)
             {
                 if (MongoDBHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelper.Oprcode.Create, trvsrvlst.SelectedNode))
@@ -784,7 +857,16 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void SvrPropertyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MyMessageBox.ShowMessage("服务器属性", "服务器属性", MongoDBHelper.GetCurrentSvrInfo(), true);
+            if (SystemManager.IsUseDefaultLanguage())
+            {
+                MyMessageBox.ShowMessage("服务器属性", "服务器属性", MongoDBHelper.GetCurrentSvrInfo(), true);
+            }
+            else
+            {
+                MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties),
+                                         SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties),
+                                         MongoDBHelper.GetCurrentSvrInfo(), true);
+            }
         }
         /// <summary>
         /// 关闭服务器

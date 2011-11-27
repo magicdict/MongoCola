@@ -30,13 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServiceStatus));
             this.lstSrvOpr = new System.Windows.Forms.ListView();
-            this.lstSrvStatus = new System.Windows.Forms.ListView();
+            this.lstDBStatus = new System.Windows.Forms.ListView();
             this.tabSvrStatus = new System.Windows.Forms.TabControl();
             this.tabSvrBasicInfo = new System.Windows.Forms.TabPage();
             this.trvSvrStatus = new System.Windows.Forms.TreeView();
             this.tabDBBasicInfo = new System.Windows.Forms.TabPage();
             this.tabCollectionInfo = new System.Windows.Forms.TabPage();
-            this.lstDBStatus = new System.Windows.Forms.ListView();
+            this.lstCollectionStatus = new System.Windows.Forms.ListView();
             this.tabClusterInfo = new System.Windows.Forms.TabPage();
             this.cmdRefresh = new System.Windows.Forms.VistaButton();
             this.contentPanel.SuspendLayout();
@@ -67,17 +67,17 @@
             this.lstSrvOpr.UseCompatibleStateImageBehavior = false;
             this.lstSrvOpr.View = System.Windows.Forms.View.Details;
             // 
-            // lstSrvStatus
+            // lstDBStatus
             // 
-            this.lstSrvStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstSrvStatus.FullRowSelect = true;
-            this.lstSrvStatus.GridLines = true;
-            this.lstSrvStatus.Location = new System.Drawing.Point(3, 3);
-            this.lstSrvStatus.Name = "lstSrvStatus";
-            this.lstSrvStatus.Size = new System.Drawing.Size(778, 382);
-            this.lstSrvStatus.TabIndex = 2;
-            this.lstSrvStatus.UseCompatibleStateImageBehavior = false;
-            this.lstSrvStatus.View = System.Windows.Forms.View.Details;
+            this.lstDBStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstDBStatus.FullRowSelect = true;
+            this.lstDBStatus.GridLines = true;
+            this.lstDBStatus.Location = new System.Drawing.Point(3, 3);
+            this.lstDBStatus.Name = "lstDBStatus";
+            this.lstDBStatus.Size = new System.Drawing.Size(778, 382);
+            this.lstDBStatus.TabIndex = 2;
+            this.lstDBStatus.UseCompatibleStateImageBehavior = false;
+            this.lstDBStatus.View = System.Windows.Forms.View.Details;
             // 
             // tabSvrStatus
             // 
@@ -112,7 +112,7 @@
             // 
             // tabDBBasicInfo
             // 
-            this.tabDBBasicInfo.Controls.Add(this.lstSrvStatus);
+            this.tabDBBasicInfo.Controls.Add(this.lstDBStatus);
             this.tabDBBasicInfo.Location = new System.Drawing.Point(4, 22);
             this.tabDBBasicInfo.Name = "tabDBBasicInfo";
             this.tabDBBasicInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -123,7 +123,7 @@
             // 
             // tabCollectionInfo
             // 
-            this.tabCollectionInfo.Controls.Add(this.lstDBStatus);
+            this.tabCollectionInfo.Controls.Add(this.lstCollectionStatus);
             this.tabCollectionInfo.Location = new System.Drawing.Point(4, 22);
             this.tabCollectionInfo.Name = "tabCollectionInfo";
             this.tabCollectionInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -132,17 +132,17 @@
             this.tabCollectionInfo.Text = "数据集状态";
             this.tabCollectionInfo.UseVisualStyleBackColor = true;
             // 
-            // lstDBStatus
+            // lstCollectionStatus
             // 
-            this.lstDBStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstDBStatus.FullRowSelect = true;
-            this.lstDBStatus.GridLines = true;
-            this.lstDBStatus.Location = new System.Drawing.Point(3, 3);
-            this.lstDBStatus.Name = "lstDBStatus";
-            this.lstDBStatus.Size = new System.Drawing.Size(778, 382);
-            this.lstDBStatus.TabIndex = 2;
-            this.lstDBStatus.UseCompatibleStateImageBehavior = false;
-            this.lstDBStatus.View = System.Windows.Forms.View.Details;
+            this.lstCollectionStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstCollectionStatus.FullRowSelect = true;
+            this.lstCollectionStatus.GridLines = true;
+            this.lstCollectionStatus.Location = new System.Drawing.Point(3, 3);
+            this.lstCollectionStatus.Name = "lstCollectionStatus";
+            this.lstCollectionStatus.Size = new System.Drawing.Size(778, 382);
+            this.lstCollectionStatus.TabIndex = 2;
+            this.lstCollectionStatus.UseCompatibleStateImageBehavior = false;
+            this.lstCollectionStatus.View = System.Windows.Forms.View.Details;
             // 
             // tabClusterInfo
             // 
@@ -189,13 +189,13 @@
         #endregion
 
         private System.Windows.Forms.ListView lstSrvOpr;
-        private System.Windows.Forms.ListView lstSrvStatus;
+        private System.Windows.Forms.ListView lstDBStatus;
         private System.Windows.Forms.TabControl tabSvrStatus;
         private System.Windows.Forms.TabPage tabDBBasicInfo;
         private System.Windows.Forms.TabPage tabClusterInfo;
         private System.Windows.Forms.VistaButton cmdRefresh;
         private System.Windows.Forms.TabPage tabCollectionInfo;
-        private System.Windows.Forms.ListView lstDBStatus;
+        private System.Windows.Forms.ListView lstCollectionStatus;
         private System.Windows.Forms.TabPage tabSvrBasicInfo;
         private System.Windows.Forms.TreeView trvSvrStatus;
     }

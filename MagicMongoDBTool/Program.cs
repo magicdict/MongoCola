@@ -21,9 +21,11 @@ namespace MagicMongoDBTool
             else
             {
                 SystemManager.ConfigHelperInstance = new ConfigHelper();
+                SystemManager.ConfigHelperInstance.LanguageFileName = "English.xml";
+                SystemManager.ConfigHelperInstance.SkipFolder = "qq";
                 SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
             }
-            SystemManager.DEBUG_MODE = true;
+            SystemManager.DEBUG_MODE = false;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             SystemManager.InitLanguage();

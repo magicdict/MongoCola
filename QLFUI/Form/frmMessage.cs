@@ -81,5 +81,14 @@ namespace QLFUI
             cmdDetails.Text = Detail;
             cmdOK.Text = OK;
         }
+        /// <summary>
+        /// 加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmMesssage_Load(object sender, EventArgs e)
+        {
+            this.panForBgcolor.BackColor = IniHelper.BackColor;
+        }
     }
 }

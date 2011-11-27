@@ -219,14 +219,11 @@ namespace GUIResource
             Collection_Status_CollectionName,
             Collection_Status_ObjectCount,
             Collection_Status_DataSize,
+            Collection_Status_LastExtentSize,
             Collection_Status_StorageSize,
             Collection_Status_TotalIndexSize,
             Collection_Status_AverageObjectSize,
             Collection_Status_PaddingFactor,
-
-            //异常
-            Exception_NotConnected,
-            Exception_AuthenticationException,
 
             //Index
             Index_Asce,
@@ -241,7 +238,18 @@ namespace GUIResource
             Index_Keys,
             Index_Version,
             Index_NameSpace,
+                    //异常
+            Exception_NotConnected,
+            Exception_AuthenticationException,
 
+            Selected_Server,
+            Selected_DataBase,
+            Selected_Collection,
+            Selected_Data,
+            Selected_Indexes,
+            Selected_Index,
+            Selected_GFS,
+            Selected_UserList,
             //公共
             Common_Username,
             Common_Password,
@@ -254,7 +262,14 @@ namespace GUIResource
             Common_Detail,
             Common_Save,
             Common_Modify,
-            Common_Add
+            Common_Add,
+            Common_Server,
+            Common_DataBase,
+            Common_Collection,
+            //Create New DataBase
+            Create_New_DataBase,
+            Create_New_DataBase_Input,
+
         }
     }
 }

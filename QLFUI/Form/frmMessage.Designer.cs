@@ -99,7 +99,6 @@
             // 
             // panForBgcolor
             // 
-            this.panForBgcolor.BackColor = System.Drawing.Color.YellowGreen;
             this.panForBgcolor.Controls.Add(this.cmdOK);
             this.panForBgcolor.Controls.Add(this.cmdDetails);
             this.panForBgcolor.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -118,15 +117,15 @@
             this.picImage.TabIndex = 5;
             this.picImage.TabStop = false;
             // 
-            // frmErrMsg
+            // frmMesssage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 336);
             this.Location = new System.Drawing.Point(0, 0);
-            this.Name = "frmErrMsg";
-            this.ShowSelectSkinButton = false;
+            this.Name = "frmMesssage";
             this.Text = "执行结果";
+            this.Load += new System.EventHandler(this.frmMesssage_Load);
             this.contentPanel.ResumeLayout(false);
             this.contentPanel.PerformLayout();
             this.panForBgcolor.ResumeLayout(false);
