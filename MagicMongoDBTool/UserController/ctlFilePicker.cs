@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
@@ -51,8 +46,12 @@ namespace MagicMongoDBTool
 
         public delegate void PathChangedHandler(string FilePath);
         public event PathChangedHandler PathChanged;
-
-        private void cmdLogPath_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 浏览按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdBrowse_Click(object sender, EventArgs e)
         {
             switch (_dialogType)
             {
@@ -80,12 +79,36 @@ namespace MagicMongoDBTool
                 default:
                     break;
             }
-            PathChanged(txtLogPath.Text);
+            if (PathChanged != null)
+            {
+                PathChanged(txtLogPath.Text);
+            }
         }
-        private void cmdClearLogPath_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// 清除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdClearPath_Click(object sender, EventArgs e)
         {
             txtLogPath.Text = "";
-            PathChanged(txtLogPath.Text);
+            if (PathChanged != null)
+            {
+                PathChanged(txtLogPath.Text);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ctlFilePicker_Load(object sender, EventArgs e)
+        {
+            if (!SystemManager.IsUseDefaultLanguage()) {
+                cmdBrowse.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Browse);
+                cmdClearPath.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Clear);
+            }
         }
     }
 }

@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmdClearLogPath = new System.Windows.Forms.VistaButton();
+            this.cmdClearPath = new System.Windows.Forms.VistaButton();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtLogPath = new System.Windows.Forms.TextBox();
-            this.cmdLogPath = new System.Windows.Forms.VistaButton();
+            this.cmdBrowse = new System.Windows.Forms.VistaButton();
             this.SuspendLayout();
             // 
-            // cmdClearLogPath
+            // cmdClearPath
             // 
-            this.cmdClearLogPath.BackColor = System.Drawing.Color.Transparent;
-            this.cmdClearLogPath.Location = new System.Drawing.Point(649, 0);
-            this.cmdClearLogPath.Name = "cmdClearLogPath";
-            this.cmdClearLogPath.Size = new System.Drawing.Size(75, 31);
-            this.cmdClearLogPath.TabIndex = 10;
-            this.cmdClearLogPath.Text = "清除";
-            this.cmdClearLogPath.Click += new System.EventHandler(this.cmdClearLogPath_Click);
+            this.cmdClearPath.BackColor = System.Drawing.Color.Transparent;
+            this.cmdClearPath.Location = new System.Drawing.Point(649, 0);
+            this.cmdClearPath.Name = "cmdClearPath";
+            this.cmdClearPath.Size = new System.Drawing.Size(75, 31);
+            this.cmdClearPath.TabIndex = 10;
+            this.cmdClearPath.Text = "清除";
+            this.cmdClearPath.Click += new System.EventHandler(this.cmdClearPath_Click);
             // 
             // lblTitle
             // 
@@ -63,27 +63,28 @@
             this.txtLogPath.Size = new System.Drawing.Size(439, 20);
             this.txtLogPath.TabIndex = 8;
             // 
-            // cmdLogPath
+            // cmdBrowse
             // 
-            this.cmdLogPath.BackColor = System.Drawing.Color.Transparent;
-            this.cmdLogPath.Location = new System.Drawing.Point(568, 1);
-            this.cmdLogPath.Name = "cmdLogPath";
-            this.cmdLogPath.Size = new System.Drawing.Size(75, 30);
-            this.cmdLogPath.TabIndex = 7;
-            this.cmdLogPath.Text = "浏览...";
-            this.cmdLogPath.Click += new System.EventHandler(this.cmdLogPath_Click);
+            this.cmdBrowse.BackColor = System.Drawing.Color.Transparent;
+            this.cmdBrowse.Location = new System.Drawing.Point(568, 1);
+            this.cmdBrowse.Name = "cmdBrowse";
+            this.cmdBrowse.Size = new System.Drawing.Size(75, 30);
+            this.cmdBrowse.TabIndex = 7;
+            this.cmdBrowse.Text = "浏览...";
+            this.cmdBrowse.Click += new System.EventHandler(this.cmdBrowse_Click);
             // 
             // ctlFilePicker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.cmdClearLogPath);
+            this.Controls.Add(this.cmdClearPath);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.txtLogPath);
-            this.Controls.Add(this.cmdLogPath);
+            this.Controls.Add(this.cmdBrowse);
             this.Name = "ctlFilePicker";
             this.Size = new System.Drawing.Size(739, 33);
+            this.Load += new System.EventHandler(this.ctlFilePicker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -91,9 +92,9 @@
 
         #endregion
 
-        private System.Windows.Forms.VistaButton cmdClearLogPath;
+        private System.Windows.Forms.VistaButton cmdClearPath;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TextBox txtLogPath;
-        private System.Windows.Forms.VistaButton cmdLogPath;
+        private System.Windows.Forms.VistaButton cmdBrowse;
     }
 }

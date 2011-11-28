@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOption));
             this.numRefreshForStatus = new System.Windows.Forms.NumericUpDown();
-            this.lblRefreshForStatus = new System.Windows.Forms.Label();
+            this.lblRefreshIntervalForStatus = new System.Windows.Forms.Label();
             this.numLimitCnt = new System.Windows.Forms.NumericUpDown();
             this.lblLimitCnt = new System.Windows.Forms.Label();
-            this.ctlFilePickerMongoBinPath = new MagicMongoDBTool.ctlFilePicker();
             this.cmdCancel = new System.Windows.Forms.VistaButton();
             this.cmdOK = new System.Windows.Forms.VistaButton();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.ctlFilePickerMongoBinPath = new MagicMongoDBTool.ctlFilePicker();
             this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLimitCnt)).BeginInit();
@@ -49,7 +49,7 @@
             this.contentPanel.Controls.Add(this.cmbLanguage);
             this.contentPanel.Controls.Add(this.lblLanguage);
             this.contentPanel.Controls.Add(this.numRefreshForStatus);
-            this.contentPanel.Controls.Add(this.lblRefreshForStatus);
+            this.contentPanel.Controls.Add(this.lblRefreshIntervalForStatus);
             this.contentPanel.Controls.Add(this.numLimitCnt);
             this.contentPanel.Controls.Add(this.lblLimitCnt);
             this.contentPanel.Controls.Add(this.ctlFilePickerMongoBinPath);
@@ -60,7 +60,7 @@
             // 
             // numRefreshForStatus
             // 
-            this.numRefreshForStatus.Location = new System.Drawing.Point(374, 53);
+            this.numRefreshForStatus.Location = new System.Drawing.Point(315, 58);
             this.numRefreshForStatus.Maximum = new decimal(new int[] {
             180,
             0,
@@ -81,19 +81,19 @@
             0,
             0});
             // 
-            // lblRefreshForStatus
+            // lblRefreshIntervalForStatus
             // 
-            this.lblRefreshForStatus.AutoSize = true;
-            this.lblRefreshForStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblRefreshForStatus.Location = new System.Drawing.Point(212, 55);
-            this.lblRefreshForStatus.Name = "lblRefreshForStatus";
-            this.lblRefreshForStatus.Size = new System.Drawing.Size(156, 13);
-            this.lblRefreshForStatus.TabIndex = 15;
-            this.lblRefreshForStatus.Text = "服务器/数据库状态刷新间隔";
+            this.lblRefreshIntervalForStatus.AutoSize = true;
+            this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(212, 60);
+            this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
+            this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(79, 13);
+            this.lblRefreshIntervalForStatus.TabIndex = 15;
+            this.lblRefreshIntervalForStatus.Text = "状态刷新间隔";
             // 
             // numLimitCnt
             // 
-            this.numLimitCnt.Location = new System.Drawing.Point(131, 53);
+            this.numLimitCnt.Location = new System.Drawing.Point(128, 58);
             this.numLimitCnt.Maximum = new decimal(new int[] {
             500,
             0,
@@ -118,11 +118,49 @@
             // 
             this.lblLimitCnt.AutoSize = true;
             this.lblLimitCnt.BackColor = System.Drawing.Color.Transparent;
-            this.lblLimitCnt.Location = new System.Drawing.Point(11, 55);
+            this.lblLimitCnt.Location = new System.Drawing.Point(11, 60);
             this.lblLimitCnt.Name = "lblLimitCnt";
             this.lblLimitCnt.Size = new System.Drawing.Size(91, 13);
             this.lblLimitCnt.TabIndex = 13;
             this.lblLimitCnt.Text = "每页显示数据数";
+            // 
+            // cmdCancel
+            // 
+            this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
+            this.cmdCancel.Location = new System.Drawing.Point(397, 105);
+            this.cmdCancel.Name = "cmdCancel";
+            this.cmdCancel.Size = new System.Drawing.Size(75, 30);
+            this.cmdCancel.TabIndex = 4;
+            this.cmdCancel.Text = "取消";
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            // 
+            // cmdOK
+            // 
+            this.cmdOK.BackColor = System.Drawing.Color.Transparent;
+            this.cmdOK.Location = new System.Drawing.Point(306, 106);
+            this.cmdOK.Name = "cmdOK";
+            this.cmdOK.Size = new System.Drawing.Size(75, 30);
+            this.cmdOK.TabIndex = 3;
+            this.cmdOK.Text = "确认";
+            this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
+            // 
+            // lblLanguage
+            // 
+            this.lblLanguage.AutoSize = true;
+            this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
+            this.lblLanguage.Location = new System.Drawing.Point(390, 60);
+            this.lblLanguage.Name = "lblLanguage";
+            this.lblLanguage.Size = new System.Drawing.Size(31, 13);
+            this.lblLanguage.TabIndex = 16;
+            this.lblLanguage.Text = "语言";
+            // 
+            // cmbLanguage
+            // 
+            this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Location = new System.Drawing.Point(450, 57);
+            this.cmbLanguage.Name = "cmbLanguage";
+            this.cmbLanguage.Size = new System.Drawing.Size(121, 21);
+            this.cmbLanguage.TabIndex = 17;
             // 
             // ctlFilePickerMongoBinPath
             // 
@@ -134,44 +172,6 @@
             this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(739, 31);
             this.ctlFilePickerMongoBinPath.TabIndex = 0;
             this.ctlFilePickerMongoBinPath.Title = "Mongodb的Bin路径";
-            // 
-            // cmdCancel
-            // 
-            this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(397, 114);
-            this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(75, 30);
-            this.cmdCancel.TabIndex = 4;
-            this.cmdCancel.Text = "取消";
-            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
-            // 
-            // cmdOK
-            // 
-            this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(306, 115);
-            this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(75, 30);
-            this.cmdOK.TabIndex = 3;
-            this.cmdOK.Text = "确认";
-            this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
-            // 
-            // lblLanguage
-            // 
-            this.lblLanguage.AutoSize = true;
-            this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
-            this.lblLanguage.Location = new System.Drawing.Point(458, 56);
-            this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(31, 13);
-            this.lblLanguage.TabIndex = 16;
-            this.lblLanguage.Text = "语言";
-            // 
-            // cmbLanguage
-            // 
-            this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(495, 52);
-            this.cmbLanguage.Name = "cmbLanguage";
-            this.cmbLanguage.Size = new System.Drawing.Size(121, 21);
-            this.cmbLanguage.TabIndex = 17;
             // 
             // frmOption
             // 
@@ -193,7 +193,7 @@
         #endregion
 
         private System.Windows.Forms.NumericUpDown numRefreshForStatus;
-        private System.Windows.Forms.Label lblRefreshForStatus;
+        private System.Windows.Forms.Label lblRefreshIntervalForStatus;
         private System.Windows.Forms.NumericUpDown numLimitCnt;
         private System.Windows.Forms.Label lblLimitCnt;
         private ctlFilePicker ctlFilePickerMongoBinPath;

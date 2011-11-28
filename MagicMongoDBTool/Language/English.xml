@@ -176,6 +176,13 @@
   <Group_Tab_InitColumn_Note>Please add Initalize Var</Group_Tab_InitColumn_Note>
   <Group_Tab_Result>Result</Group_Tab_Result>
   <Group_LoadQuery>Load Query</Group_LoadQuery>
+  
+  <!--frmOption-->
+  <Option_Title>Setting</Option_Title>
+  <Option_BinPath>Bin Path</Option_BinPath>
+  <Option_Language>Language</Option_Language>
+  <Option_RecordPerPage>Record Per Page</Option_RecordPerPage>
+  <Option_RefreshInterval>Refresh Interval</Option_RefreshInterval>
 
   <!--frmMapReduce-->
   <MapReduce_MapFunction>Map Function</MapReduce_MapFunction>
@@ -290,6 +297,10 @@
   <Common_Collection>Collection</Common_Collection>
   <Common_HostName>HostName</Common_HostName>
   <Common_Port>Port</Common_Port>
+
+  <Common_Browse>Browse</Common_Browse>
+  <Common_Clear>Clear</Common_Clear>
+
 
   <!--Create New DataBase-->
   <Create_New_DataBase>Create New Database</Create_New_DataBase>

@@ -1173,6 +1173,7 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("异常",
                                          "Mongo目录没有找到，请确认",
                                          "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                SystemManager.OpenForm(new frmOption());
                 return false;
             }
             return true;

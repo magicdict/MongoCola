@@ -162,6 +162,13 @@ namespace GUIResource
             Group_Tab_Result,
             Group_LoadQuery,
 
+            //Option
+            Option_Title,
+            Option_BinPath,
+            Option_Language,
+            Option_RecordPerPage,
+            Option_RefreshInterval,
+
             //MapReduce
             MapReduce_MapFunction,
             MapReduce_ReduceFunction,
@@ -266,7 +273,9 @@ namespace GUIResource
             Common_Collection,
             Common_HostName,
             Common_Port,
-           
+            Common_Browse,
+            Common_Clear,
+
             //Create New DataBase
             Create_New_DataBase,
             Create_New_DataBase_Input,
