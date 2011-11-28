@@ -341,7 +341,6 @@ namespace MagicMongoDBTool
                         this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
                         this.ShutDownToolStripMenuItem.Enabled = true;
                         this.AddUserToAdminToolStripMenuItem.Enabled = true;
-                        this.RemoveUserFromAdminToolStripMenuItem.Enabled = true;
                         this.SvrPropertyToolStripMenuItem.Enabled = true;
 
                         if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.ReplsetSvr)
@@ -361,7 +360,6 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.RemoveUserFromAdminToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
@@ -390,7 +388,6 @@ namespace MagicMongoDBTool
                             this.DelMongoDBToolStripMenuItem.Enabled = true;
                             this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                             this.AddUserToolStripMenuItem.Enabled = true;
-                            this.RemoveUserToolStripMenuItem.Enabled = true;
                             this.evalJSToolStripMenuItem.Enabled = true;
                             this.InitGFSToolStripMenuItem.Enabled = true;
                             this.ConvertSqlToolStripMenuItem.Enabled = true;
@@ -411,7 +408,6 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.DelMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.CreateMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.evalJSToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
@@ -556,53 +552,72 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void lstData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SystemManager.GetCurrentCollection().Name == MongoDBHelper.COLLECTION_NAME_GFS_FILES)
+            switch (SystemManager.GetCurrentCollection().Name)
             {
-                //文件系统
-                UploadFileToolStripMenuItem.Enabled = true;
-                switch (lstData.SelectedItems.Count)
-                {
-                    case 0:
-                        //禁止所有操作
-                        DownloadFileToolStripMenuItem.Enabled = false;
-                        OpenFileToolStripMenuItem.Enabled = false;
-                        DelFileToolStripMenuItem.Enabled = false;
-                        lstData.ContextMenuStrip = null;
-                        break;
-                    case 1:
-                        //可以进行所有操作
-                        DownloadFileToolStripMenuItem.Enabled = true;
-                        OpenFileToolStripMenuItem.Enabled = true;
-                        DelFileToolStripMenuItem.Enabled = true;
-                        break;
-                    default:
-                        //可以删除多个文件
-                        DownloadFileToolStripMenuItem.Enabled = false;
-                        OpenFileToolStripMenuItem.Enabled = false;
-                        DelFileToolStripMenuItem.Enabled = true;
-                        break;
-                }
-            }
-            else
-            {
-                //数据系统
-                if (lstData.SelectedItems.Count > 0)
-                {
-                    if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
+                case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
+                    //文件系统
+                    UploadFileToolStripMenuItem.Enabled = true;
+                    switch (lstData.SelectedItems.Count)
                     {
-                        //系统数据禁止删除
-                        DelSelectRecordToolStripMenuItem.Enabled = true;
+                        case 0:
+                            //禁止所有操作
+                            DownloadFileToolStripMenuItem.Enabled = false;
+                            OpenFileToolStripMenuItem.Enabled = false;
+                            DelFileToolStripMenuItem.Enabled = false;
+                            lstData.ContextMenuStrip = null;
+                            break;
+                        case 1:
+                            //可以进行所有操作
+                            DownloadFileToolStripMenuItem.Enabled = true;
+                            OpenFileToolStripMenuItem.Enabled = true;
+                            DelFileToolStripMenuItem.Enabled = true;
+                            break;
+                        default:
+                            //可以删除多个文件
+                            DownloadFileToolStripMenuItem.Enabled = false;
+                            OpenFileToolStripMenuItem.Enabled = false;
+                            DelFileToolStripMenuItem.Enabled = true;
+                            break;
+                    }
+                    break;
+                case MongoDBHelper.COLLECTION_NAME_USER:
+                    //用户数据库
+                    if (SystemManager.GetCurrentDataBase().Name == MongoDBHelper.DATABASE_NAME_ADMIN)
+                    {
+                        if (lstData.SelectedItems.Count > 0)
+                        {
+                            this.RemoveUserFromAdminToolStripMenuItem.Enabled = true;
+                        }
+                    }
+                    else
+                    {
+                        if (lstData.SelectedItems.Count > 0)
+                        {
+                            this.RemoveUserToolStripMenuItem.Enabled = true;
+                        }
+                    }
+                    break;
+                default:
+                    //数据系统
+                    if (lstData.SelectedItems.Count > 0)
+                    {
+                        if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
+                        {
+                            //系统数据禁止删除
+                            DelSelectRecordToolStripMenuItem.Enabled = true;
+                        }
+                        else
+                        {
+                            DelSelectRecordToolStripMenuItem.Enabled = false;
+                        }
                     }
                     else
                     {
                         DelSelectRecordToolStripMenuItem.Enabled = false;
                     }
-                }
-                else
-                {
-                    DelSelectRecordToolStripMenuItem.Enabled = false;
-                }
+                    break;
             }
+
         }
         /// <summary>
         /// 
@@ -630,22 +645,34 @@ namespace MagicMongoDBTool
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
                     this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
-                    if (SystemManager.GetCurrentCollection().Name == MongoDBHelper.COLLECTION_NAME_GFS_FILES)
+                    switch (SystemManager.GetCurrentCollection().Name)
                     {
-                        //文件系统
-                        this.contextMenuStripMain.Items.Add(this.DownloadFileToolStripMenuItem.Clone());
-                        this.contextMenuStripMain.Items.Add(this.OpenFileToolStripMenuItem.Clone());
-                        this.contextMenuStripMain.Items.Add(this.DelFileToolStripMenuItem.Clone());
-                    }
-                    else
-                    {
-                        this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
+                        case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
+                            //文件系统
+                            this.contextMenuStripMain.Items.Add(this.DownloadFileToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.OpenFileToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.DelFileToolStripMenuItem.Clone());
+                            break;
+                        case MongoDBHelper.COLLECTION_NAME_USER:
+                            if (SystemManager.GetCurrentDataBase().Name == MongoDBHelper.DATABASE_NAME_ADMIN)
+                            {
+                                this.contextMenuStripMain.Items.Add(this.RemoveUserFromAdminToolStripMenuItem.Clone());
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
+                            }
+                            break;
+                        default:
+                            this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
+                            break;
                     }
                     lstData.ContextMenuStrip = this.contextMenuStripMain;
                     contextMenuStripMain.Show();
                 }
             }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -653,14 +680,30 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void trvData_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            RemoveUserFromAdminToolStripMenuItem.Enabled = false;
+            RemoveUserToolStripMenuItem.Enabled = false;
+            DelSelectRecordToolStripMenuItem.Enabled = false;
             if (trvData.SelectedNode.Level == 0)
             {
                 //顶层可以删除的节点
-                DelSelectRecordToolStripMenuItem.Enabled = true;
-            }
-            else
-            {
-                DelSelectRecordToolStripMenuItem.Enabled = false;
+                switch (SystemManager.GetCurrentCollection().Name)
+                {
+                    case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
+
+                        break;
+                    case MongoDBHelper.COLLECTION_NAME_USER:
+                        if (SystemManager.GetCurrentDataBase().Name == MongoDBHelper.DATABASE_NAME_ADMIN)
+                        {
+                            RemoveUserFromAdminToolStripMenuItem.Enabled = true;
+                        }
+                        else {
+                            RemoveUserToolStripMenuItem.Enabled = true;                        
+                        }
+                        break;
+                    default:
+                        DelSelectRecordToolStripMenuItem.Enabled = true;
+                        break;
+                }
             }
         }
         /// <summary>
@@ -674,12 +717,14 @@ namespace MagicMongoDBTool
             trvData.SelectedNode = node;
             if (trvData.SelectedNode != null && trvData.SelectedNode.Level == 0)
             {
-                DelSelectRecordToolStripMenuItem.Enabled = true;
+                //DelSelectRecordToolStripMenuItem.Enabled = true;
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
                     this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                     this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.RemoveUserFromAdminToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
                     trvData.ContextMenuStrip = this.contextMenuStripMain;
                     contextMenuStripMain.Show();
                 }
@@ -837,20 +882,6 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmUser(true));
         }
         /// <summary>
-        /// 删除Admin用户
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RemoveUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //@那一剑风情 提出的删除前确认
-            String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
-            if (MyMessageBox.ShowConfirm("确认", "删除Admin确认"))
-            {
-                MongoDBHelper.RemoveUserFromSvr(strUserName);
-            }
-        }
-        /// <summary>
         /// 服务器属性
         /// </summary>
         /// <param name="sender"></param>
@@ -950,20 +981,6 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmUser(false));
         }
         /// <summary>
-        /// 删除用户
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //@那一剑风情 提出的删除前确认
-            if (MyMessageBox.ShowConfirm("确认", "删除用户确认"))
-            {
-                String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
-                MongoDBHelper.RemoveUserFromDB(strUserName);
-            }
-        }
-        /// <summary>
         /// 执行JS
         /// </summary>
         /// <param name="sender"></param>
@@ -1060,6 +1077,87 @@ namespace MagicMongoDBTool
             SystemManager.GetCurrentCollection().ReIndex();
         }
         /// <summary>
+        /// 删除Admin用户
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //@那一剑风情 提出的删除前确认
+            String strTitle = "确认";
+            String strMessage = "删除用户确认";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
+            }
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
+            {
+                if (tabDataShower.SelectedTab == tabTableView)
+                {
+                    //lstData
+                    String strKey = lstData.Columns[0].Text;
+                    foreach (ListViewItem item in lstData.SelectedItems)
+                    {
+                       //MongoDBHelper.RemoveUserFromSvr(item.SubItems[1].Text);
+                        MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), item.Tag, strKey);
+                    }
+                    lstData.ContextMenuStrip = null;
+                }
+                else
+                {
+                    //String strKey = trvData.SelectedNode.Text.Split(":".ToCharArray())[0];
+                    //MongoDBHelper.RemoveUserFromSvr(strKey);
+                    String strKey = trvData.SelectedNode.Nodes[0].Text.Split(":".ToCharArray())[0];
+                    MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), trvData.SelectedNode.Tag, strKey);
+                    trvData.ContextMenuStrip = null;
+                }
+                RemoveUserFromAdminToolStripMenuItem.Enabled = false;
+                RefreshData();
+
+            }
+        }
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //@那一剑风情 提出的删除前确认
+            String strTitle = "确认";
+            String strMessage = "删除用户确认";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
+            }
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
+            {
+                if (tabDataShower.SelectedTab == tabTableView)
+                {
+                    //lstData
+                    String strKey = lstData.Columns[0].Text;
+                    foreach (ListViewItem item in lstData.SelectedItems)
+                    {
+                        //MongoDBHelper.RemoveUserFromDB(item.SubItems[1].Text);
+                        MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), item.Tag, strKey);
+                    }
+                    lstData.ContextMenuStrip = null;
+                }
+                else
+                {
+                    //String strKey = trvData.SelectedNode.Text.Split(":".ToCharArray())[0];
+                    //MongoDBHelper.RemoveUserFromDB(strKey);
+                    String strKey = trvData.SelectedNode.Nodes[0].Text.Split(":".ToCharArray())[0];
+                    MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), trvData.SelectedNode.Tag, strKey);
+                    trvData.ContextMenuStrip = null;
+                }
+                RemoveUserToolStripMenuItem.Enabled = false;
+                RefreshData();
+            }
+        }
+        /// <summary>
         /// 删除数据
         /// </summary>
         /// <param name="sender"></param>
@@ -1081,7 +1179,7 @@ namespace MagicMongoDBTool
                 }
                 else
                 {
-                    String strKey = trvData.SelectedNode.Text.Split(":".ToCharArray())[0];
+                    String strKey = trvData.SelectedNode.Nodes[0].Text.Split(":".ToCharArray())[0];
                     MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), trvData.SelectedNode.Tag, strKey);
                     trvData.ContextMenuStrip = null;
                 }

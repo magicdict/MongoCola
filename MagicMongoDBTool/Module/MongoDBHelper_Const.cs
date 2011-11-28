@@ -70,6 +70,10 @@ namespace MagicMongoDBTool.Module
 
         #region"系统数据集名称常量"
         /// <summary>
+        /// ADMIN
+        /// </summary>
+        public const string DATABASE_NAME_ADMIN = "admin";
+        /// <summary>
         /// 系统索引
         /// </summary>
         public const string COLLECTION_NAME_SYSTEM_INDEXES = "system.indexes";
