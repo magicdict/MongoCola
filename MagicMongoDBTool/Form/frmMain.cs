@@ -104,10 +104,10 @@ namespace MagicMongoDBTool
             this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DelSelect);
 
             this.GridFsToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem);
-            this.DelFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Del);
+            this.DelFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
             this.UploadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Upload);
             this.DownloadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
-            this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Open);
+            this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
             this.InitGFSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_InitGFS);
 
             this.DumpAndRestoreToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore);
@@ -683,25 +683,36 @@ namespace MagicMongoDBTool
             RemoveUserFromAdminToolStripMenuItem.Enabled = false;
             RemoveUserToolStripMenuItem.Enabled = false;
             DelSelectRecordToolStripMenuItem.Enabled = false;
+            DelFileToolStripMenuItem.Enabled = false;
+
             if (trvData.SelectedNode.Level == 0)
             {
                 //顶层可以删除的节点
                 switch (SystemManager.GetCurrentCollection().Name)
                 {
                     case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
-
+                        //TODO:DelFile
+                        DelFileToolStripMenuItem.Enabled = true;
                         break;
                     case MongoDBHelper.COLLECTION_NAME_USER:
                         if (SystemManager.GetCurrentDataBase().Name == MongoDBHelper.DATABASE_NAME_ADMIN)
                         {
                             RemoveUserFromAdminToolStripMenuItem.Enabled = true;
                         }
-                        else {
-                            RemoveUserToolStripMenuItem.Enabled = true;                        
+                        else
+                        {
+                            RemoveUserToolStripMenuItem.Enabled = true;
                         }
                         break;
                     default:
-                        DelSelectRecordToolStripMenuItem.Enabled = true;
+                        if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
+                        {
+                            DelSelectRecordToolStripMenuItem.Enabled = true;
+                        }
+                        else
+                        {
+                            DelSelectRecordToolStripMenuItem.Enabled = false;
+                        }
                         break;
                 }
             }
@@ -725,6 +736,7 @@ namespace MagicMongoDBTool
                     this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
                     this.contextMenuStripMain.Items.Add(this.RemoveUserFromAdminToolStripMenuItem.Clone());
                     this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.DelFileToolStripMenuItem.Clone());
                     trvData.ContextMenuStrip = this.contextMenuStripMain;
                     contextMenuStripMain.Show();
                 }
@@ -1099,17 +1111,13 @@ namespace MagicMongoDBTool
                     String strKey = lstData.Columns[0].Text;
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                       //MongoDBHelper.RemoveUserFromSvr(item.SubItems[1].Text);
-                        MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), item.Tag, strKey);
+                        MongoDBHelper.RemoveUserFromSvr(item.SubItems[1].Text);
                     }
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
-                    //String strKey = trvData.SelectedNode.Text.Split(":".ToCharArray())[0];
-                    //MongoDBHelper.RemoveUserFromSvr(strKey);
-                    String strKey = trvData.SelectedNode.Nodes[0].Text.Split(":".ToCharArray())[0];
-                    MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), trvData.SelectedNode.Tag, strKey);
+                    MongoDBHelper.RemoveUserFromSvr(trvData.SelectedNode.Tag.ToString());
                     trvData.ContextMenuStrip = null;
                 }
                 RemoveUserFromAdminToolStripMenuItem.Enabled = false;
@@ -1140,17 +1148,13 @@ namespace MagicMongoDBTool
                     String strKey = lstData.Columns[0].Text;
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                        //MongoDBHelper.RemoveUserFromDB(item.SubItems[1].Text);
-                        MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), item.Tag, strKey);
+                        MongoDBHelper.RemoveUserFromDB(item.SubItems[1].Text);
                     }
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
-                    //String strKey = trvData.SelectedNode.Text.Split(":".ToCharArray())[0];
-                    //MongoDBHelper.RemoveUserFromDB(strKey);
-                    String strKey = trvData.SelectedNode.Nodes[0].Text.Split(":".ToCharArray())[0];
-                    MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), trvData.SelectedNode.Tag, strKey);
+                    MongoDBHelper.RemoveUserFromDB(trvData.SelectedNode.Tag.ToString());
                     trvData.ContextMenuStrip = null;
                 }
                 RemoveUserToolStripMenuItem.Enabled = false;
@@ -1248,8 +1252,17 @@ namespace MagicMongoDBTool
             //@那一剑风情 提出的删除前确认
             if (MyMessageBox.ShowConfirm("确认", "删除文件确认"))
             {
-                String strFileName = lstData.SelectedItems[0].Text;
-                MongoDBHelper.DelFile(strFileName);
+                if (tabDataShower.SelectedTab == tabTableView)
+                {
+                    String strFileName = lstData.SelectedItems[0].Text;
+                    MongoDBHelper.DelFile(strFileName);
+                    lstData.ContextMenuStrip = null;
+                }
+                else
+                {
+                    MongoDBHelper.DelFile(trvData.SelectedNode.Tag.ToString());
+                    trvData.ContextMenuStrip = null;
+                }
                 RefreshData();
             }
         }

@@ -47,8 +47,8 @@
   <Main_Menu_Operation_FileSystem>FileSystem</Main_Menu_Operation_FileSystem>
   <Main_Menu_Operation_FileSystem_Upload>Upload</Main_Menu_Operation_FileSystem_Upload>
   <Main_Menu_Operation_FileSystem_Download>Download</Main_Menu_Operation_FileSystem_Download>
-  <Main_Menu_Operation_FileSystem_Open>Open</Main_Menu_Operation_FileSystem_Open>
-  <Main_Menu_Operation_FileSystem_Del>Del</Main_Menu_Operation_FileSystem_Del>
+  <Main_Menu_Operation_FileSystem_OpenFile>Open File</Main_Menu_Operation_FileSystem_OpenFile>
+  <Main_Menu_Operation_FileSystem_DelFile>Del File</Main_Menu_Operation_FileSystem_DelFile>
   <Main_Menu_Operation_FileSystem_InitGFS>InitGFS</Main_Menu_Operation_FileSystem_InitGFS>
 
   <Main_Menu_Operation_BackupAndRestore>BackupAndRestore</Main_Menu_Operation_BackupAndRestore>

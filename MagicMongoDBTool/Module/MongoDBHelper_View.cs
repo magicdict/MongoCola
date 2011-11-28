@@ -741,7 +741,18 @@ namespace MagicMongoDBTool.Module
             {
                 TreeNode dataNode = new TreeNode(collectionName + "[" + (SkipCnt + Count).ToString() + "]");
                 //这里保存真实的主Key数据，删除的时候使用
-                dataNode.Tag = item.GetElement(0).Value;
+                switch (collectionName)
+                {
+                    case COLLECTION_NAME_GFS_FILES:
+                        dataNode.Tag = item.GetElement(1).Value;
+                        break;
+                    case COLLECTION_NAME_USER:
+                        dataNode.Tag = item.GetElement(1).Value;
+                        break;
+                    default:
+                        dataNode.Tag = item.GetElement(0).Value;
+                        break;
+                }
                 FillBsonDocToTreeNode(dataNode, item);
                 trvData.Nodes.Add(dataNode);
                 Count++;
@@ -776,7 +787,8 @@ namespace MagicMongoDBTool.Module
                                 FillBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument());
                                 newItem.Nodes.Add(newSubItem);
                             }
-                            else {
+                            else
+                            {
                                 newItem.Nodes.Add(SubItem.ToString());
                             }
                             count++;
