@@ -312,7 +312,9 @@
   <Create_New_Collection_Input>Please input New Collection Name:</Create_New_Collection_Input>
   <Drop_Collection>Drop Collection</Drop_Collection>
   <Drop_Collection_Confirm>Make sure to Drop this Collection?</Drop_Collection_Confirm>
-
+  <Rename_Collection>Rename Collection</Rename_Collection>
+  <Rename_Collection_Input>Please input New Collection Name:</Rename_Collection_Input>
+  
   <Drop_User>Drop User</Drop_User>
   <Drop_User_Confirm>Make sure to Drop this User?</Drop_User_Confirm>
 

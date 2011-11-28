@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using GUIResource;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Collections;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -93,15 +94,15 @@ namespace MagicMongoDBTool.Module
         {
             String rtnSvrInfo = String.Empty;
             MongoServer mongosvr = SystemManager.GetCurrentService();
-            rtnSvrInfo = "仲裁服务器：" + mongosvr.Instance.IsArbiter.ToString() + "\r\n";
-            rtnSvrInfo += "副本主服务器：" + mongosvr.Instance.IsPrimary.ToString() + "\r\n";
-            rtnSvrInfo += "副本次服务器：" + mongosvr.Instance.IsSecondary.ToString() + "\r\n";
-            rtnSvrInfo += "服务器地址：" + mongosvr.Instance.Address.ToString() + "\r\n";
+            rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter.ToString() + "\r\n";
+            rtnSvrInfo += "IsPrimary：" + mongosvr.Instance.IsPrimary.ToString() + "\r\n";
+            rtnSvrInfo += "IsSecondary：" + mongosvr.Instance.IsSecondary.ToString() + "\r\n";
+            rtnSvrInfo += "Address：" + mongosvr.Instance.Address.ToString() + "\r\n";
             if (mongosvr.Instance.BuildInfo != null)
             {
                 //某种情况下，可能出现这个值为空
-                rtnSvrInfo += "服务器版本：" + mongosvr.Instance.BuildInfo.VersionString + "\r\n";
-                rtnSvrInfo += "系统信息：" + mongosvr.Instance.BuildInfo.SysInfo + "\r\n";
+                rtnSvrInfo += "VersionString：" + mongosvr.Instance.BuildInfo.VersionString + "\r\n";
+                rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + "\r\n";
             }
             return rtnSvrInfo;
         }
@@ -116,7 +117,16 @@ namespace MagicMongoDBTool.Module
             {
                 MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
                 //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
-                TreeNode mongoSvrNode = new TreeNode(mongoSvr.ReplicaSetName != null ? "副本名称：" + mongoSvr.ReplicaSetName :
+                String strReplset;
+                if (SystemManager.IsUseDefaultLanguage())
+                {
+                    strReplset = "副本名称";
+                }
+                else
+                {
+                    strReplset = SystemManager.mStringResource.GetText(StringResource.TextType.ShardingConfig_ReplsetName);
+                }
+                TreeNode mongoSvrNode = new TreeNode(mongoSvr.ReplicaSetName != null ? strReplset + "：" + mongoSvr.ReplicaSetName :
                                                     (mongoSvrKey + " [" + mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port + "]"));
                 mongoSvrNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
                 mongoSvrNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
@@ -1252,6 +1262,93 @@ namespace MagicMongoDBTool.Module
         #endregion
 
         #region "辅助方法"
+
+        internal class lvwColumnSorter : System.Collections.IComparer
+        {
+            /// <summary>
+            /// 比较方式
+            /// </summary>
+            public enum SortMethod
+            {
+                StringCompare,
+                SizeCompare,
+                NumberCompare
+            }
+
+            private int ColumnToSort;// 指定按照哪个列排序      
+            private SortOrder OrderOfSort;// 指定排序的方式               
+            private CaseInsensitiveComparer ObjectCompare;// 声明CaseInsensitiveComparer类对象，
+            private SortMethod mCompareMethod; // 比较方式
+
+            public lvwColumnSorter()// 构造函数
+            {
+                ColumnToSort = 0;// 默认按第一列排序            
+                OrderOfSort = SortOrder.None;// 排序方式为不排序            
+                ObjectCompare = new CaseInsensitiveComparer();// 初始化CaseInsensitiveComparer类对象
+                mCompareMethod = SortMethod.StringCompare; //是否使用Size比较
+            }
+
+            public int Compare(Object x, Object y)
+            {
+                ListViewItem lstX = (ListViewItem)x;
+                ListViewItem lstY = (ListViewItem)y;
+                int rtnCompare = 0;
+
+                switch (mCompareMethod)
+                {
+                    case SortMethod.StringCompare:
+                        rtnCompare = ObjectCompare.Compare(lstX.SubItems[ColumnToSort].Text, lstY.SubItems[ColumnToSort].Text);
+                        break;
+                    case SortMethod.SizeCompare:
+                        rtnCompare =  (int)(ReconvSize(lstX.SubItems[ColumnToSort].Text) - ReconvSize(lstY.SubItems[ColumnToSort].Text));
+                        break;
+                    case SortMethod.NumberCompare:
+                        rtnCompare = (int)(Convert.ToDouble(lstX.SubItems[ColumnToSort].Text) - Convert.ToDouble(lstY.SubItems[ColumnToSort].Text));
+                        break;
+                }
+                if (OrderOfSort == SortOrder.Descending)
+                {
+                    rtnCompare = rtnCompare * -1;
+                }
+                return rtnCompare;
+            }
+            public SortMethod CompareMethod
+            {
+                set
+                {
+                    mCompareMethod = value;
+                }
+                get
+                {
+                    return mCompareMethod;
+                }
+            }
+
+            /// 获取或设置按照哪一列排序.        
+            public int SortColumn
+            {
+                set
+                {
+                    ColumnToSort = value;
+                }
+                get
+                {
+                    return ColumnToSort;
+                }
+            }
+            /// 获取或设置排序方式.    
+            public SortOrder Order
+            {
+                set
+                {
+                    OrderOfSort = value;
+                }
+                get
+                {
+                    return OrderOfSort;
+                }
+            }
+        }
         /// <summary>
         /// 将执行结果转化为细节报告文字列
         /// </summary>
@@ -1292,12 +1389,32 @@ namespace MagicMongoDBTool.Module
                 }
                 else
                 {
-
                     tempSize = tempSize / 1024;
                     unitOrder++;
                 }
             }
             return string.Format("{0:F2}", tempSize) + " " + Unit[unitOrder];
+        }
+
+        public static long ReconvSize(String size)
+        {
+            string strSize = string.Empty;
+            string[] Unit = new string[]{
+                "Byte","KB","MB","GB","TB"
+            };
+            if (size == "0 Byte")
+            {
+                return 0;
+            }
+            for (int i = 0; i < Unit.Length; i++)
+            {
+                if (size.EndsWith(Unit[i].ToString()))
+                {
+                    size = size.Replace(Unit[i].ToString(), String.Empty).Trim();
+                    return (long)(Convert.ToDouble(size) * Math.Pow(2, (i * 10)));
+                }
+            }
+            return 0;
         }
         #endregion
 

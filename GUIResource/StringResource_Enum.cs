@@ -285,7 +285,8 @@ namespace GUIResource
 
             Create_New_Collection,
             Create_New_Collection_Input,
-            
+            Rename_Collection,
+            Rename_Collection_Input,
             Drop_Collection,
             Drop_Collection_Confirm,
             

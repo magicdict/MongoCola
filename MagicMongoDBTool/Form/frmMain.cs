@@ -1082,7 +1082,16 @@ namespace MagicMongoDBTool
         {
             String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             String strCollection = strPath.Split("/".ToCharArray())[2];
-            String strNewCollectionName = Microsoft.VisualBasic.Interaction.InputBox("请输入新数据集名称：", "数据集改名");
+            String strNewCollectionName = String.Empty;
+            if (SystemManager.IsUseDefaultLanguage())
+            {
+                strNewCollectionName = Microsoft.VisualBasic.Interaction.InputBox("请输入新数据集名称：", "数据集改名");
+            }
+            else
+            {
+                strNewCollectionName = Microsoft.VisualBasic.Interaction.InputBox(SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
+                                                                                  SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection));
+            }
             if (MongoDBHelper.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelper.Oprcode.Rename, trvsrvlst.SelectedNode, strNewCollectionName))
             {
                 DisableAllOpr();
@@ -1132,6 +1141,7 @@ namespace MagicMongoDBTool
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
                 strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
             }
+            //这里也可以使用普通的删除数据的方法来删除用户。
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 if (tabDataShower.SelectedTab == tabTableView)
@@ -1589,7 +1599,8 @@ namespace MagicMongoDBTool
             this.AggregationToolStripMenuItem.Enabled = true;
             SetToolBarEnabled();
             String strTitle = "数据视图";
-            if (!SystemManager.IsUseDefaultLanguage()) {
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
             }
             if (MongoDBHelper.CurrentCollectionTotalCnt == 0)
