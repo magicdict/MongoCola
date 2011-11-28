@@ -770,9 +770,15 @@ namespace MagicMongoDBTool.Module
                         int count = 1;
                         foreach (BsonValue SubItem in item.Value.AsBsonArray)
                         {
-                            TreeNode newSubItem = new TreeNode(item.Name + "[" + count + "]");
-                            FillBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument());
-                            newItem.Nodes.Add(newSubItem);
+                            if (SubItem.IsBsonDocument)
+                            {
+                                TreeNode newSubItem = new TreeNode(item.Name + "[" + count + "]");
+                                FillBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument());
+                                newItem.Nodes.Add(newSubItem);
+                            }
+                            else {
+                                newItem.Nodes.Add(SubItem.ToString());
+                            }
                             count++;
                         }
                         treeNode.Nodes.Add(newItem);
@@ -923,10 +929,8 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     MongoServer mongosvr = _mongoSrvLst[mongoSvrKey];
-                    List<string> databaseNameList = mongosvr.GetDatabaseNames().ToList<string>();
                     //flydreamer提供的代码
-                    var serverStatusCommand = new CommandDocument { { "serverStatus", 1 } };
-                    BsonDocument cr = ExecuteMongoCommand(serverStatusCommand, mongosvr).Response;
+                    BsonDocument cr = ServerStatus(mongosvr).Response;
                     SrvDocList.Add(cr);
                 }
                 catch (Exception)

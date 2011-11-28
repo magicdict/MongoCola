@@ -12,9 +12,11 @@ namespace MagicMongoDBTool
 {
     public partial class frmUser : QLFUI.QLFForm
     {
-        public frmUser()
+        private Boolean _IsAdmin = false;
+        public frmUser(Boolean IsAdmin)
         {
             InitializeComponent();
+            _IsAdmin = IsAdmin;
         }
         /// <summary>
         /// 确定
@@ -23,9 +25,19 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.AddUserToSvr(SystemManager.SelectObjectTag, txtUserName.Text, txtPassword.Text, chkReadOnly.Checked);
+            if (_IsAdmin)
+            {
+                //添加到服务器，作为Admin用户
+                MongoDBHelper.AddUserToSvr(txtUserName.Text, txtPassword.Text, chkReadOnly.Checked);
+            }
+            else
+            {
+                //添加到数据库
+                MongoDBHelper.AddUserToDB(txtUserName.Text, txtPassword.Text, chkReadOnly.Checked);
+            }
             this.Close();
         }
+
         /// <summary>
         /// 关闭
         /// </summary>
@@ -35,10 +47,10 @@ namespace MagicMongoDBTool
         {
             this.Close();
         }
-
         private void frmUser_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage()) {
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
                 lblPassword.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Password);
                 lblUserName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Username);
                 chkReadOnly.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_ReadOnly);

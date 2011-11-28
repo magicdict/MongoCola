@@ -8,11 +8,10 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 添加User到Admin数据库[效果如同添加USER到整个服务器]
         /// </summary>
-        /// <param name="strDBPath"></param>
-        /// <param name="strUser"></param>
-        /// <param name="password"></param>
-        /// <param name="isReadOnly"></param>
-        public static void AddUserToSvr(string strDBPath, string strUser, string password, bool isReadOnly)
+        /// <param name="strUser">用户名</param>
+        /// <param name="password">密码</param>
+        /// <param name="isReadOnly">是否为只读</param>
+        public static void AddUserToSvr(string strUser, string password, bool isReadOnly)
         {
             MongoServer mongoSvr = SystemManager.GetCurrentService();
             //必须使用MongoCredentials来添加用户不然的话，Password将使用明文登入到数据库中！
@@ -26,9 +25,8 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 从Admin数据库删除用户
         /// </summary>
-        /// <param name="strDBPath"></param>
         /// <param name="strUser"></param>
-        public static void RemoveUserFromSvr(String strDBPath, String strUser)
+        public static void RemoveUserFromSvr(String strUser)
         {
             MongoServer mongoSvr = SystemManager.GetCurrentService();
             if (mongoSvr.AdminDatabase.FindUser(strUser) != null)
@@ -39,13 +37,12 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 添加用户
         /// </summary>
-        /// <param name="strDBPath">数据库路径</param>
         /// <param name="strUser">用户名</param>
         /// <param name="password">密码</param>
         /// <param name="isReadOnly">是否为只读</param>
-        public static void AddUserToDB(string strDBPath, string strUser, string password, bool isReadOnly)
+        public static void AddUserToDB(string strUser, string password, bool isReadOnly)
         {
-            MongoDatabase mongoDB = GetMongoDBBySvrPath(strDBPath);
+            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
             MongoCredentials newUser = new MongoCredentials(strUser, password, false);
             if (mongoDB.FindUser(strUser) == null)
             {
@@ -56,11 +53,10 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 删除用户
         /// </summary>
-        /// <param name="strDBPath">数据库路径</param>
         /// <param name="strUser">用户名</param>
-        public static void RemoveUserFromDB(string strDBPath, string strUser)
+        public static void RemoveUserFromDB(string strUser)
         {
-            MongoDatabase mongoDB = GetMongoDBBySvrPath(strDBPath);
+            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
             if (mongoDB.FindUser(strUser) != null)
             {
                 mongoDB.RemoveUser(strUser);

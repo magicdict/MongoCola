@@ -83,11 +83,9 @@
   <AddConnection_Name_Description>Nick Name</AddConnection_Name_Description>
   <AddConnection_Address>Address</AddConnection_Address>
   <AddConnection_Address_Description>Server IP Address</AddConnection_Address_Description>
-  <AddConnection_Port>Port</AddConnection_Port>
+
   <AddConnection_Port_Description>Server Port</AddConnection_Port_Description>
-  <AddConnection_UserName>UserName</AddConnection_UserName>
   <AddConnection_UserName_Description>User Name(Option)</AddConnection_UserName_Description>
-  <AddConnection_Password>Password</AddConnection_Password>
   <AddConnection_Password_Description>Password(Option)</AddConnection_Password_Description>
   <AddConnection_DBName>DB Name</AddConnection_DBName>
   <AddConnection_DBName_Description>Database Name(Option)</AddConnection_DBName_Description>
@@ -290,9 +288,25 @@
   <Common_Server>Server</Common_Server>
   <Common_DataBase>DataBase</Common_DataBase>
   <Common_Collection>Collection</Common_Collection>
-  
+  <Common_HostName>HostName</Common_HostName>
+  <Common_Port>Port</Common_Port>
+
   <!--Create New DataBase-->
   <Create_New_DataBase>Create New Database</Create_New_DataBase>
-  <Create_New_DataBase_Input>Please input New Database Name:</Create_New_DataBase_Input> 
-  
+  <Create_New_DataBase_Input>Please input New Database Name:</Create_New_DataBase_Input>
+  <Drop_DataBase>Drop DataBase</Drop_DataBase>
+  <Drop_DataBase_Confirm>Make sure to Drop this Database?</Drop_DataBase_Confirm>
+
+  <Create_New_Collection>Create New Collection</Create_New_Collection>
+  <Create_New_Collection_Input>Please input New Collection Name:</Create_New_Collection_Input>
+  <Drop_Collection>Drop Collection</Drop_Collection>
+  <Drop_Collection_Confirm>Make sure to Drop this Collection?</Drop_Collection_Confirm>
+
+  <Drop_User>Drop User</Drop_User>
+  <Drop_User_Confirm>Make sure to Drop this User?</Drop_User_Confirm>
+
+  <Drop_Data>Drop Collection</Drop_Data>
+  <Drop_Data_Confirm>Make sure to Drop this Record(s)?</Drop_Data_Confirm>
+
+
 </Language>

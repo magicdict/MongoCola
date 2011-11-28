@@ -533,7 +533,8 @@ namespace QLFUI
                 selectSkinButton.XOffset = int.Parse(IniHelper.ReadIniValue(filePath, "Main", "selectSkinButton_X"));
                 selectSkinButton.Top = int.Parse(IniHelper.ReadIniValue(filePath, "Main", "selectSkinButton_Y"));
 
-
+                //透明色设置
+                TransparencyKey = IniHelper.trans;
                 return true;
             }
             catch

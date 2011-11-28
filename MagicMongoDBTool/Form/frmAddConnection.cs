@@ -36,11 +36,11 @@ namespace MagicMongoDBTool
             txtHostName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Name_Description);
             lblIpAddr.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Address);
             txtIpAddr.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Address_Description);
-            lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Port);
+            lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
             txtPort.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Port_Description);
-            lblUsername.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_UserName);
+            lblUsername.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username);
             txtUsername.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_UserName_Description);
-            lblPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Password);
+            lblPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Password);
             txtPassword.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
             lblDataBaseName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_DBName);
             txtDataBaseName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_DBName_Description);

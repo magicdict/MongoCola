@@ -12,6 +12,30 @@ namespace MagicMongoDBTool.Module
         //假设28018为端口号，同时使用 --rest 选项
         //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
 
+        /// <summary>
+        /// 服务器状态
+        /// http://www.mongodb.org/display/DOCS/serverStatus+Command
+        /// </summary>
+        /// <param name="mongosvr"></param>
+        /// <returns></returns>
+        public static CommandResult ServerStatus(MongoServer mongosvr) 
+        {
+            var serverStatusCommand = new CommandDocument { { "serverStatus", 1 } };
+            return ExecuteMongoCommand(serverStatusCommand, mongosvr);    
+        }
+
+
+        /// <summary>
+        /// 副本状态
+        //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
+        /// </summary>
+        /// <param name="mongosvr"></param>
+        /// <returns></returns>
+        public static CommandResult replSetGetStatus(MongoServer mongosvr)
+        {
+            var serverStatusCommand = new CommandDocument { { "replSetGetStatus", 1 } };
+            return ExecuteMongoCommand(serverStatusCommand, mongosvr);    
+        }
 
         /// <summary>
         /// 初始化副本

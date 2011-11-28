@@ -834,7 +834,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddUserToAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmUser());
+            SystemManager.OpenForm(new frmUser(true));
         }
         /// <summary>
         /// 删除Admin用户
@@ -847,7 +847,7 @@ namespace MagicMongoDBTool
             String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
             if (MyMessageBox.ShowConfirm("确认", "删除Admin确认"))
             {
-                MongoDBHelper.RemoveUserFromSvr(SystemManager.SelectObjectTag, strUserName);
+                MongoDBHelper.RemoveUserFromSvr(strUserName);
             }
         }
         /// <summary>
@@ -891,7 +891,14 @@ namespace MagicMongoDBTool
         private void DelMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //@那一剑风情 提出的删除前确认
-            if (MyMessageBox.ShowConfirm("确认", "删除数据库确认"))
+            String strTitle = "删除数据库确认";
+            String strMessage = "确认是否要删除数据库？";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_DataBase);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_DataBase_Confirm);
+            }
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                 String strDBName = strPath.Split("/".ToCharArray())[1];
@@ -904,7 +911,6 @@ namespace MagicMongoDBTool
                     DisableAllOpr();
                     lstData.Clear();
                 }
-
             }
         }
         /// <summary>
@@ -914,15 +920,24 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CreateMongoCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strCollection = Microsoft.VisualBasic.Interaction.InputBox("请输入数据集名称：", "创建数据集");
-            if (strCollection == string.Empty)
+            String strCollection = String.Empty;
+
+            if (SystemManager.IsUseDefaultLanguage())
             {
-                return;
+                strCollection = Microsoft.VisualBasic.Interaction.InputBox("请输入数据集名称：", "创建数据集");
             }
-            if (MongoDBHelper.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelper.Oprcode.Create, trvsrvlst.SelectedNode))
+            else
             {
-                DisableAllOpr();
-                lstData.Clear();
+                strCollection = Microsoft.VisualBasic.Interaction.InputBox(SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection_Input),
+                                                                           SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection));
+            }
+            if (strCollection != string.Empty)
+            {
+                if (MongoDBHelper.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelper.Oprcode.Create, trvsrvlst.SelectedNode))
+                {
+                    DisableAllOpr();
+                    lstData.Clear();
+                }
             }
         }
         /// <summary>
@@ -932,7 +947,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmUser());
+            SystemManager.OpenForm(new frmUser(false));
         }
         /// <summary>
         /// 删除用户
@@ -945,7 +960,7 @@ namespace MagicMongoDBTool
             if (MyMessageBox.ShowConfirm("确认", "删除用户确认"))
             {
                 String strUserName = Microsoft.VisualBasic.Interaction.InputBox("请输入用户名：", "移除用户");
-                MongoDBHelper.RemoveUserFromDB(SystemManager.SelectObjectTag, strUserName);
+                MongoDBHelper.RemoveUserFromDB(strUserName);
             }
         }
         /// <summary>
@@ -977,7 +992,15 @@ namespace MagicMongoDBTool
         private void DelMongoCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //@那一剑风情 提出的删除前确认
-            if (MyMessageBox.ShowConfirm("确认", "删除数据库确认"))
+
+            String strTitle = "删除数据集确认";
+            String strMessage = "确认是否要删除数据集？";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Collection);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Collection_Confirm);
+            }
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                 String strCollection = strPath.Split("/".ToCharArray())[2];
@@ -1007,7 +1030,15 @@ namespace MagicMongoDBTool
                 DisableAllOpr();
                 clearDataShower();
                 SystemManager.SelectObjectTag = trvsrvlst.SelectedNode.Tag.ToString();
-                statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                if (SystemManager.IsUseDefaultLanguage())
+                {
+                    statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                }
+                else
+                {
+                    statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Collection) +
+                          ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                }
             }
         }
         /// <summary>

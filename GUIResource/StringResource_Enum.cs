@@ -81,11 +81,8 @@ namespace GUIResource
             AddConnection_Name_Description,
             AddConnection_Address,
             AddConnection_Address_Description,
-            AddConnection_Port,
             AddConnection_Port_Description,
-            AddConnection_UserName,
             AddConnection_UserName_Description,
-            AddConnection_Password,
             AddConnection_Password_Description,
             AddConnection_DBName,
             AddConnection_DBName_Description,
@@ -100,6 +97,7 @@ namespace GUIResource
             AddConnection_ServerType_Configuration,
             AddConnection_ServerType_Route,
             AddConnection_ServerType_Arbitration,
+
             AddConnection_Region_ReplaceSet,
             AddConnection_Region_ReplaceSetName,
             AddConnection_Region_ReplaceSetName_Description,
@@ -266,10 +264,27 @@ namespace GUIResource
             Common_Server,
             Common_DataBase,
             Common_Collection,
+            Common_HostName,
+            Common_Port,
+           
             //Create New DataBase
             Create_New_DataBase,
             Create_New_DataBase_Input,
 
+            Drop_DataBase,
+            Drop_DataBase_Confirm,
+
+            Create_New_Collection,
+            Create_New_Collection_Input,
+            
+            Drop_Collection,
+            Drop_Collection_Confirm,
+            
+            Drop_User,
+            Drop_User_Confirm,
+            
+            Drop_Data,
+            Drop_Data_Confirm
         }
     }
 }
