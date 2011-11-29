@@ -104,7 +104,7 @@ namespace MagicMongoDBTool
             txtPort.Text = ModifyConn.Port.ToString();
             txtUsername.Text = ModifyConn.UserName;
             txtPassword.Text = ModifyConn.Password;
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (SystemManager.IsUseDefaultLanguage())
             {
                 cmdAdd.Text = "修改";
             }
@@ -291,11 +291,11 @@ namespace MagicMongoDBTool
             CommandResult rtn = MongoDBHelper.InitReplicaSet(txtReplSetName.Text, svrKeys);
             if (rtn.Ok)
             {
-                MyMessageBox.ShowMessage("初始化成功,请稍等片刻后连接服务器", rtn.Response.ToString());
+                MyMessageBox.ShowMessage("初始化","初始化成功,请稍等片刻后连接服务器", rtn.Response.ToString(),true);
             }
             else
             {
-                MyMessageBox.ShowMessage("初始化失败", rtn.Response.ToString());
+                MyMessageBox.ShowMessage("初始化","初始化失败", rtn.Response.ToString(),true);
             }
         }
     }

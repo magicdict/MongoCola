@@ -1010,7 +1010,7 @@ namespace MagicMongoDBTool.Module
                         }
                         catch (Exception)
                         {
-                            lst.SubItems.Add(string.Empty);
+                            lst.SubItems.Add("0");
                         }
                         lst.SubItems.Add(GetSize(dbStatus.DataSize));
                         lst.SubItems.Add(GetSize(dbStatus.FileSize));
@@ -1087,8 +1087,9 @@ namespace MagicMongoDBTool.Module
                             }
                             else
                             {
-                                lst.SubItems.Add("-");
+                                lst.SubItems.Add("0");
                             }
+
                             try
                             {
                                 //在某些条件下，这个值会抛出异常，IndexKeyNotFound
@@ -1096,7 +1097,7 @@ namespace MagicMongoDBTool.Module
                             }
                             catch (Exception)
                             {
-                                lst.SubItems.Add("-");
+                                lst.SubItems.Add("0");
                             }
                             lstData.Items.Add(lst);
                         }
@@ -1261,7 +1262,7 @@ namespace MagicMongoDBTool.Module
 
         #endregion
 
-        #region "辅助方法"
+        #region "辅助方法和排序器"
 
         internal class lvwColumnSorter : System.Collections.IComparer
         {
@@ -1275,12 +1276,28 @@ namespace MagicMongoDBTool.Module
                 NumberCompare
             }
 
-            private int ColumnToSort;// 指定按照哪个列排序      
-            private SortOrder OrderOfSort;// 指定排序的方式               
-            private CaseInsensitiveComparer ObjectCompare;// 声明CaseInsensitiveComparer类对象，
-            private SortMethod mCompareMethod; // 比较方式
+            /// <summary>
+            /// 指定按照哪个列排序  
+            /// </summary>
+            private int ColumnToSort;
+            /// <summary>
+            /// 指定排序的方式  
+            /// </summary>
+            private SortOrder OrderOfSort;
+            /// <summary>
+            /// 声明CaseInsensitiveComparer类对象 
+            /// </summary>
+            private CaseInsensitiveComparer ObjectCompare;
 
-            public lvwColumnSorter()// 构造函数
+            /// <summary>
+            /// 比较方式 
+            /// </summary>
+            private SortMethod mCompareMethod; 
+
+            /// <summary>
+            /// 构造函数
+            /// </summary>
+            public lvwColumnSorter()
             {
                 ColumnToSort = 0;// 默认按第一列排序            
                 OrderOfSort = SortOrder.None;// 排序方式为不排序            
@@ -1288,22 +1305,42 @@ namespace MagicMongoDBTool.Module
                 mCompareMethod = SortMethod.StringCompare; //是否使用Size比较
             }
 
+            /// <summary>
+            /// 比较
+            /// </summary>
+            /// <param name="x"></param>
+            /// <param name="y"></param>
+            /// <returns></returns>
             public int Compare(Object x, Object y)
             {
                 ListViewItem lstX = (ListViewItem)x;
                 ListViewItem lstY = (ListViewItem)y;
                 int rtnCompare = 0;
-
                 switch (mCompareMethod)
                 {
                     case SortMethod.StringCompare:
                         rtnCompare = ObjectCompare.Compare(lstX.SubItems[ColumnToSort].Text, lstY.SubItems[ColumnToSort].Text);
                         break;
                     case SortMethod.SizeCompare:
-                        rtnCompare =  (int)(ReconvSize(lstX.SubItems[ColumnToSort].Text) - ReconvSize(lstY.SubItems[ColumnToSort].Text));
+                        rtnCompare = (int)(ReconvSize(lstX.SubItems[ColumnToSort].Text) - ReconvSize(lstY.SubItems[ColumnToSort].Text));
                         break;
                     case SortMethod.NumberCompare:
-                        rtnCompare = (int)(Convert.ToDouble(lstX.SubItems[ColumnToSort].Text) - Convert.ToDouble(lstY.SubItems[ColumnToSort].Text));
+                        //当两个数字相减小于1时，(int)的强制转换会将结果变成0，所以不能使用减法来获得Ret。。。
+                        if (Convert.ToDouble(lstX.SubItems[ColumnToSort].Text) > Convert.ToDouble(lstY.SubItems[ColumnToSort].Text))
+                        {
+                            rtnCompare = 1;
+                        }
+                        else
+                        {
+                            if (Convert.ToDouble(lstX.SubItems[ColumnToSort].Text) == Convert.ToDouble(lstY.SubItems[ColumnToSort].Text))
+                            {
+                                rtnCompare = 0;
+                            }
+                            else
+                            {
+                                rtnCompare = -1;
+                            }
+                        }
                         break;
                 }
                 if (OrderOfSort == SortOrder.Descending)
@@ -1359,7 +1396,7 @@ namespace MagicMongoDBTool.Module
             String Details = String.Empty;
             foreach (CommandResult item in Resultlst)
             {
-                Details += item.ToString() + "\r\n";
+                Details += item.Response.ToString() + "\r\n";
             }
             return Details;
         }
@@ -1395,7 +1432,11 @@ namespace MagicMongoDBTool.Module
             }
             return string.Format("{0:F2}", tempSize) + " " + Unit[unitOrder];
         }
-
+        /// <summary>
+        /// 将表示的尺寸还原为实际尺寸以对应排序的要求
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public static long ReconvSize(String size)
         {
             string strSize = string.Empty;
