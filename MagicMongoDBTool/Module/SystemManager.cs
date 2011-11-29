@@ -30,7 +30,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 选中数据ID
         /// </summary>
-        public static String SelectDocId = String.Empty;
+        public static BsonValue SelectDocId = String.Empty;
         /// <summary>
         /// 文字资源
         /// </summary>
@@ -100,7 +100,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <returns></returns>
         public static BsonDocument GetCurrentDocument() {
-            return GetCurrentCollection().FindOneAs<BsonDocument>(Query.EQ("_id",(BsonValue)SelectDocId));
+            BsonValue Key = (BsonValue)SelectDocId;
+            MongoCollection mongoCol = GetCurrentCollection();
+            BsonDocument doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ("_id", Key));
+            return doc;
         }
         /// <summary>
         /// 获得JS名称列表

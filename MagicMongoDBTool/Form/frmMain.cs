@@ -5,6 +5,7 @@ using MagicMongoDBTool.Module;
 using System.Text;
 using QLFUI;
 using GUIResource;
+using MongoDB.Bson;
 
 namespace MagicMongoDBTool
 {
@@ -694,6 +695,7 @@ namespace MagicMongoDBTool
         private void trvData_AfterSelect_Top(object sender, TreeViewEventArgs e)
         {
             DisableDataTreeOpr();
+            SystemManager.SelectDocId = (BsonValue)trvData.SelectedNode.Tag;
             if (trvData.SelectedNode.Level == 0)
             {
                 //顶层可以删除的节点
@@ -718,7 +720,7 @@ namespace MagicMongoDBTool
                             //普通数据
                             //在顶层的时候，允许添加元素,不允许删除元素和修改元素(删除选中记录)
                             DelSelectRecordToolStripMenuItem.Enabled = true;
-                            ModifyElementToolStripMenuItem.Enabled = true;
+                            AddElementToolStripMenuItem.Enabled = true;
                         }
                         else
                         {
@@ -802,7 +804,7 @@ namespace MagicMongoDBTool
                             break;
                         default:
                             this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ModifyElementToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
                             break;
                     }
                     trvData.ContextMenuStrip = this.contextMenuStripMain;
@@ -854,7 +856,6 @@ namespace MagicMongoDBTool
             this.contextMenuStripMain = null;
         }
         #endregion
-
 
         #region"数据库连接"
         /// <summary>
@@ -1312,6 +1313,28 @@ namespace MagicMongoDBTool
         }
         #endregion
 
+        #region"管理：元素操作"
+        /// <summary>
+        /// 添加元素
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //尝试添加
+            MongoDBHelper.AddElement(SystemManager.GetCurrentDocument(), new MongoDB.Bson.BsonElement("Test","Test"));
+        }
+        private void DropElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ModifyElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
         #region"管理：GFS"
         /// <summary>
         /// 上传文件
@@ -1713,6 +1736,5 @@ namespace MagicMongoDBTool
                                      strThanks);
         }
         #endregion
-
     }
 }
