@@ -117,6 +117,8 @@ namespace GUIResource
             Connect_Title,
             Connect_Action_Del,
             Connect_Action_Cancel,
+
+            ConvertSql_Title,
             
             Distinct_Action_LoadQuery,
             Distinct_SelectField,
@@ -150,9 +152,12 @@ namespace GUIResource
             DosCommand_Browse,
             DosCommand_Clean,
             DosCommand_LogLevel,
+
+            EvalJS_Title,
             EvalJS_Method,
             EvalJS_Run,
             EvalJS_Parameter,
+
             Group_Tab_Reduce,
             Group_Tab_Finalize,
             Group_Tab_Group,
@@ -175,20 +180,24 @@ namespace GUIResource
             MapReduce_Result,
             MapReduce_Run,
 
+            Query_Title,
             Query_Filter,
             Query_Filter_AddCondition,
             Query_FieldInfo,
             Query_Action_Load,
 
+            Replset_Title,
             Replset_AddServer,
             Replset_RemoveServer,
             Replset_Remove,
 
+            ServiceStatus_Title,
             ServiceStatus_ServerInfo,
             ServiceStatus_DataBaseInfo,
             ServiceStatus_CollectionInfo,
             ServiceStatus_ClusterInfo,
 
+            ShardingConfig_Title,
             ShardingConfig_AddSharding,
             ShardingConfig_ReplsetName,
             ShardingConfig_EnableSharding,

@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using QLFUI;
-using MongoDB.Driver;
 using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmConvertSql : QLFForm 
+    public partial class frmConvertSql : QLFForm
     {
         public frmConvertSql()
         {
@@ -21,6 +14,12 @@ namespace MagicMongoDBTool
         private void frmRunSql_Load(object sender, EventArgs e)
         {
             txtSql.Text = "select * from CollectionName where FieldName=1 order by FieldName asc";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ConvertSql_Title);
+                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
+                cmdSave.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
+            }
         }
         private void cmdOK_Click(object sender, EventArgs e)
         {

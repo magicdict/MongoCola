@@ -5,6 +5,7 @@ using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 using System.Windows.Forms;
 using QLFUI;
+
 namespace MagicMongoDBTool
 {
     public partial class frmQuery : QLFUI.QLFForm
@@ -56,6 +57,7 @@ namespace MagicMongoDBTool
 
             if (!SystemManager.IsUseDefaultLanguage())
             {
+                this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Title);
                 tabFieldInfo.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_FieldInfo);
                 tabFilter.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Filter);
                 cmdAddCondition.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Filter_AddCondition);

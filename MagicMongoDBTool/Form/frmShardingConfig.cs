@@ -27,7 +27,9 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void frmAddSharding_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage()) {
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_Title);
                 tabAddSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_AddSharding);
                 lblReplsetName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_ReplsetName);
                 cmdAddSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Add);

@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using QLFUI;
 using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
     public partial class frmUser : QLFUI.QLFForm
     {
+        /// <summary>
+        /// 是否作为Admin
+        /// </summary>
         private Boolean _IsAdmin = false;
         public frmUser(Boolean IsAdmin)
         {
@@ -37,7 +32,6 @@ namespace MagicMongoDBTool
             }
             this.Close();
         }
-
         /// <summary>
         /// 关闭
         /// </summary>
@@ -51,6 +45,14 @@ namespace MagicMongoDBTool
         {
             if (!SystemManager.IsUseDefaultLanguage())
             {
+                if (_IsAdmin)
+                {
+                    this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
+                }
+                else
+                {
+                    this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                }
                 lblPassword.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Password);
                 lblUserName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Username);
                 chkReadOnly.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_ReadOnly);

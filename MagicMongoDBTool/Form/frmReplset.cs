@@ -18,6 +18,7 @@ namespace MagicMongoDBTool
             RefreshSvr();
             if (!SystemManager.IsUseDefaultLanguage())
             {
+                this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_Title);
                 tabAddSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_AddServer);
                 tabRemoveSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_RemoveServer);
                 cmdAddSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Add);
@@ -28,7 +29,8 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 刷新服务器
         /// </summary>
-        private void RefreshSvr() {
+        private void RefreshSvr()
+        {
             //刷新连接信息
             _prmSvr.Reconnect();
             List<String> HostPortList = new List<string>();

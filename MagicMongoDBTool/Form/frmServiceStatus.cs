@@ -33,6 +33,7 @@ namespace MagicMongoDBTool
 
             if (!SystemManager.IsUseDefaultLanguage())
             {
+                this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ServiceStatus_Title);
                 cmdRefresh.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Refresh);
                 this.tabSvrBasicInfo.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ServiceStatus_ServerInfo);
                 this.tabDBBasicInfo.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ServiceStatus_DataBaseInfo);

@@ -123,6 +123,9 @@
   <!--frmConnect-->
   <Connect_Title>Connection</Connect_Title>
   <Connect_Action_Del>Delete</Connect_Action_Del>
+  
+  <!--ConvertSql-->
+  <ConvertSql_Title>Convert Sql</ConvertSql_Title>
 
   <!--frmDistinct-->
   <Distinct_Action_LoadQuery>Load Query</Distinct_Action_LoadQuery>
@@ -163,6 +166,7 @@
   <DosCommand_LogLevel>Log Level</DosCommand_LogLevel>
 
   <!--frmevalJS-->
+  <EvalJS_Title>Eval Javascript</EvalJS_Title>
   <EvalJS_Method>Method</EvalJS_Method>
   <EvalJS_Run>Run</EvalJS_Run>
   <EvalJS_Parameter>Parameter(seperate by ',')</EvalJS_Parameter>
@@ -191,23 +195,27 @@
   <MapReduce_Run>Run</MapReduce_Run>
 
   <!--frmQuery-->
+  <Query_Title>Data Query</Query_Title>
   <Query_Filter>Filter</Query_Filter>
   <Query_Filter_AddCondition>Add Condition</Query_Filter_AddCondition>
   <Query_FieldInfo>OutPut Field</Query_FieldInfo>
   <Query_Action_Load>Load</Query_Action_Load>
 
   <!--frmReplset-->
+  <Replset_Title>Replset Manager</Replset_Title>
   <Replset_AddServer>Add Server</Replset_AddServer>
   <Replset_RemoveServer>Remove Server</Replset_RemoveServer>
   <Replset_Remove>Remove</Replset_Remove>
 
   <!--frmServiceStatus-->
+  <ServiceStatus_Title>Server Status</ServiceStatus_Title>
   <ServiceStatus_ServerInfo>Server Status Information[need manual refresh ]</ServiceStatus_ServerInfo>
   <ServiceStatus_DataBaseInfo>DB Status Information</ServiceStatus_DataBaseInfo>
   <ServiceStatus_CollectionInfo>Collection Status Information</ServiceStatus_CollectionInfo>
   <ServiceStatus_ClusterInfo>Cluster Information</ServiceStatus_ClusterInfo>
 
   <!--frmShardingConfig-->
+  <ShardingConfig_Title>Sharding Config</ShardingConfig_Title>
   <ShardingConfig_AddSharding>Add Sharding</ShardingConfig_AddSharding>
   <ShardingConfig_ReplsetName>ReplsetName</ShardingConfig_ReplsetName>
 
