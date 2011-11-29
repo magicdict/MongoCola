@@ -85,7 +85,7 @@ namespace MagicMongoDBTool.Module
         }
         #endregion
 
-        #region"展示数据"
+        #region"展示数据库结构"
         /// <summary>
         /// 获得当前服务器信息
         /// </summary>
@@ -439,6 +439,10 @@ namespace MagicMongoDBTool.Module
             //End Data
             return mongoColNode;
         }
+        #endregion
+
+        #region"展示数据集内容"
+
         /// <summary>
         /// 通过读取N条记录来确定数据集结构
         /// </summary>
@@ -760,10 +764,11 @@ namespace MagicMongoDBTool.Module
                         dataNode.Tag = item.GetElement(1).Value;
                         break;
                     default:
+                        //SelectDocId属性的设置
                         dataNode.Tag = item.GetElement(0).Value;
                         break;
                 }
-                FillBsonDocToTreeNode(dataNode, item);
+                FillBsonDocToTreeNode(dataNode, item, (BsonValue)dataNode.Tag);
                 trvData.Nodes.Add(dataNode);
                 Count++;
             }
@@ -773,28 +778,29 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="treeNode"></param>
         /// <param name="doc"></param>
-        private static void FillBsonDocToTreeNode(TreeNode treeNode, BsonDocument doc)
+        private static void FillBsonDocToTreeNode(TreeNode treeNode, BsonDocument doc, BsonValue Key)
         {
             foreach (var item in doc.Elements)
             {
                 if (item.Value.IsBsonDocument)
                 {
                     TreeNode newItem = new TreeNode(item.Name);
-                    FillBsonDocToTreeNode(newItem, item.Value.ToBsonDocument());
+                    FillBsonDocToTreeNode(newItem, item.Value.ToBsonDocument(), Key);
+                    newItem.Tag = Key;
                     treeNode.Nodes.Add(newItem);
                 }
                 else
                 {
                     if (item.Value.IsBsonArray)
                     {
-                        TreeNode newItem = new TreeNode(item.Name);
+                        TreeNode newItem = new TreeNode(item.Name + "[ARRAY]");
                         int count = 1;
                         foreach (BsonValue SubItem in item.Value.AsBsonArray)
                         {
                             if (SubItem.IsBsonDocument)
                             {
                                 TreeNode newSubItem = new TreeNode(item.Name + "[" + count + "]");
-                                FillBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument());
+                                FillBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument(), Key);
                                 newItem.Nodes.Add(newSubItem);
                             }
                             else
@@ -803,11 +809,14 @@ namespace MagicMongoDBTool.Module
                             }
                             count++;
                         }
+                        newItem.Tag = Key;
                         treeNode.Nodes.Add(newItem);
                     }
                     else
                     {
-                        treeNode.Nodes.Add(item.Name + ":" + ConvertForShow(item.Value));
+                        TreeNode ElementNode = new TreeNode(item.Name + ":" + ConvertForShow(item.Value));
+                        ElementNode.Tag = Key;
+                        treeNode.Nodes.Add(ElementNode);
                     }
                 }
             }
@@ -1292,7 +1301,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 比较方式 
             /// </summary>
-            private SortMethod mCompareMethod; 
+            private SortMethod mCompareMethod;
 
             /// <summary>
             /// 构造函数

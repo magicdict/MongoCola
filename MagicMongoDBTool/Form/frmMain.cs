@@ -45,7 +45,7 @@ namespace MagicMongoDBTool
             {
                 //测试用自动连接
                 List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
-                connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList["Master"]);
+                connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList["Magicdict"]);
                 MongoDBHelper.AddServer(connLst);
                 RefreshToolStripMenuItem_Click(null, null);
             }
@@ -750,18 +750,24 @@ namespace MagicMongoDBTool
                 default:
                     if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
                     {
-                        //普通数据
-                        //允许添加元素,不允许删除元素
-                        AddElementToolStripMenuItem.Enabled = true;
+                        if (SystemManager.DEBUG_MODE){
+                            System.Diagnostics.Debug.WriteLine(trvData.SelectedNode.FullPath);
+                        }
+                        //普通数据:允许添加元素,不允许删除元素
                         DropElementToolStripMenuItem.Enabled = true;
-                        //如果已经是叶子的话允许修改元素
                         if (trvData.SelectedNode.Nodes.Count == 0)
                         {
+                            //如果已经是叶子的话允许修改元素
                             ModifyElementToolStripMenuItem.Enabled = true;
                         }
                         else
                         {
-                            ModifyElementToolStripMenuItem.Enabled = false;
+                            //如果已经是非叶子的话允许添加元素
+                            if (!trvData.SelectedNode.FullPath.EndsWith("[ARRAY]"))
+                            {
+                                //改节点不是数组
+                                AddElementToolStripMenuItem.Enabled = true;
+                            }
                         }
                     }
                     break;
@@ -1322,11 +1328,11 @@ namespace MagicMongoDBTool
         private void AddElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //尝试添加
-            MongoDBHelper.AddElement(SystemManager.GetCurrentDocument(), new MongoDB.Bson.BsonElement("Test","Test"));
+            
         }
         private void DropElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         private void ModifyElementToolStripMenuItem_Click(object sender, EventArgs e)

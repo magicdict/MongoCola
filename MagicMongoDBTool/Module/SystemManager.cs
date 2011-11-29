@@ -28,7 +28,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public static string SelectObjectTag = string.Empty;
         /// <summary>
-        /// 选中数据ID
+        /// 选中数据主键
         /// </summary>
         public static BsonValue SelectDocId = String.Empty;
         /// <summary>

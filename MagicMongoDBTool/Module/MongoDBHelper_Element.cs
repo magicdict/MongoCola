@@ -15,19 +15,21 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="BaseDoc"></param>
         /// <param name="AddElement"></param>
-        public static void AddElement(BsonDocument BaseDoc, BsonElement AddElement)
+        public static void AddElement(String ElementPath, BsonElement AddElement)
         {
-           BaseDoc =BaseDoc.Add(AddElement);
-           SystemManager.GetCurrentCollection().Save(BaseDoc);
+            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            
+            SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
         /// <summary>
         /// 删除元素
         /// </summary>
         /// <param name="BaseDoc"></param>
-        /// <param name="BsonName"></param>
-        public static void DropElement(BsonDocument BaseDoc, String BsonName)
+        /// <param name="ElementPath"></param>
+        public static void DropElement(BsonDocument BaseDoc, String ElementPath)
         {
-            BaseDoc.Remove(BsonName);
+
+            BaseDoc.Remove("");
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
         /// <summary>
@@ -35,10 +37,24 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="ModifyElement"></param>
         /// <param name="NewValue"></param>
-        public static void ModifyElement(BsonDocument BaseDoc,BsonElement ModifyElement, BsonValue NewValue)
+        public static void ModifyElement(BsonDocument BaseDoc, String ElementPath, BsonValue NewValue)
         {
-            ModifyElement.Value = NewValue;
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
+
+        private static BsonValue GetElementFromPath(String ElementPath,BsonDocument BaseDoc){
+            BsonValue SelectedElement = null;
+            //JpCnWord[1]\Translations\Translations[1]\Sentences\Sentences[1]\Japanese:"ああいう文章はなかなか書けない"
+            //1.将路径按照\分开
+            String[] strPath = ElementPath.Split(@"\".ToCharArray());
+            //JpCnWord[1]
+            //Translations
+            //Translations[1]
+            //Sentences
+            //Sentences[1]
+            //Japanese:"ああいう文章はなかなか書けない"
+            return SelectedElement;
+        }
+
     }
 }
