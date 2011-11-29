@@ -6,6 +6,7 @@ using GUIResource;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using QLFUI;
+using MongoDB.Driver.Builders;
 namespace MagicMongoDBTool.Module
 {
     public static class SystemManager
@@ -26,6 +27,10 @@ namespace MagicMongoDBTool.Module
         /// 选择对象标签
         /// </summary>
         public static string SelectObjectTag = string.Empty;
+        /// <summary>
+        /// 选中数据ID
+        /// </summary>
+        public static String SelectDocId = String.Empty;
         /// <summary>
         /// 文字资源
         /// </summary>
@@ -89,6 +94,13 @@ namespace MagicMongoDBTool.Module
             MongoDatabase mongoDB = GetCurrentDataBase();
             MongoCollection mongoJsCol = mongoDB.GetCollection(MongoDBHelper.COLLECTION_NAME_JAVASCRIPT);
             return mongoJsCol;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static BsonDocument GetCurrentDocument() {
+            return GetCurrentCollection().FindOneAs<BsonDocument>(Query.EQ("_id",(BsonValue)SelectDocId));
         }
         /// <summary>
         /// 获得JS名称列表

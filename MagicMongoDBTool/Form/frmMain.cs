@@ -161,8 +161,8 @@ namespace MagicMongoDBTool
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
             this.lstData.MouseDoubleClick += new MouseEventHandler(lstData_MouseDoubleClick);
             this.lstData.SelectedIndexChanged += new EventHandler(lstData_SelectedIndexChanged);
-            this.trvData.MouseClick += new MouseEventHandler(trvData_MouseClick);
-            this.trvData.AfterSelect += new TreeViewEventHandler(trvData_AfterSelect);
+            this.trvData.MouseClick += new MouseEventHandler(trvData_MouseClick_Top);
+            this.trvData.AfterSelect += new TreeViewEventHandler(trvData_AfterSelect_Top);
             this.tabDataShower.SelectedIndexChanged += new EventHandler(
                 //变换TAB时候，选中项目自动消失，所以删除数据也消失
                     (x, y) =>
@@ -617,10 +617,10 @@ namespace MagicMongoDBTool
                     }
                     break;
             }
-
         }
+
         /// <summary>
-        /// 
+        /// 双击列表
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -674,24 +674,32 @@ namespace MagicMongoDBTool
         }
 
         /// <summary>
-        /// 
+        /// 数据树菜单的禁止
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void trvData_AfterSelect(object sender, TreeViewEventArgs e)
+        private void DisableDataTreeOpr()
         {
             RemoveUserFromAdminToolStripMenuItem.Enabled = false;
             RemoveUserToolStripMenuItem.Enabled = false;
             DelSelectRecordToolStripMenuItem.Enabled = false;
             DelFileToolStripMenuItem.Enabled = false;
-
+            AddElementToolStripMenuItem.Enabled = false;
+            DropElementToolStripMenuItem.Enabled = false;
+            ModifyElementToolStripMenuItem.Enabled = false;
+        }
+        /// <summary>
+        /// 数据树形被选择后(TOP)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trvData_AfterSelect_Top(object sender, TreeViewEventArgs e)
+        {
+            DisableDataTreeOpr();
             if (trvData.SelectedNode.Level == 0)
             {
                 //顶层可以删除的节点
                 switch (SystemManager.GetCurrentCollection().Name)
                 {
                     case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
-                        //TODO:DelFile
                         DelFileToolStripMenuItem.Enabled = true;
                         break;
                     case MongoDBHelper.COLLECTION_NAME_USER:
@@ -707,7 +715,10 @@ namespace MagicMongoDBTool
                     default:
                         if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
                         {
+                            //普通数据
+                            //在顶层的时候，允许添加元素,不允许删除元素和修改元素(删除选中记录)
                             DelSelectRecordToolStripMenuItem.Enabled = true;
+                            ModifyElementToolStripMenuItem.Enabled = true;
                         }
                         else
                         {
@@ -716,59 +727,118 @@ namespace MagicMongoDBTool
                         break;
                 }
             }
+            else
+            {
+                //非顶层元素
+                trvData_AfterSelect_NotTop(sender, e);
+            }
         }
         /// <summary>
-        /// 
+        /// 数据树形被选择后(非TOP)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void trvData_MouseClick(object sender, MouseEventArgs e)
+        private void trvData_AfterSelect_NotTop(object sender, TreeViewEventArgs e)
+        {
+            //非顶层可以删除的节点
+            switch (SystemManager.GetCurrentCollection().Name)
+            {
+                case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
+                case MongoDBHelper.COLLECTION_NAME_USER:
+                default:
+                    if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
+                    {
+                        //普通数据
+                        //允许添加元素,不允许删除元素
+                        AddElementToolStripMenuItem.Enabled = true;
+                        DropElementToolStripMenuItem.Enabled = true;
+                        //如果已经是叶子的话允许修改元素
+                        if (trvData.SelectedNode.Nodes.Count == 0)
+                        {
+                            ModifyElementToolStripMenuItem.Enabled = true;
+                        }
+                        else
+                        {
+                            ModifyElementToolStripMenuItem.Enabled = false;
+                        }
+                    }
+                    break;
+            }
+        }
+        /// <summary>
+        /// 鼠标动作（顶层）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trvData_MouseClick_Top(object sender, MouseEventArgs e)
         {
             TreeNode node = this.trvData.GetNodeAt(e.Location);
             trvData.SelectedNode = node;
-            if (trvData.SelectedNode != null && trvData.SelectedNode.Level == 0)
+            if (trvData.SelectedNode == null)
+            {
+                return;
+            }
+            if (trvData.SelectedNode.Level == 0)
             {
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
                     this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
-
-
                     //顶层可以删除的节点
                     switch (SystemManager.GetCurrentCollection().Name)
                     {
                         case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
-                            //TODO:DelFile
-                            DelFileToolStripMenuItem.Enabled = true;
                             this.contextMenuStripMain.Items.Add(this.DelFileToolStripMenuItem.Clone());
                             break;
                         case MongoDBHelper.COLLECTION_NAME_USER:
                             if (SystemManager.GetCurrentDataBase().Name == MongoDBHelper.DATABASE_NAME_ADMIN)
                             {
-                                RemoveUserFromAdminToolStripMenuItem.Enabled = true;
                                 this.contextMenuStripMain.Items.Add(this.RemoveUserFromAdminToolStripMenuItem.Clone());
                             }
                             else
                             {
-                                RemoveUserToolStripMenuItem.Enabled = true;
                                 this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
                             }
                             break;
                         default:
                             this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
-                            if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
-                            {
-                                DelSelectRecordToolStripMenuItem.Enabled = true;
-                            }
-                            else
-                            {
-                                DelSelectRecordToolStripMenuItem.Enabled = false;
-                            }
+                            this.contextMenuStripMain.Items.Add(this.ModifyElementToolStripMenuItem.Clone());
                             break;
                     }
                     trvData.ContextMenuStrip = this.contextMenuStripMain;
                     contextMenuStripMain.Show();
                 }
+            }
+            else
+            {
+                //非顶层元素
+                trvData_MouseClick_NotTop(sender, e);
+            }
+        }
+        /// <summary>
+        /// 鼠标动作（非顶层）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trvData_MouseClick_NotTop(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                this.contextMenuStripMain = new ContextMenuStrip();
+                this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+                //顶层可以删除的节点
+                switch (SystemManager.GetCurrentCollection().Name)
+                {
+                    case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
+                    case MongoDBHelper.COLLECTION_NAME_USER:
+                    default:
+                        this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
+                        this.contextMenuStripMain.Items.Add(this.ModifyElementToolStripMenuItem.Clone());
+                        this.contextMenuStripMain.Items.Add(this.DropElementToolStripMenuItem.Clone());
+                        break;
+                }
+                trvData.ContextMenuStrip = this.contextMenuStripMain;
+                contextMenuStripMain.Show();
             }
         }
         /// <summary>
@@ -784,6 +854,7 @@ namespace MagicMongoDBTool
             this.contextMenuStripMain = null;
         }
         #endregion
+
 
         #region"数据库连接"
         /// <summary>
