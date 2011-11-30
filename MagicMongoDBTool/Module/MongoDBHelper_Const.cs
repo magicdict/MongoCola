@@ -108,11 +108,15 @@ namespace MagicMongoDBTool.Module
         #endregion
 
 
-            public const String EndMark_AND = " AND ";
-            public const String EndMark_OR = " OR ";
-            public const String EndMark_AND_T = ") AND ";
-            public const String EndMark_OR_T = ") OR ";
-            public const String EndMark_T = ")";
+        public const String EndMark_AND = " AND ";
+        public const String EndMark_OR = " OR ";
+        public const String EndMark_AND_T = ") AND ";
+        public const String EndMark_OR_T = ") OR ";
+        public const String EndMark_T = ")";
 
+        /// <summary>
+        /// 在标识元素路径时候，这个后缀表示当期元素只是数组的开始标志
+        /// </summary>
+        public const String ArrayMark = "[ARRAY]";
     }
 }

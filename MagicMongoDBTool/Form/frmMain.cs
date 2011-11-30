@@ -750,7 +750,8 @@ namespace MagicMongoDBTool
                 default:
                     if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
                     {
-                        if (SystemManager.DEBUG_MODE){
+                        if (SystemManager.DEBUG_MODE)
+                        {
                             System.Diagnostics.Debug.WriteLine(trvData.SelectedNode.FullPath);
                         }
                         //普通数据:允许添加元素,不允许删除元素
@@ -763,7 +764,7 @@ namespace MagicMongoDBTool
                         else
                         {
                             //如果已经是非叶子的话允许添加元素
-                            if (!trvData.SelectedNode.FullPath.EndsWith("[ARRAY]"))
+                            if (!trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.ArrayMark))
                             {
                                 //改节点不是数组
                                 AddElementToolStripMenuItem.Enabled = true;
@@ -1328,16 +1329,15 @@ namespace MagicMongoDBTool
         private void AddElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //尝试添加
-            
+            MongoDBHelper.AddElement(trvData.SelectedNode.FullPath, new BsonElement("NewEl", "TestEl"));
         }
         private void DropElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            MongoDBHelper.DropElement(trvData.SelectedNode.FullPath, "NewEl");
         }
-
         private void ModifyElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MongoDBHelper.ModifyElement(trvData.SelectedNode.FullPath, "NewEl","NewValue");
         }
         #endregion
 

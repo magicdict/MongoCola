@@ -793,7 +793,7 @@ namespace MagicMongoDBTool.Module
                 {
                     if (item.Value.IsBsonArray)
                     {
-                        TreeNode newItem = new TreeNode(item.Name + "[ARRAY]");
+                        TreeNode newItem = new TreeNode(item.Name + ArrayMark);
                         int count = 1;
                         foreach (BsonValue SubItem in item.Value.AsBsonArray)
                         {
