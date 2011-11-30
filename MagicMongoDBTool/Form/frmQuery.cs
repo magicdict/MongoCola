@@ -126,6 +126,7 @@ namespace MagicMongoDBTool
         private void cmdSave_Click(object sender, EventArgs e)
         {
             SaveFileDialog savefile = new SaveFileDialog();
+            savefile.Filter = MongoDBHelper.XmlFilter;
             if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 // 设置DataFilter
@@ -142,6 +143,7 @@ namespace MagicMongoDBTool
         private void cmdLoad_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFile = new OpenFileDialog();
+            openFile.Filter = MongoDBHelper.XmlFilter;
             if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 String strErrMsg = String.Empty;

@@ -6,6 +6,15 @@ namespace MagicMongoDBTool
 {
     public partial class ctlFilePicker : UserControl
     {
+        private String _FileFilter = String.Empty;
+        /// <summary>
+        /// 文件过滤
+        /// </summary>
+        public String FileFilter {
+            get { return _FileFilter; }
+            set { _FileFilter = value; }
+        }
+
         private DialogType _dialogType = DialogType.Directory;
         /// <summary>
         /// 标题
@@ -57,6 +66,9 @@ namespace MagicMongoDBTool
             {
                 case DialogType.OpenFile:
                     OpenFileDialog Openfd = new OpenFileDialog();
+                    if (_FileFilter != String.Empty) {
+                        Openfd.Filter = _FileFilter;
+                    }
                     if (Openfd.ShowDialog() == DialogResult.OK)
                     {
                         txtLogPath.Text = Openfd.FileName;
@@ -64,6 +76,10 @@ namespace MagicMongoDBTool
                     break;
                 case DialogType.SaveFile:
                     SaveFileDialog Savefd = new SaveFileDialog();
+                    if (_FileFilter != String.Empty)
+                    {
+                        Savefd.Filter = _FileFilter;
+                    }
                     if (Savefd.ShowDialog() == DialogResult.OK)
                     {
                         txtLogPath.Text = Savefd.FileName;

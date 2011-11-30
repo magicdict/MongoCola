@@ -7,56 +7,84 @@ namespace MagicMongoDBTool
 {
     public partial class ctlBsonValue : UserControl
     {
+        /// <summary>
+        /// Value
+        /// </summary>
         public BsonValue Value
         {
             get
             {
-                BsonValue value = null;
-                if (cmbDataType.SelectedIndex == 0)
+                BsonValue mValue = new BsonString(String.Empty);
+                switch (cmbDataType.SelectedIndex)
                 {
-                    value = new BsonString(txtBsonValue.Text);
+                    case 0:
+                        mValue = new BsonString(txtBsonValue.Text);
+                        break;
+                    case 1:
+                        mValue = new BsonInt32(Convert.ToInt32(NumberPick.Value));
+                        break;
+                    case 2:
+                        mValue = new BsonDateTime(dateTimePicker.Value);
+                        break;
+                    case 3:
+                        if (radTrue.Checked)
+                        {
+                            mValue = BsonBoolean.True;
+                        }
+                        else
+                        {
+                            mValue = BsonBoolean.False;
+                        }
+                        break;
+                    default:
+                        mValue = new BsonString(String.Empty);
+                        break;
                 }
-                if (cmbDataType.SelectedIndex == 1)
-                {
-                    value = new BsonInt32(Convert.ToInt16(txtBsonValue.Text));
-                }
-                if (cmbDataType.SelectedIndex == 2)
-                {
-                    value = new BsonDateTime(Convert.ToDateTime(txtBsonValue.Text));
-                }
-                if (cmbDataType.SelectedIndex == 3)
-                {
-                    if (txtBsonValue.Text.ToUpper() == "TRUE")
-                    {
-                        value = true;
-                    }
-                    else
-                    {
-                        value = false;
-                    }
-                }
-                return value;
+                return mValue;
             }
             set
             {
-                if (value == null) {
+                if (value == null)
+                {
                     return;
                 }
-                txtBsonValue.Text = value.ToString();
+                txtBsonValue.Visible = false;
+                txtBsonValue.Text = String.Empty;
+                radTrue.Visible = false;
+                radFalse.Visible = false;
+                radFalse.Checked = true;
+                dateTimePicker.Visible = false;
+                NumberPick.Visible = false;
                 if (value.IsString)
                 {
                     cmbDataType.SelectedIndex = 0;
+                    txtBsonValue.Visible = true;
+                    txtBsonValue.Text = value.ToString();
                 }
                 if (value.IsInt32)
                 {
                     cmbDataType.SelectedIndex = 1;
+                    NumberPick.Visible = true;
+                    NumberPick.Value = value.AsInt32;
                 }
                 if (value.IsDateTime)
                 {
+                    dateTimePicker.Visible = true;
+                    dateTimePicker.Value = value.AsDateTime;
                     cmbDataType.SelectedIndex = 2;
                 }
                 if (value.IsBoolean)
                 {
+                    radTrue.Visible = true;
+                    radFalse.Visible = true;
+                    if (value.AsBoolean)
+                    {
+                        radTrue.Checked = true;
+                    }
+                    else
+                    {
+                        radFalse.Checked = true;
+                    }
                     cmbDataType.SelectedIndex = 3;
                 }
             }
@@ -64,21 +92,53 @@ namespace MagicMongoDBTool
         public ctlBsonValue()
         {
             InitializeComponent();
-            if (SystemManager.IsUseDefaultLanguage())
+            dateTimePicker.Location = txtBsonValue.Location;
+            dateTimePicker.Size = txtBsonValue.Size;
+            
+            radTrue.Location = txtBsonValue.Location;
+            radFalse.Top = txtBsonValue.Top;
+            NumberPick.Location = txtBsonValue.Location;
+            NumberPick.Size = txtBsonValue.Size;
+            NumberPick.Minimum = Int32.MinValue;
+            NumberPick.Maximum = Int32.MaxValue;
+
+            txtBsonValue.Visible = true;
+            txtBsonValue.Text = String.Empty;
+            radTrue.Visible = false;
+            radFalse.Visible = false;
+            radFalse.Checked = true;
+            dateTimePicker.Visible = false;
+            NumberPick.Visible = false;
+
+            txtBsonValue.Top -= 3;
+
+            foreach (String item in BsonValueEx.GetTypeList())
             {
-                cmbDataType.Items.Add("字符");
-                cmbDataType.Items.Add("整形");
-                cmbDataType.Items.Add("日期");
-                cmbDataType.Items.Add("布尔");
+                cmbDataType.Items.Add(item);
             }
-            else {
-                if (SystemManager.mStringResource != null)
-                {
-                    cmbDataType.Items.Add(SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_BsonType_String));
-                    cmbDataType.Items.Add(SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_BsonType_Integer));
-                    cmbDataType.Items.Add(SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_BsonType_DateTime));
-                    cmbDataType.Items.Add(SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_BsonType_Boolean));
-                }
+        }
+
+        private void cmbDataType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtBsonValue.Visible = false;
+            radTrue.Visible = false;
+            radFalse.Visible = false;
+            switch (cmbDataType.SelectedIndex)
+            {
+                case 0:
+                    Value = new BsonString(String.Empty);
+                    break;
+                case 1:
+                    Value = new BsonInt32(0);
+                    break;
+                case 2:
+                    Value = new BsonDateTime(DateTime.Now);
+                    break;
+                case 3:
+                    Value = BsonBoolean.False;
+                    break;
+                default:
+                    break;
             }
         }
     }

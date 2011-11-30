@@ -120,5 +120,10 @@ namespace MagicMongoDBTool.Module
         /// 在标识元素路径时候，这个后缀表示当期元素只是数组的开始标志
         /// </summary>
         public const String Array_Mark = "[ARRAY]";
+
+        /// <summary>
+        /// XML文件选择过滤器
+        /// </summary>
+        public const String XmlFilter = "*.xml(Xml File)|*.xml";
     }
 }

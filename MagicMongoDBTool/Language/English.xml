@@ -315,11 +315,6 @@
   <Common_Browse>Browse</Common_Browse>
   <Common_Clear>Clear</Common_Clear>
 
-  <Common_BsonType_String>String</Common_BsonType_String>
-  <Common_BsonType_Integer>Integer</Common_BsonType_Integer>
-  <Common_BsonType_DateTime>DateTime</Common_BsonType_DateTime>
-  <Common_BsonType_Boolean>Boolean</Common_BsonType_Boolean>
-
   <!--Create New DataBase-->
   <Create_New_DataBase>Create New Database</Create_New_DataBase>
   <Create_New_DataBase_Input>Please input New Database Name:</Create_New_DataBase_Input>
