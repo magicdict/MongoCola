@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MagicMongoDBTool.Module
@@ -22,6 +16,18 @@ namespace MagicMongoDBTool.Module
         {
             this.ctllogLvT.LoglvChanged += new ctllogLv.LogLvChangedHandler(ctllogLvT_LoglvChanged);
             this.ctlFilePickerOutput.PathChanged += new ctlFilePicker.PathChangedHandler(ctlFilePickerOutput_PathChanged);
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                lblCollectionName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Collection_Status_CollectionName);
+                lblDBName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.AddConnection_DBName);
+                lblHostAddr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.AddConnection_Address);
+                lblFieldList.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_ColumnList);
+                lblPort.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Port);
+                grpDirect.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_Operation);
+                radImport.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_Import);
+                radExport.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_Export);
+                ctlFilePickerOutput.Title = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_Workfile);
+            }
         }
         void ctlFilePickerOutput_PathChanged(string FilePath)
         {
@@ -69,7 +75,8 @@ namespace MagicMongoDBTool.Module
             {
                 MongoImportExportCommand.Direct = MongodbDosCommand.ImprotExport.Export;
             }
-            else {
+            else
+            {
                 MongoImportExportCommand.Direct = MongodbDosCommand.ImprotExport.Import;
             }
         }

@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MagicMongoDBTool.Module
@@ -22,6 +16,14 @@ namespace MagicMongoDBTool.Module
         {
             this.ctllogLvT.LoglvChanged += new ctllogLv.LogLvChangedHandler(ctllogLvT_LoglvChanged);
             this.ctlFilePickerOutput.PathChanged += new ctlFilePicker.PathChangedHandler(ctlFilePickerOutput_PathChanged);
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                lblCollectionName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup_DCName);
+                lblDBName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup_DBName);
+                lblHostAddr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup_Server);
+                lblPort.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup_Port);
+                ctlFilePickerOutput.Title = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup_Path);
+            }
         }
         void ctlFilePickerOutput_PathChanged(string FilePath)
         {

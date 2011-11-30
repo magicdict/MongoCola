@@ -130,6 +130,8 @@ namespace GUIResource
             Distinct_SelectField,
 
             DosCommand_Tab_Deploy,
+            DosCommand_Tab_Deploy_Authentication,
+            DosCommand_Tab_Deploy_MasterAddress,
             DosCommand_Tab_Deploy_Port,
             DosCommand_Tab_Deploy_MasterDB,
             DosCommand_Tab_Deploy_SlaveDB,
@@ -137,7 +139,7 @@ namespace GUIResource
             DosCommand_Tab_Deploy_DBPath,
             DosCommand_Tab_Deploy_LogPath,
             DosCommand_Tab_Deploy_Log,
-            DosCommand_Tab_Deploy_AddingMode,
+            DosCommand_Tab_Deploy_AppendMode,
             DosCommand_Tab_Backup,
             DosCommand_Tab_Backup_Server,
             DosCommand_Tab_Backup_Port,

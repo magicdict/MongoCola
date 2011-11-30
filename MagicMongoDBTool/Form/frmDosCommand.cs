@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+
 namespace MagicMongoDBTool
 {
     public partial class frmDosCommand : QLFUI.QLFForm
@@ -20,6 +21,13 @@ namespace MagicMongoDBTool
             this.ctlMongodPanel.CommandChanged += new CommandChangedEventHandler(CommandChanged);
             this.ctlMongodumpPanel.CommandChanged += new CommandChangedEventHandler(CommandChanged);
             this.ctlMongoImportExportPanel.CommandChanged += new CommandChangedEventHandler(CommandChanged);
+            if (!SystemManager.IsUseDefaultLanguage()) {
+                cmdSave.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
+                cmdRunDos.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Run);
+                tabMongod.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy);
+                tabMongoDump.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup);
+                tabMongoImportExport.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn);
+            }
         }
         /// <summary>
         /// //命令参数变化
