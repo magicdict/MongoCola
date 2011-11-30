@@ -29,8 +29,7 @@ namespace MagicMongoDBTool.Module
         public static void DropElement(String ElementPath)
         {
             BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
-
-            GetLastParentDocument(BaseDoc, ElementPath).Remove(GetElementNameFromPath(ElementPath));
+            GetLastParentDocument(BaseDoc, ElementPath).Remove(GetElementFromPath(ElementPath).Name);
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
         /// <summary>
@@ -41,19 +40,20 @@ namespace MagicMongoDBTool.Module
         public static void ModifyElement(String ElementPath, BsonValue NewValue)
         {
             BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
-            GetLastParentDocument(BaseDoc, ElementPath).GetElement(GetElementNameFromPath(ElementPath)).Value = NewValue;
+            GetLastParentDocument(BaseDoc, ElementPath).GetElement(GetElementFromPath(ElementPath).Name).Value = NewValue;
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
         /// <summary>
-        /// 通过路径获得元素名称
+        /// 通过路径获得元素名称[元素值为字符]
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <returns></returns>
-        public static String GetElementNameFromPath(String ElementPath) { 
+        public static BsonElement GetElementFromPath(String ElementPath) { 
             String[] strPath = ElementPath.Split(@"\".ToCharArray());
-            String ElementName = strPath[strPath.Length - 1];
-            ElementName = ElementName.Substring(0, ElementName.IndexOf(":"));
-            return ElementName;
+            String ElementName = strPath[strPath.Length - 1].Substring(0, strPath[strPath.Length - 1].IndexOf(":"));
+            String ElementValue = strPath[strPath.Length - 1].Substring(strPath[strPath.Length - 1].IndexOf(":") + 1);
+            ElementValue = ElementValue.Trim("\"".ToCharArray());
+            return new BsonElement(ElementName,ElementValue);
         }
         /// <summary>
         /// 

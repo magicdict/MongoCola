@@ -36,13 +36,19 @@
   <Main_Menu_Operation_Database_DelUser>Del User</Main_Menu_Operation_Database_DelUser>
   <Main_Menu_Operation_Database_EvalJs>Eval JavaScript</Main_Menu_Operation_Database_EvalJs>
 
-  <Main_Menu_Operation_DataCollection>DataCollection</Main_Menu_Operation_DataCollection>
+  <Main_Menu_Operation_DataCollection>Data Collection</Main_Menu_Operation_DataCollection>
   <Main_Menu_Operation_DataCollection_DelDC>Del DataCollection</Main_Menu_Operation_DataCollection_DelDC>
   <Main_Menu_Operation_DataCollection_ReIndex>ReIndex</Main_Menu_Operation_DataCollection_ReIndex>
   <Main_Menu_Operation_DataCollection_Index>Index Manager</Main_Menu_Operation_DataCollection_Index>
 
   <Main_Menu_Operation_DataCollection_DelSelect>Del Select Data</Main_Menu_Operation_DataCollection_DelSelect>
   <Main_Menu_Operation_DataCollection_Rename>Rename</Main_Menu_Operation_DataCollection_Rename>
+
+  <Main_Menu_Operation_DataDocument>Data Document</Main_Menu_Operation_DataDocument>
+  <Main_Menu_Operation_DataDocument_AddElement>Add Element</Main_Menu_Operation_DataDocument_AddElement>
+  <Main_Menu_Operation_DataDocument_DropElement>Drop Element</Main_Menu_Operation_DataDocument_DropElement>
+  <Main_Menu_Operation_DataDocument_ModifyElement>Modify Element</Main_Menu_Operation_DataDocument_ModifyElement>
+
 
   <Main_Menu_Operation_FileSystem>FileSystem</Main_Menu_Operation_FileSystem>
   <Main_Menu_Operation_FileSystem_Upload>Upload</Main_Menu_Operation_FileSystem_Upload>
@@ -332,7 +338,5 @@
 
   <Drop_Data>Drop Collection</Drop_Data>
   <Drop_Data_Confirm>Make sure to Drop this Record(s)?</Drop_Data_Confirm>
-
-  
   
 </Language>

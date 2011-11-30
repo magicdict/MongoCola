@@ -6,6 +6,7 @@ using System.IO;
 using System.Xml.Serialization;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
+using System.Runtime.Serialization;
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
@@ -93,10 +94,25 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public struct QueryConditionInputItem
         {
+            /// <summary>
+            /// 开始标志
+            /// </summary>
             public string StartMark;
+            /// <summary>
+            /// 字段名称
+            /// </summary>
             public string ColName;
-            public CompareEnum Comp;
-            public BsonValue Value;
+            /// <summary>
+            /// 比较子
+            /// </summary>
+            public CompareEnum Compare;
+            /// <summary>
+            /// 比较值
+            /// </summary>
+            public BsonValueEx Value;
+            /// <summary>
+            /// 结束标志
+            /// </summary>
             public string EndMark;
         }
 

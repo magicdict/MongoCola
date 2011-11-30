@@ -166,8 +166,8 @@ namespace MagicMongoDBTool.Module
             foreach (var item in oprGrp)
             {
                 IMongoQuery query;
-                BsonValue queryvalue = item.Value;
-                switch (item.Comp)
+                BsonValue queryvalue = item.Value.GetBsonValue();
+                switch (item.Compare)
                 {
                     case DataFilter.CompareEnum.EQ:
                         query = Query.EQ(item.ColName, queryvalue);

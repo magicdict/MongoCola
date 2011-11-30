@@ -49,6 +49,12 @@ namespace GUIResource
             Main_Menu_Operation_DataCollection_DelSelect,
             Main_Menu_Operation_DataCollection_ReIndex,
             Main_Menu_Operation_DataCollection_Rename,
+
+            Main_Menu_Operation_DataDocument,
+            Main_Menu_Operation_DataDocument_AddElement,
+            Main_Menu_Operation_DataDocument_DropElement,
+            Main_Menu_Operation_DataDocument_ModifyElement,
+
             Main_Menu_Operation_FileSystem,
             Main_Menu_Operation_FileSystem_Upload,
             Main_Menu_Operation_FileSystem_Download,

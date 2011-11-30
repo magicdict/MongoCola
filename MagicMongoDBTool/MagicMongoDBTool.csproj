@@ -75,6 +75,7 @@
     <Compile Include="Form\frmElement.Designer.cs">
       <DependentUpon>frmElement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module\BsonValueEx.cs" />
     <Compile Include="UserController\ctlBsonValue.cs">
       <SubType>UserControl</SubType>
     </Compile>

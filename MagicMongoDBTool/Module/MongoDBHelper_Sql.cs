@@ -277,22 +277,22 @@ namespace MagicMongoDBTool.Module
                         mQueryConditionInputItem.StartMark = "(";
                         break;
                     case "=":
-                        mQueryConditionInputItem.Comp = DataFilter.CompareEnum.EQ;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.EQ;
                         break;
                     case ">":
-                        mQueryConditionInputItem.Comp = DataFilter.CompareEnum.GT;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.GT;
                         break;
                     case "<":
-                        mQueryConditionInputItem.Comp = DataFilter.CompareEnum.LT;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.LT;
                         break;
                     case ">=":
-                        mQueryConditionInputItem.Comp = DataFilter.CompareEnum.GTE;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.GTE;
                         break;
                     case "<=":
-                        mQueryConditionInputItem.Comp = DataFilter.CompareEnum.LTE;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.LTE;
                         break;
                     case "<>":
-                        mQueryConditionInputItem.Comp = DataFilter.CompareEnum.NE;
+                        mQueryConditionInputItem.Compare = DataFilter.CompareEnum.NE;
                         break;
                     case "or":
                         mQueryConditionInputItem.EndMark = EndMark_OR;
@@ -358,11 +358,11 @@ namespace MagicMongoDBTool.Module
                             //类型设置
                             if (strToken.StartsWith("\"") & strToken.EndsWith("\""))
                             {
-                                mQueryConditionInputItem.Value = new BsonString(strToken.Replace("\"", ""));
+                                mQueryConditionInputItem.Value = new BsonValueEx(new BsonString(strToken.Replace("\"", "")));
                             }
                             else
                             {
-                                mQueryConditionInputItem.Value = new BsonInt32(Convert.ToInt16(strToken));
+                                mQueryConditionInputItem.Value = new BsonValueEx(new BsonInt32(Convert.ToInt16(strToken)));
                             }
                         }
                         break;
