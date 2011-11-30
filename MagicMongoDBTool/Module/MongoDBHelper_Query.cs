@@ -166,25 +166,7 @@ namespace MagicMongoDBTool.Module
             foreach (var item in oprGrp)
             {
                 IMongoQuery query;
-                BsonValue queryvalue;
-                switch (item.Type)
-                {
-                    case BsonType.Boolean:
-                        queryvalue = (BsonBoolean)item.Value;
-                        break;
-                    case BsonType.DateTime:
-                        queryvalue = (BsonDateTime)item.Value;
-                        break;
-                    case BsonType.Int32:
-                        queryvalue = (BsonInt32)Convert.ToInt32(item.Value);
-                        break;
-                    case BsonType.String:
-                        queryvalue = (BsonString)item.Value;
-                        break;
-                    default:
-                        queryvalue = (BsonString)item.Value;
-                        break;
-                }
+                BsonValue queryvalue = item.Value;
                 switch (item.Comp)
                 {
                     case DataFilter.CompareEnum.EQ:

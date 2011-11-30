@@ -793,7 +793,7 @@ namespace MagicMongoDBTool.Module
                 {
                     if (item.Value.IsBsonArray)
                     {
-                        TreeNode newItem = new TreeNode(item.Name + ArrayMark);
+                        TreeNode newItem = new TreeNode(item.Name + Array_Mark);
                         int count = 1;
                         foreach (BsonValue SubItem in item.Value.AsBsonArray)
                         {
@@ -1467,6 +1467,5 @@ namespace MagicMongoDBTool.Module
             return 0;
         }
         #endregion
-
     }
 }

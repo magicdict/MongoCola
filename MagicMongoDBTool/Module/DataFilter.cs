@@ -96,8 +96,7 @@ namespace MagicMongoDBTool.Module
             public string StartMark;
             public string ColName;
             public CompareEnum Comp;
-            public string Value;
-            public BsonType Type;
+            public BsonValue Value;
             public string EndMark;
         }
 

@@ -82,32 +82,34 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public const string COLLECTION_NAME_SYSTEM_REPLSET = "system.replset";
         /// <summary>
-        /// minvalid
+        /// minvalid数据集名称
         /// </summary>
         public const string COLLECTION_NAME_REPLSET_MINVALID = "replset.minvalid";
         /// <summary>
-        /// 操作日志
+        /// 操作日志数据集名称
         /// </summary>
         public const string COLLECTION_NAME_OPERATION_LOG = "oplog.rs";
         /// <summary>
-        /// GFS的块
+        /// GFS块数据集名称
         /// </summary>
         public const string COLLECTION_NAME_GFS_CHUNKS = "fs.chunks";
         /// <summary>
-        /// GFS
+        /// GFS数据集名称
         /// </summary>
         public const string COLLECTION_NAME_GFS_FILES = "fs.files";
         /// <summary>
-        /// 用户
+        /// 用户数据集名称
         /// </summary>
         public const string COLLECTION_NAME_USER = "system.users";
         /// <summary>
-        /// Js
+        /// Js数据集名称
         /// </summary>
         public const string COLLECTION_NAME_JAVASCRIPT = "system.js";
         #endregion
 
-
+        /// <summary>
+        /// 查询条件构成控件用常量
+        /// </summary>
         public const String EndMark_AND = " AND ";
         public const String EndMark_OR = " OR ";
         public const String EndMark_AND_T = ") AND ";
@@ -117,6 +119,6 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 在标识元素路径时候，这个后缀表示当期元素只是数组的开始标志
         /// </summary>
-        public const String ArrayMark = "[ARRAY]";
+        public const String Array_Mark = "[ARRAY]";
     }
 }

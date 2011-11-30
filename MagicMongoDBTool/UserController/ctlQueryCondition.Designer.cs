@@ -28,20 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtValue = new System.Windows.Forms.TextBox();
             this.cmbCompareOpr = new System.Windows.Forms.ComboBox();
             this.cmbColName = new System.Windows.Forms.ComboBox();
             this.cmbEndMark = new System.Windows.Forms.ComboBox();
             this.cmbStartMark = new System.Windows.Forms.ComboBox();
-            this.cmbDataType = new System.Windows.Forms.ComboBox();
+            this.ElBsonValue = new MagicMongoDBTool.ctlBsonValue();
             this.SuspendLayout();
-            // 
-            // txtValue
-            // 
-            this.txtValue.Location = new System.Drawing.Point(202, 1);
-            this.txtValue.Name = "txtValue";
-            this.txtValue.Size = new System.Drawing.Size(120, 20);
-            this.txtValue.TabIndex = 3;
             // 
             // cmbCompareOpr
             // 
@@ -62,7 +54,7 @@
             // cmbEndMark
             // 
             this.cmbEndMark.FormattingEnabled = true;
-            this.cmbEndMark.Location = new System.Drawing.Point(399, 0);
+            this.cmbEndMark.Location = new System.Drawing.Point(413, 2);
             this.cmbEndMark.Name = "cmbEndMark";
             this.cmbEndMark.Size = new System.Drawing.Size(52, 21);
             this.cmbEndMark.TabIndex = 5;
@@ -75,40 +67,37 @@
             this.cmbStartMark.Size = new System.Drawing.Size(39, 21);
             this.cmbStartMark.TabIndex = 0;
             // 
-            // cmbDataType
+            // ElBsonValue
             // 
-            this.cmbDataType.FormattingEnabled = true;
-            this.cmbDataType.Location = new System.Drawing.Point(328, 1);
-            this.cmbDataType.Name = "cmbDataType";
-            this.cmbDataType.Size = new System.Drawing.Size(65, 21);
-            this.cmbDataType.TabIndex = 4;
+            this.ElBsonValue.Location = new System.Drawing.Point(202, -2);
+            this.ElBsonValue.Name = "ElBsonValue";
+            this.ElBsonValue.Size = new System.Drawing.Size(205, 28);
+            this.ElBsonValue.TabIndex = 6;
+            this.ElBsonValue.Value = null;
             // 
             // ctlQueryCondition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.cmbDataType);
+            this.Controls.Add(this.ElBsonValue);
             this.Controls.Add(this.cmbStartMark);
             this.Controls.Add(this.cmbEndMark);
             this.Controls.Add(this.cmbColName);
-            this.Controls.Add(this.txtValue);
             this.Controls.Add(this.cmbCompareOpr);
             this.Name = "ctlQueryCondition";
-            this.Size = new System.Drawing.Size(454, 22);
+            this.Size = new System.Drawing.Size(484, 27);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtValue;
         private System.Windows.Forms.ComboBox cmbCompareOpr;
         private System.Windows.Forms.ComboBox cmbColName;
         private System.Windows.Forms.ComboBox cmbEndMark;
         private System.Windows.Forms.ComboBox cmbStartMark;
-        private System.Windows.Forms.ComboBox cmbDataType;
+        private ctlBsonValue ElBsonValue;
 
     }
 }

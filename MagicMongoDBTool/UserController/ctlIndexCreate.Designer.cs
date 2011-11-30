@@ -38,7 +38,7 @@
             // 
             this.radAscendingKey.AutoSize = true;
             this.radAscendingKey.Checked = true;
-            this.radAscendingKey.Location = new System.Drawing.Point(301, 4);
+            this.radAscendingKey.Location = new System.Drawing.Point(301, 6);
             this.radAscendingKey.Name = "radAscendingKey";
             this.radAscendingKey.Size = new System.Drawing.Size(49, 17);
             this.radAscendingKey.TabIndex = 1;
@@ -49,7 +49,7 @@
             // radDescendingKey
             // 
             this.radDescendingKey.AutoSize = true;
-            this.radDescendingKey.Location = new System.Drawing.Point(356, 4);
+            this.radDescendingKey.Location = new System.Drawing.Point(356, 6);
             this.radDescendingKey.Name = "radDescendingKey";
             this.radDescendingKey.Size = new System.Drawing.Size(49, 17);
             this.radDescendingKey.TabIndex = 2;
@@ -59,7 +59,7 @@
             // lblKeyName
             // 
             this.lblKeyName.AutoSize = true;
-            this.lblKeyName.Location = new System.Drawing.Point(8, 6);
+            this.lblKeyName.Location = new System.Drawing.Point(8, 7);
             this.lblKeyName.Name = "lblKeyName";
             this.lblKeyName.Size = new System.Drawing.Size(55, 13);
             this.lblKeyName.TabIndex = 3;

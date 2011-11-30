@@ -18,7 +18,7 @@ namespace MagicMongoDBTool.Module
         public static void AddElement(String ElementPath, BsonElement AddElement)
         {
             BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
-            GetLastParentDocument(BaseDoc, ElementPath).InsertAt(GetLastParentDocument(BaseDoc, ElementPath).ElementCount, AddElement);
+            GetLastParentDocument(BaseDoc, ElementPath, true).InsertAt(GetLastParentDocument(BaseDoc, ElementPath, true).ElementCount, AddElement);
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
         /// <summary>
@@ -26,10 +26,11 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="BaseDoc"></param>
         /// <param name="ElementPath"></param>
-        public static void DropElement(String ElementPath, String ElementName)
+        public static void DropElement(String ElementPath)
         {
             BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
-            GetLastParentDocument(BaseDoc, ElementPath).Remove(ElementName);
+
+            GetLastParentDocument(BaseDoc, ElementPath).Remove(GetElementNameFromPath(ElementPath));
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
         /// <summary>
@@ -37,13 +38,31 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="ModifyElement"></param>
         /// <param name="NewValue"></param>
-        public static void ModifyElement(String ElementPath, String ElementName, BsonValue NewValue)
+        public static void ModifyElement(String ElementPath, BsonValue NewValue)
         {
             BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
-            GetLastParentDocument(BaseDoc, ElementPath).GetElement(ElementName).Value = NewValue;
+            GetLastParentDocument(BaseDoc, ElementPath).GetElement(GetElementNameFromPath(ElementPath)).Value = NewValue;
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
-        public static BsonDocument GetLastParentDocument(BsonDocument BaseDoc, String ElementPath)
+        /// <summary>
+        /// 通过路径获得元素名称
+        /// </summary>
+        /// <param name="ElementPath"></param>
+        /// <returns></returns>
+        public static String GetElementNameFromPath(String ElementPath) { 
+            String[] strPath = ElementPath.Split(@"\".ToCharArray());
+            String ElementName = strPath[strPath.Length - 1];
+            ElementName = ElementName.Substring(0, ElementName.IndexOf(":"));
+            return ElementName;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="BaseDoc"></param>
+        /// <param name="ElementPath"></param>
+        /// <param name="IsGetLast">T:取到最后 F:取到倒数第二</param>
+        /// <returns></returns>
+        public static BsonDocument GetLastParentDocument(BsonDocument BaseDoc, String ElementPath, Boolean IsGetLast = false)
         {
             BsonValue Current = BaseDoc;
             //JpCnWord[1]\Translations[ARRAY]\Translations[1]\Sentences[ARRAY]\Sentences[1]\Japanese:"ああいう文章はなかなか書けない"
@@ -55,14 +74,23 @@ namespace MagicMongoDBTool.Module
             //Sentences[ARRAY]
             //Sentences[1]
             //Japanese:"ああいう文章はなかなか書けない"        Last
-            for (int i = 1; i < strPath.Length - 1; i++)
+            int DeepLv;
+            if (IsGetLast)
+            {
+                DeepLv = strPath.Length;
+            }
+            else
+            {
+                DeepLv = strPath.Length - 1;
+            }
+            for (int i = 1; i < DeepLv; i++)
             {
                 String strTag = strPath[i];
                 Boolean IsArray = false;
-                if (strTag.EndsWith(ArrayMark))
+                if (strTag.EndsWith(Array_Mark))
                 {
                     //去除[Array]后缀
-                    strTag = strTag.Substring(0, strTag.Length - ArrayMark.Length);
+                    strTag = strTag.Substring(0, strTag.Length - Array_Mark.Length);
                     IsArray = true;
                 }
                 if (IsArray)

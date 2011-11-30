@@ -764,7 +764,7 @@ namespace MagicMongoDBTool
                         else
                         {
                             //如果已经是非叶子的话允许添加元素
-                            if (!trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.ArrayMark))
+                            if (!trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
                             {
                                 //改节点不是数组
                                 AddElementToolStripMenuItem.Enabled = true;
@@ -1329,15 +1329,25 @@ namespace MagicMongoDBTool
         private void AddElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //尝试添加
-            MongoDBHelper.AddElement(trvData.SelectedNode.FullPath, new BsonElement("NewEl", "TestEl"));
+            SystemManager.OpenForm(new frmElement(false, trvData.SelectedNode.FullPath));
         }
+        /// <summary>
+        /// 删除元素
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DropElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.DropElement(trvData.SelectedNode.FullPath, "NewEl");
+            MongoDBHelper.DropElement(trvData.SelectedNode.FullPath);
         }
+        /// <summary>
+        /// 修改元素
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ModifyElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.ModifyElement(trvData.SelectedNode.FullPath, "NewEl","NewValue");
+            SystemManager.OpenForm(new frmElement(true, trvData.SelectedNode.FullPath));
         }
         #endregion
 

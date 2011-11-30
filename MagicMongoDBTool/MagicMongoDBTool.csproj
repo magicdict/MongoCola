@@ -69,6 +69,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\frmElement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmElement.Designer.cs">
+      <DependentUpon>frmElement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserController\ctlBsonValue.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ctlBsonValue.Designer.cs">
+      <DependentUpon>ctlBsonValue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\frmevalJS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +248,12 @@
     <Compile Include="Module\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form\frmElement.resx">
+      <DependentUpon>frmElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserController\ctlBsonValue.resx">
+      <DependentUpon>ctlBsonValue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmevalJS.resx">
       <DependentUpon>frmevalJS.cs</DependentUpon>
     </EmbeddedResource>

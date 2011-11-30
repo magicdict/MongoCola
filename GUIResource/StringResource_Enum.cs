@@ -285,6 +285,11 @@ namespace GUIResource
             Common_Browse,
             Common_Clear,
 
+            Common_BsonType_String,
+            Common_BsonType_Integer,
+            Common_BsonType_DateTime,
+            Common_BsonType_Boolean,
+
             //Create New DataBase
             Create_New_DataBase,
             Create_New_DataBase_Input,

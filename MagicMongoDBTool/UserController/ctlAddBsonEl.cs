@@ -5,9 +5,20 @@ namespace MagicMongoDBTool
 {
     public partial class ctlAddBsonEl : UserControl
     {
+        /// <summary>
+        /// 切换为元素修改模式
+        /// </summary>
+        public void switchToUpdateMode(){
+            txtElName.Visible = false;
+            lblElement.Visible = true;
+        }
+        /// <summary>
+        /// 是否设定
+        /// </summary>
         public Boolean IsSetted {
-            get {
-                if (txtElName.Text == String.Empty | txtElValue.Text == String.Empty | cmbDataType.Text == String.Empty)
+            get
+            {
+                if (txtElName.Text == String.Empty | ElBsonValue.Value == null)
                 {
                     return false;
                 }
@@ -16,69 +27,27 @@ namespace MagicMongoDBTool
                 }
             }
         }
+        /// <summary>
+        /// 元素
+        /// </summary>
         public BsonElement Element
         {
             get
             {
-                BsonValue value = null;
-                if (cmbDataType.SelectedIndex == 0)
-                {
-                    value = new BsonString(txtElValue.Text);
-                }
-                if (cmbDataType.SelectedIndex == 1)
-                {
-                    value = new BsonInt32(Convert.ToInt16(txtElValue.Text));
-                }
-                if (cmbDataType.SelectedIndex == 2)
-                {
-                    value = new BsonDateTime(Convert.ToDateTime(txtElValue.Text));
-                }
-                if (cmbDataType.SelectedIndex == 3)
-                {
-                    if (txtElValue.Text.ToUpper() == "TRUE")
-                    {
-                        value = true;
-                    }
-                    else
-                    {
-                        value = false;
-                    }
-                }
+                BsonValue value = ElBsonValue.Value;
                 BsonElement el = new BsonElement(txtElName.Text, value);
                 return el;
             }
             set {
                 txtElName.Text = value.Name;
-                txtElValue.Text = value.Value.ToString();
-                if (value.Value.IsString)
-                {
-                    cmbDataType.SelectedIndex = 0;
-                }
-                if (value.Value.IsInt32)
-                {
-                    cmbDataType.SelectedIndex = 1;
-                }
-                if (value.Value.IsDateTime)
-                {
-                    cmbDataType.SelectedIndex = 2;
-                }
-                if (value.Value.IsBoolean)
-                {
-                    cmbDataType.SelectedIndex = 3;
-                }
+                lblElement.Text = value.Name;
+                ElBsonValue.Value = value.Value;
             }
         }
         public ctlAddBsonEl()
         {
             InitializeComponent();
-            //数据类型
-            cmbDataType.Items.Add("字符");
-            cmbDataType.Items.Add("整形");
-            cmbDataType.Items.Add("日期");
-            cmbDataType.Items.Add("布尔");
-        }
-        private void ctlAddBsonEl_Load(object sender, EventArgs e)
-        {
+            lblElement.Visible = false;
         }
     }
 }

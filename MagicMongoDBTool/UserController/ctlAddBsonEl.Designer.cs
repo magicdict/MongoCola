@@ -28,18 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmbDataType = new System.Windows.Forms.ComboBox();
             this.txtElName = new QLFUI.TextBoxEx();
-            this.txtElValue = new QLFUI.TextBoxEx();
+            this.ElBsonValue = new MagicMongoDBTool.ctlBsonValue();
+            this.lblElement = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // cmbDataType
-            // 
-            this.cmbDataType.FormattingEnabled = true;
-            this.cmbDataType.Location = new System.Drawing.Point(215, 4);
-            this.cmbDataType.Name = "cmbDataType";
-            this.cmbDataType.Size = new System.Drawing.Size(147, 21);
-            this.cmbDataType.TabIndex = 1;
             // 
             // txtElName
             // 
@@ -48,7 +40,7 @@
             this.txtElName.BackColor = System.Drawing.Color.Transparent;
             this.txtElName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtElName.ForeImage = null;
-            this.txtElName.Location = new System.Drawing.Point(0, 0);
+            this.txtElName.Location = new System.Drawing.Point(0, -1);
             this.txtElName.Multiline = false;
             this.txtElName.Name = "txtElName";
             this.txtElName.Radius = 3;
@@ -59,42 +51,41 @@
             this.txtElName.WaterMark = "元素名称";
             this.txtElName.WaterMarkColor = System.Drawing.Color.Silver;
             // 
-            // txtElValue
+            // ElBsonValue
             // 
-            this.txtElValue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtElValue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txtElValue.BackColor = System.Drawing.Color.Transparent;
-            this.txtElValue.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
-            this.txtElValue.ForeImage = null;
-            this.txtElValue.Location = new System.Drawing.Point(104, -1);
-            this.txtElValue.Multiline = false;
-            this.txtElValue.Name = "txtElValue";
-            this.txtElValue.Radius = 3;
-            this.txtElValue.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
-            this.txtElValue.Size = new System.Drawing.Size(105, 29);
-            this.txtElValue.TabIndex = 3;
-            this.txtElValue.UseSystemPasswordChar = false;
-            this.txtElValue.WaterMark = "元素值";
-            this.txtElValue.WaterMarkColor = System.Drawing.Color.Silver;
+            this.ElBsonValue.Location = new System.Drawing.Point(102, 0);
+            this.ElBsonValue.Name = "ElBsonValue";
+            this.ElBsonValue.Size = new System.Drawing.Size(218, 27);
+            this.ElBsonValue.TabIndex = 3;
+            this.ElBsonValue.Value = null;
+            // 
+            // lblElement
+            // 
+            this.lblElement.AutoSize = true;
+            this.lblElement.Location = new System.Drawing.Point(5, 7);
+            this.lblElement.Name = "lblElement";
+            this.lblElement.Size = new System.Drawing.Size(55, 13);
+            this.lblElement.TabIndex = 4;
+            this.lblElement.Text = "元素名称";
             // 
             // ctlAddBsonEl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.txtElValue);
+            this.Controls.Add(this.lblElement);
+            this.Controls.Add(this.ElBsonValue);
             this.Controls.Add(this.txtElName);
-            this.Controls.Add(this.cmbDataType);
             this.Name = "ctlAddBsonEl";
-            this.Size = new System.Drawing.Size(362, 30);
-            this.Load += new System.EventHandler(this.ctlAddBsonEl_Load);
+            this.Size = new System.Drawing.Size(326, 30);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbDataType;
         private QLFUI.TextBoxEx txtElName;
-        private QLFUI.TextBoxEx txtElValue;
+        private ctlBsonValue ElBsonValue;
+        private System.Windows.Forms.Label lblElement;
     }
 }

@@ -9,6 +9,14 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
+
+        //http://www.mongodb.org/display/DOCS/SQL+to+Mongo+Mapping+Chart
+
+        /// <summary>
+        /// Convert Query Sql To DataFilter
+        /// </summary>
+        /// <param name="Sql"></param>
+        /// <returns></returns>
         public static DataFilter ConvertQuerySql(String Sql)
         {
             DataFilter rtnQuery = new DataFilter();
@@ -309,13 +317,15 @@ namespace MagicMongoDBTool.Module
                         {
                             mQueryConditionInputItem.EndMark = EndMark_T;
                         }
-                        else {
+                        else
+                        {
                             if (Token[i + 1] == "or")
                             {
                                 mQueryConditionInputItem.EndMark = EndMark_OR_T;
                                 i++;
                             }
-                            else {
+                            else
+                            {
                                 if (Token[i + 1] == "and")
                                 {
                                     mQueryConditionInputItem.EndMark = EndMark_AND_T;
@@ -348,19 +358,18 @@ namespace MagicMongoDBTool.Module
                             //类型设置
                             if (strToken.StartsWith("\"") & strToken.EndsWith("\""))
                             {
-                                mQueryConditionInputItem.Value = strToken.Replace("\"", "");
-                                mQueryConditionInputItem.Type = BsonType.String;
+                                mQueryConditionInputItem.Value = new BsonString(strToken.Replace("\"", ""));
                             }
                             else
                             {
-                                mQueryConditionInputItem.Value = strToken;
-                                mQueryConditionInputItem.Type = BsonType.Int32;
+                                mQueryConditionInputItem.Value = new BsonInt32(Convert.ToInt16(strToken));
                             }
                         }
                         break;
                 }
             }
-            if (Token[Token.Length - 1] != ")") {
+            if (Token[Token.Length - 1] != ")")
+            {
                 Conditionlst.Add(mQueryConditionInputItem);
             }
             return Conditionlst;
