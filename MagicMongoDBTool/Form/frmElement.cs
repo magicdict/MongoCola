@@ -1,5 +1,6 @@
 ﻿using System;
 using MagicMongoDBTool.Module;
+using System.Windows.Forms;
 
 namespace MagicMongoDBTool
 {
@@ -16,13 +17,18 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 
         /// </summary>
+        private TreeNode _SelectNode;
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="IsUpdateMode"></param>
         /// <param name="FullPath"></param>
-        public frmElement(Boolean IsUpdateMode, String FullPath)
+        public frmElement(Boolean IsUpdateMode, TreeNode SelectNode)
         {
             InitializeComponent();
             _IsUpdateMode = IsUpdateMode;
-            _FullPath = FullPath;
+            _FullPath = SelectNode.FullPath;
+            _SelectNode = SelectNode;
         }
         /// <summary>
         /// 
@@ -52,10 +58,12 @@ namespace MagicMongoDBTool
             if (_IsUpdateMode)
             {
                 MongoDBHelper.ModifyElement(_FullPath, AddBsonElement.Element.Value);
+                _SelectNode.Text = AddBsonElement.Element.Name + ":" + AddBsonElement.Element.Value.ToString();
             }
             else
             {
                 MongoDBHelper.AddElement(_FullPath, AddBsonElement.Element);
+                _SelectNode.Nodes.Add(new TreeNode(AddBsonElement.Element.Name + ":" + AddBsonElement.Element.Value.ToString()));
             }
             this.Close();
         }

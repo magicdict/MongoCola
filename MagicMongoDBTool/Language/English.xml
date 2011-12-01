@@ -3,6 +3,7 @@
 <Language Type="English">
   <Main_Menu_Mangt>Management(&amp;S)</Main_Menu_Mangt>
   <Main_Menu_Mangt_AddConnection>Add Connection(&amp;A)</Main_Menu_Mangt_AddConnection>
+  <Main_Menu_Mangt_Disconnect>Disconnect</Main_Menu_Mangt_Disconnect>
   <Main_Menu_Mangt_Status>Status</Main_Menu_Mangt_Status>
   <Main_Menu_Mangt_Refresh>Refresh</Main_Menu_Mangt_Refresh>
   <Main_Menu_Mangt_Collapse>Collapse</Main_Menu_Mangt_Collapse>

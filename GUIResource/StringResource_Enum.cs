@@ -14,6 +14,7 @@ namespace GUIResource
         {
             Main_Menu_Mangt,
             Main_Menu_Mangt_AddConnection,
+            Main_Menu_Mangt_Disconnect,
             Main_Menu_Mangt_Status,
             Main_Menu_Mangt_Refresh,
             Main_Menu_Mangt_Collapse,

@@ -57,6 +57,7 @@ namespace MagicMongoDBTool
         {
             //管理
             this.ManagerToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt);
+            this.DisconnectToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Disconnect);
             this.AddConnectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_AddConnection);
             this.RefreshToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Refresh);
             this.SrvStatusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
@@ -200,14 +201,12 @@ namespace MagicMongoDBTool
             {
                 statusStripMain.Items[0].Image = GetSystemIcon.MainTreeImage.Images[e.Node.ImageIndex];
             }
+            //先禁用所有的操作，然后根据选中对象解禁
+            DisableAllOpr();
             if (e.Node.Tag != null)
             {
                 //选中节点的设置
                 this.trvsrvlst.SelectedNode = e.Node;
-                //先禁用所有的操作，然后根据选中对象解禁
-                DisableAllOpr();
-                //恢复数据：这个操作可以针对服务器，数据库，数据集，所以可以放在共通
-                this.RestoreMongoToolStripMenuItem.Enabled = true;
                 strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
                 if (!(strNodeType == MongoDBHelper.DOCUMENT_TAG && e.Button == System.Windows.Forms.MouseButtons.Right))
                 {
@@ -215,6 +214,11 @@ namespace MagicMongoDBTool
                 }
                 String mongoSvrKey = e.Node.Tag.ToString().Split(":".ToCharArray())[1].Split("/".ToCharArray())[0];
                 config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
+                if (!config.IsReadOnly)
+                {
+                    //恢复数据：这个操作可以针对服务器，数据库，数据集，所以可以放在共通
+                    this.RestoreMongoToolStripMenuItem.Enabled = true;
+                }
                 switch (strNodeType)
                 {
                     case MongoDBHelper.INDEX_TAG:
@@ -332,9 +336,32 @@ namespace MagicMongoDBTool
                                  ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         }
                         break;
+                    case MongoDBHelper.SERVICE_TAG_EXCEPTION:
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        this.DisconnectToolStripMenuItem.Enabled = true;
+                        this.RestoreMongoToolStripMenuItem.Enabled = false;
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            this.contextMenuStripMain = new ContextMenuStrip();
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show();
+                        }
+                        statusStripMain.Items[0].Text = "选中服务器[异常]:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        break;
                     case MongoDBHelper.SINGLE_DB_SERVICE_TAG:
                         //单数据库模式,禁止所有服务器操作
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        this.DisconnectToolStripMenuItem.Enabled = true;
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            this.contextMenuStripMain = new ContextMenuStrip();
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show();
+                        }
                         statusStripMain.Items[0].Text = "选中服务器[单数据库]:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         break;
                     case MongoDBHelper.SERVICE_TAG:
@@ -348,6 +375,7 @@ namespace MagicMongoDBTool
                             statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Server) +
                                   ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         }
+                        this.DisconnectToolStripMenuItem.Enabled = true;
                         //解禁 创建数据库,关闭服务器
                         if (!config.IsReadOnly)
                         {
@@ -382,8 +410,10 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.SvrPropertyToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -434,6 +464,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.evalJSToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ConvertSqlToolStripMenuItem.Clone());
 
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -476,6 +507,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.DelMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RenameCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DumpCollectionToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ExportCollectionToolStripMenuItem.Clone());
 
@@ -505,12 +537,15 @@ namespace MagicMongoDBTool
         /// </summary>
         private void DisableAllOpr()
         {
+
+
             //管理-服务器
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
             this.AddUserToAdminToolStripMenuItem.Enabled = false;
             this.RemoveUserFromAdminToolStripMenuItem.Enabled = false;
             this.SvrPropertyToolStripMenuItem.Enabled = false;
             this.ShutDownToolStripMenuItem.Enabled = false;
+            this.DisconnectToolStripMenuItem.Enabled = false;
 
             //管理-数据库
             this.CreateMongoCollectionToolStripMenuItem.Enabled = false;
@@ -919,6 +954,25 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmConnect());
             RefreshToolStripMenuItem_Click(sender, e);
+        }
+        /// <summary>
+        /// 切断数据库
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DisconnectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.GetCurrentService().Disconnect();
+            MongoDBHelper._mongoSrvLst.Remove(config.ConnectionName);
+            trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
+            DisableAllOpr();
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                this.statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
+            }
+            else {
+                this.statusStripMain.Items[0].Text = "就绪";
+            }
         }
         /// <summary>
         /// 刷新
@@ -1375,7 +1429,7 @@ namespace MagicMongoDBTool
         private void AddElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //尝试添加
-            SystemManager.OpenForm(new frmElement(false, trvData.SelectedNode.FullPath));
+            SystemManager.OpenForm(new frmElement(false, trvData.SelectedNode));
         }
         /// <summary>
         /// 删除元素
@@ -1385,6 +1439,7 @@ namespace MagicMongoDBTool
         private void DropElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MongoDBHelper.DropElement(trvData.SelectedNode.FullPath);
+            trvData.Nodes.Remove(trvData.SelectedNode);
         }
         /// <summary>
         /// 修改元素
@@ -1393,7 +1448,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ModifyElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmElement(true, trvData.SelectedNode.FullPath));
+            SystemManager.OpenForm(new frmElement(true, trvData.SelectedNode));
         }
         #endregion
 
@@ -1798,5 +1853,6 @@ namespace MagicMongoDBTool
                                      strThanks);
         }
         #endregion
+
     }
 }

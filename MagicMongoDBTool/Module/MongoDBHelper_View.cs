@@ -15,7 +15,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 管理中服务器列表
         /// </summary>
-        private static Dictionary<string, MongoServer> _mongoSrvLst = new Dictionary<string, MongoServer>();
+        public static Dictionary<string, MongoServer> _mongoSrvLst = new Dictionary<string, MongoServer>();
         /// <summary>
         /// 增加管理服务器
         /// </summary>
@@ -174,7 +174,7 @@ namespace MagicMongoDBTool.Module
                     SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey] = config;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
-                catch (MongoAuthenticationException)
+                catch (MongoAuthenticationException ex)
                 {
                     //需要验证的数据服务器，没有Admin权限无法获得数据库列表
                     MessageBox.Show("认证信息错误，请检查数据库的用户名和密码", "认证失败");
@@ -189,7 +189,7 @@ namespace MagicMongoDBTool.Module
                         mongoSvrNode.Text += "[认证信息错误]";
 
                     }
-                    mongoSvrNode.Tag = null;
+                    mongoSvrNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
                 catch (Exception ex)
@@ -206,7 +206,7 @@ namespace MagicMongoDBTool.Module
                     {
                         mongoSvrNode.Text += "[无法连接]";
                     }
-                    mongoSvrNode.Tag = null;
+                    mongoSvrNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
             }
