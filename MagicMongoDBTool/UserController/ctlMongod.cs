@@ -14,6 +14,7 @@ namespace MagicMongoDBTool
         public ctlMongod()
         {
             InitializeComponent();
+            ctlFilePickerLogPath.FileFilter = MongoDBHelper.LogFilter;
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 lblPort.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Port);
@@ -29,7 +30,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 
+        /// 加载
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -41,7 +42,7 @@ namespace MagicMongoDBTool
 
         }
         /// <summary>
-        /// 
+        /// DB路径
         /// </summary>
         /// <param name="FilePath"></param>
         void ctlFilePickerDBPath_PathChanged(string FilePath)
@@ -50,7 +51,7 @@ namespace MagicMongoDBTool
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
         /// <summary>
-        /// 
+        /// 路径
         /// </summary>
         /// <param name="FilePath"></param>
         void ctlFilePickerT_PathChanged(string FilePath)
@@ -59,7 +60,7 @@ namespace MagicMongoDBTool
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
         /// <summary>
-        /// 
+        /// LOG等级
         /// </summary>
         /// <param name="logLv"></param>
         void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
@@ -67,12 +68,21 @@ namespace MagicMongoDBTool
             MongodCommand.LogLV = logLv;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
-
+        /// <summary>
+        /// Log追加模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chkIsAppend_CheckedChanged(object sender, EventArgs e)
         {
             MongodCommand.Islogappend = chkIsAppend.Checked;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
+        /// <summary>
+        /// Master机器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chkIsMaster_CheckedChanged(object sender, EventArgs e)
         {
             if (chkIsMaster.Checked) { chkIsSlave.Checked = false; }
@@ -80,6 +90,11 @@ namespace MagicMongoDBTool
             MongodCommand.IsSlave = chkIsSlave.Checked;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
+        /// <summary>
+        /// Slave机器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chkIsSlave_CheckedChanged(object sender, EventArgs e)
         {
             if (chkIsSlave.Checked)
@@ -90,18 +105,30 @@ namespace MagicMongoDBTool
             MongodCommand.IsSlave = chkIsSlave.Checked;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
+        /// <summary>
+        /// 安全模式变更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chkAuth_CheckedChanged(object sender, EventArgs e)
         {
             MongodCommand.IsAuth = chkAuth.Checked;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
-
+        /// <summary>
+        /// 端口号变更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void numPort_ValueChanged(object sender, EventArgs e)
         {
             MongodCommand.Port = (int)numPort.Value;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
-
+        /// <summary>
+        /// 源头的改变
+        /// </summary>
+        /// <param name="strNewText"></param>
         private void txtSource_TextChanged(string strNewText)
         {
             MongodCommand.Source = strNewText;

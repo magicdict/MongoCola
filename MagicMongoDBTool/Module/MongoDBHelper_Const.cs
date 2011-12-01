@@ -125,5 +125,17 @@ namespace MagicMongoDBTool.Module
         /// XML文件选择过滤器
         /// </summary>
         public const String XmlFilter = "*.xml(Xml File)|*.xml";
+        /// <summary>
+        /// Txt文件选择过滤器
+        /// </summary>
+        public const String TxtFilter = "*.txt(Plan File)|*.txt";
+        /// <summary>
+        /// LOG文件选择过滤器
+        /// </summary>
+        public const String LogFilter = "*.log(Log File)|*.log";
+        /// <summary>
+        /// MDB文件选择过滤器
+        /// </summary>
+        public const String MdbFilter = "*.mdb(Access File)|*.mdb";
     }
 }

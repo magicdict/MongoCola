@@ -49,6 +49,7 @@ namespace MagicMongoDBTool.Module
                         //认证的设定:注意，这里的密码是明文
                         mongoSvrSetting.DefaultCredentials = new MongoCredentials(config.UserName, config.Password, config.LoginAsAdmin);
                     }
+
                     if (config.ServerType == ConfigHelper.SvrType.ReplsetSvr)
                     {
                         //ReplsetName不是固有属性,可以设置，不过必须保持与配置文件的一致
@@ -68,18 +69,10 @@ namespace MagicMongoDBTool.Module
                     }
                     MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
                     _mongoSrvLst.Add(config.ConnectionName, masterMongoSvr);
-                    if (config.ServerType == ConfigHelper.SvrType.ReplsetSvr)
-                    {
-                        //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
-                        if (masterMongoSvr.State == MongoServerState.Disconnected)
-                        {
-                            masterMongoSvr.Connect();
-                        }
-                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("无法链接到服务器：" + config.ConnectionName + ex.ToString());
+                    MessageBox.Show("无法连接到服务器：" + config.ConnectionName + ex.ToString());
                 }
             }
         }
@@ -116,32 +109,49 @@ namespace MagicMongoDBTool.Module
             foreach (string mongoSvrKey in _mongoSrvLst.Keys)
             {
                 MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
-                String strReplset;
-                if (SystemManager.IsUseDefaultLanguage())
-                {
-                    strReplset = "副本名称";
-                }
-                else
-                {
-                    strReplset = SystemManager.mStringResource.GetText(StringResource.TextType.ShardingConfig_ReplsetName);
-                }
-                TreeNode mongoSvrNode = new TreeNode(mongoSvr.ReplicaSetName != null ? strReplset + "：" + mongoSvr.ReplicaSetName :
-                                                    (mongoSvrKey + " [" + mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port + "]"));
-                mongoSvrNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
-                mongoSvrNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+                TreeNode mongoSvrNode = new TreeNode();
                 try
                 {
+                    //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
+                    String strReplset = String.Empty;
+                    if (SystemManager.IsUseDefaultLanguage())
+                    {
+                        strReplset = "副本名称";
+                    }
+                    else
+                    {
+                        strReplset = SystemManager.mStringResource.GetText(StringResource.TextType.ShardingConfig_ReplsetName);
+                    }
+                    mongoSvrNode.Text = mongoSvr.ReplicaSetName != null ?
+                                                        strReplset + "：" + mongoSvr.ReplicaSetName :
+                                                        (mongoSvrKey + " [" + mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port + "]");
+                    mongoSvrNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+                    mongoSvrNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+                    //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
+                    //不过现在改为全部显示的打开连接
+                    mongoSvr.Connect();
+
+                    ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
+                    if ((config.UserName != string.Empty) & (config.Password != string.Empty))
+                    {
+                        config.AuthMode = true;
+                    }
+                    //获取ReadOnly
+                    config.IsReadOnly = false;
                     List<string> databaseNameList = new List<string>();
-                    if (SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName != String.Empty)
+                    if (config.DataBaseName != String.Empty)
                     {
                         //单数据库模式
-                        TreeNode mongoSingleDBNode = FillDataBaseInfoToTreeNode(SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName, mongoSvr, mongoSvrKey);
-                        mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + mongoSvrKey + "/" + SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey].DataBaseName;
+                        TreeNode mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mongoSvr, mongoSvrKey);
+                        mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + mongoSvrKey + "/" + config.DataBaseName;
                         mongoSingleDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         mongoSingleDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         mongoSvrNode.Nodes.Add(mongoSingleDBNode);
                         mongoSvrNode.Tag = SINGLE_DB_SERVICE_TAG + ":" + mongoSvrKey;
+                        if (config.AuthMode)
+                        {
+                            config.IsReadOnly = mongoSvr.GetDatabase(config.DataBaseName).FindUser(config.UserName).IsReadOnly;
+                        }
                     }
                     else
                     {
@@ -152,9 +162,16 @@ namespace MagicMongoDBTool.Module
                             mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                             mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                             mongoSvrNode.Nodes.Add(mongoDBNode);
+                            if (strDBName == MongoDBHelper.DATABASE_NAME_ADMIN) {
+                                if (config.AuthMode)
+                                {
+                                    config.IsReadOnly = mongoSvr.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
+                                }
+                            }
                         }
                         mongoSvrNode.Tag = SERVICE_TAG + ":" + mongoSvrKey;
                     }
+                    SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey] = config;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
                 catch (MongoAuthenticationException)
@@ -175,9 +192,12 @@ namespace MagicMongoDBTool.Module
                     mongoSvrNode.Tag = null;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //暂时不处理任何异常，简单跳过
+                    //无法连接的理由：
+                    //1.服务器没有启动
+                    //2.认证模式不正确
                     if (!SystemManager.IsUseDefaultLanguage())
                     {
                         mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";

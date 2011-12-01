@@ -183,6 +183,7 @@ namespace MagicMongoDBTool
             _dataShower.Add(txtData);
             DataNaviToolStripLabel.Text = string.Empty;
         }
+        ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
         /// <summary>
         /// 鼠标选中节点
         /// </summary>
@@ -212,6 +213,8 @@ namespace MagicMongoDBTool
                 {
                     clearDataShower();
                 }
+                String mongoSvrKey = e.Node.Tag.ToString().Split(":".ToCharArray())[1].Split("/".ToCharArray())[0];
+                config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
                 switch (strNodeType)
                 {
                     case MongoDBHelper.INDEX_TAG:
@@ -237,7 +240,7 @@ namespace MagicMongoDBTool
                             statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Indexes) +
                                 ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         }
-                        if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
+                        if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) & !config.IsReadOnly)
                         {
                             this.IndexManageToolStripMenuItem.Enabled = true;
                             this.ReIndexToolStripMenuItem.Enabled = true;
@@ -301,8 +304,10 @@ namespace MagicMongoDBTool
                         this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
                         SystemManager.CurrDataFilter.Clear();
                         RefreshData();
-
-                        UploadFileToolStripMenuItem.Enabled = true;
+                        if (!config.IsReadOnly)
+                        {
+                            UploadFileToolStripMenuItem.Enabled = true;
+                        }
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -344,22 +349,31 @@ namespace MagicMongoDBTool
                                   ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         }
                         //解禁 创建数据库,关闭服务器
-                        this.CreateMongoDBToolStripMenuItem.Enabled = true;
-                        this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
+                        if (!config.IsReadOnly)
+                        {
+                            this.CreateMongoDBToolStripMenuItem.Enabled = true;
+                            this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
+                            this.AddUserToAdminToolStripMenuItem.Enabled = true;
+                        }
                         this.ShutDownToolStripMenuItem.Enabled = true;
-                        this.AddUserToAdminToolStripMenuItem.Enabled = true;
                         this.SvrPropertyToolStripMenuItem.Enabled = true;
 
                         if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.ReplsetSvr)
                         {
                             //副本服务器专用。
                             //副本初始化的操作 改在连接设置里面完成
-                            this.ReplicaSetToolStripMenuItem.Enabled = true;
+                            if (!config.IsReadOnly)
+                            {
+                                this.ReplicaSetToolStripMenuItem.Enabled = true;
+                            }
                         }
                         if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.RouteSvr)
                         {
                             //Route用
-                            this.ShardingConfigToolStripMenuItem.Enabled = true;
+                            if (!config.IsReadOnly)
+                            {
+                                this.ShardingConfigToolStripMenuItem.Enabled = true;
+                            }
                         }
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
@@ -392,11 +406,14 @@ namespace MagicMongoDBTool
                         if (!MongoDBHelper.IsSystemDataBase(SystemManager.GetCurrentDataBase()))
                         {
                             //系统库不允许修改
-                            this.DelMongoDBToolStripMenuItem.Enabled = true;
-                            this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
-                            this.AddUserToolStripMenuItem.Enabled = true;
+                            if (!config.IsReadOnly)
+                            {
+                                this.DelMongoDBToolStripMenuItem.Enabled = true;
+                                this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
+                                this.AddUserToolStripMenuItem.Enabled = true;
+                                this.InitGFSToolStripMenuItem.Enabled = true;
+                            }
                             this.evalJSToolStripMenuItem.Enabled = true;
-                            this.InitGFSToolStripMenuItem.Enabled = true;
                             this.ConvertSqlToolStripMenuItem.Enabled = true;
                         }
                         //备份数据库
@@ -404,7 +421,6 @@ namespace MagicMongoDBTool
 
                         if (strNodeType == MongoDBHelper.SINGLE_DATABASE_TAG)
                         {
-                            //单一数据库模式
                             this.DelMongoDBToolStripMenuItem.Enabled = false;
                         }
 
@@ -440,11 +456,17 @@ namespace MagicMongoDBTool
                         if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
                         {
                             //系统数据库无法删除！！
-                            this.DelMongoCollectionToolStripMenuItem.Enabled = true;
-                            this.RenameCollectionToolStripMenuItem.Enabled = true;
+                            if (!config.IsReadOnly)
+                            {
+                                this.DelMongoCollectionToolStripMenuItem.Enabled = true;
+                                this.RenameCollectionToolStripMenuItem.Enabled = true;
+                            }
+                        }
+                        if (!config.IsReadOnly)
+                        {
+                            this.ImportCollectionToolStripMenuItem.Enabled = true;
                         }
                         this.DumpCollectionToolStripMenuItem.Enabled = true;
-                        this.ImportCollectionToolStripMenuItem.Enabled = true;
                         this.ExportCollectionToolStripMenuItem.Enabled = true;
 
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -575,15 +597,21 @@ namespace MagicMongoDBTool
                             break;
                         case 1:
                             //可以进行所有操作
+                            if (!config.IsReadOnly)
+                            {
+                                DelFileToolStripMenuItem.Enabled = true;
+                            }
                             DownloadFileToolStripMenuItem.Enabled = true;
                             OpenFileToolStripMenuItem.Enabled = true;
-                            DelFileToolStripMenuItem.Enabled = true;
                             break;
                         default:
                             //可以删除多个文件
                             DownloadFileToolStripMenuItem.Enabled = false;
                             OpenFileToolStripMenuItem.Enabled = false;
-                            DelFileToolStripMenuItem.Enabled = true;
+                            if (!config.IsReadOnly)
+                            {
+                                DelFileToolStripMenuItem.Enabled = true;
+                            }
                             break;
                     }
                     break;
@@ -593,14 +621,20 @@ namespace MagicMongoDBTool
                     {
                         if (lstData.SelectedItems.Count > 0)
                         {
-                            this.RemoveUserFromAdminToolStripMenuItem.Enabled = true;
+                            if (!config.IsReadOnly)
+                            {
+                                this.RemoveUserFromAdminToolStripMenuItem.Enabled = true;
+                            }
                         }
                     }
                     else
                     {
                         if (lstData.SelectedItems.Count > 0)
                         {
-                            this.RemoveUserToolStripMenuItem.Enabled = true;
+                            if (!config.IsReadOnly)
+                            {
+                                this.RemoveUserToolStripMenuItem.Enabled = true;
+                            }
                         }
                     }
                     break;
@@ -611,7 +645,10 @@ namespace MagicMongoDBTool
                         if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
                         {
                             //系统数据禁止删除
-                            DelSelectRecordToolStripMenuItem.Enabled = true;
+                            if (!config.IsReadOnly)
+                            {
+                                DelSelectRecordToolStripMenuItem.Enabled = true;
+                            }
                         }
                         else
                         {
@@ -705,34 +742,40 @@ namespace MagicMongoDBTool
             if (trvData.SelectedNode.Level == 0)
             {
                 //顶层可以删除的节点
-                switch (SystemManager.GetCurrentCollection().Name)
+                if (!config.IsReadOnly)
                 {
-                    case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
-                        DelFileToolStripMenuItem.Enabled = true;
-                        break;
-                    case MongoDBHelper.COLLECTION_NAME_USER:
-                        if (SystemManager.GetCurrentDataBase().Name == MongoDBHelper.DATABASE_NAME_ADMIN)
-                        {
-                            RemoveUserFromAdminToolStripMenuItem.Enabled = true;
-                        }
-                        else
-                        {
-                            RemoveUserToolStripMenuItem.Enabled = true;
-                        }
-                        break;
-                    default:
-                        if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
-                        {
-                            //普通数据
-                            //在顶层的时候，允许添加元素,不允许删除元素和修改元素(删除选中记录)
-                            DelSelectRecordToolStripMenuItem.Enabled = true;
-                            AddElementToolStripMenuItem.Enabled = true;
-                        }
-                        else
-                        {
-                            DelSelectRecordToolStripMenuItem.Enabled = false;
-                        }
-                        break;
+                    switch (SystemManager.GetCurrentCollection().Name)
+                    {
+                        case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
+
+                            DelFileToolStripMenuItem.Enabled = true;
+                            break;
+                        case MongoDBHelper.COLLECTION_NAME_USER:
+
+                            if (SystemManager.GetCurrentDataBase().Name == MongoDBHelper.DATABASE_NAME_ADMIN)
+                            {
+                                RemoveUserFromAdminToolStripMenuItem.Enabled = true;
+                            }
+                            else
+                            {
+                                RemoveUserToolStripMenuItem.Enabled = true;
+                            }
+                            break;
+                        default:
+                            if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
+                            {
+                                //普通数据
+                                //在顶层的时候，允许添加元素,不允许删除元素和修改元素(删除选中记录)
+
+                                DelSelectRecordToolStripMenuItem.Enabled = true;
+                                AddElementToolStripMenuItem.Enabled = true;
+                            }
+                            else
+                            {
+                                DelSelectRecordToolStripMenuItem.Enabled = false;
+                            }
+                            break;
+                    }
                 }
             }
             else
@@ -754,12 +797,8 @@ namespace MagicMongoDBTool
                 case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
                 case MongoDBHelper.COLLECTION_NAME_USER:
                 default:
-                    if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
+                    if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) & !config.IsReadOnly)
                     {
-                        if (SystemManager.DEBUG_MODE)
-                        {
-                            System.Diagnostics.Debug.WriteLine(trvData.SelectedNode.FullPath);
-                        }
                         //普通数据:允许添加元素,不允许删除元素
                         DropElementToolStripMenuItem.Enabled = true;
                         if (trvData.SelectedNode.Nodes.Count == 0)
@@ -954,6 +993,7 @@ namespace MagicMongoDBTool
         private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog AccessFile = new OpenFileDialog();
+            AccessFile.Filter = MongoDBHelper.MdbFilter;
             if (AccessFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 MongoDBHelper.ImportAccessDataBase(AccessFile.FileName, SystemManager.SelectObjectTag, trvsrvlst.SelectedNode);

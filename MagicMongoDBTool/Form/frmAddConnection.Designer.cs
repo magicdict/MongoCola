@@ -259,7 +259,7 @@
             this.txtPassword.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtPassword.Size = new System.Drawing.Size(103, 29);
             this.txtPassword.TabIndex = 5;
-            this.txtPassword.UseSystemPasswordChar = false;
+            this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.WaterMark = "密码（可选项）";
             this.txtPassword.WaterMarkColor = System.Drawing.Color.Silver;
             // 
@@ -270,7 +270,7 @@
             this.txtUsername.BackColor = System.Drawing.Color.Transparent;
             this.txtUsername.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtUsername.ForeImage = null;
-            this.txtUsername.Location = new System.Drawing.Point(85, 44);
+            this.txtUsername.Location = new System.Drawing.Point(85, 42);
             this.txtUsername.Multiline = false;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Radius = 3;
