@@ -27,6 +27,7 @@ namespace MagicMongoDBTool.Module
             cloneMenuItem.Text = orgMenuItem.Text;
             cloneMenuItem.Enabled = orgMenuItem.Enabled;
             cloneMenuItem.BackgroundImage = orgMenuItem.BackgroundImage;
+            cloneMenuItem.Image = orgMenuItem.Image;
             //子菜单的复制
             foreach (ToolStripMenuItem item in orgMenuItem.DropDownItems)
             {

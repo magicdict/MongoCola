@@ -130,7 +130,7 @@
             this.cmdCancel.Location = new System.Drawing.Point(397, 105);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 30);
-            this.cmdCancel.TabIndex = 4;
+            this.cmdCancel.TabIndex = 5;
             this.cmdCancel.Text = "取消";
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
@@ -140,7 +140,7 @@
             this.cmdOK.Location = new System.Drawing.Point(306, 106);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(75, 30);
-            this.cmdOK.TabIndex = 3;
+            this.cmdOK.TabIndex = 4;
             this.cmdOK.Text = "确认";
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
@@ -160,11 +160,12 @@
             this.cmbLanguage.Location = new System.Drawing.Point(450, 57);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(121, 21);
-            this.cmbLanguage.TabIndex = 17;
+            this.cmbLanguage.TabIndex = 3;
             // 
             // ctlFilePickerMongoBinPath
             // 
             this.ctlFilePickerMongoBinPath.BackColor = System.Drawing.Color.Transparent;
+            this.ctlFilePickerMongoBinPath.FileFilter = "";
             this.ctlFilePickerMongoBinPath.Location = new System.Drawing.Point(11, 15);
             this.ctlFilePickerMongoBinPath.Name = "ctlFilePickerMongoBinPath";
             this.ctlFilePickerMongoBinPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;

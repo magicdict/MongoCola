@@ -74,7 +74,7 @@
             this.cmbForReduce.Location = new System.Drawing.Point(101, 239);
             this.cmbForReduce.Name = "cmbForReduce";
             this.cmbForReduce.Size = new System.Drawing.Size(151, 21);
-            this.cmbForReduce.TabIndex = 2;
+            this.cmbForReduce.TabIndex = 3;
             // 
             // cmdSaveReduceJs
             // 
@@ -82,7 +82,7 @@
             this.cmdSaveReduceJs.Location = new System.Drawing.Point(257, 234);
             this.cmdSaveReduceJs.Name = "cmdSaveReduceJs";
             this.cmdSaveReduceJs.Size = new System.Drawing.Size(70, 30);
-            this.cmdSaveReduceJs.TabIndex = 18;
+            this.cmdSaveReduceJs.TabIndex = 4;
             this.cmdSaveReduceJs.Text = "保存";
             this.cmdSaveReduceJs.Click += new System.EventHandler(this.cmdSaveReduceJs_Click);
             // 
@@ -92,7 +92,7 @@
             this.cmdSaveMapJs.Location = new System.Drawing.Point(257, 22);
             this.cmdSaveMapJs.Name = "cmdSaveMapJs";
             this.cmdSaveMapJs.Size = new System.Drawing.Size(70, 30);
-            this.cmdSaveMapJs.TabIndex = 17;
+            this.cmdSaveMapJs.TabIndex = 1;
             this.cmdSaveMapJs.Text = "保存";
             this.cmdSaveMapJs.Click += new System.EventHandler(this.cmdSaveMapJs_Click);
             // 
@@ -131,7 +131,7 @@
             this.trvResult.Location = new System.Drawing.Point(333, 55);
             this.trvResult.Name = "trvResult";
             this.trvResult.Size = new System.Drawing.Size(363, 377);
-            this.trvResult.TabIndex = 4;
+            this.trvResult.TabIndex = 6;
             // 
             // txtMapJs
             // 
@@ -140,7 +140,7 @@
             this.txtMapJs.Multiline = true;
             this.txtMapJs.Name = "txtMapJs";
             this.txtMapJs.Size = new System.Drawing.Size(299, 172);
-            this.txtMapJs.TabIndex = 1;
+            this.txtMapJs.TabIndex = 2;
             this.txtMapJs.Text = "function Map(){\r\n     emit(this.Age,1);\r\n     }\r\n";
             // 
             // txtReduceJs
@@ -150,7 +150,7 @@
             this.txtReduceJs.Multiline = true;
             this.txtReduceJs.Name = "txtReduceJs";
             this.txtReduceJs.Size = new System.Drawing.Size(299, 169);
-            this.txtReduceJs.TabIndex = 3;
+            this.txtReduceJs.TabIndex = 5;
             this.txtReduceJs.Text = "function Reduce(key, arr_values) {\r\n     var total = 0;\r\n     for(var i in arr_va" +
     "lues){\r\n         temp = arr_values[i];\r\n         total += temp;\r\n     }\r\n     re" +
     "turn total;\r\n     }\r\n";
@@ -161,7 +161,7 @@
             this.cmdRun.Location = new System.Drawing.Point(621, 438);
             this.cmdRun.Name = "cmdRun";
             this.cmdRun.Size = new System.Drawing.Size(75, 34);
-            this.cmdRun.TabIndex = 5;
+            this.cmdRun.TabIndex = 7;
             this.cmdRun.Text = "运行";
             this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
             // 
@@ -172,7 +172,6 @@
             this.ClientSize = new System.Drawing.Size(729, 552);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmMapReduce";
-            this.ShowSelectSkinButton = false;
             this.Text = "MapReduce";
             this.Load += new System.EventHandler(this.frmMapReduce_Load);
             this.contentPanel.ResumeLayout(false);

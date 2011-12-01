@@ -424,6 +424,7 @@ namespace MagicMongoDBTool
             this.CreateMongoDBToolStripMenuItem,
             this.toolStripMenuItem4,
             this.AddUserToAdminToolStripMenuItem,
+            this.RemoveUserFromAdminToolStripMenuItem,
             this.toolStripMenuItem3,
             this.ShutDownToolStripMenuItem,
             this.SvrPropertyToolStripMenuItem});
@@ -476,6 +477,7 @@ namespace MagicMongoDBTool
             this.CreateMongoCollectionToolStripMenuItem,
             this.toolStripMenuItem5,
             this.AddUserToolStripMenuItem,
+            this.RemoveUserToolStripMenuItem,
             this.toolStripMenuItem11,
             this.evalJSToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
@@ -528,9 +530,7 @@ namespace MagicMongoDBTool
             this.IndexManageToolStripMenuItem,
             this.ReIndexToolStripMenuItem,
             this.toolStripMenuItem8,
-            this.DelSelectRecordToolStripMenuItem,
-            this.RemoveUserFromAdminToolStripMenuItem,
-            this.RemoveUserToolStripMenuItem});
+            this.DelSelectRecordToolStripMenuItem});
             this.DataCollectionToolStripMenuItem.Name = "DataCollectionToolStripMenuItem";
             this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.DataCollectionToolStripMenuItem.Text = "数据集";
@@ -969,6 +969,14 @@ namespace MagicMongoDBTool
             this.LastPageToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.LastPage);
             this.QueryDataToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Query);
             this.DataFilterToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Filter);
+
+            this.DelMongoCollectionToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.DelMongoDBToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.RemoveUserFromAdminToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.RemoveUserToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.DelSelectRecordToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.DropElementToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.DelFileToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
 
             this.ImportDataFromAccessToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.AccessDB);
             this.RefreshToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Refresh);

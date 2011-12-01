@@ -58,7 +58,7 @@
             this.cmdOK.Location = new System.Drawing.Point(52, 124);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
-            this.cmdOK.TabIndex = 5;
+            this.cmdOK.TabIndex = 3;
             this.cmdOK.Text = "确定";
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
@@ -68,7 +68,7 @@
             this.cmdCancel.Location = new System.Drawing.Point(218, 125);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(100, 32);
-            this.cmdCancel.TabIndex = 6;
+            this.cmdCancel.TabIndex = 4;
             this.cmdCancel.Text = "取消";
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
@@ -105,7 +105,7 @@
             this.txtUserName.Radius = 3;
             this.txtUserName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtUserName.Size = new System.Drawing.Size(146, 29);
-            this.txtUserName.TabIndex = 9;
+            this.txtUserName.TabIndex = 0;
             this.txtUserName.UseSystemPasswordChar = false;
             this.txtUserName.WaterMark = null;
             this.txtUserName.WaterMarkColor = System.Drawing.Color.Silver;
@@ -123,7 +123,7 @@
             this.txtPassword.Radius = 3;
             this.txtPassword.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtPassword.Size = new System.Drawing.Size(146, 29);
-            this.txtPassword.TabIndex = 10;
+            this.txtPassword.TabIndex = 1;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.WaterMark = null;
             this.txtPassword.WaterMarkColor = System.Drawing.Color.Silver;
@@ -135,7 +135,7 @@
             this.chkReadOnly.Location = new System.Drawing.Point(137, 97);
             this.chkReadOnly.Name = "chkReadOnly";
             this.chkReadOnly.Size = new System.Drawing.Size(74, 17);
-            this.chkReadOnly.TabIndex = 11;
+            this.chkReadOnly.TabIndex = 2;
             this.chkReadOnly.Text = "只读权限";
             this.chkReadOnly.UseVisualStyleBackColor = false;
             // 

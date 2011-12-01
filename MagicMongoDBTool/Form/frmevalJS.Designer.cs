@@ -58,7 +58,7 @@
             this.cmbFuncLst.Location = new System.Drawing.Point(114, 32);
             this.cmbFuncLst.Name = "cmbFuncLst";
             this.cmbFuncLst.Size = new System.Drawing.Size(151, 21);
-            this.cmbFuncLst.TabIndex = 18;
+            this.cmbFuncLst.TabIndex = 0;
             // 
             // cmdSaveJs
             // 
@@ -66,7 +66,7 @@
             this.cmdSaveJs.Location = new System.Drawing.Point(271, 28);
             this.cmdSaveJs.Name = "cmdSaveJs";
             this.cmdSaveJs.Size = new System.Drawing.Size(70, 30);
-            this.cmdSaveJs.TabIndex = 21;
+            this.cmdSaveJs.TabIndex = 1;
             this.cmdSaveJs.Text = "保存";
             this.cmdSaveJs.Click += new System.EventHandler(this.cmdSaveMapJs_Click);
             // 
@@ -87,7 +87,7 @@
             this.txtevalJs.Multiline = true;
             this.txtevalJs.Name = "txtevalJs";
             this.txtevalJs.Size = new System.Drawing.Size(520, 160);
-            this.txtevalJs.TabIndex = 19;
+            this.txtevalJs.TabIndex = 3;
             this.txtevalJs.Text = "function eval(){\r\n     var i = 0;\r\n     i++;\r\n     return i;\r\n     }";
             // 
             // cmdEval
@@ -96,7 +96,7 @@
             this.cmdEval.Location = new System.Drawing.Point(356, 28);
             this.cmdEval.Name = "cmdEval";
             this.cmdEval.Size = new System.Drawing.Size(80, 30);
-            this.cmdEval.TabIndex = 22;
+            this.cmdEval.TabIndex = 2;
             this.cmdEval.Text = "执行";
             this.cmdEval.Click += new System.EventHandler(this.cmdEval_Click);
             // 
@@ -105,7 +105,7 @@
             this.txtParm.Location = new System.Drawing.Point(42, 243);
             this.txtParm.Name = "txtParm";
             this.txtParm.Size = new System.Drawing.Size(520, 20);
-            this.txtParm.TabIndex = 5;
+            this.txtParm.TabIndex = 4;
             // 
             // lblParm
             // 

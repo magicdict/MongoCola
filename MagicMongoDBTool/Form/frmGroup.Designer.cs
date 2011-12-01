@@ -76,7 +76,7 @@
             this.cmbForReduce.Location = new System.Drawing.Point(96, 29);
             this.cmbForReduce.Name = "cmbForReduce";
             this.cmbForReduce.Size = new System.Drawing.Size(151, 21);
-            this.cmbForReduce.TabIndex = 18;
+            this.cmbForReduce.TabIndex = 0;
             // 
             // cmdSaveReduceJs
             // 
@@ -84,7 +84,7 @@
             this.cmdSaveReduceJs.Location = new System.Drawing.Point(263, 25);
             this.cmdSaveReduceJs.Name = "cmdSaveReduceJs";
             this.cmdSaveReduceJs.Size = new System.Drawing.Size(70, 30);
-            this.cmdSaveReduceJs.TabIndex = 21;
+            this.cmdSaveReduceJs.TabIndex = 1;
             this.cmdSaveReduceJs.Text = "保存";
             this.cmdSaveReduceJs.Click += new System.EventHandler(this.cmdSaveReduceJs_Click);
             // 
@@ -105,7 +105,7 @@
             this.txtReduceJs.Multiline = true;
             this.txtReduceJs.Name = "txtReduceJs";
             this.txtReduceJs.Size = new System.Drawing.Size(418, 394);
-            this.txtReduceJs.TabIndex = 19;
+            this.txtReduceJs.TabIndex = 2;
             this.txtReduceJs.Text = "function(obj,prev){ prev.count++;}";
             // 
             // cmdOK
@@ -114,7 +114,7 @@
             this.cmdOK.Location = new System.Drawing.Point(386, 521);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
-            this.cmdOK.TabIndex = 22;
+            this.cmdOK.TabIndex = 2;
             this.cmdOK.Text = "确认";
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
@@ -231,7 +231,7 @@
             this.tabGroup.Name = "tabGroup";
             this.tabGroup.SelectedIndex = 0;
             this.tabGroup.Size = new System.Drawing.Size(479, 499);
-            this.tabGroup.TabIndex = 5;
+            this.tabGroup.TabIndex = 0;
             // 
             // tabReduce
             // 
@@ -304,7 +304,7 @@
             this.cmdQuery.Location = new System.Drawing.Point(263, 521);
             this.cmdQuery.Name = "cmdQuery";
             this.cmdQuery.Size = new System.Drawing.Size(100, 32);
-            this.cmdQuery.TabIndex = 5;
+            this.cmdQuery.TabIndex = 1;
             this.cmdQuery.Text = "载入查询条件";
             this.cmdQuery.Click += new System.EventHandler(this.cmdQuery_Click);
             // 

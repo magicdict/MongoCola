@@ -119,7 +119,7 @@
             this.radRouteSrv.Location = new System.Drawing.Point(215, 21);
             this.radRouteSrv.Name = "radRouteSrv";
             this.radRouteSrv.Size = new System.Drawing.Size(85, 17);
-            this.radRouteSrv.TabIndex = 8;
+            this.radRouteSrv.TabIndex = 2;
             this.radRouteSrv.Text = "路由服务器";
             this.radRouteSrv.UseVisualStyleBackColor = false;
             // 
@@ -130,7 +130,7 @@
             this.radConfigSrv.Location = new System.Drawing.Point(122, 22);
             this.radConfigSrv.Name = "radConfigSrv";
             this.radConfigSrv.Size = new System.Drawing.Size(85, 17);
-            this.radConfigSrv.TabIndex = 7;
+            this.radConfigSrv.TabIndex = 1;
             this.radConfigSrv.Text = "配置服务器";
             this.radConfigSrv.UseVisualStyleBackColor = false;
             // 
@@ -142,7 +142,7 @@
             this.radDataSrv.Location = new System.Drawing.Point(20, 22);
             this.radDataSrv.Name = "radDataSrv";
             this.radDataSrv.Size = new System.Drawing.Size(85, 17);
-            this.radDataSrv.TabIndex = 6;
+            this.radDataSrv.TabIndex = 0;
             this.radDataSrv.TabStop = true;
             this.radDataSrv.Text = "数据服务器";
             this.radDataSrv.UseVisualStyleBackColor = false;
@@ -164,7 +164,7 @@
             this.cmdCancel.Location = new System.Drawing.Point(419, 401);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 27);
-            this.cmdCancel.TabIndex = 9;
+            this.cmdCancel.TabIndex = 12;
             this.cmdCancel.Text = "取消";
             // 
             // cmdAdd
@@ -173,7 +173,7 @@
             this.cmdAdd.Location = new System.Drawing.Point(322, 401);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 27);
-            this.cmdAdd.TabIndex = 8;
+            this.cmdAdd.TabIndex = 11;
             this.cmdAdd.Text = "添加";
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
@@ -240,7 +240,7 @@
             this.txtHostName.Radius = 3;
             this.txtHostName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtHostName.Size = new System.Drawing.Size(103, 29);
-            this.txtHostName.TabIndex = 1;
+            this.txtHostName.TabIndex = 0;
             this.txtHostName.UseSystemPasswordChar = false;
             this.txtHostName.WaterMark = "连接表示名称";
             this.txtHostName.WaterMarkColor = System.Drawing.Color.Silver;
@@ -258,7 +258,7 @@
             this.txtPassword.Radius = 3;
             this.txtPassword.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtPassword.Size = new System.Drawing.Size(103, 29);
-            this.txtPassword.TabIndex = 5;
+            this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.WaterMark = "密码（可选项）";
             this.txtPassword.WaterMarkColor = System.Drawing.Color.Silver;
@@ -276,7 +276,7 @@
             this.txtUsername.Radius = 3;
             this.txtUsername.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtUsername.Size = new System.Drawing.Size(103, 29);
-            this.txtUsername.TabIndex = 4;
+            this.txtUsername.TabIndex = 3;
             this.txtUsername.UseSystemPasswordChar = false;
             this.txtUsername.WaterMark = "用户名（可选项）";
             this.txtUsername.WaterMarkColor = System.Drawing.Color.Silver;
@@ -294,7 +294,7 @@
             this.txtIpAddr.Radius = 3;
             this.txtIpAddr.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtIpAddr.Size = new System.Drawing.Size(103, 29);
-            this.txtIpAddr.TabIndex = 2;
+            this.txtIpAddr.TabIndex = 1;
             this.txtIpAddr.UseSystemPasswordChar = false;
             this.txtIpAddr.WaterMark = "服务器IP地址";
             this.txtIpAddr.WaterMarkColor = System.Drawing.Color.Silver;
@@ -312,7 +312,7 @@
             this.txtPort.Radius = 3;
             this.txtPort.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtPort.Size = new System.Drawing.Size(103, 29);
-            this.txtPort.TabIndex = 3;
+            this.txtPort.TabIndex = 2;
             this.txtPort.UseSystemPasswordChar = false;
             this.txtPort.WaterMark = "服务器端口号";
             this.txtPort.WaterMarkColor = System.Drawing.Color.Silver;
@@ -330,7 +330,7 @@
             this.txtReplSetName.Radius = 3;
             this.txtReplSetName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtReplSetName.Size = new System.Drawing.Size(153, 29);
-            this.txtReplSetName.TabIndex = 7;
+            this.txtReplSetName.TabIndex = 0;
             this.txtReplSetName.UseSystemPasswordChar = false;
             this.txtReplSetName.WaterMark = "副本名称（可选项）";
             this.txtReplSetName.WaterMarkColor = System.Drawing.Color.Silver;
@@ -358,7 +358,7 @@
             this.txtDataBaseName.Radius = 3;
             this.txtDataBaseName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtDataBaseName.Size = new System.Drawing.Size(103, 29);
-            this.txtDataBaseName.TabIndex = 6;
+            this.txtDataBaseName.TabIndex = 5;
             this.txtDataBaseName.UseSystemPasswordChar = false;
             this.txtDataBaseName.WaterMark = "数据库名（可选）";
             this.txtDataBaseName.WaterMarkColor = System.Drawing.Color.Silver;
@@ -370,7 +370,7 @@
             this.lstServerce.Name = "lstServerce";
             this.lstServerce.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lstServerce.Size = new System.Drawing.Size(377, 95);
-            this.lstServerce.TabIndex = 35;
+            this.lstServerce.TabIndex = 2;
             // 
             // lblReplsetList
             // 
@@ -388,7 +388,7 @@
             this.chkSafeMode.Location = new System.Drawing.Point(22, 126);
             this.chkSafeMode.Name = "chkSafeMode";
             this.chkSafeMode.Size = new System.Drawing.Size(220, 17);
-            this.chkSafeMode.TabIndex = 37;
+            this.chkSafeMode.TabIndex = 10;
             this.chkSafeMode.Text = "安全模式[保证数据安全，性能有损失]";
             this.chkSafeMode.UseVisualStyleBackColor = true;
             // 
@@ -413,7 +413,7 @@
             this.cmdInitReplset.Location = new System.Drawing.Point(275, 20);
             this.cmdInitReplset.Name = "cmdInitReplset";
             this.cmdInitReplset.Size = new System.Drawing.Size(102, 28);
-            this.cmdInitReplset.TabIndex = 37;
+            this.cmdInitReplset.TabIndex = 1;
             this.cmdInitReplset.Text = "初始化副本";
             this.cmdInitReplset.Click += new System.EventHandler(this.cmdInitReplset_Click);
             // 
@@ -437,7 +437,7 @@
             this.radArbiters.Location = new System.Drawing.Point(310, 21);
             this.radArbiters.Name = "radArbiters";
             this.radArbiters.Size = new System.Drawing.Size(85, 17);
-            this.radArbiters.TabIndex = 37;
+            this.radArbiters.TabIndex = 3;
             this.radArbiters.TabStop = true;
             this.radArbiters.Text = "仲裁服务器";
             this.radArbiters.UseVisualStyleBackColor = true;
@@ -464,7 +464,7 @@
             this.txtMainReplsetName.Radius = 3;
             this.txtMainReplsetName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtMainReplsetName.Size = new System.Drawing.Size(103, 29);
-            this.txtMainReplsetName.TabIndex = 41;
+            this.txtMainReplsetName.TabIndex = 6;
             this.txtMainReplsetName.UseSystemPasswordChar = false;
             this.txtMainReplsetName.WaterMark = "副本名称(可选项)";
             this.txtMainReplsetName.WaterMarkColor = System.Drawing.Color.Silver;
@@ -499,7 +499,7 @@
             0});
             this.numPriority.Name = "numPriority";
             this.numPriority.Size = new System.Drawing.Size(103, 20);
-            this.numPriority.TabIndex = 44;
+            this.numPriority.TabIndex = 7;
             this.numPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblTimeOut
@@ -521,7 +521,7 @@
             0});
             this.numTimeOut.Name = "numTimeOut";
             this.numTimeOut.Size = new System.Drawing.Size(103, 20);
-            this.numTimeOut.TabIndex = 46;
+            this.numTimeOut.TabIndex = 8;
             this.numTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numTimeOut.Value = new decimal(new int[] {
             60,

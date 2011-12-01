@@ -20,6 +20,7 @@ namespace MagicMongoDBTool
             SetMenuImage();
             if (!SystemManager.IsUseDefaultLanguage())
             {
+                //菜单文字
                 SetMenuText();
             }
             //初始化ToolBar
@@ -165,6 +166,7 @@ namespace MagicMongoDBTool
             this.menuStripMain.Renderer = new CRD.WinUI.Misc.ToolStripRenderer(new ProfessionalColorTable());
 
             this.trvsrvlst.NodeMouseClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseClick);
+            this.trvsrvlst.KeyDown += new KeyEventHandler(trvsrvlst_KeyDown);
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
             this.lstData.MouseDoubleClick += new MouseEventHandler(lstData_MouseDoubleClick);
             this.lstData.SelectedIndexChanged += new EventHandler(lstData_SelectedIndexChanged);
@@ -188,8 +190,38 @@ namespace MagicMongoDBTool
             _dataShower.Add(txtData);
             DataNaviToolStripLabel.Text = string.Empty;
         }
-
-
+        /// <summary>
+        /// 键盘事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void trvsrvlst_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    if (this.DelMongoDBToolStripMenuItem.Enabled)
+                    {
+                        DelMongoDBToolStripMenuItem_Click(null, null);
+                    }
+                    else {
+                        if (this.DelMongoCollectionToolStripMenuItem.Enabled)
+                        {
+                            DelMongoCollectionToolStripMenuItem_Click(null, null);
+                        }
+                    }
+                    break;
+                case Keys.F2:
+                    if (this.RenameCollectionToolStripMenuItem.Enabled)
+                    {
+                        RenameCollectionToolStripMenuItem_Click(null, null);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        
+        }
         ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
         /// <summary>
         /// 鼠标选中节点
