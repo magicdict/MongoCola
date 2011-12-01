@@ -45,7 +45,7 @@ namespace MagicMongoDBTool
             {
                 //测试用自动连接
                 List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
-                connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList["Magicdict"]);
+                connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList["Master"]);
                 MongoDBHelper.AddServer(connLst);
                 RefreshToolStripMenuItem_Click(null, null);
             }
@@ -170,11 +170,15 @@ namespace MagicMongoDBTool
             this.lstData.SelectedIndexChanged += new EventHandler(lstData_SelectedIndexChanged);
             this.trvData.MouseClick += new MouseEventHandler(trvData_MouseClick_Top);
             this.trvData.AfterSelect += new TreeViewEventHandler(trvData_AfterSelect_Top);
+            this.trvData.KeyDown += new KeyEventHandler(trvData_KeyDown);
             this.tabDataShower.SelectedIndexChanged += new EventHandler(
                 //变换TAB时候，选中项目自动消失，所以删除数据也消失
                     (x, y) =>
                     {
                         this.DelSelectRecordToolStripMenuItem.Enabled = false;
+                        if (IsNeedRefresh) {
+                            RefreshData();
+                        }
                     }
                 );
             DisableAllOpr();
@@ -184,6 +188,8 @@ namespace MagicMongoDBTool
             _dataShower.Add(txtData);
             DataNaviToolStripLabel.Text = string.Empty;
         }
+
+
         ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
         /// <summary>
         /// 鼠标选中节点
@@ -214,6 +220,19 @@ namespace MagicMongoDBTool
                 }
                 String mongoSvrKey = e.Node.Tag.ToString().Split(":".ToCharArray())[1].Split("/".ToCharArray())[0];
                 config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
+                if (config.UserName == String.Empty)
+                {
+                    lblUserInfo.Text = "UserInfo:Admin";
+                }
+                else {
+                    lblUserInfo.Text = "UserInfo:" + config.UserName;
+                }
+                if (config.AuthMode) {
+                    lblUserInfo.Text += " @AuthMode";
+                }
+                if (config.IsReadOnly) {
+                    lblUserInfo.Text += " [ReadOnly]";
+                }
                 if (!config.IsReadOnly)
                 {
                     //恢复数据：这个操作可以针对服务器，数据库，数据集，所以可以放在共通
@@ -931,6 +950,37 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
+        /// 键盘动作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void trvData_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    if (DelSelectRecordToolStripMenuItem.Enabled)
+                    {
+                        DelSelectRecordToolStripMenuItem_Click(null, null);
+                    }
+                    else {
+                        if (this.DropElementToolStripMenuItem.Enabled)
+                        {
+                            DropElementToolStripMenuItem_Click(null, null);
+                        }
+                    }
+                    break;
+                case Keys.F2:
+                    if (this.ModifyElementToolStripMenuItem.Enabled)
+                    {
+                        ModifyElementToolStripMenuItem_Click(null, null);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
         /// 清除数据显示区
         /// </summary>
         private void clearDataShower()
@@ -1384,7 +1434,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DelRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DelSelectRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //@那一剑风情 提出的删除前确认
             if (MyMessageBox.ShowConfirm("确认", "删除数据确认"))
@@ -1417,10 +1467,15 @@ namespace MagicMongoDBTool
             clearDataShower();
             MongoDBHelper.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
             SetDataNav();
+            IsNeedRefresh = false;
         }
         #endregion
 
         #region"管理：元素操作"
+        /// <summary>
+        /// 改变元素后是否需要刷新数据
+        /// </summary>
+        private Boolean IsNeedRefresh = false;
         /// <summary>
         /// 添加元素
         /// </summary>
@@ -1430,6 +1485,7 @@ namespace MagicMongoDBTool
         {
             //尝试添加
             SystemManager.OpenForm(new frmElement(false, trvData.SelectedNode));
+            IsNeedRefresh = true;
         }
         /// <summary>
         /// 删除元素
@@ -1438,8 +1494,13 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DropElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (trvData.SelectedNode.Level == 1 & trvData.SelectedNode.PrevNode == null) {
+                MyMessageBox.ShowMessage("Error", "_id 不能被删除");
+                return;
+            }
             MongoDBHelper.DropElement(trvData.SelectedNode.FullPath);
             trvData.Nodes.Remove(trvData.SelectedNode);
+            IsNeedRefresh = true;
         }
         /// <summary>
         /// 修改元素
@@ -1448,7 +1509,13 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ModifyElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (trvData.SelectedNode.Level == 1 & trvData.SelectedNode.PrevNode == null)
+            {
+                MyMessageBox.ShowMessage("Error", "_id 不能被删除");
+                return;
+            }
             SystemManager.OpenForm(new frmElement(true, trvData.SelectedNode));
+            IsNeedRefresh = true;
         }
         #endregion
 

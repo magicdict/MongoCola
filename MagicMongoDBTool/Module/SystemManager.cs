@@ -14,7 +14,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 测试模式
         /// </summary>
-        public static Boolean DEBUG_MODE = true;
+        public static Boolean DEBUG_MODE = false;
         /// <summary>
         /// 数据过滤器
         /// </summary>

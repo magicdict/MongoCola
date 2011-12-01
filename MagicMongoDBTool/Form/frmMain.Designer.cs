@@ -127,6 +127,7 @@ namespace MagicMongoDBTool
             this.lstData = new System.Windows.Forms.ListView();
             this.tabTextView = new System.Windows.Forms.TabPage();
             this.txtData = new System.Windows.Forms.TextBox();
+            this.lblUserInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.contentPanel.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
@@ -153,7 +154,8 @@ namespace MagicMongoDBTool
             // 
             this.statusStripMain.BackColor = System.Drawing.Color.Transparent;
             this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusSelectedObj});
+            this.toolStripStatusSelectedObj,
+            this.lblUserInfo});
             this.statusStripMain.Location = new System.Drawing.Point(0, 548);
             this.statusStripMain.Name = "statusStripMain";
             this.statusStripMain.Size = new System.Drawing.Size(917, 22);
@@ -571,7 +573,7 @@ namespace MagicMongoDBTool
             this.DelSelectRecordToolStripMenuItem.Name = "DelSelectRecordToolStripMenuItem";
             this.DelSelectRecordToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.DelSelectRecordToolStripMenuItem.Text = "删除选中数据";
-            this.DelSelectRecordToolStripMenuItem.Click += new System.EventHandler(this.DelRecordToolStripMenuItem_Click);
+            this.DelSelectRecordToolStripMenuItem.Click += new System.EventHandler(this.DelSelectRecordToolStripMenuItem_Click);
             // 
             // RemoveUserFromAdminToolStripMenuItem
             // 
@@ -914,6 +916,12 @@ namespace MagicMongoDBTool
             this.txtData.Size = new System.Drawing.Size(594, 426);
             this.txtData.TabIndex = 0;
             // 
+            // lblUserInfo
+            // 
+            this.lblUserInfo.Name = "lblUserInfo";
+            this.lblUserInfo.Size = new System.Drawing.Size(29, 17);
+            this.lblUserInfo.Text = "User";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1120,5 +1128,6 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem DropElementToolStripMenuItem;
         private ToolStripMenuItem ModifyElementToolStripMenuItem;
         private ToolStripMenuItem DisconnectToolStripMenuItem;
+        private ToolStripStatusLabel lblUserInfo;
     }
 }

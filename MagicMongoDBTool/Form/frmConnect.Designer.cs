@@ -83,7 +83,7 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(217, 180);
+            this.cmdCancel.Location = new System.Drawing.Point(219, 184);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(60, 31);
             this.cmdCancel.TabIndex = 7;
@@ -93,7 +93,7 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(109, 180);
+            this.cmdOK.Location = new System.Drawing.Point(111, 184);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(60, 31);
             this.cmdOK.TabIndex = 6;

@@ -252,7 +252,7 @@
             this.txtPassword.BackColor = System.Drawing.Color.Transparent;
             this.txtPassword.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtPassword.ForeImage = null;
-            this.txtPassword.Location = new System.Drawing.Point(242, 46);
+            this.txtPassword.Location = new System.Drawing.Point(242, 42);
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Radius = 3;
@@ -352,12 +352,12 @@
             this.txtDataBaseName.BackColor = System.Drawing.Color.Transparent;
             this.txtDataBaseName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtDataBaseName.ForeImage = null;
-            this.txtDataBaseName.Location = new System.Drawing.Point(419, 46);
+            this.txtDataBaseName.Location = new System.Drawing.Point(419, 42);
             this.txtDataBaseName.Multiline = false;
             this.txtDataBaseName.Name = "txtDataBaseName";
             this.txtDataBaseName.Radius = 3;
             this.txtDataBaseName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
-            this.txtDataBaseName.Size = new System.Drawing.Size(105, 29);
+            this.txtDataBaseName.Size = new System.Drawing.Size(103, 29);
             this.txtDataBaseName.TabIndex = 6;
             this.txtDataBaseName.UseSystemPasswordChar = false;
             this.txtDataBaseName.WaterMark = "数据库名（可选）";
@@ -463,7 +463,7 @@
             this.txtMainReplsetName.Name = "txtMainReplsetName";
             this.txtMainReplsetName.Radius = 3;
             this.txtMainReplsetName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
-            this.txtMainReplsetName.Size = new System.Drawing.Size(105, 29);
+            this.txtMainReplsetName.Size = new System.Drawing.Size(103, 29);
             this.txtMainReplsetName.TabIndex = 41;
             this.txtMainReplsetName.UseSystemPasswordChar = false;
             this.txtMainReplsetName.WaterMark = "副本名称(可选项)";
@@ -491,14 +491,14 @@
             // 
             // numPriority
             // 
-            this.numPriority.Location = new System.Drawing.Point(245, 75);
+            this.numPriority.Location = new System.Drawing.Point(245, 73);
             this.numPriority.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
             this.numPriority.Name = "numPriority";
-            this.numPriority.Size = new System.Drawing.Size(100, 20);
+            this.numPriority.Size = new System.Drawing.Size(103, 20);
             this.numPriority.TabIndex = 44;
             this.numPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -513,14 +513,14 @@
             // 
             // numTimeOut
             // 
-            this.numTimeOut.Location = new System.Drawing.Point(419, 75);
+            this.numTimeOut.Location = new System.Drawing.Point(419, 73);
             this.numTimeOut.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
             this.numTimeOut.Name = "numTimeOut";
-            this.numTimeOut.Size = new System.Drawing.Size(101, 20);
+            this.numTimeOut.Size = new System.Drawing.Size(103, 20);
             this.numTimeOut.TabIndex = 46;
             this.numTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numTimeOut.Value = new decimal(new int[] {

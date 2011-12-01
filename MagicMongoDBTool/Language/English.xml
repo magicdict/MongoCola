@@ -99,7 +99,7 @@
   <AddConnection_MainReplsetName>ReplaceSet Name</AddConnection_MainReplsetName>
   <AddConnection_MainReplsetName_Description>ReplaceSet Name(Option)</AddConnection_MainReplsetName_Description>
   <AddConnection_Priority>Priority</AddConnection_Priority>
-  <AddConnection_TimeOut>TimeOut(Second)</AddConnection_TimeOut>
+  <AddConnection_TimeOut>TimeOut(Sec)</AddConnection_TimeOut>
 
   <AddConnection_MasterSlave>MasterSlave Mode(GFS operation limition,Cluster of non-Route,Configuration Server,Slave Server)</AddConnection_MasterSlave>
   <AddConnection_SafeMode>Safe Mode(More data safe, less performance)</AddConnection_SafeMode>

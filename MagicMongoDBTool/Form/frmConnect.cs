@@ -34,6 +34,7 @@ namespace MagicMongoDBTool
             {
                 lstServerce.Items.Add(item.ConnectionName);
             }
+            lstServerce.Sorted = true;
             SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
         }
         /// <summary>

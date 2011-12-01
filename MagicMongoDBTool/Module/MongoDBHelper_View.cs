@@ -7,6 +7,7 @@ using GUIResource;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Collections;
+using QLFUI;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -72,7 +73,7 @@ namespace MagicMongoDBTool.Module
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("无法连接到服务器：" + config.ConnectionName + ex.ToString());
+                    MyMessageBox.ShowMessage("异常", "无法连接到服务器：" + config.ConnectionName, ex.ToString(), true);
                 }
             }
         }
@@ -162,7 +163,8 @@ namespace MagicMongoDBTool.Module
                             mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                             mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                             mongoSvrNode.Nodes.Add(mongoDBNode);
-                            if (strDBName == MongoDBHelper.DATABASE_NAME_ADMIN) {
+                            if (strDBName == MongoDBHelper.DATABASE_NAME_ADMIN)
+                            {
                                 if (config.AuthMode)
                                 {
                                     config.IsReadOnly = mongoSvr.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
@@ -177,17 +179,16 @@ namespace MagicMongoDBTool.Module
                 catch (MongoAuthenticationException ex)
                 {
                     //需要验证的数据服务器，没有Admin权限无法获得数据库列表
-                    MessageBox.Show("认证信息错误，请检查数据库的用户名和密码", "认证失败");
-                    //暂时不处理任何异常，简单跳过
-
                     if (!SystemManager.IsUseDefaultLanguage())
                     {
                         mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]";
+                        MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
+                            "请检查数据库的用户名和密码", ex.ToString(), true);
                     }
                     else
                     {
                         mongoSvrNode.Text += "[认证信息错误]";
-
+                        MyMessageBox.ShowMessage("认证信息错误", "请检查数据库的用户名和密码", ex.ToString(), true);
                     }
                     mongoSvrNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
@@ -201,10 +202,13 @@ namespace MagicMongoDBTool.Module
                     if (!SystemManager.IsUseDefaultLanguage())
                     {
                         mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
+                        MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                            "服务器没有启动 或者 认证模式不正确", ex.ToString(), true);
                     }
                     else
                     {
                         mongoSvrNode.Text += "[无法连接]";
+                        MyMessageBox.ShowMessage("无法连接", "服务器没有启动 或者 认证模式不正确", ex.ToString(), true);
                     }
                     mongoSvrNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
                     trvMongoDB.Nodes.Add(mongoSvrNode);

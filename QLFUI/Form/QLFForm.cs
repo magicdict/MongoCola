@@ -219,6 +219,10 @@ namespace QLFUI
                     listview.FullRowSelect = true;
                     listview.GridLines = true;
                     break;
+                case "System.Windows.Forms.ListBox":
+                    ListBox listbox = (ListBox)item;
+                    listbox.Sorted = true;
+                    break;
                 case "System.Windows.Forms.Label":
                     Label label = (Label)item;
                     label.BackColor = Color.Transparent;
@@ -474,7 +478,6 @@ namespace QLFUI
             _centerLeft.BackgroundBitmap = IniHelper.getImage("_centerLeft");
             _centerMiddle.BackgroundBitmap = IniHelper.getImage("_centerMiddle");
             _centerRight.BackgroundBitmap = IniHelper.getImage("_centerRight");
-
 
             _bottomLeft.BackgroundBitmap = IniHelper.getImage("_bottomLeft");
             _bottomMiddle.BackgroundBitmap = IniHelper.getImage("_bottomMiddle");
