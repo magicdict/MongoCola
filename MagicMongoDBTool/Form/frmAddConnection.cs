@@ -34,8 +34,8 @@ namespace MagicMongoDBTool
             this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Title);
             lblHostName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Name);
             txtHostName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Name_Description);
-            lblIpAddr.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Address);
-            txtIpAddr.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Address_Description);
+            lblHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Host);
+            txtHost.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Host_Description);
             lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
             txtPort.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Port_Description);
             lblUsername.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username);
@@ -99,7 +99,7 @@ namespace MagicMongoDBTool
             }
             txtHostName.Text = ModifyConn.ConnectionName;
             txtHostName.Enabled = false;
-            txtIpAddr.Text = ModifyConn.IpAddr;
+            txtHost.Text = ModifyConn.Host;
             txtMainReplsetName.Text = ModifyConn.MainReplSetName;
             txtPort.Text = ModifyConn.Port.ToString();
             txtUsername.Text = ModifyConn.UserName;
@@ -148,13 +148,16 @@ namespace MagicMongoDBTool
             if (txtConnectionString.Text != String.Empty)
             {
                 ModifyConn.ConnectionString = txtConnectionString.Text;
-                MongoDBHelper.FillConfigWithConnectionString(ModifyConn);
+                if (!MongoDBHelper.FillConfigWithConnectionString(ModifyConn)) {
+                    MyMessageBox.ShowMessage("错误的Url", "错误的url格式，请检查url");
+                    return;
+                };
             }
             else
             {
                 ModifyConn.ReplsetList = new List<String>();
                 ModifyConn.ConnectionName = txtHostName.Text;
-                ModifyConn.IpAddr = txtIpAddr.Text;
+                ModifyConn.Host = txtHost.Text;
                 if (txtPort.Text != String.Empty)
                 {
                     ModifyConn.Port = Convert.ToInt32(txtPort.Text);

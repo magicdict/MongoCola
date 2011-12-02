@@ -47,7 +47,7 @@ namespace MagicMongoDBTool.Module
         {
             //第一台服务器作为Primary服务器
             MongoServerSettings PrimarySetting = new MongoServerSettings();
-            PrimarySetting.Server = new MongoServerAddress(SystemManager.ConfigHelperInstance.ConnectionList[HostList[0]].IpAddr,
+            PrimarySetting.Server = new MongoServerAddress(SystemManager.ConfigHelperInstance.ConnectionList[HostList[0]].Host,
                                                            SystemManager.ConfigHelperInstance.ConnectionList[HostList[0]].Port);
             //如果不设置的话，会有错误：不是Primary服务器，SlaveOK 是 False
             PrimarySetting.SlaveOk = true;
@@ -64,7 +64,7 @@ namespace MagicMongoDBTool.Module
                 id++;
                 host = new BsonDocument();
                 host.Add("_id", id);
-                host.Add("host", SystemManager.ConfigHelperInstance.ConnectionList[item].IpAddr + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString());
+                host.Add("host", SystemManager.ConfigHelperInstance.ConnectionList[item].Host + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString());
                 if (SystemManager.ConfigHelperInstance.ConnectionList[item].ServerType == ConfigHelper.SvrType.ArbiterSvr)
                 {
                     //仲裁服务器
@@ -184,7 +184,7 @@ namespace MagicMongoDBTool.Module
             string cmdPara = replicaSetName + "/";
             foreach (var item in shardingNames)
             {
-                cmdPara += SystemManager.ConfigHelperInstance.ConnectionList[item].IpAddr + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString() + ",";
+                cmdPara += SystemManager.ConfigHelperInstance.ConnectionList[item].Host + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString() + ",";
             }
             cmdPara = cmdPara.TrimEnd(",".ToCharArray());
             CommandDocument mongoCmd = new CommandDocument();

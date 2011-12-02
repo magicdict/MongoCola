@@ -88,8 +88,8 @@
   <AddConnection_Title>Connection Manager</AddConnection_Title>
   <AddConnection_Name>Name</AddConnection_Name>
   <AddConnection_Name_Description>Nick Name</AddConnection_Name_Description>
-  <AddConnection_Address>Address</AddConnection_Address>
-  <AddConnection_Address_Description>Server IP Address</AddConnection_Address_Description>
+  <AddConnection_Host>Host</AddConnection_Host>
+  <AddConnection_Host_Description>Host or Ip</AddConnection_Host_Description>
 
   <AddConnection_Port_Description>Server Port</AddConnection_Port_Description>
   <AddConnection_UserName_Description>User Name(Option)</AddConnection_UserName_Description>

@@ -50,7 +50,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// IP地址
             /// </summary>
-            public string IpAddr;
+            public string Host;
             /// <summary>
             /// 端口号
             /// </summary>
@@ -124,7 +124,7 @@ namespace MagicMongoDBTool.Module
         {
             foreach (var item in ConnectionList.Values)
             {
-                if (item.IpAddr == Addr && item.Port == port)
+                if (item.Host == Addr && item.Port == port)
                 {
                     return item.ConnectionName;
                 }
@@ -141,7 +141,7 @@ namespace MagicMongoDBTool.Module
             MongoServerAddress mongosrvAddr = null;
             if (ConnectionList.ContainsKey(ConnectionName))
             {
-                mongosrvAddr = new MongoServerAddress(ConnectionList[ConnectionName].IpAddr, ConnectionList[ConnectionName].Port);
+                mongosrvAddr = new MongoServerAddress(ConnectionList[ConnectionName].Host, ConnectionList[ConnectionName].Port);
             }
             return mongosrvAddr;
         }

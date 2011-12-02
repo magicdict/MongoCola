@@ -20,7 +20,7 @@ namespace MagicMongoDBTool.Module
             {
                 lblCollectionName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Collection_Status_CollectionName);
                 lblDBName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.AddConnection_DBName);
-                lblHostAddr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.AddConnection_Address);
+                lblHostAddr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.AddConnection_Host);
                 lblFieldList.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_ColumnList);
                 lblPort.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Port);
                 grpDirect.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_Operation);

@@ -45,7 +45,7 @@ namespace MagicMongoDBTool
             {
                 if (item.MainReplSetName == _prmSvr.ReplicaSetName)
                 {
-                    if (!HostPortList.Contains(item.IpAddr + ":" + item.Port))
+                    if (!HostPortList.Contains(item.Host + ":" + item.Port))
                     {
                         lstServerOutReplset.Items.Add(item.ConnectionName);
                     }
@@ -63,7 +63,7 @@ namespace MagicMongoDBTool
             foreach (String item in lstServerOutReplset.SelectedItems)
             {
                 ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
-                Resultlst.Add(MongoDBHelper.AddToReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port, config.ServerType == ConfigHelper.SvrType.ArbiterSvr));
+                Resultlst.Add(MongoDBHelper.AddToReplsetServer(_prmSvr, config.Host + ":" + config.Port, config.ServerType == ConfigHelper.SvrType.ArbiterSvr));
             }
             MyMessageBox.ShowMessage("添加服务器", "执行结果", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
             RefreshSvr();
@@ -79,7 +79,7 @@ namespace MagicMongoDBTool
             foreach (String item in lstServerInReplset.SelectedItems)
             {
                 ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
-                Resultlst.Add(MongoDBHelper.RemoveFromReplsetServer(_prmSvr, config.IpAddr + ":" + config.Port));
+                Resultlst.Add(MongoDBHelper.RemoveFromReplsetServer(_prmSvr, config.Host + ":" + config.Port));
             }
             MyMessageBox.ShowMessage("删除服务器", "执行结果", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
             RefreshSvr();

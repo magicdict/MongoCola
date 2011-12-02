@@ -40,11 +40,11 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPort = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
-            this.lblIpAddr = new System.Windows.Forms.Label();
+            this.lblHost = new System.Windows.Forms.Label();
             this.txtHostName = new QLFUI.TextBoxEx();
             this.txtPassword = new QLFUI.TextBoxEx();
             this.txtUsername = new QLFUI.TextBoxEx();
-            this.txtIpAddr = new QLFUI.TextBoxEx();
+            this.txtHost = new QLFUI.TextBoxEx();
             this.txtPort = new QLFUI.TextBoxEx();
             this.txtReplSetName = new QLFUI.TextBoxEx();
             this.lblDataBaseName = new System.Windows.Forms.Label();
@@ -91,11 +91,11 @@
             this.contentPanel.Controls.Add(this.txtDataBaseName);
             this.contentPanel.Controls.Add(this.lblDataBaseName);
             this.contentPanel.Controls.Add(this.txtPort);
-            this.contentPanel.Controls.Add(this.txtIpAddr);
+            this.contentPanel.Controls.Add(this.txtHost);
             this.contentPanel.Controls.Add(this.txtUsername);
             this.contentPanel.Controls.Add(this.txtPassword);
             this.contentPanel.Controls.Add(this.txtHostName);
-            this.contentPanel.Controls.Add(this.lblIpAddr);
+            this.contentPanel.Controls.Add(this.lblHost);
             this.contentPanel.Controls.Add(this.chkSlaveOk);
             this.contentPanel.Controls.Add(this.cmdCancel);
             this.contentPanel.Controls.Add(this.cmdAdd);
@@ -221,15 +221,15 @@
             this.lblHostName.TabIndex = 20;
             this.lblHostName.Text = "连接名称";
             // 
-            // lblIpAddr
+            // lblHost
             // 
-            this.lblIpAddr.AutoSize = true;
-            this.lblIpAddr.BackColor = System.Drawing.Color.Transparent;
-            this.lblIpAddr.Location = new System.Drawing.Point(193, 26);
-            this.lblIpAddr.Name = "lblIpAddr";
-            this.lblIpAddr.Size = new System.Drawing.Size(31, 13);
-            this.lblIpAddr.TabIndex = 31;
-            this.lblIpAddr.Text = "地址";
+            this.lblHost.AutoSize = true;
+            this.lblHost.BackColor = System.Drawing.Color.Transparent;
+            this.lblHost.Location = new System.Drawing.Point(193, 26);
+            this.lblHost.Name = "lblHost";
+            this.lblHost.Size = new System.Drawing.Size(31, 13);
+            this.lblHost.TabIndex = 31;
+            this.lblHost.Text = "地址";
             // 
             // txtHostName
             // 
@@ -285,23 +285,23 @@
             this.txtUsername.WaterMark = "用户名（可选项）";
             this.txtUsername.WaterMarkColor = System.Drawing.Color.Silver;
             // 
-            // txtIpAddr
+            // txtHost
             // 
-            this.txtIpAddr.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtIpAddr.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txtIpAddr.BackColor = System.Drawing.Color.Transparent;
-            this.txtIpAddr.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
-            this.txtIpAddr.ForeImage = null;
-            this.txtIpAddr.Location = new System.Drawing.Point(243, 17);
-            this.txtIpAddr.Multiline = false;
-            this.txtIpAddr.Name = "txtIpAddr";
-            this.txtIpAddr.Radius = 3;
-            this.txtIpAddr.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
-            this.txtIpAddr.Size = new System.Drawing.Size(103, 29);
-            this.txtIpAddr.TabIndex = 1;
-            this.txtIpAddr.UseSystemPasswordChar = false;
-            this.txtIpAddr.WaterMark = "服务器IP地址";
-            this.txtIpAddr.WaterMarkColor = System.Drawing.Color.Silver;
+            this.txtHost.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.txtHost.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.txtHost.BackColor = System.Drawing.Color.Transparent;
+            this.txtHost.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
+            this.txtHost.ForeImage = null;
+            this.txtHost.Location = new System.Drawing.Point(243, 17);
+            this.txtHost.Multiline = false;
+            this.txtHost.Name = "txtHost";
+            this.txtHost.Radius = 3;
+            this.txtHost.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
+            this.txtHost.Size = new System.Drawing.Size(103, 29);
+            this.txtHost.TabIndex = 1;
+            this.txtHost.UseSystemPasswordChar = false;
+            this.txtHost.WaterMark = "服务器IP地址";
+            this.txtHost.WaterMarkColor = System.Drawing.Color.Silver;
             // 
             // txtPort
             // 
@@ -583,10 +583,10 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPort;
         private System.Windows.Forms.Label lblHostName;
-        private System.Windows.Forms.Label lblIpAddr;
+        private System.Windows.Forms.Label lblHost;
         private QLFUI.TextBoxEx txtHostName;
         private QLFUI.TextBoxEx txtPort;
-        private QLFUI.TextBoxEx txtIpAddr;
+        private QLFUI.TextBoxEx txtHost;
         private QLFUI.TextBoxEx txtUsername;
         private QLFUI.TextBoxEx txtPassword;
         private QLFUI.TextBoxEx txtReplSetName;
