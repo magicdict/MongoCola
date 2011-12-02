@@ -76,6 +76,7 @@
       <DependentUpon>frmElement.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\BsonValueEx.cs" />
+    <Compile Include="Module\MongoDBHelper_Connection.cs" />
     <Compile Include="UserController\ctlBsonValue.cs">
       <SubType>UserControl</SubType>
     </Compile>

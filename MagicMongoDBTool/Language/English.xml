@@ -115,6 +115,7 @@
   <AddConnection_Region_ReplaceSetList>ReplaceSet Server List</AddConnection_Region_ReplaceSetList>
   <AddConnection_Region_ReplaceSetInit>Init ReplaceSet</AddConnection_Region_ReplaceSetInit>
 
+  <AddConnection_ConnectionString>Directly use ConnectionString</AddConnection_ConnectionString>
   <AddConnection_Attention_Description>If Priority=0,then it can't be the ReplaceSet server</AddConnection_Attention_Description>
   <AddConnection_Attention2_Description>Password is saved in config file without Encryption</AddConnection_Attention2_Description>
  

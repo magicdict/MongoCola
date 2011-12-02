@@ -63,6 +63,8 @@
             this.numPriority = new System.Windows.Forms.NumericUpDown();
             this.lblTimeOut = new System.Windows.Forms.Label();
             this.numTimeOut = new System.Windows.Forms.NumericUpDown();
+            this.txtConnectionString = new System.Windows.Forms.TextBox();
+            this.lblConnectionString = new System.Windows.Forms.Label();
             this.contentPanel.SuspendLayout();
             this.grpReplset.SuspendLayout();
             this.grpShardingSvrType.SuspendLayout();
@@ -74,6 +76,8 @@
             // 
             this.contentPanel.BackColor = System.Drawing.Color.Transparent;
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
+            this.contentPanel.Controls.Add(this.lblConnectionString);
+            this.contentPanel.Controls.Add(this.txtConnectionString);
             this.contentPanel.Controls.Add(this.numTimeOut);
             this.contentPanel.Controls.Add(this.lblTimeOut);
             this.contentPanel.Controls.Add(this.numPriority);
@@ -100,7 +104,7 @@
             this.contentPanel.Controls.Add(this.lblPort);
             this.contentPanel.Controls.Add(this.lblHostName);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(537, 441);
+            this.contentPanel.Size = new System.Drawing.Size(529, 505);
             // 
             // lblReplsetName
             // 
@@ -161,7 +165,7 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(419, 401);
+            this.cmdCancel.Location = new System.Drawing.Point(419, 466);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 27);
             this.cmdCancel.TabIndex = 12;
@@ -170,7 +174,7 @@
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(322, 401);
+            this.cmdAdd.Location = new System.Drawing.Point(322, 466);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 27);
             this.cmdAdd.TabIndex = 11;
@@ -474,7 +478,7 @@
             this.lblAttention.AutoSize = true;
             this.lblAttention.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttention.ForeColor = System.Drawing.Color.Red;
-            this.lblAttention.Location = new System.Drawing.Point(25, 374);
+            this.lblAttention.Location = new System.Drawing.Point(19, 466);
             this.lblAttention.Name = "lblAttention";
             this.lblAttention.Size = new System.Drawing.Size(253, 26);
             this.lblAttention.TabIndex = 42;
@@ -529,11 +533,28 @@
             0,
             0});
             // 
+            // txtConnectionString
+            // 
+            this.txtConnectionString.Location = new System.Drawing.Point(23, 396);
+            this.txtConnectionString.Multiline = true;
+            this.txtConnectionString.Name = "txtConnectionString";
+            this.txtConnectionString.Size = new System.Drawing.Size(489, 50);
+            this.txtConnectionString.TabIndex = 46;
+            // 
+            // lblConnectionString
+            // 
+            this.lblConnectionString.AutoSize = true;
+            this.lblConnectionString.Location = new System.Drawing.Point(26, 379);
+            this.lblConnectionString.Name = "lblConnectionString";
+            this.lblConnectionString.Size = new System.Drawing.Size(115, 13);
+            this.lblConnectionString.TabIndex = 47;
+            this.lblConnectionString.Text = "直接使用连接字符串";
+            // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 504);
+            this.ClientSize = new System.Drawing.Size(531, 568);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmAddConnection";
             this.Text = "数据连接";
@@ -585,5 +606,7 @@
         private System.Windows.Forms.Label lblpriority;
         private System.Windows.Forms.NumericUpDown numTimeOut;
         private System.Windows.Forms.Label lblTimeOut;
+        private System.Windows.Forms.Label lblConnectionString;
+        private System.Windows.Forms.TextBox txtConnectionString;
     }
 }

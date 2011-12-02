@@ -111,6 +111,7 @@ namespace GUIResource
             AddConnection_Region_ReplaceSetName_Description,
             AddConnection_Region_ReplaceSetList,
             AddConnection_Region_ReplaceSetInit,
+            AddConnection_ConnectionString,
             AddConnection_Attention_Description,
             AddConnection_Attention2_Description,
 

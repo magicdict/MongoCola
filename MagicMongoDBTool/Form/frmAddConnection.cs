@@ -62,7 +62,7 @@ namespace MagicMongoDBTool
             txtReplSetName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetName_Description);
             cmdInitReplset.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetInit);
             lblReplsetList.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetList);
-
+            lblConnectionString.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionString);
 
             cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
             cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
@@ -118,7 +118,7 @@ namespace MagicMongoDBTool
             txtDataBaseName.Text = ModifyConn.DataBaseName;
             numPriority.Value = ModifyConn.Priority;
             numTimeOut.Value = ModifyConn.TimeOut;
-
+            txtConnectionString.Text  = ModifyConn.ConnectionString;
             switch (ModifyConn.ServerType)
             {
                 case ConfigHelper.SvrType.ConfigSvr:
@@ -144,103 +144,112 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdAdd_Click(object sender, EventArgs e)
         {
-            ModifyConn.ReplsetList = new List<String>();
-            ModifyConn.ConnectionName = txtHostName.Text;
-            ModifyConn.IpAddr = txtIpAddr.Text;
-            if (txtPort.Text != String.Empty)
-            {
-                ModifyConn.Port = Convert.ToInt32(txtPort.Text);
-            }
-            ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
-            ModifyConn.IsSafeMode = chkSafeMode.Checked;
-            ModifyConn.ReplSetName = txtReplSetName.Text;
-            ModifyConn.UserName = txtUsername.Text;
-            ModifyConn.Password = txtPassword.Text;
-            ModifyConn.DataBaseName = txtDataBaseName.Text;
-            ModifyConn.MainReplSetName = txtMainReplsetName.Text;
-            ModifyConn.Priority = (int)numPriority.Value;
-            ModifyConn.TimeOut = (int)numTimeOut.Value;
 
-            //仅有用户名或密码
-            if (txtUsername.Text != string.Empty && txtPassword.Text == String.Empty)
+            if (txtConnectionString.Text != String.Empty)
             {
-                MessageBox.Show("请输入密码");
-                return;
-            }
-            if (txtUsername.Text == string.Empty && txtPassword.Text != String.Empty)
-            {
-                MessageBox.Show("请输入用户名");
-                return;
-            }
-
-            //数据库名称存在，则必须输入用户名和密码
-            if (txtDataBaseName.Text != string.Empty)
-            {
-                //用户名或者密码为空
-                if (txtUsername.Text == string.Empty || txtPassword.Text == String.Empty)
-                {
-                    MessageBox.Show("请输入用户名或密码");
-                    return;
-                }
-            }
-
-            if (txtDataBaseName.Text != string.Empty)
-            {
-                //没有数据库名称的时候，只能以Admin登陆
-                ModifyConn.LoginAsAdmin = false;
+                ModifyConn.ConnectionString = txtConnectionString.Text;
+                MongoDBHelper.FillConfigWithConnectionString(ModifyConn);
             }
             else
             {
-                //有数据库的时候，不能以Admin登陆
-                ModifyConn.LoginAsAdmin = true;
-            }
-
-            //普通服务器
-            if (radDataSrv.Checked)
-            {
-                ModifyConn.ServerType = ConfigHelper.SvrType.DataSvr;
-            }
-            //配置服务器
-            if (radConfigSrv.Checked)
-            {
-                ModifyConn.ServerType = ConfigHelper.SvrType.ConfigSvr;
-                //Config和Route不能设置为SlaveOK模式,必须设置为Admin模式
-                //文件下载的时候也不能使用SlaveOK模式
-                ModifyConn.LoginAsAdmin = true;
-                ModifyConn.IsSlaveOk = false;
-            }
-            //路由服务器
-            if (radRouteSrv.Checked)
-            {
-                //Config和Route不能设置为SlaveOK模式,必须设置为Admin模式
-                //文件下载的时候也不能使用SlaveOK模式
-                ModifyConn.ServerType = ConfigHelper.SvrType.RouteSvr;
-                ModifyConn.LoginAsAdmin = true;
-                ModifyConn.IsSlaveOk = false;
-            }
-            //仲裁服务器
-            if (this.radArbiters.Checked)
-            {
-                ModifyConn.ServerType = ConfigHelper.SvrType.ArbiterSvr;
-            }
-            //如果输入了副本名称
-            if (this.txtReplSetName.Text != String.Empty)
-            {
-                if (lstServerce.SelectedItems.Count == 0)
+                ModifyConn.ReplsetList = new List<String>();
+                ModifyConn.ConnectionName = txtHostName.Text;
+                ModifyConn.IpAddr = txtIpAddr.Text;
+                if (txtPort.Text != String.Empty)
                 {
-                    MessageBox.Show("请选择副本服务器");
+                    ModifyConn.Port = Convert.ToInt32(txtPort.Text);
+                }
+                ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
+                ModifyConn.IsSafeMode = chkSafeMode.Checked;
+                ModifyConn.ReplSetName = txtReplSetName.Text;
+                ModifyConn.UserName = txtUsername.Text;
+                ModifyConn.Password = txtPassword.Text;
+                ModifyConn.DataBaseName = txtDataBaseName.Text;
+                ModifyConn.MainReplSetName = txtMainReplsetName.Text;
+                ModifyConn.Priority = (int)numPriority.Value;
+                ModifyConn.TimeOut = (int)numTimeOut.Value;
+
+                //仅有用户名或密码
+                if (txtUsername.Text != string.Empty && txtPassword.Text == String.Empty)
+                {
+                    MessageBox.Show("请输入密码");
                     return;
                 }
-                foreach (String item in lstServerce.SelectedItems)
+                if (txtUsername.Text == string.Empty && txtPassword.Text != String.Empty)
                 {
-                    ModifyConn.ReplsetList.Add(item);
+                    MessageBox.Show("请输入用户名");
+                    return;
                 }
-                //这里将自动选择为副本服务器
-                ModifyConn.ServerType = ConfigHelper.SvrType.ReplsetSvr;
-            }
-            if (ModifyConn.MainReplSetName != String.Empty && ModifyConn.Priority == 0)
-            {
-                MessageBox.Show("由于优先度为 0 ，所以当前服务器无法成为Primary服务器！");
+
+                //数据库名称存在，则必须输入用户名和密码
+                if (txtDataBaseName.Text != string.Empty)
+                {
+                    //用户名或者密码为空
+                    if (txtUsername.Text == string.Empty || txtPassword.Text == String.Empty)
+                    {
+                        MessageBox.Show("请输入用户名或密码");
+                        return;
+                    }
+                }
+
+                if (txtDataBaseName.Text != string.Empty)
+                {
+                    //没有数据库名称的时候，只能以Admin登陆
+                    ModifyConn.LoginAsAdmin = false;
+                }
+                else
+                {
+                    //有数据库的时候，不能以Admin登陆
+                    ModifyConn.LoginAsAdmin = true;
+                }
+
+                //普通服务器
+                if (radDataSrv.Checked)
+                {
+                    ModifyConn.ServerType = ConfigHelper.SvrType.DataSvr;
+                }
+                //配置服务器
+                if (radConfigSrv.Checked)
+                {
+                    ModifyConn.ServerType = ConfigHelper.SvrType.ConfigSvr;
+                    //Config和Route不能设置为SlaveOK模式,必须设置为Admin模式
+                    //文件下载的时候也不能使用SlaveOK模式
+                    ModifyConn.LoginAsAdmin = true;
+                    ModifyConn.IsSlaveOk = false;
+                }
+                //路由服务器
+                if (radRouteSrv.Checked)
+                {
+                    //Config和Route不能设置为SlaveOK模式,必须设置为Admin模式
+                    //文件下载的时候也不能使用SlaveOK模式
+                    ModifyConn.ServerType = ConfigHelper.SvrType.RouteSvr;
+                    ModifyConn.LoginAsAdmin = true;
+                    ModifyConn.IsSlaveOk = false;
+                }
+                //仲裁服务器
+                if (this.radArbiters.Checked)
+                {
+                    ModifyConn.ServerType = ConfigHelper.SvrType.ArbiterSvr;
+                }
+                //如果输入了副本名称
+                if (this.txtReplSetName.Text != String.Empty)
+                {
+                    if (lstServerce.SelectedItems.Count == 0)
+                    {
+                        MessageBox.Show("请选择副本服务器");
+                        return;
+                    }
+                    foreach (String item in lstServerce.SelectedItems)
+                    {
+                        ModifyConn.ReplsetList.Add(item);
+                    }
+                    //这里将自动选择为副本服务器
+                    ModifyConn.ServerType = ConfigHelper.SvrType.ReplsetSvr;
+                }
+                if (ModifyConn.MainReplSetName != String.Empty && ModifyConn.Priority == 0)
+                {
+                    MessageBox.Show("由于优先度为 0 ，所以当前服务器无法成为Primary服务器！");
+                }
             }
             if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.ConnectionName))
             {

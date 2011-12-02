@@ -44,6 +44,10 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public string ConnectionName;
             /// <summary>
+            /// 连接字符串
+            /// </summary>
+            public String ConnectionString;
+            /// <summary>
             /// IP地址
             /// </summary>
             public string IpAddr;
