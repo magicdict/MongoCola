@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.GridFS;
+using MongoDB.Bson.Serialization;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -324,7 +325,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="strKey"></param>
         /// <param name="keyField"></param>
         /// <returns></returns>
-        public static Boolean DropRecord(MongoCollection mongoCol, object strKey, string keyField = "_id")
+        public static Boolean DropDocument(MongoCollection mongoCol, object strKey, string keyField = "_id")
         {
             if (IsExistByField(mongoCol, (BsonValue)strKey, keyField))
             {
@@ -332,7 +333,19 @@ namespace MagicMongoDBTool.Module
             }
             return true;
         }
-
+        /// <summary>
+        /// 插入空文档
+        /// </summary>
+        /// <param name="mongoCol"></param>
+        /// <returns>插入记录的ID</returns>
+        public static BsonValue InsertEmptyDocument(MongoCollection mongoCol, Boolean safeMode)
+        {
+            //不支持中文 JIRA ticket is created : SERVER-4412 
+            //collection names are limited to 121 bytes after converting to UTF-8. 
+            BsonDocument document = new BsonDocument();
+            mongoCol.Insert<BsonDocument>(document, new SafeMode(safeMode));
+            return document.GetElement("_id").Value;
+        }
         #region"GFS操作"
 
         ///在使用GirdFileSystem的时候，请注意：

@@ -41,8 +41,8 @@
   <Main_Menu_Operation_DataCollection_DelDC>Del DataCollection</Main_Menu_Operation_DataCollection_DelDC>
   <Main_Menu_Operation_DataCollection_ReIndex>ReIndex</Main_Menu_Operation_DataCollection_ReIndex>
   <Main_Menu_Operation_DataCollection_Index>Index Manager</Main_Menu_Operation_DataCollection_Index>
-
-  <Main_Menu_Operation_DataCollection_DelSelect>Del Select Data</Main_Menu_Operation_DataCollection_DelSelect>
+  <Main_Menu_Operation_DataCollection_AddDocument>Add Empty Document</Main_Menu_Operation_DataCollection_AddDocument>
+  <Main_Menu_Operation_DataCollection_DropDocument>Del Selected Document</Main_Menu_Operation_DataCollection_DropDocument>
   <Main_Menu_Operation_DataCollection_Rename>Rename</Main_Menu_Operation_DataCollection_Rename>
 
   <Main_Menu_Operation_DataDocument>Data Document</Main_Menu_Operation_DataDocument>

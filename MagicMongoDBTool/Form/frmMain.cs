@@ -6,6 +6,7 @@ using System.Text;
 using QLFUI;
 using GUIResource;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
@@ -104,7 +105,8 @@ namespace MagicMongoDBTool
             this.RenameCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Rename);
             this.IndexManageToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Index);
             this.ReIndexToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_ReIndex);
-            this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DelSelect);
+            this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
+            this.AddDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
 
             this.DataDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument);
             this.AddElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
@@ -222,6 +224,9 @@ namespace MagicMongoDBTool
             }
         
         }
+        /// <summary>
+        /// 当前服务器配置
+        /// </summary>
         ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
         /// <summary>
         /// 鼠标选中节点
@@ -322,6 +327,10 @@ namespace MagicMongoDBTool
                             statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Data) +
                                 ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         }
+                        if (!config.IsReadOnly & !MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
+                        {
+                            this.AddDocumentToolStripMenuItem.Enabled = true;
+                        }
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             SetDataNav();
@@ -332,6 +341,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.QueryDataToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.AddDocumentToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
                         }
@@ -561,7 +571,6 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ExportCollectionToolStripMenuItem.Clone());
-
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show();
                         }
@@ -610,6 +619,7 @@ namespace MagicMongoDBTool
             this.ReIndexToolStripMenuItem.Enabled = false;
             this.RenameCollectionToolStripMenuItem.Enabled = false;
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
+            this.AddDocumentToolStripMenuItem.Enabled = false;
             this.DelSelectRecordToolStripMenuItem.Enabled = false;
 
             //管理-GFS
@@ -1477,20 +1487,40 @@ namespace MagicMongoDBTool
                     String strKey = lstData.Columns[0].Text;
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                        MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), item.Tag, strKey);
+                        MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), item.Tag, strKey);
                     }
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
                     String strKey = trvData.SelectedNode.Nodes[0].Text.Split(":".ToCharArray())[0];
-                    MongoDBHelper.DropRecord(SystemManager.GetCurrentCollection(), trvData.SelectedNode.Tag, strKey);
+                    MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), trvData.SelectedNode.Tag, strKey);
                     trvData.ContextMenuStrip = null;
                 }
                 DelSelectRecordToolStripMenuItem.Enabled = false;
                 RefreshData();
             }
         }
+
+        /// <summary>
+        /// 添加文档
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddDocumentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BsonValue id = MongoDBHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), config.IsSafeMode);
+            TreeNode newDoc = new TreeNode(SystemManager.GetCurrentCollection().Name + "[" + (SystemManager.GetCurrentCollection().Count()).ToString() + "]");
+            newDoc.Tag = id;
+            TreeNode newid = new TreeNode("_id:" + id.ToString());
+            newid.Tag = id;
+            newDoc.Nodes.Add(newid);
+            trvData.Nodes.Add(newDoc);
+            tabDataShower.SelectedIndex = 0;
+            trvData.SelectedNode = newid;
+            IsNeedRefresh = true;
+        }
+
         /// <summary>
         /// 刷新数据
         /// </summary>

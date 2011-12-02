@@ -47,7 +47,8 @@ namespace GUIResource
             Main_Menu_Operation_DataCollection,
             Main_Menu_Operation_DataCollection_DelDC,
             Main_Menu_Operation_DataCollection_Index,
-            Main_Menu_Operation_DataCollection_DelSelect,
+            Main_Menu_Operation_DataCollection_DropDocument,
+            Main_Menu_Operation_DataCollection_AddDocument,
             Main_Menu_Operation_DataCollection_ReIndex,
             Main_Menu_Operation_DataCollection_Rename,
 
@@ -261,7 +262,7 @@ namespace GUIResource
             Index_Keys,
             Index_Version,
             Index_NameSpace,
-                    //异常
+            //异常
             Exception_NotConnected,
             Exception_AuthenticationException,
 
