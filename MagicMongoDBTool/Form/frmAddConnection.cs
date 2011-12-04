@@ -67,7 +67,7 @@ namespace MagicMongoDBTool
             cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
             cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
             lblAttention.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention_Description)
-                    + "\r\n"  + SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention2_Description);
+                    + "\r\n" + SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention2_Description);
         }
         /// <summary>
         /// 初始化（修改）
@@ -118,7 +118,7 @@ namespace MagicMongoDBTool
             txtDataBaseName.Text = ModifyConn.DataBaseName;
             numPriority.Value = ModifyConn.Priority;
             numTimeOut.Value = ModifyConn.TimeOut;
-            txtConnectionString.Text  = ModifyConn.ConnectionString;
+            txtConnectionString.Text = ModifyConn.ConnectionString;
             switch (ModifyConn.ServerType)
             {
                 case ConfigHelper.SvrType.ConfigSvr:
@@ -145,18 +145,23 @@ namespace MagicMongoDBTool
         private void cmdAdd_Click(object sender, EventArgs e)
         {
 
+            ModifyConn.ConnectionName = txtHostName.Text;
             if (txtConnectionString.Text != String.Empty)
             {
                 ModifyConn.ConnectionString = txtConnectionString.Text;
-                if (!MongoDBHelper.FillConfigWithConnectionString(ModifyConn)) {
+                if (!MongoDBHelper.FillConfigWithConnectionString(ModifyConn))
+                {
                     MyMessageBox.ShowMessage("错误的Url", "错误的url格式，请检查url");
                     return;
                 };
+                if (!String.IsNullOrEmpty(ModifyConn.DataBaseName))
+                {
+                    ModifyConn.LoginAsAdmin = true;
+                }
             }
             else
             {
                 ModifyConn.ReplsetList = new List<String>();
-                ModifyConn.ConnectionName = txtHostName.Text;
                 ModifyConn.Host = txtHost.Text;
                 if (txtPort.Text != String.Empty)
                 {
@@ -194,7 +199,7 @@ namespace MagicMongoDBTool
                         return;
                     }
                 }
-
+                //是否用户是Admin
                 if (txtDataBaseName.Text != string.Empty)
                 {
                     //没有数据库名称的时候，只能以Admin登陆
@@ -254,6 +259,7 @@ namespace MagicMongoDBTool
                     MessageBox.Show("由于优先度为 0 ，所以当前服务器无法成为Primary服务器！");
                 }
             }
+            //保存配置
             if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.ConnectionName))
             {
                 SystemManager.ConfigHelperInstance.ConnectionList[ModifyConn.ConnectionName] = ModifyConn;
@@ -303,11 +309,11 @@ namespace MagicMongoDBTool
             CommandResult rtn = MongoDBHelper.InitReplicaSet(txtReplSetName.Text, svrKeys);
             if (rtn.Ok)
             {
-                MyMessageBox.ShowMessage("初始化","初始化成功,请稍等片刻后连接服务器", rtn.Response.ToString(),true);
+                MyMessageBox.ShowMessage("初始化", "初始化成功,请稍等片刻后连接服务器", rtn.Response.ToString(), true);
             }
             else
             {
-                MyMessageBox.ShowMessage("初始化","初始化失败", rtn.Response.ToString(),true);
+                MyMessageBox.ShowMessage("初始化", "初始化失败", rtn.Response.ToString(), true);
             }
         }
     }

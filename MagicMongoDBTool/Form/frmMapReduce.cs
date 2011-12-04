@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using QLFUI;
 namespace MagicMongoDBTool
 {
-    public partial class frmMapReduce : QLFUI.QLFForm
+    public partial class frmMapReduce : QLFForm
     {
         public frmMapReduce()
         {
@@ -68,7 +69,7 @@ namespace MagicMongoDBTool
         {
             if (txtMapJs.Text != string.Empty)
             {
-                String strJsName = Microsoft.VisualBasic.Interaction.InputBox("请输入Javascript名称：", "保存Javascript");
+                String strJsName = MyMessageBox.ShowInput("请输入Javascript名称：", "保存Javascript");
                 MongoDBHelper.SaveJavascript(strJsName, txtMapJs.Text);
             }
         }
@@ -81,7 +82,7 @@ namespace MagicMongoDBTool
         {
             if (this.txtReduceJs.Text != string.Empty)
             {
-                String strJsName = Microsoft.VisualBasic.Interaction.InputBox("请输入Javascript名称：", "保存Javascript");
+                String strJsName = MyMessageBox.ShowInput("请输入Javascript名称：", "保存Javascript");
                 MongoDBHelper.SaveJavascript(strJsName, txtReduceJs.Text);
             }
         }

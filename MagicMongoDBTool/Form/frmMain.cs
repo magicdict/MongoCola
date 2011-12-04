@@ -257,7 +257,7 @@ namespace MagicMongoDBTool
                 }
                 String mongoSvrKey = e.Node.Tag.ToString().Split(":".ToCharArray())[1].Split("/".ToCharArray())[0];
                 config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
-                if (config.UserName == String.Empty)
+                if (String.IsNullOrEmpty(config.UserName))
                 {
                     lblUserInfo.Text = "UserInfo:Admin";
                 }
@@ -1168,11 +1168,11 @@ namespace MagicMongoDBTool
             String strDBName = String.Empty;
             if (SystemManager.IsUseDefaultLanguage())
             {
-                strDBName = Microsoft.VisualBasic.Interaction.InputBox("请输入数据库名称：", "创建数据库");
+                strDBName = MyMessageBox.ShowInput("请输入数据库名称：", "创建数据库");
             }
             else
             {
-                strDBName = Microsoft.VisualBasic.Interaction.InputBox(SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_DataBase_Input),
+                strDBName = MyMessageBox.ShowInput(SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_DataBase_Input),
                                                                        SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_DataBase));
             }
             if (strDBName != string.Empty)
@@ -1267,11 +1267,11 @@ namespace MagicMongoDBTool
 
             if (SystemManager.IsUseDefaultLanguage())
             {
-                strCollection = Microsoft.VisualBasic.Interaction.InputBox("请输入数据集名称：", "创建数据集");
+                strCollection = MyMessageBox.ShowInput("请输入数据集名称：", "创建数据集");
             }
             else
             {
-                strCollection = Microsoft.VisualBasic.Interaction.InputBox(SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection_Input),
+                strCollection = MyMessageBox.ShowInput(SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection_Input),
                                                                            SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection));
             }
             if (strCollection != string.Empty)
@@ -1356,11 +1356,11 @@ namespace MagicMongoDBTool
             String strNewCollectionName = String.Empty;
             if (SystemManager.IsUseDefaultLanguage())
             {
-                strNewCollectionName = Microsoft.VisualBasic.Interaction.InputBox("请输入新数据集名称：", "数据集改名");
+                strNewCollectionName = MyMessageBox.ShowInput("请输入新数据集名称：", "数据集改名");
             }
             else
             {
-                strNewCollectionName = Microsoft.VisualBasic.Interaction.InputBox(SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
+                strNewCollectionName = MyMessageBox.ShowInput(SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
                                                                                   SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection));
             }
             if (MongoDBHelper.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelper.Oprcode.Rename, trvsrvlst.SelectedNode, strNewCollectionName))

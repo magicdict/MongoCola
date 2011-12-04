@@ -40,7 +40,7 @@ namespace MagicMongoDBTool
         {
             if (txtevalJs.Text != string.Empty)
             {
-                String strJsName = Microsoft.VisualBasic.Interaction.InputBox("请输入Javascript名称：", "保存Javascript");
+                String strJsName = MyMessageBox.ShowInput("请输入Javascript名称：", "保存Javascript");
                 MongoDBHelper.SaveJavascript(strJsName, txtevalJs.Text);
             }
         }

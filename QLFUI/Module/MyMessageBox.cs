@@ -12,6 +12,7 @@ namespace QLFUI
         public static void SwitchLanguage(StringResource mString) {
             _frmConfirm.SetText(mString.GetText(StringResource.TextType.Common_Yes), mString.GetText(StringResource.TextType.Common_No));
             _frmMessage.SetText(mString.GetText(StringResource.TextType.Common_Detail), mString.GetText(StringResource.TextType.Common_OK));
+            _frmInputBox.SetText(mString.GetText(StringResource.TextType.Common_Cancel), mString.GetText(StringResource.TextType.Common_OK));
         }
         /// <summary>
         /// 消息窗体
@@ -21,6 +22,21 @@ namespace QLFUI
         /// 确认窗体
         /// </summary>
         private static frmConfirm _frmConfirm = new frmConfirm();
+        /// <summary>
+        /// 输入
+        /// </summary>
+        private static frmInputBox _frmInputBox = new frmInputBox();
+
+        /// <summary>
+        /// 确认信息表示
+        /// </summary>
+        public static String ShowInput(String Message,String Title)
+        {
+            _frmInputBox.Text = Title;
+            _frmInputBox.SetMessage(Message);
+            _frmInputBox.ShowDialog();
+            return _frmInputBox.Result;
+        }
         /// <summary>
         /// 确认信息表示
         /// </summary>

@@ -59,6 +59,12 @@
     <Compile Include="Form\frmMessage.Designer.cs">
       <DependentUpon>frmMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmInputBox.Designer.cs">
+      <DependentUpon>frmInputBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Module\MyMessageBox.cs" />
     <Compile Include="Module\ProfessionalToolStripRendererEx.cs" />
     <Compile Include="UserController\BaseButton.cs">
@@ -93,6 +99,9 @@
     <Compile Include="Module\Win32.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form\frmInputBox.resx">
+      <DependentUpon>frmInputBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\BaseButton.resx">
       <DependentUpon>BaseButton.cs</DependentUpon>
       <SubType>Designer</SubType>

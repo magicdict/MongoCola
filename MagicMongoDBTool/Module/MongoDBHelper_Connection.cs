@@ -97,9 +97,12 @@ namespace MagicMongoDBTool.Module
             {
                 MongoUrl mongourl = MongoUrl.Create(connectionString);
                 config.DataBaseName = mongourl.DatabaseName;
-                config.UserName = mongourl.DefaultCredentials.Username;
-                config.Password = mongourl.DefaultCredentials.Password;
-                config.LoginAsAdmin = mongourl.DefaultCredentials.Admin;
+                if (mongourl.DefaultCredentials != null)
+                {
+                    config.UserName = mongourl.DefaultCredentials.Username;
+                    config.Password = mongourl.DefaultCredentials.Password;
+                    config.LoginAsAdmin = mongourl.DefaultCredentials.Admin;
+                }
                 config.Host = mongourl.Server.Host;
                 config.Port = mongourl.Server.Port;
                 config.IsSlaveOk = mongourl.SlaveOk;
@@ -169,14 +172,14 @@ namespace MagicMongoDBTool.Module
                     mongoSvr.Connect();
 
                     ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
-                    if ((config.UserName != string.Empty) & (config.Password != string.Empty))
+                    if ((!String.IsNullOrEmpty(config.UserName)) & (!String.IsNullOrEmpty(config.Password)))
                     {
                         config.AuthMode = true;
                     }
                     //获取ReadOnly
                     config.IsReadOnly = false;
                     List<string> databaseNameList = new List<string>();
-                    if (config.DataBaseName != String.Empty)
+                    if (!String.IsNullOrEmpty(config.DataBaseName))
                     {
                         //单数据库模式
                         TreeNode mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mongoSvr, mongoSvrKey);
