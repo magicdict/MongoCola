@@ -32,14 +32,14 @@ namespace MagicMongoDBTool
             this.menuStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
             this.toolStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
             this.statusStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
-            this.splitContainer1.BackColor = QLFUI.IniHelper.BackColor;
+            //this.splitContainer1.BackColor = QLFUI.IniHelper.BackColor;
             this.SkinChanged += new SkinChangedEventHandler((skinName) =>
             {
                 this.menuStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
                 this.toolStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
                 this.statusStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
-                this.splitContainer1.BackColor = System.Drawing.Color.GreenYellow;
-                this.splitContainer1.BackColor = QLFUI.IniHelper.BackColor;
+              //  this.splitContainer1.BackColor = System.Drawing.Color.GreenYellow;
+              //  this.splitContainer1.BackColor = QLFUI.IniHelper.BackColor;
                 SystemManager.ConfigHelperInstance.SkipFolder = skinName;
                 SystemManager.ConfigHelperInstance.SaveToConfigFile();
             });

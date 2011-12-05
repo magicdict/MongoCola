@@ -120,32 +120,30 @@ namespace MagicMongoDBTool
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ThanksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.tabDataShower = new System.Windows.Forms.TabControl();
-            this.tabTreeView = new System.Windows.Forms.TabPage();
-            this.trvData = new System.Windows.Forms.TreeView();
-            this.tabTableView = new System.Windows.Forms.TabPage();
-            this.lstData = new System.Windows.Forms.ListView();
             this.tabTextView = new System.Windows.Forms.TabPage();
             this.txtData = new System.Windows.Forms.TextBox();
+            this.tabTableView = new System.Windows.Forms.TabPage();
+            this.lstData = new System.Windows.Forms.ListView();
+            this.tabTreeView = new System.Windows.Forms.TabPage();
+            this.trvData = new System.Windows.Forms.TreeView();
+            this.trvsrvlst = new System.Windows.Forms.TreeView();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.contentPanel.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.tabDataShower.SuspendLayout();
-            this.tabTreeView.SuspendLayout();
-            this.tabTableView.SuspendLayout();
             this.tabTextView.SuspendLayout();
+            this.tabTableView.SuspendLayout();
+            this.tabTreeView.SuspendLayout();
             this.SuspendLayout();
             // 
             // contentPanel
             // 
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.splitContainer1);
+            this.contentPanel.Controls.Add(this.splitter1);
+            this.contentPanel.Controls.Add(this.tabDataShower);
+            this.contentPanel.Controls.Add(this.trvsrvlst);
             this.contentPanel.Controls.Add(this.toolStripMain);
             this.contentPanel.Controls.Add(this.menuStripMain);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
@@ -827,64 +825,40 @@ namespace MagicMongoDBTool
             this.contextMenuStripMain.Name = "contextMenuStripMain";
             this.contextMenuStripMain.Size = new System.Drawing.Size(61, 4);
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 49);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.trvsrvlst);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.tabDataShower);
-            this.splitContainer1.Size = new System.Drawing.Size(915, 458);
-            this.splitContainer1.SplitterDistance = 303;
-            this.splitContainer1.TabIndex = 4;
-            // 
-            // trvsrvlst
-            // 
-            this.trvsrvlst.BackColor = System.Drawing.Color.White;
-            this.trvsrvlst.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvsrvlst.Location = new System.Drawing.Point(0, 0);
-            this.trvsrvlst.Name = "trvsrvlst";
-            this.trvsrvlst.Size = new System.Drawing.Size(303, 458);
-            this.trvsrvlst.TabIndex = 0;
-            // 
             // tabDataShower
             // 
             this.tabDataShower.Controls.Add(this.tabTreeView);
             this.tabDataShower.Controls.Add(this.tabTableView);
             this.tabDataShower.Controls.Add(this.tabTextView);
             this.tabDataShower.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabDataShower.Location = new System.Drawing.Point(0, 0);
+            this.tabDataShower.Location = new System.Drawing.Point(252, 49);
             this.tabDataShower.Name = "tabDataShower";
             this.tabDataShower.SelectedIndex = 0;
-            this.tabDataShower.Size = new System.Drawing.Size(608, 458);
+            this.tabDataShower.Size = new System.Drawing.Size(663, 458);
             this.tabDataShower.TabIndex = 0;
             // 
-            // tabTreeView
+            // tabTextView
             // 
-            this.tabTreeView.BackColor = System.Drawing.Color.Orange;
-            this.tabTreeView.Controls.Add(this.trvData);
-            this.tabTreeView.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabTreeView.Location = new System.Drawing.Point(4, 22);
-            this.tabTreeView.Name = "tabTreeView";
-            this.tabTreeView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTreeView.Size = new System.Drawing.Size(600, 432);
-            this.tabTreeView.TabIndex = 0;
-            this.tabTreeView.Text = "树形视图";
+            this.tabTextView.BackColor = System.Drawing.Color.Yellow;
+            this.tabTextView.Controls.Add(this.txtData);
+            this.tabTextView.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tabTextView.Location = new System.Drawing.Point(4, 22);
+            this.tabTextView.Name = "tabTextView";
+            this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTextView.Size = new System.Drawing.Size(489, 352);
+            this.tabTextView.TabIndex = 2;
+            this.tabTextView.Text = "文本视图";
             // 
-            // trvData
+            // txtData
             // 
-            this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trvData.Location = new System.Drawing.Point(3, 3);
-            this.trvData.Name = "trvData";
-            this.trvData.Size = new System.Drawing.Size(594, 426);
-            this.trvData.TabIndex = 0;
+            this.txtData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtData.Location = new System.Drawing.Point(3, 3);
+            this.txtData.Multiline = true;
+            this.txtData.Name = "txtData";
+            this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtData.Size = new System.Drawing.Size(594, 426);
+            this.txtData.TabIndex = 0;
             // 
             // tabTableView
             // 
@@ -894,7 +868,7 @@ namespace MagicMongoDBTool
             this.tabTableView.Location = new System.Drawing.Point(4, 22);
             this.tabTableView.Name = "tabTableView";
             this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTableView.Size = new System.Drawing.Size(600, 432);
+            this.tabTableView.Size = new System.Drawing.Size(489, 352);
             this.tabTableView.TabIndex = 1;
             this.tabTableView.Text = "表格视图";
             // 
@@ -912,28 +886,43 @@ namespace MagicMongoDBTool
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
             // 
-            // tabTextView
+            // tabTreeView
             // 
-            this.tabTextView.BackColor = System.Drawing.Color.Yellow;
-            this.tabTextView.Controls.Add(this.txtData);
-            this.tabTextView.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabTextView.Location = new System.Drawing.Point(4, 22);
-            this.tabTextView.Name = "tabTextView";
-            this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTextView.Size = new System.Drawing.Size(600, 432);
-            this.tabTextView.TabIndex = 2;
-            this.tabTextView.Text = "文本视图";
+            this.tabTreeView.BackColor = System.Drawing.Color.Orange;
+            this.tabTreeView.Controls.Add(this.trvData);
+            this.tabTreeView.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tabTreeView.Location = new System.Drawing.Point(4, 22);
+            this.tabTreeView.Name = "tabTreeView";
+            this.tabTreeView.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTreeView.Size = new System.Drawing.Size(655, 432);
+            this.tabTreeView.TabIndex = 0;
+            this.tabTreeView.Text = "树形视图";
             // 
-            // txtData
+            // trvData
             // 
-            this.txtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtData.Location = new System.Drawing.Point(3, 3);
-            this.txtData.Multiline = true;
-            this.txtData.Name = "txtData";
-            this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtData.Size = new System.Drawing.Size(594, 426);
-            this.txtData.TabIndex = 0;
+            this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trvData.Location = new System.Drawing.Point(3, 3);
+            this.trvData.Name = "trvData";
+            this.trvData.Size = new System.Drawing.Size(649, 426);
+            this.trvData.TabIndex = 0;
+            // 
+            // trvsrvlst
+            // 
+            this.trvsrvlst.BackColor = System.Drawing.Color.White;
+            this.trvsrvlst.Dock = System.Windows.Forms.DockStyle.Left;
+            this.trvsrvlst.Location = new System.Drawing.Point(0, 49);
+            this.trvsrvlst.Name = "trvsrvlst";
+            this.trvsrvlst.Size = new System.Drawing.Size(252, 458);
+            this.trvsrvlst.TabIndex = 0;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(252, 49);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 458);
+            this.splitter1.TabIndex = 8;
+            this.splitter1.TabStop = false;
             // 
             // frmMain
             // 
@@ -957,15 +946,11 @@ namespace MagicMongoDBTool
             this.statusStripMain.PerformLayout();
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.tabDataShower.ResumeLayout(false);
-            this.tabTreeView.ResumeLayout(false);
-            this.tabTableView.ResumeLayout(false);
             this.tabTextView.ResumeLayout(false);
             this.tabTextView.PerformLayout();
+            this.tabTableView.ResumeLayout(false);
+            this.tabTreeView.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1089,15 +1074,6 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.ToolStripMenuItem ShardingConfigToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mapReduceToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TreeView trvsrvlst;
-        private System.Windows.Forms.TabControl tabDataShower;
-        private System.Windows.Forms.TabPage tabTreeView;
-        private System.Windows.Forms.TreeView trvData;
-        private System.Windows.Forms.TabPage tabTableView;
-        private System.Windows.Forms.ListView lstData;
-        private System.Windows.Forms.TabPage tabTextView;
-        private System.Windows.Forms.TextBox txtData;
         private System.Windows.Forms.ToolStripMenuItem AddUserToAdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
@@ -1153,5 +1129,14 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem DisconnectToolStripMenuItem;
         private ToolStripStatusLabel lblUserInfo;
         private ToolStripMenuItem AddDocumentToolStripMenuItem;
+        private Splitter splitter1;
+        private TabControl tabDataShower;
+        private TabPage tabTreeView;
+        private TreeView trvData;
+        private TabPage tabTableView;
+        private ListView lstData;
+        private TabPage tabTextView;
+        private TextBox txtData;
+        private TreeView trvsrvlst;
     }
 }
