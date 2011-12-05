@@ -67,8 +67,8 @@
             // 
             // txtKeyName
             // 
-            this.txtKeyName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtKeyName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtKeyName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtKeyName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtKeyName.BackColor = System.Drawing.Color.Transparent;
             this.txtKeyName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtKeyName.ForeImage = null;

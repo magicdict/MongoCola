@@ -24,7 +24,7 @@ namespace QLFUI
         private Color _foreColor = Color.Black;
         private int _radius = 3;
         public delegate void TextChangedHandler(String strNewText);
-        public event TextChangedHandler TextChanged;
+        public new event TextChangedHandler TextChanged;
         #endregion
 
         #region - 属性 -
@@ -192,19 +192,19 @@ namespace QLFUI
             set { txt.Cursor = value; }
         }
 
-        [Category("行为"), Description("自动提示方式")]
-        public AutoCompleteMode AutoCompleteMode
-        {
-            get { return txt.AutoCompleteMode; }
-            set { txt.AutoCompleteMode = value; }
-        }
+        //[Category("行为"), Description("自动提示方式")]
+        //public AutoCompleteMode AutoCompleteMode
+        //{
+        //    get { return txt.AutoCompleteMode; }
+        //    set { txt.AutoCompleteMode = value; }
+        //}
 
-        [Category("行为"), Description("自动提示类型")]
-        public AutoCompleteSource AutoCompleteSource
-        {
-            get { return txt.AutoCompleteSource; }
-            set { txt.AutoCompleteSource = value; }
-        }
+        //[Category("行为"), Description("自动提示类型")]
+        //public AutoCompleteSource AutoCompleteSource
+        //{
+        //    get { return txt.AutoCompleteSource; }
+        //    set { txt.AutoCompleteSource = value; }
+        //}
 
         #endregion
 

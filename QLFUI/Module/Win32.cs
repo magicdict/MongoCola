@@ -78,22 +78,22 @@ namespace QLFUI
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern int GetClassLong(IntPtr hwnd, int nIndex);
 
-        public struct MENUINFO
-        {
-            public int cbSize;
-            public uint fMask;
-            public int dwStyle;
-            public int cyMax;
-            public int hbrBack;
-            public int dwContextHelpID;
-            public int dwMenuData;
-        }
+        //public struct MENUINFO
+        //{
+        //    public int cbSize;
+        //    public uint fMask;
+        //    public int dwStyle;
+        //    public int cyMax;
+        //    public int hbrBack;
+        //    public int dwContextHelpID;
+        //    public int dwMenuData;
+        //}
 
         [DllImport("gdi32")]
         public static extern int CreatePatternBrush(int hBitmap);
 
-        [DllImport("user32")]
-        public static extern int SetMenuInfo(IntPtr hMenu, ref MENUINFO mi);
+        //[DllImport("user32")]
+        //public static extern int SetMenuInfo(IntPtr hMenu, ref MENUINFO mi);
 
         [DllImport("user32.dll", EntryPoint = "ShowWindow", CharSet = CharSet.Auto)]
         public static extern int ShowWindow(IntPtr hwnd, int nCmdShow);
@@ -227,26 +227,26 @@ namespace QLFUI
         public const int SB_THUMBTRACK = 5;
         public const int WM_HSCROLL = 0x114;
         public const int WM_VSCROLL = 0x115;
-        [DllImport("user32.dll", EntryPoint = "GetScrollInfo")]
-        public static extern bool GetScrollInfo(IntPtr hwnd, int fnBar, ref SCROLLINFO lpsi);
-        [DllImport("user32.dll", EntryPoint = "SetScrollInfo")]
-        public static extern int SetScrollInfo(IntPtr hwnd, int fnBar, [In] ref SCROLLINFO lpsi, bool fRedraw);
+        //[DllImport("user32.dll", EntryPoint = "GetScrollInfo")]
+        //public static extern bool GetScrollInfo(IntPtr hwnd, int fnBar, ref SCROLLINFO lpsi);
+        //[DllImport("user32.dll", EntryPoint = "SetScrollInfo")]
+        //public static extern int SetScrollInfo(IntPtr hwnd, int fnBar, [In] ref SCROLLINFO lpsi, bool fRedraw);
 
         [DllImport("User32.dll", CharSet = CharSet.Auto, EntryPoint = "SendMessage")]
         static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool PostMessage(IntPtr hWnd, uint Msg, long wParam, int lParam);
 
-        public struct SCROLLINFO
-        {
-            public uint cbSize;
-            public uint fMask;
-            public int nMin;
-            public int nMax;
-            public uint nPage;
-            public int nPos;
-            public int nTrackPos;
-        }
+        //public struct SCROLLINFO
+        //{
+        //    public uint cbSize;
+        //    public uint fMask;
+        //    public int nMin;
+        //    public int nMax;
+        //    public uint nPage;
+        //    public int nPos;
+        //    public int nTrackPos;
+        //}
 
         public enum ScrollInfoMask
         {

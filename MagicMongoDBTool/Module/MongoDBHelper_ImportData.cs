@@ -9,6 +9,8 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
+        //GetOleDbSchemaTable Is Not Supported In MONO
+#if !MONO
         /// <summary>
         /// 数据连接字符串
         /// </summary>
@@ -290,5 +292,6 @@ namespace MagicMongoDBTool.Module
 
             return rtnCode;
         }
+#endif
     }
 }

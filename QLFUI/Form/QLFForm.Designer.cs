@@ -133,11 +133,11 @@
             this.Resize += new System.EventHandler(QLFForm_Resize);
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.QLFForm_MouseDoubleClick);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.QLFForm_MouseMove);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(QLFForm_MouseDown);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(QLFForm_MouseUp);
             this.ResumeLayout(false);
 
         }
-
-
 
         #endregion
 

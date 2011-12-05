@@ -94,8 +94,8 @@
             // 
             // txtUserName
             // 
-            this.txtUserName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtUserName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtUserName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtUserName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtUserName.BackColor = System.Drawing.Color.Transparent;
             this.txtUserName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtUserName.ForeImage = null;
@@ -112,8 +112,8 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtPassword.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtPassword.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtPassword.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtPassword.BackColor = System.Drawing.Color.Transparent;
             this.txtPassword.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtPassword.ForeImage = null;

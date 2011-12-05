@@ -143,8 +143,8 @@
             // 
             // txtSource
             // 
-            this.txtSource.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtSource.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtSource.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtSource.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtSource.BackColor = System.Drawing.Color.Transparent;
             this.txtSource.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtSource.ForeImage = null;

@@ -65,6 +65,7 @@
     <Compile Include="Form\frmInputBox.Designer.cs">
       <DependentUpon>frmInputBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module\IniFile.cs" />
     <Compile Include="Module\MyMessageBox.cs" />
     <Compile Include="Module\ProfessionalToolStripRendererEx.cs" />
     <Compile Include="UserController\BaseButton.cs">

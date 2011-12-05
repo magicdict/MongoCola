@@ -58,8 +58,8 @@
             // 
             // textBoxEx1
             // 
-            this.txtResult.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtResult.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtResult.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtResult.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtResult.BackColor = System.Drawing.Color.Transparent;
             this.txtResult.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtResult.ForeImage = null;

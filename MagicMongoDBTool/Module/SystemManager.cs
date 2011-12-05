@@ -16,6 +16,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public static Boolean DEBUG_MODE = false;
         /// <summary>
+        /// 是否为MONO
+        /// </summary>
+        public static Boolean MONO_MODE = false;
+        /// <summary>
         /// 数据过滤器
         /// </summary>
         public static DataFilter CurrDataFilter = new DataFilter();

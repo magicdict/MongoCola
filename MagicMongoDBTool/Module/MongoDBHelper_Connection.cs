@@ -32,7 +32,7 @@ namespace MagicMongoDBTool.Module
                         _mongoSrvLst.Remove(config.ConnectionName);
                     }
                     MongoServerSettings mongoSvrSetting = new MongoServerSettings();
-                    if (config.ConnectionString == String.Empty)
+                    if (String.IsNullOrEmpty(config.ConnectionString))
                     {
                         mongoSvrSetting.ConnectionMode = ConnectionMode.Direct;
                         //当一个服务器作为从属服务器，副本组中的备用服务器，这里一定要设置为SlaveOK

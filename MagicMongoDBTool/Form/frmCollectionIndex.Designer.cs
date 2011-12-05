@@ -135,8 +135,8 @@
             // 
             // txtIndexName
             // 
-            this.txtIndexName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtIndexName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtIndexName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtIndexName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtIndexName.BackColor = System.Drawing.Color.Transparent;
             this.txtIndexName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtIndexName.ForeImage = null;

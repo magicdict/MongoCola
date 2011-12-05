@@ -35,8 +35,8 @@
             // 
             // txtElName
             // 
-            this.txtElName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtElName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtElName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtElName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtElName.BackColor = System.Drawing.Color.Transparent;
             this.txtElName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtElName.ForeImage = null;

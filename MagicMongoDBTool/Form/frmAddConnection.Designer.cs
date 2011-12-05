@@ -233,8 +233,8 @@
             // 
             // txtHostName
             // 
-            this.txtHostName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtHostName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtHostName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtHostName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtHostName.BackColor = System.Drawing.Color.Transparent;
             this.txtHostName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtHostName.ForeImage = null;
@@ -251,8 +251,8 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtPassword.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtPassword.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtPassword.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtPassword.BackColor = System.Drawing.Color.Transparent;
             this.txtPassword.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtPassword.ForeImage = null;
@@ -269,8 +269,8 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtUsername.BackColor = System.Drawing.Color.Transparent;
             this.txtUsername.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtUsername.ForeImage = null;
@@ -287,8 +287,8 @@
             // 
             // txtHost
             // 
-            this.txtHost.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtHost.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtHost.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtHost.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtHost.BackColor = System.Drawing.Color.Transparent;
             this.txtHost.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtHost.ForeImage = null;
@@ -305,8 +305,8 @@
             // 
             // txtPort
             // 
-            this.txtPort.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtPort.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtPort.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtPort.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtPort.BackColor = System.Drawing.Color.Transparent;
             this.txtPort.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtPort.ForeImage = null;
@@ -323,8 +323,8 @@
             // 
             // txtReplSetName
             // 
-            this.txtReplSetName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtReplSetName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtReplSetName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtReplSetName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtReplSetName.BackColor = System.Drawing.Color.Transparent;
             this.txtReplSetName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtReplSetName.ForeImage = null;
@@ -351,8 +351,8 @@
             // 
             // txtDataBaseName
             // 
-            this.txtDataBaseName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtDataBaseName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtDataBaseName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtDataBaseName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtDataBaseName.BackColor = System.Drawing.Color.Transparent;
             this.txtDataBaseName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtDataBaseName.ForeImage = null;
@@ -457,8 +457,8 @@
             // 
             // txtMainReplsetName
             // 
-            this.txtMainReplsetName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtMainReplsetName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtMainReplsetName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtMainReplsetName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtMainReplsetName.BackColor = System.Drawing.Color.Transparent;
             this.txtMainReplsetName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtMainReplsetName.ForeImage = null;

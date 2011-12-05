@@ -72,8 +72,8 @@
             // 
             // txtBsonValue
             // 
-            this.txtBsonValue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtBsonValue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            //this.txtBsonValue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            //this.txtBsonValue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtBsonValue.BackColor = System.Drawing.Color.Transparent;
             this.txtBsonValue.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtBsonValue.ForeImage = null;

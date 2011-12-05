@@ -36,7 +36,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;MONO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -45,7 +45,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;MONO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="Module\BsonValueEx.cs" />
     <Compile Include="Module\MongoDBHelper_Connection.cs" />
+    <Compile Include="Module\MongoDBHelper_ImportData.cs" />
     <Compile Include="UserController\ctlBsonValue.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -243,7 +244,6 @@
       <DependentUpon>ctlMongodump.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\MongodbDosCommand.cs" />
-    <Compile Include="Module\MongoDBHelper_ImportData.cs" />
     <Compile Include="Module\MongoDBHelper_Opration.cs" />
     <Compile Include="Module\MongoDBHelper_View.cs" />
     <Compile Include="Module\SystemManager.cs" />

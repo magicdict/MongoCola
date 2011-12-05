@@ -1,3 +1,6 @@
+*.rar
+*.zip
+*.csv
 *.txt
 *.config
 *.suo

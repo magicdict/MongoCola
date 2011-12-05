@@ -13,6 +13,7 @@ namespace MagicMongoDBTool.Module
     /// </summary>
     public static class GetSystemIcon
     {
+#if !MONO
         [DllImport("gdi32.dll")]
         public static extern Boolean DeleteObject(IntPtr hObject);
         /// <summary>
@@ -28,6 +29,7 @@ namespace MagicMongoDBTool.Module
             DeleteObject(h);// 释放IntPtr
             return icon;
         }
+#endif
         /// <summary>
         /// 扩展名和图片下标关联
         /// </summary>
@@ -66,7 +68,32 @@ namespace MagicMongoDBTool.Module
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Document));
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.DBKey));
         }
+        /// <summary>
+        /// 根据文件名获得图片数组下标
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="isLarge"></param>
+        /// <returns></returns>
+        public static Int32 GetIconIndexByFileName(string fileName, bool isLarge)
+        {
+            string GetIcon = new FileInfo(fileName).Extension;
+            if (IconList.ContainsKey(GetIcon))
+            {
+                return IconList[GetIcon];
+            }
+            else
+            {
+#if !MONO
+                IconImagelist.Images.Add(GetIconByFileType(GetIcon, isLarge));
+#else
+                //TODO:Linux
+#endif
+                IconList.Add(GetIcon, IconImagelist.Images.Count - 1);
+                return IconImagelist.Images.Count - 1;
+            }
+        }
 
+#if !MONO
         /// <summary>
         /// 依据文件名读取图标，若指定文件不存在，则返回空值。
         /// </summary>
@@ -89,26 +116,6 @@ namespace MagicMongoDBTool.Module
             //The icon is returned in the hIcon member of the shinfo struct
             System.Drawing.Icon myIcon = System.Drawing.Icon.FromHandle(shInfo.hIcon);
             return myIcon;
-        }
-        /// <summary>
-        /// 根据文件名获得图片数组下标
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <param name="isLarge"></param>
-        /// <returns></returns>
-        public static Int32 GetIconIndexByFileName(string fileName, bool isLarge)
-        {
-            string GetIcon = new FileInfo(fileName).Extension;
-            if (IconList.ContainsKey(GetIcon))
-            {
-                return IconList[GetIcon];
-            }
-            else
-            {
-                IconImagelist.Images.Add(GetIconByFileType(GetIcon, isLarge));
-                IconList.Add(GetIcon, IconImagelist.Images.Count - 1);
-                return IconImagelist.Images.Count - 1;
-            }
         }
         /// <summary>
         /// 给出文件扩展名（.*），返回相应图标
@@ -174,10 +181,11 @@ namespace MagicMongoDBTool.Module
             catch { }
             return resultIcon;
         }
+#endif
+
     }
 
-
-
+#if !MONO
     [StructLayout(LayoutKind.Sequential)]
     public struct SHFILEINFO
     {
@@ -203,5 +211,6 @@ namespace MagicMongoDBTool.Module
         [DllImport("shell32.dll")]
         public static extern uint ExtractIconEx(string lpszFile, int nIconIndex, int[] phiconLarge, int[] phiconSmall, uint nIcons);
     }
+#endif
 }
 

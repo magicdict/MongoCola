@@ -180,7 +180,8 @@ namespace MagicMongoDBTool
                     (x, y) =>
                     {
                         this.DelSelectRecordToolStripMenuItem.Enabled = false;
-                        if (IsNeedRefresh) {
+                        if (IsNeedRefresh)
+                        {
                             RefreshData();
                         }
                     }
@@ -206,7 +207,8 @@ namespace MagicMongoDBTool
                     {
                         DelMongoDBToolStripMenuItem_Click(null, null);
                     }
-                    else {
+                    else
+                    {
                         if (this.DelMongoCollectionToolStripMenuItem.Enabled)
                         {
                             DelMongoCollectionToolStripMenuItem_Click(null, null);
@@ -222,7 +224,7 @@ namespace MagicMongoDBTool
                 default:
                     break;
             }
-        
+
         }
         /// <summary>
         /// 当前服务器配置
@@ -261,13 +263,16 @@ namespace MagicMongoDBTool
                 {
                     lblUserInfo.Text = "UserInfo:Admin";
                 }
-                else {
+                else
+                {
                     lblUserInfo.Text = "UserInfo:" + config.UserName;
                 }
-                if (config.AuthMode) {
+                if (config.AuthMode)
+                {
                     lblUserInfo.Text += " @AuthMode";
                 }
-                if (config.IsReadOnly) {
+                if (config.IsReadOnly)
+                {
                     lblUserInfo.Text += " [ReadOnly]";
                 }
                 if (!config.IsReadOnly)
@@ -441,7 +446,9 @@ namespace MagicMongoDBTool
                         if (!config.IsReadOnly)
                         {
                             this.CreateMongoDBToolStripMenuItem.Enabled = true;
+#if !MONO
                             this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
+#endif
                             this.AddUserToAdminToolStripMenuItem.Enabled = true;
                         }
                         this.ShutDownToolStripMenuItem.Enabled = true;
@@ -470,7 +477,9 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
+#if !MONO
                             this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
+#endif
                             this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
@@ -660,9 +669,10 @@ namespace MagicMongoDBTool
 
 
             //工具
+#if !MONO
             this.ImportDataFromAccessToolStripMenuItem.Enabled = false;
             this.ImportDataFromAccessToolStripButton.Enabled = false;
-
+#endif
             //分布式
             this.ReplicaSetToolStripMenuItem.Enabled = false;
             this.ShardingConfigToolStripMenuItem.Enabled = false;
@@ -1005,7 +1015,8 @@ namespace MagicMongoDBTool
                     {
                         DelSelectRecordToolStripMenuItem_Click(null, null);
                     }
-                    else {
+                    else
+                    {
                         if (this.DropElementToolStripMenuItem.Enabled)
                         {
                             DropElementToolStripMenuItem_Click(null, null);
@@ -1062,7 +1073,8 @@ namespace MagicMongoDBTool
             {
                 this.statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
             }
-            else {
+            else
+            {
                 this.statusStripMain.Items[0].Text = "就绪";
             }
         }
@@ -1138,12 +1150,14 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
         {
+#if !MONO
             OpenFileDialog AccessFile = new OpenFileDialog();
             AccessFile.Filter = MongoDBHelper.MdbFilter;
             if (AccessFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 MongoDBHelper.ImportAccessDataBase(AccessFile.FileName, SystemManager.SelectObjectTag, trvsrvlst.SelectedNode);
             }
+#endif
         }
         /// <summary>
         /// DOS控制台
@@ -1556,7 +1570,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DropElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (trvData.SelectedNode.Level == 1 & trvData.SelectedNode.PrevNode == null) {
+            if (trvData.SelectedNode.Level == 1 & trvData.SelectedNode.PrevNode == null)
+            {
                 MyMessageBox.ShowMessage("Error", "_id 不能被删除");
                 return;
             }
