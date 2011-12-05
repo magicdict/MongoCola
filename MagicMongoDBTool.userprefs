@@ -1,0 +1,23 @@
+﻿<Properties GitUserInfo="UsingGIT">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 2.10.6" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MagicMongoDBTool\Form\frmMain.cs">
+    <Files>
+      <File FileName="MagicMongoDBTool\Form\frmAddConnection.cs" Line="9" Column="27" />
+      <File FileName="GUIResource\StringResources.cs" Line="1" Column="1" />
+      <File FileName="QLFUI\Form\QLFForm.Designer.cs" Line="1" Column="1" />
+      <File FileName="MagicMongoDBTool\Form\frmMain.Designer.cs" Line="1033" Column="46" />
+      <File FileName="QLFUI\Module\ProfessionalToolStripRendererEx.cs" Line="14" Column="10" />
+      <File FileName="MagicMongoDBTool\Module\CloneMeunToolItem.cs" Line="1" Column="1" />
+      <File FileName="QLFUI\Module\MyMessageBox.cs" Line="1" Column="1" />
+      <File FileName="QLFUI\Form\frmInputBox.cs" Line="43" Column="10" />
+      <File FileName="QLFUI\Form\QLFForm.cs" Line="233" Column="1" />
+      <File FileName="MagicMongoDBTool\Form\frmMain.cs" Line="167" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="C:\Work Shop\MagicMongoDBTool\MagicMongoDBTool\Form\frmMain.cs" line="167" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
