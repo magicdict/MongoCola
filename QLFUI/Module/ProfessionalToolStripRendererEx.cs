@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 //Thanks to the hard work of CRD.WinUI
-namespace CRD.WinUI.Misc
+namespace QLFUI
 {
     public class ToolStripRenderer : ToolStripProfessionalRenderer
     {

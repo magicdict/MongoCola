@@ -304,7 +304,7 @@ namespace QLFUI
         protected virtual void selectSkinButton_Click(object sender, EventArgs e)
         {
             List<String> skinNames = GetAllSkinName();
-            skinContextMenu.Renderer = new CRD.WinUI.Misc.ToolStripRenderer(new ProfessionalColorTable());
+            skinContextMenu.Renderer = new QLFUI.ToolStripRenderer(new ProfessionalColorTable());
             skinContextMenu.Items.Clear();
             for (int i = 0; i < skinNames.Count; i++)
             {

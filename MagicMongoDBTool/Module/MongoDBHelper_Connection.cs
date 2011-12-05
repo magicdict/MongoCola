@@ -70,7 +70,8 @@ namespace MagicMongoDBTool.Module
                             mongoSvrSetting.Servers = ReplsetSvrList;
                         }
                     }
-                    else {
+                    else
+                    {
                         //使用MongoConnectionString建立连接
                         mongoSvrSetting = MongoUrl.Create(config.ConnectionString).ToServerSettings();
                     }
@@ -198,16 +199,21 @@ namespace MagicMongoDBTool.Module
                         databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                         foreach (String strDBName in databaseNameList)
                         {
-                            TreeNode mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, mongoSvr, mongoSvrKey);
-                            mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                            mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                            mongoSvrNode.Nodes.Add(mongoDBNode);
-                            if (strDBName == MongoDBHelper.DATABASE_NAME_ADMIN)
+                            try
                             {
-                                if (config.AuthMode)
+                                TreeNode mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, mongoSvr, mongoSvrKey);
+                                mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                                mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                                mongoSvrNode.Nodes.Add(mongoDBNode);
+                                if (strDBName == MongoDBHelper.DATABASE_NAME_ADMIN)
                                 {
-                                    config.IsReadOnly = mongoSvr.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
+                                    if (config.AuthMode)
+                                    {
+                                        config.IsReadOnly = mongoSvr.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
+                                    }
                                 }
+                            }catch(Exception){
+                            
                             }
                         }
                         mongoSvrNode.Tag = SERVICE_TAG + ":" + mongoSvrKey;

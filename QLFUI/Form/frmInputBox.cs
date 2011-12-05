@@ -33,6 +33,7 @@ namespace QLFUI
         internal void SetMessage(string Message)
         {
             lblMessage.Text = Message;
+			this.txtResult.Text = String.Empty;
         }
 
         private void cmdOK_Click(object sender, EventArgs e)

@@ -21,9 +21,12 @@ namespace MagicMongoDBTool.Module
             ///感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
             ///坑爹啊。。。。。。。。
             Delegate[] list = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));
+#if !MONO
+            //悲催MONO不支持
             cloneMenuItem.Click += new EventHandler(
                     (x, y) => { list[0].DynamicInvoke(x, y); }
             );
+#endif
             cloneMenuItem.Text = orgMenuItem.Text;
             cloneMenuItem.Enabled = orgMenuItem.Enabled;
             cloneMenuItem.BackgroundImage = orgMenuItem.BackgroundImage;
@@ -47,9 +50,12 @@ namespace MagicMongoDBTool.Module
             ///感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
             ///坑爹啊。。。。。。。。
             Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));
-            cloneButton.Click += new EventHandler(
+#if !MONO
+            //悲催MONO不支持
+			cloneButton.Click += new EventHandler(
                     (x, y) => { _List[0].DynamicInvoke(x, y); }
             );
+#endif
             cloneButton.Image = orgMenuItem.Image;
             cloneButton.Enabled = orgMenuItem.Enabled;
             cloneButton.Text = orgMenuItem.Text;

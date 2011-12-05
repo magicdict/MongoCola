@@ -151,7 +151,7 @@ namespace MagicMongoDBTool
             // 
             // statusStripMain
             // 
-            this.statusStripMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.statusStripMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.statusStripMain.AutoSize = false;
             this.statusStripMain.BackColor = System.Drawing.Color.Transparent;
@@ -795,7 +795,7 @@ namespace MagicMongoDBTool
             this.ShardingConfigToolStripMenuItem.Name = "ShardingConfigToolStripMenuItem";
             this.ShardingConfigToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.ShardingConfigToolStripMenuItem.Text = "配置分片数据";
-            this.ShardingConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardConfigToolStripMenuItem_Click);
+            this.ShardingConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardingConfigToolStripMenuItem_Click);
             // 
             // HelpToolStripMenuItem
             // 
@@ -986,6 +986,8 @@ namespace MagicMongoDBTool
         /// </summary>
         private void InitToolBar()
         {
+
+
             FirstPageToolStripButton = this.FirstPageToolStripMenuItem.CloneFromMenuItem();
             PrePageToolStripButton = this.PrePageToolStripMenuItem.CloneFromMenuItem();
             NextPageToolStripButton = this.NextPageToolStripMenuItem.CloneFromMenuItem();
@@ -997,6 +999,17 @@ namespace MagicMongoDBTool
             ImportDataFromAccessToolStripButton = this.ImportDataFromAccessToolStripMenuItem.CloneFromMenuItem();
             OptionToolStripButton = this.OptionToolStripMenuItem.CloneFromMenuItem();
 
+#if MONO
+            FirstPageToolStripButton.Click += new System.EventHandler(FirstPageToolStripMenuItem_Click);
+            PrePageToolStripButton.Click += new System.EventHandler(PrePageToolStripMenuItem_Click);
+            NextPageToolStripButton.Click += new System.EventHandler(NextPageToolStripMenuItem_Click);
+            LastPageToolStripButton.Click += new System.EventHandler(LastPageToolStripMenuItem_Click);
+            QueryDataToolStripButton.Click += new System.EventHandler(QueryDataToolStripMenuItem_Click);
+            DataFilterToolStripButton.Click += new System.EventHandler(DataFilterToolStripMenuItem_Click);
+            RefreshToolStripButton.Click += new System.EventHandler(RefreshToolStripMenuItem_Click);
+            ImportDataFromAccessToolStripButton.Click += new System.EventHandler(ImportDataFromAccessToolStripMenuItem_Click);
+            OptionToolStripButton.Click += new System.EventHandler(OptionToolStripMenuItem_Click);
+#endif
             this.toolStripMain.Items.Add(FirstPageToolStripButton);
             this.toolStripMain.Items.Add(PrePageToolStripButton);
             this.toolStripMain.Items.Add(NextPageToolStripButton);
