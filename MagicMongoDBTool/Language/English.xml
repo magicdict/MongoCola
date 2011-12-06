@@ -36,7 +36,8 @@
   <Main_Menu_Operation_Database_AddUser>Add User</Main_Menu_Operation_Database_AddUser>
   <Main_Menu_Operation_Database_DelUser>Del User</Main_Menu_Operation_Database_DelUser>
   <Main_Menu_Operation_Database_EvalJs>Eval JavaScript</Main_Menu_Operation_Database_EvalJs>
-
+  <Main_Menu_Operation_Database_RepairDatabase>Repair Database</Main_Menu_Operation_Database_RepairDatabase>
+  
   <Main_Menu_Operation_DataCollection>Data Collection</Main_Menu_Operation_DataCollection>
   <Main_Menu_Operation_DataCollection_DelDC>Del DataCollection</Main_Menu_Operation_DataCollection_DelDC>
   <Main_Menu_Operation_DataCollection_ReIndex>ReIndex</Main_Menu_Operation_DataCollection_ReIndex>

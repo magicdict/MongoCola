@@ -44,6 +44,7 @@ namespace GUIResource
             Main_Menu_Operation_Database_AddUser,
             Main_Menu_Operation_Database_DelUser,
             Main_Menu_Operation_Database_EvalJs,
+            Main_Menu_Operation_Database_RepairDatabase,
             Main_Menu_Operation_DataCollection,
             Main_Menu_Operation_DataCollection_DelDC,
             Main_Menu_Operation_DataCollection_Index,

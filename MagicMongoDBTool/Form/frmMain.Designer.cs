@@ -121,21 +121,22 @@ namespace MagicMongoDBTool
             this.ThanksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabDataShower = new System.Windows.Forms.TabControl();
-            this.tabTextView = new System.Windows.Forms.TabPage();
-            this.txtData = new System.Windows.Forms.TextBox();
-            this.tabTableView = new System.Windows.Forms.TabPage();
-            this.lstData = new System.Windows.Forms.ListView();
             this.tabTreeView = new System.Windows.Forms.TabPage();
             this.trvData = new System.Windows.Forms.TreeView();
+            this.tabTableView = new System.Windows.Forms.TabPage();
+            this.lstData = new System.Windows.Forms.ListView();
+            this.tabTextView = new System.Windows.Forms.TabPage();
+            this.txtData = new System.Windows.Forms.TextBox();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.RepairDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentPanel.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.tabDataShower.SuspendLayout();
-            this.tabTextView.SuspendLayout();
-            this.tabTableView.SuspendLayout();
             this.tabTreeView.SuspendLayout();
+            this.tabTableView.SuspendLayout();
+            this.tabTextView.SuspendLayout();
             this.SuspendLayout();
             // 
             // contentPanel
@@ -151,7 +152,7 @@ namespace MagicMongoDBTool
             // 
             // statusStripMain
             // 
-            this.statusStripMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.statusStripMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.statusStripMain.AutoSize = false;
             this.statusStripMain.BackColor = System.Drawing.Color.Transparent;
@@ -438,7 +439,7 @@ namespace MagicMongoDBTool
             this.ShutDownToolStripMenuItem,
             this.SvrPropertyToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
-            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ServerToolStripMenuItem.Text = "服务器";
             // 
             // CreateMongoDBToolStripMenuItem
@@ -495,53 +496,54 @@ namespace MagicMongoDBTool
             this.AddUserToolStripMenuItem,
             this.RemoveUserToolStripMenuItem,
             this.toolStripMenuItem11,
-            this.evalJSToolStripMenuItem});
+            this.evalJSToolStripMenuItem,
+            this.RepairDBToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
-            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataBaseToolStripMenuItem.Text = "数据库";
             // 
             // CreateMongoCollectionToolStripMenuItem
             // 
             this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
-            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.CreateMongoCollectionToolStripMenuItem.Text = "添加数据集";
             this.CreateMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoCollectionToolStripMenuItem_Click);
             // 
             // DelMongoDBToolStripMenuItem
             // 
             this.DelMongoDBToolStripMenuItem.Name = "DelMongoDBToolStripMenuItem";
-            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DelMongoDBToolStripMenuItem.Text = "删除数据库";
             this.DelMongoDBToolStripMenuItem.Click += new System.EventHandler(this.DelMongoDBToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(131, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(149, 6);
             // 
             // AddUserToolStripMenuItem
             // 
             this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
-            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.AddUserToolStripMenuItem.Text = "添加用户";
             this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
             // 
             // RemoveUserToolStripMenuItem
             // 
             this.RemoveUserToolStripMenuItem.Name = "RemoveUserToolStripMenuItem";
-            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.RemoveUserToolStripMenuItem.Text = "删除用户";
             this.RemoveUserToolStripMenuItem.Click += new System.EventHandler(this.RemoveUserToolStripMenuItem_Click);
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(131, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(149, 6);
             // 
             // evalJSToolStripMenuItem
             // 
             this.evalJSToolStripMenuItem.Name = "evalJSToolStripMenuItem";
-            this.evalJSToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.evalJSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.evalJSToolStripMenuItem.Text = "执行JS";
             this.evalJSToolStripMenuItem.Click += new System.EventHandler(this.evalJSToolStripMenuItem_Click);
             // 
@@ -555,7 +557,7 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem8,
             this.DelSelectRecordToolStripMenuItem});
             this.DataCollectionToolStripMenuItem.Name = "DataCollectionToolStripMenuItem";
-            this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataCollectionToolStripMenuItem.Text = "数据集";
             // 
             // DelMongoCollectionToolStripMenuItem
@@ -606,7 +608,7 @@ namespace MagicMongoDBTool
             this.ModifyElementToolStripMenuItem,
             this.AddDocumentToolStripMenuItem});
             this.DataDocumentToolStripMenuItem.Name = "DataDocumentToolStripMenuItem";
-            this.DataDocumentToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.DataDocumentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataDocumentToolStripMenuItem.Text = "数据文档";
             // 
             // AddElementToolStripMenuItem
@@ -646,7 +648,7 @@ namespace MagicMongoDBTool
             this.DelFileToolStripMenuItem,
             this.InitGFSToolStripMenuItem});
             this.GridFsToolStripMenuItem.Name = "GridFsToolStripMenuItem";
-            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.GridFsToolStripMenuItem.Text = "文件系统";
             // 
             // UploadFileToolStripMenuItem
@@ -694,7 +696,7 @@ namespace MagicMongoDBTool
             this.ImportCollectionToolStripMenuItem,
             this.ExportCollectionToolStripMenuItem});
             this.DumpAndRestoreToolStripMenuItem.Name = "DumpAndRestoreToolStripMenuItem";
-            this.DumpAndRestoreToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.DumpAndRestoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DumpAndRestoreToolStripMenuItem.Text = "备份和恢复";
             // 
             // RestoreMongoToolStripMenuItem
@@ -837,55 +839,6 @@ namespace MagicMongoDBTool
             this.tabDataShower.Size = new System.Drawing.Size(663, 458);
             this.tabDataShower.TabIndex = 0;
             // 
-            // tabTextView
-            // 
-            this.tabTextView.BackColor = System.Drawing.Color.Yellow;
-            this.tabTextView.Controls.Add(this.txtData);
-            this.tabTextView.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabTextView.Location = new System.Drawing.Point(4, 22);
-            this.tabTextView.Name = "tabTextView";
-            this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTextView.Size = new System.Drawing.Size(489, 352);
-            this.tabTextView.TabIndex = 2;
-            this.tabTextView.Text = "文本视图";
-            // 
-            // txtData
-            // 
-            this.txtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtData.Location = new System.Drawing.Point(3, 3);
-            this.txtData.Multiline = true;
-            this.txtData.Name = "txtData";
-            this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtData.Size = new System.Drawing.Size(594, 426);
-            this.txtData.TabIndex = 0;
-            // 
-            // tabTableView
-            // 
-            this.tabTableView.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.tabTableView.Controls.Add(this.lstData);
-            this.tabTableView.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabTableView.Location = new System.Drawing.Point(4, 22);
-            this.tabTableView.Name = "tabTableView";
-            this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTableView.Size = new System.Drawing.Size(489, 352);
-            this.tabTableView.TabIndex = 1;
-            this.tabTableView.Text = "表格视图";
-            // 
-            // lstData
-            // 
-            this.lstData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstData.FullRowSelect = true;
-            this.lstData.GridLines = true;
-            this.lstData.HideSelection = false;
-            this.lstData.Location = new System.Drawing.Point(3, 3);
-            this.lstData.Name = "lstData";
-            this.lstData.Size = new System.Drawing.Size(594, 426);
-            this.lstData.TabIndex = 1;
-            this.lstData.UseCompatibleStateImageBehavior = false;
-            this.lstData.View = System.Windows.Forms.View.Details;
-            // 
             // tabTreeView
             // 
             this.tabTreeView.BackColor = System.Drawing.Color.Orange;
@@ -907,6 +860,55 @@ namespace MagicMongoDBTool
             this.trvData.Size = new System.Drawing.Size(649, 426);
             this.trvData.TabIndex = 0;
             // 
+            // tabTableView
+            // 
+            this.tabTableView.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.tabTableView.Controls.Add(this.lstData);
+            this.tabTableView.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tabTableView.Location = new System.Drawing.Point(4, 22);
+            this.tabTableView.Name = "tabTableView";
+            this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTableView.Size = new System.Drawing.Size(655, 432);
+            this.tabTableView.TabIndex = 1;
+            this.tabTableView.Text = "表格视图";
+            // 
+            // lstData
+            // 
+            this.lstData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstData.FullRowSelect = true;
+            this.lstData.GridLines = true;
+            this.lstData.HideSelection = false;
+            this.lstData.Location = new System.Drawing.Point(3, 3);
+            this.lstData.Name = "lstData";
+            this.lstData.Size = new System.Drawing.Size(594, 426);
+            this.lstData.TabIndex = 1;
+            this.lstData.UseCompatibleStateImageBehavior = false;
+            this.lstData.View = System.Windows.Forms.View.Details;
+            // 
+            // tabTextView
+            // 
+            this.tabTextView.BackColor = System.Drawing.Color.Yellow;
+            this.tabTextView.Controls.Add(this.txtData);
+            this.tabTextView.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tabTextView.Location = new System.Drawing.Point(4, 22);
+            this.tabTextView.Name = "tabTextView";
+            this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTextView.Size = new System.Drawing.Size(655, 432);
+            this.tabTextView.TabIndex = 2;
+            this.tabTextView.Text = "文本视图";
+            // 
+            // txtData
+            // 
+            this.txtData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtData.Location = new System.Drawing.Point(3, 3);
+            this.txtData.Multiline = true;
+            this.txtData.Name = "txtData";
+            this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtData.Size = new System.Drawing.Size(483, 346);
+            this.txtData.TabIndex = 0;
+            // 
             // trvsrvlst
             // 
             this.trvsrvlst.BackColor = System.Drawing.Color.White;
@@ -924,6 +926,13 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 8;
             this.splitter1.TabStop = false;
             // 
+            // RepairDBToolStripMenuItem
+            // 
+            this.RepairDBToolStripMenuItem.Name = "RepairDBToolStripMenuItem";
+            this.RepairDBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RepairDBToolStripMenuItem.Text = "修复数据库";
+            this.RepairDBToolStripMenuItem.Click += new System.EventHandler(this.RepairDBToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -931,6 +940,7 @@ namespace MagicMongoDBTool
             this.BackColor = System.Drawing.Color.YellowGreen;
             this.ClientSize = new System.Drawing.Size(917, 570);
             this.Controls.Add(this.statusStripMain);
+            this.Location = new System.Drawing.Point(0, 0);
             this.MaximizeBox = true;
             this.MinimizeBox = true;
             this.Name = "frmMain";
@@ -947,10 +957,10 @@ namespace MagicMongoDBTool
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
             this.tabDataShower.ResumeLayout(false);
+            this.tabTreeView.ResumeLayout(false);
+            this.tabTableView.ResumeLayout(false);
             this.tabTextView.ResumeLayout(false);
             this.tabTextView.PerformLayout();
-            this.tabTableView.ResumeLayout(false);
-            this.tabTreeView.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1151,5 +1161,6 @@ namespace MagicMongoDBTool
         private TabPage tabTextView;
         private TextBox txtData;
         private TreeView trvsrvlst;
+        private ToolStripMenuItem RepairDBToolStripMenuItem;
     }
 }

@@ -105,6 +105,7 @@ namespace MagicMongoDBTool
             this.AddUserToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
             this.RemoveUserToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
             this.evalJSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_EvalJs);
+            this.RepairDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_RepairDatabase);
 
             this.DataCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection);
             this.DelMongoCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DelDC);
@@ -612,13 +613,14 @@ namespace MagicMongoDBTool
                         //解禁 删除数据库 创建数据集
                         if (!MongoDBHelper.IsSystemDataBase(SystemManager.GetCurrentDataBase()))
                         {
-                            //系统库不允许修改
                             if (!config.IsReadOnly)
                             {
+                                //系统库不允许修改
                                 this.DelMongoDBToolStripMenuItem.Enabled = true;
                                 this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                                 this.AddUserToolStripMenuItem.Enabled = true;
                                 this.InitGFSToolStripMenuItem.Enabled = true;
+                                this.RepairDBToolStripMenuItem.Enabled = true;
                             }
                             this.evalJSToolStripMenuItem.Enabled = true;
                             this.ConvertSqlToolStripMenuItem.Enabled = true;
@@ -653,6 +655,11 @@ namespace MagicMongoDBTool
                             t3.Click += new EventHandler(evalJSToolStripMenuItem_Click);
                             this.contextMenuStripMain.Items.Add(t3);
 
+                            ToolStripMenuItem t31 = this.RepairDBToolStripMenuItem.Clone();
+                            t31.Click += new EventHandler(RepairDBToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t31);
+                            
+
                             ToolStripMenuItem t4 = this.InitGFSToolStripMenuItem.Clone();
                             t4.Click += new EventHandler(InitGFSToolStripMenuItem_Click);
                             this.contextMenuStripMain.Items.Add(t4);
@@ -675,6 +682,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.CreateMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.evalJSToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.RepairDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
@@ -792,7 +800,7 @@ namespace MagicMongoDBTool
             this.AddUserToolStripMenuItem.Enabled = false;
             this.RemoveUserToolStripMenuItem.Enabled = false;
             this.evalJSToolStripMenuItem.Enabled = false;
-
+            this.RepairDBToolStripMenuItem.Enabled = false;
             //管理-数据集
             this.IndexManageToolStripMenuItem.Enabled = false;
             this.ReIndexToolStripMenuItem.Enabled = false;
@@ -1486,14 +1494,17 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmevalJS());
         }
         /// <summary>
-        /// 转换Sql到Query
+        /// 修复数据库
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ConvertSqlToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RepairDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmConvertSql());
+            List<CommandResult> ResultCommandList = new List<CommandResult>();
+            ResultCommandList.Add(MongoDBHelper.RunMongoCommandAtCurrentObj(MongoDBHelper.repairDatabase_Command));
+            MyMessageBox.ShowMessage("RepairDataBase", "RepairDataBase Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList),true);
         }
+
         #endregion
 
         #region"管理：数据集"
@@ -2119,6 +2130,15 @@ namespace MagicMongoDBTool
             RefreshData();
         }
         /// <summary>
+        /// 转换Sql到Query
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ConvertSqlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmConvertSql());
+        }
+        /// <summary>
         /// 设置导航可用性
         /// </summary>
         private void SetDataNav()
@@ -2178,6 +2198,8 @@ namespace MagicMongoDBTool
                                      strThanks);
         }
         #endregion
+
+
 
     }
 }

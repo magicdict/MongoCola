@@ -53,7 +53,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 路径阶层[考虑到以后可能阶层会变换]
         /// </summary>
-        enum PathLv : int
+        public enum PathLv : int
         {
             /// <summary>
             /// 服务器
