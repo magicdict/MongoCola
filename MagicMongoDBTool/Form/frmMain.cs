@@ -48,6 +48,11 @@ namespace MagicMongoDBTool
                 MongoDBHelper.AddServer(connLst);
                 RefreshToolStripMenuItem_Click(null, null);
             }
+            trvsrvlst.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
+            tabDataShower.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
+            statusStripMain.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
+            menuStripMain.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
+            toolStripMain.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
         }
         /// <summary>
         /// 设置文字
@@ -161,14 +166,15 @@ namespace MagicMongoDBTool
             {
                 this.ChangeSkin(SystemManager.ConfigHelperInstance.SkipFolder);
             }
-            //菜单美化
-            this.menuStripMain.Renderer = new QLFUI.ToolStripRenderer(new ProfessionalColorTable());
 #if MONO
             MenuStrip menustrip = this.menuStripMain;
             for (int i = 0; i < menustrip.Items.Count; i++)
             {
                 menustrip.Items[i].BackColor = IniHelper.BackColor;
             }
+#else
+            //菜单美化
+            this.menuStripMain.Renderer = new QLFUI.ToolStripRenderer(new ProfessionalColorTable());
 #endif
             this.trvsrvlst.NodeMouseClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseClick);
             this.trvsrvlst.KeyDown += new KeyEventHandler(trvsrvlst_KeyDown);
@@ -316,7 +322,6 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
 #if MONO
                             //悲催MONO不支持
                             ToolStripMenuItem t1 = this.IndexManageToolStripMenuItem.Clone();
@@ -329,6 +334,7 @@ namespace MagicMongoDBTool
 #else
                             this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -354,7 +360,6 @@ namespace MagicMongoDBTool
                         {
                             SetDataNav();
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
 #if MONO
                             //悲催MONO不支持
                             ToolStripMenuItem t1 = this.countToolStripMenuItem.Clone();
@@ -382,6 +387,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(t6);
 
 #else
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.countToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.distinctToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
@@ -423,13 +429,13 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
 #if MONO
                             //悲催MONO不支持
                             ToolStripMenuItem t1 = this.UploadFileToolStripMenuItem.Clone();
                             t1.Click += new EventHandler(UploadFileToolStripMenuItem_Click);
                             this.contextMenuStripMain.Items.Add(t1);
 #else
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.UploadFileToolStripMenuItem.Clone());
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -458,13 +464,13 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
 #if MONO
                             //悲催MONO不支持
                             ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
                             t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
                             this.contextMenuStripMain.Items.Add(t1);
 #else
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -479,7 +485,6 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
 #if MONO
                             //悲催MONO不支持
                             ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
@@ -487,6 +492,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(t1);
 #else
                             this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -537,7 +543,6 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
 #if MONO
                             //悲催MONO不支持
                             ToolStripMenuItem t1 = this.CreateMongoDBToolStripMenuItem.Clone();
@@ -573,6 +578,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(t8);
 
 #else
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
@@ -624,11 +630,13 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
-                            this.contextMenuStripMain.Items.Add(this.DelMongoDBToolStripMenuItem.Clone());
 
 #if MONO
                             //悲催MONO不支持
+                            ToolStripMenuItem t0 = this.DelMongoDBToolStripMenuItem.Clone();
+                            t0.Click += new EventHandler(DelMongoDBToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t0);
+
                             ToolStripMenuItem t1 = this.CreateMongoCollectionToolStripMenuItem.Clone();
                             t1.Click += new EventHandler(CreateMongoCollectionToolStripMenuItem_Click);
                             this.contextMenuStripMain.Items.Add(t1);
@@ -658,6 +666,8 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(t7);
 
 #else
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+                            this.contextMenuStripMain.Items.Add(this.DelMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.CreateMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.evalJSToolStripMenuItem.Clone());
@@ -702,7 +712,6 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
 #if MONO
                             //悲催MONO不支持
                             ToolStripMenuItem t1 = this.DelMongoCollectionToolStripMenuItem.Clone();
@@ -730,6 +739,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(t6);
 
 #else
+                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.DelMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RenameCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DumpCollectionToolStripMenuItem.Clone());

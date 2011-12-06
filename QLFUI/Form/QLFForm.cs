@@ -189,6 +189,8 @@ namespace QLFUI
             {
                 ColorfulControl(item);
             }
+
+            contentPanel.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
         }
         private void ColorfulControl(Control item)
         {
@@ -329,7 +331,7 @@ namespace QLFUI
         // Set the thickness of the virtual form border that should catch the resizing 
         // If below 1, the resize function does not work!
         private int VIRTUALBORDER = 5;
-        private bool SHOWVIRTUALBORDERS = true;
+        private bool SHOWVIRTUALBORDERS = false;
 
         // Declare the limits for the form size
         //private int MINHEIGHT = 10;
@@ -396,6 +398,7 @@ namespace QLFUI
 
         void QLFForm_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
+
             switch (e.Button)
             {
                 case MouseButtons.Left:
@@ -458,6 +461,9 @@ namespace QLFUI
                     }
                     break;
             }
+            if (!SizeAble) {
+                ISREZISING = false;
+            }
         }
         private void QLFForm_MouseMove(object sender, MouseEventArgs e)
         {
@@ -473,7 +479,7 @@ namespace QLFUI
                     // ISMOVING is true if the R5 rectangle is pressed. Allow the form to be moved around the screen.
                     Location = new Point(MousePosition.X - MOUSEPOS.X, MousePosition.Y - MOUSEPOS.Y);
                 }
-                if (ISREZISING == true)
+                if (ISREZISING == true & SizeAble)
                 {
                     ISMOVING = false;
 
