@@ -160,8 +160,9 @@ namespace QLFUI
             IniHelper.Init();
             InitializeComponent();
             //设置系统菜单（在构造函数中没有用，我也不懂为什么）
-            //为了移植到MONO，这个东西必须删除
-            // Win32.SetWindowLong(Handle, -16, Win32.WS_SYSMENU + Win32.WS_MINIMIZEBOX);
+#if !MONO
+             Win32.SetWindowLong(Handle, -16, Win32.WS_SYSMENU + Win32.WS_MINIMIZEBOX);
+#endif
             //初始化各部分
             _topLeft = new PartBase();
             _topMiddle = new PartBase();

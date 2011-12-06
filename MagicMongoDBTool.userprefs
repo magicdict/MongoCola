@@ -1,5 +1,5 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ActiveRuntime="Mono 2.10.6" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Mixed Platforms" ActiveRuntime="Mono 2.10.6" />
   <MonoDevelop.Ide.Workbench ActiveDocument="MagicMongoDBTool\Form\frmMain.cs">
     <Files>
       <File FileName="MagicMongoDBTool\Form\frmAddConnection.cs" Line="9" Column="27" />
@@ -11,7 +11,7 @@
       <File FileName="QLFUI\Module\MyMessageBox.cs" Line="1" Column="1" />
       <File FileName="QLFUI\Form\frmInputBox.cs" Line="1" Column="1" />
       <File FileName="QLFUI\Form\QLFForm.cs" Line="1" Column="1" />
-      <File FileName="MagicMongoDBTool\Form\frmMain.cs" Line="172" Column="19" />
+      <File FileName="MagicMongoDBTool\Form\frmMain.cs" Line="166" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -199,9 +199,10 @@ namespace MagicMongoDBTool.Module
                         databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                         foreach (String strDBName in databaseNameList)
                         {
+                            TreeNode mongoDBNode;
                             try
                             {
-                                TreeNode mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, mongoSvr, mongoSvrKey);
+                                mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, mongoSvr, mongoSvrKey);
                                 mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                                 mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                                 mongoSvrNode.Nodes.Add(mongoDBNode);
@@ -212,8 +213,13 @@ namespace MagicMongoDBTool.Module
                                         config.IsReadOnly = mongoSvr.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
                                     }
                                 }
-                            }catch(Exception){
-                            
+                            }
+                            catch (Exception)
+                            {
+                                mongoDBNode = new TreeNode(strDBName + " (Exception)");
+                                mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                                mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                                mongoSvrNode.Nodes.Add(mongoDBNode);
                             }
                         }
                         mongoSvrNode.Tag = SERVICE_TAG + ":" + mongoSvrKey;
@@ -305,11 +311,15 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     mongoColNode = FillCollectionInfoToTreeNode(strColName, mongoDB, mongoSvrKey);
+                    mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+                    mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+
                 }
                 catch (Exception)
                 {
-                    mongoColNode = new TreeNode(strColName + "[访问异常]");
-                    throw;
+                    mongoColNode = new TreeNode(strColName + "[exception]");
+                    mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
+                    mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
                 }
                 mongoDBNode.Nodes.Add(mongoColNode);
             }

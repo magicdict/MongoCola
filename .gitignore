@@ -1,9 +1,13 @@
+*.xls
+*.pidb
 *.rar
 *.zip
 *.csv
 *.txt
 *.config
 *.suo
+*.mdb
+*.pdb
 /MagicMongoDBTool/dll
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj

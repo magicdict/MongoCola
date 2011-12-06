@@ -53,7 +53,8 @@ namespace MagicMongoDBTool.Module
             Collection = 3,
             Keys = 4,
             Document = 5,
-            DBKey = 6
+            DBKey = 6,
+            Err = 7
         }
         /// <summary>
         /// 主树形控件图标数组初始化
@@ -67,6 +68,7 @@ namespace MagicMongoDBTool.Module
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Keys));
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Document));
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.DBKey));
+            MainTreeImage.Images.Add(GetResource.GetIcon(IconType.No));
         }
         /// <summary>
         /// 根据文件名获得图片数组下标

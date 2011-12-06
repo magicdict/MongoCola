@@ -53,6 +53,10 @@ namespace MagicMongoDBTool
             statusStripMain.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
             menuStripMain.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
             toolStripMain.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
+
+            if (SystemManager.MONO_MODE) {
+                this.Text += " MONO";
+            }
         }
         /// <summary>
         /// 设置文字
@@ -1663,7 +1667,14 @@ namespace MagicMongoDBTool
         private void DelSelectRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //@那一剑风情 提出的删除前确认
-            if (MyMessageBox.ShowConfirm("确认", "删除数据确认"))
+            String strTitle = "确认";
+            String strMessage = "删除用户确认";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
+            }
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 if (tabDataShower.SelectedTab == tabTableView)
                 {
@@ -1687,7 +1698,7 @@ namespace MagicMongoDBTool
         }
 
         /// <summary>
-        /// 添加文档
+        /// 添加空文档
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
