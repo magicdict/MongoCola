@@ -7,6 +7,10 @@ namespace GUIResource
 {
     public partial class GetResource
     {
+        public static Image GetLogo() {
+            return GUIResource.Properties.Resources.logo_mongoDB;
+        }
+
         public static Icon GetIcon(IconType theIcon)
         {
             Icon micon = null;

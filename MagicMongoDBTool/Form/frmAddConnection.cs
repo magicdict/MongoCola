@@ -131,6 +131,14 @@ namespace MagicMongoDBTool
                     radArbiters.Checked = true;
                     break;
                 case ConfigHelper.SvrType.DataSvr:
+                    radDataSrv.Checked = true;
+                    break;
+                case ConfigHelper.SvrType.Master:
+                    radMaster.Checked = true;
+                    break;
+                case ConfigHelper.SvrType.Slave:
+                    radSlave.Checked = true;
+                    break;
                 default:
                     radDataSrv.Checked = true;
                     break;
@@ -239,6 +247,17 @@ namespace MagicMongoDBTool
                 {
                     ModifyConn.ServerType = ConfigHelper.SvrType.ArbiterSvr;
                 }
+
+                if (this.radMaster.Checked) {
+                    ModifyConn.ServerType = ConfigHelper.SvrType.Master;
+                }
+
+                if (this.radSlave.Checked)
+                {
+                    ModifyConn.ServerType = ConfigHelper.SvrType.Slave;
+                    ModifyConn.IsSlaveOk = true;
+                }
+
                 //如果输入了副本名称
                 if (this.txtReplSetName.Text != String.Empty)
                 {

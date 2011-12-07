@@ -10,6 +10,44 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
+
+        public static BsonElement ClipElement = null;
+
+        /// <summary>
+        /// 复制元素
+        /// </summary>
+        /// <param name="ElementPath"></param>
+        public static void CopyElement(String ElementPath) {
+            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            ClipElement = GetElementFromPath(ElementPath);
+        }
+        /// <summary>
+        /// 粘贴元素
+        /// </summary>
+        /// <param name="ElementPath"></param>
+        public static void PasteElement(String ElementPath)
+        {
+            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            GetLastParentDocument(BaseDoc, ElementPath, true).InsertAt(GetLastParentDocument(BaseDoc, ElementPath, true).ElementCount, ClipElement);
+            SystemManager.GetCurrentCollection().Save(BaseDoc);
+        }
+        /// <summary>
+        /// 剪切元素
+        /// </summary>
+        /// <param name="ElementPath"></param>
+        public static void CutElement(String ElementPath)
+        {
+            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            ClipElement = GetElementFromPath(ElementPath);
+            GetLastParentDocument(BaseDoc, ElementPath).Remove(GetElementFromPath(ElementPath).Name);
+            SystemManager.GetCurrentCollection().Save(BaseDoc);
+        }
+        /// <summary>
+        /// 是否可以粘贴
+        /// </summary>
+        public static Boolean CanPaste{
+            get { return ClipElement != null; }
+        }
         /// <summary>
         /// 添加元素
         /// </summary>

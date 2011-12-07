@@ -73,6 +73,7 @@ namespace MagicMongoDBTool
             this.AddUserToAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveUserFromAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.slaveResyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SvrPropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,7 +131,10 @@ namespace MagicMongoDBTool
             this.txtData = new System.Windows.Forms.TextBox();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.slaveResyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PasteElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CopyElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
+            this.CutElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentPanel.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
@@ -475,6 +479,13 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(160, 6);
             // 
+            // slaveResyncToolStripMenuItem
+            // 
+            this.slaveResyncToolStripMenuItem.Name = "slaveResyncToolStripMenuItem";
+            this.slaveResyncToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.slaveResyncToolStripMenuItem.Text = "Slave同步";
+            this.slaveResyncToolStripMenuItem.Click += new System.EventHandler(this.slaveResyncToolStripMenuItem_Click);
+            // 
             // ShutDownToolStripMenuItem
             // 
             this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
@@ -507,52 +518,52 @@ namespace MagicMongoDBTool
             // CreateMongoCollectionToolStripMenuItem
             // 
             this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
-            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.CreateMongoCollectionToolStripMenuItem.Text = "添加数据集";
             this.CreateMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoCollectionToolStripMenuItem_Click);
             // 
             // DelMongoDBToolStripMenuItem
             // 
             this.DelMongoDBToolStripMenuItem.Name = "DelMongoDBToolStripMenuItem";
-            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.DelMongoDBToolStripMenuItem.Text = "删除数据库";
             this.DelMongoDBToolStripMenuItem.Click += new System.EventHandler(this.DelMongoDBToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(131, 6);
             // 
             // AddUserToolStripMenuItem
             // 
             this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
-            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.AddUserToolStripMenuItem.Text = "添加用户";
             this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
             // 
             // RemoveUserToolStripMenuItem
             // 
             this.RemoveUserToolStripMenuItem.Name = "RemoveUserToolStripMenuItem";
-            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.RemoveUserToolStripMenuItem.Text = "删除用户";
             this.RemoveUserToolStripMenuItem.Click += new System.EventHandler(this.RemoveUserToolStripMenuItem_Click);
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(131, 6);
             // 
             // evalJSToolStripMenuItem
             // 
             this.evalJSToolStripMenuItem.Name = "evalJSToolStripMenuItem";
-            this.evalJSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.evalJSToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.evalJSToolStripMenuItem.Text = "执行JS";
             this.evalJSToolStripMenuItem.Click += new System.EventHandler(this.evalJSToolStripMenuItem_Click);
             // 
             // RepairDBToolStripMenuItem
             // 
             this.RepairDBToolStripMenuItem.Name = "RepairDBToolStripMenuItem";
-            this.RepairDBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RepairDBToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.RepairDBToolStripMenuItem.Text = "修复数据库";
             this.RepairDBToolStripMenuItem.Click += new System.EventHandler(this.RepairDBToolStripMenuItem_Click);
             // 
@@ -615,7 +626,11 @@ namespace MagicMongoDBTool
             this.AddElementToolStripMenuItem,
             this.DropElementToolStripMenuItem,
             this.ModifyElementToolStripMenuItem,
-            this.AddDocumentToolStripMenuItem});
+            this.AddDocumentToolStripMenuItem,
+            this.toolStripMenuItem12,
+            this.CopyElementToolStripMenuItem,
+            this.PasteElementToolStripMenuItem,
+            this.CutElementToolStripMenuItem});
             this.DataDocumentToolStripMenuItem.Name = "DataDocumentToolStripMenuItem";
             this.DataDocumentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataDocumentToolStripMenuItem.Text = "数据文档";
@@ -663,35 +678,35 @@ namespace MagicMongoDBTool
             // UploadFileToolStripMenuItem
             // 
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
-            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.UploadFileToolStripMenuItem.Text = "上传文件";
             this.UploadFileToolStripMenuItem.Click += new System.EventHandler(this.UploadFileToolStripMenuItem_Click);
             // 
             // DownloadFileToolStripMenuItem
             // 
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
-            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DownloadFileToolStripMenuItem.Text = "下载文件";
             this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(this.DownloadFileToolStripMenuItem_Click);
             // 
             // OpenFileToolStripMenuItem
             // 
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
-            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.OpenFileToolStripMenuItem.Text = "打开文件";
             this.OpenFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
             // DelFileToolStripMenuItem
             // 
             this.DelFileToolStripMenuItem.Name = "DelFileToolStripMenuItem";
-            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DelFileToolStripMenuItem.Text = "删除文件";
             this.DelFileToolStripMenuItem.Click += new System.EventHandler(this.DelFileToolStripMenuItem_Click);
             // 
             // InitGFSToolStripMenuItem
             // 
             this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
-            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.InitGFSToolStripMenuItem.Text = "初始化GFS";
             this.InitGFSToolStripMenuItem.Click += new System.EventHandler(this.InitGFSToolStripMenuItem_Click);
             // 
@@ -890,7 +905,7 @@ namespace MagicMongoDBTool
             this.lstData.HideSelection = false;
             this.lstData.Location = new System.Drawing.Point(3, 3);
             this.lstData.Name = "lstData";
-            this.lstData.Size = new System.Drawing.Size(594, 426);
+            this.lstData.Size = new System.Drawing.Size(649, 426);
             this.lstData.TabIndex = 1;
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
@@ -935,12 +950,31 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 8;
             this.splitter1.TabStop = false;
             // 
-            // slaveResyncToolStripMenuItem
+            // PasteElementToolStripMenuItem
             // 
-            this.slaveResyncToolStripMenuItem.Name = "slaveResyncToolStripMenuItem";
-            this.slaveResyncToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.slaveResyncToolStripMenuItem.Text = "Slave同步";
-            this.slaveResyncToolStripMenuItem.Click += new System.EventHandler(this.slaveResyncToolStripMenuItem_Click);
+            this.PasteElementToolStripMenuItem.Name = "PasteElementToolStripMenuItem";
+            this.PasteElementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.PasteElementToolStripMenuItem.Text = "粘贴元素";
+            this.PasteElementToolStripMenuItem.Click += new System.EventHandler(this.PasteElementToolStripMenuItem_Click);
+            // 
+            // CopyElementToolStripMenuItem
+            // 
+            this.CopyElementToolStripMenuItem.Name = "CopyElementToolStripMenuItem";
+            this.CopyElementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.CopyElementToolStripMenuItem.Text = "复制元素";
+            this.CopyElementToolStripMenuItem.Click += new System.EventHandler(this.CopyElementToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(149, 6);
+            // 
+            // CutElementToolStripMenuItem
+            // 
+            this.CutElementToolStripMenuItem.Name = "CutElementToolStripMenuItem";
+            this.CutElementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.CutElementToolStripMenuItem.Text = "剪切元素";
+            this.CutElementToolStripMenuItem.Click += new System.EventHandler(this.CutElementToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -1172,5 +1206,9 @@ namespace MagicMongoDBTool
         private TreeView trvsrvlst;
         private ToolStripMenuItem RepairDBToolStripMenuItem;
         private ToolStripMenuItem slaveResyncToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem12;
+        private ToolStripMenuItem CopyElementToolStripMenuItem;
+        private ToolStripMenuItem PasteElementToolStripMenuItem;
+        private ToolStripMenuItem CutElementToolStripMenuItem;
     }
 }

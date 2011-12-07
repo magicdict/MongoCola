@@ -349,7 +349,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="treeNode"></param>
         /// <param name="doc"></param>
-        private static void FillBsonDocToTreeNode(TreeNode treeNode, BsonDocument doc, BsonValue Key)
+        public static void FillBsonDocToTreeNode(TreeNode treeNode, BsonDocument doc, BsonValue Key)
         {
             foreach (var item in doc.Elements)
             {
@@ -372,6 +372,7 @@ namespace MagicMongoDBTool.Module
                             {
                                 TreeNode newSubItem = new TreeNode(item.Name + "[" + count + "]");
                                 FillBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument(), Key);
+                                newSubItem.Tag = Key;
                                 newItem.Nodes.Add(newSubItem);
                             }
                             else

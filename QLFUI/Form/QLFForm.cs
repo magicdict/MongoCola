@@ -813,13 +813,16 @@ namespace QLFUI
             if (!string.IsNullOrEmpty(Text))
             {
                 g.DrawString(Text, Font, new SolidBrush(ForeColor),
-                             ShowIcon ? new Point(_titlePoint.X + 18, _titlePoint.Y) : _titlePoint);
+                             ShowIcon ? new Point(_titlePoint.X + 8, _titlePoint.Y) : _titlePoint);
+                //g.DrawString(Text, Font, new SolidBrush(ForeColor),
+                //             ShowIcon ? new Point(_titlePoint.X + 18, _titlePoint.Y) : _titlePoint);
             }
 
             //绘制图标
             if (ShowIcon)
             {
-                g.DrawIcon(Icon, new Rectangle(4, 4, 18, 18));
+                g.DrawImage(GUIResource.GetResource.GetLogo(), new Rectangle((Width-75)/2,4,75,25));
+                //g.DrawIcon(Icon, new Rectangle(4, 4, 18, 18));
             }
 
             #endregion

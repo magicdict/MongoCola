@@ -36,6 +36,7 @@ namespace GUIResource
             Main_Menu_Operation_Server_NewDB,
             Main_Menu_Operation_Server_AddUserToAdmin,
             Main_Menu_Operation_Server_DelFromAdmin,
+            Main_Menu_Operation_Server_SlaveResync,
             Main_Menu_Operation_Server_CloseServer,
             Main_Menu_Operation_Server_Properties,
             Main_Menu_Operation_Database,

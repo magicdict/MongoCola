@@ -32,7 +32,15 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 仲裁服务器[mongod --replset,without data]
             /// </summary>
-            ArbiterSvr
+            ArbiterSvr,
+            /// <summary>
+            /// Master主服务器
+            /// </summary>
+            Master,
+            /// <summary>
+            /// Slave从属服务器
+            /// </summary>
+            Slave
         }
         /// <summary>
         /// 链接结构体

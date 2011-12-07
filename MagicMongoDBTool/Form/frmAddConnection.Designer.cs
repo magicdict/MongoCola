@@ -33,7 +33,6 @@
             this.radRouteSrv = new System.Windows.Forms.RadioButton();
             this.radConfigSrv = new System.Windows.Forms.RadioButton();
             this.radDataSrv = new System.Windows.Forms.RadioButton();
-            this.chkSlaveOk = new System.Windows.Forms.CheckBox();
             this.cmdCancel = new System.Windows.Forms.VistaButton();
             this.cmdAdd = new System.Windows.Forms.VistaButton();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -51,60 +50,48 @@
             this.txtDataBaseName = new QLFUI.TextBoxEx();
             this.lstServerce = new System.Windows.Forms.ListBox();
             this.lblReplsetList = new System.Windows.Forms.Label();
-            this.chkSafeMode = new System.Windows.Forms.CheckBox();
             this.grpReplset = new System.Windows.Forms.GroupBox();
             this.cmdInitReplset = new System.Windows.Forms.VistaButton();
             this.grpShardingSvrType = new System.Windows.Forms.GroupBox();
             this.radArbiters = new System.Windows.Forms.RadioButton();
-            this.lblMainReplsetName = new System.Windows.Forms.Label();
-            this.txtMainReplsetName = new QLFUI.TextBoxEx();
             this.lblAttention = new System.Windows.Forms.Label();
-            this.lblpriority = new System.Windows.Forms.Label();
-            this.numPriority = new System.Windows.Forms.NumericUpDown();
-            this.lblTimeOut = new System.Windows.Forms.Label();
-            this.numTimeOut = new System.Windows.Forms.NumericUpDown();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.lblConnectionString = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabBasicInfo = new System.Windows.Forms.TabPage();
+            this.Replset = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.chkSafeMode = new System.Windows.Forms.CheckBox();
+            this.numTimeOut = new System.Windows.Forms.NumericUpDown();
+            this.lblTimeOut = new System.Windows.Forms.Label();
+            this.lblMainReplsetName = new System.Windows.Forms.Label();
+            this.numPriority = new System.Windows.Forms.NumericUpDown();
+            this.lblpriority = new System.Windows.Forms.Label();
+            this.txtMainReplsetName = new QLFUI.TextBoxEx();
+            this.chkSlaveOk = new System.Windows.Forms.CheckBox();
+            this.radMaster = new System.Windows.Forms.RadioButton();
+            this.radSlave = new System.Windows.Forms.RadioButton();
             this.contentPanel.SuspendLayout();
             this.grpReplset.SuspendLayout();
             this.grpShardingSvrType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numPriority)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabBasicInfo.SuspendLayout();
+            this.Replset.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTimeOut)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPriority)).BeginInit();
             this.SuspendLayout();
             // 
             // contentPanel
             // 
             this.contentPanel.BackColor = System.Drawing.Color.Transparent;
             this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.lblConnectionString);
-            this.contentPanel.Controls.Add(this.txtConnectionString);
-            this.contentPanel.Controls.Add(this.numTimeOut);
-            this.contentPanel.Controls.Add(this.lblTimeOut);
-            this.contentPanel.Controls.Add(this.numPriority);
-            this.contentPanel.Controls.Add(this.lblpriority);
+            this.contentPanel.Controls.Add(this.tabControl1);
             this.contentPanel.Controls.Add(this.lblAttention);
-            this.contentPanel.Controls.Add(this.txtMainReplsetName);
-            this.contentPanel.Controls.Add(this.lblMainReplsetName);
-            this.contentPanel.Controls.Add(this.grpShardingSvrType);
-            this.contentPanel.Controls.Add(this.grpReplset);
-            this.contentPanel.Controls.Add(this.chkSafeMode);
-            this.contentPanel.Controls.Add(this.txtDataBaseName);
-            this.contentPanel.Controls.Add(this.lblDataBaseName);
-            this.contentPanel.Controls.Add(this.txtPort);
-            this.contentPanel.Controls.Add(this.txtHost);
-            this.contentPanel.Controls.Add(this.txtUsername);
-            this.contentPanel.Controls.Add(this.txtPassword);
-            this.contentPanel.Controls.Add(this.txtHostName);
-            this.contentPanel.Controls.Add(this.lblHost);
-            this.contentPanel.Controls.Add(this.chkSlaveOk);
             this.contentPanel.Controls.Add(this.cmdCancel);
             this.contentPanel.Controls.Add(this.cmdAdd);
-            this.contentPanel.Controls.Add(this.lblPassword);
-            this.contentPanel.Controls.Add(this.lblUsername);
-            this.contentPanel.Controls.Add(this.lblPort);
-            this.contentPanel.Controls.Add(this.lblHostName);
             this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(529, 505);
+            this.contentPanel.Size = new System.Drawing.Size(629, 353);
             // 
             // lblReplsetName
             // 
@@ -151,21 +138,10 @@
             this.radDataSrv.Text = "数据服务器";
             this.radDataSrv.UseVisualStyleBackColor = false;
             // 
-            // chkSlaveOk
-            // 
-            this.chkSlaveOk.AutoSize = true;
-            this.chkSlaveOk.BackColor = System.Drawing.Color.Transparent;
-            this.chkSlaveOk.Location = new System.Drawing.Point(22, 103);
-            this.chkSlaveOk.Name = "chkSlaveOk";
-            this.chkSlaveOk.Size = new System.Drawing.Size(424, 17);
-            this.chkSlaveOk.TabIndex = 9;
-            this.chkSlaveOk.Text = "主从模式[GFS 操作限制，集群的非Route，Config服务器；Slave服务器，请选择]";
-            this.chkSlaveOk.UseVisualStyleBackColor = false;
-            // 
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(419, 466);
+            this.cmdCancel.Location = new System.Drawing.Point(450, 309);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 27);
             this.cmdCancel.TabIndex = 12;
@@ -174,7 +150,7 @@
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(322, 466);
+            this.cmdAdd.Location = new System.Drawing.Point(353, 309);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(75, 27);
             this.cmdAdd.TabIndex = 11;
@@ -185,7 +161,7 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lblPassword.Location = new System.Drawing.Point(193, 52);
+            this.lblPassword.Location = new System.Drawing.Point(209, 54);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(31, 13);
             this.lblPassword.TabIndex = 21;
@@ -195,7 +171,7 @@
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.BackColor = System.Drawing.Color.Transparent;
-            this.lblUsername.Location = new System.Drawing.Point(19, 52);
+            this.lblUsername.Location = new System.Drawing.Point(35, 54);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(43, 13);
             this.lblUsername.TabIndex = 19;
@@ -205,7 +181,7 @@
             // 
             this.lblPort.AutoSize = true;
             this.lblPort.BackColor = System.Drawing.Color.Transparent;
-            this.lblPort.Location = new System.Drawing.Point(351, 26);
+            this.lblPort.Location = new System.Drawing.Point(367, 28);
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(43, 13);
             this.lblPort.TabIndex = 22;
@@ -215,7 +191,7 @@
             // 
             this.lblHostName.AutoSize = true;
             this.lblHostName.BackColor = System.Drawing.Color.Transparent;
-            this.lblHostName.Location = new System.Drawing.Point(19, 26);
+            this.lblHostName.Location = new System.Drawing.Point(35, 28);
             this.lblHostName.Name = "lblHostName";
             this.lblHostName.Size = new System.Drawing.Size(55, 13);
             this.lblHostName.TabIndex = 20;
@@ -225,7 +201,7 @@
             // 
             this.lblHost.AutoSize = true;
             this.lblHost.BackColor = System.Drawing.Color.Transparent;
-            this.lblHost.Location = new System.Drawing.Point(193, 26);
+            this.lblHost.Location = new System.Drawing.Point(209, 28);
             this.lblHost.Name = "lblHost";
             this.lblHost.Size = new System.Drawing.Size(31, 13);
             this.lblHost.TabIndex = 31;
@@ -233,12 +209,10 @@
             // 
             // txtHostName
             // 
-            //this.txtHostName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtHostName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtHostName.BackColor = System.Drawing.Color.Transparent;
             this.txtHostName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtHostName.ForeImage = null;
-            this.txtHostName.Location = new System.Drawing.Point(85, 17);
+            this.txtHostName.Location = new System.Drawing.Point(101, 19);
             this.txtHostName.Multiline = false;
             this.txtHostName.Name = "txtHostName";
             this.txtHostName.Radius = 3;
@@ -251,12 +225,10 @@
             // 
             // txtPassword
             // 
-            //this.txtPassword.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtPassword.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtPassword.BackColor = System.Drawing.Color.Transparent;
             this.txtPassword.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtPassword.ForeImage = null;
-            this.txtPassword.Location = new System.Drawing.Point(242, 42);
+            this.txtPassword.Location = new System.Drawing.Point(258, 44);
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Radius = 3;
@@ -269,12 +241,10 @@
             // 
             // txtUsername
             // 
-            //this.txtUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtUsername.BackColor = System.Drawing.Color.Transparent;
             this.txtUsername.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtUsername.ForeImage = null;
-            this.txtUsername.Location = new System.Drawing.Point(85, 42);
+            this.txtUsername.Location = new System.Drawing.Point(101, 44);
             this.txtUsername.Multiline = false;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Radius = 3;
@@ -287,12 +257,10 @@
             // 
             // txtHost
             // 
-            //this.txtHost.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtHost.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtHost.BackColor = System.Drawing.Color.Transparent;
             this.txtHost.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtHost.ForeImage = null;
-            this.txtHost.Location = new System.Drawing.Point(243, 17);
+            this.txtHost.Location = new System.Drawing.Point(259, 19);
             this.txtHost.Multiline = false;
             this.txtHost.Name = "txtHost";
             this.txtHost.Radius = 3;
@@ -305,12 +273,10 @@
             // 
             // txtPort
             // 
-            //this.txtPort.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtPort.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtPort.BackColor = System.Drawing.Color.Transparent;
             this.txtPort.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtPort.ForeImage = null;
-            this.txtPort.Location = new System.Drawing.Point(419, 17);
+            this.txtPort.Location = new System.Drawing.Point(435, 19);
             this.txtPort.Multiline = false;
             this.txtPort.Name = "txtPort";
             this.txtPort.Radius = 3;
@@ -323,8 +289,6 @@
             // 
             // txtReplSetName
             // 
-            //this.txtReplSetName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtReplSetName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtReplSetName.BackColor = System.Drawing.Color.Transparent;
             this.txtReplSetName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtReplSetName.ForeImage = null;
@@ -343,7 +307,7 @@
             // lblDataBaseName
             // 
             this.lblDataBaseName.AutoSize = true;
-            this.lblDataBaseName.Location = new System.Drawing.Point(351, 51);
+            this.lblDataBaseName.Location = new System.Drawing.Point(367, 53);
             this.lblDataBaseName.Name = "lblDataBaseName";
             this.lblDataBaseName.Size = new System.Drawing.Size(67, 13);
             this.lblDataBaseName.TabIndex = 32;
@@ -351,12 +315,10 @@
             // 
             // txtDataBaseName
             // 
-            //this.txtDataBaseName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtDataBaseName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtDataBaseName.BackColor = System.Drawing.Color.Transparent;
             this.txtDataBaseName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtDataBaseName.ForeImage = null;
-            this.txtDataBaseName.Location = new System.Drawing.Point(419, 42);
+            this.txtDataBaseName.Location = new System.Drawing.Point(435, 44);
             this.txtDataBaseName.Multiline = false;
             this.txtDataBaseName.Name = "txtDataBaseName";
             this.txtDataBaseName.Radius = 3;
@@ -386,16 +348,6 @@
             this.lblReplsetList.TabIndex = 36;
             this.lblReplsetList.Text = "服务器列表";
             // 
-            // chkSafeMode
-            // 
-            this.chkSafeMode.AutoSize = true;
-            this.chkSafeMode.Location = new System.Drawing.Point(22, 126);
-            this.chkSafeMode.Name = "chkSafeMode";
-            this.chkSafeMode.Size = new System.Drawing.Size(220, 17);
-            this.chkSafeMode.TabIndex = 10;
-            this.chkSafeMode.Text = "安全模式[保证数据安全，性能有损失]";
-            this.chkSafeMode.UseVisualStyleBackColor = true;
-            // 
             // grpReplset
             // 
             this.grpReplset.BackColor = System.Drawing.Color.Transparent;
@@ -404,9 +356,9 @@
             this.grpReplset.Controls.Add(this.txtReplSetName);
             this.grpReplset.Controls.Add(this.lblReplsetName);
             this.grpReplset.Controls.Add(this.lblReplsetList);
-            this.grpReplset.Location = new System.Drawing.Point(20, 205);
+            this.grpReplset.Location = new System.Drawing.Point(17, 57);
             this.grpReplset.Name = "grpReplset";
-            this.grpReplset.Size = new System.Drawing.Size(500, 162);
+            this.grpReplset.Size = new System.Drawing.Size(544, 161);
             this.grpReplset.TabIndex = 38;
             this.grpReplset.TabStop = false;
             this.grpReplset.Text = "副本服务器";
@@ -424,13 +376,15 @@
             // grpShardingSvrType
             // 
             this.grpShardingSvrType.BackColor = System.Drawing.Color.Transparent;
+            this.grpShardingSvrType.Controls.Add(this.radMaster);
+            this.grpShardingSvrType.Controls.Add(this.radSlave);
             this.grpShardingSvrType.Controls.Add(this.radArbiters);
             this.grpShardingSvrType.Controls.Add(this.radDataSrv);
             this.grpShardingSvrType.Controls.Add(this.radConfigSrv);
             this.grpShardingSvrType.Controls.Add(this.radRouteSrv);
-            this.grpShardingSvrType.Location = new System.Drawing.Point(20, 149);
+            this.grpShardingSvrType.Location = new System.Drawing.Point(27, 20);
             this.grpShardingSvrType.Name = "grpShardingSvrType";
-            this.grpShardingSvrType.Size = new System.Drawing.Size(502, 50);
+            this.grpShardingSvrType.Size = new System.Drawing.Size(545, 89);
             this.grpShardingSvrType.TabIndex = 39;
             this.grpShardingSvrType.TabStop = false;
             this.grpShardingSvrType.Text = "分片系统/副本 服务器类型 ";
@@ -446,96 +400,20 @@
             this.radArbiters.Text = "仲裁服务器";
             this.radArbiters.UseVisualStyleBackColor = true;
             // 
-            // lblMainReplsetName
-            // 
-            this.lblMainReplsetName.AutoSize = true;
-            this.lblMainReplsetName.Location = new System.Drawing.Point(19, 77);
-            this.lblMainReplsetName.Name = "lblMainReplsetName";
-            this.lblMainReplsetName.Size = new System.Drawing.Size(55, 13);
-            this.lblMainReplsetName.TabIndex = 40;
-            this.lblMainReplsetName.Text = "副本名称";
-            // 
-            // txtMainReplsetName
-            // 
-            //this.txtMainReplsetName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtMainReplsetName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txtMainReplsetName.BackColor = System.Drawing.Color.Transparent;
-            this.txtMainReplsetName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
-            this.txtMainReplsetName.ForeImage = null;
-            this.txtMainReplsetName.Location = new System.Drawing.Point(85, 68);
-            this.txtMainReplsetName.Multiline = false;
-            this.txtMainReplsetName.Name = "txtMainReplsetName";
-            this.txtMainReplsetName.Radius = 3;
-            this.txtMainReplsetName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
-            this.txtMainReplsetName.Size = new System.Drawing.Size(103, 29);
-            this.txtMainReplsetName.TabIndex = 6;
-            this.txtMainReplsetName.UseSystemPasswordChar = false;
-            this.txtMainReplsetName.WaterMark = "副本名称(可选项)";
-            this.txtMainReplsetName.WaterMarkColor = System.Drawing.Color.Silver;
-            // 
             // lblAttention
             // 
             this.lblAttention.AutoSize = true;
             this.lblAttention.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttention.ForeColor = System.Drawing.Color.Red;
-            this.lblAttention.Location = new System.Drawing.Point(19, 466);
+            this.lblAttention.Location = new System.Drawing.Point(50, 309);
             this.lblAttention.Name = "lblAttention";
             this.lblAttention.Size = new System.Drawing.Size(253, 26);
             this.lblAttention.TabIndex = 42;
             this.lblAttention.Text = "[注意]密码将以明文形式保存于配置文件中.\r\n优先度为 0 时,无法成为副本主服务器";
             // 
-            // lblpriority
-            // 
-            this.lblpriority.AutoSize = true;
-            this.lblpriority.Location = new System.Drawing.Point(193, 77);
-            this.lblpriority.Name = "lblpriority";
-            this.lblpriority.Size = new System.Drawing.Size(43, 13);
-            this.lblpriority.TabIndex = 43;
-            this.lblpriority.Text = "优先度";
-            // 
-            // numPriority
-            // 
-            this.numPriority.Location = new System.Drawing.Point(245, 73);
-            this.numPriority.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numPriority.Name = "numPriority";
-            this.numPriority.Size = new System.Drawing.Size(103, 20);
-            this.numPriority.TabIndex = 7;
-            this.numPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblTimeOut
-            // 
-            this.lblTimeOut.AutoSize = true;
-            this.lblTimeOut.Location = new System.Drawing.Point(351, 76);
-            this.lblTimeOut.Name = "lblTimeOut";
-            this.lblTimeOut.Size = new System.Drawing.Size(55, 13);
-            this.lblTimeOut.TabIndex = 45;
-            this.lblTimeOut.Text = "延时（秒）";
-            // 
-            // numTimeOut
-            // 
-            this.numTimeOut.Location = new System.Drawing.Point(419, 73);
-            this.numTimeOut.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.numTimeOut.Name = "numTimeOut";
-            this.numTimeOut.Size = new System.Drawing.Size(103, 20);
-            this.numTimeOut.TabIndex = 8;
-            this.numTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numTimeOut.Value = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            // 
             // txtConnectionString
             // 
-            this.txtConnectionString.Location = new System.Drawing.Point(23, 396);
+            this.txtConnectionString.Location = new System.Drawing.Point(32, 102);
             this.txtConnectionString.Multiline = true;
             this.txtConnectionString.Name = "txtConnectionString";
             this.txtConnectionString.Size = new System.Drawing.Size(489, 50);
@@ -544,17 +422,199 @@
             // lblConnectionString
             // 
             this.lblConnectionString.AutoSize = true;
-            this.lblConnectionString.Location = new System.Drawing.Point(26, 379);
+            this.lblConnectionString.Location = new System.Drawing.Point(35, 85);
             this.lblConnectionString.Name = "lblConnectionString";
             this.lblConnectionString.Size = new System.Drawing.Size(115, 13);
             this.lblConnectionString.TabIndex = 47;
             this.lblConnectionString.Text = "直接使用连接字符串";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabBasicInfo);
+            this.tabControl1.Controls.Add(this.Replset);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Location = new System.Drawing.Point(11, 22);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(598, 281);
+            this.tabControl1.TabIndex = 5;
+            // 
+            // tabBasicInfo
+            // 
+            this.tabBasicInfo.Controls.Add(this.chkSlaveOk);
+            this.tabBasicInfo.Controls.Add(this.numTimeOut);
+            this.tabBasicInfo.Controls.Add(this.lblTimeOut);
+            this.tabBasicInfo.Controls.Add(this.chkSafeMode);
+            this.tabBasicInfo.Controls.Add(this.lblConnectionString);
+            this.tabBasicInfo.Controls.Add(this.txtConnectionString);
+            this.tabBasicInfo.Controls.Add(this.lblHostName);
+            this.tabBasicInfo.Controls.Add(this.lblPort);
+            this.tabBasicInfo.Controls.Add(this.lblUsername);
+            this.tabBasicInfo.Controls.Add(this.lblPassword);
+            this.tabBasicInfo.Controls.Add(this.lblHost);
+            this.tabBasicInfo.Controls.Add(this.txtHostName);
+            this.tabBasicInfo.Controls.Add(this.txtPassword);
+            this.tabBasicInfo.Controls.Add(this.txtUsername);
+            this.tabBasicInfo.Controls.Add(this.txtHost);
+            this.tabBasicInfo.Controls.Add(this.txtPort);
+            this.tabBasicInfo.Controls.Add(this.lblDataBaseName);
+            this.tabBasicInfo.Controls.Add(this.txtDataBaseName);
+            this.tabBasicInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabBasicInfo.Name = "tabBasicInfo";
+            this.tabBasicInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabBasicInfo.Size = new System.Drawing.Size(590, 255);
+            this.tabBasicInfo.TabIndex = 0;
+            this.tabBasicInfo.Text = "BasicInfo";
+            this.tabBasicInfo.UseVisualStyleBackColor = true;
+            // 
+            // Replset
+            // 
+            this.Replset.Controls.Add(this.lblMainReplsetName);
+            this.Replset.Controls.Add(this.numPriority);
+            this.Replset.Controls.Add(this.lblpriority);
+            this.Replset.Controls.Add(this.txtMainReplsetName);
+            this.Replset.Controls.Add(this.grpReplset);
+            this.Replset.Location = new System.Drawing.Point(4, 22);
+            this.Replset.Name = "Replset";
+            this.Replset.Padding = new System.Windows.Forms.Padding(3);
+            this.Replset.Size = new System.Drawing.Size(590, 255);
+            this.Replset.TabIndex = 1;
+            this.Replset.Text = "Replset";
+            this.Replset.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.grpShardingSvrType);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(590, 255);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "ServerRole";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // chkSafeMode
+            // 
+            this.chkSafeMode.AutoSize = true;
+            this.chkSafeMode.Location = new System.Drawing.Point(38, 158);
+            this.chkSafeMode.Name = "chkSafeMode";
+            this.chkSafeMode.Size = new System.Drawing.Size(220, 17);
+            this.chkSafeMode.TabIndex = 48;
+            this.chkSafeMode.Text = "安全模式[保证数据安全，性能有损失]";
+            this.chkSafeMode.UseVisualStyleBackColor = true;
+            // 
+            // numTimeOut
+            // 
+            this.numTimeOut.Location = new System.Drawing.Point(374, 159);
+            this.numTimeOut.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.numTimeOut.Name = "numTimeOut";
+            this.numTimeOut.Size = new System.Drawing.Size(103, 20);
+            this.numTimeOut.TabIndex = 49;
+            this.numTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numTimeOut.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            // 
+            // lblTimeOut
+            // 
+            this.lblTimeOut.AutoSize = true;
+            this.lblTimeOut.Location = new System.Drawing.Point(306, 162);
+            this.lblTimeOut.Name = "lblTimeOut";
+            this.lblTimeOut.Size = new System.Drawing.Size(55, 13);
+            this.lblTimeOut.TabIndex = 50;
+            this.lblTimeOut.Text = "延时（秒）";
+            // 
+            // lblMainReplsetName
+            // 
+            this.lblMainReplsetName.AutoSize = true;
+            this.lblMainReplsetName.Location = new System.Drawing.Point(20, 31);
+            this.lblMainReplsetName.Name = "lblMainReplsetName";
+            this.lblMainReplsetName.Size = new System.Drawing.Size(55, 13);
+            this.lblMainReplsetName.TabIndex = 46;
+            this.lblMainReplsetName.Text = "副本名称";
+            // 
+            // numPriority
+            // 
+            this.numPriority.Location = new System.Drawing.Point(304, 27);
+            this.numPriority.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numPriority.Name = "numPriority";
+            this.numPriority.Size = new System.Drawing.Size(103, 20);
+            this.numPriority.TabIndex = 45;
+            this.numPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblpriority
+            // 
+            this.lblpriority.AutoSize = true;
+            this.lblpriority.Location = new System.Drawing.Point(252, 31);
+            this.lblpriority.Name = "lblpriority";
+            this.lblpriority.Size = new System.Drawing.Size(43, 13);
+            this.lblpriority.TabIndex = 47;
+            this.lblpriority.Text = "优先度";
+            // 
+            // txtMainReplsetName
+            // 
+            this.txtMainReplsetName.BackColor = System.Drawing.Color.Transparent;
+            this.txtMainReplsetName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
+            this.txtMainReplsetName.ForeImage = null;
+            this.txtMainReplsetName.Location = new System.Drawing.Point(106, 22);
+            this.txtMainReplsetName.Multiline = false;
+            this.txtMainReplsetName.Name = "txtMainReplsetName";
+            this.txtMainReplsetName.Radius = 3;
+            this.txtMainReplsetName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
+            this.txtMainReplsetName.Size = new System.Drawing.Size(128, 29);
+            this.txtMainReplsetName.TabIndex = 44;
+            this.txtMainReplsetName.UseSystemPasswordChar = false;
+            this.txtMainReplsetName.WaterMark = "副本名称(可选项)";
+            this.txtMainReplsetName.WaterMarkColor = System.Drawing.Color.Silver;
+            // 
+            // chkSlaveOk
+            // 
+            this.chkSlaveOk.AutoSize = true;
+            this.chkSlaveOk.BackColor = System.Drawing.Color.Transparent;
+            this.chkSlaveOk.Location = new System.Drawing.Point(38, 185);
+            this.chkSlaveOk.Name = "chkSlaveOk";
+            this.chkSlaveOk.Size = new System.Drawing.Size(424, 17);
+            this.chkSlaveOk.TabIndex = 51;
+            this.chkSlaveOk.Text = "主从模式[GFS 操作限制，集群的非Route，Config服务器；Slave服务器，请选择]";
+            this.chkSlaveOk.UseVisualStyleBackColor = false;
+            // 
+            // radMaster
+            // 
+            this.radMaster.AutoSize = true;
+            this.radMaster.Location = new System.Drawing.Point(20, 55);
+            this.radMaster.Name = "radMaster";
+            this.radMaster.Size = new System.Drawing.Size(57, 17);
+            this.radMaster.TabIndex = 41;
+            this.radMaster.TabStop = true;
+            this.radMaster.Text = "Master";
+            this.radMaster.UseVisualStyleBackColor = true;
+            // 
+            // radSlave
+            // 
+            this.radSlave.AutoSize = true;
+            this.radSlave.Location = new System.Drawing.Point(122, 55);
+            this.radSlave.Name = "radSlave";
+            this.radSlave.Size = new System.Drawing.Size(52, 17);
+            this.radSlave.TabIndex = 42;
+            this.radSlave.TabStop = true;
+            this.radSlave.Text = "Slave";
+            this.radSlave.UseVisualStyleBackColor = true;
+            // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(531, 568);
+            this.ClientSize = new System.Drawing.Size(631, 416);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmAddConnection";
             this.Text = "数据连接";
@@ -564,8 +624,14 @@
             this.grpReplset.PerformLayout();
             this.grpShardingSvrType.ResumeLayout(false);
             this.grpShardingSvrType.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numPriority)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabBasicInfo.ResumeLayout(false);
+            this.tabBasicInfo.PerformLayout();
+            this.Replset.ResumeLayout(false);
+            this.Replset.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numTimeOut)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPriority)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -576,7 +642,6 @@
         private System.Windows.Forms.RadioButton radRouteSrv;
         private System.Windows.Forms.RadioButton radConfigSrv;
         private System.Windows.Forms.RadioButton radDataSrv;
-        private System.Windows.Forms.CheckBox chkSlaveOk;
         private System.Windows.Forms.VistaButton cmdCancel;
         private System.Windows.Forms.VistaButton cmdAdd;
         private System.Windows.Forms.Label lblPassword;
@@ -594,19 +659,26 @@
         private System.Windows.Forms.Label lblDataBaseName;
         private System.Windows.Forms.Label lblReplsetList;
         private System.Windows.Forms.ListBox lstServerce;
-        private System.Windows.Forms.CheckBox chkSafeMode;
         private System.Windows.Forms.GroupBox grpShardingSvrType;
         private System.Windows.Forms.GroupBox grpReplset;
-        private System.Windows.Forms.Label lblMainReplsetName;
-        private QLFUI.TextBoxEx txtMainReplsetName;
         private System.Windows.Forms.Label lblAttention;
         private System.Windows.Forms.RadioButton radArbiters;
         private System.Windows.Forms.VistaButton cmdInitReplset;
-        private System.Windows.Forms.NumericUpDown numPriority;
-        private System.Windows.Forms.Label lblpriority;
-        private System.Windows.Forms.NumericUpDown numTimeOut;
-        private System.Windows.Forms.Label lblTimeOut;
         private System.Windows.Forms.Label lblConnectionString;
         private System.Windows.Forms.TextBox txtConnectionString;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabBasicInfo;
+        private System.Windows.Forms.CheckBox chkSafeMode;
+        private System.Windows.Forms.TabPage Replset;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.NumericUpDown numTimeOut;
+        private System.Windows.Forms.Label lblTimeOut;
+        private System.Windows.Forms.Label lblMainReplsetName;
+        private System.Windows.Forms.NumericUpDown numPriority;
+        private System.Windows.Forms.Label lblpriority;
+        private QLFUI.TextBoxEx txtMainReplsetName;
+        private System.Windows.Forms.CheckBox chkSlaveOk;
+        private System.Windows.Forms.RadioButton radMaster;
+        private System.Windows.Forms.RadioButton radSlave;
     }
 }

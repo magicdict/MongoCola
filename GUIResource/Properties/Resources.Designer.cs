@@ -130,6 +130,13 @@ namespace GUIResource.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap logo_mongoDB {
+            get {
+                object obj = ResourceManager.GetObject("logo_mongoDB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap NextPage {
             get {
                 object obj = ResourceManager.GetObject("NextPage", resourceCulture);

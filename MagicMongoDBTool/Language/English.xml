@@ -27,6 +27,7 @@
   <Main_Menu_Operation_Server_NewDB>New Database</Main_Menu_Operation_Server_NewDB>
   <Main_Menu_Operation_Server_AddUserToAdmin>Add User To Admin Group</Main_Menu_Operation_Server_AddUserToAdmin>
   <Main_Menu_Operation_Server_DelFromAdmin>Del User From Admin Group</Main_Menu_Operation_Server_DelFromAdmin>
+  <Main_Menu_Operation_Server_SlaveResync>Slave Resync</Main_Menu_Operation_Server_SlaveResync>
   <Main_Menu_Operation_Server_CloseServer>Close Server</Main_Menu_Operation_Server_CloseServer>
   <Main_Menu_Operation_Server_Properties>Server Properties</Main_Menu_Operation_Server_Properties>
 

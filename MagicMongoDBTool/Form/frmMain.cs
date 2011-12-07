@@ -96,6 +96,7 @@ namespace MagicMongoDBTool
             this.CreateMongoDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_NewDB);
             this.AddUserToAdminToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
             this.RemoveUserFromAdminToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_DelFromAdmin);
+            this.slaveResyncToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_SlaveResync);
             this.ShutDownToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_CloseServer);
             this.SvrPropertyToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties);
 
@@ -811,6 +812,7 @@ namespace MagicMongoDBTool
             this.RemoveUserToolStripMenuItem.Enabled = false;
             this.evalJSToolStripMenuItem.Enabled = false;
             this.RepairDBToolStripMenuItem.Enabled = false;
+
             //管理-数据集
             this.IndexManageToolStripMenuItem.Enabled = false;
             this.ReIndexToolStripMenuItem.Enabled = false;
@@ -1023,6 +1025,9 @@ namespace MagicMongoDBTool
             AddElementToolStripMenuItem.Enabled = false;
             DropElementToolStripMenuItem.Enabled = false;
             ModifyElementToolStripMenuItem.Enabled = false;
+            CopyElementToolStripMenuItem.Enabled = false;
+            CutElementToolStripMenuItem.Enabled = false;
+            PasteElementToolStripMenuItem.Enabled = false;
         }
         /// <summary>
         /// 数据树形被选择后(TOP)
@@ -1095,6 +1100,8 @@ namespace MagicMongoDBTool
                     {
                         //普通数据:允许添加元素,不允许删除元素
                         DropElementToolStripMenuItem.Enabled = true;
+                        CopyElementToolStripMenuItem.Enabled = true;
+                        CutElementToolStripMenuItem.Enabled = true;
                         if (trvData.SelectedNode.Nodes.Count == 0)
                         {
                             //如果已经是叶子的话允许修改元素
@@ -1107,6 +1114,10 @@ namespace MagicMongoDBTool
                             {
                                 //改节点不是数组
                                 AddElementToolStripMenuItem.Enabled = true;
+                                if (MongoDBHelper.CanPaste)
+                                {
+                                    PasteElementToolStripMenuItem.Enabled = true;
+                                }
                             }
                         }
                     }
@@ -1183,10 +1194,13 @@ namespace MagicMongoDBTool
                         this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
                         this.contextMenuStripMain.Items.Add(this.ModifyElementToolStripMenuItem.Clone());
                         this.contextMenuStripMain.Items.Add(this.DropElementToolStripMenuItem.Clone());
+                        this.contextMenuStripMain.Items.Add(this.CopyElementToolStripMenuItem.Clone());
+                        this.contextMenuStripMain.Items.Add(this.CutElementToolStripMenuItem.Clone());
+                        this.contextMenuStripMain.Items.Add(this.PasteElementToolStripMenuItem.Clone());
                         break;
                 }
                 trvData.ContextMenuStrip = this.contextMenuStripMain;
-                contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+                contextMenuStripMain.Show(trvData.PointToScreen(e.Location));
             }
         }
         /// <summary>
@@ -1805,6 +1819,42 @@ namespace MagicMongoDBTool
                 return;
             }
             SystemManager.OpenForm(new frmElement(true, trvData.SelectedNode));
+            IsNeedRefresh = true;
+        }
+        /// <summary>
+        /// 复制元素
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CopyElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MongoDBHelper.CopyElement(trvData.SelectedNode.FullPath);
+        }
+        /// <summary>
+        /// 粘贴元素
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PasteElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MongoDBHelper.PasteElement(trvData.SelectedNode.FullPath);
+            MongoDBHelper.FillBsonDocToTreeNode(trvData.SelectedNode, new BsonDocument().Add(MongoDBHelper.ClipElement), (BsonValue)trvData.SelectedNode.Tag);
+            IsNeedRefresh = true;
+        }
+        /// <summary>
+        /// 剪切元素
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CutElementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (trvData.SelectedNode.Level == 1 & trvData.SelectedNode.PrevNode == null)
+            {
+                MyMessageBox.ShowMessage("Error", "_id 不能被删除");
+                return;
+            }
+            MongoDBHelper.CutElement(trvData.SelectedNode.FullPath);
+            trvData.Nodes.Remove(trvData.SelectedNode);
             IsNeedRefresh = true;
         }
         #endregion
