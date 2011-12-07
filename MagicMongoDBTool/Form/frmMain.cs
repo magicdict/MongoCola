@@ -524,6 +524,10 @@ namespace MagicMongoDBTool
                             this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
 #endif
                             this.AddUserToAdminToolStripMenuItem.Enabled = true;
+                            if (!(SystemManager.GetCurrentService().Instance.IsPrimary))
+                            {
+                                this.slaveResyncToolStripMenuItem.Enabled = true;
+                            }
                         }
                         this.ShutDownToolStripMenuItem.Enabled = true;
                         this.SvrPropertyToolStripMenuItem.Enabled = true;
@@ -570,6 +574,10 @@ namespace MagicMongoDBTool
                             t5.Click += new EventHandler(ShardingConfigToolStripMenuItem_Click);
                             this.contextMenuStripMain.Items.Add(t5);
 
+                            ToolStripMenuItem t51 = this.slaveResyncToolStripMenuItem.Clone();
+                            t51.Click += new EventHandler(slaveResyncToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t51);
+
                             ToolStripMenuItem t6 = this.DisconnectToolStripMenuItem.Clone();
                             t6.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
                             this.contextMenuStripMain.Items.Add(t6);
@@ -591,6 +599,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.slaveResyncToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.SvrPropertyToolStripMenuItem.Clone());
 #endif
@@ -791,6 +800,7 @@ namespace MagicMongoDBTool
             this.AddUserToAdminToolStripMenuItem.Enabled = false;
             this.RemoveUserFromAdminToolStripMenuItem.Enabled = false;
             this.SvrPropertyToolStripMenuItem.Enabled = false;
+            this.slaveResyncToolStripMenuItem.Enabled = false;
             this.ShutDownToolStripMenuItem.Enabled = false;
             this.DisconnectToolStripMenuItem.Enabled = false;
 
@@ -1384,6 +1394,17 @@ namespace MagicMongoDBTool
         private void AddUserToAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SystemManager.OpenForm(new frmUser(true));
+        }
+        /// <summary>
+        /// SlaveResync
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void slaveResyncToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<CommandResult> ResultCommandList = new List<CommandResult>();
+            ResultCommandList.Add(MongoDBHelper.RunMongoCommandAtCurrentObj(MongoDBHelper.resync_Command));
+            MyMessageBox.ShowMessage("resync", "resync Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
         }
         /// <summary>
         /// 服务器属性
@@ -2198,8 +2219,6 @@ namespace MagicMongoDBTool
                                      strThanks);
         }
         #endregion
-
-
 
     }
 }
