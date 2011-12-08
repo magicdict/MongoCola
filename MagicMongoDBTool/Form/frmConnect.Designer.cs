@@ -28,27 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConnect));
-            this.cmdModifyCon = new System.Windows.Forms.VistaButton();
-            this.cmdDelCon = new System.Windows.Forms.VistaButton();
-            this.cmdAddCon = new System.Windows.Forms.VistaButton();
-            this.cmdCancel = new System.Windows.Forms.VistaButton();
-            this.cmdOK = new System.Windows.Forms.VistaButton();
+            this.cmdModifyCon = new System.Windows.Forms.Button();
+            this.cmdDelCon = new System.Windows.Forms.Button();
+            this.cmdAddCon = new System.Windows.Forms.Button();
+            this.cmdCancel = new System.Windows.Forms.Button();
+            this.cmdOK = new System.Windows.Forms.Button();
             this.lstServerce = new System.Windows.Forms.ListBox();
-            this.contentPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.cmdModifyCon);
-            this.contentPanel.Controls.Add(this.cmdDelCon);
-            this.contentPanel.Controls.Add(this.cmdAddCon);
-            this.contentPanel.Controls.Add(this.cmdCancel);
-            this.contentPanel.Controls.Add(this.cmdOK);
-            this.contentPanel.Controls.Add(this.lstServerce);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(445, 232);
             // 
             // cmdModifyCon
             // 
@@ -113,23 +99,27 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 295);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(447, 233);
+            this.Controls.Add(this.cmdModifyCon);
+            this.Controls.Add(this.cmdDelCon);
+            this.Controls.Add(this.cmdAddCon);
+            this.Controls.Add(this.cmdCancel);
+            this.Controls.Add(this.cmdOK);
+            this.Controls.Add(this.lstServerce);
             this.Name = "frmConnect";
             this.Text = "数据库连接";
             this.Load += new System.EventHandler(this.frmConnect_Load);
-            this.contentPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.VistaButton cmdModifyCon;
-        private System.Windows.Forms.VistaButton cmdDelCon;
-        private System.Windows.Forms.VistaButton cmdAddCon;
-        private System.Windows.Forms.VistaButton cmdCancel;
-        private System.Windows.Forms.VistaButton cmdOK;
+        private System.Windows.Forms.Button cmdModifyCon;
+        private System.Windows.Forms.Button cmdDelCon;
+        private System.Windows.Forms.Button cmdAddCon;
+        private System.Windows.Forms.Button cmdCancel;
+        private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.ListBox lstServerce;
     }
 }

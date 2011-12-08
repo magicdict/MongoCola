@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmdClearPath = new System.Windows.Forms.VistaButton();
+            this.cmdClearPath = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtLogPath = new System.Windows.Forms.TextBox();
-            this.cmdBrowse = new System.Windows.Forms.VistaButton();
+            this.cmdBrowse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmdClearPath
@@ -92,9 +92,9 @@
 
         #endregion
 
-        private System.Windows.Forms.VistaButton cmdClearPath;
+        private System.Windows.Forms.Button cmdClearPath;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TextBox txtLogPath;
-        private System.Windows.Forms.VistaButton cmdBrowse;
+        private System.Windows.Forms.Button cmdBrowse;
     }
 }

@@ -28,35 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOption));
             this.numRefreshForStatus = new System.Windows.Forms.NumericUpDown();
             this.lblRefreshIntervalForStatus = new System.Windows.Forms.Label();
             this.numLimitCnt = new System.Windows.Forms.NumericUpDown();
             this.lblLimitCnt = new System.Windows.Forms.Label();
-            this.cmdCancel = new System.Windows.Forms.VistaButton();
-            this.cmdOK = new System.Windows.Forms.VistaButton();
+            this.cmdCancel = new System.Windows.Forms.Button();
+            this.cmdOK = new System.Windows.Forms.Button();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.ctlFilePickerMongoBinPath = new MagicMongoDBTool.ctlFilePicker();
-            this.contentPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLimitCnt)).BeginInit();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.cmbLanguage);
-            this.contentPanel.Controls.Add(this.lblLanguage);
-            this.contentPanel.Controls.Add(this.numRefreshForStatus);
-            this.contentPanel.Controls.Add(this.lblRefreshIntervalForStatus);
-            this.contentPanel.Controls.Add(this.numLimitCnt);
-            this.contentPanel.Controls.Add(this.lblLimitCnt);
-            this.contentPanel.Controls.Add(this.ctlFilePickerMongoBinPath);
-            this.contentPanel.Controls.Add(this.cmdCancel);
-            this.contentPanel.Controls.Add(this.cmdOK);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(765, 148);
             // 
             // numRefreshForStatus
             // 
@@ -127,21 +110,23 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(397, 105);
+            this.cmdCancel.Location = new System.Drawing.Point(393, 104);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 30);
             this.cmdCancel.TabIndex = 5;
             this.cmdCancel.Text = "取消";
+            this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(306, 106);
+            this.cmdOK.Location = new System.Drawing.Point(226, 104);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(75, 30);
             this.cmdOK.TabIndex = 4;
             this.cmdOK.Text = "确认";
+            this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // lblLanguage
@@ -178,16 +163,23 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(767, 211);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(767, 146);
+            this.Controls.Add(this.cmbLanguage);
+            this.Controls.Add(this.lblLanguage);
+            this.Controls.Add(this.numRefreshForStatus);
+            this.Controls.Add(this.lblRefreshIntervalForStatus);
+            this.Controls.Add(this.numLimitCnt);
+            this.Controls.Add(this.lblLimitCnt);
+            this.Controls.Add(this.ctlFilePickerMongoBinPath);
+            this.Controls.Add(this.cmdCancel);
+            this.Controls.Add(this.cmdOK);
             this.Name = "frmOption";
             this.Text = "选项";
             this.Load += new System.EventHandler(this.frmOption_Load);
-            this.contentPanel.ResumeLayout(false);
-            this.contentPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLimitCnt)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -198,8 +190,8 @@
         private System.Windows.Forms.NumericUpDown numLimitCnt;
         private System.Windows.Forms.Label lblLimitCnt;
         private ctlFilePicker ctlFilePickerMongoBinPath;
-        private System.Windows.Forms.VistaButton cmdCancel;
-        private System.Windows.Forms.VistaButton cmdOK;
+        private System.Windows.Forms.Button cmdCancel;
+        private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.ComboBox cmbLanguage;
         private System.Windows.Forms.Label lblLanguage;
 

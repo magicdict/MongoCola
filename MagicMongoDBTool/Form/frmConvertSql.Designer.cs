@@ -28,21 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConvertSql));
             this.txtSql = new System.Windows.Forms.TextBox();
-            this.cmdOK = new System.Windows.Forms.VistaButton();
-            this.cmdSave = new System.Windows.Forms.VistaButton();
-            this.contentPanel.SuspendLayout();
+            this.cmdOK = new System.Windows.Forms.Button();
+            this.cmdSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.cmdSave);
-            this.contentPanel.Controls.Add(this.cmdOK);
-            this.contentPanel.Controls.Add(this.txtSql);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(486, 268);
             // 
             // txtSql
             // 
@@ -77,22 +66,22 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(488, 331);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(488, 280);
+            this.Controls.Add(this.cmdSave);
+            this.Controls.Add(this.cmdOK);
+            this.Controls.Add(this.txtSql);
             this.Name = "frmConvertSql";
-            this.ShowSelectSkinButton = false;
             this.Text = "frmRunSql";
             this.Load += new System.EventHandler(this.frmRunSql_Load);
-            this.contentPanel.ResumeLayout(false);
-            this.contentPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.TextBox txtSql;
-        private System.Windows.Forms.VistaButton cmdOK;
-        private System.Windows.Forms.VistaButton cmdSave;
+        private System.Windows.Forms.Button cmdOK;
+        private System.Windows.Forms.Button cmdSave;
     }
 }

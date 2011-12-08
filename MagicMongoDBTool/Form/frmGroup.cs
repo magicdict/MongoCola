@@ -5,11 +5,11 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using QLFUI;
+
 
 namespace MagicMongoDBTool
 {
-    public partial class frmGroup : QLFUI.QLFForm
+    public partial class frmGroup : Form
     {
         public frmGroup()
         {
@@ -123,16 +123,16 @@ namespace MagicMongoDBTool
 
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                lblReduceFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Reduce);
-                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
-                lblfinalizeFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Finalize);
-                cmdSavefinalizeJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
-                lblSelectGroupField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Group_Notes);
-                lblAddInitField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_InitColumn_Note);
-                cmdAddInitField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_InitColumn);
-                lblResult.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_Tab_Result);
-                cmdQuery.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Group_LoadQuery);
-                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
+                lblReduceFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_Reduce);
+                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
+                lblfinalizeFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_Finalize);
+                cmdSavefinalizeJs.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
+                lblSelectGroupField.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_Group_Notes);
+                lblAddInitField.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_InitColumn_Note);
+                cmdAddInitField.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_InitColumn);
+                lblResult.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_Result);
+                cmdQuery.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_LoadQuery);
+                cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
             }
 
         }

@@ -38,22 +38,16 @@
             this.tabCollectionInfo = new System.Windows.Forms.TabPage();
             this.lstCollectionStatus = new System.Windows.Forms.ListView();
             this.tabClusterInfo = new System.Windows.Forms.TabPage();
-            this.cmdRefresh = new System.Windows.Forms.VistaButton();
-            this.contentPanel.SuspendLayout();
+            this.cmdRefresh = new System.Windows.Forms.Button();
             this.tabSvrStatus.SuspendLayout();
             this.tabSvrBasicInfo.SuspendLayout();
             this.tabDBBasicInfo.SuspendLayout();
             this.tabCollectionInfo.SuspendLayout();
             this.tabClusterInfo.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.cmdRefresh);
-            this.contentPanel.Controls.Add(this.tabSvrStatus);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(806, 437);
+
+            this.Controls.Add(this.cmdRefresh);
+            this.Controls.Add(this.tabSvrStatus);
             // 
             // lstSrvOpr
             // 
@@ -175,7 +169,6 @@
             this.Text = "服务器状态";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmServiceStatus_FormClosing);
             this.Load += new System.EventHandler(this.frmServiceStatus_Load);
-            this.contentPanel.ResumeLayout(false);
             this.tabSvrStatus.ResumeLayout(false);
             this.tabSvrBasicInfo.ResumeLayout(false);
             this.tabDBBasicInfo.ResumeLayout(false);
@@ -193,7 +186,7 @@
         private System.Windows.Forms.TabControl tabSvrStatus;
         private System.Windows.Forms.TabPage tabDBBasicInfo;
         private System.Windows.Forms.TabPage tabClusterInfo;
-        private System.Windows.Forms.VistaButton cmdRefresh;
+        private System.Windows.Forms.Button cmdRefresh;
         private System.Windows.Forms.TabPage tabCollectionInfo;
         private System.Windows.Forms.ListView lstCollectionStatus;
         private System.Windows.Forms.TabPage tabSvrBasicInfo;

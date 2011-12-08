@@ -1,4 +1,5 @@
-﻿namespace MagicMongoDBTool
+﻿using System.Windows.Forms;
+namespace MagicMongoDBTool
 {
     partial class ctlBsonValue
     {
@@ -31,7 +32,7 @@
             this.cmbDataType = new System.Windows.Forms.ComboBox();
             this.radFalse = new System.Windows.Forms.RadioButton();
             this.radTrue = new System.Windows.Forms.RadioButton();
-            this.txtBsonValue = new QLFUI.TextBoxEx();
+            this.txtBsonValue = new System.Windows.Forms.TextBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.NumberPick = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.NumberPick)).BeginInit();
@@ -50,7 +51,7 @@
             // 
             this.radFalse.AutoSize = true;
             this.radFalse.BackColor = System.Drawing.Color.Transparent;
-            this.radFalse.Location = new System.Drawing.Point(51, 4);
+            this.radFalse.Location = new System.Drawing.Point(51, 8);
             this.radFalse.Name = "radFalse";
             this.radFalse.Size = new System.Drawing.Size(50, 17);
             this.radFalse.TabIndex = 6;
@@ -62,7 +63,7 @@
             // 
             this.radTrue.AutoSize = true;
             this.radTrue.BackColor = System.Drawing.Color.Transparent;
-            this.radTrue.Location = new System.Drawing.Point(3, 5);
+            this.radTrue.Location = new System.Drawing.Point(3, 8);
             this.radTrue.Name = "radTrue";
             this.radTrue.Size = new System.Drawing.Size(47, 17);
             this.radTrue.TabIndex = 7;
@@ -72,33 +73,22 @@
             // 
             // txtBsonValue
             // 
-            //this.txtBsonValue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtBsonValue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txtBsonValue.BackColor = System.Drawing.Color.Transparent;
-            this.txtBsonValue.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
-            this.txtBsonValue.ForeImage = null;
-            this.txtBsonValue.Location = new System.Drawing.Point(0, 3);
-            this.txtBsonValue.Multiline = false;
+            this.txtBsonValue.Location = new System.Drawing.Point(0, 5);
             this.txtBsonValue.Name = "txtBsonValue";
-            this.txtBsonValue.Radius = 3;
-            this.txtBsonValue.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
-            this.txtBsonValue.Size = new System.Drawing.Size(105, 29);
+            this.txtBsonValue.Size = new System.Drawing.Size(105, 20);
             this.txtBsonValue.TabIndex = 5;
-            this.txtBsonValue.UseSystemPasswordChar = false;
-            this.txtBsonValue.WaterMark = "元素值";
-            this.txtBsonValue.WaterMarkColor = System.Drawing.Color.Silver;
             // 
             // dateTimePicker
             // 
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker.Location = new System.Drawing.Point(0, 4);
+            this.dateTimePicker.Location = new System.Drawing.Point(0, 5);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(101, 20);
             this.dateTimePicker.TabIndex = 8;
             // 
             // NumberPick
             // 
-            this.NumberPick.Location = new System.Drawing.Point(0, 3);
+            this.NumberPick.Location = new System.Drawing.Point(0, 5);
             this.NumberPick.Maximum = new decimal(new int[] {
             -727379969,
             232,
@@ -134,7 +124,7 @@
 
         #endregion
 
-        private QLFUI.TextBoxEx txtBsonValue;
+        private TextBox txtBsonValue;
         private System.Windows.Forms.ComboBox cmbDataType;
         private System.Windows.Forms.RadioButton radFalse;
         private System.Windows.Forms.RadioButton radTrue;

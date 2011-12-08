@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using System.Text;
-using QLFUI;
-using GUIResource;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmMain : QLFUI.QLFForm
+    public partial class frmMain : Form
     {
         #region"主程序"
         public frmMain()
@@ -28,18 +26,6 @@ namespace MagicMongoDBTool
             InitToolBar();
             //设定工具栏
             SetToolBarEnabled();
-
-            this.menuStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
-            this.toolStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
-            this.statusStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
-            this.SkinChanged += new SkinChangedEventHandler((skinName) =>
-            {
-                this.menuStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
-                this.toolStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
-                this.statusStripMain.BackgroundImage = QLFUI.IniHelper.getImage("_topMiddle");
-                SystemManager.ConfigHelperInstance.SkipFolder = skinName;
-                SystemManager.ConfigHelperInstance.SaveToConfigFile();
-            });
             if (SystemManager.DEBUG_MODE)
             {
                 //测试用自动连接
@@ -172,10 +158,6 @@ namespace MagicMongoDBTool
         /// </summary>
         private void frmMain_Load(object sender, EventArgs e)
         {
-            if (SystemManager.ConfigHelperInstance.SkipFolder != String.Empty)
-            {
-                this.ChangeSkin(SystemManager.ConfigHelperInstance.SkipFolder);
-            }
 #if MONO
             MenuStrip menustrip = this.menuStripMain;
             for (int i = 0; i < menustrip.Items.Count; i++)
@@ -184,7 +166,6 @@ namespace MagicMongoDBTool
             }
 #else
             //菜单美化
-            this.menuStripMain.Renderer = new QLFUI.ToolStripRenderer(new ProfessionalColorTable());
 #endif
             this.trvsrvlst.NodeMouseClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseClick);
             this.trvsrvlst.KeyDown += new KeyEventHandler(trvsrvlst_KeyDown);
@@ -344,7 +325,6 @@ namespace MagicMongoDBTool
 #else
                             this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -397,7 +377,6 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(t6);
 
 #else
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.countToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.distinctToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
@@ -445,7 +424,6 @@ namespace MagicMongoDBTool
                             t1.Click += new EventHandler(UploadFileToolStripMenuItem_Click);
                             this.contextMenuStripMain.Items.Add(t1);
 #else
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.UploadFileToolStripMenuItem.Clone());
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -480,7 +458,6 @@ namespace MagicMongoDBTool
                             t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
                             this.contextMenuStripMain.Items.Add(t1);
 #else
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -502,7 +479,6 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(t1);
 #else
                             this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -596,7 +572,6 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(t8);
 
 #else
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
                             this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
@@ -691,7 +666,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(t7);
 
 #else
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+
                             this.contextMenuStripMain.Items.Add(this.DelMongoDBToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.CreateMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
@@ -765,7 +740,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(t6);
 
 #else
-                            this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+
                             this.contextMenuStripMain.Items.Add(this.DelMongoCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RenameCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DumpCollectionToolStripMenuItem.Clone());
@@ -988,7 +963,7 @@ namespace MagicMongoDBTool
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
-                    this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+
                     switch (SystemManager.GetCurrentCollection().Name)
                     {
                         case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
@@ -1146,7 +1121,7 @@ namespace MagicMongoDBTool
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
-                    this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+
                     //顶层可以删除的节点
                     switch (SystemManager.GetCurrentCollection().Name)
                     {
@@ -1188,7 +1163,7 @@ namespace MagicMongoDBTool
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 this.contextMenuStripMain = new ContextMenuStrip();
-                this.contextMenuStripMain.Renderer = menuStripMain.Renderer;
+
                 //顶层可以删除的节点
                 switch (SystemManager.GetCurrentCollection().Name)
                 {
@@ -2254,7 +2229,7 @@ namespace MagicMongoDBTool
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MyMessageBox.ShowMessage("关于", "MagicMongoDBTool",
-                                     GUIResource.GetResource.GetImage(GUIResource.ImageType.Smile),
+                                     MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile),
                                      "GitHub地址： https://github.com/magicdict/MagicMongoDBTool");
         }
         /// <summary>
@@ -2269,7 +2244,7 @@ namespace MagicMongoDBTool
             strThanks += "感谢Dragon同志的测试和代码规范化";
             strThanks += "感谢MoLing同志的国际化";
             MyMessageBox.ShowMessage("感谢", "MagicMongoDBTool",
-                                     GUIResource.GetResource.GetImage(GUIResource.ImageType.Smile),
+                                     MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile),
                                      strThanks);
         }
         #endregion

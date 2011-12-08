@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 using MongoDB.Bson;
-using QLFUI;
+
 
 namespace MagicMongoDBTool
 {
-    public partial class frmShardingConfig : QLFUI.QLFForm
+    public partial class frmShardingConfig : System.Windows.Forms.Form
     {
         /// <summary>
         /// 初期化
@@ -29,17 +29,17 @@ namespace MagicMongoDBTool
         {
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_Title);
-                tabAddSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_AddSharding);
-                lblReplsetName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_ReplsetName);
-                cmdAddSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Add);
+                this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_Title);
+                tabAddSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_AddSharding);
+                lblReplsetName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_ReplsetName);
+                cmdAddSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Add);
 
-                tabShardingConfig.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_EnableSharding);
-                lblDBName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_DBName);
-                lblCollection.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_CollectionName);
-                lblField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_FieldName);
-                cmdEnableCollectionSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_Action_CollectionSharding);
-                cmdEnableDBSharding.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.ShardingConfig_Action_DBSharding);
+                tabShardingConfig.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_EnableSharding);
+                lblDBName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_DBName);
+                lblCollection.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_CollectionName);
+                lblField.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_FieldName);
+                cmdEnableCollectionSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_Action_CollectionSharding);
+                cmdEnableDBSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_Action_DBSharding);
             }
             _prmSvr = SystemManager.GetCurrentService();
             MongoDatabase mongoDB = _prmSvr.GetDatabase("config");

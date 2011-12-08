@@ -2,7 +2,7 @@
 using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
-    public partial class frmUser : QLFUI.QLFForm
+    public partial class frmUser : System.Windows.Forms.Form
     {
         /// <summary>
         /// 是否作为Admin
@@ -47,17 +47,17 @@ namespace MagicMongoDBTool
             {
                 if (_IsAdmin)
                 {
-                    this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
+                    this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
                 }
                 else
                 {
-                    this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                    this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Main_Menu_Operation_Database_AddUser);
                 }
-                lblPassword.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Password);
-                lblUserName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Username);
-                chkReadOnly.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_ReadOnly);
-                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Cancel);
+                lblPassword.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Password);
+                lblUserName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Username);
+                chkReadOnly.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_ReadOnly);
+                cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);
             }
         }
     }

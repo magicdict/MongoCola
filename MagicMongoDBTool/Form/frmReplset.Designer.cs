@@ -28,26 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReplset));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabAddSvr = new System.Windows.Forms.TabPage();
-            this.tabRemoveSvr = new System.Windows.Forms.TabPage();
+            this.cmdAddSvr = new System.Windows.Forms.Button();
             this.lstServerOutReplset = new System.Windows.Forms.ListBox();
+            this.tabRemoveSvr = new System.Windows.Forms.TabPage();
+            this.cmdRemove = new System.Windows.Forms.Button();
             this.lstServerInReplset = new System.Windows.Forms.ListBox();
-            this.cmdAddSvr = new System.Windows.Forms.VistaButton();
-            this.cmdRemove = new System.Windows.Forms.VistaButton();
-            this.contentPanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabAddSvr.SuspendLayout();
             this.tabRemoveSvr.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.tabControl1);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(425, 260);
             // 
             // tabControl1
             // 
@@ -71,6 +62,25 @@
             this.tabAddSvr.Text = "添加服务器";
             this.tabAddSvr.UseVisualStyleBackColor = true;
             // 
+            // cmdAddSvr
+            // 
+            this.cmdAddSvr.BackColor = System.Drawing.Color.Transparent;
+            this.cmdAddSvr.Location = new System.Drawing.Point(271, 147);
+            this.cmdAddSvr.Name = "cmdAddSvr";
+            this.cmdAddSvr.Size = new System.Drawing.Size(100, 32);
+            this.cmdAddSvr.TabIndex = 6;
+            this.cmdAddSvr.Text = "添加";
+            this.cmdAddSvr.UseVisualStyleBackColor = false;
+            this.cmdAddSvr.Click += new System.EventHandler(this.cmdAddSvr_Click);
+            // 
+            // lstServerOutReplset
+            // 
+            this.lstServerOutReplset.FormattingEnabled = true;
+            this.lstServerOutReplset.Location = new System.Drawing.Point(20, 20);
+            this.lstServerOutReplset.Name = "lstServerOutReplset";
+            this.lstServerOutReplset.Size = new System.Drawing.Size(350, 108);
+            this.lstServerOutReplset.TabIndex = 5;
+            // 
             // tabRemoveSvr
             // 
             this.tabRemoveSvr.Controls.Add(this.cmdRemove);
@@ -83,13 +93,16 @@
             this.tabRemoveSvr.Text = "删除服务器";
             this.tabRemoveSvr.UseVisualStyleBackColor = true;
             // 
-            // lstServerOutReplset
+            // cmdRemove
             // 
-            this.lstServerOutReplset.FormattingEnabled = true;
-            this.lstServerOutReplset.Location = new System.Drawing.Point(20, 20);
-            this.lstServerOutReplset.Name = "lstServerOutReplset";
-            this.lstServerOutReplset.Size = new System.Drawing.Size(350, 108);
-            this.lstServerOutReplset.TabIndex = 5;
+            this.cmdRemove.BackColor = System.Drawing.Color.Transparent;
+            this.cmdRemove.Location = new System.Drawing.Point(271, 147);
+            this.cmdRemove.Name = "cmdRemove";
+            this.cmdRemove.Size = new System.Drawing.Size(100, 32);
+            this.cmdRemove.TabIndex = 1;
+            this.cmdRemove.Text = "删除";
+            this.cmdRemove.UseVisualStyleBackColor = false;
+            this.cmdRemove.Click += new System.EventHandler(this.cmdRemove_Click);
             // 
             // lstServerInReplset
             // 
@@ -99,37 +112,15 @@
             this.lstServerInReplset.Size = new System.Drawing.Size(350, 108);
             this.lstServerInReplset.TabIndex = 0;
             // 
-            // cmdAddSvr
-            // 
-            this.cmdAddSvr.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddSvr.Location = new System.Drawing.Point(271, 147);
-            this.cmdAddSvr.Name = "cmdAddSvr";
-            this.cmdAddSvr.Size = new System.Drawing.Size(100, 32);
-            this.cmdAddSvr.TabIndex = 6;
-            this.cmdAddSvr.Text = "添加";
-            this.cmdAddSvr.Click += new System.EventHandler(this.cmdAddSvr_Click);
-            // 
-            // cmdRemove
-            // 
-            this.cmdRemove.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRemove.Location = new System.Drawing.Point(271, 147);
-            this.cmdRemove.Name = "cmdRemove";
-            this.cmdRemove.Size = new System.Drawing.Size(100, 32);
-            this.cmdRemove.TabIndex = 1;
-            this.cmdRemove.Text = "删除";
-            this.cmdRemove.Click += new System.EventHandler(this.cmdRemove_Click);
-            // 
             // frmReplset
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 323);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(427, 255);
+            this.Controls.Add(this.tabControl1);
             this.Name = "frmReplset";
-            this.ShowSelectSkinButton = false;
             this.Text = "副本管理";
             this.Load += new System.EventHandler(this.frmReplset_Load);
-            this.contentPanel.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabAddSvr.ResumeLayout(false);
             this.tabRemoveSvr.ResumeLayout(false);
@@ -144,8 +135,8 @@
         private System.Windows.Forms.TabPage tabRemoveSvr;
         private System.Windows.Forms.ListBox lstServerOutReplset;
         private System.Windows.Forms.ListBox lstServerInReplset;
-        private System.Windows.Forms.VistaButton cmdAddSvr;
-        private System.Windows.Forms.VistaButton cmdRemove;
+        private System.Windows.Forms.Button cmdAddSvr;
+        private System.Windows.Forms.Button cmdRemove;
 
     }
 }

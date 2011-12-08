@@ -1,10 +1,11 @@
 ﻿using System;
 using MagicMongoDBTool.Module;
 using System.Windows.Forms;
+using MongoDB.Bson;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmElement : QLFUI.QLFForm
+    public partial class frmElement : Form
     {
         /// <summary>
         /// 是否为更新模式
@@ -44,8 +45,8 @@ namespace MagicMongoDBTool
             }
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Cancel);
+                cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);
             }
         }
         /// <summary>

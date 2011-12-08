@@ -5,10 +5,10 @@ using MagicMongoDBTool.Module;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using QLFUI;
+
 namespace MagicMongoDBTool
 {
-    public partial class frmDistinct : QLFUI.QLFForm
+    public partial class frmDistinct : Form
     {
         public frmDistinct()
         {
@@ -36,9 +36,9 @@ namespace MagicMongoDBTool
             }
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                cmdQuery.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Distinct_Action_LoadQuery);
-                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
-                lblSelectField.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Distinct_SelectField);
+                cmdQuery.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Distinct_Action_LoadQuery);
+                cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
+                lblSelectField.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Distinct_SelectField);
             }
         }
         /// <summary>

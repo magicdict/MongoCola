@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
-using QLFUI;
-using GUIResource;
-
 namespace MagicMongoDBTool
 {
-    public partial class frmAddConnection : QLFUI.QLFForm
+    public partial class frmAddConnection : Form
     {
         /// <summary>
         /// 连接配置
@@ -33,19 +30,12 @@ namespace MagicMongoDBTool
         {
             this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Title);
             lblHostName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Name);
-            txtHostName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Name_Description);
             lblHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Host);
-            txtHost.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Host_Description);
             lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
-            txtPort.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Port_Description);
             lblUsername.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username);
-            txtUsername.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_UserName_Description);
             lblPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Password);
-            txtPassword.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
             lblDataBaseName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_DBName);
-            txtDataBaseName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_DBName_Description);
             lblMainReplsetName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName);
-            txtMainReplsetName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName_Description);
             lblpriority.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Priority);
             chkSlaveOk.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MasterSlave);
             chkSafeMode.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SafeMode);
@@ -59,7 +49,6 @@ namespace MagicMongoDBTool
 
             grpReplset.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSet);
             lblReplsetName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetName);
-            txtReplSetName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetName_Description);
             cmdInitReplset.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetInit);
             lblReplsetList.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_ReplaceSetList);
             lblConnectionString.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionString);
@@ -248,7 +237,8 @@ namespace MagicMongoDBTool
                     ModifyConn.ServerType = ConfigHelper.SvrType.ArbiterSvr;
                 }
 
-                if (this.radMaster.Checked) {
+                if (this.radMaster.Checked)
+                {
                     ModifyConn.ServerType = ConfigHelper.SvrType.Master;
                 }
 
@@ -293,7 +283,7 @@ namespace MagicMongoDBTool
         /// 动态更新主副本为指定副本的服务器列表
         /// </summary>
         /// <param name="strNewText"></param>
-        private void txtReplSet_TextChanged(string strNewText)
+        void txtReplSetName_TextChanged(object sender, System.EventArgs e)
         {
             lstServerce.Items.Clear();
             if (txtReplSetName.Text == String.Empty) { return; }

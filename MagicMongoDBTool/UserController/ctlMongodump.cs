@@ -18,11 +18,11 @@ namespace MagicMongoDBTool.Module
             this.ctlFilePickerOutput.PathChanged += new ctlFilePicker.PathChangedHandler(ctlFilePickerOutput_PathChanged);
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                lblCollectionName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup_DCName);
-                lblDBName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup_DBName);
-                lblHostAddr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup_Server);
-                lblPort.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup_Port);
-                ctlFilePickerOutput.Title = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup_Path);
+                lblCollectionName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Backup_DCName);
+                lblDBName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Backup_DBName);
+                lblHostAddr.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Backup_Server);
+                lblPort.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Backup_Port);
+                ctlFilePickerOutput.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Backup_Path);
             }
         }
         void ctlFilePickerOutput_PathChanged(string FilePath)

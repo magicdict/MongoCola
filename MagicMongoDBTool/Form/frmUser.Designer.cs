@@ -1,4 +1,5 @@
-﻿namespace MagicMongoDBTool
+﻿using System.Windows.Forms;
+namespace MagicMongoDBTool
 {
     partial class frmUser
     {
@@ -29,28 +30,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUser));
-            this.cmdOK = new System.Windows.Forms.VistaButton();
-            this.cmdCancel = new System.Windows.Forms.VistaButton();
+            this.cmdOK = new System.Windows.Forms.Button();
+            this.cmdCancel = new System.Windows.Forms.Button();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.txtUserName = new QLFUI.TextBoxEx();
-            this.txtPassword = new QLFUI.TextBoxEx();
+            this.txtUserName = new TextBox();
+            this.txtPassword = new TextBox();
             this.chkReadOnly = new System.Windows.Forms.CheckBox();
-            this.contentPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.chkReadOnly);
-            this.contentPanel.Controls.Add(this.txtPassword);
-            this.contentPanel.Controls.Add(this.txtUserName);
-            this.contentPanel.Controls.Add(this.lblPassword);
-            this.contentPanel.Controls.Add(this.lblUserName);
-            this.contentPanel.Controls.Add(this.cmdCancel);
-            this.contentPanel.Controls.Add(this.cmdOK);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(362, 171);
+
+            this.Controls.Add(this.chkReadOnly);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtUserName);
+            this.Controls.Add(this.lblPassword);
+            this.Controls.Add(this.lblUserName);
+            this.Controls.Add(this.cmdCancel);
+            this.Controls.Add(this.cmdOK);
             // 
             // cmdOK
             // 
@@ -94,39 +89,21 @@
             // 
             // txtUserName
             // 
-            //this.txtUserName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtUserName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txtUserName.BackColor = System.Drawing.Color.Transparent;
-            this.txtUserName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
-            this.txtUserName.ForeImage = null;
             this.txtUserName.Location = new System.Drawing.Point(135, 21);
             this.txtUserName.Multiline = false;
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Radius = 3;
-            this.txtUserName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtUserName.Size = new System.Drawing.Size(146, 29);
             this.txtUserName.TabIndex = 0;
             this.txtUserName.UseSystemPasswordChar = false;
-            this.txtUserName.WaterMark = null;
-            this.txtUserName.WaterMarkColor = System.Drawing.Color.Silver;
             // 
             // txtPassword
             // 
-            //this.txtPassword.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtPassword.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txtPassword.BackColor = System.Drawing.Color.Transparent;
-            this.txtPassword.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
-            this.txtPassword.ForeImage = null;
             this.txtPassword.Location = new System.Drawing.Point(135, 53);
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Radius = 3;
-            this.txtPassword.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtPassword.Size = new System.Drawing.Size(146, 29);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.UseSystemPasswordChar = true;
-            this.txtPassword.WaterMark = null;
-            this.txtPassword.WaterMarkColor = System.Drawing.Color.Silver;
             // 
             // chkReadOnly
             // 
@@ -148,20 +125,18 @@
             this.Name = "frmUser";
             this.Text = "添加用户";
             this.Load += new System.EventHandler(this.frmUser_Load);
-            this.contentPanel.ResumeLayout(false);
-            this.contentPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.VistaButton cmdOK;
+        private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.VistaButton cmdCancel;
-        private QLFUI.TextBoxEx txtPassword;
-        private QLFUI.TextBoxEx txtUserName;
+        private System.Windows.Forms.Button cmdCancel;
+        private TextBox txtPassword;
+        private TextBox txtUserName;
         private System.Windows.Forms.CheckBox chkReadOnly;
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace MagicMongoDBTool
+﻿using System.Windows.Forms;
+namespace MagicMongoDBTool
 {
     partial class ctlIndexCreate
     {
@@ -31,7 +32,7 @@
             this.radAscendingKey = new System.Windows.Forms.RadioButton();
             this.radDescendingKey = new System.Windows.Forms.RadioButton();
             this.lblKeyName = new System.Windows.Forms.Label();
-            this.txtKeyName = new QLFUI.TextBoxEx();
+            this.txtKeyName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // radAscendingKey
@@ -67,21 +68,10 @@
             // 
             // txtKeyName
             // 
-            //this.txtKeyName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtKeyName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txtKeyName.BackColor = System.Drawing.Color.Transparent;
-            this.txtKeyName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
-            this.txtKeyName.ForeImage = null;
-            this.txtKeyName.Location = new System.Drawing.Point(69, -1);
-            this.txtKeyName.Multiline = false;
+            this.txtKeyName.Location = new System.Drawing.Point(69, 4);
             this.txtKeyName.Name = "txtKeyName";
-            this.txtKeyName.Radius = 3;
-            this.txtKeyName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
-            this.txtKeyName.Size = new System.Drawing.Size(226, 29);
+            this.txtKeyName.Size = new System.Drawing.Size(226, 20);
             this.txtKeyName.TabIndex = 4;
-            this.txtKeyName.UseSystemPasswordChar = false;
-            this.txtKeyName.WaterMark = "请输入字段名称";
-            this.txtKeyName.WaterMarkColor = System.Drawing.Color.Silver;
             // 
             // ctlIndexCreate
             // 
@@ -104,6 +94,6 @@
         private System.Windows.Forms.RadioButton radAscendingKey;
         private System.Windows.Forms.RadioButton radDescendingKey;
         private System.Windows.Forms.Label lblKeyName;
-        private QLFUI.TextBoxEx txtKeyName;
+        private TextBox txtKeyName;
     }
 }

@@ -17,16 +17,15 @@ namespace MagicMongoDBTool
             ctlFilePickerLogPath.FileFilter = MongoDBHelper.LogFilter;
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                lblPort.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Port);
-                lblSource.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_SlaveSource);
-                chkAuth.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_Authentication);
-                chkIsAppend.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_AppendMode);
-                ctlFilePickerDBPath.Title = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_DBPath);
-                ctlFilePickerLogPath.Title = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_LogPath);
-                radMaster.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_Master);
-                radSlave.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_Slave);
-                txtSource.WaterMark = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_MasterAddress);
-                grpLog.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_Log);
+                lblPort.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Port);
+                lblSource.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy_SlaveSource);
+                chkAuth.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy_Authentication);
+                chkIsAppend.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy_AppendMode);
+                ctlFilePickerDBPath.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy_DBPath);
+                ctlFilePickerLogPath.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy_LogPath);
+                radMaster.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy_Master);
+                radSlave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy_Slave);
+                grpLog.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy_Log);
             }
         }
         /// <summary>
@@ -112,16 +111,13 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 源头的改变
         /// </summary>
-        /// <param name="strNewText"></param>
-        private void txtSource_TextChanged(string strNewText)
+        void txtSource_TextChanged(object sender, System.EventArgs e)
         {
-            MongodCommand.Source = strNewText;
+            MongodCommand.Source = txtSource.Text;
             if (MongodCommand != null)
             {
                 CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
             }
         }
-
-
     }
 }

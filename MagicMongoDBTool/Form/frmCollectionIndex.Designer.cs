@@ -1,4 +1,5 @@
-﻿namespace MagicMongoDBTool
+﻿using System.Windows.Forms;
+namespace MagicMongoDBTool
 {
     partial class frmCollectionIndex
     {
@@ -29,13 +30,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCollectionIndex));
-            this.cmdAddIndex = new System.Windows.Forms.VistaButton();
-            this.cmdDelIndex = new System.Windows.Forms.VistaButton();
+            this.cmdAddIndex = new System.Windows.Forms.Button();
+            this.cmdDelIndex = new System.Windows.Forms.Button();
             this.lstIndex = new System.Windows.Forms.ListView();
             this.tabIndexMgr = new System.Windows.Forms.TabControl();
             this.tabCurrentIndex = new System.Windows.Forms.TabPage();
             this.tabIndexManager = new System.Windows.Forms.TabPage();
-            this.txtIndexName = new QLFUI.TextBoxEx();
+            this.txtIndexName = new TextBox();
             this.lblIndexName = new System.Windows.Forms.Label();
             this.ctlIndexCreate5 = new MagicMongoDBTool.ctlIndexCreate();
             this.ctlIndexCreate4 = new MagicMongoDBTool.ctlIndexCreate();
@@ -46,18 +47,11 @@
             this.chkIsSparse = new System.Windows.Forms.CheckBox();
             this.chkDroppedDups = new System.Windows.Forms.CheckBox();
             this.chkIsBackground = new System.Windows.Forms.CheckBox();
-            this.contentPanel.SuspendLayout();
             this.tabIndexMgr.SuspendLayout();
             this.tabCurrentIndex.SuspendLayout();
             this.tabIndexManager.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.tabIndexMgr);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(559, 280);
+            this.Controls.Add(this.tabIndexMgr);
             // 
             // cmdAddIndex
             // 
@@ -135,21 +129,12 @@
             // 
             // txtIndexName
             // 
-            //this.txtIndexName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtIndexName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.txtIndexName.BackColor = System.Drawing.Color.Transparent;
-            this.txtIndexName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
-            this.txtIndexName.ForeImage = null;
             this.txtIndexName.Location = new System.Drawing.Point(81, 195);
             this.txtIndexName.Multiline = false;
             this.txtIndexName.Name = "txtIndexName";
-            this.txtIndexName.Radius = 3;
-            this.txtIndexName.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
             this.txtIndexName.Size = new System.Drawing.Size(197, 29);
             this.txtIndexName.TabIndex = 19;
             this.txtIndexName.UseSystemPasswordChar = false;
-            this.txtIndexName.WaterMark = "索引名称(可选参数)";
-            this.txtIndexName.WaterMarkColor = System.Drawing.Color.Silver;
             // 
             // lblIndexName
             // 
@@ -249,7 +234,6 @@
             this.Name = "frmCollectionIndex";
             this.Text = "数据集索引";
             this.Load += new System.EventHandler(this.frmCollectionIndex_Load);
-            this.contentPanel.ResumeLayout(false);
             this.tabIndexMgr.ResumeLayout(false);
             this.tabCurrentIndex.ResumeLayout(false);
             this.tabIndexManager.ResumeLayout(false);
@@ -260,8 +244,8 @@
 
         #endregion
 
-        private System.Windows.Forms.VistaButton cmdAddIndex;
-        private System.Windows.Forms.VistaButton cmdDelIndex;
+        private System.Windows.Forms.Button cmdAddIndex;
+        private System.Windows.Forms.Button cmdDelIndex;
         private System.Windows.Forms.ListView lstIndex;
         private System.Windows.Forms.TabControl tabIndexMgr;
         private System.Windows.Forms.TabPage tabCurrentIndex;
@@ -275,7 +259,7 @@
         private ctlIndexCreate ctlIndexCreate4;
         private ctlIndexCreate ctlIndexCreate3;
         private ctlIndexCreate ctlIndexCreate2;
-        private QLFUI.TextBoxEx txtIndexName;
+        private TextBox txtIndexName;
         private System.Windows.Forms.Label lblIndexName;
     }
 }

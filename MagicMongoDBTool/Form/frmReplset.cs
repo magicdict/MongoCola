@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 using System.Windows.Forms;
-using QLFUI;
+
 namespace MagicMongoDBTool
 {
-    public partial class frmReplset : QLFUI.QLFForm
+    public partial class frmReplset : Form
     {
         public frmReplset()
         {
@@ -18,11 +18,11 @@ namespace MagicMongoDBTool
             RefreshSvr();
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_Title);
-                tabAddSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_AddServer);
-                tabRemoveSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_RemoveServer);
-                cmdAddSvr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Add);
-                cmdRemove.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Replset_Remove);
+                this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Replset_Title);
+                tabAddSvr.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Replset_AddServer);
+                tabRemoveSvr.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Replset_RemoveServer);
+                cmdAddSvr.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Add);
+                cmdRemove.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Replset_Remove);
             }
         }
         MongoServer _prmSvr = SystemManager.GetCurrentService();

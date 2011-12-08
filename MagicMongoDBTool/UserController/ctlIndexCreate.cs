@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using GUIResource;
 using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
@@ -21,7 +20,6 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 this.lblKeyName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
-                this.txtKeyName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Description);
                 this.radAscendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Asce);
                 this.radDescendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Desc);
             }

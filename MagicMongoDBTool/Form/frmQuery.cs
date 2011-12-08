@@ -4,11 +4,11 @@ using System.Drawing;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 using System.Windows.Forms;
-using QLFUI;
+
 
 namespace MagicMongoDBTool
 {
-    public partial class frmQuery : QLFUI.QLFForm
+    public partial class frmQuery : Form
     {
         private MongoCollection _mongoCol = SystemManager.GetCurrentCollection();
         private List<String> ColumnList = new List<String>();
@@ -57,13 +57,13 @@ namespace MagicMongoDBTool
 
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Title);
-                tabFieldInfo.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_FieldInfo);
-                tabFilter.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Filter);
-                cmdAddCondition.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Filter_AddCondition);
-                cmdLoad.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Query_Action_Load);
-                cmdSave.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
-                cmdOK.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_OK);
+                this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Title);
+                tabFieldInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_FieldInfo);
+                tabFilter.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Filter);
+                cmdAddCondition.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Filter_AddCondition);
+                cmdLoad.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Action_Load);
+                cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
+                cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
             }
 
         }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using QLFUI;
+
 namespace MagicMongoDBTool
 {
-    public partial class frmMapReduce : QLFForm
+    public partial class frmMapReduce : System.Windows.Forms.Form
     {
         public frmMapReduce()
         {
@@ -33,12 +33,12 @@ namespace MagicMongoDBTool
 
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                lblMapFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_MapFunction);
-                lblReduceFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_ReduceFunction);
-                lblResult.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_Result);
-                cmdRun.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.MapReduce_Run);
-                cmdSaveMapJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
-                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
+                lblMapFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_MapFunction);
+                lblReduceFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_ReduceFunction);
+                lblResult.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_Result);
+                cmdRun.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_Run);
+                cmdSaveMapJs.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
+                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
             }
 
         }

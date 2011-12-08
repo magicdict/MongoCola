@@ -1,9 +1,8 @@
 ﻿using System.Windows.Forms;
 using MagicMongoDBTool.Module;
-using GUIResource;
+
 namespace MagicMongoDBTool
 {
-
     partial class frmMain
     {
         /// <summary>
@@ -33,7 +32,6 @@ namespace MagicMongoDBTool
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusSelectedObj = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblUserInfo = new System.Windows.Forms.ToolStripStatusLabel();
@@ -99,8 +97,8 @@ namespace MagicMongoDBTool
             this.AddDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
             this.CopyElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PasteElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CutElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PasteElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GridFsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UploadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DownloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -134,40 +132,28 @@ namespace MagicMongoDBTool
             this.tabTextView = new System.Windows.Forms.TabPage();
             this.txtData = new System.Windows.Forms.TextBox();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.contentPanel.SuspendLayout();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
             this.tabTextView.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.splitter1);
-            this.contentPanel.Controls.Add(this.tabDataShower);
-            this.contentPanel.Controls.Add(this.trvsrvlst);
-            this.contentPanel.Controls.Add(this.toolStripMain);
-            this.contentPanel.Controls.Add(this.menuStripMain);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(915, 507);
             // 
             // statusStripMain
             // 
-            this.statusStripMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.statusStripMain.AutoSize = false;
             this.statusStripMain.BackColor = System.Drawing.Color.Transparent;
-            this.statusStripMain.Dock = System.Windows.Forms.DockStyle.None;
             this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusSelectedObj,
             this.lblUserInfo});
-            this.statusStripMain.Location = new System.Drawing.Point(4, 546);
+            this.statusStripMain.Location = new System.Drawing.Point(0, 548);
             this.statusStripMain.Name = "statusStripMain";
-            this.statusStripMain.Size = new System.Drawing.Size(904, 22);
+            this.statusStripMain.Size = new System.Drawing.Size(917, 22);
             this.statusStripMain.TabIndex = 8;
             // 
             // toolStripStatusSelectedObj
@@ -187,7 +173,7 @@ namespace MagicMongoDBTool
             // 
             this.toolStripMain.Location = new System.Drawing.Point(0, 24);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(915, 25);
+            this.toolStripMain.Size = new System.Drawing.Size(917, 25);
             this.toolStripMain.TabIndex = 7;
             this.toolStripMain.Text = "工具栏";
             // 
@@ -202,7 +188,7 @@ namespace MagicMongoDBTool
             this.HelpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(915, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(917, 24);
             this.menuStripMain.TabIndex = 6;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -445,7 +431,7 @@ namespace MagicMongoDBTool
             this.ShutDownToolStripMenuItem,
             this.SvrPropertyToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
-            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.ServerToolStripMenuItem.Text = "服务器";
             // 
             // CreateMongoDBToolStripMenuItem
@@ -512,7 +498,7 @@ namespace MagicMongoDBTool
             this.evalJSToolStripMenuItem,
             this.RepairDBToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
-            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.DataBaseToolStripMenuItem.Text = "数据库";
             // 
             // CreateMongoCollectionToolStripMenuItem
@@ -577,7 +563,7 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem8,
             this.DelSelectRecordToolStripMenuItem});
             this.DataCollectionToolStripMenuItem.Name = "DataCollectionToolStripMenuItem";
-            this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.DataCollectionToolStripMenuItem.Text = "数据集";
             // 
             // DelMongoCollectionToolStripMenuItem
@@ -632,7 +618,7 @@ namespace MagicMongoDBTool
             this.CutElementToolStripMenuItem,
             this.PasteElementToolStripMenuItem});
             this.DataDocumentToolStripMenuItem.Name = "DataDocumentToolStripMenuItem";
-            this.DataDocumentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DataDocumentToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.DataDocumentToolStripMenuItem.Text = "数据文档";
             // 
             // AddElementToolStripMenuItem
@@ -676,14 +662,6 @@ namespace MagicMongoDBTool
             this.CopyElementToolStripMenuItem.Text = "复制元素";
             this.CopyElementToolStripMenuItem.Click += new System.EventHandler(this.CopyElementToolStripMenuItem_Click);
             // 
-            // PasteElementToolStripMenuItem
-            // 
-            this.PasteElementToolStripMenuItem.Name = "PasteElementToolStripMenuItem";
-            this.PasteElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.PasteElementToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.PasteElementToolStripMenuItem.Text = "粘贴元素";
-            this.PasteElementToolStripMenuItem.Click += new System.EventHandler(this.PasteElementToolStripMenuItem_Click);
-            // 
             // CutElementToolStripMenuItem
             // 
             this.CutElementToolStripMenuItem.Name = "CutElementToolStripMenuItem";
@@ -691,6 +669,14 @@ namespace MagicMongoDBTool
             this.CutElementToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.CutElementToolStripMenuItem.Text = "剪切元素";
             this.CutElementToolStripMenuItem.Click += new System.EventHandler(this.CutElementToolStripMenuItem_Click);
+            // 
+            // PasteElementToolStripMenuItem
+            // 
+            this.PasteElementToolStripMenuItem.Name = "PasteElementToolStripMenuItem";
+            this.PasteElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.PasteElementToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.PasteElementToolStripMenuItem.Text = "粘贴元素";
+            this.PasteElementToolStripMenuItem.Click += new System.EventHandler(this.PasteElementToolStripMenuItem_Click);
             // 
             // GridFsToolStripMenuItem
             // 
@@ -701,7 +687,7 @@ namespace MagicMongoDBTool
             this.DelFileToolStripMenuItem,
             this.InitGFSToolStripMenuItem});
             this.GridFsToolStripMenuItem.Name = "GridFsToolStripMenuItem";
-            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.GridFsToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.GridFsToolStripMenuItem.Text = "文件系统";
             // 
             // UploadFileToolStripMenuItem
@@ -749,7 +735,7 @@ namespace MagicMongoDBTool
             this.ImportCollectionToolStripMenuItem,
             this.ExportCollectionToolStripMenuItem});
             this.DumpAndRestoreToolStripMenuItem.Name = "DumpAndRestoreToolStripMenuItem";
-            this.DumpAndRestoreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DumpAndRestoreToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.DumpAndRestoreToolStripMenuItem.Text = "备份和恢复";
             // 
             // RestoreMongoToolStripMenuItem
@@ -886,10 +872,10 @@ namespace MagicMongoDBTool
             this.tabDataShower.Controls.Add(this.tabTableView);
             this.tabDataShower.Controls.Add(this.tabTextView);
             this.tabDataShower.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabDataShower.Location = new System.Drawing.Point(252, 49);
+            this.tabDataShower.Location = new System.Drawing.Point(0, 0);
             this.tabDataShower.Name = "tabDataShower";
             this.tabDataShower.SelectedIndex = 0;
-            this.tabDataShower.Size = new System.Drawing.Size(663, 458);
+            this.tabDataShower.Size = new System.Drawing.Size(662, 499);
             this.tabDataShower.TabIndex = 0;
             // 
             // tabTreeView
@@ -900,7 +886,7 @@ namespace MagicMongoDBTool
             this.tabTreeView.Location = new System.Drawing.Point(4, 22);
             this.tabTreeView.Name = "tabTreeView";
             this.tabTreeView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTreeView.Size = new System.Drawing.Size(655, 432);
+            this.tabTreeView.Size = new System.Drawing.Size(654, 473);
             this.tabTreeView.TabIndex = 0;
             this.tabTreeView.Text = "树形视图";
             // 
@@ -910,7 +896,7 @@ namespace MagicMongoDBTool
             this.trvData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trvData.Location = new System.Drawing.Point(3, 3);
             this.trvData.Name = "trvData";
-            this.trvData.Size = new System.Drawing.Size(649, 426);
+            this.trvData.Size = new System.Drawing.Size(648, 467);
             this.trvData.TabIndex = 0;
             // 
             // tabTableView
@@ -966,38 +952,52 @@ namespace MagicMongoDBTool
             // 
             this.trvsrvlst.BackColor = System.Drawing.Color.White;
             this.trvsrvlst.Dock = System.Windows.Forms.DockStyle.Left;
-            this.trvsrvlst.Location = new System.Drawing.Point(0, 49);
+            this.trvsrvlst.Location = new System.Drawing.Point(0, 0);
             this.trvsrvlst.Name = "trvsrvlst";
-            this.trvsrvlst.Size = new System.Drawing.Size(252, 458);
+            this.trvsrvlst.Size = new System.Drawing.Size(252, 499);
             this.trvsrvlst.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.splitter1);
+            this.panel1.Controls.Add(this.trvsrvlst);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 49);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(917, 499);
+            this.panel1.TabIndex = 9;
             // 
             // splitter1
             // 
-            this.splitter1.Location = new System.Drawing.Point(252, 49);
+            this.splitter1.Location = new System.Drawing.Point(252, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 458);
-            this.splitter1.TabIndex = 8;
+            this.splitter1.Size = new System.Drawing.Size(3, 499);
+            this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.tabDataShower);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(255, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(662, 499);
+            this.panel2.TabIndex = 2;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.YellowGreen;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(917, 570);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStripMain);
-            this.Location = new System.Drawing.Point(0, 0);
-            this.MaximizeBox = true;
-            this.MinimizeBox = true;
+            this.Controls.Add(this.toolStripMain);
+            this.Controls.Add(this.menuStripMain);
             this.Name = "frmMain";
-            this.ShowSelectSkinButton = true;
-            this.SizeAble = true;
             this.Text = "MagicMongoDBTool-Beta2";
             this.Load += new System.EventHandler(this.frmMain_Load);
-            this.Controls.SetChildIndex(this.contentPanel, 0);
-            this.Controls.SetChildIndex(this.statusStripMain, 0);
-            this.contentPanel.ResumeLayout(false);
-            this.contentPanel.PerformLayout();
             this.statusStripMain.ResumeLayout(false);
             this.statusStripMain.PerformLayout();
             this.menuStripMain.ResumeLayout(false);
@@ -1007,7 +1007,10 @@ namespace MagicMongoDBTool
             this.tabTableView.ResumeLayout(false);
             this.tabTextView.ResumeLayout(false);
             this.tabTextView.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
         /// <summary>
@@ -1015,26 +1018,26 @@ namespace MagicMongoDBTool
         /// </summary>
         private void SetMenuImage()
         {
-            this.PrePageToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.PrePage);
-            this.NextPageToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.NextPage);
-            this.FirstPageToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.FirstPage);
-            this.LastPageToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.LastPage);
-            this.QueryDataToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Query);
-            this.DataFilterToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Filter);
+            this.PrePageToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.PrePage);
+            this.NextPageToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.NextPage);
+            this.FirstPageToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.FirstPage);
+            this.LastPageToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.LastPage);
+            this.QueryDataToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Query);
+            this.DataFilterToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Filter);
 
-            this.DelMongoCollectionToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
-            this.DelMongoDBToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
-            this.RemoveUserFromAdminToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
-            this.RemoveUserToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
-            this.DelSelectRecordToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
-            this.DropElementToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
-            this.DelFileToolStripMenuItem.Image = GUIResource.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.DelMongoCollectionToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.DelMongoDBToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.RemoveUserFromAdminToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.RemoveUserToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.DelSelectRecordToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.DropElementToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.DelFileToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
 
-            this.ImportDataFromAccessToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.AccessDB);
-            this.RefreshToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Refresh);
-            this.OptionToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Option);
+            this.ImportDataFromAccessToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.AccessDB);
+            this.RefreshToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Refresh);
+            this.OptionToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Option);
 
-            this.ThanksToolStripMenuItem.Image = GUIResource.GetResource.GetImage(GUIResource.ImageType.Smile);
+            this.ThanksToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile);
 
         }
         /// <summary>
@@ -1198,7 +1201,6 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem DisconnectToolStripMenuItem;
         private ToolStripStatusLabel lblUserInfo;
         private ToolStripMenuItem AddDocumentToolStripMenuItem;
-        private Splitter splitter1;
         private TabControl tabDataShower;
         private TabPage tabTreeView;
         private TreeView trvData;
@@ -1213,5 +1215,8 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem CopyElementToolStripMenuItem;
         private ToolStripMenuItem PasteElementToolStripMenuItem;
         private ToolStripMenuItem CutElementToolStripMenuItem;
+        private Panel panel1;
+        private Panel panel2;
+        private Splitter splitter1;
     }
 }

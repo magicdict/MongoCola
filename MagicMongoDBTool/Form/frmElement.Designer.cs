@@ -30,23 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmElement));
             this.AddBsonElement = new MagicMongoDBTool.ctlAddBsonEl();
-            this.cmdCancel = new System.Windows.Forms.VistaButton();
-            this.cmdOK = new System.Windows.Forms.VistaButton();
-            this.contentPanel.SuspendLayout();
+            this.cmdCancel = new System.Windows.Forms.Button();
+            this.cmdOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.cmdCancel);
-            this.contentPanel.Controls.Add(this.cmdOK);
-            this.contentPanel.Controls.Add(this.AddBsonElement);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(383, 152);
             // 
             // AddBsonElement
             // 
             this.AddBsonElement.BackColor = System.Drawing.Color.Transparent;
+            this.AddBsonElement.Element = ((MongoDB.Bson.BsonElement)(resources.GetObject("AddBsonElement.Element")));
             this.AddBsonElement.Location = new System.Drawing.Point(27, 44);
             this.AddBsonElement.Name = "AddBsonElement";
             this.AddBsonElement.Size = new System.Drawing.Size(326, 30);
@@ -76,12 +67,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(385, 215);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(385, 165);
+            this.Controls.Add(this.cmdCancel);
+            this.Controls.Add(this.cmdOK);
+            this.Controls.Add(this.AddBsonElement);
             this.Name = "frmElement";
             this.Text = "frmElement";
             this.Load += new System.EventHandler(this.frmElement_Load);
-            this.contentPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -89,8 +81,8 @@
         #endregion
 
         private ctlAddBsonEl AddBsonElement;
-        private System.Windows.Forms.VistaButton cmdCancel;
-        private System.Windows.Forms.VistaButton cmdOK;
+        private System.Windows.Forms.Button cmdCancel;
+        private System.Windows.Forms.Button cmdOK;
 
     }
 }

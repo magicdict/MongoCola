@@ -6,7 +6,7 @@ using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmDosCommand : QLFUI.QLFForm
+    public partial class frmDosCommand : Form
     {
         public string StrSaveText = string.Empty;
         public delegate void CommandChangedEventHandler(string strCommandLine);
@@ -22,11 +22,11 @@ namespace MagicMongoDBTool
             this.ctlMongodumpPanel.CommandChanged += new CommandChangedEventHandler(CommandChanged);
             this.ctlMongoImportExportPanel.CommandChanged += new CommandChangedEventHandler(CommandChanged);
             if (!SystemManager.IsUseDefaultLanguage()) {
-                cmdSave.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
-                cmdRunDos.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Run);
-                tabMongod.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy);
-                tabMongoDump.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Backup);
-                tabMongoImportExport.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn);
+                cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
+                cmdRunDos.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Run);
+                tabMongod.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy);
+                tabMongoDump.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Backup);
+                tabMongoImportExport.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_ExIn);
             }
         }
         /// <summary>

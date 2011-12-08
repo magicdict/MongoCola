@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDosCommand));
-            this.cmdSave = new System.Windows.Forms.VistaButton();
-            this.cmdRunDos = new System.Windows.Forms.VistaButton();
+            this.cmdSave = new System.Windows.Forms.Button();
+            this.cmdRunDos = new System.Windows.Forms.Button();
             this.tabFunction = new System.Windows.Forms.TabControl();
             this.tabMongod = new System.Windows.Forms.TabPage();
             this.ctlMongodPanel = new MagicMongoDBTool.ctlMongod();
@@ -39,22 +39,18 @@
             this.tabMongoImportExport = new System.Windows.Forms.TabPage();
             this.ctlMongoImportExportPanel = new MagicMongoDBTool.Module.ctlMongoImportExport();
             this.txtDosCommand = new System.Windows.Forms.TextBox();
-            this.contentPanel.SuspendLayout();
             this.tabFunction.SuspendLayout();
             this.tabMongod.SuspendLayout();
             this.tabMongoDump.SuspendLayout();
             this.tabMongoImportExport.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.cmdSave);
-            this.contentPanel.Controls.Add(this.cmdRunDos);
-            this.contentPanel.Controls.Add(this.tabFunction);
-            this.contentPanel.Controls.Add(this.txtDosCommand);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(869, 436);
+
+            this.Controls.Add(this.cmdSave);
+            this.Controls.Add(this.cmdRunDos);
+            this.Controls.Add(this.tabFunction);
+            this.Controls.Add(this.txtDosCommand);
+            this.Location = new System.Drawing.Point(1, 38);
+            this.Size = new System.Drawing.Size(869, 436);
             // 
             // cmdSave
             // 
@@ -164,11 +160,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDosCommand";
-            this.ShowSelectSkinButton = false;
             this.Text = "配置文件";
             this.Load += new System.EventHandler(this.frmDosCommand_Load);
-            this.contentPanel.ResumeLayout(false);
-            this.contentPanel.PerformLayout();
             this.tabFunction.ResumeLayout(false);
             this.tabMongod.ResumeLayout(false);
             this.tabMongoDump.ResumeLayout(false);
@@ -179,8 +172,8 @@
 
         #endregion
 
-        private System.Windows.Forms.VistaButton cmdSave;
-        private System.Windows.Forms.VistaButton cmdRunDos;
+        private System.Windows.Forms.Button cmdSave;
+        private System.Windows.Forms.Button cmdRunDos;
         private System.Windows.Forms.TabControl tabFunction;
         private System.Windows.Forms.TabPage tabMongod;
         private ctlMongod ctlMongodPanel;

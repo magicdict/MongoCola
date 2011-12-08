@@ -28,23 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLanguage));
             this.lblLanguagePickTip = new System.Windows.Forms.Label();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmdOK = new System.Windows.Forms.VistaButton();
-            this.contentPanel.SuspendLayout();
+            this.cmdOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.cmdOK);
-            this.contentPanel.Controls.Add(this.cmbLanguage);
-            this.contentPanel.Controls.Add(this.lblLanguagePickTip);
-            this.contentPanel.Controls.Add(this.label1);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(363, 141);
             // 
             // lblLanguagePickTip
             // 
@@ -89,14 +77,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 204);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(365, 160);
+            this.Controls.Add(this.cmdOK);
+            this.Controls.Add(this.cmbLanguage);
+            this.Controls.Add(this.lblLanguagePickTip);
+            this.Controls.Add(this.label1);
             this.Name = "frmLanguage";
             this.Text = "Language";
             this.Load += new System.EventHandler(this.frmLanguage_Load);
-            this.contentPanel.ResumeLayout(false);
-            this.contentPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -105,6 +95,6 @@
         private System.Windows.Forms.ComboBox cmbLanguage;
         private System.Windows.Forms.Label lblLanguagePickTip;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.VistaButton cmdOK;
+        private System.Windows.Forms.Button cmdOK;
     }
 }

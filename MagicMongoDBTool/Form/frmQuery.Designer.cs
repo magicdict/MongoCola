@@ -28,29 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQuery));
-            this.cmdAddCondition = new System.Windows.Forms.VistaButton();
-            this.cmdOK = new System.Windows.Forms.VistaButton();
+            this.cmdAddCondition = new System.Windows.Forms.Button();
+            this.cmdOK = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabFieldInfo = new System.Windows.Forms.TabPage();
             this.tabFilter = new System.Windows.Forms.TabPage();
-            this.cmdLoad = new System.Windows.Forms.VistaButton();
-            this.cmdSave = new System.Windows.Forms.VistaButton();
             this.panFilter = new System.Windows.Forms.Panel();
-            this.contentPanel.SuspendLayout();
+            this.cmdLoad = new System.Windows.Forms.Button();
+            this.cmdSave = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabFilter.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.cmdSave);
-            this.contentPanel.Controls.Add(this.cmdLoad);
-            this.contentPanel.Controls.Add(this.tabControl);
-            this.contentPanel.Controls.Add(this.cmdOK);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(531, 465);
             // 
             // cmdAddCondition
             // 
@@ -60,16 +48,18 @@
             this.cmdAddCondition.Size = new System.Drawing.Size(114, 31);
             this.cmdAddCondition.TabIndex = 14;
             this.cmdAddCondition.Text = "新增过滤条件";
+            this.cmdAddCondition.UseVisualStyleBackColor = false;
             this.cmdAddCondition.Click += new System.EventHandler(this.cmdAddCondition_Click);
             // 
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(383, 426);
+            this.cmdOK.Location = new System.Drawing.Point(386, 437);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(114, 29);
             this.cmdOK.TabIndex = 12;
             this.cmdOK.Text = "确定";
+            this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // tabControl
@@ -104,26 +94,6 @@
             this.tabFilter.Text = "字段过滤条件";
             this.tabFilter.UseVisualStyleBackColor = true;
             // 
-            // cmdLoad
-            // 
-            this.cmdLoad.BackColor = System.Drawing.Color.Transparent;
-            this.cmdLoad.Location = new System.Drawing.Point(171, 426);
-            this.cmdLoad.Name = "cmdLoad";
-            this.cmdLoad.Size = new System.Drawing.Size(100, 29);
-            this.cmdLoad.TabIndex = 13;
-            this.cmdLoad.Text = "加载";
-            this.cmdLoad.Click += new System.EventHandler(this.cmdLoad_Click);
-            // 
-            // cmdSave
-            // 
-            this.cmdSave.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSave.Location = new System.Drawing.Point(277, 426);
-            this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(100, 29);
-            this.cmdSave.TabIndex = 14;
-            this.cmdSave.Text = "保存";
-            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
-            // 
             // panFilter
             // 
             this.panFilter.Dock = System.Windows.Forms.DockStyle.Top;
@@ -132,17 +102,40 @@
             this.panFilter.Size = new System.Drawing.Size(482, 332);
             this.panFilter.TabIndex = 15;
             // 
+            // cmdLoad
+            // 
+            this.cmdLoad.BackColor = System.Drawing.Color.Transparent;
+            this.cmdLoad.Location = new System.Drawing.Point(174, 437);
+            this.cmdLoad.Name = "cmdLoad";
+            this.cmdLoad.Size = new System.Drawing.Size(100, 29);
+            this.cmdLoad.TabIndex = 13;
+            this.cmdLoad.Text = "加载";
+            this.cmdLoad.UseVisualStyleBackColor = false;
+            this.cmdLoad.Click += new System.EventHandler(this.cmdLoad_Click);
+            // 
+            // cmdSave
+            // 
+            this.cmdSave.BackColor = System.Drawing.Color.Transparent;
+            this.cmdSave.Location = new System.Drawing.Point(280, 437);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(100, 29);
+            this.cmdSave.TabIndex = 14;
+            this.cmdSave.Text = "保存";
+            this.cmdSave.UseVisualStyleBackColor = false;
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
+            // 
             // frmQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 528);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(533, 480);
+            this.Controls.Add(this.cmdSave);
+            this.Controls.Add(this.cmdLoad);
+            this.Controls.Add(this.tabControl);
+            this.Controls.Add(this.cmdOK);
             this.Name = "frmQuery";
-            this.ShowSelectSkinButton = false;
             this.Text = "数据查询";
             this.Load += new System.EventHandler(this.frmQuery_Load);
-            this.contentPanel.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.tabFilter.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -151,13 +144,13 @@
 
         #endregion
 
-        private System.Windows.Forms.VistaButton cmdAddCondition;
-        private System.Windows.Forms.VistaButton cmdOK;
+        private System.Windows.Forms.Button cmdAddCondition;
+        private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabFieldInfo;
         private System.Windows.Forms.TabPage tabFilter;
-        private System.Windows.Forms.VistaButton cmdSave;
-        private System.Windows.Forms.VistaButton cmdLoad;
+        private System.Windows.Forms.Button cmdSave;
+        private System.Windows.Forms.Button cmdLoad;
         private System.Windows.Forms.Panel panFilter;
     }
 }

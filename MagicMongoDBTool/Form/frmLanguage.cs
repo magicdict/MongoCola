@@ -1,11 +1,12 @@
-﻿using QLFUI;
+﻿
 using System;
+using System.Windows.Forms;
 using System.IO;
 using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmLanguage : QLFForm
+    public partial class frmLanguage : Form
     {
         public frmLanguage()
         {

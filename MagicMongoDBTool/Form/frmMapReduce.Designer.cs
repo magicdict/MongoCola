@@ -28,37 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMapReduce));
             this.cmbForMap = new System.Windows.Forms.ComboBox();
             this.cmbForReduce = new System.Windows.Forms.ComboBox();
-            this.cmdSaveReduceJs = new System.Windows.Forms.VistaButton();
-            this.cmdSaveMapJs = new System.Windows.Forms.VistaButton();
+            this.cmdSaveReduceJs = new System.Windows.Forms.Button();
+            this.cmdSaveMapJs = new System.Windows.Forms.Button();
             this.lblReduceFunction = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblMapFunction = new System.Windows.Forms.Label();
             this.trvResult = new System.Windows.Forms.TreeView();
             this.txtMapJs = new System.Windows.Forms.TextBox();
             this.txtReduceJs = new System.Windows.Forms.TextBox();
-            this.cmdRun = new System.Windows.Forms.VistaButton();
-            this.contentPanel.SuspendLayout();
+            this.cmdRun = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.cmbForMap);
-            this.contentPanel.Controls.Add(this.cmbForReduce);
-            this.contentPanel.Controls.Add(this.cmdSaveReduceJs);
-            this.contentPanel.Controls.Add(this.cmdSaveMapJs);
-            this.contentPanel.Controls.Add(this.lblReduceFunction);
-            this.contentPanel.Controls.Add(this.lblResult);
-            this.contentPanel.Controls.Add(this.lblMapFunction);
-            this.contentPanel.Controls.Add(this.trvResult);
-            this.contentPanel.Controls.Add(this.txtMapJs);
-            this.contentPanel.Controls.Add(this.txtReduceJs);
-            this.contentPanel.Controls.Add(this.cmdRun);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(727, 489);
             // 
             // cmbForMap
             // 
@@ -84,6 +65,7 @@
             this.cmdSaveReduceJs.Size = new System.Drawing.Size(70, 30);
             this.cmdSaveReduceJs.TabIndex = 4;
             this.cmdSaveReduceJs.Text = "保存";
+            this.cmdSaveReduceJs.UseVisualStyleBackColor = false;
             this.cmdSaveReduceJs.Click += new System.EventHandler(this.cmdSaveReduceJs_Click);
             // 
             // cmdSaveMapJs
@@ -94,6 +76,7 @@
             this.cmdSaveMapJs.Size = new System.Drawing.Size(70, 30);
             this.cmdSaveMapJs.TabIndex = 1;
             this.cmdSaveMapJs.Text = "保存";
+            this.cmdSaveMapJs.UseVisualStyleBackColor = false;
             this.cmdSaveMapJs.Click += new System.EventHandler(this.cmdSaveMapJs_Click);
             // 
             // lblReduceFunction
@@ -163,20 +146,30 @@
             this.cmdRun.Size = new System.Drawing.Size(75, 34);
             this.cmdRun.TabIndex = 7;
             this.cmdRun.Text = "运行";
+            this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
             // 
             // frmMapReduce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 552);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(729, 485);
+            this.Controls.Add(this.cmbForMap);
+            this.Controls.Add(this.cmbForReduce);
+            this.Controls.Add(this.cmdSaveReduceJs);
+            this.Controls.Add(this.cmdSaveMapJs);
+            this.Controls.Add(this.lblReduceFunction);
+            this.Controls.Add(this.lblResult);
+            this.Controls.Add(this.lblMapFunction);
+            this.Controls.Add(this.trvResult);
+            this.Controls.Add(this.txtMapJs);
+            this.Controls.Add(this.txtReduceJs);
+            this.Controls.Add(this.cmdRun);
             this.Name = "frmMapReduce";
             this.Text = "MapReduce";
             this.Load += new System.EventHandler(this.frmMapReduce_Load);
-            this.contentPanel.ResumeLayout(false);
-            this.contentPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -184,14 +177,14 @@
 
         private System.Windows.Forms.ComboBox cmbForMap;
         private System.Windows.Forms.ComboBox cmbForReduce;
-        private System.Windows.Forms.VistaButton cmdSaveReduceJs;
-        private System.Windows.Forms.VistaButton cmdSaveMapJs;
+        private System.Windows.Forms.Button cmdSaveReduceJs;
+        private System.Windows.Forms.Button cmdSaveMapJs;
         private System.Windows.Forms.Label lblReduceFunction;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label lblMapFunction;
         private System.Windows.Forms.TreeView trvResult;
         private System.Windows.Forms.TextBox txtMapJs;
         private System.Windows.Forms.TextBox txtReduceJs;
-        private System.Windows.Forms.VistaButton cmdRun;
+        private System.Windows.Forms.Button cmdRun;
     }
 }

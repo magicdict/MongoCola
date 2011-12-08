@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -60,11 +60,26 @@
     <Reference Include="MongoDB.Driver">
       <HintPath>dll\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="System.Deployment, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\Box\frmConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Box\frmConfirm.Designer.cs">
+      <DependentUpon>frmConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Box\frmInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Box\frmInputBox.Designer.cs">
+      <DependentUpon>frmInputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Box\frmMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Box\frmMessage.Designer.cs">
+      <DependentUpon>frmMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\frmElement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,12 +92,16 @@
     <Compile Include="Form\frmLanguage.Designer.cs">
       <DependentUpon>frmLanguage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\BsonValueEx.cs" />
-    <Compile Include="Module\MongoDBHelper_Connection.cs" />
-    <Compile Include="Module\MongoDBHelper_DBCommand.cs" />
-    <Compile Include="Module\MongoDBHelper_ImportData.cs" />
-    <Compile Include="Module\MongoDBHelper_ShellCommand.cs" />
-    <Compile Include="Module\MongoDBHelper_SvrCommand.cs" />
+    <Compile Include="Module\Resource\GetResource_Icon.cs" />
+    <Compile Include="Module\System\BsonValueEx.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_DBCommand.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_ImportData.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_ShellCommand.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_SvrCommand.cs" />
+    <Compile Include="Module\System\MyMessageBox.cs" />
+    <Compile Include="Module\Resource\StringResources.cs" />
+    <Compile Include="Module\Resource\StringResource_Enum.cs" />
     <Compile Include="UserController\ctlBsonValue.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -107,8 +126,8 @@
     <Compile Include="Form\frmConvertSql.Designer.cs">
       <DependentUpon>frmConvertSql.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\MongoDBHelper_Element.cs" />
-    <Compile Include="Module\MongoDBHelper_Sql.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Element.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Sql.cs" />
     <Compile Include="UserController\ctlAddBsonEl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,7 +146,7 @@
     <Compile Include="Form\frmGroup.Designer.cs">
       <DependentUpon>frmGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\DataFilter.cs" />
+    <Compile Include="Module\System\DataFilter.cs" />
     <Compile Include="UserController\ctlIndexCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -200,8 +219,8 @@
     <Compile Include="Form\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\GetSystemIcon.cs" />
-    <Compile Include="Module\MongoDBHelper_Const.cs" />
+    <Compile Include="Module\Resource\GetSystemIcon.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Const.cs" />
     <Compile Include="UserController\ctlFieldInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -214,10 +233,10 @@
     <Compile Include="UserController\ctlQueryCondition.Designer.cs">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\CloneMeunToolItem.cs" />
-    <Compile Include="Module\MongoDBHelper_Auth.cs" />
-    <Compile Include="Module\MongoDBHelper_Query.cs" />
-    <Compile Include="Module\MongoDBHelper_RunCommand.cs" />
+    <Compile Include="Module\System\CloneMeunToolItem.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Auth.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Query.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_RunCommand.cs" />
     <Compile Include="UserController\ctlMongoImportExport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -236,7 +255,7 @@
     <Compile Include="UserController\ctlMongod.Designer.cs">
       <DependentUpon>ctlMongod.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\ConfigHelper.cs" />
+    <Compile Include="Module\System\ConfigHelper.cs" />
     <Compile Include="UserController\ctllogLv.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -249,12 +268,21 @@
     <Compile Include="UserController\ctlMongodump.Designer.cs">
       <DependentUpon>ctlMongodump.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\MongodbDosCommand.cs" />
-    <Compile Include="Module\MongoDBHelper_Opration.cs" />
-    <Compile Include="Module\MongoDBHelper_View.cs" />
-    <Compile Include="Module\SystemManager.cs" />
+    <Compile Include="Module\System\MongodbDosCommand.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Opration.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_View.cs" />
+    <Compile Include="Module\System\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form\Box\frmConfirm.resx">
+      <DependentUpon>frmConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Box\frmInputBox.resx">
+      <DependentUpon>frmInputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Box\frmMessage.resx">
+      <DependentUpon>frmMessage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmElement.resx">
       <DependentUpon>frmElement.cs</DependentUpon>
     </EmbeddedResource>
@@ -398,6 +426,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Resources\1129-Main.JPG" />
     <Content Include="Skin\green\BottomLeft.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -596,18 +625,6 @@
     <Content Include="Skin\qq\TopRight.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GUIResource\GUIResource.csproj">
-      <Project>{289AB578-8AAF-4DA2-88C6-8C34FBE0963F}</Project>
-      <Name>GUIResource</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QLFUI\QLFUI.csproj">
-      <Project>{0858850B-3B29-405C-A2B7-9DBF093CF219}</Project>
-      <Name>QLFUI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

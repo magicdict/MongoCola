@@ -22,7 +22,7 @@ namespace MagicMongoDBTool.Module
         {
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                lblLogLv.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_LogLevel);
+                lblLogLv.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_LogLevel);
             }
             else {
                 lblLogLv.Text = "日志等级：";
@@ -58,7 +58,7 @@ namespace MagicMongoDBTool.Module
             trbLogLv.Minimum = (int)MongodbDosCommand.MongologLevel.Quiet;
             trbLogLv.Maximum = (int)MongodbDosCommand.MongologLevel.VVVVV;
             if (!SystemManager.IsUseDefaultLanguage()) {
-                lblLogLv.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_LogLevel);
+                lblLogLv.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_LogLevel);
             }
         }
     }

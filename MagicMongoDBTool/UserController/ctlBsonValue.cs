@@ -46,6 +46,9 @@ namespace MagicMongoDBTool
             {
                 if (value == null)
                 {
+                    cmbDataType.SelectedIndex = 0;
+                    txtBsonValue.Visible = true;
+                    txtBsonValue.Text = String.Empty;
                     return;
                 }
                 txtBsonValue.Visible = false;
@@ -109,8 +112,6 @@ namespace MagicMongoDBTool
             radFalse.Checked = true;
             dateTimePicker.Visible = false;
             NumberPick.Visible = false;
-
-            txtBsonValue.Top -= 3;
 
             foreach (String item in BsonValueEx.GetTypeList())
             {

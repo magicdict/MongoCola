@@ -18,15 +18,15 @@ namespace MagicMongoDBTool.Module
             this.ctlFilePickerOutput.PathChanged += new ctlFilePicker.PathChangedHandler(ctlFilePickerOutput_PathChanged);
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                lblCollectionName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Collection_Status_CollectionName);
-                lblDBName.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.AddConnection_DBName);
-                lblHostAddr.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.AddConnection_Host);
-                lblFieldList.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_ColumnList);
-                lblPort.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Port);
-                grpDirect.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_Operation);
-                radImport.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_Import);
-                radExport.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_Export);
-                ctlFilePickerOutput.Title = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_ExIn_Workfile);
+                lblCollectionName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Status_CollectionName);
+                lblDBName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.AddConnection_DBName);
+                lblHostAddr.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.AddConnection_Host);
+                lblFieldList.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_ExIn_ColumnList);
+                lblPort.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Port);
+                grpDirect.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_ExIn_Operation);
+                radImport.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_ExIn_Import);
+                radExport.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_ExIn_Export);
+                ctlFilePickerOutput.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_ExIn_Workfile);
             }
         }
         void ctlFilePickerOutput_PathChanged(string FilePath)

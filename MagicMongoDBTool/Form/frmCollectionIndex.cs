@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using GUIResource;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmCollectionIndex : QLFUI.QLFForm
+    public partial class frmCollectionIndex : Form
     {
         /// <summary>
         /// 当前数据集名称
@@ -41,8 +40,6 @@ namespace MagicMongoDBTool
                 chkIsUnique.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify);
 
                 lblIndexName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_TabMangt_IndexName);
-                txtIndexName.WaterMark = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_TabMangt_IndexName_Description);
-
 
                 lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name));
                 lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Version));
@@ -57,7 +54,6 @@ namespace MagicMongoDBTool
             }
             else
             {
-
                 lstIndex.Columns.Add("名称");
                 lstIndex.Columns.Add("版本");
                 lstIndex.Columns.Add("索引键");
@@ -66,13 +62,7 @@ namespace MagicMongoDBTool
                 lstIndex.Columns.Add("稀疏索引");
                 lstIndex.Columns.Add("唯一索引");
                 lstIndex.Columns.Add("删除重复索引");
-
             }
-
-            this.tabIndexMgr.SelectedIndexChanged += new EventHandler(
-                //初始的时候，原因不明的问题造成界面的背景色不正确，所以强制刷新背景色
-                (x, y) => { tabIndexMgr.SelectedTab.Invalidate(); }
-              );
             RefreshList();
         }
         /// <summary>

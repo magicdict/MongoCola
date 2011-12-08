@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using QLFUI;
+
 namespace MagicMongoDBTool
 {
-    public partial class frmevalJS : QLFForm
+    public partial class frmevalJS : System.Windows.Forms.Form
     {
         public frmevalJS()
         {
@@ -21,11 +21,11 @@ namespace MagicMongoDBTool
         {
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                this.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Title);
-                lblFunction.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Method);
-                lblParm.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Parameter);
-                cmdEval.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.EvalJS_Run);
-                cmdSaveJs.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.Common_Save);
+                this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Title);
+                lblFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Method);
+                lblParm.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Parameter);
+                cmdEval.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Run);
+                cmdSaveJs.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
             }
             cmbFuncLst.SelectedIndexChanged += new EventHandler(
              (x, y) => { txtevalJs.Text = MongoDBHelper.LoadJavascript(cmbFuncLst.Text); }

@@ -1,4 +1,5 @@
-﻿namespace MagicMongoDBTool
+﻿using System.Windows.Forms;
+namespace MagicMongoDBTool
 {
     partial class ctlMongod
     {
@@ -35,7 +36,7 @@
             this.numPort = new System.Windows.Forms.NumericUpDown();
             this.chkAuth = new System.Windows.Forms.CheckBox();
             this.lblSource = new System.Windows.Forms.Label();
-            this.txtSource = new QLFUI.TextBoxEx();
+            this.txtSource = new System.Windows.Forms.TextBox();
             this.ctlFilePickerDBPath = new MagicMongoDBTool.ctlFilePicker();
             this.ctlFilePickerLogPath = new MagicMongoDBTool.ctlFilePicker();
             this.radNormal = new System.Windows.Forms.RadioButton();
@@ -129,20 +130,11 @@
             // 
             // txtSource
             // 
-            this.txtSource.BackColor = System.Drawing.Color.Transparent;
-            this.txtSource.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
-            this.txtSource.ForeImage = null;
-            this.txtSource.Location = new System.Drawing.Point(482, 17);
-            this.txtSource.Multiline = false;
+            this.txtSource.Location = new System.Drawing.Point(482, 23);
             this.txtSource.Name = "txtSource";
-            this.txtSource.Radius = 3;
-            this.txtSource.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(212)))), ((int)(((byte)(228)))));
-            this.txtSource.Size = new System.Drawing.Size(105, 29);
+            this.txtSource.Size = new System.Drawing.Size(105, 20);
             this.txtSource.TabIndex = 18;
-            this.txtSource.UseSystemPasswordChar = false;
-            this.txtSource.WaterMark = "Master地址";
-            this.txtSource.WaterMarkColor = System.Drawing.Color.Silver;
-            this.txtSource.TextChanged += new QLFUI.TextBoxEx.TextChangedHandler(this.txtSource_TextChanged);
+            this.txtSource.TextChanged += new System.EventHandler(this.txtSource_TextChanged);
             // 
             // ctlFilePickerDBPath
             // 
@@ -179,6 +171,7 @@
             this.radNormal.TabStop = true;
             this.radNormal.Text = "Normal";
             this.radNormal.UseVisualStyleBackColor = true;
+            this.radNormal.CheckedChanged += new System.EventHandler(this.MongodType_CheckedChanged);
             // 
             // radMaster
             // 
@@ -190,8 +183,6 @@
             this.radMaster.Text = "Master";
             this.radMaster.UseVisualStyleBackColor = true;
             this.radMaster.CheckedChanged += new System.EventHandler(this.MongodType_CheckedChanged);
-            this.radSlave.CheckedChanged += new System.EventHandler(this.MongodType_CheckedChanged);
-            this.radNormal.CheckedChanged += new System.EventHandler(this.MongodType_CheckedChanged);
             // 
             // radSlave
             // 
@@ -202,6 +193,7 @@
             this.radSlave.TabIndex = 21;
             this.radSlave.Text = "Slave";
             this.radSlave.UseVisualStyleBackColor = true;
+            this.radSlave.CheckedChanged += new System.EventHandler(this.MongodType_CheckedChanged);
             // 
             // ctlMongod
             // 
@@ -230,6 +222,8 @@
 
         }
 
+
+
         #endregion
 
         private System.Windows.Forms.GroupBox grpLog;
@@ -241,7 +235,7 @@
         private ctlFilePicker ctlFilePickerDBPath;
         private System.Windows.Forms.CheckBox chkAuth;
         private System.Windows.Forms.Label lblSource;
-        private QLFUI.TextBoxEx txtSource;
+        private TextBox txtSource;
         private System.Windows.Forms.RadioButton radNormal;
         private System.Windows.Forms.RadioButton radMaster;
         private System.Windows.Forms.RadioButton radSlave;

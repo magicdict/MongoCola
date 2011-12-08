@@ -28,23 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDistinct));
             this.panColumn = new System.Windows.Forms.Panel();
-            this.cmdOK = new System.Windows.Forms.VistaButton();
+            this.cmdOK = new System.Windows.Forms.Button();
             this.lblSelectField = new System.Windows.Forms.Label();
-            this.cmdQuery = new System.Windows.Forms.VistaButton();
-            this.contentPanel.SuspendLayout();
+            this.cmdQuery = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.cmdQuery);
-            this.contentPanel.Controls.Add(this.lblSelectField);
-            this.contentPanel.Controls.Add(this.cmdOK);
-            this.contentPanel.Controls.Add(this.panColumn);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(316, 392);
             // 
             // panColumn
             // 
@@ -88,22 +76,24 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 455);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(318, 395);
+            this.Controls.Add(this.cmdQuery);
+            this.Controls.Add(this.lblSelectField);
+            this.Controls.Add(this.cmdOK);
+            this.Controls.Add(this.panColumn);
             this.Name = "frmDistinct";
             this.Text = "Distinct";
             this.Load += new System.EventHandler(this.frmSelectKey_Load);
-            this.contentPanel.ResumeLayout(false);
-            this.contentPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.VistaButton cmdOK;
+        private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.Panel panColumn;
         private System.Windows.Forms.Label lblSelectField;
-        private System.Windows.Forms.VistaButton cmdQuery;
+        private System.Windows.Forms.Button cmdQuery;
     }
 }

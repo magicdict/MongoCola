@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmShardingConfig));
             this.cmbReplsetName = new System.Windows.Forms.ComboBox();
             this.lblReplsetName = new System.Windows.Forms.Label();
-            this.cmdAddSharding = new System.Windows.Forms.VistaButton();
+            this.cmdAddSharding = new System.Windows.Forms.Button();
             this.lstShard = new System.Windows.Forms.ListBox();
             this.lblField = new System.Windows.Forms.Label();
             this.cmbKeyList = new System.Windows.Forms.ComboBox();
-            this.cmdEnableCollectionSharding = new System.Windows.Forms.VistaButton();
-            this.cmdEnableDBSharding = new System.Windows.Forms.VistaButton();
+            this.cmdEnableCollectionSharding = new System.Windows.Forms.Button();
+            this.cmdEnableDBSharding = new System.Windows.Forms.Button();
             this.cmbCollection = new System.Windows.Forms.ComboBox();
             this.cmbDataBase = new System.Windows.Forms.ComboBox();
             this.lblCollection = new System.Windows.Forms.Label();
@@ -44,18 +43,10 @@
             this.tabSharding = new System.Windows.Forms.TabControl();
             this.tabAddSharding = new System.Windows.Forms.TabPage();
             this.tabShardingConfig = new System.Windows.Forms.TabPage();
-            this.contentPanel.SuspendLayout();
             this.tabSharding.SuspendLayout();
             this.tabAddSharding.SuspendLayout();
             this.tabShardingConfig.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.tabSharding);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(474, 232);
             // 
             // cmbReplsetName
             // 
@@ -83,6 +74,7 @@
             this.cmdAddSharding.Size = new System.Drawing.Size(119, 29);
             this.cmdAddSharding.TabIndex = 2;
             this.cmdAddSharding.Text = "添加分片";
+            this.cmdAddSharding.UseVisualStyleBackColor = false;
             this.cmdAddSharding.Click += new System.EventHandler(this.cmdAddSharding_Click);
             // 
             // lstShard
@@ -120,6 +112,7 @@
             this.cmdEnableCollectionSharding.Size = new System.Drawing.Size(85, 30);
             this.cmdEnableCollectionSharding.TabIndex = 31;
             this.cmdEnableCollectionSharding.Text = "数据集分片";
+            this.cmdEnableCollectionSharding.UseVisualStyleBackColor = false;
             this.cmdEnableCollectionSharding.Click += new System.EventHandler(this.cmdEnableCollectionSharding_Click);
             // 
             // cmdEnableDBSharding
@@ -130,6 +123,7 @@
             this.cmdEnableDBSharding.Size = new System.Drawing.Size(85, 33);
             this.cmdEnableDBSharding.TabIndex = 28;
             this.cmdEnableDBSharding.Text = "数据库分片";
+            this.cmdEnableDBSharding.UseVisualStyleBackColor = false;
             this.cmdEnableDBSharding.Click += new System.EventHandler(this.cmdEnableSharding_Click);
             // 
             // cmbCollection
@@ -216,12 +210,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 295);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(476, 216);
+            this.Controls.Add(this.tabSharding);
             this.Name = "frmShardingConfig";
             this.Text = "分片管理";
             this.Load += new System.EventHandler(this.frmAddSharding_Load);
-            this.contentPanel.ResumeLayout(false);
             this.tabSharding.ResumeLayout(false);
             this.tabAddSharding.ResumeLayout(false);
             this.tabAddSharding.PerformLayout();
@@ -235,12 +228,12 @@
 
         private System.Windows.Forms.ComboBox cmbReplsetName;
         private System.Windows.Forms.Label lblReplsetName;
-        private System.Windows.Forms.VistaButton cmdAddSharding;
+        private System.Windows.Forms.Button cmdAddSharding;
         private System.Windows.Forms.ListBox lstShard;
         private System.Windows.Forms.Label lblField;
         private System.Windows.Forms.ComboBox cmbKeyList;
-        private System.Windows.Forms.VistaButton cmdEnableCollectionSharding;
-        private System.Windows.Forms.VistaButton cmdEnableDBSharding;
+        private System.Windows.Forms.Button cmdEnableCollectionSharding;
+        private System.Windows.Forms.Button cmdEnableDBSharding;
         private System.Windows.Forms.ComboBox cmbCollection;
         private System.Windows.Forms.ComboBox cmbDataBase;
         private System.Windows.Forms.Label lblCollection;

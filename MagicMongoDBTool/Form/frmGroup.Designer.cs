@@ -28,22 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGroup));
             this.cmbForReduce = new System.Windows.Forms.ComboBox();
-            this.cmdSaveReduceJs = new System.Windows.Forms.VistaButton();
+            this.cmdSaveReduceJs = new System.Windows.Forms.Button();
             this.lblReduceFunction = new System.Windows.Forms.Label();
             this.txtReduceJs = new System.Windows.Forms.TextBox();
-            this.cmdOK = new System.Windows.Forms.VistaButton();
+            this.cmdOK = new System.Windows.Forms.Button();
             this.txtfinalizeJs = new System.Windows.Forms.TextBox();
             this.lblfinalizeFunction = new System.Windows.Forms.Label();
-            this.cmdSavefinalizeJs = new System.Windows.Forms.VistaButton();
+            this.cmdSavefinalizeJs = new System.Windows.Forms.Button();
             this.cmbForfinalize = new System.Windows.Forms.ComboBox();
             this.lblSelectGroupField = new System.Windows.Forms.Label();
             this.panColumn = new System.Windows.Forms.Panel();
             this.txtResult = new System.Windows.Forms.TextBox();
             this.lblAddInitField = new System.Windows.Forms.Label();
             this.panBsonEl = new System.Windows.Forms.Panel();
-            this.cmdAddInitField = new System.Windows.Forms.VistaButton();
+            this.cmdAddInitField = new System.Windows.Forms.Button();
             this.lblResult = new System.Windows.Forms.Label();
             this.tabGroup = new System.Windows.Forms.TabControl();
             this.tabReduce = new System.Windows.Forms.TabPage();
@@ -51,8 +50,7 @@
             this.tabGroupField = new System.Windows.Forms.TabPage();
             this.tabInitialize = new System.Windows.Forms.TabPage();
             this.tabResult = new System.Windows.Forms.TabPage();
-            this.cmdQuery = new System.Windows.Forms.VistaButton();
-            this.contentPanel.SuspendLayout();
+            this.cmdQuery = new System.Windows.Forms.Button();
             this.tabGroup.SuspendLayout();
             this.tabReduce.SuspendLayout();
             this.tabFinalize.SuspendLayout();
@@ -60,15 +58,6 @@
             this.tabInitialize.SuspendLayout();
             this.tabResult.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("contentPanel.BackgroundImage")));
-            this.contentPanel.Controls.Add(this.tabGroup);
-            this.contentPanel.Controls.Add(this.cmdOK);
-            this.contentPanel.Controls.Add(this.cmdQuery);
-            this.contentPanel.Location = new System.Drawing.Point(1, 38);
-            this.contentPanel.Size = new System.Drawing.Size(509, 559);
             // 
             // cmbForReduce
             // 
@@ -312,12 +301,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 622);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(511, 568);
+            this.Controls.Add(this.tabGroup);
+            this.Controls.Add(this.cmdOK);
+            this.Controls.Add(this.cmdQuery);
             this.Name = "frmGroup";
             this.Text = "Group";
             this.Load += new System.EventHandler(this.frmGroup_Load);
-            this.contentPanel.ResumeLayout(false);
             this.tabGroup.ResumeLayout(false);
             this.tabReduce.ResumeLayout(false);
             this.tabReduce.PerformLayout();
@@ -335,13 +325,13 @@
 
         #endregion
 
-        private System.Windows.Forms.VistaButton cmdOK;
+        private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.ComboBox cmbForReduce;
-        private System.Windows.Forms.VistaButton cmdSaveReduceJs;
+        private System.Windows.Forms.Button cmdSaveReduceJs;
         private System.Windows.Forms.Label lblReduceFunction;
         private System.Windows.Forms.TextBox txtReduceJs;
         private System.Windows.Forms.ComboBox cmbForfinalize;
-        private System.Windows.Forms.VistaButton cmdSavefinalizeJs;
+        private System.Windows.Forms.Button cmdSavefinalizeJs;
         private System.Windows.Forms.Label lblfinalizeFunction;
         private System.Windows.Forms.TextBox txtfinalizeJs;
         private System.Windows.Forms.Label lblSelectGroupField;
@@ -349,7 +339,7 @@
         private System.Windows.Forms.TextBox txtResult;
         private System.Windows.Forms.Label lblAddInitField;
         private System.Windows.Forms.Panel panBsonEl;
-        private System.Windows.Forms.VistaButton cmdAddInitField;
+        private System.Windows.Forms.Button cmdAddInitField;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.TabControl tabGroup;
         private System.Windows.Forms.TabPage tabReduce;
@@ -357,6 +347,6 @@
         private System.Windows.Forms.TabPage tabGroupField;
         private System.Windows.Forms.TabPage tabInitialize;
         private System.Windows.Forms.TabPage tabResult;
-        private System.Windows.Forms.VistaButton cmdQuery;
+        private System.Windows.Forms.Button cmdQuery;
     }
 }
