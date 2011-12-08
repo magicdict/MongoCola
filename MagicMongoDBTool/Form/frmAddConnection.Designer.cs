@@ -29,7 +29,6 @@ namespace MagicMongoDBTool
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddConnection));
             this.lblReplsetName = new System.Windows.Forms.Label();
             this.radRouteSrv = new System.Windows.Forms.RadioButton();
             this.radConfigSrv = new System.Windows.Forms.RadioButton();
@@ -41,56 +40,46 @@ namespace MagicMongoDBTool
             this.lblPort = new System.Windows.Forms.Label();
             this.lblHostName = new System.Windows.Forms.Label();
             this.lblHost = new System.Windows.Forms.Label();
-            this.txtHostName = new TextBox();
-            this.txtPassword = new TextBox();
-            this.txtUsername = new TextBox();
-            this.txtHost = new TextBox();
-            this.txtPort = new TextBox();
-            this.txtReplSetName = new TextBox();
+            this.txtHostName = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtHost = new System.Windows.Forms.TextBox();
+            this.txtPort = new System.Windows.Forms.TextBox();
+            this.txtReplSetName = new System.Windows.Forms.TextBox();
             this.lblDataBaseName = new System.Windows.Forms.Label();
-            this.txtDataBaseName = new TextBox();
+            this.txtDataBaseName = new System.Windows.Forms.TextBox();
             this.lstServerce = new System.Windows.Forms.ListBox();
             this.lblReplsetList = new System.Windows.Forms.Label();
             this.grpReplset = new System.Windows.Forms.GroupBox();
             this.cmdInitReplset = new System.Windows.Forms.Button();
             this.grpShardingSvrType = new System.Windows.Forms.GroupBox();
+            this.radMaster = new System.Windows.Forms.RadioButton();
+            this.radSlave = new System.Windows.Forms.RadioButton();
             this.radArbiters = new System.Windows.Forms.RadioButton();
             this.lblAttention = new System.Windows.Forms.Label();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.lblConnectionString = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabBasicInfo = new System.Windows.Forms.TabPage();
-            this.Replset = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.chkSafeMode = new System.Windows.Forms.CheckBox();
+            this.chkSlaveOk = new System.Windows.Forms.CheckBox();
             this.numTimeOut = new System.Windows.Forms.NumericUpDown();
             this.lblTimeOut = new System.Windows.Forms.Label();
+            this.chkSafeMode = new System.Windows.Forms.CheckBox();
+            this.Replset = new System.Windows.Forms.TabPage();
             this.lblMainReplsetName = new System.Windows.Forms.Label();
             this.numPriority = new System.Windows.Forms.NumericUpDown();
             this.lblpriority = new System.Windows.Forms.Label();
-            this.txtMainReplsetName = new TextBox();
-            this.chkSlaveOk = new System.Windows.Forms.CheckBox();
-            this.radMaster = new System.Windows.Forms.RadioButton();
-            this.radSlave = new System.Windows.Forms.RadioButton();
-            
+            this.txtMainReplsetName = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.grpReplset.SuspendLayout();
             this.grpShardingSvrType.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabBasicInfo.SuspendLayout();
-            this.Replset.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTimeOut)).BeginInit();
+            this.Replset.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPriority)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // contentPanel
-            // 
-            this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.lblAttention);
-            this.Controls.Add(this.cmdCancel);
-            this.Controls.Add(this.cmdAdd);
-            this.Location = new System.Drawing.Point(1, 38);
-            this.Size = new System.Drawing.Size(629, 353);
             // 
             // lblReplsetName
             // 
@@ -145,6 +134,7 @@ namespace MagicMongoDBTool
             this.cmdCancel.Size = new System.Drawing.Size(75, 27);
             this.cmdCancel.TabIndex = 12;
             this.cmdCancel.Text = "取消";
+            this.cmdCancel.UseVisualStyleBackColor = false;
             // 
             // cmdAdd
             // 
@@ -154,6 +144,7 @@ namespace MagicMongoDBTool
             this.cmdAdd.Size = new System.Drawing.Size(75, 27);
             this.cmdAdd.TabIndex = 11;
             this.cmdAdd.Text = "添加";
+            this.cmdAdd.UseVisualStyleBackColor = false;
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
             // lblPassword
@@ -209,57 +200,46 @@ namespace MagicMongoDBTool
             // txtHostName
             // 
             this.txtHostName.Location = new System.Drawing.Point(101, 19);
-            this.txtHostName.Multiline = false;
             this.txtHostName.Name = "txtHostName";
-            this.txtHostName.Size = new System.Drawing.Size(103, 29);
+            this.txtHostName.Size = new System.Drawing.Size(103, 20);
             this.txtHostName.TabIndex = 0;
-            this.txtHostName.UseSystemPasswordChar = false;
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(258, 44);
-            this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(103, 29);
+            this.txtPassword.Size = new System.Drawing.Size(103, 20);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(101, 44);
-            this.txtUsername.Multiline = false;
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(103, 29);
+            this.txtUsername.Size = new System.Drawing.Size(103, 20);
             this.txtUsername.TabIndex = 3;
-            this.txtUsername.UseSystemPasswordChar = false;
             // 
             // txtHost
             // 
             this.txtHost.Location = new System.Drawing.Point(259, 19);
-            this.txtHost.Multiline = false;
             this.txtHost.Name = "txtHost";
-            this.txtHost.Size = new System.Drawing.Size(103, 29);
+            this.txtHost.Size = new System.Drawing.Size(103, 20);
             this.txtHost.TabIndex = 1;
-            this.txtHost.UseSystemPasswordChar = false;
             // 
             // txtPort
             // 
             this.txtPort.Location = new System.Drawing.Point(435, 19);
-            this.txtPort.Multiline = false;
             this.txtPort.Name = "txtPort";
-            this.txtPort.Size = new System.Drawing.Size(103, 29);
+            this.txtPort.Size = new System.Drawing.Size(103, 20);
             this.txtPort.TabIndex = 2;
-            this.txtPort.UseSystemPasswordChar = false;
             // 
             // txtReplSetName
             // 
             this.txtReplSetName.Location = new System.Drawing.Point(116, 19);
-            this.txtReplSetName.Multiline = false;
             this.txtReplSetName.Name = "txtReplSetName";
-            this.txtReplSetName.Size = new System.Drawing.Size(153, 29);
+            this.txtReplSetName.Size = new System.Drawing.Size(153, 20);
             this.txtReplSetName.TabIndex = 0;
-            this.txtReplSetName.UseSystemPasswordChar = false;
-            this.txtReplSetName.TextChanged += new System.EventHandler(txtReplSetName_TextChanged);
+            this.txtReplSetName.TextChanged += new System.EventHandler(this.txtReplSetName_TextChanged);
             // 
             // lblDataBaseName
             // 
@@ -273,11 +253,9 @@ namespace MagicMongoDBTool
             // txtDataBaseName
             // 
             this.txtDataBaseName.Location = new System.Drawing.Point(435, 44);
-            this.txtDataBaseName.Multiline = false;
             this.txtDataBaseName.Name = "txtDataBaseName";
-            this.txtDataBaseName.Size = new System.Drawing.Size(103, 29);
+            this.txtDataBaseName.Size = new System.Drawing.Size(103, 20);
             this.txtDataBaseName.TabIndex = 5;
-            this.txtDataBaseName.UseSystemPasswordChar = false;
             // 
             // lstServerce
             // 
@@ -321,6 +299,7 @@ namespace MagicMongoDBTool
             this.cmdInitReplset.Size = new System.Drawing.Size(102, 28);
             this.cmdInitReplset.TabIndex = 1;
             this.cmdInitReplset.Text = "初始化副本";
+            this.cmdInitReplset.UseVisualStyleBackColor = false;
             this.cmdInitReplset.Click += new System.EventHandler(this.cmdInitReplset_Click);
             // 
             // grpShardingSvrType
@@ -338,6 +317,28 @@ namespace MagicMongoDBTool
             this.grpShardingSvrType.TabIndex = 39;
             this.grpShardingSvrType.TabStop = false;
             this.grpShardingSvrType.Text = "分片系统/副本 服务器类型 ";
+            // 
+            // radMaster
+            // 
+            this.radMaster.AutoSize = true;
+            this.radMaster.Location = new System.Drawing.Point(20, 55);
+            this.radMaster.Name = "radMaster";
+            this.radMaster.Size = new System.Drawing.Size(57, 17);
+            this.radMaster.TabIndex = 41;
+            this.radMaster.TabStop = true;
+            this.radMaster.Text = "Master";
+            this.radMaster.UseVisualStyleBackColor = true;
+            // 
+            // radSlave
+            // 
+            this.radSlave.AutoSize = true;
+            this.radSlave.Location = new System.Drawing.Point(122, 55);
+            this.radSlave.Name = "radSlave";
+            this.radSlave.Size = new System.Drawing.Size(52, 17);
+            this.radSlave.TabIndex = 42;
+            this.radSlave.TabStop = true;
+            this.radSlave.Text = "Slave";
+            this.radSlave.UseVisualStyleBackColor = true;
             // 
             // radArbiters
             // 
@@ -417,41 +418,16 @@ namespace MagicMongoDBTool
             this.tabBasicInfo.Text = "BasicInfo";
             this.tabBasicInfo.UseVisualStyleBackColor = true;
             // 
-            // Replset
+            // chkSlaveOk
             // 
-            this.Replset.Controls.Add(this.lblMainReplsetName);
-            this.Replset.Controls.Add(this.numPriority);
-            this.Replset.Controls.Add(this.lblpriority);
-            this.Replset.Controls.Add(this.txtMainReplsetName);
-            this.Replset.Controls.Add(this.grpReplset);
-            this.Replset.Location = new System.Drawing.Point(4, 22);
-            this.Replset.Name = "Replset";
-            this.Replset.Padding = new System.Windows.Forms.Padding(3);
-            this.Replset.Size = new System.Drawing.Size(590, 255);
-            this.Replset.TabIndex = 1;
-            this.Replset.Text = "Replset";
-            this.Replset.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.grpShardingSvrType);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(590, 255);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "ServerRole";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // chkSafeMode
-            // 
-            this.chkSafeMode.AutoSize = true;
-            this.chkSafeMode.Location = new System.Drawing.Point(38, 158);
-            this.chkSafeMode.Name = "chkSafeMode";
-            this.chkSafeMode.Size = new System.Drawing.Size(220, 17);
-            this.chkSafeMode.TabIndex = 48;
-            this.chkSafeMode.Text = "安全模式[保证数据安全，性能有损失]";
-            this.chkSafeMode.UseVisualStyleBackColor = true;
+            this.chkSlaveOk.AutoSize = true;
+            this.chkSlaveOk.BackColor = System.Drawing.Color.Transparent;
+            this.chkSlaveOk.Location = new System.Drawing.Point(38, 185);
+            this.chkSlaveOk.Name = "chkSlaveOk";
+            this.chkSlaveOk.Size = new System.Drawing.Size(424, 17);
+            this.chkSlaveOk.TabIndex = 51;
+            this.chkSlaveOk.Text = "主从模式[GFS 操作限制，集群的非Route，Config服务器；Slave服务器，请选择]";
+            this.chkSlaveOk.UseVisualStyleBackColor = false;
             // 
             // numTimeOut
             // 
@@ -479,6 +455,31 @@ namespace MagicMongoDBTool
             this.lblTimeOut.Size = new System.Drawing.Size(55, 13);
             this.lblTimeOut.TabIndex = 50;
             this.lblTimeOut.Text = "延时（秒）";
+            // 
+            // chkSafeMode
+            // 
+            this.chkSafeMode.AutoSize = true;
+            this.chkSafeMode.Location = new System.Drawing.Point(38, 158);
+            this.chkSafeMode.Name = "chkSafeMode";
+            this.chkSafeMode.Size = new System.Drawing.Size(220, 17);
+            this.chkSafeMode.TabIndex = 48;
+            this.chkSafeMode.Text = "安全模式[保证数据安全，性能有损失]";
+            this.chkSafeMode.UseVisualStyleBackColor = true;
+            // 
+            // Replset
+            // 
+            this.Replset.Controls.Add(this.lblMainReplsetName);
+            this.Replset.Controls.Add(this.numPriority);
+            this.Replset.Controls.Add(this.lblpriority);
+            this.Replset.Controls.Add(this.txtMainReplsetName);
+            this.Replset.Controls.Add(this.grpReplset);
+            this.Replset.Location = new System.Drawing.Point(4, 22);
+            this.Replset.Name = "Replset";
+            this.Replset.Padding = new System.Windows.Forms.Padding(3);
+            this.Replset.Size = new System.Drawing.Size(590, 255);
+            this.Replset.TabIndex = 1;
+            this.Replset.Text = "Replset";
+            this.Replset.UseVisualStyleBackColor = true;
             // 
             // lblMainReplsetName
             // 
@@ -514,52 +515,32 @@ namespace MagicMongoDBTool
             // txtMainReplsetName
             // 
             this.txtMainReplsetName.Location = new System.Drawing.Point(106, 22);
-            this.txtMainReplsetName.Multiline = false;
             this.txtMainReplsetName.Name = "txtMainReplsetName";
-            this.txtMainReplsetName.Size = new System.Drawing.Size(128, 29);
+            this.txtMainReplsetName.Size = new System.Drawing.Size(128, 20);
             this.txtMainReplsetName.TabIndex = 44;
-            this.txtMainReplsetName.UseSystemPasswordChar = false;
             // 
-            // chkSlaveOk
+            // tabPage3
             // 
-            this.chkSlaveOk.AutoSize = true;
-            this.chkSlaveOk.BackColor = System.Drawing.Color.Transparent;
-            this.chkSlaveOk.Location = new System.Drawing.Point(38, 185);
-            this.chkSlaveOk.Name = "chkSlaveOk";
-            this.chkSlaveOk.Size = new System.Drawing.Size(424, 17);
-            this.chkSlaveOk.TabIndex = 51;
-            this.chkSlaveOk.Text = "主从模式[GFS 操作限制，集群的非Route，Config服务器；Slave服务器，请选择]";
-            this.chkSlaveOk.UseVisualStyleBackColor = false;
-            // 
-            // radMaster
-            // 
-            this.radMaster.AutoSize = true;
-            this.radMaster.Location = new System.Drawing.Point(20, 55);
-            this.radMaster.Name = "radMaster";
-            this.radMaster.Size = new System.Drawing.Size(57, 17);
-            this.radMaster.TabIndex = 41;
-            this.radMaster.TabStop = true;
-            this.radMaster.Text = "Master";
-            this.radMaster.UseVisualStyleBackColor = true;
-            // 
-            // radSlave
-            // 
-            this.radSlave.AutoSize = true;
-            this.radSlave.Location = new System.Drawing.Point(122, 55);
-            this.radSlave.Name = "radSlave";
-            this.radSlave.Size = new System.Drawing.Size(52, 17);
-            this.radSlave.TabIndex = 42;
-            this.radSlave.TabStop = true;
-            this.radSlave.Text = "Slave";
-            this.radSlave.UseVisualStyleBackColor = true;
+            this.tabPage3.Controls.Add(this.grpShardingSvrType);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(590, 255);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "ServerRole";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 416);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(631, 360);
+            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.lblAttention);
+            this.Controls.Add(this.cmdCancel);
+            this.Controls.Add(this.cmdAdd);
             this.Name = "frmAddConnection";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "数据连接";
             this.grpReplset.ResumeLayout(false);
             this.grpReplset.PerformLayout();
@@ -568,12 +549,13 @@ namespace MagicMongoDBTool
             this.tabControl1.ResumeLayout(false);
             this.tabBasicInfo.ResumeLayout(false);
             this.tabBasicInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTimeOut)).EndInit();
             this.Replset.ResumeLayout(false);
             this.Replset.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numTimeOut)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPriority)).EndInit();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

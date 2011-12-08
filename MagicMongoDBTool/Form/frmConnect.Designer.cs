@@ -44,6 +44,7 @@
             this.cmdModifyCon.Size = new System.Drawing.Size(60, 31);
             this.cmdModifyCon.TabIndex = 9;
             this.cmdModifyCon.Text = "修改";
+            this.cmdModifyCon.UseVisualStyleBackColor = false;
             this.cmdModifyCon.Click += new System.EventHandler(this.cmdModifyCon_Click);
             // 
             // cmdDelCon
@@ -54,6 +55,7 @@
             this.cmdDelCon.Size = new System.Drawing.Size(60, 31);
             this.cmdDelCon.TabIndex = 10;
             this.cmdDelCon.Text = "删除";
+            this.cmdDelCon.UseVisualStyleBackColor = false;
             this.cmdDelCon.Click += new System.EventHandler(this.cmdDelCon_Click);
             // 
             // cmdAddCon
@@ -64,6 +66,7 @@
             this.cmdAddCon.Size = new System.Drawing.Size(60, 31);
             this.cmdAddCon.TabIndex = 8;
             this.cmdAddCon.Text = "添加";
+            this.cmdAddCon.UseVisualStyleBackColor = false;
             this.cmdAddCon.Click += new System.EventHandler(this.cmdAddCon_Click);
             // 
             // cmdCancel
@@ -74,6 +77,7 @@
             this.cmdCancel.Size = new System.Drawing.Size(60, 31);
             this.cmdCancel.TabIndex = 7;
             this.cmdCancel.Text = "取消";
+            this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdOK
@@ -84,6 +88,7 @@
             this.cmdOK.Size = new System.Drawing.Size(60, 31);
             this.cmdOK.TabIndex = 6;
             this.cmdOK.Text = "确定";
+            this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdConnect_Click);
             // 
             // lstServerce
@@ -107,6 +112,7 @@
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.lstServerce);
             this.Name = "frmConnect";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "数据库连接";
             this.Load += new System.EventHandler(this.frmConnect_Load);
             this.ResumeLayout(false);

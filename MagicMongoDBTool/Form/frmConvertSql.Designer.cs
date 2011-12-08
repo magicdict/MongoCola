@@ -50,6 +50,7 @@
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 6;
             this.cmdOK.Text = "取消";
+            this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // cmdSave
@@ -60,6 +61,7 @@
             this.cmdSave.Size = new System.Drawing.Size(100, 32);
             this.cmdSave.TabIndex = 7;
             this.cmdSave.Text = "保存";
+            this.cmdSave.UseVisualStyleBackColor = false;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // frmConvertSql
@@ -71,6 +73,7 @@
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.txtSql);
             this.Name = "frmConvertSql";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmRunSql";
             this.Load += new System.EventHandler(this.frmRunSql_Load);
             this.ResumeLayout(false);

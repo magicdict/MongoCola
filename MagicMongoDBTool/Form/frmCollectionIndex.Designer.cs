@@ -29,14 +29,13 @@ namespace MagicMongoDBTool
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCollectionIndex));
             this.cmdAddIndex = new System.Windows.Forms.Button();
             this.cmdDelIndex = new System.Windows.Forms.Button();
             this.lstIndex = new System.Windows.Forms.ListView();
             this.tabIndexMgr = new System.Windows.Forms.TabControl();
             this.tabCurrentIndex = new System.Windows.Forms.TabPage();
             this.tabIndexManager = new System.Windows.Forms.TabPage();
-            this.txtIndexName = new TextBox();
+            this.txtIndexName = new System.Windows.Forms.TextBox();
             this.lblIndexName = new System.Windows.Forms.Label();
             this.ctlIndexCreate5 = new MagicMongoDBTool.ctlIndexCreate();
             this.ctlIndexCreate4 = new MagicMongoDBTool.ctlIndexCreate();
@@ -51,7 +50,6 @@ namespace MagicMongoDBTool
             this.tabCurrentIndex.SuspendLayout();
             this.tabIndexManager.SuspendLayout();
             this.SuspendLayout();
-            this.Controls.Add(this.tabIndexMgr);
             // 
             // cmdAddIndex
             // 
@@ -61,6 +59,7 @@ namespace MagicMongoDBTool
             this.cmdAddIndex.Size = new System.Drawing.Size(108, 35);
             this.cmdAddIndex.TabIndex = 8;
             this.cmdAddIndex.Text = "添加索引";
+            this.cmdAddIndex.UseVisualStyleBackColor = false;
             this.cmdAddIndex.Click += new System.EventHandler(this.cmdAddIndex_Click);
             // 
             // cmdDelIndex
@@ -71,6 +70,7 @@ namespace MagicMongoDBTool
             this.cmdDelIndex.Size = new System.Drawing.Size(113, 35);
             this.cmdDelIndex.TabIndex = 7;
             this.cmdDelIndex.Text = "删除选中索引";
+            this.cmdDelIndex.UseVisualStyleBackColor = false;
             this.cmdDelIndex.Click += new System.EventHandler(this.cmdDelIndex_Click);
             // 
             // lstIndex
@@ -130,11 +130,9 @@ namespace MagicMongoDBTool
             // txtIndexName
             // 
             this.txtIndexName.Location = new System.Drawing.Point(81, 195);
-            this.txtIndexName.Multiline = false;
             this.txtIndexName.Name = "txtIndexName";
-            this.txtIndexName.Size = new System.Drawing.Size(197, 29);
+            this.txtIndexName.Size = new System.Drawing.Size(197, 20);
             this.txtIndexName.TabIndex = 19;
-            this.txtIndexName.UseSystemPasswordChar = false;
             // 
             // lblIndexName
             // 
@@ -230,8 +228,9 @@ namespace MagicMongoDBTool
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 343);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.Controls.Add(this.tabIndexMgr);
             this.Name = "frmCollectionIndex";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "数据集索引";
             this.Load += new System.EventHandler(this.frmCollectionIndex_Load);
             this.tabIndexMgr.ResumeLayout(false);

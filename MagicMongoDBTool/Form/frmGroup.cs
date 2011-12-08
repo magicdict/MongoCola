@@ -42,7 +42,7 @@ namespace MagicMongoDBTool
                 ctlAddBsonEl ctl = (ctlAddBsonEl)Controls.Find("BsonEl" + (i + 1).ToString(), true)[0];
                 if (ctl.IsSetted)
                 {
-                    Initial.Add(ctl.Element);
+                    Initial.Add(ctl.getElement());
                 }
             }
 
@@ -118,7 +118,7 @@ namespace MagicMongoDBTool
             firstAddBsonElCtl.Location = _conditionPos;
             firstAddBsonElCtl.Name = "BsonEl" + _conditionCount.ToString();
             BsonElement el = new BsonElement("count", new BsonInt32(0));
-            firstAddBsonElCtl.Element = el;
+            firstAddBsonElCtl.setElement(el);
             panBsonEl.Controls.Add(firstAddBsonElCtl);
 
             if (!SystemManager.IsUseDefaultLanguage())

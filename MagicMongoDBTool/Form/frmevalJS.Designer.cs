@@ -53,6 +53,7 @@
             this.cmdSaveJs.Size = new System.Drawing.Size(70, 30);
             this.cmdSaveJs.TabIndex = 1;
             this.cmdSaveJs.Text = "保存";
+            this.cmdSaveJs.UseVisualStyleBackColor = false;
             this.cmdSaveJs.Click += new System.EventHandler(this.cmdSaveMapJs_Click);
             // 
             // lblFunction
@@ -83,6 +84,7 @@
             this.cmdEval.Size = new System.Drawing.Size(80, 30);
             this.cmdEval.TabIndex = 2;
             this.cmdEval.Text = "执行";
+            this.cmdEval.UseVisualStyleBackColor = false;
             this.cmdEval.Click += new System.EventHandler(this.cmdEval_Click);
             // 
             // txtParm
@@ -115,6 +117,7 @@
             this.Controls.Add(this.txtevalJs);
             this.Controls.Add(this.txtParm);
             this.Name = "frmevalJS";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "执行Javascript";
             this.Load += new System.EventHandler(this.frmevalJS_Load);
             this.ResumeLayout(false);

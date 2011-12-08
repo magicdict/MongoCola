@@ -50,6 +50,7 @@
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 0;
             this.cmdOK.Text = "确定";
+            this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // lblSelectField
@@ -70,6 +71,7 @@
             this.cmdQuery.Size = new System.Drawing.Size(100, 32);
             this.cmdQuery.TabIndex = 6;
             this.cmdQuery.Text = "载入查询条件";
+            this.cmdQuery.UseVisualStyleBackColor = false;
             this.cmdQuery.Click += new System.EventHandler(this.cmdQuery_Click);
             // 
             // frmDistinct
@@ -82,6 +84,7 @@
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.panColumn);
             this.Name = "frmDistinct";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Distinct";
             this.Load += new System.EventHandler(this.frmSelectKey_Load);
             this.ResumeLayout(false);

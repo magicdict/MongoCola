@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDosCommand));
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdRunDos = new System.Windows.Forms.Button();
             this.tabFunction = new System.Windows.Forms.TabControl();
@@ -44,13 +43,6 @@
             this.tabMongoDump.SuspendLayout();
             this.tabMongoImportExport.SuspendLayout();
             this.SuspendLayout();
-
-            this.Controls.Add(this.cmdSave);
-            this.Controls.Add(this.cmdRunDos);
-            this.Controls.Add(this.tabFunction);
-            this.Controls.Add(this.txtDosCommand);
-            this.Location = new System.Drawing.Point(1, 38);
-            this.Size = new System.Drawing.Size(869, 436);
             // 
             // cmdSave
             // 
@@ -61,6 +53,7 @@
             this.cmdSave.Size = new System.Drawing.Size(96, 28);
             this.cmdSave.TabIndex = 7;
             this.cmdSave.Text = "保存";
+            this.cmdSave.UseVisualStyleBackColor = false;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // cmdRunDos
@@ -71,6 +64,7 @@
             this.cmdRunDos.Size = new System.Drawing.Size(96, 29);
             this.cmdRunDos.TabIndex = 6;
             this.cmdRunDos.Text = "运行";
+            this.cmdRunDos.UseVisualStyleBackColor = false;
             this.cmdRunDos.Click += new System.EventHandler(this.cmdRunDos_Click);
             // 
             // tabFunction
@@ -156,10 +150,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 499);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.Controls.Add(this.cmdSave);
+            this.Controls.Add(this.cmdRunDos);
+            this.Controls.Add(this.tabFunction);
+            this.Controls.Add(this.txtDosCommand);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDosCommand";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "配置文件";
             this.Load += new System.EventHandler(this.frmDosCommand_Load);
             this.tabFunction.ResumeLayout(false);
@@ -167,6 +165,7 @@
             this.tabMongoDump.ResumeLayout(false);
             this.tabMongoImportExport.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

@@ -166,6 +166,7 @@
             this.Controls.Add(this.txtReduceJs);
             this.Controls.Add(this.cmdRun);
             this.Name = "frmMapReduce";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MapReduce";
             this.Load += new System.EventHandler(this.frmMapReduce_Load);
             this.ResumeLayout(false);

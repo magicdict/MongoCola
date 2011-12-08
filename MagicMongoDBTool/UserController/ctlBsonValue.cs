@@ -8,96 +8,92 @@ namespace MagicMongoDBTool
     public partial class ctlBsonValue : UserControl
     {
         /// <summary>
-        /// Value
+        /// 使用属性会发生一些MONO上的移植问题
         /// </summary>
-        public BsonValue Value
+        /// <returns></returns>
+        public BsonValue getValue()
         {
-            get
+            BsonValue mValue = new BsonString(String.Empty);
+            switch (cmbDataType.SelectedIndex)
             {
-                BsonValue mValue = new BsonString(String.Empty);
-                switch (cmbDataType.SelectedIndex)
-                {
-                    case 0:
-                        mValue = new BsonString(txtBsonValue.Text);
-                        break;
-                    case 1:
-                        mValue = new BsonInt32(Convert.ToInt32(NumberPick.Value));
-                        break;
-                    case 2:
-                        mValue = new BsonDateTime(dateTimePicker.Value);
-                        break;
-                    case 3:
-                        if (radTrue.Checked)
-                        {
-                            mValue = BsonBoolean.True;
-                        }
-                        else
-                        {
-                            mValue = BsonBoolean.False;
-                        }
-                        break;
-                    default:
-                        mValue = new BsonString(String.Empty);
-                        break;
-                }
-                return mValue;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    cmbDataType.SelectedIndex = 0;
-                    txtBsonValue.Visible = true;
-                    txtBsonValue.Text = String.Empty;
-                    return;
-                }
-                txtBsonValue.Visible = false;
-                txtBsonValue.Text = String.Empty;
-                radTrue.Visible = false;
-                radFalse.Visible = false;
-                radFalse.Checked = true;
-                dateTimePicker.Visible = false;
-                NumberPick.Visible = false;
-                if (value.IsString)
-                {
-                    cmbDataType.SelectedIndex = 0;
-                    txtBsonValue.Visible = true;
-                    txtBsonValue.Text = value.ToString();
-                }
-                if (value.IsInt32)
-                {
-                    cmbDataType.SelectedIndex = 1;
-                    NumberPick.Visible = true;
-                    NumberPick.Value = value.AsInt32;
-                }
-                if (value.IsDateTime)
-                {
-                    dateTimePicker.Visible = true;
-                    dateTimePicker.Value = value.AsDateTime;
-                    cmbDataType.SelectedIndex = 2;
-                }
-                if (value.IsBoolean)
-                {
-                    radTrue.Visible = true;
-                    radFalse.Visible = true;
-                    if (value.AsBoolean)
+                case 0:
+                    mValue = new BsonString(txtBsonValue.Text);
+                    break;
+                case 1:
+                    mValue = new BsonInt32(Convert.ToInt32(NumberPick.Value));
+                    break;
+                case 2:
+                    mValue = new BsonDateTime(dateTimePicker.Value);
+                    break;
+                case 3:
+                    if (radTrue.Checked)
                     {
-                        radTrue.Checked = true;
+                        mValue = BsonBoolean.True;
                     }
                     else
                     {
-                        radFalse.Checked = true;
+                        mValue = BsonBoolean.False;
                     }
-                    cmbDataType.SelectedIndex = 3;
+                    break;
+                default:
+                    mValue = new BsonString(String.Empty);
+                    break;
+            }
+            return mValue;
+        }
+        /// <summary>
+        /// 使用属性会发生一些MONO上的移植问题
+        /// </summary>
+        /// <returns></returns>
+        public void setValue(BsonValue value)
+        {
+            txtBsonValue.Visible = false;
+            txtBsonValue.Text = String.Empty;
+            radTrue.Visible = false;
+            radFalse.Visible = false;
+            radFalse.Checked = true;
+            dateTimePicker.Visible = false;
+            NumberPick.Visible = false;
+            if (value.IsString)
+            {
+                cmbDataType.SelectedIndex = 0;
+                txtBsonValue.Visible = true;
+                txtBsonValue.Text = value.ToString();
+            }
+            if (value.IsInt32)
+            {
+                cmbDataType.SelectedIndex = 1;
+                NumberPick.Visible = true;
+                NumberPick.Value = value.AsInt32;
+            }
+            if (value.IsDateTime)
+            {
+                dateTimePicker.Visible = true;
+                dateTimePicker.Value = value.AsDateTime;
+                cmbDataType.SelectedIndex = 2;
+            }
+            if (value.IsBoolean)
+            {
+                radTrue.Visible = true;
+                radFalse.Visible = true;
+                if (value.AsBoolean)
+                {
+                    radTrue.Checked = true;
                 }
+                else
+                {
+                    radFalse.Checked = true;
+                }
+                cmbDataType.SelectedIndex = 3;
             }
         }
+
         public ctlBsonValue()
         {
             InitializeComponent();
             dateTimePicker.Location = txtBsonValue.Location;
             dateTimePicker.Size = txtBsonValue.Size;
-            
+
             radTrue.Location = txtBsonValue.Location;
             radFalse.Top = txtBsonValue.Top;
             NumberPick.Location = txtBsonValue.Location;
@@ -127,16 +123,16 @@ namespace MagicMongoDBTool
             switch (cmbDataType.SelectedIndex)
             {
                 case 0:
-                    Value = new BsonString(String.Empty);
+                    setValue(new BsonString(String.Empty));
                     break;
                 case 1:
-                    Value = new BsonInt32(0);
+                    setValue(new BsonInt32(0));
                     break;
                 case 2:
-                    Value = new BsonDateTime(DateTime.Now);
+                    setValue(new BsonDateTime(DateTime.Now));
                     break;
                 case 3:
-                    Value = BsonBoolean.False;
+                    setValue(BsonBoolean.False);
                     break;
                 default:
                     break;

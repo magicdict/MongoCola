@@ -49,7 +49,6 @@ namespace MagicMongoDBTool
             this.ElBsonValue.Name = "ElBsonValue";
             this.ElBsonValue.Size = new System.Drawing.Size(218, 27);
             this.ElBsonValue.TabIndex = 3;
-            this.ElBsonValue.Value = new BsonString("");
             // 
             // lblElement
             // 

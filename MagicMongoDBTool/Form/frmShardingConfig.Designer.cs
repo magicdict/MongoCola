@@ -213,6 +213,7 @@
             this.ClientSize = new System.Drawing.Size(476, 216);
             this.Controls.Add(this.tabSharding);
             this.Name = "frmShardingConfig";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "分片管理";
             this.Load += new System.EventHandler(this.frmAddSharding_Load);
             this.tabSharding.ResumeLayout(false);

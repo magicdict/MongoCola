@@ -73,7 +73,6 @@
             this.ElBsonValue.Name = "ElBsonValue";
             this.ElBsonValue.Size = new System.Drawing.Size(205, 28);
             this.ElBsonValue.TabIndex = 6;
-            this.ElBsonValue.Value = null;
             // 
             // ctlQueryCondition
             // 

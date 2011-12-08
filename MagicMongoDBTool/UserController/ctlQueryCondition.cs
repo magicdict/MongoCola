@@ -32,7 +32,7 @@ namespace MagicMongoDBTool
                 {
                     DataFilter.QueryConditionInputItem rtn = new DataFilter.QueryConditionInputItem();
                     rtn.Compare = (DataFilter.CompareEnum)cmbCompareOpr.SelectedIndex;
-                    rtn.Value = new BsonValueEx(ElBsonValue.Value);
+                    rtn.Value = new BsonValueEx(ElBsonValue.getValue());
                     rtn.StartMark = cmbStartMark.Text;
                     rtn.EndMark = cmbEndMark.Text;
                     rtn.ColName = cmbColName.Text;
@@ -46,7 +46,7 @@ namespace MagicMongoDBTool
             set
             {
                 cmbColName.Text = value.ColName;
-                ElBsonValue.Value = value.Value.GetBsonValue();
+                ElBsonValue.setValue(value.Value.GetBsonValue());
                 cmbCompareOpr.SelectedIndex = (int)value.Compare;
                 cmbStartMark.Text = value.StartMark;
                 cmbEndMark.Text = value.EndMark;

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmServiceStatus));
             this.lstSrvOpr = new System.Windows.Forms.ListView();
             this.lstDBStatus = new System.Windows.Forms.ListView();
             this.tabSvrStatus = new System.Windows.Forms.TabControl();
@@ -45,9 +44,6 @@
             this.tabCollectionInfo.SuspendLayout();
             this.tabClusterInfo.SuspendLayout();
             this.SuspendLayout();
-
-            this.Controls.Add(this.cmdRefresh);
-            this.Controls.Add(this.tabSvrStatus);
             // 
             // lstSrvOpr
             // 
@@ -157,6 +153,7 @@
             this.cmdRefresh.Size = new System.Drawing.Size(100, 32);
             this.cmdRefresh.TabIndex = 5;
             this.cmdRefresh.Text = "刷新";
+            this.cmdRefresh.UseVisualStyleBackColor = false;
             this.cmdRefresh.Click += new System.EventHandler(this.cmdRefresh_Click);
             // 
             // frmServiceStatus
@@ -164,8 +161,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(808, 500);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.Controls.Add(this.cmdRefresh);
+            this.Controls.Add(this.tabSvrStatus);
             this.Name = "frmServiceStatus";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "服务器状态";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmServiceStatus_FormClosing);
             this.Load += new System.EventHandler(this.frmServiceStatus_Load);

@@ -174,6 +174,7 @@
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
             this.Name = "frmOption";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "选项";
             this.Load += new System.EventHandler(this.frmOption_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).EndInit();

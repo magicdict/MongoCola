@@ -8,41 +8,46 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 切换为元素修改模式
         /// </summary>
-        public void switchToUpdateMode(){
+        public void switchToUpdateMode()
+        {
             txtElName.Visible = false;
             lblElement.Visible = true;
         }
         /// <summary>
         /// 是否设定
         /// </summary>
-        public Boolean IsSetted {
+        public Boolean IsSetted
+        {
             get
             {
-                if (txtElName.Text == String.Empty | ElBsonValue.Value == null)
+                if (txtElName.Text == String.Empty | ElBsonValue.getValue() == null)
                 {
                     return false;
                 }
-                else {
+                else
+                {
                     return true;
                 }
             }
         }
         /// <summary>
-        /// 元素
+        /// 取得元素
         /// </summary>
-        public BsonElement Element
+        public BsonElement getElement()
         {
-            get
-            {
-                BsonValue value = ElBsonValue.Value;
-                BsonElement el = new BsonElement(txtElName.Text, value);
-                return el;
-            }
-            set {
-                txtElName.Text = value.Name;
-                lblElement.Text = value.Name;
-                ElBsonValue.Value = value.Value;
-            }
+            BsonValue value = ElBsonValue.getValue();
+            BsonElement el = new BsonElement(txtElName.Text, value);
+            return el;
+        }
+        /// <summary>
+        /// 设置元素
+        /// </summary>
+        /// <param name="value"></param>
+        public void setElement(BsonElement value)
+        {
+            txtElName.Text = value.Name;
+            lblElement.Text = value.Name;
+            ElBsonValue.setValue(value.Value);
         }
         public ctlAddBsonEl()
         {

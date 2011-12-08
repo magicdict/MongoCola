@@ -134,6 +134,7 @@
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.cmdOK);
             this.Name = "frmQuery";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "数据查询";
             this.Load += new System.EventHandler(this.frmQuery_Load);
             this.tabControl.ResumeLayout(false);

@@ -133,8 +133,8 @@ namespace MagicMongoDBTool
             this.txtData = new System.Windows.Forms.TextBox();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.tabDataShower.SuspendLayout();
@@ -907,7 +907,7 @@ namespace MagicMongoDBTool
             this.tabTableView.Location = new System.Drawing.Point(4, 22);
             this.tabTableView.Name = "tabTableView";
             this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTableView.Size = new System.Drawing.Size(655, 432);
+            this.tabTableView.Size = new System.Drawing.Size(654, 473);
             this.tabTableView.TabIndex = 1;
             this.tabTableView.Text = "表格视图";
             // 
@@ -933,7 +933,7 @@ namespace MagicMongoDBTool
             this.tabTextView.Location = new System.Drawing.Point(4, 22);
             this.tabTextView.Name = "tabTextView";
             this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTextView.Size = new System.Drawing.Size(655, 432);
+            this.tabTextView.Size = new System.Drawing.Size(654, 473);
             this.tabTextView.TabIndex = 2;
             this.tabTextView.Text = "文本视图";
             // 
@@ -968,14 +968,6 @@ namespace MagicMongoDBTool
             this.panel1.Size = new System.Drawing.Size(917, 499);
             this.panel1.TabIndex = 9;
             // 
-            // splitter1
-            // 
-            this.splitter1.Location = new System.Drawing.Point(252, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 499);
-            this.splitter1.TabIndex = 1;
-            this.splitter1.TabStop = false;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.tabDataShower);
@@ -984,6 +976,14 @@ namespace MagicMongoDBTool
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(662, 499);
             this.panel2.TabIndex = 2;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(252, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 499);
+            this.splitter1.TabIndex = 1;
+            this.splitter1.TabStop = false;
             // 
             // frmMain
             // 
@@ -996,6 +996,7 @@ namespace MagicMongoDBTool
             this.Controls.Add(this.toolStripMain);
             this.Controls.Add(this.menuStripMain);
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MagicMongoDBTool-Beta2";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.statusStripMain.ResumeLayout(false);

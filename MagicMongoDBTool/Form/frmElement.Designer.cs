@@ -37,8 +37,7 @@
             // AddBsonElement
             // 
             this.AddBsonElement.BackColor = System.Drawing.Color.Transparent;
-            this.AddBsonElement.Element = ((MongoDB.Bson.BsonElement)(resources.GetObject("AddBsonElement.Element")));
-            this.AddBsonElement.Location = new System.Drawing.Point(27, 44);
+            this.AddBsonElement.Location = new System.Drawing.Point(25, 12);
             this.AddBsonElement.Name = "AddBsonElement";
             this.AddBsonElement.Size = new System.Drawing.Size(326, 30);
             this.AddBsonElement.TabIndex = 5;
@@ -46,32 +45,35 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(225, 95);
+            this.cmdCancel.Location = new System.Drawing.Point(210, 57);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(100, 32);
             this.cmdCancel.TabIndex = 8;
             this.cmdCancel.Text = "取消";
+            this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(59, 94);
+            this.cmdOK.Location = new System.Drawing.Point(59, 57);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 7;
             this.cmdOK.Text = "确定";
+            this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // frmElement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(385, 165);
+            this.ClientSize = new System.Drawing.Size(385, 98);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.AddBsonElement);
             this.Name = "frmElement";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmElement";
             this.Load += new System.EventHandler(this.frmElement_Load);
             this.ResumeLayout(false);

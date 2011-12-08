@@ -29,49 +29,42 @@ namespace MagicMongoDBTool
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUser));
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.txtUserName = new TextBox();
-            this.txtPassword = new TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.chkReadOnly = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-
-            this.Controls.Add(this.chkReadOnly);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.txtUserName);
-            this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.lblUserName);
-            this.Controls.Add(this.cmdCancel);
-            this.Controls.Add(this.cmdOK);
             // 
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(52, 124);
+            this.cmdOK.Location = new System.Drawing.Point(29, 122);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 3;
             this.cmdOK.Text = "确定";
+            this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(218, 125);
+            this.cmdCancel.Location = new System.Drawing.Point(147, 122);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(100, 32);
             this.cmdCancel.TabIndex = 4;
             this.cmdCancel.Text = "取消";
+            this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // lblUserName
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.BackColor = System.Drawing.Color.Transparent;
-            this.lblUserName.Location = new System.Drawing.Point(71, 34);
+            this.lblUserName.Location = new System.Drawing.Point(37, 31);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(43, 13);
             this.lblUserName.TabIndex = 7;
@@ -81,7 +74,7 @@ namespace MagicMongoDBTool
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lblPassword.Location = new System.Drawing.Point(71, 62);
+            this.lblPassword.Location = new System.Drawing.Point(37, 59);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(31, 13);
             this.lblPassword.TabIndex = 8;
@@ -89,19 +82,16 @@ namespace MagicMongoDBTool
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(135, 21);
-            this.txtUserName.Multiline = false;
+            this.txtUserName.Location = new System.Drawing.Point(101, 30);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(146, 29);
+            this.txtUserName.Size = new System.Drawing.Size(146, 20);
             this.txtUserName.TabIndex = 0;
-            this.txtUserName.UseSystemPasswordChar = false;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(135, 53);
-            this.txtPassword.Multiline = false;
+            this.txtPassword.Location = new System.Drawing.Point(101, 62);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(146, 29);
+            this.txtPassword.Size = new System.Drawing.Size(146, 20);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -109,7 +99,7 @@ namespace MagicMongoDBTool
             // 
             this.chkReadOnly.AutoSize = true;
             this.chkReadOnly.BackColor = System.Drawing.Color.Transparent;
-            this.chkReadOnly.Location = new System.Drawing.Point(137, 97);
+            this.chkReadOnly.Location = new System.Drawing.Point(103, 94);
             this.chkReadOnly.Name = "chkReadOnly";
             this.chkReadOnly.Size = new System.Drawing.Size(74, 17);
             this.chkReadOnly.TabIndex = 2;
@@ -120,12 +110,20 @@ namespace MagicMongoDBTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 234);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.ClientSize = new System.Drawing.Size(286, 166);
+            this.Controls.Add(this.chkReadOnly);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtUserName);
+            this.Controls.Add(this.lblPassword);
+            this.Controls.Add(this.lblUserName);
+            this.Controls.Add(this.cmdCancel);
+            this.Controls.Add(this.cmdOK);
             this.Name = "frmUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "添加用户";
             this.Load += new System.EventHandler(this.frmUser_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

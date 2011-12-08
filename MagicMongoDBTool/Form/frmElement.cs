@@ -41,7 +41,7 @@ namespace MagicMongoDBTool
             if (_IsUpdateMode)
             {
                 AddBsonElement.switchToUpdateMode();
-                AddBsonElement.Element = MongoDBHelper.GetElementFromPath(_FullPath); 
+                AddBsonElement.setElement(MongoDBHelper.GetElementFromPath(_FullPath)); 
             }
             if (!SystemManager.IsUseDefaultLanguage())
             {
@@ -58,13 +58,13 @@ namespace MagicMongoDBTool
         {
             if (_IsUpdateMode)
             {
-                MongoDBHelper.ModifyElement(_FullPath, AddBsonElement.Element.Value);
-                _SelectNode.Text = AddBsonElement.Element.Name + ":" + AddBsonElement.Element.Value.ToString();
+                MongoDBHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value);
+                _SelectNode.Text = AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString();
             }
             else
             {
-                MongoDBHelper.AddElement(_FullPath, AddBsonElement.Element);
-                _SelectNode.Nodes.Add(new TreeNode(AddBsonElement.Element.Name + ":" + AddBsonElement.Element.Value.ToString()));
+                MongoDBHelper.AddElement(_FullPath, AddBsonElement.getElement());
+                _SelectNode.Nodes.Add(new TreeNode(AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString()));
             }
             this.Close();
         }

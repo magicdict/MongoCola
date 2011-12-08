@@ -75,6 +75,7 @@
             this.cmdSaveReduceJs.Size = new System.Drawing.Size(70, 30);
             this.cmdSaveReduceJs.TabIndex = 1;
             this.cmdSaveReduceJs.Text = "保存";
+            this.cmdSaveReduceJs.UseVisualStyleBackColor = false;
             this.cmdSaveReduceJs.Click += new System.EventHandler(this.cmdSaveReduceJs_Click);
             // 
             // lblReduceFunction
@@ -105,6 +106,7 @@
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 2;
             this.cmdOK.Text = "确认";
+            this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // txtfinalizeJs
@@ -134,6 +136,7 @@
             this.cmdSavefinalizeJs.Size = new System.Drawing.Size(70, 30);
             this.cmdSavefinalizeJs.TabIndex = 21;
             this.cmdSavefinalizeJs.Text = "保存";
+            this.cmdSavefinalizeJs.UseVisualStyleBackColor = false;
             this.cmdSavefinalizeJs.Click += new System.EventHandler(this.cmdForSavefinalize_Click);
             // 
             // cmbForfinalize
@@ -197,6 +200,7 @@
             this.cmdAddInitField.Size = new System.Drawing.Size(70, 27);
             this.cmdAddInitField.TabIndex = 22;
             this.cmdAddInitField.Text = "添加";
+            this.cmdAddInitField.UseVisualStyleBackColor = false;
             this.cmdAddInitField.Click += new System.EventHandler(this.cmdAddFld_Click);
             // 
             // lblResult
@@ -295,6 +299,7 @@
             this.cmdQuery.Size = new System.Drawing.Size(100, 32);
             this.cmdQuery.TabIndex = 1;
             this.cmdQuery.Text = "载入查询条件";
+            this.cmdQuery.UseVisualStyleBackColor = false;
             this.cmdQuery.Click += new System.EventHandler(this.cmdQuery_Click);
             // 
             // frmGroup
@@ -306,6 +311,7 @@
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.cmdQuery);
             this.Name = "frmGroup";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Group";
             this.Load += new System.EventHandler(this.frmGroup_Load);
             this.tabGroup.ResumeLayout(false);

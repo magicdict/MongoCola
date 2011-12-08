@@ -119,6 +119,7 @@
             this.ClientSize = new System.Drawing.Size(427, 255);
             this.Controls.Add(this.tabControl1);
             this.Name = "frmReplset";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "副本管理";
             this.Load += new System.EventHandler(this.frmReplset_Load);
             this.tabControl1.ResumeLayout(false);

@@ -71,6 +71,7 @@
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 7;
             this.cmdOK.Text = "OK";
+            this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // frmLanguage
@@ -83,6 +84,7 @@
             this.Controls.Add(this.lblLanguagePickTip);
             this.Controls.Add(this.label1);
             this.Name = "frmLanguage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Language";
             this.Load += new System.EventHandler(this.frmLanguage_Load);
             this.ResumeLayout(false);
