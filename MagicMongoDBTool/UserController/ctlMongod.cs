@@ -23,8 +23,8 @@ namespace MagicMongoDBTool
                 chkIsAppend.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_AppendMode);
                 ctlFilePickerDBPath.Title = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_DBPath);
                 ctlFilePickerLogPath.Title = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_LogPath);
-                chkIsMaster.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_MasterDB);
-                chkIsSlave.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_SlaveDB);
+                radMaster.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_Master);
+                radSlave.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_Slave);
                 txtSource.WaterMark = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_MasterAddress);
                 grpLog.Text = SystemManager.mStringResource.GetText(GUIResource.StringResource.TextType.DosCommand_Tab_Deploy_Log);
             }
@@ -79,30 +79,14 @@ namespace MagicMongoDBTool
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
         /// <summary>
-        /// Master机器
+        /// 服务器类型变更
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void chkIsMaster_CheckedChanged(object sender, EventArgs e)
+        private void MongodType_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkIsMaster.Checked) { chkIsSlave.Checked = false; }
-            MongodCommand.IsMaster = chkIsMaster.Checked;
-            MongodCommand.IsSlave = chkIsSlave.Checked;
-            CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
-        }
-        /// <summary>
-        /// Slave机器
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void chkIsSlave_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkIsSlave.Checked)
-            {
-                chkIsMaster.Checked = false;
-            }
-            MongodCommand.IsMaster = chkIsMaster.Checked;
-            MongodCommand.IsSlave = chkIsSlave.Checked;
+            MongodCommand.IsMaster = radMaster.Checked;
+            MongodCommand.IsSlave = radSlave.Checked;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
         }
         /// <summary>
@@ -137,5 +121,7 @@ namespace MagicMongoDBTool
                 CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
             }
         }
+
+
     }
 }

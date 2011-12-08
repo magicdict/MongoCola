@@ -51,6 +51,9 @@
   <Main_Menu_Operation_DataDocument_AddElement>Add Element</Main_Menu_Operation_DataDocument_AddElement>
   <Main_Menu_Operation_DataDocument_DropElement>Drop Element</Main_Menu_Operation_DataDocument_DropElement>
   <Main_Menu_Operation_DataDocument_ModifyElement>Modify Element</Main_Menu_Operation_DataDocument_ModifyElement>
+  <Main_Menu_Operation_DataDocument_CopyElement>Copy Element</Main_Menu_Operation_DataDocument_CopyElement>
+  <Main_Menu_Operation_DataDocument_CutElement>Cut Element</Main_Menu_Operation_DataDocument_CutElement>
+  <Main_Menu_Operation_DataDocument_PasteElement>Paste Element</Main_Menu_Operation_DataDocument_PasteElement>
 
 
   <Main_Menu_Operation_FileSystem>FileSystem</Main_Menu_Operation_FileSystem>
@@ -146,8 +149,8 @@
   <DosCommand_Tab_Deploy_Authentication>Authentication</DosCommand_Tab_Deploy_Authentication>
   <DosCommand_Tab_Deploy_MasterAddress>Master Address</DosCommand_Tab_Deploy_MasterAddress>
   <DosCommand_Tab_Deploy_Port>Port</DosCommand_Tab_Deploy_Port>
-  <DosCommand_Tab_Deploy_MasterDB>Master Database</DosCommand_Tab_Deploy_MasterDB>
-  <DosCommand_Tab_Deploy_SlaveDB>Slave Database</DosCommand_Tab_Deploy_SlaveDB>
+  <DosCommand_Tab_Deploy_Master>Master</DosCommand_Tab_Deploy_Master>
+  <DosCommand_Tab_Deploy_Slave>Slave</DosCommand_Tab_Deploy_Slave>
   <DosCommand_Tab_Deploy_SlaveSource>Slave Source</DosCommand_Tab_Deploy_SlaveSource>
   <DosCommand_Tab_Deploy_DBPath>Database path</DosCommand_Tab_Deploy_DBPath>
   <DosCommand_Tab_Deploy_LogPath>Log Path</DosCommand_Tab_Deploy_LogPath>

@@ -54,7 +54,8 @@ namespace MagicMongoDBTool
             menuStripMain.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
             toolStripMain.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
 
-            if (SystemManager.MONO_MODE) {
+            if (SystemManager.MONO_MODE)
+            {
                 this.Text += " MONO";
             }
         }
@@ -120,6 +121,9 @@ namespace MagicMongoDBTool
             this.AddElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
             this.DropElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_DropElement);
             this.ModifyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_ModifyElement);
+            this.CopyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CopyElement);
+            this.CutElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CutElement);
+            this.PasteElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_PasteElement);
 
             this.GridFsToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem);
             this.DelFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
@@ -1537,7 +1541,7 @@ namespace MagicMongoDBTool
         {
             List<CommandResult> ResultCommandList = new List<CommandResult>();
             ResultCommandList.Add(MongoDBHelper.RunMongoCommandAtCurrentObj(MongoDBHelper.repairDatabase_Command));
-            MyMessageBox.ShowMessage("RepairDataBase", "RepairDataBase Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList),true);
+            MyMessageBox.ShowMessage("RepairDataBase", "RepairDataBase Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
         }
 
         #endregion

@@ -97,6 +97,10 @@ namespace MagicMongoDBTool
             this.DropElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ModifyElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
+            this.CopyElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PasteElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CutElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GridFsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UploadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DownloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -131,10 +135,6 @@ namespace MagicMongoDBTool
             this.txtData = new System.Windows.Forms.TextBox();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.PasteElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CopyElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
-            this.CutElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentPanel.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
@@ -583,40 +583,40 @@ namespace MagicMongoDBTool
             // DelMongoCollectionToolStripMenuItem
             // 
             this.DelMongoCollectionToolStripMenuItem.Name = "DelMongoCollectionToolStripMenuItem";
-            this.DelMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DelMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.DelMongoCollectionToolStripMenuItem.Text = "删除数据集";
             this.DelMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.DelMongoCollectionToolStripMenuItem_Click);
             // 
             // RenameCollectionToolStripMenuItem
             // 
             this.RenameCollectionToolStripMenuItem.Name = "RenameCollectionToolStripMenuItem";
-            this.RenameCollectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.RenameCollectionToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.RenameCollectionToolStripMenuItem.Text = "重命名数据集";
             this.RenameCollectionToolStripMenuItem.Click += new System.EventHandler(this.RenameCollectionToolStripMenuItem_Click);
             // 
             // IndexManageToolStripMenuItem
             // 
             this.IndexManageToolStripMenuItem.Name = "IndexManageToolStripMenuItem";
-            this.IndexManageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.IndexManageToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.IndexManageToolStripMenuItem.Text = "索引管理";
             this.IndexManageToolStripMenuItem.Click += new System.EventHandler(this.IndexManageToolStripMenuItem_Click);
             // 
             // ReIndexToolStripMenuItem
             // 
             this.ReIndexToolStripMenuItem.Name = "ReIndexToolStripMenuItem";
-            this.ReIndexToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ReIndexToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.ReIndexToolStripMenuItem.Text = "重新索引";
             this.ReIndexToolStripMenuItem.Click += new System.EventHandler(this.ReIndexToolStripMenuItem_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(143, 6);
             // 
             // DelSelectRecordToolStripMenuItem
             // 
             this.DelSelectRecordToolStripMenuItem.Name = "DelSelectRecordToolStripMenuItem";
-            this.DelSelectRecordToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DelSelectRecordToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.DelSelectRecordToolStripMenuItem.Text = "删除选中数据";
             this.DelSelectRecordToolStripMenuItem.Click += new System.EventHandler(this.DelSelectRecordToolStripMenuItem_Click);
             // 
@@ -629,8 +629,8 @@ namespace MagicMongoDBTool
             this.AddDocumentToolStripMenuItem,
             this.toolStripMenuItem12,
             this.CopyElementToolStripMenuItem,
-            this.PasteElementToolStripMenuItem,
-            this.CutElementToolStripMenuItem});
+            this.CutElementToolStripMenuItem,
+            this.PasteElementToolStripMenuItem});
             this.DataDocumentToolStripMenuItem.Name = "DataDocumentToolStripMenuItem";
             this.DataDocumentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataDocumentToolStripMenuItem.Text = "数据文档";
@@ -638,30 +638,59 @@ namespace MagicMongoDBTool
             // AddElementToolStripMenuItem
             // 
             this.AddElementToolStripMenuItem.Name = "AddElementToolStripMenuItem";
-            this.AddElementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AddElementToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.AddElementToolStripMenuItem.Text = "添加元素";
             this.AddElementToolStripMenuItem.Click += new System.EventHandler(this.AddElementToolStripMenuItem_Click);
             // 
             // DropElementToolStripMenuItem
             // 
             this.DropElementToolStripMenuItem.Name = "DropElementToolStripMenuItem";
-            this.DropElementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DropElementToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.DropElementToolStripMenuItem.Text = "删除元素";
             this.DropElementToolStripMenuItem.Click += new System.EventHandler(this.DropElementToolStripMenuItem_Click);
             // 
             // ModifyElementToolStripMenuItem
             // 
             this.ModifyElementToolStripMenuItem.Name = "ModifyElementToolStripMenuItem";
-            this.ModifyElementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ModifyElementToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.ModifyElementToolStripMenuItem.Text = "修改元素";
             this.ModifyElementToolStripMenuItem.Click += new System.EventHandler(this.ModifyElementToolStripMenuItem_Click);
             // 
             // AddDocumentToolStripMenuItem
             // 
             this.AddDocumentToolStripMenuItem.Name = "AddDocumentToolStripMenuItem";
-            this.AddDocumentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AddDocumentToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.AddDocumentToolStripMenuItem.Text = "添加文档";
             this.AddDocumentToolStripMenuItem.Click += new System.EventHandler(this.AddDocumentToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(158, 6);
+            // 
+            // CopyElementToolStripMenuItem
+            // 
+            this.CopyElementToolStripMenuItem.Name = "CopyElementToolStripMenuItem";
+            this.CopyElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.CopyElementToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.CopyElementToolStripMenuItem.Text = "复制元素";
+            this.CopyElementToolStripMenuItem.Click += new System.EventHandler(this.CopyElementToolStripMenuItem_Click);
+            // 
+            // PasteElementToolStripMenuItem
+            // 
+            this.PasteElementToolStripMenuItem.Name = "PasteElementToolStripMenuItem";
+            this.PasteElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.PasteElementToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.PasteElementToolStripMenuItem.Text = "粘贴元素";
+            this.PasteElementToolStripMenuItem.Click += new System.EventHandler(this.PasteElementToolStripMenuItem_Click);
+            // 
+            // CutElementToolStripMenuItem
+            // 
+            this.CutElementToolStripMenuItem.Name = "CutElementToolStripMenuItem";
+            this.CutElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.CutElementToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.CutElementToolStripMenuItem.Text = "剪切元素";
+            this.CutElementToolStripMenuItem.Click += new System.EventHandler(this.CutElementToolStripMenuItem_Click);
             // 
             // GridFsToolStripMenuItem
             // 
@@ -678,35 +707,35 @@ namespace MagicMongoDBTool
             // UploadFileToolStripMenuItem
             // 
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
-            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.UploadFileToolStripMenuItem.Text = "上传文件";
             this.UploadFileToolStripMenuItem.Click += new System.EventHandler(this.UploadFileToolStripMenuItem_Click);
             // 
             // DownloadFileToolStripMenuItem
             // 
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
-            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.DownloadFileToolStripMenuItem.Text = "下载文件";
             this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(this.DownloadFileToolStripMenuItem_Click);
             // 
             // OpenFileToolStripMenuItem
             // 
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
-            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.OpenFileToolStripMenuItem.Text = "打开文件";
             this.OpenFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
             // DelFileToolStripMenuItem
             // 
             this.DelFileToolStripMenuItem.Name = "DelFileToolStripMenuItem";
-            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.DelFileToolStripMenuItem.Text = "删除文件";
             this.DelFileToolStripMenuItem.Click += new System.EventHandler(this.DelFileToolStripMenuItem_Click);
             // 
             // InitGFSToolStripMenuItem
             // 
             this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
-            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.InitGFSToolStripMenuItem.Text = "初始化GFS";
             this.InitGFSToolStripMenuItem.Click += new System.EventHandler(this.InitGFSToolStripMenuItem_Click);
             // 
@@ -949,32 +978,6 @@ namespace MagicMongoDBTool
             this.splitter1.Size = new System.Drawing.Size(3, 458);
             this.splitter1.TabIndex = 8;
             this.splitter1.TabStop = false;
-            // 
-            // PasteElementToolStripMenuItem
-            // 
-            this.PasteElementToolStripMenuItem.Name = "PasteElementToolStripMenuItem";
-            this.PasteElementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.PasteElementToolStripMenuItem.Text = "粘贴元素";
-            this.PasteElementToolStripMenuItem.Click += new System.EventHandler(this.PasteElementToolStripMenuItem_Click);
-            // 
-            // CopyElementToolStripMenuItem
-            // 
-            this.CopyElementToolStripMenuItem.Name = "CopyElementToolStripMenuItem";
-            this.CopyElementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.CopyElementToolStripMenuItem.Text = "复制元素";
-            this.CopyElementToolStripMenuItem.Click += new System.EventHandler(this.CopyElementToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem12
-            // 
-            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(149, 6);
-            // 
-            // CutElementToolStripMenuItem
-            // 
-            this.CutElementToolStripMenuItem.Name = "CutElementToolStripMenuItem";
-            this.CutElementToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.CutElementToolStripMenuItem.Text = "剪切元素";
-            this.CutElementToolStripMenuItem.Click += new System.EventHandler(this.CutElementToolStripMenuItem_Click);
             // 
             // frmMain
             // 

@@ -29,17 +29,18 @@
         private void InitializeComponent()
         {
             this.grpLog = new System.Windows.Forms.GroupBox();
+            this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
             this.chkIsAppend = new System.Windows.Forms.CheckBox();
             this.lblPort = new System.Windows.Forms.Label();
             this.numPort = new System.Windows.Forms.NumericUpDown();
-            this.chkIsMaster = new System.Windows.Forms.CheckBox();
-            this.chkIsSlave = new System.Windows.Forms.CheckBox();
             this.chkAuth = new System.Windows.Forms.CheckBox();
             this.lblSource = new System.Windows.Forms.Label();
             this.txtSource = new QLFUI.TextBoxEx();
             this.ctlFilePickerDBPath = new MagicMongoDBTool.ctlFilePicker();
             this.ctlFilePickerLogPath = new MagicMongoDBTool.ctlFilePicker();
-            this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
+            this.radNormal = new System.Windows.Forms.RadioButton();
+            this.radMaster = new System.Windows.Forms.RadioButton();
+            this.radSlave = new System.Windows.Forms.RadioButton();
             this.grpLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.SuspendLayout();
@@ -54,6 +55,13 @@
             this.grpLog.TabIndex = 0;
             this.grpLog.TabStop = false;
             this.grpLog.Text = "日志";
+            // 
+            // ctllogLvT
+            // 
+            this.ctllogLvT.Location = new System.Drawing.Point(256, 13);
+            this.ctllogLvT.Name = "ctllogLvT";
+            this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
+            this.ctllogLvT.TabIndex = 14;
             // 
             // chkIsAppend
             // 
@@ -99,32 +107,10 @@
             0});
             this.numPort.ValueChanged += new System.EventHandler(this.numPort_ValueChanged);
             // 
-            // chkIsMaster
-            // 
-            this.chkIsMaster.AutoSize = true;
-            this.chkIsMaster.Location = new System.Drawing.Point(175, 31);
-            this.chkIsMaster.Name = "chkIsMaster";
-            this.chkIsMaster.Size = new System.Drawing.Size(94, 17);
-            this.chkIsMaster.TabIndex = 12;
-            this.chkIsMaster.Text = "Master数据库";
-            this.chkIsMaster.UseVisualStyleBackColor = true;
-            this.chkIsMaster.CheckedChanged += new System.EventHandler(this.chkIsMaster_CheckedChanged);
-            // 
-            // chkIsSlave
-            // 
-            this.chkIsSlave.AutoSize = true;
-            this.chkIsSlave.Location = new System.Drawing.Point(275, 31);
-            this.chkIsSlave.Name = "chkIsSlave";
-            this.chkIsSlave.Size = new System.Drawing.Size(89, 17);
-            this.chkIsSlave.TabIndex = 13;
-            this.chkIsSlave.Text = "Slave数据库";
-            this.chkIsSlave.UseVisualStyleBackColor = true;
-            this.chkIsSlave.CheckedChanged += new System.EventHandler(this.chkIsSlave_CheckedChanged);
-            // 
             // chkAuth
             // 
             this.chkAuth.AutoSize = true;
-            this.chkAuth.Location = new System.Drawing.Point(547, 28);
+            this.chkAuth.Location = new System.Drawing.Point(651, 26);
             this.chkAuth.Name = "chkAuth";
             this.chkAuth.Size = new System.Drawing.Size(98, 17);
             this.chkAuth.TabIndex = 16;
@@ -135,7 +121,7 @@
             // lblSource
             // 
             this.lblSource.AutoSize = true;
-            this.lblSource.Location = new System.Drawing.Point(370, 31);
+            this.lblSource.Location = new System.Drawing.Point(397, 26);
             this.lblSource.Name = "lblSource";
             this.lblSource.Size = new System.Drawing.Size(58, 13);
             this.lblSource.TabIndex = 17;
@@ -143,12 +129,10 @@
             // 
             // txtSource
             // 
-            //this.txtSource.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            //this.txtSource.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this.txtSource.BackColor = System.Drawing.Color.Transparent;
             this.txtSource.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(208)))), ((int)(((byte)(226)))));
             this.txtSource.ForeImage = null;
-            this.txtSource.Location = new System.Drawing.Point(434, 22);
+            this.txtSource.Location = new System.Drawing.Point(482, 17);
             this.txtSource.Multiline = false;
             this.txtSource.Name = "txtSource";
             this.txtSource.Radius = 3;
@@ -163,6 +147,7 @@
             // ctlFilePickerDBPath
             // 
             this.ctlFilePickerDBPath.BackColor = System.Drawing.Color.Transparent;
+            this.ctlFilePickerDBPath.FileFilter = "";
             this.ctlFilePickerDBPath.Location = new System.Drawing.Point(26, 52);
             this.ctlFilePickerDBPath.Name = "ctlFilePickerDBPath";
             this.ctlFilePickerDBPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
@@ -174,6 +159,7 @@
             // ctlFilePickerLogPath
             // 
             this.ctlFilePickerLogPath.BackColor = System.Drawing.Color.Transparent;
+            this.ctlFilePickerLogPath.FileFilter = "";
             this.ctlFilePickerLogPath.Location = new System.Drawing.Point(26, 87);
             this.ctlFilePickerLogPath.Name = "ctlFilePickerLogPath";
             this.ctlFilePickerLogPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.SaveFile;
@@ -182,25 +168,54 @@
             this.ctlFilePickerLogPath.TabIndex = 14;
             this.ctlFilePickerLogPath.Title = "日志路径";
             // 
-            // ctllogLvT
+            // radNormal
             // 
-            this.ctllogLvT.Location = new System.Drawing.Point(256, 13);
-            this.ctllogLvT.Name = "ctllogLvT";
-            this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
-            this.ctllogLvT.TabIndex = 14;
+            this.radNormal.AutoSize = true;
+            this.radNormal.Checked = true;
+            this.radNormal.Location = new System.Drawing.Point(193, 26);
+            this.radNormal.Name = "radNormal";
+            this.radNormal.Size = new System.Drawing.Size(58, 17);
+            this.radNormal.TabIndex = 19;
+            this.radNormal.TabStop = true;
+            this.radNormal.Text = "Normal";
+            this.radNormal.UseVisualStyleBackColor = true;
+            // 
+            // radMaster
+            // 
+            this.radMaster.AutoSize = true;
+            this.radMaster.Location = new System.Drawing.Point(257, 26);
+            this.radMaster.Name = "radMaster";
+            this.radMaster.Size = new System.Drawing.Size(57, 17);
+            this.radMaster.TabIndex = 20;
+            this.radMaster.Text = "Master";
+            this.radMaster.UseVisualStyleBackColor = true;
+            this.radMaster.CheckedChanged += new System.EventHandler(this.MongodType_CheckedChanged);
+            this.radSlave.CheckedChanged += new System.EventHandler(this.MongodType_CheckedChanged);
+            this.radNormal.CheckedChanged += new System.EventHandler(this.MongodType_CheckedChanged);
+            // 
+            // radSlave
+            // 
+            this.radSlave.AutoSize = true;
+            this.radSlave.Location = new System.Drawing.Point(320, 27);
+            this.radSlave.Name = "radSlave";
+            this.radSlave.Size = new System.Drawing.Size(52, 17);
+            this.radSlave.TabIndex = 21;
+            this.radSlave.Text = "Slave";
+            this.radSlave.UseVisualStyleBackColor = true;
             // 
             // ctlMongod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
+            this.Controls.Add(this.radSlave);
+            this.Controls.Add(this.radMaster);
+            this.Controls.Add(this.radNormal);
             this.Controls.Add(this.txtSource);
             this.Controls.Add(this.lblSource);
             this.Controls.Add(this.chkAuth);
             this.Controls.Add(this.ctlFilePickerDBPath);
             this.Controls.Add(this.ctlFilePickerLogPath);
-            this.Controls.Add(this.chkIsSlave);
-            this.Controls.Add(this.chkIsMaster);
             this.Controls.Add(this.numPort);
             this.Controls.Add(this.lblPort);
             this.Controls.Add(this.grpLog);
@@ -221,13 +236,14 @@
         private System.Windows.Forms.CheckBox chkIsAppend;
         private System.Windows.Forms.Label lblPort;
         private System.Windows.Forms.NumericUpDown numPort;
-        private System.Windows.Forms.CheckBox chkIsMaster;
-        private System.Windows.Forms.CheckBox chkIsSlave;
         private Module.ctllogLv ctllogLvT;
         private ctlFilePicker ctlFilePickerLogPath;
         private ctlFilePicker ctlFilePickerDBPath;
         private System.Windows.Forms.CheckBox chkAuth;
         private System.Windows.Forms.Label lblSource;
         private QLFUI.TextBoxEx txtSource;
+        private System.Windows.Forms.RadioButton radNormal;
+        private System.Windows.Forms.RadioButton radMaster;
+        private System.Windows.Forms.RadioButton radSlave;
     }
 }

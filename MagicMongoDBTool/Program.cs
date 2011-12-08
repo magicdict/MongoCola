@@ -14,22 +14,25 @@ namespace MagicMongoDBTool
         [STAThread]
         static void Main()
         {
+            Application.SetCompatibleTextRenderingDefault(false);
             if (File.Exists("config.xml"))
             {
                 SystemManager.ConfigHelperInstance = ConfigHelper.LoadFromConfigFile("config.xml");
+                SystemManager.InitLanguage();
             }
             else
             {
                 SystemManager.ConfigHelperInstance = new ConfigHelper();
-                SystemManager.ConfigHelperInstance.LanguageFileName = "English.xml";
-                SystemManager.ConfigHelperInstance.SkipFolder = "qq";
+                frmLanguage _frmLanguage = new frmLanguage();
+                _frmLanguage.ShowDialog();
+                SystemManager.InitLanguage();
+                frmOption _frmOption = new frmOption();
+                _frmOption.ShowDialog();
                 SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
             }
             //SystemManager.DEBUG_MODE = true;
             SystemManager.MONO_MODE = Type.GetType("Mono.Runtime") != null; ;
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            SystemManager.InitLanguage();
             Application.Run(new frmMain());
         }
     }
