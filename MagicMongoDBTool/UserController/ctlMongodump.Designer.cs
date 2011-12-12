@@ -43,6 +43,7 @@
             // 
             // ctllogLvT
             // 
+            this.ctllogLvT.BackColor = System.Drawing.Color.Transparent;
             this.ctllogLvT.Location = new System.Drawing.Point(485, 146);
             this.ctllogLvT.Name = "ctllogLvT";
             this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
@@ -51,26 +52,27 @@
             // ctlFilePickerOutput
             // 
             this.ctlFilePickerOutput.BackColor = System.Drawing.Color.Transparent;
+            this.ctlFilePickerOutput.FileFilter = "";
             this.ctlFilePickerOutput.Location = new System.Drawing.Point(33, 98);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
             this.ctlFilePickerOutput.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
             this.ctlFilePickerOutput.SelectedPath = "";
             this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 41);
             this.ctlFilePickerOutput.TabIndex = 1;
-            this.ctlFilePickerOutput.Title = "备份路径";
+            this.ctlFilePickerOutput.Title = "BackUpPath";
             // 
             // lblHostAddr
             // 
             this.lblHostAddr.AutoSize = true;
             this.lblHostAddr.Location = new System.Drawing.Point(37, 28);
             this.lblHostAddr.Name = "lblHostAddr";
-            this.lblHostAddr.Size = new System.Drawing.Size(61, 13);
+            this.lblHostAddr.Size = new System.Drawing.Size(29, 13);
             this.lblHostAddr.TabIndex = 2;
-            this.lblHostAddr.Text = "主机地址：";
+            this.lblHostAddr.Text = "Host";
             // 
             // txtHostAddr
             // 
-            this.txtHostAddr.Location = new System.Drawing.Point(116, 25);
+            this.txtHostAddr.Location = new System.Drawing.Point(131, 25);
             this.txtHostAddr.Name = "txtHostAddr";
             this.txtHostAddr.Size = new System.Drawing.Size(161, 20);
             this.txtHostAddr.TabIndex = 3;
@@ -81,9 +83,9 @@
             this.lblPort.AutoSize = true;
             this.lblPort.Location = new System.Drawing.Point(304, 28);
             this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(49, 13);
+            this.lblPort.Size = new System.Drawing.Size(26, 13);
             this.lblPort.TabIndex = 4;
-            this.lblPort.Text = "端口号：";
+            this.lblPort.Text = "Port";
             // 
             // numPort
             // 
@@ -114,13 +116,13 @@
             this.lblDBName.AutoSize = true;
             this.lblDBName.Location = new System.Drawing.Point(37, 61);
             this.lblDBName.Name = "lblDBName";
-            this.lblDBName.Size = new System.Drawing.Size(73, 13);
+            this.lblDBName.Size = new System.Drawing.Size(81, 13);
             this.lblDBName.TabIndex = 10;
-            this.lblDBName.Text = "数据库名称：";
+            this.lblDBName.Text = "DatabaseName";
             // 
             // txtDBName
             // 
-            this.txtDBName.Location = new System.Drawing.Point(116, 54);
+            this.txtDBName.Location = new System.Drawing.Point(131, 54);
             this.txtDBName.Name = "txtDBName";
             this.txtDBName.Size = new System.Drawing.Size(161, 20);
             this.txtDBName.TabIndex = 11;
@@ -131,9 +133,9 @@
             this.lblCollectionName.AutoSize = true;
             this.lblCollectionName.Location = new System.Drawing.Point(304, 57);
             this.lblCollectionName.Name = "lblCollectionName";
-            this.lblCollectionName.Size = new System.Drawing.Size(67, 13);
+            this.lblCollectionName.Size = new System.Drawing.Size(81, 13);
             this.lblCollectionName.TabIndex = 12;
-            this.lblCollectionName.Text = "数据集名称";
+            this.lblCollectionName.Text = "CollectionName";
             // 
             // txtCollectionName
             // 

@@ -39,33 +39,33 @@
             // cmdModifyCon
             // 
             this.cmdModifyCon.BackColor = System.Drawing.Color.Transparent;
-            this.cmdModifyCon.Location = new System.Drawing.Point(371, 128);
+            this.cmdModifyCon.Location = new System.Drawing.Point(371, 81);
             this.cmdModifyCon.Name = "cmdModifyCon";
             this.cmdModifyCon.Size = new System.Drawing.Size(60, 31);
             this.cmdModifyCon.TabIndex = 9;
-            this.cmdModifyCon.Text = "修改";
+            this.cmdModifyCon.Text = "Modify";
             this.cmdModifyCon.UseVisualStyleBackColor = false;
             this.cmdModifyCon.Click += new System.EventHandler(this.cmdModifyCon_Click);
             // 
             // cmdDelCon
             // 
             this.cmdDelCon.BackColor = System.Drawing.Color.Transparent;
-            this.cmdDelCon.Location = new System.Drawing.Point(371, 79);
+            this.cmdDelCon.Location = new System.Drawing.Point(371, 134);
             this.cmdDelCon.Name = "cmdDelCon";
             this.cmdDelCon.Size = new System.Drawing.Size(60, 31);
             this.cmdDelCon.TabIndex = 10;
-            this.cmdDelCon.Text = "删除";
+            this.cmdDelCon.Text = "Drop";
             this.cmdDelCon.UseVisualStyleBackColor = false;
             this.cmdDelCon.Click += new System.EventHandler(this.cmdDelCon_Click);
             // 
             // cmdAddCon
             // 
             this.cmdAddCon.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddCon.Location = new System.Drawing.Point(371, 32);
+            this.cmdAddCon.Location = new System.Drawing.Point(371, 25);
             this.cmdAddCon.Name = "cmdAddCon";
             this.cmdAddCon.Size = new System.Drawing.Size(60, 31);
             this.cmdAddCon.TabIndex = 8;
-            this.cmdAddCon.Text = "添加";
+            this.cmdAddCon.Text = "New";
             this.cmdAddCon.UseVisualStyleBackColor = false;
             this.cmdAddCon.Click += new System.EventHandler(this.cmdAddCon_Click);
             // 
@@ -76,7 +76,7 @@
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(60, 31);
             this.cmdCancel.TabIndex = 7;
-            this.cmdCancel.Text = "取消";
+            this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
@@ -87,7 +87,7 @@
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(60, 31);
             this.cmdOK.TabIndex = 6;
-            this.cmdOK.Text = "确定";
+            this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdConnect_Click);
             // 
@@ -111,9 +111,12 @@
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.lstServerce);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmConnect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "数据库连接";
+            this.Text = "Server Connection";
             this.Load += new System.EventHandler(this.frmConnect_Load);
             this.ResumeLayout(false);
 

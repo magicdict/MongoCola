@@ -30,7 +30,6 @@ namespace MagicMongoDBTool
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlAddBsonEl));
             this.txtElName = new System.Windows.Forms.TextBox();
             this.ElBsonValue = new MagicMongoDBTool.ctlBsonValue();
             this.lblElement = new System.Windows.Forms.Label();
@@ -55,9 +54,9 @@ namespace MagicMongoDBTool
             this.lblElement.AutoSize = true;
             this.lblElement.Location = new System.Drawing.Point(5, 8);
             this.lblElement.Name = "lblElement";
-            this.lblElement.Size = new System.Drawing.Size(55, 13);
+            this.lblElement.Size = new System.Drawing.Size(73, 13);
             this.lblElement.TabIndex = 4;
-            this.lblElement.Text = "元素名称";
+            this.lblElement.Text = "ElementName";
             // 
             // ctlAddBsonEl
             // 

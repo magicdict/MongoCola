@@ -66,14 +66,14 @@ namespace MagicMongoDBTool
                 MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst);
                 if (Count == 1001)
                 {
-                    this.txtResult.Text = "显示前1000条记录" + "\r\n" + this.txtResult.Text;
+                    this.txtResult.Text = "Too many result,Display first 1000 records" + "\r\n" + this.txtResult.Text;
                 }
                 this.txtResult.Select(0, 0);
                 tabGroup.SelectedIndex = 4;
             }
             catch (Exception ex)
             {
-                MyMessageBox.ShowMessage("异常", "发生异常", ex.ToString(), true);
+                MyMessageBox.ShowMessage("Exception", "Exception is Happened", ex.ToString(), true);
             }
         }
         /// <summary>
@@ -132,7 +132,7 @@ namespace MagicMongoDBTool
                 cmdAddInitField.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_InitColumn);
                 lblResult.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_Result);
                 cmdQuery.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_LoadQuery);
-                cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
+                cmdRun.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
             }
 
         }
@@ -145,7 +145,7 @@ namespace MagicMongoDBTool
         {
             if (this.txtReduceJs.Text != string.Empty)
             {
-                String strJsName = MyMessageBox.ShowInput("请输入Javascript名称：", "保存Javascript");
+                String strJsName = MyMessageBox.ShowInput("Input Javascript Name：", "Save Javascript");
                 MongoDBHelper.SaveJavascript(strJsName, txtReduceJs.Text);
             }
         }
@@ -158,7 +158,7 @@ namespace MagicMongoDBTool
         {
             if (this.txtfinalizeJs.Text != string.Empty)
             {
-                String strJsName = MyMessageBox.ShowInput("请输入Javascript名称：", "保存Javascript");
+                String strJsName = MyMessageBox.ShowInput("Input Javascript Name：", "Save Javascript");
                 MongoDBHelper.SaveJavascript(strJsName, txtfinalizeJs.Text);
             }
         }

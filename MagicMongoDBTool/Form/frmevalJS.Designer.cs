@@ -52,7 +52,7 @@
             this.cmdSaveJs.Name = "cmdSaveJs";
             this.cmdSaveJs.Size = new System.Drawing.Size(70, 30);
             this.cmdSaveJs.TabIndex = 1;
-            this.cmdSaveJs.Text = "保存";
+            this.cmdSaveJs.Text = "Save";
             this.cmdSaveJs.UseVisualStyleBackColor = false;
             this.cmdSaveJs.Click += new System.EventHandler(this.cmdSaveMapJs_Click);
             // 
@@ -62,9 +62,9 @@
             this.lblFunction.BackColor = System.Drawing.Color.Transparent;
             this.lblFunction.Location = new System.Drawing.Point(12, 17);
             this.lblFunction.Name = "lblFunction";
-            this.lblFunction.Size = new System.Drawing.Size(55, 13);
+            this.lblFunction.Size = new System.Drawing.Size(41, 13);
             this.lblFunction.TabIndex = 20;
-            this.lblFunction.Text = "执行函数";
+            this.lblFunction.Text = "Eval Js";
             // 
             // txtevalJs
             // 
@@ -83,7 +83,7 @@
             this.cmdEval.Name = "cmdEval";
             this.cmdEval.Size = new System.Drawing.Size(80, 30);
             this.cmdEval.TabIndex = 2;
-            this.cmdEval.Text = "执行";
+            this.cmdEval.Text = "Eval";
             this.cmdEval.UseVisualStyleBackColor = false;
             this.cmdEval.Click += new System.EventHandler(this.cmdEval_Click);
             // 
@@ -100,9 +100,9 @@
             this.lblParm.BackColor = System.Drawing.Color.Transparent;
             this.lblParm.Location = new System.Drawing.Point(12, 207);
             this.lblParm.Name = "lblParm";
-            this.lblParm.Size = new System.Drawing.Size(103, 13);
+            this.lblParm.Size = new System.Drawing.Size(126, 13);
             this.lblParm.TabIndex = 23;
-            this.lblParm.Text = "参数（用逗号分开）";
+            this.lblParm.Text = "Parameter(seperate by \',\')";
             // 
             // frmevalJS
             // 
@@ -116,6 +116,7 @@
             this.Controls.Add(this.lblFunction);
             this.Controls.Add(this.txtevalJs);
             this.Controls.Add(this.txtParm);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmevalJS";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "执行Javascript";

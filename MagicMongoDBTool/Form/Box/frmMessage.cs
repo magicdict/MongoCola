@@ -5,16 +5,17 @@ namespace MagicMongoDBTool
     public partial class frmMesssage : Form
     {
         /// <summary>
-        /// 是否显示细节
+        /// Is Show Details
         /// </summary>
-        Boolean _ShowDetails = false;
+        private Boolean _ShowDetails = false;
         /// <summary>
-        /// 表示信息
+        /// Show Info
         /// </summary>
-        /// <param name="Message">信息</param>
-        /// <param name="Details">细节</param>
-        /// <param name="IsShowDetails">是否显示细节</param>
-        public void SetMessage(String Message,String Details,Boolean IsShowDetails = true) {
+        /// <param name="Message">Message</param>
+        /// <param name="Details">Details</param>
+        /// <param name="IsShowDetails">Is Show Details</param>
+        internal void SetMessage(String Message, String Details, Boolean IsShowDetails = true)
+        {
             this.lblMessage.Text = Message;
             this.txtException.Text = Details;
             this.txtException.Select(0, 0);
@@ -28,15 +29,15 @@ namespace MagicMongoDBTool
             }
             else
             {
-                this.Height = 168;
+                this.Height = 130;
             }
         }
-        public frmMesssage()
+        internal frmMesssage()
         {
             InitializeComponent();
         }
         /// <summary>
-        /// 确定
+        /// OK
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -45,7 +46,7 @@ namespace MagicMongoDBTool
             this.Close();
         }
         /// <summary>
-        /// 切换细节
+        /// Swith details mode
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -53,7 +54,7 @@ namespace MagicMongoDBTool
         {
             if (_ShowDetails)
             {
-                this.Height = 168;
+                this.Height = 130;
             }
             else {
                 this.Height = 350;
@@ -61,7 +62,7 @@ namespace MagicMongoDBTool
             _ShowDetails = !_ShowDetails;
         }
         /// <summary>
-        /// 
+        /// Set Message for display
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="img"></param>
@@ -72,23 +73,14 @@ namespace MagicMongoDBTool
             SetMessage(Message, Details);
         }
         /// <summary>
-        /// 设置文字
+        /// Set Text
         /// </summary>
         /// <param name="Yes"></param>
         /// <param name="No"></param>
-        public void SetText(String Detail, String OK)
+        internal void SetText(String Detail, String OK)
         {
             cmdDetails.Text = Detail;
             cmdOK.Text = OK;
-        }
-        /// <summary>
-        /// 加载
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmMesssage_Load(object sender, EventArgs e)
-        {
-           
         }
     }
 }

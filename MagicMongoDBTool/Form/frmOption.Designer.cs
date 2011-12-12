@@ -43,7 +43,7 @@
             // 
             // numRefreshForStatus
             // 
-            this.numRefreshForStatus.Location = new System.Drawing.Point(315, 58);
+            this.numRefreshForStatus.Location = new System.Drawing.Point(128, 90);
             this.numRefreshForStatus.Maximum = new decimal(new int[] {
             180,
             0,
@@ -68,11 +68,11 @@
             // 
             this.lblRefreshIntervalForStatus.AutoSize = true;
             this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(212, 60);
+            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(12, 92);
             this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
-            this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(79, 13);
+            this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(111, 13);
             this.lblRefreshIntervalForStatus.TabIndex = 15;
-            this.lblRefreshIntervalForStatus.Text = "状态刷新间隔";
+            this.lblRefreshIntervalForStatus.Text = "Refresh Interval（sec）";
             // 
             // numLimitCnt
             // 
@@ -105,27 +105,27 @@
             this.lblLimitCnt.Name = "lblLimitCnt";
             this.lblLimitCnt.Size = new System.Drawing.Size(91, 13);
             this.lblLimitCnt.TabIndex = 13;
-            this.lblLimitCnt.Text = "每页显示数据数";
+            this.lblLimitCnt.Text = "Records PerPage";
             // 
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(393, 104);
+            this.cmdCancel.Location = new System.Drawing.Point(404, 120);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 30);
             this.cmdCancel.TabIndex = 5;
-            this.cmdCancel.Text = "取消";
+            this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(226, 104);
+            this.cmdOK.Location = new System.Drawing.Point(237, 120);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(75, 30);
             this.cmdOK.TabIndex = 4;
-            this.cmdOK.Text = "确认";
+            this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
@@ -133,16 +133,16 @@
             // 
             this.lblLanguage.AutoSize = true;
             this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
-            this.lblLanguage.Location = new System.Drawing.Point(390, 60);
+            this.lblLanguage.Location = new System.Drawing.Point(234, 60);
             this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(31, 13);
+            this.lblLanguage.Size = new System.Drawing.Size(55, 13);
             this.lblLanguage.TabIndex = 16;
-            this.lblLanguage.Text = "语言";
+            this.lblLanguage.Text = "Language";
             // 
             // cmbLanguage
             // 
             this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(450, 57);
+            this.cmbLanguage.Location = new System.Drawing.Point(294, 57);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(121, 21);
             this.cmbLanguage.TabIndex = 3;
@@ -155,15 +155,15 @@
             this.ctlFilePickerMongoBinPath.Name = "ctlFilePickerMongoBinPath";
             this.ctlFilePickerMongoBinPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
             this.ctlFilePickerMongoBinPath.SelectedPath = "";
-            this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(739, 31);
+            this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(565, 31);
             this.ctlFilePickerMongoBinPath.TabIndex = 0;
-            this.ctlFilePickerMongoBinPath.Title = "Mongodb的Bin路径";
+            this.ctlFilePickerMongoBinPath.Title = "Exectable Path ";
             // 
             // frmOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(767, 146);
+            this.ClientSize = new System.Drawing.Size(588, 163);
             this.Controls.Add(this.cmbLanguage);
             this.Controls.Add(this.lblLanguage);
             this.Controls.Add(this.numRefreshForStatus);
@@ -173,9 +173,12 @@
             this.Controls.Add(this.ctlFilePickerMongoBinPath);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmOption";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "选项";
+            this.Text = "Option";
             this.Load += new System.EventHandler(this.frmOption_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLimitCnt)).EndInit();

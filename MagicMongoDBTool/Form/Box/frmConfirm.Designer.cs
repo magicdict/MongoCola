@@ -42,11 +42,11 @@ namespace MagicMongoDBTool
             this.lblMessage.AutoSize = true;
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(87, 35);
+            this.lblMessage.Location = new System.Drawing.Point(99, 35);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(33, 15);
+            this.lblMessage.Size = new System.Drawing.Size(65, 15);
             this.lblMessage.TabIndex = 8;
-            this.lblMessage.Text = "信息";
+            this.lblMessage.Text = "Message";
             // 
             // picImage
             // 
@@ -66,7 +66,7 @@ namespace MagicMongoDBTool
             this.cmdYes.Name = "cmdYes";
             this.cmdYes.Size = new System.Drawing.Size(100, 32);
             this.cmdYes.TabIndex = 0;
-            this.cmdYes.Text = "是";
+            this.cmdYes.Text = "Yes";
             this.cmdYes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdYes.UseVisualStyleBackColor = false;
             this.cmdYes.Click += new System.EventHandler(this.cmdYes_Click);
@@ -79,7 +79,7 @@ namespace MagicMongoDBTool
             this.cmdNo.Name = "cmdNo";
             this.cmdNo.Size = new System.Drawing.Size(100, 32);
             this.cmdNo.TabIndex = 1;
-            this.cmdNo.Text = "否";
+            this.cmdNo.Text = "No";
             this.cmdNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdNo.UseVisualStyleBackColor = false;
             this.cmdNo.Click += new System.EventHandler(this.cmdNo_Click);
@@ -94,6 +94,7 @@ namespace MagicMongoDBTool
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.picImage);
             this.Name = "frmConfirm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmconfirm";
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);

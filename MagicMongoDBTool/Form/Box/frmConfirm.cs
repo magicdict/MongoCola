@@ -5,18 +5,18 @@ namespace MagicMongoDBTool
     public partial class frmConfirm : Form
     {
         /// <summary>
-        /// 返回结果
+        /// Return Result
         /// </summary>
-        public Boolean Result = false;
+        internal Boolean Result = false;
         /// <summary>
-        /// 初始化
+        /// Init Form
         /// </summary>
         public frmConfirm()
         {
             InitializeComponent();
         }
         /// <summary>
-        /// Yes按钮
+        /// Yes is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -26,7 +26,7 @@ namespace MagicMongoDBTool
             this.Close();
         }
         /// <summary>
-        /// No按钮
+        /// No is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -36,20 +36,21 @@ namespace MagicMongoDBTool
             this.Close();
         }
         /// <summary>
-        /// 设定消息
+        /// set the message 
         /// </summary>
         /// <param name="strMessage"></param>
-        public void SetMessage(String strMessage)
+        internal void SetMessage(String strMessage)
         {
             Result = false;
             this.lblMessage.Text = strMessage;
         }
         /// <summary>
-        /// 设置YES NO 文字
+        /// set the text of yes no button
         /// </summary>
         /// <param name="Yes"></param>
         /// <param name="No"></param>
-        public void SetText(String Yes,String No) {
+        internal void SetText(String Yes, String No)
+        {
             cmdYes.Text = Yes;
             cmdNo.Text = No;
         }

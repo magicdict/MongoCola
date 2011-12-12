@@ -12,36 +12,50 @@ namespace MagicMongoDBTool
     public partial class frmInputBox : Form
     {
         /// <summary>
-        /// 返回结果
+        /// return result
         /// </summary>
-        public String Result = String.Empty;
-        public frmInputBox()
+        internal String Result = String.Empty;
+        /// <summary>
+        /// Init
+        /// </summary>
+        internal frmInputBox()
         {
             InitializeComponent();
         }
         /// <summary>
-        /// 设置文字
+        /// Set Text of OK,Cancel Button
         /// </summary>
         /// <param name="Cancel"></param>
         /// <param name="OK"></param>
-        public void SetText(String Cancel, String OK)
+        internal void SetText(String Cancel, String OK)
         {
             cmdCancel.Text = Cancel;
             cmdOK.Text = OK;
         }
-
+        /// <summary>
+        /// Set Message
+        /// </summary>
+        /// <param name="Message"></param>
         internal void SetMessage(string Message)
         {
             lblMessage.Text = Message;
 			this.txtResult.Text = String.Empty;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
             Result = txtResult.Text;
             this.Close();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             Result = String.Empty;

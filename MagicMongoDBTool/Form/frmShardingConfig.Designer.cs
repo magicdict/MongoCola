@@ -62,9 +62,9 @@
             this.lblReplsetName.BackColor = System.Drawing.Color.Transparent;
             this.lblReplsetName.Location = new System.Drawing.Point(20, 23);
             this.lblReplsetName.Name = "lblReplsetName";
-            this.lblReplsetName.Size = new System.Drawing.Size(55, 13);
+            this.lblReplsetName.Size = new System.Drawing.Size(43, 13);
             this.lblReplsetName.TabIndex = 14;
-            this.lblReplsetName.Text = "副本名称";
+            this.lblReplsetName.Text = "Replset";
             // 
             // cmdAddSharding
             // 
@@ -73,7 +73,7 @@
             this.cmdAddSharding.Name = "cmdAddSharding";
             this.cmdAddSharding.Size = new System.Drawing.Size(119, 29);
             this.cmdAddSharding.TabIndex = 2;
-            this.cmdAddSharding.Text = "添加分片";
+            this.cmdAddSharding.Text = "Add Sharding";
             this.cmdAddSharding.UseVisualStyleBackColor = false;
             this.cmdAddSharding.Click += new System.EventHandler(this.cmdAddSharding_Click);
             // 
@@ -92,9 +92,9 @@
             this.lblField.BackColor = System.Drawing.Color.Transparent;
             this.lblField.Location = new System.Drawing.Point(21, 98);
             this.lblField.Name = "lblField";
-            this.lblField.Size = new System.Drawing.Size(55, 13);
+            this.lblField.Size = new System.Drawing.Size(61, 13);
             this.lblField.TabIndex = 34;
-            this.lblField.Text = "索引名称";
+            this.lblField.Text = "IndexName";
             // 
             // cmbKeyList
             // 
@@ -111,7 +111,7 @@
             this.cmdEnableCollectionSharding.Name = "cmdEnableCollectionSharding";
             this.cmdEnableCollectionSharding.Size = new System.Drawing.Size(85, 30);
             this.cmdEnableCollectionSharding.TabIndex = 31;
-            this.cmdEnableCollectionSharding.Text = "数据集分片";
+            this.cmdEnableCollectionSharding.Text = "Collection";
             this.cmdEnableCollectionSharding.UseVisualStyleBackColor = false;
             this.cmdEnableCollectionSharding.Click += new System.EventHandler(this.cmdEnableCollectionSharding_Click);
             // 
@@ -122,7 +122,7 @@
             this.cmdEnableDBSharding.Name = "cmdEnableDBSharding";
             this.cmdEnableDBSharding.Size = new System.Drawing.Size(85, 33);
             this.cmdEnableDBSharding.TabIndex = 28;
-            this.cmdEnableDBSharding.Text = "数据库分片";
+            this.cmdEnableDBSharding.Text = "DataBase";
             this.cmdEnableDBSharding.UseVisualStyleBackColor = false;
             this.cmdEnableDBSharding.Click += new System.EventHandler(this.cmdEnableSharding_Click);
             // 
@@ -150,9 +150,9 @@
             this.lblCollection.BackColor = System.Drawing.Color.Transparent;
             this.lblCollection.Location = new System.Drawing.Point(21, 67);
             this.lblCollection.Name = "lblCollection";
-            this.lblCollection.Size = new System.Drawing.Size(67, 13);
+            this.lblCollection.Size = new System.Drawing.Size(81, 13);
             this.lblCollection.TabIndex = 33;
-            this.lblCollection.Text = "数据集名称";
+            this.lblCollection.Text = "CollectionName";
             // 
             // lblDBName
             // 
@@ -160,9 +160,9 @@
             this.lblDBName.BackColor = System.Drawing.Color.Transparent;
             this.lblDBName.Location = new System.Drawing.Point(21, 31);
             this.lblDBName.Name = "lblDBName";
-            this.lblDBName.Size = new System.Drawing.Size(67, 13);
+            this.lblDBName.Size = new System.Drawing.Size(82, 13);
             this.lblDBName.TabIndex = 32;
-            this.lblDBName.Text = "数据库名称";
+            this.lblDBName.Text = "DataBaseName";
             // 
             // tabSharding
             // 
@@ -185,7 +185,7 @@
             this.tabAddSharding.Padding = new System.Windows.Forms.Padding(3);
             this.tabAddSharding.Size = new System.Drawing.Size(442, 159);
             this.tabAddSharding.TabIndex = 0;
-            this.tabAddSharding.Text = "添加分片";
+            this.tabAddSharding.Text = "Add Sharding";
             this.tabAddSharding.UseVisualStyleBackColor = true;
             // 
             // tabShardingConfig
@@ -203,7 +203,7 @@
             this.tabShardingConfig.Padding = new System.Windows.Forms.Padding(3);
             this.tabShardingConfig.Size = new System.Drawing.Size(442, 159);
             this.tabShardingConfig.TabIndex = 1;
-            this.tabShardingConfig.Text = "分片设置";
+            this.tabShardingConfig.Text = "Sharding Setting";
             this.tabShardingConfig.UseVisualStyleBackColor = true;
             // 
             // frmShardingConfig
@@ -212,9 +212,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(476, 216);
             this.Controls.Add(this.tabSharding);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmShardingConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "分片管理";
+            this.Text = "Sharding Config";
             this.Load += new System.EventHandler(this.frmAddSharding_Load);
             this.tabSharding.ResumeLayout(false);
             this.tabAddSharding.ResumeLayout(false);

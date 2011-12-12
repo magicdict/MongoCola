@@ -41,10 +41,10 @@ namespace MagicMongoDBTool
             this.radAscendingKey.Checked = true;
             this.radAscendingKey.Location = new System.Drawing.Point(301, 6);
             this.radAscendingKey.Name = "radAscendingKey";
-            this.radAscendingKey.Size = new System.Drawing.Size(49, 17);
+            this.radAscendingKey.Size = new System.Drawing.Size(43, 17);
             this.radAscendingKey.TabIndex = 1;
             this.radAscendingKey.TabStop = true;
-            this.radAscendingKey.Text = "升序";
+            this.radAscendingKey.Text = "Asc";
             this.radAscendingKey.UseVisualStyleBackColor = true;
             // 
             // radDescendingKey
@@ -52,9 +52,9 @@ namespace MagicMongoDBTool
             this.radDescendingKey.AutoSize = true;
             this.radDescendingKey.Location = new System.Drawing.Point(356, 6);
             this.radDescendingKey.Name = "radDescendingKey";
-            this.radDescendingKey.Size = new System.Drawing.Size(49, 17);
+            this.radDescendingKey.Size = new System.Drawing.Size(44, 17);
             this.radDescendingKey.TabIndex = 2;
-            this.radDescendingKey.Text = "降序";
+            this.radDescendingKey.Text = "Des";
             this.radDescendingKey.UseVisualStyleBackColor = true;
             // 
             // lblKeyName
@@ -64,7 +64,7 @@ namespace MagicMongoDBTool
             this.lblKeyName.Name = "lblKeyName";
             this.lblKeyName.Size = new System.Drawing.Size(55, 13);
             this.lblKeyName.TabIndex = 3;
-            this.lblKeyName.Text = "索引字段";
+            this.lblKeyName.Text = "IndexFiled";
             // 
             // txtKeyName
             // 

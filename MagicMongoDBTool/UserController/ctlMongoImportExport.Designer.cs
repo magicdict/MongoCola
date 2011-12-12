@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblHostAddr = new System.Windows.Forms.Label();
+            this.lblHost = new System.Windows.Forms.Label();
             this.txtHostAddr = new System.Windows.Forms.TextBox();
             this.lblPort = new System.Windows.Forms.Label();
             this.numPort = new System.Windows.Forms.NumericUpDown();
@@ -49,12 +49,12 @@
             // 
             // lblHostAddr
             // 
-            this.lblHostAddr.AutoSize = true;
-            this.lblHostAddr.Location = new System.Drawing.Point(37, 28);
-            this.lblHostAddr.Name = "lblHostAddr";
-            this.lblHostAddr.Size = new System.Drawing.Size(61, 13);
-            this.lblHostAddr.TabIndex = 2;
-            this.lblHostAddr.Text = "主机地址：";
+            this.lblHost.AutoSize = true;
+            this.lblHost.Location = new System.Drawing.Point(37, 28);
+            this.lblHost.Name = "lblHostAddr";
+            this.lblHost.Size = new System.Drawing.Size(29, 13);
+            this.lblHost.TabIndex = 2;
+            this.lblHost.Text = "Host";
             // 
             // txtHostAddr
             // 
@@ -69,9 +69,9 @@
             this.lblPort.AutoSize = true;
             this.lblPort.Location = new System.Drawing.Point(304, 28);
             this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(49, 13);
+            this.lblPort.Size = new System.Drawing.Size(26, 13);
             this.lblPort.TabIndex = 4;
-            this.lblPort.Text = "端口号：";
+            this.lblPort.Text = "Port";
             // 
             // numPort
             // 
@@ -102,9 +102,9 @@
             this.lblDBName.AutoSize = true;
             this.lblDBName.Location = new System.Drawing.Point(37, 61);
             this.lblDBName.Name = "lblDBName";
-            this.lblDBName.Size = new System.Drawing.Size(73, 13);
+            this.lblDBName.Size = new System.Drawing.Size(54, 13);
             this.lblDBName.TabIndex = 10;
-            this.lblDBName.Text = "数据库名称：";
+            this.lblDBName.Text = "DataBase";
             // 
             // txtDBName
             // 
@@ -119,9 +119,9 @@
             this.lblCollectionName.AutoSize = true;
             this.lblCollectionName.Location = new System.Drawing.Point(304, 57);
             this.lblCollectionName.Name = "lblCollectionName";
-            this.lblCollectionName.Size = new System.Drawing.Size(67, 13);
+            this.lblCollectionName.Size = new System.Drawing.Size(53, 13);
             this.lblCollectionName.TabIndex = 12;
-            this.lblCollectionName.Text = "数据集名称";
+            this.lblCollectionName.Text = "Collection";
             // 
             // txtCollectionName
             // 
@@ -157,16 +157,16 @@
             this.grpDirect.Size = new System.Drawing.Size(161, 41);
             this.grpDirect.TabIndex = 16;
             this.grpDirect.TabStop = false;
-            this.grpDirect.Text = "操作";
+            this.grpDirect.Text = "Opration";
             // 
             // radExport
             // 
             this.radExport.AutoSize = true;
             this.radExport.Location = new System.Drawing.Point(90, 16);
             this.radExport.Name = "radExport";
-            this.radExport.Size = new System.Drawing.Size(49, 17);
+            this.radExport.Size = new System.Drawing.Size(55, 17);
             this.radExport.TabIndex = 1;
-            this.radExport.Text = "导出";
+            this.radExport.Text = "Export";
             this.radExport.UseVisualStyleBackColor = true;
             this.radExport.CheckedChanged += new System.EventHandler(this.radExport_CheckedChanged);
             // 
@@ -176,26 +176,28 @@
             this.radImport.Checked = true;
             this.radImport.Location = new System.Drawing.Point(26, 16);
             this.radImport.Name = "radImport";
-            this.radImport.Size = new System.Drawing.Size(49, 17);
+            this.radImport.Size = new System.Drawing.Size(54, 17);
             this.radImport.TabIndex = 0;
             this.radImport.TabStop = true;
-            this.radImport.Text = "导入";
+            this.radImport.Text = "Import";
             this.radImport.UseVisualStyleBackColor = true;
             this.radImport.CheckedChanged += new System.EventHandler(this.radImport_CheckedChanged);
             // 
             // ctlFilePickerOutput
             // 
             this.ctlFilePickerOutput.BackColor = System.Drawing.Color.Transparent;
+            this.ctlFilePickerOutput.FileFilter = "";
             this.ctlFilePickerOutput.Location = new System.Drawing.Point(34, 107);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
             this.ctlFilePickerOutput.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.SaveFile;
             this.ctlFilePickerOutput.SelectedPath = "";
             this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 33);
             this.ctlFilePickerOutput.TabIndex = 1;
-            this.ctlFilePickerOutput.Title = "工作文件：";
+            this.ctlFilePickerOutput.Title = "FilePath：";
             // 
             // ctllogLvT
             // 
+            this.ctllogLvT.BackColor = System.Drawing.Color.Transparent;
             this.ctllogLvT.Location = new System.Drawing.Point(485, 146);
             this.ctllogLvT.Name = "ctllogLvT";
             this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
@@ -216,7 +218,7 @@
             this.Controls.Add(this.numPort);
             this.Controls.Add(this.lblPort);
             this.Controls.Add(this.txtHostAddr);
-            this.Controls.Add(this.lblHostAddr);
+            this.Controls.Add(this.lblHost);
             this.Controls.Add(this.ctlFilePickerOutput);
             this.Controls.Add(this.ctllogLvT);
             this.Name = "ctlMongoImportExport";
@@ -234,7 +236,7 @@
 
         private ctllogLv ctllogLvT;
         private ctlFilePicker ctlFilePickerOutput;
-        private System.Windows.Forms.Label lblHostAddr;
+        private System.Windows.Forms.Label lblHost;
         private System.Windows.Forms.TextBox txtHostAddr;
         private System.Windows.Forms.Label lblPort;
         private System.Windows.Forms.NumericUpDown numPort;

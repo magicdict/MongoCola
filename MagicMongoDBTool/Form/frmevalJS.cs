@@ -40,7 +40,7 @@ namespace MagicMongoDBTool
         {
             if (txtevalJs.Text != string.Empty)
             {
-                String strJsName = MyMessageBox.ShowInput("请输入Javascript名称：", "保存Javascript");
+                String strJsName = MyMessageBox.ShowInput("Input Javascript Name：", "Save Javascript");
                 MongoDBHelper.SaveJavascript(strJsName, txtevalJs.Text);
             }
         }
@@ -71,7 +71,7 @@ namespace MagicMongoDBTool
                         }
                         catch (Exception ex)
                         {
-                            MyMessageBox.ShowMessage("异常", "参数异常", ex.ToString(), true);
+                            MyMessageBox.ShowMessage("Exception", "Parameter Exception", ex.ToString(), true);
                         }
                     }
                 }
@@ -79,11 +79,11 @@ namespace MagicMongoDBTool
             try
             {
                 BsonValue result = mongoDB.Eval(js, Params.ToArray());
-                MyMessageBox.ShowMessage("结果", "执行结果", MongoDBHelper.GetBsonElementText("Result", result, 0), true);
+                MyMessageBox.ShowMessage("Result", "Result", MongoDBHelper.GetBsonElementText("Result", result, 0), true);
             }
             catch (Exception ex)
             {
-                MyMessageBox.ShowMessage("异常", "执行异常", ex.ToString(), true);
+                MyMessageBox.ShowMessage("Exception", "Result", ex.ToString(), true);
             }
 
         }

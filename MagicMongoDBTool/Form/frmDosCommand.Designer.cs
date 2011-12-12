@@ -52,7 +52,7 @@
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(96, 28);
             this.cmdSave.TabIndex = 7;
-            this.cmdSave.Text = "保存";
+            this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = false;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
@@ -63,7 +63,7 @@
             this.cmdRunDos.Name = "cmdRunDos";
             this.cmdRunDos.Size = new System.Drawing.Size(96, 29);
             this.cmdRunDos.TabIndex = 6;
-            this.cmdRunDos.Text = "运行";
+            this.cmdRunDos.Text = "Run";
             this.cmdRunDos.UseVisualStyleBackColor = false;
             this.cmdRunDos.Click += new System.EventHandler(this.cmdRunDos_Click);
             // 
@@ -86,7 +86,7 @@
             this.tabMongod.Padding = new System.Windows.Forms.Padding(3);
             this.tabMongod.Size = new System.Drawing.Size(843, 221);
             this.tabMongod.TabIndex = 0;
-            this.tabMongod.Text = "部署（Mongod）";
+            this.tabMongod.Text = "Mongod";
             this.tabMongod.UseVisualStyleBackColor = true;
             // 
             // ctlMongodPanel
@@ -105,7 +105,7 @@
             this.tabMongoDump.Padding = new System.Windows.Forms.Padding(3);
             this.tabMongoDump.Size = new System.Drawing.Size(843, 221);
             this.tabMongoDump.TabIndex = 1;
-            this.tabMongoDump.Text = "备份与恢复(mongodump)";
+            this.tabMongoDump.Text = "mongodump";
             this.tabMongoDump.UseVisualStyleBackColor = true;
             // 
             // ctlMongodumpPanel
@@ -124,7 +124,7 @@
             this.tabMongoImportExport.Padding = new System.Windows.Forms.Padding(3);
             this.tabMongoImportExport.Size = new System.Drawing.Size(843, 221);
             this.tabMongoImportExport.TabIndex = 2;
-            this.tabMongoImportExport.Text = "导入与导出（mongoImport/mongoExport)";
+            this.tabMongoImportExport.Text = "mongoImport/mongoExport";
             this.tabMongoImportExport.UseVisualStyleBackColor = true;
             // 
             // ctlMongoImportExportPanel
@@ -149,11 +149,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 499);
+            this.ClientSize = new System.Drawing.Size(871, 433);
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.cmdRunDos);
             this.Controls.Add(this.tabFunction);
             this.Controls.Add(this.txtDosCommand);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmDosCommand";

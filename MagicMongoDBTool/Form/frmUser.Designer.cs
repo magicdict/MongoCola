@@ -41,22 +41,22 @@ namespace MagicMongoDBTool
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(29, 122);
+            this.cmdOK.Location = new System.Drawing.Point(29, 114);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 3;
-            this.cmdOK.Text = "确定";
+            this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(147, 122);
+            this.cmdCancel.Location = new System.Drawing.Point(147, 114);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(100, 32);
             this.cmdCancel.TabIndex = 4;
-            this.cmdCancel.Text = "取消";
+            this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
@@ -64,32 +64,32 @@ namespace MagicMongoDBTool
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.BackColor = System.Drawing.Color.Transparent;
-            this.lblUserName.Location = new System.Drawing.Point(37, 31);
+            this.lblUserName.Location = new System.Drawing.Point(37, 23);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(43, 13);
+            this.lblUserName.Size = new System.Drawing.Size(29, 13);
             this.lblUserName.TabIndex = 7;
-            this.lblUserName.Text = "用户名";
+            this.lblUserName.Text = "User";
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lblPassword.Location = new System.Drawing.Point(37, 59);
+            this.lblPassword.Location = new System.Drawing.Point(37, 61);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(31, 13);
+            this.lblPassword.Size = new System.Drawing.Size(53, 13);
             this.lblPassword.TabIndex = 8;
-            this.lblPassword.Text = "密码";
+            this.lblPassword.Text = "Password";
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(101, 30);
+            this.txtUserName.Location = new System.Drawing.Point(101, 22);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(146, 20);
             this.txtUserName.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(101, 62);
+            this.txtPassword.Location = new System.Drawing.Point(101, 54);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(146, 20);
             this.txtPassword.TabIndex = 1;
@@ -99,11 +99,11 @@ namespace MagicMongoDBTool
             // 
             this.chkReadOnly.AutoSize = true;
             this.chkReadOnly.BackColor = System.Drawing.Color.Transparent;
-            this.chkReadOnly.Location = new System.Drawing.Point(103, 94);
+            this.chkReadOnly.Location = new System.Drawing.Point(103, 86);
             this.chkReadOnly.Name = "chkReadOnly";
-            this.chkReadOnly.Size = new System.Drawing.Size(74, 17);
+            this.chkReadOnly.Size = new System.Drawing.Size(73, 17);
             this.chkReadOnly.TabIndex = 2;
-            this.chkReadOnly.Text = "只读权限";
+            this.chkReadOnly.Text = "ReadOnly";
             this.chkReadOnly.UseVisualStyleBackColor = false;
             // 
             // frmUser
@@ -118,9 +118,12 @@ namespace MagicMongoDBTool
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "添加用户";
+            this.Text = "Add User";
             this.Load += new System.EventHandler(this.frmUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

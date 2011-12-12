@@ -37,15 +37,15 @@ namespace MagicMongoDBTool
             this.tabIndexManager = new System.Windows.Forms.TabPage();
             this.txtIndexName = new System.Windows.Forms.TextBox();
             this.lblIndexName = new System.Windows.Forms.Label();
+            this.chkIsUnique = new System.Windows.Forms.CheckBox();
+            this.chkIsSparse = new System.Windows.Forms.CheckBox();
+            this.chkIsDroppedDups = new System.Windows.Forms.CheckBox();
+            this.chkIsBackground = new System.Windows.Forms.CheckBox();
             this.ctlIndexCreate5 = new MagicMongoDBTool.ctlIndexCreate();
             this.ctlIndexCreate4 = new MagicMongoDBTool.ctlIndexCreate();
             this.ctlIndexCreate3 = new MagicMongoDBTool.ctlIndexCreate();
             this.ctlIndexCreate2 = new MagicMongoDBTool.ctlIndexCreate();
             this.ctlIndexCreate1 = new MagicMongoDBTool.ctlIndexCreate();
-            this.chkIsUnique = new System.Windows.Forms.CheckBox();
-            this.chkIsSparse = new System.Windows.Forms.CheckBox();
-            this.chkDroppedDups = new System.Windows.Forms.CheckBox();
-            this.chkIsBackground = new System.Windows.Forms.CheckBox();
             this.tabIndexMgr.SuspendLayout();
             this.tabCurrentIndex.SuspendLayout();
             this.tabIndexManager.SuspendLayout();
@@ -58,7 +58,7 @@ namespace MagicMongoDBTool
             this.cmdAddIndex.Name = "cmdAddIndex";
             this.cmdAddIndex.Size = new System.Drawing.Size(108, 35);
             this.cmdAddIndex.TabIndex = 8;
-            this.cmdAddIndex.Text = "添加索引";
+            this.cmdAddIndex.Text = "Create Index";
             this.cmdAddIndex.UseVisualStyleBackColor = false;
             this.cmdAddIndex.Click += new System.EventHandler(this.cmdAddIndex_Click);
             // 
@@ -69,7 +69,7 @@ namespace MagicMongoDBTool
             this.cmdDelIndex.Name = "cmdDelIndex";
             this.cmdDelIndex.Size = new System.Drawing.Size(113, 35);
             this.cmdDelIndex.TabIndex = 7;
-            this.cmdDelIndex.Text = "删除选中索引";
+            this.cmdDelIndex.Text = "Delect Index";
             this.cmdDelIndex.UseVisualStyleBackColor = false;
             this.cmdDelIndex.Click += new System.EventHandler(this.cmdDelIndex_Click);
             // 
@@ -102,7 +102,7 @@ namespace MagicMongoDBTool
             this.tabCurrentIndex.Padding = new System.Windows.Forms.Padding(3);
             this.tabCurrentIndex.Size = new System.Drawing.Size(532, 233);
             this.tabCurrentIndex.TabIndex = 0;
-            this.tabCurrentIndex.Text = "现有索引";
+            this.tabCurrentIndex.Text = "Current Index";
             this.tabCurrentIndex.UseVisualStyleBackColor = true;
             // 
             // tabIndexManager
@@ -110,26 +110,26 @@ namespace MagicMongoDBTool
             this.tabIndexManager.BackColor = System.Drawing.Color.White;
             this.tabIndexManager.Controls.Add(this.txtIndexName);
             this.tabIndexManager.Controls.Add(this.lblIndexName);
+            this.tabIndexManager.Controls.Add(this.chkIsUnique);
+            this.tabIndexManager.Controls.Add(this.chkIsSparse);
+            this.tabIndexManager.Controls.Add(this.chkIsDroppedDups);
+            this.tabIndexManager.Controls.Add(this.chkIsBackground);
+            this.tabIndexManager.Controls.Add(this.cmdAddIndex);
             this.tabIndexManager.Controls.Add(this.ctlIndexCreate5);
             this.tabIndexManager.Controls.Add(this.ctlIndexCreate4);
             this.tabIndexManager.Controls.Add(this.ctlIndexCreate3);
             this.tabIndexManager.Controls.Add(this.ctlIndexCreate2);
             this.tabIndexManager.Controls.Add(this.ctlIndexCreate1);
-            this.tabIndexManager.Controls.Add(this.chkIsUnique);
-            this.tabIndexManager.Controls.Add(this.chkIsSparse);
-            this.tabIndexManager.Controls.Add(this.chkDroppedDups);
-            this.tabIndexManager.Controls.Add(this.chkIsBackground);
-            this.tabIndexManager.Controls.Add(this.cmdAddIndex);
             this.tabIndexManager.Location = new System.Drawing.Point(4, 22);
             this.tabIndexManager.Name = "tabIndexManager";
             this.tabIndexManager.Padding = new System.Windows.Forms.Padding(3);
             this.tabIndexManager.Size = new System.Drawing.Size(532, 233);
             this.tabIndexManager.TabIndex = 1;
-            this.tabIndexManager.Text = "管理索引";
+            this.tabIndexManager.Text = "Create Index";
             // 
             // txtIndexName
             // 
-            this.txtIndexName.Location = new System.Drawing.Point(81, 195);
+            this.txtIndexName.Location = new System.Drawing.Point(91, 200);
             this.txtIndexName.Name = "txtIndexName";
             this.txtIndexName.Size = new System.Drawing.Size(197, 20);
             this.txtIndexName.TabIndex = 19;
@@ -139,9 +139,49 @@ namespace MagicMongoDBTool
             this.lblIndexName.AutoSize = true;
             this.lblIndexName.Location = new System.Drawing.Point(20, 204);
             this.lblIndexName.Name = "lblIndexName";
-            this.lblIndexName.Size = new System.Drawing.Size(55, 13);
+            this.lblIndexName.Size = new System.Drawing.Size(61, 13);
             this.lblIndexName.TabIndex = 18;
-            this.lblIndexName.Text = "索引名称";
+            this.lblIndexName.Text = "IndexName";
+            // 
+            // chkIsUnique
+            // 
+            this.chkIsUnique.AutoSize = true;
+            this.chkIsUnique.Location = new System.Drawing.Point(385, 173);
+            this.chkIsUnique.Name = "chkIsUnique";
+            this.chkIsUnique.Size = new System.Drawing.Size(89, 17);
+            this.chkIsUnique.TabIndex = 16;
+            this.chkIsUnique.Text = "Unique Index";
+            this.chkIsUnique.UseVisualStyleBackColor = true;
+            // 
+            // chkIsSparse
+            // 
+            this.chkIsSparse.AutoSize = true;
+            this.chkIsSparse.Location = new System.Drawing.Point(282, 173);
+            this.chkIsSparse.Name = "chkIsSparse";
+            this.chkIsSparse.Size = new System.Drawing.Size(88, 17);
+            this.chkIsSparse.TabIndex = 15;
+            this.chkIsSparse.Text = "Sparse Index";
+            this.chkIsSparse.UseVisualStyleBackColor = true;
+            // 
+            // chkIsDroppedDups
+            // 
+            this.chkIsDroppedDups.AutoSize = true;
+            this.chkIsDroppedDups.Location = new System.Drawing.Point(141, 173);
+            this.chkIsDroppedDups.Name = "chkIsDroppedDups";
+            this.chkIsDroppedDups.Size = new System.Drawing.Size(121, 17);
+            this.chkIsDroppedDups.TabIndex = 14;
+            this.chkIsDroppedDups.Text = "DroppedDups Index";
+            this.chkIsDroppedDups.UseVisualStyleBackColor = true;
+            // 
+            // chkIsBackground
+            // 
+            this.chkIsBackground.AutoSize = true;
+            this.chkIsBackground.Location = new System.Drawing.Point(20, 172);
+            this.chkIsBackground.Name = "chkIsBackground";
+            this.chkIsBackground.Size = new System.Drawing.Size(115, 17);
+            this.chkIsBackground.TabIndex = 13;
+            this.chkIsBackground.Text = "BackGround Index";
+            this.chkIsBackground.UseVisualStyleBackColor = true;
             // 
             // ctlIndexCreate5
             // 
@@ -183,55 +223,18 @@ namespace MagicMongoDBTool
             this.ctlIndexCreate1.Size = new System.Drawing.Size(405, 32);
             this.ctlIndexCreate1.TabIndex = 13;
             // 
-            // chkIsUnique
-            // 
-            this.chkIsUnique.AutoSize = true;
-            this.chkIsUnique.Location = new System.Drawing.Point(284, 172);
-            this.chkIsUnique.Name = "chkIsUnique";
-            this.chkIsUnique.Size = new System.Drawing.Size(74, 17);
-            this.chkIsUnique.TabIndex = 16;
-            this.chkIsUnique.Text = "统一索引";
-            this.chkIsUnique.UseVisualStyleBackColor = true;
-            // 
-            // chkIsSparse
-            // 
-            this.chkIsSparse.AutoSize = true;
-            this.chkIsSparse.Location = new System.Drawing.Point(204, 172);
-            this.chkIsSparse.Name = "chkIsSparse";
-            this.chkIsSparse.Size = new System.Drawing.Size(74, 17);
-            this.chkIsSparse.TabIndex = 15;
-            this.chkIsSparse.Text = "稀疏索引";
-            this.chkIsSparse.UseVisualStyleBackColor = true;
-            // 
-            // chkDroppedDups
-            // 
-            this.chkDroppedDups.AutoSize = true;
-            this.chkDroppedDups.Location = new System.Drawing.Point(100, 172);
-            this.chkDroppedDups.Name = "chkDroppedDups";
-            this.chkDroppedDups.Size = new System.Drawing.Size(98, 17);
-            this.chkDroppedDups.TabIndex = 14;
-            this.chkDroppedDups.Text = "重复删除索引";
-            this.chkDroppedDups.UseVisualStyleBackColor = true;
-            // 
-            // chkIsBackground
-            // 
-            this.chkIsBackground.AutoSize = true;
-            this.chkIsBackground.Location = new System.Drawing.Point(20, 172);
-            this.chkIsBackground.Name = "chkIsBackground";
-            this.chkIsBackground.Size = new System.Drawing.Size(74, 17);
-            this.chkIsBackground.TabIndex = 13;
-            this.chkIsBackground.Text = "背景索引";
-            this.chkIsBackground.UseVisualStyleBackColor = true;
-            // 
             // frmCollectionIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 343);
+            this.ClientSize = new System.Drawing.Size(561, 283);
             this.Controls.Add(this.tabIndexMgr);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmCollectionIndex";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "数据集索引";
+            this.Text = "Index Management";
             this.Load += new System.EventHandler(this.frmCollectionIndex_Load);
             this.tabIndexMgr.ResumeLayout(false);
             this.tabCurrentIndex.ResumeLayout(false);
@@ -249,7 +252,7 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.TabControl tabIndexMgr;
         private System.Windows.Forms.TabPage tabCurrentIndex;
         private System.Windows.Forms.TabPage tabIndexManager;
-        private System.Windows.Forms.CheckBox chkDroppedDups;
+        private System.Windows.Forms.CheckBox chkIsDroppedDups;
         private System.Windows.Forms.CheckBox chkIsBackground;
         private System.Windows.Forms.CheckBox chkIsSparse;
         private System.Windows.Forms.CheckBox chkIsUnique;

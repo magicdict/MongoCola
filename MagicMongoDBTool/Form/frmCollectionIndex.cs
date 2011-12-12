@@ -34,7 +34,7 @@ namespace MagicMongoDBTool
                 tabIndexManager.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Manager);
                 cmdAddIndex.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
 
-                chkDroppedDups.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel);
+                chkIsDroppedDups.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel);
                 chkIsBackground.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Background);
                 chkIsSparse.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse);
                 chkIsUnique.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify);
@@ -54,14 +54,14 @@ namespace MagicMongoDBTool
             }
             else
             {
-                lstIndex.Columns.Add("名称");
-                lstIndex.Columns.Add("版本");
-                lstIndex.Columns.Add("索引键");
-                lstIndex.Columns.Add("名字空间");
-                lstIndex.Columns.Add("背景索引");
-                lstIndex.Columns.Add("稀疏索引");
-                lstIndex.Columns.Add("唯一索引");
-                lstIndex.Columns.Add("删除重复索引");
+                lstIndex.Columns.Add("Name");
+                lstIndex.Columns.Add("Version");
+                lstIndex.Columns.Add("IndexKey");
+                lstIndex.Columns.Add("NameSpace");
+                lstIndex.Columns.Add("BackGround");
+                lstIndex.Columns.Add("Sparse");
+                lstIndex.Columns.Add("Unify");
+                lstIndex.Columns.Add("DroppedDups");
             }
             RefreshList();
         }
@@ -76,7 +76,7 @@ namespace MagicMongoDBTool
             {
                 if (lstIndex.CheckedItems[0].Index == 0)
                 {
-                    MessageBox.Show("无法删除默认索引");
+                    MessageBox.Show("Can't Delete Default Index!");
                     return;
                 }
                 foreach (ListViewItem item in lstIndex.CheckedItems)
@@ -114,12 +114,12 @@ namespace MagicMongoDBTool
             MongoDBHelper.CreateMongoIndex(AscendingKey.ToArray(),
                                             DescendingKey.ToArray(),
                                             chkIsBackground.Checked,
-                                            chkDroppedDups.Checked,
+                                            chkIsDroppedDups.Checked,
                                             chkIsSparse.Checked,
                                             chkIsUnique.Checked,
                                             txtIndexName.Text);
             RefreshList();
-            MessageBox.Show("添加索引操作完毕");
+            MessageBox.Show("Index Add Completed!");
         }
         /// <summary>
         /// 刷新索引列表

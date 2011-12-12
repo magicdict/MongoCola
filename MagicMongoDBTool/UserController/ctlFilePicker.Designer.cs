@@ -36,12 +36,14 @@
             // 
             // cmdClearPath
             // 
+            this.cmdClearPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdClearPath.BackColor = System.Drawing.Color.Transparent;
             this.cmdClearPath.Location = new System.Drawing.Point(649, 0);
             this.cmdClearPath.Name = "cmdClearPath";
             this.cmdClearPath.Size = new System.Drawing.Size(75, 31);
             this.cmdClearPath.TabIndex = 10;
-            this.cmdClearPath.Text = "清除";
+            this.cmdClearPath.Text = "Clear";
+            this.cmdClearPath.UseVisualStyleBackColor = false;
             this.cmdClearPath.Click += new System.EventHandler(this.cmdClearPath_Click);
             // 
             // lblTitle
@@ -56,6 +58,8 @@
             // 
             // txtLogPath
             // 
+            this.txtLogPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLogPath.BackColor = System.Drawing.Color.White;
             this.txtLogPath.Location = new System.Drawing.Point(120, 5);
             this.txtLogPath.Name = "txtLogPath";
@@ -65,12 +69,14 @@
             // 
             // cmdBrowse
             // 
+            this.cmdBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdBrowse.BackColor = System.Drawing.Color.Transparent;
             this.cmdBrowse.Location = new System.Drawing.Point(568, 1);
             this.cmdBrowse.Name = "cmdBrowse";
             this.cmdBrowse.Size = new System.Drawing.Size(75, 30);
             this.cmdBrowse.TabIndex = 7;
-            this.cmdBrowse.Text = "浏览...";
+            this.cmdBrowse.Text = "Browse...";
+            this.cmdBrowse.UseVisualStyleBackColor = false;
             this.cmdBrowse.Click += new System.EventHandler(this.cmdBrowse_Click);
             // 
             // ctlFilePicker

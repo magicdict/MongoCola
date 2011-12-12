@@ -38,9 +38,9 @@
             this.lblLogLv.AutoSize = true;
             this.lblLogLv.Location = new System.Drawing.Point(3, 13);
             this.lblLogLv.Name = "lblLogLv";
-            this.lblLogLv.Size = new System.Drawing.Size(85, 13);
+            this.lblLogLv.Size = new System.Drawing.Size(69, 13);
             this.lblLogLv.TabIndex = 4;
-            this.lblLogLv.Text = "日志等级：最少";
+            this.lblLogLv.Text = "LogLv：None";
             // 
             // trbLogLv
             // 
@@ -56,6 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.lblLogLv);
             this.Controls.Add(this.trbLogLv);
             this.Name = "ctllogLv";

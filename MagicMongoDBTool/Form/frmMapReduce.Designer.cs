@@ -64,7 +64,7 @@
             this.cmdSaveReduceJs.Name = "cmdSaveReduceJs";
             this.cmdSaveReduceJs.Size = new System.Drawing.Size(70, 30);
             this.cmdSaveReduceJs.TabIndex = 4;
-            this.cmdSaveReduceJs.Text = "保存";
+            this.cmdSaveReduceJs.Text = "Save";
             this.cmdSaveReduceJs.UseVisualStyleBackColor = false;
             this.cmdSaveReduceJs.Click += new System.EventHandler(this.cmdSaveReduceJs_Click);
             // 
@@ -75,7 +75,7 @@
             this.cmdSaveMapJs.Name = "cmdSaveMapJs";
             this.cmdSaveMapJs.Size = new System.Drawing.Size(70, 30);
             this.cmdSaveMapJs.TabIndex = 1;
-            this.cmdSaveMapJs.Text = "保存";
+            this.cmdSaveMapJs.Text = "Save";
             this.cmdSaveMapJs.UseVisualStyleBackColor = false;
             this.cmdSaveMapJs.Click += new System.EventHandler(this.cmdSaveMapJs_Click);
             // 
@@ -85,9 +85,9 @@
             this.lblReduceFunction.BackColor = System.Drawing.Color.Transparent;
             this.lblReduceFunction.Location = new System.Drawing.Point(32, 244);
             this.lblReduceFunction.Name = "lblReduceFunction";
-            this.lblReduceFunction.Size = new System.Drawing.Size(69, 13);
+            this.lblReduceFunction.Size = new System.Drawing.Size(58, 13);
             this.lblReduceFunction.TabIndex = 16;
-            this.lblReduceFunction.Text = "Reduce函数";
+            this.lblReduceFunction.Text = "Reduce Js";
             // 
             // lblResult
             // 
@@ -95,9 +95,9 @@
             this.lblResult.BackColor = System.Drawing.Color.Transparent;
             this.lblResult.Location = new System.Drawing.Point(333, 28);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(31, 13);
+            this.lblResult.Size = new System.Drawing.Size(37, 13);
             this.lblResult.TabIndex = 15;
-            this.lblResult.Text = "结果";
+            this.lblResult.Text = "Result";
             // 
             // lblMapFunction
             // 
@@ -105,9 +105,9 @@
             this.lblMapFunction.BackColor = System.Drawing.Color.Transparent;
             this.lblMapFunction.Location = new System.Drawing.Point(32, 31);
             this.lblMapFunction.Name = "lblMapFunction";
-            this.lblMapFunction.Size = new System.Drawing.Size(52, 13);
+            this.lblMapFunction.Size = new System.Drawing.Size(41, 13);
             this.lblMapFunction.TabIndex = 14;
-            this.lblMapFunction.Text = "Map函数";
+            this.lblMapFunction.Text = "Map Js";
             // 
             // trvResult
             // 
@@ -145,7 +145,7 @@
             this.cmdRun.Name = "cmdRun";
             this.cmdRun.Size = new System.Drawing.Size(75, 34);
             this.cmdRun.TabIndex = 7;
-            this.cmdRun.Text = "运行";
+            this.cmdRun.Text = "Run";
             this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
             // 
@@ -153,7 +153,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 485);
+            this.ClientSize = new System.Drawing.Size(719, 485);
             this.Controls.Add(this.cmbForMap);
             this.Controls.Add(this.cmbForReduce);
             this.Controls.Add(this.cmdSaveReduceJs);
@@ -165,6 +165,9 @@
             this.Controls.Add(this.txtMapJs);
             this.Controls.Add(this.txtReduceJs);
             this.Controls.Add(this.cmdRun);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMapReduce";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MapReduce";

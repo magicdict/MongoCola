@@ -52,14 +52,14 @@ namespace MagicMongoDBTool
             this.grpLog.Controls.Add(this.chkIsAppend);
             this.grpLog.Location = new System.Drawing.Point(19, 123);
             this.grpLog.Name = "grpLog";
-            this.grpLog.Size = new System.Drawing.Size(730, 70);
+            this.grpLog.Size = new System.Drawing.Size(730, 65);
             this.grpLog.TabIndex = 0;
             this.grpLog.TabStop = false;
-            this.grpLog.Text = "日志";
+            this.grpLog.Text = "Log";
             // 
             // ctllogLvT
             // 
-            this.ctllogLvT.Location = new System.Drawing.Point(256, 13);
+            this.ctllogLvT.Location = new System.Drawing.Point(142, 13);
             this.ctllogLvT.Name = "ctllogLvT";
             this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
             this.ctllogLvT.TabIndex = 14;
@@ -69,9 +69,9 @@ namespace MagicMongoDBTool
             this.chkIsAppend.AutoSize = true;
             this.chkIsAppend.Location = new System.Drawing.Point(43, 25);
             this.chkIsAppend.Name = "chkIsAppend";
-            this.chkIsAppend.Size = new System.Drawing.Size(206, 17);
+            this.chkIsAppend.Size = new System.Drawing.Size(93, 17);
             this.chkIsAppend.TabIndex = 0;
-            this.chkIsAppend.Text = "追加模式（默认的日志是覆盖模式）";
+            this.chkIsAppend.Text = "Append Mode";
             this.chkIsAppend.UseVisualStyleBackColor = true;
             this.chkIsAppend.CheckedChanged += new System.EventHandler(this.chkIsAppend_CheckedChanged);
             // 
@@ -80,9 +80,9 @@ namespace MagicMongoDBTool
             this.lblPort.AutoSize = true;
             this.lblPort.Location = new System.Drawing.Point(32, 30);
             this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(49, 13);
+            this.lblPort.Size = new System.Drawing.Size(32, 13);
             this.lblPort.TabIndex = 7;
-            this.lblPort.Text = "端口号：";
+            this.lblPort.Text = "Port：";
             // 
             // numPort
             // 
@@ -113,9 +113,9 @@ namespace MagicMongoDBTool
             this.chkAuth.AutoSize = true;
             this.chkAuth.Location = new System.Drawing.Point(651, 26);
             this.chkAuth.Name = "chkAuth";
-            this.chkAuth.Size = new System.Drawing.Size(98, 17);
+            this.chkAuth.Size = new System.Drawing.Size(78, 17);
             this.chkAuth.TabIndex = 16;
-            this.chkAuth.Text = "启用认证模式";
+            this.chkAuth.Text = "Auth Mode";
             this.chkAuth.UseVisualStyleBackColor = true;
             this.chkAuth.CheckedChanged += new System.EventHandler(this.chkAuth_CheckedChanged);
             // 
@@ -124,9 +124,9 @@ namespace MagicMongoDBTool
             this.lblSource.AutoSize = true;
             this.lblSource.Location = new System.Drawing.Point(397, 26);
             this.lblSource.Name = "lblSource";
-            this.lblSource.Size = new System.Drawing.Size(58, 13);
+            this.lblSource.Size = new System.Drawing.Size(77, 13);
             this.lblSource.TabIndex = 17;
-            this.lblSource.Text = "Slave源头";
+            this.lblSource.Text = "Slave Source：";
             // 
             // txtSource
             // 
@@ -146,7 +146,7 @@ namespace MagicMongoDBTool
             this.ctlFilePickerDBPath.SelectedPath = "";
             this.ctlFilePickerDBPath.Size = new System.Drawing.Size(739, 35);
             this.ctlFilePickerDBPath.TabIndex = 15;
-            this.ctlFilePickerDBPath.Title = "数据库路径";
+            this.ctlFilePickerDBPath.Title = "DataBase Path";
             // 
             // ctlFilePickerLogPath
             // 
@@ -158,7 +158,7 @@ namespace MagicMongoDBTool
             this.ctlFilePickerLogPath.SelectedPath = "";
             this.ctlFilePickerLogPath.Size = new System.Drawing.Size(739, 37);
             this.ctlFilePickerLogPath.TabIndex = 14;
-            this.ctlFilePickerLogPath.Title = "日志路径";
+            this.ctlFilePickerLogPath.Title = "LogPath";
             // 
             // radNormal
             // 

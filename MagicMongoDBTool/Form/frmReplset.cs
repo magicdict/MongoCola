@@ -65,7 +65,7 @@ namespace MagicMongoDBTool
                 ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
                 Resultlst.Add(MongoDBHelper.AddToReplsetServer(_prmSvr, config.Host + ":" + config.Port, config.ServerType == ConfigHelper.SvrType.ArbiterSvr));
             }
-            MyMessageBox.ShowMessage("添加服务器", "执行结果", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
+            MyMessageBox.ShowMessage("Add Server", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
             RefreshSvr();
         }
         /// <summary>
@@ -81,7 +81,7 @@ namespace MagicMongoDBTool
                 ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
                 Resultlst.Add(MongoDBHelper.RemoveFromReplsetServer(_prmSvr, config.Host + ":" + config.Port));
             }
-            MyMessageBox.ShowMessage("删除服务器", "执行结果", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
+            MyMessageBox.ShowMessage("Remove Server", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
             RefreshSvr();
         }
     }

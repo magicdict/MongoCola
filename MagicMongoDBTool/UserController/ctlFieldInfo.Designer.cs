@@ -40,29 +40,29 @@
             this.lblFieldName.AutoSize = true;
             this.lblFieldName.Location = new System.Drawing.Point(7, 4);
             this.lblFieldName.Name = "lblFieldName";
-            this.lblFieldName.Size = new System.Drawing.Size(55, 13);
+            this.lblFieldName.Size = new System.Drawing.Size(57, 13);
             this.lblFieldName.TabIndex = 0;
-            this.lblFieldName.Text = "字段名称";
+            this.lblFieldName.Text = "FieldName";
             // 
             // chkIsShow
             // 
             this.chkIsShow.AutoSize = true;
             this.chkIsShow.Location = new System.Drawing.Point(116, 3);
             this.chkIsShow.Name = "chkIsShow";
-            this.chkIsShow.Size = new System.Drawing.Size(50, 17);
+            this.chkIsShow.Size = new System.Drawing.Size(60, 17);
             this.chkIsShow.TabIndex = 1;
-            this.chkIsShow.Text = "显示";
+            this.chkIsShow.Text = "Display";
             this.chkIsShow.UseVisualStyleBackColor = true;
             // 
             // radNoSort
             // 
             this.radNoSort.AutoSize = true;
-            this.radNoSort.Location = new System.Drawing.Point(172, 2);
+            this.radNoSort.Location = new System.Drawing.Point(182, 2);
             this.radNoSort.Name = "radNoSort";
-            this.radNoSort.Size = new System.Drawing.Size(61, 17);
+            this.radNoSort.Size = new System.Drawing.Size(39, 17);
             this.radNoSort.TabIndex = 2;
             this.radNoSort.TabStop = true;
-            this.radNoSort.Text = "不排序";
+            this.radNoSort.Text = "No";
             this.radNoSort.UseVisualStyleBackColor = true;
             // 
             // radSortAcs
@@ -70,10 +70,10 @@
             this.radSortAcs.AutoSize = true;
             this.radSortAcs.Location = new System.Drawing.Point(237, 3);
             this.radSortAcs.Name = "radSortAcs";
-            this.radSortAcs.Size = new System.Drawing.Size(49, 17);
+            this.radSortAcs.Size = new System.Drawing.Size(43, 17);
             this.radSortAcs.TabIndex = 3;
             this.radSortAcs.TabStop = true;
-            this.radSortAcs.Text = "升序";
+            this.radSortAcs.Text = "Asc";
             this.radSortAcs.UseVisualStyleBackColor = true;
             // 
             // radSortDes
@@ -81,10 +81,10 @@
             this.radSortDes.AutoSize = true;
             this.radSortDes.Location = new System.Drawing.Point(288, 3);
             this.radSortDes.Name = "radSortDes";
-            this.radSortDes.Size = new System.Drawing.Size(49, 17);
+            this.radSortDes.Size = new System.Drawing.Size(44, 17);
             this.radSortDes.TabIndex = 4;
             this.radSortDes.TabStop = true;
-            this.radSortDes.Text = "降序";
+            this.radSortDes.Text = "Des";
             this.radSortDes.UseVisualStyleBackColor = true;
             // 
             // ctlFieldInfo

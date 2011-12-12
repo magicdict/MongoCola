@@ -29,8 +29,8 @@ namespace MagicMongoDBTool
         private void SetText()
         {
             this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Title);
-            lblHostName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Name);
-            lblHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Host);
+            lblConnectionName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionName);
+            lblHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Host);
             lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
             lblUsername.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username);
             lblPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Password);
@@ -41,7 +41,7 @@ namespace MagicMongoDBTool
             chkSafeMode.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SafeMode);
             lblTimeOut.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_TimeOut);
 
-            grpShardingSvrType.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ShardingSvrType);
+            grpServerRole.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ShardingSvrType);
             radArbiters.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ServerType_Arbitration);
             radConfigSrv.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ServerType_Configuration);
             radDataSrv.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ServerType_Data);
@@ -55,7 +55,7 @@ namespace MagicMongoDBTool
 
             cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
             cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
-            lblAttention.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention_Description)
+            lblAttentionPriority.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention_Description)
                     + "\r\n" + SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention2_Description);
         }
         /// <summary>
@@ -86,8 +86,8 @@ namespace MagicMongoDBTool
             {
                 SetText();
             }
-            txtHostName.Text = ModifyConn.ConnectionName;
-            txtHostName.Enabled = false;
+            txtConnectionName.Text = ModifyConn.ConnectionName;
+            txtConnectionName.Enabled = false;
             txtHost.Text = ModifyConn.Host;
             txtMainReplsetName.Text = ModifyConn.MainReplSetName;
             txtPort.Text = ModifyConn.Port.ToString();
@@ -95,7 +95,7 @@ namespace MagicMongoDBTool
             txtPassword.Text = ModifyConn.Password;
             if (SystemManager.IsUseDefaultLanguage())
             {
-                cmdAdd.Text = "修改";
+                cmdAdd.Text = "Modify";
             }
             else
             {
@@ -142,13 +142,13 @@ namespace MagicMongoDBTool
         private void cmdAdd_Click(object sender, EventArgs e)
         {
 
-            ModifyConn.ConnectionName = txtHostName.Text;
+            ModifyConn.ConnectionName = txtConnectionName.Text;
             if (txtConnectionString.Text != String.Empty)
             {
                 ModifyConn.ConnectionString = txtConnectionString.Text;
                 if (!MongoDBHelper.FillConfigWithConnectionString(ModifyConn))
                 {
-                    MyMessageBox.ShowMessage("错误的Url", "错误的url格式，请检查url");
+                    MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it");
                     return;
                 };
                 if (!String.IsNullOrEmpty(ModifyConn.DataBaseName))
@@ -177,12 +177,12 @@ namespace MagicMongoDBTool
                 //仅有用户名或密码
                 if (txtUsername.Text != string.Empty && txtPassword.Text == String.Empty)
                 {
-                    MessageBox.Show("请输入密码");
+                    MessageBox.Show("Please Input Password");
                     return;
                 }
                 if (txtUsername.Text == string.Empty && txtPassword.Text != String.Empty)
                 {
-                    MessageBox.Show("请输入用户名");
+                    MessageBox.Show("Please Input UserName");
                     return;
                 }
 
@@ -192,7 +192,7 @@ namespace MagicMongoDBTool
                     //用户名或者密码为空
                     if (txtUsername.Text == string.Empty || txtPassword.Text == String.Empty)
                     {
-                        MessageBox.Show("请输入用户名或密码");
+                        MessageBox.Show("Please Input UserName or Password");
                         return;
                     }
                 }
@@ -253,7 +253,7 @@ namespace MagicMongoDBTool
                 {
                     if (lstServerce.SelectedItems.Count == 0)
                     {
-                        MessageBox.Show("请选择副本服务器");
+                        MessageBox.Show("Pls Input ReplsetName");
                         return;
                     }
                     foreach (String item in lstServerce.SelectedItems)
@@ -265,7 +265,7 @@ namespace MagicMongoDBTool
                 }
                 if (ModifyConn.MainReplSetName != String.Empty && ModifyConn.Priority == 0)
                 {
-                    MessageBox.Show("由于优先度为 0 ，所以当前服务器无法成为Primary服务器！");
+                    MessageBox.Show("If Priority is 0,then it can't be the ReplaceSet server");
                 }
             }
             //保存配置
@@ -318,11 +318,11 @@ namespace MagicMongoDBTool
             CommandResult rtn = MongoDBHelper.InitReplicaSet(txtReplSetName.Text, svrKeys);
             if (rtn.Ok)
             {
-                MyMessageBox.ShowMessage("初始化", "初始化成功,请稍等片刻后连接服务器", rtn.Response.ToString(), true);
+                MyMessageBox.ShowMessage("InitReplicaSet", "InitReplicaSet Succeed, Please wait a minute", rtn.Response.ToString(), true);
             }
             else
             {
-                MyMessageBox.ShowMessage("初始化", "初始化失败", rtn.Response.ToString(), true);
+                MyMessageBox.ShowMessage("InitReplicaSet", "InitReplicaSet Failed", rtn.Response.ToString(), true);
             }
         }
     }

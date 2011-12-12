@@ -17,8 +17,6 @@ namespace MagicMongoDBTool.Module
             Main_Menu_Mangt_Disconnect,
             Main_Menu_Mangt_Status,
             Main_Menu_Mangt_Refresh,
-            Main_Menu_Mangt_Collapse,
-            Main_Menu_Mangt_Expansion,
             Main_Menu_Mangt_Exit,
             Main_Menu_DataView,
             Main_Menu_DataView_Previous,
@@ -29,8 +27,7 @@ namespace MagicMongoDBTool.Module
             Main_Menu_DataView_Aggregation,
             Main_Menu_DataView_ConvertSql,
             Main_Menu_DataView_DataFilter,
-            Main_Menu_DataView_Collapse,
-            Main_Menu_DataView_Expansion,
+
             Main_Menu_Operation,
             Main_Menu_Operation_Server,
             Main_Menu_Operation_Server_NewDB,
@@ -90,9 +87,8 @@ namespace MagicMongoDBTool.Module
             Main_StatusBar_Text_Ready,
 
             AddConnection_Title,
-            AddConnection_Name,
+            AddConnection_ConnectionName,
             AddConnection_Name_Description,
-            AddConnection_Host,
             AddConnection_Host_Description,
             AddConnection_Port_Description,
             AddConnection_UserName_Description,
@@ -296,10 +292,12 @@ namespace MagicMongoDBTool.Module
             Common_Server,
             Common_DataBase,
             Common_Collection,
-            Common_HostName,
+            Common_Host,
             Common_Port,
             Common_Browse,
             Common_Clear,
+            Common_Collapse,
+            Common_Expansion,
 
             //Create New DataBase
             Create_New_DataBase,

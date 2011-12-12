@@ -59,7 +59,7 @@ namespace MagicMongoDBTool
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 5;
-            this.cmdOK.Text = "确定";
+            this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
@@ -70,7 +70,7 @@ namespace MagicMongoDBTool
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(100, 32);
             this.cmdCancel.TabIndex = 6;
-            this.cmdCancel.Text = "取消";
+            this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
@@ -84,6 +84,7 @@ namespace MagicMongoDBTool
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
             this.Name = "frmInputBox";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmInputBox";
             this.ResumeLayout(false);
             this.PerformLayout();

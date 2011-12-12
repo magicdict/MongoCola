@@ -37,7 +37,7 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 cmdQuery.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Distinct_Action_LoadQuery);
-                cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
+                cmdRun.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
                 lblSelectField.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Distinct_SelectField);
             }
         }
@@ -59,7 +59,7 @@ namespace MagicMongoDBTool
             }
             if (strKey == String.Empty)
             {
-                MyMessageBox.ShowMessage("Distinct", "请选择字段");
+                MyMessageBox.ShowMessage("Distinct", "Pick the field");
                 return;
             }
             var ResultLst = SystemManager.GetCurrentCollection().Distinct(strKey, MongoDBHelper.GetQuery(DistinctConditionList));
@@ -76,7 +76,7 @@ namespace MagicMongoDBTool
             {
                 if (Count == 1000)
                 {
-                    strResult = "显示前1000条记录" + "\r\n" + strResult;
+                    strResult = "Too many result,Display first 1000 records" + "\r\n" + strResult;
                     break;
                 }
                 strResult += MongoDBHelper.GetBsonElementText(strKey, item, 0);

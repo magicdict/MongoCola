@@ -79,7 +79,7 @@ namespace MagicMongoDBTool.Module
                 }
                 catch (Exception ex)
                 {
-                    MyMessageBox.ShowMessage("异常", "无法连接到服务器：" + config.ConnectionName, ex.ToString(), true);
+                    MyMessageBox.ShowMessage("Exception", "Can't Connect to Server：" + config.ConnectionName, ex.ToString(), true);
                 }
             }
         }
@@ -233,12 +233,12 @@ namespace MagicMongoDBTool.Module
                     {
                         mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]";
                         MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
-                            "请检查数据库的用户名和密码", ex.ToString(), true);
+                            "请检查用户名和密码", ex.ToString(), true);
                     }
                     else
                     {
-                        mongoSvrNode.Text += "[认证信息错误]";
-                        MyMessageBox.ShowMessage("认证信息错误", "请检查数据库的用户名和密码", ex.ToString(), true);
+                        mongoSvrNode.Text += "[MongoAuthenticationException]";
+                        MyMessageBox.ShowMessage("MongoAuthenticationException:", "Please check UserName and Password", ex.ToString(), true);
                     }
                     mongoSvrNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
@@ -257,8 +257,8 @@ namespace MagicMongoDBTool.Module
                     }
                     else
                     {
-                        mongoSvrNode.Text += "[无法连接]";
-                        MyMessageBox.ShowMessage("无法连接", "服务器没有启动 或者 认证模式不正确", ex.ToString(), true);
+                        mongoSvrNode.Text += "[Exception]";
+                        MyMessageBox.ShowMessage("Exception", "Mongo Server isn't Startup or Auth Mode is not correct", ex.ToString(), true);
                     }
                     mongoSvrNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
@@ -277,26 +277,22 @@ namespace MagicMongoDBTool.Module
             String strShowDBName = strDBName;
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                if (SystemManager.mStringResource.LanguageType != "English")
+                if (SystemManager.mStringResource.LanguageType == "Chinese")
                 {
-                    //TODO:其他语种的数据库名称解释
-                }
-            }
-            else
-            {
-                switch (strDBName)
-                {
-                    case "admin":
-                        strShowDBName = "管理员权限(admin)";
-                        break;
-                    case "local":
-                        strShowDBName = "本地(local)";
-                        break;
-                    case "config":
-                        strShowDBName = "配置(config)";
-                        break;
-                    default:
-                        break;
+                    switch (strDBName)
+                    {
+                        case "admin":
+                            strShowDBName = "管理员权限(admin)";
+                            break;
+                        case "local":
+                            strShowDBName = "本地(local)";
+                            break;
+                        case "config":
+                            strShowDBName = "配置(config)";
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             TreeNode mongoDBNode = new TreeNode(strShowDBName);
@@ -338,119 +334,115 @@ namespace MagicMongoDBTool.Module
             String strShowColName = strColName;
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                if (SystemManager.mStringResource.LanguageType != "English")
+                if (SystemManager.mStringResource.LanguageType == "Chinese")
                 {
-                    //TODO:其他语种的数据库名称解释
-                }
-            }
-            else
-            {
-                switch (strShowColName)
-                {
-                    case "chunks":
-                        if (mongoDB.Name == "config")
-                        {
+                    switch (strShowColName)
+                    {
+                        case "chunks":
+                            if (mongoDB.Name == "config")
+                            {
+                                strShowColName = "数据块(" + strShowColName + ")";
+                            }
+                            break;
+                        case "collections":
+                            if (mongoDB.Name == "config")
+                            {
+                                strShowColName = "数据集(" + strShowColName + ")";
+                            }
+                            break;
+                        case "changelog":
+                            if (mongoDB.Name == "config")
+                            {
+                                strShowColName = "变更日志(" + strShowColName + ")";
+                            }
+                            break;
+                        case "databases":
+                            if (mongoDB.Name == "config")
+                            {
+                                strShowColName = "数据库(" + strShowColName + ")";
+                            }
+                            break;
+                        case "lockpings":
+                            if (mongoDB.Name == "config")
+                            {
+                                strShowColName = "数据锁(" + strShowColName + ")";
+                            }
+                            break;
+                        case "locks":
+                            if (mongoDB.Name == "config")
+                            {
+                                strShowColName = "数据锁(" + strShowColName + ")";
+                            }
+                            break;
+                        case "mongos":
+                            if (mongoDB.Name == "config")
+                            {
+                                strShowColName = "路由服务器(" + strShowColName + ")";
+                            }
+                            break;
+                        case "settings":
+                            if (mongoDB.Name == "config")
+                            {
+                                strShowColName = "配置(" + strShowColName + ")";
+                            }
+                            break;
+                        case "shards":
+                            if (mongoDB.Name == "config")
+                            {
+                                strShowColName = "分片(" + strShowColName + ")";
+                            }
+                            break;
+                        case "version":
+                            if (mongoDB.Name == "config")
+                            {
+                                strShowColName = "版本(" + strShowColName + ")";
+                            }
+                            break;
+                        case "me":
+                            if (mongoDB.Name == "local")
+                            {
+                                strShowColName = "副本组[从属机信息](" + strShowColName + ")";
+                            }
+                            break;
+                        case "sources":
+                            if (mongoDB.Name == "local")
+                            {
+                                strShowColName = "主机地址(" + strShowColName + ")";
+                            }
+                            break;
+                        case "slaves":
+                            if (mongoDB.Name == "local")
+                            {
+                                strShowColName = "副本组[主机信息](" + strShowColName + ")";
+                            }
+                            break;
+                        case COLLECTION_NAME_GFS_CHUNKS:
                             strShowColName = "数据块(" + strShowColName + ")";
-                        }
-                        break;
-                    case "collections":
-                        if (mongoDB.Name == "config")
-                        {
-                            strShowColName = "数据集(" + strShowColName + ")";
-                        }
-                        break;
-                    case "changelog":
-                        if (mongoDB.Name == "config")
-                        {
-                            strShowColName = "变更日志(" + strShowColName + ")";
-                        }
-                        break;
-                    case "databases":
-                        if (mongoDB.Name == "config")
-                        {
-                            strShowColName = "数据库(" + strShowColName + ")";
-                        }
-                        break;
-                    case "lockpings":
-                        if (mongoDB.Name == "config")
-                        {
-                            strShowColName = "数据锁(" + strShowColName + ")";
-                        }
-                        break;
-                    case "locks":
-                        if (mongoDB.Name == "config")
-                        {
-                            strShowColName = "数据锁(" + strShowColName + ")";
-                        }
-                        break;
-                    case "mongos":
-                        if (mongoDB.Name == "config")
-                        {
-                            strShowColName = "路由服务器(" + strShowColName + ")";
-                        }
-                        break;
-                    case "settings":
-                        if (mongoDB.Name == "config")
-                        {
-                            strShowColName = "配置(" + strShowColName + ")";
-                        }
-                        break;
-                    case "shards":
-                        if (mongoDB.Name == "config")
-                        {
-                            strShowColName = "分片(" + strShowColName + ")";
-                        }
-                        break;
-                    case "version":
-                        if (mongoDB.Name == "config")
-                        {
-                            strShowColName = "版本(" + strShowColName + ")";
-                        }
-                        break;
-                    case "me":
-                        if (mongoDB.Name == "local")
-                        {
-                            strShowColName = "副本组[从属机信息](" + strShowColName + ")";
-                        }
-                        break;
-                    case "sources":
-                        if (mongoDB.Name == "local")
-                        {
-                            strShowColName = "主机地址(" + strShowColName + ")";
-                        }
-                        break;
-                    case "slaves":
-                        if (mongoDB.Name == "local")
-                        {
-                            strShowColName = "副本组[主机信息](" + strShowColName + ")";
-                        }
-                        break;
-                    case COLLECTION_NAME_GFS_CHUNKS:
-                        strShowColName = "数据块(" + strShowColName + ")";
-                        break;
-                    case COLLECTION_NAME_GFS_FILES:
-                        strShowColName = "文件系统(" + strShowColName + ")";
-                        break;
-                    case COLLECTION_NAME_OPERATION_LOG:
-                        strShowColName = "操作结果(" + strShowColName + ")";
-                        break;
-                    case COLLECTION_NAME_SYSTEM_INDEXES:
-                        strShowColName = "索引(" + strShowColName + ")";
-                        break;
-                    case COLLECTION_NAME_JAVASCRIPT:
-                        strShowColName = "存储Javascript(" + strShowColName + ")";
-                        break;
-                    case COLLECTION_NAME_SYSTEM_REPLSET:
-                        strShowColName = "副本组(" + strShowColName + ")";
-                        break;
-                    case COLLECTION_NAME_REPLSET_MINVALID:
-                        strShowColName = "初始化同步(" + strShowColName + ")";
-                        break;
-                    case COLLECTION_NAME_USER:
-                        strShowColName = "用户列表(" + strShowColName + ")";
-                        break;
-                    default:
-                        break;
+                            break;
+                        case COLLECTION_NAME_GFS_FILES:
+                            strShowColName = "文件系统(" + strShowColName + ")";
+                            break;
+                        case COLLECTION_NAME_OPERATION_LOG:
+                            strShowColName = "操作结果(" + strShowColName + ")";
+                            break;
+                        case COLLECTION_NAME_SYSTEM_INDEXES:
+                            strShowColName = "索引(" + strShowColName + ")";
+                            break;
+                        case COLLECTION_NAME_JAVASCRIPT:
+                            strShowColName = "存储Javascript(" + strShowColName + ")";
+                            break;
+                        case COLLECTION_NAME_SYSTEM_REPLSET:
+                            strShowColName = "副本组(" + strShowColName + ")";
+                            break;
+                        case COLLECTION_NAME_REPLSET_MINVALID:
+                            strShowColName = "初始化同步(" + strShowColName + ")";
+                            break;
+                        case COLLECTION_NAME_USER:
+                            strShowColName = "用户列表(" + strShowColName + ")";
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             TreeNode mongoColNode;
@@ -485,14 +477,14 @@ namespace MagicMongoDBTool.Module
                 }
                 else
                 {
-                    mongoIndex.Text = ("名称:" + indexDoc.Name);
-                    mongoIndex.Nodes.Add("主键:" + indexDoc.Key.ToString());
-                    mongoIndex.Nodes.Add("删除重复索引(DroppedDups) :" + indexDoc.DroppedDups.ToString());
-                    mongoIndex.Nodes.Add("背景索引(IsBackground):" + indexDoc.IsBackground.ToString());
-                    mongoIndex.Nodes.Add("稀疏索引(IsSparse):" + indexDoc.IsSparse.ToString());
-                    mongoIndex.Nodes.Add("唯一索引(IsUnique):" + indexDoc.IsUnique.ToString());
-                    mongoIndex.Nodes.Add("名字空间:" + indexDoc.Namespace.ToString());
-                    mongoIndex.Nodes.Add("版本:" + indexDoc.Version.ToString());
+                    mongoIndex.Text = ("IndexName:" + indexDoc.Name);
+                    mongoIndex.Nodes.Add("Keys:" + indexDoc.Key.ToString());
+                    mongoIndex.Nodes.Add("DroppedDups :" + indexDoc.DroppedDups.ToString());
+                    mongoIndex.Nodes.Add("IsBackground:" + indexDoc.IsBackground.ToString());
+                    mongoIndex.Nodes.Add("IsSparse:" + indexDoc.IsSparse.ToString());
+                    mongoIndex.Nodes.Add("IsUnique:" + indexDoc.IsUnique.ToString());
+                    mongoIndex.Nodes.Add("NameSpace:" + indexDoc.Namespace.ToString());
+                    mongoIndex.Nodes.Add("Version:" + indexDoc.Version.ToString());
                 }
                 mongoIndex.ImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
                 mongoIndex.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;

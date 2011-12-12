@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--frmMain-->
 <Language Type="English">
-  <Main_Menu_Mangt>Management(&amp;S)</Main_Menu_Mangt>
+  <Main_Menu_Mangt>Management(&amp;M)</Main_Menu_Mangt>
   <Main_Menu_Mangt_AddConnection>Add Connection(&amp;A)</Main_Menu_Mangt_AddConnection>
   <Main_Menu_Mangt_Disconnect>Disconnect</Main_Menu_Mangt_Disconnect>
   <Main_Menu_Mangt_Status>Status</Main_Menu_Mangt_Status>
   <Main_Menu_Mangt_Refresh>Refresh</Main_Menu_Mangt_Refresh>
-  <Main_Menu_Mangt_Collapse>Collapse</Main_Menu_Mangt_Collapse>
-  <Main_Menu_Mangt_Expansion>Expansion</Main_Menu_Mangt_Expansion>
   <Main_Menu_Mangt_Exit>Exit</Main_Menu_Mangt_Exit>
 
   <Main_Menu_DataView>DataView</Main_Menu_DataView>
@@ -16,11 +14,10 @@
   <Main_Menu_DataView_First>First</Main_Menu_DataView_First>
   <Main_Menu_DataView_Last>Last</Main_Menu_DataView_Last>
   <Main_Menu_DataView_Query>Query</Main_Menu_DataView_Query>
-  <Main_Menu_DataView_Aggregation>Aggregation</Main_Menu_DataView_Aggregation>
   <Main_Menu_DataView_ConvertSql>ConvertSql</Main_Menu_DataView_ConvertSql>
+  <Main_Menu_DataView_Aggregation>Aggregation</Main_Menu_DataView_Aggregation>
   <Main_Menu_DataView_DataFilter>Data Filter</Main_Menu_DataView_DataFilter>
-  <Main_Menu_DataView_Collapse>Collapse</Main_Menu_DataView_Collapse>
-  <Main_Menu_DataView_Expansion>Expansion</Main_Menu_DataView_Expansion>
+
 
   <Main_Menu_Operation>Operation</Main_Menu_Operation>
   <Main_Menu_Operation_Server>Server</Main_Menu_Operation_Server>
@@ -91,14 +88,10 @@
 
   <!--frmAddConnection-->
   <AddConnection_Title>Connection Manager</AddConnection_Title>
-  <AddConnection_Name>Name</AddConnection_Name>
+  <AddConnection_ConnectionName>Connection Name</AddConnection_ConnectionName>
   <AddConnection_Name_Description>Nick Name</AddConnection_Name_Description>
-  <AddConnection_Host>Host</AddConnection_Host>
   <AddConnection_Host_Description>Host or Ip</AddConnection_Host_Description>
-
   <AddConnection_Port_Description>Server Port</AddConnection_Port_Description>
-  <AddConnection_UserName_Description>User Name(Option)</AddConnection_UserName_Description>
-  <AddConnection_Password_Description>Password(Option)</AddConnection_Password_Description>
   <AddConnection_DBName>DB Name</AddConnection_DBName>
   <AddConnection_DBName_Description>Database Name(Option)</AddConnection_DBName_Description>
   <AddConnection_MainReplsetName>ReplaceSet Name</AddConnection_MainReplsetName>
@@ -318,9 +311,12 @@
   <Common_Server>Server</Common_Server>
   <Common_DataBase>DataBase</Common_DataBase>
   <Common_Collection>Collection</Common_Collection>
-  <Common_HostName>HostName</Common_HostName>
+  <Common_Host>Host</Common_Host>
   <Common_Port>Port</Common_Port>
 
+  <Common_Collapse>Collapse</Common_Collapse>
+  <Common_Expansion>Expansion</Common_Expansion>
+  
   <Common_Browse>Browse</Common_Browse>
   <Common_Clear>Clear</Common_Clear>
 

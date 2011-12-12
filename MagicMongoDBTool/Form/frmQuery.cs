@@ -162,7 +162,7 @@ namespace MagicMongoDBTool
                     //动态加载控件
                     if (!ColumnList.Contains(queryFieldItem.ColName))
                     {
-                        strErrMsg += queryFieldItem.ColName + "显示设置字段已经在当前数据集中不存在了" + "\r\n";
+                        strErrMsg += queryFieldItem.ColName + "Display Field is not exist in current collection any more" + "\r\n";
                     }
                     else {
                         ctlFieldInfo ctrItem = new ctlFieldInfo();
@@ -178,7 +178,7 @@ namespace MagicMongoDBTool
                 //新增字段
                 foreach (String item in ShowColumnList)
                 {
-                    strErrMsg += "新增加" + item + "显示设置字段" + "\r\n";
+                    strErrMsg += "New Field" + item + "Is Append" + "\r\n";
                     //输出配置的初始化
                     DataFilter.QueryFieldItem queryFieldItem = new DataFilter.QueryFieldItem();
                     queryFieldItem.ColName = item;
@@ -209,12 +209,12 @@ namespace MagicMongoDBTool
                     _conditionPos.Y += newCondition.Height;
                     if (!ColumnList.Contains(queryConditionItem.ColName))
                     {
-                        strErrMsg += queryConditionItem.ColName + "条件查询字段已经在当前数据集中不存在了" + "\r\n";
+                        strErrMsg += queryConditionItem.ColName + "Query Condition Field is not exist in collection any more" + "\r\n";
                     }
                 }
 
                 if (strErrMsg != String.Empty) {
-                    MyMessageBox.ShowMessage("加载错误", "加载检索设置时发生错误", strErrMsg, true);
+                    MyMessageBox.ShowMessage("Load Exception", "A Exception is happened when loading", strErrMsg, true);
                 }
             }
         }

@@ -56,8 +56,8 @@ namespace MagicMongoDBTool
             this.AddConnectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_AddConnection);
             this.RefreshToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Refresh);
             this.SrvStatusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
-            this.ExpandAllConnectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Expansion);
-            this.CollapseAllConnectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Collapse);
+            this.ExpandAllConnectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Expansion);
+            this.CollapseAllConnectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Collapse);
             this.ExitToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Exit);
 
             //数据视图
@@ -72,8 +72,8 @@ namespace MagicMongoDBTool
             this.AggregationToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Aggregation);
             this.DataFilterToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_DataFilter);
 
-            this.CollapseAllDataToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Collapse);
-            this.ExpandAllDataToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Expansion);
+            this.CollapseAllDataToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Collapse);
+            this.ExpandAllDataToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Expansion);
 
 
             //Operation
@@ -129,7 +129,7 @@ namespace MagicMongoDBTool
             this.ToolsToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Tool);
             this.DosCommandToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Tool_DOS);
             this.ImportDataFromAccessToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Tool_Access);
-            this.OptionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Tool_Setting);
+            this.OptionsToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Tool_Setting);
 
 
             //分布式
@@ -158,15 +158,7 @@ namespace MagicMongoDBTool
         /// </summary>
         private void frmMain_Load(object sender, EventArgs e)
         {
-#if MONO
-            MenuStrip menustrip = this.menuStripMain;
-            for (int i = 0; i < menustrip.Items.Count; i++)
-            {
-                menustrip.Items[i].BackColor = IniHelper.BackColor;
-            }
-#else
-            //菜单美化
-#endif
+
             this.trvsrvlst.NodeMouseClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseClick);
             this.trvsrvlst.KeyDown += new KeyEventHandler(trvsrvlst_KeyDown);
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
@@ -282,214 +274,11 @@ namespace MagicMongoDBTool
                 }
                 switch (strNodeType)
                 {
-                    case MongoDBHelper.INDEX_TAG:
-                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        if (SystemManager.IsUseDefaultLanguage())
-                        {
-                            statusStripMain.Items[0].Text = "选中索引:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        }
-                        else
-                        {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Index) +
-                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        }
-                        break;
-                    case MongoDBHelper.INDEXES_TAG:
-                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        if (SystemManager.IsUseDefaultLanguage())
-                        {
-                            statusStripMain.Items[0].Text = "选中索引集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        }
-                        else
-                        {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Indexes) +
-                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        }
-                        if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) & !config.IsReadOnly)
-                        {
-                            this.IndexManageToolStripMenuItem.Enabled = true;
-                            this.ReIndexToolStripMenuItem.Enabled = true;
-                        }
-                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                        {
-                            this.contextMenuStripMain = new ContextMenuStrip();
-#if MONO
-                            //悲催MONO不支持
-                            ToolStripMenuItem t1 = this.IndexManageToolStripMenuItem.Clone();
-                            t1.Click += new EventHandler(IndexManageToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t1);
-
-                            ToolStripMenuItem t2 = this.ReIndexToolStripMenuItem.Clone();
-                            t2.Click += new EventHandler(ReIndexToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t2);
-#else
-                            this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());
-#endif
-                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
-                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
-                        }
-                        break;
-                    case MongoDBHelper.DOCUMENT_TAG:
-                        //BsonDocument
-                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        if (SystemManager.IsUseDefaultLanguage())
-                        {
-                            statusStripMain.Items[0].Text = "选中数据:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        }
-                        else
-                        {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Data) +
-                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        }
-                        if (!config.IsReadOnly & !MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
-                        {
-                            this.AddDocumentToolStripMenuItem.Enabled = true;
-                        }
-                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                        {
-                            SetDataNav();
-                            this.contextMenuStripMain = new ContextMenuStrip();
-#if MONO
-                            //悲催MONO不支持
-                            ToolStripMenuItem t1 = this.countToolStripMenuItem.Clone();
-                            t1.Click += new EventHandler(countToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t1);
-
-                            ToolStripMenuItem t2 = this.distinctToolStripMenuItem.Clone();
-                            t2.Click += new EventHandler(distinctToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t2);
-
-                            ToolStripMenuItem t3 = this.groupToolStripMenuItem.Clone();
-                            t3.Click += new EventHandler(groupToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t3);
-
-                            ToolStripMenuItem t4 = this.mapReduceToolStripMenuItem.Clone();
-                            t4.Click += new EventHandler(mapReduceToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t4);
-
-                            ToolStripMenuItem t5 = this.QueryDataToolStripMenuItem.Clone();
-                            t5.Click += new EventHandler(QueryDataToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t5);
-
-                            ToolStripMenuItem t6 = this.AddDocumentToolStripMenuItem.Clone();
-                            t6.Click += new EventHandler(AddDocumentToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t6);
-
-#else
-                            this.contextMenuStripMain.Items.Add(this.countToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.distinctToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.QueryDataToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.AddDocumentToolStripMenuItem.Clone());
-#endif
-                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
-                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
-                        }
-                        if (e.Button == System.Windows.Forms.MouseButtons.Left)
-                        {
-                            MongoDBHelper.IsUseFilter = false;
-                            this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
-                            SystemManager.CurrDataFilter.Clear();
-                            RefreshData();
-                        }
-                        break;
-                    case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
-                        //GridFileSystem
-                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        if (SystemManager.IsUseDefaultLanguage())
-                        {
-                            statusStripMain.Items[0].Text = "选中文件系统:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        }
-                        else
-                        {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_GFS) +
-                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        }
-                        MongoDBHelper.IsUseFilter = false;
-                        this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
-                        SystemManager.CurrDataFilter.Clear();
-                        RefreshData();
-                        if (!config.IsReadOnly)
-                        {
-                            UploadFileToolStripMenuItem.Enabled = true;
-                        }
-                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                        {
-                            this.contextMenuStripMain = new ContextMenuStrip();
-#if MONO
-                            //悲催MONO不支持
-                            ToolStripMenuItem t1 = this.UploadFileToolStripMenuItem.Clone();
-                            t1.Click += new EventHandler(UploadFileToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t1);
-#else
-                            this.contextMenuStripMain.Items.Add(this.UploadFileToolStripMenuItem.Clone());
-#endif
-                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
-                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
-                        }
-                        break;
-                    case MongoDBHelper.USER_LIST_TAG:
-                        //BsonDocument
-                        MongoDBHelper.FillDataToControl(e.Node.Tag.ToString(), _dataShower);
-                        SetDataNav();
-                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        if (SystemManager.IsUseDefaultLanguage())
-                        {
-                            statusStripMain.Items[0].Text = "用户列表:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        }
-                        else
-                        {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_UserList) +
-                                 ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        }
-                        break;
-                    case MongoDBHelper.SERVICE_TAG_EXCEPTION:
-                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        this.DisconnectToolStripMenuItem.Enabled = true;
-                        this.RestoreMongoToolStripMenuItem.Enabled = false;
-                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                        {
-                            this.contextMenuStripMain = new ContextMenuStrip();
-#if MONO
-                            //悲催MONO不支持
-                            ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
-                            t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t1);
-#else
-                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
-#endif
-                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
-                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
-                        }
-                        statusStripMain.Items[0].Text = "选中服务器[异常]:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        break;
-                    case MongoDBHelper.SINGLE_DB_SERVICE_TAG:
-                        //单数据库模式,禁止所有服务器操作
-                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        this.DisconnectToolStripMenuItem.Enabled = true;
-                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                        {
-                            this.contextMenuStripMain = new ContextMenuStrip();
-#if MONO
-                            //悲催MONO不支持
-                            ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
-                            t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t1);
-#else
-                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
-#endif
-                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
-                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
-                        }
-                        statusStripMain.Items[0].Text = "选中服务器[单数据库]:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-                        break;
                     case MongoDBHelper.SERVICE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         if (SystemManager.IsUseDefaultLanguage())
                         {
-                            statusStripMain.Items[0].Text = "选中服务器:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = "Selected Server:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         }
                         else
                         {
@@ -578,8 +367,8 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.slaveResyncToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.SvrPropertyToolStripMenuItem.Clone());
 #endif
@@ -587,12 +376,56 @@ namespace MagicMongoDBTool
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
                         break;
+                    case MongoDBHelper.SINGLE_DB_SERVICE_TAG:
+                        //单数据库模式,禁止所有服务器操作
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        this.DisconnectToolStripMenuItem.Enabled = true;
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            this.contextMenuStripMain = new ContextMenuStrip();
+#if MONO
+                            //悲催MONO不支持
+                            ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
+                            t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t1);
+                            ToolStripMenuItem t8 = this.SvrPropertyToolStripMenuItem.Clone();
+                            t8.Click += new EventHandler(SvrPropertyToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t8);
+#else
+                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.SvrPropertyToolStripMenuItem.Clone());
+#endif
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+                        }
+                        statusStripMain.Items[0].Text = "Selected Server[Single Database]:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        break;
+                    case MongoDBHelper.SERVICE_TAG_EXCEPTION:
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        this.DisconnectToolStripMenuItem.Enabled = true;
+                        this.RestoreMongoToolStripMenuItem.Enabled = false;
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            this.contextMenuStripMain = new ContextMenuStrip();
+#if MONO
+                            //悲催MONO不支持
+                            ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
+                            t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t1);
+#else
+                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+#endif
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+                        }
+                        statusStripMain.Items[0].Text = "Selected Server[Exception]:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        break;
                     case MongoDBHelper.DATABASE_TAG:
                     case MongoDBHelper.SINGLE_DATABASE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         if (SystemManager.IsUseDefaultLanguage())
                         {
-                            statusStripMain.Items[0].Text = "选中数据库:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = "Selected DataBase:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         }
                         else
                         {
@@ -685,7 +518,7 @@ namespace MagicMongoDBTool
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         if (SystemManager.IsUseDefaultLanguage())
                         {
-                            statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = "Selected Collection:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         }
                         else
                         {
@@ -751,15 +584,178 @@ namespace MagicMongoDBTool
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
                         break;
+                    case MongoDBHelper.DOCUMENT_TAG:
+                        //BsonDocument
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "Selected Document:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Data) +
+                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        if (!config.IsReadOnly & !MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
+                        {
+                            this.AddDocumentToolStripMenuItem.Enabled = true;
+                        }
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            SetDataNav();
+                            this.contextMenuStripMain = new ContextMenuStrip();
+#if MONO
+                            //悲催MONO不支持
+                            ToolStripMenuItem t1 = this.countToolStripMenuItem.Clone();
+                            t1.Click += new EventHandler(countToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t1);
+
+                            ToolStripMenuItem t2 = this.distinctToolStripMenuItem.Clone();
+                            t2.Click += new EventHandler(distinctToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t2);
+
+                            ToolStripMenuItem t3 = this.groupToolStripMenuItem.Clone();
+                            t3.Click += new EventHandler(groupToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t3);
+
+                            ToolStripMenuItem t4 = this.mapReduceToolStripMenuItem.Clone();
+                            t4.Click += new EventHandler(mapReduceToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t4);
+
+                            ToolStripMenuItem t5 = this.QueryDataToolStripMenuItem.Clone();
+                            t5.Click += new EventHandler(QueryDataToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t5);
+
+                            ToolStripMenuItem t6 = this.AddDocumentToolStripMenuItem.Clone();
+                            t6.Click += new EventHandler(AddDocumentToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t6);
+
+#else
+                            this.contextMenuStripMain.Items.Add(this.countToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.distinctToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.QueryDataToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.AddDocumentToolStripMenuItem.Clone());
+#endif
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+                        }
+                        if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                        {
+                            MongoDBHelper.IsUseFilter = false;
+                            this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
+                            SystemManager.CurrDataFilter.Clear();
+                            RefreshData();
+                        }
+                        break;
+                    case MongoDBHelper.INDEX_TAG:
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "Selected Index:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Index) +
+                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        break;
+                    case MongoDBHelper.INDEXES_TAG:
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "Selected Index:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Indexes) +
+                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) & !config.IsReadOnly)
+                        {
+                            this.IndexManageToolStripMenuItem.Enabled = true;
+                            this.ReIndexToolStripMenuItem.Enabled = true;
+                        }
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            this.contextMenuStripMain = new ContextMenuStrip();
+#if MONO
+                            //悲催MONO不支持
+                            ToolStripMenuItem t1 = this.IndexManageToolStripMenuItem.Clone();
+                            t1.Click += new EventHandler(IndexManageToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t1);
+
+                            ToolStripMenuItem t2 = this.ReIndexToolStripMenuItem.Clone();
+                            t2.Click += new EventHandler(ReIndexToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t2);
+#else
+                            this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());
+#endif
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+                        }
+                        break;
+                    case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
+                        //GridFileSystem
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "Selected GFS:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_GFS) +
+                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        MongoDBHelper.IsUseFilter = false;
+                        this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
+                        SystemManager.CurrDataFilter.Clear();
+                        RefreshData();
+                        if (!config.IsReadOnly)
+                        {
+                            UploadFileToolStripMenuItem.Enabled = true;
+                        }
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            this.contextMenuStripMain = new ContextMenuStrip();
+#if MONO
+                            //悲催MONO不支持
+                            ToolStripMenuItem t1 = this.UploadFileToolStripMenuItem.Clone();
+                            t1.Click += new EventHandler(UploadFileToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t1);
+#else
+                            this.contextMenuStripMain.Items.Add(this.UploadFileToolStripMenuItem.Clone());
+#endif
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+                        }
+                        break;
+                    case MongoDBHelper.USER_LIST_TAG:
+                        //BsonDocument
+                        MongoDBHelper.FillDataToControl(e.Node.Tag.ToString(), _dataShower);
+                        SetDataNav();
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        if (SystemManager.IsUseDefaultLanguage())
+                        {
+                            statusStripMain.Items[0].Text = "Selected UserList:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_UserList) +
+                                 ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        }
+                        break;
                     default:
                         SystemManager.SelectObjectTag = "";
-                        statusStripMain.Items[0].Text = "选中对象:" + e.Node.Text;
+                        statusStripMain.Items[0].Text = "Selected Object:" + e.Node.Text;
                         break;
                 }
             }
             else
             {
-                statusStripMain.Items[0].Text = "选中对象:" + e.Node.Text;
+                statusStripMain.Items[0].Text = "Selected Object:" + e.Node.Text;
             }
             //重新Reset工具栏
             SetToolBarEnabled();
@@ -1256,7 +1252,7 @@ namespace MagicMongoDBTool
             }
             else
             {
-                this.statusStripMain.Items[0].Text = "就绪";
+                this.statusStripMain.Items[0].Text = "Ready";
             }
         }
         /// <summary>
@@ -1363,7 +1359,7 @@ namespace MagicMongoDBTool
             String strDBName = String.Empty;
             if (SystemManager.IsUseDefaultLanguage())
             {
-                strDBName = MyMessageBox.ShowInput("请输入数据库名称：", "创建数据库");
+                strDBName = MyMessageBox.ShowInput("Please Input DataBaseName：", "Create Database");
             }
             else
             {
@@ -1400,7 +1396,7 @@ namespace MagicMongoDBTool
             MyMessageBox.ShowMessage("resync", "resync Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
         }
         /// <summary>
-        /// 服务器属性
+        /// Server Property
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1408,7 +1404,7 @@ namespace MagicMongoDBTool
         {
             if (SystemManager.IsUseDefaultLanguage())
             {
-                MyMessageBox.ShowMessage("服务器属性", "服务器属性", MongoDBHelper.GetCurrentSvrInfo(), true);
+                MyMessageBox.ShowMessage("Server Property", "Server Property", MongoDBHelper.GetCurrentSvrInfo(), true);
             }
             else
             {
@@ -1418,30 +1414,44 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 关闭服务器
+        /// Shut Down Server
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ShutDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO:可能有异常
-            MongoDBHelper.Shutdown();
-            trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
+            if (MyMessageBox.ShowConfirm("ShutDown Server", "Are you sure to shutDown the Server?"))
+            {
+                MongoServer mongoSvr = SystemManager.GetCurrentService();
+                try
+                {
+                    //the server will be  shutdown with exception
+                    mongoSvr.Shutdown();
+                }
+                catch (System.IO.IOException)
+                {
+                    //if IOException,ignore it
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
+            }
         }
         #endregion
 
         #region"管理：数据库"
 
         /// <summary>
-        /// 删除MongoDB
+        /// Drop MongoDB
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DelMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //@那一剑风情 提出的删除前确认
-            String strTitle = "删除数据库确认";
-            String strMessage = "确认是否要删除数据库？";
+            String strTitle = "Confirm";
+            String strMessage = "Are you really want to Drop current Database?";
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_DataBase);
@@ -1473,7 +1483,7 @@ namespace MagicMongoDBTool
 
             if (SystemManager.IsUseDefaultLanguage())
             {
-                strCollection = MyMessageBox.ShowInput("请输入数据集名称：", "创建数据集");
+                strCollection = MyMessageBox.ShowInput("Please input the collection Name：", "Create Collection");
             }
             else
             {
@@ -1490,7 +1500,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 建立用户
+        /// Create User
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1499,7 +1509,7 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmUser(false));
         }
         /// <summary>
-        /// 执行JS
+        /// Eval JS
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1508,7 +1518,7 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmevalJS());
         }
         /// <summary>
-        /// 修复数据库
+        /// Repair DataBase
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

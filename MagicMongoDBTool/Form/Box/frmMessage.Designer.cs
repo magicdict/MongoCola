@@ -49,7 +49,7 @@
             this.txtException.Name = "txtException";
             this.txtException.ReadOnly = true;
             this.txtException.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtException.Size = new System.Drawing.Size(453, 164);
+            this.txtException.Size = new System.Drawing.Size(453, 137);
             this.txtException.TabIndex = 5;
             // 
             // lblMessage
@@ -59,9 +59,9 @@
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.Location = new System.Drawing.Point(67, 10);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(33, 15);
+            this.lblMessage.Size = new System.Drawing.Size(67, 15);
             this.lblMessage.TabIndex = 6;
-            this.lblMessage.Text = "信息";
+            this.lblMessage.Text = "Summary";
             // 
             // cmdOK
             // 
@@ -71,7 +71,8 @@
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
             this.cmdOK.TabIndex = 7;
-            this.cmdOK.Text = "确定";
+            this.cmdOK.Text = "OK";
+            this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // cmdDetails
@@ -82,7 +83,8 @@
             this.cmdDetails.Name = "cmdDetails";
             this.cmdDetails.Size = new System.Drawing.Size(100, 32);
             this.cmdDetails.TabIndex = 8;
-            this.cmdDetails.Text = "细节";
+            this.cmdDetails.Text = "details";
+            this.cmdDetails.UseVisualStyleBackColor = false;
             this.cmdDetails.Click += new System.EventHandler(this.cmdDetails_Click);
             // 
             // panForBgcolor
@@ -90,7 +92,7 @@
             this.panForBgcolor.Controls.Add(this.cmdOK);
             this.panForBgcolor.Controls.Add(this.cmdDetails);
             this.panForBgcolor.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panForBgcolor.Location = new System.Drawing.Point(0, 291);
+            this.panForBgcolor.Location = new System.Drawing.Point(0, 199);
             this.panForBgcolor.Name = "panForBgcolor";
             this.panForBgcolor.Size = new System.Drawing.Size(477, 43);
             this.panForBgcolor.TabIndex = 9;
@@ -109,14 +111,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 334);
+            this.ClientSize = new System.Drawing.Size(477, 242);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.txtException);
             this.Controls.Add(this.panForBgcolor);
             this.Controls.Add(this.picImage);
             this.Name = "frmMesssage";
-            this.Text = "执行结果";
-            this.Load += new System.EventHandler(this.frmMesssage_Load);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Result";
             this.panForBgcolor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);

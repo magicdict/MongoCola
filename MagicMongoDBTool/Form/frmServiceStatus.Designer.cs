@@ -89,7 +89,7 @@
             this.tabSvrBasicInfo.Padding = new System.Windows.Forms.Padding(3);
             this.tabSvrBasicInfo.Size = new System.Drawing.Size(784, 388);
             this.tabSvrBasicInfo.TabIndex = 3;
-            this.tabSvrBasicInfo.Text = "服务器基本信息（需手动刷新）";
+            this.tabSvrBasicInfo.Text = "Server Status Information[need manual refresh ]";
             this.tabSvrBasicInfo.UseVisualStyleBackColor = true;
             // 
             // trvSvrStatus
@@ -108,7 +108,7 @@
             this.tabDBBasicInfo.Padding = new System.Windows.Forms.Padding(3);
             this.tabDBBasicInfo.Size = new System.Drawing.Size(784, 388);
             this.tabDBBasicInfo.TabIndex = 0;
-            this.tabDBBasicInfo.Text = "数据库基本信息";
+            this.tabDBBasicInfo.Text = "DB Status Information";
             this.tabDBBasicInfo.UseVisualStyleBackColor = true;
             // 
             // tabCollectionInfo
@@ -119,7 +119,7 @@
             this.tabCollectionInfo.Padding = new System.Windows.Forms.Padding(3);
             this.tabCollectionInfo.Size = new System.Drawing.Size(784, 388);
             this.tabCollectionInfo.TabIndex = 2;
-            this.tabCollectionInfo.Text = "数据集状态";
+            this.tabCollectionInfo.Text = "Collection Status Information";
             this.tabCollectionInfo.UseVisualStyleBackColor = true;
             // 
             // lstCollectionStatus
@@ -142,7 +142,7 @@
             this.tabClusterInfo.Padding = new System.Windows.Forms.Padding(3);
             this.tabClusterInfo.Size = new System.Drawing.Size(784, 388);
             this.tabClusterInfo.TabIndex = 1;
-            this.tabClusterInfo.Text = "集群扩展信息";
+            this.tabClusterInfo.Text = "Cluster Information";
             this.tabClusterInfo.UseVisualStyleBackColor = true;
             // 
             // cmdRefresh
@@ -152,7 +152,7 @@
             this.cmdRefresh.Name = "cmdRefresh";
             this.cmdRefresh.Size = new System.Drawing.Size(100, 32);
             this.cmdRefresh.TabIndex = 5;
-            this.cmdRefresh.Text = "刷新";
+            this.cmdRefresh.Text = "Refresh";
             this.cmdRefresh.UseVisualStyleBackColor = false;
             this.cmdRefresh.Click += new System.EventHandler(this.cmdRefresh_Click);
             // 
@@ -160,12 +160,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 500);
+            this.ClientSize = new System.Drawing.Size(808, 452);
             this.Controls.Add(this.cmdRefresh);
             this.Controls.Add(this.tabSvrStatus);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmServiceStatus";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "服务器状态";
+            this.Text = "Status";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmServiceStatus_FormClosing);
             this.Load += new System.EventHandler(this.frmServiceStatus_Load);
             this.tabSvrStatus.ResumeLayout(false);

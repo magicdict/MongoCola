@@ -32,7 +32,7 @@
             this.cmdSaveReduceJs = new System.Windows.Forms.Button();
             this.lblReduceFunction = new System.Windows.Forms.Label();
             this.txtReduceJs = new System.Windows.Forms.TextBox();
-            this.cmdOK = new System.Windows.Forms.Button();
+            this.cmdRun = new System.Windows.Forms.Button();
             this.txtfinalizeJs = new System.Windows.Forms.TextBox();
             this.lblfinalizeFunction = new System.Windows.Forms.Label();
             this.cmdSavefinalizeJs = new System.Windows.Forms.Button();
@@ -74,7 +74,7 @@
             this.cmdSaveReduceJs.Name = "cmdSaveReduceJs";
             this.cmdSaveReduceJs.Size = new System.Drawing.Size(70, 30);
             this.cmdSaveReduceJs.TabIndex = 1;
-            this.cmdSaveReduceJs.Text = "保存";
+            this.cmdSaveReduceJs.Text = "Save";
             this.cmdSaveReduceJs.UseVisualStyleBackColor = false;
             this.cmdSaveReduceJs.Click += new System.EventHandler(this.cmdSaveReduceJs_Click);
             // 
@@ -84,9 +84,9 @@
             this.lblReduceFunction.BackColor = System.Drawing.Color.Transparent;
             this.lblReduceFunction.Location = new System.Drawing.Point(21, 37);
             this.lblReduceFunction.Name = "lblReduceFunction";
-            this.lblReduceFunction.Size = new System.Drawing.Size(69, 13);
+            this.lblReduceFunction.Size = new System.Drawing.Size(58, 13);
             this.lblReduceFunction.TabIndex = 20;
-            this.lblReduceFunction.Text = "Reduce函数";
+            this.lblReduceFunction.Text = "Reduce Js";
             // 
             // txtReduceJs
             // 
@@ -98,16 +98,16 @@
             this.txtReduceJs.TabIndex = 2;
             this.txtReduceJs.Text = "function(obj,prev){ prev.count++;}";
             // 
-            // cmdOK
+            // cmdRun
             // 
-            this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(386, 521);
-            this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(100, 32);
-            this.cmdOK.TabIndex = 2;
-            this.cmdOK.Text = "确认";
-            this.cmdOK.UseVisualStyleBackColor = false;
-            this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
+            this.cmdRun.BackColor = System.Drawing.Color.Transparent;
+            this.cmdRun.Location = new System.Drawing.Point(359, 521);
+            this.cmdRun.Name = "cmdRun";
+            this.cmdRun.Size = new System.Drawing.Size(100, 32);
+            this.cmdRun.TabIndex = 2;
+            this.cmdRun.Text = "Run";
+            this.cmdRun.UseVisualStyleBackColor = false;
+            this.cmdRun.Click += new System.EventHandler(this.cmdOK_Click);
             // 
             // txtfinalizeJs
             // 
@@ -124,9 +124,9 @@
             this.lblfinalizeFunction.BackColor = System.Drawing.Color.Transparent;
             this.lblfinalizeFunction.Location = new System.Drawing.Point(21, 29);
             this.lblfinalizeFunction.Name = "lblfinalizeFunction";
-            this.lblfinalizeFunction.Size = new System.Drawing.Size(63, 13);
+            this.lblfinalizeFunction.Size = new System.Drawing.Size(52, 13);
             this.lblfinalizeFunction.TabIndex = 20;
-            this.lblfinalizeFunction.Text = "finalize函数";
+            this.lblfinalizeFunction.Text = "finalize Js";
             // 
             // cmdSavefinalizeJs
             // 
@@ -135,7 +135,7 @@
             this.cmdSavefinalizeJs.Name = "cmdSavefinalizeJs";
             this.cmdSavefinalizeJs.Size = new System.Drawing.Size(70, 30);
             this.cmdSavefinalizeJs.TabIndex = 21;
-            this.cmdSavefinalizeJs.Text = "保存";
+            this.cmdSavefinalizeJs.Text = "Save";
             this.cmdSavefinalizeJs.UseVisualStyleBackColor = false;
             this.cmdSavefinalizeJs.Click += new System.EventHandler(this.cmdForSavefinalize_Click);
             // 
@@ -153,9 +153,9 @@
             this.lblSelectGroupField.BackColor = System.Drawing.Color.Transparent;
             this.lblSelectGroupField.Location = new System.Drawing.Point(17, 12);
             this.lblSelectGroupField.Name = "lblSelectGroupField";
-            this.lblSelectGroupField.Size = new System.Drawing.Size(96, 13);
+            this.lblSelectGroupField.Size = new System.Drawing.Size(90, 13);
             this.lblSelectGroupField.TabIndex = 27;
-            this.lblSelectGroupField.Text = "请选择Group字段";
+            this.lblSelectGroupField.Text = "Pick Group Fields";
             // 
             // panColumn
             // 
@@ -181,9 +181,9 @@
             this.lblAddInitField.BackColor = System.Drawing.Color.Transparent;
             this.lblAddInitField.Location = new System.Drawing.Point(18, 21);
             this.lblAddInitField.Name = "lblAddInitField";
-            this.lblAddInitField.Size = new System.Drawing.Size(103, 13);
+            this.lblAddInitField.Size = new System.Drawing.Size(73, 13);
             this.lblAddInitField.TabIndex = 27;
-            this.lblAddInitField.Text = "请添加初始化字段";
+            this.lblAddInitField.Text = "Add Init Fields";
             // 
             // panBsonEl
             // 
@@ -199,7 +199,7 @@
             this.cmdAddInitField.Name = "cmdAddInitField";
             this.cmdAddInitField.Size = new System.Drawing.Size(70, 27);
             this.cmdAddInitField.TabIndex = 22;
-            this.cmdAddInitField.Text = "添加";
+            this.cmdAddInitField.Text = "Add";
             this.cmdAddInitField.UseVisualStyleBackColor = false;
             this.cmdAddInitField.Click += new System.EventHandler(this.cmdAddFld_Click);
             // 
@@ -209,9 +209,9 @@
             this.lblResult.BackColor = System.Drawing.Color.Transparent;
             this.lblResult.Location = new System.Drawing.Point(24, 22);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(55, 13);
+            this.lblResult.Size = new System.Drawing.Size(40, 13);
             this.lblResult.TabIndex = 27;
-            this.lblResult.Text = "执行结果";
+            this.lblResult.Text = "Result:";
             // 
             // tabGroup
             // 
@@ -263,7 +263,7 @@
             this.tabGroupField.Padding = new System.Windows.Forms.Padding(3);
             this.tabGroupField.Size = new System.Drawing.Size(471, 473);
             this.tabGroupField.TabIndex = 2;
-            this.tabGroupField.Text = "Group字段";
+            this.tabGroupField.Text = "Group Fields";
             this.tabGroupField.UseVisualStyleBackColor = true;
             // 
             // tabInitialize
@@ -276,7 +276,7 @@
             this.tabInitialize.Padding = new System.Windows.Forms.Padding(3);
             this.tabInitialize.Size = new System.Drawing.Size(471, 473);
             this.tabInitialize.TabIndex = 3;
-            this.tabInitialize.Text = "初始化字段";
+            this.tabInitialize.Text = "Init Fields";
             this.tabInitialize.UseVisualStyleBackColor = true;
             // 
             // tabResult
@@ -288,17 +288,17 @@
             this.tabResult.Padding = new System.Windows.Forms.Padding(3);
             this.tabResult.Size = new System.Drawing.Size(471, 473);
             this.tabResult.TabIndex = 4;
-            this.tabResult.Text = "执行结果";
+            this.tabResult.Text = "Result";
             this.tabResult.UseVisualStyleBackColor = true;
             // 
             // cmdQuery
             // 
             this.cmdQuery.BackColor = System.Drawing.Color.Transparent;
-            this.cmdQuery.Location = new System.Drawing.Point(263, 521);
+            this.cmdQuery.Location = new System.Drawing.Point(236, 521);
             this.cmdQuery.Name = "cmdQuery";
             this.cmdQuery.Size = new System.Drawing.Size(100, 32);
             this.cmdQuery.TabIndex = 1;
-            this.cmdQuery.Text = "载入查询条件";
+            this.cmdQuery.Text = "Load Query";
             this.cmdQuery.UseVisualStyleBackColor = false;
             this.cmdQuery.Click += new System.EventHandler(this.cmdQuery_Click);
             // 
@@ -308,8 +308,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(511, 568);
             this.Controls.Add(this.tabGroup);
-            this.Controls.Add(this.cmdOK);
+            this.Controls.Add(this.cmdRun);
             this.Controls.Add(this.cmdQuery);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmGroup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Group";
@@ -331,7 +332,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button cmdOK;
+        private System.Windows.Forms.Button cmdRun;
         private System.Windows.Forms.ComboBox cmbForReduce;
         private System.Windows.Forms.Button cmdSaveReduceJs;
         private System.Windows.Forms.Label lblReduceFunction;

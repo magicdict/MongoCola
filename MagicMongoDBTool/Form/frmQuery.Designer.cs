@@ -58,7 +58,7 @@
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(114, 29);
             this.cmdOK.TabIndex = 12;
-            this.cmdOK.Text = "确定";
+            this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
@@ -79,7 +79,7 @@
             this.tabFieldInfo.Padding = new System.Windows.Forms.Padding(3);
             this.tabFieldInfo.Size = new System.Drawing.Size(488, 378);
             this.tabFieldInfo.TabIndex = 0;
-            this.tabFieldInfo.Text = "字段表示和排序";
+            this.tabFieldInfo.Text = "Output Fields";
             this.tabFieldInfo.UseVisualStyleBackColor = true;
             // 
             // tabFilter
@@ -91,7 +91,7 @@
             this.tabFilter.Padding = new System.Windows.Forms.Padding(3);
             this.tabFilter.Size = new System.Drawing.Size(488, 378);
             this.tabFilter.TabIndex = 1;
-            this.tabFilter.Text = "字段过滤条件";
+            this.tabFilter.Text = "Filter";
             this.tabFilter.UseVisualStyleBackColor = true;
             // 
             // panFilter
@@ -109,7 +109,7 @@
             this.cmdLoad.Name = "cmdLoad";
             this.cmdLoad.Size = new System.Drawing.Size(100, 29);
             this.cmdLoad.TabIndex = 13;
-            this.cmdLoad.Text = "加载";
+            this.cmdLoad.Text = "Load Query";
             this.cmdLoad.UseVisualStyleBackColor = false;
             this.cmdLoad.Click += new System.EventHandler(this.cmdLoad_Click);
             // 
@@ -120,7 +120,7 @@
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(100, 29);
             this.cmdSave.TabIndex = 14;
-            this.cmdSave.Text = "保存";
+            this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = false;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
@@ -133,9 +133,12 @@
             this.Controls.Add(this.cmdLoad);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.cmdOK);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmQuery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "数据查询";
+            this.Text = "Query";
             this.Load += new System.EventHandler(this.frmQuery_Load);
             this.tabControl.ResumeLayout(false);
             this.tabFilter.ResumeLayout(false);
