@@ -1355,7 +1355,6 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CreateMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             String strDBName = String.Empty;
             if (SystemManager.IsUseDefaultLanguage())
             {
@@ -1641,7 +1640,6 @@ namespace MagicMongoDBTool
                 if (tabDataShower.SelectedTab == tabTableView)
                 {
                     //lstData
-                    String strKey = lstData.Columns[0].Text;
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
                         MongoDBHelper.RemoveUserFromSvr(item.SubItems[1].Text);
@@ -1678,7 +1676,6 @@ namespace MagicMongoDBTool
                 if (tabDataShower.SelectedTab == tabTableView)
                 {
                     //lstData
-                    String strKey = lstData.Columns[0].Text;
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
                         MongoDBHelper.RemoveUserFromDB(item.SubItems[1].Text);

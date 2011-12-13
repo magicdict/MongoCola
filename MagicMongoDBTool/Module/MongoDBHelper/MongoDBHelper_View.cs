@@ -286,7 +286,7 @@ namespace MagicMongoDBTool.Module
                     foreach (String SubitemName in SubDoc.Names)
                     {
                         BsonValue Subvalue = SubDoc.GetValue(SubitemName);
-                        rtnText += GetBsonElementText(SubitemName, SubDoc.GetValue(SubitemName), DeepLv);
+                        rtnText += GetBsonElementText(SubitemName, Subvalue, DeepLv);
                     }
                     for (int i = 0; i < DeepLv; i++)
                     {
@@ -1002,7 +1002,6 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         private static string GetSize(long size)
         {
-            string strSize = string.Empty;
             string[] Unit = new string[]{
                 "Byte","KB","MB","GB","TB"
             };
@@ -1034,7 +1033,6 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static long ReconvSize(String size)
         {
-            string strSize = string.Empty;
             string[] Unit = new string[]{
                 "Byte","KB","MB","GB","TB"
             };

@@ -18,7 +18,6 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="ElementPath"></param>
         public static void CopyElement(String ElementPath) {
-            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
             ClipElement = GetElementFromPath(ElementPath);
         }
         /// <summary>

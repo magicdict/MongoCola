@@ -119,7 +119,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmevalJS";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "执行Javascript";
+            this.Text = "Eval Javascript";
             this.Load += new System.EventHandler(this.frmevalJS_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

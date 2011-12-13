@@ -54,7 +54,6 @@ namespace MagicMongoDBTool
             cmbReplsetName.SelectedIndexChanged += new EventHandler(
                 (x, y) => { RefreshSrv(); }
                 );
-            string strPrmKey = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             foreach (var item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
                 if (item.ReplSetName != null)

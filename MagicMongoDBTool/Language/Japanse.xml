@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--frmMain-->
+<Language Type="Japanese">
+  <Main_Menu_Mangt>Management(&amp;M)</Main_Menu_Mangt>
+  <Main_Menu_Mangt_AddConnection>Add Connection(&amp;A)</Main_Menu_Mangt_AddConnection>
+  <Main_Menu_Mangt_Disconnect>Disconnect</Main_Menu_Mangt_Disconnect>
+  <Main_Menu_Mangt_Status>Status</Main_Menu_Mangt_Status>
+  <Main_Menu_Mangt_Refresh>Refresh</Main_Menu_Mangt_Refresh>
+  <Main_Menu_Mangt_Exit>Exit</Main_Menu_Mangt_Exit>
+
+  <Main_Menu_DataView>DataView</Main_Menu_DataView>
+  <Main_Menu_DataView_Previous>Previous</Main_Menu_DataView_Previous>
+  <Main_Menu_DataView_Next>Next</Main_Menu_DataView_Next>
+  <Main_Menu_DataView_First>First</Main_Menu_DataView_First>
+  <Main_Menu_DataView_Last>Last</Main_Menu_DataView_Last>
+  <Main_Menu_DataView_Query>Query</Main_Menu_DataView_Query>
+  <Main_Menu_DataView_ConvertSql>ConvertSql</Main_Menu_DataView_ConvertSql>
+  <Main_Menu_DataView_Aggregation>Aggregation</Main_Menu_DataView_Aggregation>
+  <Main_Menu_DataView_DataFilter>Data Filter</Main_Menu_DataView_DataFilter>
+
+
+  <Main_Menu_Operation>Operation</Main_Menu_Operation>
+  <Main_Menu_Operation_Server>Server</Main_Menu_Operation_Server>
+  <Main_Menu_Operation_Server_NewDB>New Database</Main_Menu_Operation_Server_NewDB>
+  <Main_Menu_Operation_Server_AddUserToAdmin>Add User To Admin Group</Main_Menu_Operation_Server_AddUserToAdmin>
+  <Main_Menu_Operation_Server_DelFromAdmin>Del User From Admin Group</Main_Menu_Operation_Server_DelFromAdmin>
+  <Main_Menu_Operation_Server_SlaveResync>Slave Resync</Main_Menu_Operation_Server_SlaveResync>
+  <Main_Menu_Operation_Server_CloseServer>Close Server</Main_Menu_Operation_Server_CloseServer>
+  <Main_Menu_Operation_Server_Properties>Server Properties</Main_Menu_Operation_Server_Properties>
+
+  <Main_Menu_Operation_Database>Database</Main_Menu_Operation_Database>
+  <Main_Menu_Operation_Database_DelDB>Del Database</Main_Menu_Operation_Database_DelDB>
+  <Main_Menu_Operation_Database_AddDC>Add DataCollection</Main_Menu_Operation_Database_AddDC>
+  <Main_Menu_Operation_Database_AddUser>Add User</Main_Menu_Operation_Database_AddUser>
+  <Main_Menu_Operation_Database_DelUser>Del User</Main_Menu_Operation_Database_DelUser>
+  <Main_Menu_Operation_Database_EvalJs>Eval JavaScript</Main_Menu_Operation_Database_EvalJs>
+  <Main_Menu_Operation_Database_RepairDatabase>Repair Database</Main_Menu_Operation_Database_RepairDatabase>
+  
+  <Main_Menu_Operation_DataCollection>Data Collection</Main_Menu_Operation_DataCollection>
+  <Main_Menu_Operation_DataCollection_DelDC>Del DataCollection</Main_Menu_Operation_DataCollection_DelDC>
+  <Main_Menu_Operation_DataCollection_ReIndex>ReIndex</Main_Menu_Operation_DataCollection_ReIndex>
+  <Main_Menu_Operation_DataCollection_Index>Index Manager</Main_Menu_Operation_DataCollection_Index>
+  <Main_Menu_Operation_DataCollection_AddDocument>Add Empty Document</Main_Menu_Operation_DataCollection_AddDocument>
+  <Main_Menu_Operation_DataCollection_DropDocument>Del Selected Document</Main_Menu_Operation_DataCollection_DropDocument>
+  <Main_Menu_Operation_DataCollection_Rename>Rename</Main_Menu_Operation_DataCollection_Rename>
+
+  <Main_Menu_Operation_DataDocument>Data Document</Main_Menu_Operation_DataDocument>
+  <Main_Menu_Operation_DataDocument_AddElement>Add Element</Main_Menu_Operation_DataDocument_AddElement>
+  <Main_Menu_Operation_DataDocument_DropElement>Drop Element</Main_Menu_Operation_DataDocument_DropElement>
+  <Main_Menu_Operation_DataDocument_ModifyElement>Modify Element</Main_Menu_Operation_DataDocument_ModifyElement>
+  <Main_Menu_Operation_DataDocument_CopyElement>Copy Element</Main_Menu_Operation_DataDocument_CopyElement>
+  <Main_Menu_Operation_DataDocument_CutElement>Cut Element</Main_Menu_Operation_DataDocument_CutElement>
+  <Main_Menu_Operation_DataDocument_PasteElement>Paste Element</Main_Menu_Operation_DataDocument_PasteElement>
+
+
+  <Main_Menu_Operation_FileSystem>FileSystem</Main_Menu_Operation_FileSystem>
+  <Main_Menu_Operation_FileSystem_Upload>Upload</Main_Menu_Operation_FileSystem_Upload>
+  <Main_Menu_Operation_FileSystem_Download>Download</Main_Menu_Operation_FileSystem_Download>
+  <Main_Menu_Operation_FileSystem_OpenFile>Open File</Main_Menu_Operation_FileSystem_OpenFile>
+  <Main_Menu_Operation_FileSystem_DelFile>Del File</Main_Menu_Operation_FileSystem_DelFile>
+  <Main_Menu_Operation_FileSystem_InitGFS>InitGFS</Main_Menu_Operation_FileSystem_InitGFS>
+
+  <Main_Menu_Operation_BackupAndRestore>BackupAndRestore</Main_Menu_Operation_BackupAndRestore>
+
+  <Main_Menu_Operation_BackupAndRestore_Restore>Restore</Main_Menu_Operation_BackupAndRestore_Restore>
+  <Main_Menu_Operation_BackupAndRestore_BackupDB>Backup Database</Main_Menu_Operation_BackupAndRestore_BackupDB>
+  <Main_Menu_Operation_BackupAndRestore_BackupDC>Backup DataCollection</Main_Menu_Operation_BackupAndRestore_BackupDC>
+  <Main_Menu_Operation_BackupAndRestore_Import>Import DataCollection</Main_Menu_Operation_BackupAndRestore_Import>
+  <Main_Menu_Operation_BackupAndRestore_Export>Export DataCollection</Main_Menu_Operation_BackupAndRestore_Export>
+
+  <Main_Menu_Tool>Tools(&amp;T)</Main_Menu_Tool>
+  <Main_Menu_Tool_DOS>DOS Operation</Main_Menu_Tool_DOS>
+  <Main_Menu_Tool_Access>Import Access Database</Main_Menu_Tool_Access>
+  <Main_Menu_Tool_Setting>Setting</Main_Menu_Tool_Setting>
+
+  <Main_Menu_Distributed>Distributed</Main_Menu_Distributed>
+  <Main_Menu_Distributed_ReplicaSet>ReplicaSet</Main_Menu_Distributed_ReplicaSet>
+  <Main_Menu_Distributed_ShardingConfig>Sharding Config</Main_Menu_Distributed_ShardingConfig>
+
+  <Main_Menu_Help>Help</Main_Menu_Help>
+  <Main_Menu_Help_About>About</Main_Menu_Help_About>
+  <Main_Menu_Help_Thanks>Thanks</Main_Menu_Help_Thanks>
+
+  <Main_Tab_Tree>TreeView</Main_Tab_Tree>
+  <Main_Tab_Table>TableView</Main_Tab_Table>
+  <Main_Tab_Text>TextView</Main_Tab_Text>
+  <Main_StatusBar_Text_Ready>Ready</Main_StatusBar_Text_Ready>
+
+  <!--frmAddConnection-->
+  <AddConnection_Title>Connection Manager</AddConnection_Title>
+  <AddConnection_ConnectionName>Connection Name</AddConnection_ConnectionName>
+  <AddConnection_Name_Description>Nick Name</AddConnection_Name_Description>
+  <AddConnection_Host_Description>Host or Ip</AddConnection_Host_Description>
+  <AddConnection_Port_Description>Server Port</AddConnection_Port_Description>
+  <AddConnection_DBName>DB Name</AddConnection_DBName>
+  <AddConnection_DBName_Description>Database Name(Option)</AddConnection_DBName_Description>
+  <AddConnection_MainReplsetName>ReplaceSet Name</AddConnection_MainReplsetName>
+  <AddConnection_MainReplsetName_Description>ReplaceSet Name(Option)</AddConnection_MainReplsetName_Description>
+  <AddConnection_Priority>Priority</AddConnection_Priority>
+  <AddConnection_TimeOut>TimeOut(Sec)</AddConnection_TimeOut>
+
+  <AddConnection_MasterSlave>MasterSlave Mode(GFS operation limition,Cluster of non-Route,Configuration Server,Slave Server)</AddConnection_MasterSlave>
+  <AddConnection_SafeMode>Safe Mode(More data safe, less performance)</AddConnection_SafeMode>
+  <AddConnection_ShardingSvrType>Sharding Service Type</AddConnection_ShardingSvrType>
+  <AddConnection_ServerType_Data>Data</AddConnection_ServerType_Data>
+  <AddConnection_ServerType_Configuration>Configuration</AddConnection_ServerType_Configuration>
+  <AddConnection_ServerType_Route>Route</AddConnection_ServerType_Route>
+  <AddConnection_ServerType_Arbitration>Arbitration</AddConnection_ServerType_Arbitration>
+
+  <AddConnection_Region_ReplaceSet>ReplaceSet Server</AddConnection_Region_ReplaceSet>
+  <AddConnection_Region_ReplaceSetName>ReplaceSet Name</AddConnection_Region_ReplaceSetName>
+  <AddConnection_Region_ReplaceSetName_Description>ReplaceSet Name(Option)</AddConnection_Region_ReplaceSetName_Description>
+  <AddConnection_Region_ReplaceSetList>ReplaceSet Server List</AddConnection_Region_ReplaceSetList>
+  <AddConnection_Region_ReplaceSetInit>Init ReplaceSet</AddConnection_Region_ReplaceSetInit>
+
+  <AddConnection_ConnectionString>Directly use ConnectionString</AddConnection_ConnectionString>
+  <AddConnection_Attention_Description>If Priority=0,then it can't be the ReplaceSet server</AddConnection_Attention_Description>
+  <AddConnection_Attention2_Description>Password is saved in config file without Encryption</AddConnection_Attention2_Description>
+ 
+  <!--frmCollectionIndex-->
+  <CollectionIndex_Title>Index Manager</CollectionIndex_Title>
+  <CollectionIndex_Tab_Current>Current</CollectionIndex_Tab_Current>
+  <CollectionIndex_Tab_Current_Del>Delete Selected</CollectionIndex_Tab_Current_Del>
+
+  <CollectionIndex_Tab_Manager>Manager</CollectionIndex_Tab_Manager>
+  <CollectionIndex_Tab_Manager_ADD>Add Index</CollectionIndex_Tab_Manager_ADD>
+  <CollectionIndex_TabMangt_IndexName_Description>Index Name(Option)</CollectionIndex_TabMangt_IndexName_Description>
+
+  <!--frmConnect-->
+  <Connect_Title>Connection</Connect_Title>
+  <Connect_Action_Del>Delete</Connect_Action_Del>
+  
+  <!--ConvertSql-->
+  <ConvertSql_Title>Convert Sql</ConvertSql_Title>
+
+  <!--frmDistinct-->
+  <Distinct_Action_LoadQuery>Load Query</Distinct_Action_LoadQuery>
+  <Distinct_SelectField>Please select Distinct</Distinct_SelectField>
+
+  <!--frmDosCommand-->
+  <DosCommand_Tab_Deploy>Deploy(Mongod)</DosCommand_Tab_Deploy>
+  <DosCommand_Tab_Deploy_Authentication>Authentication</DosCommand_Tab_Deploy_Authentication>
+  <DosCommand_Tab_Deploy_MasterAddress>Master Address</DosCommand_Tab_Deploy_MasterAddress>
+  <DosCommand_Tab_Deploy_Port>Port</DosCommand_Tab_Deploy_Port>
+  <DosCommand_Tab_Deploy_Master>Master</DosCommand_Tab_Deploy_Master>
+  <DosCommand_Tab_Deploy_Slave>Slave</DosCommand_Tab_Deploy_Slave>
+  <DosCommand_Tab_Deploy_SlaveSource>Slave Source</DosCommand_Tab_Deploy_SlaveSource>
+  <DosCommand_Tab_Deploy_DBPath>Database path</DosCommand_Tab_Deploy_DBPath>
+  <DosCommand_Tab_Deploy_LogPath>Log Path</DosCommand_Tab_Deploy_LogPath>
+  <DosCommand_Tab_Deploy_Log>Log</DosCommand_Tab_Deploy_Log>
+  <DosCommand_Tab_Deploy_AppendMode>Append Mode(default is overwrite mode)</DosCommand_Tab_Deploy_AppendMode>
+
+  <DosCommand_Tab_Backup>Backup and Restore(Mongodmp)</DosCommand_Tab_Backup>
+  <DosCommand_Tab_Backup_Server>Server</DosCommand_Tab_Backup_Server>
+  <DosCommand_Tab_Backup_Port>Port</DosCommand_Tab_Backup_Port>
+  <DosCommand_Tab_Backup_DBName>Database Name</DosCommand_Tab_Backup_DBName>
+  <DosCommand_Tab_Backup_DCName>DataCollection Name</DosCommand_Tab_Backup_DCName>
+  <DosCommand_Tab_Backup_Path>Backup Path</DosCommand_Tab_Backup_Path>
+
+  <DosCommand_Tab_ExIn>Import and Export(mongoImport/mongoExport)</DosCommand_Tab_ExIn>
+  <DosCommand_Tab_ExIn_Server>Server</DosCommand_Tab_ExIn_Server>
+  <DosCommand_Tab_ExIn_Port>Port</DosCommand_Tab_ExIn_Port>
+  <DosCommand_Tab_ExIn_DBName>Database Name</DosCommand_Tab_ExIn_DBName>
+  <DosCommand_Tab_ExIn_DCName>DataCollection Name</DosCommand_Tab_ExIn_DCName>
+  <DosCommand_Tab_ExIn_ColumnList>Column List</DosCommand_Tab_ExIn_ColumnList>
+  <DosCommand_Tab_ExIn_Workfile>Work File</DosCommand_Tab_ExIn_Workfile>
+  <DosCommand_Tab_ExIn_Import>Import</DosCommand_Tab_ExIn_Import>
+  <DosCommand_Tab_ExIn_Export>Export</DosCommand_Tab_ExIn_Export>
+  <DosCommand_Tab_ExIn_Operation>Operation</DosCommand_Tab_ExIn_Operation>
+
+  <DosCommand_Run>Run</DosCommand_Run>
+  <DosCommand_Browse>Browse...</DosCommand_Browse>
+  <DosCommand_Clean>Clean</DosCommand_Clean>
+  <DosCommand_LogLevel>Log Level</DosCommand_LogLevel>
+
+  <!--frmevalJS-->
+  <EvalJS_Title>Eval Javascript</EvalJS_Title>
+  <EvalJS_Method>Method</EvalJS_Method>
+  <EvalJS_Run>Run</EvalJS_Run>
+  <EvalJS_Parameter>Parameter(seperate by ',')</EvalJS_Parameter>
+
+  <!--frmGroup-->
+  <Group_Tab_Reduce>Reduce</Group_Tab_Reduce>
+  <Group_Tab_Finalize>Finalize</Group_Tab_Finalize>
+  <Group_Tab_Group>Group Column</Group_Tab_Group>
+  <Group_Tab_Group_Notes>Please select Group</Group_Tab_Group_Notes>
+  <Group_Tab_InitColumn>Add Var</Group_Tab_InitColumn>
+  <Group_Tab_InitColumn_Note>Please add Initalize Var</Group_Tab_InitColumn_Note>
+  <Group_Tab_Result>Result</Group_Tab_Result>
+  <Group_LoadQuery>Load Query</Group_LoadQuery>
+  
+  <!--frmOption-->
+  <Option_Title>Setting</Option_Title>
+  <Option_BinPath>Bin Path</Option_BinPath>
+  <Option_Language>Language</Option_Language>
+  <Option_RecordPerPage>Record Per Page</Option_RecordPerPage>
+  <Option_RefreshInterval>Refresh Interval</Option_RefreshInterval>
+
+  <!--frmMapReduce-->
+  <MapReduce_MapFunction>Map Function</MapReduce_MapFunction>
+  <MapReduce_ReduceFunction>Reduce Function</MapReduce_ReduceFunction>
+  <MapReduce_Result>Result</MapReduce_Result>
+  <MapReduce_Run>Run</MapReduce_Run>
+
+  <!--frmQuery-->
+  <Query_Title>Data Query</Query_Title>
+  <Query_Filter>Filter</Query_Filter>
+  <Query_Filter_AddCondition>Add Condition</Query_Filter_AddCondition>
+  <Query_FieldInfo>OutPut Field</Query_FieldInfo>
+  <Query_Action_Load>Load</Query_Action_Load>
+
+  <!--frmReplset-->
+  <Replset_Title>Replset Manager</Replset_Title>
+  <Replset_AddServer>Add Server</Replset_AddServer>
+  <Replset_RemoveServer>Remove Server</Replset_RemoveServer>
+  <Replset_Remove>Remove</Replset_Remove>
+
+  <!--frmServiceStatus-->
+  <ServiceStatus_Title>Server Status</ServiceStatus_Title>
+  <ServiceStatus_ServerInfo>Server Status Information[need manual refresh ]</ServiceStatus_ServerInfo>
+  <ServiceStatus_DataBaseInfo>DB Status Information</ServiceStatus_DataBaseInfo>
+  <ServiceStatus_CollectionInfo>Collection Status Information</ServiceStatus_CollectionInfo>
+  <ServiceStatus_ClusterInfo>Cluster Information</ServiceStatus_ClusterInfo>
+
+  <!--frmShardingConfig-->
+  <ShardingConfig_Title>Sharding Config</ShardingConfig_Title>
+  <ShardingConfig_AddSharding>Add Sharding</ShardingConfig_AddSharding>
+  <ShardingConfig_ReplsetName>ReplsetName</ShardingConfig_ReplsetName>
+
+  <ShardingConfig_EnableSharding>Enable Sharding</ShardingConfig_EnableSharding>
+  <ShardingConfig_Action_DBSharding>Enable DB Sharding</ShardingConfig_Action_DBSharding>
+  <ShardingConfig_Action_CollectionSharding>Enable Collection Sharding</ShardingConfig_Action_CollectionSharding>
+
+  <ShardingConfig_DBName>DataBase</ShardingConfig_DBName>
+  <ShardingConfig_CollectionName>Collection</ShardingConfig_CollectionName>
+  <ShardingConfig_FieldName>Field</ShardingConfig_FieldName>
+
+  <!--ctlIndexCreate-->
+  <ctlIndexCreate_Index>Index</ctlIndexCreate_Index>
+  <ctlIndexCreate_Description>Please input the column name here</ctlIndexCreate_Description>
+  <!--ctlFieldInfo-->
+  <ctlFieldInfo_Show>Show</ctlFieldInfo_Show>
+  
+  <!--DataBase_Status-->
+  <DataBase_Status_DataBaseName>DataBaseName</DataBase_Status_DataBaseName>
+  <DataBase_Status_CollectionCount>CollectionCount</DataBase_Status_CollectionCount>
+  <DataBase_Status_DataSize>DataSize</DataBase_Status_DataSize>
+  <DataBase_Status_FileSize>FileSize</DataBase_Status_FileSize>
+  <DataBase_Status_IndexCount>IndexCount</DataBase_Status_IndexCount>
+  <DataBase_Status_IndexSize>IndexSize</DataBase_Status_IndexSize>
+  <DataBase_Status_ObjectCount>ObjectCount</DataBase_Status_ObjectCount>
+  <DataBase_Status_StorageSize>StorageSize</DataBase_Status_StorageSize>
+
+  <!--Collection_Status-->
+  <Collection_Status_CollectionName>CollectionName</Collection_Status_CollectionName>
+  <Collection_Status_ObjectCount>ObjectCount</Collection_Status_ObjectCount>
+  <Collection_Status_DataSize>DataSize</Collection_Status_DataSize>
+  <Collection_Status_LastExtentSize>LastExtentSize</Collection_Status_LastExtentSize>
+  <Collection_Status_StorageSize>StorageSize</Collection_Status_StorageSize>
+  <Collection_Status_TotalIndexSize>TotalIndexSize</Collection_Status_TotalIndexSize>
+  <Collection_Status_AverageObjectSize>AverageObjectSize</Collection_Status_AverageObjectSize>
+  <Collection_Status_PaddingFactor>PaddingFactor</Collection_Status_PaddingFactor>
+  
+  <!--GFS-->
+  <GFS_filename>filename</GFS_filename>
+  <GFS_length>length</GFS_length>
+  <GFS_chunkSize>chunkSize</GFS_chunkSize>
+  <GFS_uploadDate>uploadDate</GFS_uploadDate>
+  <GFS_md5>md5</GFS_md5>
+
+  <!--Index-->
+  <Index_Background>Background</Index_Background>
+  <Index_RepeatDel>Repeat Delete</Index_RepeatDel>
+  <Index_Sparse>Sparse</Index_Sparse>
+  <Index_Unify>Unify</Index_Unify>
+  <Index_Name>Index Name</Index_Name>
+  <Index_Keys>Keys</Index_Keys>
+  <Index_Version>Version</Index_Version>
+  <Index_NameSpace>NameSpace</Index_NameSpace>
+  <Index_Asce>Asce</Index_Asce>
+  <Index_Desc>Desc</Index_Desc>
+  <Index_NoSort>NoSort</Index_NoSort>
+
+  <!--Exception-->
+  <Exception_NotConnected>Not Connected</Exception_NotConnected>
+  <Exception_AuthenticationException>AuthenticationException</Exception_AuthenticationException>
+  
+  <!--StatusBar-->
+  <Selected_Server>Selected Server</Selected_Server>
+  <Selected_DataBase>Selected DataBase</Selected_DataBase>
+  <Selected_Collection>Selected Collection</Selected_Collection>
+  <Selected_Data>Selected Data</Selected_Data>
+  <Selected_Indexes>Selected Indexes</Selected_Indexes>
+  <Selected_Index>Selected Index</Selected_Index>
+  <Selected_GFS>Selected GFS</Selected_GFS>
+  <Selected_UserList>Selected UserList</Selected_UserList>
+  <!--Common-->
+  <Common_Username>Username</Common_Username>
+  <Common_Password>Password</Common_Password>
+  <Common_ReadOnly>ReadOnly</Common_ReadOnly>
+  <Common_OK>OK</Common_OK>
+  <Common_Cancel>Cancel</Common_Cancel>
+  <Common_Refresh>Refresh</Common_Refresh>
+  <Common_Yes>Yes</Common_Yes>
+  <Common_No>No</Common_No>
+  <Common_Detail>Detail</Common_Detail>
+  <Common_Save>Save</Common_Save>
+  <Common_Modify>Modify</Common_Modify>
+  <Common_Add>Add</Common_Add>
+  
+  <Common_Server>Server</Common_Server>
+  <Common_DataBase>DataBase</Common_DataBase>
+  <Common_Collection>Collection</Common_Collection>
+  <Common_Host>Host</Common_Host>
+  <Common_Port>Port</Common_Port>
+
+  <Common_Collapse>Collapse</Common_Collapse>
+  <Common_Expansion>Expansion</Common_Expansion>
+  
+  <Common_Browse>Browse</Common_Browse>
+  <Common_Clear>Clear</Common_Clear>
+
+  <!--Create New DataBase-->
+  <Create_New_DataBase>Create New Database</Create_New_DataBase>
+  <Create_New_DataBase_Input>Please input New Database Name:</Create_New_DataBase_Input>
+  <Drop_DataBase>Drop DataBase</Drop_DataBase>
+  <Drop_DataBase_Confirm>Make sure to Drop this Database?</Drop_DataBase_Confirm>
+
+  <Create_New_Collection>Create New Collection</Create_New_Collection>
+  <Create_New_Collection_Input>Please input New Collection Name:</Create_New_Collection_Input>
+  <Drop_Collection>Drop Collection</Drop_Collection>
+  <Drop_Collection_Confirm>Make sure to Drop this Collection?</Drop_Collection_Confirm>
+  <Rename_Collection>Rename Collection</Rename_Collection>
+  <Rename_Collection_Input>Please input New Collection Name:</Rename_Collection_Input>
+  
+  <Drop_User>Drop User</Drop_User>
+  <Drop_User_Confirm>Make sure to Drop this User?</Drop_User_Confirm>
+
+  <Drop_Data>Drop Collection</Drop_Data>
+  <Drop_Data_Confirm>Make sure to Drop this Record(s)?</Drop_Data_Confirm>
+  
+</Language>

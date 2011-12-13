@@ -44,7 +44,7 @@
             // cmbForMap
             // 
             this.cmbForMap.FormattingEnabled = true;
-            this.cmbForMap.Location = new System.Drawing.Point(100, 28);
+            this.cmbForMap.Location = new System.Drawing.Point(86, 18);
             this.cmbForMap.Name = "cmbForMap";
             this.cmbForMap.Size = new System.Drawing.Size(151, 21);
             this.cmbForMap.TabIndex = 0;
@@ -52,7 +52,7 @@
             // cmbForReduce
             // 
             this.cmbForReduce.FormattingEnabled = true;
-            this.cmbForReduce.Location = new System.Drawing.Point(101, 239);
+            this.cmbForReduce.Location = new System.Drawing.Point(87, 227);
             this.cmbForReduce.Name = "cmbForReduce";
             this.cmbForReduce.Size = new System.Drawing.Size(151, 21);
             this.cmbForReduce.TabIndex = 3;
@@ -60,9 +60,9 @@
             // cmdSaveReduceJs
             // 
             this.cmdSaveReduceJs.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSaveReduceJs.Location = new System.Drawing.Point(257, 234);
+            this.cmdSaveReduceJs.Location = new System.Drawing.Point(243, 225);
             this.cmdSaveReduceJs.Name = "cmdSaveReduceJs";
-            this.cmdSaveReduceJs.Size = new System.Drawing.Size(70, 30);
+            this.cmdSaveReduceJs.Size = new System.Drawing.Size(70, 27);
             this.cmdSaveReduceJs.TabIndex = 4;
             this.cmdSaveReduceJs.Text = "Save";
             this.cmdSaveReduceJs.UseVisualStyleBackColor = false;
@@ -71,9 +71,9 @@
             // cmdSaveMapJs
             // 
             this.cmdSaveMapJs.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSaveMapJs.Location = new System.Drawing.Point(257, 22);
+            this.cmdSaveMapJs.Location = new System.Drawing.Point(243, 16);
             this.cmdSaveMapJs.Name = "cmdSaveMapJs";
-            this.cmdSaveMapJs.Size = new System.Drawing.Size(70, 30);
+            this.cmdSaveMapJs.Size = new System.Drawing.Size(70, 24);
             this.cmdSaveMapJs.TabIndex = 1;
             this.cmdSaveMapJs.Text = "Save";
             this.cmdSaveMapJs.UseVisualStyleBackColor = false;
@@ -83,7 +83,7 @@
             // 
             this.lblReduceFunction.AutoSize = true;
             this.lblReduceFunction.BackColor = System.Drawing.Color.Transparent;
-            this.lblReduceFunction.Location = new System.Drawing.Point(32, 244);
+            this.lblReduceFunction.Location = new System.Drawing.Point(18, 234);
             this.lblReduceFunction.Name = "lblReduceFunction";
             this.lblReduceFunction.Size = new System.Drawing.Size(58, 13);
             this.lblReduceFunction.TabIndex = 16;
@@ -93,7 +93,7 @@
             // 
             this.lblResult.AutoSize = true;
             this.lblResult.BackColor = System.Drawing.Color.Transparent;
-            this.lblResult.Location = new System.Drawing.Point(333, 28);
+            this.lblResult.Location = new System.Drawing.Point(327, 21);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(37, 13);
             this.lblResult.TabIndex = 15;
@@ -103,7 +103,7 @@
             // 
             this.lblMapFunction.AutoSize = true;
             this.lblMapFunction.BackColor = System.Drawing.Color.Transparent;
-            this.lblMapFunction.Location = new System.Drawing.Point(32, 31);
+            this.lblMapFunction.Location = new System.Drawing.Point(18, 21);
             this.lblMapFunction.Name = "lblMapFunction";
             this.lblMapFunction.Size = new System.Drawing.Size(41, 13);
             this.lblMapFunction.TabIndex = 14;
@@ -111,7 +111,7 @@
             // 
             // trvResult
             // 
-            this.trvResult.Location = new System.Drawing.Point(333, 55);
+            this.trvResult.Location = new System.Drawing.Point(319, 45);
             this.trvResult.Name = "trvResult";
             this.trvResult.Size = new System.Drawing.Size(363, 377);
             this.trvResult.TabIndex = 6;
@@ -119,7 +119,7 @@
             // txtMapJs
             // 
             this.txtMapJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMapJs.Location = new System.Drawing.Point(28, 55);
+            this.txtMapJs.Location = new System.Drawing.Point(14, 45);
             this.txtMapJs.Multiline = true;
             this.txtMapJs.Name = "txtMapJs";
             this.txtMapJs.Size = new System.Drawing.Size(299, 172);
@@ -129,7 +129,7 @@
             // txtReduceJs
             // 
             this.txtReduceJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReduceJs.Location = new System.Drawing.Point(28, 263);
+            this.txtReduceJs.Location = new System.Drawing.Point(14, 253);
             this.txtReduceJs.Multiline = true;
             this.txtReduceJs.Name = "txtReduceJs";
             this.txtReduceJs.Size = new System.Drawing.Size(299, 169);
@@ -141,9 +141,9 @@
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRun.Location = new System.Drawing.Point(621, 438);
+            this.cmdRun.Location = new System.Drawing.Point(594, 428);
             this.cmdRun.Name = "cmdRun";
-            this.cmdRun.Size = new System.Drawing.Size(75, 34);
+            this.cmdRun.Size = new System.Drawing.Size(88, 34);
             this.cmdRun.TabIndex = 7;
             this.cmdRun.Text = "Run";
             this.cmdRun.UseVisualStyleBackColor = false;
@@ -153,7 +153,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(719, 485);
+            this.ClientSize = new System.Drawing.Size(692, 471);
             this.Controls.Add(this.cmbForMap);
             this.Controls.Add(this.cmbForReduce);
             this.Controls.Add(this.cmdSaveReduceJs);

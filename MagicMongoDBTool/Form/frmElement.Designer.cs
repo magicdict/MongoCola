@@ -74,7 +74,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmElement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmElement";
+            this.Text = "Element";
             this.Load += new System.EventHandler(this.frmElement_Load);
             this.ResumeLayout(false);
 

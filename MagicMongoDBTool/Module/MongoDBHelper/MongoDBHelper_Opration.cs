@@ -216,7 +216,6 @@ namespace MagicMongoDBTool.Module
             MongoServer mongoSvr = GetMongoServerBySvrPath(strSvrPathWithTag);
             if (mongoSvr != null)
             {
-                String strTag = strSvrPathWithTag.Split(":".ToCharArray())[0];
                 String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
                 String[] strPathArray = strSvrPath.Split("/".ToCharArray());
                 if (strPathArray.Length > 1)

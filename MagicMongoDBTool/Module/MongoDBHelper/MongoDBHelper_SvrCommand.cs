@@ -34,9 +34,6 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static CommandResult AddSharding(MongoServer routeSvr, string replicaSetName, List<string> shardingNames)
         {
-            BsonDocument config = new BsonDocument();
-            BsonDocument cmd = new BsonDocument();
-            BsonDocument host = new BsonDocument();
             string cmdPara = replicaSetName + "/";
             foreach (var item in shardingNames)
             {

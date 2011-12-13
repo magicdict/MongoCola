@@ -43,7 +43,7 @@
             // 
             // numRefreshForStatus
             // 
-            this.numRefreshForStatus.Location = new System.Drawing.Point(128, 90);
+            this.numRefreshForStatus.Location = new System.Drawing.Point(132, 90);
             this.numRefreshForStatus.Maximum = new decimal(new int[] {
             180,
             0,
@@ -68,7 +68,7 @@
             // 
             this.lblRefreshIntervalForStatus.AutoSize = true;
             this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(12, 92);
+            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(12, 94);
             this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
             this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(111, 13);
             this.lblRefreshIntervalForStatus.TabIndex = 15;
@@ -76,7 +76,7 @@
             // 
             // numLimitCnt
             // 
-            this.numLimitCnt.Location = new System.Drawing.Point(128, 58);
+            this.numLimitCnt.Location = new System.Drawing.Point(132, 57);
             this.numLimitCnt.Maximum = new decimal(new int[] {
             500,
             0,
@@ -101,7 +101,7 @@
             // 
             this.lblLimitCnt.AutoSize = true;
             this.lblLimitCnt.BackColor = System.Drawing.Color.Transparent;
-            this.lblLimitCnt.Location = new System.Drawing.Point(11, 60);
+            this.lblLimitCnt.Location = new System.Drawing.Point(11, 61);
             this.lblLimitCnt.Name = "lblLimitCnt";
             this.lblLimitCnt.Size = new System.Drawing.Size(91, 13);
             this.lblLimitCnt.TabIndex = 13;
@@ -110,7 +110,7 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(404, 120);
+            this.cmdCancel.Location = new System.Drawing.Point(294, 131);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 30);
             this.cmdCancel.TabIndex = 5;
@@ -121,7 +121,7 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(237, 120);
+            this.cmdOK.Location = new System.Drawing.Point(156, 131);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(75, 30);
             this.cmdOK.TabIndex = 4;
@@ -133,7 +133,7 @@
             // 
             this.lblLanguage.AutoSize = true;
             this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
-            this.lblLanguage.Location = new System.Drawing.Point(234, 60);
+            this.lblLanguage.Location = new System.Drawing.Point(234, 61);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(55, 13);
             this.lblLanguage.TabIndex = 16;
