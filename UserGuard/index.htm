@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mongo-Cola|Gui tools for MongoDB</title>
+    <style type="text/css">
+        a
+        {
+            color: White;
+        }
+        table
+        {
+            background: #ffbf00;
+            width: 100%;
+        }
+        td
+        {
+            color: Black;
+        }
+        span
+        {
+            color: White;
+        }
+    </style>
+</head>
+<body style="background-color: #000000; color: #FFFFFF; margin: 0px; font-size: x-large">
+    <span>Introduce</span>
+    <table>
+        <tr align="center">
+            <td>
+                <img alt="" src="images/mongoCola.jpg" />
+            </td>
+            <td>
+                <font color="black" size="3"><b>This is a tool with can help you manage MongoDB easily.<br />
+                    With this tool You can :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+                    Create or Drop Database,Collection or Document Element by Gui interface.<br />
+                    Monitor the status of MongoDB realtime.
+                    <br />
+                    Run Shell functions without need to remember the commands syntax.<br />
+                    Import Data from Access Database (Windows OS Only)<br />
+                    It will be migrated to Mono for Linux OS as soon as possible<br />
+                </b>
+                    <br />
+                    <br />
+                </font><font color="black" size="2"><b>Because the tool use the offical C# driver,.NET
+                    framework 4.0 is needed.<br />
+                </b></font>
+            </td>
+        </tr>
+    </table>
+    <span>Tour:Basic</span>
+    <br />
+    <table>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Startup</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">As it is the first time you run this application,a language picker form
+                    will popup:<br />
+                    If English is your mother tongue,you can push OK directly
+                    <br />
+                    <br />
+                    <img src="images/LanguagePicker.PNG" alt="" />
+                    <br />
+                    <br />
+                    After language picker,you need to tell application where is your mongo executable
+                    path.<br />
+                    <br />
+                    <img src="images/Option.PNG" alt="" />
+                    <br />
+                    <font color="red"><b>In this tour,the mongo executable path is C:\runmongo\bin</b></font><br />
+                    <br />
+                    If you see the form below,the application is successful startup.<br />
+                    <img src="images/Main_Empty.PNG" alt="" /><br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Add Connection</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">The first thing to operate the mongoDB is add a MongoDB connection.<br />
+                    Please make sure that the mongo Server has been startup.<br />
+                    You can start mongoDB by DOS console like this:<br />
+                    <br />
+                    <code>cd C:\runmongo\bin<br />
+                        mkdir C:\mongodb\magicdict<br />
+                        mongod --port 28030 --dbpath C:\mongodb\magicdict </code>
+                    <br />
+                    <br />
+                    <img src="images/StartupbyDos.PNG" alt="" />
+                    <br />
+                    <br />
+                    More reference:<a href="http://www.mongodb.org/display/DOCS/Quickstart+Windows">Quickstart
+                        Windows</a><br />
+                    [A Mongo connection is not only a single server,but also a replset,a route or config
+                    server in sharding]<br />
+                    <br />
+                    Open the Connection Manager form by menu:<br />
+                    Managerment -> Connection Manager:<br />
+                    <br />
+                    <img src="images/ConnectionManager.PNG" alt="" />
+                    <br />
+                    <br />
+                    This form will list up all connections that you has registered in application.<br />
+                    Because of this is the first time you use this application,the list is empty.<br />
+                    Click “Add” to register a new connection.<br />
+                    <br />
+                    <img src="images/ServerConnection.PNG" alt="" />
+                    <br />
+                    <br />
+                    The simplest connection only need to fill 3 fields<br />
+                    <ul>
+                        <li>Connection(you can name the connection as you like)</li>
+                        <li>Host(the ip or host of server,you can fill ‘localhost’ when you do local test)</li>
+                        <li>Port(the port of server)</li>
+                    </ul>
+                    <img src="images/ServerConnection_Magicdict.PNG" alt="" />
+                    <br />
+                    <br />
+                    Pick the connection you registered right now, then click "OK".Now you can operate
+                    the mongo Server.<br />
+                    You can collapse or expansion the treeview by MenuItem:
+                    <ul>
+                        <li>Management -> collapse</li>
+                        <li>Management -> expansion</li>
+                    </ul>
+                    <img alt="" src="images/Main_MagicDict.PNG" />
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Disconnect</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">If the connection is not need any more,you can disconnect it by:
+                    <ul>
+                        <li>Menu: Opertion -> Server -> Disconnect</li>
+                        <li>Contextmenu: Right click the connection treenode to show contextmenu,click the disconnect
+                            menuitem</li>
+                    </ul>
+                </font>
+            </td>
+        </tr>
+    </table>
+    <span>Tour:Server[Connection]</span>
+    <table>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Server properties</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">This function will show the propery of selected server.
+                    <ul>
+                        <li>Menu: Opertion -> Server -> Server properties</li>
+                        <li>Contextmenu: Right click the connection treenode to show contextmenu,click the Server
+                            properties menuitem</li>
+                    </ul>
+                    <img src="images/ServerProperties.PNG" alt="" />
+                    <br />
+                    <br />
+                    <font color="red"><b>Some properties will not be shown at some type of connection.</b></font>
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Status</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">This function can help you monitor the status of server.
+                    <ul>
+                        <li>Menu: Management -> Status</li>
+                    </ul>
+                    <img src="images/StatusServer.PNG" alt="" />
+                    <br />
+                    <img src="images/StatusDB.PNG" alt="" />
+                    <br />
+                    <img src="images/StatusCollection.PNG" alt="" />
+                    <br />
+                    <br />
+                    <font color="red"><b>Cluster is useful at a replset.<br />
+                        Server Status need manual refresh</b></font>
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Shut Down</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">This function will shut down the server.
+                    <ul>
+                        <li>Menu: Management -> Shut Down</li>
+                        <li>Contextmenu: Right click the connection treenode to show contextmenu,click the Shut
+                            Down menuitem</li>
+                    </ul>
+                    <font color="red"><b>This function will completely shut down the server!<br /></font>
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

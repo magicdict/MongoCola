@@ -148,18 +148,18 @@ namespace MagicMongoDBTool.Module
             if (val.IsBsonBinaryData)
             {
                 _hasBSonBinary = true;
-                return "[二进制数据]";
+                return "[Binary]";
             }
             //空值
             if (val.IsBsonNull)
             {
-                return "[空值]";
+                return "[Empty]";
             }
 
             //文档
             if (val.IsBsonDocument)
             {
-                return val.ToString() + "[包含" + val.ToBsonDocument().ElementCount + "个元素的文档]";
+                return val.ToString() + "[Contains" + val.ToBsonDocument().ElementCount + "Documents]";
             }
 
             //时间
@@ -191,7 +191,7 @@ namespace MagicMongoDBTool.Module
             txtData.Clear();
             if (_hasBSonBinary)
             {
-                txtData.Text = "二进制数据块";
+                txtData.Text = "Binary Data";
             }
             else
             {
@@ -521,7 +521,7 @@ namespace MagicMongoDBTool.Module
 
         #region"展示状态"
         /// <summary>
-        /// 数据库基本信息
+        /// Fill Server Status to treeview
         /// </summary>
         /// <param name="trvSvrStatus"></param>
         public static void FillSrvStatusToList(TreeView trvSvrStatus)
@@ -545,7 +545,7 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// 将服务器状态放入ListView
+        /// Fill Database status to ListView
         /// </summary>
         /// <param name="lstSvr"></param>
         public static void FillDataBaseStatusToList(ListView lstSvr)
@@ -553,14 +553,14 @@ namespace MagicMongoDBTool.Module
             lstSvr.Clear();
             if (SystemManager.IsUseDefaultLanguage())
             {
-                lstSvr.Columns.Add("名称");
-                lstSvr.Columns.Add("数据集数量");
-                lstSvr.Columns.Add("数据大小");
-                lstSvr.Columns.Add("文件大小");
-                lstSvr.Columns.Add("索引数量");
-                lstSvr.Columns.Add("索引数量大小");
-                lstSvr.Columns.Add("对象数量");
-                lstSvr.Columns.Add("占用大小");
+                lstSvr.Columns.Add("DataBaseName");
+                lstSvr.Columns.Add("CollectionCount");
+                lstSvr.Columns.Add("DataSize");
+                lstSvr.Columns.Add("FileSize");
+                lstSvr.Columns.Add("IndexCount");
+                lstSvr.Columns.Add("IndexSize");
+                lstSvr.Columns.Add("ObjectCount");
+                lstSvr.Columns.Add("StorageSize");
             }
             else
             {
@@ -610,7 +610,7 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
-        /// 将Collection状态放入ListView
+        /// fill Collection status to ListView
         /// </summary>
         /// <param name="lstData"></param>
         public static void FillCollectionStatusToList(ListView lstData)
@@ -619,14 +619,14 @@ namespace MagicMongoDBTool.Module
 
             if (SystemManager.IsUseDefaultLanguage())
             {
-                lstData.Columns.Add("数据集名称");
-                lstData.Columns.Add("文档数量");
-                lstData.Columns.Add("实际大小");
-                lstData.Columns.Add("最新扩展大小");
-                lstData.Columns.Add("占用大小");
-                lstData.Columns.Add("索引");
-                lstData.Columns.Add("平均对象大小");
-                lstData.Columns.Add("填充因子");
+                lstData.Columns.Add("CollectionName");
+                lstData.Columns.Add("ObjectCount");
+                lstData.Columns.Add("DataSize");
+                lstData.Columns.Add("LastExtentSize");
+                lstData.Columns.Add("StorageSize");
+                lstData.Columns.Add("TotalIndexSize");
+                lstData.Columns.Add("AverageObjectSize");
+                lstData.Columns.Add("PaddingFactor");
             }
             else
             {

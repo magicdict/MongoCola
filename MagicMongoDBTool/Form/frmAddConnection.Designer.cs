@@ -354,7 +354,7 @@ namespace MagicMongoDBTool
             // 
             // txtConnectionString
             // 
-            this.txtConnectionString.Location = new System.Drawing.Point(32, 102);
+            this.txtConnectionString.Location = new System.Drawing.Point(38, 125);
             this.txtConnectionString.Multiline = true;
             this.txtConnectionString.Name = "txtConnectionString";
             this.txtConnectionString.Size = new System.Drawing.Size(515, 50);
@@ -363,7 +363,7 @@ namespace MagicMongoDBTool
             // lblConnectionString
             // 
             this.lblConnectionString.AutoSize = true;
-            this.lblConnectionString.Location = new System.Drawing.Point(35, 85);
+            this.lblConnectionString.Location = new System.Drawing.Point(35, 109);
             this.lblConnectionString.Name = "lblConnectionString";
             this.lblConnectionString.Size = new System.Drawing.Size(151, 13);
             this.lblConnectionString.TabIndex = 47;
@@ -414,7 +414,7 @@ namespace MagicMongoDBTool
             this.lblAttentionPassword.AutoSize = true;
             this.lblAttentionPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttentionPassword.ForeColor = System.Drawing.Color.Red;
-            this.lblAttentionPassword.Location = new System.Drawing.Point(35, 221);
+            this.lblAttentionPassword.Location = new System.Drawing.Point(35, 205);
             this.lblAttentionPassword.Name = "lblAttentionPassword";
             this.lblAttentionPassword.Size = new System.Drawing.Size(295, 13);
             this.lblAttentionPassword.TabIndex = 52;
@@ -424,7 +424,7 @@ namespace MagicMongoDBTool
             // 
             this.chkSlaveOk.AutoSize = true;
             this.chkSlaveOk.BackColor = System.Drawing.Color.Transparent;
-            this.chkSlaveOk.Location = new System.Drawing.Point(38, 185);
+            this.chkSlaveOk.Location = new System.Drawing.Point(119, 80);
             this.chkSlaveOk.Name = "chkSlaveOk";
             this.chkSlaveOk.Size = new System.Drawing.Size(68, 17);
             this.chkSlaveOk.TabIndex = 51;
@@ -433,7 +433,7 @@ namespace MagicMongoDBTool
             // 
             // numTimeOut
             // 
-            this.numTimeOut.Location = new System.Drawing.Point(374, 159);
+            this.numTimeOut.Location = new System.Drawing.Point(326, 79);
             this.numTimeOut.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -452,7 +452,7 @@ namespace MagicMongoDBTool
             // lblTimeOut
             // 
             this.lblTimeOut.AutoSize = true;
-            this.lblTimeOut.Location = new System.Drawing.Point(218, 161);
+            this.lblTimeOut.Location = new System.Drawing.Point(209, 84);
             this.lblTimeOut.Name = "lblTimeOut";
             this.lblTimeOut.Size = new System.Drawing.Size(106, 13);
             this.lblTimeOut.TabIndex = 50;
@@ -461,7 +461,7 @@ namespace MagicMongoDBTool
             // chkSafeMode
             // 
             this.chkSafeMode.AutoSize = true;
-            this.chkSafeMode.Location = new System.Drawing.Point(38, 158);
+            this.chkSafeMode.Location = new System.Drawing.Point(38, 80);
             this.chkSafeMode.Name = "chkSafeMode";
             this.chkSafeMode.Size = new System.Drawing.Size(75, 17);
             this.chkSafeMode.TabIndex = 48;

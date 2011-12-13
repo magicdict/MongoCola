@@ -2211,7 +2211,7 @@ namespace MagicMongoDBTool
             this.DataFilterToolStripMenuItem.Enabled = true;
             this.AggregationToolStripMenuItem.Enabled = true;
             SetToolBarEnabled();
-            String strTitle = "数据视图";
+            String strTitle = "Records";
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
