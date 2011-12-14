@@ -116,6 +116,9 @@
             this.Controls.Add(this.txtException);
             this.Controls.Add(this.panForBgcolor);
             this.Controls.Add(this.picImage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMesssage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Result";

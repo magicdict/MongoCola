@@ -93,6 +93,9 @@ namespace MagicMongoDBTool
             this.Controls.Add(this.cmdYes);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.picImage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmConfirm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmconfirm";

@@ -1383,6 +1383,43 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmUser(true));
         }
+
+        /// <summary>
+        /// 删除Admin用户
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strTitle = "Confirm";
+            String strMessage = "Are you sure to delete user(s) from Admin Group?";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
+            }
+
+            //这里也可以使用普通的删除数据的方法来删除用户。
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
+            {
+                if (tabDataShower.SelectedTab == tabTableView)
+                {
+                    //lstData
+                    foreach (ListViewItem item in lstData.SelectedItems)
+                    {
+                        MongoDBHelper.RemoveUserFromSvr(item.SubItems[1].Text);
+                    }
+                    lstData.ContextMenuStrip = null;
+                }
+                else
+                {
+                    MongoDBHelper.RemoveUserFromSvr(trvData.SelectedNode.Tag.ToString());
+                    trvData.ContextMenuStrip = null;
+                }
+                RemoveUserFromAdminToolStripMenuItem.Enabled = false;
+                RefreshData();
+            }
+        }
         /// <summary>
         /// SlaveResync
         /// </summary>
@@ -1508,6 +1545,40 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmUser(false));
         }
         /// <summary>
+        /// Delete User
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strTitle = "Confirm";
+            String strMessage = "Are you sure to delete user(s) from this database";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
+            }
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
+            {
+                if (tabDataShower.SelectedTab == tabTableView)
+                {
+                    //lstData
+                    foreach (ListViewItem item in lstData.SelectedItems)
+                    {
+                        MongoDBHelper.RemoveUserFromDB(item.SubItems[1].Text);
+                    }
+                    lstData.ContextMenuStrip = null;
+                }
+                else
+                {
+                    MongoDBHelper.RemoveUserFromDB(trvData.SelectedNode.Tag.ToString());
+                    trvData.ContextMenuStrip = null;
+                }
+                RemoveUserToolStripMenuItem.Enabled = false;
+                RefreshData();
+            }
+        }
+        /// <summary>
         /// Eval JS
         /// </summary>
         /// <param name="sender"></param>
@@ -1618,78 +1689,6 @@ namespace MagicMongoDBTool
         private void ReIndexToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SystemManager.GetCurrentCollection().ReIndex();
-        }
-        /// <summary>
-        /// 删除Admin用户
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RemoveUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //@那一剑风情 提出的删除前确认
-            String strTitle = "确认";
-            String strMessage = "删除用户确认";
-            if (!SystemManager.IsUseDefaultLanguage())
-            {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
-            }
-            //这里也可以使用普通的删除数据的方法来删除用户。
-            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
-            {
-                if (tabDataShower.SelectedTab == tabTableView)
-                {
-                    //lstData
-                    foreach (ListViewItem item in lstData.SelectedItems)
-                    {
-                        MongoDBHelper.RemoveUserFromSvr(item.SubItems[1].Text);
-                    }
-                    lstData.ContextMenuStrip = null;
-                }
-                else
-                {
-                    MongoDBHelper.RemoveUserFromSvr(trvData.SelectedNode.Tag.ToString());
-                    trvData.ContextMenuStrip = null;
-                }
-                RemoveUserFromAdminToolStripMenuItem.Enabled = false;
-                RefreshData();
-
-            }
-        }
-        /// <summary>
-        /// 删除用户
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //@那一剑风情 提出的删除前确认
-            String strTitle = "确认";
-            String strMessage = "删除用户确认";
-            if (!SystemManager.IsUseDefaultLanguage())
-            {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
-            }
-            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
-            {
-                if (tabDataShower.SelectedTab == tabTableView)
-                {
-                    //lstData
-                    foreach (ListViewItem item in lstData.SelectedItems)
-                    {
-                        MongoDBHelper.RemoveUserFromDB(item.SubItems[1].Text);
-                    }
-                    lstData.ContextMenuStrip = null;
-                }
-                else
-                {
-                    MongoDBHelper.RemoveUserFromDB(trvData.SelectedNode.Tag.ToString());
-                    trvData.ContextMenuStrip = null;
-                }
-                RemoveUserToolStripMenuItem.Enabled = false;
-                RefreshData();
-            }
         }
         /// <summary>
         /// 删除数据
