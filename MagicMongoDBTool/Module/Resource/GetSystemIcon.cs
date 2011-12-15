@@ -103,7 +103,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Icon GetIconByFileName(string fileName)
         {
-            if (fileName == null || fileName.Equals(string.Empty))
+            if (String.IsNullOrEmpty(fileName))
             {
                 return null;
             }
@@ -128,7 +128,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Icon GetIconByFileType(string fileType, bool isLarge)
         {
-            if (fileType == null || fileType.Equals(string.Empty))
+            if (String.IsNullOrEmpty(fileType))
             {
                 return null;
             }

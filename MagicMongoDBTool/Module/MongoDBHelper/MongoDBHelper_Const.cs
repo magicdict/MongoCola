@@ -71,6 +71,10 @@ namespace MagicMongoDBTool.Module
 
         #region"系统数据集名称常量"
         /// <summary>
+        /// Default Port
+        /// </summary>
+        public const int DEFAULT_PORT = 27017;
+        /// <summary>
         /// ADMIN
         /// </summary>
         public const string DATABASE_NAME_ADMIN = "admin";

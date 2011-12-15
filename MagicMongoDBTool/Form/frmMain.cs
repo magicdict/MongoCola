@@ -10,7 +10,7 @@ namespace MagicMongoDBTool
 {
     public partial class frmMain : Form
     {
-        #region"主程序"
+        #region"Main Program"
         public frmMain()
         {
             InitializeComponent();
@@ -19,34 +19,28 @@ namespace MagicMongoDBTool
             SetMenuImage();
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                //菜单文字
+                //Set Menu Text
                 SetMenuText();
             }
-            //初始化ToolBar
+            //Init ToolBar
             InitToolBar();
-            //设定工具栏
+            //Set Tool bar button enable 
             SetToolBarEnabled();
             if (SystemManager.DEBUG_MODE)
             {
-                //测试用自动连接
+                //For test
                 List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
                 connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList["Master"]);
                 MongoDBHelper.AddServer(connLst);
                 RefreshToolStripMenuItem_Click(null, null);
             }
-            trvsrvlst.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
-            tabDataShower.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
-            statusStripMain.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
-            menuStripMain.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
-            toolStripMain.MouseEnter += new EventHandler((x, y) => { Cursor = Cursors.Arrow; });
-
             if (SystemManager.MONO_MODE)
             {
                 this.Text += " MONO";
             }
         }
         /// <summary>
-        /// 设置文字
+        /// Set Menu Text
         /// </summary>
         private void SetMenuText()
         {
@@ -149,13 +143,21 @@ namespace MagicMongoDBTool
             this.tabTableView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Table);
             this.tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
         }
+
         /// <summary>
-        /// 数据展示
+        /// Control for show Data
         /// </summary>
         private List<Control> _dataShower = new List<Control>();
         /// <summary>
-        /// 数据展示控件
+        /// Current Connection Config
         /// </summary>
+        ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
+
+        /// <summary>
+        /// Load Form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmMain_Load(object sender, EventArgs e)
         {
 
@@ -168,7 +170,7 @@ namespace MagicMongoDBTool
             this.trvData.AfterSelect += new TreeViewEventHandler(trvData_AfterSelect_Top);
             this.trvData.KeyDown += new KeyEventHandler(trvData_KeyDown);
             this.tabDataShower.SelectedIndexChanged += new EventHandler(
-                //变换TAB时候，选中项目自动消失，所以删除数据也消失
+                //If tabpage changed,the selected data in dataview will disappear,set delete selected record to false
                     (x, y) =>
                     {
                         this.DelSelectRecordToolStripMenuItem.Enabled = false;
@@ -183,10 +185,13 @@ namespace MagicMongoDBTool
             _dataShower.Add(lstData);
             _dataShower.Add(trvData);
             _dataShower.Add(txtData);
-            DataNaviToolStripLabel.Text = string.Empty;
+            DataNaviToolStripLabel.Text = String.Empty;
+            //Open ConnectionManagement Form
+            SystemManager.OpenForm(new frmConnect());
+            RefreshToolStripMenuItem_Click(sender, e);
         }
         /// <summary>
-        /// 键盘事件
+        /// KeyEvent
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -195,6 +200,7 @@ namespace MagicMongoDBTool
             switch (e.KeyCode)
             {
                 case Keys.Delete:
+                    //Del
                     if (this.DelMongoDBToolStripMenuItem.Enabled)
                     {
                         DelMongoDBToolStripMenuItem_Click(null, null);
@@ -208,6 +214,7 @@ namespace MagicMongoDBTool
                     }
                     break;
                 case Keys.F2:
+                    //Rename
                     if (this.RenameCollectionToolStripMenuItem.Enabled)
                     {
                         RenameCollectionToolStripMenuItem_Click(null, null);
@@ -216,14 +223,10 @@ namespace MagicMongoDBTool
                 default:
                     break;
             }
-
         }
+
         /// <summary>
-        /// 当前服务器配置
-        /// </summary>
-        ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
-        /// <summary>
-        /// 鼠标选中节点
+        /// ConnectionList TreeView Node is clicked by mouse 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -238,7 +241,7 @@ namespace MagicMongoDBTool
             {
                 statusStripMain.Items[0].Image = GetSystemIcon.MainTreeImage.Images[e.Node.ImageIndex];
             }
-            //先禁用所有的操作，然后根据选中对象解禁
+            //First , set Every MenuItem to disable
             DisableAllOpr();
             if (e.Node.Tag != null)
             {
@@ -963,7 +966,7 @@ namespace MagicMongoDBTool
                     switch (SystemManager.GetCurrentCollection().Name)
                     {
                         case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
-                            //文件系统
+                            //Grid File System
                             this.contextMenuStripMain.Items.Add(this.DownloadFileToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.OpenFileToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DelFileToolStripMenuItem.Clone());
@@ -1216,7 +1219,7 @@ namespace MagicMongoDBTool
         private void clearDataShower()
         {
             lstData.Clear();
-            txtData.Text = "";
+            txtData.Text = String.Empty;
             trvData.Nodes.Clear();
             lstData.ContextMenuStrip = null;
             trvData.ContextMenuStrip = null;
@@ -1226,7 +1229,7 @@ namespace MagicMongoDBTool
 
         #region"数据库连接"
         /// <summary>
-        /// 添加数据库连接
+        /// Connection Management
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1236,7 +1239,7 @@ namespace MagicMongoDBTool
             RefreshToolStripMenuItem_Click(sender, e);
         }
         /// <summary>
-        /// 切断数据库
+        /// Disconnect 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1256,7 +1259,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 刷新
+        /// Refresh
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1267,7 +1270,7 @@ namespace MagicMongoDBTool
             MongoDBHelper.FillMongoServiceToTreeView(trvsrvlst);
         }
         /// <summary>
-        /// 服务器状态
+        /// Server Status
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1276,7 +1279,7 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmServiceStatus());
         }
         /// <summary>
-        /// 展开所有
+        /// Expand All
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1285,7 +1288,7 @@ namespace MagicMongoDBTool
             this.trvsrvlst.ExpandAll();
         }
         /// <summary>
-        /// 折叠所有
+        /// Collapse All
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1294,7 +1297,7 @@ namespace MagicMongoDBTool
             this.trvsrvlst.CollapseAll();
         }
         /// <summary>
-        /// 退出程序
+        /// Exit Application
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1305,9 +1308,9 @@ namespace MagicMongoDBTool
 
         #endregion
 
-        #region"工具"
+        #region"Tools"
         /// <summary>
-        /// 配置
+        /// Options
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1321,13 +1324,14 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 导入数据
+        /// Import data from access
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if !MONO
+            //MONO not support this function
             OpenFileDialog AccessFile = new OpenFileDialog();
             AccessFile.Filter = MongoDBHelper.MdbFilter;
             if (AccessFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -1365,7 +1369,7 @@ namespace MagicMongoDBTool
                 strDBName = MyMessageBox.ShowInput(SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_DataBase_Input),
                                                                        SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_DataBase));
             }
-            if (strDBName != string.Empty)
+            if (strDBName != String.Empty)
             {
                 if (MongoDBHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelper.Oprcode.Create, trvsrvlst.SelectedNode))
                 {
@@ -1375,7 +1379,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 建立Admin用户
+        /// Create User to Admin Group
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1385,13 +1389,13 @@ namespace MagicMongoDBTool
         }
 
         /// <summary>
-        /// 删除Admin用户
+        /// Drop User from Admin Group
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void RemoveUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strTitle = "Confirm";
+            String strTitle = "Drop User";
             String strMessage = "Are you sure to delete user(s) from Admin Group?";
             if (!SystemManager.IsUseDefaultLanguage())
             {
@@ -1486,7 +1490,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DelMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strTitle = "Confirm";
+            String strTitle = "Drop Database";
             String strMessage = "Are you really want to Drop current Database?";
             if (!SystemManager.IsUseDefaultLanguage())
             {
@@ -1526,7 +1530,7 @@ namespace MagicMongoDBTool
                 strCollection = MyMessageBox.ShowInput(SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection_Input),
                                                                            SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection));
             }
-            if (strCollection != string.Empty)
+            if (strCollection != String.Empty)
             {
                 if (MongoDBHelper.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelper.Oprcode.Create, trvsrvlst.SelectedNode))
                 {
@@ -1551,7 +1555,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strTitle = "Confirm";
+            String strTitle = "Drop User";
             String strMessage = "Are you sure to delete user(s) from this database";
             if (!SystemManager.IsUseDefaultLanguage())
             {
@@ -1609,10 +1613,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DelMongoCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //@那一剑风情 提出的删除前确认
-
-            String strTitle = "删除数据集确认";
-            String strMessage = "确认是否要删除数据集？";
+            String strTitle = "Drop Collection";
+            String strMessage = "Are you sure to drop this Collection?";
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Collection);
@@ -1645,7 +1647,7 @@ namespace MagicMongoDBTool
             String strNewCollectionName = String.Empty;
             if (SystemManager.IsUseDefaultLanguage())
             {
-                strNewCollectionName = MyMessageBox.ShowInput("请输入新数据集名称：", "数据集改名");
+                strNewCollectionName = MyMessageBox.ShowInput("Please input new collection name：", "Rename collection");
             }
             else
             {
@@ -1663,7 +1665,7 @@ namespace MagicMongoDBTool
                 SystemManager.SelectObjectTag = trvsrvlst.SelectedNode.Tag.ToString();
                 if (SystemManager.IsUseDefaultLanguage())
                 {
-                    statusStripMain.Items[0].Text = "选中数据集:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                    statusStripMain.Items[0].Text = "selected Collection:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                 }
                 else
                 {
@@ -1682,7 +1684,7 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmCollectionIndex());
         }
         /// <summary>
-        /// 重新索引
+        /// ReIndex
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1697,9 +1699,9 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DelSelectRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //@那一剑风情 提出的删除前确认
-            String strTitle = "确认";
-            String strMessage = "删除用户确认";
+
+            String strTitle = "Delete Document";
+            String strMessage = "Are you sure to delete selected document(s)?";
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
@@ -1729,7 +1731,7 @@ namespace MagicMongoDBTool
         }
 
         /// <summary>
-        /// 添加空文档
+        /// Add Empty Document to Collection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1748,7 +1750,7 @@ namespace MagicMongoDBTool
         }
 
         /// <summary>
-        /// 刷新数据
+        /// Refresh Data
         /// </summary>
         private void RefreshData()
         {
@@ -1761,7 +1763,7 @@ namespace MagicMongoDBTool
 
         #region"管理：元素操作"
         /// <summary>
-        /// 改变元素后是否需要刷新数据
+        /// Is Need Refresh after the element is modify
         /// </summary>
         private Boolean IsNeedRefresh = false;
         /// <summary>
@@ -1771,7 +1773,6 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //尝试添加
             SystemManager.OpenForm(new frmElement(false, trvData.SelectedNode));
             IsNeedRefresh = true;
         }
@@ -1784,7 +1785,7 @@ namespace MagicMongoDBTool
         {
             if (trvData.SelectedNode.Level == 1 & trvData.SelectedNode.PrevNode == null)
             {
-                MyMessageBox.ShowMessage("Error", "_id 不能被删除");
+                MyMessageBox.ShowMessage("Error", "_id Can't be delete");
                 return;
             }
             MongoDBHelper.DropElement(trvData.SelectedNode.FullPath);
@@ -1800,14 +1801,14 @@ namespace MagicMongoDBTool
         {
             if (trvData.SelectedNode.Level == 1 & trvData.SelectedNode.PrevNode == null)
             {
-                MyMessageBox.ShowMessage("Error", "_id 不能被删除");
+                MyMessageBox.ShowMessage("Error", "_id can't be modify");
                 return;
             }
             SystemManager.OpenForm(new frmElement(true, trvData.SelectedNode));
             IsNeedRefresh = true;
         }
         /// <summary>
-        /// 复制元素
+        /// Copy Element
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1816,7 +1817,7 @@ namespace MagicMongoDBTool
             MongoDBHelper.CopyElement(trvData.SelectedNode.FullPath);
         }
         /// <summary>
-        /// 粘贴元素
+        /// Paste Element
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1827,7 +1828,7 @@ namespace MagicMongoDBTool
             IsNeedRefresh = true;
         }
         /// <summary>
-        /// 剪切元素
+        /// Cut Element
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1835,7 +1836,7 @@ namespace MagicMongoDBTool
         {
             if (trvData.SelectedNode.Level == 1 & trvData.SelectedNode.PrevNode == null)
             {
-                MyMessageBox.ShowMessage("Error", "_id 不能被删除");
+                MyMessageBox.ShowMessage("Error", "_id can't be cut");
                 return;
             }
             MongoDBHelper.CutElement(trvData.SelectedNode.FullPath);
@@ -1846,7 +1847,7 @@ namespace MagicMongoDBTool
 
         #region"管理：GFS"
         /// <summary>
-        /// 上传文件
+        /// Upload File
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1860,7 +1861,7 @@ namespace MagicMongoDBTool
             RefreshData();
         }
         /// <summary>
-        /// 下载文件
+        /// DownLoad File
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1875,7 +1876,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 打开文件
+        /// Open File
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1885,14 +1886,20 @@ namespace MagicMongoDBTool
             MongoDBHelper.OpenFile(strFileName);
         }
         /// <summary>
-        /// 删除文件
+        /// Delete File
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DelFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //@那一剑风情 提出的删除前确认
-            if (MyMessageBox.ShowConfirm("确认", "删除文件确认"))
+            String strTitle = "Delete Files";
+            String strMessage = "Are you sure to delete selected File(s)?";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
+            }
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 if (tabDataShower.SelectedTab == tabTableView)
                 {
@@ -1923,9 +1930,9 @@ namespace MagicMongoDBTool
         {
             if (!MongodbDosCommand.IsMongoPathExist())
             {
-                MyMessageBox.ShowMessage("异常",
-                                         "Mongo目录没有找到，请确认",
-                                         "Mongo目录[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]没有找到，请重新设置。");
+                MyMessageBox.ShowMessage("Exception",
+                                         "Mongo Bin Path Can't be found",
+                                         "Mongo Bin Path[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]Can't be found");
                 SystemManager.OpenForm(new frmOption());
                 return false;
             }
@@ -1939,7 +1946,7 @@ namespace MagicMongoDBTool
         {
             StringBuilder Info = new StringBuilder();
             MongodbDosCommand.RunDosCommand(DosCommand, Info);
-            MyMessageBox.ShowMessage("DOS", "Dos命令执行结果：", Info.ToString(), true);
+            MyMessageBox.ShowMessage("DOS", "Dos Result：", Info.ToString(), true);
         }
         /// <summary>
         /// 恢复数据
@@ -1948,8 +1955,14 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RestoreMongoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //@那一剑风情 提出的删除前确认
-            if (MyMessageBox.ShowConfirm("确认", "恢复数据确认"))
+            String strTitle = "Restore";
+            String strMessage = "Are you sure to Restore?";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
+            }
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 if (!MongoPathCheck()) { return; }
                 MongodbDosCommand.StruMongoRestore MongoRestore = new MongodbDosCommand.StruMongoRestore();
@@ -1967,7 +1980,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 备份数据库
+        /// Dump Database
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1988,7 +2001,7 @@ namespace MagicMongoDBTool
             RunCommand(DosCommand);
         }
         /// <summary>
-        /// 备份数据集
+        /// Dump Collection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2010,7 +2023,7 @@ namespace MagicMongoDBTool
             RunCommand(DosCommand);
         }
         /// <summary>
-        /// 导出数据集
+        /// Export Collection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2024,6 +2037,8 @@ namespace MagicMongoDBTool
             MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
             MongoImportExport.CollectionName = SystemManager.GetCurrentCollection().Name;
             OpenFileDialog dumpFile = new OpenFileDialog();
+            //if the file not exist,the server will create a new one
+            dumpFile.CheckFileExists = false;
             if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 MongoImportExport.FileName = dumpFile.FileName;
@@ -2033,14 +2048,20 @@ namespace MagicMongoDBTool
             RunCommand(DosCommand);
         }
         /// <summary>
-        /// 导入数据集
+        /// Import Collection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ImportCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //@那一剑风情 提出的删除前确认
-            if (MyMessageBox.ShowConfirm("确认", "导入数据集确认"))
+            String strTitle = "Import Collection";
+            String strMessage = "Are you sure to Import Collection?";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
+            }
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 if (!MongoPathCheck()) { return; }
                 MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
@@ -2226,20 +2247,20 @@ namespace MagicMongoDBTool
         }
         #endregion
 
-        #region "帮助"
+        #region "Help"
         /// <summary>
-        /// 关于
+        /// About
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MyMessageBox.ShowMessage("关于", "MagicMongoDBTool",
+            MyMessageBox.ShowMessage("About", "MagicCola",
                                      MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile),
-                                     "GitHub地址： https://github.com/magicdict/MagicMongoDBTool");
+                                     "GitHub： https://github.com/magicdict/MagicMongoDBTool");
         }
         /// <summary>
-        /// 感谢
+        /// Thanks
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -2249,11 +2270,20 @@ namespace MagicMongoDBTool
             strThanks += "感谢10gen的C# Driver开发者的技术支持\r\n";
             strThanks += "感谢Dragon同志的测试和代码规范化";
             strThanks += "感谢MoLing同志的国际化";
-            MyMessageBox.ShowMessage("感谢", "MagicMongoDBTool",
+            MyMessageBox.ShowMessage("Thanks", "MagicCola",
                                      MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile),
                                      strThanks);
         }
+        /// <summary>
+        /// UserGuard
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void userGuardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strUrl = "http://www.magicdict.com/userguard/index.htm";
+            System.Diagnostics.Process.Start(strUrl);
+        }
         #endregion
-
     }
 }

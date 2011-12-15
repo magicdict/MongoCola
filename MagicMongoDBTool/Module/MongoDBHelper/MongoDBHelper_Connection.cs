@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MongoDB.Driver;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool.Module
 {
@@ -45,12 +43,11 @@ namespace MagicMongoDBTool.Module
                         {
                             mongoSvrSetting.SocketTimeout = new TimeSpan(0, 0, config.TimeOut);
                         }
-                        if ((config.UserName != string.Empty) & (config.Password != string.Empty))
+                        if (!(String.IsNullOrEmpty(config.UserName) | String.IsNullOrEmpty(config.Password)))
                         {
                             //认证的设定:注意，这里的密码是明文
                             mongoSvrSetting.DefaultCredentials = new MongoCredentials(config.UserName, config.Password, config.LoginAsAdmin);
                         }
-
                         if (config.ServerType == ConfigHelper.SvrType.ReplsetSvr)
                         {
                             //ReplsetName不是固有属性,可以设置，不过必须保持与配置文件的一致
@@ -120,7 +117,7 @@ namespace MagicMongoDBTool.Module
 
         #region"展示数据库结构"
         /// <summary>
-        /// 获得当前服务器信息
+        /// get current Server Information
         /// </summary>
         /// <returns></returns>
         public static String GetCurrentSvrInfo()
@@ -133,7 +130,7 @@ namespace MagicMongoDBTool.Module
             rtnSvrInfo += "Address：" + mongosvr.Instance.Address.ToString() + "\r\n";
             if (mongosvr.Instance.BuildInfo != null)
             {
-                //某种情况下，可能出现这个值为空
+                //Before mongo2.0.2 BuildInfo will be null without auth
                 rtnSvrInfo += "VersionString：" + mongosvr.Instance.BuildInfo.VersionString + "\r\n";
                 rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + "\r\n";
             }
@@ -477,7 +474,7 @@ namespace MagicMongoDBTool.Module
                 }
                 else
                 {
-                    mongoIndex.Text = ("IndexName:" + indexDoc.Name);
+                    mongoIndex.Text = "IndexName:" + indexDoc.Name;
                     mongoIndex.Nodes.Add("Keys:" + indexDoc.Key.ToString());
                     mongoIndex.Nodes.Add("DroppedDups :" + indexDoc.DroppedDups.ToString());
                     mongoIndex.Nodes.Add("IsBackground:" + indexDoc.IsBackground.ToString());

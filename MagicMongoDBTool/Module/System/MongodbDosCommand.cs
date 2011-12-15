@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
@@ -35,7 +34,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 端口号
             /// </summary>
-            public int Port = 27017;
+            public int Port = MongoDBHelper.DEFAULT_PORT;
             /// <summary>
             /// 是否为Master
             /// </summary>
@@ -107,13 +106,13 @@ namespace MagicMongoDBTool.Module
             //mongo.exe 客户端程序
             string dosCommand = @"mongod --dbpath @dbpath --port @port ";
             //数据库路径
-            dosCommand = dosCommand.Replace("@dbpath", mongod.DBPath);
+            dosCommand = dosCommand.Replace("@dbpath", "\"" + mongod.DBPath + "\"");
             //端口号
             dosCommand = dosCommand.Replace("@port", mongod.Port.ToString());
             //日志文件
             if (mongod.LogPath != string.Empty)
             {
-                dosCommand += " --logpath " + mongod.LogPath;
+                dosCommand += " --logpath \"" + mongod.LogPath + "\"";
                 switch (mongod.LogLV)
                 {
                     case MongologLevel.Quiet:
@@ -181,7 +180,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 主机端口
             /// </summary>
-            public Int32 Port = 27017;
+            public Int32 Port = MongoDBHelper.DEFAULT_PORT;
             /// <summary>
             /// 数据库名称
             /// </summary>
@@ -220,7 +219,7 @@ namespace MagicMongoDBTool.Module
             if (mongoDump.OutPutPath != string.Empty)
             {
                 //-o CollectionName Or --out CollectionName
-                dosCommand += " --out " + mongoDump.OutPutPath;
+                dosCommand += " --out \"" + mongoDump.OutPutPath + "\"";
             }
             return dosCommand;
         }
@@ -236,7 +235,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 主机端口
             /// </summary>
-            public Int32 Port = 27017;
+            public Int32 Port = MongoDBHelper.DEFAULT_PORT;
             /// <summary>
             /// 备份数据库路径
             /// </summary>
@@ -281,7 +280,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 主机端口
             /// </summary>
-            public Int32 Port = 27017;
+            public Int32 Port = MongoDBHelper.DEFAULT_PORT;
             /// <summary>
             /// 数据库名称
             /// </summary>
@@ -325,7 +324,7 @@ namespace MagicMongoDBTool.Module
                 }
                 if (mongoImprotExport.FileName != string.Empty)
                 {
-                    dosCommand += " --file " + mongoImprotExport.FileName;
+                    dosCommand += " --file \"" + mongoImprotExport.FileName + "\"";
                 }
             }
             else
@@ -333,7 +332,7 @@ namespace MagicMongoDBTool.Module
                 dosCommand = @"mongoexport -h @hostaddr:@port -d @dbname";
                 if (mongoImprotExport.FileName != string.Empty)
                 {
-                    dosCommand += " --out " + mongoImprotExport.FileName;
+                    dosCommand += " --out \"" + mongoImprotExport.FileName + "\"";
                 }
             }
             dosCommand = dosCommand.Replace("@hostaddr", mongoImprotExport.HostAddr);
@@ -360,6 +359,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="sb"></param>
         public static void RunDosCommand(String DosCommand, StringBuilder sb)
         {
+#if !MONO 
             Process myProcess = new Process();
             myProcess.StartInfo.FileName = "cmd";
             myProcess.StartInfo.UseShellExecute = false;
@@ -387,6 +387,9 @@ namespace MagicMongoDBTool.Module
             stringReader.Close();
             streamReaderError.Close();
             myProcess.Close();
+#else
+            sb.AppendLine("This method is not implement in Linux");
+#endif
         }
     }
 }
