@@ -12,7 +12,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 管理中服务器列表
         /// </summary>
-        public static Dictionary<string, MongoServer> _mongoSrvLst = new Dictionary<string, MongoServer>();
+        public static Dictionary<String, MongoServer> _mongoSrvLst = new Dictionary<String, MongoServer>();
         /// <summary>
         /// 增加管理服务器
         /// </summary>
@@ -124,15 +124,15 @@ namespace MagicMongoDBTool.Module
         {
             String rtnSvrInfo = String.Empty;
             MongoServer mongosvr = SystemManager.GetCurrentService();
-            rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter.ToString() + "\r\n";
-            rtnSvrInfo += "IsPrimary：" + mongosvr.Instance.IsPrimary.ToString() + "\r\n";
-            rtnSvrInfo += "IsSecondary：" + mongosvr.Instance.IsSecondary.ToString() + "\r\n";
-            rtnSvrInfo += "Address：" + mongosvr.Instance.Address.ToString() + "\r\n";
+            rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter.ToString() + System.Environment.NewLine;
+            rtnSvrInfo += "IsPrimary：" + mongosvr.Instance.IsPrimary.ToString() + System.Environment.NewLine;
+            rtnSvrInfo += "IsSecondary：" + mongosvr.Instance.IsSecondary.ToString() + System.Environment.NewLine;
+            rtnSvrInfo += "Address：" + mongosvr.Instance.Address.ToString() + System.Environment.NewLine;
             if (mongosvr.Instance.BuildInfo != null)
             {
                 //Before mongo2.0.2 BuildInfo will be null without auth
-                rtnSvrInfo += "VersionString：" + mongosvr.Instance.BuildInfo.VersionString + "\r\n";
-                rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + "\r\n";
+                rtnSvrInfo += "VersionString：" + mongosvr.Instance.BuildInfo.VersionString + System.Environment.NewLine;
+                rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + System.Environment.NewLine;
             }
             return rtnSvrInfo;
         }
@@ -143,7 +143,7 @@ namespace MagicMongoDBTool.Module
         public static void FillMongoServiceToTreeView(TreeView trvMongoDB)
         {
             trvMongoDB.Nodes.Clear();
-            foreach (string mongoSvrKey in _mongoSrvLst.Keys)
+            foreach (String mongoSvrKey in _mongoSrvLst.Keys)
             {
                 MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
                 TreeNode mongoSvrNode = new TreeNode();
@@ -175,7 +175,7 @@ namespace MagicMongoDBTool.Module
                     }
                     //获取ReadOnly
                     config.IsReadOnly = false;
-                    List<string> databaseNameList = new List<string>();
+                    List<String> databaseNameList = new List<String>();
                     if (!String.IsNullOrEmpty(config.DataBaseName))
                     {
                         //单数据库模式
@@ -269,7 +269,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="mongoSvr"></param>
         /// <param name="mongoSvrKey"></param>
         /// <returns></returns>
-        private static TreeNode FillDataBaseInfoToTreeNode(string strDBName, MongoServer mongoSvr, string mongoSvrKey)
+        private static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongoSvr, String mongoSvrKey)
         {
             String strShowDBName = strDBName;
             if (!SystemManager.IsUseDefaultLanguage())
@@ -326,7 +326,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="mongoDB"></param>
         /// <param name="mongoSvrKey"></param>
         /// <returns></returns>
-        private static TreeNode FillCollectionInfoToTreeNode(string strColName, MongoDatabase mongoDB, string mongoSvrKey)
+        private static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase mongoDB, String mongoSvrKey)
         {
             String strShowColName = strColName;
             if (!SystemManager.IsUseDefaultLanguage())

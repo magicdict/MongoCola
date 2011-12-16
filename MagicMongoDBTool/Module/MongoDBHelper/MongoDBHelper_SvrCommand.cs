@@ -32,9 +32,9 @@ namespace MagicMongoDBTool.Module
         /// <param name="replicaSetName"></param>
         /// <param name="shardingNames"></param>
         /// <returns></returns>
-        public static CommandResult AddSharding(MongoServer routeSvr, string replicaSetName, List<string> shardingNames)
+        public static CommandResult AddSharding(MongoServer routeSvr, String replicaSetName, List<String> shardingNames)
         {
-            string cmdPara = replicaSetName + "/";
+            String cmdPara = replicaSetName + "/";
             foreach (var item in shardingNames)
             {
                 cmdPara += SystemManager.ConfigHelperInstance.ConnectionList[item].Host + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString() + ",";
@@ -77,7 +77,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="mongoSvr">副本组主服务器</param>
         /// <param name="replicaSetName">副本名称</param>
         /// <param name="HostList">从属服务器列表</param>
-        public static CommandResult InitReplicaSet(string replicaSetName, List<string> HostList)
+        public static CommandResult InitReplicaSet(String replicaSetName, List<String> HostList)
         {
             //第一台服务器作为Primary服务器
             MongoServerSettings PrimarySetting = new MongoServerSettings();

@@ -33,7 +33,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 扩展名和图片下标关联
         /// </summary>
-        public static Dictionary<String, Int32> IconList = new Dictionary<string, Int32>();
+        public static Dictionary<String, Int32> IconList = new Dictionary<String, Int32>();
         /// <summary>
         /// 图片数组
         /// </summary>
@@ -76,9 +76,9 @@ namespace MagicMongoDBTool.Module
         /// <param name="fileName"></param>
         /// <param name="isLarge"></param>
         /// <returns></returns>
-        public static Int32 GetIconIndexByFileName(string fileName, bool isLarge)
+        public static Int32 GetIconIndexByFileName(String fileName, bool isLarge)
         {
-            string GetIcon = new FileInfo(fileName).Extension;
+            String GetIcon = new FileInfo(fileName).Extension;
             if (IconList.ContainsKey(GetIcon))
             {
                 return IconList[GetIcon];
@@ -101,7 +101,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static Icon GetIconByFileName(string fileName)
+        public static Icon GetIconByFileName(String fileName)
         {
             if (String.IsNullOrEmpty(fileName))
             {
@@ -126,7 +126,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="fileType"></param>
         /// <param name="isLarge"></param>
         /// <returns></returns>
-        public static Icon GetIconByFileType(string fileType, bool isLarge)
+        public static Icon GetIconByFileType(String fileType, bool isLarge)
         {
             if (String.IsNullOrEmpty(fileType))
             {
@@ -134,9 +134,9 @@ namespace MagicMongoDBTool.Module
             }
 
             RegistryKey regVersion = null;
-            string regFileType = null;
-            string regIconString = null;
-            string systemDirectory = Environment.SystemDirectory + "\\";
+            String regFileType = null;
+            String regIconString = null;
+            String systemDirectory = Environment.SystemDirectory + "\\";
 
             if (fileType[0] == '.')
             {
@@ -144,12 +144,12 @@ namespace MagicMongoDBTool.Module
                 regVersion = Registry.ClassesRoot.OpenSubKey(fileType, true);
                 if (regVersion != null)
                 {
-                    regFileType = regVersion.GetValue("") as string;
+                    regFileType = regVersion.GetValue("") as String;
                     regVersion.Close();
                     regVersion = Registry.ClassesRoot.OpenSubKey(regFileType + @"\DefaultIcon", true);
                     if (regVersion != null)
                     {
-                        regIconString = regVersion.GetValue("") as string;
+                        regIconString = regVersion.GetValue("") as String;
                         regVersion.Close();
                     }
                 }
@@ -164,11 +164,11 @@ namespace MagicMongoDBTool.Module
                 //直接指定为文件夹图标
                 regIconString = systemDirectory + "shell32.dll,3";
             }
-            string[] fileIcon = regIconString.Split(new char[] { ',' });
+            String[] fileIcon = regIconString.Split(new char[] { ',' });
             if (fileIcon.Length != 2)
             {
                 //系统注册表中注册的标图不能直接提取，则返回可执行文件的通用图标
-                fileIcon = new string[] { systemDirectory + "shell32.dll", "2" };
+                fileIcon = new String[] { systemDirectory + "shell32.dll", "2" };
             }
             Icon resultIcon = null;
             try
@@ -195,9 +195,9 @@ namespace MagicMongoDBTool.Module
         public IntPtr iIcon;
         public uint dwAttributes;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
-        public string szDisplayName;
+        public String szDisplayName;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
-        public string szTypeName;
+        public String szTypeName;
     };
     ///
     /// 定义调用的API方法
@@ -209,9 +209,9 @@ namespace MagicMongoDBTool.Module
         public const uint SHGFI_SMALLICON = 0x1; // 'Small icon
 
         [DllImport("shell32.dll")]
-        public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
+        public static extern IntPtr SHGetFileInfo(String pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
         [DllImport("shell32.dll")]
-        public static extern uint ExtractIconEx(string lpszFile, int nIconIndex, int[] phiconLarge, int[] phiconSmall, uint nIcons);
+        public static extern uint ExtractIconEx(String lpszFile, int nIconIndex, int[] phiconLarge, int[] phiconSmall, uint nIcons);
     }
 #endif
 }

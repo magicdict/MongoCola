@@ -89,10 +89,10 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdAddSharding_Click(object sender, EventArgs e)
         {
-            List<string> srvKeys = new List<string>();
+            List<String> srvKeys = new List<String>();
             if (lstShard.SelectedItems.Count > 0)
             {
-                foreach (string item in lstShard.SelectedItems)
+                foreach (String item in lstShard.SelectedItems)
                 {
                     srvKeys.Add(item);
                 }
@@ -133,7 +133,7 @@ namespace MagicMongoDBTool
             {
                 MongoDatabase mongoDB = _prmSvr.GetDatabase(cmbDataBase.Text);
                 cmbKeyList.Items.Clear();
-                cmbKeyList.Text = string.Empty;
+                cmbKeyList.Text = String.Empty;
                 foreach (var Indexitem in mongoDB.GetCollection(cmbCollection.Text).GetIndexes())
                 {
                     cmbKeyList.Items.Add(Indexitem.Name);

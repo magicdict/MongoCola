@@ -44,7 +44,7 @@ namespace MagicMongoDBTool
         /// DB路径
         /// </summary>
         /// <param name="FilePath"></param>
-        void ctlFilePickerDBPath_PathChanged(string FilePath)
+        void ctlFilePickerDBPath_PathChanged(String FilePath)
         {
             MongodCommand.DBPath = FilePath;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
@@ -53,7 +53,7 @@ namespace MagicMongoDBTool
         /// 路径
         /// </summary>
         /// <param name="FilePath"></param>
-        void ctlFilePickerT_PathChanged(string FilePath)
+        void ctlFilePickerT_PathChanged(String FilePath)
         {
             MongodCommand.LogPath = FilePath;
             CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));

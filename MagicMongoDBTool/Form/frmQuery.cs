@@ -162,7 +162,7 @@ namespace MagicMongoDBTool
                     //动态加载控件
                     if (!ColumnList.Contains(queryFieldItem.ColName))
                     {
-                        strErrMsg += queryFieldItem.ColName + "Display Field is not exist in current collection any more" + "\r\n";
+                        strErrMsg += queryFieldItem.ColName + "Display Field is not exist in current collection any more" + System.Environment.NewLine;
                     }
                     else {
                         ctlFieldInfo ctrItem = new ctlFieldInfo();
@@ -178,7 +178,7 @@ namespace MagicMongoDBTool
                 //新增字段
                 foreach (String item in ShowColumnList)
                 {
-                    strErrMsg += "New Field" + item + "Is Append" + "\r\n";
+                    strErrMsg += "New Field" + item + "Is Append" + System.Environment.NewLine;
                     //输出配置的初始化
                     DataFilter.QueryFieldItem queryFieldItem = new DataFilter.QueryFieldItem();
                     queryFieldItem.ColName = item;
@@ -209,7 +209,7 @@ namespace MagicMongoDBTool
                     _conditionPos.Y += newCondition.Height;
                     if (!ColumnList.Contains(queryConditionItem.ColName))
                     {
-                        strErrMsg += queryConditionItem.ColName + "Query Condition Field is not exist in collection any more" + "\r\n";
+                        strErrMsg += queryConditionItem.ColName + "Query Condition Field is not exist in collection any more" + System.Environment.NewLine;
                     }
                 }
 

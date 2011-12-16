@@ -62,7 +62,7 @@ namespace MagicMongoDBTool.Module
                 }
             }
 
-            String[] KeyWords = new string[] { "select", "from", "where", "group", "order" };
+            String[] KeyWords = new String[] { "select", "from", "where", "group", "order" };
 
             //From 设定 必须项
             //From - > CollectionName
@@ -342,7 +342,7 @@ namespace MagicMongoDBTool.Module
                     default:
                         if (mQueryConditionInputItem.ColName == null)
                         {
-                            foreach (string ColName in ColumnNameLst)
+                            foreach (String ColName in ColumnNameLst)
                             {
                                 if (ColName.ToLower() == strToken.ToLower())
                                 {

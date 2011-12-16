@@ -14,7 +14,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 数据连接字符串
         /// </summary>
-        private const string ACCESS_CONNECTION_STRING = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=@AccessPath;Persist Security Info=True";
+        private const String ACCESS_CONNECTION_STRING = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=@AccessPath;Persist Security Info=True";
         /// <summary>
         /// 列信息
         /// </summary>
@@ -57,7 +57,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="numericPrecision"></param>
         /// <param name="numericScale"></param>
         /// <returns></returns>
-        private static string GetDataType(int oleDataType, long columnSize, int numericPrecision, int numericScale)
+        private static String GetDataType(int oleDataType, long columnSize, int numericPrecision, int numericScale)
         {
 
             switch (oleDataType)
@@ -162,14 +162,14 @@ namespace MagicMongoDBTool.Module
         /// <param name="strSvrPathWithTag"></param>
         /// <param name="currentTreeNode"></param>
         /// <returns></returns>
-        public static Boolean ImportAccessDataBase(string accessFileName, string strSvrPathWithTag, TreeNode currentTreeNode)
+        public static Boolean ImportAccessDataBase(String accessFileName, String strSvrPathWithTag, TreeNode currentTreeNode)
         {
             Boolean rtnCode = false;
 
             MongoServer mongoSvr = GetMongoServerBySvrPath(strSvrPathWithTag);
-            string[] fileName = accessFileName.Split(@"\".ToCharArray());
-            string fileMain = fileName[fileName.Length - 1];
-            string insertDBName = fileMain.Split(".".ToCharArray())[0];
+            String[] fileName = accessFileName.Split(@"\".ToCharArray());
+            String fileMain = fileName[fileName.Length - 1];
+            String insertDBName = fileMain.Split(".".ToCharArray())[0];
             MongoDatabase mongoDB = mongoSvr.GetDatabase(insertDBName);
             OleDbConnection conn = new OleDbConnection(ACCESS_CONNECTION_STRING.Replace("@AccessPath", accessFileName));
             try
@@ -178,7 +178,7 @@ namespace MagicMongoDBTool.Module
                 DataTable tblTableList = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "Table" });
                 foreach (DataRow recTable in tblTableList.Rows)
                 {
-                    string strTableName = recTable[2].ToString();
+                    String strTableName = recTable[2].ToString();
                     try
                     {
                         //不支持UTF....,执行会失败，但是Collection已经添加了
@@ -195,8 +195,8 @@ namespace MagicMongoDBTool.Module
 
                     MongoCollection mongoCollection = mongoDB.GetCollection(strTableName);
                     DataTable tblSchema = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Columns, new object[] { null, null, strTableName, null });
-                    Dictionary<string, string> colPro = new Dictionary<string, string>();
-                    List<string> colName = new List<string>();
+                    Dictionary<String, String> colPro = new Dictionary<String, String>();
+                    List<String> colName = new List<String>();
                     foreach (DataRow item in tblSchema.Rows)
                     {
                         long columnWidth;
@@ -276,8 +276,8 @@ namespace MagicMongoDBTool.Module
                         mongoCollection.Insert<BsonDocument>(insertDoc);
                     }
                 }
-                string strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
-                string svrKey = strSvrPath.Split("/".ToCharArray())[0];
+                String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
+                String svrKey = strSvrPath.Split("/".ToCharArray())[0];
                 currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, svrKey));
                 rtnCode = true;
             }

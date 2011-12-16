@@ -30,7 +30,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 选择对象标签
         /// </summary>
-        public static string SelectObjectTag = string.Empty;
+        public static String SelectObjectTag = String.Empty;
         /// <summary>
         /// 选中数据主键
         /// </summary>
@@ -56,7 +56,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static ConfigHelper.MongoConnectionConfig GetSelectedSvrProByName()
         {
-            string svrName = SelectObjectTag.Split(":".ToCharArray())[1];
+            String svrName = SelectObjectTag.Split(":".ToCharArray())[1];
             svrName = svrName.Split("/".ToCharArray())[0];
             ConfigHelper.MongoConnectionConfig rtnMongoConnectionConfig = new ConfigHelper.MongoConnectionConfig();
             if (ConfigHelperInstance.ConnectionList.ContainsKey(svrName))
@@ -113,9 +113,9 @@ namespace MagicMongoDBTool.Module
         /// 获得JS名称列表
         /// </summary>
         /// <returns></returns>
-        public static List<string> GetJsNameList()
+        public static List<String> GetJsNameList()
         {
-            List<string> jsNamelst = new List<string>();
+            List<String> jsNamelst = new List<String>();
             foreach (var item in GetCurrentJsCollection().FindAllAs<BsonDocument>())
             {
                 jsNamelst.Add(item.GetValue("_id").ToString());

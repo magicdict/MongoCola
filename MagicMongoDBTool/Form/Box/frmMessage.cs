@@ -67,7 +67,7 @@ namespace MagicMongoDBTool
         /// <param name="Message"></param>
         /// <param name="img"></param>
         /// <param name="Details"></param>
-        internal void SetMessage(string Message, System.Drawing.Image img, string Details)
+        internal void SetMessage(String Message, System.Drawing.Image img, String Details)
         {
             this.picImage.Image = img;
             SetMessage(Message, Details);

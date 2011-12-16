@@ -8,8 +8,8 @@ namespace MagicMongoDBTool
 {
     public partial class frmDosCommand : Form
     {
-        public string StrSaveText = string.Empty;
-        public delegate void CommandChangedEventHandler(string strCommandLine);
+        public String StrSaveText = String.Empty;
+        public delegate void CommandChangedEventHandler(String strCommandLine);
         public frmDosCommand()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace MagicMongoDBTool
         /// //命令参数变化
         /// </summary>
         /// <param name="strCommandLine"></param>
-        void CommandChanged(string strCommandLine)
+        void CommandChanged(String strCommandLine)
         {
             this.txtDosCommand.Text = strCommandLine;
             StrSaveText = strCommandLine;
@@ -46,7 +46,7 @@ namespace MagicMongoDBTool
         private void cmdRunDos_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
-            if (this.txtDosCommand.Text != string.Empty)
+            if (this.txtDosCommand.Text != String.Empty)
             {
                 MongodbDosCommand.RunDosCommand(txtDosCommand.Text, sb);
                 this.txtDosCommand.Text += System.Environment.NewLine;

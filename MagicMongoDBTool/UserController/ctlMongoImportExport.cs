@@ -29,7 +29,7 @@ namespace MagicMongoDBTool.Module
                 ctlFilePickerOutput.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_ExIn_Workfile);
             }
         }
-        void ctlFilePickerOutput_PathChanged(string FilePath)
+        void ctlFilePickerOutput_PathChanged(String FilePath)
         {
             MongoImportExportCommand.FileName = FilePath;
             CommandChanged(MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand));

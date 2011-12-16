@@ -20,7 +20,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static String[] GetOutputFields(List<DataFilter.QueryFieldItem> FieldItemLst)
         {
-            List<String> outputFieldLst = new List<string>();
+            List<String> outputFieldLst = new List<String>();
             foreach (var item in FieldItemLst)
             {
                 if (item.IsShow)
@@ -37,8 +37,8 @@ namespace MagicMongoDBTool.Module
         public static SortByBuilder GetSort(List<DataFilter.QueryFieldItem> FieldItemLst)
         {
             var sort = new SortByBuilder();
-            List<string> ascendingList = new List<string>();
-            List<string> descendingList = new List<string>();
+            List<String> ascendingList = new List<String>();
+            List<String> descendingList = new List<String>();
             //_id将以文字的形式排序，所以不要排序_id!!
             foreach (var item in FieldItemLst)
             {
@@ -91,7 +91,7 @@ namespace MagicMongoDBTool.Module
             }
             for (int i = 0; i < conditiongrpList.Count - 1; i++)
             {
-                string joinMark = conditiongrpList[i][conditiongrpList[i].Count() - 1].EndMark;
+                String joinMark = conditiongrpList[i][conditiongrpList[i].Count() - 1].EndMark;
                 if (joinMark == EndMark_AND_T)
                 {
                     if (i == 0)
@@ -160,7 +160,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="oprGrp"></param>
         /// <param name="strOPR"></param>
         /// <returns></returns>
-        private static IMongoQuery GetGroup(List<DataFilter.QueryConditionInputItem> oprGrp, string strOPR)
+        private static IMongoQuery GetGroup(List<DataFilter.QueryConditionInputItem> oprGrp, String strOPR)
         {
             List<IMongoQuery> queryLst = new List<IMongoQuery>();
             foreach (var item in oprGrp)
@@ -208,7 +208,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="Field"></param>
         /// <param name="mongoCol"></param>
         /// <returns></returns>
-        public static Boolean IsExistByField(MongoCollection mongoCol, BsonValue strKey, string Field = "_id")
+        public static Boolean IsExistByField(MongoCollection mongoCol, BsonValue strKey, String Field = "_id")
         {
             return mongoCol.FindAs<BsonDocument>(Query.EQ(Field, strKey)).Count() > 0;
         }

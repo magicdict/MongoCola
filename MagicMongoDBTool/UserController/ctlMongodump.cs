@@ -25,7 +25,7 @@ namespace MagicMongoDBTool.Module
                 ctlFilePickerOutput.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Backup_Path);
             }
         }
-        void ctlFilePickerOutput_PathChanged(string FilePath)
+        void ctlFilePickerOutput_PathChanged(String FilePath)
         {
             MongodumpCommand.OutPutPath = FilePath;
             CommandChanged(MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand));

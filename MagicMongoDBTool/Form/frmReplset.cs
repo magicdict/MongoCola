@@ -33,7 +33,7 @@ namespace MagicMongoDBTool
         {
             //刷新连接信息
             _prmSvr.Reconnect();
-            List<String> HostPortList = new List<string>();
+            List<String> HostPortList = new List<String>();
             lstServerInReplset.Items.Clear();
             lstServerOutReplset.Items.Clear();
             foreach (MongoServerInstance srv in _prmSvr.Instances)

@@ -79,7 +79,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 字段名称
             /// </summary>
-            public string ColName;
+            public String ColName;
             /// <summary>
             /// 是否表示
             /// </summary>
@@ -97,11 +97,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 开始标志
             /// </summary>
-            public string StartMark;
+            public String StartMark;
             /// <summary>
             /// 字段名称
             /// </summary>
-            public string ColName;
+            public String ColName;
             /// <summary>
             /// 比较子
             /// </summary>
@@ -113,7 +113,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 结束标志
             /// </summary>
-            public string EndMark;
+            public String EndMark;
         }
 
         /// <summary>

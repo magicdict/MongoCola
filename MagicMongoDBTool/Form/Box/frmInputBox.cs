@@ -36,7 +36,7 @@ namespace MagicMongoDBTool
         /// Set Message
         /// </summary>
         /// <param name="Message"></param>
-        internal void SetMessage(string Message)
+        internal void SetMessage(String Message)
         {
             lblMessage.Text = Message;
 			this.txtResult.Text = String.Empty;

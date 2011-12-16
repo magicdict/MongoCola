@@ -50,7 +50,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 连接名称
             /// </summary>
-            public string ConnectionName;
+            public String ConnectionName;
             /// <summary>
             /// 连接字符串
             /// </summary>
@@ -58,7 +58,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// IP地址
             /// </summary>
-            public string Host;
+            public String Host;
             /// <summary>
             /// 端口号
             /// </summary>
@@ -82,11 +82,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 用户名
             /// </summary>
-            public string UserName;
+            public String UserName;
             /// <summary>
             /// 密码
             /// </summary>
-            public string Password;
+            public String Password;
             /// <summary>
             /// 只读[这个属性是运行时决定的]
             /// </summary>
@@ -104,11 +104,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 副本名称
             /// </summary>
-            public string ReplSetName;
+            public String ReplSetName;
             /// <summary>
             /// 数据库名称
             /// </summary>
-            public string DataBaseName;
+            public String DataBaseName;
             /// <summary>
             /// 副本服务器列表
             /// </summary>
@@ -175,7 +175,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// MongoBin的路径，用于Dos命令
         /// </summary>
-        public string MongoBinPath = string.Empty;
+        public String MongoBinPath = String.Empty;
         /// <summary>
         /// 每页显示数
         /// </summary>
@@ -195,13 +195,13 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 配置文件名称
         /// </summary>
-        private static string _configFilename = "config.xml";
+        private static String _configFilename = "config.xml";
         /// <summary>
         /// 读取配置
         /// </summary>
         /// <param name="configFileName"></param>
         /// <returns></returns>
-        public static ConfigHelper LoadFromConfigFile(string configFileName)
+        public static ConfigHelper LoadFromConfigFile(String configFileName)
         {
             FileStream fs = new FileStream(configFileName, FileMode.Open, FileAccess.Read);
             XmlSerializer xs = new XmlSerializer(typeof(ConfigHelper));
@@ -225,7 +225,7 @@ namespace MagicMongoDBTool.Module
         /// 写入配置
         /// </summary>
         /// <param name="configFileName"></param>
-        public void SaveToConfigFile(string configFileName)
+        public void SaveToConfigFile(String configFileName)
         {
             FileStream fs = null;
             XmlSerializer xs = new XmlSerializer(typeof(ConfigHelper));

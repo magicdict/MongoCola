@@ -11,7 +11,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="strUser">Username</param>
         /// <param name="password">Password</param>
         /// <param name="isReadOnly">Is ReadOnly</param>
-        public static void AddUserToSvr(string strUser, string password, bool isReadOnly)
+        public static void AddUserToSvr(String strUser, String password, Boolean isReadOnly)
         {
             MongoServer mongoSvr = SystemManager.GetCurrentService();
             //必须使用MongoCredentials来添加用户不然的话，Password将使用明文登入到数据库中！
@@ -40,7 +40,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="strUser">Username</param>
         /// <param name="password">Password</param>
         /// <param name="isReadOnly">Is ReadOnly</param>
-        public static void AddUserToDB(string strUser, string password, bool isReadOnly)
+        public static void AddUserToDB(String strUser, String password, Boolean isReadOnly)
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
             MongoCredentials newUser = new MongoCredentials(strUser, password, false);
@@ -54,7 +54,7 @@ namespace MagicMongoDBTool.Module
         /// Remove User
         /// </summary>
         /// <param name="strUser">Username</param>
-        public static void RemoveUserFromDB(string strUser)
+        public static void RemoveUserFromDB(String strUser)
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
             if (mongoDB.FindUser(strUser) != null)

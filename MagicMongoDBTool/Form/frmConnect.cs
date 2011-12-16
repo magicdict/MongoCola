@@ -56,7 +56,7 @@ namespace MagicMongoDBTool
             List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
             if (lstServerce.SelectedItems.Count > 0)
             {
-                foreach (string item in lstServerce.SelectedItems)
+                foreach (String item in lstServerce.SelectedItems)
                 {
                     connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item]);
                 }
@@ -71,7 +71,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdDelCon_Click(object sender, EventArgs e)
         {
-            foreach (string item in lstServerce.SelectedItems)
+            foreach (String item in lstServerce.SelectedItems)
             {
                 if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(item))
                 {

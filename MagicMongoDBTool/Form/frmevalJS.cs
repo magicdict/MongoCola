@@ -38,7 +38,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdSaveMapJs_Click(object sender, EventArgs e)
         {
-            if (txtevalJs.Text != string.Empty)
+            if (txtevalJs.Text != String.Empty)
             {
                 String strJsName = MyMessageBox.ShowInput("Input Javascript Name：", "Save Javascript");
                 MongoDBHelper.SaveJavascript(strJsName, txtevalJs.Text);

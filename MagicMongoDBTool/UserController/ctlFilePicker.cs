@@ -19,7 +19,7 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 标题
         /// </summary>
-        public string Title
+        public String Title
         {
             get { return lblTitle.Text; }
             set { lblTitle.Text = value; }
@@ -35,7 +35,7 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 选中路径
         /// </summary>
-        public string SelectedPath 
+        public String SelectedPath 
         {
             get { return txtLogPath.Text; }
             set { txtLogPath.Text = value; }
@@ -53,7 +53,7 @@ namespace MagicMongoDBTool
             InitializeComponent();
         }
 
-        public delegate void PathChangedHandler(string FilePath);
+        public delegate void PathChangedHandler(String FilePath);
         public event PathChangedHandler PathChanged;
         /// <summary>
         /// 浏览按钮

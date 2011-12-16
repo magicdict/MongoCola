@@ -67,7 +67,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdSaveMapJs_Click(object sender, EventArgs e)
         {
-            if (txtMapJs.Text != string.Empty)
+            if (txtMapJs.Text != String.Empty)
             {
                 String strJsName = MyMessageBox.ShowInput("pls Input Javascript Name：", "Save Javascript");
                 MongoDBHelper.SaveJavascript(strJsName, txtMapJs.Text);
@@ -80,7 +80,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdSaveReduceJs_Click(object sender, EventArgs e)
         {
-            if (this.txtReduceJs.Text != string.Empty)
+            if (this.txtReduceJs.Text != String.Empty)
             {
                 String strJsName = MyMessageBox.ShowInput("pls Input Javascript Name", "Save Javascript");
                 MongoDBHelper.SaveJavascript(strJsName, txtReduceJs.Text);

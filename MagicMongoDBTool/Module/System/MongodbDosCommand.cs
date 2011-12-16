@@ -30,7 +30,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 数据库路径，必须
             /// </summary>
-            public string DBPath = string.Empty;
+            public String DBPath = String.Empty;
             /// <summary>
             /// 端口号
             /// </summary>
@@ -46,11 +46,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 
             /// </summary>
-            public string Source = string.Empty;
+            public String Source = String.Empty;
             /// <summary>
             /// 日志文件
             /// </summary>
-            public string LogPath = string.Empty;
+            public String LogPath = String.Empty;
             /// <summary>
             /// 日志是否为添加模式
             /// </summary>
@@ -101,16 +101,16 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 部署
         /// </summary>
-        public static string GetMongodCommandLine(StruMongod mongod)
+        public static String GetMongodCommandLine(StruMongod mongod)
         {
             //mongo.exe 客户端程序
-            string dosCommand = @"mongod --dbpath @dbpath --port @port ";
+            String dosCommand = @"mongod --dbpath @dbpath --port @port ";
             //数据库路径
             dosCommand = dosCommand.Replace("@dbpath", "\"" + mongod.DBPath + "\"");
             //端口号
             dosCommand = dosCommand.Replace("@port", mongod.Port.ToString());
             //日志文件
-            if (mongod.LogPath != string.Empty)
+            if (mongod.LogPath != String.Empty)
             {
                 dosCommand += " --logpath \"" + mongod.LogPath + "\"";
                 switch (mongod.LogLV)
@@ -176,7 +176,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 主机地址
             /// </summary>
-            public string HostAddr = string.Empty;
+            public String HostAddr = String.Empty;
             /// <summary>
             /// 主机端口
             /// </summary>
@@ -184,15 +184,15 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 数据库名称
             /// </summary>
-            public string DBName = string.Empty;
+            public String DBName = String.Empty;
             /// <summary>
             /// 数据集名称
             /// </summary>
-            public string CollectionName = string.Empty;
+            public String CollectionName = String.Empty;
             /// <summary>
             /// 输出路径
             /// </summary>
-            public string OutPutPath = String.Empty;
+            public String OutPutPath = String.Empty;
             /// <summary>
             /// 日志等级
             /// </summary>
@@ -204,19 +204,19 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="mongoDump"></param>
         /// <returns></returns>
-        static public string GetMongodumpCommandLine(StruMongoDump mongoDump)
+        static public String GetMongodumpCommandLine(StruMongoDump mongoDump)
         {
             //mongodump.exe 备份程序
-            string dosCommand = @"mongodump -h @hostaddr:@port -d @dbname";
+            String dosCommand = @"mongodump -h @hostaddr:@port -d @dbname";
             dosCommand = dosCommand.Replace("@hostaddr", mongoDump.HostAddr);
             dosCommand = dosCommand.Replace("@port", mongoDump.Port.ToString());
             dosCommand = dosCommand.Replace("@dbname", mongoDump.DBName);
-            if (mongoDump.CollectionName != string.Empty)
+            if (mongoDump.CollectionName != String.Empty)
             {
                 //-c CollectionName Or --collection CollectionName
                 dosCommand += " --collection " + mongoDump.CollectionName;
             }
-            if (mongoDump.OutPutPath != string.Empty)
+            if (mongoDump.OutPutPath != String.Empty)
             {
                 //-o CollectionName Or --out CollectionName
                 dosCommand += " --out \"" + mongoDump.OutPutPath + "\"";
@@ -231,7 +231,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 主机地址
             /// </summary>
-            public string HostAddr = string.Empty;
+            public String HostAddr = String.Empty;
             /// <summary>
             /// 主机端口
             /// </summary>
@@ -239,7 +239,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 备份数据库路径
             /// </summary>
-            public string DirectoryPerDB = String.Empty;
+            public String DirectoryPerDB = String.Empty;
         }
         /// <summary>
         /// 获得恢复的配置
@@ -248,10 +248,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="mongoDump"></param>
         /// <returns></returns>
-        static public string GetMongoRestoreCommandLine(StruMongoRestore MongoRestore)
+        static public String GetMongoRestoreCommandLine(StruMongoRestore MongoRestore)
         {
             //mongorestore.exe 恢复程序
-            string dosCommand = @"mongorestore -h @hostaddr:@port --directoryperdb @dbname";
+            String dosCommand = @"mongorestore -h @hostaddr:@port --directoryperdb @dbname";
             dosCommand = dosCommand.Replace("@hostaddr", MongoRestore.HostAddr);
             dosCommand = dosCommand.Replace("@port", MongoRestore.Port.ToString());
             dosCommand = dosCommand.Replace("@dbname", MongoRestore.DirectoryPerDB);
@@ -276,7 +276,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 主机地址
             /// </summary>
-            public string HostAddr = string.Empty;
+            public String HostAddr = String.Empty;
             /// <summary>
             /// 主机端口
             /// </summary>
@@ -284,19 +284,19 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 数据库名称
             /// </summary>
-            public string DBName = string.Empty;
+            public String DBName = String.Empty;
             /// <summary>
             /// 数据集名称
             /// </summary>
-            public string CollectionName = string.Empty;
+            public String CollectionName = String.Empty;
             /// <summary>
             /// 字段列表
             /// </summary>
-            public string FieldList = string.Empty;
+            public String FieldList = String.Empty;
             /// <summary>
             /// 文件名称
             /// </summary>
-            public string FileName = string.Empty;
+            public String FileName = String.Empty;
             /// <summary>
             /// 日志等级
             /// </summary>
@@ -311,18 +311,18 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="mongoImprotExport"></param>
         /// <returns></returns>
-        public static string GetMongoImportExportCommandLine(StruImportExport mongoImprotExport)
+        public static String GetMongoImportExportCommandLine(StruImportExport mongoImprotExport)
         {
             //mongodump.exe 备份程序
-            string dosCommand;
+            String dosCommand;
             if (mongoImprotExport.Direct == ImprotExport.Import)
             {
                 dosCommand = @"mongoimport -h @hostaddr:@port -d @dbname";
-                if (mongoImprotExport.FieldList != string.Empty)
+                if (mongoImprotExport.FieldList != String.Empty)
                 {
                     dosCommand += " --fields " + mongoImprotExport.FieldList;
                 }
-                if (mongoImprotExport.FileName != string.Empty)
+                if (mongoImprotExport.FileName != String.Empty)
                 {
                     dosCommand += " --file \"" + mongoImprotExport.FileName + "\"";
                 }
@@ -330,7 +330,7 @@ namespace MagicMongoDBTool.Module
             else
             {
                 dosCommand = @"mongoexport -h @hostaddr:@port -d @dbname";
-                if (mongoImprotExport.FileName != string.Empty)
+                if (mongoImprotExport.FileName != String.Empty)
                 {
                     dosCommand += " --out \"" + mongoImprotExport.FileName + "\"";
                 }
@@ -338,7 +338,7 @@ namespace MagicMongoDBTool.Module
             dosCommand = dosCommand.Replace("@hostaddr", mongoImprotExport.HostAddr);
             dosCommand = dosCommand.Replace("@port", mongoImprotExport.Port.ToString());
             dosCommand = dosCommand.Replace("@dbname", mongoImprotExport.DBName);
-            if (mongoImprotExport.CollectionName != string.Empty)
+            if (mongoImprotExport.CollectionName != String.Empty)
             {
                 //-c CollectionName Or --collection CollectionName
                 dosCommand += " --collection " + mongoImprotExport.CollectionName;
@@ -375,8 +375,8 @@ namespace MagicMongoDBTool.Module
             stringWriter.Write(@"cd " + SystemManager.ConfigHelperInstance.MongoBinPath + System.Environment.NewLine);//DOS控制平台上的命令
             stringWriter.Write(DosCommand + System.Environment.NewLine);//DOS控制平台上的命令
             stringWriter.Write("exit" + System.Environment.NewLine);
-            string s = stringReader.ReadToEnd();//读取执行DOS命令后输出信息
-            string er = streamReaderError.ReadToEnd();//读取执行DOS命令后错误信息
+            String s = stringReader.ReadToEnd();//读取执行DOS命令后输出信息
+            String er = streamReaderError.ReadToEnd();//读取执行DOS命令后错误信息
             sb.AppendLine(s);
             sb.AppendLine(er);
             if (myProcess.HasExited == false)

@@ -2266,20 +2266,20 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ThanksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strThanks = "感谢皮肤控件的作者：qianlifeng\r\n";
-            strThanks += "感谢10gen的C# Driver开发者的技术支持\r\n";
-            strThanks += "感谢Dragon同志的测试和代码规范化";
-            strThanks += "感谢MoLing同志的国际化";
+            String strThanks = "感谢皮肤控件的作者：qianlifeng" + System.Environment.NewLine;
+            strThanks += "感谢10gen的C# Driver开发者的技术支持" + System.Environment.NewLine;
+            strThanks += "感谢Dragon同志的测试和代码规范化" + System.Environment.NewLine;
+            strThanks += "感谢MoLing同志的国际化" + System.Environment.NewLine;
             MyMessageBox.ShowMessage("Thanks", "MagicCola",
                                      MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile),
                                      strThanks);
         }
         /// <summary>
-        /// UserGuard
+        /// userGuide
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void userGuardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strUrl = "http://www.magicdict.com/userguard/index.htm";
             System.Diagnostics.Process.Start(strUrl);

@@ -18,7 +18,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 国际化文字字典
         /// </summary>
-        Dictionary<string, string> _stringDic = new Dictionary<string, string>();
+        Dictionary<String, String> _stringDic = new Dictionary<String, String>();
         /// <summary>
         /// 语种
         /// </summary>
@@ -29,8 +29,8 @@ namespace MagicMongoDBTool.Module
         /// <param name="LanguageFileName">当前语言文件</param>
         public void InitLanguage(String LanguageFileName)
         {
-            string tag = string.Empty;
-            string text = string.Empty;
+            String tag = String.Empty;
+            String text = String.Empty;
             XmlTextReader reader = new XmlTextReader(LanguageFileName);
             _stringDic.Clear();
             while (reader.Read())
@@ -46,7 +46,7 @@ namespace MagicMongoDBTool.Module
                         }
                         tag = reader.Name.Trim();
                         text = reader.ReadInnerXml().Trim();
-                        if (!string.IsNullOrEmpty(tag) && !string.IsNullOrEmpty(text))
+                        if (!String.IsNullOrEmpty(tag) && !String.IsNullOrEmpty(text))
                         {
                             _stringDic.Add(tag, text);
                         }
@@ -61,7 +61,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static string XMLDecode(string str)
+        public static String XMLDecode(String str)
         {
             return str.Replace("&amp;", "&");
         }
@@ -70,7 +70,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public string GetText(TextType tag)
+        public String GetText(TextType tag)
         {
             String strText = String.Empty;
             //使用TryGetValue方法防止出现不存在的字符，同时比Exist提高效率

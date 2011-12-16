@@ -76,7 +76,7 @@ namespace MagicMongoDBTool
             {
                 if (Count == 1000)
                 {
-                    strResult = "Too many result,Display first 1000 records" + "\r\n" + strResult;
+                    strResult = "Too many result,Display first 1000 records" + System.Environment.NewLine + strResult;
                     break;
                 }
                 strResult += MongoDBHelper.GetBsonElementText(strKey, item, 0);

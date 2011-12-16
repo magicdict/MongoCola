@@ -5,51 +5,51 @@ namespace MagicMongoDBTool.Module
     public static partial class MongoDBHelper
     {
         //各种节点的Tag前缀
-        public const string SERVICE_TAG_EXCEPTION = "MongoServiceWithException";
+        public const String SERVICE_TAG_EXCEPTION = "MongoServiceWithException";
         /// <summary>
         /// 普通服务器Tag
         /// </summary>
-        public const string SERVICE_TAG = "MongoService";
+        public const String SERVICE_TAG = "MongoService";
         /// <summary>
         /// 该服务器只允许操作其下的某个数据库
         /// </summary>
-        public const string SINGLE_DB_SERVICE_TAG = "MongoSingleDBService";
+        public const String SINGLE_DB_SERVICE_TAG = "MongoSingleDBService";
         /// <summary>
         /// 数据库
         /// </summary>
-        public const string DATABASE_TAG = "MongoDatabase";
+        public const String DATABASE_TAG = "MongoDatabase";
         /// <summary>
         /// 单数据库模式的数据库
         /// </summary>
-        public const string SINGLE_DATABASE_TAG = "SingleMongoDatabase";
+        public const String SINGLE_DATABASE_TAG = "SingleMongoDatabase";
         /// <summary>
         /// 数据集
         /// </summary>
-        public const string COLLECTION_TAG = "MongoCollection";
+        public const String COLLECTION_TAG = "MongoCollection";
         /// <summary>
         /// BSonDoc
         /// </summary>
-        public const string DOCUMENT_TAG = "MongoDocument";
+        public const String DOCUMENT_TAG = "MongoDocument";
         /// <summary>
         /// GFS
         /// </summary>
-        public const string GRID_FILE_SYSTEM_TAG = "MongoGFS";
+        public const String GRID_FILE_SYSTEM_TAG = "MongoGFS";
         /// <summary>
         /// 用户列表
         /// </summary>
-        public const string USER_LIST_TAG = "MongoUserList";
+        public const String USER_LIST_TAG = "MongoUserList";
         /// <summary>
         /// 用户
         /// </summary>
-        public const string USER_TAG = "MongoUser";
+        public const String USER_TAG = "MongoUser";
         /// <summary>
         /// 索引集
         /// </summary>
-        public const string INDEXES_TAG = "MongoIndexes";
+        public const String INDEXES_TAG = "MongoIndexes";
         /// <summary>
         /// 索引
         /// </summary>
-        public const string INDEX_TAG = "MongoIndex";
+        public const String INDEX_TAG = "MongoIndex";
         /// <summary>
         /// 路径阶层[考虑到以后可能阶层会变换]
         /// </summary>
@@ -77,39 +77,39 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// ADMIN
         /// </summary>
-        public const string DATABASE_NAME_ADMIN = "admin";
+        public const String DATABASE_NAME_ADMIN = "admin";
         /// <summary>
         /// 系统索引
         /// </summary>
-        public const string COLLECTION_NAME_SYSTEM_INDEXES = "system.indexes";
+        public const String COLLECTION_NAME_SYSTEM_INDEXES = "system.indexes";
         /// <summary>
         /// 系统副本
         /// </summary>
-        public const string COLLECTION_NAME_SYSTEM_REPLSET = "system.replset";
+        public const String COLLECTION_NAME_SYSTEM_REPLSET = "system.replset";
         /// <summary>
         /// minvalid数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_REPLSET_MINVALID = "replset.minvalid";
+        public const String COLLECTION_NAME_REPLSET_MINVALID = "replset.minvalid";
         /// <summary>
         /// 操作日志数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_OPERATION_LOG = "oplog.rs";
+        public const String COLLECTION_NAME_OPERATION_LOG = "oplog.rs";
         /// <summary>
         /// GFS块数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_GFS_CHUNKS = "fs.chunks";
+        public const String COLLECTION_NAME_GFS_CHUNKS = "fs.chunks";
         /// <summary>
         /// GFS数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_GFS_FILES = "fs.files";
+        public const String COLLECTION_NAME_GFS_FILES = "fs.files";
         /// <summary>
         /// 用户数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_USER = "system.users";
+        public const String COLLECTION_NAME_USER = "system.users";
         /// <summary>
         /// Js数据集名称
         /// </summary>
-        public const string COLLECTION_NAME_JAVASCRIPT = "system.js";
+        public const String COLLECTION_NAME_JAVASCRIPT = "system.js";
         #endregion
 
         /// <summary>

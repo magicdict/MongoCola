@@ -66,7 +66,7 @@ namespace MagicMongoDBTool
                 MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst);
                 if (Count == 1001)
                 {
-                    this.txtResult.Text = "Too many result,Display first 1000 records" + "\r\n" + this.txtResult.Text;
+                    this.txtResult.Text = "Too many result,Display first 1000 records" + System.Environment.NewLine + this.txtResult.Text;
                 }
                 this.txtResult.Select(0, 0);
                 tabGroup.SelectedIndex = 4;
@@ -143,7 +143,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdSaveReduceJs_Click(object sender, EventArgs e)
         {
-            if (this.txtReduceJs.Text != string.Empty)
+            if (this.txtReduceJs.Text != String.Empty)
             {
                 String strJsName = MyMessageBox.ShowInput("Input Javascript Name：", "Save Javascript");
                 MongoDBHelper.SaveJavascript(strJsName, txtReduceJs.Text);
@@ -156,7 +156,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdForSavefinalize_Click(object sender, EventArgs e)
         {
-            if (this.txtfinalizeJs.Text != string.Empty)
+            if (this.txtfinalizeJs.Text != String.Empty)
             {
                 String strJsName = MyMessageBox.ShowInput("Input Javascript Name：", "Save Javascript");
                 MongoDBHelper.SaveJavascript(strJsName, txtfinalizeJs.Text);

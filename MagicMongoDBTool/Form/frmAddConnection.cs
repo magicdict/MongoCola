@@ -56,7 +56,7 @@ namespace MagicMongoDBTool
             cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
             cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
             lblAttentionPriority.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention_Description)
-                    + "\r\n" + SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention2_Description);
+                    + System.Environment.NewLine + SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention2_Description);
         }
         /// <summary>
         /// 初始化（修改）
@@ -175,29 +175,29 @@ namespace MagicMongoDBTool
                 ModifyConn.TimeOut = (int)numTimeOut.Value;
 
                 //仅有用户名或密码
-                if (txtUsername.Text != string.Empty && txtPassword.Text == String.Empty)
+                if (txtUsername.Text != String.Empty && txtPassword.Text == String.Empty)
                 {
                     MessageBox.Show("Please Input Password");
                     return;
                 }
-                if (txtUsername.Text == string.Empty && txtPassword.Text != String.Empty)
+                if (txtUsername.Text == String.Empty && txtPassword.Text != String.Empty)
                 {
                     MessageBox.Show("Please Input UserName");
                     return;
                 }
 
                 //数据库名称存在，则必须输入用户名和密码
-                if (txtDataBaseName.Text != string.Empty)
+                if (txtDataBaseName.Text != String.Empty)
                 {
                     //用户名或者密码为空
-                    if (txtUsername.Text == string.Empty || txtPassword.Text == String.Empty)
+                    if (txtUsername.Text == String.Empty || txtPassword.Text == String.Empty)
                     {
                         MessageBox.Show("Please Input UserName or Password");
                         return;
                     }
                 }
                 //是否用户是Admin
-                if (txtDataBaseName.Text != string.Empty)
+                if (txtDataBaseName.Text != String.Empty)
                 {
                     //没有数据库名称的时候，只能以Admin登陆
                     ModifyConn.LoginAsAdmin = false;
@@ -306,7 +306,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdInitReplset_Click(object sender, EventArgs e)
         {
-            List<String> svrKeys = new List<string>();
+            List<String> svrKeys = new List<String>();
             if (lstServerce.SelectedItems.Count > 0)
             {
                 foreach (String item in lstServerce.SelectedItems)

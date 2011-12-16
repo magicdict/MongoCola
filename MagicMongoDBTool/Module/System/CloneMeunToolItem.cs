@@ -70,7 +70,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="eventName">事件名 EventClick EventDoubleClick  这个需要看control.事件 是哪个类的名字是什么</param> 
         /// <param name="eventType">如果是WINFROM控件  使用typeof(Control)</param> 
         /// <returns>委托列</returns>   
-        public static Delegate[] GetObjectEventList(object obj, string eventName, Type eventType)
+        public static Delegate[] GetObjectEventList(object obj, String eventName, Type eventType)
         {
             PropertyInfo propertyInfo = obj.GetType().GetProperty("Events", BindingFlags.Instance | BindingFlags.NonPublic);
             if (propertyInfo != null)

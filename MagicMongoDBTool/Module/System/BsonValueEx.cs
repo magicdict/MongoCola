@@ -34,7 +34,7 @@ namespace MagicMongoDBTool.Module
         public Boolean mBsonBoolean;
 
         public static List<String> GetTypeList(){
-            List<String> typelst = new List<string>();
+            List<String> typelst = new List<String>();
             typelst.Add("BsonString");
             typelst.Add("BsonInt32");
             typelst.Add("BsonDateTime");
