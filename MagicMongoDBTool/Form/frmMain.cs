@@ -2281,7 +2281,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strUrl = "http://www.magicdict.com/userguard/index.htm";
+            String strUrl = "http://www.magicdict.com/userguide/index.htm";
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
