@@ -83,7 +83,7 @@
                     <br />
                     <a href="http://www.magicdict.com/MongoCola.zip">Download from @www.magicdict.com [ZIP]</a>
                     <br />
-                    Who can help me compile the source @Mono platform? I need an executable file for
+                    Anyone can help me to compile the source code  on Mono platform? I need an executable file for
                     linux. please email me: <a href="mailto:mynightelfplayer@hotmail.com">
                         email address</a> </font>
             </td>
@@ -96,14 +96,14 @@
         <tr>
             <td />
             <td>
-                <font size="3" color="black">MongoCola is a Windows® desktop client/gui application.
+                <font size="3" color="black">MongoCola is a Windows® desktop Client/GUI application.
                     To run properly you must have one of these versions of .NET Framework installed:
                     <br />
                     <ul>
                         <li>.Net Framework 4.0</li>
                         <li>MongoDB 2.0.1</li>
-                        <li>C# Offical Driver(1.3.1) if you download the executable file,RAR or ZIP package
-                            has contains driver DLL,you need NOT to download it yourself.</li>
+                        <li>C# Offical Driver(1.3.1) if you download the executable file(RAR or ZIP package)
+                            contains the driver DLL,you don't need to download it again.</li>
                     </ul>
                 </font>
             </td>
@@ -122,10 +122,9 @@
             <td>
                 <font size="3">As it is the first time you run this application,a language picker form
                     will popup:<br />
-                    If English is your mother tongue,you can push "OK" directly
+                    If English is your mother tongue,you can Click "OK" directly
                     <br />
-                    Chinese and Japanese comes soon...(Chinese is my mother tongue ,sorry for my poor
-                    English in this document )
+                    Chinese and Japanese come soon...
                     <br />
                     <br />
                     <img src="images/LanguagePicker.PNG" alt="" />
@@ -138,7 +137,7 @@
                     <br />
                     <font color="red"><b>In this Tutorial,the mongo executable path is C:\runmongo\bin</b></font><br />
                     <br />
-                    If you see the mainform as below,the application is successful startup.<br />
+                    If the mainform shown as below,the application is started up successfully .<br />
                     <img src="images/Main_Empty.PNG" alt="" /><br />
                     <br />
                 </font>
@@ -152,8 +151,8 @@
         <tr>
             <td />
             <td>
-                <font size="3">The first thing to operate the mongoDB is add a MongoDB connection.<br />
-                    Please make sure that the mongo Server has been startup before you add connection.<br />
+                <font size="3">The first thing to operate the mongoDB is adding a MongoDB connection.<br />
+                    Please make sure that the mongo server has been startup before adding connection.<br />
                     You can startup mongoDB by DOS console like this:<br />
                     <br />
                     <code>cd C:\runmongo\bin<br />
@@ -176,7 +175,7 @@
                     <br />
                     <br />
                     This form will list up all connections that you has registered in the application.<br />
-                    Because this is the first time you use this application,the list is empty.<br />
+                    The list is empty when the first time you use this application,.<br />
                     Click "Add" to register a new connection.<br />
                     <br />
                     <img src="images/ServerConnection.PNG" alt="" />
@@ -214,7 +213,7 @@
         <tr>
             <td />
             <td>
-                <font size="3">If the connection is not needed any more,you can disconnect it by:
+                <font size="3">You can disconnect the connection by:
                     <ul>
                         <li>Menu: Opertion -> Server -> Disconnect</li>
                         <li>Contextmenu: Right click the connection treenode to show contextmenu,click the "disconnect"
@@ -240,20 +239,20 @@
                     structure.The root node
                     <img src="images/Server.png" alt="Server" />
                     is the connection(server).<br />
-                    In most case, a connection is a server Instance. When you click the server treenode,the
+                    In most of case, the connection is server Instance. When you click the server treenode,the
                     database
                     <img src="images/database.png" alt="database" />
                     in the server will list as childnode.<br />
                     Click the database treenode,the collections<img src="images/collection.png" alt="collection" />
-                    will list.Every collection has two childnode,one is the index infomation,<img src="images/index.png"
+                    will be listed.Every collection has two childnodes,one is the index infomation,<img src="images/index.png"
                         alt="index" />
-                    another is Data.<img src="images/data.png" alt="Data" /><br />
-                    You can check the index information by click the index infomation
+                    another is data.<img src="images/data.png" alt="Data" /><br />
+                    You can check the index information by clicking the index information
                     <img src="images/index.png" alt="index" />
-                    node; If you click the data node<img src="images/data.png" alt="Data" />,the data will be show at right side panel with
+                    node; If you click the data node<img src="images/data.png" alt="Data" />,the data will be shown in right side panel with
                     three View(TextView,ListView,TreeView).
                     <br />
-                    If there is some exception happens when list the object,Error icon
+                    If there is some exceptions happen when list the object,Error icon
                     <img src="images/DELETE.ICO" alt="" />
                     will be shown as the icon of node.</font>
             </td>
@@ -333,7 +332,7 @@
                     <br />
                     <br />
                     <font color="red"><b>Cluster is useful at a replset.<br />
-                        Server Status need manual refresh</b></font>
+                        Server Status need to be refreshed manually</b></font>
                     <br />
                     <br />
                 </font>
@@ -393,8 +392,8 @@
         <tr>
             <td />
             <td>
-                <font size="3">There are two types of User:Admin User,Database User.<br />
-                    When you connect to the server as a admin user,then you can add a admin user.<br />
+                <font size="3">There are two types of User:Admin User AND Database User.<br />
+                    You can add an admin user only When you connect to the server with an admin user.<br />
                     <ul>
                         <li>Menu: Operation -> Server -> Add User to admin Group(the menu will not enable until you select the server treenode)</li>
                         <li>Contextmenu: Right click the Server treenode to show contextmenu,click the "Add
@@ -409,8 +408,7 @@
         <tr>
             <td />
             <td>
-                <font size="3">When you connect to the server as a admin user,or a database user,you
-                    can add a user to database.<br />
+                <font size="3">you can add user to database When you connect to the server as an admin user,or a database user.<br />
                     <ul>
                         <li>Menu: Operation -> Database -> Add User(the menu will not enable until you select the database treenode)</li>
                         <li>Contextmenu: Right click the Server treenode to show contextmenu,click the "Add User" menuitem</li>
@@ -427,14 +425,14 @@
         <tr>
             <td />
             <td>
-                <font size="3">You can delete user form admin group or from database by delete the record
+                <font size="3">You can delete user from Admin Group or from database by deleting the record
                     of user info from the system collection [system.users].<br />
-                    If you login in as a admin,you will find [admin] database,[admin] database
+                    If you login  as an admin user,you will find [admin] database,which
                     contains the basic information about the whole server.<br />
-                    In [admin] database,you will see a collection with the name [system.users](if you
-                    have add some users before),click the node [Data] of the [system.users],now,the userInfo
-                    is list in the right panel.<br />
-                    You can select the user you want to delete form the panel(treeview can only select
+                    In [admin] database,you will find a collection with the name [system.users](if you
+                    have added some users before),click the node [Data] of the [system.users],the userInfo
+                    is listed in the right panel.<br />
+                    You can select the user which you want to delete form the panel(treeview can only select
                     one user once,listview can select all user at sametime.TextView not support this operation),
                     then you can delete user by:
                     <ul>
