@@ -59,6 +59,7 @@ namespace MagicMongoDBTool
             // 
             // ctllogLvT
             // 
+            this.ctllogLvT.BackColor = System.Drawing.Color.Transparent;
             this.ctllogLvT.Location = new System.Drawing.Point(142, 13);
             this.ctllogLvT.Name = "ctllogLvT";
             this.ctllogLvT.Size = new System.Drawing.Size(312, 51);
@@ -78,7 +79,7 @@ namespace MagicMongoDBTool
             // lblPort
             // 
             this.lblPort.AutoSize = true;
-            this.lblPort.Location = new System.Drawing.Point(32, 30);
+            this.lblPort.Location = new System.Drawing.Point(34, 25);
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(32, 13);
             this.lblPort.TabIndex = 7;
@@ -86,7 +87,7 @@ namespace MagicMongoDBTool
             // 
             // numPort
             // 
-            this.numPort.Location = new System.Drawing.Point(97, 28);
+            this.numPort.Location = new System.Drawing.Point(100, 23);
             this.numPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -111,7 +112,7 @@ namespace MagicMongoDBTool
             // chkAuth
             // 
             this.chkAuth.AutoSize = true;
-            this.chkAuth.Location = new System.Drawing.Point(651, 26);
+            this.chkAuth.Location = new System.Drawing.Point(593, 26);
             this.chkAuth.Name = "chkAuth";
             this.chkAuth.Size = new System.Drawing.Size(78, 17);
             this.chkAuth.TabIndex = 16;
@@ -212,7 +213,7 @@ namespace MagicMongoDBTool
             this.Controls.Add(this.lblPort);
             this.Controls.Add(this.grpLog);
             this.Name = "ctlMongod";
-            this.Size = new System.Drawing.Size(800, 200);
+            this.Size = new System.Drawing.Size(767, 200);
             this.Load += new System.EventHandler(this.ctlMongod_Load);
             this.grpLog.ResumeLayout(false);
             this.grpLog.PerformLayout();

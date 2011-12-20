@@ -168,11 +168,11 @@
             // txtResult
             // 
             this.txtResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtResult.Location = new System.Drawing.Point(27, 38);
+            this.txtResult.Location = new System.Drawing.Point(19, 29);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResult.Size = new System.Drawing.Size(425, 424);
+            this.txtResult.Size = new System.Drawing.Size(446, 438);
             this.txtResult.TabIndex = 0;
             // 
             // lblAddInitField
@@ -207,7 +207,7 @@
             // 
             this.lblResult.AutoSize = true;
             this.lblResult.BackColor = System.Drawing.Color.Transparent;
-            this.lblResult.Location = new System.Drawing.Point(24, 22);
+            this.lblResult.Location = new System.Drawing.Point(22, 12);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(40, 13);
             this.lblResult.TabIndex = 27;

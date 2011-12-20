@@ -131,7 +131,7 @@ namespace MagicMongoDBTool
             // 
             this.txtIndexName.Location = new System.Drawing.Point(91, 200);
             this.txtIndexName.Name = "txtIndexName";
-            this.txtIndexName.Size = new System.Drawing.Size(197, 20);
+            this.txtIndexName.Size = new System.Drawing.Size(310, 20);
             this.txtIndexName.TabIndex = 19;
             // 
             // lblIndexName
@@ -188,7 +188,7 @@ namespace MagicMongoDBTool
             this.ctlIndexCreate5.BackColor = System.Drawing.Color.Transparent;
             this.ctlIndexCreate5.Location = new System.Drawing.Point(23, 135);
             this.ctlIndexCreate5.Name = "ctlIndexCreate5";
-            this.ctlIndexCreate5.Size = new System.Drawing.Size(405, 32);
+            this.ctlIndexCreate5.Size = new System.Drawing.Size(492, 32);
             this.ctlIndexCreate5.TabIndex = 13;
             // 
             // ctlIndexCreate4
@@ -196,7 +196,7 @@ namespace MagicMongoDBTool
             this.ctlIndexCreate4.BackColor = System.Drawing.Color.Transparent;
             this.ctlIndexCreate4.Location = new System.Drawing.Point(23, 103);
             this.ctlIndexCreate4.Name = "ctlIndexCreate4";
-            this.ctlIndexCreate4.Size = new System.Drawing.Size(405, 32);
+            this.ctlIndexCreate4.Size = new System.Drawing.Size(492, 32);
             this.ctlIndexCreate4.TabIndex = 13;
             // 
             // ctlIndexCreate3
@@ -204,7 +204,7 @@ namespace MagicMongoDBTool
             this.ctlIndexCreate3.BackColor = System.Drawing.Color.Transparent;
             this.ctlIndexCreate3.Location = new System.Drawing.Point(23, 71);
             this.ctlIndexCreate3.Name = "ctlIndexCreate3";
-            this.ctlIndexCreate3.Size = new System.Drawing.Size(405, 32);
+            this.ctlIndexCreate3.Size = new System.Drawing.Size(492, 32);
             this.ctlIndexCreate3.TabIndex = 13;
             // 
             // ctlIndexCreate2
@@ -212,7 +212,7 @@ namespace MagicMongoDBTool
             this.ctlIndexCreate2.BackColor = System.Drawing.Color.Transparent;
             this.ctlIndexCreate2.Location = new System.Drawing.Point(23, 39);
             this.ctlIndexCreate2.Name = "ctlIndexCreate2";
-            this.ctlIndexCreate2.Size = new System.Drawing.Size(405, 32);
+            this.ctlIndexCreate2.Size = new System.Drawing.Size(492, 32);
             this.ctlIndexCreate2.TabIndex = 13;
             // 
             // ctlIndexCreate1
@@ -220,7 +220,7 @@ namespace MagicMongoDBTool
             this.ctlIndexCreate1.BackColor = System.Drawing.Color.Transparent;
             this.ctlIndexCreate1.Location = new System.Drawing.Point(23, 7);
             this.ctlIndexCreate1.Name = "ctlIndexCreate1";
-            this.ctlIndexCreate1.Size = new System.Drawing.Size(405, 32);
+            this.ctlIndexCreate1.Size = new System.Drawing.Size(492, 32);
             this.ctlIndexCreate1.TabIndex = 13;
             // 
             // frmCollectionIndex

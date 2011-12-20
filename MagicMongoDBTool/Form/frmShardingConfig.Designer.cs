@@ -69,7 +69,7 @@
             // cmdAddSharding
             // 
             this.cmdAddSharding.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddSharding.Location = new System.Drawing.Point(273, 17);
+            this.cmdAddSharding.Location = new System.Drawing.Point(301, 18);
             this.cmdAddSharding.Name = "cmdAddSharding";
             this.cmdAddSharding.Size = new System.Drawing.Size(119, 29);
             this.cmdAddSharding.TabIndex = 2;
@@ -83,14 +83,14 @@
             this.lstShard.Location = new System.Drawing.Point(24, 53);
             this.lstShard.Name = "lstShard";
             this.lstShard.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lstShard.Size = new System.Drawing.Size(368, 82);
+            this.lstShard.Size = new System.Drawing.Size(396, 82);
             this.lstShard.TabIndex = 1;
             // 
             // lblField
             // 
             this.lblField.AutoSize = true;
             this.lblField.BackColor = System.Drawing.Color.Transparent;
-            this.lblField.Location = new System.Drawing.Point(21, 98);
+            this.lblField.Location = new System.Drawing.Point(22, 109);
             this.lblField.Name = "lblField";
             this.lblField.Size = new System.Drawing.Size(61, 13);
             this.lblField.TabIndex = 34;
@@ -99,7 +99,7 @@
             // cmbKeyList
             // 
             this.cmbKeyList.FormattingEnabled = true;
-            this.cmbKeyList.Location = new System.Drawing.Point(105, 95);
+            this.cmbKeyList.Location = new System.Drawing.Point(106, 106);
             this.cmbKeyList.Name = "cmbKeyList";
             this.cmbKeyList.Size = new System.Drawing.Size(220, 21);
             this.cmbKeyList.TabIndex = 30;

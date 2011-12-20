@@ -914,6 +914,7 @@ namespace MagicMongoDBTool
                     break;
                 default:
                     //数据系统
+                    DelSelectRecordToolStripMenuItem.Enabled = false;
                     if (lstData.SelectedItems.Count > 0)
                     {
                         if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
@@ -924,14 +925,6 @@ namespace MagicMongoDBTool
                                 DelSelectRecordToolStripMenuItem.Enabled = true;
                             }
                         }
-                        else
-                        {
-                            DelSelectRecordToolStripMenuItem.Enabled = false;
-                        }
-                    }
-                    else
-                    {
-                        DelSelectRecordToolStripMenuItem.Enabled = false;
                     }
                     break;
             }

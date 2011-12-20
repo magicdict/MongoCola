@@ -48,7 +48,7 @@
             // 
             this.cmdSave.BackColor = System.Drawing.Color.Transparent;
             this.cmdSave.Enabled = false;
-            this.cmdSave.Location = new System.Drawing.Point(760, 283);
+            this.cmdSave.Location = new System.Drawing.Point(760, 355);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(96, 28);
             this.cmdSave.TabIndex = 7;
@@ -59,7 +59,7 @@
             // cmdRunDos
             // 
             this.cmdRunDos.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRunDos.Location = new System.Drawing.Point(760, 317);
+            this.cmdRunDos.Location = new System.Drawing.Point(760, 389);
             this.cmdRunDos.Name = "cmdRunDos";
             this.cmdRunDos.Size = new System.Drawing.Size(96, 29);
             this.cmdRunDos.TabIndex = 6;
@@ -159,7 +159,7 @@
             this.MinimizeBox = false;
             this.Name = "frmDosCommand";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "配置文件";
+            this.Text = "DosCommand";
             this.Load += new System.EventHandler(this.frmDosCommand_Load);
             this.tabFunction.ResumeLayout(false);
             this.tabMongod.ResumeLayout(false);

@@ -47,11 +47,11 @@
             this.grpDirect.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblHostAddr
+            // lblHost
             // 
             this.lblHost.AutoSize = true;
             this.lblHost.Location = new System.Drawing.Point(37, 28);
-            this.lblHost.Name = "lblHostAddr";
+            this.lblHost.Name = "lblHost";
             this.lblHost.Size = new System.Drawing.Size(29, 13);
             this.lblHost.TabIndex = 2;
             this.lblHost.Text = "Host";
@@ -136,9 +136,9 @@
             this.lblFieldList.AutoSize = true;
             this.lblFieldList.Location = new System.Drawing.Point(37, 86);
             this.lblFieldList.Name = "lblFieldList";
-            this.lblFieldList.Size = new System.Drawing.Size(55, 13);
+            this.lblFieldList.Size = new System.Drawing.Size(38, 13);
             this.lblFieldList.TabIndex = 14;
-            this.lblFieldList.Text = "字段列表";
+            this.lblFieldList.Text = "fieldlist";
             // 
             // txtFieldList
             // 

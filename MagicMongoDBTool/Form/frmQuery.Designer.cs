@@ -47,7 +47,7 @@
             this.cmdAddCondition.Name = "cmdAddCondition";
             this.cmdAddCondition.Size = new System.Drawing.Size(114, 31);
             this.cmdAddCondition.TabIndex = 14;
-            this.cmdAddCondition.Text = "新增过滤条件";
+            this.cmdAddCondition.Text = "AddFilter";
             this.cmdAddCondition.UseVisualStyleBackColor = false;
             this.cmdAddCondition.Click += new System.EventHandler(this.cmdAddCondition_Click);
             // 
