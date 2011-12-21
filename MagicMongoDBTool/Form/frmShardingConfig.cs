@@ -154,7 +154,7 @@ namespace MagicMongoDBTool
         {
             List<CommandResult> Resultlst = new List<CommandResult>();
             Resultlst.Add(MongoDBHelper.EnableSharding(_prmSvr, cmbDataBase.Text));
-            MyMessageBox.ShowMessage("添加分片", "执行结果", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
+            MyMessageBox.ShowMessage("EnableSharding", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
         }
         /// <summary>
         /// 分片配置(数据集)
@@ -165,7 +165,7 @@ namespace MagicMongoDBTool
         {
             List<CommandResult> Resultlst = new List<CommandResult>();
             Resultlst.Add(MongoDBHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument()));
-            MyMessageBox.ShowMessage("添加分片", "执行结果", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
+            MyMessageBox.ShowMessage("EnableSharding", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
         }
     }
 }

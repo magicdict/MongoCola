@@ -57,7 +57,7 @@
             this.lblMessage.AutoSize = true;
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(67, 10);
+            this.lblMessage.Location = new System.Drawing.Point(42, 12);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(67, 15);
             this.lblMessage.TabIndex = 6;
@@ -100,7 +100,7 @@
             // picImage
             // 
             this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.Location = new System.Drawing.Point(30, 10);
+            this.picImage.Location = new System.Drawing.Point(12, 12);
             this.picImage.Name = "picImage";
             this.picImage.Size = new System.Drawing.Size(24, 24);
             this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

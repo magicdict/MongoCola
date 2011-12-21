@@ -13,7 +13,7 @@ namespace MagicMongoDBTool
             InitializeComponent();
         }
         /// <summary>
-        /// 
+        /// Load
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -32,7 +32,7 @@ namespace MagicMongoDBTool
             );
         }
         /// <summary>
-        /// 
+        /// save map js
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -45,7 +45,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 
+        /// eval Javascript
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -60,14 +60,24 @@ namespace MagicMongoDBTool
                 {
                     if (parm.StartsWith("'") & parm.EndsWith("'"))
                     {
-                        Params.Add(parm);
+                        Params.Add(parm.Trim("'".ToCharArray()));
                     }
                     else
                     {
-                        //TODO：检查数字型
                         try
                         {
-                            Params.Add(Convert.ToInt16(parm));
+                            Boolean isNuberic = true;
+                            for (int i = 0; i < parm.Length; i++)
+                            {
+                                if (!char.IsNumber(parm, i))
+                                {
+                                    isNuberic = false;
+                                }
+                            }
+                            if (isNuberic)
+                            {
+                                Params.Add(Convert.ToInt16(parm));
+                            }
                         }
                         catch (Exception ex)
                         {

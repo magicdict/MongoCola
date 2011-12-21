@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.GridFS;
 using MongoDB.Bson.Serialization;
+using System.IO;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -361,10 +362,15 @@ namespace MagicMongoDBTool.Module
             MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
 
             String[] strLocalFileName = strRemoteFileName.Split(@"\".ToCharArray());
+            
             try
             {
-                gfs.Download(strLocalFileName[strLocalFileName.Length - 1], strRemoteFileName);
-                System.Diagnostics.Process.Start(strLocalFileName[strLocalFileName.Length - 1]);
+                if (!Directory.Exists("TempFile")) {
+                    Directory.CreateDirectory("TempFile");
+                }
+                String LocalFileName = "TempFile" + @"\" + strLocalFileName[strLocalFileName.Length - 1];
+                gfs.Download(LocalFileName, strRemoteFileName);
+                System.Diagnostics.Process.Start(LocalFileName);
             }
             catch
             {

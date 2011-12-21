@@ -189,10 +189,6 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public String LanguageFileName = String.Empty;
         /// <summary>
-        /// 皮肤目录
-        /// </summary>
-        public String SkipFolder = "";
-        /// <summary>
         /// 配置文件名称
         /// </summary>
         private static String _configFilename = "config.xml";

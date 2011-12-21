@@ -16,6 +16,9 @@ namespace MagicMongoDBTool
                 this.chkIsShow.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlFieldInfo_Show);
             }
         }
+        /// <summary>
+        /// Query Field Item
+        /// </summary>
         public DataFilter.QueryFieldItem QueryFieldItem
         {
             set

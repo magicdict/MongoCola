@@ -6,28 +6,45 @@ namespace MagicMongoDBTool
 {
     public partial class ctlFilePicker : UserControl
     {
+        public delegate void PathChangedHandler(String FilePath);
+        public event PathChangedHandler PathChanged;
         private String _FileFilter = String.Empty;
         /// <summary>
         /// 文件过滤
         /// </summary>
-        public String FileFilter {
+        public String FileFilter
+        {
             get { return _FileFilter; }
             set { _FileFilter = value; }
         }
-
-        private DialogType _dialogType = DialogType.Directory;
         /// <summary>
         /// 标题
         /// </summary>
         public String Title
         {
             get { return lblTitle.Text; }
-            set { lblTitle.Text = value; }
+            set
+            {
+                lblTitle.Text = value;
+                txtLogPath.Left = lblTitle.Right + 4;
+                txtLogPath.Width = cmdBrowse.Left - lblTitle.Right - 8;
+            }
         }
+
+        /// <summary>
+        /// Dialog Type
+        /// </summary>
+        public enum DialogType
+        {
+            OpenFile,
+            SaveFile,
+            Directory
+        }
+        private DialogType _dialogType = DialogType.Directory;
         /// <summary>
         /// 选择类型
         /// </summary>
-        public DialogType PickType
+        public DialogType PickerType
         {
             get { return _dialogType; }
             set { _dialogType = value; }
@@ -35,28 +52,17 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 选中路径
         /// </summary>
-        public String SelectedPath 
+        public String SelectedPath
         {
             get { return txtLogPath.Text; }
             set { txtLogPath.Text = value; }
         }
-
-        public enum DialogType
-        {
-            OpenFile,
-            SaveFile,
-            Directory
-        }
-
         public ctlFilePicker()
         {
             InitializeComponent();
         }
-
-        public delegate void PathChangedHandler(String FilePath);
-        public event PathChangedHandler PathChanged;
         /// <summary>
-        /// 浏览按钮
+        /// Browse Clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -66,7 +72,8 @@ namespace MagicMongoDBTool
             {
                 case DialogType.OpenFile:
                     OpenFileDialog Openfd = new OpenFileDialog();
-                    if (_FileFilter != String.Empty) {
+                    if (_FileFilter != String.Empty)
+                    {
                         Openfd.Filter = _FileFilter;
                     }
                     if (Openfd.ShowDialog() == DialogResult.OK)
@@ -102,26 +109,27 @@ namespace MagicMongoDBTool
         }
 
         /// <summary>
-        /// 清除
+        /// Clear
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdClearPath_Click(object sender, EventArgs e)
         {
-            txtLogPath.Text = "";
+            txtLogPath.Text = String.Empty;
             if (PathChanged != null)
             {
                 PathChanged(txtLogPath.Text);
             }
         }
         /// <summary>
-        /// 
+        /// Load
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ctlFilePicker_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage()) {
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
                 cmdBrowse.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Browse);
                 cmdClearPath.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Clear);
             }

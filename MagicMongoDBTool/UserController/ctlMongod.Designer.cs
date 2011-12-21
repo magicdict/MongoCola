@@ -143,7 +143,7 @@ namespace MagicMongoDBTool
             this.ctlFilePickerDBPath.FileFilter = "";
             this.ctlFilePickerDBPath.Location = new System.Drawing.Point(26, 52);
             this.ctlFilePickerDBPath.Name = "ctlFilePickerDBPath";
-            this.ctlFilePickerDBPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
+            this.ctlFilePickerDBPath.PickerType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
             this.ctlFilePickerDBPath.SelectedPath = "";
             this.ctlFilePickerDBPath.Size = new System.Drawing.Size(739, 35);
             this.ctlFilePickerDBPath.TabIndex = 15;
@@ -155,7 +155,7 @@ namespace MagicMongoDBTool
             this.ctlFilePickerLogPath.FileFilter = "";
             this.ctlFilePickerLogPath.Location = new System.Drawing.Point(26, 87);
             this.ctlFilePickerLogPath.Name = "ctlFilePickerLogPath";
-            this.ctlFilePickerLogPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.SaveFile;
+            this.ctlFilePickerLogPath.PickerType = MagicMongoDBTool.ctlFilePicker.DialogType.SaveFile;
             this.ctlFilePickerLogPath.SelectedPath = "";
             this.ctlFilePickerLogPath.Size = new System.Drawing.Size(739, 37);
             this.ctlFilePickerLogPath.TabIndex = 14;

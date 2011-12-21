@@ -153,7 +153,7 @@
             this.ctlFilePickerMongoBinPath.FileFilter = "";
             this.ctlFilePickerMongoBinPath.Location = new System.Drawing.Point(11, 15);
             this.ctlFilePickerMongoBinPath.Name = "ctlFilePickerMongoBinPath";
-            this.ctlFilePickerMongoBinPath.PickType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
+            this.ctlFilePickerMongoBinPath.PickerType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
             this.ctlFilePickerMongoBinPath.SelectedPath = "";
             this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(565, 31);
             this.ctlFilePickerMongoBinPath.TabIndex = 0;

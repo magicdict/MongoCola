@@ -445,7 +445,11 @@ namespace MagicMongoDBTool
                                 this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                                 this.AddUserToolStripMenuItem.Enabled = true;
                                 this.InitGFSToolStripMenuItem.Enabled = true;
-                                this.RepairDBToolStripMenuItem.Enabled = true;
+                                if (config.ServerType == ConfigHelper.SvrType.Slave)
+                                {
+                                    ///Slave server @ Master-Slave
+                                    this.RepairDBToolStripMenuItem.Enabled = true;
+                                }
                             }
                             this.evalJSToolStripMenuItem.Enabled = true;
                             this.ConvertSqlToolStripMenuItem.Enabled = true;
@@ -1908,9 +1912,17 @@ namespace MagicMongoDBTool
                 RefreshData();
             }
         }
+        /// <summary>
+        /// Init GFS
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InitGFSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MongoDBHelper.InitGFS();
+            DisableAllOpr();
+            clearDataShower();
+            MongoDBHelper.FillMongoServiceToTreeView(trvsrvlst);
         }
         #endregion
 

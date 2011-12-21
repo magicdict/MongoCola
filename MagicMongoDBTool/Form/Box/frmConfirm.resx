@@ -117,30 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cmdYes.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAblJREFUOE/Vk89L
-        k3Ecx78gdBBFVAyP/g16CvyBJVROSLDs4E1lijyzgYNN557plkOip1mP6GS46R4WLNoMNYpd6uDoUogM
-        C9SJjwS2sYMHGd5eLqFgRLJ163P8wOv9eX9+CfHfhDf5DPtLBwEtQMmm+zbvk+QdOp9RfozxwH+PZW25
-        OCF5XeZ5tp+ZTDfjR7eYOr7L0G4HrYk21Hn1apFIPMKjnR7c6S4cuoFI5jHuryOIoKDB2YDP5ysU8Mf9
-        xNZiv5O97w24vncxcXibtYzC3P44IiCod9bj8XgKYWfeqn6eQkkohLUwxjcDOFIGxr618OpkFnVv8rJy
-        3XQdLperEHZsTGLavklQt7F1+oGn614WDqYZ3blBSHeydDB1Cde6a5Fl+c++jV4j/rSNid1O4ukVsucZ
-        1JTEQspM8DBvdUVQPVuN3W7/+9DaFpv5eBbClryD8UsjL/aHWT3Kw6uCqidVWK3WqyeuhTUGPz0kkYvw
-        NrtI7GSespCgUqnEYrEUt3OTx8RmLsBW7jXXtDIq5iowm83Fwb/Os0Nt5/pGDeVqOZIklQb/FIlGozTJ
-        TUij/wCX/CR54AIu+QSCgxt00QAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="cmdNo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAOpJREFUOE9jYKAG
-        eChg9v+hju9/ss16IOv4/z6D5v/Dmm7kG3JG3BJsyDa3KJyGPHeIB6vB6VJ8hoA185n+70nKwu/KsxJW
-        GC55JO/8/66GF2HNMKeBDLnBrgf2zgN+s//XbCOJ1wwz5CaHPtglR7TdSdf8Kr4SrPk6m87/a6zapBnw
-        OqEKEqXmgf/jAoL/HxcyBhuEL3bgsQLXbBH0PyUlBR7ayGGCMwphzr4kY/s/Pj4eI6rwGgLTfJvL4H+W
-        X/D/1NRUrHENSqlYExvMgGUa9jg1w5y+KSAJHMUYXsnLy/sPwmRnKHI1AgDXhKRwKeRyrAAAAABJRU5E
-        rkJggg==
-</value>
-  </data>
 </root>

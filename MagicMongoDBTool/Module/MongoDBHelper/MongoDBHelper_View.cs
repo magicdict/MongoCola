@@ -465,9 +465,9 @@ namespace MagicMongoDBTool.Module
             else
             {
                 lstData.Columns.Add("ID");
-                lstData.Columns.Add("用户名");
-                lstData.Columns.Add("是否只读");
-                lstData.Columns.Add("密码");
+                lstData.Columns.Add("user");
+                lstData.Columns.Add("readonly");
+                lstData.Columns.Add("password");
             }
             foreach (BsonDocument docFile in dataList)
             {
@@ -498,10 +498,10 @@ namespace MagicMongoDBTool.Module
             }
             else
             {
-                lstData.Columns.Add("文件名称");
-                lstData.Columns.Add("文件大小");
-                lstData.Columns.Add("块大小");
-                lstData.Columns.Add("上传日期");
+                lstData.Columns.Add("filename");
+                lstData.Columns.Add("length");
+                lstData.Columns.Add("chunkSize");
+                lstData.Columns.Add("uploadDate");
                 lstData.Columns.Add("MD5");
             }
             lstData.SmallImageList = GetSystemIcon.IconImagelist;
@@ -655,7 +655,7 @@ namespace MagicMongoDBTool.Module
                             try
                             {
                                 CollectionStatsResult CollectionStatus = mongoDB.GetCollection(strColName).GetStats();
-                                ListViewItem lst = new ListViewItem(strDBName + "." + strColName);
+                                ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName + "." + strColName);
                                 lst.SubItems.Add(CollectionStatus.ObjectCount.ToString());
                                 lst.SubItems.Add(GetSize(CollectionStatus.DataSize));
                                 lst.SubItems.Add(GetSize(CollectionStatus.LastExtentSize));
@@ -743,7 +743,8 @@ namespace MagicMongoDBTool.Module
                                 }
                             }
                         }
-                        catch { 
+                        catch
+                        {
                             //throw
                         }
                     }

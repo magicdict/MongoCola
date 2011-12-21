@@ -52,19 +52,18 @@
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Location = new System.Drawing.Point(3, 8);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(55, 13);
+            this.lblTitle.Size = new System.Drawing.Size(27, 13);
             this.lblTitle.TabIndex = 9;
-            this.lblTitle.Text = "日志路径";
+            this.lblTitle.Text = "Title";
             // 
             // txtLogPath
             // 
-            this.txtLogPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtLogPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLogPath.BackColor = System.Drawing.Color.White;
-            this.txtLogPath.Location = new System.Drawing.Point(120, 5);
+            this.txtLogPath.Location = new System.Drawing.Point(36, 5);
             this.txtLogPath.Name = "txtLogPath";
             this.txtLogPath.ReadOnly = true;
-            this.txtLogPath.Size = new System.Drawing.Size(439, 20);
+            this.txtLogPath.Size = new System.Drawing.Size(523, 20);
             this.txtLogPath.TabIndex = 8;
             // 
             // cmdBrowse

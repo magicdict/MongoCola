@@ -7,7 +7,7 @@ using System.IO;
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
-    /// 字符资源
+    /// String Resource
     /// </summary>
     ///<remarks>
     ///这个功能的负责人是MoLing。
@@ -37,7 +37,7 @@ namespace MagicMongoDBTool.Module
             {
                 switch (reader.NodeType)
                 {
-                    case XmlNodeType.Element: 
+                    case XmlNodeType.Element:
                         // The node is an element.
                         if (reader.Name == "Language")
                         {
@@ -51,37 +51,27 @@ namespace MagicMongoDBTool.Module
                             _stringDic.Add(tag, text);
                         }
                         break;
-                     default:
+                    default:
                         break;
                 }
             }
         }
         /// <summary>
-        /// XML解码
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        public static String XMLDecode(String str)
-        {
-            return str.Replace("&amp;", "&");
-        }
-        /// <summary>
-        /// 获得国际化文字
+        /// Get Global String
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
         public String GetText(TextType tag)
         {
             String strText = String.Empty;
-            //使用TryGetValue方法防止出现不存在的字符，同时比Exist提高效率
             _stringDic.TryGetValue(tag.ToString(), out strText);
-            if (strText == null)
+            if (String.IsNullOrEmpty(strText))
             {
                 strText = tag.ToString();
             }
             else
             {
-                strText = XMLDecode(strText);
+                strText = strText.Replace("&amp;", "&");
             }
             return strText;
         }

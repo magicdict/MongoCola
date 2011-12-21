@@ -34,6 +34,12 @@ namespace MagicMongoDBTool
             SystemManager.MONO_MODE = Type.GetType("Mono.Runtime") != null; ;
             Application.EnableVisualStyles();
             Application.Run(new frmMain());
+
+            //delete tempfile directory when exit
+            if (Directory.Exists("TempFile"))
+            {
+                Directory.Delete("TempFile",true);
+            }
         }
     }
 }
