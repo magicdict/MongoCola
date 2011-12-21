@@ -297,7 +297,7 @@ namespace MagicMongoDBTool.Module
         {
             //标准的JS库格式未知
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
-            if (!IsExistByField(jsCol, jsName))
+            if (!IsExistByKey(jsCol, jsName))
             {
                 jsCol.Insert<BsonDocument>(new BsonDocument().Add("_id", jsName).Add("value", jsCode));
                 return true;
@@ -312,7 +312,7 @@ namespace MagicMongoDBTool.Module
         public static String LoadJavascript(String jsName)
         {
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
-            if (IsExistByField(jsCol, jsName))
+            if (IsExistByKey(jsCol, jsName))
             {
                 return jsCol.FindOneAs<BsonDocument>(Query.EQ("_id", jsName)).GetValue("value").ToString();
             }
@@ -327,7 +327,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Boolean DropDocument(MongoCollection mongoCol, object strKey, String keyField = "_id")
         {
-            if (IsExistByField(mongoCol, (BsonValue)strKey, keyField))
+            if (IsExistByKey(mongoCol, (BsonValue)strKey, keyField))
             {
                 mongoCol.Remove(Query.EQ(keyField, (BsonValue)strKey));
             }

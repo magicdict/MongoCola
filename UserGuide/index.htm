@@ -118,7 +118,7 @@
         <tr>
             <td />
             <td>
-                <font size="3" color="black">Thanks MoLing for help me correct this document. </font>
+                <font size="3" color="black">Thanks MoLing for help me correct this document. <br /><br /></font>
             </td>
         </tr>
     </table>
@@ -214,6 +214,53 @@
                     <img alt="" src="images/Main_MagicDict.PNG" />
                     <br />
                     <br />
+                </font>
+            </td>
+        </tr>
+       <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Master-Slave</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">This application support to manage a master-slave server.
+                    <br />
+                    Connect to a master server.<br />
+                    Master can be startup by Dos console like:
+                    <br />
+                    <code>cd C:\runmongo\bin<br />
+                        mkdir C:\mongodb\master<br />
+                        mongod --port 28018 --dbpath C:\mongodb\master <font color='red'>--master</font>
+                        --rest --journal </code>
+                    <br />
+                    <br />
+                    <img src="images/ServerConnection_Master_Role.PNG" alt="" />
+                    <br />
+                    <br />
+                    please select the Master at the server role tabpage.<br />
+                    Connect to a slave server.<br />
+                    Master can be startup by Dos console like:
+                    <br />
+                    <code>cd C:\runmongo\bin<br />
+                        mkdir C:\mongodb\slave<br />
+                        mongod --port 28019 --dbpath C:\mongodb\slave <font color='red'>--slave --source localhost:28018
+                        </font></code>
+                    <br />
+                    <br />
+                    <img src="images/ServerConnection_Slave_Basic.PNG" alt="" />
+                    <br />
+                    <br />
+                    <font color="red">You must select the SlaveOK checkbox if the server is a slave server.</font>
+                    <br />
+                    <br />
+                    <img src="images/ServerConnection_Slave_Role.PNG" alt="" />
+                    <br />
+                    <br />
+                    please select the Slave at the server role tabpage.<br />
                 </font>
             </td>
         </tr>
@@ -464,63 +511,20 @@
                     <br />
                     <br />
                     You also can switch to other database and delete user form database with the same
-                    way. </font>
+                    way. 
+                    <br />
+                    <br />
+                    </font>
             </td>
         </tr>
     </table>
-    <span>Tutorial:Advance</span>
+    <span>Tutorial:Aggregation</span>
     <table>
+ 
         <tr>
             <td align="center">
                 <br />
-                <font size="3" color="black"><b>Master-Slave</b></font>
-            </td>
-            <td />
-        </tr>
-        <tr>
-            <td />
-            <td>
-                <font size="3">This application support to manage a master-slave server.
-                    <br />
-                    Connect to a master server.<br />
-                    Master can be startup by Dos console like:
-                    <br />
-                    <code>cd C:\runmongo\bin<br />
-                        mkdir C:\mongodb\master<br />
-                        mongod --port 28018 --dbpath C:\mongodb\master <font color='red'>--master</font>
-                        --rest --journal </code>
-                    <br />
-                    <br />
-                    <img src="images/ServerConnection_Master_Role.PNG" alt="" />
-                    <br />
-                    <br />
-                    please select the Master at the server role tabpage.<br />
-                    Connect to a slave server.<br />
-                    Master can be startup by Dos console like:
-                    <br />
-                    <code>cd C:\runmongo\bin<br />
-                        mkdir C:\mongodb\slave<br />
-                        mongod --port 28019 --dbpath C:\mongodb\slave <font color='red'>--slave --source localhost:28018
-                        </font></code>
-                    <br />
-                    <br />
-                    <img src="images/ServerConnection_Slave_Basic.PNG" alt="" />
-                    <br />
-                    <br />
-                    <font color="red">You must select the SlaveOK checkbox if the server is a slave server.</font>
-                    <br />
-                    <br />
-                    <img src="images/ServerConnection_Slave_Role.PNG" alt="" />
-                    <br />
-                    <br />
-                    please select the Slave at the server role tabpage.<br />
-                </font>
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <br />
-                <font size="3" color="black"><b>Aggregation-Map Reduce</b></font>
+                <font size="3" color="black"><b>Map Reduce</b></font>
             </td>
             <td />
         </tr>
@@ -557,7 +561,7 @@
         <tr>
             <td align="center">
                 <br />
-                <font size="3" color="black"><b>Aggregation-Other</b></font>
+                <font size="3" color="black"><b>Others</b></font>
             </td>
             <td />
         </tr>
@@ -593,13 +597,16 @@
                 </font>
             </td>
         </tr>
-         <tr>
+        </table>
+        <span>Tutorial:Advance</span>
+        <table>
+        <tr>
             <td align="center">
                 <br />
                 <font size="3" color="black"><b>Grid File System</b></font>
             </td>
             <td />
-        </tr>
+        </tr>        
         <tr>
             <td />
             <td>
@@ -621,6 +628,51 @@
                     <img src="images/GFS_ContextMenu.PNG" alt="" />
                     <br />
                     <br />
+                </font>
+            </td>
+        </tr>
+         <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Data Query</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">
+                    With DataQuery,you can decide the output fields with conditions.<br />
+                    To enable the function,please select the data node from the left panel.XXXXXXXXXXXXXXFilter IconXXXXXXXXXX<br />
+                    You can Select the output fields with sort in "Output fields" tab.<br />
+                    <br />
+                    <img src="images/Query_init.PNG" alt="" />
+                    <br /><br />
+                    You can give some conditions to limit the output data in "Filter" tab.<br />
+                    
+                    <br />
+                    Example1: Select * from Collection Where Age > 10<br />
+                    <br />
+                    <img src="images/Query_Condition_One.PNG" alt="" />
+                    <br /><br />
+                    <img src="images/Query_Condition_One_Result.PNG" alt="" />
+                    <br /><br />
+
+                    <br />
+                    Example2: Select * from Collection Where Age > 10 Or Age2 < 10 <br />
+                    <br />
+                    <img src="images/Query_Condition_Two.PNG" alt=""/>
+                    <br /><br />
+                    <img src="images/Query_Condition_Two_Result.PNG" alt="" />
+                    <br /><br />
+
+                    <br />
+                    Example3: Select * from Collection Where (Age > 10 and Age2 < 10) or Age > 10 <br />
+                    <br />
+                    <img src="images/Query_Condition_Three.PNG" alt=""/>
+                    <br /><br />
+                    <img src="images/Query_Condition_Three_Result.PNG" alt="" />
+                    <br /><br />
                 </font>
             </td>
         </tr>

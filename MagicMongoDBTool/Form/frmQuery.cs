@@ -20,7 +20,7 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 条件输入器位置
         /// </summary>
-        private Point _conditionPos = new Point(50, 20);
+        private Point _conditionPos = new Point(5, 20);
         public frmQuery()
         {
             InitializeComponent();
@@ -59,7 +59,7 @@ namespace MagicMongoDBTool
             {
                 this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Title);
                 tabFieldInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_FieldInfo);
-                tabFilter.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Filter);
+                tabCondition.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Filter);
                 cmdAddCondition.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Filter_AddCondition);
                 cmdLoad.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Action_Load);
                 cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
@@ -176,6 +176,7 @@ namespace MagicMongoDBTool
                     }
                 }
                 //新增字段
+                _conditionPos = new Point(5, 0);
                 foreach (String item in ShowColumnList)
                 {
                     strErrMsg += "New Field" + item + "Is Append" + System.Environment.NewLine;
@@ -187,26 +188,26 @@ namespace MagicMongoDBTool
                     //动态加载控件
                     ctlFieldInfo ctrItem = new ctlFieldInfo();
                     ctrItem.Name = item;
+                    _conditionPos.Y += ctrItem.Height;
                     ctrItem.Location = _conditionPos;
                     ctrItem.QueryFieldItem = queryFieldItem;
                     tabFieldInfo.Controls.Add(ctrItem);
-                    //纵向位置的累加
-                    _conditionPos.Y += ctrItem.Height;
                 }
                 
                 panFilter.Controls.Clear();
-                _conditionPos = new Point(5, 20);
+                _conditionPos = new Point(5, 0);
                 _conditionCount = 0;
                 foreach (DataFilter.QueryConditionInputItem queryConditionItem in NewDataFilter.QueryConditionList)
                 {
                     ctlQueryCondition newCondition = new ctlQueryCondition();
                     newCondition.Init(ColumnList);
+                    _conditionPos.Y += newCondition.Height;
                     newCondition.Location = _conditionPos;
                     newCondition.ConditionItem = queryConditionItem;
                     _conditionCount++;
                     newCondition.Name = "Condition" + _conditionCount.ToString();
                     panFilter.Controls.Add(newCondition);
-                    _conditionPos.Y += newCondition.Height;
+
                     if (!ColumnList.Contains(queryConditionItem.ColName))
                     {
                         strErrMsg += queryConditionItem.ColName + "Query Condition Field is not exist in collection any more" + System.Environment.NewLine;

@@ -9,7 +9,7 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
-  
+
         /// <summary>
         /// 是否使用过滤器
         /// </summary>
@@ -125,34 +125,19 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         private static IMongoQuery GetGroupQuery(List<DataFilter.QueryConditionInputItem> conditionGroup)
         {
-            List<DataFilter.QueryConditionInputItem> orGrp = new List<DataFilter.QueryConditionInputItem>();
-            List<DataFilter.QueryConditionInputItem> andGrp = new List<DataFilter.QueryConditionInputItem>();
-            for (int i = 0; i < conditionGroup.Count; i++)
+            IMongoQuery rtnQuery = Query.Or(GetQuery(conditionGroup[0]));
+            for (int i = 1; i < conditionGroup.Count; i++)
             {
-                if (i == 0)
+                if (conditionGroup[i - 1].EndMark == EndMark_AND)
                 {
-                    //第一条强制放入OrGroup
-                    andGrp.Add(conditionGroup[i]);
+                    rtnQuery = Query.And(new IMongoQuery[] { rtnQuery, GetQuery(conditionGroup[i]) });
                 }
-                else
+                if (conditionGroup[i - 1].EndMark == EndMark_OR)
                 {
-                    //第二条到最终条，参考上一条
-                    if (conditionGroup[i - 1].EndMark == EndMark_AND)
-                    {
-                        andGrp.Add(conditionGroup[i]);
-                    }
-                    if (conditionGroup[i - 1].EndMark == EndMark_OR)
-                    {
-                        orGrp.Add(conditionGroup[i]);
-                    }
+                    rtnQuery = Query.Or(new IMongoQuery[] { rtnQuery, GetQuery(conditionGroup[i]) });
                 }
             }
-            //将OR条件转化为一个IMongoQuery
-            IMongoQuery orResult = GetGroup(orGrp, "OR");
-            //将AND条件转化为一个IMongoQuery
-            IMongoQuery andResult = GetGroup(andGrp, "AND");
-            //将AND和OR条件合并
-            return Query.And(new IMongoQuery[] { orResult, andResult });
+            return rtnQuery;
         }
         /// <summary>
         /// 将And和Or组里面的最基本条件转化为一个IMongoQuery
@@ -160,57 +145,47 @@ namespace MagicMongoDBTool.Module
         /// <param name="oprGrp"></param>
         /// <param name="strOPR"></param>
         /// <returns></returns>
-        private static IMongoQuery GetGroup(List<DataFilter.QueryConditionInputItem> oprGrp, String strOPR)
+        private static IMongoQuery GetQuery(DataFilter.QueryConditionInputItem item)
         {
-            List<IMongoQuery> queryLst = new List<IMongoQuery>();
-            foreach (var item in oprGrp)
+
+            IMongoQuery query;
+            BsonValue queryvalue = item.Value.GetBsonValue();
+            switch (item.Compare)
             {
-                IMongoQuery query;
-                BsonValue queryvalue = item.Value.GetBsonValue();
-                switch (item.Compare)
-                {
-                    case DataFilter.CompareEnum.EQ:
-                        query = Query.EQ(item.ColName, queryvalue);
-                        break;
-                    case DataFilter.CompareEnum.GT:
-                        query = Query.GT(item.ColName, queryvalue);
-                        break;
-                    case DataFilter.CompareEnum.GTE:
-                        query = Query.GTE(item.ColName, queryvalue);
-                        break;
-                    case DataFilter.CompareEnum.LT:
-                        query = Query.LT(item.ColName, queryvalue);
-                        break;
-                    case DataFilter.CompareEnum.LTE:
-                        query = Query.LTE(item.ColName, queryvalue);
-                        break;
-                    case DataFilter.CompareEnum.NE:
-                        query = Query.NE(item.ColName, queryvalue);
-                        break;
-                    default:
-                        query = Query.EQ(item.ColName, queryvalue);
-                        break;
-                }
-                queryLst.Add(query);
+                case DataFilter.CompareEnum.EQ:
+                    query = Query.EQ(item.ColName, queryvalue);
+                    break;
+                case DataFilter.CompareEnum.GT:
+                    query = Query.GT(item.ColName, queryvalue);
+                    break;
+                case DataFilter.CompareEnum.GTE:
+                    query = Query.GTE(item.ColName, queryvalue);
+                    break;
+                case DataFilter.CompareEnum.LT:
+                    query = Query.LT(item.ColName, queryvalue);
+                    break;
+                case DataFilter.CompareEnum.LTE:
+                    query = Query.LTE(item.ColName, queryvalue);
+                    break;
+                case DataFilter.CompareEnum.NE:
+                    query = Query.NE(item.ColName, queryvalue);
+                    break;
+                default:
+                    query = Query.EQ(item.ColName, queryvalue);
+                    break;
             }
-            if (strOPR == "OR")
-            {
-                return Query.Or(queryLst.ToArray());
-            }
-            else
-            {
-                return Query.And(queryLst.ToArray());
-            }
+            return query;
         }
         /// <summary>
-        /// 是否存在某个数据
+        /// Is Exist by Key
         /// </summary>
-        /// <param name="Field"></param>
-        /// <param name="mongoCol"></param>
+        /// <param name="mongoCol">Collection</param>
+        /// <param name="KeyValue">KeyValue</param>
+        /// <param name="Field">KeyField</param>
         /// <returns></returns>
-        public static Boolean IsExistByField(MongoCollection mongoCol, BsonValue strKey, String Field = "_id")
+        public static Boolean IsExistByKey(MongoCollection mongoCol, BsonValue KeyValue, String Field = "_id")
         {
-            return mongoCol.FindAs<BsonDocument>(Query.EQ(Field, strKey)).Count() > 0;
+            return mongoCol.FindAs<BsonDocument>(Query.EQ(Field, KeyValue)).Count() > 0;
         }
     }
 }
