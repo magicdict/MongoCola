@@ -32,12 +32,12 @@
             this.cmdOK = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabFieldInfo = new System.Windows.Forms.TabPage();
-            this.tabFilter = new System.Windows.Forms.TabPage();
+            this.tabCondition = new System.Windows.Forms.TabPage();
             this.panFilter = new System.Windows.Forms.Panel();
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
-            this.tabFilter.SuspendLayout();
+            this.tabCondition.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdAddCondition
@@ -65,7 +65,7 @@
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tabFieldInfo);
-            this.tabControl.Controls.Add(this.tabFilter);
+            this.tabControl.Controls.Add(this.tabCondition);
             this.tabControl.Location = new System.Drawing.Point(14, 20);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -82,17 +82,17 @@
             this.tabFieldInfo.Text = "Output Fields";
             this.tabFieldInfo.UseVisualStyleBackColor = true;
             // 
-            // tabFilter
+            // tabCondition
             // 
-            this.tabFilter.Controls.Add(this.panFilter);
-            this.tabFilter.Controls.Add(this.cmdAddCondition);
-            this.tabFilter.Location = new System.Drawing.Point(4, 22);
-            this.tabFilter.Name = "tabFilter";
-            this.tabFilter.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFilter.Size = new System.Drawing.Size(488, 378);
-            this.tabFilter.TabIndex = 1;
-            this.tabFilter.Text = "Filter";
-            this.tabFilter.UseVisualStyleBackColor = true;
+            this.tabCondition.Controls.Add(this.panFilter);
+            this.tabCondition.Controls.Add(this.cmdAddCondition);
+            this.tabCondition.Location = new System.Drawing.Point(4, 22);
+            this.tabCondition.Name = "tabCondition";
+            this.tabCondition.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCondition.Size = new System.Drawing.Size(488, 378);
+            this.tabCondition.TabIndex = 1;
+            this.tabCondition.Text = "Condition";
+            this.tabCondition.UseVisualStyleBackColor = true;
             // 
             // panFilter
             // 
@@ -141,7 +141,7 @@
             this.Text = "Query";
             this.Load += new System.EventHandler(this.frmQuery_Load);
             this.tabControl.ResumeLayout(false);
-            this.tabFilter.ResumeLayout(false);
+            this.tabCondition.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -152,7 +152,7 @@
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabFieldInfo;
-        private System.Windows.Forms.TabPage tabFilter;
+        private System.Windows.Forms.TabPage tabCondition;
         private System.Windows.Forms.Button cmdSave;
         private System.Windows.Forms.Button cmdLoad;
         private System.Windows.Forms.Panel panFilter;

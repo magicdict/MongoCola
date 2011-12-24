@@ -41,7 +41,7 @@ namespace MagicMongoDBTool
             // cmbDataType
             // 
             this.cmbDataType.FormattingEnabled = true;
-            this.cmbDataType.Location = new System.Drawing.Point(107, 4);
+            this.cmbDataType.Location = new System.Drawing.Point(3, 4);
             this.cmbDataType.Name = "cmbDataType";
             this.cmbDataType.Size = new System.Drawing.Size(97, 21);
             this.cmbDataType.TabIndex = 4;
@@ -51,7 +51,7 @@ namespace MagicMongoDBTool
             // 
             this.radFalse.AutoSize = true;
             this.radFalse.BackColor = System.Drawing.Color.Transparent;
-            this.radFalse.Location = new System.Drawing.Point(51, 8);
+            this.radFalse.Location = new System.Drawing.Point(155, 7);
             this.radFalse.Name = "radFalse";
             this.radFalse.Size = new System.Drawing.Size(50, 17);
             this.radFalse.TabIndex = 6;
@@ -63,7 +63,7 @@ namespace MagicMongoDBTool
             // 
             this.radTrue.AutoSize = true;
             this.radTrue.BackColor = System.Drawing.Color.Transparent;
-            this.radTrue.Location = new System.Drawing.Point(3, 8);
+            this.radTrue.Location = new System.Drawing.Point(107, 7);
             this.radTrue.Name = "radTrue";
             this.radTrue.Size = new System.Drawing.Size(47, 17);
             this.radTrue.TabIndex = 7;
@@ -73,7 +73,7 @@ namespace MagicMongoDBTool
             // 
             // txtBsonValue
             // 
-            this.txtBsonValue.Location = new System.Drawing.Point(0, 5);
+            this.txtBsonValue.Location = new System.Drawing.Point(104, 4);
             this.txtBsonValue.Name = "txtBsonValue";
             this.txtBsonValue.Size = new System.Drawing.Size(105, 20);
             this.txtBsonValue.TabIndex = 5;
@@ -81,14 +81,14 @@ namespace MagicMongoDBTool
             // dateTimePicker
             // 
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker.Location = new System.Drawing.Point(0, 5);
+            this.dateTimePicker.Location = new System.Drawing.Point(104, 4);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(101, 20);
             this.dateTimePicker.TabIndex = 8;
             // 
             // NumberPick
             // 
-            this.NumberPick.Location = new System.Drawing.Point(0, 5);
+            this.NumberPick.Location = new System.Drawing.Point(104, 4);
             this.NumberPick.Maximum = new decimal(new int[] {
             -727379969,
             232,

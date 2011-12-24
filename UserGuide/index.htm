@@ -76,12 +76,10 @@
         <tr>
             <td />
             <td>
-                <font size="3" color="black">You can download the Executable File [RAR,ZIP package]from
+                <font size="3" color="black">You can download the Executable File [ZIP package]from
                     GitHub: <a href="https://github.com/magicdict/MagicMongoDBTool/downloads">Downloads
                         @GitHub</a><br />
                     Or you can download the Executable File from this website:
-                    <br />
-                    <a href="http://www.magicdict.com/MongoCola.rar">Download from @www.magicdict.com [RAR]</a>
                     <br />
                     <a href="http://www.magicdict.com/MongoCola.zip">Download from @www.magicdict.com [ZIP]</a>
                     <br />
@@ -570,7 +568,7 @@
             <td>
                 <font size="3">
                     Count:<br />
-                    This tools also support the Aggregation:Count,Distinct,Group<br />
+                    This tools also support the Aggregation:Count,Distinct,Group,(All Aggregation is support query filter.The next section will introduce query filter)<br />
                     Count will give you a count result of collection.The count result may be different ,when a datafilter is enable or not.<br />
                     Distinct:<br />
                     You need to pick a distinct field first<br /><br />
@@ -643,7 +641,11 @@
             <td>
                 <font size="3">
                     With DataQuery,you can decide the output fields with conditions.<br />
-                    To enable the function,please select the data node from the left panel.XXXXXXXXXXXXXXFilter IconXXXXXXXXXX<br />
+                    To enable the DataQuery,please select the data node from the left panel,then<br />
+                    <ul>
+                        <li>Click the MainMenu : Data -> Query</li>
+                        <li>Click the ContextMenu : Query</li>
+                    </ul>
                     You can Select the output fields with sort in "Output fields" tab.<br />
                     <br />
                     <img src="images/Query_init.PNG" alt="" />
@@ -673,10 +675,54 @@
                     <br /><br />
                     <img src="images/Query_Condition_Three_Result.PNG" alt="" />
                     <br /><br />
+                    You can save your query filter into a .xml file or load your query filter from a .xml file at any functions witch support query filter.<br />
+                    (All Aggregation is support query filter.)<br />
+                    You also can click the  <img src="images/Filter.png" alt=""/>  icon on toolbar to switch filter status quickly.<br />
+                    <br /><img src="images/Toolbar.PNG" alt="" /><br /><br />
+
+
                 </font>
             </td>
         </tr>
-        <!-- <tr>
+         <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Dump and Restore</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">
+                    This tool provide dump(backup) and restore function via run mongodump.exe and mongorestore.exe.<br />
+                    It is need the mongodump.exe and mongorestore.exe support,so make sure that the mongo\bin path is current setted.<br />
+                    <br /><img src="images/Option.PNG" alt="" /><br /><br />
+                    You can dump database,collection to a file,and restore the database,collection when needed.<br />
+                    You also can export or import collection data.The difference of export and dump is that : Export write data to file with Bson,but Dump write data with Binary.<br />
+
+                </font>
+            </td>
+        </tr>
+         <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Import from Access</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">
+                    You can Import data from Microsoft Access Database.<br />
+                    Select a server then click the <img src="images/Access.png" alt="" />  icon from the toolbar.<br />
+                    Now,the mongo[2.0.2] has not supported the No-English DBName or CollectionName yet.<br /><br /><br />
+                </font>
+            </td>
+        </tr>
+
+<!--         <tr>
             <td align="center">
                 <br />
                 <font size="3" color="black"><b>Master-Slave</b></font>

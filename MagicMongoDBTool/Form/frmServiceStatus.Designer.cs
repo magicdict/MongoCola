@@ -71,6 +71,9 @@
             // 
             // tabSvrStatus
             // 
+            this.tabSvrStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabSvrStatus.Controls.Add(this.tabSvrBasicInfo);
             this.tabSvrStatus.Controls.Add(this.tabDBBasicInfo);
             this.tabSvrStatus.Controls.Add(this.tabCollectionInfo);
@@ -147,6 +150,7 @@
             // 
             // cmdRefresh
             // 
+            this.cmdRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdRefresh.BackColor = System.Drawing.Color.Transparent;
             this.cmdRefresh.Location = new System.Drawing.Point(695, 4);
             this.cmdRefresh.Name = "cmdRefresh";
@@ -163,9 +167,6 @@
             this.ClientSize = new System.Drawing.Size(808, 452);
             this.Controls.Add(this.cmdRefresh);
             this.Controls.Add(this.tabSvrStatus);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "frmServiceStatus";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Status";
