@@ -11,7 +11,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 服务器类型
         /// </summary>
-        public enum SvrType
+        public enum SvrRoleType
         {
             /// <summary>
             /// 数据服务器[mongod]
@@ -36,11 +36,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// Master主服务器
             /// </summary>
-            Master,
+            MasterSvr,
             /// <summary>
             /// Slave从属服务器
             /// </summary>
-            Slave
+            SlaveSvr
         }
         /// <summary>
         /// 链接结构体
@@ -98,9 +98,9 @@ namespace MagicMongoDBTool.Module
             [XmlIgnore()]
             public Boolean AuthMode;
             /// <summary>
-            /// 服务器类型
+            /// Server Role
             /// </summary>
-            public SvrType ServerType;
+            public SvrRoleType ServerRole;
             /// <summary>
             /// 副本名称
             /// </summary>
@@ -118,9 +118,9 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public int Priority;
             /// <summary>
-            /// 超时
+            /// Socket TimeOut (Sec)
             /// </summary>
-            public int TimeOut;
+            public int SocketTimeOut;
         }
         /// <summary>
         /// 通过Host信息获得连接名称
@@ -172,6 +172,10 @@ namespace MagicMongoDBTool.Module
             ConnectionList.Add(con.ConnectionName, con);
             return true;
         }
+        /// <summary>
+        /// Config Format Version
+        /// </summary>
+        public byte ConfigVer = 1; 
         /// <summary>
         /// MongoBin的路径，用于Dos命令
         /// </summary>

@@ -80,7 +80,8 @@
   <Main_Menu_Help>ヘルプ</Main_Menu_Help>
   <Main_Menu_Help_About>MongoColaについて</Main_Menu_Help_About>
   <Main_Menu_Help_Thanks>感謝</Main_Menu_Help_Thanks>
-
+  <Main_Menu_Help_UserGuide>ユーザーガイド</Main_Menu_Help_UserGuide>
+  
   <Main_Tab_Tree>ツリービュー</Main_Tab_Tree>
   <Main_Tab_Table>テーブルビュー</Main_Tab_Table>
   <Main_Tab_Text>テクストビュー</Main_Tab_Text>
@@ -284,8 +285,10 @@
 
   <!--Exception-->
   <Exception_NotConnected>未接続</Exception_NotConnected>
+  <Exception_NotConnected_Note>サーバーは停止状態　または　認証モードが間違います</Exception_NotConnected_Note>
   <Exception_AuthenticationException>認証エラー</Exception_AuthenticationException>
-
+  <Exception_AuthenticationException_Note>ユーザー名　と　パスワード　を確認してください</Exception_AuthenticationException_Note>
+  
   <!--StatusBar-->
   <Selected_Server>選らんたサーバーr</Selected_Server>
   <Selected_DataBase>選らんたデータベース</Selected_DataBase>
@@ -300,13 +303,13 @@
   <Common_Password>パスワード</Common_Password>
   <Common_ReadOnly>読取り専用 </Common_ReadOnly>
   <Common_OK>OK</Common_OK>
-  <Common_Cancel>取消し</Common_Cancel>
+  <Common_Cancel>キャンセル</Common_Cancel>
   <Common_Refresh>更新</Common_Refresh>
   <Common_Yes>はい</Common_Yes>
   <Common_No>いいえ</Common_No>
   <Common_Detail>詳細情報</Common_Detail>
   <Common_Save>保存</Common_Save>
-  <Common_Modify>修正</Common_Modify>
+  <Common_Modify>変更</Common_Modify>
   <Common_Add>追加</Common_Add>
 
   <Common_Server>サーバー</Common_Server>

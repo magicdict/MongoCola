@@ -74,7 +74,7 @@ namespace MagicMongoDBTool
                 if (item.MainReplSetName == ModifyConn.ReplSetName)
                 {
                     lstServerce.Items.Add(item.ConnectionName);
-                    if (ModifyConn.ServerType == ConfigHelper.SvrType.ReplsetSvr && ModifyConn.ReplsetList.Contains(item.ConnectionName))
+                    if (ModifyConn.ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr && ModifyConn.ReplsetList.Contains(item.ConnectionName))
                     {
                         lstServerce.SetSelected(lstServerce.Items.Count - 1, true);
                     }
@@ -106,26 +106,26 @@ namespace MagicMongoDBTool
             txtReplSetName.Text = ModifyConn.ReplSetName;
             txtDataBaseName.Text = ModifyConn.DataBaseName;
             numPriority.Value = ModifyConn.Priority;
-            numTimeOut.Value = ModifyConn.TimeOut;
+            numTimeOut.Value = ModifyConn.SocketTimeOut;
             txtConnectionString.Text = ModifyConn.ConnectionString;
-            switch (ModifyConn.ServerType)
+            switch (ModifyConn.ServerRole)
             {
-                case ConfigHelper.SvrType.ConfigSvr:
+                case ConfigHelper.SvrRoleType.ConfigSvr:
                     radConfigSrv.Checked = true;
                     break;
-                case ConfigHelper.SvrType.RouteSvr:
+                case ConfigHelper.SvrRoleType.RouteSvr:
                     radRouteSrv.Checked = true;
                     break;
-                case ConfigHelper.SvrType.ArbiterSvr:
+                case ConfigHelper.SvrRoleType.ArbiterSvr:
                     radArbiters.Checked = true;
                     break;
-                case ConfigHelper.SvrType.DataSvr:
+                case ConfigHelper.SvrRoleType.DataSvr:
                     radDataSrv.Checked = true;
                     break;
-                case ConfigHelper.SvrType.Master:
+                case ConfigHelper.SvrRoleType.MasterSvr:
                     radMaster.Checked = true;
                     break;
-                case ConfigHelper.SvrType.Slave:
+                case ConfigHelper.SvrRoleType.SlaveSvr:
                     radSlave.Checked = true;
                     break;
                 default:
@@ -172,7 +172,7 @@ namespace MagicMongoDBTool
                 ModifyConn.DataBaseName = txtDataBaseName.Text;
                 ModifyConn.MainReplSetName = txtMainReplsetName.Text;
                 ModifyConn.Priority = (int)numPriority.Value;
-                ModifyConn.TimeOut = (int)numTimeOut.Value;
+                ModifyConn.SocketTimeOut = (int)numTimeOut.Value;
 
                 //仅有用户名或密码
                 if (txtUsername.Text != String.Empty && txtPassword.Text == String.Empty)
@@ -211,12 +211,12 @@ namespace MagicMongoDBTool
                 //普通服务器
                 if (radDataSrv.Checked)
                 {
-                    ModifyConn.ServerType = ConfigHelper.SvrType.DataSvr;
+                    ModifyConn.ServerRole = ConfigHelper.SvrRoleType.DataSvr;
                 }
                 //配置服务器
                 if (radConfigSrv.Checked)
                 {
-                    ModifyConn.ServerType = ConfigHelper.SvrType.ConfigSvr;
+                    ModifyConn.ServerRole = ConfigHelper.SvrRoleType.ConfigSvr;
                     //Config和Route不能设置为SlaveOK模式,必须设置为Admin模式
                     //文件下载的时候也不能使用SlaveOK模式
                     ModifyConn.LoginAsAdmin = true;
@@ -227,24 +227,24 @@ namespace MagicMongoDBTool
                 {
                     //Config和Route不能设置为SlaveOK模式,必须设置为Admin模式
                     //文件下载的时候也不能使用SlaveOK模式
-                    ModifyConn.ServerType = ConfigHelper.SvrType.RouteSvr;
+                    ModifyConn.ServerRole = ConfigHelper.SvrRoleType.RouteSvr;
                     ModifyConn.LoginAsAdmin = true;
                     ModifyConn.IsSlaveOk = false;
                 }
                 //仲裁服务器
                 if (this.radArbiters.Checked)
                 {
-                    ModifyConn.ServerType = ConfigHelper.SvrType.ArbiterSvr;
+                    ModifyConn.ServerRole = ConfigHelper.SvrRoleType.ArbiterSvr;
                 }
 
                 if (this.radMaster.Checked)
                 {
-                    ModifyConn.ServerType = ConfigHelper.SvrType.Master;
+                    ModifyConn.ServerRole = ConfigHelper.SvrRoleType.MasterSvr;
                 }
 
                 if (this.radSlave.Checked)
                 {
-                    ModifyConn.ServerType = ConfigHelper.SvrType.Slave;
+                    ModifyConn.ServerRole = ConfigHelper.SvrRoleType.SlaveSvr;
                     ModifyConn.IsSlaveOk = true;
                 }
 
@@ -261,7 +261,7 @@ namespace MagicMongoDBTool
                         ModifyConn.ReplsetList.Add(item);
                     }
                     //这里将自动选择为副本服务器
-                    ModifyConn.ServerType = ConfigHelper.SvrType.ReplsetSvr;
+                    ModifyConn.ServerRole = ConfigHelper.SvrRoleType.ReplsetSvr;
                 }
                 if (ModifyConn.MainReplSetName != String.Empty && ModifyConn.Priority == 0)
                 {
@@ -292,7 +292,7 @@ namespace MagicMongoDBTool
                 if (item.MainReplSetName == txtReplSetName.Text)
                 {
                     lstServerce.Items.Add(item.ConnectionName);
-                    if (ModifyConn.ServerType == ConfigHelper.SvrType.ReplsetSvr && ModifyConn.ReplsetList.Contains(item.ConnectionName))
+                    if (ModifyConn.ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr && ModifyConn.ReplsetList.Contains(item.ConnectionName))
                     {
                         lstServerce.SetSelected(lstServerce.Items.Count - 1, true);
                     }

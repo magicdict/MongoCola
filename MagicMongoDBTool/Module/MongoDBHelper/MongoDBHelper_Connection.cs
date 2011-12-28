@@ -39,16 +39,16 @@ namespace MagicMongoDBTool.Module
                         //Replset时候可以不用设置吗？                    
                         mongoSvrSetting.Server = new MongoServerAddress(config.Host, config.Port);
                         //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
-                        if (config.TimeOut != 0)
+                        if (config.SocketTimeOut != 0)
                         {
-                            mongoSvrSetting.SocketTimeout = new TimeSpan(0, 0, config.TimeOut);
+                            mongoSvrSetting.SocketTimeout = new TimeSpan(0, 0, config.SocketTimeOut);
                         }
                         if (!(String.IsNullOrEmpty(config.UserName) | String.IsNullOrEmpty(config.Password)))
                         {
                             //认证的设定:注意，这里的密码是明文
                             mongoSvrSetting.DefaultCredentials = new MongoCredentials(config.UserName, config.Password, config.LoginAsAdmin);
                         }
-                        if (config.ServerType == ConfigHelper.SvrType.ReplsetSvr)
+                        if (config.ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr)
                         {
                             //ReplsetName不是固有属性,可以设置，不过必须保持与配置文件的一致
                             mongoSvrSetting.ReplicaSetName = config.ReplSetName;
@@ -105,7 +105,7 @@ namespace MagicMongoDBTool.Module
                 config.IsSlaveOk = mongourl.SlaveOk;
                 config.IsSafeMode = mongourl.SafeMode.Enabled;
                 config.ReplSetName = mongourl.ReplicaSetName;
-                config.TimeOut = (int)mongourl.SocketTimeout.TotalSeconds;
+                config.SocketTimeOut = (int)mongourl.SocketTimeout.TotalSeconds;
                 return true;
             }
             catch (FormatException)
@@ -230,7 +230,7 @@ namespace MagicMongoDBTool.Module
                     {
                         mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]";
                         MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
-                            "请检查用户名和密码", ex.ToString(), true);
+                                                 SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
                     }
                     else
                     {
@@ -250,7 +250,7 @@ namespace MagicMongoDBTool.Module
                     {
                         mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
                         MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
-                            "服务器没有启动 或者 认证模式不正确", ex.ToString(), true);
+                                                 SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note), ex.ToString(), true);
                     }
                     else
                     {

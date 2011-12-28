@@ -20,6 +20,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public static Boolean MONO_MODE = false;
         /// <summary>
+        /// 版本号
+        /// </summary>
+        public static String Version = "1.01";
+        /// <summary>
         /// 数据过滤器
         /// </summary>
         public static DataFilter CurrDataFilter = new DataFilter();

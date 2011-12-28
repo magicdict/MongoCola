@@ -63,7 +63,7 @@ namespace MagicMongoDBTool
             foreach (String item in lstServerOutReplset.SelectedItems)
             {
                 ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[item];
-                Resultlst.Add(MongoDBHelper.AddToReplsetServer(_prmSvr, config.Host + ":" + config.Port, config.ServerType == ConfigHelper.SvrType.ArbiterSvr));
+                Resultlst.Add(MongoDBHelper.AddToReplsetServer(_prmSvr, config.Host + ":" + config.Port, config.ServerRole == ConfigHelper.SvrRoleType.ArbiterSvr));
             }
             MyMessageBox.ShowMessage("Add Server", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
             RefreshSvr();

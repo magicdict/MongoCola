@@ -81,6 +81,9 @@ namespace MagicMongoDBTool.Module
             Main_Menu_Help,
             Main_Menu_Help_About,
             Main_Menu_Help_Thanks,
+            Main_Menu_Help_UserGuide,
+
+
             Main_Tab_Tree,
             Main_Tab_Table,
             Main_Tab_Text,
@@ -264,9 +267,12 @@ namespace MagicMongoDBTool.Module
             Index_Keys,
             Index_Version,
             Index_NameSpace,
-            //异常
+
+            //Exception
             Exception_NotConnected,
+            Exception_NotConnected_Note,
             Exception_AuthenticationException,
+            Exception_AuthenticationException_Note,
 
             Selected_Server,
             Selected_DataBase,
@@ -276,7 +282,8 @@ namespace MagicMongoDBTool.Module
             Selected_Index,
             Selected_GFS,
             Selected_UserList,
-            //公共
+
+            //Common
             Common_Username,
             Common_Password,
             Common_ReadOnly,
@@ -299,23 +306,19 @@ namespace MagicMongoDBTool.Module
             Common_Collapse,
             Common_Expansion,
 
-            //Create New DataBase
+            //MessageBo
             Create_New_DataBase,
             Create_New_DataBase_Input,
-
             Drop_DataBase,
             Drop_DataBase_Confirm,
-
             Create_New_Collection,
             Create_New_Collection_Input,
             Rename_Collection,
             Rename_Collection_Input,
             Drop_Collection,
             Drop_Collection_Confirm,
-            
             Drop_User,
             Drop_User_Confirm,
-            
             Drop_Data,
             Drop_Data_Confirm
         }

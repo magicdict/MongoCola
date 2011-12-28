@@ -99,7 +99,7 @@ namespace MagicMongoDBTool.Module
                 host = new BsonDocument();
                 host.Add("_id", id);
                 host.Add("host", SystemManager.ConfigHelperInstance.ConnectionList[item].Host + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString());
-                if (SystemManager.ConfigHelperInstance.ConnectionList[item].ServerType == ConfigHelper.SvrType.ArbiterSvr)
+                if (SystemManager.ConfigHelperInstance.ConnectionList[item].ServerRole == ConfigHelper.SvrRoleType.ArbiterSvr)
                 {
                     //仲裁服务器
                     host.Add("arbiterOnly", true);

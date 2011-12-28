@@ -34,6 +34,7 @@ namespace MagicMongoDBTool
                 MongoDBHelper.AddServer(connLst);
                 RefreshToolStripMenuItem_Click(null, null);
             }
+            this.Text += SystemManager.Version;
             if (SystemManager.MONO_MODE)
             {
                 this.Text += " MONO";
@@ -135,6 +136,7 @@ namespace MagicMongoDBTool
             this.HelpToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Help);
             this.AboutToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Help_About);
             this.ThanksToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Help_Thanks);
+            this.UserGuideToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Help_UserGuide);
 
             //就绪
             this.statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
@@ -305,7 +307,7 @@ namespace MagicMongoDBTool
                         this.ShutDownToolStripMenuItem.Enabled = true;
                         this.SvrPropertyToolStripMenuItem.Enabled = true;
 
-                        if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.ReplsetSvr)
+                        if (SystemManager.GetSelectedSvrProByName().ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr)
                         {
                             //副本服务器专用。
                             //副本初始化的操作 改在连接设置里面完成
@@ -314,7 +316,7 @@ namespace MagicMongoDBTool
                                 this.ReplicaSetToolStripMenuItem.Enabled = true;
                             }
                         }
-                        if (SystemManager.GetSelectedSvrProByName().ServerType == ConfigHelper.SvrType.RouteSvr)
+                        if (SystemManager.GetSelectedSvrProByName().ServerRole == ConfigHelper.SvrRoleType.RouteSvr)
                         {
                             //Route用
                             if (!config.IsReadOnly)
@@ -445,7 +447,7 @@ namespace MagicMongoDBTool
                                 this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                                 this.AddUserToolStripMenuItem.Enabled = true;
                                 this.InitGFSToolStripMenuItem.Enabled = true;
-                                if (config.ServerType == ConfigHelper.SvrType.Slave)
+                                if (config.ServerRole == ConfigHelper.SvrRoleType.SlaveSvr)
                                 {
                                     ///Slave server @ Master-Slave
                                     this.RepairDBToolStripMenuItem.Enabled = true;

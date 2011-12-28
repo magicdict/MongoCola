@@ -80,7 +80,8 @@
   <Main_Menu_Help>帮助</Main_Menu_Help>
   <Main_Menu_Help_About>关于</Main_Menu_Help_About>
   <Main_Menu_Help_Thanks>感谢</Main_Menu_Help_Thanks>
-
+  <Main_Menu_Help_UserGuide>用户手册</Main_Menu_Help_UserGuide>
+  
   <Main_Tab_Tree>树形视图</Main_Tab_Tree>
   <Main_Tab_Table>表格视图</Main_Tab_Table>
   <Main_Tab_Text>文本视图</Main_Tab_Text>
@@ -284,7 +285,9 @@
 
   <!--Exception-->
   <Exception_NotConnected>未连接</Exception_NotConnected>
+  <Exception_NotConnected_Note>服务器没有启动 或者 认证模式不正确</Exception_NotConnected_Note>
   <Exception_AuthenticationException>认证错误</Exception_AuthenticationException>
+  <Exception_AuthenticationException_Note>请检查用户名和密码</Exception_AuthenticationException_Note>
   
   <!--StatusBar-->
   <Selected_Server>选中服务器r</Selected_Server>
