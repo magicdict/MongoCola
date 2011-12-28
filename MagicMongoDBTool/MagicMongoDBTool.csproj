@@ -109,7 +109,7 @@
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_SvrCommand.cs" />
     <Compile Include="Module\System\MyMessageBox.cs" />
     <Compile Include="Module\Resource\StringResources.cs" />
-    <Compile Include="Language\StringResource_Enum.cs" />
+    <Compile Include="Module\Resource\StringResource_Enum.cs" />
     <Compile Include="UserController\ctlBsonValue.cs">
       <SubType>UserControl</SubType>
     </Compile>
