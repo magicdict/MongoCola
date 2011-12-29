@@ -5,7 +5,7 @@ namespace MagicMongoDBTool.Module
 {
     public partial class ctlMongodump : UserControl
     {
-        public event MagicMongoDBTool.frmDosCommand.CommandChangedEventHandler CommandChanged;
+        public EventHandler<TextChangeEventArgs> CommandChanged;
         private MongodbDosCommand.StruMongoDump MongodumpCommand = new MongodbDosCommand.StruMongoDump();
         public ctlMongodump()
         {
@@ -25,38 +25,42 @@ namespace MagicMongoDBTool.Module
                 ctlFilePickerOutput.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Backup_Path);
             }
         }
+        protected virtual void OnCommandChange(TextChangeEventArgs e)
+        {
+            e.Raise(this, ref CommandChanged);
+        }
         void ctlFilePickerOutput_PathChanged(String FilePath)
         {
             MongodumpCommand.OutPutPath = FilePath;
-            CommandChanged(MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
         void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
             MongodumpCommand.LogLV = logLv;
-            CommandChanged(MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
         private void txtHostAddr_TextChanged(object sender, EventArgs e)
         {
             MongodumpCommand.HostAddr = txtHostAddr.Text;
-            CommandChanged(MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
 
         private void txtDBName_TextChanged(object sender, EventArgs e)
         {
             MongodumpCommand.DBName = txtDBName.Text;
-            CommandChanged(MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
 
         private void txtCollectionName_TextChanged(object sender, EventArgs e)
         {
             MongodumpCommand.CollectionName = txtCollectionName.Text;
-            CommandChanged(MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
 
         private void numPort_ValueChanged(object sender, EventArgs e)
         {
             MongodumpCommand.Port = (int)numPort.Value;
-            CommandChanged(MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
 
     }

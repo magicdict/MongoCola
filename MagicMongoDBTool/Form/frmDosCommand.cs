@@ -9,7 +9,6 @@ namespace MagicMongoDBTool
     public partial class frmDosCommand : Form
     {
         public String StrSaveText = String.Empty;
-        public delegate void CommandChangedEventHandler(String strCommandLine);
         public frmDosCommand()
         {
             InitializeComponent();
@@ -18,10 +17,17 @@ namespace MagicMongoDBTool
         private void frmDosCommand_Load(object sender, EventArgs e)
         {
             //命令参数变化
-            this.ctlMongodPanel.CommandChanged += new CommandChangedEventHandler(CommandChanged);
-            this.ctlMongodumpPanel.CommandChanged += new CommandChangedEventHandler(CommandChanged);
-            this.ctlMongoImportExportPanel.CommandChanged += new CommandChangedEventHandler(CommandChanged);
-            if (!SystemManager.IsUseDefaultLanguage()) {
+            this.ctlMongodPanel.CommandChanged += new EventHandler<TextChangeEventArgs>(
+                (x, y) => { CommandChanged(y.NewString); }
+            );
+            this.ctlMongodumpPanel.CommandChanged += new EventHandler<TextChangeEventArgs>(
+                (x, y) => { CommandChanged(y.NewString); }
+            );
+            this.ctlMongoImportExportPanel.CommandChanged += new EventHandler<TextChangeEventArgs>(
+                (x, y) => { CommandChanged(y.NewString); }
+            );
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
                 cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
                 cmdRunDos.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Run);
                 tabMongod.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy);

@@ -6,7 +6,7 @@ namespace MagicMongoDBTool
     public partial class ctlMongod : UserControl
     {
 
-        public event MagicMongoDBTool.frmDosCommand.CommandChangedEventHandler CommandChanged;
+        public  EventHandler<TextChangeEventArgs> CommandChanged;
         private MongodbDosCommand.StruMongod MongodCommand = new MongodbDosCommand.StruMongod();
         /// <summary>
         /// 构造函数
@@ -40,6 +40,10 @@ namespace MagicMongoDBTool
             ctlFilePickerDBPath.PathChanged += new ctlFilePicker.PathChangedHandler(ctlFilePickerDBPath_PathChanged);
 
         }
+        protected virtual void OnCommandChange(TextChangeEventArgs e)
+        {
+            e.Raise(this, ref CommandChanged);
+        }
         /// <summary>
         /// DB路径
         /// </summary>
@@ -47,7 +51,7 @@ namespace MagicMongoDBTool
         void ctlFilePickerDBPath_PathChanged(String FilePath)
         {
             MongodCommand.DBPath = FilePath;
-            CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
         /// <summary>
         /// 路径
@@ -56,7 +60,7 @@ namespace MagicMongoDBTool
         void ctlFilePickerT_PathChanged(String FilePath)
         {
             MongodCommand.LogPath = FilePath;
-            CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
         /// <summary>
         /// LOG等级
@@ -65,7 +69,7 @@ namespace MagicMongoDBTool
         void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
             MongodCommand.LogLV = logLv;
-            CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
         /// <summary>
         /// Log追加模式
@@ -75,7 +79,7 @@ namespace MagicMongoDBTool
         private void chkIsAppend_CheckedChanged(object sender, EventArgs e)
         {
             MongodCommand.Islogappend = chkIsAppend.Checked;
-            CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
         /// <summary>
         /// 服务器类型变更
@@ -86,7 +90,7 @@ namespace MagicMongoDBTool
         {
             MongodCommand.IsMaster = radMaster.Checked;
             MongodCommand.IsSlave = radSlave.Checked;
-            CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
         /// <summary>
         /// 安全模式变更
@@ -96,7 +100,7 @@ namespace MagicMongoDBTool
         private void chkAuth_CheckedChanged(object sender, EventArgs e)
         {
             MongodCommand.IsAuth = chkAuth.Checked;
-            CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
         /// <summary>
         /// 端口号变更
@@ -106,7 +110,7 @@ namespace MagicMongoDBTool
         private void numPort_ValueChanged(object sender, EventArgs e)
         {
             MongodCommand.Port = (int)numPort.Value;
-            CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
         /// <summary>
         /// 源头的改变
@@ -116,7 +120,7 @@ namespace MagicMongoDBTool
             MongodCommand.Source = txtSource.Text;
             if (MongodCommand != null)
             {
-                CommandChanged(MongodbDosCommand.GetMongodCommandLine(MongodCommand));
+                OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
             }
         }
     }

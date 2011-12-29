@@ -110,6 +110,7 @@
     <Compile Include="Module\System\MyMessageBox.cs" />
     <Compile Include="Module\Resource\StringResources.cs" />
     <Compile Include="Module\Resource\StringResource_Enum.cs" />
+    <Compile Include="Module\System\TextChangeEventArgs.cs" />
     <Compile Include="UserController\ctlBsonValue.cs">
       <SubType>UserControl</SubType>
     </Compile>

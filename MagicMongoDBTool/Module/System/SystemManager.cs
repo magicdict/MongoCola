@@ -133,6 +133,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         internal static Boolean IsUseDefaultLanguage()
         {
+            if (ConfigHelperInstance == null) { return true; }
             return ConfigHelperInstance.LanguageFileName == "";
         }
         /// <summary>

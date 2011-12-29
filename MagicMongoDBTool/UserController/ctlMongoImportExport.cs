@@ -5,7 +5,7 @@ namespace MagicMongoDBTool.Module
 {
     public partial class ctlMongoImportExport : UserControl
     {
-        public event MagicMongoDBTool.frmDosCommand.CommandChangedEventHandler CommandChanged;
+        public EventHandler<TextChangeEventArgs> CommandChanged;
         private MongodbDosCommand.StruImportExport MongoImportExportCommand = new MongodbDosCommand.StruImportExport();
         public ctlMongoImportExport()
         {
@@ -29,44 +29,48 @@ namespace MagicMongoDBTool.Module
                 ctlFilePickerOutput.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_ExIn_Workfile);
             }
         }
+        protected virtual void OnCommandChange(TextChangeEventArgs e)
+        {
+            e.Raise(this, ref CommandChanged);
+        }
         void ctlFilePickerOutput_PathChanged(String FilePath)
         {
             MongoImportExportCommand.FileName = FilePath;
-            CommandChanged(MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
         void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
             MongoImportExportCommand.LogLV = logLv;
-            CommandChanged(MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
         private void txtHostAddr_TextChanged(object sender, EventArgs e)
         {
             MongoImportExportCommand.HostAddr = txtHostAddr.Text;
-            CommandChanged(MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void txtDBName_TextChanged(object sender, EventArgs e)
         {
             MongoImportExportCommand.DBName = txtDBName.Text;
-            CommandChanged(MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void txtCollectionName_TextChanged(object sender, EventArgs e)
         {
             MongoImportExportCommand.CollectionName = txtCollectionName.Text;
-            CommandChanged(MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void numPort_ValueChanged(object sender, EventArgs e)
         {
             MongoImportExportCommand.Port = (int)numPort.Value;
-            CommandChanged(MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void txtFieldList_TextChanged(object sender, EventArgs e)
         {
             MongoImportExportCommand.FieldList = txtFieldList.Text;
-            CommandChanged(MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand));
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void radExport_CheckedChanged(object sender, EventArgs e)
@@ -79,6 +83,7 @@ namespace MagicMongoDBTool.Module
             {
                 MongoImportExportCommand.Direct = MongodbDosCommand.ImprotExport.Import;
             }
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
         private void radImport_CheckedChanged(object sender, EventArgs e)
         {
@@ -90,6 +95,7 @@ namespace MagicMongoDBTool.Module
             {
                 MongoImportExportCommand.Direct = MongodbDosCommand.ImprotExport.Import;
             }
+            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
     }
 }
