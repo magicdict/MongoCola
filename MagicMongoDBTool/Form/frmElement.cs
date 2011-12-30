@@ -41,7 +41,7 @@ namespace MagicMongoDBTool
             if (_IsUpdateMode)
             {
                 AddBsonElement.switchToUpdateMode();
-                AddBsonElement.setElement(MongoDBHelper.GetElementFromPath(_FullPath)); 
+                AddBsonElement.setElement(MongoDBHelper.GetElementOrValueFromPath(_FullPath));
             }
             if (!SystemManager.IsUseDefaultLanguage())
             {
@@ -58,13 +58,29 @@ namespace MagicMongoDBTool
         {
             if (_IsUpdateMode)
             {
-                MongoDBHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value);
-                _SelectNode.Text = AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString();
+                MongoDBHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value, _SelectNode.Index);
+                if (String.IsNullOrEmpty(AddBsonElement.getElement().Name))
+                {
+                    _SelectNode.Text = AddBsonElement.getElement().Value.ToString();
+                }
+                else
+                {
+                    _SelectNode.Text = AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString();
+                }
             }
             else
             {
                 MongoDBHelper.AddElement(_FullPath, AddBsonElement.getElement());
-                _SelectNode.Nodes.Add(new TreeNode(AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString()));
+                TreeNode NewNode;
+                if (String.IsNullOrEmpty(AddBsonElement.getElement().Name))
+                {
+                    NewNode = new TreeNode(AddBsonElement.getElement().Value.ToString());
+                }
+                else
+                {
+                    NewNode = new TreeNode(AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString());
+                }
+                _SelectNode.Nodes.Add(NewNode);
             }
             this.Close();
         }

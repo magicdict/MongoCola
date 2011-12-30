@@ -153,7 +153,7 @@ namespace MagicMongoDBTool.Module
                     String strReplset = String.Empty;
                     if (SystemManager.IsUseDefaultLanguage())
                     {
-                        strReplset = "副本名称";
+                        strReplset = "ReplsetName";
                     }
                     else
                     {
@@ -255,7 +255,7 @@ namespace MagicMongoDBTool.Module
                     else
                     {
                         mongoSvrNode.Text += "[Exception]";
-                        MyMessageBox.ShowMessage("Exception", "Mongo Server isn't Startup or Auth Mode is not correct", ex.ToString(), true);
+                        MyMessageBox.ShowMessage("Exception", "Mongo Server may not Startup or Auth Mode is not correct", ex.ToString(), true);
                     }
                     mongoSvrNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
                     trvMongoDB.Nodes.Add(mongoSvrNode);

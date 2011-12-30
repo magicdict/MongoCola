@@ -60,7 +60,7 @@
             this.AddBsonElement.BackColor = System.Drawing.Color.Transparent;
             this.AddBsonElement.Location = new System.Drawing.Point(25, 12);
             this.AddBsonElement.Name = "AddBsonElement";
-            this.AddBsonElement.Size = new System.Drawing.Size(326, 30);
+            this.AddBsonElement.Size = new System.Drawing.Size(317, 30);
             this.AddBsonElement.TabIndex = 5;
             // 
             // frmElement

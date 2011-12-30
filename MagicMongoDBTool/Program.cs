@@ -31,7 +31,7 @@ namespace MagicMongoDBTool
                 SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
             }
             //SystemManager.DEBUG_MODE = true;
-            SystemManager.MONO_MODE = Type.GetType("Mono.Runtime") != null; ;
+            SystemManager.MONO_MODE = Type.GetType("Mono.Runtime") != null;
             Application.EnableVisualStyles();
             Application.Run(new frmMain());
 

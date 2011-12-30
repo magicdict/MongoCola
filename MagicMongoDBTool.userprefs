@@ -1,6 +1,6 @@
 ﻿<Properties GitUserInfo="UsingGIT">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|Mixed Platforms" ActiveRuntime="Mono 2.10.6" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MagicMongoDBTool\Module\Resource\GetSystemIcon.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MagicMongoDBTool\Form\frmOption.cs">
     <Files>
       <File FileName="MagicMongoDBTool\Form\frmAddConnection.cs" Line="9" Column="27" />
       <File FileName="MagicMongoDBTool\Form\frmMain.Designer.cs" Line="1" Column="1" />
@@ -12,7 +12,11 @@
       <File FileName="MagicMongoDBTool\Module\MongoDBHelper\MongoDBHelper_Opration.cs" Line="1" Column="1" />
       <File FileName="MagicMongoDBTool\Module\MongoDBHelper\MongoDBHelper_View.cs" Line="1" Column="1" />
       <File FileName="MagicMongoDBTool\Form\frmShardingConfig.cs" Line="1" Column="1" />
-      <File FileName="MagicMongoDBTool\Module\Resource\GetSystemIcon.cs" Line="175" Column="14" />
+      <File FileName="MagicMongoDBTool\Module\Resource\GetSystemIcon.cs" Line="1" Column="1" />
+      <File FileName="MagicMongoDBTool\Module\MongoDBHelper\MongoDBHelper_Connection.cs" Line="1" Column="1" />
+      <File FileName="MagicMongoDBTool\Form\frmLanguage.cs" Line="21" Column="76" />
+      <File FileName="MagicMongoDBTool\Form\frmOption.cs" Line="20" Column="76" />
+      <File FileName="MagicMongoDBTool\Module\System\SystemManager.cs" Line="153" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

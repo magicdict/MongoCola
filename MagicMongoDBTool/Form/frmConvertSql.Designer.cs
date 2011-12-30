@@ -72,9 +72,9 @@
             this.lblAttentionSelectOnly.ForeColor = System.Drawing.Color.Red;
             this.lblAttentionSelectOnly.Location = new System.Drawing.Point(17, 199);
             this.lblAttentionSelectOnly.Name = "lblAttentionSelectOnly";
-            this.lblAttentionSelectOnly.Size = new System.Drawing.Size(172, 13);
+            this.lblAttentionSelectOnly.Size = new System.Drawing.Size(230, 13);
             this.lblAttentionSelectOnly.TabIndex = 44;
-            this.lblAttentionSelectOnly.Text = "Now,Select is only supported";
+            this.lblAttentionSelectOnly.Text = "Now,Select Sentence is only supported";
             // 
             // frmConvertSql
             // 

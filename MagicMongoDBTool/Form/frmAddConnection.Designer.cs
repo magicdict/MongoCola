@@ -130,9 +130,9 @@ namespace MagicMongoDBTool
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(478, 309);
+            this.cmdCancel.Location = new System.Drawing.Point(334, 309);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(75, 27);
+            this.cmdCancel.Size = new System.Drawing.Size(84, 27);
             this.cmdCancel.TabIndex = 12;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
@@ -140,9 +140,9 @@ namespace MagicMongoDBTool
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(353, 309);
+            this.cmdAdd.Location = new System.Drawing.Point(200, 309);
             this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(75, 27);
+            this.cmdAdd.Size = new System.Drawing.Size(78, 27);
             this.cmdAdd.TabIndex = 11;
             this.cmdAdd.Text = "Add";
             this.cmdAdd.UseVisualStyleBackColor = false;
@@ -152,7 +152,7 @@ namespace MagicMongoDBTool
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lblPassword.Location = new System.Drawing.Point(209, 54);
+            this.lblPassword.Location = new System.Drawing.Point(209, 49);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(53, 13);
             this.lblPassword.TabIndex = 21;
@@ -162,11 +162,11 @@ namespace MagicMongoDBTool
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.BackColor = System.Drawing.Color.Transparent;
-            this.lblUsername.Location = new System.Drawing.Point(35, 54);
+            this.lblUsername.Location = new System.Drawing.Point(33, 52);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(29, 13);
+            this.lblUsername.Size = new System.Drawing.Size(57, 13);
             this.lblUsername.TabIndex = 19;
-            this.lblUsername.Text = "User";
+            this.lblUsername.Text = "UserName";
             // 
             // lblPort
             // 
@@ -192,7 +192,7 @@ namespace MagicMongoDBTool
             // 
             this.lblHost.AutoSize = true;
             this.lblHost.BackColor = System.Drawing.Color.Transparent;
-            this.lblHost.Location = new System.Drawing.Point(209, 28);
+            this.lblHost.Location = new System.Drawing.Point(209, 23);
             this.lblHost.Name = "lblHost";
             this.lblHost.Size = new System.Drawing.Size(29, 13);
             this.lblHost.TabIndex = 31;
@@ -260,11 +260,13 @@ namespace MagicMongoDBTool
             // 
             // lstServerce
             // 
+            this.lstServerce.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstServerce.FormattingEnabled = true;
+            this.lstServerce.ItemHeight = 16;
             this.lstServerce.Location = new System.Drawing.Point(117, 54);
             this.lstServerce.Name = "lstServerce";
             this.lstServerce.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lstServerce.Size = new System.Drawing.Size(377, 95);
+            this.lstServerce.Size = new System.Drawing.Size(413, 84);
             this.lstServerce.TabIndex = 2;
             // 
             // lblReplsetList
@@ -295,7 +297,7 @@ namespace MagicMongoDBTool
             // cmdInitReplset
             // 
             this.cmdInitReplset.BackColor = System.Drawing.Color.Transparent;
-            this.cmdInitReplset.Location = new System.Drawing.Point(275, 20);
+            this.cmdInitReplset.Location = new System.Drawing.Point(287, 14);
             this.cmdInitReplset.Name = "cmdInitReplset";
             this.cmdInitReplset.Size = new System.Drawing.Size(102, 28);
             this.cmdInitReplset.TabIndex = 1;
@@ -312,9 +314,9 @@ namespace MagicMongoDBTool
             this.grpServerRole.Controls.Add(this.radDataSrv);
             this.grpServerRole.Controls.Add(this.radConfigSrv);
             this.grpServerRole.Controls.Add(this.radRouteSrv);
-            this.grpServerRole.Location = new System.Drawing.Point(27, 20);
+            this.grpServerRole.Location = new System.Drawing.Point(23, 19);
             this.grpServerRole.Name = "grpServerRole";
-            this.grpServerRole.Size = new System.Drawing.Size(545, 120);
+            this.grpServerRole.Size = new System.Drawing.Size(545, 142);
             this.grpServerRole.TabIndex = 39;
             this.grpServerRole.TabStop = false;
             this.grpServerRole.Text = "Server Role";
@@ -357,7 +359,7 @@ namespace MagicMongoDBTool
             this.txtConnectionString.Location = new System.Drawing.Point(38, 125);
             this.txtConnectionString.Multiline = true;
             this.txtConnectionString.Name = "txtConnectionString";
-            this.txtConnectionString.Size = new System.Drawing.Size(515, 50);
+            this.txtConnectionString.Size = new System.Drawing.Size(515, 60);
             this.txtConnectionString.TabIndex = 46;
             // 
             // lblConnectionString
@@ -374,7 +376,7 @@ namespace MagicMongoDBTool
             this.tabControl1.Controls.Add(this.tabBasicInfo);
             this.tabControl1.Controls.Add(this.Replset);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(11, 22);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(598, 281);
@@ -548,7 +550,7 @@ namespace MagicMongoDBTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 360);
+            this.ClientSize = new System.Drawing.Size(631, 355);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdAdd);

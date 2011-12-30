@@ -361,14 +361,14 @@ namespace MagicMongoDBTool.Module
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
             MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
 
-            String[] strLocalFileName = strRemoteFileName.Split(@"\".ToCharArray());
+            String[] strLocalFileName = strRemoteFileName.Split(System.IO.Path.DirectorySeparatorChar);
             
             try
             {
                 if (!Directory.Exists("TempFile")) {
                     Directory.CreateDirectory("TempFile");
                 }
-                String LocalFileName = "TempFile" + @"\" + strLocalFileName[strLocalFileName.Length - 1];
+                String LocalFileName = "TempFile" + System.IO.Path.DirectorySeparatorChar + strLocalFileName[strLocalFileName.Length - 1];
                 gfs.Download(LocalFileName, strRemoteFileName);
                 System.Diagnostics.Process.Start(LocalFileName);
             }

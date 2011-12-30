@@ -35,8 +35,8 @@ namespace MagicMongoDBTool
                         mValue = BsonBoolean.False;
                     }
                     break;
-                default:
-                    mValue = new BsonString(String.Empty);
+                case 4:
+                    mValue = new BsonArray();
                     break;
             }
             return mValue;
@@ -86,6 +86,9 @@ namespace MagicMongoDBTool
                 }
                 cmbDataType.SelectedIndex = 3;
             }
+            if (value.IsBsonArray) {
+                cmbDataType.SelectedIndex = 4;
+            }
         }
 
         public ctlBsonValue()
@@ -133,6 +136,9 @@ namespace MagicMongoDBTool
                     break;
                 case 3:
                     setValue(BsonBoolean.False);
+                    break;
+                case 4:
+                    setValue(new BsonArray());
                     break;
                 default:
                     break;

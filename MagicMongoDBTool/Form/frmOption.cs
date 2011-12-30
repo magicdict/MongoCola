@@ -14,7 +14,7 @@ namespace MagicMongoDBTool
             this.ctlFilePickerMongoBinPath.SelectedPath = SystemManager.ConfigHelperInstance.MongoBinPath;
             this.numLimitCnt.Value = SystemManager.ConfigHelperInstance.LimitCnt;
             this.numRefreshForStatus.Value = SystemManager.ConfigHelperInstance.RefreshStatusTimer;
-            this.cmbLanguage.Items.Add(String.Empty);
+            this.cmbLanguage.Items.Add("English");
             if (Directory.Exists("Language"))
             {
                 foreach (String FileName in Directory.GetFiles("Language"))
@@ -22,14 +22,23 @@ namespace MagicMongoDBTool
                     this.cmbLanguage.Items.Add(new FileInfo(FileName).Name);
                 }
             }
-            if (File.Exists("Language\\" + SystemManager.ConfigHelperInstance.LanguageFileName))
+
+            if (!SystemManager.IsUseDefaultLanguage())
             {
-                this.cmbLanguage.Text = SystemManager.ConfigHelperInstance.LanguageFileName;
+                if (File.Exists("Language" + System.IO.Path.DirectorySeparatorChar + SystemManager.ConfigHelperInstance.LanguageFileName))
+                {
+                    this.cmbLanguage.Text = SystemManager.ConfigHelperInstance.LanguageFileName;
+                }
+                else
+                {
+                    this.cmbLanguage.Text = "English";
+                }
             }
             else
             {
-                this.cmbLanguage.Text = "";
+                this.cmbLanguage.Text = "English";
             }
+
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 //国际化

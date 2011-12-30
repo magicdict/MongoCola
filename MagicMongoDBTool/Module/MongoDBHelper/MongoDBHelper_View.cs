@@ -377,7 +377,9 @@ namespace MagicMongoDBTool.Module
                             }
                             else
                             {
-                                newItem.Nodes.Add(SubItem.ToString());
+                                TreeNode newSubItem = new TreeNode(SubItem.ToString());
+                                newSubItem.Tag = Key;
+                                newItem.Nodes.Add(newSubItem);
                             }
                             count++;
                         }

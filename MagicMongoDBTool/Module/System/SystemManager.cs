@@ -22,7 +22,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 版本号
         /// </summary>
-        public static String Version = "1.01";
+        public static String Version = "1.02";
         /// <summary>
         /// 数据过滤器
         /// </summary>
@@ -133,8 +133,16 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         internal static Boolean IsUseDefaultLanguage()
         {
-            if (ConfigHelperInstance == null) { return true; }
-            return ConfigHelperInstance.LanguageFileName == "";
+            if (ConfigHelperInstance == null) { 
+				return true; 
+			}
+            if (ConfigHelperInstance.LanguageFileName == "English" || 
+			    String.IsNullOrEmpty(ConfigHelperInstance.LanguageFileName))
+			{
+				return true;
+			}else{
+				return false;
+			}
         }
         /// <summary>
         /// 初始化
@@ -142,16 +150,13 @@ namespace MagicMongoDBTool.Module
         internal static void InitLanguage()
         {
             //语言的初始化
-            if (SystemManager.ConfigHelperInstance.LanguageFileName != String.Empty)
+            if (!IsUseDefaultLanguage())
             {
-                if (File.Exists("Language\\" + SystemManager.ConfigHelperInstance.LanguageFileName))
+				String LanguageFile = "Language" + System.IO.Path.DirectorySeparatorChar + SystemManager.ConfigHelperInstance.LanguageFileName;
+                if (File.Exists(LanguageFile))
                 {
-                    SystemManager.mStringResource.InitLanguage("Language\\" + SystemManager.ConfigHelperInstance.LanguageFileName);
+                    SystemManager.mStringResource.InitLanguage(LanguageFile);
                     MyMessageBox.SwitchLanguage(mStringResource);
-                }
-                else
-                {
-                    ConfigHelperInstance.LanguageFileName = "";
                 }
             }
         }

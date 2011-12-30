@@ -31,7 +31,7 @@ namespace MagicMongoDBTool
             lstServerce.Items.Clear();
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
-                lstServerce.Items.Add(item.ConnectionName);
+                lstServerce.Items.Add(item.ConnectionName + "@" + item.Host + ":" + item.Port);
             }
             lstServerce.Sorted = true;
             SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
@@ -58,7 +58,7 @@ namespace MagicMongoDBTool
             {
                 foreach (String item in lstServerce.SelectedItems)
                 {
-                    connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item]);
+                    connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item.Split("@".ToCharArray())[0]]);
                 }
                 MongoDBHelper.AddServer(connLst);
                 this.Close();

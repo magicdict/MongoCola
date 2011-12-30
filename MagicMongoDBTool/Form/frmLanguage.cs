@@ -14,7 +14,8 @@ namespace MagicMongoDBTool
         }
         private void frmLanguage_Load(object sender, System.EventArgs e)
         {
-            this.cmbLanguage.Items.Add(String.Empty);
+            this.cmbLanguage.Text = "English";
+            this.cmbLanguage.Items.Add("English");
             if (Directory.Exists("Language"))
             {
                 foreach (String FileName in Directory.GetFiles("Language"))
@@ -23,10 +24,10 @@ namespace MagicMongoDBTool
                 }
             }
         }
-
         private void cmdOK_Click(object sender, EventArgs e)
         {
             SystemManager.ConfigHelperInstance.LanguageFileName = this.cmbLanguage.Text;
+            SystemManager.ConfigHelperInstance.SaveToConfigFile();
             this.Close();
         }
     }

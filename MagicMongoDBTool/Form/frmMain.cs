@@ -1083,18 +1083,19 @@ namespace MagicMongoDBTool
                         {
                             //如果已经是叶子的话允许修改元素
                             ModifyElementToolStripMenuItem.Enabled = true;
+                            //如果该节点是一个空的列表，允许添加节点
+                            if (trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
+                            {
+                                AddElementToolStripMenuItem.Enabled = true;
+                            }
                         }
                         else
                         {
-                            //如果已经是非叶子的话允许添加元素
-                            if (!trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
+                            //如果是非叶子的话允许添加元素
+                            AddElementToolStripMenuItem.Enabled = true;
+                            if (MongoDBHelper.CanPaste)
                             {
-                                //改节点不是数组
-                                AddElementToolStripMenuItem.Enabled = true;
-                                if (MongoDBHelper.CanPaste)
-                                {
-                                    PasteElementToolStripMenuItem.Enabled = true;
-                                }
+                                PasteElementToolStripMenuItem.Enabled = true;
                             }
                         }
                     }
@@ -1787,7 +1788,7 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Error", "_id Can't be delete");
                 return;
             }
-            MongoDBHelper.DropElement(trvData.SelectedNode.FullPath);
+            MongoDBHelper.DropElement(trvData.SelectedNode.FullPath,trvData.SelectedNode.Index);
             trvData.Nodes.Remove(trvData.SelectedNode);
             IsNeedRefresh = true;
         }
@@ -1868,7 +1869,8 @@ namespace MagicMongoDBTool
         {
             SaveFileDialog downfile = new SaveFileDialog();
             String strFileName = lstData.SelectedItems[0].Text;
-            downfile.FileName = strFileName.Split(@"\".ToCharArray())[strFileName.Split(@"\".ToCharArray()).Length - 1];
+            //For Winodws,Linux user DirectorySeparatorChar Replace with @"\"
+            downfile.FileName = strFileName.Split(System.IO.Path.DirectorySeparatorChar)[strFileName.Split(System.IO.Path.DirectorySeparatorChar).Length - 1];
             if (downfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 MongoDBHelper.DownloadFile(downfile.FileName, strFileName);
