@@ -12,6 +12,10 @@ namespace MagicMongoDBTool
         /// </summary>
         private Boolean _IsUpdateMode = false;
         /// <summary>
+        /// 
+        /// </summary>
+        private Boolean _IsElement = true;
+        /// <summary>
         /// 路径
         /// </summary>
         private String _FullPath = String.Empty;
@@ -24,12 +28,13 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="IsUpdateMode"></param>
         /// <param name="FullPath"></param>
-        public frmElement(Boolean IsUpdateMode, TreeNode SelectNode)
+        public frmElement(Boolean IsUpdateMode, TreeNode SelectNode, Boolean IsElement = true)
         {
             InitializeComponent();
             _IsUpdateMode = IsUpdateMode;
             _FullPath = SelectNode.FullPath;
             _SelectNode = SelectNode;
+            _IsElement = IsElement;
         }
         /// <summary>
         /// 
@@ -48,6 +53,10 @@ namespace MagicMongoDBTool
                 cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
                 cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);
             }
+            if (!_IsElement)
+            {
+                AddBsonElement.switchToValueMode();
+            }
         }
         /// <summary>
         /// 确定
@@ -58,7 +67,13 @@ namespace MagicMongoDBTool
         {
             if (_IsUpdateMode)
             {
-                MongoDBHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value, _SelectNode.Index);
+                if (_IsElement)
+                {
+                    MongoDBHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value, (BsonElement)_SelectNode.Tag);
+                }
+                else {
+                    MongoDBHelper.ModifyArrayValue(_FullPath, AddBsonElement.getElement().Value, _SelectNode.Index);
+                }
                 if (String.IsNullOrEmpty(AddBsonElement.getElement().Name))
                 {
                     _SelectNode.Text = AddBsonElement.getElement().Value.ToString();
@@ -78,7 +93,14 @@ namespace MagicMongoDBTool
                 }
                 else
                 {
-                    NewNode = new TreeNode(AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString());
+                    if (AddBsonElement.getElement().Value.IsBsonArray)
+                    {
+                        NewNode = new TreeNode(AddBsonElement.getElement().Name + MongoDBHelper.Array_Mark);
+                    }
+                    else
+                    {
+                        NewNode = new TreeNode(AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString());
+                    }
                 }
                 _SelectNode.Nodes.Add(NewNode);
             }

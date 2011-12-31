@@ -99,17 +99,26 @@ namespace MagicMongoDBTool.Module
             MongoCollection mongoJsCol = mongoDB.GetCollection(MongoDBHelper.COLLECTION_NAME_JAVASCRIPT);
             return mongoJsCol;
         }
-
-        public static BsonDocument CurrentDocument;
+        /// <summary>
+        /// Current selected document
+        /// </summary>
+        private static BsonDocument CurrentDocument;
+        /// <summary>
+        /// Set Current Document
+        /// </summary>
+        /// <param name="SelectDocId"></param>
         public static void SetCurrentDocument(BsonValue SelectDocId){
             MongoCollection mongoCol = GetCurrentCollection();
             BsonDocument doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ("_id", SelectDocId));
             CurrentDocument = doc;
         }
+        /// <summary>
+        /// Get Current Document
+        /// </summary>
+        /// <returns></returns>
         public static BsonDocument GetCurrentDocument() {
             return CurrentDocument;
         }
-
         /// <summary>
         /// 获得JS名称列表
         /// </summary>

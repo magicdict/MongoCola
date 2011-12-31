@@ -172,6 +172,7 @@ namespace MagicMongoDBTool
             this.trvData.AfterSelect += new TreeViewEventHandler(trvData_AfterSelect_Top);
             this.trvData.KeyDown += new KeyEventHandler(trvData_KeyDown);
             this.trvData.AfterExpand += new TreeViewEventHandler(trvData_AfterExpand);
+            this.trvData.AfterCollapse += new TreeViewEventHandler(trvData_AfterCollapse);
             this.tabDataShower.SelectedIndexChanged += new EventHandler(
                 //If tabpage changed,the selected data in dataview will disappear,set delete selected record to false
                     (x, y) =>
@@ -193,6 +194,8 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmConnect());
             RefreshToolStripMenuItem_Click(sender, e);
         }
+
+
 
 
         /// <summary>
@@ -1077,24 +1080,24 @@ namespace MagicMongoDBTool
                     if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) & !config.IsReadOnly)
                     {
                         //普通数据:允许添加元素,不允许删除元素
+                        AddElementToolStripMenuItem.Enabled = true;
+                        ModifyElementToolStripMenuItem.Enabled = true;
                         DropElementToolStripMenuItem.Enabled = true;
+
                         CopyElementToolStripMenuItem.Enabled = true;
                         CutElementToolStripMenuItem.Enabled = true;
-                        if (trvData.SelectedNode.Nodes.Count == 0)
+                        if (trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
                         {
-                            //如果已经是叶子的话允许修改元素
-                            ModifyElementToolStripMenuItem.Enabled = true;
                             //如果该节点是一个空的列表，允许添加节点
-                            if (trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
+                            if (MongoDBHelper.CanPasteAsValue)
                             {
-                                AddElementToolStripMenuItem.Enabled = true;
+                                PasteElementToolStripMenuItem.Enabled = true;
                             }
                         }
                         else
                         {
-                            //如果是非叶子的话允许添加元素
-                            AddElementToolStripMenuItem.Enabled = true;
-                            if (MongoDBHelper.CanPaste)
+                            //空的文档    
+                            if (MongoDBHelper.CanPasteAsElement)
                             {
                                 PasteElementToolStripMenuItem.Enabled = true;
                             }
@@ -1103,6 +1106,8 @@ namespace MagicMongoDBTool
                     break;
             }
         }
+
+        private Boolean IsNeedChangeNode = true;
         /// <summary>
         /// 展开节点后的动作
         /// </summary>
@@ -1111,10 +1116,16 @@ namespace MagicMongoDBTool
         void trvData_AfterExpand(object sender, TreeViewEventArgs e)
         {
             trvData.SelectedNode = e.Node;
+            IsNeedChangeNode = false;
             if (e.Node.Level == 0)
             {
                 SystemManager.SetCurrentDocument((BsonValue)e.Node.Tag);
             }
+        }
+        void trvData_AfterCollapse(object sender, TreeViewEventArgs e)
+        {
+            trvData.SelectedNode = e.Node;
+            IsNeedChangeNode = false;
         }
         /// <summary>
         /// 鼠标动作（顶层）
@@ -1123,8 +1134,12 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void trvData_MouseClick_Top(object sender, MouseEventArgs e)
         {
-            //TreeNode node = this.trvData.GetNodeAt(e.Location);
-            //trvData.SelectedNode = node;
+            if (IsNeedChangeNode)
+            {
+                //在节点展开和关闭后，不能使用这个方法来重新设定SelectedNode
+                trvData.SelectedNode = this.trvData.GetNodeAt(e.Location);
+            }
+            IsNeedChangeNode = true;
             if (trvData.SelectedNode == null)
             {
                 return;
@@ -1787,7 +1802,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmElement(false, trvData.SelectedNode));
+            SystemManager.OpenForm(new frmElement(false, trvData.SelectedNode, !trvData.SelectedNode.Tag.Equals(BsonType.Array)));
             IsNeedRefresh = true;
         }
         /// <summary>
@@ -1802,7 +1817,14 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Error", "_id Can't be delete");
                 return;
             }
-            MongoDBHelper.DropElement(trvData.SelectedNode.FullPath,trvData.SelectedNode.Index);
+            if (trvData.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
+            {
+                MongoDBHelper.DropElement(trvData.SelectedNode.FullPath, (BsonElement)trvData.SelectedNode.Tag);
+            }
+            else
+            {
+                MongoDBHelper.DropArrayValue(trvData.SelectedNode.FullPath, trvData.SelectedNode.Index);
+            }
             trvData.Nodes.Remove(trvData.SelectedNode);
             IsNeedRefresh = true;
         }
@@ -1818,7 +1840,14 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Error", "_id can't be modify");
                 return;
             }
-            SystemManager.OpenForm(new frmElement(true, trvData.SelectedNode));
+            if (trvData.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
+            {
+                SystemManager.OpenForm(new frmElement(true, trvData.SelectedNode,false));
+            }
+            else
+            {
+                SystemManager.OpenForm(new frmElement(true, trvData.SelectedNode));
+            }
             IsNeedRefresh = true;
         }
         /// <summary>
@@ -1828,7 +1857,15 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CopyElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.CopyElement(trvData.SelectedNode.FullPath);
+            MongoDBHelper._ClipElement = trvData.SelectedNode.Tag;
+            if (trvData.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
+            {
+                MongoDBHelper.CopyValue((BsonValue)trvData.SelectedNode.Tag);
+            }
+            else
+            {
+                MongoDBHelper.CopyElement((BsonElement)trvData.SelectedNode.Tag);
+            }
         }
         /// <summary>
         /// Paste Element
@@ -1837,8 +1874,21 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void PasteElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PasteElement(trvData.SelectedNode.FullPath);
-            MongoDBHelper.FillBsonDocToTreeNode(trvData.SelectedNode, new BsonDocument().Add(MongoDBHelper.ClipElement), (BsonValue)trvData.SelectedNode.Tag);
+            if (trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
+            {
+                MongoDBHelper.PasteValue(trvData.SelectedNode.FullPath);
+                TreeNode NewValue = new TreeNode(MongoDBHelper._ClipElement.ToString());
+                NewValue.Tag = MongoDBHelper._ClipElement;
+                trvData.SelectedNode.Nodes.Add(NewValue);
+            }
+            else
+            {
+                MongoDBHelper.PasteElement(trvData.SelectedNode.FullPath);
+                //第一个元素是ID
+                MongoDBHelper.AddBsonObjToTreeNode(trvData.SelectedNode,
+                                                    new BsonDocument().Add((BsonElement)MongoDBHelper._ClipElement),
+                                                    SystemManager.GetCurrentDocument().GetElement(0).Value);
+            }
             IsNeedRefresh = true;
         }
         /// <summary>
@@ -1853,7 +1903,14 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Error", "_id can't be cut");
                 return;
             }
-            MongoDBHelper.CutElement(trvData.SelectedNode.FullPath);
+            if (trvData.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
+            {
+                MongoDBHelper.CutValue(trvData.SelectedNode.FullPath, trvData.SelectedNode.Index, (BsonValue)trvData.SelectedNode.Tag);
+            }
+            else
+            {
+                MongoDBHelper.CutElement(trvData.SelectedNode.FullPath, (BsonElement)trvData.SelectedNode.Tag);
+            }
             trvData.Nodes.Remove(trvData.SelectedNode);
             IsNeedRefresh = true;
         }

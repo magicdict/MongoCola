@@ -351,7 +351,7 @@ namespace MagicMongoDBTool.Module
                         dataNode.Tag = item.GetElement(0).Value;
                         break;
                 }
-                FillBsonDocToTreeNode(dataNode, item, (BsonValue)dataNode.Tag);
+                AddBsonObjToTreeNode(dataNode, item, (BsonValue)dataNode.Tag);
                 trvData.Nodes.Add(dataNode);
                 Count++;
             }
@@ -361,14 +361,14 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="treeNode"></param>
         /// <param name="doc"></param>
-        public static void FillBsonDocToTreeNode(TreeNode treeNode, BsonDocument doc, BsonValue Key)
+        public static void AddBsonObjToTreeNode(TreeNode treeNode, BsonDocument doc, BsonValue Key)
         {
             foreach (var item in doc.Elements)
             {
                 if (item.Value.IsBsonDocument)
                 {
                     TreeNode newItem = new TreeNode(item.Name);
-                    FillBsonDocToTreeNode(newItem, item.Value.ToBsonDocument(), Key);
+                    AddBsonObjToTreeNode(newItem, item.Value.ToBsonDocument(), Key);
                     newItem.Tag = BsonType.Document;
                     treeNode.Nodes.Add(newItem);
                 }
@@ -383,8 +383,8 @@ namespace MagicMongoDBTool.Module
                             if (SubItem.IsBsonDocument)
                             {
                                 TreeNode newSubItem = new TreeNode(item.Name + "[" + count + "]");
-                                FillBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument(), Key);
-                                newSubItem.Tag = BsonType.Document;
+                                AddBsonObjToTreeNode(newSubItem, SubItem.ToBsonDocument(), Key);
+                                newSubItem.Tag = SubItem;
                                 newItem.Nodes.Add(newSubItem);
                             }
                             else
@@ -395,13 +395,13 @@ namespace MagicMongoDBTool.Module
                             }
                             count++;
                         }
-                        newItem.Tag = BsonType.Array;
+                        newItem.Tag = item;
                         treeNode.Nodes.Add(newItem);
                     }
                     else
                     {
                         TreeNode ElementNode = new TreeNode(item.Name + ":" + ConvertToString(item.Value));
-                        ElementNode.Tag = item.Value;
+                        ElementNode.Tag = item;
                         treeNode.Nodes.Add(ElementNode);
                     }
                 }

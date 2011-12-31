@@ -11,18 +11,25 @@ namespace MagicMongoDBTool.Module
     public static partial class MongoDBHelper
     {
 
-        public static BsonElement ClipElement = null;
-
+        public static Object _ClipElement = null;
+        public static Boolean _IsElementClip = true;
         /// <summary>
-        /// 复制元素
+        /// Can Paste As Value
         /// </summary>
-        /// <param name="ElementPath"></param>
-        public static void CopyElement(String ElementPath)
+        public static Boolean CanPasteAsValue
         {
-            ClipElement = GetElementOrValueFromPath(ElementPath);
+            get { return (_ClipElement != null && !_IsElementClip); }
         }
         /// <summary>
-        /// 粘贴元素
+        /// Can Paste As Element
+        /// </summary>
+        public static Boolean CanPasteAsElement
+        {
+            get { return (_ClipElement != null && _IsElementClip); }
+        }
+
+        /// <summary>
+        /// Paste
         /// </summary>
         /// <param name="ElementPath"></param>
         public static void PasteElement(String ElementPath)
@@ -31,42 +38,60 @@ namespace MagicMongoDBTool.Module
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonDocument)
             {
-                t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, ClipElement);
-            }
-            if (t.IsBsonArray)
-            {
-                t.AsBsonArray.Insert(t.AsBsonArray.Count, ClipElement.Value);
+                t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, (BsonElement)_ClipElement);
             }
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
-        /// <summary>
-        /// 剪切元素
-        /// </summary>
-        /// <param name="ElementPath"></param>
-        public static void CutElement(String ElementPath)
+        public static void PasteValue(String ElementPath)
         {
             BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
-            ClipElement = GetElementOrValueFromPath(ElementPath);
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
-            if (t.IsBsonDocument)
-            {
-                t.AsBsonDocument.Remove(GetElementOrValueFromPath(ElementPath).Name);
-            }
+            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonArray)
             {
-                t.AsBsonArray.Remove(GetElementOrValueFromPath(ElementPath).Value);
+                t.AsBsonArray.Insert(t.AsBsonArray.Count, (BsonValue)_ClipElement);
             }
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
         /// <summary>
-        /// 是否可以粘贴
+        /// Cut Element
         /// </summary>
-        public static Boolean CanPaste
+        /// <param name="ElementPath"></param>
+        public static void CopyElement(BsonElement El)
         {
-            get { return ClipElement != null; }
+            _ClipElement = El;
+            _IsElementClip = true;
         }
         /// <summary>
-        /// 添加元素
+        /// Cut Array Value
+        /// </summary>
+        /// <param name="ElementPath"></param>
+        public static void CopyValue(BsonValue Val)
+        {
+            _ClipElement = Val;
+            _IsElementClip = false;
+        }
+        /// <summary>
+        /// Cut Element
+        /// </summary>
+        /// <param name="ElementPath"></param>
+        public static void CutElement(String ElementPath, BsonElement El)
+        {
+            _ClipElement = El;
+            _IsElementClip = true;
+            DropElement(ElementPath, El);
+        }
+        /// <summary>
+        /// Cut Array Value
+        /// </summary>
+        /// <param name="ElementPath"></param>
+        public static void CutValue(String ElementPath, int ValueIndex, BsonValue Val)
+        {
+            _ClipElement = Val;
+            _IsElementClip = false;
+            DropArrayValue(ElementPath, ValueIndex);
+        }
+        /// <summary>
+        /// Add Element
         /// </summary>
         /// <param name="BaseDoc"></param>
         /// <param name="AddElement"></param>
@@ -78,25 +103,48 @@ namespace MagicMongoDBTool.Module
             {
                 t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, AddElement);
             }
-            if (t.IsBsonArray)
-            {
-                t.AsBsonArray.Insert(t.AsBsonArray.Count, AddElement.Value);
-            }
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
         /// <summary>
-        /// 删除元素
+        /// Add Value
+        /// </summary>
+        /// <param name="ElementPath"></param>
+        /// <param name="AddValue"></param>
+        public static void AddArrayValue(String ElementPath, BsonValue AddValue)
+        {
+            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
+            if (t.IsBsonArray)
+            {
+                t.AsBsonArray.Insert(t.AsBsonArray.Count, AddValue);
+            }
+            SystemManager.GetCurrentCollection().Save(BaseDoc);
+        }
+
+        /// <summary>
+        /// Drop Element
         /// </summary>
         /// <param name="BaseDoc"></param>
         /// <param name="ElementPath"></param>
-        public static void DropElement(String ElementPath,int ValueIndex)
+        public static void DropElement(String ElementPath, BsonElement El)
         {
             BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
             if (t.IsBsonDocument)
             {
-                t.AsBsonDocument.Remove(GetElementOrValueFromPath(ElementPath).Name);
+                t.AsBsonDocument.Remove(El.Name);
             }
+            SystemManager.GetCurrentCollection().Save(BaseDoc);
+        }
+        /// <summary>
+        /// Drop A Value of Array
+        /// </summary>
+        /// <param name="BaseDoc"></param>
+        /// <param name="ElementPath"></param>
+        public static void DropArrayValue(String ElementPath, int ValueIndex)
+        {
+            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
             if (t.IsBsonArray)
             {
                 t.AsBsonArray.RemoveAt(ValueIndex);
@@ -104,50 +152,47 @@ namespace MagicMongoDBTool.Module
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
         /// <summary>
-        /// 修改元素
+        /// Modify Element
         /// </summary>
-        /// <param name="ModifyElement"></param>
+        /// <param name="ElementPath"></param>
         /// <param name="NewValue"></param>
-        public static void ModifyElement(String ElementPath, BsonValue NewValue,int ValueIndex)
+        /// <param name="ValueIndex"></param>
+        /// <param name="El"></param>
+        public static void ModifyElement(String ElementPath, BsonValue NewValue, BsonElement El)
         {
             BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
             if (t.IsBsonDocument)
             {
-                t.AsBsonDocument.GetElement(GetElementOrValueFromPath(ElementPath).Name).Value = NewValue;
+                t.AsBsonDocument.GetElement(El.Name).Value = NewValue;
             }
+            SystemManager.GetCurrentCollection().Save(BaseDoc);
+        }
+        /// <summary>
+        /// Modify A Value of Array
+        /// </summary>
+        /// <param name="ElementPath"></param>
+        /// <param name="NewValue"></param>
+        /// <param name="ValueIndex"></param>
+        /// <param name="El"></param>
+        public static void ModifyArrayValue(String ElementPath, BsonValue NewValue, int ValueIndex)
+        {
+            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
             if (t.IsBsonArray)
             {
                 t.AsBsonArray[ValueIndex] = NewValue;
             }
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
+
+
         /// <summary>
-        /// 通过路径获得元素名称[元素值为字符]
-        /// </summary>
-        /// <param name="ElementPath"></param>
-        /// <returns></returns>
-        public static BsonElement GetElementOrValueFromPath(String ElementPath)
-        {
-            String[] strPath = ElementPath.Split(@"\".ToCharArray());
-            String LastNode = strPath[strPath.Length - 1];
-            if (LastNode.IndexOf(":") > 0)
-            {
-                String ElementName = LastNode.Substring(0, strPath[strPath.Length - 1].IndexOf(":"));
-                String ElementValue = LastNode.Substring(strPath[strPath.Length - 1].IndexOf(":") + 1);
-                ElementValue = ElementValue.Trim("\"".ToCharArray());
-                return new BsonElement(ElementName, ElementValue);
-            }
-            else {
-                return new BsonElement(String.Empty, LastNode);
-            }
-        }
-        /// <summary>
-        /// 
+        /// Locate the Operation Place
         /// </summary>
         /// <param name="BaseDoc"></param>
         /// <param name="ElementPath"></param>
-        /// <param name="IsGetLast">T:取到最后 F:取到倒数第二</param>
+        /// <param name="IsGetLast">T:GetOperationPlace F:GetOperationPlace Parent</param>
         /// <returns></returns>
         public static BsonValue GetLastParentDocument(BsonDocument BaseDoc, String ElementPath, Boolean IsGetLast = false)
         {
