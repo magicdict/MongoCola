@@ -41,7 +41,7 @@ namespace MagicMongoDBTool
             if (_IsUpdateMode)
             {
                 AddBsonElement.switchToUpdateMode();
-                AddBsonElement.setElement(MongoDBHelper.GetElementOrValueFromPath(_FullPath));
+                AddBsonElement.setElement(_SelectNode.Tag);
             }
             if (!SystemManager.IsUseDefaultLanguage())
             {

@@ -171,6 +171,7 @@ namespace MagicMongoDBTool
             this.trvData.MouseClick += new MouseEventHandler(trvData_MouseClick_Top);
             this.trvData.AfterSelect += new TreeViewEventHandler(trvData_AfterSelect_Top);
             this.trvData.KeyDown += new KeyEventHandler(trvData_KeyDown);
+            this.trvData.AfterExpand += new TreeViewEventHandler(trvData_AfterExpand);
             this.tabDataShower.SelectedIndexChanged += new EventHandler(
                 //If tabpage changed,the selected data in dataview will disappear,set delete selected record to false
                     (x, y) =>
@@ -192,6 +193,8 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmConnect());
             RefreshToolStripMenuItem_Click(sender, e);
         }
+
+
         /// <summary>
         /// KeyEvent
         /// </summary>
@@ -1014,7 +1017,6 @@ namespace MagicMongoDBTool
         private void trvData_AfterSelect_Top(object sender, TreeViewEventArgs e)
         {
             DisableDataTreeOpr();
-            SystemManager.SelectDocId = (BsonValue)trvData.SelectedNode.Tag;
             if (trvData.SelectedNode.Level == 0)
             {
                 //顶层可以删除的节点
@@ -1042,7 +1044,6 @@ namespace MagicMongoDBTool
                             {
                                 //普通数据
                                 //在顶层的时候，允许添加元素,不允许删除元素和修改元素(删除选中记录)
-
                                 DelSelectRecordToolStripMenuItem.Enabled = true;
                                 AddElementToolStripMenuItem.Enabled = true;
                             }
@@ -1103,14 +1104,27 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
+        /// 展开节点后的动作
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void trvData_AfterExpand(object sender, TreeViewEventArgs e)
+        {
+            trvData.SelectedNode = e.Node;
+            if (e.Node.Level == 0)
+            {
+                SystemManager.SetCurrentDocument((BsonValue)e.Node.Tag);
+            }
+        }
+        /// <summary>
         /// 鼠标动作（顶层）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void trvData_MouseClick_Top(object sender, MouseEventArgs e)
         {
-            TreeNode node = this.trvData.GetNodeAt(e.Location);
-            trvData.SelectedNode = node;
+            //TreeNode node = this.trvData.GetNodeAt(e.Location);
+            //trvData.SelectedNode = node;
             if (trvData.SelectedNode == null)
             {
                 return;

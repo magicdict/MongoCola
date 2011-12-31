@@ -31,7 +31,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 取得元素
+        /// Get Element or Bsonvalue 
         /// </summary>
         public BsonElement getElement()
         {
@@ -40,14 +40,21 @@ namespace MagicMongoDBTool
             return el;
         }
         /// <summary>
-        /// 设置元素
+        /// Set Element or Bsonvalue 
         /// </summary>
         /// <param name="value"></param>
-        public void setElement(BsonElement value)
+        public void setElement(Object value)
         {
-            txtElName.Text = value.Name;
-            lblElement.Text = value.Name;
-            ElBsonValue.setValue(value.Value);
+            if (value.GetType() == typeof(BsonElement))
+            {
+                txtElName.Text = ((BsonElement)value).Name;
+                lblElement.Text = ((BsonElement)value).Name;
+                ElBsonValue.setValue(((BsonElement)value).Value);
+            }
+            else
+            {
+                ElBsonValue.setValue((BsonValue)value);
+            }
         }
         public ctlAddBsonEl()
         {

@@ -36,10 +36,6 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public static String SelectObjectTag = String.Empty;
         /// <summary>
-        /// 选中数据主键
-        /// </summary>
-        public static BsonValue SelectDocId = String.Empty;
-        /// <summary>
         /// 文字资源
         /// </summary>
         public static StringResource mStringResource = new MagicMongoDBTool.Module.StringResource();
@@ -103,16 +99,17 @@ namespace MagicMongoDBTool.Module
             MongoCollection mongoJsCol = mongoDB.GetCollection(MongoDBHelper.COLLECTION_NAME_JAVASCRIPT);
             return mongoJsCol;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public static BsonDocument GetCurrentDocument() {
-            BsonValue Key = (BsonValue)SelectDocId;
+
+        public static BsonDocument CurrentDocument;
+        public static void SetCurrentDocument(BsonValue SelectDocId){
             MongoCollection mongoCol = GetCurrentCollection();
-            BsonDocument doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ("_id", Key));
-            return doc;
+            BsonDocument doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ("_id", SelectDocId));
+            CurrentDocument = doc;
         }
+        public static BsonDocument GetCurrentDocument() {
+            return CurrentDocument;
+        }
+
         /// <summary>
         /// 获得JS名称列表
         /// </summary>

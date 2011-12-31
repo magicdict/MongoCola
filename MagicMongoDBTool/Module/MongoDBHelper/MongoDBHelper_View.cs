@@ -138,47 +138,59 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
+        /// 字符转Bsonvalue
+        /// </summary>
+        /// <param name="strData"></param>
+        /// <returns></returns>
+        public static BsonValue ConvertFromString(String strData)
+        {
+            //以引号开始结尾的，解释为字符串
+            if (strData.StartsWith("\"") && strData.EndsWith("\""))
+            {
+                return new BsonString(strData.Trim("\"".ToCharArray()));
+            }
+            return new BsonString("");
+        }
+        /// <summary>
         /// BsonValue转展示用字符
         /// </summary>
-        /// <param name="val"></param>
+        /// <param name="bsonValue"></param>
         /// <returns></returns>
-        public static String ConvertForShow(BsonValue val)
+        public static String ConvertToString(BsonValue bsonValue)
         {
             //二进制数据
-            if (val.IsBsonBinaryData)
+            if (bsonValue.IsBsonBinaryData)
             {
                 _hasBSonBinary = true;
                 return "[Binary]";
             }
             //空值
-            if (val.IsBsonNull)
+            if (bsonValue.IsBsonNull)
             {
                 return "[Empty]";
             }
-
             //文档
-            if (val.IsBsonDocument)
+            if (bsonValue.IsBsonDocument)
             {
-                return val.ToString() + "[Contains" + val.ToBsonDocument().ElementCount + "Documents]";
+                return bsonValue.ToString() + "[Contains" + bsonValue.ToBsonDocument().ElementCount + "Documents]";
             }
-
             //时间
-            if (val.IsBsonDateTime)
+            if (bsonValue.IsBsonDateTime)
             {
-                DateTime bsonData = val.AsDateTime;
+                DateTime bsonData = bsonValue.AsDateTime;
                 //@flydreamer提出的本地化时间要求
                 return bsonData.ToLocalTime().ToString();
             }
 
             //字符
-            if (val.IsString)
+            if (bsonValue.IsString)
             {
                 //只有在字符的时候加上""
-                return "\"" + val.ToString() + "\"";
+                return "\"" + bsonValue.ToString() + "\"";
             }
 
             //其他
-            return val.ToString();
+            return bsonValue.ToString();
         }
         /// <summary>
         /// 将数据放入TextBox里进行展示
@@ -307,7 +319,7 @@ namespace MagicMongoDBTool.Module
                         }
                         rtnText += "  \"" + itemName + "\":";
                     }
-                    rtnText += ConvertForShow(value) + System.Environment.NewLine;
+                    rtnText += ConvertToString(value) + System.Environment.NewLine;
                 }
             }
             return rtnText;
@@ -357,7 +369,7 @@ namespace MagicMongoDBTool.Module
                 {
                     TreeNode newItem = new TreeNode(item.Name);
                     FillBsonDocToTreeNode(newItem, item.Value.ToBsonDocument(), Key);
-                    newItem.Tag = Key;
+                    newItem.Tag = BsonType.Document;
                     treeNode.Nodes.Add(newItem);
                 }
                 else
@@ -372,24 +384,24 @@ namespace MagicMongoDBTool.Module
                             {
                                 TreeNode newSubItem = new TreeNode(item.Name + "[" + count + "]");
                                 FillBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument(), Key);
-                                newSubItem.Tag = Key;
+                                newSubItem.Tag = BsonType.Document;
                                 newItem.Nodes.Add(newSubItem);
                             }
                             else
                             {
-                                TreeNode newSubItem = new TreeNode(SubItem.ToString());
-                                newSubItem.Tag = Key;
+                                TreeNode newSubItem = new TreeNode(ConvertToString(SubItem));
+                                newSubItem.Tag = SubItem;
                                 newItem.Nodes.Add(newSubItem);
                             }
                             count++;
                         }
-                        newItem.Tag = Key;
+                        newItem.Tag = BsonType.Array;
                         treeNode.Nodes.Add(newItem);
                     }
                     else
                     {
-                        TreeNode ElementNode = new TreeNode(item.Name + ":" + ConvertForShow(item.Value));
-                        ElementNode.Tag = Key;
+                        TreeNode ElementNode = new TreeNode(item.Name + ":" + ConvertToString(item.Value));
+                        ElementNode.Tag = item.Value;
                         treeNode.Nodes.Add(ElementNode);
                     }
                 }
@@ -441,7 +453,7 @@ namespace MagicMongoDBTool.Module
                             }
                             else
                             {
-                                lstItem.SubItems.Add(ConvertForShow(val));
+                                lstItem.SubItems.Add(ConvertToString(val));
                             }
                         }
                         lstData.Items.Add(lstItem);
@@ -514,8 +526,8 @@ namespace MagicMongoDBTool.Module
                 lstItem.Text = docFile.GetValue("filename").ToString();
                 lstItem.SubItems.Add(GetSize((int)docFile.GetValue("length")));
                 lstItem.SubItems.Add(GetSize((int)docFile.GetValue("chunkSize")));
-                lstItem.SubItems.Add(ConvertForShow(docFile.GetValue("uploadDate")));
-                lstItem.SubItems.Add(ConvertForShow(docFile.GetValue("md5")));
+                lstItem.SubItems.Add(ConvertToString(docFile.GetValue("uploadDate")));
+                lstItem.SubItems.Add(ConvertToString(docFile.GetValue("md5")));
                 lstData.Items.Add(lstItem);
             }
         }
