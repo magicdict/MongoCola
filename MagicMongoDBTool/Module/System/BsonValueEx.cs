@@ -39,8 +39,8 @@ namespace MagicMongoDBTool.Module
             typelst.Add("BsonInt32");
             typelst.Add("BsonDateTime");
             typelst.Add("BsonBoolean");
-
             typelst.Add("BsonArray");
+            typelst.Add("BsonDocument");
             return typelst;
         }
         /// <summary>

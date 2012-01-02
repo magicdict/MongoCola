@@ -71,7 +71,8 @@ namespace MagicMongoDBTool
                 {
                     MongoDBHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value, (BsonElement)_SelectNode.Tag);
                 }
-                else {
+                else
+                {
                     MongoDBHelper.ModifyArrayValue(_FullPath, AddBsonElement.getElement().Value, _SelectNode.Index);
                 }
                 if (String.IsNullOrEmpty(AddBsonElement.getElement().Name))
@@ -99,9 +100,17 @@ namespace MagicMongoDBTool
                     }
                     else
                     {
-                        NewNode = new TreeNode(AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString());
+                        if (AddBsonElement.getElement().Value.IsBsonDocument)
+                        {
+                            NewNode = new TreeNode(AddBsonElement.getElement().Name);
+                        }
+                        else
+                        {
+                            NewNode = new TreeNode(AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString());
+                        }
                     }
                 }
+                NewNode.Tag = AddBsonElement.getElement().Value;
                 _SelectNode.Nodes.Add(NewNode);
             }
             this.Close();

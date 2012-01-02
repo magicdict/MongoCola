@@ -1819,11 +1819,11 @@ namespace MagicMongoDBTool
             }
             if (trvData.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
             {
-                MongoDBHelper.DropElement(trvData.SelectedNode.FullPath, (BsonElement)trvData.SelectedNode.Tag);
+                MongoDBHelper.DropArrayValue(trvData.SelectedNode.FullPath, trvData.SelectedNode.Index);
             }
             else
             {
-                MongoDBHelper.DropArrayValue(trvData.SelectedNode.FullPath, trvData.SelectedNode.Index);
+                MongoDBHelper.DropElement(trvData.SelectedNode.FullPath, (BsonElement)trvData.SelectedNode.Tag);
             }
             trvData.Nodes.Remove(trvData.SelectedNode);
             IsNeedRefresh = true;
@@ -1842,7 +1842,7 @@ namespace MagicMongoDBTool
             }
             if (trvData.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
             {
-                SystemManager.OpenForm(new frmElement(true, trvData.SelectedNode,false));
+                SystemManager.OpenForm(new frmElement(true, trvData.SelectedNode, false));
             }
             else
             {

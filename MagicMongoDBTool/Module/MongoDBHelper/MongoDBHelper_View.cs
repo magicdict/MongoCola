@@ -369,7 +369,7 @@ namespace MagicMongoDBTool.Module
                 {
                     TreeNode newItem = new TreeNode(item.Name);
                     AddBsonObjToTreeNode(newItem, item.Value.ToBsonDocument(), Key);
-                    newItem.Tag = BsonType.Document;
+                    newItem.Tag = item;
                     treeNode.Nodes.Add(newItem);
                 }
                 else
