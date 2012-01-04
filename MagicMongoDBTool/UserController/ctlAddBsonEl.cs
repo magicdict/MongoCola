@@ -17,6 +17,7 @@ namespace MagicMongoDBTool
         {
             txtElName.Visible = false;
             lblElement.Visible = false;
+            ElBsonValue.switchToSimpleMode();
         }
         /// <summary>
         /// 是否设定

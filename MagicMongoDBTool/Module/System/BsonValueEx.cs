@@ -33,12 +33,17 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public Boolean mBsonBoolean;
 
-        public static List<String> GetTypeList(){
+        public static List<String> GetBasicTypeList(){
             List<String> typelst = new List<String>();
             typelst.Add("BsonString");
             typelst.Add("BsonInt32");
             typelst.Add("BsonDateTime");
             typelst.Add("BsonBoolean");
+            return typelst;
+        }
+        public static List<String> GetExtendTypeList()
+        {
+            List<String> typelst = new List<String>();
             typelst.Add("BsonArray");
             typelst.Add("BsonDocument");
             return typelst;

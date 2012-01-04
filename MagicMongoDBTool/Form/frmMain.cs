@@ -1049,6 +1049,10 @@ namespace MagicMongoDBTool
                                 //在顶层的时候，允许添加元素,不允许删除元素和修改元素(删除选中记录)
                                 DelSelectRecordToolStripMenuItem.Enabled = true;
                                 AddElementToolStripMenuItem.Enabled = true;
+                                if (MongoDBHelper.CanPasteAsElement)
+                                {
+                                    PasteElementToolStripMenuItem.Enabled = true;
+                                }
                             }
                             else
                             {
@@ -1080,26 +1084,83 @@ namespace MagicMongoDBTool
                     if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) & !config.IsReadOnly)
                     {
                         //普通数据:允许添加元素,不允许删除元素
-                        AddElementToolStripMenuItem.Enabled = true;
-                        ModifyElementToolStripMenuItem.Enabled = true;
                         DropElementToolStripMenuItem.Enabled = true;
-
                         CopyElementToolStripMenuItem.Enabled = true;
                         CutElementToolStripMenuItem.Enabled = true;
-                        if (trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
+                        if (trvData.SelectedNode.Nodes.Count != 0)
                         {
-                            //如果该节点是一个空的列表，允许添加节点
-                            if (MongoDBHelper.CanPasteAsValue)
+                            //父节点
+                            //1. 以Array_Mark结尾的数组
+                            //2. Document
+                            if (trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
                             {
-                                PasteElementToolStripMenuItem.Enabled = true;
+                                //列表的父节点
+                                if (MongoDBHelper.CanPasteAsValue)
+                                {
+                                    PasteElementToolStripMenuItem.Enabled = true;
+                                }
                             }
+                            else
+                            {
+                                //文档的父节点
+                                if (MongoDBHelper.CanPasteAsElement)
+                                {
+                                    PasteElementToolStripMenuItem.Enabled = true;
+                                }
+                            }
+                            AddElementToolStripMenuItem.Enabled = true;
+                            ModifyElementToolStripMenuItem.Enabled = false;
                         }
                         else
                         {
-                            //空的文档    
-                            if (MongoDBHelper.CanPasteAsElement)
+                            //子节点
+                            //1.简单元素
+                            //2.空的Array
+                            //3.空的文档
+                            //4.Array中的Value
+                            BsonValue t;
+                            if (trvData.SelectedNode.Tag is BsonElement)
                             {
-                                PasteElementToolStripMenuItem.Enabled = true;
+                                //子节点是一个元素，获得子节点的Value
+                                t = ((BsonElement)trvData.SelectedNode.Tag).Value;
+                                if (t.IsBsonDocument || t.IsBsonArray)
+                                {
+                                    //2.空的Array
+                                    //3.空的文档
+                                    ModifyElementToolStripMenuItem.Enabled = false;
+                                    AddElementToolStripMenuItem.Enabled = true;
+                                    if (t.IsBsonDocument)
+                                    {
+                                        //3.空的文档
+                                        if (MongoDBHelper.CanPasteAsElement)
+                                        {
+                                            PasteElementToolStripMenuItem.Enabled = true;
+                                        }
+
+                                    }
+                                    if (t.IsBsonArray)
+                                    {
+                                        //3.Array
+                                        if (MongoDBHelper.CanPasteAsValue)
+                                        {
+                                            PasteElementToolStripMenuItem.Enabled = true;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    //1.简单元素
+                                    ModifyElementToolStripMenuItem.Enabled = true;
+                                    AddElementToolStripMenuItem.Enabled = false;
+                                }
+                            }
+                            else
+                            {
+                                //子节点是一个Array的Value，获得Value
+                                //4.Array中的Value
+                                t = (BsonValue)trvData.SelectedNode.Tag;
+                                ModifyElementToolStripMenuItem.Enabled = true;
+                                AddElementToolStripMenuItem.Enabled = false;
                             }
                         }
                     }
@@ -1117,15 +1178,13 @@ namespace MagicMongoDBTool
         {
             trvData.SelectedNode = e.Node;
             IsNeedChangeNode = false;
-            if (e.Node.Level == 0)
-            {
-                SystemManager.SetCurrentDocument((BsonValue)e.Node.Tag);
-            }
+            SystemManager.SetCurrentDocument(e.Node);
         }
         void trvData_AfterCollapse(object sender, TreeViewEventArgs e)
         {
             trvData.SelectedNode = e.Node;
             IsNeedChangeNode = false;
+            SystemManager.SetCurrentDocument(e.Node);
         }
         /// <summary>
         /// 鼠标动作（顶层）
@@ -1144,13 +1203,14 @@ namespace MagicMongoDBTool
             {
                 return;
             }
+            SystemManager.SetCurrentDocument(trvData.SelectedNode);
             if (trvData.SelectedNode.Level == 0)
             {
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
 
-                    //顶层可以删除的节点
+                    //顶层可以修改的节点
                     switch (SystemManager.GetCurrentCollection().Name)
                     {
                         case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
@@ -1167,8 +1227,12 @@ namespace MagicMongoDBTool
                             }
                             break;
                         default:
+                            ///允许删除
                             this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
+                            ///允许添加
                             this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
+                            ///允许粘贴
+                            this.contextMenuStripMain.Items.Add(this.PasteElementToolStripMenuItem.Clone());
                             break;
                     }
                     trvData.ContextMenuStrip = this.contextMenuStripMain;
@@ -1347,7 +1411,11 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmOption());
             SystemManager.InitLanguage();
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (SystemManager.IsUseDefaultLanguage())
+            {
+                MyMessageBox.ShowMessage("Language", "Language will change to \"English\" when you restart this tool");
+            }
+            else
             {
                 SetMenuText();
             }
@@ -1802,7 +1870,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmElement(false, trvData.SelectedNode, !trvData.SelectedNode.Tag.Equals(BsonType.Array)));
+            SystemManager.OpenForm(new frmElement(false, trvData.SelectedNode, !trvData.SelectedNode.Text.EndsWith(MongoDBHelper.Array_Mark)));
             IsNeedRefresh = true;
         }
         /// <summary>
@@ -1877,17 +1945,24 @@ namespace MagicMongoDBTool
             if (trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
             {
                 MongoDBHelper.PasteValue(trvData.SelectedNode.FullPath);
-                TreeNode NewValue = new TreeNode(MongoDBHelper._ClipElement.ToString());
+                TreeNode NewValue = new TreeNode(MongoDBHelper.ConvertToString((BsonValue)MongoDBHelper._ClipElement));
                 NewValue.Tag = MongoDBHelper._ClipElement;
                 trvData.SelectedNode.Nodes.Add(NewValue);
             }
             else
             {
-                MongoDBHelper.PasteElement(trvData.SelectedNode.FullPath);
-                //第一个元素是ID
-                MongoDBHelper.AddBsonObjToTreeNode(trvData.SelectedNode,
-                                                    new BsonDocument().Add((BsonElement)MongoDBHelper._ClipElement),
-                                                    SystemManager.GetCurrentDocument().GetElement(0).Value);
+                String PasteMessage = MongoDBHelper.PasteElement(trvData.SelectedNode.FullPath);
+                if (String.IsNullOrEmpty(PasteMessage))
+                {
+                    //GetCurrentDocument()的第一个元素是ID
+                    MongoDBHelper.AddBsonObjToTreeNode(trvData.SelectedNode,
+                                                       new BsonDocument().Add((BsonElement)MongoDBHelper._ClipElement),
+                                                       SystemManager.GetCurrentDocument().GetElement(0).Value);
+                }
+                else
+                {
+                    MyMessageBox.ShowMessage("Exception", PasteMessage);
+                }
             }
             IsNeedRefresh = true;
         }

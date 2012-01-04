@@ -81,7 +81,8 @@
                         @GitHub</a><br />
                     Or you can download the Executable File from this website:
                     <br />
-                    <a href="http://www.magicdict.com/MongoCola.zip">Download MongoCola 1.01 from @www.magicdict.com [ZIP]</a>
+                    <a href="http://www.magicdict.com/MongoCola.zip">Download MongoCola 1.01 from @www.magicdict.com
+                        [ZIP]</a>
                     <br />
                     Anyone can help me to compile the source code on Mono platform? I need an executable
                     file for linux. please email me: <a href="mailto:mynightelfplayer@hotmail.com">email
@@ -116,8 +117,10 @@
         <tr>
             <td />
             <td>
-                <font size="3" color="black">Thanks MoLing for help me correct this document. <br />
-                                             Last Editor：2011-12-31<br /><br />
+                <font size="3" color="black">Thanks MoLing for help me correct this document.
+                    <br />
+                    Last Editor：2011-12-31<br />
+                    <br />
                 </font>
             </td>
         </tr>
@@ -130,7 +133,7 @@
             <td />
             <td>
                 <font size="3" color="black">
-                <pre>
+                    <pre>
 ========================================================================
 MongoCola Release Note
 ========================================================================
@@ -139,10 +142,20 @@ Ver 1.00 2011/12/22
 This is the first release of MongoCola.
 
 ========================================================================
-Ver 1.01 2011/12/31
+Ver 1.01 2011/12/27
 
 1.Add Chinese and Japanese Language File
 2.Make Status Form Sizable
+
+========================================================================
+Ver 1.02 2012/12/04
+
+1.Display "English" at Language Picker form instead of Space when default Language is used.
+2.Show Connection Host and Port at Connection ListBox.
+3.Array Operation is supported.
+4.BsonDocument Element is supported.
+5.Correct Paste ShortKey form Ctrl + P to Ctrl + V.
+6.Show Message When exception happend at Element operation.
                 </pre>
                 </font>
             </td>
@@ -243,7 +256,7 @@ Ver 1.01 2011/12/31
                 </font>
             </td>
         </tr>
-       <tr>
+        <tr>
             <td align="center">
                 <br />
                 <font size="3" color="black"><b>Master-Slave</b></font>
@@ -537,16 +550,15 @@ Ver 1.01 2011/12/31
                     <br />
                     <br />
                     You also can switch to other database and delete user form database with the same
-                    way. 
+                    way.
                     <br />
                     <br />
-                    </font>
+                </font>
             </td>
         </tr>
     </table>
     <span>Tutorial:Aggregation</span>
     <table>
- 
         <tr>
             <td align="center">
                 <br />
@@ -594,61 +606,71 @@ Ver 1.01 2011/12/31
         <tr>
             <td />
             <td>
-                <font size="3">
-                    Count:<br />
-                    This tools also support the Aggregation:Count,Distinct,Group,(All Aggregation is support query filter.The next section will introduce query filter)<br />
-                    Count will give you a count result of collection.The count result may be different ,when a datafilter is enable or not.<br />
+                <font size="3">Count:<br />
+                    This tools also support the Aggregation:Count,Distinct,Group,(All Aggregation is
+                    support query filter.The next section will introduce query filter)<br />
+                    Count will give you a count result of collection.The count result may be different
+                    ,when a datafilter is enable or not.<br />
                     Distinct:<br />
-                    You need to pick a distinct field first<br /><br />
+                    You need to pick a distinct field first<br />
+                    <br />
                     <img src="images/Distinct_FieldPick.PNG" alt="" />
                     <br />
                     <br />
-                    Click "Run",the result is display by a messagebox:<br /><br />
+                    Click "Run",the result is display by a messagebox:<br />
+                    <br />
                     <img src="images/Distinct_Result.PNG" alt="" />
                     <br />
                     <br />
                     Group:<br />
-                    Please see the reference first:
-                    <a href="http://www.mongodb.org/display/DOCS/Aggregation">Refrence of Aggregation at mongodb.org</a><br />
+                    Please see the reference first: <a href="http://www.mongodb.org/display/DOCS/Aggregation">
+                        Refrence of Aggregation at mongodb.org</a><br />
                     The Gui of group is look like this:<br />
                     <br />
                     <img src="images/Group_Init.PNG" alt="" />
                     <br />
                     <br />
-                    If everything is right,the result looks like this:(Don't forget to add init fields...if some fields is not need any more,leave fieldname with space)<br />
+                    If everything is right,the result looks like this:(Don't forget to add init fields...if
+                    some fields is not need any more,leave fieldname with space)<br />
                     <br />
                     <img src="images/Group_Result.PNG" alt="" />
                     <br />
-                    <br />    
+                    <br />
                 </font>
             </td>
         </tr>
-        </table>
-        <span>Tutorial:Advance</span>
-        <table>
+    </table>
+    <span>Tutorial:Advance</span>
+    <table>
         <tr>
             <td align="center">
                 <br />
                 <font size="3" color="black"><b>Grid File System</b></font>
             </td>
             <td />
-        </tr>        
+        </tr>
         <tr>
             <td />
             <td>
-                <font size="3">
-                    You can easy upload or download a file form GFS with this tool.<br />
-                    Init GFS:<br />If there is not a GFS in your database,you can init a GFS for your database:<br />
+                <font size="3">You can easy upload or download a file form GFS with this tool.<br />
+                    Init GFS:<br />
+                    If there is not a GFS in your database,you can init a GFS for your database:<br />
                     Select the database,then right click it,run the "Init GFS" Command at the contextMenu.<br />
-                    After you refresh the server(connection) list,fs.chunks and fs.files will add to database.Now you can use GFS.<br /><br />
-                    Upload File: <br />
-                    Now Select the fs.files collection node,right click,contextMenu contains "Upload File" command.Try to upload a file to GFS.<br />
-                    The file witch is upload right now will show at the right side panel. <br />
+                    After you refresh the server(connection) list,fs.chunks and fs.files will add to
+                    database.Now you can use GFS.<br />
+                    <br />
+                    Upload File:
+                    <br />
+                    Now Select the fs.files collection node,right click,contextMenu contains "Upload
+                    File" command.Try to upload a file to GFS.<br />
+                    The file witch is upload right now will show at the right side panel.
+                    <br />
                     <br />
                     <img src="images/GFS.PNG" alt="" />
                     <br />
                     <br />
-                    You can double click the file at the listview to open it,or use right-click contextMenu to operate the files.
+                    You can double click the file at the listview to open it,or use right-click contextMenu
+                    to operate the files.
                     <br />
                     <br />
                     <img src="images/GFS_ContextMenu.PNG" alt="" />
@@ -657,7 +679,7 @@ Ver 1.01 2011/12/31
                 </font>
             </td>
         </tr>
-         <tr>
+        <tr>
             <td align="center">
                 <br />
                 <font size="3" color="black"><b>Data Query</b></font>
@@ -667,8 +689,7 @@ Ver 1.01 2011/12/31
         <tr>
             <td />
             <td>
-                <font size="3">
-                    With DataQuery,you can decide the output fields with conditions.<br />
+                <font size="3">With DataQuery,you can decide the output fields with conditions.<br />
                     To enable the DataQuery,please select the data node from the left panel,then<br />
                     <ul>
                         <li>Click the MainMenu : Data -> Query</li>
@@ -677,42 +698,51 @@ Ver 1.01 2011/12/31
                     You can Select the output fields with sort in "Output fields" tab.<br />
                     <br />
                     <img src="images/Query_init.PNG" alt="" />
-                    <br /><br />
+                    <br />
+                    <br />
                     You can give some conditions to limit the output data in "Filter" tab.<br />
-                    
                     <br />
                     Example1: Select * from Collection Where Age > 10<br />
                     <br />
                     <img src="images/Query_Condition_One.PNG" alt="" />
-                    <br /><br />
+                    <br />
+                    <br />
                     <img src="images/Query_Condition_One_Result.PNG" alt="" />
-                    <br /><br />
-
                     <br />
-                    Example2: Select * from Collection Where Age > 10 Or Age2 < 10 <br />
                     <br />
-                    <img src="images/Query_Condition_Two.PNG" alt=""/>
-                    <br /><br />
+                    <br />
+                    Example2: Select * from Collection Where Age > 10 Or Age2 < 10
+                    <br />
+                    <br />
+                    <img src="images/Query_Condition_Two.PNG" alt="" />
+                    <br />
+                    <br />
                     <img src="images/Query_Condition_Two_Result.PNG" alt="" />
-                    <br /><br />
-
                     <br />
-                    Example3: Select * from Collection Where (Age > 10 and Age2 < 10) or Age > 10 <br />
                     <br />
-                    <img src="images/Query_Condition_Three.PNG" alt=""/>
-                    <br /><br />
+                    <br />
+                    Example3: Select * from Collection Where (Age > 10 and Age2 < 10) or Age > 10
+                    <br />
+                    <br />
+                    <img src="images/Query_Condition_Three.PNG" alt="" />
+                    <br />
+                    <br />
                     <img src="images/Query_Condition_Three_Result.PNG" alt="" />
-                    <br /><br />
-                    You can save your query filter into a .xml file or load your query filter from a .xml file at any functions witch support query filter.<br />
+                    <br />
+                    <br />
+                    You can save your query filter into a .xml file or load your query filter from a
+                    .xml file at any functions witch support query filter.<br />
                     (All Aggregation is support query filter.)<br />
-                    You also can click the  <img src="images/Filter.png" alt=""/>  icon on toolbar to switch filter status quickly.<br />
-                    <br /><img src="images/Toolbar.PNG" alt="" /><br /><br />
-
-
+                    You also can click the
+                    <img src="images/Filter.png" alt="" />
+                    icon on toolbar to switch filter status quickly.<br />
+                    <br />
+                    <img src="images/Toolbar.PNG" alt="" /><br />
+                    <br />
                 </font>
             </td>
         </tr>
-         <tr>
+        <tr>
             <td align="center">
                 <br />
                 <font size="3" color="black"><b>Dump and Restore</b></font>
@@ -722,17 +752,21 @@ Ver 1.01 2011/12/31
         <tr>
             <td />
             <td>
-                <font size="3">
-                    This tool provide dump(backup) and restore function via run mongodump.exe and mongorestore.exe.<br />
-                    It is need the mongodump.exe and mongorestore.exe support,so make sure that the mongo\bin path is current setted.<br />
-                    <br /><img src="images/Option.PNG" alt="" /><br /><br />
-                    You can dump database,collection to a file,and restore the database,collection when needed.<br />
-                    You also can export or import collection data.The difference of export and dump is that : Export write data to file with Bson,but Dump write data with Binary.<br />
-
+                <font size="3">This tool provide dump(backup) and restore function via run mongodump.exe
+                    and mongorestore.exe.<br />
+                    It is need the mongodump.exe and mongorestore.exe support,so make sure that the
+                    mongo\bin path is current setted.<br />
+                    <br />
+                    <img src="images/Option.PNG" alt="" /><br />
+                    <br />
+                    You can dump database,collection to a file,and restore the database,collection when
+                    needed.<br />
+                    You also can export or import collection data.The difference of export and dump
+                    is that : Export write data to file with Bson,but Dump write data with Binary.<br />
                 </font>
             </td>
         </tr>
-         <tr>
+        <tr>
             <td align="center">
                 <br />
                 <font size="3" color="black"><b>Import from Access</b></font>
@@ -742,15 +776,67 @@ Ver 1.01 2011/12/31
         <tr>
             <td />
             <td>
-                <font size="3">
-                    You can Import data from Microsoft Access Database.<br />
-                    Select a server then click the <img src="images/Access.png" alt="" />  icon from the toolbar.<br />
-                    Now,the mongo[2.0.2] has not supported the No-English DBName or CollectionName yet.<br /><br /><br />
+                <font size="3">You can Import data from Microsoft Access Database.<br />
+                    Select a server then click the
+                    <img src="images/Access.png" alt="" />
+                    icon from the toolbar.<br />
+                    Now,the mongo[2.0.2] has not supported the No-English DBName or CollectionName yet.<br />
                 </font>
             </td>
         </tr>
-
-<!--         <tr>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Document Operation</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">You can add a new empty document to current collection.Select a data
+                    Node<img src="images/data.png" alt="" />
+                    at the left pannel.
+                    <ul>
+                        <li>Menu: Operation - > Document -> Add Document</li>
+                        <li>Right Context Menu：Add Document</li>
+                    </ul>
+                    A empty document will append to current collection.<br />
+                    <br />
+                    <img src="images/addemptydoc.PNG" alt="" />
+                    <br />
+                    <br />
+                    As you have add a empty document to collection.Now try to add some element to this
+                    empty document.<br />
+                    1.Add a BsonElement to collection:Select document node,then
+                    <ul>
+                        <li>Menu:Operation -> Document -> Add Element</li>
+                        <li>RightClick Context - > Add Element</li>
+                    </ul>
+                    <img src="images/AddElement1.PNG" alt="" />
+                    <br />
+                    <br />
+                    Now BsonString,BsonInt32,BsonDateTime,BSonBoolean,BSonDocument,BSonArray is supported.
+                    <br />
+                    <br />
+                    <img src="images/AddElement2.PNG" alt="" />
+                    <br />
+                    <br />
+                    You also can add Element to a document,or add a value to a Array with "Add Element"
+                    menuitem. (But now a Array or a Document add to a Array is not support yet)<br />
+                    With this tool,you can generate your owner layout quickly.
+                    <br />
+                    <br />
+                    <img src="images/AddElement3.PNG" alt="" />
+                    <br />
+                    <br />
+                    You can also copy,cut,paste Element of a document or value of a array to  generate your owner layout quickly.
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <!--         <tr>
             <td align="center">
                 <br />
                 <font size="3" color="black"><b>Master-Slave</b></font>

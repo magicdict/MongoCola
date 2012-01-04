@@ -55,6 +55,7 @@ namespace MagicMongoDBTool
             }
             if (!_IsElement)
             {
+                //TODO:在这个模式，数组里面暂时不能添加数组或者文档
                 AddBsonElement.switchToValueMode();
             }
         }
@@ -77,23 +78,38 @@ namespace MagicMongoDBTool
                 }
                 if (String.IsNullOrEmpty(AddBsonElement.getElement().Name))
                 {
-                    _SelectNode.Text = AddBsonElement.getElement().Value.ToString();
+                    _SelectNode.Text = MongoDBHelper.ConvertToString(AddBsonElement.getElement().Value);
                 }
                 else
                 {
-                    _SelectNode.Text = AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString();
+                    _SelectNode.Text = AddBsonElement.getElement().Name + ":" + MongoDBHelper.ConvertToString(AddBsonElement.getElement().Value);
                 }
             }
             else
             {
-                MongoDBHelper.AddElement(_FullPath, AddBsonElement.getElement());
-                TreeNode NewNode;
-                if (String.IsNullOrEmpty(AddBsonElement.getElement().Name))
+                String AddMessage = String.Empty;
+                if (_IsElement)
                 {
-                    NewNode = new TreeNode(AddBsonElement.getElement().Value.ToString());
+                    AddMessage = MongoDBHelper.AddElement(_FullPath, AddBsonElement.getElement());
                 }
                 else
                 {
+                    MongoDBHelper.AddArrayValue(_FullPath, AddBsonElement.getElement().Value);
+                }
+                if (!String.IsNullOrEmpty(AddMessage))
+                {
+                    MyMessageBox.ShowMessage("Exception", AddMessage);
+                    return;
+                }
+                TreeNode NewNode;
+                if (String.IsNullOrEmpty(AddBsonElement.getElement().Name))
+                {
+                    //Array Value
+                    NewNode = new TreeNode(MongoDBHelper.ConvertToString(AddBsonElement.getElement().Value));
+                }
+                else
+                {
+                    //Document Element
                     if (AddBsonElement.getElement().Value.IsBsonArray)
                     {
                         NewNode = new TreeNode(AddBsonElement.getElement().Name + MongoDBHelper.Array_Mark);
@@ -106,11 +122,18 @@ namespace MagicMongoDBTool
                         }
                         else
                         {
-                            NewNode = new TreeNode(AddBsonElement.getElement().Name + ":" + AddBsonElement.getElement().Value.ToString());
+                            NewNode = new TreeNode(AddBsonElement.getElement().Name + ":" + 
+                                                   MongoDBHelper.ConvertToString(AddBsonElement.getElement().Value));
                         }
                     }
                 }
-                NewNode.Tag = AddBsonElement.getElement().Value;
+                if (_IsElement)
+                {
+                    NewNode.Tag = AddBsonElement.getElement();
+                }
+                else {
+                    NewNode.Tag = AddBsonElement.getElement().Value;
+                }
                 _SelectNode.Nodes.Add(NewNode);
             }
             this.Close();

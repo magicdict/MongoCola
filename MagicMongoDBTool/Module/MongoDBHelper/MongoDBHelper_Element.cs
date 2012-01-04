@@ -32,15 +32,23 @@ namespace MagicMongoDBTool.Module
         /// Paste
         /// </summary>
         /// <param name="ElementPath"></param>
-        public static void PasteElement(String ElementPath)
+        public static String PasteElement(String ElementPath)
         {
             BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonDocument)
             {
-                t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, (BsonElement)_ClipElement);
+                try
+                {
+                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, (BsonElement)_ClipElement);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    return ex.Message;
+                }
             }
             SystemManager.GetCurrentCollection().Save(BaseDoc);
+            return String.Empty;
         }
         public static void PasteValue(String ElementPath)
         {
@@ -95,15 +103,22 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="BaseDoc"></param>
         /// <param name="AddElement"></param>
-        public static void AddElement(String ElementPath, BsonElement AddElement)
+        public static String AddElement(String ElementPath, BsonElement AddElement)
         {
             BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonDocument)
             {
-                t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, AddElement);
+                try
+                {
+                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, AddElement);
+                }
+                catch (InvalidOperationException ex){
+                    return ex.Message;
+                }
             }
             SystemManager.GetCurrentCollection().Save(BaseDoc);
+            return String.Empty;
         }
         /// <summary>
         /// Add Value

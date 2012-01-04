@@ -107,16 +107,29 @@ namespace MagicMongoDBTool.Module
         /// Set Current Document
         /// </summary>
         /// <param name="SelectDocId"></param>
-        public static void SetCurrentDocument(BsonValue SelectDocId){
+        public static void SetCurrentDocument(TreeNode CurrentNode)
+        {
+            TreeNode rootNode = findroot(CurrentNode);
+            BsonValue SelectDocId = (BsonValue)rootNode.Tag;
             MongoCollection mongoCol = GetCurrentCollection();
             BsonDocument doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ("_id", SelectDocId));
             CurrentDocument = doc;
+        }
+        private static TreeNode findroot(TreeNode node)
+        {
+            if (node.Parent == null)
+                return node;
+            else
+            {
+                return findroot(node.Parent);
+            }
         }
         /// <summary>
         /// Get Current Document
         /// </summary>
         /// <returns></returns>
-        public static BsonDocument GetCurrentDocument() {
+        public static BsonDocument GetCurrentDocument()
+        {
             return CurrentDocument;
         }
         /// <summary>
@@ -139,16 +152,19 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         internal static Boolean IsUseDefaultLanguage()
         {
-            if (ConfigHelperInstance == null) { 
-				return true; 
-			}
-            if (ConfigHelperInstance.LanguageFileName == "English" || 
-			    String.IsNullOrEmpty(ConfigHelperInstance.LanguageFileName))
-			{
-				return true;
-			}else{
-				return false;
-			}
+            if (ConfigHelperInstance == null)
+            {
+                return true;
+            }
+            if (ConfigHelperInstance.LanguageFileName == "English" ||
+                String.IsNullOrEmpty(ConfigHelperInstance.LanguageFileName))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         /// <summary>
         /// 初始化
@@ -158,7 +174,7 @@ namespace MagicMongoDBTool.Module
             //语言的初始化
             if (!IsUseDefaultLanguage())
             {
-				String LanguageFile = "Language" + System.IO.Path.DirectorySeparatorChar + SystemManager.ConfigHelperInstance.LanguageFileName;
+                String LanguageFile = "Language" + System.IO.Path.DirectorySeparatorChar + SystemManager.ConfigHelperInstance.LanguageFileName;
                 if (File.Exists(LanguageFile))
                 {
                     SystemManager.mStringResource.InitLanguage(LanguageFile);

@@ -14,9 +14,9 @@
       <File FileName="MagicMongoDBTool\Form\frmShardingConfig.cs" Line="1" Column="1" />
       <File FileName="MagicMongoDBTool\Module\Resource\GetSystemIcon.cs" Line="1" Column="1" />
       <File FileName="MagicMongoDBTool\Module\MongoDBHelper\MongoDBHelper_Connection.cs" Line="1" Column="1" />
-      <File FileName="MagicMongoDBTool\Form\frmLanguage.cs" Line="21" Column="76" />
+      <File FileName="MagicMongoDBTool\Form\frmLanguage.cs" Line="1" Column="1" />
       <File FileName="MagicMongoDBTool\Form\frmOption.cs" Line="20" Column="76" />
-      <File FileName="MagicMongoDBTool\Module\System\SystemManager.cs" Line="153" Column="40" />
+      <File FileName="MagicMongoDBTool\Module\System\SystemManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
