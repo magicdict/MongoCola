@@ -43,7 +43,7 @@
             // 
             // numRefreshForStatus
             // 
-            this.numRefreshForStatus.Location = new System.Drawing.Point(132, 90);
+            this.numRefreshForStatus.Location = new System.Drawing.Point(154, 104);
             this.numRefreshForStatus.Maximum = new decimal(new int[] {
             180,
             0,
@@ -55,7 +55,7 @@
             0,
             0});
             this.numRefreshForStatus.Name = "numRefreshForStatus";
-            this.numRefreshForStatus.Size = new System.Drawing.Size(66, 20);
+            this.numRefreshForStatus.Size = new System.Drawing.Size(77, 21);
             this.numRefreshForStatus.TabIndex = 2;
             this.numRefreshForStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numRefreshForStatus.Value = new decimal(new int[] {
@@ -68,15 +68,15 @@
             // 
             this.lblRefreshIntervalForStatus.AutoSize = true;
             this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(12, 94);
+            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(14, 108);
             this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
-            this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(111, 13);
+            this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(123, 15);
             this.lblRefreshIntervalForStatus.TabIndex = 15;
             this.lblRefreshIntervalForStatus.Text = "Refresh Interval（sec）";
             // 
             // numLimitCnt
             // 
-            this.numLimitCnt.Location = new System.Drawing.Point(132, 57);
+            this.numLimitCnt.Location = new System.Drawing.Point(154, 66);
             this.numLimitCnt.Maximum = new decimal(new int[] {
             500,
             0,
@@ -88,7 +88,7 @@
             0,
             0});
             this.numLimitCnt.Name = "numLimitCnt";
-            this.numLimitCnt.Size = new System.Drawing.Size(66, 20);
+            this.numLimitCnt.Size = new System.Drawing.Size(77, 21);
             this.numLimitCnt.TabIndex = 1;
             this.numLimitCnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numLimitCnt.Value = new decimal(new int[] {
@@ -101,18 +101,18 @@
             // 
             this.lblLimitCnt.AutoSize = true;
             this.lblLimitCnt.BackColor = System.Drawing.Color.Transparent;
-            this.lblLimitCnt.Location = new System.Drawing.Point(11, 61);
+            this.lblLimitCnt.Location = new System.Drawing.Point(13, 70);
             this.lblLimitCnt.Name = "lblLimitCnt";
-            this.lblLimitCnt.Size = new System.Drawing.Size(91, 13);
+            this.lblLimitCnt.Size = new System.Drawing.Size(104, 15);
             this.lblLimitCnt.TabIndex = 13;
             this.lblLimitCnt.Text = "Records PerPage";
             // 
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(294, 131);
+            this.cmdCancel.Location = new System.Drawing.Point(343, 151);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(75, 30);
+            this.cmdCancel.Size = new System.Drawing.Size(87, 35);
             this.cmdCancel.TabIndex = 5;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
@@ -121,9 +121,9 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(156, 131);
+            this.cmdOK.Location = new System.Drawing.Point(182, 151);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(75, 30);
+            this.cmdOK.Size = new System.Drawing.Size(87, 35);
             this.cmdOK.TabIndex = 4;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
@@ -133,37 +133,37 @@
             // 
             this.lblLanguage.AutoSize = true;
             this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
-            this.lblLanguage.Location = new System.Drawing.Point(234, 61);
+            this.lblLanguage.Location = new System.Drawing.Point(273, 70);
             this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(55, 13);
+            this.lblLanguage.Size = new System.Drawing.Size(63, 15);
             this.lblLanguage.TabIndex = 16;
             this.lblLanguage.Text = "Language";
             // 
             // cmbLanguage
             // 
             this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(294, 57);
+            this.cmbLanguage.Location = new System.Drawing.Point(343, 66);
             this.cmbLanguage.Name = "cmbLanguage";
-            this.cmbLanguage.Size = new System.Drawing.Size(121, 21);
+            this.cmbLanguage.Size = new System.Drawing.Size(140, 23);
             this.cmbLanguage.TabIndex = 3;
             // 
             // ctlFilePickerMongoBinPath
             // 
             this.ctlFilePickerMongoBinPath.BackColor = System.Drawing.Color.Transparent;
             this.ctlFilePickerMongoBinPath.FileFilter = "";
-            this.ctlFilePickerMongoBinPath.Location = new System.Drawing.Point(11, 15);
+            this.ctlFilePickerMongoBinPath.Location = new System.Drawing.Point(13, 17);
             this.ctlFilePickerMongoBinPath.Name = "ctlFilePickerMongoBinPath";
             this.ctlFilePickerMongoBinPath.PickerType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
             this.ctlFilePickerMongoBinPath.SelectedPath = "";
-            this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(565, 31);
+            this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(659, 36);
             this.ctlFilePickerMongoBinPath.TabIndex = 0;
             this.ctlFilePickerMongoBinPath.Title = "Exectable Path ";
             // 
             // frmOption
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 176);
+            this.ClientSize = new System.Drawing.Size(686, 203);
             this.Controls.Add(this.cmbLanguage);
             this.Controls.Add(this.lblLanguage);
             this.Controls.Add(this.numRefreshForStatus);
@@ -173,6 +173,7 @@
             this.Controls.Add(this.ctlFilePickerMongoBinPath);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

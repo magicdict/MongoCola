@@ -51,27 +51,27 @@
             // cmbReplsetName
             // 
             this.cmbReplsetName.FormattingEnabled = true;
-            this.cmbReplsetName.Location = new System.Drawing.Point(81, 20);
+            this.cmbReplsetName.Location = new System.Drawing.Point(94, 23);
             this.cmbReplsetName.Name = "cmbReplsetName";
-            this.cmbReplsetName.Size = new System.Drawing.Size(186, 21);
+            this.cmbReplsetName.Size = new System.Drawing.Size(216, 23);
             this.cmbReplsetName.TabIndex = 0;
             // 
             // lblReplsetName
             // 
             this.lblReplsetName.AutoSize = true;
             this.lblReplsetName.BackColor = System.Drawing.Color.Transparent;
-            this.lblReplsetName.Location = new System.Drawing.Point(20, 23);
+            this.lblReplsetName.Location = new System.Drawing.Point(23, 27);
             this.lblReplsetName.Name = "lblReplsetName";
-            this.lblReplsetName.Size = new System.Drawing.Size(43, 13);
+            this.lblReplsetName.Size = new System.Drawing.Size(49, 15);
             this.lblReplsetName.TabIndex = 14;
             this.lblReplsetName.Text = "Replset";
             // 
             // cmdAddSharding
             // 
             this.cmdAddSharding.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddSharding.Location = new System.Drawing.Point(301, 18);
+            this.cmdAddSharding.Location = new System.Drawing.Point(351, 21);
             this.cmdAddSharding.Name = "cmdAddSharding";
-            this.cmdAddSharding.Size = new System.Drawing.Size(119, 29);
+            this.cmdAddSharding.Size = new System.Drawing.Size(139, 33);
             this.cmdAddSharding.TabIndex = 2;
             this.cmdAddSharding.Text = "Add Sharding";
             this.cmdAddSharding.UseVisualStyleBackColor = false;
@@ -80,36 +80,37 @@
             // lstShard
             // 
             this.lstShard.FormattingEnabled = true;
-            this.lstShard.Location = new System.Drawing.Point(24, 53);
+            this.lstShard.ItemHeight = 15;
+            this.lstShard.Location = new System.Drawing.Point(28, 61);
             this.lstShard.Name = "lstShard";
             this.lstShard.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lstShard.Size = new System.Drawing.Size(396, 82);
+            this.lstShard.Size = new System.Drawing.Size(461, 94);
             this.lstShard.TabIndex = 1;
             // 
             // lblField
             // 
             this.lblField.AutoSize = true;
             this.lblField.BackColor = System.Drawing.Color.Transparent;
-            this.lblField.Location = new System.Drawing.Point(22, 109);
+            this.lblField.Location = new System.Drawing.Point(26, 126);
             this.lblField.Name = "lblField";
-            this.lblField.Size = new System.Drawing.Size(61, 13);
+            this.lblField.Size = new System.Drawing.Size(71, 15);
             this.lblField.TabIndex = 34;
             this.lblField.Text = "IndexName";
             // 
             // cmbKeyList
             // 
             this.cmbKeyList.FormattingEnabled = true;
-            this.cmbKeyList.Location = new System.Drawing.Point(106, 106);
+            this.cmbKeyList.Location = new System.Drawing.Point(124, 122);
             this.cmbKeyList.Name = "cmbKeyList";
-            this.cmbKeyList.Size = new System.Drawing.Size(220, 21);
+            this.cmbKeyList.Size = new System.Drawing.Size(256, 23);
             this.cmbKeyList.TabIndex = 30;
             // 
             // cmdEnableCollectionSharding
             // 
             this.cmdEnableCollectionSharding.BackColor = System.Drawing.Color.Transparent;
-            this.cmdEnableCollectionSharding.Location = new System.Drawing.Point(331, 64);
+            this.cmdEnableCollectionSharding.Location = new System.Drawing.Point(386, 74);
             this.cmdEnableCollectionSharding.Name = "cmdEnableCollectionSharding";
-            this.cmdEnableCollectionSharding.Size = new System.Drawing.Size(85, 30);
+            this.cmdEnableCollectionSharding.Size = new System.Drawing.Size(99, 35);
             this.cmdEnableCollectionSharding.TabIndex = 31;
             this.cmdEnableCollectionSharding.Text = "Collection";
             this.cmdEnableCollectionSharding.UseVisualStyleBackColor = false;
@@ -118,9 +119,9 @@
             // cmdEnableDBSharding
             // 
             this.cmdEnableDBSharding.BackColor = System.Drawing.Color.Transparent;
-            this.cmdEnableDBSharding.Location = new System.Drawing.Point(331, 23);
+            this.cmdEnableDBSharding.Location = new System.Drawing.Point(386, 27);
             this.cmdEnableDBSharding.Name = "cmdEnableDBSharding";
-            this.cmdEnableDBSharding.Size = new System.Drawing.Size(85, 33);
+            this.cmdEnableDBSharding.Size = new System.Drawing.Size(99, 38);
             this.cmdEnableDBSharding.TabIndex = 28;
             this.cmdEnableDBSharding.Text = "DataBase";
             this.cmdEnableDBSharding.UseVisualStyleBackColor = false;
@@ -129,18 +130,18 @@
             // cmbCollection
             // 
             this.cmbCollection.FormattingEnabled = true;
-            this.cmbCollection.Location = new System.Drawing.Point(105, 67);
+            this.cmbCollection.Location = new System.Drawing.Point(122, 77);
             this.cmbCollection.Name = "cmbCollection";
-            this.cmbCollection.Size = new System.Drawing.Size(220, 21);
+            this.cmbCollection.Size = new System.Drawing.Size(256, 23);
             this.cmbCollection.TabIndex = 29;
             this.cmbCollection.SelectedIndexChanged += new System.EventHandler(this.cmbCollection_SelectedIndexChanged);
             // 
             // cmbDataBase
             // 
             this.cmbDataBase.FormattingEnabled = true;
-            this.cmbDataBase.Location = new System.Drawing.Point(105, 28);
+            this.cmbDataBase.Location = new System.Drawing.Point(122, 32);
             this.cmbDataBase.Name = "cmbDataBase";
-            this.cmbDataBase.Size = new System.Drawing.Size(220, 21);
+            this.cmbDataBase.Size = new System.Drawing.Size(256, 23);
             this.cmbDataBase.TabIndex = 27;
             this.cmbDataBase.SelectedIndexChanged += new System.EventHandler(this.cmbDataBase_SelectedIndexChanged);
             // 
@@ -148,9 +149,9 @@
             // 
             this.lblCollection.AutoSize = true;
             this.lblCollection.BackColor = System.Drawing.Color.Transparent;
-            this.lblCollection.Location = new System.Drawing.Point(21, 67);
+            this.lblCollection.Location = new System.Drawing.Point(24, 77);
             this.lblCollection.Name = "lblCollection";
-            this.lblCollection.Size = new System.Drawing.Size(81, 13);
+            this.lblCollection.Size = new System.Drawing.Size(95, 15);
             this.lblCollection.TabIndex = 33;
             this.lblCollection.Text = "CollectionName";
             // 
@@ -158,9 +159,9 @@
             // 
             this.lblDBName.AutoSize = true;
             this.lblDBName.BackColor = System.Drawing.Color.Transparent;
-            this.lblDBName.Location = new System.Drawing.Point(21, 31);
+            this.lblDBName.Location = new System.Drawing.Point(24, 36);
             this.lblDBName.Name = "lblDBName";
-            this.lblDBName.Size = new System.Drawing.Size(82, 13);
+            this.lblDBName.Size = new System.Drawing.Size(95, 15);
             this.lblDBName.TabIndex = 32;
             this.lblDBName.Text = "DataBaseName";
             // 
@@ -168,10 +169,10 @@
             // 
             this.tabSharding.Controls.Add(this.tabAddSharding);
             this.tabSharding.Controls.Add(this.tabShardingConfig);
-            this.tabSharding.Location = new System.Drawing.Point(11, 18);
+            this.tabSharding.Location = new System.Drawing.Point(13, 21);
             this.tabSharding.Name = "tabSharding";
             this.tabSharding.SelectedIndex = 0;
-            this.tabSharding.Size = new System.Drawing.Size(450, 185);
+            this.tabSharding.Size = new System.Drawing.Size(525, 213);
             this.tabSharding.TabIndex = 35;
             // 
             // tabAddSharding
@@ -180,10 +181,10 @@
             this.tabAddSharding.Controls.Add(this.lstShard);
             this.tabAddSharding.Controls.Add(this.cmdAddSharding);
             this.tabAddSharding.Controls.Add(this.cmbReplsetName);
-            this.tabAddSharding.Location = new System.Drawing.Point(4, 22);
+            this.tabAddSharding.Location = new System.Drawing.Point(4, 24);
             this.tabAddSharding.Name = "tabAddSharding";
             this.tabAddSharding.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAddSharding.Size = new System.Drawing.Size(442, 159);
+            this.tabAddSharding.Size = new System.Drawing.Size(517, 185);
             this.tabAddSharding.TabIndex = 0;
             this.tabAddSharding.Text = "Add Sharding";
             this.tabAddSharding.UseVisualStyleBackColor = true;
@@ -201,17 +202,18 @@
             this.tabShardingConfig.Location = new System.Drawing.Point(4, 22);
             this.tabShardingConfig.Name = "tabShardingConfig";
             this.tabShardingConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShardingConfig.Size = new System.Drawing.Size(442, 159);
+            this.tabShardingConfig.Size = new System.Drawing.Size(517, 187);
             this.tabShardingConfig.TabIndex = 1;
             this.tabShardingConfig.Text = "Sharding Setting";
             this.tabShardingConfig.UseVisualStyleBackColor = true;
             // 
             // frmShardingConfig
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 216);
+            this.ClientSize = new System.Drawing.Size(555, 249);
             this.Controls.Add(this.tabSharding);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

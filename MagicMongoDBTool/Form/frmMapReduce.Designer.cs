@@ -44,25 +44,25 @@
             // cmbForMap
             // 
             this.cmbForMap.FormattingEnabled = true;
-            this.cmbForMap.Location = new System.Drawing.Point(86, 18);
+            this.cmbForMap.Location = new System.Drawing.Point(100, 21);
             this.cmbForMap.Name = "cmbForMap";
-            this.cmbForMap.Size = new System.Drawing.Size(151, 21);
+            this.cmbForMap.Size = new System.Drawing.Size(175, 23);
             this.cmbForMap.TabIndex = 0;
             // 
             // cmbForReduce
             // 
             this.cmbForReduce.FormattingEnabled = true;
-            this.cmbForReduce.Location = new System.Drawing.Point(87, 227);
+            this.cmbForReduce.Location = new System.Drawing.Point(101, 262);
             this.cmbForReduce.Name = "cmbForReduce";
-            this.cmbForReduce.Size = new System.Drawing.Size(151, 21);
+            this.cmbForReduce.Size = new System.Drawing.Size(175, 23);
             this.cmbForReduce.TabIndex = 3;
             // 
             // cmdSaveReduceJs
             // 
             this.cmdSaveReduceJs.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSaveReduceJs.Location = new System.Drawing.Point(243, 225);
+            this.cmdSaveReduceJs.Location = new System.Drawing.Point(283, 260);
             this.cmdSaveReduceJs.Name = "cmdSaveReduceJs";
-            this.cmdSaveReduceJs.Size = new System.Drawing.Size(70, 27);
+            this.cmdSaveReduceJs.Size = new System.Drawing.Size(82, 31);
             this.cmdSaveReduceJs.TabIndex = 4;
             this.cmdSaveReduceJs.Text = "Save";
             this.cmdSaveReduceJs.UseVisualStyleBackColor = false;
@@ -71,9 +71,9 @@
             // cmdSaveMapJs
             // 
             this.cmdSaveMapJs.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSaveMapJs.Location = new System.Drawing.Point(243, 16);
+            this.cmdSaveMapJs.Location = new System.Drawing.Point(283, 18);
             this.cmdSaveMapJs.Name = "cmdSaveMapJs";
-            this.cmdSaveMapJs.Size = new System.Drawing.Size(70, 24);
+            this.cmdSaveMapJs.Size = new System.Drawing.Size(82, 28);
             this.cmdSaveMapJs.TabIndex = 1;
             this.cmdSaveMapJs.Text = "Save";
             this.cmdSaveMapJs.UseVisualStyleBackColor = false;
@@ -83,9 +83,9 @@
             // 
             this.lblReduceFunction.AutoSize = true;
             this.lblReduceFunction.BackColor = System.Drawing.Color.Transparent;
-            this.lblReduceFunction.Location = new System.Drawing.Point(18, 234);
+            this.lblReduceFunction.Location = new System.Drawing.Point(21, 270);
             this.lblReduceFunction.Name = "lblReduceFunction";
-            this.lblReduceFunction.Size = new System.Drawing.Size(58, 13);
+            this.lblReduceFunction.Size = new System.Drawing.Size(65, 15);
             this.lblReduceFunction.TabIndex = 16;
             this.lblReduceFunction.Text = "Reduce Js";
             // 
@@ -93,9 +93,9 @@
             // 
             this.lblResult.AutoSize = true;
             this.lblResult.BackColor = System.Drawing.Color.Transparent;
-            this.lblResult.Location = new System.Drawing.Point(327, 21);
+            this.lblResult.Location = new System.Drawing.Point(381, 24);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(37, 13);
+            this.lblResult.Size = new System.Drawing.Size(42, 15);
             this.lblResult.TabIndex = 15;
             this.lblResult.Text = "Result";
             // 
@@ -103,36 +103,36 @@
             // 
             this.lblMapFunction.AutoSize = true;
             this.lblMapFunction.BackColor = System.Drawing.Color.Transparent;
-            this.lblMapFunction.Location = new System.Drawing.Point(18, 21);
+            this.lblMapFunction.Location = new System.Drawing.Point(21, 24);
             this.lblMapFunction.Name = "lblMapFunction";
-            this.lblMapFunction.Size = new System.Drawing.Size(41, 13);
+            this.lblMapFunction.Size = new System.Drawing.Size(47, 15);
             this.lblMapFunction.TabIndex = 14;
             this.lblMapFunction.Text = "Map Js";
             // 
             // trvResult
             // 
-            this.trvResult.Location = new System.Drawing.Point(319, 45);
+            this.trvResult.Location = new System.Drawing.Point(372, 52);
             this.trvResult.Name = "trvResult";
-            this.trvResult.Size = new System.Drawing.Size(363, 377);
+            this.trvResult.Size = new System.Drawing.Size(423, 434);
             this.trvResult.TabIndex = 6;
             // 
             // txtMapJs
             // 
             this.txtMapJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMapJs.Location = new System.Drawing.Point(14, 45);
+            this.txtMapJs.Location = new System.Drawing.Point(16, 52);
             this.txtMapJs.Multiline = true;
             this.txtMapJs.Name = "txtMapJs";
-            this.txtMapJs.Size = new System.Drawing.Size(299, 172);
+            this.txtMapJs.Size = new System.Drawing.Size(348, 198);
             this.txtMapJs.TabIndex = 2;
             this.txtMapJs.Text = "function Map(){\r\n     emit(this.Age,1);\r\n     }\r\n";
             // 
             // txtReduceJs
             // 
             this.txtReduceJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReduceJs.Location = new System.Drawing.Point(14, 253);
+            this.txtReduceJs.Location = new System.Drawing.Point(16, 292);
             this.txtReduceJs.Multiline = true;
             this.txtReduceJs.Name = "txtReduceJs";
-            this.txtReduceJs.Size = new System.Drawing.Size(299, 169);
+            this.txtReduceJs.Size = new System.Drawing.Size(348, 194);
             this.txtReduceJs.TabIndex = 5;
             this.txtReduceJs.Text = "function Reduce(key, arr_values) {\r\n     var total = 0;\r\n     for(var i in arr_va" +
     "lues){\r\n         temp = arr_values[i];\r\n         total += temp;\r\n     }\r\n     re" +
@@ -141,9 +141,9 @@
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRun.Location = new System.Drawing.Point(594, 428);
+            this.cmdRun.Location = new System.Drawing.Point(693, 494);
             this.cmdRun.Name = "cmdRun";
-            this.cmdRun.Size = new System.Drawing.Size(88, 34);
+            this.cmdRun.Size = new System.Drawing.Size(103, 39);
             this.cmdRun.TabIndex = 7;
             this.cmdRun.Text = "Run";
             this.cmdRun.UseVisualStyleBackColor = false;
@@ -151,9 +151,9 @@
             // 
             // frmMapReduce
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 471);
+            this.ClientSize = new System.Drawing.Size(807, 543);
             this.Controls.Add(this.cmbForMap);
             this.Controls.Add(this.cmbForReduce);
             this.Controls.Add(this.cmdSaveReduceJs);
@@ -165,6 +165,7 @@
             this.Controls.Add(this.txtMapJs);
             this.Controls.Add(this.txtReduceJs);
             this.Controls.Add(this.cmdRun);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

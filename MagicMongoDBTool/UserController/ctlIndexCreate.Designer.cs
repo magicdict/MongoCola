@@ -37,7 +37,6 @@ namespace MagicMongoDBTool
             // 
             // radAscendingKey
             // 
-            this.radAscendingKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radAscendingKey.AutoSize = true;
             this.radAscendingKey.Checked = true;
             this.radAscendingKey.Location = new System.Drawing.Point(301, 6);
@@ -50,7 +49,6 @@ namespace MagicMongoDBTool
             // 
             // radDescendingKey
             // 
-            this.radDescendingKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radDescendingKey.AutoSize = true;
             this.radDescendingKey.Location = new System.Drawing.Point(356, 6);
             this.radDescendingKey.Name = "radDescendingKey";
@@ -70,8 +68,6 @@ namespace MagicMongoDBTool
             // 
             // txtKeyName
             // 
-            this.txtKeyName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtKeyName.Location = new System.Drawing.Point(69, 4);
             this.txtKeyName.Name = "txtKeyName";
             this.txtKeyName.Size = new System.Drawing.Size(226, 20);

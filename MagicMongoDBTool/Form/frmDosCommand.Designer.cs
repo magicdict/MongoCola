@@ -32,12 +32,12 @@
             this.cmdRunDos = new System.Windows.Forms.Button();
             this.tabFunction = new System.Windows.Forms.TabControl();
             this.tabMongod = new System.Windows.Forms.TabPage();
-            this.ctlMongodPanel = new MagicMongoDBTool.ctlMongod();
             this.tabMongoDump = new System.Windows.Forms.TabPage();
-            this.ctlMongodumpPanel = new MagicMongoDBTool.Module.ctlMongodump();
             this.tabMongoImportExport = new System.Windows.Forms.TabPage();
-            this.ctlMongoImportExportPanel = new MagicMongoDBTool.Module.ctlMongoImportExport();
             this.txtDosCommand = new System.Windows.Forms.TextBox();
+            this.ctlMongodPanel = new MagicMongoDBTool.ctlMongod();
+            this.ctlMongodumpPanel = new MagicMongoDBTool.Module.ctlMongodump();
+            this.ctlMongoImportExportPanel = new MagicMongoDBTool.Module.ctlMongoImportExport();
             this.tabFunction.SuspendLayout();
             this.tabMongod.SuspendLayout();
             this.tabMongoDump.SuspendLayout();
@@ -48,9 +48,9 @@
             // 
             this.cmdSave.BackColor = System.Drawing.Color.Transparent;
             this.cmdSave.Enabled = false;
-            this.cmdSave.Location = new System.Drawing.Point(760, 355);
+            this.cmdSave.Location = new System.Drawing.Point(887, 410);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(96, 28);
+            this.cmdSave.Size = new System.Drawing.Size(112, 32);
             this.cmdSave.TabIndex = 7;
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = false;
@@ -59,9 +59,9 @@
             // cmdRunDos
             // 
             this.cmdRunDos.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRunDos.Location = new System.Drawing.Point(760, 389);
+            this.cmdRunDos.Location = new System.Drawing.Point(887, 449);
             this.cmdRunDos.Name = "cmdRunDos";
-            this.cmdRunDos.Size = new System.Drawing.Size(96, 29);
+            this.cmdRunDos.Size = new System.Drawing.Size(112, 33);
             this.cmdRunDos.TabIndex = 6;
             this.cmdRunDos.Text = "Run";
             this.cmdRunDos.UseVisualStyleBackColor = false;
@@ -72,30 +72,22 @@
             this.tabFunction.Controls.Add(this.tabMongod);
             this.tabFunction.Controls.Add(this.tabMongoDump);
             this.tabFunction.Controls.Add(this.tabMongoImportExport);
-            this.tabFunction.Location = new System.Drawing.Point(9, 15);
+            this.tabFunction.Location = new System.Drawing.Point(10, 17);
             this.tabFunction.Name = "tabFunction";
             this.tabFunction.SelectedIndex = 0;
-            this.tabFunction.Size = new System.Drawing.Size(851, 247);
+            this.tabFunction.Size = new System.Drawing.Size(993, 285);
             this.tabFunction.TabIndex = 5;
             // 
             // tabMongod
             // 
             this.tabMongod.Controls.Add(this.ctlMongodPanel);
-            this.tabMongod.Location = new System.Drawing.Point(4, 22);
+            this.tabMongod.Location = new System.Drawing.Point(4, 24);
             this.tabMongod.Name = "tabMongod";
             this.tabMongod.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMongod.Size = new System.Drawing.Size(843, 221);
+            this.tabMongod.Size = new System.Drawing.Size(985, 257);
             this.tabMongod.TabIndex = 0;
             this.tabMongod.Text = "Mongod";
             this.tabMongod.UseVisualStyleBackColor = true;
-            // 
-            // ctlMongodPanel
-            // 
-            this.ctlMongodPanel.BackColor = System.Drawing.Color.Transparent;
-            this.ctlMongodPanel.Location = new System.Drawing.Point(6, 6);
-            this.ctlMongodPanel.Name = "ctlMongodPanel";
-            this.ctlMongodPanel.Size = new System.Drawing.Size(831, 209);
-            this.ctlMongodPanel.TabIndex = 2;
             // 
             // tabMongoDump
             // 
@@ -103,18 +95,10 @@
             this.tabMongoDump.Location = new System.Drawing.Point(4, 22);
             this.tabMongoDump.Name = "tabMongoDump";
             this.tabMongoDump.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMongoDump.Size = new System.Drawing.Size(843, 221);
+            this.tabMongoDump.Size = new System.Drawing.Size(985, 259);
             this.tabMongoDump.TabIndex = 1;
             this.tabMongoDump.Text = "mongodump";
             this.tabMongoDump.UseVisualStyleBackColor = true;
-            // 
-            // ctlMongodumpPanel
-            // 
-            this.ctlMongodumpPanel.BackColor = System.Drawing.Color.Transparent;
-            this.ctlMongodumpPanel.Location = new System.Drawing.Point(16, 6);
-            this.ctlMongodumpPanel.Name = "ctlMongodumpPanel";
-            this.ctlMongodumpPanel.Size = new System.Drawing.Size(800, 200);
-            this.ctlMongodumpPanel.TabIndex = 0;
             // 
             // tabMongoImportExport
             // 
@@ -122,38 +106,55 @@
             this.tabMongoImportExport.Location = new System.Drawing.Point(4, 22);
             this.tabMongoImportExport.Name = "tabMongoImportExport";
             this.tabMongoImportExport.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMongoImportExport.Size = new System.Drawing.Size(843, 221);
+            this.tabMongoImportExport.Size = new System.Drawing.Size(985, 259);
             this.tabMongoImportExport.TabIndex = 2;
             this.tabMongoImportExport.Text = "mongoImport/mongoExport";
             this.tabMongoImportExport.UseVisualStyleBackColor = true;
-            // 
-            // ctlMongoImportExportPanel
-            // 
-            this.ctlMongoImportExportPanel.BackColor = System.Drawing.Color.Transparent;
-            this.ctlMongoImportExportPanel.Location = new System.Drawing.Point(6, 6);
-            this.ctlMongoImportExportPanel.Name = "ctlMongoImportExportPanel";
-            this.ctlMongoImportExportPanel.Size = new System.Drawing.Size(800, 195);
-            this.ctlMongoImportExportPanel.TabIndex = 0;
             // 
             // txtDosCommand
             // 
             this.txtDosCommand.BackColor = System.Drawing.Color.Black;
             this.txtDosCommand.ForeColor = System.Drawing.Color.White;
-            this.txtDosCommand.Location = new System.Drawing.Point(9, 283);
+            this.txtDosCommand.Location = new System.Drawing.Point(10, 327);
             this.txtDosCommand.Multiline = true;
             this.txtDosCommand.Name = "txtDosCommand";
-            this.txtDosCommand.Size = new System.Drawing.Size(737, 138);
+            this.txtDosCommand.Size = new System.Drawing.Size(859, 159);
             this.txtDosCommand.TabIndex = 4;
+            // 
+            // ctlMongodPanel
+            // 
+            this.ctlMongodPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ctlMongodPanel.Location = new System.Drawing.Point(7, 7);
+            this.ctlMongodPanel.Name = "ctlMongodPanel";
+            this.ctlMongodPanel.Size = new System.Drawing.Size(969, 241);
+            this.ctlMongodPanel.TabIndex = 2;
+            // 
+            // ctlMongodumpPanel
+            // 
+            this.ctlMongodumpPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ctlMongodumpPanel.Location = new System.Drawing.Point(19, 7);
+            this.ctlMongodumpPanel.Name = "ctlMongodumpPanel";
+            this.ctlMongodumpPanel.Size = new System.Drawing.Size(933, 231);
+            this.ctlMongodumpPanel.TabIndex = 0;
+            // 
+            // ctlMongoImportExportPanel
+            // 
+            this.ctlMongoImportExportPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ctlMongoImportExportPanel.Location = new System.Drawing.Point(7, 7);
+            this.ctlMongoImportExportPanel.Name = "ctlMongoImportExportPanel";
+            this.ctlMongoImportExportPanel.Size = new System.Drawing.Size(933, 225);
+            this.ctlMongoImportExportPanel.TabIndex = 0;
             // 
             // frmDosCommand
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 433);
+            this.ClientSize = new System.Drawing.Size(1016, 500);
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.cmdRunDos);
             this.Controls.Add(this.tabFunction);
             this.Controls.Add(this.txtDosCommand);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

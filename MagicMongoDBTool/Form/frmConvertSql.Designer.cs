@@ -37,18 +37,18 @@
             // txtSql
             // 
             this.txtSql.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSql.Location = new System.Drawing.Point(20, 19);
+            this.txtSql.Location = new System.Drawing.Point(23, 22);
             this.txtSql.Multiline = true;
             this.txtSql.Name = "txtSql";
-            this.txtSql.Size = new System.Drawing.Size(427, 168);
+            this.txtSql.Size = new System.Drawing.Size(497, 193);
             this.txtSql.TabIndex = 5;
             // 
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(269, 223);
+            this.cmdOK.Location = new System.Drawing.Point(314, 257);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(100, 32);
+            this.cmdOK.Size = new System.Drawing.Size(117, 37);
             this.cmdOK.TabIndex = 6;
             this.cmdOK.Text = "Cancel";
             this.cmdOK.UseVisualStyleBackColor = false;
@@ -57,9 +57,9 @@
             // cmdSave
             // 
             this.cmdSave.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSave.Location = new System.Drawing.Point(102, 223);
+            this.cmdSave.Location = new System.Drawing.Point(119, 257);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(100, 32);
+            this.cmdSave.Size = new System.Drawing.Size(117, 37);
             this.cmdSave.TabIndex = 7;
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = false;
@@ -70,7 +70,7 @@
             this.lblAttentionSelectOnly.AutoSize = true;
             this.lblAttentionSelectOnly.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttentionSelectOnly.ForeColor = System.Drawing.Color.Red;
-            this.lblAttentionSelectOnly.Location = new System.Drawing.Point(17, 199);
+            this.lblAttentionSelectOnly.Location = new System.Drawing.Point(20, 230);
             this.lblAttentionSelectOnly.Name = "lblAttentionSelectOnly";
             this.lblAttentionSelectOnly.Size = new System.Drawing.Size(230, 13);
             this.lblAttentionSelectOnly.TabIndex = 44;
@@ -78,13 +78,14 @@
             // 
             // frmConvertSql
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 266);
+            this.ClientSize = new System.Drawing.Size(541, 307);
             this.Controls.Add(this.lblAttentionSelectOnly);
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.txtSql);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

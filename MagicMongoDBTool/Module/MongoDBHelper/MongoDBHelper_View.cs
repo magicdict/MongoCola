@@ -392,8 +392,6 @@ namespace MagicMongoDBTool.Module
         }
         public static void AddBSonArrayToTreeNode(TreeNode newItem, BsonArray item)
         {
-
-            int count = 1;
             foreach (BsonValue SubItem in item)
             {
                 if (SubItem.IsBsonDocument)
@@ -419,9 +417,7 @@ namespace MagicMongoDBTool.Module
                         newItem.Nodes.Add(newSubItem);
                     }
                 }
-                count++;
             }
-
         }
         /// <summary>
         /// 将数据放入ListView中进行展示

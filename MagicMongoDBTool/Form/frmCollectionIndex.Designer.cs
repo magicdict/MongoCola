@@ -54,9 +54,9 @@ namespace MagicMongoDBTool
             // cmdAddIndex
             // 
             this.cmdAddIndex.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddIndex.Location = new System.Drawing.Point(437, 214);
+            this.cmdAddIndex.Location = new System.Drawing.Point(510, 247);
             this.cmdAddIndex.Name = "cmdAddIndex";
-            this.cmdAddIndex.Size = new System.Drawing.Size(108, 35);
+            this.cmdAddIndex.Size = new System.Drawing.Size(126, 40);
             this.cmdAddIndex.TabIndex = 8;
             this.cmdAddIndex.Text = "Create Index";
             this.cmdAddIndex.UseVisualStyleBackColor = false;
@@ -65,9 +65,9 @@ namespace MagicMongoDBTool
             // cmdDelIndex
             // 
             this.cmdDelIndex.BackColor = System.Drawing.Color.Transparent;
-            this.cmdDelIndex.Location = new System.Drawing.Point(432, 214);
+            this.cmdDelIndex.Location = new System.Drawing.Point(504, 247);
             this.cmdDelIndex.Name = "cmdDelIndex";
-            this.cmdDelIndex.Size = new System.Drawing.Size(113, 35);
+            this.cmdDelIndex.Size = new System.Drawing.Size(132, 40);
             this.cmdDelIndex.TabIndex = 7;
             this.cmdDelIndex.Text = "Delect Index";
             this.cmdDelIndex.UseVisualStyleBackColor = false;
@@ -76,9 +76,9 @@ namespace MagicMongoDBTool
             // lstIndex
             // 
             this.lstIndex.CheckBoxes = true;
-            this.lstIndex.Location = new System.Drawing.Point(6, 6);
+            this.lstIndex.Location = new System.Drawing.Point(7, 7);
             this.lstIndex.Name = "lstIndex";
-            this.lstIndex.Size = new System.Drawing.Size(539, 202);
+            this.lstIndex.Size = new System.Drawing.Size(628, 232);
             this.lstIndex.TabIndex = 6;
             this.lstIndex.UseCompatibleStateImageBehavior = false;
             this.lstIndex.View = System.Windows.Forms.View.Details;
@@ -91,17 +91,17 @@ namespace MagicMongoDBTool
             this.tabIndexMgr.Location = new System.Drawing.Point(0, 0);
             this.tabIndexMgr.Name = "tabIndexMgr";
             this.tabIndexMgr.SelectedIndex = 0;
-            this.tabIndexMgr.Size = new System.Drawing.Size(561, 283);
+            this.tabIndexMgr.Size = new System.Drawing.Size(654, 327);
             this.tabIndexMgr.TabIndex = 12;
             // 
             // tabCurrentIndex
             // 
             this.tabCurrentIndex.Controls.Add(this.cmdDelIndex);
             this.tabCurrentIndex.Controls.Add(this.lstIndex);
-            this.tabCurrentIndex.Location = new System.Drawing.Point(4, 22);
+            this.tabCurrentIndex.Location = new System.Drawing.Point(4, 24);
             this.tabCurrentIndex.Name = "tabCurrentIndex";
             this.tabCurrentIndex.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCurrentIndex.Size = new System.Drawing.Size(553, 257);
+            this.tabCurrentIndex.Size = new System.Drawing.Size(646, 299);
             this.tabCurrentIndex.TabIndex = 0;
             this.tabCurrentIndex.Text = "Current Index";
             this.tabCurrentIndex.UseVisualStyleBackColor = true;
@@ -121,35 +121,35 @@ namespace MagicMongoDBTool
             this.tabIndexManager.Controls.Add(this.ctlIndexCreate3);
             this.tabIndexManager.Controls.Add(this.ctlIndexCreate2);
             this.tabIndexManager.Controls.Add(this.ctlIndexCreate1);
-            this.tabIndexManager.Location = new System.Drawing.Point(4, 22);
+            this.tabIndexManager.Location = new System.Drawing.Point(4, 24);
             this.tabIndexManager.Name = "tabIndexManager";
             this.tabIndexManager.Padding = new System.Windows.Forms.Padding(3);
-            this.tabIndexManager.Size = new System.Drawing.Size(553, 257);
+            this.tabIndexManager.Size = new System.Drawing.Size(646, 299);
             this.tabIndexManager.TabIndex = 1;
             this.tabIndexManager.Text = "Create Index";
             // 
             // txtIndexName
             // 
-            this.txtIndexName.Location = new System.Drawing.Point(102, 222);
+            this.txtIndexName.Location = new System.Drawing.Point(119, 256);
             this.txtIndexName.Name = "txtIndexName";
-            this.txtIndexName.Size = new System.Drawing.Size(329, 20);
+            this.txtIndexName.Size = new System.Drawing.Size(383, 21);
             this.txtIndexName.TabIndex = 19;
             // 
             // lblIndexName
             // 
             this.lblIndexName.AutoSize = true;
-            this.lblIndexName.Location = new System.Drawing.Point(20, 225);
+            this.lblIndexName.Location = new System.Drawing.Point(23, 260);
             this.lblIndexName.Name = "lblIndexName";
-            this.lblIndexName.Size = new System.Drawing.Size(61, 13);
+            this.lblIndexName.Size = new System.Drawing.Size(71, 15);
             this.lblIndexName.TabIndex = 18;
             this.lblIndexName.Text = "IndexName";
             // 
             // chkIsUnique
             // 
             this.chkIsUnique.AutoSize = true;
-            this.chkIsUnique.Location = new System.Drawing.Point(402, 190);
+            this.chkIsUnique.Location = new System.Drawing.Point(469, 219);
             this.chkIsUnique.Name = "chkIsUnique";
-            this.chkIsUnique.Size = new System.Drawing.Size(89, 17);
+            this.chkIsUnique.Size = new System.Drawing.Size(99, 19);
             this.chkIsUnique.TabIndex = 16;
             this.chkIsUnique.Text = "Unique Index";
             this.chkIsUnique.UseVisualStyleBackColor = true;
@@ -157,9 +157,9 @@ namespace MagicMongoDBTool
             // chkIsSparse
             // 
             this.chkIsSparse.AutoSize = true;
-            this.chkIsSparse.Location = new System.Drawing.Point(296, 190);
+            this.chkIsSparse.Location = new System.Drawing.Point(345, 219);
             this.chkIsSparse.Name = "chkIsSparse";
-            this.chkIsSparse.Size = new System.Drawing.Size(88, 17);
+            this.chkIsSparse.Size = new System.Drawing.Size(98, 19);
             this.chkIsSparse.TabIndex = 15;
             this.chkIsSparse.Text = "Sparse Index";
             this.chkIsSparse.UseVisualStyleBackColor = true;
@@ -167,9 +167,9 @@ namespace MagicMongoDBTool
             // chkIsDroppedDups
             // 
             this.chkIsDroppedDups.AutoSize = true;
-            this.chkIsDroppedDups.Location = new System.Drawing.Point(169, 191);
+            this.chkIsDroppedDups.Location = new System.Drawing.Point(197, 220);
             this.chkIsDroppedDups.Name = "chkIsDroppedDups";
-            this.chkIsDroppedDups.Size = new System.Drawing.Size(121, 17);
+            this.chkIsDroppedDups.Size = new System.Drawing.Size(136, 19);
             this.chkIsDroppedDups.TabIndex = 14;
             this.chkIsDroppedDups.Text = "DroppedDups Index";
             this.chkIsDroppedDups.UseVisualStyleBackColor = true;
@@ -177,9 +177,9 @@ namespace MagicMongoDBTool
             // chkIsBackground
             // 
             this.chkIsBackground.AutoSize = true;
-            this.chkIsBackground.Location = new System.Drawing.Point(48, 190);
+            this.chkIsBackground.Location = new System.Drawing.Point(56, 219);
             this.chkIsBackground.Name = "chkIsBackground";
-            this.chkIsBackground.Size = new System.Drawing.Size(115, 17);
+            this.chkIsBackground.Size = new System.Drawing.Size(127, 19);
             this.chkIsBackground.TabIndex = 13;
             this.chkIsBackground.Text = "BackGround Index";
             this.chkIsBackground.UseVisualStyleBackColor = true;
@@ -187,49 +187,50 @@ namespace MagicMongoDBTool
             // ctlIndexCreate5
             // 
             this.ctlIndexCreate5.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate5.Location = new System.Drawing.Point(25, 150);
+            this.ctlIndexCreate5.Location = new System.Drawing.Point(56, 167);
             this.ctlIndexCreate5.Name = "ctlIndexCreate5";
-            this.ctlIndexCreate5.Size = new System.Drawing.Size(492, 32);
+            this.ctlIndexCreate5.Size = new System.Drawing.Size(491, 37);
             this.ctlIndexCreate5.TabIndex = 13;
             // 
             // ctlIndexCreate4
             // 
             this.ctlIndexCreate4.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate4.Location = new System.Drawing.Point(25, 118);
+            this.ctlIndexCreate4.Location = new System.Drawing.Point(56, 130);
             this.ctlIndexCreate4.Name = "ctlIndexCreate4";
-            this.ctlIndexCreate4.Size = new System.Drawing.Size(492, 32);
+            this.ctlIndexCreate4.Size = new System.Drawing.Size(491, 37);
             this.ctlIndexCreate4.TabIndex = 13;
             // 
             // ctlIndexCreate3
             // 
             this.ctlIndexCreate3.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate3.Location = new System.Drawing.Point(25, 86);
+            this.ctlIndexCreate3.Location = new System.Drawing.Point(56, 93);
             this.ctlIndexCreate3.Name = "ctlIndexCreate3";
-            this.ctlIndexCreate3.Size = new System.Drawing.Size(492, 32);
+            this.ctlIndexCreate3.Size = new System.Drawing.Size(491, 37);
             this.ctlIndexCreate3.TabIndex = 13;
             // 
             // ctlIndexCreate2
             // 
             this.ctlIndexCreate2.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate2.Location = new System.Drawing.Point(25, 54);
+            this.ctlIndexCreate2.Location = new System.Drawing.Point(56, 56);
             this.ctlIndexCreate2.Name = "ctlIndexCreate2";
-            this.ctlIndexCreate2.Size = new System.Drawing.Size(492, 32);
+            this.ctlIndexCreate2.Size = new System.Drawing.Size(491, 37);
             this.ctlIndexCreate2.TabIndex = 13;
             // 
             // ctlIndexCreate1
             // 
             this.ctlIndexCreate1.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate1.Location = new System.Drawing.Point(25, 22);
+            this.ctlIndexCreate1.Location = new System.Drawing.Point(56, 19);
             this.ctlIndexCreate1.Name = "ctlIndexCreate1";
-            this.ctlIndexCreate1.Size = new System.Drawing.Size(492, 32);
+            this.ctlIndexCreate1.Size = new System.Drawing.Size(491, 37);
             this.ctlIndexCreate1.TabIndex = 13;
             // 
             // frmCollectionIndex
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 283);
+            this.ClientSize = new System.Drawing.Size(654, 327);
             this.Controls.Add(this.tabIndexMgr);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

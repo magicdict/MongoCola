@@ -52,7 +52,7 @@
             this.lstSrvOpr.GridLines = true;
             this.lstSrvOpr.Location = new System.Drawing.Point(3, 3);
             this.lstSrvOpr.Name = "lstSrvOpr";
-            this.lstSrvOpr.Size = new System.Drawing.Size(778, 382);
+            this.lstSrvOpr.Size = new System.Drawing.Size(910, 444);
             this.lstSrvOpr.TabIndex = 3;
             this.lstSrvOpr.UseCompatibleStateImageBehavior = false;
             this.lstSrvOpr.View = System.Windows.Forms.View.Details;
@@ -64,7 +64,7 @@
             this.lstDBStatus.GridLines = true;
             this.lstDBStatus.Location = new System.Drawing.Point(3, 3);
             this.lstDBStatus.Name = "lstDBStatus";
-            this.lstDBStatus.Size = new System.Drawing.Size(778, 382);
+            this.lstDBStatus.Size = new System.Drawing.Size(910, 446);
             this.lstDBStatus.TabIndex = 2;
             this.lstDBStatus.UseCompatibleStateImageBehavior = false;
             this.lstDBStatus.View = System.Windows.Forms.View.Details;
@@ -78,10 +78,10 @@
             this.tabSvrStatus.Controls.Add(this.tabDBBasicInfo);
             this.tabSvrStatus.Controls.Add(this.tabCollectionInfo);
             this.tabSvrStatus.Controls.Add(this.tabClusterInfo);
-            this.tabSvrStatus.Location = new System.Drawing.Point(11, 20);
+            this.tabSvrStatus.Location = new System.Drawing.Point(13, 23);
             this.tabSvrStatus.Name = "tabSvrStatus";
             this.tabSvrStatus.SelectedIndex = 0;
-            this.tabSvrStatus.Size = new System.Drawing.Size(792, 414);
+            this.tabSvrStatus.Size = new System.Drawing.Size(924, 478);
             this.tabSvrStatus.TabIndex = 5;
             // 
             // tabSvrBasicInfo
@@ -90,7 +90,7 @@
             this.tabSvrBasicInfo.Location = new System.Drawing.Point(4, 22);
             this.tabSvrBasicInfo.Name = "tabSvrBasicInfo";
             this.tabSvrBasicInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSvrBasicInfo.Size = new System.Drawing.Size(784, 388);
+            this.tabSvrBasicInfo.Size = new System.Drawing.Size(916, 452);
             this.tabSvrBasicInfo.TabIndex = 3;
             this.tabSvrBasicInfo.Text = "Server Status Information[need manual refresh ]";
             this.tabSvrBasicInfo.UseVisualStyleBackColor = true;
@@ -100,7 +100,7 @@
             this.trvSvrStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvSvrStatus.Location = new System.Drawing.Point(3, 3);
             this.trvSvrStatus.Name = "trvSvrStatus";
-            this.trvSvrStatus.Size = new System.Drawing.Size(778, 382);
+            this.trvSvrStatus.Size = new System.Drawing.Size(910, 446);
             this.trvSvrStatus.TabIndex = 0;
             // 
             // tabDBBasicInfo
@@ -109,7 +109,7 @@
             this.tabDBBasicInfo.Location = new System.Drawing.Point(4, 22);
             this.tabDBBasicInfo.Name = "tabDBBasicInfo";
             this.tabDBBasicInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDBBasicInfo.Size = new System.Drawing.Size(784, 388);
+            this.tabDBBasicInfo.Size = new System.Drawing.Size(916, 452);
             this.tabDBBasicInfo.TabIndex = 0;
             this.tabDBBasicInfo.Text = "DB Status Information";
             this.tabDBBasicInfo.UseVisualStyleBackColor = true;
@@ -120,7 +120,7 @@
             this.tabCollectionInfo.Location = new System.Drawing.Point(4, 22);
             this.tabCollectionInfo.Name = "tabCollectionInfo";
             this.tabCollectionInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCollectionInfo.Size = new System.Drawing.Size(784, 388);
+            this.tabCollectionInfo.Size = new System.Drawing.Size(916, 452);
             this.tabCollectionInfo.TabIndex = 2;
             this.tabCollectionInfo.Text = "Collection Status Information";
             this.tabCollectionInfo.UseVisualStyleBackColor = true;
@@ -132,7 +132,7 @@
             this.lstCollectionStatus.GridLines = true;
             this.lstCollectionStatus.Location = new System.Drawing.Point(3, 3);
             this.lstCollectionStatus.Name = "lstCollectionStatus";
-            this.lstCollectionStatus.Size = new System.Drawing.Size(778, 382);
+            this.lstCollectionStatus.Size = new System.Drawing.Size(910, 446);
             this.lstCollectionStatus.TabIndex = 2;
             this.lstCollectionStatus.UseCompatibleStateImageBehavior = false;
             this.lstCollectionStatus.View = System.Windows.Forms.View.Details;
@@ -140,10 +140,10 @@
             // tabClusterInfo
             // 
             this.tabClusterInfo.Controls.Add(this.lstSrvOpr);
-            this.tabClusterInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabClusterInfo.Location = new System.Drawing.Point(4, 24);
             this.tabClusterInfo.Name = "tabClusterInfo";
             this.tabClusterInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabClusterInfo.Size = new System.Drawing.Size(784, 388);
+            this.tabClusterInfo.Size = new System.Drawing.Size(916, 450);
             this.tabClusterInfo.TabIndex = 1;
             this.tabClusterInfo.Text = "Cluster Information";
             this.tabClusterInfo.UseVisualStyleBackColor = true;
@@ -152,9 +152,9 @@
             // 
             this.cmdRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdRefresh.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRefresh.Location = new System.Drawing.Point(695, 4);
+            this.cmdRefresh.Location = new System.Drawing.Point(811, 5);
             this.cmdRefresh.Name = "cmdRefresh";
-            this.cmdRefresh.Size = new System.Drawing.Size(100, 32);
+            this.cmdRefresh.Size = new System.Drawing.Size(117, 37);
             this.cmdRefresh.TabIndex = 5;
             this.cmdRefresh.Text = "Refresh";
             this.cmdRefresh.UseVisualStyleBackColor = false;
@@ -162,11 +162,12 @@
             // 
             // frmServiceStatus
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 452);
+            this.ClientSize = new System.Drawing.Size(943, 522);
             this.Controls.Add(this.cmdRefresh);
             this.Controls.Add(this.tabSvrStatus);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmServiceStatus";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Status";

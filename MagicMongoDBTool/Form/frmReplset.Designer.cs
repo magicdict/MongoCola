@@ -44,20 +44,20 @@
             // 
             this.tabReplset.Controls.Add(this.tabAddSvr);
             this.tabReplset.Controls.Add(this.tabRemoveSvr);
-            this.tabReplset.Location = new System.Drawing.Point(11, 17);
+            this.tabReplset.Location = new System.Drawing.Point(13, 20);
             this.tabReplset.Name = "tabReplset";
             this.tabReplset.SelectedIndex = 0;
-            this.tabReplset.Size = new System.Drawing.Size(403, 225);
+            this.tabReplset.Size = new System.Drawing.Size(470, 260);
             this.tabReplset.TabIndex = 5;
             // 
             // tabAddSvr
             // 
             this.tabAddSvr.Controls.Add(this.cmdAddSvr);
             this.tabAddSvr.Controls.Add(this.lstServerOutReplset);
-            this.tabAddSvr.Location = new System.Drawing.Point(4, 22);
+            this.tabAddSvr.Location = new System.Drawing.Point(4, 24);
             this.tabAddSvr.Name = "tabAddSvr";
             this.tabAddSvr.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAddSvr.Size = new System.Drawing.Size(395, 199);
+            this.tabAddSvr.Size = new System.Drawing.Size(462, 232);
             this.tabAddSvr.TabIndex = 0;
             this.tabAddSvr.Text = "Add Server";
             this.tabAddSvr.UseVisualStyleBackColor = true;
@@ -65,9 +65,9 @@
             // cmdAddSvr
             // 
             this.cmdAddSvr.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddSvr.Location = new System.Drawing.Point(271, 147);
+            this.cmdAddSvr.Location = new System.Drawing.Point(316, 170);
             this.cmdAddSvr.Name = "cmdAddSvr";
-            this.cmdAddSvr.Size = new System.Drawing.Size(100, 32);
+            this.cmdAddSvr.Size = new System.Drawing.Size(117, 37);
             this.cmdAddSvr.TabIndex = 6;
             this.cmdAddSvr.Text = "Add";
             this.cmdAddSvr.UseVisualStyleBackColor = false;
@@ -76,9 +76,10 @@
             // lstServerOutReplset
             // 
             this.lstServerOutReplset.FormattingEnabled = true;
-            this.lstServerOutReplset.Location = new System.Drawing.Point(20, 20);
+            this.lstServerOutReplset.ItemHeight = 15;
+            this.lstServerOutReplset.Location = new System.Drawing.Point(23, 23);
             this.lstServerOutReplset.Name = "lstServerOutReplset";
-            this.lstServerOutReplset.Size = new System.Drawing.Size(350, 108);
+            this.lstServerOutReplset.Size = new System.Drawing.Size(408, 124);
             this.lstServerOutReplset.TabIndex = 5;
             // 
             // tabRemoveSvr
@@ -88,7 +89,7 @@
             this.tabRemoveSvr.Location = new System.Drawing.Point(4, 22);
             this.tabRemoveSvr.Name = "tabRemoveSvr";
             this.tabRemoveSvr.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRemoveSvr.Size = new System.Drawing.Size(395, 199);
+            this.tabRemoveSvr.Size = new System.Drawing.Size(462, 234);
             this.tabRemoveSvr.TabIndex = 1;
             this.tabRemoveSvr.Text = "Remove Server";
             this.tabRemoveSvr.UseVisualStyleBackColor = true;
@@ -96,9 +97,9 @@
             // cmdRemove
             // 
             this.cmdRemove.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRemove.Location = new System.Drawing.Point(271, 147);
+            this.cmdRemove.Location = new System.Drawing.Point(316, 170);
             this.cmdRemove.Name = "cmdRemove";
-            this.cmdRemove.Size = new System.Drawing.Size(100, 32);
+            this.cmdRemove.Size = new System.Drawing.Size(117, 37);
             this.cmdRemove.TabIndex = 1;
             this.cmdRemove.Text = "Drop";
             this.cmdRemove.UseVisualStyleBackColor = false;
@@ -107,17 +108,19 @@
             // lstServerInReplset
             // 
             this.lstServerInReplset.FormattingEnabled = true;
-            this.lstServerInReplset.Location = new System.Drawing.Point(20, 20);
+            this.lstServerInReplset.ItemHeight = 15;
+            this.lstServerInReplset.Location = new System.Drawing.Point(23, 23);
             this.lstServerInReplset.Name = "lstServerInReplset";
-            this.lstServerInReplset.Size = new System.Drawing.Size(350, 108);
+            this.lstServerInReplset.Size = new System.Drawing.Size(408, 124);
             this.lstServerInReplset.TabIndex = 0;
             // 
             // frmReplset
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 255);
+            this.ClientSize = new System.Drawing.Size(498, 294);
             this.Controls.Add(this.tabReplset);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

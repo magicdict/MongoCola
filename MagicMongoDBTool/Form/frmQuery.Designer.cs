@@ -43,9 +43,9 @@
             // cmdAddCondition
             // 
             this.cmdAddCondition.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddCondition.Location = new System.Drawing.Point(365, 341);
+            this.cmdAddCondition.Location = new System.Drawing.Point(426, 393);
             this.cmdAddCondition.Name = "cmdAddCondition";
-            this.cmdAddCondition.Size = new System.Drawing.Size(114, 31);
+            this.cmdAddCondition.Size = new System.Drawing.Size(133, 36);
             this.cmdAddCondition.TabIndex = 14;
             this.cmdAddCondition.Text = "AddFilter";
             this.cmdAddCondition.UseVisualStyleBackColor = false;
@@ -54,9 +54,9 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(386, 437);
+            this.cmdOK.Location = new System.Drawing.Point(450, 504);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(114, 29);
+            this.cmdOK.Size = new System.Drawing.Size(133, 33);
             this.cmdOK.TabIndex = 12;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
@@ -66,18 +66,18 @@
             // 
             this.tabControl.Controls.Add(this.tabFieldInfo);
             this.tabControl.Controls.Add(this.tabCondition);
-            this.tabControl.Location = new System.Drawing.Point(14, 20);
+            this.tabControl.Location = new System.Drawing.Point(16, 23);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(496, 404);
+            this.tabControl.Size = new System.Drawing.Size(579, 466);
             this.tabControl.TabIndex = 0;
             // 
             // tabFieldInfo
             // 
-            this.tabFieldInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabFieldInfo.Location = new System.Drawing.Point(4, 24);
             this.tabFieldInfo.Name = "tabFieldInfo";
             this.tabFieldInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFieldInfo.Size = new System.Drawing.Size(488, 378);
+            this.tabFieldInfo.Size = new System.Drawing.Size(571, 438);
             this.tabFieldInfo.TabIndex = 0;
             this.tabFieldInfo.Text = "Output Fields";
             this.tabFieldInfo.UseVisualStyleBackColor = true;
@@ -89,7 +89,7 @@
             this.tabCondition.Location = new System.Drawing.Point(4, 22);
             this.tabCondition.Name = "tabCondition";
             this.tabCondition.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCondition.Size = new System.Drawing.Size(488, 378);
+            this.tabCondition.Size = new System.Drawing.Size(571, 440);
             this.tabCondition.TabIndex = 1;
             this.tabCondition.Text = "Condition";
             this.tabCondition.UseVisualStyleBackColor = true;
@@ -99,15 +99,15 @@
             this.panFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.panFilter.Location = new System.Drawing.Point(3, 3);
             this.panFilter.Name = "panFilter";
-            this.panFilter.Size = new System.Drawing.Size(482, 332);
+            this.panFilter.Size = new System.Drawing.Size(565, 383);
             this.panFilter.TabIndex = 15;
             // 
             // cmdLoad
             // 
             this.cmdLoad.BackColor = System.Drawing.Color.Transparent;
-            this.cmdLoad.Location = new System.Drawing.Point(174, 437);
+            this.cmdLoad.Location = new System.Drawing.Point(203, 504);
             this.cmdLoad.Name = "cmdLoad";
-            this.cmdLoad.Size = new System.Drawing.Size(100, 29);
+            this.cmdLoad.Size = new System.Drawing.Size(117, 33);
             this.cmdLoad.TabIndex = 13;
             this.cmdLoad.Text = "Load Query";
             this.cmdLoad.UseVisualStyleBackColor = false;
@@ -116,9 +116,9 @@
             // cmdSave
             // 
             this.cmdSave.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSave.Location = new System.Drawing.Point(280, 437);
+            this.cmdSave.Location = new System.Drawing.Point(327, 504);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(100, 29);
+            this.cmdSave.Size = new System.Drawing.Size(117, 33);
             this.cmdSave.TabIndex = 14;
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = false;
@@ -126,13 +126,14 @@
             // 
             // frmQuery
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 480);
+            this.ClientSize = new System.Drawing.Size(622, 554);
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.cmdLoad);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.cmdOK);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

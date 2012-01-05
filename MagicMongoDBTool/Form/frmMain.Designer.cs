@@ -152,9 +152,10 @@ namespace MagicMongoDBTool
             this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusSelectedObj,
             this.lblUserInfo});
-            this.statusStripMain.Location = new System.Drawing.Point(0, 548);
+            this.statusStripMain.Location = new System.Drawing.Point(0, 636);
             this.statusStripMain.Name = "statusStripMain";
-            this.statusStripMain.Size = new System.Drawing.Size(917, 22);
+            this.statusStripMain.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStripMain.Size = new System.Drawing.Size(1070, 22);
             this.statusStripMain.TabIndex = 8;
             // 
             // toolStripStatusSelectedObj
@@ -174,7 +175,7 @@ namespace MagicMongoDBTool
             // 
             this.toolStripMain.Location = new System.Drawing.Point(0, 24);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(917, 25);
+            this.toolStripMain.Size = new System.Drawing.Size(1070, 25);
             this.toolStripMain.TabIndex = 7;
             this.toolStripMain.Text = "工具栏";
             // 
@@ -189,7 +190,8 @@ namespace MagicMongoDBTool
             this.HelpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(917, 24);
+            this.menuStripMain.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStripMain.Size = new System.Drawing.Size(1070, 24);
             this.menuStripMain.TabIndex = 6;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -694,35 +696,35 @@ namespace MagicMongoDBTool
             // UploadFileToolStripMenuItem
             // 
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
-            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.UploadFileToolStripMenuItem.Text = "Upload File";
             this.UploadFileToolStripMenuItem.Click += new System.EventHandler(this.UploadFileToolStripMenuItem_Click);
             // 
             // DownloadFileToolStripMenuItem
             // 
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
-            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.DownloadFileToolStripMenuItem.Text = "Download File";
             this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(this.DownloadFileToolStripMenuItem_Click);
             // 
             // OpenFileToolStripMenuItem
             // 
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
-            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.OpenFileToolStripMenuItem.Text = "Open File";
             this.OpenFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
             // DelFileToolStripMenuItem
             // 
             this.DelFileToolStripMenuItem.Name = "DelFileToolStripMenuItem";
-            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.DelFileToolStripMenuItem.Text = "Delete File";
             this.DelFileToolStripMenuItem.Click += new System.EventHandler(this.DelFileToolStripMenuItem_Click);
             // 
             // InitGFSToolStripMenuItem
             // 
             this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
-            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.InitGFSToolStripMenuItem.Text = "Init GFS";
             this.InitGFSToolStripMenuItem.Click += new System.EventHandler(this.InitGFSToolStripMenuItem_Click);
             // 
@@ -885,7 +887,7 @@ namespace MagicMongoDBTool
             this.tabDataShower.Location = new System.Drawing.Point(0, 0);
             this.tabDataShower.Name = "tabDataShower";
             this.tabDataShower.SelectedIndex = 0;
-            this.tabDataShower.Size = new System.Drawing.Size(662, 499);
+            this.tabDataShower.Size = new System.Drawing.Size(774, 587);
             this.tabDataShower.TabIndex = 0;
             // 
             // tabTreeView
@@ -893,20 +895,19 @@ namespace MagicMongoDBTool
             this.tabTreeView.BackColor = System.Drawing.Color.Orange;
             this.tabTreeView.Controls.Add(this.trvData);
             this.tabTreeView.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabTreeView.Location = new System.Drawing.Point(4, 22);
+            this.tabTreeView.Location = new System.Drawing.Point(4, 24);
             this.tabTreeView.Name = "tabTreeView";
             this.tabTreeView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTreeView.Size = new System.Drawing.Size(654, 473);
+            this.tabTreeView.Size = new System.Drawing.Size(766, 559);
             this.tabTreeView.TabIndex = 0;
             this.tabTreeView.Text = "TreeView";
             // 
             // trvData
             // 
             this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trvData.Location = new System.Drawing.Point(3, 3);
             this.trvData.Name = "trvData";
-            this.trvData.Size = new System.Drawing.Size(648, 467);
+            this.trvData.Size = new System.Drawing.Size(760, 553);
             this.trvData.TabIndex = 0;
             // 
             // tabTableView
@@ -917,20 +918,19 @@ namespace MagicMongoDBTool
             this.tabTableView.Location = new System.Drawing.Point(4, 22);
             this.tabTableView.Name = "tabTableView";
             this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTableView.Size = new System.Drawing.Size(654, 473);
+            this.tabTableView.Size = new System.Drawing.Size(764, 550);
             this.tabTableView.TabIndex = 1;
             this.tabTableView.Text = "TableView";
             // 
             // lstData
             // 
             this.lstData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstData.FullRowSelect = true;
             this.lstData.GridLines = true;
             this.lstData.HideSelection = false;
             this.lstData.Location = new System.Drawing.Point(3, 3);
             this.lstData.Name = "lstData";
-            this.lstData.Size = new System.Drawing.Size(648, 467);
+            this.lstData.Size = new System.Drawing.Size(758, 544);
             this.lstData.TabIndex = 1;
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
@@ -943,19 +943,18 @@ namespace MagicMongoDBTool
             this.tabTextView.Location = new System.Drawing.Point(4, 22);
             this.tabTextView.Name = "tabTextView";
             this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTextView.Size = new System.Drawing.Size(654, 473);
+            this.tabTextView.Size = new System.Drawing.Size(764, 550);
             this.tabTextView.TabIndex = 2;
             this.tabTextView.Text = "TextView";
             // 
             // txtData
             // 
             this.txtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtData.Location = new System.Drawing.Point(3, 3);
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
             this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtData.Size = new System.Drawing.Size(648, 467);
+            this.txtData.Size = new System.Drawing.Size(758, 544);
             this.txtData.TabIndex = 0;
             // 
             // trvsrvlst
@@ -964,7 +963,7 @@ namespace MagicMongoDBTool
             this.trvsrvlst.Dock = System.Windows.Forms.DockStyle.Left;
             this.trvsrvlst.Location = new System.Drawing.Point(0, 0);
             this.trvsrvlst.Name = "trvsrvlst";
-            this.trvsrvlst.Size = new System.Drawing.Size(252, 499);
+            this.trvsrvlst.Size = new System.Drawing.Size(293, 587);
             this.trvsrvlst.TabIndex = 0;
             // 
             // panel1
@@ -975,36 +974,37 @@ namespace MagicMongoDBTool
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 49);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(917, 499);
+            this.panel1.Size = new System.Drawing.Size(1070, 587);
             this.panel1.TabIndex = 9;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.tabDataShower);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(255, 0);
+            this.panel2.Location = new System.Drawing.Point(296, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(662, 499);
+            this.panel2.Size = new System.Drawing.Size(774, 587);
             this.panel2.TabIndex = 2;
             // 
             // splitter1
             // 
-            this.splitter1.Location = new System.Drawing.Point(252, 0);
+            this.splitter1.Location = new System.Drawing.Point(293, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 499);
+            this.splitter1.Size = new System.Drawing.Size(3, 587);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(917, 570);
+            this.ClientSize = new System.Drawing.Size(1070, 658);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStripMain);
             this.Controls.Add(this.toolStripMain);
             this.Controls.Add(this.menuStripMain);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mongo-Cola";

@@ -39,9 +39,9 @@
             // cmdModifyCon
             // 
             this.cmdModifyCon.BackColor = System.Drawing.Color.Transparent;
-            this.cmdModifyCon.Location = new System.Drawing.Point(371, 73);
+            this.cmdModifyCon.Location = new System.Drawing.Point(433, 84);
             this.cmdModifyCon.Name = "cmdModifyCon";
-            this.cmdModifyCon.Size = new System.Drawing.Size(77, 31);
+            this.cmdModifyCon.Size = new System.Drawing.Size(90, 36);
             this.cmdModifyCon.TabIndex = 9;
             this.cmdModifyCon.Text = "Modify";
             this.cmdModifyCon.UseVisualStyleBackColor = false;
@@ -50,9 +50,9 @@
             // cmdDelCon
             // 
             this.cmdDelCon.BackColor = System.Drawing.Color.Transparent;
-            this.cmdDelCon.Location = new System.Drawing.Point(371, 131);
+            this.cmdDelCon.Location = new System.Drawing.Point(433, 151);
             this.cmdDelCon.Name = "cmdDelCon";
-            this.cmdDelCon.Size = new System.Drawing.Size(77, 31);
+            this.cmdDelCon.Size = new System.Drawing.Size(90, 36);
             this.cmdDelCon.TabIndex = 10;
             this.cmdDelCon.Text = "Drop";
             this.cmdDelCon.UseVisualStyleBackColor = false;
@@ -61,9 +61,9 @@
             // cmdAddCon
             // 
             this.cmdAddCon.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddCon.Location = new System.Drawing.Point(371, 14);
+            this.cmdAddCon.Location = new System.Drawing.Point(433, 16);
             this.cmdAddCon.Name = "cmdAddCon";
-            this.cmdAddCon.Size = new System.Drawing.Size(77, 31);
+            this.cmdAddCon.Size = new System.Drawing.Size(90, 36);
             this.cmdAddCon.TabIndex = 8;
             this.cmdAddCon.Text = "New";
             this.cmdAddCon.UseVisualStyleBackColor = false;
@@ -72,9 +72,9 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(245, 184);
+            this.cmdCancel.Location = new System.Drawing.Point(286, 212);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(77, 31);
+            this.cmdCancel.Size = new System.Drawing.Size(90, 36);
             this.cmdCancel.TabIndex = 7;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
@@ -83,9 +83,9 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(111, 184);
+            this.cmdOK.Location = new System.Drawing.Point(129, 212);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(77, 31);
+            this.cmdOK.Size = new System.Drawing.Size(90, 36);
             this.cmdOK.TabIndex = 6;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
@@ -93,26 +93,26 @@
             // 
             // lstServerce
             // 
-            this.lstServerce.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstServerce.FormattingEnabled = true;
-            this.lstServerce.ItemHeight = 16;
-            this.lstServerce.Location = new System.Drawing.Point(11, 14);
+            this.lstServerce.ItemHeight = 15;
+            this.lstServerce.Location = new System.Drawing.Point(13, 16);
             this.lstServerce.Name = "lstServerce";
             this.lstServerce.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lstServerce.Size = new System.Drawing.Size(354, 148);
+            this.lstServerce.Size = new System.Drawing.Size(412, 169);
             this.lstServerce.TabIndex = 5;
             // 
             // frmConnect
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 233);
+            this.ClientSize = new System.Drawing.Size(542, 269);
             this.Controls.Add(this.cmdModifyCon);
             this.Controls.Add(this.cmdDelCon);
             this.Controls.Add(this.cmdAddCon);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.lstServerce);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

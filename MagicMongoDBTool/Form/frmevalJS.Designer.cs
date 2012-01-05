@@ -40,17 +40,17 @@
             // cmbFuncLst
             // 
             this.cmbFuncLst.FormattingEnabled = true;
-            this.cmbFuncLst.Location = new System.Drawing.Point(80, 12);
+            this.cmbFuncLst.Location = new System.Drawing.Point(93, 14);
             this.cmbFuncLst.Name = "cmbFuncLst";
-            this.cmbFuncLst.Size = new System.Drawing.Size(151, 21);
+            this.cmbFuncLst.Size = new System.Drawing.Size(175, 23);
             this.cmbFuncLst.TabIndex = 0;
             // 
             // cmdSaveJs
             // 
             this.cmdSaveJs.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSaveJs.Location = new System.Drawing.Point(237, 8);
+            this.cmdSaveJs.Location = new System.Drawing.Point(276, 9);
             this.cmdSaveJs.Name = "cmdSaveJs";
-            this.cmdSaveJs.Size = new System.Drawing.Size(70, 30);
+            this.cmdSaveJs.Size = new System.Drawing.Size(82, 35);
             this.cmdSaveJs.TabIndex = 1;
             this.cmdSaveJs.Text = "Save";
             this.cmdSaveJs.UseVisualStyleBackColor = false;
@@ -60,28 +60,28 @@
             // 
             this.lblFunction.AutoSize = true;
             this.lblFunction.BackColor = System.Drawing.Color.Transparent;
-            this.lblFunction.Location = new System.Drawing.Point(12, 17);
+            this.lblFunction.Location = new System.Drawing.Point(14, 20);
             this.lblFunction.Name = "lblFunction";
-            this.lblFunction.Size = new System.Drawing.Size(41, 13);
+            this.lblFunction.Size = new System.Drawing.Size(45, 15);
             this.lblFunction.TabIndex = 20;
             this.lblFunction.Text = "Eval Js";
             // 
             // txtevalJs
             // 
             this.txtevalJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtevalJs.Location = new System.Drawing.Point(8, 41);
+            this.txtevalJs.Location = new System.Drawing.Point(9, 47);
             this.txtevalJs.Multiline = true;
             this.txtevalJs.Name = "txtevalJs";
-            this.txtevalJs.Size = new System.Drawing.Size(520, 160);
+            this.txtevalJs.Size = new System.Drawing.Size(606, 184);
             this.txtevalJs.TabIndex = 3;
             this.txtevalJs.Text = "function eval(){\r\n     var i = 0;\r\n     i++;\r\n     return i;\r\n     }";
             // 
             // cmdEval
             // 
             this.cmdEval.BackColor = System.Drawing.Color.Transparent;
-            this.cmdEval.Location = new System.Drawing.Point(322, 8);
+            this.cmdEval.Location = new System.Drawing.Point(376, 9);
             this.cmdEval.Name = "cmdEval";
-            this.cmdEval.Size = new System.Drawing.Size(80, 30);
+            this.cmdEval.Size = new System.Drawing.Size(93, 35);
             this.cmdEval.TabIndex = 2;
             this.cmdEval.Text = "Eval";
             this.cmdEval.UseVisualStyleBackColor = false;
@@ -89,26 +89,26 @@
             // 
             // txtParm
             // 
-            this.txtParm.Location = new System.Drawing.Point(8, 223);
+            this.txtParm.Location = new System.Drawing.Point(9, 257);
             this.txtParm.Name = "txtParm";
-            this.txtParm.Size = new System.Drawing.Size(520, 20);
+            this.txtParm.Size = new System.Drawing.Size(606, 21);
             this.txtParm.TabIndex = 4;
             // 
             // lblParm
             // 
             this.lblParm.AutoSize = true;
             this.lblParm.BackColor = System.Drawing.Color.Transparent;
-            this.lblParm.Location = new System.Drawing.Point(12, 207);
+            this.lblParm.Location = new System.Drawing.Point(14, 239);
             this.lblParm.Name = "lblParm";
-            this.lblParm.Size = new System.Drawing.Size(126, 13);
+            this.lblParm.Size = new System.Drawing.Size(148, 15);
             this.lblParm.TabIndex = 23;
             this.lblParm.Text = "Parameter(seperate by \',\')";
             // 
             // frmevalJS
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 266);
+            this.ClientSize = new System.Drawing.Size(629, 307);
             this.Controls.Add(this.lblParm);
             this.Controls.Add(this.cmdEval);
             this.Controls.Add(this.cmbFuncLst);
@@ -116,6 +116,7 @@
             this.Controls.Add(this.lblFunction);
             this.Controls.Add(this.txtevalJs);
             this.Controls.Add(this.txtParm);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmevalJS";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
