@@ -9,12 +9,24 @@ namespace MagicMongoDBTool
     public class TextChangeEventArgs : EventArgs
     {
         private readonly String _OldString, _NewString;
-        public TextChangeEventArgs(String OldString, String NewString) {
+        public TextChangeEventArgs(String OldString, String NewString)
+        {
             _OldString = OldString;
             _NewString = NewString;
         }
         public String OldString { get { return _OldString; } }
         public String NewString { get { return _NewString; } }
+    }
+    public class SelectedIndexChangeEventArgs : EventArgs
+    {
+        private readonly int _OldIndex, _NewIndex;
+        public SelectedIndexChangeEventArgs(int OldIndex, int NewIndex)
+        {
+            _OldIndex = OldIndex;
+            _NewIndex = NewIndex;
+        }
+        public int OldIndex { get { return _OldIndex; } }
+        public int NewIndex { get { return _NewIndex; } }
     }
     /// <summary>
     /// This Method Copy From CLR via C#

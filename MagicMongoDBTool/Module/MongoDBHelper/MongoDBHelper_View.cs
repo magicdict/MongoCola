@@ -351,7 +351,7 @@ namespace MagicMongoDBTool.Module
                         dataNode.Tag = item.GetElement(0).Value;
                         break;
                 }
-                AddBsonObjToTreeNode(dataNode, item, (BsonValue)dataNode.Tag);
+                AddBsonDocToTreeNode(dataNode, item);
                 trvData.Nodes.Add(dataNode);
                 Count++;
             }
@@ -361,14 +361,14 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="treeNode"></param>
         /// <param name="doc"></param>
-        public static void AddBsonObjToTreeNode(TreeNode treeNode, BsonDocument doc, BsonValue Key)
+        public static void AddBsonDocToTreeNode(TreeNode treeNode, BsonDocument doc)
         {
             foreach (var item in doc.Elements)
             {
                 if (item.Value.IsBsonDocument)
                 {
-                    TreeNode newItem = new TreeNode(item.Name);
-                    AddBsonObjToTreeNode(newItem, item.Value.ToBsonDocument(), Key);
+                    TreeNode newItem = new TreeNode(item.Name + ":" + Document_Mark);
+                    AddBsonDocToTreeNode(newItem, item.Value.ToBsonDocument());
                     newItem.Tag = item;
                     treeNode.Nodes.Add(newItem);
                 }
@@ -376,25 +376,8 @@ namespace MagicMongoDBTool.Module
                 {
                     if (item.Value.IsBsonArray)
                     {
-                        TreeNode newItem = new TreeNode(item.Name + Array_Mark);
-                        int count = 1;
-                        foreach (BsonValue SubItem in item.Value.AsBsonArray)
-                        {
-                            if (SubItem.IsBsonDocument)
-                            {
-                                TreeNode newSubItem = new TreeNode(item.Name + "[" + count + "]");
-                                AddBsonObjToTreeNode(newSubItem, SubItem.ToBsonDocument(), Key);
-                                newSubItem.Tag = SubItem;
-                                newItem.Nodes.Add(newSubItem);
-                            }
-                            else
-                            {
-                                TreeNode newSubItem = new TreeNode(ConvertToString(SubItem));
-                                newSubItem.Tag = SubItem;
-                                newItem.Nodes.Add(newSubItem);
-                            }
-                            count++;
-                        }
+                        TreeNode newItem = new TreeNode(item.Name + ":" + Array_Mark);
+                        AddBSonArrayToTreeNode(newItem, item.Value.AsBsonArray);
                         newItem.Tag = item;
                         treeNode.Nodes.Add(newItem);
                     }
@@ -406,6 +389,39 @@ namespace MagicMongoDBTool.Module
                     }
                 }
             }
+        }
+        public static void AddBSonArrayToTreeNode(TreeNode newItem, BsonArray item)
+        {
+
+            int count = 1;
+            foreach (BsonValue SubItem in item)
+            {
+                if (SubItem.IsBsonDocument)
+                {
+                    TreeNode newSubItem = new TreeNode(Document_Mark);
+                    AddBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument());
+                    newSubItem.Tag = SubItem;
+                    newItem.Nodes.Add(newSubItem);
+                }
+                else
+                {
+                    if (SubItem.IsBsonArray)
+                    {
+                        TreeNode newSubItem = new TreeNode(Array_Mark);
+                        AddBSonArrayToTreeNode(newSubItem, SubItem.AsBsonArray);
+                        newSubItem.Tag = SubItem;
+                        newItem.Nodes.Add(newSubItem);
+                    }
+                    else
+                    {
+                        TreeNode newSubItem = new TreeNode(ConvertToString(SubItem));
+                        newSubItem.Tag = SubItem;
+                        newItem.Nodes.Add(newSubItem);
+                    }
+                }
+                count++;
+            }
+
         }
         /// <summary>
         /// 将数据放入ListView中进行展示

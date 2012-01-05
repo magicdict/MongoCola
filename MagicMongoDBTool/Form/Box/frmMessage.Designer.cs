@@ -44,6 +44,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtException.BackColor = System.Drawing.Color.White;
+            this.txtException.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtException.Location = new System.Drawing.Point(11, 56);
             this.txtException.Multiline = true;
             this.txtException.Name = "txtException";
@@ -56,10 +57,10 @@
             // 
             this.lblMessage.AutoSize = true;
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
-            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.Location = new System.Drawing.Point(42, 12);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(67, 15);
+            this.lblMessage.Size = new System.Drawing.Size(72, 16);
             this.lblMessage.TabIndex = 6;
             this.lblMessage.Text = "Summary";
             // 
@@ -67,6 +68,7 @@
             // 
             this.cmdOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
+            this.cmdOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdOK.Location = new System.Drawing.Point(350, 8);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(100, 32);
@@ -79,6 +81,7 @@
             // 
             this.cmdDetails.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cmdDetails.BackColor = System.Drawing.Color.Transparent;
+            this.cmdDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmdDetails.Location = new System.Drawing.Point(31, 8);
             this.cmdDetails.Name = "cmdDetails";
             this.cmdDetails.Size = new System.Drawing.Size(100, 32);

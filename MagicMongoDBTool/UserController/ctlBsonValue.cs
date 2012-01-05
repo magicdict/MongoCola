@@ -124,18 +124,6 @@ namespace MagicMongoDBTool
             {
                 cmbDataType.Items.Add(item);
             }
-            foreach (String item in BsonValueEx.GetExtendTypeList())
-            {
-                cmbDataType.Items.Add(item);
-            }
-        }
-        public void switchToSimpleMode()
-        {
-            cmbDataType.Items.Clear();
-            foreach (String item in BsonValueEx.GetBasicTypeList())
-            {
-                cmbDataType.Items.Add(item);
-            }
         }
         private void cmbDataType_SelectedIndexChanged(object sender, EventArgs e)
         {

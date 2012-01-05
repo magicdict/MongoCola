@@ -1160,7 +1160,15 @@ namespace MagicMongoDBTool
                                 //4.Array中的Value
                                 t = (BsonValue)trvData.SelectedNode.Tag;
                                 ModifyElementToolStripMenuItem.Enabled = true;
-                                AddElementToolStripMenuItem.Enabled = false;
+                                if (t.IsBsonArray || t.IsBsonDocument)
+                                {
+                                    //当这个值是一个数组或者文档时候，仍然允许其添加子元素
+                                    AddElementToolStripMenuItem.Enabled = true;
+                                }
+                                else
+                                {
+                                    AddElementToolStripMenuItem.Enabled = false;
+                                }
                             }
                         }
                     }
@@ -1870,7 +1878,21 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmElement(false, trvData.SelectedNode, !trvData.SelectedNode.Text.EndsWith(MongoDBHelper.Array_Mark)));
+            Boolean IsElement = true;
+            BsonValue t;
+            if (trvData.SelectedNode.Tag is BsonElement)
+            {
+                t = ((BsonElement)trvData.SelectedNode.Tag).Value;
+            }
+            else
+            {
+                t = (BsonValue)trvData.SelectedNode.Tag;
+            }
+            if (t.IsBsonArray)
+            {
+                IsElement = false;
+            }
+            SystemManager.OpenForm(new frmElement(false, trvData.SelectedNode, IsElement));
             IsNeedRefresh = true;
         }
         /// <summary>
@@ -1955,9 +1977,8 @@ namespace MagicMongoDBTool
                 if (String.IsNullOrEmpty(PasteMessage))
                 {
                     //GetCurrentDocument()的第一个元素是ID
-                    MongoDBHelper.AddBsonObjToTreeNode(trvData.SelectedNode,
-                                                       new BsonDocument().Add((BsonElement)MongoDBHelper._ClipElement),
-                                                       SystemManager.GetCurrentDocument().GetElement(0).Value);
+                    MongoDBHelper.AddBsonDocToTreeNode(trvData.SelectedNode,
+                                                       new BsonDocument().Add((BsonElement)MongoDBHelper._ClipElement));
                 }
                 else
                 {

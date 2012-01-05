@@ -113,7 +113,8 @@ namespace MagicMongoDBTool.Module
                 {
                     t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, AddElement);
                 }
-                catch (InvalidOperationException ex){
+                catch (InvalidOperationException ex)
+                {
                     return ex.Message;
                 }
             }
@@ -243,7 +244,22 @@ namespace MagicMongoDBTool.Module
                 if (IsArray)
                 {
                     //这里的Array是指一个列表的上层节点，在BSON里面没有相应的对象，只是个逻辑概念
-                    Current = Current.AsBsonDocument.GetValue(strTag).AsBsonArray;
+                    if (strTag == String.Empty)
+                    {
+                        //Array里面的Array,所以没有元素名称。
+                        //TODO：正确做法是将元素的Index传入，这里暂时认为第一个数组就是目标数组
+                        foreach (var item in Current.AsBsonArray)
+                        {
+                            if (item.IsBsonArray)
+                            {
+                                Current = item;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Current = Current.AsBsonDocument.GetValue(strTag).AsBsonArray;
+                    }
                 }
                 else
                 {
