@@ -87,10 +87,10 @@
             // tabSvrBasicInfo
             // 
             this.tabSvrBasicInfo.Controls.Add(this.trvSvrStatus);
-            this.tabSvrBasicInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabSvrBasicInfo.Location = new System.Drawing.Point(4, 24);
             this.tabSvrBasicInfo.Name = "tabSvrBasicInfo";
             this.tabSvrBasicInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSvrBasicInfo.Size = new System.Drawing.Size(916, 452);
+            this.tabSvrBasicInfo.Size = new System.Drawing.Size(916, 450);
             this.tabSvrBasicInfo.TabIndex = 3;
             this.tabSvrBasicInfo.Text = "Server Status Information[need manual refresh ]";
             this.tabSvrBasicInfo.UseVisualStyleBackColor = true;
@@ -100,16 +100,16 @@
             this.trvSvrStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvSvrStatus.Location = new System.Drawing.Point(3, 3);
             this.trvSvrStatus.Name = "trvSvrStatus";
-            this.trvSvrStatus.Size = new System.Drawing.Size(910, 446);
+            this.trvSvrStatus.Size = new System.Drawing.Size(910, 444);
             this.trvSvrStatus.TabIndex = 0;
             // 
             // tabDBBasicInfo
             // 
             this.tabDBBasicInfo.Controls.Add(this.lstDBStatus);
-            this.tabDBBasicInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabDBBasicInfo.Location = new System.Drawing.Point(4, 24);
             this.tabDBBasicInfo.Name = "tabDBBasicInfo";
             this.tabDBBasicInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDBBasicInfo.Size = new System.Drawing.Size(916, 452);
+            this.tabDBBasicInfo.Size = new System.Drawing.Size(916, 450);
             this.tabDBBasicInfo.TabIndex = 0;
             this.tabDBBasicInfo.Text = "DB Status Information";
             this.tabDBBasicInfo.UseVisualStyleBackColor = true;
@@ -117,10 +117,10 @@
             // tabCollectionInfo
             // 
             this.tabCollectionInfo.Controls.Add(this.lstCollectionStatus);
-            this.tabCollectionInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabCollectionInfo.Location = new System.Drawing.Point(4, 24);
             this.tabCollectionInfo.Name = "tabCollectionInfo";
             this.tabCollectionInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCollectionInfo.Size = new System.Drawing.Size(916, 452);
+            this.tabCollectionInfo.Size = new System.Drawing.Size(916, 450);
             this.tabCollectionInfo.TabIndex = 2;
             this.tabCollectionInfo.Text = "Collection Status Information";
             this.tabCollectionInfo.UseVisualStyleBackColor = true;

@@ -44,23 +44,22 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtException.BackColor = System.Drawing.Color.White;
-            this.txtException.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtException.Location = new System.Drawing.Point(11, 56);
+            this.txtException.Location = new System.Drawing.Point(13, 65);
             this.txtException.Multiline = true;
             this.txtException.Name = "txtException";
             this.txtException.ReadOnly = true;
             this.txtException.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtException.Size = new System.Drawing.Size(453, 137);
+            this.txtException.Size = new System.Drawing.Size(528, 157);
             this.txtException.TabIndex = 5;
             // 
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
-            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(42, 12);
+            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Location = new System.Drawing.Point(49, 14);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(72, 16);
+            this.lblMessage.Size = new System.Drawing.Size(67, 15);
             this.lblMessage.TabIndex = 6;
             this.lblMessage.Text = "Summary";
             // 
@@ -68,10 +67,9 @@
             // 
             this.cmdOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdOK.Location = new System.Drawing.Point(350, 8);
+            this.cmdOK.Location = new System.Drawing.Point(408, 9);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(100, 32);
+            this.cmdOK.Size = new System.Drawing.Size(117, 37);
             this.cmdOK.TabIndex = 7;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
@@ -81,10 +79,9 @@
             // 
             this.cmdDetails.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cmdDetails.BackColor = System.Drawing.Color.Transparent;
-            this.cmdDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdDetails.Location = new System.Drawing.Point(31, 8);
+            this.cmdDetails.Location = new System.Drawing.Point(36, 9);
             this.cmdDetails.Name = "cmdDetails";
-            this.cmdDetails.Size = new System.Drawing.Size(100, 32);
+            this.cmdDetails.Size = new System.Drawing.Size(117, 37);
             this.cmdDetails.TabIndex = 8;
             this.cmdDetails.Text = "details";
             this.cmdDetails.UseVisualStyleBackColor = false;
@@ -95,30 +92,31 @@
             this.panForBgcolor.Controls.Add(this.cmdOK);
             this.panForBgcolor.Controls.Add(this.cmdDetails);
             this.panForBgcolor.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panForBgcolor.Location = new System.Drawing.Point(0, 199);
+            this.panForBgcolor.Location = new System.Drawing.Point(0, 229);
             this.panForBgcolor.Name = "panForBgcolor";
-            this.panForBgcolor.Size = new System.Drawing.Size(477, 43);
+            this.panForBgcolor.Size = new System.Drawing.Size(556, 50);
             this.panForBgcolor.TabIndex = 9;
             // 
             // picImage
             // 
             this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.Location = new System.Drawing.Point(12, 12);
+            this.picImage.Location = new System.Drawing.Point(14, 14);
             this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(24, 24);
+            this.picImage.Size = new System.Drawing.Size(28, 28);
             this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picImage.TabIndex = 5;
             this.picImage.TabStop = false;
             // 
             // frmMesssage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(477, 242);
+            this.ClientSize = new System.Drawing.Size(556, 279);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.txtException);
             this.Controls.Add(this.panForBgcolor);
             this.Controls.Add(this.picImage);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
