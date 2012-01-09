@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using MagicMongoDBTool.Module;
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
+    /// <summary>
+    /// TextChangeEventArgs
+    /// </summary>
     public class TextChangeEventArgs : EventArgs
     {
         private readonly String _OldString, _NewString;
@@ -17,6 +22,9 @@ namespace MagicMongoDBTool
         public String OldString { get { return _OldString; } }
         public String NewString { get { return _NewString; } }
     }
+    /// <summary>
+    /// SelectedIndexChangeEventArgs
+    /// </summary>
     public class SelectedIndexChangeEventArgs : EventArgs
     {
         private readonly int _OldIndex, _NewIndex;
@@ -27,6 +35,23 @@ namespace MagicMongoDBTool
         }
         public int OldIndex { get { return _OldIndex; } }
         public int NewIndex { get { return _NewIndex; } }
+    }
+    /// <summary>
+    /// RunCommandEventArgs
+    /// </summary>
+    public class RunCommandEventArgs : EventArgs {
+        /// <summary>
+        /// CommandString
+        /// </summary>
+        public String CommandString;
+        /// <summary>
+        /// Path Level
+        /// </summary>
+        public MongoDBHelper.PathLv RunLevel;
+        /// <summary>
+        /// Result
+        /// </summary>
+        public CommandResult Result;
     }
     /// <summary>
     /// This Method Copy From CLR via C#

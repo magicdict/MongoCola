@@ -35,6 +35,11 @@ namespace MagicMongoDBTool.Module
                 RunLevel = _RunLevel;
             }
         }
+        public static EventHandler<RunCommandEventArgs> RunCommandComplete;
+        public static void OnCommandRunComplete(RunCommandEventArgs e)
+        {
+            e.Raise(null, ref RunCommandComplete);
+        }
         /// <summary>
         /// 当前对象的MONGO命令
         /// </summary>
@@ -42,14 +47,14 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static CommandResult RunMongoCommandAtCurrentObj(MongoCommand cmd)
         {
-            var serverStatusCommand = new CommandDocument { { cmd.CommandString, 1 } };
+            var Command = new CommandDocument { { cmd.CommandString, 1 } };
             if (cmd.RunLevel == PathLv.DatabaseLV)
             {
-                return ExecuteMongoDBCommand(serverStatusCommand, SystemManager.GetCurrentDataBase());
+                return ExecuteMongoDBCommand(Command, SystemManager.GetCurrentDataBase());
             }
             else
             {
-                return ExecuteMongoSvrCommand(serverStatusCommand, SystemManager.GetCurrentService());
+                return ExecuteMongoSvrCommand(Command, SystemManager.GetCurrentService());
             }
         }
         /// <summary>
@@ -60,14 +65,14 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static CommandResult RunMongoCommandAtMongoSrv(MongoCommand cmd, MongoServer mongosrv)
         {
-            var serverStatusCommand = new CommandDocument { { cmd.CommandString, 1 } };
+            var Command = new CommandDocument { { cmd.CommandString, 1 } };
             if (cmd.RunLevel == PathLv.DatabaseLV)
             {
                 throw new Exception();
             }
             else
             {
-                return ExecuteMongoSvrCommand(serverStatusCommand, mongosrv);
+                return ExecuteMongoSvrCommand(Command, mongosrv);
             }
         }
         /// <summary>
@@ -78,10 +83,10 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static CommandResult RunMongoCommandAtMongoDB(MongoCommand cmd, MongoDatabase mongoDB)
         {
-            var serverStatusCommand = new CommandDocument { { cmd.CommandString, 1 } };
+            var Command = new CommandDocument { { cmd.CommandString, 1 } };
             if (cmd.RunLevel == PathLv.DatabaseLV)
             {
-                return ExecuteMongoDBCommand(serverStatusCommand, mongoDB);
+                return ExecuteMongoDBCommand(Command, mongoDB);
             }
             else
             {
@@ -124,6 +129,11 @@ namespace MagicMongoDBTool.Module
             {
                 rtn = ex.CommandResult;
             }
+            RunCommandEventArgs e = new RunCommandEventArgs();
+            e.CommandString = mongoCmd.ToString();
+            e.RunLevel = PathLv.DatabaseLV;
+            e.Result = rtn;
+            OnCommandRunComplete(e);
             return rtn;
         }
         /// <summary>
@@ -143,6 +153,11 @@ namespace MagicMongoDBTool.Module
             {
                 rtn = ex.CommandResult;
             }
+            RunCommandEventArgs e = new RunCommandEventArgs();
+            e.CommandString = mongoCmd;
+            e.RunLevel = PathLv.ServerLV;
+            e.Result = rtn;
+            OnCommandRunComplete(e);
             return rtn;
         }
         /// <summary>
@@ -162,6 +177,11 @@ namespace MagicMongoDBTool.Module
             {
                 rtn = ex.CommandResult;
             }
+            RunCommandEventArgs e = new RunCommandEventArgs();
+            e.CommandString = mongoCmd.ToString();
+            e.RunLevel = PathLv.ServerLV;
+            e.Result = rtn;
+            OnCommandRunComplete(e);
             return rtn;
         }
 

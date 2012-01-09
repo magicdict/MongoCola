@@ -193,11 +193,19 @@ namespace MagicMongoDBTool
             //Open ConnectionManagement Form
             SystemManager.OpenForm(new frmConnect());
             RefreshToolStripMenuItem_Click(sender, e);
+            MongoDBHelper.RunCommandComplete += new EventHandler<RunCommandEventArgs>(CommandLog);
         }
-
-
-
-
+        /// <summary>
+        /// CommandLog
+        /// </summary>
+        /// <param name="Sender"></param>
+        /// <param name="e"></param>
+        private void CommandLog(Object Sender,RunCommandEventArgs e) {
+            txtCommand.Clear();
+            txtCommand.Text += "DateTime:" + DateTime.Now.ToString() + "  CommandName:" + e.Result.CommandName + System.Environment.NewLine;
+            txtCommand.Text += "DateTime:" + DateTime.Now.ToString() + "  Command:" + e.Result.Command + System.Environment.NewLine;
+            txtCommand.Text += "DateTime:" + DateTime.Now.ToString() + "  OK:" + e.Result.Ok + System.Environment.NewLine;
+        }
         /// <summary>
         /// KeyEvent
         /// </summary>

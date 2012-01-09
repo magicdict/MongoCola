@@ -136,6 +136,8 @@ namespace MagicMongoDBTool
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.txtCommand = new System.Windows.Forms.TextBox();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.tabDataShower.SuspendLayout();
@@ -883,11 +885,11 @@ namespace MagicMongoDBTool
             this.tabDataShower.Controls.Add(this.tabTreeView);
             this.tabDataShower.Controls.Add(this.tabTableView);
             this.tabDataShower.Controls.Add(this.tabTextView);
-            this.tabDataShower.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabDataShower.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabDataShower.Location = new System.Drawing.Point(0, 0);
             this.tabDataShower.Name = "tabDataShower";
             this.tabDataShower.SelectedIndex = 0;
-            this.tabDataShower.Size = new System.Drawing.Size(774, 587);
+            this.tabDataShower.Size = new System.Drawing.Size(774, 514);
             this.tabDataShower.TabIndex = 0;
             // 
             // tabTreeView
@@ -898,7 +900,7 @@ namespace MagicMongoDBTool
             this.tabTreeView.Location = new System.Drawing.Point(4, 24);
             this.tabTreeView.Name = "tabTreeView";
             this.tabTreeView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTreeView.Size = new System.Drawing.Size(766, 559);
+            this.tabTreeView.Size = new System.Drawing.Size(766, 486);
             this.tabTreeView.TabIndex = 0;
             this.tabTreeView.Text = "TreeView";
             // 
@@ -907,7 +909,7 @@ namespace MagicMongoDBTool
             this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvData.Location = new System.Drawing.Point(3, 3);
             this.trvData.Name = "trvData";
-            this.trvData.Size = new System.Drawing.Size(760, 553);
+            this.trvData.Size = new System.Drawing.Size(760, 480);
             this.trvData.TabIndex = 0;
             // 
             // tabTableView
@@ -915,10 +917,10 @@ namespace MagicMongoDBTool
             this.tabTableView.BackColor = System.Drawing.Color.LightSkyBlue;
             this.tabTableView.Controls.Add(this.lstData);
             this.tabTableView.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabTableView.Location = new System.Drawing.Point(4, 22);
+            this.tabTableView.Location = new System.Drawing.Point(4, 24);
             this.tabTableView.Name = "tabTableView";
             this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTableView.Size = new System.Drawing.Size(764, 550);
+            this.tabTableView.Size = new System.Drawing.Size(766, 559);
             this.tabTableView.TabIndex = 1;
             this.tabTableView.Text = "TableView";
             // 
@@ -930,7 +932,7 @@ namespace MagicMongoDBTool
             this.lstData.HideSelection = false;
             this.lstData.Location = new System.Drawing.Point(3, 3);
             this.lstData.Name = "lstData";
-            this.lstData.Size = new System.Drawing.Size(758, 544);
+            this.lstData.Size = new System.Drawing.Size(760, 553);
             this.lstData.TabIndex = 1;
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
@@ -940,10 +942,10 @@ namespace MagicMongoDBTool
             this.tabTextView.BackColor = System.Drawing.Color.Yellow;
             this.tabTextView.Controls.Add(this.txtData);
             this.tabTextView.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabTextView.Location = new System.Drawing.Point(4, 22);
+            this.tabTextView.Location = new System.Drawing.Point(4, 24);
             this.tabTextView.Name = "tabTextView";
             this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTextView.Size = new System.Drawing.Size(764, 550);
+            this.tabTextView.Size = new System.Drawing.Size(766, 559);
             this.tabTextView.TabIndex = 2;
             this.tabTextView.Text = "TextView";
             // 
@@ -954,7 +956,7 @@ namespace MagicMongoDBTool
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
             this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtData.Size = new System.Drawing.Size(758, 544);
+            this.txtData.Size = new System.Drawing.Size(760, 553);
             this.txtData.TabIndex = 0;
             // 
             // trvsrvlst
@@ -979,6 +981,8 @@ namespace MagicMongoDBTool
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtCommand);
+            this.panel2.Controls.Add(this.splitter2);
             this.panel2.Controls.Add(this.tabDataShower);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(296, 0);
@@ -993,6 +997,24 @@ namespace MagicMongoDBTool
             this.splitter1.Size = new System.Drawing.Size(3, 587);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
+            // 
+            // splitter2
+            // 
+            this.splitter2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter2.Location = new System.Drawing.Point(0, 514);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(774, 3);
+            this.splitter2.TabIndex = 1;
+            this.splitter2.TabStop = false;
+            // 
+            // txtCommand
+            // 
+            this.txtCommand.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCommand.Location = new System.Drawing.Point(0, 517);
+            this.txtCommand.Multiline = true;
+            this.txtCommand.Name = "txtCommand";
+            this.txtCommand.Size = new System.Drawing.Size(774, 70);
+            this.txtCommand.TabIndex = 2;
             // 
             // frmMain
             // 
@@ -1020,6 +1042,7 @@ namespace MagicMongoDBTool
             this.tabTextView.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1230,5 +1253,7 @@ namespace MagicMongoDBTool
         private Panel panel2;
         private Splitter splitter1;
         private ToolStripMenuItem UserGuideToolStripMenuItem;
+        private TextBox txtCommand;
+        private Splitter splitter2;
     }
 }
