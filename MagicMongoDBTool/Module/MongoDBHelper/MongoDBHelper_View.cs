@@ -536,8 +536,8 @@ namespace MagicMongoDBTool.Module
                 ListViewItem lstItem = new ListViewItem();
                 lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(docFile.GetValue("filename").ToString(), false);
                 lstItem.Text = docFile.GetValue("filename").ToString();
-                lstItem.SubItems.Add(GetSize((Int32)docFile.GetValue("length")));
-                lstItem.SubItems.Add(GetSize((Int32)docFile.GetValue("chunkSize")));
+                lstItem.SubItems.Add(GetSize(docFile.GetValue("length")));
+                lstItem.SubItems.Add(GetSize(docFile.GetValue("chunkSize")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("uploadDate")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("md5")));
                 lstData.Items.Add(lstItem);
@@ -1022,6 +1022,17 @@ namespace MagicMongoDBTool.Module
             }
             return Details;
         }
+
+        private static String GetSize(BsonValue size) {
+            if (size.IsInt32)
+            {
+                return GetSize((Int32)size);
+            }
+            else {
+                return GetSize((Int64)size);
+            }
+        } 
+
         /// <summary>
         /// Size的文字表达
         /// </summary>
