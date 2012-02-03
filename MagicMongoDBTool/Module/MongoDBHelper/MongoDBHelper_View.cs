@@ -536,8 +536,8 @@ namespace MagicMongoDBTool.Module
                 ListViewItem lstItem = new ListViewItem();
                 lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(docFile.GetValue("filename").ToString(), false);
                 lstItem.Text = docFile.GetValue("filename").ToString();
-                lstItem.SubItems.Add(GetSize((int)docFile.GetValue("length")));
-                lstItem.SubItems.Add(GetSize((int)docFile.GetValue("chunkSize")));
+                lstItem.SubItems.Add(GetSize((Int32)docFile.GetValue("length")));
+                lstItem.SubItems.Add(GetSize((Int32)docFile.GetValue("chunkSize")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("uploadDate")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("md5")));
                 lstData.Items.Add(lstItem);

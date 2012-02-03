@@ -461,11 +461,11 @@ namespace MagicMongoDBTool
                                 this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                                 this.AddUserToolStripMenuItem.Enabled = true;
                                 this.InitGFSToolStripMenuItem.Enabled = true;
-                                if (config.ServerRole == ConfigHelper.SvrRoleType.SlaveSvr)
-                                {
+                                //if (config.ServerRole == ConfigHelper.SvrRoleType.SlaveSvr)
+                                //{
                                     ///Slave server @ Master-Slave
                                     this.RepairDBToolStripMenuItem.Enabled = true;
-                                }
+                                //}
                             }
                             this.evalJSToolStripMenuItem.Enabled = true;
                             this.ConvertSqlToolStripMenuItem.Enabled = true;
@@ -1332,6 +1332,7 @@ namespace MagicMongoDBTool
             trvData.Nodes.Clear();
             lstData.ContextMenuStrip = null;
             trvData.ContextMenuStrip = null;
+            DataNaviToolStripLabel.Text = String.Empty;
             this.contextMenuStripMain = null;
         }
         #endregion

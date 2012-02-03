@@ -146,7 +146,7 @@ namespace MagicMongoDBTool
             if (txtConnectionString.Text != String.Empty)
             {
                 ModifyConn.ConnectionString = txtConnectionString.Text;
-                if (!MongoDBHelper.FillConfigWithConnectionString(ModifyConn))
+                if (!MongoDBHelper.FillConfigWithConnectionString(ref ModifyConn))
                 {
                     MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it");
                     return;

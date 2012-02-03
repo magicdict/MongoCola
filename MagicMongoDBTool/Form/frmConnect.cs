@@ -31,7 +31,8 @@ namespace MagicMongoDBTool
             lstServerce.Items.Clear();
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
-                lstServerce.Items.Add(item.ConnectionName + "@" + item.Host + ":" + item.Port);
+                lstServerce.Items.Add(item.ConnectionName + "@" + 
+                    (item.Host==null?"localhost":item.Host) + ":" + item.Port);
             }
             lstServerce.Sorted = true;
             SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
@@ -73,9 +74,14 @@ namespace MagicMongoDBTool
         {
             foreach (String item in lstServerce.SelectedItems)
             {
-                if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(item))
+                String ConnectionName = item;
+                if (ConnectionName.Contains("@"))
                 {
-                    SystemManager.ConfigHelperInstance.ConnectionList.Remove(item);
+                    ConnectionName = ConnectionName.Split("@".ToCharArray())[0];
+                }
+                if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ConnectionName))
+                {
+                    SystemManager.ConfigHelperInstance.ConnectionList.Remove(ConnectionName);
                 }
             }
             RefreshConnection();
@@ -89,7 +95,12 @@ namespace MagicMongoDBTool
         {
             if (lstServerce.SelectedItems.Count == 1)
             {
-                SystemManager.OpenForm(new frmAddConnection(lstServerce.SelectedItem.ToString()));
+                String ConnectionName = lstServerce.SelectedItem.ToString();
+                if (ConnectionName.Contains("@"))
+                {
+                    ConnectionName = ConnectionName.Split("@".ToCharArray())[0];
+                    SystemManager.OpenForm(new frmAddConnection(ConnectionName));
+                }
                 RefreshConnection();
             }
         }

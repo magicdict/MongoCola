@@ -101,7 +101,7 @@
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRun.Location = new System.Drawing.Point(419, 601);
+            this.cmdRun.Location = new System.Drawing.Point(389, 582);
             this.cmdRun.Name = "cmdRun";
             this.cmdRun.Size = new System.Drawing.Size(117, 37);
             this.cmdRun.TabIndex = 2;
@@ -220,10 +220,11 @@
             this.tabGroup.Controls.Add(this.tabGroupField);
             this.tabGroup.Controls.Add(this.tabInitialize);
             this.tabGroup.Controls.Add(this.tabResult);
-            this.tabGroup.Location = new System.Drawing.Point(13, 18);
+            this.tabGroup.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabGroup.Location = new System.Drawing.Point(0, 0);
             this.tabGroup.Name = "tabGroup";
             this.tabGroup.SelectedIndex = 0;
-            this.tabGroup.Size = new System.Drawing.Size(559, 576);
+            this.tabGroup.Size = new System.Drawing.Size(542, 576);
             this.tabGroup.TabIndex = 0;
             // 
             // tabReduce
@@ -235,7 +236,7 @@
             this.tabReduce.Location = new System.Drawing.Point(4, 24);
             this.tabReduce.Name = "tabReduce";
             this.tabReduce.Padding = new System.Windows.Forms.Padding(3);
-            this.tabReduce.Size = new System.Drawing.Size(551, 548);
+            this.tabReduce.Size = new System.Drawing.Size(534, 548);
             this.tabReduce.TabIndex = 0;
             this.tabReduce.Text = "Reduce";
             this.tabReduce.UseVisualStyleBackColor = true;
@@ -246,10 +247,10 @@
             this.tabFinalize.Controls.Add(this.txtfinalizeJs);
             this.tabFinalize.Controls.Add(this.cmdSavefinalizeJs);
             this.tabFinalize.Controls.Add(this.cmbForfinalize);
-            this.tabFinalize.Location = new System.Drawing.Point(4, 22);
+            this.tabFinalize.Location = new System.Drawing.Point(4, 24);
             this.tabFinalize.Name = "tabFinalize";
             this.tabFinalize.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFinalize.Size = new System.Drawing.Size(551, 550);
+            this.tabFinalize.Size = new System.Drawing.Size(551, 548);
             this.tabFinalize.TabIndex = 1;
             this.tabFinalize.Text = "Finalize";
             this.tabFinalize.UseVisualStyleBackColor = true;
@@ -258,10 +259,10 @@
             // 
             this.tabGroupField.Controls.Add(this.lblSelectGroupField);
             this.tabGroupField.Controls.Add(this.panColumn);
-            this.tabGroupField.Location = new System.Drawing.Point(4, 22);
+            this.tabGroupField.Location = new System.Drawing.Point(4, 24);
             this.tabGroupField.Name = "tabGroupField";
             this.tabGroupField.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGroupField.Size = new System.Drawing.Size(551, 550);
+            this.tabGroupField.Size = new System.Drawing.Size(551, 548);
             this.tabGroupField.TabIndex = 2;
             this.tabGroupField.Text = "Group Fields";
             this.tabGroupField.UseVisualStyleBackColor = true;
@@ -271,10 +272,10 @@
             this.tabInitialize.Controls.Add(this.cmdAddInitField);
             this.tabInitialize.Controls.Add(this.panBsonEl);
             this.tabInitialize.Controls.Add(this.lblAddInitField);
-            this.tabInitialize.Location = new System.Drawing.Point(4, 22);
+            this.tabInitialize.Location = new System.Drawing.Point(4, 24);
             this.tabInitialize.Name = "tabInitialize";
             this.tabInitialize.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInitialize.Size = new System.Drawing.Size(551, 550);
+            this.tabInitialize.Size = new System.Drawing.Size(551, 548);
             this.tabInitialize.TabIndex = 3;
             this.tabInitialize.Text = "Init Fields";
             this.tabInitialize.UseVisualStyleBackColor = true;
@@ -283,10 +284,10 @@
             // 
             this.tabResult.Controls.Add(this.lblResult);
             this.tabResult.Controls.Add(this.txtResult);
-            this.tabResult.Location = new System.Drawing.Point(4, 22);
+            this.tabResult.Location = new System.Drawing.Point(4, 24);
             this.tabResult.Name = "tabResult";
             this.tabResult.Padding = new System.Windows.Forms.Padding(3);
-            this.tabResult.Size = new System.Drawing.Size(551, 550);
+            this.tabResult.Size = new System.Drawing.Size(551, 548);
             this.tabResult.TabIndex = 4;
             this.tabResult.Text = "Result";
             this.tabResult.UseVisualStyleBackColor = true;
@@ -294,7 +295,7 @@
             // cmdQuery
             // 
             this.cmdQuery.BackColor = System.Drawing.Color.Transparent;
-            this.cmdQuery.Location = new System.Drawing.Point(275, 601);
+            this.cmdQuery.Location = new System.Drawing.Point(242, 582);
             this.cmdQuery.Name = "cmdQuery";
             this.cmdQuery.Size = new System.Drawing.Size(117, 37);
             this.cmdQuery.TabIndex = 1;
@@ -306,7 +307,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 655);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(542, 631);
             this.Controls.Add(this.tabGroup);
             this.Controls.Add(this.cmdRun);
             this.Controls.Add(this.cmdQuery);

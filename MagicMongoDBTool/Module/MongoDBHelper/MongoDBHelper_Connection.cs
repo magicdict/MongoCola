@@ -86,7 +86,7 @@ namespace MagicMongoDBTool.Module
         /// <remarks>http://www.mongodb.org/display/DOCS/Connections</remarks>
         /// <param name="connectionString"></param>
         /// <param name="config"></param>
-        public static Boolean FillConfigWithConnectionString(ConfigHelper.MongoConnectionConfig config)
+        public static Boolean FillConfigWithConnectionString(ref ConfigHelper.MongoConnectionConfig config)
         {
             String connectionString = config.ConnectionString;
             //mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]

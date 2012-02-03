@@ -63,6 +63,8 @@ namespace MagicMongoDBTool
                     resultlst.Add(item);
                     Count++;
                 };
+                ///SkipCnt Reset
+                MongoDBHelper.SkipCnt = 0;
                 MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst);
                 if (Count == 1001)
                 {

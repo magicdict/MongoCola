@@ -130,7 +130,7 @@ namespace MagicMongoDBTool
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(390, 357);
+            this.cmdCancel.Location = new System.Drawing.Point(390, 337);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(98, 31);
             this.cmdCancel.TabIndex = 12;
@@ -140,7 +140,7 @@ namespace MagicMongoDBTool
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(233, 357);
+            this.cmdAdd.Location = new System.Drawing.Point(233, 337);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(91, 31);
             this.cmdAdd.TabIndex = 11;
@@ -376,10 +376,11 @@ namespace MagicMongoDBTool
             this.tabControl1.Controls.Add(this.tabBasicInfo);
             this.tabControl1.Controls.Add(this.Replset);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(14, 14);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(698, 324);
+            this.tabControl1.Size = new System.Drawing.Size(736, 324);
             this.tabControl1.TabIndex = 5;
             // 
             // tabBasicInfo
@@ -406,7 +407,7 @@ namespace MagicMongoDBTool
             this.tabBasicInfo.Location = new System.Drawing.Point(4, 24);
             this.tabBasicInfo.Name = "tabBasicInfo";
             this.tabBasicInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBasicInfo.Size = new System.Drawing.Size(690, 296);
+            this.tabBasicInfo.Size = new System.Drawing.Size(728, 296);
             this.tabBasicInfo.TabIndex = 0;
             this.tabBasicInfo.Text = "BasicInfo";
             this.tabBasicInfo.UseVisualStyleBackColor = true;
@@ -550,7 +551,8 @@ namespace MagicMongoDBTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(736, 410);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(736, 379);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdAdd);
