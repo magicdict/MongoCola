@@ -1022,7 +1022,11 @@ namespace MagicMongoDBTool.Module
             }
             return Details;
         }
-
+        /// <summary>
+        /// Size的文字表达
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
         private static String GetSize(BsonValue size) {
             if (size.IsInt32)
             {
