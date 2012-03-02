@@ -117,13 +117,14 @@
     <Compile Include="Form\frmLanguage.Designer.cs">
       <DependentUpon>frmLanguage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command_Collection.cs" />
     <Compile Include="Module\Resource\GetResource_Icon.cs" />
     <Compile Include="Module\System\BsonValueEx.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_DBCommand.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command_Database.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_ImportData.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_ShellCommand.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_SvrCommand.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command_Server.cs" />
     <Compile Include="Module\System\MyMessageBox.cs" />
     <Compile Include="Module\Resource\StringResources.cs" />
     <Compile Include="Module\Resource\StringResource_Enum.cs" />
@@ -448,9 +449,10 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\%2809,03%29.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

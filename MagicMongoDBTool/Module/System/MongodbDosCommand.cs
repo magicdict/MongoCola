@@ -12,7 +12,8 @@ namespace MagicMongoDBTool.Module
     /// </remarks>
     public class MongodbDosCommand
     {
-
+        //Utilies of Mongo
+        //bsondump (2.0.3)
         //mongod.exe 服务端程序
         //mongodump.exe 备份程序
         //mongoexport.exe 数据导出程序
@@ -21,6 +22,8 @@ namespace MagicMongoDBTool.Module
         //mongorestore.exe 数据恢复程序
         //mongos.exe 数据分片程序，支持数据的横向扩展
         //mongostat.exe 监视程序
+        //mongotop.exe (2.0.3) 
+        //*Utilities Changed by Mongo Version
 
         /// <summary>
         /// Mongod使用结构体
@@ -355,6 +358,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 执行Dos下的命令
         /// </summary>
+        /// <remarks>Only For Windows Platform</remarks>
         /// <param name="DosCommand"></param>
         /// <param name="sb"></param>
         public static void RunDosCommand(String DosCommand, StringBuilder sb)

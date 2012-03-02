@@ -128,6 +128,7 @@ namespace MagicMongoDBTool.Module
                         break;
                     case "System.Windows.Forms.TextBox":
                         FillDataToTextBox((TextBox)control, dataList);
+                        //FillJSONDataToTextBox((TextBox)control, dataList);
                         break;
                     case "System.Windows.Forms.TreeView":
                         FillDataToTreeView(cp[(int)PathLv.CollectionLV], (TreeView)control, dataList);
@@ -192,6 +193,26 @@ namespace MagicMongoDBTool.Module
             //其他
             return bsonValue.ToString();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="txtData"></param>
+        /// <param name="dataList"></param>
+        public static void FillJSONDataToTextBox(TextBox txtData, List<BsonDocument> dataList)
+        {
+            txtData.Clear();
+            int Count = 1;
+            StringBuilder sb = new StringBuilder();
+            foreach (BsonDocument BsonDoc in dataList)
+            {
+                sb.AppendLine("/* " + (SkipCnt + Count).ToString() + " */");
+                sb.AppendLine(BsonDoc.ToJson());
+                Count++;
+            }
+            txtData.Text = sb.ToString();
+        }
+
+
         /// <summary>
         /// 将数据放入TextBox里进行展示
         /// </summary>
@@ -1027,15 +1048,17 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="size"></param>
         /// <returns></returns>
-        private static String GetSize(BsonValue size) {
+        private static String GetSize(BsonValue size)
+        {
             if (size.IsInt32)
             {
                 return GetSize((Int32)size);
             }
-            else {
+            else
+            {
                 return GetSize((Int64)size);
             }
-        } 
+        }
 
         /// <summary>
         /// Size的文字表达

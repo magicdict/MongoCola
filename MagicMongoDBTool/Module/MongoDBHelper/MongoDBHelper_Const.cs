@@ -142,5 +142,10 @@ namespace MagicMongoDBTool.Module
         /// MDB文件选择过滤器
         /// </summary>
         public const String MdbFilter = "*.mdb(Access File)|*.mdb";
+
+        /// <summary>
+        /// TempFileFolder
+        /// </summary>
+        public const String TempFileFolder = "TempFile";
     }
 }

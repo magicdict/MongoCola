@@ -48,14 +48,22 @@ namespace MagicMongoDBTool.Module
         public static CommandResult RunMongoCommandAtCurrentObj(MongoCommand cmd)
         {
             var Command = new CommandDocument { { cmd.CommandString, 1 } };
-            if (cmd.RunLevel == PathLv.DatabaseLV)
+            CommandResult rtn = new CommandResult();
+            switch (cmd.RunLevel)
             {
-                return ExecuteMongoDBCommand(Command, SystemManager.GetCurrentDataBase());
+                case PathLv.CollectionLV:
+                    rtn = ExecuteMongoColCommand(cmd.CommandString, SystemManager.GetCurrentCollection());
+                    break;
+                case PathLv.DatabaseLV:
+                    rtn =  ExecuteMongoDBCommand(Command, SystemManager.GetCurrentDataBase());
+                    break;
+                case PathLv.ServerLV:
+                    rtn =  ExecuteMongoSvrCommand(Command, SystemManager.GetCurrentService());
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                return ExecuteMongoSvrCommand(Command, SystemManager.GetCurrentService());
-            }
+            return rtn;
         }
         /// <summary>
         /// 在指定服务器上执行指定命令
@@ -110,6 +118,33 @@ namespace MagicMongoDBTool.Module
             {
                 rtn = ex.CommandResult;
             }
+            return rtn;
+        }
+        /// <summary>
+        /// 执行数据库命令
+        /// </summary>
+        /// <param name="mongoCmd"></param>
+        /// <param name="mongoCol"></param>
+        /// <returns></returns>
+        public static CommandResult ExecuteMongoColCommand(String CommandString, MongoCollection mongoCol)
+        {
+            CommandResult rtn;
+            BsonDocument cmd = new BsonDocument();
+            cmd.Add(CommandString, mongoCol.Name);
+            CommandDocument mongoCmd = new CommandDocument() { cmd };
+            try
+            {
+                rtn = mongoCol.Database.RunCommand(mongoCmd);
+            }
+            catch (MongoCommandException ex)
+            {
+                rtn = ex.CommandResult;
+            }
+            RunCommandEventArgs e = new RunCommandEventArgs();
+            e.CommandString = CommandString;
+            e.RunLevel = PathLv.DatabaseLV;
+            e.Result = rtn;
+            OnCommandRunComplete(e);
             return rtn;
         }
         /// <summary>

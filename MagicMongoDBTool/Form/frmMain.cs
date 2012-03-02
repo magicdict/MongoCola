@@ -97,6 +97,7 @@ namespace MagicMongoDBTool
             this.ReIndexToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_ReIndex);
             this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
             this.AddDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
+            this.CompactToolStripMenuItem.Text = "Compact";
 
             this.DataDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument);
             this.AddElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
@@ -562,6 +563,7 @@ namespace MagicMongoDBTool
                         if (!config.IsReadOnly)
                         {
                             this.ImportCollectionToolStripMenuItem.Enabled = true;
+                            this.CompactToolStripMenuItem.Enabled = true;
                         }
                         this.DumpCollectionToolStripMenuItem.Enabled = true;
                         this.ExportCollectionToolStripMenuItem.Enabled = true;
@@ -595,6 +597,10 @@ namespace MagicMongoDBTool
                             t6.Click += new EventHandler(ExportCollectionToolStripMenuItem_Click);
                             this.contextMenuStripMain.Items.Add(t6);
 
+                            ToolStripMenuItem t7 = this.CompactToolStripMenuItem.Clone();
+                            t7.Click += new EventHandler(CompactToolStripMenuItem_Click);
+                            this.contextMenuStripMain.Items.Add(t7);
+
 #else
 
                             this.contextMenuStripMain.Items.Add(this.DelMongoCollectionToolStripMenuItem.Clone());
@@ -603,6 +609,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ImportCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ExportCollectionToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.CompactToolStripMenuItem.Clone());
 #endif
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -818,6 +825,7 @@ namespace MagicMongoDBTool
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
             this.AddDocumentToolStripMenuItem.Enabled = false;
             this.DelSelectRecordToolStripMenuItem.Enabled = false;
+            this.CompactToolStripMenuItem.Enabled = false;
 
             //管理-GFS
             this.UploadFileToolStripMenuItem.Enabled = false;
@@ -1323,6 +1331,15 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
+        /// Open In Native Editor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lnkFile_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MongoDBHelper.SaveAndOpenStringAsFile(txtData.Text);
+        }
+        /// <summary>
         /// 清除数据显示区
         /// </summary>
         private void clearDataShower()
@@ -1713,7 +1730,7 @@ namespace MagicMongoDBTool
         private void RepairDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<CommandResult> ResultCommandList = new List<CommandResult>();
-            ResultCommandList.Add(MongoDBHelper.RunMongoCommandAtCurrentObj(MongoDBHelper.repairDatabase_Command));
+            ResultCommandList.Add(MongoDBHelper.RunMongoCommandAtCurrentObj(MongoDBHelper.Compact_Command));
             MyMessageBox.ShowMessage("RepairDataBase", "RepairDataBase Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
         }
 
@@ -1862,7 +1879,18 @@ namespace MagicMongoDBTool
             trvData.SelectedNode = newid;
             IsNeedRefresh = true;
         }
+        /// <summary>
+        /// Compact 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CompactToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<CommandResult> ResultCommandList = new List<CommandResult>();
+            ResultCommandList.Add(MongoDBHelper.RunMongoCommandAtCurrentObj(MongoDBHelper.Compact_Command));
+            MyMessageBox.ShowMessage("Compact", "Compact Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
 
+        }
         /// <summary>
         /// Refresh Data
         /// </summary>
@@ -2470,5 +2498,9 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
+
+
+
+
     }
 }
