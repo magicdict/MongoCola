@@ -117,6 +117,12 @@
     <Compile Include="Form\frmLanguage.Designer.cs">
       <DependentUpon>frmLanguage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmCreateCollection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmCreateCollection.Designer.cs">
+      <DependentUpon>frmCreateCollection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command_Collection.cs" />
     <Compile Include="Module\Resource\GetResource_Icon.cs" />
     <Compile Include="Module\System\BsonValueEx.cs" />
@@ -309,6 +315,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Box\frmMessage.resx">
       <DependentUpon>frmMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmCreateCollection.resx">
+      <DependentUpon>frmCreateCollection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmElement.resx">
       <DependentUpon>frmElement.cs</DependentUpon>

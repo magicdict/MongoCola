@@ -156,9 +156,10 @@ namespace MagicMongoDBTool.Module
                     case Oprcode.Create:
                         if (!mongoDB.CollectionExists(collectionName))
                         {
-                            mongoDB.CreateCollection(collectionName);
-                            treeNode.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
-                            rtnResult = true;
+                            ///没有参数的CreateCollection，被高级CreateCollection取代了
+                            //mongoDB.CreateCollection(collectionName);
+                            //treeNode.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
+                            //rtnResult = true;
                         }
                         break;
                     case Oprcode.Drop:
@@ -185,6 +186,42 @@ namespace MagicMongoDBTool.Module
                         break;
                 }
             }
+            return rtnResult;
+        }
+        /// <summary>
+        /// 带有参数的CreateOption
+        /// </summary>
+        /// <param name="strSvrPathWithTag"></param>
+        /// <param name="treeNode"></param>
+        /// <param name="collectionName"></param>
+        /// <param name="IsCapped"></param>
+        /// <param name="MaxSize"></param>
+        /// <param name="IsAutoIndexId"></param>
+        /// <param name="IsMaxDocument"></param>
+        /// <returns></returns>
+        public static Boolean CreateCollectionWithOptions(String strSvrPathWithTag, TreeNode treeNode, String collectionName,
+            Boolean IsCapped, long MaxSize, Boolean IsAutoIndexId, long IsMaxDocument)
+        {
+            Boolean rtnResult = false;
+            MongoDatabase mongoDB = GetMongoDBBySvrPath(strSvrPathWithTag);
+
+            String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
+            String svrkey = strSvrPath.Split("/".ToCharArray())[0];
+            if (mongoDB != null)
+            {
+                if (!mongoDB.CollectionExists(collectionName))
+                {
+                    CollectionOptionsBuilder COB = new CollectionOptionsBuilder();
+                    COB.SetCapped(IsCapped);
+                    COB.SetMaxSize(MaxSize);
+                    COB.SetAutoIndexId(IsAutoIndexId);
+                    COB.SetMaxDocuments(IsMaxDocument);
+                    mongoDB.CreateCollection(collectionName, COB);
+                    treeNode.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
+                    rtnResult = true;
+                }
+            }
+
             return rtnResult;
         }
         /// <summary>
@@ -348,11 +385,12 @@ namespace MagicMongoDBTool.Module
         }
         #region"GFS操作"
 
-       /// <summary>
+        /// <summary>
         /// Save And Open String As File
-       /// </summary>
-       /// <param name="strJson"></param>
-        public static void SaveAndOpenStringAsFile(String strJson) {
+        /// </summary>
+        /// <param name="strJson"></param>
+        public static void SaveAndOpenStringAsFile(String strJson)
+        {
             if (!Directory.Exists(TempFileFolder))
             {
                 Directory.CreateDirectory(TempFileFolder);
@@ -379,7 +417,7 @@ namespace MagicMongoDBTool.Module
             MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
 
             String[] strLocalFileName = strRemoteFileName.Split(System.IO.Path.DirectorySeparatorChar);
-            
+
             try
             {
                 if (!Directory.Exists(TempFileFolder))

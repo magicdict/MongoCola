@@ -5,6 +5,9 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
+    /// <summary>
+    /// 数据集命令
+    /// </summary>
     public static partial class MongoDBHelper
     {
         /// <summary>

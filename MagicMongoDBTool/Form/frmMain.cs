@@ -201,11 +201,13 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="Sender"></param>
         /// <param name="e"></param>
-        private void CommandLog(Object Sender,RunCommandEventArgs e) {
-            txtCommand.Clear();
+        private void CommandLog(Object Sender, RunCommandEventArgs e)
+        {
+            txtCommand.Text += "========================================================" + System.Environment.NewLine;
             txtCommand.Text += "DateTime:" + DateTime.Now.ToString() + "  CommandName:" + e.Result.CommandName + System.Environment.NewLine;
             txtCommand.Text += "DateTime:" + DateTime.Now.ToString() + "  Command:" + e.Result.Command + System.Environment.NewLine;
             txtCommand.Text += "DateTime:" + DateTime.Now.ToString() + "  OK:" + e.Result.Ok + System.Environment.NewLine;
+            txtCommand.Text += "========================================================" + System.Environment.NewLine;
         }
         /// <summary>
         /// KeyEvent
@@ -464,8 +466,8 @@ namespace MagicMongoDBTool
                                 this.InitGFSToolStripMenuItem.Enabled = true;
                                 //if (config.ServerRole == ConfigHelper.SvrRoleType.SlaveSvr)
                                 //{
-                                    ///Slave server @ Master-Slave
-                                    this.RepairDBToolStripMenuItem.Enabled = true;
+                                ///Slave server @ Master-Slave
+                                this.RepairDBToolStripMenuItem.Enabled = true;
                                 //}
                             }
                             this.evalJSToolStripMenuItem.Enabled = true;
@@ -1650,25 +1652,13 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CreateMongoCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strCollection = String.Empty;
-
-            if (SystemManager.IsUseDefaultLanguage())
-            {
-                strCollection = MyMessageBox.ShowInput("Please input the collection Name：", "Create Collection");
-            }
-            else
-            {
-                strCollection = MyMessageBox.ShowInput(SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection_Input),
-                                                                           SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection));
-            }
-            if (strCollection != String.Empty)
-            {
-                if (MongoDBHelper.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelper.Oprcode.Create, trvsrvlst.SelectedNode))
-                {
-                    DisableAllOpr();
-                    lstData.Clear();
-                }
-            }
+            ///Advance CreateCollection
+            SystemManager.OpenForm(
+                new frmCreateCollection() { 
+                strSvrPathWithTag = SystemManager.SelectObjectTag, 
+                treeNode = trvsrvlst.SelectedNode });
+            DisableAllOpr();
+            lstData.Clear();
         }
         /// <summary>
         /// Create User

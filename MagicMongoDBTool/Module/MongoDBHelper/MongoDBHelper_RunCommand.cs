@@ -36,6 +36,10 @@ namespace MagicMongoDBTool.Module
             }
         }
         public static EventHandler<RunCommandEventArgs> RunCommandComplete;
+        /// <summary>
+        /// Command Complete
+        /// </summary>
+        /// <param name="e"></param>
         public static void OnCommandRunComplete(RunCommandEventArgs e)
         {
             e.Raise(null, ref RunCommandComplete);
@@ -121,9 +125,9 @@ namespace MagicMongoDBTool.Module
             return rtn;
         }
         /// <summary>
-        /// 执行数据库命令
+        /// 执行数据集命令
         /// </summary>
-        /// <param name="mongoCmd"></param>
+        /// <param name="CommandString"></param>
         /// <param name="mongoCol"></param>
         /// <returns></returns>
         public static CommandResult ExecuteMongoColCommand(String CommandString, MongoCollection mongoCol)
