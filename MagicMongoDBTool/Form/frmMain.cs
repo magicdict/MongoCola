@@ -10,6 +10,7 @@ namespace MagicMongoDBTool
 {
     public partial class frmMain : Form
     {
+
         #region"Main Program"
         public frmMain()
         {
@@ -2495,9 +2496,6 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
-
-
-
 
     }
 }
