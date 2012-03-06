@@ -187,6 +187,14 @@ namespace MagicMongoDBTool
                         }
                     }
                 );
+            this.ServerStatusCtl.Dock = DockStyle.Fill;
+            this.txtCommand.Dock = DockStyle.Fill;
+            this.tabDataShower.Dock = DockStyle.Fill;
+            this.ServerStatusCtl.Visible = true;
+            this.StatustoolStripButton.Checked = true;
+
+            this.txtCommand.Visible = false;
+            this.tabDataShower.Visible = false;
             DisableAllOpr();
             DisableDataTreeOpr();
             _dataShower.Add(lstData);
@@ -195,6 +203,7 @@ namespace MagicMongoDBTool
             DataNaviToolStripLabel.Text = String.Empty;
             //Open ConnectionManagement Form
             SystemManager.OpenForm(new frmConnect());
+            this.ServerStatusCtl.RefreshStatus(false);
             RefreshToolStripMenuItem_Click(sender, e);
             MongoDBHelper.RunCommandComplete += new EventHandler<RunCommandEventArgs>(CommandLog);
         }
@@ -1396,6 +1405,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.ServerStatusCtl.RefreshStatus(false);
             DisableAllOpr();
             clearDataShower();
             MongoDBHelper.FillMongoServiceToTreeView(trvsrvlst);
@@ -1896,8 +1906,11 @@ namespace MagicMongoDBTool
         {
             clearDataShower();
             MongoDBHelper.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
+            CollectiontoolStripButton.Text = SystemManager.GetCurrentCollection().Name;
+            CollectiontoolStripButton.ToolTipText = SystemManager.SelectObjectTag;
             SetDataNav();
             IsNeedRefresh = false;
+            CollectiontoolStripButton_Click(null,null);
         }
         #endregion
 
@@ -2496,6 +2509,45 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
+
+        private void ShellCommandtoolStripButton_Click(object sender, EventArgs e)
+        {
+            this.ServerStatusCtl.Visible = false;
+            this.StatustoolStripButton.Checked = false;
+
+            this.txtCommand.Visible = true;
+            this.ShellCommandtoolStripButton.Checked = true;
+
+            this.tabDataShower.Visible = false;
+            this.CollectiontoolStripButton.Checked = false;
+        }
+
+        private void StatustoolStripButton_Click(object sender, EventArgs e)
+        {
+            this.ServerStatusCtl.Visible = true;
+            this.ServerStatusCtl.RefreshStatus(false);
+            this.StatustoolStripButton.Checked = true;
+
+            this.txtCommand.Visible = false;
+            this.ShellCommandtoolStripButton.Checked = false;
+
+            this.tabDataShower.Visible = false;
+            this.CollectiontoolStripButton.Checked = false;
+        }
+
+        private void CollectiontoolStripButton_Click(object sender, EventArgs e)
+        {
+            this.ServerStatusCtl.Visible = false;
+            this.StatustoolStripButton.Checked = false;
+
+            this.txtCommand.Visible = false;
+            this.ShellCommandtoolStripButton.Checked = false;
+
+            this.tabDataShower.Visible = true;
+            this.CollectiontoolStripButton.Checked = true;
+        }
+
+
 
     }
 }
