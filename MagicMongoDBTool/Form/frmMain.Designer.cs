@@ -615,9 +615,9 @@ namespace MagicMongoDBTool
             this.DelSelectRecordToolStripMenuItem.Text = "Delect Selected Records";
             this.DelSelectRecordToolStripMenuItem.Click += new System.EventHandler(this.DelSelectRecordToolStripMenuItem_Click);
             // 
-            // compactToolStripMenuItem
+            // CompactToolStripMenuItem
             // 
-            this.CompactToolStripMenuItem.Name = "compactToolStripMenuItem";
+            this.CompactToolStripMenuItem.Name = "CompactToolStripMenuItem";
             this.CompactToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.CompactToolStripMenuItem.Text = "Compact";
             this.CompactToolStripMenuItem.Click += new System.EventHandler(this.CompactToolStripMenuItem_Click);
@@ -944,7 +944,7 @@ namespace MagicMongoDBTool
             this.lstData.HideSelection = false;
             this.lstData.Location = new System.Drawing.Point(3, 3);
             this.lstData.Name = "lstData";
-            this.lstData.Size = new System.Drawing.Size(871, 592);
+            this.lstData.Size = new System.Drawing.Size(872, 596);
             this.lstData.TabIndex = 1;
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
@@ -965,7 +965,8 @@ namespace MagicMongoDBTool
             // lnkFile
             // 
             this.lnkFile.AutoSize = true;
-            this.lnkFile.Location = new System.Drawing.Point(707, 6);
+            this.lnkFile.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lnkFile.Location = new System.Drawing.Point(741, 3);
             this.lnkFile.Name = "lnkFile";
             this.lnkFile.Size = new System.Drawing.Size(134, 16);
             this.lnkFile.TabIndex = 1;
@@ -1001,7 +1002,7 @@ namespace MagicMongoDBTool
             this.txtCommand.Multiline = true;
             this.txtCommand.Name = "txtCommand";
             this.txtCommand.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtCommand.Size = new System.Drawing.Size(871, 592);
+            this.txtCommand.Size = new System.Drawing.Size(872, 596);
             this.txtCommand.TabIndex = 1;
             // 
             // trvsrvlst

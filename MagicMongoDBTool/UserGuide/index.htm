@@ -1,0 +1,873 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Mongo-Cola|Gui tools for MongoDB</title>
+    <style type="text/css">
+        a
+        {
+            color: Blue;
+        }
+        table
+        {
+            background-image: url('images/background.JPG');
+            width: 100%;
+        }
+        td
+        {
+            color: Black;
+        }
+        span
+        {
+            background: url('images/background.JPG');
+            color: White;
+        }
+    </style>
+</head>
+<body style="background-color: #000000; background: url('images/background.JPG'); color: #FFFFFF; margin: 0px; font-size: x-large;">
+    <span>Introduce</span>
+    <table style="border-spacing: 0px;">
+        <tr style="background-color: #ffbf00">
+            <td>
+                <img alt="" src="images/mongoCola.jpg" />
+            </td>
+            <td align="center">
+                <font color="black" size="3"><b>MongoCola is the tool which will help you manage MongoDB
+                    easily.<br />
+                    With the helping of this tool you can :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+                    Create or Drop Database,Collect or Document Element by GUI interface.<br />
+                    Monitor the realtime status of MongoDB .<br />
+                    Run Shell functions without remembering the command syntax.<br />
+                    Import Data from Access Database (Windows OS Only)<br />
+                    This tool will be migrated to Mono platform for Linux OS as soon as possible :)<br />
+                    In order to prevent GUI problem and migrated to Mono easliy,skin system is removed
+                    :(
+                    <br />
+                </b>
+                    <br />
+                    <br />
+                </font><font color="black" size="4"><b>This product is FREE.<br />
+                </b></font>
+            </td>
+        </tr>
+    </table>
+    <span>How to get Mongo-Cola</span>
+    <table>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Source Code</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3" color="black">You can download the source code from GitHub:
+                    <br />
+                    <a href="https://github.com/magicdict/MagicMongoDBTool">Source @GitHub</a>
+                    <br />
+                    Report bugs,give advice Here:<a href="https://github.com/magicdict/MagicMongoDBTool/issues?sort=created&direction=desc&state=open">Issues</a><br />
+                    <font color="Blue">Welcome to join the develop team.</font> </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Executable File</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3" color="black">You can download the Executable File [ZIP package]from
+                    GitHub: <a href="https://github.com/magicdict/MagicMongoDBTool/downloads">Downloads
+                        @GitHub</a><br />
+                    Or you can download the Executable File from this website:
+                    <br />
+                    <a href="http://www.magicdict.com/MongoCola.zip">Download MongoCola 1.02 from @www.magicdict.com
+                        [ZIP]</a>
+                    <br />
+                    Anyone can help me to compile the source code on Mono platform? I need an executable
+                    file for linux. please email me: <a href="mailto:mynightelfplayer@hotmail.com">email
+                        address</a> </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Software Requirements</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3" color="black">MongoCola is a Windows® desktop Client/GUI application.
+                    To run properly you must have one of these versions of .NET Framework installed:
+                    <br />
+                    <ul>
+                        <li>.Net Framework 4.0</li>
+                        <li>MongoDB 2.0.2</li>
+                        <li>C# Offical Driver(1.3.1) if you download the executable file(RAR or ZIP package)
+                            contains the driver DLL,you don't need to download it again.</li>
+                        <li>Linux User:<font Color="red">apttitude install libmono-windowsbase3.0-cil</font>(Thanks to Voltron for test Mono on ubuntu.)</li>
+                    </ul>
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>About This Document</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3" color="black">Thanks MoLing for help me correct this document.
+                    <br />
+                    Last Editor：2012-01-04<br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Release Note</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3" color="black">
+                    <pre>
+========================================================================
+MongoCola Release Note
+========================================================================
+Ver 1.00 2011/12/22 
+
+This is the first release of MongoCola.
+
+========================================================================
+Ver 1.01 2011/12/27
+
+1.Add Chinese and Japanese Language File
+2.Make Status Form Sizable
+
+========================================================================
+Ver 1.02 2012/01/04
+
+1.Display "English" at Language Picker form instead of Space when default Language is used.
+2.Show Connection Host and Port at Connection ListBox.
+3.Array Operation is supported.
+4.BsonDocument Element is supported.
+5.Correct Paste ShortKey form Ctrl + P to Ctrl + V.
+6.Show Message When exception happend at Element operation.
+
+========================================================================
+Ver 1.03 2012/01/13
+1.Set All Form's FontSize to 9.75pt.
+2.Show CommandText After a command is completed.
+3.Clear Navi Record Label After Clear.
+4.Fix a bug when show fileInfo at TableView
+5.Fix a bug when add a connection by use a ConnectionString 
+6.Modify Repair Database Enable condition.
+
+========================================================================
+Ver 1.04 2012/03/02
+1.Open In Native Editor at Textview
+2.Compact Collection
+3.Advance options for Create a Collection
+                </pre>
+                </font>
+            </td>
+        </tr>
+    </table>
+    <span>Tutorial:Basic</span>
+    <table>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Startup</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">As it is the first time you run this application,a language picker form
+                    will popup:<br />
+                    If English is your mother tongue,you can Click "OK" directly
+                    <br />
+                    Chinese and Japanese is provide with MongoCola Version 1.01
+                    <br />
+                    <br />
+                    <img src="images/LanguagePicker.PNG" alt="" />
+                    <br />
+                    <br />
+                    After language picker,you need to tell application where is your mongo executable
+                    path.<br />
+                    <br />
+                    <img src="images/Option.PNG" alt="" />
+                    <br />
+                    <font color="red"><b>In this Tutorial,the mongo executable path is C:\runmongo\bin</b></font><br />
+                    <br />
+                    If the mainform shown as below,the application is started up successfully .<br />
+                    <img src="images/Main_Empty.PNG" alt="" /><br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Add Connection</b></font>
+            </td>
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">The first thing to operate the mongoDB is adding a MongoDB connection.<br />
+                    Please make sure that the mongo server has been startup before adding connection.<br />
+                    You can startup mongoDB by DOS console like this:<br />
+                    <br />
+                    <code>cd C:\runmongo\bin<br />
+                        mkdir C:\mongodb\magicdict<br />
+                        mongod --port 28030 --dbpath C:\mongodb\magicdict </code>
+                    <br />
+                    <br />
+                    <img src="images/StartupbyDos.PNG" alt="" />
+                    <br />
+                    <br />
+                    More reference @mongodb.org:<a href="http://www.mongodb.org/display/DOCS/Quickstart+Windows">Quickstart
+                        Windows</a><br />
+                    [A Mongo connection is not only a single server,but also a replset,a route or config
+                    server in sharding system]<br />
+                    <br />
+                    Open the Connection Manager form by menu:<br />
+                    Managerment -> Connection Manager:<br />
+                    <br />
+                    <img src="images/ConnectionManager.PNG" alt="" />
+                    <br />
+                    <br />
+                    This form will list up all connections that you has registered in the application.<br />
+                    The list is empty when the first time you use this application,.<br />
+                    Click "Add" to register a new connection.<br />
+                    <br />
+                    <img src="images/ServerConnection.PNG" alt="" />
+                    <br />
+                    <br />
+                    The simplest connection only need to fill 3 fields<br />
+                    <ul>
+                        <li>Connection(you can name the connection as you like)</li>
+                        <li>Host(the ip or host of server,you can fill ‘localhost’ when the server on you local
+                            machine)</li>
+                        <li>Port(the port of server, --port arg)</li>
+                    </ul>
+                    <img src="images/ServerConnection_Magicdict.PNG" alt="" />
+                    <br />
+                    <br />
+                    Pick the connection you registered right now, then click "OK".Now you can operate
+                    the mongo server.<br />
+                    You can collapse or expansion the treeview by MenuItem:
+                    <ul>
+                        <li>Management -> collapse</li>
+                        <li>Management -> expansion</li>
+                    </ul>
+                    <img alt="" src="images/Main_MagicDict.PNG" />
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Master-Slave</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">This application support to manage a master-slave server.
+                    <br />
+                    Connect to a master server.<br />
+                    Master can be startup by Dos console like:
+                    <br />
+                    <code>cd C:\runmongo\bin<br />
+                        mkdir C:\mongodb\master<br />
+                        mongod --port 28018 --dbpath C:\mongodb\master <font color='red'>--master</font>
+                        --rest --journal </code>
+                    <br />
+                    <br />
+                    <img src="images/ServerConnection_Master_Role.PNG" alt="" />
+                    <br />
+                    <br />
+                    please select the Master at the server role tabpage.<br />
+                    Connect to a slave server.<br />
+                    Master can be startup by Dos console like:
+                    <br />
+                    <code>cd C:\runmongo\bin<br />
+                        mkdir C:\mongodb\slave<br />
+                        mongod --port 28019 --dbpath C:\mongodb\slave <font color='red'>--slave --source localhost:28018
+                        </font></code>
+                    <br />
+                    <br />
+                    <img src="images/ServerConnection_Slave_Basic.PNG" alt="" />
+                    <br />
+                    <br />
+                    <font color="red">You must select the SlaveOK checkbox if the server is a slave server.</font>
+                    <br />
+                    <br />
+                    <img src="images/ServerConnection_Slave_Role.PNG" alt="" />
+                    <br />
+                    <br />
+                    please select the Slave at the server role tabpage.<br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Disconnect</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">You can disconnect the connection by:
+                    <ul>
+                        <li>Menu: Opertion -> Server -> Disconnect</li>
+                        <li>Contextmenu: Right click the connection treenode to show contextmenu,click the "disconnect"
+                            menuitem</li>
+                    </ul>
+                </font>
+            </td>
+        </tr>
+    </table>
+    <span>Tutorial:GUI</span>
+    <table>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Object View</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">At the left side,there is a treeview to show you the connection(server)
+                    structure.The root node
+                    <img src="images/Server.png" alt="Server" />
+                    is the connection(server).<br />
+                    In most of case, the connection is server Instance. When you click the server treenode,the
+                    database
+                    <img src="images/database.png" alt="database" />
+                    in the server will list as childnode.<br />
+                    Click the database treenode,the collections<img src="images/collection.png" alt="collection" />
+                    will be listed.Every collection has two childnodes,one is the index infomation,<img
+                        src="images/index.png" alt="index" />
+                    another is data.<img src="images/data.png" alt="Data" /><br />
+                    You can check the index information by clicking the index information
+                    <img src="images/index.png" alt="index" />
+                    node; If you click the data node<img src="images/data.png" alt="Data" />,the data
+                    will be shown in right side panel with three View(TextView,ListView,TreeView).
+                    <br />
+                    If there is some exceptions happen when list the object,Error icon
+                    <img src="images/DELETE.ICO" alt="" />
+                    will be shown as the icon of node.</font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Data navigation</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">Your can navigate data by:
+                    <ul>
+                        <li>Shortcut Key:Previous(F3),Next(F4),First(F9),Last(F10)</li>
+                        <li>Menu:DataNavi- > Previous,Next,First,Next</li>
+                        <li>ToolBar:<br />
+                            <img src="images/Toolbar.PNG" alt="" /></li>
+                    </ul>
+                    You can set the records at perpage at option form:
+                    <ul>
+                        <li>Menu->Tools->Options</li>
+                        <li>Toolbar->Options Button</li>
+                    </ul>
+                </font>
+            </td>
+        </tr>
+    </table>
+    <span>Tutorial:Server[Connection]</span>
+    <table>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Server properties</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">This function will show the propery of selected server.
+                    <ul>
+                        <li>Menu: Opertion -> Server -> Server properties</li>
+                        <li>Contextmenu: Right click the Server treenode to show contextmenu,click the Server
+                            properties menuitem</li>
+                    </ul>
+                    <img src="images/ServerProperties.PNG" alt="" />
+                    <br />
+                    <br />
+                    <font color="red"><b>Some properties will not be shown at some type of connection.</b></font>
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Status</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">This function can help you monitor the status of server.You can sort
+                    the data by click the columnheader.
+                    <ul>
+                        <li>Menu: Management -> Status</li>
+                    </ul>
+                    <img src="images/StatusServer.PNG" alt="" />
+                    <br />
+                    <img src="images/StatusDB.PNG" alt="" />
+                    <br />
+                    <img src="images/StatusCollection.PNG" alt="" />
+                    <br />
+                    <br />
+                    <font color="red"><b>Cluster is useful at a replset.<br />
+                        Server Status need to be refreshed manually</b></font>
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Shut Down</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">This function will shut down the server.
+                    <ul>
+                        <li>Menu: Management -> Shut Down</li>
+                        <li>Contextmenu: Right click the Server treenode to show contextmenu,click the Shut
+                            Down menuitem</li>
+                    </ul>
+                    <font color="red"><b>This function will completely shut down the server!<br />
+                    </b></font>
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>New Database</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">Create a new database.
+                    <ul>
+                        <li>Menu: Operation -> Server -> new database</li>
+                        <li>Contextmenu: Right click the Server treenode to show contextmenu,click the "new
+                            database" menuitem</li>
+                    </ul>
+                    <img src="images/NewDatabaseInput.PNG" alt="" />
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+    </table>
+    <span>Tutorial:User</span>
+    <table>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Add User</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">There are two types of User:Admin User AND Database User.<br />
+                    You can add an admin user only When you connect to the server with an admin user.<br />
+                    <ul>
+                        <li>Menu: Operation -> Server -> Add User to admin Group(the menu will not enable until
+                            you select the server treenode)</li>
+                        <li>Contextmenu: Right click the Server treenode to show contextmenu,click the "Add
+                            User to admin Group" menuitem</li>
+                    </ul>
+                    <img src="images/NewUserInput.PNG" alt="" />
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">you can add user to database When you connect to the server as an admin
+                    user,or a database user.<br />
+                    <ul>
+                        <li>Menu: Operation -> Database -> Add User(the menu will not enable until you select
+                            the database treenode)</li>
+                        <li>Contextmenu: Right click the Server treenode to show contextmenu,click the "Add
+                            User" menuitem</li>
+                    </ul>
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Delete User</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">You can delete user from Admin Group or from database by deleting the
+                    record of user info from the system collection [system.users].<br />
+                    If you login as an admin user,you will find [admin] database,which contains the
+                    basic information about the whole server.<br />
+                    In [admin] database,you will find a collection with the name [system.users](if you
+                    have added some users before),click the node [Data] of the [system.users],the userInfo
+                    is listed in the right panel.<br />
+                    You can select the user which you want to delete form the panel(treeview can only
+                    select one user once,listview can select all user at sametime.TextView not support
+                    this operation), then you can delete user by:
+                    <ul>
+                        <li>Menu: Operation -> Server -> Delete User(the menu will not enable until you select
+                            some user)</li>
+                        <li>Contextmenu: Right click the user treenode or listview to show contextmenu,click
+                            the "Delete User" menuitem</li>
+                    </ul>
+                    <img src="images/DelUser.PNG" alt="" />
+                    <br />
+                    <br />
+                    You also can switch to other database and delete user form database with the same
+                    way.
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+    </table>
+    <span>Tutorial:Aggregation</span>
+    <table>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Map Reduce</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">Map Reduce is a cool function,this tool is support the map reduce via
+                    GUI<br />
+                    To open the map-reduce form,please select a data treenode,then click right.<br />
+                    <br />
+                    <img src="images/Main_MapReduce.PNG" alt="" />
+                    <br />
+                    <br />
+                    In the map-reduce,you will see a sample for map javascript and reduce javascript.It
+                    is only for beginer.<br />
+                    <br />
+                    <img src="images/MapReduce_Init.PNG" alt="" />
+                    <br />
+                    <br />
+                    You can load a javascript form system.js collection by select the jsname at listbox.Or
+                    you can save your javascript to system.js collection.<br />
+                    When the javascript is ready,click run to do map-reduce.
+                    <br />
+                    <br />
+                    <img src="images/MapReduce_Result.PNG" alt="" />
+                    <br />
+                    <br />
+                    <font color="red">If the socketTimeout is too short to complete the map-reduce,there
+                        will be a exception happens.Please modify the socketTimeout at connection manager
+                        form<br />
+                    </font></font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Others</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">Count:<br />
+                    This tools also support the Aggregation:Count,Distinct,Group,(All Aggregation is
+                    support query filter.The next section will introduce query filter)<br />
+                    Count will give you a count result of collection.The count result may be different
+                    ,when a datafilter is enable or not.<br />
+                    Distinct:<br />
+                    You need to pick a distinct field first<br />
+                    <br />
+                    <img src="images/Distinct_FieldPick.PNG" alt="" />
+                    <br />
+                    <br />
+                    Click "Run",the result is display by a messagebox:<br />
+                    <br />
+                    <img src="images/Distinct_Result.PNG" alt="" />
+                    <br />
+                    <br />
+                    Group:<br />
+                    Please see the reference first: <a href="http://www.mongodb.org/display/DOCS/Aggregation">
+                        Refrence of Aggregation at mongodb.org</a><br />
+                    The Gui of group is look like this:<br />
+                    <br />
+                    <img src="images/Group_Init.PNG" alt="" />
+                    <br />
+                    <br />
+                    If everything is right,the result looks like this:(Don't forget to add init fields...if
+                    some fields is not need any more,leave fieldname with space)<br />
+                    <br />
+                    <img src="images/Group_Result.PNG" alt="" />
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+    </table>
+    <span>Tutorial:Advance</span>
+    <table>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Grid File System</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">You can easy upload or download a file form GFS with this tool.<br />
+                    Init GFS:<br />
+                    If there is not a GFS in your database,you can init a GFS for your database:<br />
+                    Select the database,then right click it,run the "Init GFS" Command at the contextMenu.<br />
+                    After you refresh the server(connection) list,fs.chunks and fs.files will add to
+                    database.Now you can use GFS.<br />
+                    <br />
+                    Upload File:
+                    <br />
+                    Now Select the fs.files collection node,right click,contextMenu contains "Upload
+                    File" command.Try to upload a file to GFS.<br />
+                    The file witch is upload right now will show at the right side panel.
+                    <br />
+                    <br />
+                    <img src="images/GFS.PNG" alt="" />
+                    <br />
+                    <br />
+                    You can double click the file at the listview to open it,or use right-click contextMenu
+                    to operate the files.
+                    <br />
+                    <br />
+                    <img src="images/GFS_ContextMenu.PNG" alt="" />
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Data Query</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">With DataQuery,you can decide the output fields with conditions.<br />
+                    To enable the DataQuery,please select the data node from the left panel,then<br />
+                    <ul>
+                        <li>Click the MainMenu : Data -> Query</li>
+                        <li>Click the ContextMenu : Query</li>
+                    </ul>
+                    You can Select the output fields with sort in "Output fields" tab.<br />
+                    <br />
+                    <img src="images/Query_init.PNG" alt="" />
+                    <br />
+                    <br />
+                    You can give some conditions to limit the output data in "Filter" tab.<br />
+                    <br />
+                    Example1: Select * from Collection Where Age > 10<br />
+                    <br />
+                    <img src="images/Query_Condition_One.PNG" alt="" />
+                    <br />
+                    <br />
+                    <img src="images/Query_Condition_One_Result.PNG" alt="" />
+                    <br />
+                    <br />
+                    <br />
+                    Example2: Select * from Collection Where Age > 10 Or Age2 < 10
+                    <br />
+                    <br />
+                    <img src="images/Query_Condition_Two.PNG" alt="" />
+                    <br />
+                    <br />
+                    <img src="images/Query_Condition_Two_Result.PNG" alt="" />
+                    <br />
+                    <br />
+                    <br />
+                    Example3: Select * from Collection Where (Age > 10 and Age2 < 10) or Age > 10
+                    <br />
+                    <br />
+                    <img src="images/Query_Condition_Three.PNG" alt="" />
+                    <br />
+                    <br />
+                    <img src="images/Query_Condition_Three_Result.PNG" alt="" />
+                    <br />
+                    <br />
+                    You can save your query filter into a .xml file or load your query filter from a
+                    .xml file at any functions witch support query filter.<br />
+                    (All Aggregation is support query filter.)<br />
+                    You also can click the
+                    <img src="images/Filter.png" alt="" />
+                    icon on toolbar to switch filter status quickly.<br />
+                    <br />
+                    <img src="images/Toolbar.PNG" alt="" /><br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Dump and Restore</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">This tool provide dump(backup) and restore function via run mongodump.exe
+                    and mongorestore.exe.<br />
+                    It is need the mongodump.exe and mongorestore.exe support,so make sure that the
+                    mongo\bin path is current setted.<br />
+                    <br />
+                    <img src="images/Option.PNG" alt="" /><br />
+                    <br />
+                    You can dump database,collection to a file,and restore the database,collection when
+                    needed.<br />
+                    You also can export or import collection data.The difference of export and dump
+                    is that : Export write data to file with Bson,but Dump write data with Binary.<br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Import from Access</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">You can Import data from Microsoft Access Database.<br />
+                    Select a server then click the
+                    <img src="images/Access.png" alt="" />
+                    icon from the toolbar.<br />
+                    Now,the mongo[2.0.2] has not supported the No-English DBName or CollectionName yet.<br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Document Operation</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">You can add a new empty document to current collection.Select a data
+                    Node<img src="images/data.png" alt="" />
+                    at the left pannel.
+                    <ul>
+                        <li>Menu: Operation - > Document -> Add Document</li>
+                        <li>Right Context Menu：Add Document</li>
+                    </ul>
+                    A empty document will append to current collection.<br />
+                    <br />
+                    <img src="images/addemptydoc.PNG" alt="" />
+                    <br />
+                    <br />
+                    As you have add a empty document to collection.Now try to add some element to this
+                    empty document.<br />
+                    1.Add a BsonElement to collection:Select document node,then
+                    <ul>
+                        <li>Menu:Operation -> Document -> Add Element</li>
+                        <li>RightClick Context - > Add Element</li>
+                    </ul>
+                    <img src="images/AddElement1.PNG" alt="" />
+                    <br />
+                    <br />
+                    Now BsonString,BsonInt32,BsonDateTime,BSonBoolean,BSonDocument,BSonArray is supported.
+                    <br />
+                    <br />
+                    <img src="images/AddElement2.PNG" alt="" />
+                    <br />
+                    <br />
+                    You also can add Element to a document,or add a value to a Array with "Add Element"
+                    menuitem. (But now a Array or a Document add to a Array is not support yet)<br />
+                    With this tool,you can generate your owner layout quickly.
+                    <br />
+                    <br />
+                    <img src="images/AddElement3.PNG" alt="" />
+                    <br />
+                    <br />
+                    You can also copy,cut,paste Element of a document or value of a array to  generate your owner layout quickly.
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+        <!--         <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Master-Slave</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">
+                </font>
+            </td>
+        </tr>-->
+    </table>
+    <br />
+</body>
+</html>
