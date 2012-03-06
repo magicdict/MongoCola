@@ -672,6 +672,11 @@ namespace MagicMongoDBTool.Module
                 lstData.Columns.Add("LastExtentSize");
                 lstData.Columns.Add("StorageSize");
                 lstData.Columns.Add("TotalIndexSize");
+
+                //2012-3-6
+                lstData.Columns.Add("IsCapped");
+                lstData.Columns.Add("MaxDocuments");
+                
                 lstData.Columns.Add("AverageObjectSize");
                 lstData.Columns.Add("PaddingFactor");
             }
@@ -683,6 +688,12 @@ namespace MagicMongoDBTool.Module
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_LastExtentSize));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_StorageSize));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_TotalIndexSize));
+
+                //2012-3-6
+                lstData.Columns.Add("IsCapped");
+                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments));
+
+
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_AverageObjectSize));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_PaddingFactor));
             }
@@ -708,6 +719,11 @@ namespace MagicMongoDBTool.Module
                                 lst.SubItems.Add(GetSize(CollectionStatus.LastExtentSize));
                                 lst.SubItems.Add(GetSize(CollectionStatus.StorageSize));
                                 lst.SubItems.Add(GetSize(CollectionStatus.TotalIndexSize));
+
+                                //2012-3-6
+                                lst.SubItems.Add(CollectionStatus.IsCapped.ToString());
+                                lst.SubItems.Add(CollectionStatus.MaxDocuments.ToString());
+
                                 if (CollectionStatus.ObjectCount != 0)
                                 {
                                     //在某些条件下，这个值会抛出异常，IndexKeyNotFound

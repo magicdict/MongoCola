@@ -264,6 +264,8 @@
   <Collection_Status_TotalIndexSize>インデックスサイズ</Collection_Status_TotalIndexSize>
   <Collection_Status_AverageObjectSize>AverageObjectSize</Collection_Status_AverageObjectSize>
   <Collection_Status_PaddingFactor>PaddingFactor</Collection_Status_PaddingFactor>
+  <Collection_Status_MaxDocuments>最大ドキュメント数</Collection_Status_MaxDocuments>
+  <Collection_Status_IsCapped>IsCapped</Collection_Status_IsCapped>
 
   <!--GFS-->
   <GFS_filename>ファイル名</GFS_filename>

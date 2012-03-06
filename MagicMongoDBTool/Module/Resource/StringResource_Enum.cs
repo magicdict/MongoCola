@@ -256,6 +256,8 @@ namespace MagicMongoDBTool.Module
             Collection_Status_TotalIndexSize,
             Collection_Status_AverageObjectSize,
             Collection_Status_PaddingFactor,
+            Collection_Status_MaxDocuments,
+            Collection_Status_IsCapped,
 
             //Index
             Index_Asce,

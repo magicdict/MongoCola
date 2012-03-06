@@ -22,6 +22,8 @@ namespace MagicMongoDBTool
                 this.lblCollectionName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
                 this.cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
                 this.cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
+                this.chkIsCapped.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped);
+                this.lblMaxDocument.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments);
             }
 
             ///Difference between with long and decimal.....

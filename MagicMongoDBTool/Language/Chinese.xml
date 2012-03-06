@@ -261,11 +261,13 @@
   <Collection_Status_ObjectCount>对象计数</Collection_Status_ObjectCount>
   <Collection_Status_DataSize>数据大小</Collection_Status_DataSize>
   <Collection_Status_LastExtentSize>最后分配大小</Collection_Status_LastExtentSize>
-  <Collection_Status_StorageSize>StorageSize</Collection_Status_StorageSize>
+  <Collection_Status_StorageSize>存储大小</Collection_Status_StorageSize>
   <Collection_Status_TotalIndexSize>总索引大小</Collection_Status_TotalIndexSize>
   <Collection_Status_AverageObjectSize>对象平均大小</Collection_Status_AverageObjectSize>
   <Collection_Status_PaddingFactor>填充因子</Collection_Status_PaddingFactor>
-  
+  <Collection_Status_MaxDocuments>最大文档数</Collection_Status_MaxDocuments>
+  <Collection_Status_IsCapped>容量限制</Collection_Status_IsCapped>
+
   <!--GFS-->
   <GFS_filename>文件名</GFS_filename>
   <GFS_length>文件大小</GFS_length>
