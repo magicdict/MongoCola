@@ -221,9 +221,34 @@ namespace MagicMongoDBTool.Module
                     rtnResult = true;
                 }
             }
-
             return rtnResult;
         }
+        /// <summary>
+        /// Create Collection
+        /// </summary>
+        /// <param name="strSvrPathWithTag"></param>
+        /// <param name="treeNode"></param>
+        /// <param name="collectionName"></param>
+        /// <returns></returns>
+        public static Boolean CreateCollection(String strSvrPathWithTag, TreeNode treeNode, String collectionName)
+        {
+            Boolean rtnResult = false;
+            MongoDatabase mongoDB = GetMongoDBBySvrPath(strSvrPathWithTag);
+
+            String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
+            String svrkey = strSvrPath.Split("/".ToCharArray())[0];
+            if (mongoDB != null)
+            {
+                if (!mongoDB.CollectionExists(collectionName))
+                {
+                    mongoDB.CreateCollection(collectionName);
+                    treeNode.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
+                    rtnResult = true;
+                }
+            }
+            return rtnResult;
+        }
+
         /// <summary>
         /// 根据路径字符获得服务器
         /// </summary>

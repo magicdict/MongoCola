@@ -36,6 +36,7 @@ namespace MagicMongoDBTool.Module
             Main_Menu_Operation_Server_SlaveResync,
             Main_Menu_Operation_Server_CloseServer,
             Main_Menu_Operation_Server_Properties,
+
             Main_Menu_Operation_Database,
             Main_Menu_Operation_Database_DelDB,
             Main_Menu_Operation_Database_AddDC,
@@ -50,6 +51,7 @@ namespace MagicMongoDBTool.Module
             Main_Menu_Operation_DataCollection_AddDocument,
             Main_Menu_Operation_DataCollection_ReIndex,
             Main_Menu_Operation_DataCollection_Rename,
+            Main_Menu_Operation_DataCollection_Compact,
 
             Main_Menu_Operation_DataDocument,
             Main_Menu_Operation_DataDocument_AddElement,
@@ -87,6 +89,7 @@ namespace MagicMongoDBTool.Module
             Main_Tab_Tree,
             Main_Tab_Table,
             Main_Tab_Text,
+            OpenInNativeEditor,
             Main_StatusBar_Text_Ready,
 
             AddConnection_Title,

@@ -43,7 +43,8 @@
   <Main_Menu_Operation_DataCollection_AddDocument>ドキュメントの追加</Main_Menu_Operation_DataCollection_AddDocument>
   <Main_Menu_Operation_DataCollection_DropDocument>ドキュメントの削除</Main_Menu_Operation_DataCollection_DropDocument>
   <Main_Menu_Operation_DataCollection_Rename>リネーム</Main_Menu_Operation_DataCollection_Rename>
-
+  <Main_Menu_Operation_DataCollection_Compact>圧縮</Main_Menu_Operation_DataCollection_Compact>
+  
   <Main_Menu_Operation_DataDocument>ドキュメント</Main_Menu_Operation_DataDocument>
   <Main_Menu_Operation_DataDocument_AddElement>エレメントの追加</Main_Menu_Operation_DataDocument_AddElement>
   <Main_Menu_Operation_DataDocument_DropElement>エレメントの削除</Main_Menu_Operation_DataDocument_DropElement>
@@ -85,6 +86,7 @@
   <Main_Tab_Tree>ツリービュー</Main_Tab_Tree>
   <Main_Tab_Table>テーブルビュー</Main_Tab_Table>
   <Main_Tab_Text>テクストビュー</Main_Tab_Text>
+  <OpenInNativeEditor>TextEditorで開く</OpenInNativeEditor>
   <Main_StatusBar_Text_Ready>Ready</Main_StatusBar_Text_Ready>
 
   <!--frmAddConnection-->

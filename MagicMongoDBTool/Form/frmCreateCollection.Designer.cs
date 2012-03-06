@@ -38,15 +38,18 @@
             this.numMaxDocument = new System.Windows.Forms.NumericUpDown();
             this.lblMaxSize = new System.Windows.Forms.Label();
             this.lblMaxDocument = new System.Windows.Forms.Label();
+            this.grpAdvanced = new System.Windows.Forms.GroupBox();
+            this.chkAdvance = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxDocument)).BeginInit();
+            this.grpAdvanced.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(76, 169);
+            this.cmdOK.Location = new System.Drawing.Point(55, 183);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(75, 23);
+            this.cmdOK.Size = new System.Drawing.Size(87, 27);
             this.cmdOK.TabIndex = 0;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
@@ -54,35 +57,36 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(208, 169);
+            this.cmdCancel.Location = new System.Drawing.Point(209, 183);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(75, 23);
+            this.cmdCancel.Size = new System.Drawing.Size(87, 27);
             this.cmdCancel.TabIndex = 1;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // txtCollectionName
             // 
-            this.txtCollectionName.Location = new System.Drawing.Point(148, 35);
+            this.txtCollectionName.Location = new System.Drawing.Point(161, 15);
             this.txtCollectionName.Name = "txtCollectionName";
-            this.txtCollectionName.Size = new System.Drawing.Size(154, 20);
+            this.txtCollectionName.Size = new System.Drawing.Size(139, 21);
             this.txtCollectionName.TabIndex = 2;
             // 
             // lblCollectionName
             // 
             this.lblCollectionName.AutoSize = true;
-            this.lblCollectionName.Location = new System.Drawing.Point(52, 38);
+            this.lblCollectionName.Location = new System.Drawing.Point(30, 18);
             this.lblCollectionName.Name = "lblCollectionName";
-            this.lblCollectionName.Size = new System.Drawing.Size(81, 13);
+            this.lblCollectionName.Size = new System.Drawing.Size(95, 15);
             this.lblCollectionName.TabIndex = 3;
             this.lblCollectionName.Text = "CollectionName";
             // 
             // chkIsCapped
             // 
             this.chkIsCapped.AutoSize = true;
-            this.chkIsCapped.Location = new System.Drawing.Point(58, 78);
+            this.chkIsCapped.Location = new System.Drawing.Point(23, 32);
             this.chkIsCapped.Name = "chkIsCapped";
-            this.chkIsCapped.Size = new System.Drawing.Size(71, 17);
+            this.chkIsCapped.Size = new System.Drawing.Size(78, 19);
             this.chkIsCapped.TabIndex = 4;
             this.chkIsCapped.Text = "IsCapped";
             this.chkIsCapped.UseVisualStyleBackColor = true;
@@ -90,77 +94,103 @@
             // chkIsAutoIndexId
             // 
             this.chkIsAutoIndexId.AutoSize = true;
-            this.chkIsAutoIndexId.Location = new System.Drawing.Point(148, 78);
+            this.chkIsAutoIndexId.Location = new System.Drawing.Point(131, 32);
             this.chkIsAutoIndexId.Name = "chkIsAutoIndexId";
-            this.chkIsAutoIndexId.Size = new System.Drawing.Size(91, 17);
+            this.chkIsAutoIndexId.Size = new System.Drawing.Size(99, 19);
             this.chkIsAutoIndexId.TabIndex = 5;
             this.chkIsAutoIndexId.Text = "IsAutoIndexId";
             this.chkIsAutoIndexId.UseVisualStyleBackColor = true;
             // 
             // numMaxSize
             // 
-            this.numMaxSize.Location = new System.Drawing.Point(148, 108);
+            this.numMaxSize.Location = new System.Drawing.Point(131, 62);
             this.numMaxSize.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.numMaxSize.Name = "numMaxSize";
-            this.numMaxSize.Size = new System.Drawing.Size(120, 20);
+            this.numMaxSize.Size = new System.Drawing.Size(140, 21);
             this.numMaxSize.TabIndex = 6;
             this.numMaxSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // numMaxDocument
             // 
-            this.numMaxDocument.Location = new System.Drawing.Point(148, 132);
+            this.numMaxDocument.Location = new System.Drawing.Point(131, 90);
             this.numMaxDocument.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.numMaxDocument.Name = "numMaxDocument";
-            this.numMaxDocument.Size = new System.Drawing.Size(120, 20);
+            this.numMaxDocument.Size = new System.Drawing.Size(140, 21);
             this.numMaxDocument.TabIndex = 7;
             this.numMaxDocument.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblMaxSize
             // 
             this.lblMaxSize.AutoSize = true;
-            this.lblMaxSize.Location = new System.Drawing.Point(55, 115);
+            this.lblMaxSize.Location = new System.Drawing.Point(23, 65);
             this.lblMaxSize.Name = "lblMaxSize";
-            this.lblMaxSize.Size = new System.Drawing.Size(47, 13);
+            this.lblMaxSize.Size = new System.Drawing.Size(55, 15);
             this.lblMaxSize.TabIndex = 8;
             this.lblMaxSize.Text = "MaxSize";
             // 
             // lblMaxDocument
             // 
             this.lblMaxDocument.AutoSize = true;
-            this.lblMaxDocument.Location = new System.Drawing.Point(55, 140);
+            this.lblMaxDocument.Location = new System.Drawing.Point(23, 92);
             this.lblMaxDocument.Name = "lblMaxDocument";
-            this.lblMaxDocument.Size = new System.Drawing.Size(76, 13);
+            this.lblMaxDocument.Size = new System.Drawing.Size(88, 15);
             this.lblMaxDocument.TabIndex = 9;
             this.lblMaxDocument.Text = "MaxDocument";
             // 
+            // grpAdvanced
+            // 
+            this.grpAdvanced.Controls.Add(this.chkIsAutoIndexId);
+            this.grpAdvanced.Controls.Add(this.lblMaxDocument);
+            this.grpAdvanced.Controls.Add(this.chkIsCapped);
+            this.grpAdvanced.Controls.Add(this.lblMaxSize);
+            this.grpAdvanced.Controls.Add(this.numMaxSize);
+            this.grpAdvanced.Controls.Add(this.numMaxDocument);
+            this.grpAdvanced.Location = new System.Drawing.Point(30, 45);
+            this.grpAdvanced.Name = "grpAdvanced";
+            this.grpAdvanced.Size = new System.Drawing.Size(297, 122);
+            this.grpAdvanced.TabIndex = 10;
+            this.grpAdvanced.TabStop = false;
+            this.grpAdvanced.Text = "Advanced";
+            // 
+            // chkAdvance
+            // 
+            this.chkAdvance.AutoSize = true;
+            this.chkAdvance.Location = new System.Drawing.Point(-2, -2);
+            this.chkAdvance.Name = "chkAdvance";
+            this.chkAdvance.Size = new System.Drawing.Size(118, 19);
+            this.chkAdvance.TabIndex = 11;
+            this.chkAdvance.Text = "Advanced Option";
+            this.chkAdvance.UseVisualStyleBackColor = true;
+            this.chkAdvance.CheckedChanged += new System.EventHandler(this.chkAdvance_CheckedChanged);
+            // 
             // frmCreateCollection
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 204);
-            this.Controls.Add(this.lblMaxDocument);
-            this.Controls.Add(this.lblMaxSize);
-            this.Controls.Add(this.numMaxDocument);
-            this.Controls.Add(this.numMaxSize);
-            this.Controls.Add(this.chkIsAutoIndexId);
-            this.Controls.Add(this.chkIsCapped);
+            this.ClientSize = new System.Drawing.Size(350, 224);
             this.Controls.Add(this.lblCollectionName);
             this.Controls.Add(this.txtCollectionName);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
+            this.Controls.Add(this.grpAdvanced);
+            this.Controls.Add(this.chkAdvance);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmCreateCollection";
-            this.Text = "frmCreateCollection";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Create Collection";
             this.Load += new System.EventHandler(this.frmCreateCollection_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numMaxSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxDocument)).EndInit();
+            this.grpAdvanced.ResumeLayout(false);
+            this.grpAdvanced.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,5 +208,7 @@
         private System.Windows.Forms.NumericUpDown numMaxDocument;
         private System.Windows.Forms.Label lblMaxSize;
         private System.Windows.Forms.Label lblMaxDocument;
+        private System.Windows.Forms.GroupBox grpAdvanced;
+        private System.Windows.Forms.CheckBox chkAdvance;
     }
 }

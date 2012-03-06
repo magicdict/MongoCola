@@ -97,7 +97,7 @@ namespace MagicMongoDBTool
             this.ReIndexToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_ReIndex);
             this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
             this.AddDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
-            this.CompactToolStripMenuItem.Text = "Compact";
+            this.CompactToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Compact);
 
             this.DataDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument);
             this.AddElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
@@ -145,6 +145,7 @@ namespace MagicMongoDBTool
             this.tabTreeView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Tree);
             this.tabTableView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Table);
             this.tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
+            this.lnkFile.Text = SystemManager.mStringResource.GetText(StringResource.TextType.OpenInNativeEditor);
         }
 
         /// <summary>
@@ -1646,19 +1647,25 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 建立数据集
+        /// Create Collection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CreateMongoCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ///Advance CreateCollection
-            SystemManager.OpenForm(
-                new frmCreateCollection() { 
-                strSvrPathWithTag = SystemManager.SelectObjectTag, 
-                treeNode = trvsrvlst.SelectedNode });
-            DisableAllOpr();
-            lstData.Clear();
+            frmCreateCollection frm =
+                new frmCreateCollection()
+                {
+                    strSvrPathWithTag = SystemManager.SelectObjectTag,
+                    treeNode = trvsrvlst.SelectedNode
+                };
+            SystemManager.OpenForm(frm);
+            if (frm.Result)
+            {
+                DisableAllOpr();
+                lstData.Clear();
+            }
         }
         /// <summary>
         /// Create User
