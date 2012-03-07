@@ -140,7 +140,7 @@ namespace MagicMongoDBTool.Module
         /// 将Mongodb的服务器在树形控件中展示
         /// </summary>
         /// <param name="trvMongoDB"></param>
-        public static void FillMongoServiceToTreeView(TreeView trvMongoDB)
+        public static void FillMongoServerToTreeView(TreeView trvMongoDB)
         {
             trvMongoDB.Nodes.Clear();
             foreach (String mongoSvrKey in _mongoSrvLst.Keys)

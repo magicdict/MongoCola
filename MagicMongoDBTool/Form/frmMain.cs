@@ -1410,7 +1410,7 @@ namespace MagicMongoDBTool
             this.ServerStatusCtl.RefreshStatus(false);
             DisableAllOpr();
             clearDataShower();
-            MongoDBHelper.FillMongoServiceToTreeView(trvsrvlst);
+            MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
         }
         /// <summary>
         /// Server Status
@@ -2143,7 +2143,7 @@ namespace MagicMongoDBTool
             MongoDBHelper.InitGFS();
             DisableAllOpr();
             clearDataShower();
-            MongoDBHelper.FillMongoServiceToTreeView(trvsrvlst);
+            MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
         }
         #endregion
 

@@ -17,7 +17,14 @@ namespace MagicMongoDBTool
         public frmAddConnection()
         {
             InitializeComponent();
+            OnLoad();
+        }
+        private void OnLoad() {
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
+            numPort.GotFocus += new EventHandler((x, y) =>
+            {
+                numPort.Select(0, 5);
+            });
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 SetText();
@@ -80,17 +87,12 @@ namespace MagicMongoDBTool
                     }
                 }
             }
-            cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
-
-            if (!SystemManager.IsUseDefaultLanguage())
-            {
-                SetText();
-            }
+            OnLoad();
             txtConnectionName.Text = ModifyConn.ConnectionName;
             txtConnectionName.Enabled = false;
             txtHost.Text = ModifyConn.Host;
             txtMainReplsetName.Text = ModifyConn.MainReplSetName;
-            txtPort.Text = ModifyConn.Port.ToString();
+            numPort.Text = ModifyConn.Port.ToString();
             txtUsername.Text = ModifyConn.UserName;
             txtPassword.Text = ModifyConn.Password;
             if (SystemManager.IsUseDefaultLanguage())
@@ -160,9 +162,9 @@ namespace MagicMongoDBTool
             {
                 ModifyConn.ReplsetList = new List<String>();
                 ModifyConn.Host = txtHost.Text;
-                if (txtPort.Text != String.Empty)
+                if (numPort.Text != String.Empty)
                 {
-                    ModifyConn.Port = Convert.ToInt32(txtPort.Text);
+                    ModifyConn.Port = Convert.ToInt32(numPort.Text);
                 }
                 ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
                 ModifyConn.IsSafeMode = chkSafeMode.Checked;

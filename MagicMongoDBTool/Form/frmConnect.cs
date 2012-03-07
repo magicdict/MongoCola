@@ -35,7 +35,7 @@ namespace MagicMongoDBTool
                     (item.Host==null?"localhost":item.Host) + (item.Port==0?String.Empty:":" + item.Port.ToString()));
             }
             lstServerce.Sorted = true;
-            SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
+            SystemManager.ConfigHelperInstance.SaveToConfigFile(ConfigHelper._configFilename);
         }
         /// <summary>
         /// 添加

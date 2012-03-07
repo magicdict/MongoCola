@@ -195,7 +195,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 配置文件名称
         /// </summary>
-        private static String _configFilename = "config.xml";
+        public static String _configFilename = "config.xml";
         /// <summary>
         /// 读取配置
         /// </summary>

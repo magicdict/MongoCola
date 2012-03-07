@@ -15,9 +15,12 @@ namespace MagicMongoDBTool
         static void Main()
         {
             Application.SetCompatibleTextRenderingDefault(false);
-            if (File.Exists("config.xml"))
+            ///这句话如果写到后面去的话，在没有Config文件的时候，服务器树形列表显示不正确
+            Application.EnableVisualStyles();
+
+            if (File.Exists(ConfigHelper._configFilename))
             {
-                SystemManager.ConfigHelperInstance = ConfigHelper.LoadFromConfigFile("config.xml");
+                SystemManager.ConfigHelperInstance = ConfigHelper.LoadFromConfigFile(ConfigHelper._configFilename);
                 SystemManager.InitLanguage();
             }
             else
@@ -28,11 +31,10 @@ namespace MagicMongoDBTool
                 SystemManager.InitLanguage();
                 frmOption _frmOption = new frmOption();
                 _frmOption.ShowDialog();
-                SystemManager.ConfigHelperInstance.SaveToConfigFile("config.xml");
+                SystemManager.ConfigHelperInstance.SaveToConfigFile(ConfigHelper._configFilename);
             }
             //SystemManager.DEBUG_MODE = true;
             SystemManager.MONO_MODE = Type.GetType("Mono.Runtime") != null;
-            Application.EnableVisualStyles();
             Application.Run(new frmMain());
 
             //delete tempfile directory when exit
