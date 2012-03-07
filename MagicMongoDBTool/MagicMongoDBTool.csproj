@@ -548,6 +548,9 @@
     <Content Include="UserGuide\images\mongoCola.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="UserGuide\images\NewCollectionInput.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="UserGuide\images\NewDatabaseInput.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -617,7 +620,7 @@
     <Content Include="UserGuide\index.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="UserGuide\Release Note.txt">
+    <Content Include="Release Note.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
