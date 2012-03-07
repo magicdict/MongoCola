@@ -147,6 +147,8 @@ namespace MagicMongoDBTool
             this.tabTableView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Table);
             this.tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
             this.lnkFile.Text = SystemManager.mStringResource.GetText(StringResource.TextType.OpenInNativeEditor);
+            this.SvrStatustoolStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+            this.CollectiontoolStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
         }
 
         /// <summary>
@@ -191,7 +193,7 @@ namespace MagicMongoDBTool
             this.txtCommand.Dock = DockStyle.Fill;
             this.tabDataShower.Dock = DockStyle.Fill;
             this.ServerStatusCtl.Visible = true;
-            this.StatustoolStripButton.Checked = true;
+            this.SvrStatustoolStripButton.Checked = true;
 
             this.txtCommand.Visible = false;
             this.tabDataShower.Visible = false;
@@ -2513,7 +2515,7 @@ namespace MagicMongoDBTool
         private void ShellCommandtoolStripButton_Click(object sender, EventArgs e)
         {
             this.ServerStatusCtl.Visible = false;
-            this.StatustoolStripButton.Checked = false;
+            this.SvrStatustoolStripButton.Checked = false;
 
             this.txtCommand.Visible = true;
             this.ShellCommandtoolStripButton.Checked = true;
@@ -2526,7 +2528,7 @@ namespace MagicMongoDBTool
         {
             this.ServerStatusCtl.Visible = true;
             this.ServerStatusCtl.RefreshStatus(false);
-            this.StatustoolStripButton.Checked = true;
+            this.SvrStatustoolStripButton.Checked = true;
 
             this.txtCommand.Visible = false;
             this.ShellCommandtoolStripButton.Checked = false;
@@ -2538,7 +2540,7 @@ namespace MagicMongoDBTool
         private void CollectiontoolStripButton_Click(object sender, EventArgs e)
         {
             this.ServerStatusCtl.Visible = false;
-            this.StatustoolStripButton.Checked = false;
+            this.SvrStatustoolStripButton.Checked = false;
 
             this.txtCommand.Visible = false;
             this.ShellCommandtoolStripButton.Checked = false;

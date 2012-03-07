@@ -1,0 +1,38 @@
+========================================================================
+MongoCola Release Note
+========================================================================
+Ver 1.00 2011/12/22 
+
+This is the first release of MongoCola.
+
+========================================================================
+Ver 1.01 2011/12/27
+
+1.Add Chinese and Japanese Language File
+2.Make Status Form Sizable
+
+========================================================================
+Ver 1.02 2012/01/04
+
+1.Display "English" at Language Picker form instead of Space when default Language is used.
+2.Show Connection Host and Port at Connection ListBox.
+3.Array Operation is supported.
+4.BsonDocument Element is supported.
+5.Correct Paste ShortKey form Ctrl + P to Ctrl + V.
+6.Show Message When exception happend at Element operation.
+
+========================================================================
+Ver 1.03 2012/01/13
+1.Set All Form's FontSize to 9.75pt.
+2.Show CommandText After a command is completed.
+3.Clear Navi Record Label After Clear.
+4.Fix a bug when show fileInfo at TableView
+5.Fix a bug when add a connection by use a ConnectionString 
+6.Modify Repair Database Enable condition.
+
+========================================================================
+Ver 1.04 2012/03/02
+1.Open In Native Editor at Textview
+2.Compact Collection
+3.Advance options for Create a Collection
+4.Show Server Status at Mainform
