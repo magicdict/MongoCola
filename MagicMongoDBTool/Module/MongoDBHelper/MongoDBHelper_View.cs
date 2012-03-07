@@ -676,7 +676,7 @@ namespace MagicMongoDBTool.Module
                 //2012-3-6
                 lstData.Columns.Add("IsCapped");
                 lstData.Columns.Add("MaxDocuments");
-                
+
                 lstData.Columns.Add("AverageObjectSize");
                 lstData.Columns.Add("PaddingFactor");
             }

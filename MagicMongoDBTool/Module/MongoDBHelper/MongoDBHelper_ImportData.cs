@@ -262,11 +262,13 @@ namespace MagicMongoDBTool.Module
                                         insertDoc.Add(colName[i], new BsonDateTime((DateTime)itemRow[colName[i]]), true);
                                         break;
                                     case "Integer":
-                                        insertDoc.Add(colName[i], (BsonInt32)itemRow[colName[i]], true);
+                                        Int32 i32 = Convert.ToInt32(itemRow[colName[i]]);
+                                        insertDoc.Add(colName[i], (BsonInt32)i32, true);
                                         break;
                                     case "Long":
                                         //itemRow[ColName[i]] the default is Int32 without convert
-                                        insertDoc.Add(colName[i], (BsonInt64)(long)itemRow[colName[i]], true);
+                                        long lng =  Convert.ToInt64(itemRow[colName[i]]);
+                                        insertDoc.Add(colName[i], (BsonInt64)lng, true);
                                         break;
                                     default:
                                         break;
@@ -281,9 +283,9 @@ namespace MagicMongoDBTool.Module
                 currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, svrKey));
                 rtnCode = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally
             {

@@ -59,6 +59,7 @@ namespace MagicMongoDBTool
             this.lblConnectionString = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabBasicInfo = new System.Windows.Forms.TabPage();
+            this.numPort = new System.Windows.Forms.NumericUpDown();
             this.lblAttentionPassword = new System.Windows.Forms.Label();
             this.chkSlaveOk = new System.Windows.Forms.CheckBox();
             this.numTimeOut = new System.Windows.Forms.NumericUpDown();
@@ -71,16 +72,15 @@ namespace MagicMongoDBTool
             this.lblpriority = new System.Windows.Forms.Label();
             this.txtMainReplsetName = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.numPort = new System.Windows.Forms.NumericUpDown();
             this.grpReplset.SuspendLayout();
             this.grpServerRole.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabBasicInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTimeOut)).BeginInit();
             this.Replset.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPriority)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.SuspendLayout();
             // 
             // lblReplsetName
@@ -407,6 +407,19 @@ namespace MagicMongoDBTool
             this.tabBasicInfo.Text = "BasicInfo";
             this.tabBasicInfo.UseVisualStyleBackColor = true;
             // 
+            // numPort
+            // 
+            this.numPort.Location = new System.Drawing.Point(518, 21);
+            this.numPort.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.numPort.Name = "numPort";
+            this.numPort.Size = new System.Drawing.Size(118, 21);
+            this.numPort.TabIndex = 5;
+            this.numPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // lblAttentionPassword
             // 
             this.lblAttentionPassword.AutoSize = true;
@@ -542,19 +555,6 @@ namespace MagicMongoDBTool
             this.tabPage3.Text = "ServerRole";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // numPort
-            // 
-            this.numPort.Location = new System.Drawing.Point(518, 21);
-            this.numPort.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.numPort.Name = "numPort";
-            this.numPort.Size = new System.Drawing.Size(118, 21);
-            this.numPort.TabIndex = 5;
-            this.numPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -578,12 +578,12 @@ namespace MagicMongoDBTool
             this.tabControl1.ResumeLayout(false);
             this.tabBasicInfo.ResumeLayout(false);
             this.tabBasicInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTimeOut)).EndInit();
             this.Replset.ResumeLayout(false);
             this.Replset.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPriority)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
             this.ResumeLayout(false);
 
         }

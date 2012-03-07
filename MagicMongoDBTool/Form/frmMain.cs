@@ -1367,6 +1367,44 @@ namespace MagicMongoDBTool
             DataNaviToolStripLabel.Text = String.Empty;
             this.contextMenuStripMain = null;
         }
+
+        private void ShellCommandtoolStripButton_Click(object sender, EventArgs e)
+        {
+            this.ServerStatusCtl.Visible = false;
+            this.SvrStatustoolStripButton.Checked = false;
+
+            this.txtCommand.Visible = true;
+            this.ShellCommandtoolStripButton.Checked = true;
+
+            this.tabDataShower.Visible = false;
+            this.CollectiontoolStripButton.Checked = false;
+        }
+
+        private void StatustoolStripButton_Click(object sender, EventArgs e)
+        {
+            this.ServerStatusCtl.Visible = true;
+            this.ServerStatusCtl.RefreshStatus(false);
+            this.SvrStatustoolStripButton.Checked = true;
+
+            this.txtCommand.Visible = false;
+            this.ShellCommandtoolStripButton.Checked = false;
+
+            this.tabDataShower.Visible = false;
+            this.CollectiontoolStripButton.Checked = false;
+        }
+
+        private void CollectiontoolStripButton_Click(object sender, EventArgs e)
+        {
+            this.ServerStatusCtl.Visible = false;
+            this.SvrStatustoolStripButton.Checked = false;
+
+            this.txtCommand.Visible = false;
+            this.ShellCommandtoolStripButton.Checked = false;
+
+            this.tabDataShower.Visible = true;
+            this.CollectiontoolStripButton.Checked = true;
+        }
+
         #endregion
 
         #region"数据库连接"
@@ -1912,7 +1950,7 @@ namespace MagicMongoDBTool
             CollectiontoolStripButton.ToolTipText = SystemManager.SelectObjectTag;
             SetDataNav();
             IsNeedRefresh = false;
-            CollectiontoolStripButton_Click(null,null);
+            CollectiontoolStripButton_Click(null, null);
         }
         #endregion
 
@@ -2512,42 +2550,7 @@ namespace MagicMongoDBTool
         }
         #endregion
 
-        private void ShellCommandtoolStripButton_Click(object sender, EventArgs e)
-        {
-            this.ServerStatusCtl.Visible = false;
-            this.SvrStatustoolStripButton.Checked = false;
 
-            this.txtCommand.Visible = true;
-            this.ShellCommandtoolStripButton.Checked = true;
-
-            this.tabDataShower.Visible = false;
-            this.CollectiontoolStripButton.Checked = false;
-        }
-
-        private void StatustoolStripButton_Click(object sender, EventArgs e)
-        {
-            this.ServerStatusCtl.Visible = true;
-            this.ServerStatusCtl.RefreshStatus(false);
-            this.SvrStatustoolStripButton.Checked = true;
-
-            this.txtCommand.Visible = false;
-            this.ShellCommandtoolStripButton.Checked = false;
-
-            this.tabDataShower.Visible = false;
-            this.CollectiontoolStripButton.Checked = false;
-        }
-
-        private void CollectiontoolStripButton_Click(object sender, EventArgs e)
-        {
-            this.ServerStatusCtl.Visible = false;
-            this.SvrStatustoolStripButton.Checked = false;
-
-            this.txtCommand.Visible = false;
-            this.ShellCommandtoolStripButton.Checked = false;
-
-            this.tabDataShower.Visible = true;
-            this.CollectiontoolStripButton.Checked = true;
-        }
 
 
 
