@@ -144,9 +144,10 @@ namespace MagicMongoDBTool
             this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
             this.SvrStatustoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ShellCommandtoolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CollectiontoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.RefreshViewtoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.tabDataShower.SuspendLayout();
@@ -186,6 +187,7 @@ namespace MagicMongoDBTool
             // 
             // toolStripMain
             // 
+            this.toolStripMain.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMain.Location = new System.Drawing.Point(0, 24);
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(1223, 25);
@@ -1049,7 +1051,9 @@ namespace MagicMongoDBTool
             // 
             // ViewtoolStrip
             // 
+            this.ViewtoolStrip.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ViewtoolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RefreshViewtoolStripButton,
             this.SvrStatustoolStripButton,
             this.ShellCommandtoolStripButton,
             this.toolStripSeparator1,
@@ -1067,7 +1071,7 @@ namespace MagicMongoDBTool
             this.SvrStatustoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("SvrStatustoolStripButton.Image")));
             this.SvrStatustoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SvrStatustoolStripButton.Name = "SvrStatustoolStripButton";
-            this.SvrStatustoolStripButton.Size = new System.Drawing.Size(42, 22);
+            this.SvrStatustoolStripButton.Size = new System.Drawing.Size(46, 22);
             this.SvrStatustoolStripButton.Text = "Status";
             this.SvrStatustoolStripButton.Click += new System.EventHandler(this.StatustoolStripButton_Click);
             // 
@@ -1078,9 +1082,14 @@ namespace MagicMongoDBTool
             this.ShellCommandtoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ShellCommandtoolStripButton.Image")));
             this.ShellCommandtoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ShellCommandtoolStripButton.Name = "ShellCommandtoolStripButton";
-            this.ShellCommandtoolStripButton.Size = new System.Drawing.Size(83, 22);
+            this.ShellCommandtoolStripButton.Size = new System.Drawing.Size(94, 22);
             this.ShellCommandtoolStripButton.Text = "Shell Command";
             this.ShellCommandtoolStripButton.Click += new System.EventHandler(this.ShellCommandtoolStripButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // CollectiontoolStripButton
             // 
@@ -1089,7 +1098,7 @@ namespace MagicMongoDBTool
             this.CollectiontoolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CollectiontoolStripButton.Image")));
             this.CollectiontoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CollectiontoolStripButton.Name = "CollectiontoolStripButton";
-            this.CollectiontoolStripButton.Size = new System.Drawing.Size(57, 22);
+            this.CollectiontoolStripButton.Size = new System.Drawing.Size(63, 22);
             this.CollectiontoolStripButton.Text = "Collection";
             this.CollectiontoolStripButton.Click += new System.EventHandler(this.CollectiontoolStripButton_Click);
             // 
@@ -1101,10 +1110,14 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // toolStripSeparator1
+            // RefreshViewtoolStripButton
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.RefreshViewtoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.RefreshViewtoolStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Refresh;
+            this.RefreshViewtoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RefreshViewtoolStripButton.Name = "RefreshViewtoolStripButton";
+            this.RefreshViewtoolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.RefreshViewtoolStripButton.Click += new System.EventHandler(this.RefreshViewtoolStripButton_Click);
             // 
             // frmMain
             // 
@@ -1357,5 +1370,6 @@ namespace MagicMongoDBTool
         private TextBox txtCommand;
         private UserController.ctlServerStatus ServerStatusCtl;
         private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton RefreshViewtoolStripButton;
     }
 }

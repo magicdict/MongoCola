@@ -10,6 +10,7 @@ Release History
 ========================================================================
 Ver 1.05 2012/04/2
 1.Change the Name of ClusterInfo to CurrentOperationInfo.
+2.Add Switch Auto Refresh Botton at Status form.
 
 ========================================================================
 Ver 1.04 2012/03/7

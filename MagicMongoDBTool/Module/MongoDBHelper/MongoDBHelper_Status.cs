@@ -134,7 +134,7 @@ namespace MagicMongoDBTool.Module
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_TotalIndexSize));
 
                 //2012-3-6
-                lstData.Columns.Add("IsCapped");
+                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments));
 
 
