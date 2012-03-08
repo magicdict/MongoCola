@@ -225,7 +225,7 @@
   <ServiceStatus_ServerInfo>服务器信息[手动更新]</ServiceStatus_ServerInfo>
   <ServiceStatus_DataBaseInfo>数据库信息</ServiceStatus_DataBaseInfo>
   <ServiceStatus_CollectionInfo>数据集信息</ServiceStatus_CollectionInfo>
-  <ServiceStatus_ClusterInfo>集群消息</ServiceStatus_ClusterInfo>
+  <ServiceStatus_CurrentOperationInfo>当前操作</ServiceStatus_CurrentOperationInfo>
 
   <!--frmShardingConfig-->
   <ShardingConfig_Title>Sharding配置</ShardingConfig_Title>

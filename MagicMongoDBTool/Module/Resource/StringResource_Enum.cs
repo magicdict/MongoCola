@@ -213,7 +213,7 @@ namespace MagicMongoDBTool.Module
             ServiceStatus_ServerInfo,
             ServiceStatus_DataBaseInfo,
             ServiceStatus_CollectionInfo,
-            ServiceStatus_ClusterInfo,
+            ServiceStatus_CurrentOperationInfo,
 
             ShardingConfig_Title,
             ShardingConfig_AddSharding,

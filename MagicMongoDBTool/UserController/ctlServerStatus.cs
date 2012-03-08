@@ -17,7 +17,9 @@ namespace MagicMongoDBTool.UserController
             }
             MongoDBHelper.FillDataBaseStatusToList(this.lstDBStatus);
             MongoDBHelper.FillCollectionStatusToList(this.lstCollectionStatus);
-            MongoDBHelper.FillSrvOprToList(this.lstSrvOpr);
+        }
+        public void RefreshCurrentOpr() {
+            MongoDBHelper.FillCurrentOprToList(this.lstSrvOpr);
         }
         private void ctlServerStatus_Load(object sender, EventArgs e)
         {
@@ -28,7 +30,7 @@ namespace MagicMongoDBTool.UserController
                 this.tabSvrBasicInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_ServerInfo);
                 this.tabDBBasicInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_DataBaseInfo);
                 this.tabCollectionInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_CollectionInfo);
-                this.tabClusterInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_ClusterInfo);
+                this.tabClusterInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_CurrentOperationInfo);
             }
 
             // 用新的排序方法对ListView排序

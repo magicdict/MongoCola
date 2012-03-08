@@ -82,7 +82,7 @@
             this.tabDBBasicInfo.Location = new System.Drawing.Point(4, 22);
             this.tabDBBasicInfo.Name = "tabDBBasicInfo";
             this.tabDBBasicInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDBBasicInfo.Size = new System.Drawing.Size(916, 452);
+            this.tabDBBasicInfo.Size = new System.Drawing.Size(879, 431);
             this.tabDBBasicInfo.TabIndex = 0;
             this.tabDBBasicInfo.Text = "DB Status Information";
             this.tabDBBasicInfo.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             this.tabCollectionInfo.Location = new System.Drawing.Point(4, 22);
             this.tabCollectionInfo.Name = "tabCollectionInfo";
             this.tabCollectionInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCollectionInfo.Size = new System.Drawing.Size(916, 452);
+            this.tabCollectionInfo.Size = new System.Drawing.Size(879, 431);
             this.tabCollectionInfo.TabIndex = 2;
             this.tabCollectionInfo.Text = "Collection Status Information";
             this.tabCollectionInfo.UseVisualStyleBackColor = true;
@@ -128,9 +128,9 @@
             this.tabClusterInfo.Location = new System.Drawing.Point(4, 22);
             this.tabClusterInfo.Name = "tabClusterInfo";
             this.tabClusterInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabClusterInfo.Size = new System.Drawing.Size(916, 452);
+            this.tabClusterInfo.Size = new System.Drawing.Size(879, 431);
             this.tabClusterInfo.TabIndex = 1;
-            this.tabClusterInfo.Text = "Cluster Information";
+            this.tabClusterInfo.Text = "Current Operation";
             this.tabClusterInfo.UseVisualStyleBackColor = true;
             // 
             // lstSrvOpr
@@ -140,7 +140,7 @@
             this.lstSrvOpr.GridLines = true;
             this.lstSrvOpr.Location = new System.Drawing.Point(3, 3);
             this.lstSrvOpr.Name = "lstSrvOpr";
-            this.lstSrvOpr.Size = new System.Drawing.Size(910, 446);
+            this.lstSrvOpr.Size = new System.Drawing.Size(873, 425);
             this.lstSrvOpr.TabIndex = 3;
             this.lstSrvOpr.UseCompatibleStateImageBehavior = false;
             this.lstSrvOpr.View = System.Windows.Forms.View.Details;

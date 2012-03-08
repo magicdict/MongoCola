@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlServerStatus1 = new MagicMongoDBTool.UserController.ctlServerStatus();
+            this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
             this.cmdRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ctlServerStatus1
             // 
-            this.ctlServerStatus1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlServerStatus1.Location = new System.Drawing.Point(0, 0);
-            this.ctlServerStatus1.Name = "ctlServerStatus1";
-            this.ctlServerStatus1.Size = new System.Drawing.Size(900, 480);
-            this.ctlServerStatus1.TabIndex = 6;
+            this.ServerStatusCtl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ServerStatusCtl.Location = new System.Drawing.Point(0, 0);
+            this.ServerStatusCtl.Name = "ctlServerStatus1";
+            this.ServerStatusCtl.Size = new System.Drawing.Size(900, 480);
+            this.ServerStatusCtl.TabIndex = 6;
             // 
             // cmdRefresh
             // 
@@ -58,7 +58,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 480);
             this.Controls.Add(this.cmdRefresh);
-            this.Controls.Add(this.ctlServerStatus1);
+            this.Controls.Add(this.ServerStatusCtl);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmServiceStatus";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -72,7 +72,7 @@
 
         #endregion
 
-        private UserController.ctlServerStatus ctlServerStatus1;
+        private UserController.ctlServerStatus ServerStatusCtl;
         private System.Windows.Forms.Button cmdRefresh;
     }
 }

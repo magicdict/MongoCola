@@ -209,10 +209,23 @@ namespace MagicMongoDBTool.Module
         /// 将数据Opr放入ListView
         /// </summary>
         /// <param name="lstSrvOpr"></param>
-        public static void FillSrvOprToList(ListView lstSrvOpr)
+        public static void FillCurrentOprToList(ListView lstSrvOpr)
         {
             lstSrvOpr.Clear();
-            Boolean hasHeader = false;
+            lstSrvOpr.Columns.Add("Name");
+            lstSrvOpr.Columns.Add("opid");
+            lstSrvOpr.Columns.Add("active");
+            lstSrvOpr.Columns.Add("lockType");
+            lstSrvOpr.Columns.Add("waitingForLock");
+            lstSrvOpr.Columns.Add("secs_running");
+            lstSrvOpr.Columns.Add("op");
+            lstSrvOpr.Columns.Add("ns");
+            lstSrvOpr.Columns.Add("query");
+            lstSrvOpr.Columns.Add("client");
+            lstSrvOpr.Columns.Add("desc");
+            lstSrvOpr.Columns.Add("connectionId");
+            lstSrvOpr.Columns.Add("numYields");
+
             foreach (String mongoSvrKey in _mongoSrvLst.Keys)
             {
                 try
@@ -225,34 +238,20 @@ namespace MagicMongoDBTool.Module
                         {
                             MongoDatabase mongoDB = mongosvr.GetDatabase(strDBName);
                             BsonDocument dbStatus = mongoDB.GetCurrentOp();
-                            if (dbStatus.GetValue("inprog").AsBsonArray.Count > 0)
+                            BsonArray doc = dbStatus.GetValue("inprog").AsBsonArray;
+                            foreach (BsonDocument item in doc)
                             {
-                                if (!hasHeader)
+                                ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
+                                foreach (String itemName in item.Names)
                                 {
-
-                                    lstSrvOpr.Columns.Add("Name");
-                                    foreach (String item in dbStatus.GetValue("inprog").AsBsonArray[0].AsBsonDocument.Names)
-                                    {
-                                        lstSrvOpr.Columns.Add(item);
-                                    }
-                                    hasHeader = true;
+                                    lst.SubItems.Add(item.GetValue(itemName).ToString());
                                 }
-
-                                BsonArray doc = dbStatus.GetValue("inprog").AsBsonArray;
-                                foreach (BsonDocument item in doc)
-                                {
-                                    ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
-                                    foreach (String itemName in item.Names)
-                                    {
-                                        lst.SubItems.Add(item.GetValue(itemName).ToString());
-                                    }
-                                    lstSrvOpr.Items.Add(lst);
-                                }
+                                lstSrvOpr.Items.Add(lst);
                             }
                         }
                         catch
                         {
-                            //throw
+                            throw;
                         }
                     }
                 }

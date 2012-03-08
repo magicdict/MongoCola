@@ -9,13 +9,10 @@
 *.suo
 *.mdb
 *.pdb
+/UnitTest
 /MagicMongoDBTool/dll
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
-/QLFUI/bin
-/QLFUI/obj
-/GUIResource/bin
-/GUIResource/obj
 !readme.txt
 !app.config
 !Release Note.txt

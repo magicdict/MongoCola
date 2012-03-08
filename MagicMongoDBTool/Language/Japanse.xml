@@ -224,7 +224,7 @@
   <ServiceStatus_ServerInfo>サーバー情報</ServiceStatus_ServerInfo>
   <ServiceStatus_DataBaseInfo>データベース情報</ServiceStatus_DataBaseInfo>
   <ServiceStatus_CollectionInfo>コレクション情報</ServiceStatus_CollectionInfo>
-  <ServiceStatus_ClusterInfo>クラスター情報</ServiceStatus_ClusterInfo>
+  <ServiceStatus_CurrentOperationInfo>操作情報</ServiceStatus_CurrentOperationInfo>
 
   <!--frmShardingConfig-->
   <ShardingConfig_Title>Sharding設定</ShardingConfig_Title>
