@@ -102,13 +102,12 @@ namespace MagicMongoDBTool.Module
             {
                 if (IsUseFilter)
                 {
-                    CurrentCollectionTotalCnt = mongoCol.FindAs<BsonDocument>(GetQuery(SystemManager.CurrDataFilter.QueryConditionList))
-                                                        .ToList<BsonDocument>().Count;
-
+                    //感谢cnblogs.com 网友Shadower
+                    CurrentCollectionTotalCnt = (int)mongoCol.Count(GetQuery(SystemManager.CurrDataFilter.QueryConditionList));
                 }
                 else
                 {
-                    CurrentCollectionTotalCnt = mongoCol.FindAllAs<BsonDocument>().ToList<BsonDocument>().Count;
+                    CurrentCollectionTotalCnt = (int)mongoCol.Count(); 
                 }
             }
             if (dataList.Count == 0)

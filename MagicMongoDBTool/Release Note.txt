@@ -11,6 +11,7 @@ Release History
 Ver 1.05 2012/04/2
 1.Change the Name of ClusterInfo to CurrentOperationInfo.
 2.Add Switch Auto Refresh Botton at Status form.
+3.Modify the way of get the total count of a collection,and the performance is up.Thanks to Shadower (cnblogs.com).
 
 ========================================================================
 Ver 1.04 2012/03/7
