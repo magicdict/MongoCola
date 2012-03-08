@@ -28,35 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
             this.cmdRefresh = new System.Windows.Forms.Button();
+            this.btnSwitch = new System.Windows.Forms.Button();
+            this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
             this.SuspendLayout();
-            // 
-            // ctlServerStatus1
-            // 
-            this.ServerStatusCtl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ServerStatusCtl.Location = new System.Drawing.Point(0, 0);
-            this.ServerStatusCtl.Name = "ctlServerStatus1";
-            this.ServerStatusCtl.Size = new System.Drawing.Size(900, 480);
-            this.ServerStatusCtl.TabIndex = 6;
             // 
             // cmdRefresh
             // 
             this.cmdRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdRefresh.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRefresh.Location = new System.Drawing.Point(771, 0);
+            this.cmdRefresh.Location = new System.Drawing.Point(632, 0);
             this.cmdRefresh.Name = "cmdRefresh";
-            this.cmdRefresh.Size = new System.Drawing.Size(117, 24);
+            this.cmdRefresh.Size = new System.Drawing.Size(76, 24);
             this.cmdRefresh.TabIndex = 5;
             this.cmdRefresh.Text = "Refresh";
             this.cmdRefresh.UseVisualStyleBackColor = false;
             this.cmdRefresh.Click += new System.EventHandler(this.cmdRefresh_Click);
+            // 
+            // btnSwitch
+            // 
+            this.btnSwitch.Location = new System.Drawing.Point(714, 0);
+            this.btnSwitch.Name = "btnSwitch";
+            this.btnSwitch.Size = new System.Drawing.Size(156, 24);
+            this.btnSwitch.TabIndex = 7;
+            this.btnSwitch.Text = "Stop Auto Refresh";
+            this.btnSwitch.UseVisualStyleBackColor = true;
+            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
+            // 
+            // ServerStatusCtl
+            // 
+            this.ServerStatusCtl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ServerStatusCtl.Location = new System.Drawing.Point(0, 0);
+            this.ServerStatusCtl.Name = "ServerStatusCtl";
+            this.ServerStatusCtl.Size = new System.Drawing.Size(900, 480);
+            this.ServerStatusCtl.TabIndex = 6;
             // 
             // frmServiceStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 480);
+            this.Controls.Add(this.btnSwitch);
             this.Controls.Add(this.cmdRefresh);
             this.Controls.Add(this.ServerStatusCtl);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -74,5 +86,6 @@
 
         private UserController.ctlServerStatus ServerStatusCtl;
         private System.Windows.Forms.Button cmdRefresh;
+        private System.Windows.Forms.Button btnSwitch;
     }
 }

@@ -35,13 +35,13 @@
             this.lstDBStatus = new System.Windows.Forms.ListView();
             this.tabCollectionInfo = new System.Windows.Forms.TabPage();
             this.lstCollectionStatus = new System.Windows.Forms.ListView();
-            this.tabClusterInfo = new System.Windows.Forms.TabPage();
+            this.tabCurrentOprInfo = new System.Windows.Forms.TabPage();
             this.lstSrvOpr = new System.Windows.Forms.ListView();
             this.tabSvrStatus.SuspendLayout();
             this.tabSvrBasicInfo.SuspendLayout();
             this.tabDBBasicInfo.SuspendLayout();
             this.tabCollectionInfo.SuspendLayout();
-            this.tabClusterInfo.SuspendLayout();
+            this.tabCurrentOprInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabSvrStatus
@@ -49,7 +49,7 @@
             this.tabSvrStatus.Controls.Add(this.tabSvrBasicInfo);
             this.tabSvrStatus.Controls.Add(this.tabDBBasicInfo);
             this.tabSvrStatus.Controls.Add(this.tabCollectionInfo);
-            this.tabSvrStatus.Controls.Add(this.tabClusterInfo);
+            this.tabSvrStatus.Controls.Add(this.tabCurrentOprInfo);
             this.tabSvrStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabSvrStatus.Location = new System.Drawing.Point(0, 0);
             this.tabSvrStatus.Name = "tabSvrStatus";
@@ -65,7 +65,7 @@
             this.tabSvrBasicInfo.Padding = new System.Windows.Forms.Padding(3);
             this.tabSvrBasicInfo.Size = new System.Drawing.Size(879, 431);
             this.tabSvrBasicInfo.TabIndex = 3;
-            this.tabSvrBasicInfo.Text = "Server Status Information[need manual refresh ]";
+            this.tabSvrBasicInfo.Text = "Server Status[manually Refresh]";
             this.tabSvrBasicInfo.UseVisualStyleBackColor = true;
             // 
             // trvSvrStatus
@@ -84,7 +84,7 @@
             this.tabDBBasicInfo.Padding = new System.Windows.Forms.Padding(3);
             this.tabDBBasicInfo.Size = new System.Drawing.Size(879, 431);
             this.tabDBBasicInfo.TabIndex = 0;
-            this.tabDBBasicInfo.Text = "DB Status Information";
+            this.tabDBBasicInfo.Text = "DB Status";
             this.tabDBBasicInfo.UseVisualStyleBackColor = true;
             // 
             // lstDBStatus
@@ -94,7 +94,7 @@
             this.lstDBStatus.GridLines = true;
             this.lstDBStatus.Location = new System.Drawing.Point(3, 3);
             this.lstDBStatus.Name = "lstDBStatus";
-            this.lstDBStatus.Size = new System.Drawing.Size(910, 446);
+            this.lstDBStatus.Size = new System.Drawing.Size(873, 425);
             this.lstDBStatus.TabIndex = 2;
             this.lstDBStatus.UseCompatibleStateImageBehavior = false;
             this.lstDBStatus.View = System.Windows.Forms.View.Details;
@@ -107,7 +107,7 @@
             this.tabCollectionInfo.Padding = new System.Windows.Forms.Padding(3);
             this.tabCollectionInfo.Size = new System.Drawing.Size(879, 431);
             this.tabCollectionInfo.TabIndex = 2;
-            this.tabCollectionInfo.Text = "Collection Status Information";
+            this.tabCollectionInfo.Text = "Collection Status";
             this.tabCollectionInfo.UseVisualStyleBackColor = true;
             // 
             // lstCollectionStatus
@@ -117,21 +117,21 @@
             this.lstCollectionStatus.GridLines = true;
             this.lstCollectionStatus.Location = new System.Drawing.Point(3, 3);
             this.lstCollectionStatus.Name = "lstCollectionStatus";
-            this.lstCollectionStatus.Size = new System.Drawing.Size(910, 446);
+            this.lstCollectionStatus.Size = new System.Drawing.Size(873, 425);
             this.lstCollectionStatus.TabIndex = 2;
             this.lstCollectionStatus.UseCompatibleStateImageBehavior = false;
             this.lstCollectionStatus.View = System.Windows.Forms.View.Details;
             // 
-            // tabClusterInfo
+            // tabCurrentOprInfo
             // 
-            this.tabClusterInfo.Controls.Add(this.lstSrvOpr);
-            this.tabClusterInfo.Location = new System.Drawing.Point(4, 22);
-            this.tabClusterInfo.Name = "tabClusterInfo";
-            this.tabClusterInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabClusterInfo.Size = new System.Drawing.Size(879, 431);
-            this.tabClusterInfo.TabIndex = 1;
-            this.tabClusterInfo.Text = "Current Operation";
-            this.tabClusterInfo.UseVisualStyleBackColor = true;
+            this.tabCurrentOprInfo.Controls.Add(this.lstSrvOpr);
+            this.tabCurrentOprInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabCurrentOprInfo.Name = "tabCurrentOprInfo";
+            this.tabCurrentOprInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCurrentOprInfo.Size = new System.Drawing.Size(879, 431);
+            this.tabCurrentOprInfo.TabIndex = 1;
+            this.tabCurrentOprInfo.Text = "Current Operation";
+            this.tabCurrentOprInfo.UseVisualStyleBackColor = true;
             // 
             // lstSrvOpr
             // 
@@ -157,7 +157,7 @@
             this.tabSvrBasicInfo.ResumeLayout(false);
             this.tabDBBasicInfo.ResumeLayout(false);
             this.tabCollectionInfo.ResumeLayout(false);
-            this.tabClusterInfo.ResumeLayout(false);
+            this.tabCurrentOprInfo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -171,7 +171,7 @@
         private System.Windows.Forms.ListView lstDBStatus;
         private System.Windows.Forms.TabPage tabCollectionInfo;
         private System.Windows.Forms.ListView lstCollectionStatus;
-        private System.Windows.Forms.TabPage tabClusterInfo;
+        private System.Windows.Forms.TabPage tabCurrentOprInfo;
         private System.Windows.Forms.ListView lstSrvOpr;
 
     }

@@ -17,6 +17,10 @@ namespace MagicMongoDBTool
         /// 短时间刷新
         /// </summary>
         Timer ShortTimer = new Timer();
+        /// <summary>
+        /// Auto Refresh Flag
+        /// </summary>
+        Boolean AutoRefresh = true;
 
         private void frmServiceStatus_Load(object sender, EventArgs e)
         {
@@ -37,14 +41,16 @@ namespace MagicMongoDBTool
                 this.ServerStatusCtl.RefreshCurrentOpr();
                 }
             );
-            
+         
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_Title);
-                cmdRefresh.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Refresh);
+                this.cmdRefresh.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Refresh);
+                this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Stop_AutoRefresh);
             }
             refreshTimer.Enabled = true;
             ShortTimer.Enabled = true;
+            AutoRefresh = true;
         }
         /// <summary>
         /// 立刻刷新数据
@@ -65,6 +71,40 @@ namespace MagicMongoDBTool
         {
             refreshTimer.Stop();
             ShortTimer.Stop();
+        }
+        /// <summary>
+        /// Switch Auto Refresh
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSwitch_Click(object sender, EventArgs e)
+        {
+            AutoRefresh = !AutoRefresh;
+            if (AutoRefresh)
+            {
+                refreshTimer.Start();
+                ShortTimer.Start();
+                if (!SystemManager.IsUseDefaultLanguage())
+                {
+                    this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Stop_AutoRefresh);
+                }
+                else
+                {
+                    btnSwitch.Text = "Stop Auto Refresh";
+                }
+            }
+            else {
+                refreshTimer.Stop();
+                ShortTimer.Stop();
+                if (!SystemManager.IsUseDefaultLanguage())
+                {
+                    this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Resume_AutoRefresh);
+                }
+                else
+                {
+                    btnSwitch.Text = "Resume Auto Refresh";
+                }                
+            }
         }
     }
 }

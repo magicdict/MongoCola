@@ -268,6 +268,9 @@
   <Collection_Status_MaxDocuments>最大文档数</Collection_Status_MaxDocuments>
   <Collection_Status_IsCapped>容量限制</Collection_Status_IsCapped>
 
+  <Collection_Resume_AutoRefresh>启用自动刷新</Collection_Resume_AutoRefresh>
+  <Collection_Stop_AutoRefresh>禁止自动刷新</Collection_Stop_AutoRefresh>
+  
   <!--GFS-->
   <GFS_filename>文件名</GFS_filename>
   <GFS_length>文件大小</GFS_length>
@@ -336,7 +339,7 @@
   <Drop_DataBase_Confirm>确定是否要删除数据库?</Drop_DataBase_Confirm>
 
   <Create_New_Collection>新建数据集</Create_New_Collection>
-  <Create_New_Collection_Input>请输入数据集名称:</Create_New_Collection_Input>
+
   <Drop_Collection>删除数据集</Drop_Collection>
   <Drop_Collection_Confirm>确定是否要删除数据集?</Drop_Collection_Confirm>
   <Rename_Collection>重命名数据集</Rename_Collection>

@@ -267,6 +267,9 @@
   <Collection_Status_MaxDocuments>最大ドキュメント数</Collection_Status_MaxDocuments>
   <Collection_Status_IsCapped>IsCapped</Collection_Status_IsCapped>
 
+  <Collection_Resume_AutoRefresh>自動更新開始</Collection_Resume_AutoRefresh>
+  <Collection_Stop_AutoRefresh>自動更新停止</Collection_Stop_AutoRefresh>
+
   <!--GFS-->
   <GFS_filename>ファイル名</GFS_filename>
   <GFS_length>ファイルサイズ</GFS_length>
@@ -335,7 +338,7 @@
   <Drop_DataBase_Confirm>データベースを削除します?</Drop_DataBase_Confirm>
 
   <Create_New_Collection>コレクションの新規</Create_New_Collection>
-  <Create_New_Collection_Input>コレクションを入力してください:</Create_New_Collection_Input>
+
   <Drop_Collection>コレクションの削除</Drop_Collection>
   <Drop_Collection_Confirm>コレクションを削除します?</Drop_Collection_Confirm>
   <Rename_Collection>コレクションのリネーム</Rename_Collection>

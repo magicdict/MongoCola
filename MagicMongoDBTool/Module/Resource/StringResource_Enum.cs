@@ -259,6 +259,9 @@ namespace MagicMongoDBTool.Module
             Collection_Status_MaxDocuments,
             Collection_Status_IsCapped,
 
+            Collection_Resume_AutoRefresh,
+            Collection_Stop_AutoRefresh,
+
             //Index
             Index_Asce,
             Index_Desc,
@@ -317,7 +320,6 @@ namespace MagicMongoDBTool.Module
             Drop_DataBase,
             Drop_DataBase_Confirm,
             Create_New_Collection,
-            Create_New_Collection_Input,
             Rename_Collection,
             Rename_Collection_Input,
             Drop_Collection,
