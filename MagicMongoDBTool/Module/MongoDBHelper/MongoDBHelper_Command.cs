@@ -7,6 +7,28 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
+
+        #region"Collection Command"
+        /// <summary>
+        /// Compact
+        /// http://www.mongodb.org/display/DOCS/Compact+Command
+        /// </summary>
+        public static MongoCommand Compact_Command = new MongoCommand("compact", PathLv.CollectionLV);
+        #endregion
+
+        #region"DataBase Command"
+        /// <summary>
+        ///数据库命令 
+        ///http://www.mongodb.org/display/DOCS/List+of+Database+Commands
+        /// </summary>
+        /// <summary>
+        /// 修复数据库
+        /// http://www.mongodb.org/display/DOCS/Durability+and+Repair
+        /// </summary>
+        public static MongoCommand repairDatabase_Command = new MongoCommand("repairDatabase", PathLv.DatabaseLV);
+        #endregion
+
+        #region"Server Command"
         /// <summary>
         /// 服务器状态
         /// http://www.mongodb.org/display/DOCS/serverStatus+Command
@@ -120,5 +142,6 @@ namespace MagicMongoDBTool.Module
             CommandDocument mongoCmd = new CommandDocument() { cmd };
             return ExecuteMongoSvrCommand(mongoCmd, PrimarySvr);
         }
+        #endregion
     }
 }

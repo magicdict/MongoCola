@@ -123,14 +123,15 @@
     <Compile Include="Form\frmCreateCollection.Designer.cs">
       <DependentUpon>frmCreateCollection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command_Collection.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection_Present.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Status.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Module\Resource\GetResource_Icon.cs" />
     <Compile Include="Module\System\BsonValueEx.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command_Database.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection_Manager.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_ImportData.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_ShellCommand.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command_Server.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command.cs" />
     <Compile Include="Module\System\MyMessageBox.cs" />
     <Compile Include="Module\Resource\StringResources.cs" />
     <Compile Include="Module\Resource\StringResource_Enum.cs" />
@@ -267,7 +268,7 @@
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\System\CloneMeunToolItem.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Auth.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Opration_Other.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Query.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_RunCommand.cs" />
     <Compile Include="UserController\ctlMongoImportExport.cs">
