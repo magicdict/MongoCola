@@ -8,7 +8,11 @@ This is the first release of MongoCola.
 ========================================================================
 Release History
 ========================================================================
-Ver 1.04 2012/03/10
+Ver 1.05 2012/04/2
+1.Change the Name of ClusterInfo to CurrentOperationInfo.
+
+========================================================================
+Ver 1.04 2012/03/7
 
 1.Open In Native Editor at Textview
 2.Compact Collection

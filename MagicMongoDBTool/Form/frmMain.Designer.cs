@@ -139,13 +139,14 @@ namespace MagicMongoDBTool
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
             this.SvrStatustoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ShellCommandtoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.CollectiontoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.tabDataShower.SuspendLayout();
@@ -971,7 +972,7 @@ namespace MagicMongoDBTool
             // 
             this.lnkFile.AutoSize = true;
             this.lnkFile.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lnkFile.Location = new System.Drawing.Point(445, 3);
+            this.lnkFile.Location = new System.Drawing.Point(470, 3);
             this.lnkFile.Name = "lnkFile";
             this.lnkFile.Size = new System.Drawing.Size(134, 16);
             this.lnkFile.TabIndex = 1;
@@ -986,7 +987,7 @@ namespace MagicMongoDBTool
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
             this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtData.Size = new System.Drawing.Size(576, 518);
+            this.txtData.Size = new System.Drawing.Size(576, 515);
             this.txtData.TabIndex = 0;
             // 
             // trvsrvlst
@@ -1030,6 +1031,14 @@ namespace MagicMongoDBTool
             this.panel3.Size = new System.Drawing.Size(886, 606);
             this.panel3.TabIndex = 2;
             // 
+            // ServerStatusCtl
+            // 
+            this.ServerStatusCtl.Location = new System.Drawing.Point(731, 51);
+            this.ServerStatusCtl.Margin = new System.Windows.Forms.Padding(4);
+            this.ServerStatusCtl.Name = "ServerStatusCtl";
+            this.ServerStatusCtl.Size = new System.Drawing.Size(128, 313);
+            this.ServerStatusCtl.TabIndex = 2;
+            // 
             // txtCommand
             // 
             this.txtCommand.Location = new System.Drawing.Point(624, 51);
@@ -1043,6 +1052,7 @@ namespace MagicMongoDBTool
             this.ViewtoolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SvrStatustoolStripButton,
             this.ShellCommandtoolStripButton,
+            this.toolStripSeparator1,
             this.CollectiontoolStripButton});
             this.ViewtoolStrip.Location = new System.Drawing.Point(0, 0);
             this.ViewtoolStrip.Name = "ViewtoolStrip";
@@ -1091,13 +1101,10 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // ServerStatusCtl
+            // toolStripSeparator1
             // 
-            this.ServerStatusCtl.Location = new System.Drawing.Point(731, 51);
-            this.ServerStatusCtl.Margin = new System.Windows.Forms.Padding(4);
-            this.ServerStatusCtl.Name = "ServerStatusCtl";
-            this.ServerStatusCtl.Size = new System.Drawing.Size(128, 313);
-            this.ServerStatusCtl.TabIndex = 2;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // frmMain
             // 
@@ -1190,7 +1197,6 @@ namespace MagicMongoDBTool
             ImportDataFromAccessToolStripButton.Click += new System.EventHandler(ImportDataFromAccessToolStripMenuItem_Click);
             OptionToolStripButton.Click += new System.EventHandler(OptionToolStripMenuItem_Click);
 #endif
-            this.ViewtoolStrip.Items.Add(new ToolStripSeparator());
             this.ViewtoolStrip.Items.Add(FirstPageToolStripButton);
             this.ViewtoolStrip.Items.Add(PrePageToolStripButton);
             this.ViewtoolStrip.Items.Add(NextPageToolStripButton);
@@ -1350,5 +1356,6 @@ namespace MagicMongoDBTool
         private Panel panel3;
         private TextBox txtCommand;
         private UserController.ctlServerStatus ServerStatusCtl;
+        private ToolStripSeparator toolStripSeparator1;
     }
 }

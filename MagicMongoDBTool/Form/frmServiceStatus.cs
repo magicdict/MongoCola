@@ -9,8 +9,13 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// 常规刷新
+        /// </summary>
         Timer refreshTimer = new Timer();
+        /// <summary>
+        /// 短时间刷新
+        /// </summary>
         Timer ShortTimer = new Timer();
 
         private void frmServiceStatus_Load(object sender, EventArgs e)
@@ -49,6 +54,7 @@ namespace MagicMongoDBTool
         private void cmdRefresh_Click(object sender, EventArgs e)
         {
             this.ServerStatusCtl.RefreshStatus(false);
+            this.ServerStatusCtl.RefreshCurrentOpr();
         }
         /// <summary>
         /// Timer停止

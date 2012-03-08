@@ -609,6 +609,9 @@
     <Content Include="UserGuide\images\StatusCollection.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="UserGuide\images\StatusCurrentOp.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="UserGuide\images\StatusDB.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

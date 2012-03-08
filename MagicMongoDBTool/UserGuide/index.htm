@@ -23,8 +23,7 @@
         }
     </style>
 </head>
-<body style="background-color: #000000; background: url('images/background.JPG'); color: #FFFFFF; margin: 0px; font-size: x-large;">
-    <span>Introduce</span>
+<body style="background-color: #000000; padding: 0px; background: url('images/background.JPG'); color: #FFFFFF; margin: 0px; font-size: x-large;">
     <table style="border-spacing: 0px;">
         <tr style="background-color: #ffbf00">
             <td>
@@ -50,6 +49,7 @@
             </td>
         </tr>
     </table>
+    <span>Introduce</span>
     <span>How to get Mongo-Cola</span>
     <table>
         <tr>
@@ -80,11 +80,11 @@
                 <font size="3" color="black">You can download the Executable File [ZIP package]from
                     GitHub: <a href="https://github.com/magicdict/MagicMongoDBTool/downloads">Downloads
                         @GitHub</a><br />
-                    Or you can download the Executable File from this website:
+<!--                    Or you can download the Executable File from this website:
                     <br />
                     <a href="http://www.magicdict.com/MongoCola.zip">Download MongoCola 1.02 from @www.magicdict.com
                         [ZIP]</a>
-                    <br />
+                    <br />-->
                     Anyone can help me to compile the source code on Mono platform? I need an executable
                     file for linux. please email me: <a href="mailto:mynightelfplayer@hotmail.com">email
                         address</a> </font>
@@ -146,7 +146,11 @@ This is the first release of MongoCola.
 ========================================================================
 Release History
 ========================================================================
-Ver 1.04 2012/03/10
+Ver 1.05 2012/04/2
+1.Change the Name of ClusterInfo to CurrentOperationInfo.
+
+========================================================================
+Ver 1.04 2012/03/7
 
 1.Open In Native Editor at Textview
 2.Compact Collection
@@ -273,6 +277,10 @@ Ver 1.01 2011/12/27
                     <br />
                     Pick the connection you registered right now, then click "OK".Now you can operate
                     the mongo server.<br />
+                    <font color="red"><b>
+                        All Status need to be refreshed manually in Mainform.(In status form,the some status will refresh automaticlly)</b>
+                    </font>
+                    <br /><br />
                     You can collapse or expansion the treeview by MenuItem:
                     <ul>
                         <li>Management -> collapse</li>
@@ -457,8 +465,9 @@ Ver 1.01 2011/12/27
                     <br />
                     <img src="images/StatusCollection.PNG" alt="" />
                     <br />
+                    <img src="images/StatusCurrentOp.PNG" alt="" />
                     <br />
-                    <font color="red"><b>Cluster is useful at a replset.<br />
+                    <font color="red"><b>Current Operation fresh 1 time per second.<br />
                         Server Status need to be refreshed manually</b></font>
                     <br />
                     <br />

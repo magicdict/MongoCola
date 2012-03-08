@@ -205,7 +205,10 @@ namespace MagicMongoDBTool
             DataNaviToolStripLabel.Text = String.Empty;
             //Open ConnectionManagement Form
             SystemManager.OpenForm(new frmConnect());
+            //Load Status
             this.ServerStatusCtl.RefreshStatus(false);
+            this.ServerStatusCtl.RefreshCurrentOpr();
+
             RefreshToolStripMenuItem_Click(sender, e);
             MongoDBHelper.RunCommandComplete += new EventHandler<RunCommandEventArgs>(CommandLog);
         }
@@ -1428,7 +1431,7 @@ namespace MagicMongoDBTool
             SystemManager.GetCurrentService().Disconnect();
             MongoDBHelper._mongoSrvLst.Remove(config.ConnectionName);
             trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
-            DisableAllOpr();
+            RefreshToolStripMenuItem_Click(sender,e);
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 this.statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
@@ -1446,6 +1449,15 @@ namespace MagicMongoDBTool
         private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.ServerStatusCtl.RefreshStatus(false);
+            this.ServerStatusCtl.RefreshCurrentOpr();
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                this.CollectiontoolStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName); ;
+            }
+            else
+            {
+                this.CollectiontoolStripButton.Text = "Collection";
+            }
             DisableAllOpr();
             clearDataShower();
             MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
@@ -1489,7 +1501,7 @@ namespace MagicMongoDBTool
 
         #endregion
 
-        #region"Tools"
+        #region"工具"
         /// <summary>
         /// Options
         /// </summary>
@@ -2549,10 +2561,6 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
-
-
-
-
-
+        
     }
 }
