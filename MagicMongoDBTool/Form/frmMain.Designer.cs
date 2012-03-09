@@ -127,14 +127,6 @@ namespace MagicMongoDBTool
             this.ThanksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tabDataShower = new System.Windows.Forms.TabControl();
-            this.tabTreeView = new System.Windows.Forms.TabPage();
-            this.trvData = new System.Windows.Forms.TreeView();
-            this.tabTableView = new System.Windows.Forms.TabPage();
-            this.lstData = new System.Windows.Forms.ListView();
-            this.tabTextView = new System.Windows.Forms.TabPage();
-            this.lnkFile = new System.Windows.Forms.LinkLabel();
-            this.txtData = new System.Windows.Forms.TextBox();
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -148,12 +140,9 @@ namespace MagicMongoDBTool
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CollectiontoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.DataViewctl = new MagicMongoDBTool.UserController.ctlDataView();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
-            this.tabDataShower.SuspendLayout();
-            this.tabTreeView.SuspendLayout();
-            this.tabTableView.SuspendLayout();
-            this.tabTextView.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -901,97 +890,6 @@ namespace MagicMongoDBTool
             this.contextMenuStripMain.Name = "contextMenuStripMain";
             this.contextMenuStripMain.Size = new System.Drawing.Size(61, 4);
             // 
-            // tabDataShower
-            // 
-            this.tabDataShower.Controls.Add(this.tabTreeView);
-            this.tabDataShower.Controls.Add(this.tabTableView);
-            this.tabDataShower.Controls.Add(this.tabTextView);
-            this.tabDataShower.Location = new System.Drawing.Point(32, 26);
-            this.tabDataShower.Name = "tabDataShower";
-            this.tabDataShower.SelectedIndex = 0;
-            this.tabDataShower.Size = new System.Drawing.Size(590, 550);
-            this.tabDataShower.TabIndex = 0;
-            // 
-            // tabTreeView
-            // 
-            this.tabTreeView.BackColor = System.Drawing.Color.Orange;
-            this.tabTreeView.Controls.Add(this.trvData);
-            this.tabTreeView.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabTreeView.Location = new System.Drawing.Point(4, 25);
-            this.tabTreeView.Name = "tabTreeView";
-            this.tabTreeView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTreeView.Size = new System.Drawing.Size(582, 521);
-            this.tabTreeView.TabIndex = 0;
-            this.tabTreeView.Text = "TreeView";
-            // 
-            // trvData
-            // 
-            this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvData.Location = new System.Drawing.Point(3, 3);
-            this.trvData.Name = "trvData";
-            this.trvData.Size = new System.Drawing.Size(576, 515);
-            this.trvData.TabIndex = 0;
-            // 
-            // tabTableView
-            // 
-            this.tabTableView.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.tabTableView.Controls.Add(this.lstData);
-            this.tabTableView.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabTableView.Location = new System.Drawing.Point(4, 25);
-            this.tabTableView.Name = "tabTableView";
-            this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTableView.Size = new System.Drawing.Size(582, 521);
-            this.tabTableView.TabIndex = 1;
-            this.tabTableView.Text = "TableView";
-            // 
-            // lstData
-            // 
-            this.lstData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstData.FullRowSelect = true;
-            this.lstData.GridLines = true;
-            this.lstData.HideSelection = false;
-            this.lstData.Location = new System.Drawing.Point(3, 3);
-            this.lstData.Name = "lstData";
-            this.lstData.Size = new System.Drawing.Size(576, 518);
-            this.lstData.TabIndex = 1;
-            this.lstData.UseCompatibleStateImageBehavior = false;
-            this.lstData.View = System.Windows.Forms.View.Details;
-            // 
-            // tabTextView
-            // 
-            this.tabTextView.BackColor = System.Drawing.Color.Yellow;
-            this.tabTextView.Controls.Add(this.lnkFile);
-            this.tabTextView.Controls.Add(this.txtData);
-            this.tabTextView.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tabTextView.Location = new System.Drawing.Point(4, 25);
-            this.tabTextView.Name = "tabTextView";
-            this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTextView.Size = new System.Drawing.Size(582, 521);
-            this.tabTextView.TabIndex = 2;
-            this.tabTextView.Text = "TextView";
-            // 
-            // lnkFile
-            // 
-            this.lnkFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnkFile.AutoSize = true;
-            this.lnkFile.Location = new System.Drawing.Point(423, 6);
-            this.lnkFile.Name = "lnkFile";
-            this.lnkFile.Size = new System.Drawing.Size(134, 16);
-            this.lnkFile.TabIndex = 1;
-            this.lnkFile.TabStop = true;
-            this.lnkFile.Text = "Open In Native Editor";
-            this.lnkFile.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkFile_LinkClicked);
-            // 
-            // txtData
-            // 
-            this.txtData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtData.Location = new System.Drawing.Point(3, 3);
-            this.txtData.Multiline = true;
-            this.txtData.Name = "txtData";
-            this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtData.Size = new System.Drawing.Size(576, 515);
-            this.txtData.TabIndex = 0;
-            // 
             // trvsrvlst
             // 
             this.trvsrvlst.BackColor = System.Drawing.Color.White;
@@ -1024,8 +922,8 @@ namespace MagicMongoDBTool
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.DataViewctl);
             this.panel3.Controls.Add(this.ServerStatusCtl);
-            this.panel3.Controls.Add(this.tabDataShower);
             this.panel3.Controls.Add(this.txtCommand);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 25);
@@ -1119,6 +1017,14 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
+            // DataViewctl
+            // 
+            this.DataViewctl.Location = new System.Drawing.Point(139, 143);
+            this.DataViewctl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DataViewctl.Name = "DataViewctl";
+            this.DataViewctl.Size = new System.Drawing.Size(354, 291);
+            this.DataViewctl.TabIndex = 3;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1138,11 +1044,6 @@ namespace MagicMongoDBTool
             this.statusStripMain.PerformLayout();
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
-            this.tabDataShower.ResumeLayout(false);
-            this.tabTreeView.ResumeLayout(false);
-            this.tabTableView.ResumeLayout(false);
-            this.tabTextView.ResumeLayout(false);
-            this.tabTextView.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -1352,13 +1253,6 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem DisconnectToolStripMenuItem;
         private ToolStripStatusLabel lblUserInfo;
         private ToolStripMenuItem AddDocumentToolStripMenuItem;
-        private TabControl tabDataShower;
-        private TabPage tabTreeView;
-        private TreeView trvData;
-        private TabPage tabTableView;
-        private ListView lstData;
-        private TabPage tabTextView;
-        private TextBox txtData;
         private TreeView trvsrvlst;
         private ToolStripMenuItem RepairDBToolStripMenuItem;
         private ToolStripMenuItem slaveResyncToolStripMenuItem;
@@ -1370,7 +1264,6 @@ namespace MagicMongoDBTool
         private Panel panel2;
         private Splitter splitter1;
         private ToolStripMenuItem UserGuideToolStripMenuItem;
-        private LinkLabel lnkFile;
         private ToolStripMenuItem CompactToolStripMenuItem;
         private ToolStrip ViewtoolStrip;
         private ToolStripButton ShellCommandtoolStripButton;
@@ -1381,5 +1274,6 @@ namespace MagicMongoDBTool
         private UserController.ctlServerStatus ServerStatusCtl;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton RefreshViewtoolStripButton;
+        private UserController.ctlDataView DataViewctl;
     }
 }
