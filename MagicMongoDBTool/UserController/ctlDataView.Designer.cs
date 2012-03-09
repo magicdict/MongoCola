@@ -122,6 +122,7 @@
             this.lnkFile.TabIndex = 1;
             this.lnkFile.TabStop = true;
             this.lnkFile.Text = "Open In Native Editor";
+            this.lnkFile.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkFile_LinkClicked);
             // 
             // txtData
             // 

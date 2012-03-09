@@ -159,10 +159,6 @@ namespace MagicMongoDBTool
         /// </summary>
         ViewStatus currentViewStatus = ViewStatus.Status;
         /// <summary>
-        /// Control for show Data
-        /// </summary>
-        private List<Control> _dataShower = new List<Control>();
-        /// <summary>
         /// Current Connection Config
         /// </summary>
         ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
@@ -206,9 +202,7 @@ namespace MagicMongoDBTool
             this.DataViewctl.Visible = false;
             DisableAllOpr();
             DisableDataTreeOpr();
-            _dataShower.Add(DataViewctl.lstData);
-            _dataShower.Add(DataViewctl.trvData);
-            _dataShower.Add(DataViewctl.txtData);
+
             DataNaviToolStripLabel.Text = String.Empty;
             //Open ConnectionManagement Form
             SystemManager.OpenForm(new frmConnect());
@@ -792,7 +786,7 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelper.USER_LIST_TAG:
                         //BsonDocument
-                        MongoDBHelper.FillDataToControl(e.Node.Tag.ToString(), _dataShower);
+                        MongoDBHelper.FillDataToControl(e.Node.Tag.ToString(), this.DataViewctl._dataShower);
                         SetDataNav();
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         if (SystemManager.IsUseDefaultLanguage())
@@ -987,7 +981,6 @@ namespace MagicMongoDBTool
                     break;
             }
         }
-
         /// <summary>
         /// 双击列表
         /// </summary>
@@ -1365,30 +1358,22 @@ namespace MagicMongoDBTool
                     break;
             }
         }
-        /// <summary>
-        /// Open In Native Editor
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lnkFile_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            MongoDBHelper.SaveAndOpenStringAsFile(DataViewctl.txtData.Text);
-        }
+
         /// <summary>
         /// 清除数据显示区
         /// </summary>
         private void clearDataShower()
         {
-            DataViewctl.lstData.Clear();
-            DataViewctl.txtData.Text = String.Empty;
-            DataViewctl.trvData.Nodes.Clear();
-            DataViewctl.lstData.ContextMenuStrip = null;
-            DataViewctl.trvData.ContextMenuStrip = null;
+            this.DataViewctl.clear();
             DataNaviToolStripLabel.Text = String.Empty;
             this.contextMenuStripMain = null;
             CollectiontoolStripButton.Tag = String.Empty;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShellCommandtoolStripButton_Click(object sender, EventArgs e)
         {
             this.ServerStatusCtl.Visible = false;
@@ -1402,7 +1387,11 @@ namespace MagicMongoDBTool
 
             currentViewStatus = ViewStatus.CommandShell;
         }
-
+        /// <summary>
+        /// Switch to Status
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StatustoolStripButton_Click(object sender, EventArgs e)
         {
             this.ServerStatusCtl.Visible = true;
@@ -1418,7 +1407,11 @@ namespace MagicMongoDBTool
             currentViewStatus = ViewStatus.Status;
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CollectiontoolStripButton_Click(object sender, EventArgs e)
         {
             this.ServerStatusCtl.Visible = false;
@@ -1671,7 +1664,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void slaveResyncToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.ExecuteMongoCommandAtCurrentObj(MongoDBHelper.resync_Command);
+            MongoDBHelper.ExecuteMongoCommand(MongoDBHelper.resync_Command);
         }
         /// <summary>
         /// Server Property
@@ -1830,7 +1823,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RepairDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.ExecuteMongoCommandAtCurrentObj(MongoDBHelper.repairDatabase_Command);
+            MongoDBHelper.ExecuteMongoCommand(MongoDBHelper.repairDatabase_Command);
         }
 
         #endregion
@@ -1985,7 +1978,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CompactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.ExecuteMongoCommandAtCurrentObj(MongoDBHelper.Compact_Command);
+            MongoDBHelper.ExecuteMongoCommand(MongoDBHelper.Compact_Command);
         }
         /// <summary>
         /// Refresh Data
@@ -1994,7 +1987,7 @@ namespace MagicMongoDBTool
         {
             clearDataShower();
             MongoDBHelper.SkipCnt = 0;
-            MongoDBHelper.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
+            MongoDBHelper.FillDataToControl(SystemManager.SelectObjectTag, DataViewctl._dataShower);
             CollectiontoolStripButton.Text = SystemManager.GetCurrentCollection().Name;
             CollectiontoolStripButton.Tag = SystemManager.SelectObjectTag;
             CollectiontoolStripButton.ToolTipText = SystemManager.SelectObjectTag;
@@ -2426,7 +2419,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void PrePageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.PrePage, SystemManager.SelectObjectTag, _dataShower);
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.PrePage, SystemManager.SelectObjectTag, DataViewctl._dataShower);
             SetDataNav();
         }
         /// <summary>
@@ -2436,7 +2429,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void NextPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.NextPage, SystemManager.SelectObjectTag, _dataShower);
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.NextPage, SystemManager.SelectObjectTag, DataViewctl._dataShower);
             SetDataNav();
         }
         /// <summary>
@@ -2446,7 +2439,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void FirstPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.FirstPage, SystemManager.SelectObjectTag, _dataShower);
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.FirstPage, SystemManager.SelectObjectTag, DataViewctl._dataShower);
             SetDataNav();
         }
         /// <summary>
@@ -2456,7 +2449,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void LastPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.LastPage, SystemManager.SelectObjectTag, _dataShower);
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.LastPage, SystemManager.SelectObjectTag, DataViewctl._dataShower);
             SetDataNav();
         }
         /// <summary>
@@ -2477,13 +2470,12 @@ namespace MagicMongoDBTool
         {
             DataViewctl.trvData.CollapseAll();
         }
-
         private void QueryDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SystemManager.OpenForm(new frmQuery());
             this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
             //重新展示数据
-            MongoDBHelper.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
+            MongoDBHelper.FillDataToControl(SystemManager.SelectObjectTag, DataViewctl._dataShower);
             SetDataNav();
         }
         #region"聚合"

@@ -16,9 +16,18 @@ namespace MagicMongoDBTool.UserController
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Control for show Data
+        /// </summary>
+        public List<Control> _dataShower = new List<Control>();
 
         private void ctlDataView_Load(object sender, EventArgs e)
         {
+            _dataShower.Add(lstData);
+            _dataShower.Add(trvData);
+            _dataShower.Add(txtData);
+
+
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 //数据显示区
@@ -27,6 +36,22 @@ namespace MagicMongoDBTool.UserController
                 this.tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
                 this.lnkFile.Text = SystemManager.mStringResource.GetText(StringResource.TextType.OpenInNativeEditor);
             }
+        }
+        public void clear() {
+            lstData.Clear();
+            txtData.Text = String.Empty;
+            trvData.Nodes.Clear();
+            lstData.ContextMenuStrip = null;
+            trvData.ContextMenuStrip = null;
+        }
+        /// <summary>
+        /// Open In Native Editor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lnkFile_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MongoDBHelper.SaveAndOpenStringAsFile(txtData.Text);
         }
     }
 }

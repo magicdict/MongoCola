@@ -116,7 +116,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="cmd">命令对象</param>
         /// <returns></returns>
-        public static void ExecuteMongoCommandAtCurrentObj(MongoCommand cmd)
+        public static void ExecuteMongoCommand(MongoCommand cmd)
         {
             var Command = new CommandDocument { { cmd.CommandString, 1 } };
             List<CommandResult> ResultCommandList = new List<CommandResult>();
