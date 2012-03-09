@@ -36,6 +36,7 @@ namespace MagicMongoDBTool
                 RefreshToolStripMenuItem_Click(null, null);
             }
             this.Text += SystemManager.Version;
+            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (SystemManager.MONO_MODE)
             {
                 this.Text += " MONO";
@@ -348,7 +349,10 @@ namespace MagicMongoDBTool
                                 this.slaveResyncToolStripMenuItem.Enabled = true;
                             }
                         }
+                        
                         this.ShutDownToolStripMenuItem.Enabled = true;
+                        this.ShutDownToolStripButton.Enabled = true;
+
                         this.SvrPropertyToolStripMenuItem.Enabled = true;
 
                         if (SystemManager.GetSelectedSvrProByName().ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr)
@@ -837,6 +841,8 @@ namespace MagicMongoDBTool
             this.SvrPropertyToolStripMenuItem.Enabled = false;
             this.slaveResyncToolStripMenuItem.Enabled = false;
             this.ShutDownToolStripMenuItem.Enabled = false;
+            this.ShutDownToolStripButton.Enabled = false;
+
             this.DisconnectToolStripMenuItem.Enabled = false;
 
             //管理-数据库

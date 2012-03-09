@@ -47,7 +47,7 @@ namespace MagicMongoDBTool
             chkSlaveOk.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MasterSlave);
             chkSafeMode.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SafeMode);
             lblTimeOut.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_TimeOut);
-
+            lblAttentionPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
             grpServerRole.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ShardingSvrType);
             radArbiters.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ServerType_Arbitration);
             radConfigSrv.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ServerType_Configuration);

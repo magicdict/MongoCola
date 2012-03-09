@@ -19,6 +19,9 @@ namespace MagicMongoDBTool.Module
                 case IconType.No:
                     micon = MagicMongoDBTool.Properties.Resources.DELETE;
                     break;
+                case IconType.UserGuide:
+                    micon = MagicMongoDBTool.Properties.Resources.books;
+                    break;
             }
             return micon;
         }
@@ -32,6 +35,9 @@ namespace MagicMongoDBTool.Module
                     break;
                 case ImageType.AccessDB:
                     micon = MagicMongoDBTool.Properties.Resources.AccessDB;
+                    break;
+                case ImageType.ShutDown:
+                    micon = MagicMongoDBTool.Properties.Resources.ShutDown;
                     break;
                 case ImageType.Option:
                     micon = MagicMongoDBTool.Properties.Resources.Option;
@@ -82,8 +88,6 @@ namespace MagicMongoDBTool.Module
                 case ImageType.Smile:
                     micon = MagicMongoDBTool.Properties.Resources.Smile;
                     break;
-
-
                 default:
                     break;
             }
@@ -93,7 +97,8 @@ namespace MagicMongoDBTool.Module
     public enum IconType
     {
         Yes,
-        No
+        No,
+        UserGuide
     }
     public enum ImageType
     {
@@ -102,16 +107,16 @@ namespace MagicMongoDBTool.Module
         /// Access数据库
         /// </summary>
         AccessDB,
-        /// <summary>
-        /// 选项
-        /// </summary>
+        ShutDown,
         NextPage,
         PrePage,
         FirstPage,
         LastPage,
         Query,
         Filter,
-
+        /// <summary>
+        /// 选项
+        /// </summary>
         Option,
         /// <summary>
         /// 刷新

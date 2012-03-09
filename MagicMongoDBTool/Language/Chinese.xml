@@ -120,7 +120,7 @@
 
   <AddConnection_ConnectionString>直接使用ConnectionString</AddConnection_ConnectionString>
   <AddConnection_Attention_Description>优先度为0的服务器不可能成为Master服务器</AddConnection_Attention_Description>
-  <AddConnection_Attention2_Description>密码将于明文形式保存在Config文件中</AddConnection_Attention2_Description>
+  <AddConnection_Password_Description>密码将于明文形式保存在Config文件中</AddConnection_Password_Description>
  
   <!--frmCollectionIndex-->
   <CollectionIndex_Title>索引管理器</CollectionIndex_Title>

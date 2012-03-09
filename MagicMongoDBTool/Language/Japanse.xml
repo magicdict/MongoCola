@@ -119,7 +119,7 @@
 
   <AddConnection_ConnectionString>ConnectionString</AddConnection_ConnectionString>
   <AddConnection_Attention_Description>優先度は0のザーバーはマスターザーバーになりません</AddConnection_Attention_Description>
-  <AddConnection_Attention2_Description>パースワードは暗号化しないて、設定ファイルに格納します</AddConnection_Attention2_Description>
+  <AddConnection_Password_Description>パースワードは暗号化しないて、設定ファイルに格納します</AddConnection_Password_Description>
 
   <!--frmCollectionIndex-->
   <CollectionIndex_Title>インデックス管理</CollectionIndex_Title>

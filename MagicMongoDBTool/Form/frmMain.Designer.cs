@@ -1159,6 +1159,7 @@ namespace MagicMongoDBTool
         /// </summary>
         private void SetMenuImage()
         {
+            this.ShutDownToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.ShutDown);
             this.PrePageToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.PrePage);
             this.NextPageToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.NextPage);
             this.FirstPageToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.FirstPage);
@@ -1179,7 +1180,7 @@ namespace MagicMongoDBTool
             this.OptionsToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Option);
 
             this.ThanksToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile);
-
+            this.UserGuideToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(MagicMongoDBTool.Module.IconType.UserGuide).ToBitmap();
         }
         /// <summary>
         /// 初始化Toolbar
@@ -1197,8 +1198,9 @@ namespace MagicMongoDBTool
             DataNaviToolStripLabel = new ToolStripLabel();
             RefreshToolStripButton = this.RefreshToolStripMenuItem.CloneFromMenuItem();
             ImportDataFromAccessToolStripButton = this.ImportDataFromAccessToolStripMenuItem.CloneFromMenuItem();
+            ShutDownToolStripButton = this.ShutDownToolStripMenuItem.CloneFromMenuItem();
             OptionToolStripButton = this.OptionsToolStripMenuItem.CloneFromMenuItem();
-
+            UserGuideToolStripButton = this.UserGuideToolStripMenuItem.CloneFromMenuItem();
 #if MONO
             FirstPageToolStripButton.Click += new System.EventHandler(FirstPageToolStripMenuItem_Click);
             PrePageToolStripButton.Click += new System.EventHandler(PrePageToolStripMenuItem_Click);
@@ -1210,6 +1212,7 @@ namespace MagicMongoDBTool
             ImportDataFromAccessToolStripButton.Click += new System.EventHandler(ImportDataFromAccessToolStripMenuItem_Click);
             OptionToolStripButton.Click += new System.EventHandler(OptionToolStripMenuItem_Click);
 #endif
+            //View ToolTip
             this.ViewtoolStrip.Items.Add(FirstPageToolStripButton);
             this.ViewtoolStrip.Items.Add(PrePageToolStripButton);
             this.ViewtoolStrip.Items.Add(NextPageToolStripButton);
@@ -1218,11 +1221,15 @@ namespace MagicMongoDBTool
             this.ViewtoolStrip.Items.Add(DataNaviToolStripLabel);
             this.ViewtoolStrip.Items.Add(DataFilterToolStripButton);
 
+            //Main ToolTip
             this.toolStripMain.Items.Add(RefreshToolStripButton);
+            this.toolStripMain.Items.Add(ShutDownToolStripButton);
 #if !MONO
             this.toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
 #endif
             this.toolStripMain.Items.Add(OptionToolStripButton);
+            this.toolStripMain.Items.Add(UserGuideToolStripButton);
+
         }
         /// <summary>
         /// 设定工具栏
@@ -1301,6 +1308,9 @@ namespace MagicMongoDBTool
         private ToolStripButton ImportDataFromAccessToolStripButton;
         private ToolStripButton RefreshToolStripButton;
         private ToolStripButton OptionToolStripButton;
+        private ToolStripButton UserGuideToolStripButton;
+        private ToolStripButton ShutDownToolStripButton;
+
 
         private ToolStripButton NextPageToolStripButton;
         private ToolStripButton PrePageToolStripButton;

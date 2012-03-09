@@ -444,7 +444,7 @@ namespace MagicMongoDBTool
             // 
             // numTimeOut
             // 
-            this.numTimeOut.Location = new System.Drawing.Point(380, 91);
+            this.numTimeOut.Location = new System.Drawing.Point(379, 87);
             this.numTimeOut.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -463,7 +463,7 @@ namespace MagicMongoDBTool
             // lblTimeOut
             // 
             this.lblTimeOut.AutoSize = true;
-            this.lblTimeOut.Location = new System.Drawing.Point(244, 97);
+            this.lblTimeOut.Location = new System.Drawing.Point(244, 93);
             this.lblTimeOut.Name = "lblTimeOut";
             this.lblTimeOut.Size = new System.Drawing.Size(120, 15);
             this.lblTimeOut.TabIndex = 14;
