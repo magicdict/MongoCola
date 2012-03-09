@@ -131,6 +131,7 @@ namespace MagicMongoDBTool
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.DataViewctl = new MagicMongoDBTool.UserController.ctlDataView();
             this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
@@ -140,7 +141,6 @@ namespace MagicMongoDBTool
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CollectiontoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.DataViewctl = new MagicMongoDBTool.UserController.ctlDataView();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -612,7 +612,6 @@ namespace MagicMongoDBTool
             this.DelSelectRecordToolStripMenuItem.Name = "DelSelectRecordToolStripMenuItem";
             this.DelSelectRecordToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.DelSelectRecordToolStripMenuItem.Text = "Delect Selected Records";
-            this.DelSelectRecordToolStripMenuItem.Click += new System.EventHandler(this.DelSelectRecordToolStripMenuItem_Click);
             // 
             // CompactToolStripMenuItem
             // 
@@ -641,21 +640,18 @@ namespace MagicMongoDBTool
             this.AddElementToolStripMenuItem.Name = "AddElementToolStripMenuItem";
             this.AddElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.AddElementToolStripMenuItem.Text = "Add Element";
-            this.AddElementToolStripMenuItem.Click += new System.EventHandler(this.AddElementToolStripMenuItem_Click);
             // 
             // DropElementToolStripMenuItem
             // 
             this.DropElementToolStripMenuItem.Name = "DropElementToolStripMenuItem";
             this.DropElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.DropElementToolStripMenuItem.Text = "Drop Element";
-            this.DropElementToolStripMenuItem.Click += new System.EventHandler(this.DropElementToolStripMenuItem_Click);
             // 
             // ModifyElementToolStripMenuItem
             // 
             this.ModifyElementToolStripMenuItem.Name = "ModifyElementToolStripMenuItem";
             this.ModifyElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ModifyElementToolStripMenuItem.Text = "Modify Element";
-            this.ModifyElementToolStripMenuItem.Click += new System.EventHandler(this.ModifyElementToolStripMenuItem_Click);
             // 
             // AddDocumentToolStripMenuItem
             // 
@@ -675,7 +671,6 @@ namespace MagicMongoDBTool
             this.CopyElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.CopyElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.CopyElementToolStripMenuItem.Text = "Copy Element";
-            this.CopyElementToolStripMenuItem.Click += new System.EventHandler(this.CopyElementToolStripMenuItem_Click);
             // 
             // CutElementToolStripMenuItem
             // 
@@ -683,7 +678,6 @@ namespace MagicMongoDBTool
             this.CutElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.CutElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.CutElementToolStripMenuItem.Text = "Cut Element";
-            this.CutElementToolStripMenuItem.Click += new System.EventHandler(this.CutElementToolStripMenuItem_Click);
             // 
             // PasteElementToolStripMenuItem
             // 
@@ -691,7 +685,6 @@ namespace MagicMongoDBTool
             this.PasteElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.PasteElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.PasteElementToolStripMenuItem.Text = "Paste Element";
-            this.PasteElementToolStripMenuItem.Click += new System.EventHandler(this.PasteElementToolStripMenuItem_Click);
             // 
             // GridFsToolStripMenuItem
             // 
@@ -931,9 +924,17 @@ namespace MagicMongoDBTool
             this.panel3.Size = new System.Drawing.Size(886, 606);
             this.panel3.TabIndex = 2;
             // 
+            // DataViewctl
+            // 
+            this.DataViewctl.Location = new System.Drawing.Point(36, 51);
+            this.DataViewctl.Margin = new System.Windows.Forms.Padding(4);
+            this.DataViewctl.Name = "DataViewctl";
+            this.DataViewctl.Size = new System.Drawing.Size(354, 291);
+            this.DataViewctl.TabIndex = 3;
+            // 
             // ServerStatusCtl
             // 
-            this.ServerStatusCtl.Location = new System.Drawing.Point(731, 51);
+            this.ServerStatusCtl.Location = new System.Drawing.Point(627, 29);
             this.ServerStatusCtl.Margin = new System.Windows.Forms.Padding(4);
             this.ServerStatusCtl.Name = "ServerStatusCtl";
             this.ServerStatusCtl.Size = new System.Drawing.Size(128, 313);
@@ -941,7 +942,7 @@ namespace MagicMongoDBTool
             // 
             // txtCommand
             // 
-            this.txtCommand.Location = new System.Drawing.Point(624, 51);
+            this.txtCommand.Location = new System.Drawing.Point(445, 29);
             this.txtCommand.Multiline = true;
             this.txtCommand.Name = "txtCommand";
             this.txtCommand.Size = new System.Drawing.Size(100, 313);
@@ -1016,14 +1017,6 @@ namespace MagicMongoDBTool
             this.splitter1.Size = new System.Drawing.Size(3, 631);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
-            // 
-            // DataViewctl
-            // 
-            this.DataViewctl.Location = new System.Drawing.Point(139, 143);
-            this.DataViewctl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.DataViewctl.Name = "DataViewctl";
-            this.DataViewctl.Size = new System.Drawing.Size(354, 291);
-            this.DataViewctl.TabIndex = 3;
             // 
             // frmMain
             // 

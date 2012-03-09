@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tabDataShower = new System.Windows.Forms.TabControl();
             this.tabTreeView = new System.Windows.Forms.TabPage();
             this.trvData = new System.Windows.Forms.TreeView();
@@ -36,6 +37,7 @@
             this.tabTextView = new System.Windows.Forms.TabPage();
             this.lnkFile = new System.Windows.Forms.LinkLabel();
             this.txtData = new System.Windows.Forms.TextBox();
+            this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
@@ -134,6 +136,11 @@
             this.txtData.Size = new System.Drawing.Size(674, 446);
             this.txtData.TabIndex = 0;
             // 
+            // contextMenuStripMain
+            // 
+            this.contextMenuStripMain.Name = "contextMenuStripMain";
+            this.contextMenuStripMain.Size = new System.Drawing.Size(153, 26);
+            // 
             // ctlDataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,5 +168,6 @@
         public System.Windows.Forms.TabPage tabTextView;
         public System.Windows.Forms.LinkLabel lnkFile;
         public System.Windows.Forms.TextBox txtData;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
     }
 }
