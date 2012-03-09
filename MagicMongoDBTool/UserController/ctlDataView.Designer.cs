@@ -1,4 +1,5 @@
-﻿namespace MagicMongoDBTool.UserController
+﻿using System.Windows.Forms;
+namespace MagicMongoDBTool.UserController
 {
     partial class ctlDataView
     {
@@ -38,6 +39,7 @@
             this.lnkFile = new System.Windows.Forms.LinkLabel();
             this.txtData = new System.Windows.Forms.TextBox();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
@@ -50,10 +52,10 @@
             this.tabDataShower.Controls.Add(this.tabTableView);
             this.tabDataShower.Controls.Add(this.tabTextView);
             this.tabDataShower.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabDataShower.Location = new System.Drawing.Point(0, 0);
+            this.tabDataShower.Location = new System.Drawing.Point(0, 25);
             this.tabDataShower.Name = "tabDataShower";
             this.tabDataShower.SelectedIndex = 0;
-            this.tabDataShower.Size = new System.Drawing.Size(688, 478);
+            this.tabDataShower.Size = new System.Drawing.Size(688, 453);
             this.tabDataShower.TabIndex = 1;
             // 
             // tabTreeView
@@ -64,7 +66,7 @@
             this.tabTreeView.Location = new System.Drawing.Point(4, 22);
             this.tabTreeView.Name = "tabTreeView";
             this.tabTreeView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTreeView.Size = new System.Drawing.Size(680, 452);
+            this.tabTreeView.Size = new System.Drawing.Size(680, 427);
             this.tabTreeView.TabIndex = 0;
             this.tabTreeView.Text = "TreeView";
             // 
@@ -73,7 +75,7 @@
             this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvData.Location = new System.Drawing.Point(3, 3);
             this.trvData.Name = "trvData";
-            this.trvData.Size = new System.Drawing.Size(674, 446);
+            this.trvData.Size = new System.Drawing.Size(674, 421);
             this.trvData.TabIndex = 0;
             // 
             // tabTableView
@@ -139,13 +141,22 @@
             // contextMenuStripMain
             // 
             this.contextMenuStripMain.Name = "contextMenuStripMain";
-            this.contextMenuStripMain.Size = new System.Drawing.Size(153, 26);
+            this.contextMenuStripMain.Size = new System.Drawing.Size(61, 4);
+            // 
+            // ViewtoolStrip
+            // 
+            this.ViewtoolStrip.Location = new System.Drawing.Point(0, 0);
+            this.ViewtoolStrip.Name = "ViewtoolStrip";
+            this.ViewtoolStrip.Size = new System.Drawing.Size(688, 25);
+            this.ViewtoolStrip.TabIndex = 2;
+            this.ViewtoolStrip.Text = "toolStrip1";
             // 
             // ctlDataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabDataShower);
+            this.Controls.Add(this.ViewtoolStrip);
             this.Name = "ctlDataView";
             this.Size = new System.Drawing.Size(688, 478);
             this.Load += new System.EventHandler(this.ctlDataView_Load);
@@ -155,10 +166,19 @@
             this.tabTextView.ResumeLayout(false);
             this.tabTextView.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        public ToolStripButton NextPageToolStripButton;
+        public ToolStripButton PrePageToolStripButton;
+        public ToolStripButton FirstPageToolStripButton;
+        public ToolStripButton LastPageToolStripButton;
+        public ToolStripButton QueryDataToolStripButton;
+        public ToolStripButton DataFilterToolStripButton;
+        public ToolStripLabel DataNaviToolStripLabel;
 
         public System.Windows.Forms.TabControl tabDataShower;
         public System.Windows.Forms.TabPage tabTreeView;
@@ -168,6 +188,7 @@
         public System.Windows.Forms.TabPage tabTextView;
         public System.Windows.Forms.LinkLabel lnkFile;
         public System.Windows.Forms.TextBox txtData;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
+        public System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
+        public ToolStrip ViewtoolStrip;
     }
 }

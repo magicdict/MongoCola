@@ -34,6 +34,15 @@ namespace MagicMongoDBTool.UserController
             _dataShower.Add(lstData);
             _dataShower.Add(trvData);
             _dataShower.Add(txtData);
+            FirstPageToolStripButton = this.FirstPageToolStripMenuItem.CloneFromMenuItem();
+            PrePageToolStripButton = this.PrePageToolStripMenuItem.CloneFromMenuItem();
+            NextPageToolStripButton = this.NextPageToolStripMenuItem.CloneFromMenuItem();
+            LastPageToolStripButton = this.LastPageToolStripMenuItem.CloneFromMenuItem();
+            QueryDataToolStripButton = this.QueryDataToolStripMenuItem.CloneFromMenuItem();
+            DataFilterToolStripButton = this.DataFilterToolStripMenuItem.CloneFromMenuItem();
+            DataNaviToolStripLabel = new ToolStripLabel();
+
+
 
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
             this.lstData.MouseDoubleClick += new MouseEventHandler(lstData_MouseDoubleClick);
@@ -52,6 +61,14 @@ namespace MagicMongoDBTool.UserController
                 this.tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
                 this.lnkFile.Text = SystemManager.mStringResource.GetText(StringResource.TextType.OpenInNativeEditor);
             }
+            //View ToolTip
+            this.ViewtoolStrip.Items.Add(FirstPageToolStripButton);
+            this.ViewtoolStrip.Items.Add(PrePageToolStripButton);
+            this.ViewtoolStrip.Items.Add(NextPageToolStripButton);
+            this.ViewtoolStrip.Items.Add(LastPageToolStripButton);
+            this.ViewtoolStrip.Items.Add(QueryDataToolStripButton);
+            this.ViewtoolStrip.Items.Add(DataNaviToolStripLabel);
+            this.ViewtoolStrip.Items.Add(DataFilterToolStripButton);
         }
         public void clear()
         {
@@ -91,6 +108,14 @@ namespace MagicMongoDBTool.UserController
         public ToolStripMenuItem CopyElementToolStripMenuItem;
         public ToolStripMenuItem CutElementToolStripMenuItem;
         public ToolStripMenuItem PasteElementToolStripMenuItem;
+
+
+        public ToolStripMenuItem FirstPageToolStripMenuItem;
+        public ToolStripMenuItem PrePageToolStripMenuItem;
+        public ToolStripMenuItem NextPageToolStripMenuItem;
+        public ToolStripMenuItem LastPageToolStripMenuItem;
+        public ToolStripMenuItem QueryDataToolStripMenuItem;
+        public ToolStripMenuItem DataFilterToolStripMenuItem;
 
         #region"数据展示区操作"
         /// <summary>
@@ -742,8 +767,6 @@ namespace MagicMongoDBTool.UserController
         /// <summary>
         /// Upload File
         /// </summary>
-        /// 
-        /// 
         public void UploadFile()
         {
             OpenFileDialog upfile = new OpenFileDialog();
@@ -756,8 +779,6 @@ namespace MagicMongoDBTool.UserController
         /// <summary>
         /// DownLoad File
         /// </summary>
-        /// 
-        /// 
         public void DownloadFile()
         {
             SaveFileDialog downfile = new SaveFileDialog();
