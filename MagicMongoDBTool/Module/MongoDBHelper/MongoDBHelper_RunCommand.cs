@@ -73,6 +73,7 @@ namespace MagicMongoDBTool.Module
         //查看命令方法：http://localhost:29018/_commands
         //假设28018为端口号，同时使用 --rest 选项
         //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
+
         /// <summary>
         /// MONGO命令
         /// </summary>
@@ -97,6 +98,9 @@ namespace MagicMongoDBTool.Module
                 RunLevel = _RunLevel;
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public static EventHandler<RunCommandEventArgs> RunCommandComplete;
         /// <summary>
         /// Command Complete
@@ -106,86 +110,46 @@ namespace MagicMongoDBTool.Module
         {
             e.Raise(null, ref RunCommandComplete);
         }
+
         /// <summary>
         /// 当前对象的MONGO命令
         /// </summary>
         /// <param name="cmd">命令对象</param>
         /// <returns></returns>
-        public static CommandResult RunMongoCommandAtCurrentObj(MongoCommand cmd)
+        public static void ExecuteMongoCommandAtCurrentObj(MongoCommand cmd)
         {
             var Command = new CommandDocument { { cmd.CommandString, 1 } };
+            List<CommandResult> ResultCommandList = new List<CommandResult>();
+
             CommandResult rtn = new CommandResult();
-            switch (cmd.RunLevel)
-            {
-                case PathLv.CollectionLV:
-                    rtn = ExecuteMongoColCommand(cmd.CommandString, SystemManager.GetCurrentCollection());
-                    break;
-                case PathLv.DatabaseLV:
-                    rtn =  ExecuteMongoDBCommand(Command, SystemManager.GetCurrentDataBase());
-                    break;
-                case PathLv.ServerLV:
-                    rtn =  ExecuteMongoSvrCommand(Command, SystemManager.GetCurrentService());
-                    break;
-                default:
-                    break;
-            }
-            return rtn;
-        }
-        /// <summary>
-        /// 在指定服务器上执行指定命令
-        /// </summary>
-        /// <param name="cmd"></param>
-        /// <param name="mongosrv"></param>
-        /// <returns></returns>
-        public static CommandResult RunMongoCommandAtMongoSrv(MongoCommand cmd, MongoServer mongosrv)
-        {
-            var Command = new CommandDocument { { cmd.CommandString, 1 } };
-            if (cmd.RunLevel == PathLv.DatabaseLV)
-            {
-                throw new Exception();
-            }
-            else
-            {
-                return ExecuteMongoSvrCommand(Command, mongosrv);
-            }
-        }
-        /// <summary>
-        /// 在指定数据库执行指定命令
-        /// </summary>
-        /// <param name="cmd"></param>
-        /// <param name="mongoDB"></param>
-        /// <returns></returns>
-        public static CommandResult RunMongoCommandAtMongoDB(MongoCommand cmd, MongoDatabase mongoDB)
-        {
-            var Command = new CommandDocument { { cmd.CommandString, 1 } };
-            if (cmd.RunLevel == PathLv.DatabaseLV)
-            {
-                return ExecuteMongoDBCommand(Command, mongoDB);
-            }
-            else
-            {
-                throw new Exception();
-            }
-        }
-        /// <summary>
-        /// 执行数据库命令
-        /// </summary>
-        /// <param name="mongoCmd"></param>
-        /// <param name="mongoDB"></param>
-        /// <returns></returns>
-        public static CommandResult ExecuteMongoDBCommand(String mongoCmd, MongoDatabase mongoDB)
-        {
-            CommandResult rtn;
             try
             {
-                rtn = mongoDB.RunCommand(mongoCmd);
+                switch (cmd.RunLevel)
+                {
+                    case PathLv.CollectionLV:
+                        rtn = ExecuteMongoColCommand(cmd.CommandString, SystemManager.GetCurrentCollection());
+                        break;
+                    case PathLv.DatabaseLV:
+                        rtn = ExecuteMongoDBCommand(Command, SystemManager.GetCurrentDataBase());
+                        break;
+                    case PathLv.ServerLV:
+                        rtn = ExecuteMongoSvrCommand(Command, SystemManager.GetCurrentService());
+                        break;
+                    default:
+                        break;
+                }
+                ResultCommandList.Add(rtn);
+                MyMessageBox.ShowMessage(cmd.CommandString, cmd.CommandString + " Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
             }
-            catch (MongoCommandException ex)
+            catch (TimeoutException ex) {
+                MyMessageBox.ShowMessage(cmd.CommandString, "Time Out", ex.ToString(),true);
+            }
+            catch (Exception ex)
             {
-                rtn = ex.CommandResult;
+                MyMessageBox.ShowMessage(cmd.CommandString, "Exception", ex.ToString(), true);
             }
-            return rtn;
         }
+
         /// <summary>
         /// 执行数据集命令
         /// </summary>
@@ -213,6 +177,26 @@ namespace MagicMongoDBTool.Module
             OnCommandRunComplete(e);
             return rtn;
         }
+
+        /// <summary>
+        /// 执行数据库命令
+        /// </summary>
+        /// <param name="mongoCmd"></param>
+        /// <param name="mongoDB"></param>
+        /// <returns></returns>
+        public static CommandResult ExecuteMongoDBCommand(String mongoCmd, MongoDatabase mongoDB)
+        {
+            CommandResult rtn;
+            try
+            {
+                rtn = mongoDB.RunCommand(mongoCmd);
+            }
+            catch (MongoCommandException ex)
+            {
+                rtn = ex.CommandResult;
+            }
+            return rtn;
+        }
         /// <summary>
         /// 执行数据库命令
         /// </summary>
@@ -237,6 +221,26 @@ namespace MagicMongoDBTool.Module
             OnCommandRunComplete(e);
             return rtn;
         }
+        /// <summary>
+        /// 在指定数据库执行指定命令
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <param name="mongoDB"></param>
+        /// <returns></returns>
+        public static CommandResult ExecuteMongoDBCommand(MongoCommand cmd, MongoDatabase mongoDB)
+        {
+            var Command = new CommandDocument { { cmd.CommandString, 1 } };
+            if (cmd.RunLevel == PathLv.DatabaseLV)
+            {
+                return ExecuteMongoDBCommand(Command, mongoDB);
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+
+
         /// <summary>
         /// 执行MongoCommand
         /// </summary>
@@ -285,7 +289,24 @@ namespace MagicMongoDBTool.Module
             OnCommandRunComplete(e);
             return rtn;
         }
-
+        /// <summary>
+        /// 在指定服务器上执行指定命令
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <param name="mongosrv"></param>
+        /// <returns></returns>
+        public static CommandResult ExecuteMongoSvrCommand(MongoCommand cmd, MongoServer mongosrv)
+        {
+            var Command = new CommandDocument { { cmd.CommandString, 1 } };
+            if (cmd.RunLevel == PathLv.DatabaseLV)
+            {
+                throw new Exception();
+            }
+            else
+            {
+                return ExecuteMongoSvrCommand(Command, mongosrv);
+            }
+        }
 
     }
 }

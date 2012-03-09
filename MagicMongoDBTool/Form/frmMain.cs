@@ -1676,9 +1676,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void slaveResyncToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<CommandResult> ResultCommandList = new List<CommandResult>();
-            ResultCommandList.Add(MongoDBHelper.RunMongoCommandAtCurrentObj(MongoDBHelper.resync_Command));
-            MyMessageBox.ShowMessage("resync", "resync Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
+            MongoDBHelper.ExecuteMongoCommandAtCurrentObj(MongoDBHelper.resync_Command);
         }
         /// <summary>
         /// Server Property
@@ -1837,9 +1835,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RepairDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<CommandResult> ResultCommandList = new List<CommandResult>();
-            ResultCommandList.Add(MongoDBHelper.RunMongoCommandAtCurrentObj(MongoDBHelper.Compact_Command));
-            MyMessageBox.ShowMessage("RepairDataBase", "RepairDataBase Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
+            MongoDBHelper.ExecuteMongoCommandAtCurrentObj(MongoDBHelper.repairDatabase_Command);
         }
 
         #endregion
@@ -1994,10 +1990,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CompactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<CommandResult> ResultCommandList = new List<CommandResult>();
-            ResultCommandList.Add(MongoDBHelper.RunMongoCommandAtCurrentObj(MongoDBHelper.Compact_Command));
-            MyMessageBox.ShowMessage("Compact", "Compact Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
-
+            MongoDBHelper.ExecuteMongoCommandAtCurrentObj(MongoDBHelper.Compact_Command);
         }
         /// <summary>
         /// Refresh Data

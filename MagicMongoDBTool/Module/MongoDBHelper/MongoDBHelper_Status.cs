@@ -24,7 +24,7 @@ namespace MagicMongoDBTool.Module
                 {
                     MongoServer mongosvr = _mongoSrvLst[mongoSvrKey];
                     //flydreamer提供的代码
-                    BsonDocument cr = RunMongoCommandAtMongoSrv(serverStatus_Command, mongosvr).Response;
+                    BsonDocument cr = ExecuteMongoSvrCommand(serverStatus_Command, mongosvr).Response;
                     SrvDocList.Add(cr);
                 }
                 catch (Exception)
