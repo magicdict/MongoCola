@@ -23,7 +23,7 @@ namespace MagicMongoDBTool.Module
             Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));
 #if !MONO
             //悲催MONO不支持
-            if (_List[0] != null)
+            if (_List != null && _List[0] != null)
             {
                 cloneMenuItem.Click += new EventHandler(
                         (x, y) => { _List[0].DynamicInvoke(x, y); }
@@ -55,7 +55,7 @@ namespace MagicMongoDBTool.Module
             Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));
 #if !MONO
             //悲催MONO不支持
-            if (_List[0] != null)
+            if (_List != null && _List[0] != null)
             {
                 cloneButton.Click += new EventHandler(
                         (x, y) => { _List[0].DynamicInvoke(x, y); }

@@ -142,12 +142,12 @@ namespace MagicMongoDBTool
             this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
+            this.RefreshViewtoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.SvrStatustoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ShellCommandtoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CollectiontoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.RefreshViewtoolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.tabDataShower.SuspendLayout();
@@ -972,9 +972,9 @@ namespace MagicMongoDBTool
             // 
             // lnkFile
             // 
+            this.lnkFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lnkFile.AutoSize = true;
-            this.lnkFile.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lnkFile.Location = new System.Drawing.Point(470, 3);
+            this.lnkFile.Location = new System.Drawing.Point(423, 6);
             this.lnkFile.Name = "lnkFile";
             this.lnkFile.Size = new System.Drawing.Size(134, 16);
             this.lnkFile.TabIndex = 1;
@@ -1064,6 +1064,15 @@ namespace MagicMongoDBTool
             this.ViewtoolStrip.TabIndex = 1;
             this.ViewtoolStrip.Text = "toolStrip1";
             // 
+            // RefreshViewtoolStripButton
+            // 
+            this.RefreshViewtoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.RefreshViewtoolStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Refresh;
+            this.RefreshViewtoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RefreshViewtoolStripButton.Name = "RefreshViewtoolStripButton";
+            this.RefreshViewtoolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.RefreshViewtoolStripButton.Click += new System.EventHandler(this.RefreshViewtoolStripButton_Click);
+            // 
             // SvrStatustoolStripButton
             // 
             this.SvrStatustoolStripButton.CheckOnClick = true;
@@ -1109,15 +1118,6 @@ namespace MagicMongoDBTool
             this.splitter1.Size = new System.Drawing.Size(3, 631);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
-            // 
-            // RefreshViewtoolStripButton
-            // 
-            this.RefreshViewtoolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.RefreshViewtoolStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Refresh;
-            this.RefreshViewtoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.RefreshViewtoolStripButton.Name = "RefreshViewtoolStripButton";
-            this.RefreshViewtoolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.RefreshViewtoolStripButton.Click += new System.EventHandler(this.RefreshViewtoolStripButton_Click);
             // 
             // frmMain
             // 

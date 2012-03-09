@@ -1,3 +1,5 @@
+*.userprefs
+*.resources
 *.pdf
 *.xls
 *.pidb
