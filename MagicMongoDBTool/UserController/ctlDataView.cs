@@ -40,8 +40,24 @@ namespace MagicMongoDBTool.UserController
             LastPageToolStripButton = this.LastPageToolStripMenuItem.CloneFromMenuItem();
             QueryDataToolStripButton = this.QueryDataToolStripMenuItem.CloneFromMenuItem();
             DataFilterToolStripButton = this.DataFilterToolStripMenuItem.CloneFromMenuItem();
-            DataNaviToolStripLabel = new ToolStripLabel();
+            
 
+            this.QueryDataToolStripButton.Enabled = false;
+            this.FirstPageToolStripButton.Enabled = false;
+            this.LastPageToolStripButton.Enabled = false;
+            this.NextPageToolStripButton.Enabled = false;
+            this.PrePageToolStripButton.Enabled = false;
+            this.DataFilterToolStripButton.Enabled = false;
+            this.DataFilterToolStripButton.Checked = false;
+
+            //this.FirstPageToolStripButton.Enabled = this.FirstPageToolStripMenuItem.Enabled;
+            //this.PrePageToolStripButton.Enabled = this.PrePageToolStripMenuItem.Enabled;
+            //this.NextPageToolStripButton.Enabled = this.NextPageToolStripMenuItem.Enabled;
+            //this.LastPageToolStripButton.Enabled = this.LastPageToolStripMenuItem.Enabled;
+            //this.QueryDataToolStripButton.Enabled = this.QueryDataToolStripMenuItem.Enabled;
+            //this.DataFilterToolStripButton.Enabled = this.DataFilterToolStripMenuItem.Enabled;
+            //this.DataFilterToolStripButton.Checked = this.DataFilterToolStripMenuItem.Checked;
+            //this.DataViewctl.DataNaviToolStripLabel.Text = String.Empty;
 
 
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);

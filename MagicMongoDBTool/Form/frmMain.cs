@@ -5,6 +5,7 @@ using MagicMongoDBTool.Module;
 using System.Text;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MagicMongoDBTool.UserController;
 
 namespace MagicMongoDBTool
 {
@@ -162,7 +163,8 @@ namespace MagicMongoDBTool
         /// Current Connection Config
         /// </summary>
         ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
-
+        private ctlDataView DataViewctl;
+        
         /// <summary>
         /// Load Form
         /// </summary>
@@ -170,6 +172,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void frmMain_Load(object sender, EventArgs e)
         {
+            this.DataViewctl = new UserController.ctlDataView();
 
             this.AddElementToolStripMenuItem.Click += new System.EventHandler(
                 (x, y) => { this.DataViewctl.AddElement(); }
@@ -212,32 +215,7 @@ namespace MagicMongoDBTool
 
 
 
-            this.DataViewctl.DataChanged += new EventHandler((x, y) => { RefreshData(); });
-
-
-            this.DataViewctl.UploadFileToolStripMenuItem = UploadFileToolStripMenuItem;
-            this.DataViewctl.DownloadFileToolStripMenuItem = DownloadFileToolStripMenuItem;
-            this.DataViewctl.OpenFileToolStripMenuItem = OpenFileToolStripMenuItem;
-            this.DataViewctl.DelFileToolStripMenuItem = DelFileToolStripMenuItem;
-
-            this.DataViewctl.RemoveUserFromAdminToolStripMenuItem = RemoveUserFromAdminToolStripMenuItem;
-            this.DataViewctl.RemoveUserToolStripMenuItem = RemoveUserToolStripMenuItem;
-            this.DataViewctl.DelSelectRecordToolStripMenuItem = DelSelectRecordToolStripMenuItem;
-
-            this.DataViewctl.AddElementToolStripMenuItem = AddElementToolStripMenuItem;
-            this.DataViewctl.DropElementToolStripMenuItem = DropElementToolStripMenuItem;
-            this.DataViewctl.ModifyElementToolStripMenuItem = ModifyElementToolStripMenuItem;
-            this.DataViewctl.CopyElementToolStripMenuItem = CopyElementToolStripMenuItem;
-            this.DataViewctl.CutElementToolStripMenuItem = CutElementToolStripMenuItem;
-            this.DataViewctl.PasteElementToolStripMenuItem = PasteElementToolStripMenuItem;
-
-
-            this.DataViewctl.FirstPageToolStripMenuItem = FirstPageToolStripMenuItem;
-            this.DataViewctl.PrePageToolStripMenuItem = PrePageToolStripMenuItem;
-            this.DataViewctl.NextPageToolStripMenuItem = NextPageToolStripMenuItem;
-            this.DataViewctl.LastPageToolStripMenuItem = LastPageToolStripMenuItem;
-            this.DataViewctl.QueryDataToolStripMenuItem = QueryDataToolStripMenuItem;
-            this.DataViewctl.DataFilterToolStripMenuItem = DataFilterToolStripMenuItem;
+ 
 
             this.trvsrvlst.NodeMouseClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseClick);
             this.trvsrvlst.KeyDown += new KeyEventHandler(trvsrvlst_KeyDown);
@@ -261,11 +239,11 @@ namespace MagicMongoDBTool
             this.txtCommand.Visible = false;
             this.DataViewctl.Visible = false;
             DisableAllOpr();
-            this.DataViewctl.DisableDataTreeOpr();
+            
             //Set Tool bar button enable 
             SetToolBarEnabled();
 
-            this.DataViewctl.DataNaviToolStripLabel.Text = String.Empty;
+            
             //Open ConnectionManagement Form
             SystemManager.OpenForm(new frmConnect());
             //Load Status
@@ -762,6 +740,37 @@ namespace MagicMongoDBTool
                             MongoDBHelper.IsUseFilter = false;
                             this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
                             SystemManager.CurrDataFilter.Clear();
+                            DataViewctl = new ctlDataView();
+
+                            this.DataViewctl.DataChanged += new EventHandler((x, y) => { RefreshData(); });
+
+                            this.DataViewctl.UploadFileToolStripMenuItem = UploadFileToolStripMenuItem;
+                            this.DataViewctl.DownloadFileToolStripMenuItem = DownloadFileToolStripMenuItem;
+                            this.DataViewctl.OpenFileToolStripMenuItem = OpenFileToolStripMenuItem;
+                            this.DataViewctl.DelFileToolStripMenuItem = DelFileToolStripMenuItem;
+
+                            this.DataViewctl.RemoveUserFromAdminToolStripMenuItem = RemoveUserFromAdminToolStripMenuItem;
+                            this.DataViewctl.RemoveUserToolStripMenuItem = RemoveUserToolStripMenuItem;
+                            this.DataViewctl.DelSelectRecordToolStripMenuItem = DelSelectRecordToolStripMenuItem;
+
+                            this.DataViewctl.AddElementToolStripMenuItem = AddElementToolStripMenuItem;
+                            this.DataViewctl.DropElementToolStripMenuItem = DropElementToolStripMenuItem;
+                            this.DataViewctl.ModifyElementToolStripMenuItem = ModifyElementToolStripMenuItem;
+                            this.DataViewctl.CopyElementToolStripMenuItem = CopyElementToolStripMenuItem;
+                            this.DataViewctl.CutElementToolStripMenuItem = CutElementToolStripMenuItem;
+                            this.DataViewctl.PasteElementToolStripMenuItem = PasteElementToolStripMenuItem;
+
+
+                            this.DataViewctl.FirstPageToolStripMenuItem = FirstPageToolStripMenuItem;
+                            this.DataViewctl.PrePageToolStripMenuItem = PrePageToolStripMenuItem;
+                            this.DataViewctl.NextPageToolStripMenuItem = NextPageToolStripMenuItem;
+                            this.DataViewctl.LastPageToolStripMenuItem = LastPageToolStripMenuItem;
+                            this.DataViewctl.QueryDataToolStripMenuItem = QueryDataToolStripMenuItem;
+                            this.DataViewctl.DataFilterToolStripMenuItem = DataFilterToolStripMenuItem;
+                            this.DataViewctl.DisableDataTreeOpr();
+
+                            panView.Controls.Add(DataViewctl);
+                            DataViewctl.Dock = DockStyle.Fill;
                             RefreshData();
                         }
                         break;
@@ -886,12 +895,6 @@ namespace MagicMongoDBTool
         private void DisableAllOpr()
         {
 
-            this.DataViewctl.QueryDataToolStripButton.Enabled = false;
-            this.DataViewctl.FirstPageToolStripButton.Enabled = false;
-            this.DataViewctl.LastPageToolStripButton.Enabled = false;
-            this.DataViewctl.NextPageToolStripButton.Enabled = false;
-            this.DataViewctl.PrePageToolStripButton.Enabled = false;
-
             //管理-服务器
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
             this.AddUserToAdminToolStripMenuItem.Enabled = false;
@@ -946,8 +949,6 @@ namespace MagicMongoDBTool
             this.CollapseAllDataToolStripMenuItem.Enabled = false;
             this.DataFilterToolStripMenuItem.Enabled = false;
             this.DataFilterToolStripMenuItem.Checked = false;
-            this.DataViewctl.DataFilterToolStripButton.Enabled = false;
-            this.DataViewctl.DataFilterToolStripButton.Checked = false;
             this.AggregationToolStripMenuItem.Enabled = false;
 
 
@@ -1083,8 +1084,7 @@ namespace MagicMongoDBTool
 
             currentViewStatus = ViewStatus.CommandShell;
         }
-
-        private void CollectiontoolStripButton_Click(object sender, EventArgs e)
+        private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.ServerStatusCtl.Visible = false;
             this.statusToolStripMenuItem.Checked = false;
@@ -1550,7 +1550,7 @@ namespace MagicMongoDBTool
             commandShellToolStripMenuItem.ToolTipText = SystemManager.SelectObjectTag;
             SetDataNav();
             DataViewctl.IsNeedRefresh = false;
-            CollectiontoolStripButton_Click(null, null);
+            collectionToolStripMenuItem_Click(null, null);
         }
         #endregion
 
@@ -1944,10 +1944,6 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
-
-
-
-
 
     }
 }

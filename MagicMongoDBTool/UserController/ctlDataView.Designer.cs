@@ -40,6 +40,7 @@ namespace MagicMongoDBTool.UserController
             this.txtData = new System.Windows.Forms.TextBox();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
+            this.DataNaviToolStripLabel = new ToolStripLabel();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();

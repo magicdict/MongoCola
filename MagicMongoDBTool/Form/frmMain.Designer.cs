@@ -135,16 +135,15 @@ namespace MagicMongoDBTool
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panView = new System.Windows.Forms.Panel();
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.DataViewctl = new UserController.ctlDataView();
-            this.ServerStatusCtl = new UserController.ctlServerStatus();
+            this.panView.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStripMain
@@ -796,32 +795,33 @@ namespace MagicMongoDBTool
             // statusToolStripMenuItem
             // 
             this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
-            this.statusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statusToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.statusToolStripMenuItem.Text = "Status";
             this.statusToolStripMenuItem.Click += new System.EventHandler(this.statusToolStripMenuItem_Click);
             // 
             // commandShellToolStripMenuItem
             // 
             this.commandShellToolStripMenuItem.Name = "commandShellToolStripMenuItem";
-            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.commandShellToolStripMenuItem.Text = "CommandShell";
             this.commandShellToolStripMenuItem.Click += new System.EventHandler(this.commandShellToolStripMenuItem_Click);
             // 
             // collectionToolStripMenuItem
             // 
             this.collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.collectionToolStripMenuItem.Text = "Collection";
+            this.collectionToolStripMenuItem.Click += new System.EventHandler(this.collectionToolStripMenuItem_Click);
             // 
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(140, 6);
             // 
             // refreshViewToolStripMenuItem
             // 
             this.refreshViewToolStripMenuItem.Name = "refreshViewToolStripMenuItem";
-            this.refreshViewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.refreshViewToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.refreshViewToolStripMenuItem.Text = "Refresh";
             this.refreshViewToolStripMenuItem.Click += new System.EventHandler(this.refreshViewToolStripMenuItem_Click);
             // 
@@ -944,21 +944,22 @@ namespace MagicMongoDBTool
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.panView);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(337, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(886, 631);
             this.panel2.TabIndex = 2;
             // 
-            // panel3
+            // panView
             // 
-            this.panel3.Controls.Add(this.txtCommand);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(886, 631);
-            this.panel3.TabIndex = 2;
+            this.panView.Controls.Add(this.ServerStatusCtl);
+            this.panView.Controls.Add(this.txtCommand);
+            this.panView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panView.Location = new System.Drawing.Point(0, 0);
+            this.panView.Name = "panView";
+            this.panView.Size = new System.Drawing.Size(886, 631);
+            this.panView.TabIndex = 2;
             // 
             // txtCommand
             // 
@@ -975,6 +976,14 @@ namespace MagicMongoDBTool
             this.splitter1.Size = new System.Drawing.Size(3, 631);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
+            // 
+            // ServerStatusCtl
+            // 
+            this.ServerStatusCtl.Location = new System.Drawing.Point(109, 109);
+            this.ServerStatusCtl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ServerStatusCtl.Name = "ServerStatusCtl";
+            this.ServerStatusCtl.Size = new System.Drawing.Size(120, 86);
+            this.ServerStatusCtl.TabIndex = 2;
             // 
             // frmMain
             // 
@@ -997,8 +1006,8 @@ namespace MagicMongoDBTool
             this.menuStripMain.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panView.ResumeLayout(false);
+            this.panView.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1070,13 +1079,6 @@ namespace MagicMongoDBTool
         /// </summary>
         private void SetToolBarEnabled()
         {
-            this.DataViewctl.FirstPageToolStripButton.Enabled = this.FirstPageToolStripMenuItem.Enabled;
-            this.DataViewctl.PrePageToolStripButton.Enabled = this.PrePageToolStripMenuItem.Enabled;
-            this.DataViewctl.NextPageToolStripButton.Enabled = this.NextPageToolStripMenuItem.Enabled;
-            this.DataViewctl.LastPageToolStripButton.Enabled = this.LastPageToolStripMenuItem.Enabled;
-            this.DataViewctl.QueryDataToolStripButton.Enabled = this.QueryDataToolStripMenuItem.Enabled;
-            this.DataViewctl.DataFilterToolStripButton.Enabled = this.DataFilterToolStripMenuItem.Enabled;
-            this.DataViewctl.DataFilterToolStripButton.Checked = this.DataFilterToolStripMenuItem.Checked;
 
             RefreshToolStripButton.Enabled = this.RefreshToolStripMenuItem.Enabled;
 #if !MONO
@@ -1191,15 +1193,15 @@ namespace MagicMongoDBTool
         private Splitter splitter1;
         private ToolStripMenuItem UserGuideToolStripMenuItem;
         private ToolStripMenuItem CompactToolStripMenuItem;
-        private Panel panel3;
+        private Panel panView;
         private TextBox txtCommand;
-        private UserController.ctlServerStatus ServerStatusCtl;
-        private UserController.ctlDataView DataViewctl;
+        
         private ToolStripMenuItem viewToolStripMenuItem;
         private ToolStripMenuItem statusToolStripMenuItem;
         private ToolStripMenuItem commandShellToolStripMenuItem;
         private ToolStripMenuItem collectionToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem13;
         private ToolStripMenuItem refreshViewToolStripMenuItem;
+        private UserController.ctlServerStatus ServerStatusCtl;
     }
 }
