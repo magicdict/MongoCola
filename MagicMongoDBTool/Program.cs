@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
-using System.IO;
 namespace MagicMongoDBTool
 {
     static class Program
@@ -38,9 +36,9 @@ namespace MagicMongoDBTool
             Application.Run(new frmMain());
 
             //delete tempfile directory when exit
-            if (Directory.Exists("TempFile"))
+            if (Directory.Exists(MongoDBHelper.TempFileFolder))
             {
-                Directory.Delete("TempFile",true);
+                Directory.Delete(MongoDBHelper.TempFileFolder, true);
             }
         }
     }

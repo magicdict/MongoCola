@@ -141,12 +141,12 @@ namespace MagicMongoDBTool.Module
                 ResultCommandList.Add(rtn);
                 MyMessageBox.ShowMessage(cmd.CommandString, cmd.CommandString + " Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
             }
-            catch (TimeoutException ex) {
-                MyMessageBox.ShowMessage(cmd.CommandString, "Time Out", ex.ToString(),true);
+            catch (System.IO.IOException ex) {
+                MyMessageBox.ShowMessage(cmd.CommandString, "IOException,Try to set Socket TimeOut more long at connection config", ex.ToString(), true);
             }
             catch (Exception ex)
             {
-                MyMessageBox.ShowMessage(cmd.CommandString, "Exception", ex.ToString(), true);
+                SystemManager.ExceptionDeal(ex, cmd.CommandString);
             }
         }
 

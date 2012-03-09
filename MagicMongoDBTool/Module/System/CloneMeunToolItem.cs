@@ -25,9 +25,16 @@ namespace MagicMongoDBTool.Module
             //悲催MONO不支持
             if (_List != null && _List[0] != null)
             {
-                cloneMenuItem.Click += new EventHandler(
-                        (x, y) => { _List[0].DynamicInvoke(x, y); }
-                );
+                try
+                {
+                    cloneMenuItem.Click += new EventHandler(
+                            (x, y) => { _List[0].DynamicInvoke(x, y); }
+                    );
+                }
+                catch (Exception ex)
+                {
+                    SystemManager.ExceptionDeal(ex);
+                }
             }
 #endif
             cloneMenuItem.Text = orgMenuItem.Text;
@@ -57,9 +64,16 @@ namespace MagicMongoDBTool.Module
             //悲催MONO不支持
             if (_List != null && _List[0] != null)
             {
-                cloneButton.Click += new EventHandler(
-                        (x, y) => { _List[0].DynamicInvoke(x, y); }
-                );
+                try
+                {
+                    cloneButton.Click += new EventHandler(
+                            (x, y) => { _List[0].DynamicInvoke(x, y); }
+                    );
+                }
+                catch (Exception ex)
+                {
+                    SystemManager.ExceptionDeal(ex);
+                }
             }
 #endif
             cloneButton.Image = orgMenuItem.Image;

@@ -8,11 +8,13 @@ This is the first release of MongoCola.
 ========================================================================
 Release History
 ========================================================================
-Ver 1.05 2012/04/2
+Ver 1.05 2012/03/10
 1.Change the Name of ClusterInfo to CurrentOperationInfo.
 2.Add Switch Auto Refresh Botton at Status form.
 3.Modify the way of get the total count of a collection,and the performance is up.Thanks to Shadower (cnblogs.com).
 4.Fixed Some bugs in GUI
+5.Modify repairDatabase from "compact" Command to "repairDatabase" Command.
+6.Catch TimeOut Exception When Run Command
 
 ========================================================================
 Ver 1.04 2012/03/07

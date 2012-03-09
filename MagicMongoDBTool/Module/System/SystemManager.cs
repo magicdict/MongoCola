@@ -166,6 +166,16 @@ namespace MagicMongoDBTool.Module
                 return false;
             }
         }
+        internal static void ExceptionDeal(Exception ex, String Title = "")
+        {
+            if (Title == String.Empty)
+            {
+                MyMessageBox.ShowMessage("Exception", "Exception", ex.ToString(), true);
+            }
+            else {
+                MyMessageBox.ShowMessage("Exception", Title, ex.ToString(), true);
+            }
+        }
         /// <summary>
         /// 初始化
         /// </summary>

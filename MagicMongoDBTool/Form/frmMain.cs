@@ -1717,7 +1717,7 @@ namespace MagicMongoDBTool
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    SystemManager.ExceptionDeal(ex);
                 }
                 trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
             }
