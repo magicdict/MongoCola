@@ -194,6 +194,25 @@ namespace MagicMongoDBTool
             this.DelSelectRecordToolStripMenuItem.Click += new System.EventHandler(
                 (x, y) => { this.DataViewctl.DelSelectRecord(); }
             );
+
+
+            this.UploadFileToolStripMenuItem.Click += new System.EventHandler(
+                (x, y) => { this.DataViewctl.UploadFile(); }
+            );
+            this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(
+                (x, y) => { this.DataViewctl.DownloadFile(); }
+            );
+
+            this.OpenFileToolStripMenuItem.Click += new System.EventHandler(
+                (x, y) => { this.DataViewctl.OpenFile(); }
+            );
+
+            this.DelFileToolStripMenuItem.Click += new System.EventHandler(
+                (x, y) => { this.DataViewctl.DelFile(); }
+            );
+
+
+
             this.DataViewctl.DataChanged += new EventHandler((x, y) => { RefreshData(); });
 
             
@@ -1027,7 +1046,7 @@ namespace MagicMongoDBTool
 
         #endregion
 
-        #region""
+        #region"数据展示区"
         /// <summary>
         /// 清除数据显示区
         /// </summary>
@@ -1407,6 +1426,21 @@ namespace MagicMongoDBTool
         #endregion
 
         #region"管理：数据集"
+
+        /// <summary>
+        /// Init GFS
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InitGFSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MongoDBHelper.InitGFS();
+            DisableAllOpr();
+            this.DataViewctl.clear();
+            MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
+        }
+
+
         /// <summary>
         /// 删除Mongo数据集
         /// </summary>
@@ -1539,90 +1573,7 @@ namespace MagicMongoDBTool
         }
         #endregion
 
-        #region"管理：GFS"
-        /// <summary>
-        /// Upload File
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void UploadFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog upfile = new OpenFileDialog();
-            if (upfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                MongoDBHelper.UpLoadFile(upfile.FileName);
-            }
-            RefreshData();
-        }
-        /// <summary>
-        /// DownLoad File
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DownloadFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog downfile = new SaveFileDialog();
-            String strFileName = DataViewctl.lstData.SelectedItems[0].Text;
-            //For Winodws,Linux user DirectorySeparatorChar Replace with @"\"
-            downfile.FileName = strFileName.Split(System.IO.Path.DirectorySeparatorChar)[strFileName.Split(System.IO.Path.DirectorySeparatorChar).Length - 1];
-            if (downfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                MongoDBHelper.DownloadFile(downfile.FileName, strFileName);
-            }
-        }
-        /// <summary>
-        /// Open File
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OpenFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strFileName = DataViewctl.lstData.SelectedItems[0].Text;
-            MongoDBHelper.OpenFile(strFileName);
-        }
-        /// <summary>
-        /// Delete File
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DelFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strTitle = "Delete Files";
-            String strMessage = "Are you sure to delete selected File(s)?";
-            if (!SystemManager.IsUseDefaultLanguage())
-            {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
-            }
-            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
-            {
-                if (DataViewctl.tabDataShower.SelectedTab == DataViewctl.tabTableView)
-                {
-                    String strFileName = DataViewctl.lstData.SelectedItems[0].Text;
-                    MongoDBHelper.DelFile(strFileName);
-                    DataViewctl.lstData.ContextMenuStrip = null;
-                }
-                else
-                {
-                    MongoDBHelper.DelFile(DataViewctl.trvData.SelectedNode.Tag.ToString());
-                    DataViewctl.trvData.ContextMenuStrip = null;
-                }
-                RefreshData();
-            }
-        }
-        /// <summary>
-        /// Init GFS
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void InitGFSToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MongoDBHelper.InitGFS();
-            DisableAllOpr();
-            this.DataViewctl.clear();
-            MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
-        }
-        #endregion
+
 
         #region"管理：备份和恢复"
         /// <summary>

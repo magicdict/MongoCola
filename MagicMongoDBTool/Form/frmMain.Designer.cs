@@ -703,28 +703,24 @@ namespace MagicMongoDBTool
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
             this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.UploadFileToolStripMenuItem.Text = "Upload File";
-            this.UploadFileToolStripMenuItem.Click += new System.EventHandler(this.UploadFileToolStripMenuItem_Click);
             // 
             // DownloadFileToolStripMenuItem
             // 
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
             this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.DownloadFileToolStripMenuItem.Text = "Download File";
-            this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(this.DownloadFileToolStripMenuItem_Click);
             // 
             // OpenFileToolStripMenuItem
             // 
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
             this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.OpenFileToolStripMenuItem.Text = "Open File";
-            this.OpenFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileToolStripMenuItem_Click);
             // 
             // DelFileToolStripMenuItem
             // 
             this.DelFileToolStripMenuItem.Name = "DelFileToolStripMenuItem";
             this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.DelFileToolStripMenuItem.Text = "Delete File";
-            this.DelFileToolStripMenuItem.Click += new System.EventHandler(this.DelFileToolStripMenuItem_Click);
             // 
             // InitGFSToolStripMenuItem
             // 

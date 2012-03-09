@@ -738,5 +738,73 @@ namespace MagicMongoDBTool.UserController
         }
         #endregion
 
+        #region"管理：GFS"
+        /// <summary>
+        /// Upload File
+        /// </summary>
+        /// 
+        /// 
+        public void UploadFile()
+        {
+            OpenFileDialog upfile = new OpenFileDialog();
+            if (upfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MongoDBHelper.UpLoadFile(upfile.FileName);
+            }
+            DataChanged(null,null);
+        }
+        /// <summary>
+        /// DownLoad File
+        /// </summary>
+        /// 
+        /// 
+        public void DownloadFile()
+        {
+            SaveFileDialog downfile = new SaveFileDialog();
+            String strFileName = lstData.SelectedItems[0].Text;
+            //For Winodws,Linux user DirectorySeparatorChar Replace with @"\"
+            downfile.FileName = strFileName.Split(System.IO.Path.DirectorySeparatorChar)[strFileName.Split(System.IO.Path.DirectorySeparatorChar).Length - 1];
+            if (downfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                MongoDBHelper.DownloadFile(downfile.FileName, strFileName);
+            }
+        }
+        /// <summary>
+        /// Open File
+        /// </summary>
+        public void OpenFile()
+        {
+            String strFileName = lstData.SelectedItems[0].Text;
+            MongoDBHelper.OpenFile(strFileName);
+        }
+        /// <summary>
+        /// Delete File
+        /// </summary>
+        public void DelFile()
+        {
+            String strTitle = "Delete Files";
+            String strMessage = "Are you sure to delete selected File(s)?";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
+            }
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
+            {
+                if (tabDataShower.SelectedTab == tabTableView)
+                {
+                    String strFileName = lstData.SelectedItems[0].Text;
+                    MongoDBHelper.DelFile(strFileName);
+                    lstData.ContextMenuStrip = null;
+                }
+                else
+                {
+                    MongoDBHelper.DelFile(trvData.SelectedNode.Tag.ToString());
+                    trvData.ContextMenuStrip = null;
+                }
+                DataChanged(null,null);
+            }
+        }
+        #endregion
     }
 }
