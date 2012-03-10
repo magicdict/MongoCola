@@ -15,8 +15,6 @@ namespace MagicMongoDBTool.UserController
     {
         #region"Main"
 
-        public event EventHandler DataChanged;
-
         public ctlDataView()
         {
             InitializeComponent();
@@ -34,30 +32,19 @@ namespace MagicMongoDBTool.UserController
             _dataShower.Add(lstData);
             _dataShower.Add(trvData);
             _dataShower.Add(txtData);
-            FirstPageToolStripButton = this.FirstPageToolStripMenuItem.CloneFromMenuItem();
-            PrePageToolStripButton = this.PrePageToolStripMenuItem.CloneFromMenuItem();
-            NextPageToolStripButton = this.NextPageToolStripMenuItem.CloneFromMenuItem();
-            LastPageToolStripButton = this.LastPageToolStripMenuItem.CloneFromMenuItem();
+
             QueryDataToolStripButton = this.QueryDataToolStripMenuItem.CloneFromMenuItem();
             DataFilterToolStripButton = this.DataFilterToolStripMenuItem.CloneFromMenuItem();
             
 
-            this.QueryDataToolStripButton.Enabled = false;
             this.FirstPageToolStripButton.Enabled = false;
             this.LastPageToolStripButton.Enabled = false;
             this.NextPageToolStripButton.Enabled = false;
             this.PrePageToolStripButton.Enabled = false;
+
+            this.QueryDataToolStripButton.Enabled = false;
             this.DataFilterToolStripButton.Enabled = false;
             this.DataFilterToolStripButton.Checked = false;
-
-            //this.FirstPageToolStripButton.Enabled = this.FirstPageToolStripMenuItem.Enabled;
-            //this.PrePageToolStripButton.Enabled = this.PrePageToolStripMenuItem.Enabled;
-            //this.NextPageToolStripButton.Enabled = this.NextPageToolStripMenuItem.Enabled;
-            //this.LastPageToolStripButton.Enabled = this.LastPageToolStripMenuItem.Enabled;
-            //this.QueryDataToolStripButton.Enabled = this.QueryDataToolStripMenuItem.Enabled;
-            //this.DataFilterToolStripButton.Enabled = this.DataFilterToolStripMenuItem.Enabled;
-            //this.DataFilterToolStripButton.Checked = this.DataFilterToolStripMenuItem.Checked;
-            //this.DataViewctl.DataNaviToolStripLabel.Text = String.Empty;
 
 
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
@@ -68,7 +55,17 @@ namespace MagicMongoDBTool.UserController
             this.trvData.KeyDown += new KeyEventHandler(trvData_KeyDown);
             this.trvData.AfterExpand += new TreeViewEventHandler(trvData_AfterExpand);
             this.trvData.AfterCollapse += new TreeViewEventHandler(trvData_AfterCollapse);
-
+            this.tabDataShower.SelectedIndexChanged += new EventHandler(
+                //If tabpage changed,the selected data in dataview will disappear,set delete selected record to false
+                (x, y) =>
+                {
+                    this.DelSelectRecordToolStripMenuItem.Enabled = false;
+                    if (IsNeedRefresh)
+                    {
+                        RefreshData();
+                    }
+                }
+            );
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 //数据显示区
@@ -76,7 +73,25 @@ namespace MagicMongoDBTool.UserController
                 this.tabTableView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Table);
                 this.tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
                 this.lnkFile.Text = SystemManager.mStringResource.GetText(StringResource.TextType.OpenInNativeEditor);
+
+                this.PrePage.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
+                this.NextPage.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
+                this.FirstPage.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_First);
+                this.LastPage.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Last);
+
+
+                this.AddDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
+                this.DataDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument);
+                this.AddElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
+                this.DropElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_DropElement);
+                this.ModifyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_ModifyElement);
+                this.CopyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CopyElement);
+                this.CutElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CutElement);
+                this.PasteElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_PasteElement);
+                this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
+
             }
+
             //View ToolTip
             this.ViewtoolStrip.Items.Add(FirstPageToolStripButton);
             this.ViewtoolStrip.Items.Add(PrePageToolStripButton);
@@ -86,6 +101,9 @@ namespace MagicMongoDBTool.UserController
             this.ViewtoolStrip.Items.Add(DataNaviToolStripLabel);
             this.ViewtoolStrip.Items.Add(DataFilterToolStripButton);
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public void clear()
         {
             lstData.Clear();
@@ -94,16 +112,6 @@ namespace MagicMongoDBTool.UserController
             lstData.ContextMenuStrip = null;
             trvData.ContextMenuStrip = null;
         }
-        /// <summary>
-        /// Open In Native Editor
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lnkFile_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            MongoDBHelper.SaveAndOpenStringAsFile(txtData.Text);
-        }
-
         #endregion
 
         //GFS
@@ -115,21 +123,7 @@ namespace MagicMongoDBTool.UserController
         //Record
         public ToolStripMenuItem RemoveUserFromAdminToolStripMenuItem;
         public ToolStripMenuItem RemoveUserToolStripMenuItem;
-        public ToolStripMenuItem DelSelectRecordToolStripMenuItem;
 
-        //Element
-        public ToolStripMenuItem AddElementToolStripMenuItem;
-        public ToolStripMenuItem DropElementToolStripMenuItem;
-        public ToolStripMenuItem ModifyElementToolStripMenuItem;
-        public ToolStripMenuItem CopyElementToolStripMenuItem;
-        public ToolStripMenuItem CutElementToolStripMenuItem;
-        public ToolStripMenuItem PasteElementToolStripMenuItem;
-
-
-        public ToolStripMenuItem FirstPageToolStripMenuItem;
-        public ToolStripMenuItem PrePageToolStripMenuItem;
-        public ToolStripMenuItem NextPageToolStripMenuItem;
-        public ToolStripMenuItem LastPageToolStripMenuItem;
         public ToolStripMenuItem QueryDataToolStripMenuItem;
         public ToolStripMenuItem DataFilterToolStripMenuItem;
 
@@ -573,7 +567,7 @@ namespace MagicMongoDBTool.UserController
                 case Keys.Delete:
                     if (DelSelectRecordToolStripMenuItem.Enabled)
                     {
-                        DelSelectRecord();
+                        DelSelectRecordToolStripMenuItem_Click(null, null);
                     }
                     else
                     {
@@ -593,15 +587,20 @@ namespace MagicMongoDBTool.UserController
                     break;
             }
         }
+        #endregion
 
+        #region"管理：元素操作"
+        /// <summary>
+        /// Is Need Refresh after the element is modify
+        /// </summary>
+        public Boolean IsNeedRefresh = false;
         /// <summary>
         /// 删除数据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void DelSelectRecord()
+        private void DelSelectRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             String strTitle = "Delete Document";
             String strMessage = "Are you sure to delete selected document(s)?";
             if (!SystemManager.IsUseDefaultLanguage())
@@ -628,16 +627,27 @@ namespace MagicMongoDBTool.UserController
                     trvData.ContextMenuStrip = null;
                 }
                 DelSelectRecordToolStripMenuItem.Enabled = false;
-                DataChanged(null, null);
+                RefreshData();
             }
         }
-        #endregion
-
-        #region"管理：元素操作"
         /// <summary>
-        /// Is Need Refresh after the element is modify
+        /// Add Empty Document to Collection
         /// </summary>
-        public Boolean IsNeedRefresh = false;
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddDocumentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BsonValue id = MongoDBHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), config.IsSafeMode);
+            TreeNode newDoc = new TreeNode(SystemManager.GetCurrentCollection().Name + "[" + (SystemManager.GetCurrentCollection().Count()).ToString() + "]");
+            newDoc.Tag = id;
+            TreeNode newid = new TreeNode("_id:" + id.ToString());
+            newid.Tag = id;
+            newDoc.Nodes.Add(newid);
+            trvData.Nodes.Add(newDoc);
+            tabDataShower.SelectedIndex = 0;
+            trvData.SelectedNode = newid;
+            IsNeedRefresh = true;
+        }
         /// <summary>
         /// 添加元素
         /// </summary>
@@ -790,7 +800,7 @@ namespace MagicMongoDBTool.UserController
             {
                 MongoDBHelper.UpLoadFile(upfile.FileName);
             }
-            DataChanged(null,null);
+            RefreshData();
         }
         /// <summary>
         /// DownLoad File
@@ -839,9 +849,81 @@ namespace MagicMongoDBTool.UserController
                     MongoDBHelper.DelFile(trvData.SelectedNode.Tag.ToString());
                     trvData.ContextMenuStrip = null;
                 }
-                DataChanged(null,null);
+                RefreshData();
             }
         }
         #endregion
+
+        #region"数据导航"
+        private void FirstPage_Click(object sender, EventArgs e)
+        {
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.FirstPage, SystemManager.SelectObjectTag, _dataShower);
+            SetDataNav();
+        }
+        private void PrePage_Click(object sender, EventArgs e)
+        {
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.PrePage, SystemManager.SelectObjectTag, _dataShower);
+            SetDataNav();
+        }
+        private void NextPage_Click(object sender, EventArgs e)
+        {
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.NextPage, SystemManager.SelectObjectTag, _dataShower);
+            SetDataNav();
+        }
+        private void LastPage_Click(object sender, EventArgs e)
+        {
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.LastPage, SystemManager.SelectObjectTag, _dataShower);
+            SetDataNav();
+        }
+        private void ExpandAll_Click(object sender, EventArgs e)
+        {
+            trvData.ExpandAll();
+        }
+        private void CollapseAll_Click(object sender, EventArgs e)
+        {
+            trvData.CollapseAll();
+        }
+        private void lnkFile_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MongoDBHelper.SaveAndOpenStringAsFile(txtData.Text);
+        }
+        /// <summary>
+        /// 设置导航可用性
+        /// </summary>
+        private void SetDataNav()
+        {
+            PrePage.Enabled = MongoDBHelper.HasPrePage;
+            NextPage.Enabled = MongoDBHelper.HasNextPage;
+            FirstPage.Enabled = MongoDBHelper.HasPrePage;
+            LastPage.Enabled = MongoDBHelper.HasNextPage;
+            this.QueryDataToolStripMenuItem.Enabled = true;
+            String strTitle = "Records";
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
+            }
+            if (MongoDBHelper.CurrentCollectionTotalCnt == 0)
+            {
+                this.DataNaviToolStripLabel.Text = strTitle + "：0/0";
+            }
+            else
+            {
+                this.DataNaviToolStripLabel.Text = strTitle + "：" + (MongoDBHelper.SkipCnt + 1).ToString() + "/" + MongoDBHelper.CurrentCollectionTotalCnt.ToString();
+            }
+        }
+        /// <summary>
+        /// Refresh Data
+        /// </summary>
+        private void RefreshData()
+        {
+            this.clear();
+            MongoDBHelper.SkipCnt = 0;
+            MongoDBHelper.FillDataToControl(SystemManager.SelectObjectTag, _dataShower);
+            SetDataNav();
+            IsNeedRefresh = false;
+        }
+
+        #endregion
+
     }
 }

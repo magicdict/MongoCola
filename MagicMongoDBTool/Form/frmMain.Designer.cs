@@ -47,11 +47,6 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataNaviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PrePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.NextPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FirstPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LastPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
             this.QueryDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConvertSqlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AggregationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,9 +55,6 @@ namespace MagicMongoDBTool
             this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapReduceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.ExpandAllDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CollapseAllDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OperationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,17 +81,7 @@ namespace MagicMongoDBTool
             this.IndexManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReIndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
-            this.DelSelectRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CompactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DataDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DropElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ModifyElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
-            this.CopyElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CutElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PasteElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GridFsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UploadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DownloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -135,15 +117,19 @@ namespace MagicMongoDBTool
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panView = new System.Windows.Forms.Panel();
+            this.tabView = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panView.SuspendLayout();
+            this.tabView.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStripMain
@@ -271,58 +257,13 @@ namespace MagicMongoDBTool
             // DataNaviToolStripMenuItem
             // 
             this.DataNaviToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.PrePageToolStripMenuItem,
-            this.NextPageToolStripMenuItem,
-            this.FirstPageToolStripMenuItem,
-            this.LastPageToolStripMenuItem,
-            this.toolStripMenuItem9,
             this.QueryDataToolStripMenuItem,
             this.ConvertSqlToolStripMenuItem,
             this.AggregationToolStripMenuItem,
-            this.DataFilterToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.ExpandAllDataToolStripMenuItem,
-            this.CollapseAllDataToolStripMenuItem});
+            this.DataFilterToolStripMenuItem});
             this.DataNaviToolStripMenuItem.Name = "DataNaviToolStripMenuItem";
             this.DataNaviToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.DataNaviToolStripMenuItem.Text = "&DataView";
-            // 
-            // PrePageToolStripMenuItem
-            // 
-            this.PrePageToolStripMenuItem.Name = "PrePageToolStripMenuItem";
-            this.PrePageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.PrePageToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.PrePageToolStripMenuItem.Text = "Previous";
-            this.PrePageToolStripMenuItem.Click += new System.EventHandler(this.PrePageToolStripMenuItem_Click);
-            // 
-            // NextPageToolStripMenuItem
-            // 
-            this.NextPageToolStripMenuItem.Name = "NextPageToolStripMenuItem";
-            this.NextPageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.NextPageToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.NextPageToolStripMenuItem.Text = "Next";
-            this.NextPageToolStripMenuItem.Click += new System.EventHandler(this.NextPageToolStripMenuItem_Click);
-            // 
-            // FirstPageToolStripMenuItem
-            // 
-            this.FirstPageToolStripMenuItem.Name = "FirstPageToolStripMenuItem";
-            this.FirstPageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F9;
-            this.FirstPageToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.FirstPageToolStripMenuItem.Text = "First";
-            this.FirstPageToolStripMenuItem.Click += new System.EventHandler(this.FirstPageToolStripMenuItem_Click);
-            // 
-            // LastPageToolStripMenuItem
-            // 
-            this.LastPageToolStripMenuItem.Name = "LastPageToolStripMenuItem";
-            this.LastPageToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
-            this.LastPageToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.LastPageToolStripMenuItem.Text = "Last";
-            this.LastPageToolStripMenuItem.Click += new System.EventHandler(this.LastPageToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem9
-            // 
-            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(159, 6);
             // 
             // QueryDataToolStripMenuItem
             // 
@@ -384,32 +325,12 @@ namespace MagicMongoDBTool
             this.DataFilterToolStripMenuItem.Text = "Data Filter";
             this.DataFilterToolStripMenuItem.Click += new System.EventHandler(this.DataFilterToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(159, 6);
-            // 
-            // ExpandAllDataToolStripMenuItem
-            // 
-            this.ExpandAllDataToolStripMenuItem.Name = "ExpandAllDataToolStripMenuItem";
-            this.ExpandAllDataToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.ExpandAllDataToolStripMenuItem.Text = "Collapse";
-            this.ExpandAllDataToolStripMenuItem.Click += new System.EventHandler(this.ExpandAllDataToolStripMenuItem_Click);
-            // 
-            // CollapseAllDataToolStripMenuItem
-            // 
-            this.CollapseAllDataToolStripMenuItem.Name = "CollapseAllDataToolStripMenuItem";
-            this.CollapseAllDataToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.CollapseAllDataToolStripMenuItem.Text = "Expansion";
-            this.CollapseAllDataToolStripMenuItem.Click += new System.EventHandler(this.CollapseAllDataToolStripMenuItem_Click);
-            // 
             // OperationToolStripMenuItem
             // 
             this.OperationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ServerToolStripMenuItem,
             this.DataBaseToolStripMenuItem,
             this.DataCollectionToolStripMenuItem,
-            this.DataDocumentToolStripMenuItem,
             this.GridFsToolStripMenuItem,
             this.DumpAndRestoreToolStripMenuItem});
             this.OperationToolStripMenuItem.Name = "OperationToolStripMenuItem";
@@ -566,7 +487,6 @@ namespace MagicMongoDBTool
             this.IndexManageToolStripMenuItem,
             this.ReIndexToolStripMenuItem,
             this.toolStripMenuItem8,
-            this.DelSelectRecordToolStripMenuItem,
             this.CompactToolStripMenuItem});
             this.DataCollectionToolStripMenuItem.Name = "DataCollectionToolStripMenuItem";
             this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
@@ -604,12 +524,7 @@ namespace MagicMongoDBTool
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
             this.toolStripMenuItem8.Size = new System.Drawing.Size(187, 6);
-            // 
-            // DelSelectRecordToolStripMenuItem
-            // 
-            this.DelSelectRecordToolStripMenuItem.Name = "DelSelectRecordToolStripMenuItem";
-            this.DelSelectRecordToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.DelSelectRecordToolStripMenuItem.Text = "Delect Selected Records";
+
             // 
             // CompactToolStripMenuItem
             // 
@@ -617,72 +532,6 @@ namespace MagicMongoDBTool
             this.CompactToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.CompactToolStripMenuItem.Text = "Compact";
             this.CompactToolStripMenuItem.Click += new System.EventHandler(this.CompactToolStripMenuItem_Click);
-            // 
-            // DataDocumentToolStripMenuItem
-            // 
-            this.DataDocumentToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AddElementToolStripMenuItem,
-            this.DropElementToolStripMenuItem,
-            this.ModifyElementToolStripMenuItem,
-            this.AddDocumentToolStripMenuItem,
-            this.toolStripMenuItem12,
-            this.CopyElementToolStripMenuItem,
-            this.CutElementToolStripMenuItem,
-            this.PasteElementToolStripMenuItem});
-            this.DataDocumentToolStripMenuItem.Name = "DataDocumentToolStripMenuItem";
-            this.DataDocumentToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.DataDocumentToolStripMenuItem.Text = "Document";
-            // 
-            // AddElementToolStripMenuItem
-            // 
-            this.AddElementToolStripMenuItem.Name = "AddElementToolStripMenuItem";
-            this.AddElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.AddElementToolStripMenuItem.Text = "Add Element";
-            // 
-            // DropElementToolStripMenuItem
-            // 
-            this.DropElementToolStripMenuItem.Name = "DropElementToolStripMenuItem";
-            this.DropElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.DropElementToolStripMenuItem.Text = "Drop Element";
-            // 
-            // ModifyElementToolStripMenuItem
-            // 
-            this.ModifyElementToolStripMenuItem.Name = "ModifyElementToolStripMenuItem";
-            this.ModifyElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ModifyElementToolStripMenuItem.Text = "Modify Element";
-            // 
-            // AddDocumentToolStripMenuItem
-            // 
-            this.AddDocumentToolStripMenuItem.Name = "AddDocumentToolStripMenuItem";
-            this.AddDocumentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.AddDocumentToolStripMenuItem.Text = "Add Document";
-            this.AddDocumentToolStripMenuItem.Click += new System.EventHandler(this.AddDocumentToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem12
-            // 
-            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(177, 6);
-            // 
-            // CopyElementToolStripMenuItem
-            // 
-            this.CopyElementToolStripMenuItem.Name = "CopyElementToolStripMenuItem";
-            this.CopyElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.CopyElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.CopyElementToolStripMenuItem.Text = "Copy Element";
-            // 
-            // CutElementToolStripMenuItem
-            // 
-            this.CutElementToolStripMenuItem.Name = "CutElementToolStripMenuItem";
-            this.CutElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.CutElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.CutElementToolStripMenuItem.Text = "Cut Element";
-            // 
-            // PasteElementToolStripMenuItem
-            // 
-            this.PasteElementToolStripMenuItem.Name = "PasteElementToolStripMenuItem";
-            this.PasteElementToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.PasteElementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.PasteElementToolStripMenuItem.Text = "Paste Element";
             // 
             // GridFsToolStripMenuItem
             // 
@@ -699,31 +548,31 @@ namespace MagicMongoDBTool
             // UploadFileToolStripMenuItem
             // 
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
-            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.UploadFileToolStripMenuItem.Text = "Upload File";
             // 
             // DownloadFileToolStripMenuItem
             // 
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
-            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DownloadFileToolStripMenuItem.Text = "Download File";
             // 
             // OpenFileToolStripMenuItem
             // 
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
-            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.OpenFileToolStripMenuItem.Text = "Open File";
             // 
             // DelFileToolStripMenuItem
             // 
             this.DelFileToolStripMenuItem.Name = "DelFileToolStripMenuItem";
-            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DelFileToolStripMenuItem.Text = "Delete File";
             // 
             // InitGFSToolStripMenuItem
             // 
             this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
-            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.InitGFSToolStripMenuItem.Text = "Init GFS";
             this.InitGFSToolStripMenuItem.Click += new System.EventHandler(this.InitGFSToolStripMenuItem_Click);
             // 
@@ -944,29 +793,62 @@ namespace MagicMongoDBTool
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.panView);
+            this.panel2.Controls.Add(this.tabView);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(337, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(886, 631);
             this.panel2.TabIndex = 2;
             // 
-            // panView
+            // tabView
             // 
-            this.panView.Controls.Add(this.ServerStatusCtl);
-            this.panView.Controls.Add(this.txtCommand);
-            this.panView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panView.Location = new System.Drawing.Point(0, 0);
-            this.panView.Name = "panView";
-            this.panView.Size = new System.Drawing.Size(886, 631);
-            this.panView.TabIndex = 2;
+            this.tabView.Controls.Add(this.tabPage1);
+            this.tabView.Controls.Add(this.tabPage2);
+            this.tabView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabView.Location = new System.Drawing.Point(0, 0);
+            this.tabView.Name = "tabView";
+            this.tabView.SelectedIndex = 0;
+            this.tabView.Size = new System.Drawing.Size(886, 631);
+            this.tabView.TabIndex = 3;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.ServerStatusCtl);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(878, 602);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ServerStatusCtl
+            // 
+            this.ServerStatusCtl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ServerStatusCtl.Location = new System.Drawing.Point(3, 3);
+            this.ServerStatusCtl.Margin = new System.Windows.Forms.Padding(5);
+            this.ServerStatusCtl.Name = "ServerStatusCtl";
+            this.ServerStatusCtl.Size = new System.Drawing.Size(872, 596);
+            this.ServerStatusCtl.TabIndex = 2;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.txtCommand);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(878, 602);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // txtCommand
             // 
-            this.txtCommand.Location = new System.Drawing.Point(445, 29);
+            this.txtCommand.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCommand.Location = new System.Drawing.Point(3, 3);
             this.txtCommand.Multiline = true;
             this.txtCommand.Name = "txtCommand";
-            this.txtCommand.Size = new System.Drawing.Size(100, 313);
+            this.txtCommand.Size = new System.Drawing.Size(872, 596);
             this.txtCommand.TabIndex = 1;
             // 
             // splitter1
@@ -976,14 +858,6 @@ namespace MagicMongoDBTool
             this.splitter1.Size = new System.Drawing.Size(3, 631);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
-            // 
-            // ServerStatusCtl
-            // 
-            this.ServerStatusCtl.Location = new System.Drawing.Point(109, 109);
-            this.ServerStatusCtl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ServerStatusCtl.Name = "ServerStatusCtl";
-            this.ServerStatusCtl.Size = new System.Drawing.Size(120, 86);
-            this.ServerStatusCtl.TabIndex = 2;
             // 
             // frmMain
             // 
@@ -1006,8 +880,10 @@ namespace MagicMongoDBTool
             this.menuStripMain.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panView.ResumeLayout(false);
-            this.panView.PerformLayout();
+            this.tabView.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1018,10 +894,6 @@ namespace MagicMongoDBTool
         private void SetMenuImage()
         {
             this.ShutDownToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.ShutDown);
-            this.PrePageToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.PrePage);
-            this.NextPageToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.NextPage);
-            this.FirstPageToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.FirstPage);
-            this.LastPageToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.LastPage);
             this.QueryDataToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Query);
             this.DataFilterToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Filter);
 
@@ -1029,8 +901,7 @@ namespace MagicMongoDBTool
             this.DelMongoDBToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
             this.RemoveUserFromAdminToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
             this.RemoveUserToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
-            this.DelSelectRecordToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
-            this.DropElementToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
+
             this.DelFileToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
 
             this.ImportDataFromAccessToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.AccessDB);
@@ -1098,10 +969,6 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.ToolStripMenuItem RefreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DataNaviToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem PrePageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem NextPageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem FirstPageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem LastPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem QueryDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OperationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ServerToolStripMenuItem;
@@ -1115,7 +982,6 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.ToolStripMenuItem IndexManageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AddUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RemoveUserToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem DelSelectRecordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RenameCollectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GridFsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem UploadFileToolStripMenuItem;
@@ -1139,8 +1005,6 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.ToolStripMenuItem ExpandAllConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CollapseAllConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SvrPropertyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ExpandAllDataToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem CollapseAllDataToolStripMenuItem;
 
         private ToolStripButton ImportDataFromAccessToolStripButton;
         private ToolStripButton RefreshToolStripButton;
@@ -1157,8 +1021,6 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem DataFilterToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem10;
         private ToolStripSeparator toolStripMenuItem1;
-        private ToolStripSeparator toolStripMenuItem9;
-        private ToolStripSeparator toolStripMenuItem2;
         private ToolStripSeparator toolStripMenuItem4;
         private ToolStripSeparator toolStripMenuItem3;
         private ToolStripSeparator toolStripMenuItem5;
@@ -1174,26 +1036,16 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem evalJSToolStripMenuItem;
         private ToolStripMenuItem ConvertSqlToolStripMenuItem;
         private ToolStripMenuItem RemoveUserFromAdminToolStripMenuItem;
-        private ToolStripMenuItem DataDocumentToolStripMenuItem;
-        private ToolStripMenuItem AddElementToolStripMenuItem;
-        private ToolStripMenuItem DropElementToolStripMenuItem;
-        private ToolStripMenuItem ModifyElementToolStripMenuItem;
         private ToolStripMenuItem DisconnectToolStripMenuItem;
         private ToolStripStatusLabel lblUserInfo;
-        private ToolStripMenuItem AddDocumentToolStripMenuItem;
         private TreeView trvsrvlst;
         private ToolStripMenuItem RepairDBToolStripMenuItem;
         private ToolStripMenuItem slaveResyncToolStripMenuItem;
-        private ToolStripSeparator toolStripMenuItem12;
-        private ToolStripMenuItem CopyElementToolStripMenuItem;
-        private ToolStripMenuItem PasteElementToolStripMenuItem;
-        private ToolStripMenuItem CutElementToolStripMenuItem;
         private Panel panel1;
         private Panel panel2;
         private Splitter splitter1;
         private ToolStripMenuItem UserGuideToolStripMenuItem;
         private ToolStripMenuItem CompactToolStripMenuItem;
-        private Panel panView;
         private TextBox txtCommand;
         
         private ToolStripMenuItem viewToolStripMenuItem;
@@ -1203,5 +1055,8 @@ namespace MagicMongoDBTool
         private ToolStripSeparator toolStripMenuItem13;
         private ToolStripMenuItem refreshViewToolStripMenuItem;
         private UserController.ctlServerStatus ServerStatusCtl;
+        private TabControl tabView;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
     }
 }
