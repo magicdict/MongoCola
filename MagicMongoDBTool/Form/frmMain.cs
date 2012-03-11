@@ -124,10 +124,11 @@ namespace MagicMongoDBTool
             this.ThanksToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Help_Thanks);
             this.UserGuideToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Help_UserGuide);
 
-            //就绪
+            //其他控件
             this.statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
             this.statusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
             this.collectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
+            this.tabSvrStatus.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
         }
         /// <summary>
         /// View Status
@@ -1375,7 +1376,7 @@ namespace MagicMongoDBTool
                 SystemManager.CurrDataFilter.Clear();
                 ctlDataView DataViewctl = new ctlDataView();
                 DataViewctl.config = this.config;
-                DataViewctl.strDBTag = SystemManager.SelectObjectTag;
+                DataViewctl.mDataVCiewInfo.strDBTag = SystemManager.SelectObjectTag;
                 DataViewctl.UploadFileToolStripMenuItem = UploadFileToolStripMenuItem;
                 DataViewctl.DownloadFileToolStripMenuItem = DownloadFileToolStripMenuItem;
                 DataViewctl.OpenFileToolStripMenuItem = OpenFileToolStripMenuItem;
@@ -1400,12 +1401,14 @@ namespace MagicMongoDBTool
                 this.DelFileToolStripMenuItem.Click += new System.EventHandler(
                     (x, y) => { DataViewctl.DelFile(); }
                 );
-                
+
                 TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().Name);
                 DataTab.Controls.Add(DataViewctl);
                 DataViewctl.Dock = DockStyle.Fill;
                 tabView.Controls.Add(DataTab);
-
+                DataViewctl.CloseTab +=new System.EventHandler(
+                    (x,y)=>{tabView.Controls.Remove(DataTab);}
+                );
                 tabView.SelectTab(DataTab); 
 
         }
@@ -1665,7 +1668,7 @@ namespace MagicMongoDBTool
             MongoDBHelper.IsUseFilter = !MongoDBHelper.IsUseFilter;
             this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
             //过滤变更后，重新刷新
-            MongoDBHelper.SkipCnt = 0;
+            //MongoDBHelper.mDataVCiewInfo.SkipCnt = 0;
             //RefreshData();
         }
         /// <summary>

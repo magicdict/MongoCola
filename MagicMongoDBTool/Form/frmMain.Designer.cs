@@ -118,8 +118,8 @@ namespace MagicMongoDBTool
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabView = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabSvrStatus = new System.Windows.Forms.TabPage();
+            this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.viewDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,8 +129,8 @@ namespace MagicMongoDBTool
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabView.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabSvrStatus.SuspendLayout();
+            this.tabCommandShell.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStripMain
@@ -645,33 +645,33 @@ namespace MagicMongoDBTool
             // statusToolStripMenuItem
             // 
             this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
-            this.statusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statusToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.statusToolStripMenuItem.Text = "Status";
             this.statusToolStripMenuItem.Click += new System.EventHandler(this.statusToolStripMenuItem_Click);
             // 
             // commandShellToolStripMenuItem
             // 
             this.commandShellToolStripMenuItem.Name = "commandShellToolStripMenuItem";
-            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.commandShellToolStripMenuItem.Text = "CommandShell";
             this.commandShellToolStripMenuItem.Click += new System.EventHandler(this.commandShellToolStripMenuItem_Click);
             // 
             // collectionToolStripMenuItem
             // 
             this.collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.collectionToolStripMenuItem.Text = "Collection";
             this.collectionToolStripMenuItem.Click += new System.EventHandler(this.collectionToolStripMenuItem_Click);
             // 
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(140, 6);
             // 
             // refreshViewToolStripMenuItem
             // 
             this.refreshViewToolStripMenuItem.Name = "refreshViewToolStripMenuItem";
-            this.refreshViewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.refreshViewToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.refreshViewToolStripMenuItem.Text = "Refresh";
             this.refreshViewToolStripMenuItem.Click += new System.EventHandler(this.refreshViewToolStripMenuItem_Click);
             // 
@@ -803,8 +803,8 @@ namespace MagicMongoDBTool
             // 
             // tabView
             // 
-            this.tabView.Controls.Add(this.tabPage1);
-            this.tabView.Controls.Add(this.tabPage2);
+            this.tabView.Controls.Add(this.tabSvrStatus);
+            this.tabView.Controls.Add(this.tabCommandShell);
             this.tabView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabView.Location = new System.Drawing.Point(0, 0);
             this.tabView.Name = "tabView";
@@ -812,27 +812,27 @@ namespace MagicMongoDBTool
             this.tabView.Size = new System.Drawing.Size(886, 631);
             this.tabView.TabIndex = 3;
             // 
-            // tabPage1
+            // tabSvrStatus
             // 
-            this.tabPage1.Controls.Add(this.ServerStatusCtl);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(878, 602);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Sever Status";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabSvrStatus.Controls.Add(this.ServerStatusCtl);
+            this.tabSvrStatus.Location = new System.Drawing.Point(4, 25);
+            this.tabSvrStatus.Name = "tabSvrStatus";
+            this.tabSvrStatus.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSvrStatus.Size = new System.Drawing.Size(878, 602);
+            this.tabSvrStatus.TabIndex = 0;
+            this.tabSvrStatus.Text = "Sever Status";
+            this.tabSvrStatus.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tabCommandShell
             // 
-            this.tabPage2.Controls.Add(this.txtCommand);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(878, 602);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Shell Command";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabCommandShell.Controls.Add(this.txtCommand);
+            this.tabCommandShell.Location = new System.Drawing.Point(4, 25);
+            this.tabCommandShell.Name = "tabCommandShell";
+            this.tabCommandShell.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCommandShell.Size = new System.Drawing.Size(878, 602);
+            this.tabCommandShell.TabIndex = 1;
+            this.tabCommandShell.Text = "Shell Command";
+            this.tabCommandShell.UseVisualStyleBackColor = true;
             // 
             // txtCommand
             // 
@@ -889,9 +889,9 @@ namespace MagicMongoDBTool
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tabView.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabSvrStatus.ResumeLayout(false);
+            this.tabCommandShell.ResumeLayout(false);
+            this.tabCommandShell.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1064,8 +1064,8 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem refreshViewToolStripMenuItem;
         private UserController.ctlServerStatus ServerStatusCtl;
         private TabControl tabView;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
+        private TabPage tabSvrStatus;
+        private TabPage tabCommandShell;
         private ToolStripMenuItem viewDataToolStripMenuItem;
     }
 }

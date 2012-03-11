@@ -155,7 +155,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public void Clear()
         {
-            MongoDBHelper.SkipCnt = 0;
+            //SkipCnt = 0;
             QueryFieldList.Clear();
             QueryConditionList.Clear();
         }

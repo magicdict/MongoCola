@@ -49,12 +49,13 @@ namespace MagicMongoDBTool
             BsonJavaScript reduce = new BsonJavaScript(txtReduceJs.Text);
             BsonJavaScript finalize = new BsonJavaScript(txtfinalizeJs.Text);
             List<BsonDocument> resultlst = new List<BsonDocument>();
+
             ///SkipCnt的备份
-            int mSkipCnt = MongoDBHelper.SkipCnt;
+            int mSkipCnt = SystemManager.mDataViewInfo.SkipCnt;
             try
             {
                 ///SkipCnt Reset
-                MongoDBHelper.SkipCnt = 0;
+                //SystemManager.mDataViewInfo.SkipCnt = 0;
                 var Result = mongoCol.Group(query, groupdoc, Initial, reduce, finalize);
                 //防止错误的条件造成的海量数据
                 int Count = 0;
@@ -67,7 +68,7 @@ namespace MagicMongoDBTool
                     resultlst.Add(item);
                     Count++;
                 };
-                MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst);
+                MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst, SystemManager.mDataViewInfo);
                 if (Count == 1001)
                 {
                     this.txtResult.Text = "Too many result,Display first 1000 records" + System.Environment.NewLine + this.txtResult.Text;
@@ -80,7 +81,7 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Exception", "Exception is Happened", ex.ToString(), true);
             }
             ///SkipCnt的还原
-            MongoDBHelper.SkipCnt = mSkipCnt;
+            //SystemManager.mDataViewInfo.SkipCnt = mSkipCnt;
         }
         /// <summary>
         /// 条件输入器数量

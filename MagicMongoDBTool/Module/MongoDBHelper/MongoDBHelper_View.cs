@@ -72,9 +72,9 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="strTag"></param>
         /// <param name="controls"></param>
-        public static void FillDataToControl(String strTag, List<Control> controls)
+        public static void FillDataToControl(DataViewInfo CurrentDataViewInfo, List<Control> controls)
         {
-            String collectionPath = strTag.Split(":".ToCharArray())[1];
+            String collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
             String[] cp = collectionPath.Split("/".ToCharArray());
             MongoCollection mongoCol = _mongoSrvLst[cp[(int)PathLv.ServerLV]]
                                       .GetDatabase(cp[(int)PathLv.DatabaseLV])
@@ -85,7 +85,7 @@ namespace MagicMongoDBTool.Module
             if (IsUseFilter)
             {
                 dataList = mongoCol.FindAs<BsonDocument>(GetQuery(SystemManager.CurrDataFilter.QueryConditionList))
-                                   .SetSkip(SkipCnt)
+                                   .SetSkip(CurrentDataViewInfo.SkipCnt)
                                    .SetFields(GetOutputFields(SystemManager.CurrDataFilter.QueryFieldList))
                                    .SetSortOrder(GetSort(SystemManager.CurrDataFilter.QueryFieldList))
                                    .SetLimit(SystemManager.ConfigHelperInstance.LimitCnt)
@@ -94,37 +94,37 @@ namespace MagicMongoDBTool.Module
             else
             {
                 dataList = mongoCol.FindAllAs<BsonDocument>()
-                                   .SetSkip(SkipCnt)
+                                   .SetSkip(CurrentDataViewInfo.SkipCnt)
                                    .SetLimit(SystemManager.ConfigHelperInstance.LimitCnt)
                                    .ToList<BsonDocument>();
             }
-            if (SkipCnt == 0)
+            if (CurrentDataViewInfo.SkipCnt == 0)
             {
                 if (IsUseFilter)
                 {
                     //感谢cnblogs.com 网友Shadower
-                    CurrentCollectionTotalCnt = (int)mongoCol.Count(GetQuery(SystemManager.CurrDataFilter.QueryConditionList));
+                    CurrentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count(GetQuery(SystemManager.CurrDataFilter.QueryConditionList));
                 }
                 else
                 {
-                    CurrentCollectionTotalCnt = (int)mongoCol.Count(); 
+                    CurrentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count();
                 }
             }
             if (dataList.Count == 0)
             {
                 return;
             }
-            SetPageEnable();
+            SetPageEnable(CurrentDataViewInfo);
             _hasBSonBinary = false;
             foreach (var control in controls)
             {
                 switch (control.GetType().ToString())
                 {
                     case "System.Windows.Forms.ListView":
-                        FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, dataList);
+                        FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, dataList, CurrentDataViewInfo);
                         break;
                     case "System.Windows.Forms.TextBox":
-                        FillDataToTextBox((TextBox)control, dataList);
+                        FillDataToTextBox((TextBox)control, dataList, CurrentDataViewInfo);
                         //FillJSONDataToTextBox((TextBox)control, dataList);
                         break;
                     case "System.Windows.Forms.TreeView":
@@ -195,14 +195,14 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="txtData"></param>
         /// <param name="dataList"></param>
-        public static void FillJSONDataToTextBox(TextBox txtData, List<BsonDocument> dataList)
+        public static void FillJSONDataToTextBox(TextBox txtData, List<BsonDocument> dataList, DataViewInfo mDataViewInfo)
         {
             txtData.Clear();
             int Count = 1;
             StringBuilder sb = new StringBuilder();
             foreach (BsonDocument BsonDoc in dataList)
             {
-                sb.AppendLine("/* " + (SkipCnt + Count).ToString() + " */");
+                sb.AppendLine("/* " + (mDataViewInfo.SkipCnt + Count).ToString() + " */");
                 sb.AppendLine(BsonDoc.ToJson());
                 Count++;
             }
@@ -216,7 +216,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="collectionName"></param>
         /// <param name="txtData"></param>
         /// <param name="dataList"></param>
-        public static void FillDataToTextBox(TextBox txtData, List<BsonDocument> dataList)
+        public static void FillDataToTextBox(TextBox txtData, List<BsonDocument> dataList, DataViewInfo mDataViewInfo)
         {
             txtData.Clear();
             if (_hasBSonBinary)
@@ -229,7 +229,7 @@ namespace MagicMongoDBTool.Module
                 StringBuilder sb = new StringBuilder();
                 foreach (BsonDocument BsonDoc in dataList)
                 {
-                    sb.AppendLine("/* " + (SkipCnt + Count).ToString() + " */");
+                    sb.AppendLine("/* " + (mDataViewInfo.SkipCnt + Count).ToString() + " */");
                     sb.AppendLine("{");
                     foreach (String itemName in BsonDoc.Names)
                     {
@@ -348,9 +348,10 @@ namespace MagicMongoDBTool.Module
         /// <param name="collectionName"></param>
         /// <param name="trvData"></param>
         /// <param name="dataList"></param>
-        public static void FillDataToTreeView(String collectionName, TreeView trvData, List<BsonDocument> dataList)
+        public static void FillDataToTreeView(String collectionName, TreeView trvData, List<BsonDocument> dataList, int mSkip = 0)
         {
             trvData.Nodes.Clear();
+            int SkipCnt = mSkip;
             int Count = 1;
             foreach (BsonDocument item in dataList)
             {
@@ -443,7 +444,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="collectionName"></param>
         /// <param name="lstData"></param>
         /// <param name="dataList"></param>
-        public static void FillDataToListView(String collectionName, ListView lstData, List<BsonDocument> dataList)
+        public static void FillDataToListView(String collectionName, ListView lstData, List<BsonDocument> dataList, DataViewInfo mDataViewInfo)
         {
             lstData.Clear();
             lstData.SmallImageList = null;
@@ -565,21 +566,28 @@ namespace MagicMongoDBTool.Module
 
         #region"数据导航"
         /// <summary>
-        /// 数据集总记录数
+        /// 多数据集视图中，每个数据集保留一个DataViewInfo
         /// </summary>
-        public static int CurrentCollectionTotalCnt = 0;
-        /// <summary>
-        /// Skip记录数
-        /// </summary>
-        public static int SkipCnt = 0;
-        /// <summary>
-        /// 是否存在下一页
-        /// </summary>
-        public static bool HasNextPage;
-        /// <summary>
-        /// 是否存在上一页
-        /// </summary>
-        public static bool HasPrePage;
+        public struct DataViewInfo
+        {
+            public String strDBTag;
+            /// <summary>
+            /// 数据集总记录数
+            /// </summary>
+            public int CurrentCollectionTotalCnt;
+            /// <summary>
+            /// Skip记录数
+            /// </summary>
+            public int SkipCnt;
+            /// <summary>
+            /// 是否存在下一页
+            /// </summary>
+            public bool HasNextPage;
+            /// <summary>
+            /// 是否存在上一页
+            /// </summary>
+            public bool HasPrePage;
+        }
         /// <summary>
         /// 数据导航
         /// </summary>
@@ -609,56 +617,56 @@ namespace MagicMongoDBTool.Module
         /// <param name="IsNext"></param>
         /// <param name="strTag"></param>
         /// <param name="dataShower"></param>
-        public static void PageChanged(PageChangeOpr pageChangeMode, String strTag, List<Control> dataShower)
+        public static void PageChanged(PageChangeOpr pageChangeMode, DataViewInfo mDataViewInfo, List<Control> dataShower)
         {
             switch (pageChangeMode)
             {
                 case PageChangeOpr.FirstPage:
-                    SkipCnt = 0;
+                    mDataViewInfo.SkipCnt = 0;
                     break;
                 case PageChangeOpr.LastPage:
-                    if (CurrentCollectionTotalCnt % SystemManager.ConfigHelperInstance.LimitCnt == 0)
+                    if (mDataViewInfo.CurrentCollectionTotalCnt % SystemManager.ConfigHelperInstance.LimitCnt == 0)
                     {
                         //没有余数的时候，600 % 100 == 0  => Skip = 600-100 = 500
-                        SkipCnt = CurrentCollectionTotalCnt - SystemManager.ConfigHelperInstance.LimitCnt;
+                        mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - SystemManager.ConfigHelperInstance.LimitCnt;
                     }
                     else
                     {
                         // 630 % 100 == 30  => Skip = 630-30 = 600  
-                        SkipCnt = CurrentCollectionTotalCnt - CurrentCollectionTotalCnt % SystemManager.ConfigHelperInstance.LimitCnt;
+                        mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - mDataViewInfo.CurrentCollectionTotalCnt % SystemManager.ConfigHelperInstance.LimitCnt;
                     }
                     break;
                 case PageChangeOpr.NextPage:
-                    SkipCnt += SystemManager.ConfigHelperInstance.LimitCnt;
+                    mDataViewInfo.SkipCnt += SystemManager.ConfigHelperInstance.LimitCnt;
                     break;
                 case PageChangeOpr.PrePage:
-                    SkipCnt -= SystemManager.ConfigHelperInstance.LimitCnt;
+                    mDataViewInfo.SkipCnt -= SystemManager.ConfigHelperInstance.LimitCnt;
                     break;
                 default:
                     break;
             }
-            FillDataToControl(strTag, dataShower);
+            FillDataToControl(mDataViewInfo, dataShower);
         }
         /// <summary>
         /// 设置导航状态
         /// </summary>
-        public static void SetPageEnable()
+        public static void SetPageEnable(DataViewInfo mDataViewInfo)
         {
-            if (SkipCnt == 0)
+            if (mDataViewInfo.SkipCnt == 0)
             {
-                HasPrePage = false;
+                mDataViewInfo.HasPrePage = false;
             }
             else
             {
-                HasPrePage = true;
+                mDataViewInfo.HasPrePage = true;
             }
-            if ((SkipCnt + SystemManager.ConfigHelperInstance.LimitCnt) >= CurrentCollectionTotalCnt)
+            if ((mDataViewInfo.SkipCnt + SystemManager.ConfigHelperInstance.LimitCnt) >= mDataViewInfo.CurrentCollectionTotalCnt)
             {
-                HasNextPage = false;
+                mDataViewInfo.HasNextPage = false;
             }
             else
             {
-                HasNextPage = true;
+                mDataViewInfo.HasNextPage = true;
             }
         }
 

@@ -36,6 +36,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public static String SelectObjectTag = String.Empty;
         /// <summary>
+        /// 
+        /// </summary>
+        public static MongoDBHelper.DataViewInfo mDataViewInfo { set; get; }
+        /// <summary>
         /// 文字资源
         /// </summary>
         public static StringResource mStringResource = new MagicMongoDBTool.Module.StringResource();

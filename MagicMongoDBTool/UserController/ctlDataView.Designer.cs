@@ -60,6 +60,7 @@ namespace MagicMongoDBTool.UserController
             this.ExpandAllStripButton = new System.Windows.Forms.ToolStripButton();
             this.CollapseAllStripButton = new System.Windows.Forms.ToolStripButton();
             this.DataNaviToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
@@ -253,69 +254,70 @@ namespace MagicMongoDBTool.UserController
             this.NextPageStripButton,
             this.LastPageStripButton,
             this.ExpandAllStripButton,
-            this.CollapseAllStripButton});
+            this.CollapseAllStripButton,
+            this.CloseStripButton});
             this.ViewtoolStrip.Location = new System.Drawing.Point(0, 0);
             this.ViewtoolStrip.Name = "ViewtoolStrip";
             this.ViewtoolStrip.Size = new System.Drawing.Size(688, 25);
             this.ViewtoolStrip.TabIndex = 2;
             this.ViewtoolStrip.Text = "toolStrip1";
             // 
-            // FirstPage
+            // FirstPageStripButton
             // 
             this.FirstPageStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FirstPageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("FirstPage.Image")));
+            this.FirstPageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("FirstPageStripButton.Image")));
             this.FirstPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.FirstPageStripButton.Name = "FirstPage";
+            this.FirstPageStripButton.Name = "FirstPageStripButton";
             this.FirstPageStripButton.Size = new System.Drawing.Size(23, 22);
             this.FirstPageStripButton.Text = "First Page";
             this.FirstPageStripButton.Click += new System.EventHandler(this.FirstPage_Click);
             // 
-            // PrePage
+            // PrePageStripButton
             // 
             this.PrePageStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.PrePageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PrePage.Image")));
+            this.PrePageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PrePageStripButton.Image")));
             this.PrePageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PrePageStripButton.Name = "PrePage";
+            this.PrePageStripButton.Name = "PrePageStripButton";
             this.PrePageStripButton.Size = new System.Drawing.Size(23, 22);
             this.PrePageStripButton.Text = "Previous Page";
             this.PrePageStripButton.Click += new System.EventHandler(this.PrePage_Click);
             // 
-            // NextPage
+            // NextPageStripButton
             // 
             this.NextPageStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.NextPageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("NextPage.Image")));
+            this.NextPageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("NextPageStripButton.Image")));
             this.NextPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.NextPageStripButton.Name = "NextPage";
+            this.NextPageStripButton.Name = "NextPageStripButton";
             this.NextPageStripButton.Size = new System.Drawing.Size(23, 22);
             this.NextPageStripButton.Text = "Next Page";
             this.NextPageStripButton.Click += new System.EventHandler(this.NextPage_Click);
             // 
-            // LastPage
+            // LastPageStripButton
             // 
             this.LastPageStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.LastPageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("LastPage.Image")));
+            this.LastPageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("LastPageStripButton.Image")));
             this.LastPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.LastPageStripButton.Name = "LastPage";
+            this.LastPageStripButton.Name = "LastPageStripButton";
             this.LastPageStripButton.Size = new System.Drawing.Size(23, 22);
             this.LastPageStripButton.Text = "Last Page";
             this.LastPageStripButton.Click += new System.EventHandler(this.LastPage_Click);
             // 
-            // ExpandAll
+            // ExpandAllStripButton
             // 
             this.ExpandAllStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ExpandAllStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ExpandAll.Image")));
+            this.ExpandAllStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ExpandAllStripButton.Image")));
             this.ExpandAllStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ExpandAllStripButton.Name = "ExpandAll";
+            this.ExpandAllStripButton.Name = "ExpandAllStripButton";
             this.ExpandAllStripButton.Size = new System.Drawing.Size(58, 22);
             this.ExpandAllStripButton.Text = "ExpandAll";
             this.ExpandAllStripButton.Click += new System.EventHandler(this.ExpandAll_Click);
             // 
-            // CollapseAll
+            // CollapseAllStripButton
             // 
             this.CollapseAllStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CollapseAllStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CollapseAll.Image")));
+            this.CollapseAllStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CollapseAllStripButton.Image")));
             this.CollapseAllStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CollapseAllStripButton.Name = "CollapseAll";
+            this.CollapseAllStripButton.Name = "CollapseAllStripButton";
             this.CollapseAllStripButton.Size = new System.Drawing.Size(62, 22);
             this.CollapseAllStripButton.Text = "CollapseAll";
             this.CollapseAllStripButton.Click += new System.EventHandler(this.CollapseAll_Click);
@@ -324,6 +326,16 @@ namespace MagicMongoDBTool.UserController
             // 
             this.DataNaviToolStripLabel.Name = "DataNaviToolStripLabel";
             this.DataNaviToolStripLabel.Size = new System.Drawing.Size(23, 23);
+            // 
+            // CloseStripButton
+            // 
+            this.CloseStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CloseStripButton.Image = global::MagicMongoDBTool.Properties.Resources.ShutDown;
+            this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CloseStripButton.Name = "CloseStripButton";
+            this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CloseStripButton.Text = "Close";
+            this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 
             // ctlDataView
             // 
@@ -382,5 +394,6 @@ namespace MagicMongoDBTool.UserController
         private ToolStripMenuItem PasteElementToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem1;
         private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton CloseStripButton;
     }
 }
