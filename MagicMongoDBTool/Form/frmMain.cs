@@ -546,6 +546,7 @@ namespace MagicMongoDBTool
                             this.ImportCollectionToolStripMenuItem.Enabled = true;
                             this.CompactToolStripMenuItem.Enabled = true;
                         }
+
                         this.DumpCollectionToolStripMenuItem.Enabled = true;
                         this.ExportCollectionToolStripMenuItem.Enabled = true;
 
@@ -598,6 +599,9 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.DOCUMENT_TAG:
                     case MongoDBHelper.USER_LIST_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+
+                        this.viewDataToolStripMenuItem.Enabled = true;
+
                         if (strNodeType == MongoDBHelper.USER_LIST_TAG)
                         {
                             if (SystemManager.IsUseDefaultLanguage())
@@ -622,10 +626,7 @@ namespace MagicMongoDBTool
                                     ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                             }
                         }
-                        //if (!config.IsReadOnly & !MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
-                        //{
-                        //    this.AddDocumentToolStripMenuItem.Enabled = true;
-                        //}
+
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             
@@ -662,51 +663,10 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.QueryDataToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
-                        }
-                        if (e.Button == System.Windows.Forms.MouseButtons.Left)
-                        {
-                            MongoDBHelper.IsUseFilter = false;
-                            this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
-                            SystemManager.CurrDataFilter.Clear();
-                            ctlDataView DataViewctl = new ctlDataView();
-                            DataViewctl.config = this.config;
-
-                            DataViewctl.UploadFileToolStripMenuItem = UploadFileToolStripMenuItem;
-                            DataViewctl.DownloadFileToolStripMenuItem = DownloadFileToolStripMenuItem;
-                            DataViewctl.OpenFileToolStripMenuItem = OpenFileToolStripMenuItem;
-                            DataViewctl.DelFileToolStripMenuItem = DelFileToolStripMenuItem;
-
-                            DataViewctl.RemoveUserFromAdminToolStripMenuItem = RemoveUserFromAdminToolStripMenuItem;
-                            DataViewctl.RemoveUserToolStripMenuItem = RemoveUserToolStripMenuItem;
-                            
-
-
-                            DataViewctl.QueryDataToolStripMenuItem = QueryDataToolStripMenuItem;
-                            DataViewctl.DataFilterToolStripMenuItem = DataFilterToolStripMenuItem;
-                            DataViewctl.DisableDataTreeOpr();
-
-
-
-                            this.UploadFileToolStripMenuItem.Click += new System.EventHandler(
-                                (x, y) => { DataViewctl.UploadFile(); }
-                            );
-                            this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(
-                                (x, y) => { DataViewctl.DownloadFile(); }
-                            );
-                            this.OpenFileToolStripMenuItem.Click += new System.EventHandler(
-                                (x, y) => { DataViewctl.OpenFile(); }
-                            );
-                            this.DelFileToolStripMenuItem.Click += new System.EventHandler(
-                                (x, y) => { DataViewctl.DelFile(); }
-                            );
-
-                            TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().Name);
-                            DataTab.Controls.Add(DataViewctl);
-                            DataViewctl.Dock = DockStyle.Fill;
-                            tabView.Controls.Add(DataTab);
                         }
                         break;
                     case MongoDBHelper.INDEX_TAG:
@@ -836,6 +796,7 @@ namespace MagicMongoDBTool
             this.RenameCollectionToolStripMenuItem.Enabled = false;
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
             this.CompactToolStripMenuItem.Enabled = false;
+            this.viewDataToolStripMenuItem.Enabled = false;
 
             //管理-GFS
             this.UploadFileToolStripMenuItem.Enabled = false;
@@ -1402,6 +1363,52 @@ namespace MagicMongoDBTool
         {
             MongoDBHelper.ExecuteMongoCommand(MongoDBHelper.Compact_Command);
         }
+        /// <summary>
+        /// Create a DataView Tab
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void viewDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                MongoDBHelper.IsUseFilter = false;
+                this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
+                SystemManager.CurrDataFilter.Clear();
+                ctlDataView DataViewctl = new ctlDataView();
+                DataViewctl.config = this.config;
+                DataViewctl.strDBTag = SystemManager.SelectObjectTag;
+                DataViewctl.UploadFileToolStripMenuItem = UploadFileToolStripMenuItem;
+                DataViewctl.DownloadFileToolStripMenuItem = DownloadFileToolStripMenuItem;
+                DataViewctl.OpenFileToolStripMenuItem = OpenFileToolStripMenuItem;
+                DataViewctl.DelFileToolStripMenuItem = DelFileToolStripMenuItem;
+
+                DataViewctl.RemoveUserFromAdminToolStripMenuItem = RemoveUserFromAdminToolStripMenuItem;
+                DataViewctl.RemoveUserToolStripMenuItem = RemoveUserToolStripMenuItem;
+
+                DataViewctl.QueryDataToolStripMenuItem = QueryDataToolStripMenuItem;
+                DataViewctl.DataFilterToolStripMenuItem = DataFilterToolStripMenuItem;
+                DataViewctl.DisableDataTreeOpr();
+
+                this.UploadFileToolStripMenuItem.Click += new System.EventHandler(
+                    (x, y) => { DataViewctl.UploadFile(); }
+                );
+                this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(
+                    (x, y) => { DataViewctl.DownloadFile(); }
+                );
+                this.OpenFileToolStripMenuItem.Click += new System.EventHandler(
+                    (x, y) => { DataViewctl.OpenFile(); }
+                );
+                this.DelFileToolStripMenuItem.Click += new System.EventHandler(
+                    (x, y) => { DataViewctl.DelFile(); }
+                );
+                
+                TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().Name);
+                DataTab.Controls.Add(DataViewctl);
+                DataViewctl.Dock = DockStyle.Fill;
+                tabView.Controls.Add(DataTab);
+
+                tabView.SelectTab(DataTab); 
+
+        }
         #endregion
 
         #region"管理：备份和恢复"
@@ -1711,6 +1718,8 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
+
+
 
     }
 }

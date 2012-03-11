@@ -44,6 +44,7 @@ namespace MagicMongoDBTool.UserController
             this.DataDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelSelectRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.AddElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DropElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ModifyElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,14 +53,13 @@ namespace MagicMongoDBTool.UserController
             this.CutElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PasteElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
-            this.FirstPage = new System.Windows.Forms.ToolStripButton();
-            this.PrePage = new System.Windows.Forms.ToolStripButton();
-            this.NextPage = new System.Windows.Forms.ToolStripButton();
-            this.LastPage = new System.Windows.Forms.ToolStripButton();
-            this.ExpandAll = new System.Windows.Forms.ToolStripButton();
-            this.CollapseAll = new System.Windows.Forms.ToolStripButton();
+            this.FirstPageStripButton = new System.Windows.Forms.ToolStripButton();
+            this.PrePageStripButton = new System.Windows.Forms.ToolStripButton();
+            this.NextPageStripButton = new System.Windows.Forms.ToolStripButton();
+            this.LastPageStripButton = new System.Windows.Forms.ToolStripButton();
+            this.ExpandAllStripButton = new System.Windows.Forms.ToolStripButton();
+            this.CollapseAllStripButton = new System.Windows.Forms.ToolStripButton();
             this.DataNaviToolStripLabel = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
@@ -183,10 +183,6 @@ namespace MagicMongoDBTool.UserController
             this.DataDocumentToolStripMenuItem.Name = "DataDocumentToolStripMenuItem";
             this.DataDocumentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataDocumentToolStripMenuItem.Text = "Document";
-
-            this.DelSelectRecordToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
-            this.DropElementToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
-
             // 
             // AddDocumentToolStripMenuItem
             // 
@@ -196,10 +192,16 @@ namespace MagicMongoDBTool.UserController
             // 
             // DelSelectRecordToolStripMenuItem
             // 
+            this.DelSelectRecordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DelSelectRecordToolStripMenuItem.Image")));
             this.DelSelectRecordToolStripMenuItem.Name = "DelSelectRecordToolStripMenuItem";
             this.DelSelectRecordToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DelSelectRecordToolStripMenuItem.Text = "Del Selected Records";
             this.DelSelectRecordToolStripMenuItem.Click += new System.EventHandler(this.DelSelectRecordToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(172, 6);
             // 
             // AddElementToolStripMenuItem
             // 
@@ -209,6 +211,7 @@ namespace MagicMongoDBTool.UserController
             // 
             // DropElementToolStripMenuItem
             // 
+            this.DropElementToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DropElementToolStripMenuItem.Image")));
             this.DropElementToolStripMenuItem.Name = "DropElementToolStripMenuItem";
             this.DropElementToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DropElementToolStripMenuItem.Text = "Drop Element";
@@ -245,12 +248,12 @@ namespace MagicMongoDBTool.UserController
             // ViewtoolStrip
             // 
             this.ViewtoolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.FirstPage,
-            this.PrePage,
-            this.NextPage,
-            this.LastPage,
-            this.ExpandAll,
-            this.CollapseAll});
+            this.FirstPageStripButton,
+            this.PrePageStripButton,
+            this.NextPageStripButton,
+            this.LastPageStripButton,
+            this.ExpandAllStripButton,
+            this.CollapseAllStripButton});
             this.ViewtoolStrip.Location = new System.Drawing.Point(0, 0);
             this.ViewtoolStrip.Name = "ViewtoolStrip";
             this.ViewtoolStrip.Size = new System.Drawing.Size(688, 25);
@@ -259,73 +262,68 @@ namespace MagicMongoDBTool.UserController
             // 
             // FirstPage
             // 
-            this.FirstPage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FirstPage.Image = ((System.Drawing.Image)(resources.GetObject("FirstPage.Image")));
-            this.FirstPage.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.FirstPage.Name = "FirstPage";
-            this.FirstPage.Size = new System.Drawing.Size(23, 22);
-            this.FirstPage.Text = "First Page";
-            this.FirstPage.Click += new System.EventHandler(this.FirstPage_Click);
+            this.FirstPageStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.FirstPageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("FirstPage.Image")));
+            this.FirstPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FirstPageStripButton.Name = "FirstPage";
+            this.FirstPageStripButton.Size = new System.Drawing.Size(23, 22);
+            this.FirstPageStripButton.Text = "First Page";
+            this.FirstPageStripButton.Click += new System.EventHandler(this.FirstPage_Click);
             // 
             // PrePage
             // 
-            this.PrePage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.PrePage.Image = ((System.Drawing.Image)(resources.GetObject("PrePage.Image")));
-            this.PrePage.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PrePage.Name = "PrePage";
-            this.PrePage.Size = new System.Drawing.Size(23, 22);
-            this.PrePage.Text = "Previous Page";
-            this.PrePage.Click += new System.EventHandler(this.PrePage_Click);
+            this.PrePageStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.PrePageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PrePage.Image")));
+            this.PrePageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PrePageStripButton.Name = "PrePage";
+            this.PrePageStripButton.Size = new System.Drawing.Size(23, 22);
+            this.PrePageStripButton.Text = "Previous Page";
+            this.PrePageStripButton.Click += new System.EventHandler(this.PrePage_Click);
             // 
             // NextPage
             // 
-            this.NextPage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.NextPage.Image = ((System.Drawing.Image)(resources.GetObject("NextPage.Image")));
-            this.NextPage.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.NextPage.Name = "NextPage";
-            this.NextPage.Size = new System.Drawing.Size(23, 22);
-            this.NextPage.Text = "Next Page";
-            this.NextPage.Click += new System.EventHandler(this.NextPage_Click);
+            this.NextPageStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.NextPageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("NextPage.Image")));
+            this.NextPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NextPageStripButton.Name = "NextPage";
+            this.NextPageStripButton.Size = new System.Drawing.Size(23, 22);
+            this.NextPageStripButton.Text = "Next Page";
+            this.NextPageStripButton.Click += new System.EventHandler(this.NextPage_Click);
             // 
             // LastPage
             // 
-            this.LastPage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.LastPage.Image = ((System.Drawing.Image)(resources.GetObject("LastPage.Image")));
-            this.LastPage.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.LastPage.Name = "LastPage";
-            this.LastPage.Size = new System.Drawing.Size(23, 22);
-            this.LastPage.Text = "Last Page";
-            this.LastPage.Click += new System.EventHandler(this.LastPage_Click);
+            this.LastPageStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.LastPageStripButton.Image = ((System.Drawing.Image)(resources.GetObject("LastPage.Image")));
+            this.LastPageStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.LastPageStripButton.Name = "LastPage";
+            this.LastPageStripButton.Size = new System.Drawing.Size(23, 22);
+            this.LastPageStripButton.Text = "Last Page";
+            this.LastPageStripButton.Click += new System.EventHandler(this.LastPage_Click);
             // 
             // ExpandAll
             // 
-            this.ExpandAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ExpandAll.Image = ((System.Drawing.Image)(resources.GetObject("ExpandAll.Image")));
-            this.ExpandAll.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ExpandAll.Name = "ExpandAll";
-            this.ExpandAll.Size = new System.Drawing.Size(58, 22);
-            this.ExpandAll.Text = "ExpandAll";
-            this.ExpandAll.Click += new System.EventHandler(this.ExpandAll_Click);
+            this.ExpandAllStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.ExpandAllStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ExpandAll.Image")));
+            this.ExpandAllStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExpandAllStripButton.Name = "ExpandAll";
+            this.ExpandAllStripButton.Size = new System.Drawing.Size(58, 22);
+            this.ExpandAllStripButton.Text = "ExpandAll";
+            this.ExpandAllStripButton.Click += new System.EventHandler(this.ExpandAll_Click);
             // 
             // CollapseAll
             // 
-            this.CollapseAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.CollapseAll.Image = ((System.Drawing.Image)(resources.GetObject("CollapseAll.Image")));
-            this.CollapseAll.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CollapseAll.Name = "CollapseAll";
-            this.CollapseAll.Size = new System.Drawing.Size(62, 22);
-            this.CollapseAll.Text = "CollapseAll";
-            this.CollapseAll.Click += new System.EventHandler(this.CollapseAll_Click);
+            this.CollapseAllStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.CollapseAllStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CollapseAll.Image")));
+            this.CollapseAllStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CollapseAllStripButton.Name = "CollapseAll";
+            this.CollapseAllStripButton.Size = new System.Drawing.Size(62, 22);
+            this.CollapseAllStripButton.Text = "CollapseAll";
+            this.CollapseAllStripButton.Click += new System.EventHandler(this.CollapseAll_Click);
             // 
             // DataNaviToolStripLabel
             // 
             this.DataNaviToolStripLabel.Name = "DataNaviToolStripLabel";
             this.DataNaviToolStripLabel.Size = new System.Drawing.Size(23, 23);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(172, 6);
             // 
             // ctlDataView
             // 
@@ -351,30 +349,27 @@ namespace MagicMongoDBTool.UserController
 
         #endregion
 
-        public ToolStripButton NextPageToolStripButton;
-        public ToolStripButton PrePageToolStripButton;
-        public ToolStripButton FirstPageToolStripButton;
-        public ToolStripButton LastPageToolStripButton;
-        public ToolStripButton QueryDataToolStripButton;
-        public ToolStripButton DataFilterToolStripButton;
-        public ToolStripLabel DataNaviToolStripLabel;
+        private ToolStripButton QueryDataToolStripButton;
+        private ToolStripButton DataFilterToolStripButton;
+        private ToolStripLabel DataNaviToolStripLabel;
 
-        public System.Windows.Forms.TabControl tabDataShower;
-        public System.Windows.Forms.TabPage tabTreeView;
-        public System.Windows.Forms.TreeView trvData;
-        public System.Windows.Forms.TabPage tabTableView;
-        public System.Windows.Forms.ListView lstData;
-        public System.Windows.Forms.TabPage tabTextView;
-        public System.Windows.Forms.LinkLabel lnkFile;
-        public System.Windows.Forms.TextBox txtData;
-        public System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
-        public ToolStrip ViewtoolStrip;
-        private ToolStripButton PrePage;
-        private ToolStripButton FirstPage;
-        private ToolStripButton NextPage;
-        private ToolStripButton LastPage;
-        private ToolStripButton ExpandAll;
-        private ToolStripButton CollapseAll;
+        private System.Windows.Forms.TabControl tabDataShower;
+        private System.Windows.Forms.TabPage tabTreeView;
+        private System.Windows.Forms.TreeView trvData;
+        private System.Windows.Forms.TabPage tabTableView;
+        private System.Windows.Forms.ListView lstData;
+        private System.Windows.Forms.TabPage tabTextView;
+        private System.Windows.Forms.LinkLabel lnkFile;
+        private System.Windows.Forms.TextBox txtData;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
+
+        private ToolStrip ViewtoolStrip;
+        private ToolStripButton PrePageStripButton;
+        private ToolStripButton FirstPageStripButton;
+        private ToolStripButton NextPageStripButton;
+        private ToolStripButton LastPageStripButton;
+        private ToolStripButton ExpandAllStripButton;
+        private ToolStripButton CollapseAllStripButton;
         private ToolStripMenuItem DataDocumentToolStripMenuItem;
 
         private ToolStripMenuItem AddDocumentToolStripMenuItem;

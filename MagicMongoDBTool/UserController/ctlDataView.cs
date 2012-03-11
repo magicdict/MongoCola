@@ -24,9 +24,18 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         public List<Control> _dataShower = new List<Control>();
         /// <summary>
-        /// Current Connection Config
+        /// 当前服务器的配置
         /// </summary>
         public ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
+        /// <summary>
+        /// 当前数据集的标识
+        /// </summary>
+        public String strDBTag { set; get; }
+        /// <summary>
+        /// 加载数据集控件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ctlDataView_Load(object sender, EventArgs e)
         {
             _dataShower.Add(lstData);
@@ -35,17 +44,10 @@ namespace MagicMongoDBTool.UserController
 
             QueryDataToolStripButton = this.QueryDataToolStripMenuItem.CloneFromMenuItem();
             DataFilterToolStripButton = this.DataFilterToolStripMenuItem.CloneFromMenuItem();
-            
-
-            this.FirstPageToolStripButton.Enabled = false;
-            this.LastPageToolStripButton.Enabled = false;
-            this.NextPageToolStripButton.Enabled = false;
-            this.PrePageToolStripButton.Enabled = false;
 
             this.QueryDataToolStripButton.Enabled = false;
             this.DataFilterToolStripButton.Enabled = false;
             this.DataFilterToolStripButton.Checked = false;
-
 
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
             this.lstData.MouseDoubleClick += new MouseEventHandler(lstData_MouseDoubleClick);
@@ -74,10 +76,10 @@ namespace MagicMongoDBTool.UserController
                 this.tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
                 this.lnkFile.Text = SystemManager.mStringResource.GetText(StringResource.TextType.OpenInNativeEditor);
 
-                this.PrePage.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
-                this.NextPage.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
-                this.FirstPage.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_First);
-                this.LastPage.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Last);
+                this.PrePageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
+                this.NextPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
+                this.FirstPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_First);
+                this.LastPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Last);
 
 
                 this.AddDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
@@ -93,13 +95,12 @@ namespace MagicMongoDBTool.UserController
             }
 
             //View ToolTip
-            this.ViewtoolStrip.Items.Add(FirstPageToolStripButton);
-            this.ViewtoolStrip.Items.Add(PrePageToolStripButton);
-            this.ViewtoolStrip.Items.Add(NextPageToolStripButton);
-            this.ViewtoolStrip.Items.Add(LastPageToolStripButton);
             this.ViewtoolStrip.Items.Add(QueryDataToolStripButton);
             this.ViewtoolStrip.Items.Add(DataNaviToolStripLabel);
             this.ViewtoolStrip.Items.Add(DataFilterToolStripButton);
+
+            MongoDBHelper.FillDataToControl(strDBTag, _dataShower);
+
         }
         /// <summary>
         /// 
@@ -892,10 +893,10 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         private void SetDataNav()
         {
-            PrePage.Enabled = MongoDBHelper.HasPrePage;
-            NextPage.Enabled = MongoDBHelper.HasNextPage;
-            FirstPage.Enabled = MongoDBHelper.HasPrePage;
-            LastPage.Enabled = MongoDBHelper.HasNextPage;
+            PrePageStripButton.Enabled = MongoDBHelper.HasPrePage;
+            NextPageStripButton.Enabled = MongoDBHelper.HasNextPage;
+            FirstPageStripButton.Enabled = MongoDBHelper.HasPrePage;
+            LastPageStripButton.Enabled = MongoDBHelper.HasNextPage;
             this.QueryDataToolStripMenuItem.Enabled = true;
             String strTitle = "Records";
             if (!SystemManager.IsUseDefaultLanguage())
