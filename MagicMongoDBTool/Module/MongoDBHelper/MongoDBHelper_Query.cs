@@ -11,10 +11,6 @@ namespace MagicMongoDBTool.Module
     {
 
         /// <summary>
-        /// 是否使用过滤器
-        /// </summary>
-        public static bool IsUseFilter = false;
-        /// <summary>
         /// 获得输出字段名称
         /// </summary>
         /// <returns></returns>

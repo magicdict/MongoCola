@@ -59,8 +59,11 @@ namespace MagicMongoDBTool.UserController
             this.LastPageStripButton = new System.Windows.Forms.ToolStripButton();
             this.ExpandAllStripButton = new System.Windows.Forms.ToolStripButton();
             this.CollapseAllStripButton = new System.Windows.Forms.ToolStripButton();
-            this.DataNaviToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
+            this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
+            this.QueryStripButton = new System.Windows.Forms.ToolStripButton();
+            this.FilterStripButton = new System.Windows.Forms.ToolStripButton();
+            this.DataNaviToolStripLabel = new System.Windows.Forms.ToolStripLabel();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
@@ -255,6 +258,10 @@ namespace MagicMongoDBTool.UserController
             this.LastPageStripButton,
             this.ExpandAllStripButton,
             this.CollapseAllStripButton,
+            this.QueryStripButton,
+            this.FilterStripButton,
+            this.DataNaviToolStripLabel,
+            this.RefreshStripButton,
             this.CloseStripButton});
             this.ViewtoolStrip.Location = new System.Drawing.Point(0, 0);
             this.ViewtoolStrip.Name = "ViewtoolStrip";
@@ -322,11 +329,6 @@ namespace MagicMongoDBTool.UserController
             this.CollapseAllStripButton.Text = "CollapseAll";
             this.CollapseAllStripButton.Click += new System.EventHandler(this.CollapseAll_Click);
             // 
-            // DataNaviToolStripLabel
-            // 
-            this.DataNaviToolStripLabel.Name = "DataNaviToolStripLabel";
-            this.DataNaviToolStripLabel.Size = new System.Drawing.Size(23, 23);
-            // 
             // CloseStripButton
             // 
             this.CloseStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -336,6 +338,42 @@ namespace MagicMongoDBTool.UserController
             this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
+            // 
+            // RefreshStripButton
+            // 
+            this.RefreshStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.RefreshStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Refresh;
+            this.RefreshStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RefreshStripButton.Name = "RefreshStripButton";
+            this.RefreshStripButton.Size = new System.Drawing.Size(23, 22);
+            this.RefreshStripButton.Text = "Refresh";
+            this.RefreshStripButton.Click += new System.EventHandler(this.RefreshStripButton_Click);
+            // 
+            // QueryStripButton
+            // 
+            this.QueryStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.QueryStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Query;
+            this.QueryStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.QueryStripButton.Name = "QueryStripButton";
+            this.QueryStripButton.Size = new System.Drawing.Size(23, 22);
+            this.QueryStripButton.Text = "Query";
+            this.QueryStripButton.Click += new System.EventHandler(this.QueryStripButton_Click);
+            // 
+            // FilterStripButton
+            // 
+            this.FilterStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.FilterStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Filter;
+            this.FilterStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FilterStripButton.Name = "FilterStripButton";
+            this.FilterStripButton.Size = new System.Drawing.Size(23, 22);
+            this.FilterStripButton.Text = "Filter";
+            this.FilterStripButton.Click += new System.EventHandler(this.FilterStripButton_Click);
+            // 
+            // DataNaviToolStripLabel
+            // 
+            this.DataNaviToolStripLabel.Name = "DataNaviToolStripLabel";
+            this.DataNaviToolStripLabel.Size = new System.Drawing.Size(118, 22);
+            this.DataNaviToolStripLabel.Text = "DataNaviToolStripLabel";
             // 
             // ctlDataView
             // 
@@ -361,9 +399,6 @@ namespace MagicMongoDBTool.UserController
 
         #endregion
 
-        private ToolStripButton QueryDataToolStripButton;
-        private ToolStripButton DataFilterToolStripButton;
-        private ToolStripLabel DataNaviToolStripLabel;
 
         private System.Windows.Forms.TabControl tabDataShower;
         private System.Windows.Forms.TabPage tabTreeView;
@@ -395,5 +430,9 @@ namespace MagicMongoDBTool.UserController
         private ToolStripSeparator toolStripMenuItem1;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton CloseStripButton;
+        private ToolStripButton RefreshStripButton;
+        private ToolStripButton QueryStripButton;
+        private ToolStripButton FilterStripButton;
+        private ToolStripLabel DataNaviToolStripLabel;
     }
 }

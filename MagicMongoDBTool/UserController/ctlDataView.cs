@@ -29,7 +29,7 @@ namespace MagicMongoDBTool.UserController
         /// <summary>
         /// DataView信息
         /// </summary>
-        public MongoDBHelper.DataViewInfo mDataViewInfo = new MongoDBHelper.DataViewInfo();
+        public MongoDBHelper.DataViewInfo mDataViewInfo;
         /// <summary>
         /// 关闭Tab事件
         /// </summary>
@@ -45,12 +45,9 @@ namespace MagicMongoDBTool.UserController
             _dataShower.Add(trvData);
             _dataShower.Add(txtData);
 
-            QueryDataToolStripButton = this.QueryDataToolStripMenuItem.CloneFromMenuItem();
-            DataFilterToolStripButton = this.DataFilterToolStripMenuItem.CloneFromMenuItem();
-
-            this.QueryDataToolStripButton.Enabled = false;
-            this.DataFilterToolStripButton.Enabled = false;
-            this.DataFilterToolStripButton.Checked = false;
+            this.QueryStripButton.Enabled = false;
+            this.FilterStripButton.Enabled = false;
+            this.FilterStripButton.Checked = false;
 
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
             this.lstData.MouseDoubleClick += new MouseEventHandler(lstData_MouseDoubleClick);
@@ -67,7 +64,7 @@ namespace MagicMongoDBTool.UserController
                     this.DelSelectRecordToolStripMenuItem.Enabled = false;
                     if (IsNeedRefresh)
                     {
-                        RefreshData();
+                        RefreshStripButton_Click(sender,e);
                     }
                 }
             );
@@ -83,6 +80,8 @@ namespace MagicMongoDBTool.UserController
                 this.NextPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
                 this.FirstPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_First);
                 this.LastPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Last);
+                this.QueryStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Query);
+                this.FilterStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_DataFilter);
 
 
                 this.AddDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
@@ -96,11 +95,6 @@ namespace MagicMongoDBTool.UserController
                 this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
 
             }
-
-            //View ToolTip
-            this.ViewtoolStrip.Items.Add(QueryDataToolStripButton);
-            this.ViewtoolStrip.Items.Add(DataNaviToolStripLabel);
-            this.ViewtoolStrip.Items.Add(DataFilterToolStripButton);
             //加载数据
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
             //数据导航
@@ -141,8 +135,7 @@ namespace MagicMongoDBTool.UserController
         public ToolStripMenuItem RemoveUserFromAdminToolStripMenuItem;
         public ToolStripMenuItem RemoveUserToolStripMenuItem;
 
-        public ToolStripMenuItem QueryDataToolStripMenuItem;
-        public ToolStripMenuItem DataFilterToolStripMenuItem;
+
 
         #region"数据展示区操作"
         /// <summary>
@@ -644,7 +637,7 @@ namespace MagicMongoDBTool.UserController
                     trvData.ContextMenuStrip = null;
                 }
                 DelSelectRecordToolStripMenuItem.Enabled = false;
-                RefreshData();
+                RefreshStripButton_Click(sender, e);
             }
         }
         /// <summary>
@@ -817,7 +810,7 @@ namespace MagicMongoDBTool.UserController
             {
                 MongoDBHelper.UpLoadFile(upfile.FileName);
             }
-            RefreshData();
+            RefreshStripButton_Click(null, null);
         }
         /// <summary>
         /// DownLoad File
@@ -866,7 +859,7 @@ namespace MagicMongoDBTool.UserController
                     MongoDBHelper.DelFile(trvData.SelectedNode.Tag.ToString());
                     trvData.ContextMenuStrip = null;
                 }
-                RefreshData();
+                RefreshStripButton_Click(null, null);
             }
         }
         #endregion
@@ -913,7 +906,8 @@ namespace MagicMongoDBTool.UserController
             NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
             FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
             LastPageStripButton.Enabled = mDataViewInfo.HasNextPage;
-            this.QueryDataToolStripMenuItem.Enabled = true;
+            this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            this.QueryStripButton.Enabled = true;
             String strTitle = "Records";
             if (!SystemManager.IsUseDefaultLanguage())
             {
@@ -928,10 +922,11 @@ namespace MagicMongoDBTool.UserController
                 this.DataNaviToolStripLabel.Text = strTitle + "：" + (mDataViewInfo.SkipCnt + 1).ToString() + "/" + mDataViewInfo.CurrentCollectionTotalCnt.ToString();
             }
         }
+
         /// <summary>
         /// Refresh Data
         /// </summary>
-        private void RefreshData()
+        private void RefreshStripButton_Click(object sender, EventArgs e)
         {
             this.clear();
             mDataViewInfo.SkipCnt = 0;
@@ -940,8 +935,22 @@ namespace MagicMongoDBTool.UserController
             IsNeedRefresh = false;
         }
 
+        private void QueryStripButton_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmQuery());
+            this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            //重新展示数据
+            MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
+        }
+        private void FilterStripButton_Click(object sender, EventArgs e)
+        {
+            mDataViewInfo.IsUseFilter = !mDataViewInfo.IsUseFilter;
+            this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            //过滤变更后，重新刷新
+            mDataViewInfo.SkipCnt = 0;
+            RefreshStripButton_Click(sender, e);
+        }
         #endregion
-
 
     }
 }

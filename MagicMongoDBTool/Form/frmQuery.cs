@@ -92,7 +92,7 @@ namespace MagicMongoDBTool
             // 设置DataFilter
             SetCurrDataFilter();
             //启用过滤器
-            MongoDBHelper.IsUseFilter = true;
+            //MongoDBHelper.IsUseFilter = true;
             this.Close();
         }
         /// <summary>

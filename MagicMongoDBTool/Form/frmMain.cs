@@ -59,10 +59,8 @@ namespace MagicMongoDBTool
             //数据视图
             this.DataNaviToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
 
-            this.QueryDataToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Query);
             this.ConvertSqlToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_ConvertSql);
             this.AggregationToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Aggregation);
-            this.DataFilterToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_DataFilter);
 
             //Operation
             this.OperationToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation);
@@ -146,7 +144,10 @@ namespace MagicMongoDBTool
         /// Current Connection Config
         /// </summary>
         ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
-        //private ctlDataView DataViewctl;
+        /// <summary>
+        /// 多文档视图管理
+        /// </summary>
+        Dictionary<String, TabPage> ViewList = new Dictionary<String, TabPage>();
 
         /// <summary>
         /// Load Form
@@ -156,6 +157,7 @@ namespace MagicMongoDBTool
         private void frmMain_Load(object sender, EventArgs e)
         {
             this.trvsrvlst.NodeMouseClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseClick);
+            this.trvsrvlst.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseDoubleClick);
             this.trvsrvlst.KeyDown += new KeyEventHandler(trvsrvlst_KeyDown);
 
             this.ServerStatusCtl.Dock = DockStyle.Fill;
@@ -167,7 +169,6 @@ namespace MagicMongoDBTool
 
             //Set Tool bar button enable 
             SetToolBarEnabled();
-
 
             //Open ConnectionManagement Form
             SystemManager.OpenForm(new frmConnect());
@@ -662,7 +663,6 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.distinctToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.QueryDataToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -729,8 +729,6 @@ namespace MagicMongoDBTool
                             statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_GFS) +
                                 ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         }
-                        MongoDBHelper.IsUseFilter = false;
-                        this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
                         SystemManager.CurrDataFilter.Clear();
                         //RefreshData();
                         if (!config.IsReadOnly)
@@ -765,6 +763,28 @@ namespace MagicMongoDBTool
             //重新Reset工具栏
             SetToolBarEnabled();
         }
+        /// <summary>
+        /// 双击打开数据视图
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void trvsrvlst_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            String strNodeType = String.Empty;
+            strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
+            switch (strNodeType)
+            {
+                case MongoDBHelper.DOCUMENT_TAG:
+                case MongoDBHelper.USER_LIST_TAG:
+                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
+                case MongoDBHelper.COLLECTION_TAG:
+                    viewDataToolStripMenuItem_Click(sender, e);
+                    break;
+                default:
+                    break;
+            }
+        }
+  
         /// <summary>
         /// 禁止所有操作
         /// </summary>
@@ -812,10 +832,7 @@ namespace MagicMongoDBTool
             this.ImportCollectionToolStripMenuItem.Enabled = false;
             this.ExportCollectionToolStripMenuItem.Enabled = false;
 
-            this.QueryDataToolStripMenuItem.Enabled = false;
             this.ConvertSqlToolStripMenuItem.Enabled = false;
-            this.DataFilterToolStripMenuItem.Enabled = false;
-            this.DataFilterToolStripMenuItem.Checked = false;
             this.AggregationToolStripMenuItem.Enabled = false;
 
 
@@ -1370,12 +1387,22 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void viewDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                MongoDBHelper.IsUseFilter = false;
-                this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
+            //由于Collection 和 Document 都可以触发这个事件，所以，先把Tag以前的标题头去掉
+            //Collectiong:XXXX 和 Document:XXXX 都统一成 XXXX
+            String DataKey = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            if (ViewList.ContainsKey(DataKey))
+            {
+                tabView.SelectTab(ViewList[DataKey]);
+            }
+            else
+            {
                 SystemManager.CurrDataFilter.Clear();
                 ctlDataView DataViewctl = new ctlDataView();
                 DataViewctl.config = this.config;
-                DataViewctl.mDataViewInfo.strDBTag = SystemManager.SelectObjectTag;
+                MongoDBHelper.DataViewInfo mDataViewInfo = new MongoDBHelper.DataViewInfo();
+                mDataViewInfo.strDBTag = SystemManager.SelectObjectTag;
+                mDataViewInfo.IsUseFilter = false;
+                DataViewctl.mDataViewInfo = mDataViewInfo;
                 DataViewctl.UploadFileToolStripMenuItem = UploadFileToolStripMenuItem;
                 DataViewctl.DownloadFileToolStripMenuItem = DownloadFileToolStripMenuItem;
                 DataViewctl.OpenFileToolStripMenuItem = OpenFileToolStripMenuItem;
@@ -1384,8 +1411,6 @@ namespace MagicMongoDBTool
                 DataViewctl.RemoveUserFromAdminToolStripMenuItem = RemoveUserFromAdminToolStripMenuItem;
                 DataViewctl.RemoveUserToolStripMenuItem = RemoveUserToolStripMenuItem;
 
-                DataViewctl.QueryDataToolStripMenuItem = QueryDataToolStripMenuItem;
-                DataViewctl.DataFilterToolStripMenuItem = DataFilterToolStripMenuItem;
                 DataViewctl.DisableDataTreeOpr();
 
                 this.UploadFileToolStripMenuItem.Click += new System.EventHandler(
@@ -1405,11 +1430,14 @@ namespace MagicMongoDBTool
                 DataTab.Controls.Add(DataViewctl);
                 DataViewctl.Dock = DockStyle.Fill;
                 tabView.Controls.Add(DataTab);
-                DataViewctl.CloseTab +=new System.EventHandler(
-                    (x,y)=>{tabView.Controls.Remove(DataTab);}
+                ViewList.Add(DataKey, DataTab);
+                DataViewctl.CloseTab += new System.EventHandler(
+                    (x, y) => { tabView.Controls.Remove(DataTab);
+                                ViewList.Remove(DataKey);
+                    }
                 );
-                tabView.SelectTab(DataTab); 
-
+                tabView.SelectTab(DataTab);
+            }
         }
         #endregion
 
@@ -1596,20 +1624,16 @@ namespace MagicMongoDBTool
 
         #endregion
 
-        #region"数据导航"
+        #region"聚合"
         /// <summary>
-        /// 
+        /// 转换Sql到Query
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void QueryDataToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ConvertSqlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmQuery());
-            this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
-            //重新展示数据
-            //MongoDBHelper.FillDataToControl(SystemManager.SelectObjectTag, DataViewctl._dataShower);
+            SystemManager.OpenForm(new frmConvertSql());
         }
-        #region"聚合"
         /// <summary>
         /// Count
         /// </summary>
@@ -1657,30 +1681,6 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmMapReduce());
         }
         #endregion
-        /// <summary>
-        /// 过滤切换
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DataFilterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MongoDBHelper.IsUseFilter = !MongoDBHelper.IsUseFilter;
-            this.DataFilterToolStripMenuItem.Checked = MongoDBHelper.IsUseFilter;
-            //过滤变更后，重新刷新
-            //MongoDBHelper.mDataVCiewInfo.SkipCnt = 0;
-            //RefreshData();
-        }
-        /// <summary>
-        /// 转换Sql到Query
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ConvertSqlToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SystemManager.OpenForm(new frmConvertSql());
-        }
-
-        #endregion
 
         #region "Help"
         /// <summary>
@@ -1720,8 +1720,6 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
-
-
-
+    
     }
 }

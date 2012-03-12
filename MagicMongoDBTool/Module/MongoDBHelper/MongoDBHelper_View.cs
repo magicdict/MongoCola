@@ -82,7 +82,7 @@ namespace MagicMongoDBTool.Module
 
             List<BsonDocument> dataList = new List<BsonDocument>();
             //Query condition:
-            if (IsUseFilter)
+            if (CurrentDataViewInfo.IsUseFilter)
             {
                 dataList = mongoCol.FindAs<BsonDocument>(GetQuery(SystemManager.CurrDataFilter.QueryConditionList))
                                    .SetSkip(CurrentDataViewInfo.SkipCnt)
@@ -100,7 +100,7 @@ namespace MagicMongoDBTool.Module
             }
             if (CurrentDataViewInfo.SkipCnt == 0)
             {
-                if (IsUseFilter)
+                if (CurrentDataViewInfo.IsUseFilter)
                 {
                     //感谢cnblogs.com 网友Shadower
                     CurrentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count(GetQuery(SystemManager.CurrDataFilter.QueryConditionList));
@@ -571,6 +571,10 @@ namespace MagicMongoDBTool.Module
         public struct DataViewInfo
         {
             public String strDBTag;
+            /// <summary>
+            /// 是否使用过滤器
+            /// </summary>
+            public bool IsUseFilter;
             /// <summary>
             /// 数据集总记录数
             /// </summary>
