@@ -89,11 +89,6 @@ namespace MagicMongoDBTool
             this.CompactToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Compact);
 
 
-            this.GridFsToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem);
-            this.DelFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
-            this.UploadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Upload);
-            this.DownloadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
-            this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
             this.InitGFSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_InitGFS);
 
             this.DumpAndRestoreToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore);
@@ -717,22 +712,9 @@ namespace MagicMongoDBTool
                                 ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                         }
                         SystemManager.CurrDataFilter.Clear();
-                        //RefreshData();
-                        if (!config.IsReadOnly)
-                        {
-                            UploadFileToolStripMenuItem.Enabled = true;
-                        }
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-#if MONO
-                            //悲催MONO不支持
-                            ToolStripMenuItem t1 = this.UploadFileToolStripMenuItem.Clone();
-                            t1.Click += new EventHandler(UploadFileToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t1);
-#else
-                            this.contextMenuStripMain.Items.Add(this.UploadFileToolStripMenuItem.Clone());
-#endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -796,6 +778,7 @@ namespace MagicMongoDBTool
             this.RemoveUserToolStripMenuItem.Enabled = false;
             this.evalJSToolStripMenuItem.Enabled = false;
             this.RepairDBToolStripMenuItem.Enabled = false;
+            this.InitGFSToolStripMenuItem.Enabled = false;
 
             //管理-数据集
             this.IndexManageToolStripMenuItem.Enabled = false;
@@ -804,13 +787,6 @@ namespace MagicMongoDBTool
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
             this.CompactToolStripMenuItem.Enabled = false;
             this.viewDataToolStripMenuItem.Enabled = false;
-
-            //管理-GFS
-            this.UploadFileToolStripMenuItem.Enabled = false;
-            this.DownloadFileToolStripMenuItem.Enabled = false;
-            this.OpenFileToolStripMenuItem.Enabled = false;
-            this.DelFileToolStripMenuItem.Enabled = false;
-            this.InitGFSToolStripMenuItem.Enabled = false;
 
             //管理-备份和恢复
             this.DumpDatabaseToolStripMenuItem.Enabled = false;
@@ -1342,28 +1318,7 @@ namespace MagicMongoDBTool
                 mDataViewInfo.strDBTag = SystemManager.SelectObjectTag;
                 mDataViewInfo.IsUseFilter = false;
                 DataViewctl.mDataViewInfo = mDataViewInfo;
-                DataViewctl.UploadFileToolStripMenuItem = UploadFileToolStripMenuItem;
-                DataViewctl.DownloadFileToolStripMenuItem = DownloadFileToolStripMenuItem;
-                DataViewctl.OpenFileToolStripMenuItem = OpenFileToolStripMenuItem;
-                DataViewctl.DelFileToolStripMenuItem = DelFileToolStripMenuItem;
-
-                DataViewctl.RemoveUserFromAdminToolStripMenuItem = RemoveUserFromAdminToolStripMenuItem;
-                DataViewctl.RemoveUserToolStripMenuItem = RemoveUserToolStripMenuItem;
-
                 DataViewctl.DisableDataTreeOpr();
-
-                this.UploadFileToolStripMenuItem.Click += new System.EventHandler(
-                    (x, y) => { DataViewctl.UploadFile(); }
-                );
-                this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(
-                    (x, y) => { DataViewctl.DownloadFile(); }
-                );
-                this.OpenFileToolStripMenuItem.Click += new System.EventHandler(
-                    (x, y) => { DataViewctl.OpenFile(); }
-                );
-                this.DelFileToolStripMenuItem.Click += new System.EventHandler(
-                    (x, y) => { DataViewctl.DelFile(); }
-                );
 
                 TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().Name);
                 DataTab.Controls.Add(DataViewctl);

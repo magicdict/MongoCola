@@ -94,6 +94,11 @@ namespace MagicMongoDBTool.UserController
                 this.PasteElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_PasteElement);
                 this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
 
+                this.DelFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
+                this.UploadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Upload);
+                this.DownloadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
+                this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
+
             }
             //加载数据
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
@@ -124,18 +129,6 @@ namespace MagicMongoDBTool.UserController
             trvData.ContextMenuStrip = null;
         }
         #endregion
-
-        //GFS
-        public ToolStripMenuItem UploadFileToolStripMenuItem;
-        public ToolStripMenuItem DownloadFileToolStripMenuItem;
-        public ToolStripMenuItem OpenFileToolStripMenuItem;
-        public ToolStripMenuItem DelFileToolStripMenuItem;
-
-        //Record
-        public ToolStripMenuItem RemoveUserFromAdminToolStripMenuItem;
-        public ToolStripMenuItem RemoveUserToolStripMenuItem;
-
-
 
         #region"数据展示区操作"
         /// <summary>
