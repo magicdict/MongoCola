@@ -79,6 +79,7 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
             this.evalJSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RepairDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.InitGFSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RenameCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,7 +117,6 @@ namespace MagicMongoDBTool
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
-            this.InitGFSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -387,6 +387,7 @@ namespace MagicMongoDBTool
             // 
             // AddUserToAdminToolStripMenuItem
             // 
+            this.AddUserToAdminToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddUserToDB;
             this.AddUserToAdminToolStripMenuItem.Name = "AddUserToAdminToolStripMenuItem";
             this.AddUserToAdminToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.AddUserToAdminToolStripMenuItem.Text = "Add User To Admin Group";
@@ -469,6 +470,7 @@ namespace MagicMongoDBTool
             // 
             // AddUserToolStripMenuItem
             // 
+            this.AddUserToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddUserToDB;
             this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
             this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.AddUserToolStripMenuItem.Text = "Add User";
@@ -499,6 +501,12 @@ namespace MagicMongoDBTool
             this.RepairDBToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.RepairDBToolStripMenuItem.Text = "Repair Database";
             this.RepairDBToolStripMenuItem.Click += new System.EventHandler(this.RepairDBToolStripMenuItem_Click);
+            // 
+            // InitGFSToolStripMenuItem
+            // 
+            this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
+            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.InitGFSToolStripMenuItem.Text = "Init GFS";
             // 
             // DataCollectionToolStripMenuItem
             // 
@@ -779,7 +787,7 @@ namespace MagicMongoDBTool
             this.txtCommand.Location = new System.Drawing.Point(3, 3);
             this.txtCommand.Multiline = true;
             this.txtCommand.Name = "txtCommand";
-            this.txtCommand.Size = new System.Drawing.Size(872, 596);
+            this.txtCommand.Size = new System.Drawing.Size(872, 599);
             this.txtCommand.TabIndex = 1;
             // 
             // splitter1
@@ -798,12 +806,6 @@ namespace MagicMongoDBTool
             this.ServerStatusCtl.Name = "ServerStatusCtl";
             this.ServerStatusCtl.Size = new System.Drawing.Size(872, 596);
             this.ServerStatusCtl.TabIndex = 2;
-            // 
-            // InitGFSToolStripMenuItem
-            // 
-            this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
-            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.InitGFSToolStripMenuItem.Text = "Init GFS";
             // 
             // frmMain
             // 

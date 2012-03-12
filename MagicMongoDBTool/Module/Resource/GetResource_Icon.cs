@@ -14,7 +14,7 @@ namespace MagicMongoDBTool.Module
             switch (theIcon)
             {
                 case IconType.Yes:
-                    micon = MagicMongoDBTool.Properties.Resources.ok;
+                    micon = MagicMongoDBTool.Properties.Resources.OK;
                     break;
                 case IconType.No:
                     micon = MagicMongoDBTool.Properties.Resources.DELETE;
@@ -79,6 +79,9 @@ namespace MagicMongoDBTool.Module
                 case ImageType.Keys:
                     micon = MagicMongoDBTool.Properties.Resources.Keys;
                     break;
+                case ImageType.KeyInfo:
+                    micon = MagicMongoDBTool.Properties.Resources.KeyInfo;
+                    break;
                 case ImageType.DBKey:
                     micon = MagicMongoDBTool.Properties.Resources.DBkey;
                     break;
@@ -87,6 +90,9 @@ namespace MagicMongoDBTool.Module
                     break;
                 case ImageType.Smile:
                     micon = MagicMongoDBTool.Properties.Resources.Smile;
+                    break;
+                case ImageType.User:
+                    micon = MagicMongoDBTool.Properties.Resources.User;
                     break;
                 default:
                     break;
@@ -128,9 +134,10 @@ namespace MagicMongoDBTool.Module
         Collection,
 
         Keys,
+        KeyInfo,
         DBKey,
         Document,
-
+        User,
         Smile
 
     }

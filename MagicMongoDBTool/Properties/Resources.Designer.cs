@@ -67,6 +67,13 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap AddUserToDB {
+            get {
+                object obj = ResourceManager.GetObject("AddUserToDB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Blank {
             get {
                 object obj = ResourceManager.GetObject("Blank", resourceCulture);
@@ -116,9 +123,23 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap DeleteDoc {
+            get {
+                object obj = ResourceManager.GetObject("DeleteDoc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Document {
             get {
                 object obj = ResourceManager.GetObject("Document", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Edit {
+            get {
+                object obj = ResourceManager.GetObject("Edit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,6 +154,13 @@ namespace MagicMongoDBTool.Properties {
         internal static System.Drawing.Bitmap Filter {
             get {
                 object obj = ResourceManager.GetObject("Filter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap KeyInfo {
+            get {
+                object obj = ResourceManager.GetObject("KeyInfo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -172,7 +200,7 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
-        internal static System.Drawing.Icon ok {
+        internal static System.Drawing.Icon OK {
             get {
                 object obj = ResourceManager.GetObject("ok", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -210,6 +238,13 @@ namespace MagicMongoDBTool.Properties {
         internal static System.Drawing.Bitmap Smile {
             get {
                 object obj = ResourceManager.GetObject("Smile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap User {
+            get {
+                object obj = ResourceManager.GetObject("User", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

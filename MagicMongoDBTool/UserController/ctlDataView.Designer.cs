@@ -38,7 +38,6 @@ namespace MagicMongoDBTool.UserController
             this.tabTableView = new System.Windows.Forms.TabPage();
             this.lstData = new System.Windows.Forms.ListView();
             this.tabTextView = new System.Windows.Forms.TabPage();
-            this.lnkFile = new System.Windows.Forms.LinkLabel();
             this.txtData = new System.Windows.Forms.TextBox();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DataDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,14 +51,19 @@ namespace MagicMongoDBTool.UserController
             this.CopyElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CutElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PasteElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.UploadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DownloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.RemoveUserFromAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
             this.NewDocumentStripButton = new System.Windows.Forms.ToolStripButton();
+            this.EditDocStripButton = new System.Windows.Forms.ToolStripButton();
+            this.DelSelectRecordToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.FirstPageStripButton = new System.Windows.Forms.ToolStripButton();
             this.PrePageStripButton = new System.Windows.Forms.ToolStripButton();
             this.NextPageStripButton = new System.Windows.Forms.ToolStripButton();
@@ -69,10 +73,9 @@ namespace MagicMongoDBTool.UserController
             this.QueryStripButton = new System.Windows.Forms.ToolStripButton();
             this.FilterStripButton = new System.Windows.Forms.ToolStripButton();
             this.DataNaviToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
@@ -141,7 +144,6 @@ namespace MagicMongoDBTool.UserController
             // tabTextView
             // 
             this.tabTextView.BackColor = System.Drawing.Color.Yellow;
-            this.tabTextView.Controls.Add(this.lnkFile);
             this.tabTextView.Controls.Add(this.txtData);
             this.tabTextView.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabTextView.Location = new System.Drawing.Point(4, 22);
@@ -150,18 +152,6 @@ namespace MagicMongoDBTool.UserController
             this.tabTextView.Size = new System.Drawing.Size(680, 427);
             this.tabTextView.TabIndex = 2;
             this.tabTextView.Text = "TextView";
-            // 
-            // lnkFile
-            // 
-            this.lnkFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnkFile.AutoSize = true;
-            this.lnkFile.Location = new System.Drawing.Point(547, 3);
-            this.lnkFile.Name = "lnkFile";
-            this.lnkFile.Size = new System.Drawing.Size(109, 13);
-            this.lnkFile.TabIndex = 1;
-            this.lnkFile.TabStop = true;
-            this.lnkFile.Text = "Open In Native Editor";
-            this.lnkFile.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkFile_LinkClicked);
             // 
             // txtData
             // 
@@ -217,7 +207,7 @@ namespace MagicMongoDBTool.UserController
             this.DelSelectRecordToolStripMenuItem.Name = "DelSelectRecordToolStripMenuItem";
             this.DelSelectRecordToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.DelSelectRecordToolStripMenuItem.Text = "Del Selected Records";
-            this.DelSelectRecordToolStripMenuItem.Click += new System.EventHandler(this.DelSelectRecordToolStripMenuItem_Click);
+            this.DelSelectRecordToolStripMenuItem.Click += new System.EventHandler(this.DelSelectedRecord_Click);
             // 
             // toolStripSeparator1
             // 
@@ -266,6 +256,11 @@ namespace MagicMongoDBTool.UserController
             this.PasteElementToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.PasteElementToolStripMenuItem.Text = "Paste Element";
             // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(194, 6);
+            // 
             // UploadFileToolStripMenuItem
             // 
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
@@ -290,6 +285,11 @@ namespace MagicMongoDBTool.UserController
             this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.DelFileToolStripMenuItem.Text = "Delete File";
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(194, 6);
+            // 
             // RemoveUserFromAdminToolStripMenuItem
             // 
             this.RemoveUserFromAdminToolStripMenuItem.Name = "RemoveUserFromAdminToolStripMenuItem";
@@ -306,6 +306,9 @@ namespace MagicMongoDBTool.UserController
             // 
             this.ViewtoolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewDocumentStripButton,
+            this.EditDocStripButton,
+            this.DelSelectRecordToolStripButton,
+            this.toolStripSeparator2,
             this.FirstPageStripButton,
             this.PrePageStripButton,
             this.NextPageStripButton,
@@ -315,6 +318,7 @@ namespace MagicMongoDBTool.UserController
             this.QueryStripButton,
             this.FilterStripButton,
             this.DataNaviToolStripLabel,
+            this.toolStripSeparator3,
             this.RefreshStripButton,
             this.CloseStripButton});
             this.ViewtoolStrip.Location = new System.Drawing.Point(0, 0);
@@ -332,6 +336,31 @@ namespace MagicMongoDBTool.UserController
             this.NewDocumentStripButton.Size = new System.Drawing.Size(23, 22);
             this.NewDocumentStripButton.Text = "New Document";
             this.NewDocumentStripButton.Click += new System.EventHandler(this.NewDocumentStripButton_Click);
+            // 
+            // EditDocStripButton
+            // 
+            this.EditDocStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.EditDocStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Edit;
+            this.EditDocStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EditDocStripButton.Name = "EditDocStripButton";
+            this.EditDocStripButton.Size = new System.Drawing.Size(23, 22);
+            this.EditDocStripButton.Text = "Editor";
+            this.EditDocStripButton.Click += new System.EventHandler(this.EditDocStripButton_Click);
+            // 
+            // DelSelectRecordToolStripButton
+            // 
+            this.DelSelectRecordToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DelSelectRecordToolStripButton.Image = global::MagicMongoDBTool.Properties.Resources.DeleteDoc;
+            this.DelSelectRecordToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DelSelectRecordToolStripButton.Name = "DelSelectRecordToolStripButton";
+            this.DelSelectRecordToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.DelSelectRecordToolStripButton.Text = "Delete Selected Record";
+            this.DelSelectRecordToolStripButton.Click += new System.EventHandler(this.DelSelectedRecord_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // FirstPageStripButton
             // 
@@ -419,6 +448,11 @@ namespace MagicMongoDBTool.UserController
             this.DataNaviToolStripLabel.Size = new System.Drawing.Size(118, 22);
             this.DataNaviToolStripLabel.Text = "DataNaviToolStripLabel";
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
             // RefreshStripButton
             // 
             this.RefreshStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -438,16 +472,6 @@ namespace MagicMongoDBTool.UserController
             this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(194, 6);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(194, 6);
             // 
             // ctlDataView
             // 
@@ -480,7 +504,6 @@ namespace MagicMongoDBTool.UserController
         private System.Windows.Forms.TabPage tabTableView;
         private System.Windows.Forms.ListView lstData;
         private System.Windows.Forms.TabPage tabTextView;
-        private System.Windows.Forms.LinkLabel lnkFile;
         private System.Windows.Forms.TextBox txtData;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
 
@@ -521,6 +544,10 @@ namespace MagicMongoDBTool.UserController
         private ToolStripMenuItem RemoveUserToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem3;
         private ToolStripSeparator toolStripMenuItem2;
+        private ToolStripButton DelSelectRecordToolStripButton;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripButton EditDocStripButton;
 
     }
 }

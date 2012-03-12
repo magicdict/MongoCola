@@ -54,7 +54,9 @@ namespace MagicMongoDBTool.Module
             Keys = 4,
             Document = 5,
             DBKey = 6,
-            Err = 7
+            KeyInfo = 7,
+            UserIcon = 8,
+            Err = 9
         }
         /// <summary>
         /// 主树形控件图标数组初始化
@@ -68,6 +70,8 @@ namespace MagicMongoDBTool.Module
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Keys));
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.Document));
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.DBKey));
+            MainTreeImage.Images.Add(GetResource.GetImage(ImageType.KeyInfo));
+            MainTreeImage.Images.Add(GetResource.GetImage(ImageType.User));
             MainTreeImage.Images.Add(GetResource.GetIcon(IconType.No));
         }
         /// <summary>

@@ -196,9 +196,6 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     mongoColNode = FillCollectionInfoToTreeNode(strColName, mongoDB, mongoSvrKey);
-                    mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
-                    mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
-
                 }
                 catch (Exception)
                 {
@@ -337,14 +334,19 @@ namespace MagicMongoDBTool.Module
             }
             TreeNode mongoColNode;
             mongoColNode = new TreeNode(strShowColName);
-            if (strColName == COLLECTION_NAME_GFS_FILES)
+            switch (strColName)
             {
-                mongoColNode.Tag = GRID_FILE_SYSTEM_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                case COLLECTION_NAME_GFS_FILES:
+                    mongoColNode.Tag = GRID_FILE_SYSTEM_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                    break;
+                case COLLECTION_NAME_USER:
+                    mongoColNode.Tag = USER_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                    break;
+                default:
+                    mongoColNode.Tag = COLLECTION_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                    break;
             }
-            else
-            {
-                mongoColNode.Tag = COLLECTION_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
-            }
+
             MongoCollection mongoCol = mongoDB.GetCollection(strColName);
 
             //Start ListIndex
@@ -356,25 +358,25 @@ namespace MagicMongoDBTool.Module
                 if (!SystemManager.IsUseDefaultLanguage())
                 {
                     mongoIndex.Text = (SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name) + ":" + indexDoc.Name);
-                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Keys) + ":" + indexDoc.Key.ToString());
-                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel) + ":" + indexDoc.DroppedDups.ToString());
-                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Background) + ":" + indexDoc.IsBackground.ToString());
-                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse) + ":" + indexDoc.IsSparse.ToString());
-                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify) + ":" + indexDoc.IsUnique.ToString());
-                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_NameSpace) + ":" + indexDoc.Namespace.ToString());
-                    mongoIndex.Nodes.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Version) + ":" + indexDoc.Version.ToString());
+                    mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Keys) + ":" + indexDoc.Key.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel) + ":" + indexDoc.DroppedDups.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Background) + ":" + indexDoc.IsBackground.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse) + ":" + indexDoc.IsSparse.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify) + ":" + indexDoc.IsUnique.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_NameSpace) + ":" + indexDoc.Namespace.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Version) + ":" + indexDoc.Version.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
 
                 }
                 else
                 {
                     mongoIndex.Text = "IndexName:" + indexDoc.Name;
-                    mongoIndex.Nodes.Add("Keys:" + indexDoc.Key.ToString());
-                    mongoIndex.Nodes.Add("DroppedDups :" + indexDoc.DroppedDups.ToString());
-                    mongoIndex.Nodes.Add("IsBackground:" + indexDoc.IsBackground.ToString());
-                    mongoIndex.Nodes.Add("IsSparse:" + indexDoc.IsSparse.ToString());
-                    mongoIndex.Nodes.Add("IsUnique:" + indexDoc.IsUnique.ToString());
-                    mongoIndex.Nodes.Add("NameSpace:" + indexDoc.Namespace.ToString());
-                    mongoIndex.Nodes.Add("Version:" + indexDoc.Version.ToString());
+                    mongoIndex.Nodes.Add(String.Empty, "Keys:" + indexDoc.Key.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, "DroppedDups :" + indexDoc.DroppedDups.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, "IsBackground:" + indexDoc.IsBackground.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, "IsSparse:" + indexDoc.IsSparse.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, "IsUnique:" + indexDoc.IsUnique.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, "NameSpace:" + indexDoc.Namespace.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, "Version:" + indexDoc.Version.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                 }
                 mongoIndex.ImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
                 mongoIndex.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
@@ -393,8 +395,16 @@ namespace MagicMongoDBTool.Module
             mongoData.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Document;
             mongoData.Tag = DOCUMENT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
 
-            mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
-            mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+            if (strColName == COLLECTION_NAME_USER)
+            {
+                mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.UserIcon;
+                mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.UserIcon;
+            }
+            else
+            {
+                mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+                mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
+            }
             mongoColNode.Nodes.Add(mongoData);
             //End Data
             return mongoColNode;

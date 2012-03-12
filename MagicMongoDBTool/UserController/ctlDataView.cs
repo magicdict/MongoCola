@@ -48,6 +48,8 @@ namespace MagicMongoDBTool.UserController
             this.QueryStripButton.Enabled = false;
             this.FilterStripButton.Enabled = false;
             this.FilterStripButton.Checked = false;
+            this.DelSelectRecordToolStripButton.Enabled = false;
+            
 
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
             this.lstData.MouseDoubleClick += new MouseEventHandler(lstData_MouseDoubleClick);
@@ -74,7 +76,10 @@ namespace MagicMongoDBTool.UserController
                 this.tabTreeView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Tree);
                 this.tabTableView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Table);
                 this.tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
-                this.lnkFile.Text = SystemManager.mStringResource.GetText(StringResource.TextType.OpenInNativeEditor);
+
+                this.AddDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
+                this.EditDocStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.OpenInNativeEditor);
+                this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
 
                 this.PrePageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
                 this.NextPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
@@ -83,8 +88,6 @@ namespace MagicMongoDBTool.UserController
                 this.QueryStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Query);
                 this.FilterStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_DataFilter);
 
-
-                this.AddDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
                 this.DataDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument);
                 this.AddElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
                 this.DropElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_DropElement);
@@ -92,7 +95,6 @@ namespace MagicMongoDBTool.UserController
                 this.CopyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CopyElement);
                 this.CutElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CutElement);
                 this.PasteElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_PasteElement);
-                this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
 
                 this.DelFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
                 this.UploadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Upload);
@@ -167,7 +169,7 @@ namespace MagicMongoDBTool.UserController
                             OpenFileToolStripMenuItem.Enabled = false;
                             if (!config.IsReadOnly)
                             {
-                                DelFileToolStripMenuItem.Enabled = true;
+                                this.DelFileToolStripMenuItem.Enabled = true;
                             }
                             break;
                     }
@@ -206,6 +208,7 @@ namespace MagicMongoDBTool.UserController
                             if (!config.IsReadOnly)
                             {
                                 DelSelectRecordToolStripMenuItem.Enabled = true;
+                                this.DelSelectRecordToolStripButton.Enabled = true;
                             }
                         }
                     }
@@ -570,7 +573,7 @@ namespace MagicMongoDBTool.UserController
                 case Keys.Delete:
                     if (DelSelectRecordToolStripMenuItem.Enabled)
                     {
-                        DelSelectRecordToolStripMenuItem_Click(null, null);
+                        DelSelectedRecord_Click(null, null);
                     }
                     else
                     {
@@ -620,7 +623,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DelSelectRecordToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DelSelectedRecord_Click(object sender, EventArgs e)
         {
             String strTitle = "Delete Document";
             String strMessage = "Are you sure to delete selected document(s)?";
@@ -887,10 +890,7 @@ namespace MagicMongoDBTool.UserController
         {
             trvData.CollapseAll();
         }
-        private void lnkFile_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            MongoDBHelper.SaveAndOpenStringAsFile(txtData.Text);
-        }
+
         /// <summary>
         /// 设置导航可用性
         /// </summary>
@@ -945,6 +945,12 @@ namespace MagicMongoDBTool.UserController
             RefreshStripButton_Click(sender, e);
         }
         #endregion
+
+        private void EditDocStripButton_Click(object sender, EventArgs e)
+        {
+            MongoDBHelper.SaveAndOpenStringAsFile(txtData.Text);
+        }
+
 
     }
 }
