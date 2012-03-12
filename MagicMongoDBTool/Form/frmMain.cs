@@ -127,19 +127,7 @@ namespace MagicMongoDBTool
             this.collectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
             this.tabSvrStatus.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
         }
-        /// <summary>
-        /// View Status
-        /// </summary>
-        enum ViewStatus
-        {
-            Status,
-            CommandShell,
-            Collection
-        }
-        /// <summary>
-        /// current ViewStatus
-        /// </summary>
-        ViewStatus currentViewStatus = ViewStatus.Status;
+
         /// <summary>
         /// Current Connection Config
         /// </summary>
@@ -163,7 +151,6 @@ namespace MagicMongoDBTool
             this.ServerStatusCtl.Dock = DockStyle.Fill;
             this.txtCommand.Dock = DockStyle.Fill;
             this.ServerStatusCtl.Visible = true;
-            this.statusToolStripMenuItem.Checked = true;
 
             DisableAllOpr();
 
@@ -938,54 +925,6 @@ namespace MagicMongoDBTool
 
         #endregion
 
-        #region"数据展示区"
-        private void statusToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.ServerStatusCtl.Visible = true;
-            this.ServerStatusCtl.RefreshStatus(false);
-            this.statusToolStripMenuItem.Checked = true;
-            this.commandShellToolStripMenuItem.Checked = false;
-            this.collectionToolStripMenuItem.Checked = false;
-            currentViewStatus = ViewStatus.Status;
-        }
-
-        private void commandShellToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.ServerStatusCtl.Visible = false;
-            this.statusToolStripMenuItem.Checked = false;
-            this.txtCommand.Visible = true;
-            this.commandShellToolStripMenuItem.Checked = true;
-            this.collectionToolStripMenuItem.Checked = false;
-            currentViewStatus = ViewStatus.CommandShell;
-        }
-        private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.statusToolStripMenuItem.Checked = false;
-            this.commandShellToolStripMenuItem.Checked = false;
-            this.collectionToolStripMenuItem.Checked = true;
-            currentViewStatus = ViewStatus.Collection;
-        }
-
-        private void refreshViewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            switch (currentViewStatus)
-            {
-                case ViewStatus.CommandShell:
-                    break;
-                case ViewStatus.Collection:
-                    if ((commandShellToolStripMenuItem.Tag != null) && (commandShellToolStripMenuItem.Tag.ToString() != String.Empty))
-                    {
-                        //RefreshData();
-                    }
-                    break;
-                case ViewStatus.Status:
-                    ServerStatusCtl.RefreshCurrentOpr();
-                    ServerStatusCtl.RefreshStatus(false);
-                    break;
-            }
-        }
-        #endregion
-
         #region"工具"
         /// <summary>
         /// Options
@@ -1430,14 +1369,29 @@ namespace MagicMongoDBTool
                 DataTab.Controls.Add(DataViewctl);
                 DataViewctl.Dock = DockStyle.Fill;
                 tabView.Controls.Add(DataTab);
+
+                ToolStripMenuItem DataMenuItem = new ToolStripMenuItem(SystemManager.GetCurrentCollection().Name);
+                collectionToolStripMenuItem.DropDownItems.Add(DataMenuItem);
+                DataMenuItem.Click += new EventHandler(
+                     (x, y) => { tabView.SelectTab(DataTab); }
+                );
                 ViewList.Add(DataKey, DataTab);
                 DataViewctl.CloseTab += new System.EventHandler(
                     (x, y) => { tabView.Controls.Remove(DataTab);
                                 ViewList.Remove(DataKey);
+                                collectionToolStripMenuItem.DropDownItems.Remove(DataMenuItem);
                     }
                 );
                 tabView.SelectTab(DataTab);
             }
+        }
+        private void statusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabView.SelectTab(0); 
+        }
+        private void commandShellToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabView.SelectTab(1); 
         }
         #endregion
 
@@ -1720,6 +1674,8 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
+
+
     
     }
 }

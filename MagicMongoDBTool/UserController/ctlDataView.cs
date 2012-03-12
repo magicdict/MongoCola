@@ -605,6 +605,24 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         public Boolean IsNeedRefresh = false;
         /// <summary>
+        /// 添加新文档
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NewDocumentStripButton_Click(object sender, EventArgs e)
+        {
+            BsonValue id = MongoDBHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), config.IsSafeMode);
+            TreeNode newDoc = new TreeNode(SystemManager.GetCurrentCollection().Name + "[" + (SystemManager.GetCurrentCollection().Count()).ToString() + "]");
+            newDoc.Tag = id;
+            TreeNode newid = new TreeNode("_id:" + id.ToString());
+            newid.Tag = id;
+            newDoc.Nodes.Add(newid);
+            trvData.Nodes.Add(newDoc);
+            tabDataShower.SelectedIndex = 0;
+            trvData.SelectedNode = newid;
+            IsNeedRefresh = true;
+        }
+        /// <summary>
         /// 删除数据
         /// </summary>
         /// <param name="sender"></param>
@@ -640,24 +658,7 @@ namespace MagicMongoDBTool.UserController
                 RefreshStripButton_Click(sender, e);
             }
         }
-        /// <summary>
-        /// Add Empty Document to Collection
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddDocumentToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            BsonValue id = MongoDBHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), config.IsSafeMode);
-            TreeNode newDoc = new TreeNode(SystemManager.GetCurrentCollection().Name + "[" + (SystemManager.GetCurrentCollection().Count()).ToString() + "]");
-            newDoc.Tag = id;
-            TreeNode newid = new TreeNode("_id:" + id.ToString());
-            newid.Tag = id;
-            newDoc.Nodes.Add(newid);
-            trvData.Nodes.Add(newDoc);
-            tabDataShower.SelectedIndex = 0;
-            trvData.SelectedNode = newid;
-            IsNeedRefresh = true;
-        }
+
         /// <summary>
         /// 添加元素
         /// </summary>
