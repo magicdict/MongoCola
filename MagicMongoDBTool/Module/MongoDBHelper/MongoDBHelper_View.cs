@@ -70,9 +70,9 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 展示数据
         /// </summary>
-        /// <param name="strTag"></param>
+        /// <param name="CurrentDataViewInfo"></param>
         /// <param name="controls"></param>
-        public static void FillDataToControl(DataViewInfo CurrentDataViewInfo, List<Control> controls)
+        public static void FillDataToControl(ref DataViewInfo CurrentDataViewInfo, List<Control> controls)
         {
             String collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
             String[] cp = collectionPath.Split("/".ToCharArray());
@@ -114,7 +114,7 @@ namespace MagicMongoDBTool.Module
             {
                 return;
             }
-            SetPageEnable(CurrentDataViewInfo);
+            SetPageEnable(ref CurrentDataViewInfo);
             _hasBSonBinary = false;
             foreach (var control in controls)
             {
@@ -128,7 +128,7 @@ namespace MagicMongoDBTool.Module
                         //FillJSONDataToTextBox((TextBox)control, dataList);
                         break;
                     case "System.Windows.Forms.TreeView":
-                        FillDataToTreeView(cp[(int)PathLv.CollectionLV], (TreeView)control, dataList);
+                        FillDataToTreeView(cp[(int)PathLv.CollectionLV], (TreeView)control, dataList, CurrentDataViewInfo.SkipCnt);
                         break;
                     default:
                         break;
@@ -617,7 +617,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="IsNext"></param>
         /// <param name="strTag"></param>
         /// <param name="dataShower"></param>
-        public static void PageChanged(PageChangeOpr pageChangeMode, DataViewInfo mDataViewInfo, List<Control> dataShower)
+        public static void PageChanged(PageChangeOpr pageChangeMode, ref DataViewInfo mDataViewInfo, List<Control> dataShower)
         {
             switch (pageChangeMode)
             {
@@ -645,12 +645,13 @@ namespace MagicMongoDBTool.Module
                 default:
                     break;
             }
-            FillDataToControl(mDataViewInfo, dataShower);
+            FillDataToControl(ref mDataViewInfo, dataShower);
         }
         /// <summary>
         /// 设置导航状态
         /// </summary>
-        public static void SetPageEnable(DataViewInfo mDataViewInfo)
+        /// <param name="mDataViewInfo">Data View Information(Structure,Must By Ref)</param>
+        public static void SetPageEnable(ref DataViewInfo mDataViewInfo)
         {
             if (mDataViewInfo.SkipCnt == 0)
             {

@@ -14,7 +14,6 @@ namespace MagicMongoDBTool.UserController
     public partial class ctlDataView : UserControl
     {
         #region"Main"
-
         public ctlDataView()
         {
             InitializeComponent();
@@ -28,10 +27,13 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         public ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
         /// <summary>
-        /// 
+        /// DataView信息
         /// </summary>
-        public MongoDBHelper.DataViewInfo mDataVCiewInfo = new MongoDBHelper.DataViewInfo(); 
-         
+        public MongoDBHelper.DataViewInfo mDataViewInfo = new MongoDBHelper.DataViewInfo();
+        /// <summary>
+        /// 关闭Tab事件
+        /// </summary>
+        public event EventHandler CloseTab;
         /// <summary>
         /// 加载数据集控件
         /// </summary>
@@ -99,9 +101,22 @@ namespace MagicMongoDBTool.UserController
             this.ViewtoolStrip.Items.Add(QueryDataToolStripButton);
             this.ViewtoolStrip.Items.Add(DataNaviToolStripLabel);
             this.ViewtoolStrip.Items.Add(DataFilterToolStripButton);
-
-            MongoDBHelper.FillDataToControl(mDataVCiewInfo, _dataShower);
-
+            //加载数据
+            MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
+            //数据导航
+            SetDataNav();
+        }
+        /// <summary>
+        /// 关闭本Tab
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CloseStripButton_Click(object sender, EventArgs e)
+        {
+            if (CloseTab != null)
+            {
+                CloseTab(sender, e);
+            }
         }
         /// <summary>
         /// 
@@ -859,22 +874,22 @@ namespace MagicMongoDBTool.UserController
         #region"数据导航"
         private void FirstPage_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.FirstPage, mDataVCiewInfo, _dataShower);
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.FirstPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
         private void PrePage_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.PrePage, mDataVCiewInfo, _dataShower);
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.PrePage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
         private void NextPage_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.NextPage, mDataVCiewInfo, _dataShower);
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.NextPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
         private void LastPage_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.LastPage, mDataVCiewInfo, _dataShower);
+            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.LastPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
         private void ExpandAll_Click(object sender, EventArgs e)
@@ -894,23 +909,23 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         private void SetDataNav()
         {
-            PrePageStripButton.Enabled = mDataVCiewInfo.HasPrePage;
-            NextPageStripButton.Enabled = mDataVCiewInfo.HasNextPage;
-            FirstPageStripButton.Enabled = mDataVCiewInfo.HasPrePage;
-            LastPageStripButton.Enabled = mDataVCiewInfo.HasNextPage;
+            PrePageStripButton.Enabled = mDataViewInfo.HasPrePage;
+            NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
+            FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
+            LastPageStripButton.Enabled = mDataViewInfo.HasNextPage;
             this.QueryDataToolStripMenuItem.Enabled = true;
             String strTitle = "Records";
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
             }
-            if (mDataVCiewInfo.CurrentCollectionTotalCnt == 0)
+            if (mDataViewInfo.CurrentCollectionTotalCnt == 0)
             {
                 this.DataNaviToolStripLabel.Text = strTitle + "：0/0";
             }
             else
             {
-                this.DataNaviToolStripLabel.Text = strTitle + "：" + (mDataVCiewInfo.SkipCnt + 1).ToString() + "/" + mDataVCiewInfo.CurrentCollectionTotalCnt.ToString();
+                this.DataNaviToolStripLabel.Text = strTitle + "：" + (mDataViewInfo.SkipCnt + 1).ToString() + "/" + mDataViewInfo.CurrentCollectionTotalCnt.ToString();
             }
         }
         /// <summary>
@@ -919,26 +934,14 @@ namespace MagicMongoDBTool.UserController
         private void RefreshData()
         {
             this.clear();
-            mDataVCiewInfo.SkipCnt = 0;
-            MongoDBHelper.FillDataToControl(mDataVCiewInfo, _dataShower);
+            mDataViewInfo.SkipCnt = 0;
+            MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
             SetDataNav();
             IsNeedRefresh = false;
         }
 
         #endregion
 
-        public event EventHandler CloseTab; 
-        /// <summary>
-        /// 关闭本Tab
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CloseStripButton_Click(object sender, EventArgs e)
-        {
-            if (CloseTab != null) {
-                CloseTab(sender,e);
-            }
-        }
 
     }
 }

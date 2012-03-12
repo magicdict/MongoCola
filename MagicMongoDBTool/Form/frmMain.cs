@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
-using System.Text;
-using MongoDB.Bson;
-using MongoDB.Driver;
 using MagicMongoDBTool.UserController;
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
@@ -1376,7 +1375,7 @@ namespace MagicMongoDBTool
                 SystemManager.CurrDataFilter.Clear();
                 ctlDataView DataViewctl = new ctlDataView();
                 DataViewctl.config = this.config;
-                DataViewctl.mDataVCiewInfo.strDBTag = SystemManager.SelectObjectTag;
+                DataViewctl.mDataViewInfo.strDBTag = SystemManager.SelectObjectTag;
                 DataViewctl.UploadFileToolStripMenuItem = UploadFileToolStripMenuItem;
                 DataViewctl.DownloadFileToolStripMenuItem = DownloadFileToolStripMenuItem;
                 DataViewctl.OpenFileToolStripMenuItem = OpenFileToolStripMenuItem;
