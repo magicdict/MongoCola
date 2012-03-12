@@ -120,7 +120,7 @@ namespace MagicMongoDBTool.UserController
             }
         }
         /// <summary>
-        /// 
+        /// 清除所有数据
         /// </summary>
         public void clear()
         {
@@ -862,30 +862,60 @@ namespace MagicMongoDBTool.UserController
         #endregion
 
         #region"数据导航"
+        /// <summary>
+        /// 第一页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FirstPage_Click(object sender, EventArgs e)
         {
             MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.FirstPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
+        /// <summary>
+        /// 前一页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PrePage_Click(object sender, EventArgs e)
         {
             MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.PrePage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
+        /// <summary>
+        /// 下一页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NextPage_Click(object sender, EventArgs e)
         {
             MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.NextPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
+        /// <summary>
+        /// 最后页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LastPage_Click(object sender, EventArgs e)
         {
             MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.LastPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
+        /// <summary>
+        /// 展开所有
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExpandAll_Click(object sender, EventArgs e)
         {
             trvData.ExpandAll();
         }
+        /// <summary>
+        /// 折叠所有
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CollapseAll_Click(object sender, EventArgs e)
         {
             trvData.CollapseAll();
@@ -928,7 +958,11 @@ namespace MagicMongoDBTool.UserController
             SetDataNav();
             IsNeedRefresh = false;
         }
-
+        /// <summary>
+        /// 查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void QueryStripButton_Click(object sender, EventArgs e)
         {
             SystemManager.OpenForm(new frmQuery());
@@ -936,6 +970,11 @@ namespace MagicMongoDBTool.UserController
             //重新展示数据
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
         }
+        /// <summary>
+        /// 过滤器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FilterStripButton_Click(object sender, EventArgs e)
         {
             mDataViewInfo.IsUseFilter = !mDataViewInfo.IsUseFilter;
@@ -944,13 +983,16 @@ namespace MagicMongoDBTool.UserController
             mDataViewInfo.SkipCnt = 0;
             RefreshStripButton_Click(sender, e);
         }
-        #endregion
-
+        /// <summary>
+        /// 在默认编辑器中打开TextView内容
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EditDocStripButton_Click(object sender, EventArgs e)
         {
             MongoDBHelper.SaveAndOpenStringAsFile(txtData.Text);
         }
-
-
+        #endregion
+        
     }
 }

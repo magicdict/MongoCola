@@ -22,7 +22,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 版本号
         /// </summary>
-        public static String Version = "1.0.5";
+        public static String Version = "1.1.0";
         /// <summary>
         /// 数据过滤器
         /// </summary>
@@ -36,9 +36,9 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public static String SelectObjectTag = String.Empty;
         /// <summary>
-        /// 
+        /// 当前数据视图信息
         /// </summary>
-        public static MongoDBHelper.DataViewInfo mDataViewInfo { set; get; }
+        public static MongoDBHelper.DataViewInfo CurrentDataViewInfo { set; get; }
         /// <summary>
         /// 文字资源
         /// </summary>

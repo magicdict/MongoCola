@@ -476,9 +476,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\%2807,42%29.png" />
-    <None Include="Resources\%2819,48%29.png" />
-    <None Include="Resources\%2821,34%29.png" />
     <Content Include="UserGuide\images\Access.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -639,7 +636,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

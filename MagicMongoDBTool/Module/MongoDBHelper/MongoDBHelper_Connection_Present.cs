@@ -189,22 +189,38 @@ namespace MagicMongoDBTool.Module
             mongoDBNode.Tag = DATABASE_TAG + ":" + mongoSvrKey + "/" + strDBName;
             MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
 
+            TreeNode mongoColListNode = new TreeNode("Collection List", (int)GetSystemIcon.MainTreeImageType.CollectionList, (int)GetSystemIcon.MainTreeImageType.CollectionList);
             List<String> colNameList = mongoDB.GetCollectionNames().ToList<String>();
             foreach (String strColName in colNameList)
             {
-                TreeNode mongoColNode = new TreeNode();
-                try
+                switch (strColName)
                 {
-                    mongoColNode = FillCollectionInfoToTreeNode(strColName, mongoDB, mongoSvrKey);
+                    case COLLECTION_NAME_GFS_CHUNKS:
+                    case COLLECTION_NAME_GFS_FILES:
+                    case COLLECTION_NAME_JAVASCRIPT:
+                    case COLLECTION_NAME_USER:
+                        //system.users,fs,system.js这几个系统级别的Collection不需要放入
+                        break;
+                    default:
+                        TreeNode mongoColNode = new TreeNode();
+                        try
+                        {
+                            mongoColNode = FillCollectionInfoToTreeNode(strColName, mongoDB, mongoSvrKey);
+                        }
+                        catch (Exception)
+                        {
+                            mongoColNode = new TreeNode(strColName + "[exception]");
+                            mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
+                            mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
+                        }
+                        mongoColListNode.Nodes.Add(mongoColNode);
+                        break;
                 }
-                catch (Exception)
-                {
-                    mongoColNode = new TreeNode(strColName + "[exception]");
-                    mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
-                    mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
-                }
-                mongoDBNode.Nodes.Add(mongoColNode);
             }
+            mongoDBNode.Nodes.Add(mongoColListNode);
+            mongoDBNode.Nodes.Add(new TreeNode("User", (int)GetSystemIcon.MainTreeImageType.UserIcon, (int)GetSystemIcon.MainTreeImageType.UserIcon));
+            mongoDBNode.Nodes.Add(new TreeNode("JavaScript", (int)GetSystemIcon.MainTreeImageType.JavaScriptList, (int)GetSystemIcon.MainTreeImageType.JavaScriptList));
+            mongoDBNode.Nodes.Add(new TreeNode("Grid File System", (int)GetSystemIcon.MainTreeImageType.GFS, (int)GetSystemIcon.MainTreeImageType.GFS));
             mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
             mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
             return mongoDBNode;

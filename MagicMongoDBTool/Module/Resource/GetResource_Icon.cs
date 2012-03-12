@@ -14,7 +14,7 @@ namespace MagicMongoDBTool.Module
             switch (theIcon)
             {
                 case IconType.Yes:
-                    micon = MagicMongoDBTool.Properties.Resources.OK;
+                    micon = MagicMongoDBTool.Properties.Resources.ok;
                     break;
                 case IconType.No:
                     micon = MagicMongoDBTool.Properties.Resources.DELETE;

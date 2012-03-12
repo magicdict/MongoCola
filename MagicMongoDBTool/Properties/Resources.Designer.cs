@@ -95,6 +95,13 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap CollectionList {
+            get {
+                object obj = ResourceManager.GetObject("CollectionList", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Collpse {
             get {
                 object obj = ResourceManager.GetObject("Collpse", resourceCulture);
@@ -158,6 +165,20 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap GFS {
+            get {
+                object obj = ResourceManager.GetObject("GFS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap JavaScriptList {
+            get {
+                object obj = ResourceManager.GetObject("JavaScriptList", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap KeyInfo {
             get {
                 object obj = ResourceManager.GetObject("KeyInfo", resourceCulture);
@@ -200,7 +221,7 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
-        internal static System.Drawing.Icon OK {
+        internal static System.Drawing.Icon ok {
             get {
                 object obj = ResourceManager.GetObject("ok", resourceCulture);
                 return ((System.Drawing.Icon)(obj));

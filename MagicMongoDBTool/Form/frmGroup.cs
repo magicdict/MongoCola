@@ -51,7 +51,7 @@ namespace MagicMongoDBTool
             List<BsonDocument> resultlst = new List<BsonDocument>();
 
             ///SkipCnt的备份
-            int mSkipCnt = SystemManager.mDataViewInfo.SkipCnt;
+            int mSkipCnt = SystemManager.CurrentDataViewInfo.SkipCnt;
             try
             {
                 ///SkipCnt Reset
@@ -68,7 +68,7 @@ namespace MagicMongoDBTool
                     resultlst.Add(item);
                     Count++;
                 };
-                MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst, SystemManager.mDataViewInfo);
+                MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst, SystemManager.CurrentDataViewInfo);
                 if (Count == 1001)
                 {
                     this.txtResult.Text = "Too many result,Display first 1000 records" + System.Environment.NewLine + this.txtResult.Text;
