@@ -98,6 +98,28 @@ namespace MagicMongoDBTool.Module
                 mongoDB.CreateCollection(COLLECTION_NAME_GFS_FILES);
             }
         }
+        /// <summary>
+        /// 数据库User初始化
+        /// </summary>
+        public static void InitDBUser()
+        {
+            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
+            if (!mongoDB.CollectionExists(COLLECTION_NAME_USER))
+            {
+                mongoDB.CreateCollection(COLLECTION_NAME_USER);
+            }
+        }
+        /// <summary>
+        /// Js数据集初始化
+        /// </summary>
+        public static void InitJavascript()
+        {
+            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
+            if (!mongoDB.CollectionExists(COLLECTION_NAME_JAVASCRIPT))
+            {
+                mongoDB.CreateCollection(COLLECTION_NAME_JAVASCRIPT);
+            }
+        }
         #endregion
 
         #region"用户操作"

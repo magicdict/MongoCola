@@ -719,6 +719,10 @@ namespace MagicMongoDBTool
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
                         break;
+                    case MongoDBHelper.GRID_JAVASCRIPT_TAG:
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        statusStripMain.Items[0].Text = "Selected JavaScript:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        break;
                     default:
                         SystemManager.SelectObjectTag = "";
                         statusStripMain.Items[0].Text = "Selected Object:" + e.Node.Text;
@@ -740,17 +744,30 @@ namespace MagicMongoDBTool
         void trvsrvlst_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             String strNodeType = String.Empty;
-            strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
-            switch (strNodeType)
+            if (e.Node.Tag != null)
             {
-                case MongoDBHelper.DOCUMENT_TAG:
-                case MongoDBHelper.USER_LIST_TAG:
-                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
-                case MongoDBHelper.COLLECTION_TAG:
-                    viewDataToolStripMenuItem_Click(sender, e);
-                    break;
-                default:
-                    break;
+                strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
+                switch (strNodeType)
+                {
+                    case MongoDBHelper.USER_LIST_TAG:
+                        MongoDBHelper.InitDBUser();
+                        viewDataToolStripMenuItem_Click(sender, e);
+                        break;
+                    case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
+                        MongoDBHelper.InitGFS();
+                        viewDataToolStripMenuItem_Click(sender, e);
+                        break;
+                    case MongoDBHelper.GRID_JAVASCRIPT_TAG:
+                        MongoDBHelper.InitJavascript();
+                        //viewDataToolStripMenuItem_Click(sender, e);
+                        break;
+                    case MongoDBHelper.COLLECTION_TAG:
+                    case MongoDBHelper.DOCUMENT_TAG:
+                        viewDataToolStripMenuItem_Click(sender, e);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
   
@@ -1186,11 +1203,6 @@ namespace MagicMongoDBTool
         {
             MongoDBHelper.ExecuteMongoCommand(MongoDBHelper.repairDatabase_Command);
         }
-
-        #endregion
-
-        #region"管理：数据集"
-
         /// <summary>
         /// Init GFS
         /// </summary>
@@ -1202,6 +1214,11 @@ namespace MagicMongoDBTool
             DisableAllOpr();
             MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
         }
+        #endregion
+
+        #region"管理：数据集"
+
+
         /// <summary>
         /// 删除Mongo数据集
         /// </summary>
@@ -1304,6 +1321,7 @@ namespace MagicMongoDBTool
         {
             //由于Collection 和 Document 都可以触发这个事件，所以，先把Tag以前的标题头去掉
             //Collectiong:XXXX 和 Document:XXXX 都统一成 XXXX
+            String DataType = SystemManager.SelectObjectTag.Split(":".ToCharArray())[0];
             String DataKey = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
             if (ViewList.ContainsKey(DataKey))
             {

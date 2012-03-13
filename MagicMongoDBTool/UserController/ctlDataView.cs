@@ -41,10 +41,20 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void ctlDataView_Load(object sender, EventArgs e)
         {
-            _dataShower.Add(lstData);
-            _dataShower.Add(trvData);
-            _dataShower.Add(txtData);
+            String strNodeType = mDataViewInfo.strDBTag;
+            strNodeType = strNodeType.Split(":".ToCharArray())[0];
 
+            if (strNodeType == MongoDBHelper.COLLECTION_TAG)
+            {
+                _dataShower.Add(lstData);
+                _dataShower.Add(trvData);
+                _dataShower.Add(txtData);
+            }
+            else {
+                _dataShower.Add(lstData);
+                this.tabDataShower.Controls.Remove(tabTreeView);
+                this.tabDataShower.Controls.Remove(tabTextView);
+            }
             this.QueryStripButton.Enabled = false;
             this.FilterStripButton.Enabled = false;
             this.FilterStripButton.Checked = false;

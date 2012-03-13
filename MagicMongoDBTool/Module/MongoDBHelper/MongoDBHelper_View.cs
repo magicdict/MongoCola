@@ -112,7 +112,11 @@ namespace MagicMongoDBTool.Module
             }
             if (dataList.Count == 0)
             {
-                return;
+                if (CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[0] == COLLECTION_TAG)
+                {
+                    ///只有在纯数据集的时候才退出，不然的话，至少需要将字段结构在ListView中显示出来。
+                    return;
+                }
             }
             SetPageEnable(ref CurrentDataViewInfo);
             _hasBSonBinary = false;

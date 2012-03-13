@@ -218,9 +218,19 @@ namespace MagicMongoDBTool.Module
                 }
             }
             mongoDBNode.Nodes.Add(mongoColListNode);
-            mongoDBNode.Nodes.Add(new TreeNode("User", (int)GetSystemIcon.MainTreeImageType.UserIcon, (int)GetSystemIcon.MainTreeImageType.UserIcon));
-            mongoDBNode.Nodes.Add(new TreeNode("JavaScript", (int)GetSystemIcon.MainTreeImageType.JavaScriptList, (int)GetSystemIcon.MainTreeImageType.JavaScriptList));
-            mongoDBNode.Nodes.Add(new TreeNode("Grid File System", (int)GetSystemIcon.MainTreeImageType.GFS, (int)GetSystemIcon.MainTreeImageType.GFS));
+
+            TreeNode UserNode = new TreeNode("User", (int)GetSystemIcon.MainTreeImageType.UserIcon, (int)GetSystemIcon.MainTreeImageType.UserIcon);
+            UserNode.Tag = USER_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_USER; 
+            mongoDBNode.Nodes.Add(UserNode);
+
+            TreeNode JsNode = new TreeNode("JavaScript", (int)GetSystemIcon.MainTreeImageType.JavaScriptList, (int)GetSystemIcon.MainTreeImageType.JavaScriptList);
+            JsNode.Tag = GRID_JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_JAVASCRIPT;
+            mongoDBNode.Nodes.Add(JsNode);
+            
+            TreeNode GFSNode = new TreeNode("Grid File System", (int)GetSystemIcon.MainTreeImageType.GFS, (int)GetSystemIcon.MainTreeImageType.GFS);
+            GFSNode.Tag = GRID_FILE_SYSTEM_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_GFS_FILES;
+            mongoDBNode.Nodes.Add(GFSNode);
+            
             mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
             mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
             return mongoDBNode;

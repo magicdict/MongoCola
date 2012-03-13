@@ -31,6 +31,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public const String DOCUMENT_TAG = "MongoDocument";
         /// <summary>
+        /// JavaScript
+        /// </summary>
+        public const String GRID_JAVASCRIPT_TAG = "MongoJavascript";
+        /// <summary>
         /// GFS
         /// </summary>
         public const String GRID_FILE_SYSTEM_TAG = "MongoGFS";
