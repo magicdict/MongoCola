@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+using System.IO;
 
 namespace MagicMongoDBTool
 {
@@ -28,16 +29,59 @@ namespace MagicMongoDBTool
 
         private void JsEditor_Load(object sender, EventArgs e)
         {
-            txtJavaScript.Text = MongoDBHelper.LoadJavascript(JsName);
-            txtJavaScript.Select(0,0);
+            if (JsName != null && JsName != String.Empty)
+            {
+                txtJavaScript.Text = MongoDBHelper.LoadJavascript(JsName);
+                txtJavaScript.Select(0, 0);
+            }
         }
-
+        /// <summary>
+        /// 添加行
+        /// </summary>
+        /// <param name="strText"></param>
+        public void AppendLine(String strText) {
+            txtJavaScript.Text += strText + System.Environment.NewLine;
+        }
+        /// <summary>
+        /// 关闭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseStripButton_Click(object sender, EventArgs e)
         {
             if (CloseTab != null)
             {
                 CloseTab(sender, e);
             }
+        }
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveStripButton_Click(object sender, EventArgs e)
+        {
+            if (JsName != null && JsName != String.Empty)
+            {
+                MongoDBHelper.SaveJavascript(txtJavaScript.Text, JsName);
+            }
+            else {
+                SaveFileDialog mSave = new SaveFileDialog();
+                if (mSave.ShowDialog() == DialogResult.OK) {
+                    StreamWriter mStreamWriter = new StreamWriter(mSave.FileName, false);
+                    mStreamWriter.Write(this.txtJavaScript.Text);
+                    mStreamWriter.Close();
+                }
+            }
+        }
+        /// <summary>
+        /// Open
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditDocStripButton_Click(object sender, EventArgs e)
+        {
+            MongoDBHelper.SaveAndOpenStringAsFile(txtJavaScript.Text);
         }
     }
 }

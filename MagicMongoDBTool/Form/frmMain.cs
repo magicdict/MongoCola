@@ -51,7 +51,7 @@ namespace MagicMongoDBTool
             this.DisconnectToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Disconnect);
             this.AddConnectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_AddConnection);
             this.RefreshToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Refresh);
-            this.SrvStatusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+
             this.ExpandAllConnectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Expansion);
             this.CollapseAllConnectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Collapse);
             this.ExitToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Exit);
@@ -142,18 +142,30 @@ namespace MagicMongoDBTool
             this.trvsrvlst.NodeMouseClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseClick);
             this.trvsrvlst.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseDoubleClick);
             this.trvsrvlst.KeyDown += new KeyEventHandler(trvsrvlst_KeyDown);
-
-            this.ServerStatusCtl.Dock = DockStyle.Fill;
-            this.txtCommand.Dock = DockStyle.Fill;
-            this.ServerStatusCtl.Visible = true;
-
             DisableAllOpr();
-
             //Set Tool bar button enable 
             SetToolBarEnabled();
 
             //Open ConnectionManagement Form
             SystemManager.OpenForm(new frmConnect());
+
+            this.commandShellToolStripMenuItem.Checked = true;
+
+            this.statusToolStripMenuItem.Checked = true;
+            this.ServerStatusCtl.CloseTab += new EventHandler(
+                (x, y) =>
+                {
+                    statusToolStripMenuItem.Checked = false;
+                    tabView.Controls.Remove(tabSvrStatus);
+                }
+            );
+            this.ctlShellCommandEditor.CloseTab += new EventHandler(
+                (x, y) =>
+                {
+                    this.commandShellToolStripMenuItem.Checked = false;
+                    tabView.Controls.Remove(tabCommandShell);
+                }
+            );
             //Load Status
             this.ServerStatusCtl.RefreshStatus(false);
             this.ServerStatusCtl.RefreshCurrentOpr();
@@ -169,11 +181,11 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CommandLog(Object Sender, RunCommandEventArgs e)
         {
-            txtCommand.Text += "========================================================" + System.Environment.NewLine;
-            txtCommand.Text += "DateTime:" + DateTime.Now.ToString() + "  CommandName:" + e.Result.CommandName + System.Environment.NewLine;
-            txtCommand.Text += "DateTime:" + DateTime.Now.ToString() + "  Command:" + e.Result.Command + System.Environment.NewLine;
-            txtCommand.Text += "DateTime:" + DateTime.Now.ToString() + "  OK:" + e.Result.Ok + System.Environment.NewLine;
-            txtCommand.Text += "========================================================" + System.Environment.NewLine;
+            this.ctlShellCommandEditor.AppendLine("========================================================");
+            this.ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now.ToString() + "  CommandName:" + e.Result.CommandName);
+            this.ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now.ToString() + "  Command:" + e.Result.Command);
+            this.ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now.ToString() + "  OK:" + e.Result.Ok);
+            this.ctlShellCommandEditor.AppendLine("========================================================");
         }
         /// <summary>
         /// KeyEvent
@@ -915,15 +927,6 @@ namespace MagicMongoDBTool
             MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
         }
         /// <summary>
-        /// Server Status
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SrvStatusToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SystemManager.OpenForm(new frmServiceStatus());
-        }
-        /// <summary>
         /// Expand All
         /// </summary>
         /// <param name="sender"></param>
@@ -1253,7 +1256,6 @@ namespace MagicMongoDBTool
 
         #region"管理：数据集"
 
-
         /// <summary>
         /// 删除Mongo数据集
         /// </summary>
@@ -1395,13 +1397,45 @@ namespace MagicMongoDBTool
                 tabView.SelectTab(DataTab);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void statusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tabView.SelectTab(0);
+            if (statusToolStripMenuItem.Checked)
+            {
+                //关闭
+                tabView.Controls.Remove(tabSvrStatus);
+            }
+            else
+            {
+                //打开
+                tabView.Controls.Add(tabSvrStatus);
+                tabView.SelectTab(tabSvrStatus);
+            }
+            statusToolStripMenuItem.Checked = !statusToolStripMenuItem.Checked;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void commandShellToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tabView.SelectTab(1);
+            if (commandShellToolStripMenuItem.Checked)
+            {
+                //关闭
+                tabView.Controls.Remove(tabCommandShell);
+            }
+            else
+            {
+                //打开
+                tabView.Controls.Add(tabCommandShell);
+                tabView.SelectTab(tabCommandShell);
+            }
+            commandShellToolStripMenuItem.Checked = !commandShellToolStripMenuItem.Checked;
         }
         #endregion
 

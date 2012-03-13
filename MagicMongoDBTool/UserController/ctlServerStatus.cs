@@ -10,6 +10,26 @@ namespace MagicMongoDBTool.UserController
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 关闭Tab事件
+        /// </summary>
+        public event EventHandler CloseTab;
+        /// <summary>
+        /// 常规刷新
+        /// </summary>
+        Timer refreshTimer = new Timer();
+        /// <summary>
+        /// 短时间刷新
+        /// </summary>
+        Timer ShortTimer = new Timer();
+        /// <summary>
+        /// Auto Refresh Flag
+        /// </summary>
+        Boolean AutoRefresh = true;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="IsAuto"></param>
         public void RefreshStatus(Boolean IsAuto) {
             if (!IsAuto)
             {
@@ -18,9 +38,17 @@ namespace MagicMongoDBTool.UserController
             MongoDBHelper.FillDataBaseStatusToList(this.lstDBStatus);
             MongoDBHelper.FillCollectionStatusToList(this.lstCollectionStatus);
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public void RefreshCurrentOpr() {
             MongoDBHelper.FillCurrentOprToList(this.lstSrvOpr);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ctlServerStatus_Load(object sender, EventArgs e)
         {
             RefreshStatus(false);
@@ -31,8 +59,30 @@ namespace MagicMongoDBTool.UserController
                 this.tabDBBasicInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_DataBaseInfo);
                 this.tabCollectionInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_CollectionInfo);
                 this.tabCurrentOprInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_CurrentOperationInfo);
-            }
+                this.RefreshStripButton.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Refresh);
+                this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Stop_AutoRefresh);
 
+            }
+            refreshTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer * 1000;
+            refreshTimer.Tick += new EventHandler(
+                (x, y) =>
+                {
+                    //防止在查看树形状态的时候被打扰
+                    this.RefreshStatus(true);
+                }
+            );
+            ShortTimer.Interval = 1000;
+            ShortTimer.Tick += new EventHandler(
+                (x, y) =>
+                {
+                    //防止在查看树形状态的时候被打扰
+                    this.RefreshCurrentOpr();
+                }
+            );
+
+            refreshTimer.Enabled = true;
+            ShortTimer.Enabled = true;
+            AutoRefresh = true;
             // 用新的排序方法对ListView排序
             this.lstDBStatus.ListViewItemSorter = _lvwDBStatusColumnSorter;
             lstDBStatus.ColumnClick += new ColumnClickEventHandler(lstDBStatus_ColumnClick);
@@ -121,6 +171,55 @@ namespace MagicMongoDBTool.UserController
                 _lvwDBStatusColumnSorter.Order = SortOrder.Ascending;
             }
             this.lstDBStatus.Sort();
+        }
+
+        private void RefreshStripButton_Click(object sender, EventArgs e)
+        {
+            this.RefreshStatus(false);
+            this.RefreshCurrentOpr();
+        }
+
+        private void btnSwitch_Click(object sender, EventArgs e)
+        {
+            AutoRefresh = !AutoRefresh;
+            if (AutoRefresh)
+            {
+                refreshTimer.Start();
+                ShortTimer.Start();
+                if (!SystemManager.IsUseDefaultLanguage())
+                {
+                    this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Stop_AutoRefresh);
+                }
+                else
+                {
+                    btnSwitch.Text = "Stop Auto Refresh";
+                }
+                btnSwitch.Image = MagicMongoDBTool.Properties.Resources.Pause;
+            }
+            else
+            {
+                refreshTimer.Stop();
+                ShortTimer.Stop();
+                if (!SystemManager.IsUseDefaultLanguage())
+                {
+                    this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Resume_AutoRefresh);
+                }
+                else
+                {
+                    btnSwitch.Text = "Resume Auto Refresh";
+                }
+                btnSwitch.Image = MagicMongoDBTool.Properties.Resources.Run;
+            }
+        }
+
+        private void CloseStripButton_Click(object sender, EventArgs e)
+        {
+            refreshTimer.Stop();
+            ShortTimer.Stop();
+            if (CloseTab != null)
+            {
+                CloseTab(sender, e);
+            }
         }
     }
 }

@@ -258,12 +258,6 @@
     <Compile Include="Form\frmReplset.Designer.cs">
       <DependentUpon>frmReplset.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmServiceStatus.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\frmServiceStatus.Designer.cs">
-      <DependentUpon>frmServiceStatus.cs</DependentUpon>
-    </Compile>
     <Compile Include="Module\Resource\GetSystemIcon.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Const.cs" />
     <Compile Include="UserController\ctlFieldInfo.cs">
@@ -402,9 +396,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmReplset.resx">
       <DependentUpon>frmReplset.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmServiceStatus.resx">
-      <DependentUpon>frmServiceStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlFieldInfo.resx">
       <DependentUpon>ctlFieldInfo.cs</DependentUpon>

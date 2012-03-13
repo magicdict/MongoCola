@@ -565,7 +565,47 @@ namespace MagicMongoDBTool.Module
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("md5")));
                 lstData.Items.Add(lstItem);
             }
+            // 用新的排序方法对ListView排序
+            MongoDBHelper.lvwColumnSorter _lvwGFSColumnSorter = new MongoDBHelper.lvwColumnSorter();
+            lstData.ListViewItemSorter = _lvwGFSColumnSorter;
+            lstData.ColumnClick += new ColumnClickEventHandler(
+                (sender, e) => {
+                    switch (e.Column)
+                    {
+                        case 1:
+                        case 2:
+                            _lvwGFSColumnSorter.CompareMethod = MongoDBHelper.lvwColumnSorter.SortMethod.SizeCompare;
+                            break;
+                        default:
+                            _lvwGFSColumnSorter.CompareMethod = MongoDBHelper.lvwColumnSorter.SortMethod.StringCompare;
+                            break;
+                    }
+                    // 检查点击的列是不是现在的排序列.
+                    if (e.Column == _lvwGFSColumnSorter.SortColumn)
+                    {
+                        // 重新设置此列的排序方法.
+                        if (_lvwGFSColumnSorter.Order == SortOrder.Ascending)
+                        {
+                            _lvwGFSColumnSorter.Order = SortOrder.Descending;
+                        }
+                        else
+                        {
+                            _lvwGFSColumnSorter.Order = SortOrder.Ascending;
+                        }
+                    }
+                    else
+                    {
+                        // 设置排序列，默认为正向排序
+                        _lvwGFSColumnSorter.SortColumn = e.Column;
+                        _lvwGFSColumnSorter.Order = SortOrder.Ascending;
+                    }
+                    lstData.Sort();
+                
+                }
+                );
+
         }
+
         #endregion
 
         #region"数据导航"

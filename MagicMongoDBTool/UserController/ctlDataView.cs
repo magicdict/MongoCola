@@ -30,13 +30,17 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         public event EventHandler CloseTab;
         /// <summary>
+        /// 
+        /// </summary>
+        String strNodeType;
+        /// <summary>
         /// 加载数据集控件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ctlDataView_Load(object sender, EventArgs e)
         {
-            String strNodeType = mDataViewInfo.strDBTag;
+            strNodeType = mDataViewInfo.strDBTag;
             strNodeType = strNodeType.Split(":".ToCharArray())[0];
 
             if (strNodeType == MongoDBHelper.COLLECTION_TAG)
@@ -107,6 +111,23 @@ namespace MagicMongoDBTool.UserController
                 this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
 
             }
+            //Change Icons by DataType
+            switch (strNodeType)
+            {
+                case MongoDBHelper.COLLECTION_TAG:
+                    break;
+                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
+                    break;
+                case MongoDBHelper.USER_LIST_TAG:
+                    NewDocumentStripButton.Image = MagicMongoDBTool.Properties.Resources.AddUserToDB;
+                    NewDocumentStripButton.Text = "New User";
+                    EditDocStripButton.Image = MagicMongoDBTool.Properties.Resources.DBkey;
+                    EditDocStripButton.Text = "Change User Config";
+                    break;
+                default:
+                    break;
+            }
+
             //加载数据
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
             //数据导航
@@ -612,6 +633,25 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void NewDocumentStripButton_Click(object sender, EventArgs e)
         {
+            switch (strNodeType) { 
+                case MongoDBHelper.COLLECTION_TAG:
+                    NewDocument();
+                    break;
+                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
+                    UploadFile();
+                    break;
+                case MongoDBHelper.USER_LIST_TAG:
+                    SystemManager.OpenForm(new frmUser(false));
+                    RefreshStripButton_Click(sender, e);
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
+        /// Add New Document
+        /// </summary>
+        private void NewDocument() {
             BsonValue id = MongoDBHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), config.IsSafeMode);
             TreeNode newDoc = new TreeNode(SystemManager.GetCurrentCollection().Name + "[" + (SystemManager.GetCurrentCollection().Count()).ToString() + "]");
             newDoc.Tag = id;

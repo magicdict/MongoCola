@@ -33,12 +33,14 @@
             this.SaveStripButton = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
             this.txtJavaScript = new System.Windows.Forms.TextBox();
+            this.EditDocStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EditDocStripButton,
             this.SaveStripButton,
             this.CloseStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -55,6 +57,7 @@
             this.SaveStripButton.Name = "SaveStripButton";
             this.SaveStripButton.Size = new System.Drawing.Size(23, 22);
             this.SaveStripButton.Text = "Save";
+            this.SaveStripButton.Click += new System.EventHandler(this.SaveStripButton_Click);
             // 
             // CloseStripButton
             // 
@@ -74,6 +77,16 @@
             this.txtJavaScript.Name = "txtJavaScript";
             this.txtJavaScript.Size = new System.Drawing.Size(696, 362);
             this.txtJavaScript.TabIndex = 1;
+            // 
+            // EditDocStripButton
+            // 
+            this.EditDocStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.EditDocStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Edit;
+            this.EditDocStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EditDocStripButton.Name = "EditDocStripButton";
+            this.EditDocStripButton.Size = new System.Drawing.Size(23, 22);
+            this.EditDocStripButton.Text = "Editor";
+            this.EditDocStripButton.Click += new System.EventHandler(this.EditDocStripButton_Click);
             // 
             // ctlJsEditor
             // 
@@ -97,5 +110,6 @@
         private System.Windows.Forms.ToolStripButton CloseStripButton;
         private System.Windows.Forms.ToolStripButton SaveStripButton;
         private System.Windows.Forms.TextBox txtJavaScript;
+        private System.Windows.Forms.ToolStripButton EditDocStripButton;
     }
 }

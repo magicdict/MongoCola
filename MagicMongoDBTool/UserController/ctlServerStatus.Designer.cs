@@ -37,11 +37,16 @@
             this.lstCollectionStatus = new System.Windows.Forms.ListView();
             this.tabCurrentOprInfo = new System.Windows.Forms.TabPage();
             this.lstSrvOpr = new System.Windows.Forms.ListView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
+            this.btnSwitch = new System.Windows.Forms.ToolStripButton();
+            this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
             this.tabSvrStatus.SuspendLayout();
             this.tabSvrBasicInfo.SuspendLayout();
             this.tabDBBasicInfo.SuspendLayout();
             this.tabCollectionInfo.SuspendLayout();
             this.tabCurrentOprInfo.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabSvrStatus
@@ -51,10 +56,10 @@
             this.tabSvrStatus.Controls.Add(this.tabCollectionInfo);
             this.tabSvrStatus.Controls.Add(this.tabCurrentOprInfo);
             this.tabSvrStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabSvrStatus.Location = new System.Drawing.Point(0, 0);
+            this.tabSvrStatus.Location = new System.Drawing.Point(0, 25);
             this.tabSvrStatus.Name = "tabSvrStatus";
             this.tabSvrStatus.SelectedIndex = 0;
-            this.tabSvrStatus.Size = new System.Drawing.Size(887, 457);
+            this.tabSvrStatus.Size = new System.Drawing.Size(887, 432);
             this.tabSvrStatus.TabIndex = 6;
             // 
             // tabSvrBasicInfo
@@ -63,14 +68,13 @@
             this.tabSvrBasicInfo.Location = new System.Drawing.Point(4, 22);
             this.tabSvrBasicInfo.Name = "tabSvrBasicInfo";
             this.tabSvrBasicInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSvrBasicInfo.Size = new System.Drawing.Size(879, 431);
+            this.tabSvrBasicInfo.Size = new System.Drawing.Size(879, 406);
             this.tabSvrBasicInfo.TabIndex = 3;
             this.tabSvrBasicInfo.Text = "Server Status[manually Refresh]";
             this.tabSvrBasicInfo.UseVisualStyleBackColor = true;
             // 
             // trvSvrStatus
             // 
-            this.trvSvrStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvSvrStatus.Location = new System.Drawing.Point(3, 3);
             this.trvSvrStatus.Name = "trvSvrStatus";
             this.trvSvrStatus.Size = new System.Drawing.Size(873, 425);
@@ -82,7 +86,7 @@
             this.tabDBBasicInfo.Location = new System.Drawing.Point(4, 22);
             this.tabDBBasicInfo.Name = "tabDBBasicInfo";
             this.tabDBBasicInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDBBasicInfo.Size = new System.Drawing.Size(879, 431);
+            this.tabDBBasicInfo.Size = new System.Drawing.Size(879, 406);
             this.tabDBBasicInfo.TabIndex = 0;
             this.tabDBBasicInfo.Text = "DB Status";
             this.tabDBBasicInfo.UseVisualStyleBackColor = true;
@@ -105,7 +109,7 @@
             this.tabCollectionInfo.Location = new System.Drawing.Point(4, 22);
             this.tabCollectionInfo.Name = "tabCollectionInfo";
             this.tabCollectionInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCollectionInfo.Size = new System.Drawing.Size(879, 431);
+            this.tabCollectionInfo.Size = new System.Drawing.Size(879, 406);
             this.tabCollectionInfo.TabIndex = 2;
             this.tabCollectionInfo.Text = "Collection Status";
             this.tabCollectionInfo.UseVisualStyleBackColor = true;
@@ -128,7 +132,7 @@
             this.tabCurrentOprInfo.Location = new System.Drawing.Point(4, 22);
             this.tabCurrentOprInfo.Name = "tabCurrentOprInfo";
             this.tabCurrentOprInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCurrentOprInfo.Size = new System.Drawing.Size(879, 431);
+            this.tabCurrentOprInfo.Size = new System.Drawing.Size(879, 406);
             this.tabCurrentOprInfo.TabIndex = 1;
             this.tabCurrentOprInfo.Text = "Current Operation";
             this.tabCurrentOprInfo.UseVisualStyleBackColor = true;
@@ -145,11 +149,54 @@
             this.lstSrvOpr.UseCompatibleStateImageBehavior = false;
             this.lstSrvOpr.View = System.Windows.Forms.View.Details;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RefreshStripButton,
+            this.btnSwitch,
+            this.CloseStripButton});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(887, 25);
+            this.toolStrip1.TabIndex = 7;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // RefreshStripButton
+            // 
+            this.RefreshStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.RefreshStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Refresh;
+            this.RefreshStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RefreshStripButton.Name = "RefreshStripButton";
+            this.RefreshStripButton.Size = new System.Drawing.Size(23, 22);
+            this.RefreshStripButton.Text = "Refresh";
+            this.RefreshStripButton.Click += new System.EventHandler(this.RefreshStripButton_Click);
+            // 
+            // btnSwitch
+            // 
+            this.btnSwitch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSwitch.Image = global::MagicMongoDBTool.Properties.Resources.Pause;
+            this.btnSwitch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSwitch.Name = "btnSwitch";
+            this.btnSwitch.Size = new System.Drawing.Size(23, 22);
+            this.btnSwitch.Text = "btnSwitch";
+            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
+            // 
+            // CloseStripButton
+            // 
+            this.CloseStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CloseStripButton.Image = global::MagicMongoDBTool.Properties.Resources.ShutDown;
+            this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CloseStripButton.Name = "CloseStripButton";
+            this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CloseStripButton.Text = "Close";
+            this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
+            // 
             // ctlServerStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabSvrStatus);
+            this.Controls.Add(this.toolStrip1);
             this.Name = "ctlServerStatus";
             this.Size = new System.Drawing.Size(887, 457);
             this.Load += new System.EventHandler(this.ctlServerStatus_Load);
@@ -158,7 +205,10 @@
             this.tabDBBasicInfo.ResumeLayout(false);
             this.tabCollectionInfo.ResumeLayout(false);
             this.tabCurrentOprInfo.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -173,6 +223,10 @@
         private System.Windows.Forms.ListView lstCollectionStatus;
         private System.Windows.Forms.TabPage tabCurrentOprInfo;
         private System.Windows.Forms.ListView lstSrvOpr;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton RefreshStripButton;
+        private System.Windows.Forms.ToolStripButton btnSwitch;
+        private System.Windows.Forms.ToolStripButton CloseStripButton;
 
     }
 }

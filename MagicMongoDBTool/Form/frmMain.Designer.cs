@@ -39,7 +39,6 @@ namespace MagicMongoDBTool
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.ManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SrvStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.ExpandAllConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,6 +56,7 @@ namespace MagicMongoDBTool
             this.statusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandShellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.collectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.JavaScriptStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
             this.refreshToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.OperationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,9 +115,8 @@ namespace MagicMongoDBTool
             this.tabSvrStatus = new System.Windows.Forms.TabPage();
             this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
             this.tabCommandShell = new System.Windows.Forms.TabPage();
-            this.txtCommand = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.JavaScriptStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctlShellCommandEditor = new MagicMongoDBTool.ctlJsEditor();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -182,7 +181,6 @@ namespace MagicMongoDBTool
             this.ManagerToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.ManagerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddConnectionToolStripMenuItem,
-            this.SrvStatusToolStripMenuItem,
             this.RefreshToolStripMenuItem,
             this.toolStripMenuItem10,
             this.ExpandAllConnectionToolStripMenuItem,
@@ -200,13 +198,6 @@ namespace MagicMongoDBTool
             this.AddConnectionToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.AddConnectionToolStripMenuItem.Text = "&Connection Manager";
             this.AddConnectionToolStripMenuItem.Click += new System.EventHandler(this.AddConnectionToolStripMenuItem_Click);
-            // 
-            // SrvStatusToolStripMenuItem
-            // 
-            this.SrvStatusToolStripMenuItem.Name = "SrvStatusToolStripMenuItem";
-            this.SrvStatusToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.SrvStatusToolStripMenuItem.Text = "&Status";
-            this.SrvStatusToolStripMenuItem.Click += new System.EventHandler(this.SrvStatusToolStripMenuItem_Click);
             // 
             // RefreshToolStripMenuItem
             // 
@@ -336,6 +327,12 @@ namespace MagicMongoDBTool
             this.collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
             this.collectionToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.collectionToolStripMenuItem.Text = "Collection Data";
+            // 
+            // JavaScriptStripMenuItem
+            // 
+            this.JavaScriptStripMenuItem.Name = "JavaScriptStripMenuItem";
+            this.JavaScriptStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.JavaScriptStripMenuItem.Text = "JavaScript";
             // 
             // toolStripMenuItem9
             // 
@@ -783,7 +780,7 @@ namespace MagicMongoDBTool
             // 
             // tabCommandShell
             // 
-            this.tabCommandShell.Controls.Add(this.txtCommand);
+            this.tabCommandShell.Controls.Add(this.ctlShellCommandEditor);
             this.tabCommandShell.Location = new System.Drawing.Point(4, 25);
             this.tabCommandShell.Name = "tabCommandShell";
             this.tabCommandShell.Padding = new System.Windows.Forms.Padding(3);
@@ -791,15 +788,6 @@ namespace MagicMongoDBTool
             this.tabCommandShell.TabIndex = 1;
             this.tabCommandShell.Text = "Shell Command";
             this.tabCommandShell.UseVisualStyleBackColor = true;
-            // 
-            // txtCommand
-            // 
-            this.txtCommand.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCommand.Location = new System.Drawing.Point(3, 3);
-            this.txtCommand.Multiline = true;
-            this.txtCommand.Name = "txtCommand";
-            this.txtCommand.Size = new System.Drawing.Size(872, 596);
-            this.txtCommand.TabIndex = 1;
             // 
             // splitter1
             // 
@@ -809,11 +797,15 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // JavaScriptStripMenuItem
+            // ctlShellCommandEditor
             // 
-            this.JavaScriptStripMenuItem.Name = "JavaScriptStripMenuItem";
-            this.JavaScriptStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.JavaScriptStripMenuItem.Text = "JavaScript";
+            this.ctlShellCommandEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctlShellCommandEditor.JsName = null;
+            this.ctlShellCommandEditor.Location = new System.Drawing.Point(3, 3);
+            this.ctlShellCommandEditor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ctlShellCommandEditor.Name = "ctlShellCommandEditor";
+            this.ctlShellCommandEditor.Size = new System.Drawing.Size(872, 596);
+            this.ctlShellCommandEditor.TabIndex = 0;
             // 
             // frmMain
             // 
@@ -839,7 +831,6 @@ namespace MagicMongoDBTool
             this.tabView.ResumeLayout(false);
             this.tabSvrStatus.ResumeLayout(false);
             this.tabCommandShell.ResumeLayout(false);
-            this.tabCommandShell.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -849,6 +840,8 @@ namespace MagicMongoDBTool
         /// </summary>
         private void SetMenuImage()
         {
+            this.ExitToolStripMenuItem.Image = MagicMongoDBTool.Properties.Resources.exit.ToBitmap();
+
             this.ShutDownToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.ShutDown);
 
             this.DelMongoCollectionToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
@@ -918,7 +911,6 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.MenuStrip menuStripMain;
         private System.Windows.Forms.ToolStripMenuItem ManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AddConnectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SrvStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RefreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DataNaviToolStripMenuItem;
@@ -991,7 +983,6 @@ namespace MagicMongoDBTool
         private Splitter splitter1;
         private ToolStripMenuItem UserGuideToolStripMenuItem;
         private ToolStripMenuItem CompactToolStripMenuItem;
-        private TextBox txtCommand;
         private UserController.ctlServerStatus ServerStatusCtl;
         private TabControl tabView;
         private TabPage tabSvrStatus;
@@ -1005,5 +996,6 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem refreshToolStripMenuItem1;
         private ToolStripMenuItem InitGFSToolStripMenuItem;
         private ToolStripMenuItem JavaScriptStripMenuItem;
+        private ctlJsEditor ctlShellCommandEditor;
     }
 }
