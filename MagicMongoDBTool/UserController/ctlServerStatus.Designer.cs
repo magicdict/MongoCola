@@ -75,9 +75,10 @@
             // 
             // trvSvrStatus
             // 
+            this.trvSvrStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trvSvrStatus.Location = new System.Drawing.Point(3, 3);
             this.trvSvrStatus.Name = "trvSvrStatus";
-            this.trvSvrStatus.Size = new System.Drawing.Size(873, 425);
+            this.trvSvrStatus.Size = new System.Drawing.Size(873, 400);
             this.trvSvrStatus.TabIndex = 0;
             // 
             // tabDBBasicInfo
@@ -98,7 +99,7 @@
             this.lstDBStatus.GridLines = true;
             this.lstDBStatus.Location = new System.Drawing.Point(3, 3);
             this.lstDBStatus.Name = "lstDBStatus";
-            this.lstDBStatus.Size = new System.Drawing.Size(873, 425);
+            this.lstDBStatus.Size = new System.Drawing.Size(873, 400);
             this.lstDBStatus.TabIndex = 2;
             this.lstDBStatus.UseCompatibleStateImageBehavior = false;
             this.lstDBStatus.View = System.Windows.Forms.View.Details;
@@ -121,7 +122,7 @@
             this.lstCollectionStatus.GridLines = true;
             this.lstCollectionStatus.Location = new System.Drawing.Point(3, 3);
             this.lstCollectionStatus.Name = "lstCollectionStatus";
-            this.lstCollectionStatus.Size = new System.Drawing.Size(873, 425);
+            this.lstCollectionStatus.Size = new System.Drawing.Size(873, 400);
             this.lstCollectionStatus.TabIndex = 2;
             this.lstCollectionStatus.UseCompatibleStateImageBehavior = false;
             this.lstCollectionStatus.View = System.Windows.Forms.View.Details;
@@ -144,7 +145,7 @@
             this.lstSrvOpr.GridLines = true;
             this.lstSrvOpr.Location = new System.Drawing.Point(3, 3);
             this.lstSrvOpr.Name = "lstSrvOpr";
-            this.lstSrvOpr.Size = new System.Drawing.Size(873, 425);
+            this.lstSrvOpr.Size = new System.Drawing.Size(873, 400);
             this.lstSrvOpr.TabIndex = 3;
             this.lstSrvOpr.UseCompatibleStateImageBehavior = false;
             this.lstSrvOpr.View = System.Windows.Forms.View.Details;

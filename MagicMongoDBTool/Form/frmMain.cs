@@ -586,14 +586,18 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.ExportCollectionToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.CompactToolStripMenuItem.Clone());
 #endif
+                            this.viewDataToolStripMenuItem.Enabled = true;
+                            this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+
                         }
                         break;
                     case MongoDBHelper.DOCUMENT_TAG:
                     case MongoDBHelper.USER_LIST_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
 
-                        this.viewDataToolStripMenuItem.Enabled = true;
 
                         if (strNodeType == MongoDBHelper.USER_LIST_TAG)
                         {
@@ -655,7 +659,10 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.distinctToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
+
+                            this.viewDataToolStripMenuItem.Enabled = true;
                             this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -724,7 +731,9 @@ namespace MagicMongoDBTool
                         SystemManager.CurrDataFilter.Clear();
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
+                            this.viewDataToolStripMenuItem.Enabled = true;
                             this.contextMenuStripMain = new ContextMenuStrip();
+                            this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -732,6 +741,14 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.GRID_JAVASCRIPT_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         statusStripMain.Items[0].Text = "Selected JavaScript:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            this.viewDataToolStripMenuItem.Enabled = true;
+                            this.contextMenuStripMain = new ContextMenuStrip();
+                            this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+                        }
                         break;
                     default:
                         SystemManager.SelectObjectTag = "";
@@ -746,6 +763,7 @@ namespace MagicMongoDBTool
             //重新Reset工具栏
             SetToolBarEnabled();
         }
+
         /// <summary>
         /// 双击打开数据视图
         /// </summary>

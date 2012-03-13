@@ -191,20 +191,21 @@ namespace MagicMongoDBTool.Module
             MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
 
             TreeNode UserNode = new TreeNode("User", (int)GetSystemIcon.MainTreeImageType.UserIcon, (int)GetSystemIcon.MainTreeImageType.UserIcon);
-            UserNode.Tag = USER_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_USER; 
+            UserNode.Tag = USER_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_USER;
             mongoDBNode.Nodes.Add(UserNode);
 
             TreeNode JsNode = new TreeNode("JavaScript", (int)GetSystemIcon.MainTreeImageType.JavaScriptList, (int)GetSystemIcon.MainTreeImageType.JavaScriptList);
             JsNode.Tag = GRID_JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_JAVASCRIPT;
             mongoDBNode.Nodes.Add(JsNode);
-            
+
             TreeNode GFSNode = new TreeNode("Grid File System", (int)GetSystemIcon.MainTreeImageType.GFS, (int)GetSystemIcon.MainTreeImageType.GFS);
             GFSNode.Tag = GRID_FILE_SYSTEM_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_GFS_FILES;
             mongoDBNode.Nodes.Add(GFSNode);
 
+            TreeNode mongoSysColListNode = new TreeNode("Collections(System)", (int)GetSystemIcon.MainTreeImageType.SystemCol, (int)GetSystemIcon.MainTreeImageType.SystemCol);
+            mongoDBNode.Nodes.Add(mongoSysColListNode);
 
-
-            TreeNode mongoColListNode = new TreeNode("Collection List", (int)GetSystemIcon.MainTreeImageType.CollectionList, (int)GetSystemIcon.MainTreeImageType.CollectionList);
+            TreeNode mongoColListNode = new TreeNode("Collections(General)", (int)GetSystemIcon.MainTreeImageType.CollectionList, (int)GetSystemIcon.MainTreeImageType.CollectionList);
             List<String> colNameList = mongoDB.GetCollectionNames().ToList<String>();
             foreach (String strColName in colNameList)
             {
@@ -216,11 +217,12 @@ namespace MagicMongoDBTool.Module
                         //system.users,fs,system.js这几个系统级别的Collection不需要放入
                         break;
                     case COLLECTION_NAME_JAVASCRIPT:
-                        foreach(BsonDocument t in mongoDB.GetCollection(COLLECTION_NAME_JAVASCRIPT).FindAll()){
+                        foreach (BsonDocument t in mongoDB.GetCollection(COLLECTION_NAME_JAVASCRIPT).FindAll())
+                        {
                             TreeNode js = new TreeNode(t.GetValue("_id").ToString());
                             js.ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc;
                             js.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc;
-                            js.Tag = GRID_JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_GFS_FILES + "/" + t.GetValue("_id").ToString();
+                            js.Tag = GRID_JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_JAVASCRIPT + "/" + t.GetValue("_id").ToString();
                             JsNode.Nodes.Add(js);
                         }
                         break;
@@ -236,13 +238,22 @@ namespace MagicMongoDBTool.Module
                             mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
                             mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
                         }
-                        mongoColListNode.Nodes.Add(mongoColNode);
+
+                        if (IsSystemCollection(mongoDB.Name, strColName))
+                        {
+                            mongoSysColListNode.Nodes.Add(mongoColNode);
+
+                        }
+                        else
+                        {
+                            mongoColListNode.Nodes.Add(mongoColNode);
+                        }
                         break;
                 }
             }
             mongoDBNode.Nodes.Add(mongoColListNode);
 
-            
+
             mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
             mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
             return mongoDBNode;

@@ -63,6 +63,35 @@ namespace MagicMongoDBTool.Module
             return false;
         }
         /// <summary>
+        /// 是否为系统数据集[无法删除]
+        /// </summary>
+        /// <param name="mongoCol"></param>
+        /// <returns></returns>
+        public static Boolean IsSystemCollection(String mongoDBName,String mongoColName)
+        {
+            //系统
+            if (mongoColName.StartsWith("system."))
+            {
+                return true;
+            }
+            //文件
+            if (mongoColName.StartsWith("fs."))
+            {
+                return true;
+            }
+            //local数据库,默认为系统
+            if (mongoDBName == "local")
+            {
+                return true;
+            }
+            //config数据库,默认为系统
+            if (mongoDBName == "config")
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
         /// 是否为系统数据库[无法删除]
         /// </summary>
         /// <param name="mongoDB"></param>

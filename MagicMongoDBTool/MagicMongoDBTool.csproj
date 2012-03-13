@@ -476,7 +476,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\%2813,35%29.png" />
+    <None Include="Resources\%2815,37%29.png" />
     <Content Include="UserGuide\images\Access.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

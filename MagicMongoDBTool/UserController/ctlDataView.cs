@@ -36,9 +36,21 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         public event EventHandler CloseTab;
         /// <summary>
-        /// 
+        /// 是否为Admin数据库
         /// </summary>
-        String strNodeType;
+        private Boolean IsAdminDB;
+        /// <summary>
+        /// 是否为系统数据集
+        /// </summary>
+        private Boolean IsSystemCollection;
+        /// <summary>
+        /// 节点类型
+        /// </summary>
+        private String strNodeType;
+        /// <summary>
+        /// 节点路径
+        /// </summary>
+        private String strNodeData;
         /// <summary>
         /// 加载数据集控件
         /// </summary>
@@ -46,8 +58,16 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void ctlDataView_Load(object sender, EventArgs e)
         {
-            strNodeType = mDataViewInfo.strDBTag;
-            strNodeType = strNodeType.Split(":".ToCharArray())[0];
+            
+            strNodeType = mDataViewInfo.strDBTag.Split(":".ToCharArray())[0];
+            strNodeData = mDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
+
+            String[] DataList = strNodeData.Split("/".ToCharArray());
+            if (DataList[(int)MongoDBHelper.PathLv.DatabaseLV] == MongoDBHelper.DATABASE_NAME_ADMIN) {
+                IsAdminDB = true;
+            }
+            IsSystemCollection = MongoDBHelper.IsSystemCollection(DataList[(int)MongoDBHelper.PathLv.DatabaseLV],
+                                                                  DataList[(int)MongoDBHelper.PathLv.CollectionLV]);
 
             if (strNodeType == MongoDBHelper.COLLECTION_TAG)
             {
@@ -61,6 +81,8 @@ namespace MagicMongoDBTool.UserController
                 this.tabDataShower.Controls.Remove(tabTreeView);
                 this.tabDataShower.Controls.Remove(tabTextView);
             }
+
+            this.EditDocStripButton.Enabled = false;
             this.QueryStripButton.Enabled = false;
             this.FilterStripButton.Enabled = false;
             this.FilterStripButton.Checked = false;
@@ -120,22 +142,47 @@ namespace MagicMongoDBTool.UserController
             }
             //Change Icons by DataType
             OpenFileStripButton.Visible = false;
+            ExpandAllStripButton.Visible = false;
+            CollapseAllStripButton.Visible = false;
+
             switch (strNodeType)
             {
                 case MongoDBHelper.COLLECTION_TAG:
+                    ExpandAllStripButton.Visible = true;
+                    CollapseAllStripButton.Visible = true;
                     break;
                 case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
                     OpenFileStripButton.Image = MagicMongoDBTool.Properties.Resources.Open.ToBitmap();
                     OpenFileStripButton.Visible = true;
+
+                    if (!SystemManager.IsUseDefaultLanguage()) {
+                        NewDocumentStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Upload);
+                        EditDocStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
+                        DelSelectRecordToolStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile); 
+                    }
+                    else
+                    {
+                        NewDocumentStripButton.Text = "Upload File";
+                        EditDocStripButton.Text = "Download File";
+                        DelSelectRecordToolStripButton.Text = "Delete File";
+                    }
                     break;
                 case MongoDBHelper.USER_LIST_TAG:
                     NewDocumentStripButton.Image = MagicMongoDBTool.Properties.Resources.AddUserToDB;
                     EditDocStripButton.Image = MagicMongoDBTool.Properties.Resources.DBkey;
                     DelSelectRecordToolStripButton.Image = MagicMongoDBTool.Properties.Resources.DelUser;
-
-                    NewDocumentStripButton.Text = "New User";
-                    EditDocStripButton.Text = "Change User Config";
-                    DelSelectRecordToolStripButton.Text = "Delete User";
+                    if (!SystemManager.IsUseDefaultLanguage())
+                    {
+                        NewDocumentStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                        EditDocStripButton.Text = "Change User Config";
+                        DelSelectRecordToolStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser); 
+                    }
+                    else
+                    {
+                        NewDocumentStripButton.Text = "New User";
+                        EditDocStripButton.Text = "Change User Config";
+                        DelSelectRecordToolStripButton.Text = "Delete User";
+                    }
                     break;
                 default:
                     break;
@@ -188,27 +235,27 @@ namespace MagicMongoDBTool.UserController
                     {
                         case 0:
                             //禁止所有操作
-                            DownloadFileToolStripMenuItem.Enabled = false;
-                            OpenFileToolStripMenuItem.Enabled = false;
-                            DelFileToolStripMenuItem.Enabled = false;
+                            this.EditDocStripButton.Enabled = false;
+                            this.OpenFileStripButton.Enabled = false;
+                            this.DelSelectRecordToolStripButton.Enabled = false;
                             lstData.ContextMenuStrip = null;
                             break;
                         case 1:
                             //可以进行所有操作
                             if (!config.IsReadOnly)
                             {
-                                DelFileToolStripMenuItem.Enabled = true;
+                                DelSelectRecordToolStripButton.Enabled = true;
                             }
-                            DownloadFileToolStripMenuItem.Enabled = true;
-                            OpenFileToolStripMenuItem.Enabled = true;
+                            EditDocStripButton.Enabled = true;
+                            OpenFileStripButton.Enabled = true;
                             break;
                         default:
                             //可以删除多个文件
-                            DownloadFileToolStripMenuItem.Enabled = false;
-                            OpenFileToolStripMenuItem.Enabled = false;
+                            this.EditDocStripButton.Enabled = false;
+                            this.OpenFileStripButton.Enabled = false;
                             if (!config.IsReadOnly)
                             {
-                                this.DelFileToolStripMenuItem.Enabled = true;
+                                this.DelSelectRecordToolStripButton.Enabled = true;
                             }
                             break;
                     }
@@ -218,15 +265,23 @@ namespace MagicMongoDBTool.UserController
                     if (lstData.SelectedItems.Count > 0 && !config.IsReadOnly)
                     {
                         this.DelSelectRecordToolStripButton.Enabled = true;
+                        if (this.lstData.SelectedItems.Count == 1)
+                        {
+                            this.EditDocStripButton.Enabled = true;
+                        }
                     }
                     break;
                 default:
                     //数据系统
                     DelSelectRecordToolStripButton.Enabled = false;
-                    if (lstData.SelectedItems.Count > 0 && !MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) && !config.IsReadOnly)
+                    if (lstData.SelectedItems.Count > 0 && !IsSystemCollection && !config.IsReadOnly)
                     {
                         DelSelectRecordToolStripMenuItem.Enabled = true;
                         this.DelSelectRecordToolStripButton.Enabled = true;
+                    }
+                    if (this.lstData.SelectedItems.Count == 1)
+                    {
+                        this.EditDocStripButton.Enabled = true;
                     }
                     break;
             }
@@ -640,11 +695,11 @@ namespace MagicMongoDBTool.UserController
                     {
                         SystemManager.OpenForm(new frmUser(false));
                     }
-                    RefreshStripButton_Click(sender, e);
                     break;
                 default:
                     break;
             }
+            RefreshStripButton_Click(sender, e);
         }
         /// <summary>
         /// Add New Document
@@ -678,7 +733,7 @@ namespace MagicMongoDBTool.UserController
                     DelFile();
                     break;
                 case MongoDBHelper.USER_LIST_TAG:
-                    if (mDataViewInfo.strDBTag.EndsWith(MongoDBHelper.DATABASE_NAME_ADMIN + "/" + MongoDBHelper.COLLECTION_NAME_USER))
+                    if (IsAdminDB)
                     {
                         RemoveUserFromAdminToolStripMenuItem_Click(sender, e);
                     }
@@ -877,7 +932,6 @@ namespace MagicMongoDBTool.UserController
             {
                 MongoDBHelper.UpLoadFile(upfile.FileName);
             }
-            RefreshStripButton_Click(null, null);
         }
         /// <summary>
         /// DownLoad File
@@ -1099,6 +1153,8 @@ namespace MagicMongoDBTool.UserController
             mDataViewInfo.SkipCnt = 0;
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
             SetDataNav();
+            this.EditDocStripButton.Enabled = false;
+            this.DelSelectRecordToolStripButton.Enabled = false;
             IsNeedRefresh = false;
         }
         /// <summary>
