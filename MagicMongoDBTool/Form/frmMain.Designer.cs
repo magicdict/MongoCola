@@ -113,10 +113,11 @@ namespace MagicMongoDBTool
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabView = new System.Windows.Forms.TabControl();
             this.tabSvrStatus = new System.Windows.Forms.TabPage();
+            this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
             this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.txtCommand = new System.Windows.Forms.TextBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
+            this.JavaScriptStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -258,6 +259,7 @@ namespace MagicMongoDBTool
             this.statusToolStripMenuItem,
             this.commandShellToolStripMenuItem,
             this.collectionToolStripMenuItem,
+            this.JavaScriptStripMenuItem,
             this.toolStripMenuItem9,
             this.refreshToolStripMenuItem1});
             this.DataNaviToolStripMenuItem.Name = "DataNaviToolStripMenuItem";
@@ -770,6 +772,15 @@ namespace MagicMongoDBTool
             this.tabSvrStatus.Text = "Sever Status";
             this.tabSvrStatus.UseVisualStyleBackColor = true;
             // 
+            // ServerStatusCtl
+            // 
+            this.ServerStatusCtl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ServerStatusCtl.Location = new System.Drawing.Point(3, 3);
+            this.ServerStatusCtl.Margin = new System.Windows.Forms.Padding(5);
+            this.ServerStatusCtl.Name = "ServerStatusCtl";
+            this.ServerStatusCtl.Size = new System.Drawing.Size(872, 596);
+            this.ServerStatusCtl.TabIndex = 2;
+            // 
             // tabCommandShell
             // 
             this.tabCommandShell.Controls.Add(this.txtCommand);
@@ -787,7 +798,7 @@ namespace MagicMongoDBTool
             this.txtCommand.Location = new System.Drawing.Point(3, 3);
             this.txtCommand.Multiline = true;
             this.txtCommand.Name = "txtCommand";
-            this.txtCommand.Size = new System.Drawing.Size(872, 599);
+            this.txtCommand.Size = new System.Drawing.Size(872, 596);
             this.txtCommand.TabIndex = 1;
             // 
             // splitter1
@@ -798,14 +809,11 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // ServerStatusCtl
+            // JavaScriptStripMenuItem
             // 
-            this.ServerStatusCtl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ServerStatusCtl.Location = new System.Drawing.Point(3, 3);
-            this.ServerStatusCtl.Margin = new System.Windows.Forms.Padding(5);
-            this.ServerStatusCtl.Name = "ServerStatusCtl";
-            this.ServerStatusCtl.Size = new System.Drawing.Size(872, 596);
-            this.ServerStatusCtl.TabIndex = 2;
+            this.JavaScriptStripMenuItem.Name = "JavaScriptStripMenuItem";
+            this.JavaScriptStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.JavaScriptStripMenuItem.Text = "JavaScript";
             // 
             // frmMain
             // 
@@ -996,5 +1004,6 @@ namespace MagicMongoDBTool
         private ToolStripSeparator toolStripMenuItem9;
         private ToolStripMenuItem refreshToolStripMenuItem1;
         private ToolStripMenuItem InitGFSToolStripMenuItem;
+        private ToolStripMenuItem JavaScriptStripMenuItem;
     }
 }

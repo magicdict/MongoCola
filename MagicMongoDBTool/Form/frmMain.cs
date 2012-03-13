@@ -612,7 +612,7 @@ namespace MagicMongoDBTool
 
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
-                            
+
                             this.contextMenuStripMain = new ContextMenuStrip();
 #if MONO
                             //悲催MONO不支持
@@ -744,9 +744,12 @@ namespace MagicMongoDBTool
         void trvsrvlst_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             String strNodeType = String.Empty;
+            String strNodeData = String.Empty;
             if (e.Node.Tag != null)
             {
                 strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
+                strNodeData = e.Node.Tag.ToString().Split(":".ToCharArray())[1];
+
                 switch (strNodeType)
                 {
                     case MongoDBHelper.USER_LIST_TAG:
@@ -759,7 +762,39 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelper.GRID_JAVASCRIPT_TAG:
                         MongoDBHelper.InitJavascript();
-                        //viewDataToolStripMenuItem_Click(sender, e);
+                        String[] DataList = strNodeData.Split("/".ToCharArray());
+                        if (DataList.Length == 4)
+                        {
+                            if (ViewList.ContainsKey(strNodeData))
+                            {
+                                tabView.SelectTab(ViewList[strNodeData]);
+                            }
+                            else
+                            {
+                                ctlJsEditor JsEditor = new ctlJsEditor();
+                                TabPage DataTab = new TabPage(DataList[3]);
+                                JsEditor.JsName = DataList[3];
+                                DataTab.Controls.Add(JsEditor);
+                                JsEditor.Dock = DockStyle.Fill;
+                                tabView.Controls.Add(DataTab);
+
+                                ToolStripMenuItem DataMenuItem = new ToolStripMenuItem(DataList[3]);
+                                JavaScriptStripMenuItem.DropDownItems.Add(DataMenuItem);
+                                DataMenuItem.Click += new EventHandler(
+                                     (x, y) => { tabView.SelectTab(DataTab); }
+                                );
+                                ViewList.Add(strNodeData, DataTab);
+                                JsEditor.CloseTab += new System.EventHandler(
+                                    (x, y) =>
+                                    {
+                                        tabView.Controls.Remove(DataTab);
+                                        ViewList.Remove(strNodeData);
+                                        JavaScriptStripMenuItem.DropDownItems.Remove(DataMenuItem);
+                                    }
+                                );
+                                tabView.SelectTab(DataTab);
+                            }
+                        }
                         break;
                     case MongoDBHelper.COLLECTION_TAG:
                     case MongoDBHelper.DOCUMENT_TAG:
@@ -770,7 +805,7 @@ namespace MagicMongoDBTool
                 }
             }
         }
-  
+
         /// <summary>
         /// 禁止所有操作
         /// </summary>
@@ -1350,9 +1385,11 @@ namespace MagicMongoDBTool
                 );
                 ViewList.Add(DataKey, DataTab);
                 DataViewctl.CloseTab += new System.EventHandler(
-                    (x, y) => { tabView.Controls.Remove(DataTab);
-                                ViewList.Remove(DataKey);
-                                collectionToolStripMenuItem.DropDownItems.Remove(DataMenuItem);
+                    (x, y) =>
+                    {
+                        tabView.Controls.Remove(DataTab);
+                        ViewList.Remove(DataKey);
+                        collectionToolStripMenuItem.DropDownItems.Remove(DataMenuItem);
                     }
                 );
                 tabView.SelectTab(DataTab);
@@ -1360,11 +1397,11 @@ namespace MagicMongoDBTool
         }
         private void statusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tabView.SelectTab(0); 
+            tabView.SelectTab(0);
         }
         private void commandShellToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tabView.SelectTab(1); 
+            tabView.SelectTab(1);
         }
         #endregion
 
@@ -1648,7 +1685,5 @@ namespace MagicMongoDBTool
         }
         #endregion
 
-
-    
     }
 }

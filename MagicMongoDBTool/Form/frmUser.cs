@@ -20,6 +20,15 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
+            if (txtUserName.Text == String.Empty) {
+                MyMessageBox.ShowConfirm("Error", "Please fill username!");
+                return;
+            }
+            if (txtConfirmPsw.Text != txtPassword.Text)
+            {
+                MyMessageBox.ShowConfirm("Error", "Password and Confirm Password not match!");
+                return;
+            }
             if (_IsAdmin)
             {
                 //添加到服务器，作为Admin用户

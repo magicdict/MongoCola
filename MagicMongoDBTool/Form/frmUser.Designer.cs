@@ -36,14 +36,16 @@ namespace MagicMongoDBTool
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.chkReadOnly = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtConfirmPsw = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(34, 132);
+            this.cmdOK.Location = new System.Drawing.Point(58, 152);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(117, 37);
+            this.cmdOK.Size = new System.Drawing.Size(96, 26);
             this.cmdOK.TabIndex = 3;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
@@ -52,9 +54,9 @@ namespace MagicMongoDBTool
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(171, 132);
+            this.cmdCancel.Location = new System.Drawing.Point(174, 152);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(117, 37);
+            this.cmdCancel.Size = new System.Drawing.Size(117, 26);
             this.cmdCancel.TabIndex = 4;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
@@ -64,7 +66,7 @@ namespace MagicMongoDBTool
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.BackColor = System.Drawing.Color.Transparent;
-            this.lblUserName.Location = new System.Drawing.Point(43, 27);
+            this.lblUserName.Location = new System.Drawing.Point(28, 37);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(33, 15);
             this.lblUserName.TabIndex = 7;
@@ -74,7 +76,7 @@ namespace MagicMongoDBTool
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lblPassword.Location = new System.Drawing.Point(43, 70);
+            this.lblPassword.Location = new System.Drawing.Point(27, 65);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(61, 15);
             this.lblPassword.TabIndex = 8;
@@ -82,14 +84,14 @@ namespace MagicMongoDBTool
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(118, 25);
+            this.txtUserName.Location = new System.Drawing.Point(136, 34);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(170, 21);
             this.txtUserName.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(118, 62);
+            this.txtPassword.Location = new System.Drawing.Point(136, 62);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(170, 21);
             this.txtPassword.TabIndex = 1;
@@ -99,18 +101,37 @@ namespace MagicMongoDBTool
             // 
             this.chkReadOnly.AutoSize = true;
             this.chkReadOnly.BackColor = System.Drawing.Color.Transparent;
-            this.chkReadOnly.Location = new System.Drawing.Point(120, 99);
+            this.chkReadOnly.Location = new System.Drawing.Point(136, 120);
             this.chkReadOnly.Name = "chkReadOnly";
             this.chkReadOnly.Size = new System.Drawing.Size(80, 19);
             this.chkReadOnly.TabIndex = 2;
             this.chkReadOnly.Text = "ReadOnly";
             this.chkReadOnly.UseVisualStyleBackColor = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 96);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 15);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Confirm Password";
+            // 
+            // txtConfirmPsw
+            // 
+            this.txtConfirmPsw.Location = new System.Drawing.Point(136, 93);
+            this.txtConfirmPsw.Name = "txtConfirmPsw";
+            this.txtConfirmPsw.Size = new System.Drawing.Size(170, 21);
+            this.txtConfirmPsw.TabIndex = 10;
+            this.txtConfirmPsw.UseSystemPasswordChar = true;
+            // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 192);
+            this.ClientSize = new System.Drawing.Size(340, 199);
+            this.Controls.Add(this.txtConfirmPsw);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.chkReadOnly);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
@@ -140,5 +161,7 @@ namespace MagicMongoDBTool
         private TextBox txtPassword;
         private TextBox txtUserName;
         private System.Windows.Forms.CheckBox chkReadOnly;
+        private Label label1;
+        private TextBox txtConfirmPsw;
     }
 }
