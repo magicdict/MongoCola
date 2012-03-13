@@ -68,7 +68,6 @@ namespace MagicMongoDBTool
             this.ServerToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server);
             this.CreateMongoDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_NewDB);
             this.AddUserToAdminToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
-            this.RemoveUserFromAdminToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_DelFromAdmin);
             this.slaveResyncToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_SlaveResync);
             this.ShutDownToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_CloseServer);
             this.SvrPropertyToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties);
@@ -77,7 +76,6 @@ namespace MagicMongoDBTool
             this.DelMongoDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelDB);
             this.CreateMongoCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddDC);
             this.AddUserToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
-            this.RemoveUserToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
             this.evalJSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_EvalJs);
             this.RepairDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_RepairDatabase);
 
@@ -827,7 +825,6 @@ namespace MagicMongoDBTool
             //管理-服务器
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
             this.AddUserToAdminToolStripMenuItem.Enabled = false;
-            this.RemoveUserFromAdminToolStripMenuItem.Enabled = false;
             this.SvrPropertyToolStripMenuItem.Enabled = false;
             this.slaveResyncToolStripMenuItem.Enabled = false;
             this.ShutDownToolStripMenuItem.Enabled = false;
@@ -839,7 +836,6 @@ namespace MagicMongoDBTool
             this.CreateMongoCollectionToolStripMenuItem.Enabled = false;
             this.DelMongoDBToolStripMenuItem.Enabled = false;
             this.AddUserToolStripMenuItem.Enabled = false;
-            this.RemoveUserToolStripMenuItem.Enabled = false;
             this.evalJSToolStripMenuItem.Enabled = false;
             this.RepairDBToolStripMenuItem.Enabled = false;
             this.InitGFSToolStripMenuItem.Enabled = false;
@@ -1038,43 +1034,6 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmUser(true));
         }
-
-        /// <summary>
-        /// Drop User from Admin Group
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RemoveUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strTitle = "Drop User";
-            String strMessage = "Are you sure to delete user(s) from Admin Group?";
-            if (!SystemManager.IsUseDefaultLanguage())
-            {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
-            }
-
-            ////这里也可以使用普通的删除数据的方法来删除用户。
-            //if (MyMessageBox.ShowConfirm(strTitle, strMessage))
-            //{
-            //    if (DataViewctl.tabDataShower.SelectedTab == DataViewctl.tabTableView)
-            //    {
-            //        //lstData
-            //        foreach (ListViewItem item in DataViewctl.lstData.SelectedItems)
-            //        {
-            //            MongoDBHelper.RemoveUserFromSvr(item.SubItems[1].Text);
-            //        }
-            //        DataViewctl.lstData.ContextMenuStrip = null;
-            //    }
-            //    else
-            //    {
-            //        MongoDBHelper.RemoveUserFromSvr(DataViewctl.trvData.SelectedNode.Tag.ToString());
-            //        DataViewctl.trvData.ContextMenuStrip = null;
-            //    }
-            //    RemoveUserFromAdminToolStripMenuItem.Enabled = false;
-            //    RefreshData();
-            //}
-        }
         /// <summary>
         /// SlaveResync
         /// </summary>
@@ -1188,40 +1147,6 @@ namespace MagicMongoDBTool
         private void AddUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SystemManager.OpenForm(new frmUser(false));
-        }
-        /// <summary>
-        /// Delete User
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strTitle = "Drop User";
-            String strMessage = "Are you sure to delete user(s) from this database";
-            if (!SystemManager.IsUseDefaultLanguage())
-            {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
-            }
-            //if (MyMessageBox.ShowConfirm(strTitle, strMessage))
-            //{
-            //    if (DataViewctl.tabDataShower.SelectedTab == DataViewctl.tabTableView)
-            //    {
-            //        //lstData
-            //        foreach (ListViewItem item in DataViewctl.lstData.SelectedItems)
-            //        {
-            //            MongoDBHelper.RemoveUserFromDB(item.SubItems[1].Text);
-            //        }
-            //        DataViewctl.lstData.ContextMenuStrip = null;
-            //    }
-            //    else
-            //    {
-            //        MongoDBHelper.RemoveUserFromDB(DataViewctl.trvData.SelectedNode.Tag.ToString());
-            //        DataViewctl.trvData.ContextMenuStrip = null;
-            //    }
-            //    RemoveUserToolStripMenuItem.Enabled = false;
-            //    RefreshData();
-            //}
         }
         /// <summary>
         /// Eval JS

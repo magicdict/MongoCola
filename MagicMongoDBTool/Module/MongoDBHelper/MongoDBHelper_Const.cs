@@ -83,6 +83,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public const String DATABASE_NAME_ADMIN = "admin";
         /// <summary>
+        /// ADMIN
+        /// </summary>
+        public const String DATABASE_NAME_LOCAL = "local";
+        /// <summary>
         /// 系统索引
         /// </summary>
         public const String COLLECTION_NAME_SYSTEM_INDEXES = "system.indexes";

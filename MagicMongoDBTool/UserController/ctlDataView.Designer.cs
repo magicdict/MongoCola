@@ -76,6 +76,7 @@ namespace MagicMongoDBTool.UserController
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
+            this.OpenFileStripButton = new System.Windows.Forms.ToolStripButton();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
@@ -306,6 +307,7 @@ namespace MagicMongoDBTool.UserController
             // 
             this.ViewtoolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewDocumentStripButton,
+            this.OpenFileStripButton,
             this.EditDocStripButton,
             this.DelSelectRecordToolStripButton,
             this.toolStripSeparator2,
@@ -473,6 +475,16 @@ namespace MagicMongoDBTool.UserController
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 
+            // OpenFileStripButton
+            // 
+            this.OpenFileStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.OpenFileStripButton.Image = ((System.Drawing.Image)(resources.GetObject("OpenFileStripButton.Image")));
+            this.OpenFileStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpenFileStripButton.Name = "OpenFileStripButton";
+            this.OpenFileStripButton.Size = new System.Drawing.Size(23, 22);
+            this.OpenFileStripButton.Text = "Open File";
+            this.OpenFileStripButton.Click += new System.EventHandler(this.OpenFileStripButton_Click);
+            // 
             // ctlDataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -548,6 +560,7 @@ namespace MagicMongoDBTool.UserController
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripButton EditDocStripButton;
+        private ToolStripButton OpenFileStripButton;
 
     }
 }
