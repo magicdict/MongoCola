@@ -13,6 +13,8 @@ namespace MagicMongoDBTool.Module
         /// 管理中服务器列表
         /// </summary>
         public static Dictionary<String, MongoServer> _mongoSrvLst = new Dictionary<String, MongoServer>();
+        public static Dictionary<String, Boolean> _mongoStatusLst = new Dictionary<String, Boolean>();
+
         /// <summary>
         /// 增加管理服务器
         /// </summary>

@@ -150,6 +150,8 @@ namespace MagicMongoDBTool
 
             //Open ConnectionManagement Form
             SystemManager.OpenForm(new frmConnect());
+            ServerStatusCtl.SetEnable(true);
+            RefreshToolStripMenuItem_Click(sender, e);
 
             this.commandShellToolStripMenuItem.Checked = true;
 
@@ -168,11 +170,6 @@ namespace MagicMongoDBTool
                     tabView.Controls.Remove(tabCommandShell);
                 }
             );
-            //Load Status
-            this.ServerStatusCtl.RefreshStatus(false);
-            this.ServerStatusCtl.RefreshCurrentOpr();
-
-            RefreshToolStripMenuItem_Click(sender, e);
             MongoDBHelper.RunCommandComplete += new EventHandler<RunCommandEventArgs>(CommandLog);
 
         }

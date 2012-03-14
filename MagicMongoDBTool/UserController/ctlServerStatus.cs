@@ -71,7 +71,7 @@ namespace MagicMongoDBTool.UserController
                     this.RefreshStatus(true);
                 }
             );
-            ShortTimer.Interval = 1000;
+            ShortTimer.Interval = 5000;
             ShortTimer.Tick += new EventHandler(
                 (x, y) =>
                 {
@@ -80,8 +80,8 @@ namespace MagicMongoDBTool.UserController
                 }
             );
 
-            refreshTimer.Enabled = true;
-            ShortTimer.Enabled = true;
+            refreshTimer.Enabled = false;
+            ShortTimer.Enabled = false;
             AutoRefresh = true;
             // 用新的排序方法对ListView排序
             this.lstDBStatus.ListViewItemSorter = _lvwDBStatusColumnSorter;
@@ -89,7 +89,10 @@ namespace MagicMongoDBTool.UserController
             this.lstCollectionStatus.ListViewItemSorter = _lvwCollectionStatusColumnSorter;
             lstCollectionStatus.ColumnClick += new ColumnClickEventHandler(lstCollectionStatus_ColumnClick);
         }
-
+        public void SetEnable(Boolean Enable) {
+            refreshTimer.Enabled = Enable;
+            ShortTimer.Enabled = Enable;
+        }
         //Collection Status用排序器
         MongoDBHelper.lvwColumnSorter _lvwCollectionStatusColumnSorter = new MongoDBHelper.lvwColumnSorter();
         private void lstCollectionStatus_ColumnClick(object sender, ColumnClickEventArgs e)

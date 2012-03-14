@@ -23,7 +23,7 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                    if (mongoSvr.State == MongoServerState.Disconnected) { continue; }
+                    if (!_mongoStatusLst.ContainsKey(mongoSvrKey) || !_mongoStatusLst[mongoSvrKey]) { continue; }
                     //flydreamer提供的代码
                     BsonDocument cr = ExecuteMongoSvrCommand(serverStatus_Command, mongoSvr).Response;
                     SrvDocList.Add(cr);
@@ -71,7 +71,7 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                    if (mongoSvr.State == MongoServerState.Disconnected) { continue; }
+                    if (!_mongoStatusLst.ContainsKey(mongoSvrKey) || !_mongoStatusLst[mongoSvrKey]) { continue; }
                     List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                     foreach (String strDBName in databaseNameList)
                     {
@@ -148,7 +148,7 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                    if (mongoSvr.State == MongoServerState.Disconnected) { continue; }
+                    if (!_mongoStatusLst.ContainsKey(mongoSvrKey) || !_mongoStatusLst[mongoSvrKey]) { continue; }
                     List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                     foreach (String strDBName in databaseNameList)
                     {
@@ -234,7 +234,7 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                    if (mongoSvr.State == MongoServerState.Disconnected) { continue; }
+                    if (!_mongoStatusLst.ContainsKey(mongoSvrKey) || !_mongoStatusLst[mongoSvrKey]) { continue; }
                     List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                     foreach (String strDBName in databaseNameList)
                     {
@@ -253,9 +253,9 @@ namespace MagicMongoDBTool.Module
                                 lstSrvOpr.Items.Add(lst);
                             }
                         }
-                        catch
+                        catch (Exception ex)
                         {
-                            throw;
+                            throw ex;
                         }
                     }
                 }
