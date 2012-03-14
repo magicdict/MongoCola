@@ -24,10 +24,6 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         public List<Control> _dataShower = new List<Control>();
         /// <summary>
-        /// 当前服务器的配置
-        /// </summary>
-        public ConfigHelper.MongoConnectionConfig config = new ConfigHelper.MongoConnectionConfig();
-        /// <summary>
         /// DataView信息
         /// </summary>
         public MongoDBHelper.DataViewInfo mDataViewInfo;
@@ -242,7 +238,7 @@ namespace MagicMongoDBTool.UserController
                             break;
                         case 1:
                             //可以进行所有操作
-                            if (!config.IsReadOnly)
+                            if (!mDataViewInfo.IsReadOnly)
                             {
                                 DelSelectRecordToolStripButton.Enabled = true;
                             }
@@ -253,7 +249,7 @@ namespace MagicMongoDBTool.UserController
                             //可以删除多个文件
                             this.EditDocStripButton.Enabled = false;
                             this.OpenFileStripButton.Enabled = false;
-                            if (!config.IsReadOnly)
+                            if (!mDataViewInfo.IsReadOnly)
                             {
                                 this.DelSelectRecordToolStripButton.Enabled = true;
                             }
@@ -262,7 +258,7 @@ namespace MagicMongoDBTool.UserController
                     break;
                 case MongoDBHelper.COLLECTION_NAME_USER:
                     //用户数据库
-                    if (lstData.SelectedItems.Count > 0 && !config.IsReadOnly)
+                    if (lstData.SelectedItems.Count > 0 && !mDataViewInfo.IsReadOnly)
                     {
                         this.DelSelectRecordToolStripButton.Enabled = true;
                         if (this.lstData.SelectedItems.Count == 1)
@@ -274,7 +270,7 @@ namespace MagicMongoDBTool.UserController
                 default:
                     //数据系统
                     DelSelectRecordToolStripButton.Enabled = false;
-                    if (lstData.SelectedItems.Count > 0 && !IsSystemCollection && !config.IsReadOnly)
+                    if (lstData.SelectedItems.Count > 0 && !IsSystemCollection && !mDataViewInfo.IsReadOnly)
                     {
                         DelSelectRecordToolStripMenuItem.Enabled = true;
                         this.DelSelectRecordToolStripButton.Enabled = true;
@@ -368,7 +364,7 @@ namespace MagicMongoDBTool.UserController
             if (trvData.SelectedNode.Level == 0)
             {
                 //顶层可以删除的节点
-                if (!config.IsReadOnly)
+                if (!mDataViewInfo.IsReadOnly)
                 {
                     switch (SystemManager.GetCurrentCollection().Name)
                     {
@@ -426,7 +422,7 @@ namespace MagicMongoDBTool.UserController
                 case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
                 case MongoDBHelper.COLLECTION_NAME_USER:
                 default:
-                    if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) & !config.IsReadOnly)
+                    if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) & !mDataViewInfo.IsReadOnly)
                     {
                         //普通数据:允许添加元素,不允许删除元素
                         DropElementToolStripMenuItem.Enabled = true;
@@ -706,7 +702,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         private void NewDocument()
         {
-            BsonValue id = MongoDBHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), config.IsSafeMode);
+            BsonValue id = MongoDBHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), mDataViewInfo.IsSafeMode);
             TreeNode newDoc = new TreeNode(SystemManager.GetCurrentCollection().Name + "[" + (SystemManager.GetCurrentCollection().Count()).ToString() + "]");
             newDoc.Tag = id;
             TreeNode newid = new TreeNode("_id:" + id.ToString());

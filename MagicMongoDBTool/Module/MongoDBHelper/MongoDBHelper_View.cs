@@ -635,6 +635,14 @@ namespace MagicMongoDBTool.Module
             /// 是否存在上一页
             /// </summary>
             public bool HasPrePage;
+            /// <summary>
+            /// 是否为SafeMode
+            /// </summary>
+            public bool IsSafeMode;
+            /// <summary>
+            /// 是否为只读
+            /// </summary>
+            public bool IsReadOnly;
         }
         /// <summary>
         /// 数据导航

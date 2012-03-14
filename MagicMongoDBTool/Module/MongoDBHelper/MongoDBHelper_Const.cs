@@ -27,13 +27,25 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public const String COLLECTION_TAG = "MongoCollection";
         /// <summary>
+        /// 数据集
+        /// </summary>
+        public const String COLLECTION_LIST_TAG = "MongoCollectionList";
+        /// <summary>
+        /// 数据集
+        /// </summary>
+        public const String SYSTEM_COLLECTION_LIST_TAG = "MongoSystemCollectionList";
+        /// <summary>
         /// BSonDoc
         /// </summary>
         public const String DOCUMENT_TAG = "MongoDocument";
         /// <summary>
         /// JavaScript
         /// </summary>
-        public const String GRID_JAVASCRIPT_TAG = "MongoJavascript";
+        public const String JAVASCRIPT_TAG = "MongoJavascript";
+        /// <summary>
+        /// JavaScriptDoc
+        /// </summary>
+        public const String JAVASCRIPT_DOC_TAG = "MongoJavascriptDocument";
         /// <summary>
         /// GFS
         /// </summary>

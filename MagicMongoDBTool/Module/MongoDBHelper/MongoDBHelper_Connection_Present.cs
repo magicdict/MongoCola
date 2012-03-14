@@ -195,7 +195,7 @@ namespace MagicMongoDBTool.Module
             mongoDBNode.Nodes.Add(UserNode);
 
             TreeNode JsNode = new TreeNode("JavaScript", (int)GetSystemIcon.MainTreeImageType.JavaScriptList, (int)GetSystemIcon.MainTreeImageType.JavaScriptList);
-            JsNode.Tag = GRID_JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_JAVASCRIPT;
+            JsNode.Tag = JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_JAVASCRIPT;
             mongoDBNode.Nodes.Add(JsNode);
 
             TreeNode GFSNode = new TreeNode("Grid File System", (int)GetSystemIcon.MainTreeImageType.GFS, (int)GetSystemIcon.MainTreeImageType.GFS);
@@ -203,9 +203,11 @@ namespace MagicMongoDBTool.Module
             mongoDBNode.Nodes.Add(GFSNode);
 
             TreeNode mongoSysColListNode = new TreeNode("Collections(System)", (int)GetSystemIcon.MainTreeImageType.SystemCol, (int)GetSystemIcon.MainTreeImageType.SystemCol);
+            mongoSysColListNode.Tag = SYSTEM_COLLECTION_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name;
             mongoDBNode.Nodes.Add(mongoSysColListNode);
 
             TreeNode mongoColListNode = new TreeNode("Collections(General)", (int)GetSystemIcon.MainTreeImageType.CollectionList, (int)GetSystemIcon.MainTreeImageType.CollectionList);
+            mongoColListNode.Tag = COLLECTION_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name;
             List<String> colNameList = mongoDB.GetCollectionNames().ToList<String>();
             foreach (String strColName in colNameList)
             {
@@ -222,7 +224,7 @@ namespace MagicMongoDBTool.Module
                             TreeNode js = new TreeNode(t.GetValue("_id").ToString());
                             js.ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc;
                             js.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc;
-                            js.Tag = GRID_JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_JAVASCRIPT + "/" + t.GetValue("_id").ToString();
+                            js.Tag = JAVASCRIPT_DOC_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_JAVASCRIPT + "/" + t.GetValue("_id").ToString();
                             JsNode.Nodes.Add(js);
                         }
                         break;
@@ -438,11 +440,12 @@ namespace MagicMongoDBTool.Module
             mongoColNode.Nodes.Add(mongoIndexes);
             //End ListIndex
 
-            //Start Data
-            TreeNode mongoData = new TreeNode("Data");
-            mongoData.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Document;
-            mongoData.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Document;
-            mongoData.Tag = DOCUMENT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
+            ////Start Data
+            //TreeNode mongoData = new TreeNode("Data");
+            //mongoData.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Document;
+            //mongoData.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Document;
+            //mongoData.Tag = DOCUMENT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
+            //mongoColNode.Nodes.Add(mongoData);
 
             if (strColName == COLLECTION_NAME_USER)
             {
@@ -454,7 +457,6 @@ namespace MagicMongoDBTool.Module
                 mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
                 mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Collection;
             }
-            mongoColNode.Nodes.Add(mongoData);
             //End Data
             return mongoColNode;
         }
