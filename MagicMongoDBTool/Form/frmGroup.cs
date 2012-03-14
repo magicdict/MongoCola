@@ -17,7 +17,10 @@ namespace MagicMongoDBTool
             if (mDataFilter.QueryConditionList.Count > 0 && IsUseFilter)
             {
                 this.Text += "[With DataView Filter]";
-                GroupConditionList = mDataFilter.QueryConditionList;
+                foreach (var item in mDataFilter.QueryConditionList)
+	            {
+                    GroupConditionList.Add(item);
+	            }
             }
         }
         /// <summary>
@@ -195,6 +198,7 @@ namespace MagicMongoDBTool
             if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
+                GroupConditionList.Clear();
                 GroupConditionList = NewDataFilter.QueryConditionList;
             }
         }

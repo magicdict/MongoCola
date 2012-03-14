@@ -919,6 +919,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
+
             this.ServerStatusCtl.RefreshStatus(false);
             this.ServerStatusCtl.RefreshCurrentOpr();
 
@@ -931,7 +933,6 @@ namespace MagicMongoDBTool
                 this.collectionToolStripMenuItem.Text = "Collection";
             }
             DisableAllOpr();
-            MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
         }
         /// <summary>
         /// Expand All

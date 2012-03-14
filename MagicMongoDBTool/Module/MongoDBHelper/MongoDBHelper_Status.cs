@@ -22,14 +22,15 @@ namespace MagicMongoDBTool.Module
             {
                 try
                 {
-                    MongoServer mongosvr = _mongoSrvLst[mongoSvrKey];
+                    MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                    if (mongoSvr.State == MongoServerState.Disconnected) { continue; }
                     //flydreamer提供的代码
-                    BsonDocument cr = ExecuteMongoSvrCommand(serverStatus_Command, mongosvr).Response;
+                    BsonDocument cr = ExecuteMongoSvrCommand(serverStatus_Command, mongoSvr).Response;
                     SrvDocList.Add(cr);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //throw;
+                    throw ex;
                 }
             }
             FillDataToTreeView("Server Status", trvSvrStatus, SrvDocList);
@@ -70,6 +71,7 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                    if (mongoSvr.State == MongoServerState.Disconnected) { continue; }
                     List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                     foreach (String strDBName in databaseNameList)
                     {
@@ -94,9 +96,9 @@ namespace MagicMongoDBTool.Module
                     }
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //throw;
+                    throw ex;
                 }
             }
         }
@@ -146,6 +148,7 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                    if (mongoSvr.State == MongoServerState.Disconnected) { continue; }
                     List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                     foreach (String strDBName in databaseNameList)
                     {
@@ -199,9 +202,9 @@ namespace MagicMongoDBTool.Module
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //throw;
+                    throw ex;
                 }
             }
         }
@@ -230,13 +233,14 @@ namespace MagicMongoDBTool.Module
             {
                 try
                 {
-                    MongoServer mongosvr = _mongoSrvLst[mongoSvrKey];
-                    List<String> databaseNameList = mongosvr.GetDatabaseNames().ToList<String>();
+                    MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                    if (mongoSvr.State == MongoServerState.Disconnected) { continue; }
+                    List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                     foreach (String strDBName in databaseNameList)
                     {
                         try
                         {
-                            MongoDatabase mongoDB = mongosvr.GetDatabase(strDBName);
+                            MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
                             BsonDocument dbStatus = mongoDB.GetCurrentOp();
                             BsonArray doc = dbStatus.GetValue("inprog").AsBsonArray;
                             foreach (BsonDocument item in doc)
@@ -255,9 +259,9 @@ namespace MagicMongoDBTool.Module
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    //throw;
+                    throw ex;
                 }
             }
         }

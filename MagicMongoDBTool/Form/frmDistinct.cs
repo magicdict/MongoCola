@@ -16,7 +16,13 @@ namespace MagicMongoDBTool
             if (mDataFilter.QueryConditionList.Count > 0 && IsUseFilter)
             {
                 this.Text += "[With DataView Filter]";
-                DistinctConditionList = mDataFilter.QueryConditionList;
+                //直接使用 DistinctConditionList = mDataFilter.QueryConditionList
+                //DistinctConditionList是引用类型，在LoadQuery的时候，会改变mDataFilter.QueryConditionList的值
+                //进而改变DataViewInfo在TabView上的值
+                foreach (var item in mDataFilter.QueryConditionList)
+                {
+                    DistinctConditionList.Add(item);
+                }
             }
         }
 
@@ -99,6 +105,7 @@ namespace MagicMongoDBTool
             if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
+                DistinctConditionList.Clear();
                 DistinctConditionList = NewDataFilter.QueryConditionList;
             }
         }
