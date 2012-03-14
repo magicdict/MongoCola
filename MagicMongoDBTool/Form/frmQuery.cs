@@ -10,9 +10,14 @@ namespace MagicMongoDBTool
 {
     public partial class frmQuery : Form
     {
-        private MongoCollection _mongoCol = SystemManager.GetCurrentCollection();
+        /// <summary>
+        /// 当前数据集
+        /// </summary>
+        private MongoCollection _mongoCol;
+        /// <summary>
+        /// 当前数据集的字段列表
+        /// </summary>
         private List<String> ColumnList = new List<String>();
-
         /// <summary>
         /// 条件输入器数量
         /// </summary>
@@ -21,9 +26,20 @@ namespace MagicMongoDBTool
         /// 条件输入器位置
         /// </summary>
         private Point _conditionPos = new Point(5, 20);
-        public frmQuery()
+        /// <summary>
+        /// 当前DataViewInfo
+        /// </summary>
+        MongoDBHelper.DataViewInfo CurrentDataViewInfo;
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="mDataViewInfo">Filter也是DataViewInfo的一个属性，所以这里加上参数</param>
+        public frmQuery(MongoDBHelper.DataViewInfo mDataViewInfo)
         {
             InitializeComponent();
+            CurrentDataViewInfo = mDataViewInfo;
+            SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
+            _mongoCol = SystemManager.GetCurrentCollection();
         }
         /// <summary>
         /// 输出配置字典
@@ -31,7 +47,6 @@ namespace MagicMongoDBTool
         private void frmQuery_Load(object sender, EventArgs e)
         {
             ColumnList = MongoDBHelper.GetCollectionSchame(_mongoCol);
-
             foreach (String item in ColumnList)
             {
                 //输出配置的初始化
@@ -54,6 +69,11 @@ namespace MagicMongoDBTool
             firstQueryCtl.Location = _conditionPos;
             firstQueryCtl.Name = "Condition" + _conditionCount.ToString();
             panFilter.Controls.Add(firstQueryCtl);
+
+            if (CurrentDataViewInfo.mDataFilter.QueryConditionList.Count > 0)
+            {
+                PutQueryToUI(CurrentDataViewInfo.mDataFilter);
+            }
 
             if (!SystemManager.IsUseDefaultLanguage())
             {
@@ -101,20 +121,20 @@ namespace MagicMongoDBTool
         private void SetCurrDataFilter()
         {
             //清除以前的结果和内部变量，重要！
-            SystemManager.CurrDataFilter.Clear();
-            SystemManager.CurrDataFilter.DBName = SystemManager.GetCurrentDataBase().Name;
-            SystemManager.CurrDataFilter.CollectionName = SystemManager.GetCurrentCollection().Name;
+            CurrentDataViewInfo.mDataFilter.Clear();
+            CurrentDataViewInfo.mDataFilter.DBName = SystemManager.GetCurrentDataBase().Name;
+            CurrentDataViewInfo.mDataFilter.CollectionName = SystemManager.GetCurrentCollection().Name;
 
             foreach (var item in ColumnList)
             {
-                SystemManager.CurrDataFilter.QueryFieldList.Add(((ctlFieldInfo)Controls.Find(item, true)[0]).QueryFieldItem);
+                CurrentDataViewInfo.mDataFilter.QueryFieldList.Add(((ctlFieldInfo)Controls.Find(item, true)[0]).QueryFieldItem);
             }
             for (int i = 0; i < _conditionCount; i++)
             {
                 ctlQueryCondition ctl = (ctlQueryCondition)Controls.Find("Condition" + (i + 1).ToString(), true)[0];
                 if (ctl.IsSeted)
                 {
-                    SystemManager.CurrDataFilter.QueryConditionList.Add(ctl.ConditionItem);
+                    CurrentDataViewInfo.mDataFilter.QueryConditionList.Add(ctl.ConditionItem);
                 }
             }
         }
@@ -131,8 +151,7 @@ namespace MagicMongoDBTool
             {
                 // 设置DataFilter
                 SetCurrDataFilter();
-                DataFilter NewDataFilter = SystemManager.CurrDataFilter;
-                NewDataFilter.SaveFilter(savefile.FileName);
+                CurrentDataViewInfo.mDataFilter.SaveFilter(savefile.FileName);
             }
         }
         /// <summary>
@@ -146,78 +165,83 @@ namespace MagicMongoDBTool
             openFile.Filter = MongoDBHelper.XmlFilter;
             if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                String strErrMsg = String.Empty;
-                List<String> ShowColumnList = new List<String>();
-                foreach (String item in ColumnList)
-                {
-                    ShowColumnList.Add(item);
-                }
-
                 DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
-                SystemManager.CurrDataFilter = NewDataFilter;
-                //清除所有的控件
-                tabFieldInfo.Controls.Clear();
-                foreach (DataFilter.QueryFieldItem queryFieldItem in NewDataFilter.QueryFieldList)
+                CurrentDataViewInfo.mDataFilter = NewDataFilter;
+            }
+        }
+        private void PutQueryToUI(DataFilter NewDataFilter) {
+            String strErrMsg = String.Empty;
+            List<String> ShowColumnList = new List<String>();
+            foreach (String item in ColumnList)
+            {
+                ShowColumnList.Add(item);
+            }
+            //清除所有的控件
+            tabFieldInfo.Controls.Clear();
+            foreach (DataFilter.QueryFieldItem queryFieldItem in NewDataFilter.QueryFieldList)
+            {
+                //动态加载控件
+                if (!ColumnList.Contains(queryFieldItem.ColName))
                 {
-                    //动态加载控件
-                    if (!ColumnList.Contains(queryFieldItem.ColName))
-                    {
-                        strErrMsg += queryFieldItem.ColName + "Display Field is not exist in current collection any more" + System.Environment.NewLine;
-                    }
-                    else {
-                        ctlFieldInfo ctrItem = new ctlFieldInfo();
-                        ctrItem.Name = queryFieldItem.ColName;
-                        ctrItem.Location = _conditionPos;
-                        ctrItem.QueryFieldItem = queryFieldItem;
-                        tabFieldInfo.Controls.Add(ctrItem);
-                        //纵向位置的累加
-                        _conditionPos.Y += ctrItem.Height;
-                        ShowColumnList.Remove(queryFieldItem.ColName);
-                    }
+                    strErrMsg += queryFieldItem.ColName + "Display Field is not exist in current collection any more" + System.Environment.NewLine;
                 }
-                //新增字段
-                _conditionPos = new Point(5, 0);
-                foreach (String item in ShowColumnList)
+                else
                 {
-                    strErrMsg += "New Field" + item + "Is Append" + System.Environment.NewLine;
-                    //输出配置的初始化
-                    DataFilter.QueryFieldItem queryFieldItem = new DataFilter.QueryFieldItem();
-                    queryFieldItem.ColName = item;
-                    queryFieldItem.IsShow = true;
-                    queryFieldItem.sortType = DataFilter.SortType.NoSort;
-                    //动态加载控件
                     ctlFieldInfo ctrItem = new ctlFieldInfo();
-                    ctrItem.Name = item;
-                    _conditionPos.Y += ctrItem.Height;
+                    ctrItem.Name = queryFieldItem.ColName;
                     ctrItem.Location = _conditionPos;
                     ctrItem.QueryFieldItem = queryFieldItem;
                     tabFieldInfo.Controls.Add(ctrItem);
-                }
-                
-                panFilter.Controls.Clear();
-                _conditionPos = new Point(5, 0);
-                _conditionCount = 0;
-                foreach (DataFilter.QueryConditionInputItem queryConditionItem in NewDataFilter.QueryConditionList)
-                {
-                    ctlQueryCondition newCondition = new ctlQueryCondition();
-                    newCondition.Init(ColumnList);
-                    _conditionPos.Y += newCondition.Height;
-                    newCondition.Location = _conditionPos;
-                    newCondition.ConditionItem = queryConditionItem;
-                    _conditionCount++;
-                    newCondition.Name = "Condition" + _conditionCount.ToString();
-                    panFilter.Controls.Add(newCondition);
-
-                    if (!ColumnList.Contains(queryConditionItem.ColName))
-                    {
-                        strErrMsg += queryConditionItem.ColName + "Query Condition Field is not exist in collection any more" + System.Environment.NewLine;
-                    }
-                }
-
-                if (strErrMsg != String.Empty) {
-                    MyMessageBox.ShowMessage("Load Exception", "A Exception is happened when loading", strErrMsg, true);
+                    //纵向位置的累加
+                    _conditionPos.Y += ctrItem.Height;
+                    ShowColumnList.Remove(queryFieldItem.ColName);
                 }
             }
+            //新增字段
+            _conditionPos = new Point(5, 0);
+            foreach (String item in ShowColumnList)
+            {
+                strErrMsg += "New Field" + item + "Is Append" + System.Environment.NewLine;
+                //输出配置的初始化
+                DataFilter.QueryFieldItem queryFieldItem = new DataFilter.QueryFieldItem();
+                queryFieldItem.ColName = item;
+                queryFieldItem.IsShow = true;
+                queryFieldItem.sortType = DataFilter.SortType.NoSort;
+                //动态加载控件
+                ctlFieldInfo ctrItem = new ctlFieldInfo();
+                ctrItem.Name = item;
+                _conditionPos.Y += ctrItem.Height;
+                ctrItem.Location = _conditionPos;
+                ctrItem.QueryFieldItem = queryFieldItem;
+                tabFieldInfo.Controls.Add(ctrItem);
+            }
+
+            panFilter.Controls.Clear();
+            _conditionPos = new Point(5, 0);
+            _conditionCount = 0;
+            foreach (DataFilter.QueryConditionInputItem queryConditionItem in NewDataFilter.QueryConditionList)
+            {
+                ctlQueryCondition newCondition = new ctlQueryCondition();
+                newCondition.Init(ColumnList);
+                _conditionPos.Y += newCondition.Height;
+                newCondition.Location = _conditionPos;
+                newCondition.ConditionItem = queryConditionItem;
+                _conditionCount++;
+                newCondition.Name = "Condition" + _conditionCount.ToString();
+                panFilter.Controls.Add(newCondition);
+
+                if (!ColumnList.Contains(queryConditionItem.ColName))
+                {
+                    strErrMsg += queryConditionItem.ColName + "Query Condition Field is not exist in collection any more" + System.Environment.NewLine;
+                }
+            }
+
+            if (strErrMsg != String.Empty)
+            {
+                MyMessageBox.ShowMessage("Load Exception", "A Exception is happened when loading", strErrMsg, true);
+            }
+
+        
         }
     }
 }

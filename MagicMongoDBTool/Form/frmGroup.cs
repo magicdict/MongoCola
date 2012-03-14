@@ -11,9 +11,14 @@ namespace MagicMongoDBTool
 {
     public partial class frmGroup : Form
     {
-        public frmGroup()
+        public frmGroup(DataFilter mDataFilter, Boolean IsUseFilter)
         {
             InitializeComponent();
+            if (mDataFilter.QueryConditionList.Count > 0 && IsUseFilter)
+            {
+                this.Text += "[With DataView Filter]";
+                GroupConditionList = mDataFilter.QueryConditionList;
+            }
         }
         /// <summary>
         /// Group条件
@@ -50,12 +55,9 @@ namespace MagicMongoDBTool
             BsonJavaScript finalize = new BsonJavaScript(txtfinalizeJs.Text);
             List<BsonDocument> resultlst = new List<BsonDocument>();
 
-            ///SkipCnt的备份
-            int mSkipCnt = SystemManager.CurrentDataViewInfo.SkipCnt;
             try
             {
                 ///SkipCnt Reset
-                //SystemManager.mDataViewInfo.SkipCnt = 0;
                 var Result = mongoCol.Group(query, groupdoc, Initial, reduce, finalize);
                 //防止错误的条件造成的海量数据
                 int Count = 0;
@@ -68,7 +70,7 @@ namespace MagicMongoDBTool
                     resultlst.Add(item);
                     Count++;
                 };
-                MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst, SystemManager.CurrentDataViewInfo);
+                MongoDBHelper.FillDataToTextBox(this.txtResult, resultlst,0);
                 if (Count == 1001)
                 {
                     this.txtResult.Text = "Too many result,Display first 1000 records" + System.Environment.NewLine + this.txtResult.Text;
@@ -80,8 +82,6 @@ namespace MagicMongoDBTool
             {
                 MyMessageBox.ShowMessage("Exception", "Exception is Happened", ex.ToString(), true);
             }
-            ///SkipCnt的还原
-            //SystemManager.mDataViewInfo.SkipCnt = mSkipCnt;
         }
         /// <summary>
         /// 条件输入器数量

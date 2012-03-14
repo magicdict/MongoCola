@@ -10,14 +10,21 @@ namespace MagicMongoDBTool
 {
     public partial class frmDistinct : Form
     {
-        public frmDistinct()
+        public frmDistinct(DataFilter mDataFilter,Boolean IsUseFilter)
         {
             InitializeComponent();
+            if (mDataFilter.QueryConditionList.Count > 0 && IsUseFilter)
+            {
+                this.Text += "[With DataView Filter]";
+                DistinctConditionList = mDataFilter.QueryConditionList;
+            }
         }
+
         /// <summary>
         /// Distinct条件
         /// </summary>
         public List<DataFilter.QueryConditionInputItem> DistinctConditionList = new List<DataFilter.QueryConditionInputItem>();
+
         private void frmSelectKey_Load(object sender, EventArgs e)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();

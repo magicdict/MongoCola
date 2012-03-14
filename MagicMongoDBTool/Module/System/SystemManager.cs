@@ -24,10 +24,6 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public static String Version = "1.1.0";
         /// <summary>
-        /// 数据过滤器
-        /// </summary>
-        public static DataFilter CurrDataFilter = new DataFilter();
-        /// <summary>
         /// 配置实例
         /// </summary>
         public static ConfigHelper ConfigHelperInstance = new ConfigHelper();
@@ -35,10 +31,10 @@ namespace MagicMongoDBTool.Module
         /// 选择对象标签
         /// </summary>
         public static String SelectObjectTag = String.Empty;
-        /// <summary>
-        /// 当前数据视图信息
-        /// </summary>
-        public static MongoDBHelper.DataViewInfo CurrentDataViewInfo { set; get; }
+        ///// <summary>
+        ///// 当前数据视图信息
+        ///// </summary>
+        //public static MongoDBHelper.DataViewInfo CurrentDataViewInfo { set; get; }
         /// <summary>
         /// 文字资源
         /// </summary>

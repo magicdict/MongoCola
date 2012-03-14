@@ -54,7 +54,7 @@
             // cmbEndMark
             // 
             this.cmbEndMark.FormattingEnabled = true;
-            this.cmbEndMark.Location = new System.Drawing.Point(413, 2);
+            this.cmbEndMark.Location = new System.Drawing.Point(420, 2);
             this.cmbEndMark.Name = "cmbEndMark";
             this.cmbEndMark.Size = new System.Drawing.Size(52, 21);
             this.cmbEndMark.TabIndex = 5;
@@ -71,7 +71,7 @@
             // 
             this.ElBsonValue.Location = new System.Drawing.Point(202, -2);
             this.ElBsonValue.Name = "ElBsonValue";
-            this.ElBsonValue.Size = new System.Drawing.Size(205, 28);
+            this.ElBsonValue.Size = new System.Drawing.Size(214, 28);
             this.ElBsonValue.TabIndex = 6;
             // 
             // ctlQueryCondition

@@ -15,9 +15,10 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
 
         #region"Main"
-        public ctlDataView()
+        public ctlDataView(MongoDBHelper.DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
+            mDataViewInfo = _DataViewInfo;
         }
         /// <summary>
         /// Control for show Data
@@ -1160,10 +1161,13 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void QueryStripButton_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmQuery());
-            this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            SystemManager.OpenForm(new frmQuery(mDataViewInfo));
+            Boolean HasContiditon = mDataViewInfo.mDataFilter.QueryConditionList.Count > 0 ? true : false;
+            this.FilterStripButton.Enabled = HasContiditon;
+            this.FilterStripButton.Checked = HasContiditon;
+            mDataViewInfo.IsUseFilter = HasContiditon;
             //重新展示数据
-            MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
+            RefreshStripButton_Click(sender, e);
         }
         /// <summary>
         /// 过滤器
@@ -1175,7 +1179,6 @@ namespace MagicMongoDBTool.UserController
             mDataViewInfo.IsUseFilter = !mDataViewInfo.IsUseFilter;
             this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
             //过滤变更后，重新刷新
-            mDataViewInfo.SkipCnt = 0;
             RefreshStripButton_Click(sender, e);
         }
         /// <summary>

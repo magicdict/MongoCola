@@ -84,10 +84,10 @@ namespace MagicMongoDBTool.Module
             //Query condition:
             if (CurrentDataViewInfo.IsUseFilter)
             {
-                dataList = mongoCol.FindAs<BsonDocument>(GetQuery(SystemManager.CurrDataFilter.QueryConditionList))
+                dataList = mongoCol.FindAs<BsonDocument>(GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
                                    .SetSkip(CurrentDataViewInfo.SkipCnt)
-                                   .SetFields(GetOutputFields(SystemManager.CurrDataFilter.QueryFieldList))
-                                   .SetSortOrder(GetSort(SystemManager.CurrDataFilter.QueryFieldList))
+                                   .SetFields(GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
+                                   .SetSortOrder(GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList))
                                    .SetLimit(SystemManager.ConfigHelperInstance.LimitCnt)
                                    .ToList<BsonDocument>();
             }
@@ -103,7 +103,7 @@ namespace MagicMongoDBTool.Module
                 if (CurrentDataViewInfo.IsUseFilter)
                 {
                     //感谢cnblogs.com 网友Shadower
-                    CurrentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count(GetQuery(SystemManager.CurrDataFilter.QueryConditionList));
+                    CurrentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count(GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList));
                 }
                 else
                 {
@@ -125,10 +125,10 @@ namespace MagicMongoDBTool.Module
                 switch (control.GetType().ToString())
                 {
                     case "System.Windows.Forms.ListView":
-                        FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, dataList, CurrentDataViewInfo);
+                        FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, dataList);
                         break;
                     case "System.Windows.Forms.TextBox":
-                        FillDataToTextBox((TextBox)control, dataList, CurrentDataViewInfo);
+                        FillDataToTextBox((TextBox)control, dataList, CurrentDataViewInfo.SkipCnt);
                         //FillJSONDataToTextBox((TextBox)control, dataList);
                         break;
                     case "System.Windows.Forms.TreeView":
@@ -220,7 +220,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="collectionName"></param>
         /// <param name="txtData"></param>
         /// <param name="dataList"></param>
-        public static void FillDataToTextBox(TextBox txtData, List<BsonDocument> dataList, DataViewInfo mDataViewInfo)
+        public static void FillDataToTextBox(TextBox txtData, List<BsonDocument> dataList, int SkipCnt)
         {
             txtData.Clear();
             if (_hasBSonBinary)
@@ -233,7 +233,7 @@ namespace MagicMongoDBTool.Module
                 StringBuilder sb = new StringBuilder();
                 foreach (BsonDocument BsonDoc in dataList)
                 {
-                    sb.AppendLine("/* " + (mDataViewInfo.SkipCnt + Count).ToString() + " */");
+                    sb.AppendLine("/* " + (SkipCnt + Count).ToString() + " */");
                     sb.AppendLine("{");
                     foreach (String itemName in BsonDoc.Names)
                     {
@@ -448,7 +448,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="collectionName"></param>
         /// <param name="lstData"></param>
         /// <param name="dataList"></param>
-        public static void FillDataToListView(String collectionName, ListView lstData, List<BsonDocument> dataList, DataViewInfo mDataViewInfo)
+        public static void FillDataToListView(String collectionName, ListView lstData, List<BsonDocument> dataList)
         {
             lstData.Clear();
             lstData.SmallImageList = null;
@@ -612,13 +612,17 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 多数据集视图中，每个数据集保留一个DataViewInfo
         /// </summary>
-        public struct DataViewInfo
+        public class DataViewInfo
         {
             public String strDBTag;
             /// <summary>
             /// 是否使用过滤器
             /// </summary>
             public bool IsUseFilter;
+            /// <summary>
+            /// 数据过滤器
+            /// </summary>
+            public DataFilter mDataFilter;
             /// <summary>
             /// 数据集总记录数
             /// </summary>
