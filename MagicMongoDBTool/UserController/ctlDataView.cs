@@ -55,12 +55,13 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void ctlDataView_Load(object sender, EventArgs e)
         {
-            
+
             strNodeType = mDataViewInfo.strDBTag.Split(":".ToCharArray())[0];
             strNodeData = mDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
 
             String[] DataList = strNodeData.Split("/".ToCharArray());
-            if (DataList[(int)MongoDBHelper.PathLv.DatabaseLV] == MongoDBHelper.DATABASE_NAME_ADMIN) {
+            if (DataList[(int)MongoDBHelper.PathLv.DatabaseLV] == MongoDBHelper.DATABASE_NAME_ADMIN)
+            {
                 IsAdminDB = true;
             }
             IsSystemCollection = MongoDBHelper.IsSystemCollection(DataList[(int)MongoDBHelper.PathLv.DatabaseLV],
@@ -97,12 +98,33 @@ namespace MagicMongoDBTool.UserController
             this.trvData.KeyDown += new KeyEventHandler(trvData_KeyDown);
             this.trvData.AfterExpand += new TreeViewEventHandler(trvData_AfterExpand);
             this.trvData.AfterCollapse += new TreeViewEventHandler(trvData_AfterCollapse);
+
+            this.ModifyElementToolStripMenuItem.Click += new EventHandler(
+                (x, y) => { ModifyElement(); }
+                );
+            this.DropElementToolStripMenuItem.Click += new EventHandler(
+                (x, y) => { DropElement(); }
+                );
+            this.AddElementToolStripMenuItem.Click += new EventHandler(
+                 (x, y) => { AddElement(); }
+                );
+            this.CopyElementToolStripMenuItem.Click += new EventHandler(
+                (x, y) => { CopyElement(); }
+                );
             this.CopyStripButton.Click += new EventHandler(
                 (x, y) => { CopyElement(); }
              );
+
+            this.CutElementToolStripMenuItem.Click += new EventHandler(
+                (x, y) => { CutElement(); }
+                );
             this.CutStripButton.Click += new EventHandler(
                 (x, y) => { CutElement(); }
              );
+
+            this.PasteElementToolStripMenuItem.Click += new EventHandler(
+                (x, y) => { PasteElement(); }
+                );
             this.PasteStripButton.Click += new EventHandler(
                 (x, y) => { PasteElement(); }
              );
@@ -165,10 +187,11 @@ namespace MagicMongoDBTool.UserController
                     OpenFileStripButton.Image = MagicMongoDBTool.Properties.Resources.Open.ToBitmap();
                     OpenFileStripButton.Visible = true;
 
-                    if (!SystemManager.IsUseDefaultLanguage()) {
+                    if (!SystemManager.IsUseDefaultLanguage())
+                    {
                         NewDocumentStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Upload);
                         EditDocStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
-                        DelSelectRecordToolStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile); 
+                        DelSelectRecordToolStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
                     }
                     else
                     {
@@ -185,7 +208,7 @@ namespace MagicMongoDBTool.UserController
                     {
                         NewDocumentStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
                         EditDocStripButton.Text = "Change User Config";
-                        DelSelectRecordToolStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser); 
+                        DelSelectRecordToolStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
                     }
                     else
                     {
@@ -248,6 +271,7 @@ namespace MagicMongoDBTool.UserController
                             this.EditDocStripButton.Enabled = false;
                             this.OpenFileStripButton.Enabled = false;
                             this.DelSelectRecordToolStripButton.Enabled = false;
+                            this.DelFileToolStripMenuItem.Enabled = false;
                             lstData.ContextMenuStrip = null;
                             break;
                         case 1:
@@ -255,6 +279,7 @@ namespace MagicMongoDBTool.UserController
                             if (!mDataViewInfo.IsReadOnly)
                             {
                                 DelSelectRecordToolStripButton.Enabled = true;
+                                this.DelFileToolStripMenuItem.Enabled = true;
                             }
                             EditDocStripButton.Enabled = true;
                             OpenFileStripButton.Enabled = true;
@@ -275,6 +300,8 @@ namespace MagicMongoDBTool.UserController
                     if (lstData.SelectedItems.Count > 0 && !mDataViewInfo.IsReadOnly)
                     {
                         this.DelSelectRecordToolStripButton.Enabled = true;
+                        this.RemoveUserFromAdminToolStripMenuItem.Enabled = true;
+                        this.RemoveUserToolStripMenuItem.Enabled = true;
                         if (this.lstData.SelectedItems.Count == 1)
                         {
                             this.EditDocStripButton.Enabled = true;
@@ -1229,5 +1256,7 @@ namespace MagicMongoDBTool.UserController
 
         }
         #endregion
+
+ 
     }
 }
