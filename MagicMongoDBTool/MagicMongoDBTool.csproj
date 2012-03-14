@@ -477,6 +477,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\%2815,37%29.png" />
+    <None Include="Resources\%2807,22%29.png" />
+    <None Include="Resources\%2809,24%29.png" />
+    <None Include="Resources\%2813,12%29.png" />
+    <None Include="Resources\paste.ico" />
+    <None Include="Resources\copy.ico" />
+    <None Include="Resources\cut.ico" />
     <Content Include="UserGuide\images\Access.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

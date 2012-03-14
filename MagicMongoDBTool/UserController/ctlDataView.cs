@@ -84,6 +84,9 @@ namespace MagicMongoDBTool.UserController
             this.FilterStripButton.Enabled = false;
             this.FilterStripButton.Checked = false;
             this.DelSelectRecordToolStripButton.Enabled = false;
+            this.CutStripButton.Enabled = false;
+            this.CopyStripButton.Enabled = false;
+            this.PasteStripButton.Enabled = false;
 
 
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
@@ -94,6 +97,16 @@ namespace MagicMongoDBTool.UserController
             this.trvData.KeyDown += new KeyEventHandler(trvData_KeyDown);
             this.trvData.AfterExpand += new TreeViewEventHandler(trvData_AfterExpand);
             this.trvData.AfterCollapse += new TreeViewEventHandler(trvData_AfterCollapse);
+            this.CopyStripButton.Click += new EventHandler(
+                (x, y) => { CopyElement(); }
+             );
+            this.CutStripButton.Click += new EventHandler(
+                (x, y) => { CutElement(); }
+             );
+            this.PasteStripButton.Click += new EventHandler(
+                (x, y) => { PasteElement(); }
+             );
+
             this.tabDataShower.SelectedIndexChanged += new EventHandler(
                 //If tabpage changed,the selected data in dataview will disappear,set delete selected record to false
                 (x, y) =>
@@ -352,6 +365,10 @@ namespace MagicMongoDBTool.UserController
             CopyElementToolStripMenuItem.Enabled = false;
             CutElementToolStripMenuItem.Enabled = false;
             PasteElementToolStripMenuItem.Enabled = false;
+
+            this.CutStripButton.Enabled = false;
+            this.CopyStripButton.Enabled = false;
+            this.PasteStripButton.Enabled = false;
         }
 
         /// <summary>
@@ -394,6 +411,7 @@ namespace MagicMongoDBTool.UserController
                                 if (MongoDBHelper.CanPasteAsElement)
                                 {
                                     PasteElementToolStripMenuItem.Enabled = true;
+                                    PasteStripButton.Enabled = true;
                                 }
                             }
                             else
@@ -428,7 +446,9 @@ namespace MagicMongoDBTool.UserController
                         //普通数据:允许添加元素,不允许删除元素
                         DropElementToolStripMenuItem.Enabled = true;
                         CopyElementToolStripMenuItem.Enabled = true;
+                        CopyStripButton.Enabled = true;
                         CutElementToolStripMenuItem.Enabled = true;
+                        CutStripButton.Enabled = true;
                         if (trvData.SelectedNode.Nodes.Count != 0)
                         {
                             //父节点
@@ -440,6 +460,7 @@ namespace MagicMongoDBTool.UserController
                                 if (MongoDBHelper.CanPasteAsValue)
                                 {
                                     PasteElementToolStripMenuItem.Enabled = true;
+                                    PasteStripButton.Enabled = true;
                                 }
                             }
                             else
@@ -448,6 +469,7 @@ namespace MagicMongoDBTool.UserController
                                 if (MongoDBHelper.CanPasteAsElement)
                                 {
                                     PasteElementToolStripMenuItem.Enabled = true;
+                                    PasteStripButton.Enabled = true;
                                 }
                             }
                             AddElementToolStripMenuItem.Enabled = true;
@@ -477,6 +499,7 @@ namespace MagicMongoDBTool.UserController
                                         if (MongoDBHelper.CanPasteAsElement)
                                         {
                                             PasteElementToolStripMenuItem.Enabled = true;
+                                            PasteStripButton.Enabled = true;
                                         }
 
                                     }
@@ -486,6 +509,7 @@ namespace MagicMongoDBTool.UserController
                                         if (MongoDBHelper.CanPasteAsValue)
                                         {
                                             PasteElementToolStripMenuItem.Enabled = true;
+                                            PasteStripButton.Enabled = true;
                                         }
                                     }
                                 }

@@ -10,8 +10,13 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static Object _ClipElement = null;
+        /// <summary>
+        /// 
+        /// </summary>
         public static Boolean _IsElementClip = true;
         /// <summary>
         /// Can Paste As Value
