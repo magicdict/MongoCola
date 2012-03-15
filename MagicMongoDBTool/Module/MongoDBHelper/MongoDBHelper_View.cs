@@ -88,14 +88,14 @@ namespace MagicMongoDBTool.Module
                                    .SetSkip(CurrentDataViewInfo.SkipCnt)
                                    .SetFields(GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
                                    .SetSortOrder(GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList))
-                                   .SetLimit(SystemManager.ConfigHelperInstance.LimitCnt)
+                                   .SetLimit(CurrentDataViewInfo.LimitCnt)
                                    .ToList<BsonDocument>();
             }
             else
             {
                 dataList = mongoCol.FindAllAs<BsonDocument>()
                                    .SetSkip(CurrentDataViewInfo.SkipCnt)
-                                   .SetLimit(SystemManager.ConfigHelperInstance.LimitCnt)
+                                   .SetLimit(CurrentDataViewInfo.LimitCnt)
                                    .ToList<BsonDocument>();
             }
             if (CurrentDataViewInfo.SkipCnt == 0)
@@ -647,6 +647,10 @@ namespace MagicMongoDBTool.Module
             /// 是否为只读
             /// </summary>
             public bool IsReadOnly;
+            /// <summary>
+            /// 每页显示数
+            /// </summary>
+            public int LimitCnt;
         }
         /// <summary>
         /// 数据导航
@@ -685,22 +689,22 @@ namespace MagicMongoDBTool.Module
                     mDataViewInfo.SkipCnt = 0;
                     break;
                 case PageChangeOpr.LastPage:
-                    if (mDataViewInfo.CurrentCollectionTotalCnt % SystemManager.ConfigHelperInstance.LimitCnt == 0)
+                    if (mDataViewInfo.CurrentCollectionTotalCnt % mDataViewInfo.LimitCnt == 0)
                     {
                         //没有余数的时候，600 % 100 == 0  => Skip = 600-100 = 500
-                        mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - SystemManager.ConfigHelperInstance.LimitCnt;
+                        mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - mDataViewInfo.LimitCnt;
                     }
                     else
                     {
                         // 630 % 100 == 30  => Skip = 630-30 = 600  
-                        mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - mDataViewInfo.CurrentCollectionTotalCnt % SystemManager.ConfigHelperInstance.LimitCnt;
+                        mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - mDataViewInfo.CurrentCollectionTotalCnt % mDataViewInfo.LimitCnt;
                     }
                     break;
                 case PageChangeOpr.NextPage:
-                    mDataViewInfo.SkipCnt += SystemManager.ConfigHelperInstance.LimitCnt;
+                    mDataViewInfo.SkipCnt += mDataViewInfo.LimitCnt;
                     break;
                 case PageChangeOpr.PrePage:
-                    mDataViewInfo.SkipCnt -= SystemManager.ConfigHelperInstance.LimitCnt;
+                    mDataViewInfo.SkipCnt -= mDataViewInfo.LimitCnt;
                     break;
                 default:
                     break;
@@ -721,7 +725,7 @@ namespace MagicMongoDBTool.Module
             {
                 mDataViewInfo.HasPrePage = true;
             }
-            if ((mDataViewInfo.SkipCnt + SystemManager.ConfigHelperInstance.LimitCnt) >= mDataViewInfo.CurrentCollectionTotalCnt)
+            if ((mDataViewInfo.SkipCnt + mDataViewInfo.LimitCnt) >= mDataViewInfo.CurrentCollectionTotalCnt)
             {
                 mDataViewInfo.HasNextPage = false;
             }

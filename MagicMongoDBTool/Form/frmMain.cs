@@ -775,6 +775,7 @@ namespace MagicMongoDBTool
                 else
                 {
                     ctlJsEditor JsEditor = new ctlJsEditor();
+                    JsEditor.strDBtag = SystemManager.SelectObjectTag;
                     TabPage DataTab = new TabPage(DataList[3]);
                     DataTab.Tag = SystemManager.SelectObjectTag;
                     JsEditor.JsName = DataList[3];

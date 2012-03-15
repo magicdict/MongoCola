@@ -181,10 +181,6 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public String MongoBinPath = String.Empty;
         /// <summary>
-        /// 每页显示数
-        /// </summary>
-        public int LimitCnt = 100;
-        /// <summary>
         /// 状态刷新间隔时间
         /// </summary>
         public int RefreshStatusTimer = 30;

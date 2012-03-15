@@ -40,7 +40,7 @@
             this.cmdClearPath.BackColor = System.Drawing.Color.Transparent;
             this.cmdClearPath.Location = new System.Drawing.Point(649, 0);
             this.cmdClearPath.Name = "cmdClearPath";
-            this.cmdClearPath.Size = new System.Drawing.Size(75, 31);
+            this.cmdClearPath.Size = new System.Drawing.Size(75, 25);
             this.cmdClearPath.TabIndex = 10;
             this.cmdClearPath.Text = "Clear";
             this.cmdClearPath.UseVisualStyleBackColor = false;
@@ -72,7 +72,7 @@
             this.cmdBrowse.BackColor = System.Drawing.Color.Transparent;
             this.cmdBrowse.Location = new System.Drawing.Point(568, 1);
             this.cmdBrowse.Name = "cmdBrowse";
-            this.cmdBrowse.Size = new System.Drawing.Size(75, 30);
+            this.cmdBrowse.Size = new System.Drawing.Size(75, 24);
             this.cmdBrowse.TabIndex = 7;
             this.cmdBrowse.Text = "Browse...";
             this.cmdBrowse.UseVisualStyleBackColor = false;

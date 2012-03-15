@@ -55,7 +55,8 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void ctlDataView_Load(object sender, EventArgs e)
         {
-
+            this.cmbRecPerPage.SelectedIndex = 1;
+            mDataViewInfo.LimitCnt = 100;
             strNodeType = mDataViewInfo.strDBTag.Split(":".ToCharArray())[0];
             strNodeData = mDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
 
@@ -1128,6 +1129,30 @@ namespace MagicMongoDBTool.UserController
         #endregion
 
         #region"数据导航"
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void cmbRecPerPage_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            switch (cmbRecPerPage.SelectedIndex)
+            {
+                case 0:
+                    mDataViewInfo.LimitCnt = 50;
+                    break;
+                case 1:
+                    mDataViewInfo.LimitCnt = 100;
+                    break;
+                case 2:
+                    mDataViewInfo.LimitCnt = 200;
+                    break;
+                default:
+                    mDataViewInfo.LimitCnt = 100;
+                    break;
+            }
+            RefreshStripButton_Click(sender, e);
+        }
         /// <summary>
         /// 第一页
         /// </summary>

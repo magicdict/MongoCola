@@ -79,6 +79,7 @@ namespace MagicMongoDBTool.UserController
             this.QueryStripButton = new System.Windows.Forms.ToolStripButton();
             this.FilterStripButton = new System.Windows.Forms.ToolStripButton();
             this.DataNaviToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.cmbRecPerPage = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
@@ -352,6 +353,7 @@ namespace MagicMongoDBTool.UserController
             this.QueryStripButton,
             this.FilterStripButton,
             this.DataNaviToolStripLabel,
+            this.cmbRecPerPage,
             this.toolStripSeparator3,
             this.RefreshStripButton,
             this.CloseStripButton});
@@ -523,6 +525,17 @@ namespace MagicMongoDBTool.UserController
             this.DataNaviToolStripLabel.Size = new System.Drawing.Size(118, 22);
             this.DataNaviToolStripLabel.Text = "DataNaviToolStripLabel";
             // 
+            // cmbRecPerPage
+            // 
+            this.cmbRecPerPage.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.cmbRecPerPage.Items.AddRange(new object[] {
+            "50    Documents",
+            "100  Documents",
+            "200  Documents"});
+            this.cmbRecPerPage.Name = "cmbRecPerPage";
+            this.cmbRecPerPage.Size = new System.Drawing.Size(121, 25);
+            this.cmbRecPerPage.SelectedIndexChanged += new System.EventHandler(this.cmbRecPerPage_SelectedIndexChanged);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -629,6 +642,7 @@ namespace MagicMongoDBTool.UserController
         private ToolStripButton CopyStripButton;
         private ToolStripButton PasteStripButton;
         private ToolStripMenuItem changePasswordToolStripMenuItem;
+        private ToolStripComboBox cmbRecPerPage;
 
     }
 }

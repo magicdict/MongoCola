@@ -30,20 +30,17 @@
         {
             this.numRefreshForStatus = new System.Windows.Forms.NumericUpDown();
             this.lblRefreshIntervalForStatus = new System.Windows.Forms.Label();
-            this.numLimitCnt = new System.Windows.Forms.NumericUpDown();
-            this.lblLimitCnt = new System.Windows.Forms.Label();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.ctlFilePickerMongoBinPath = new MagicMongoDBTool.ctlFilePicker();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numLimitCnt)).BeginInit();
             this.SuspendLayout();
             // 
             // numRefreshForStatus
             // 
-            this.numRefreshForStatus.Location = new System.Drawing.Point(154, 104);
+            this.numRefreshForStatus.Location = new System.Drawing.Point(152, 62);
             this.numRefreshForStatus.Maximum = new decimal(new int[] {
             180,
             0,
@@ -68,49 +65,16 @@
             // 
             this.lblRefreshIntervalForStatus.AutoSize = true;
             this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(14, 108);
+            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(12, 66);
             this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
             this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(123, 15);
             this.lblRefreshIntervalForStatus.TabIndex = 15;
             this.lblRefreshIntervalForStatus.Text = "Refresh Interval（sec）";
             // 
-            // numLimitCnt
-            // 
-            this.numLimitCnt.Location = new System.Drawing.Point(154, 66);
-            this.numLimitCnt.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.numLimitCnt.Minimum = new decimal(new int[] {
-            40,
-            0,
-            0,
-            0});
-            this.numLimitCnt.Name = "numLimitCnt";
-            this.numLimitCnt.Size = new System.Drawing.Size(77, 21);
-            this.numLimitCnt.TabIndex = 1;
-            this.numLimitCnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numLimitCnt.Value = new decimal(new int[] {
-            40,
-            0,
-            0,
-            0});
-            // 
-            // lblLimitCnt
-            // 
-            this.lblLimitCnt.AutoSize = true;
-            this.lblLimitCnt.BackColor = System.Drawing.Color.Transparent;
-            this.lblLimitCnt.Location = new System.Drawing.Point(13, 70);
-            this.lblLimitCnt.Name = "lblLimitCnt";
-            this.lblLimitCnt.Size = new System.Drawing.Size(104, 15);
-            this.lblLimitCnt.TabIndex = 13;
-            this.lblLimitCnt.Text = "Records PerPage";
-            // 
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(343, 151);
+            this.cmdCancel.Location = new System.Drawing.Point(331, 104);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(87, 35);
             this.cmdCancel.TabIndex = 5;
@@ -121,7 +85,7 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(182, 151);
+            this.cmdOK.Location = new System.Drawing.Point(170, 104);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(87, 35);
             this.cmdOK.TabIndex = 4;
@@ -133,7 +97,7 @@
             // 
             this.lblLanguage.AutoSize = true;
             this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
-            this.lblLanguage.Location = new System.Drawing.Point(273, 70);
+            this.lblLanguage.Location = new System.Drawing.Point(270, 64);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(63, 15);
             this.lblLanguage.TabIndex = 16;
@@ -142,7 +106,7 @@
             // cmbLanguage
             // 
             this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(343, 66);
+            this.cmbLanguage.Location = new System.Drawing.Point(340, 60);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(140, 23);
             this.cmbLanguage.TabIndex = 3;
@@ -163,13 +127,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 203);
+            this.ClientSize = new System.Drawing.Size(686, 144);
             this.Controls.Add(this.cmbLanguage);
             this.Controls.Add(this.lblLanguage);
             this.Controls.Add(this.numRefreshForStatus);
             this.Controls.Add(this.lblRefreshIntervalForStatus);
-            this.Controls.Add(this.numLimitCnt);
-            this.Controls.Add(this.lblLimitCnt);
             this.Controls.Add(this.ctlFilePickerMongoBinPath);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
@@ -182,7 +144,6 @@
             this.Text = "Option";
             this.Load += new System.EventHandler(this.frmOption_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numLimitCnt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,8 +153,6 @@
 
         private System.Windows.Forms.NumericUpDown numRefreshForStatus;
         private System.Windows.Forms.Label lblRefreshIntervalForStatus;
-        private System.Windows.Forms.NumericUpDown numLimitCnt;
-        private System.Windows.Forms.Label lblLimitCnt;
         private ctlFilePicker ctlFilePickerMongoBinPath;
         private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.Button cmdOK;

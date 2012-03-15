@@ -21,6 +21,13 @@ namespace MagicMongoDBTool
         /// 关闭Tab事件
         /// </summary>
         public event EventHandler CloseTab;
+        /// <summary>
+        /// 
+        /// </summary>
+        public String strDBtag;
+        /// <summary>
+        /// 
+        /// </summary>
         public ctlJsEditor()
         {
             InitializeComponent();
@@ -34,6 +41,11 @@ namespace MagicMongoDBTool
                 txtJavaScript.Text = MongoDBHelper.LoadJavascript(JsName);
                 txtJavaScript.Select(0, 0);
             }
+            this.txtJavaScript.GotFocus += new EventHandler(
+                (x, y) => {
+                    SystemManager.SelectObjectTag = strDBtag;
+                }
+            );
         }
         /// <summary>
         /// 添加行
