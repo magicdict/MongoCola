@@ -39,7 +39,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="ElementPath"></param>
         public static String PasteElement(String ElementPath)
         {
-            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            BsonDocument BaseDoc = SystemManager.CurrentDocument;
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonDocument)
             {
@@ -57,7 +57,7 @@ namespace MagicMongoDBTool.Module
         }
         public static void PasteValue(String ElementPath)
         {
-            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            BsonDocument BaseDoc = SystemManager.CurrentDocument;
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonArray)
             {
@@ -110,7 +110,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="AddElement"></param>
         public static String AddElement(String ElementPath, BsonElement AddElement)
         {
-            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            BsonDocument BaseDoc = SystemManager.CurrentDocument;
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonDocument)
             {
@@ -133,7 +133,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="AddValue"></param>
         public static void AddArrayValue(String ElementPath, BsonValue AddValue)
         {
-            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            BsonDocument BaseDoc = SystemManager.CurrentDocument;
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonArray)
             {
@@ -149,7 +149,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="ElementPath"></param>
         public static void DropElement(String ElementPath, BsonElement El)
         {
-            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            BsonDocument BaseDoc = SystemManager.CurrentDocument;
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
             if (t.IsBsonDocument)
             {
@@ -164,7 +164,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="ElementPath"></param>
         public static void DropArrayValue(String ElementPath, int ValueIndex)
         {
-            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            BsonDocument BaseDoc = SystemManager.CurrentDocument;
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
             if (t.IsBsonArray)
             {
@@ -181,7 +181,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="El"></param>
         public static void ModifyElement(String ElementPath, BsonValue NewValue, BsonElement El)
         {
-            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            BsonDocument BaseDoc = SystemManager.CurrentDocument;
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
             if (t.IsBsonDocument)
             {
@@ -198,7 +198,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="El"></param>
         public static void ModifyArrayValue(String ElementPath, BsonValue NewValue, int ValueIndex)
         {
-            BsonDocument BaseDoc = SystemManager.GetCurrentDocument();
+            BsonDocument BaseDoc = SystemManager.CurrentDocument;
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
             if (t.IsBsonArray)
             {

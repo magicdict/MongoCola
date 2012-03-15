@@ -45,6 +45,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="frm"></param>
         public static void OpenForm(Form mfrm)
         {
+            mfrm.StartPosition = FormStartPosition.CenterParent;
             mfrm.ShowDialog();
             mfrm.Close();
             mfrm.Dispose();
@@ -102,7 +103,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// Current selected document
         /// </summary>
-        private static BsonDocument CurrentDocument;
+        public static BsonDocument CurrentDocument;
         /// <summary>
         /// Set Current Document
         /// </summary>
@@ -123,14 +124,6 @@ namespace MagicMongoDBTool.Module
             {
                 return findroot(node.Parent);
             }
-        }
-        /// <summary>
-        /// Get Current Document
-        /// </summary>
-        /// <returns></returns>
-        public static BsonDocument GetCurrentDocument()
-        {
-            return CurrentDocument;
         }
         /// <summary>
         /// 获得JS名称列表

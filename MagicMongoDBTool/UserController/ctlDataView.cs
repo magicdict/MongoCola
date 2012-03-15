@@ -398,6 +398,8 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void lstData_MouseClick(object sender, MouseEventArgs e)
         {
+            SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
+
             if (lstData.SelectedItems.Count > 0)
             {
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -464,6 +466,7 @@ namespace MagicMongoDBTool.UserController
         private void trvData_AfterSelect_Top(object sender, TreeViewEventArgs e)
         {
             DisableDataTreeOpr();
+            SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
             if (trvData.SelectedNode.Level == 0)
             {
                 //顶层可以删除的节点

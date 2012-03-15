@@ -70,7 +70,7 @@ namespace MagicMongoDBTool
             this.AddUserToAdminToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
             this.slaveResyncToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_SlaveResync);
             this.ShutDownToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_CloseServer);
-            this.SvrPropertyToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties);
+            this.SvrStatusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties);
 
             this.DataBaseToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database);
             this.DelMongoDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelDB);
@@ -311,7 +311,8 @@ namespace MagicMongoDBTool
                         }
                         this.ShutDownToolStripMenuItem.Enabled = true;
                         this.ShutDownToolStripButton.Enabled = true;
-                        this.SvrPropertyToolStripMenuItem.Enabled = true;
+                        this.SvrStatusToolStripMenuItem.Enabled = true;
+                        this.ServeInfoToolStripMenuItem.Enabled = true;
                         if (SystemManager.GetSelectedSvrProByName().ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr)
                         {
                             //副本服务器专用。
@@ -380,7 +381,8 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.slaveResyncToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.SvrPropertyToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.ServeInfoToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.SvrStatusToolStripMenuItem.Clone());
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -403,7 +405,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(t8);
 #else
                             this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.SvrPropertyToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.SvrStatusToolStripMenuItem.Clone());
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -468,7 +470,7 @@ namespace MagicMongoDBTool
                         {
                             this.DelMongoDBToolStripMenuItem.Enabled = false;
                         }
-
+                        this.DBStatusToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -521,7 +523,9 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ConvertSqlToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
                             this.contextMenuStripMain.Items.Add(this.profillingLevelToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.DBStatusToolStripMenuItem.Clone());
 
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -570,7 +574,7 @@ namespace MagicMongoDBTool
                         this.ExportCollectionToolStripMenuItem.Enabled = true;
                         this.AggregationToolStripMenuItem.Enabled = true;
                         this.viewDataToolStripMenuItem.Enabled = true;
-
+                        this.colStatusToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -621,6 +625,8 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
                             this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
+                            this.contextMenuStripMain.Items.Add(this.colStatusToolStripMenuItem.Clone());
 
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -841,7 +847,6 @@ namespace MagicMongoDBTool
                 );
                 ViewTabList.Add(DataKey, DataTab);
                 ViewInfoList.Add(DataKey, mDataViewInfo);
-
                 DataViewctl.CloseTab += new System.EventHandler(
                     (x, y) =>
                     {
@@ -864,7 +869,8 @@ namespace MagicMongoDBTool
             //管理-服务器
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
             this.AddUserToAdminToolStripMenuItem.Enabled = false;
-            this.SvrPropertyToolStripMenuItem.Enabled = false;
+            this.SvrStatusToolStripMenuItem.Enabled = false;
+            this.ServeInfoToolStripMenuItem.Enabled = false;
             this.slaveResyncToolStripMenuItem.Enabled = false;
             this.ShutDownToolStripMenuItem.Enabled = false;
             this.ShutDownToolStripButton.Enabled = false;
@@ -878,6 +884,7 @@ namespace MagicMongoDBTool
             this.evalJSToolStripMenuItem.Enabled = false;
             this.RepairDBToolStripMenuItem.Enabled = false;
             this.InitGFSToolStripMenuItem.Enabled = false;
+            this.DBStatusToolStripMenuItem.Enabled = false;
 
             //管理-数据集
             this.IndexManageToolStripMenuItem.Enabled = false;
@@ -888,6 +895,7 @@ namespace MagicMongoDBTool
             this.viewDataToolStripMenuItem.Enabled = false;
             this.creatJavaScriptToolStripMenuItem.Enabled = false;
             this.dropJavascriptToolStripMenuItem.Enabled = false;
+            this.colStatusToolStripMenuItem.Enabled = false;
 
             //管理-备份和恢复
             this.DumpDatabaseToolStripMenuItem.Enabled = false;
@@ -1086,11 +1094,11 @@ namespace MagicMongoDBTool
             MongoDBHelper.ExecuteMongoCommand(MongoDBHelper.resync_Command);
         }
         /// <summary>
-        /// Server Property
+        /// Server Info
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SvrPropertyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ServeInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (SystemManager.IsUseDefaultLanguage())
             {
@@ -1102,6 +1110,15 @@ namespace MagicMongoDBTool
                                          SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties),
                                          MongoDBHelper.GetCurrentSvrInfo(), true);
             }
+        }
+        /// <summary>
+        /// Status
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SvrStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmStatus());
         }
         /// <summary>
         /// Shut Down Server
@@ -1229,6 +1246,15 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmProfilling());
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DBStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmStatus());
+        }
+        /// <summary>
         /// Create Js
         /// </summary>
         /// <param name="sender"></param>
@@ -1337,7 +1363,7 @@ namespace MagicMongoDBTool
                         if (item.Tag == DataTab.Tag)
                         {
                             item.Text = strNewCollectionName;
-                            item.Tag = strNewNodeTag; 
+                            item.Tag = strNewNodeTag;
                             break;
                         }
                     }
@@ -1460,6 +1486,15 @@ namespace MagicMongoDBTool
                 tabView.SelectTab(tabCommandShell);
             }
             commandShellToolStripMenuItem.Checked = !commandShellToolStripMenuItem.Checked;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void colStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmStatus());
         }
         #endregion
 
@@ -1767,6 +1802,7 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
+
 
 
     }
