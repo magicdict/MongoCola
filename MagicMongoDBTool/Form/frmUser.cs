@@ -8,10 +8,17 @@ namespace MagicMongoDBTool
         /// 是否作为Admin
         /// </summary>
         private Boolean _IsAdmin = false;
+        private String _ModifyName = String.Empty;
         public frmUser(Boolean IsAdmin)
         {
             InitializeComponent();
             _IsAdmin = IsAdmin;
+        }
+        public frmUser(Boolean IsAdmin, String UserName)
+        {
+            InitializeComponent();
+            _IsAdmin = IsAdmin;
+            _ModifyName = UserName;
         }
         /// <summary>
         /// 确定
@@ -20,24 +27,44 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            if (txtUserName.Text == String.Empty) {
-                MyMessageBox.ShowConfirm("Error", "Please fill username!");
-                return;
-            }
             if (txtConfirmPsw.Text != txtPassword.Text)
             {
                 MyMessageBox.ShowConfirm("Error", "Password and Confirm Password not match!");
                 return;
             }
-            if (_IsAdmin)
+            if (_ModifyName == String.Empty)
             {
-                //添加到服务器，作为Admin用户
-                MongoDBHelper.AddUserToSvr(txtUserName.Text, txtPassword.Text, chkReadOnly.Checked);
+                //New User
+
+                if (txtUserName.Text == String.Empty)
+                {
+                    MyMessageBox.ShowConfirm("Error", "Please fill username!");
+                    return;
+                }
+                if (_IsAdmin)
+                {
+                    //添加到服务器，作为Admin用户
+                    MongoDBHelper.AddUserToSvr(txtUserName.Text, txtPassword.Text, chkReadOnly.Checked);
+                }
+                else
+                {
+                    //添加到数据库
+                    MongoDBHelper.AddUserToDB(txtUserName.Text, txtPassword.Text, chkReadOnly.Checked);
+                }
             }
             else
             {
-                //添加到数据库
-                MongoDBHelper.AddUserToDB(txtUserName.Text, txtPassword.Text, chkReadOnly.Checked);
+                //Change Password
+                if (_IsAdmin)
+                {
+                    MongoDBHelper.RemoveUserFromSvr(_ModifyName);
+                    MongoDBHelper.AddUserToSvr(txtUserName.Text, txtPassword.Text, chkReadOnly.Checked);
+                }
+                else
+                {
+                    MongoDBHelper.RemoveUserFromDB(_ModifyName);
+                    MongoDBHelper.AddUserToDB(txtUserName.Text, txtPassword.Text, chkReadOnly.Checked);
+                }
             }
             this.Close();
         }
@@ -52,22 +79,40 @@ namespace MagicMongoDBTool
         }
         private void frmUser_Load(object sender, EventArgs e)
         {
+
+            if (_ModifyName != String.Empty)
+            {
+                this.Text = "Change Password";
+                txtUserName.Enabled = false;
+                txtUserName.Text = _ModifyName;
+            }
+
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                if (_IsAdmin)
+                if (_ModifyName == String.Empty)
                 {
-                    this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
+                    if (_IsAdmin)
+                    {
+                        this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
+                    }
+                    else
+                    {
+                        this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                    }
                 }
                 else
                 {
-                    this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                    //this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Main_Menu_Operation_Database_ChangePassword);
                 }
-                lblPassword.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Password);
                 lblUserName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Username);
+                lblPassword.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Password);
                 chkReadOnly.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_ReadOnly);
                 cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
                 cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);
+
             }
+
+
         }
     }
 }

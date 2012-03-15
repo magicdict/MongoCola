@@ -80,16 +80,6 @@ namespace MagicMongoDBTool.UserController
                 this.tabDataShower.Controls.Remove(tabTextView);
             }
 
-            this.EditDocStripButton.Enabled = false;
-            this.QueryStripButton.Enabled = false;
-            this.FilterStripButton.Enabled = false;
-            this.FilterStripButton.Checked = false;
-            this.DelSelectRecordToolStripButton.Enabled = false;
-            this.CutStripButton.Enabled = false;
-            this.CopyStripButton.Enabled = false;
-            this.PasteStripButton.Enabled = false;
-
-
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
             this.lstData.MouseDoubleClick += new MouseEventHandler(lstData_MouseDoubleClick);
             this.lstData.SelectedIndexChanged += new EventHandler(lstData_SelectedIndexChanged);
@@ -99,35 +89,6 @@ namespace MagicMongoDBTool.UserController
             this.trvData.AfterExpand += new TreeViewEventHandler(trvData_AfterExpand);
             this.trvData.AfterCollapse += new TreeViewEventHandler(trvData_AfterCollapse);
 
-            this.ModifyElementToolStripMenuItem.Click += new EventHandler(
-                (x, y) => { ModifyElement(); }
-                );
-            this.DropElementToolStripMenuItem.Click += new EventHandler(
-                (x, y) => { DropElement(); }
-                );
-            this.AddElementToolStripMenuItem.Click += new EventHandler(
-                 (x, y) => { AddElement(); }
-                );
-            this.CopyElementToolStripMenuItem.Click += new EventHandler(
-                (x, y) => { CopyElement(); }
-                );
-            this.CopyStripButton.Click += new EventHandler(
-                (x, y) => { CopyElement(); }
-             );
-
-            this.CutElementToolStripMenuItem.Click += new EventHandler(
-                (x, y) => { CutElement(); }
-                );
-            this.CutStripButton.Click += new EventHandler(
-                (x, y) => { CutElement(); }
-             );
-
-            this.PasteElementToolStripMenuItem.Click += new EventHandler(
-                (x, y) => { PasteElement(); }
-                );
-            this.PasteStripButton.Click += new EventHandler(
-                (x, y) => { PasteElement(); }
-             );
 
             this.tabDataShower.SelectedIndexChanged += new EventHandler(
                 //If tabpage changed,the selected data in dataview will disappear,set delete selected record to false
@@ -172,16 +133,34 @@ namespace MagicMongoDBTool.UserController
                 this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
 
             }
-            //Change Icons by DataType
+
+
+            //Change Icons Enable to Disable at first load
+            this.EditDocStripButton.Enabled = false;
+            this.QueryStripButton.Enabled = false;
+            this.FilterStripButton.Enabled = false;
+            this.FilterStripButton.Checked = false;
+            this.DelSelectRecordToolStripButton.Enabled = false;
+            this.CutStripButton.Enabled = false;
+            this.CopyStripButton.Enabled = false;
+            this.PasteStripButton.Enabled = false;
+
+            //Change Icons Visible by DataType
             OpenFileStripButton.Visible = false;
             ExpandAllStripButton.Visible = false;
             CollapseAllStripButton.Visible = false;
+            CutStripButton.Visible = false;
+            CopyStripButton.Visible = false;
+            PasteStripButton.Visible = false;
 
             switch (strNodeType)
             {
                 case MongoDBHelper.COLLECTION_TAG:
                     ExpandAllStripButton.Visible = true;
                     CollapseAllStripButton.Visible = true;
+                    CutStripButton.Visible = true;
+                    CopyStripButton.Visible = true;
+                    PasteStripButton.Visible = true;
                     break;
                 case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
                     OpenFileStripButton.Image = MagicMongoDBTool.Properties.Resources.Open.ToBitmap();
@@ -225,6 +204,92 @@ namespace MagicMongoDBTool.UserController
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
             //数据导航
             SetDataNav();
+        } 
+        
+        /// <summary>
+        /// Is Need Refresh after the element is modify
+        /// </summary>
+        public Boolean IsNeedRefresh = false;
+        /// <summary>
+        /// 添加新文档
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NewDocumentStripButton_Click(object sender, EventArgs e)
+        {
+            switch (strNodeType)
+            {
+                case MongoDBHelper.COLLECTION_TAG:
+                    NewDocument();
+                    break;
+                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
+                    UploadFile();
+                    break;
+                case MongoDBHelper.USER_LIST_TAG:
+                    if (mDataViewInfo.strDBTag.EndsWith(MongoDBHelper.DATABASE_NAME_ADMIN + "/" + MongoDBHelper.COLLECTION_NAME_USER))
+                    {
+                        SystemManager.OpenForm(new frmUser(true));
+                    }
+                    else
+                    {
+                        SystemManager.OpenForm(new frmUser(false));
+                    }
+                    RefreshStripButton_Click(sender, e);
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
+        /// 在默认编辑器中打开TextView内容
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditDocStripButton_Click(object sender, EventArgs e)
+        {
+            switch (strNodeType)
+            {
+                case MongoDBHelper.COLLECTION_TAG:
+                    MongoDBHelper.SaveAndOpenStringAsFile(txtData.Text);
+                    break;
+                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
+                    DownloadFile();
+                    break;
+                case MongoDBHelper.USER_LIST_TAG:
+                    changePasswordToolStripMenuItem_Click(sender, e);
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DelSelectedRecord_Click(object sender, EventArgs e)
+        {
+            switch (strNodeType)
+            {
+                case MongoDBHelper.COLLECTION_TAG:
+                    DeleteSelectedRecords();
+                    break;
+                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
+                    DelFile();
+                    break;
+                case MongoDBHelper.USER_LIST_TAG:
+                    if (IsAdminDB)
+                    {
+                        RemoveUserFromAdminToolStripMenuItem_Click(sender, e);
+                    }
+                    else
+                    {
+                        RemoveUserToolStripMenuItem_Click(sender, e);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
         /// <summary>
         /// 关闭本Tab
@@ -238,17 +303,7 @@ namespace MagicMongoDBTool.UserController
                 CloseTab(sender, e);
             }
         }
-        /// <summary>
-        /// 清除所有数据
-        /// </summary>
-        public void clear()
-        {
-            lstData.Clear();
-            txtData.Text = String.Empty;
-            trvData.Nodes.Clear();
-            lstData.ContextMenuStrip = null;
-            trvData.ContextMenuStrip = null;
-        }
+
         #endregion
 
         #region"数据展示区操作"
@@ -365,6 +420,9 @@ namespace MagicMongoDBTool.UserController
                             else
                             {
                                 this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
+                            }
+                            if (lstData.SelectedItems.Count == 1) {
+                                this.contextMenuStripMain.Items.Add(this.changePasswordToolStripMenuItem.Clone());
                             }
                             break;
                         default:
@@ -568,7 +626,9 @@ namespace MagicMongoDBTool.UserController
                     break;
             }
         }
-
+        /// <summary>
+        /// 是否需要改变选中节点
+        /// </summary>
         private Boolean IsNeedChangeNode = true;
         /// <summary>
         /// 展开节点后的动作
@@ -692,20 +752,20 @@ namespace MagicMongoDBTool.UserController
                 case Keys.Delete:
                     if (DelSelectRecordToolStripMenuItem.Enabled)
                     {
-                        DelSelectedRecord_Click(null, null);
+                        DelSelectedRecord_Click(sender, e);
                     }
                     else
                     {
                         if (this.DropElementToolStripMenuItem.Enabled)
                         {
-                            DropElement();
+                            DropElementToolStripMenuItem_Click(sender, e);
                         }
                     }
                     break;
                 case Keys.F2:
                     if (this.ModifyElementToolStripMenuItem.Enabled)
                     {
-                        ModifyElement();
+                        ModifyElementToolStripMenuItem_Click(sender,e);
                     }
                     break;
                 default:
@@ -715,40 +775,7 @@ namespace MagicMongoDBTool.UserController
         #endregion
 
         #region"管理：元素操作"
-        /// <summary>
-        /// Is Need Refresh after the element is modify
-        /// </summary>
-        public Boolean IsNeedRefresh = false;
-        /// <summary>
-        /// 添加新文档
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void NewDocumentStripButton_Click(object sender, EventArgs e)
-        {
-            switch (strNodeType)
-            {
-                case MongoDBHelper.COLLECTION_TAG:
-                    NewDocument();
-                    break;
-                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
-                    UploadFile();
-                    break;
-                case MongoDBHelper.USER_LIST_TAG:
-                    if (mDataViewInfo.strDBTag.EndsWith(MongoDBHelper.DATABASE_NAME_ADMIN + "/" + MongoDBHelper.COLLECTION_NAME_USER))
-                    {
-                        SystemManager.OpenForm(new frmUser(true));
-                    }
-                    else
-                    {
-                        SystemManager.OpenForm(new frmUser(false));
-                    }
-                    break;
-                default:
-                    break;
-            }
-            RefreshStripButton_Click(sender, e);
-        }
+
         /// <summary>
         /// Add New Document
         /// </summary>
@@ -764,35 +791,7 @@ namespace MagicMongoDBTool.UserController
             tabDataShower.SelectedIndex = 0;
             trvData.SelectedNode = newid;
             IsNeedRefresh = true;
-        }
-        /// <summary>
-        /// 删除数据
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DelSelectedRecord_Click(object sender, EventArgs e)
-        {
-            switch (strNodeType)
-            {
-                case MongoDBHelper.COLLECTION_TAG:
-                    DeleteSelectedRecords();
-                    break;
-                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
-                    DelFile();
-                    break;
-                case MongoDBHelper.USER_LIST_TAG:
-                    if (IsAdminDB)
-                    {
-                        RemoveUserFromAdminToolStripMenuItem_Click(sender, e);
-                    }
-                    else
-                    {
-                        RemoveUserToolStripMenuItem_Click(sender, e);
-                    }
-                    break;
-                default:
-                    break;
-            }
+            RefreshStripButton_Click(null, null);
         }
         /// <summary>
         /// Delete Selected Documents
@@ -833,7 +832,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void AddElement()
+        private void AddElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Boolean IsElement = true;
             BsonValue t;
@@ -857,7 +856,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void DropElement()
+        private void DropElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (trvData.SelectedNode.Level == 1 & trvData.SelectedNode.PrevNode == null)
             {
@@ -880,7 +879,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ModifyElement()
+        private void ModifyElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (trvData.SelectedNode.Level == 1 & trvData.SelectedNode.PrevNode == null)
             {
@@ -902,7 +901,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void CopyElement()
+        private void CopyElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MongoDBHelper._ClipElement = trvData.SelectedNode.Tag;
             if (trvData.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
@@ -919,7 +918,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void PasteElement()
+        private void PasteElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (trvData.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
             {
@@ -949,7 +948,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void CutElement()
+        private void CutElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (trvData.SelectedNode.Level == 1 & trvData.SelectedNode.PrevNode == null)
             {
@@ -979,6 +978,7 @@ namespace MagicMongoDBTool.UserController
             if (upfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 MongoDBHelper.UpLoadFile(upfile.FileName);
+                RefreshStripButton_Click(null, null);
             }
         }
         /// <summary>
@@ -994,6 +994,7 @@ namespace MagicMongoDBTool.UserController
             {
                 MongoDBHelper.DownloadFile(downfile.FileName, strFileName);
             }
+            RefreshStripButton_Click(null, null);
         }
         /// <summary>
         /// Open File
@@ -1104,6 +1105,23 @@ namespace MagicMongoDBTool.UserController
                 RefreshStripButton_Click(sender, e);
             }
         }
+        /// <summary>
+        /// 密码变更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mDataViewInfo.strDBTag.EndsWith(MongoDBHelper.DATABASE_NAME_ADMIN + "/" + MongoDBHelper.COLLECTION_NAME_USER))
+            {
+                SystemManager.OpenForm(new frmUser(true, lstData.SelectedItems[0].SubItems[1].Text));
+            }
+            else
+            {
+                SystemManager.OpenForm(new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text));
+            }
+            RefreshStripButton_Click(sender, e);
+        }
         #endregion
 
         #region"数据导航"
@@ -1165,7 +1183,17 @@ namespace MagicMongoDBTool.UserController
         {
             trvData.CollapseAll();
         }
-
+        /// <summary>
+        /// 清除所有数据
+        /// </summary>
+        public void clear()
+        {
+            lstData.Clear();
+            txtData.Text = String.Empty;
+            trvData.Nodes.Clear();
+            lstData.ContextMenuStrip = null;
+            trvData.ContextMenuStrip = null;
+        }
         /// <summary>
         /// 设置导航可用性
         /// </summary>
@@ -1232,31 +1260,7 @@ namespace MagicMongoDBTool.UserController
             //过滤变更后，重新刷新
             RefreshStripButton_Click(sender, e);
         }
-        /// <summary>
-        /// 在默认编辑器中打开TextView内容
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EditDocStripButton_Click(object sender, EventArgs e)
-        {
-            switch (strNodeType)
-            {
-                case MongoDBHelper.COLLECTION_TAG:
-                    MongoDBHelper.SaveAndOpenStringAsFile(txtData.Text);
-                    break;
-                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
-                    DownloadFile();
-                    break;
-                case MongoDBHelper.USER_LIST_TAG:
-                    //TODO:
-                    break;
-                default:
-                    break;
-            }
-
-        }
         #endregion
-
- 
+        
     }
 }

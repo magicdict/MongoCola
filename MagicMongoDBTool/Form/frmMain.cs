@@ -170,8 +170,21 @@ namespace MagicMongoDBTool
                     tabView.Controls.Remove(tabCommandShell);
                 }
             );
+            this.tabView.SelectedIndexChanged += new EventHandler(tabView_SelectedIndexChanged);
             MongoDBHelper.RunCommandComplete += new EventHandler<RunCommandEventArgs>(CommandLog);
 
+        }
+        /// <summary>
+        /// 切换Tab的时候，必须切换当前对象
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void tabView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabView.SelectedTab.Tag != null)
+            {
+                SystemManager.SelectObjectTag = tabView.SelectedTab.Tag.ToString();
+            }
         }
         /// <summary>
         /// CommandLog
@@ -743,6 +756,7 @@ namespace MagicMongoDBTool
                 {
                     ctlJsEditor JsEditor = new ctlJsEditor();
                     TabPage DataTab = new TabPage(DataList[3]);
+                    DataTab.Tag = SystemManager.SelectObjectTag;
                     JsEditor.JsName = DataList[3];
                     DataTab.Controls.Add(JsEditor);
                     JsEditor.Dock = DockStyle.Fill;
@@ -799,6 +813,7 @@ namespace MagicMongoDBTool
                 DataViewctl.DisableDataTreeOpr();
 
                 TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().Name);
+                DataTab.Tag = SystemManager.SelectObjectTag;
                 DataTab.Controls.Add(DataViewctl);
                 DataViewctl.Dock = DockStyle.Fill;
                 tabView.Controls.Add(DataTab);
