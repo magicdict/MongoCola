@@ -691,6 +691,15 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelper.JAVASCRIPT_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            this.creatJavaScriptToolStripMenuItem.Enabled = true;
+                            this.contextMenuStripMain = new ContextMenuStrip();
+                            this.contextMenuStripMain.Items.Add(this.creatJavaScriptToolStripMenuItem.Clone());
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+                        }
                         statusStripMain.Items[0].Text = "Selected collection Javascript";
                         break;
                     case MongoDBHelper.JAVASCRIPT_DOC_TAG:
@@ -698,8 +707,10 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.viewDataToolStripMenuItem.Enabled = true;
+                            this.dropJavascriptToolStripMenuItem.Enabled = true;
                             this.contextMenuStripMain = new ContextMenuStrip();
                             this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.dropJavascriptToolStripMenuItem.Clone());
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -744,6 +755,7 @@ namespace MagicMongoDBTool
                     break;
             }
         }
+
         private void ViewJavascript()
         {
             String strNodeData = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
@@ -765,6 +777,7 @@ namespace MagicMongoDBTool
                     tabView.Controls.Add(DataTab);
 
                     ToolStripMenuItem DataMenuItem = new ToolStripMenuItem(DataList[3]);
+                    DataMenuItem.Tag = DataTab.Tag;
                     JavaScriptStripMenuItem.DropDownItems.Add(DataMenuItem);
                     DataMenuItem.Click += new EventHandler(
                          (x, y) => { tabView.SelectTab(DataTab); }
@@ -872,6 +885,8 @@ namespace MagicMongoDBTool
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
             this.CompactToolStripMenuItem.Enabled = false;
             this.viewDataToolStripMenuItem.Enabled = false;
+            this.creatJavaScriptToolStripMenuItem.Enabled = false;
+            this.dropJavascriptToolStripMenuItem.Enabled = false;
 
             //管理-备份和恢复
             this.DumpDatabaseToolStripMenuItem.Enabled = false;
@@ -1212,6 +1227,37 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmProfilling());
         }
+        /// <summary>
+        /// Create Js
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void creatJavaScriptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String strJsName = MyMessageBox.ShowInput("pls Input Javascript Name", "Save Javascript");
+            if (strJsName != String.Empty)
+            {
+                if (MongoDBHelper.IsExistJs(strJsName))
+                {
+                    MyMessageBox.ShowMessage("Error", "javascript is already exist");
+                }
+                else
+                {
+                    if (MongoDBHelper.CreateNewJavascript(strJsName, String.Empty))
+                    {
+                        TreeNode jsNode = new TreeNode(strJsName);
+                        jsNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc;
+                        jsNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc;
+                        String jsTag = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        jsNode.Tag = MongoDBHelper.JAVASCRIPT_DOC_TAG + ":" + jsTag + "/" + strJsName;
+                        trvsrvlst.SelectedNode.Nodes.Add(jsNode);
+                        trvsrvlst.SelectedNode = jsNode;
+                        SystemManager.SelectObjectTag = jsNode.Tag.ToString();
+                        ViewJavascript();
+                    }
+                }
+            }
+        }
         #endregion
 
         #region"管理：数据集"
@@ -1309,7 +1355,33 @@ namespace MagicMongoDBTool
         {
             MongoDBHelper.ExecuteMongoCommand(MongoDBHelper.Compact_Command);
         }
-
+        /// <summary>
+        /// Drop
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MongoDBHelper.DelJavascript(trvsrvlst.SelectedNode.Text))
+            {
+                String strNodeData = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                if (ViewTabList.ContainsKey(strNodeData))
+                {
+                    TabPage DataTab = ViewTabList[strNodeData];
+                    foreach (ToolStripMenuItem item in JavaScriptStripMenuItem.DropDownItems)
+                    {
+                        if (item.Tag == DataTab.Tag)
+                        {
+                            JavaScriptStripMenuItem.DropDownItems.Remove(item);
+                            break;
+                        }
+                    }
+                    tabView.Controls.Remove(DataTab);
+                    ViewTabList.Remove(strNodeData);
+                }
+                this.trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -1656,7 +1728,6 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
-
 
 
     }

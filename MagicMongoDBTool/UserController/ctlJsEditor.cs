@@ -63,7 +63,7 @@ namespace MagicMongoDBTool
         {
             if (JsName != null && JsName != String.Empty)
             {
-                MongoDBHelper.SaveJavascript(txtJavaScript.Text, JsName);
+                MongoDBHelper.SaveEditorJavascript(JsName,txtJavaScript.Text);
             }
             else {
                 SaveFileDialog mSave = new SaveFileDialog();

@@ -70,7 +70,7 @@ namespace MagicMongoDBTool
             if (txtMapJs.Text != String.Empty)
             {
                 String strJsName = MyMessageBox.ShowInput("pls Input Javascript Name：", "Save Javascript");
-                MongoDBHelper.SaveJavascript(strJsName, txtMapJs.Text);
+                MongoDBHelper.CreateNewJavascript(strJsName, txtMapJs.Text);
             }
         }
         /// <summary>
@@ -83,7 +83,7 @@ namespace MagicMongoDBTool
             if (this.txtReduceJs.Text != String.Empty)
             {
                 String strJsName = MyMessageBox.ShowInput("pls Input Javascript Name", "Save Javascript");
-                MongoDBHelper.SaveJavascript(strJsName, txtReduceJs.Text);
+                MongoDBHelper.CreateNewJavascript(strJsName, txtReduceJs.Text);
             }
         }
     }

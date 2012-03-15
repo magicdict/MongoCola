@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlJsEditor));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.EditDocStripButton = new System.Windows.Forms.ToolStripButton();
             this.SaveStripButton = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
             this.txtJavaScript = new System.Windows.Forms.TextBox();
-            this.EditDocStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,16 @@
             this.toolStrip1.Size = new System.Drawing.Size(696, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // EditDocStripButton
+            // 
+            this.EditDocStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.EditDocStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Edit;
+            this.EditDocStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EditDocStripButton.Name = "EditDocStripButton";
+            this.EditDocStripButton.Size = new System.Drawing.Size(23, 22);
+            this.EditDocStripButton.Text = "Editor";
+            this.EditDocStripButton.Click += new System.EventHandler(this.EditDocStripButton_Click);
             // 
             // SaveStripButton
             // 
@@ -75,18 +85,9 @@
             this.txtJavaScript.Location = new System.Drawing.Point(0, 25);
             this.txtJavaScript.Multiline = true;
             this.txtJavaScript.Name = "txtJavaScript";
+            this.txtJavaScript.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtJavaScript.Size = new System.Drawing.Size(696, 362);
             this.txtJavaScript.TabIndex = 1;
-            // 
-            // EditDocStripButton
-            // 
-            this.EditDocStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EditDocStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Edit;
-            this.EditDocStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.EditDocStripButton.Name = "EditDocStripButton";
-            this.EditDocStripButton.Size = new System.Drawing.Size(23, 22);
-            this.EditDocStripButton.Text = "Editor";
-            this.EditDocStripButton.Click += new System.EventHandler(this.EditDocStripButton_Click);
             // 
             // ctlJsEditor
             // 

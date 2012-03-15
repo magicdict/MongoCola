@@ -41,7 +41,7 @@ namespace MagicMongoDBTool
             if (txtevalJs.Text != String.Empty)
             {
                 String strJsName = MyMessageBox.ShowInput("Input Javascript Name：", "Save Javascript");
-                MongoDBHelper.SaveJavascript(strJsName, txtevalJs.Text);
+                MongoDBHelper.CreateNewJavascript(strJsName, txtevalJs.Text);
             }
         }
         /// <summary>

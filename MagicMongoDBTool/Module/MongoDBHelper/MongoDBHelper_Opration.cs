@@ -384,7 +384,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="jsName"></param>
         /// <param name="jsCode"></param>
-        public static Boolean SaveJavascript(String jsName, String jsCode)
+        public static Boolean CreateNewJavascript(String jsName, String jsCode)
         {
             //标准的JS库格式未知
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
@@ -394,6 +394,33 @@ namespace MagicMongoDBTool.Module
                 return true;
             }
             return false;
+        }
+        public static Boolean SaveEditorJavascript(String jsName, String jsCode)
+        {
+            //标准的JS库格式未知
+            MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
+            if (IsExistByKey(jsCol, jsName))
+            {
+                DropDocument(jsCol,(BsonString)jsName);
+                jsCol.Insert<BsonDocument>(new BsonDocument().Add("_id", jsName).Add("value", jsCode));
+                return true;
+            }
+            return false;
+        }
+        public static Boolean DelJavascript(String jsName)
+        {
+            MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
+            if (MongoDBHelper.IsExistByKey(jsCol, jsName))
+            {
+                MongoDBHelper.DropDocument(jsCol, (BsonString)jsName);
+                return true;
+            }
+            return false;
+        }
+        public static Boolean IsExistJs(String jsName)
+        {
+            MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
+            return IsExistByKey(jsCol, jsName);
         }
         /// <summary>
         /// 获得JS代码

@@ -15,7 +15,8 @@ Ver 1.10 2012/03/16
 4.Add some icons.
 5.Add sort function to file list view.
 6.Change user password and readonly.
-7.DataBase profilling level function. 
+7.DataBase profilling level function.
+8.Create/Drop Javascript 
 
 ========================================================================
 Ver 1.05 2012/03/10
