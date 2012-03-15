@@ -521,6 +521,8 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
                             this.contextMenuStripMain.Items.Add(this.ConvertSqlToolStripMenuItem.Clone());
+                            this.contextMenuStripMain.Items.Add(this.profillingLevelToolStripMenuItem.Clone());
+
 #endif
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -1201,6 +1203,15 @@ namespace MagicMongoDBTool
             DisableAllOpr();
             MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
         }
+        /// <summary>
+        /// Profilling Level
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void profillingLevelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmProfilling());
+        }
         #endregion
 
         #region"管理：数据集"
@@ -1645,6 +1656,8 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
+
+
 
     }
 }

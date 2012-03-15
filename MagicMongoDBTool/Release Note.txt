@@ -9,12 +9,13 @@ This is the first release of MongoCola.
 Release History
 ========================================================================
 Ver 1.10 2012/03/16
-1.Multi Collection View.
+1.Multi Collection View is ready.
 2.Divide all collections into GFS,Javascript,User,Gerneral Collections,System Collections 5, Groups
 3.Add comfirm password at "Add New User" form.
 4.Add some icons.
 5.Add sort function to file list view.
-
+6.Change user password and readonly.
+7.DataBase profilling level function. 
 
 ========================================================================
 Ver 1.05 2012/03/10

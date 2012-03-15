@@ -114,6 +114,7 @@ namespace MagicMongoDBTool
             this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.ctlShellCommandEditor = new MagicMongoDBTool.ctlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.profillingLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -385,7 +386,8 @@ namespace MagicMongoDBTool
             this.evalJSToolStripMenuItem,
             this.RepairDBToolStripMenuItem,
             this.InitGFSToolStripMenuItem,
-            this.ConvertSqlToolStripMenuItem});
+            this.ConvertSqlToolStripMenuItem,
+            this.profillingLevelToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
             this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.DataBaseToolStripMenuItem.Text = "Database";
@@ -792,6 +794,13 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
+            // profillingLevelToolStripMenuItem
+            // 
+            this.profillingLevelToolStripMenuItem.Name = "profillingLevelToolStripMenuItem";
+            this.profillingLevelToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.profillingLevelToolStripMenuItem.Text = "Profilling Level";
+            this.profillingLevelToolStripMenuItem.Click += new System.EventHandler(this.profillingLevelToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -976,5 +985,6 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem mapReduceToolStripMenuItem;
         private ToolStripMenuItem viewDataToolStripMenuItem;
         private ToolStripMenuItem ConvertSqlToolStripMenuItem;
+        private ToolStripMenuItem profillingLevelToolStripMenuItem;
     }
 }
