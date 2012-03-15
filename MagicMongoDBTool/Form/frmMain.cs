@@ -834,6 +834,7 @@ namespace MagicMongoDBTool
                 tabView.Controls.Add(DataTab);
 
                 ToolStripMenuItem DataMenuItem = new ToolStripMenuItem(SystemManager.GetCurrentCollection().Name);
+                DataMenuItem.Tag = DataTab.Tag;
                 collectionToolStripMenuItem.DropDownItems.Add(DataMenuItem);
                 DataMenuItem.Click += new EventHandler(
                      (x, y) => { tabView.SelectTab(DataTab); }
@@ -1280,12 +1281,25 @@ namespace MagicMongoDBTool
             {
                 String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
                 String strCollection = strPath.Split("/".ToCharArray())[2];
-                if (trvsrvlst.SelectedNode == null)
+                if (SystemManager.GetCurrentDataBase().DropCollection(trvsrvlst.SelectedNode.Text).Ok)
                 {
-                    trvsrvlst.SelectedNode = null;
-                }
-                if (MongoDBHelper.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelper.Oprcode.Drop, trvsrvlst.SelectedNode))
-                {
+                    String strNodeData = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                    if (ViewTabList.ContainsKey(strNodeData))
+                    {
+                        TabPage DataTab = ViewTabList[strNodeData];
+                        foreach (ToolStripMenuItem item in this.collectionToolStripMenuItem.DropDownItems)
+                        {
+                            if (item.Tag == DataTab.Tag)
+                            {
+                                collectionToolStripMenuItem.DropDownItems.Remove(item);
+                                break;
+                            }
+                        }
+                        tabView.Controls.Remove(DataTab);
+                        ViewTabList.Remove(strNodeData);
+                        ViewInfoList.Remove(strNodeData);
+                    }
+                    this.trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
                     DisableAllOpr();
                 }
             }
@@ -1309,14 +1323,38 @@ namespace MagicMongoDBTool
                 strNewCollectionName = MyMessageBox.ShowInput(SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
                                                                                   SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection));
             }
-            if (String.IsNullOrEmpty(strNewCollectionName))
+            if (!String.IsNullOrEmpty(strNewCollectionName) && SystemManager.GetCurrentDataBase().RenameCollection(trvsrvlst.SelectedNode.Text, strNewCollectionName).Ok)
             {
-                return;
-            }
-            if (MongoDBHelper.CollectionOpration(SystemManager.SelectObjectTag, strCollection, MongoDBHelper.Oprcode.Rename, trvsrvlst.SelectedNode, strNewCollectionName))
-            {
+                String strNodeData = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                String strNewNodeTag = SystemManager.SelectObjectTag.Substring(0, SystemManager.SelectObjectTag.Length - trvsrvlst.SelectedNode.Text.Length);
+                strNewNodeTag += strNewCollectionName;
+                String strNewNodeData = strNewNodeTag.Split(":".ToCharArray())[1];
+                if (ViewTabList.ContainsKey(strNodeData))
+                {
+                    TabPage DataTab = ViewTabList[strNodeData];
+                    foreach (ToolStripMenuItem item in this.collectionToolStripMenuItem.DropDownItems)
+                    {
+                        if (item.Tag == DataTab.Tag)
+                        {
+                            item.Text = strNewCollectionName;
+                            item.Tag = strNewNodeTag; 
+                            break;
+                        }
+                    }
+                    DataTab.Text = strNewCollectionName;
+                    DataTab.Tag = strNewNodeTag;
+
+                    //Change trvsrvlst.SelectedNode
+                    ViewTabList.Add(strNewNodeData, ViewTabList[strNodeData]);
+                    ViewTabList.Remove(strNodeData);
+
+                    ViewInfoList.Add(strNewNodeData, ViewInfoList[strNodeData]);
+                    ViewInfoList.Remove(strNodeData);
+                }
                 DisableAllOpr();
-                SystemManager.SelectObjectTag = trvsrvlst.SelectedNode.Tag.ToString();
+                SystemManager.SelectObjectTag = strNewNodeTag;
+                trvsrvlst.SelectedNode.Text = strNewCollectionName;
+                trvsrvlst.SelectedNode.Tag = strNewNodeTag;
                 if (SystemManager.IsUseDefaultLanguage())
                 {
                     statusStripMain.Items[0].Text = "selected Collection:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
@@ -1380,6 +1418,7 @@ namespace MagicMongoDBTool
                     ViewTabList.Remove(strNodeData);
                 }
                 this.trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
+                DisableAllOpr();
             }
         }
         /// <summary>

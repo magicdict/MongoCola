@@ -163,61 +163,6 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// 数据集操作
-        /// </summary>
-        /// <param name="strSvrPathWithTag"></param>
-        /// <param name="collectionName"></param>
-        /// <param name="func"></param>
-        /// <param name="treeNode"></param>
-        /// <param name="newCollectionName"></param>
-        /// <returns></returns>
-        public static Boolean CollectionOpration(String strSvrPathWithTag, String collectionName, Oprcode func, TreeNode treeNode, String newCollectionName = "")
-        {
-            Boolean rtnResult = false;
-            MongoDatabase mongoDB = GetMongoDBBySvrPath(strSvrPathWithTag);
-
-            String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
-            String svrkey = strSvrPath.Split("/".ToCharArray())[0];
-            if (mongoDB != null)
-            {
-                switch (func)
-                {
-                    case Oprcode.Create:
-                        if (!mongoDB.CollectionExists(collectionName))
-                        {
-                            ///没有参数的CreateCollection，被高级CreateCollection取代了
-                            //mongoDB.CreateCollection(collectionName);
-                            //treeNode.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
-                            //rtnResult = true;
-                        }
-                        break;
-                    case Oprcode.Drop:
-                        if (mongoDB.CollectionExists(collectionName))
-                        {
-                            mongoDB.DropCollection(collectionName);
-                            treeNode.TreeView.Nodes.Remove(treeNode);
-                            rtnResult = true;
-                        }
-                        break;
-                    case Oprcode.Rename:
-                        if (!mongoDB.CollectionExists(newCollectionName))
-                        {
-                            mongoDB.RenameCollection(collectionName, newCollectionName);
-                            treeNode.Text = newCollectionName;
-                            //添加新节点
-                            treeNode.Parent.Nodes.Add(FillCollectionInfoToTreeNode(newCollectionName, mongoDB, svrkey));
-                            //删除旧节点
-                            treeNode.TreeView.Nodes.Remove(treeNode);
-                            rtnResult = true;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-            return rtnResult;
-        }
-        /// <summary>
         /// 带有参数的CreateOption
         /// </summary>
         /// <param name="strSvrPathWithTag"></param>
@@ -246,7 +191,13 @@ namespace MagicMongoDBTool.Module
                     COB.SetAutoIndexId(IsAutoIndexId);
                     COB.SetMaxDocuments(IsMaxDocument);
                     mongoDB.CreateCollection(collectionName, COB);
-                    treeNode.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
+                    foreach (TreeNode item in treeNode.Nodes)
+                    {
+                        if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
+                        {
+                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
+                        }
+                    }
                     rtnResult = true;
                 }
             }
@@ -271,7 +222,13 @@ namespace MagicMongoDBTool.Module
                 if (!mongoDB.CollectionExists(collectionName))
                 {
                     mongoDB.CreateCollection(collectionName);
-                    treeNode.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
+                    foreach (TreeNode item in treeNode.Nodes)
+                    {
+                        if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
+                        {
+                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
+                        }
+                    }
                     rtnResult = true;
                 }
             }
