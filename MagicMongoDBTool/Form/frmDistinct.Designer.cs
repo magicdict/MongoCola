@@ -37,6 +37,7 @@
             // panColumn
             // 
             this.panColumn.BackColor = System.Drawing.Color.Transparent;
+            this.panColumn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panColumn.Location = new System.Drawing.Point(13, 50);
             this.panColumn.Name = "panColumn";
             this.panColumn.Size = new System.Drawing.Size(343, 346);

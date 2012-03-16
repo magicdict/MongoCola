@@ -57,7 +57,7 @@ namespace MagicMongoDBTool
             this.radArbiters = new System.Windows.Forms.RadioButton();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.lblConnectionString = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabConnection = new System.Windows.Forms.TabControl();
             this.tabBasicInfo = new System.Windows.Forms.TabPage();
             this.numPort = new System.Windows.Forms.NumericUpDown();
             this.lblAttentionPassword = new System.Windows.Forms.Label();
@@ -74,7 +74,7 @@ namespace MagicMongoDBTool
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.grpReplset.SuspendLayout();
             this.grpServerRole.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabConnection.SuspendLayout();
             this.tabBasicInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numTimeOut)).BeginInit();
@@ -366,17 +366,16 @@ namespace MagicMongoDBTool
             this.lblConnectionString.TabIndex = 16;
             this.lblConnectionString.Text = "Use ConnectionString Directly:";
             // 
-            // tabControl1
+            // tabConnection
             // 
-            this.tabControl1.Controls.Add(this.tabBasicInfo);
-            this.tabControl1.Controls.Add(this.Replset);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(736, 324);
-            this.tabControl1.TabIndex = 0;
+            this.tabConnection.Controls.Add(this.tabBasicInfo);
+            this.tabConnection.Controls.Add(this.Replset);
+            this.tabConnection.Controls.Add(this.tabPage3);
+            this.tabConnection.Location = new System.Drawing.Point(12, 8);
+            this.tabConnection.Name = "tabConnection";
+            this.tabConnection.SelectedIndex = 0;
+            this.tabConnection.Size = new System.Drawing.Size(699, 324);
+            this.tabConnection.TabIndex = 0;
             // 
             // tabBasicInfo
             // 
@@ -402,7 +401,7 @@ namespace MagicMongoDBTool
             this.tabBasicInfo.Location = new System.Drawing.Point(4, 24);
             this.tabBasicInfo.Name = "tabBasicInfo";
             this.tabBasicInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBasicInfo.Size = new System.Drawing.Size(728, 296);
+            this.tabBasicInfo.Size = new System.Drawing.Size(691, 296);
             this.tabBasicInfo.TabIndex = 0;
             this.tabBasicInfo.Text = "BasicInfo";
             this.tabBasicInfo.UseVisualStyleBackColor = true;
@@ -490,7 +489,7 @@ namespace MagicMongoDBTool
             this.Replset.Location = new System.Drawing.Point(4, 24);
             this.Replset.Name = "Replset";
             this.Replset.Padding = new System.Windows.Forms.Padding(3);
-            this.Replset.Size = new System.Drawing.Size(728, 296);
+            this.Replset.Size = new System.Drawing.Size(691, 296);
             this.Replset.TabIndex = 1;
             this.Replset.Text = "Replset";
             this.Replset.UseVisualStyleBackColor = true;
@@ -550,7 +549,7 @@ namespace MagicMongoDBTool
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(728, 296);
+            this.tabPage3.Size = new System.Drawing.Size(691, 296);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "ServerRole";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -561,7 +560,7 @@ namespace MagicMongoDBTool
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(736, 379);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabConnection);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdAdd);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -575,7 +574,7 @@ namespace MagicMongoDBTool
             this.grpReplset.PerformLayout();
             this.grpServerRole.ResumeLayout(false);
             this.grpServerRole.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tabConnection.ResumeLayout(false);
             this.tabBasicInfo.ResumeLayout(false);
             this.tabBasicInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
@@ -619,7 +618,7 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.Button cmdInitReplset;
         private System.Windows.Forms.Label lblConnectionString;
         private System.Windows.Forms.TextBox txtConnectionString;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabConnection;
         private System.Windows.Forms.TabPage tabBasicInfo;
         private System.Windows.Forms.CheckBox chkSafeMode;
         private System.Windows.Forms.TabPage Replset;

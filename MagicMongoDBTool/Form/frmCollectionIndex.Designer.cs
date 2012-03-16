@@ -87,8 +87,7 @@ namespace MagicMongoDBTool
             // 
             this.tabIndexMgr.Controls.Add(this.tabCurrentIndex);
             this.tabIndexMgr.Controls.Add(this.tabIndexManager);
-            this.tabIndexMgr.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabIndexMgr.Location = new System.Drawing.Point(0, 0);
+            this.tabIndexMgr.Location = new System.Drawing.Point(15, 6);
             this.tabIndexMgr.Name = "tabIndexMgr";
             this.tabIndexMgr.SelectedIndex = 0;
             this.tabIndexMgr.Size = new System.Drawing.Size(654, 327);
@@ -228,7 +227,8 @@ namespace MagicMongoDBTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(654, 327);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(686, 344);
             this.Controls.Add(this.tabIndexMgr);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

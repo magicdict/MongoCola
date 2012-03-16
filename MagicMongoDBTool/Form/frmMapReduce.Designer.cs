@@ -111,6 +111,7 @@
             // 
             // trvResult
             // 
+            this.trvResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.trvResult.Location = new System.Drawing.Point(372, 52);
             this.trvResult.Name = "trvResult";
             this.trvResult.Size = new System.Drawing.Size(423, 434);
@@ -118,6 +119,7 @@
             // 
             // txtMapJs
             // 
+            this.txtMapJs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMapJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMapJs.Location = new System.Drawing.Point(16, 52);
             this.txtMapJs.Multiline = true;
@@ -128,6 +130,7 @@
             // 
             // txtReduceJs
             // 
+            this.txtReduceJs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtReduceJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReduceJs.Location = new System.Drawing.Point(16, 292);
             this.txtReduceJs.Multiline = true;
@@ -153,6 +156,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(807, 543);
             this.Controls.Add(this.cmbForMap);
             this.Controls.Add(this.cmbForReduce);

@@ -62,7 +62,7 @@
             // cmbForReduce
             // 
             this.cmbForReduce.FormattingEnabled = true;
-            this.cmbForReduce.Location = new System.Drawing.Point(112, 33);
+            this.cmbForReduce.Location = new System.Drawing.Point(95, 32);
             this.cmbForReduce.Name = "cmbForReduce";
             this.cmbForReduce.Size = new System.Drawing.Size(175, 23);
             this.cmbForReduce.TabIndex = 0;
@@ -70,9 +70,9 @@
             // cmdSaveReduceJs
             // 
             this.cmdSaveReduceJs.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSaveReduceJs.Location = new System.Drawing.Point(307, 29);
+            this.cmdSaveReduceJs.Location = new System.Drawing.Point(290, 28);
             this.cmdSaveReduceJs.Name = "cmdSaveReduceJs";
-            this.cmdSaveReduceJs.Size = new System.Drawing.Size(82, 35);
+            this.cmdSaveReduceJs.Size = new System.Drawing.Size(82, 28);
             this.cmdSaveReduceJs.TabIndex = 1;
             this.cmdSaveReduceJs.Text = "Save";
             this.cmdSaveReduceJs.UseVisualStyleBackColor = false;
@@ -82,7 +82,7 @@
             // 
             this.lblReduceFunction.AutoSize = true;
             this.lblReduceFunction.BackColor = System.Drawing.Color.Transparent;
-            this.lblReduceFunction.Location = new System.Drawing.Point(24, 43);
+            this.lblReduceFunction.Location = new System.Drawing.Point(24, 35);
             this.lblReduceFunction.Name = "lblReduceFunction";
             this.lblReduceFunction.Size = new System.Drawing.Size(65, 15);
             this.lblReduceFunction.TabIndex = 20;
@@ -90,8 +90,9 @@
             // 
             // txtReduceJs
             // 
+            this.txtReduceJs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtReduceJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReduceJs.Location = new System.Drawing.Point(20, 70);
+            this.txtReduceJs.Location = new System.Drawing.Point(12, 69);
             this.txtReduceJs.Multiline = true;
             this.txtReduceJs.Name = "txtReduceJs";
             this.txtReduceJs.Size = new System.Drawing.Size(487, 454);
@@ -111,8 +112,9 @@
             // 
             // txtfinalizeJs
             // 
+            this.txtfinalizeJs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtfinalizeJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtfinalizeJs.Location = new System.Drawing.Point(20, 61);
+            this.txtfinalizeJs.Location = new System.Drawing.Point(16, 61);
             this.txtfinalizeJs.Multiline = true;
             this.txtfinalizeJs.Name = "txtfinalizeJs";
             this.txtfinalizeJs.Size = new System.Drawing.Size(479, 463);
@@ -131,9 +133,9 @@
             // cmdSavefinalizeJs
             // 
             this.cmdSavefinalizeJs.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSavefinalizeJs.Location = new System.Drawing.Point(287, 23);
+            this.cmdSavefinalizeJs.Location = new System.Drawing.Point(287, 27);
             this.cmdSavefinalizeJs.Name = "cmdSavefinalizeJs";
-            this.cmdSavefinalizeJs.Size = new System.Drawing.Size(82, 35);
+            this.cmdSavefinalizeJs.Size = new System.Drawing.Size(82, 28);
             this.cmdSavefinalizeJs.TabIndex = 21;
             this.cmdSavefinalizeJs.Text = "Save";
             this.cmdSavefinalizeJs.UseVisualStyleBackColor = false;
@@ -160,19 +162,21 @@
             // panColumn
             // 
             this.panColumn.BackColor = System.Drawing.Color.White;
+            this.panColumn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panColumn.Location = new System.Drawing.Point(23, 32);
             this.panColumn.Name = "panColumn";
-            this.panColumn.Size = new System.Drawing.Size(502, 478);
+            this.panColumn.Size = new System.Drawing.Size(467, 478);
             this.panColumn.TabIndex = 28;
             // 
             // txtResult
             // 
+            this.txtResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtResult.Location = new System.Drawing.Point(22, 33);
+            this.txtResult.Location = new System.Drawing.Point(22, 32);
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResult.Size = new System.Drawing.Size(520, 505);
+            this.txtResult.Size = new System.Drawing.Size(468, 487);
             this.txtResult.TabIndex = 0;
             // 
             // lblAddInitField
@@ -187,17 +191,18 @@
             // 
             // panBsonEl
             // 
-            this.panBsonEl.Location = new System.Drawing.Point(14, 57);
+            this.panBsonEl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panBsonEl.Location = new System.Drawing.Point(24, 50);
             this.panBsonEl.Name = "panBsonEl";
-            this.panBsonEl.Size = new System.Drawing.Size(509, 455);
+            this.panBsonEl.Size = new System.Drawing.Size(466, 455);
             this.panBsonEl.TabIndex = 29;
             // 
             // cmdAddInitField
             // 
             this.cmdAddInitField.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddInitField.Location = new System.Drawing.Point(173, 13);
+            this.cmdAddInitField.Location = new System.Drawing.Point(117, 18);
             this.cmdAddInitField.Name = "cmdAddInitField";
-            this.cmdAddInitField.Size = new System.Drawing.Size(82, 31);
+            this.cmdAddInitField.Size = new System.Drawing.Size(82, 26);
             this.cmdAddInitField.TabIndex = 22;
             this.cmdAddInitField.Text = "Add";
             this.cmdAddInitField.UseVisualStyleBackColor = false;
@@ -220,11 +225,10 @@
             this.tabGroup.Controls.Add(this.tabGroupField);
             this.tabGroup.Controls.Add(this.tabInitialize);
             this.tabGroup.Controls.Add(this.tabResult);
-            this.tabGroup.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabGroup.Location = new System.Drawing.Point(0, 0);
+            this.tabGroup.Location = new System.Drawing.Point(12, 12);
             this.tabGroup.Name = "tabGroup";
             this.tabGroup.SelectedIndex = 0;
-            this.tabGroup.Size = new System.Drawing.Size(542, 576);
+            this.tabGroup.Size = new System.Drawing.Size(518, 564);
             this.tabGroup.TabIndex = 0;
             // 
             // tabReduce
@@ -236,7 +240,7 @@
             this.tabReduce.Location = new System.Drawing.Point(4, 24);
             this.tabReduce.Name = "tabReduce";
             this.tabReduce.Padding = new System.Windows.Forms.Padding(3);
-            this.tabReduce.Size = new System.Drawing.Size(534, 548);
+            this.tabReduce.Size = new System.Drawing.Size(510, 536);
             this.tabReduce.TabIndex = 0;
             this.tabReduce.Text = "Reduce";
             this.tabReduce.UseVisualStyleBackColor = true;
@@ -250,7 +254,7 @@
             this.tabFinalize.Location = new System.Drawing.Point(4, 24);
             this.tabFinalize.Name = "tabFinalize";
             this.tabFinalize.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFinalize.Size = new System.Drawing.Size(551, 548);
+            this.tabFinalize.Size = new System.Drawing.Size(510, 536);
             this.tabFinalize.TabIndex = 1;
             this.tabFinalize.Text = "Finalize";
             this.tabFinalize.UseVisualStyleBackColor = true;
@@ -262,7 +266,7 @@
             this.tabGroupField.Location = new System.Drawing.Point(4, 24);
             this.tabGroupField.Name = "tabGroupField";
             this.tabGroupField.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGroupField.Size = new System.Drawing.Size(551, 548);
+            this.tabGroupField.Size = new System.Drawing.Size(510, 536);
             this.tabGroupField.TabIndex = 2;
             this.tabGroupField.Text = "Group Fields";
             this.tabGroupField.UseVisualStyleBackColor = true;
@@ -275,7 +279,7 @@
             this.tabInitialize.Location = new System.Drawing.Point(4, 24);
             this.tabInitialize.Name = "tabInitialize";
             this.tabInitialize.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInitialize.Size = new System.Drawing.Size(551, 548);
+            this.tabInitialize.Size = new System.Drawing.Size(510, 536);
             this.tabInitialize.TabIndex = 3;
             this.tabInitialize.Text = "Init Fields";
             this.tabInitialize.UseVisualStyleBackColor = true;
@@ -287,7 +291,7 @@
             this.tabResult.Location = new System.Drawing.Point(4, 24);
             this.tabResult.Name = "tabResult";
             this.tabResult.Padding = new System.Windows.Forms.Padding(3);
-            this.tabResult.Size = new System.Drawing.Size(551, 548);
+            this.tabResult.Size = new System.Drawing.Size(510, 536);
             this.tabResult.TabIndex = 4;
             this.tabResult.Text = "Result";
             this.tabResult.UseVisualStyleBackColor = true;
@@ -295,7 +299,7 @@
             // cmdQuery
             // 
             this.cmdQuery.BackColor = System.Drawing.Color.Transparent;
-            this.cmdQuery.Location = new System.Drawing.Point(242, 582);
+            this.cmdQuery.Location = new System.Drawing.Point(253, 582);
             this.cmdQuery.Name = "cmdQuery";
             this.cmdQuery.Size = new System.Drawing.Size(117, 37);
             this.cmdQuery.TabIndex = 1;

@@ -10,6 +10,10 @@ MongoCola is free and open source.
 Release History
 ========================================================================
 Ver 1.10 2012/03/23
+System:
+	1.Set all popup form backcolor to white.
+	2.Add some Language Resource
+
 Main Form:
     1.DataView Refresh function
 	

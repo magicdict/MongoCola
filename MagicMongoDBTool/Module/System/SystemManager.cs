@@ -99,6 +99,7 @@ namespace MagicMongoDBTool.Module
         public static void OpenForm(Form mfrm)
         {
             mfrm.StartPosition = FormStartPosition.CenterParent;
+            mfrm.BackColor = System.Drawing.Color.White;
             mfrm.ShowDialog();
             mfrm.Close();
             mfrm.Dispose();

@@ -86,16 +86,17 @@
             // 
             this.tabCondition.Controls.Add(this.panFilter);
             this.tabCondition.Controls.Add(this.cmdAddCondition);
-            this.tabCondition.Location = new System.Drawing.Point(4, 22);
+            this.tabCondition.Location = new System.Drawing.Point(4, 24);
             this.tabCondition.Name = "tabCondition";
             this.tabCondition.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCondition.Size = new System.Drawing.Size(571, 440);
+            this.tabCondition.Size = new System.Drawing.Size(571, 438);
             this.tabCondition.TabIndex = 1;
             this.tabCondition.Text = "Condition";
             this.tabCondition.UseVisualStyleBackColor = true;
             // 
             // panFilter
             // 
+            this.panFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.panFilter.Location = new System.Drawing.Point(3, 3);
             this.panFilter.Name = "panFilter";
@@ -128,6 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(622, 554);
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.cmdLoad);
