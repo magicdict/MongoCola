@@ -159,6 +159,7 @@ namespace MagicMongoDBTool.UserController
                 case MongoDBHelper.COLLECTION_TAG:
                     ExpandAllStripButton.Visible = true;
                     CollapseAllStripButton.Visible = true;
+                    EditDocStripButton.Enabled = true;
                     CutStripButton.Visible = true;
                     CopyStripButton.Visible = true;
                     PasteStripButton.Visible = true;
@@ -205,8 +206,8 @@ namespace MagicMongoDBTool.UserController
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
             //数据导航
             SetDataNav();
-        } 
-        
+        }
+
         /// <summary>
         /// Is Need Refresh after the element is modify
         /// </summary>
@@ -424,7 +425,8 @@ namespace MagicMongoDBTool.UserController
                             {
                                 this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
                             }
-                            if (lstData.SelectedItems.Count == 1) {
+                            if (lstData.SelectedItems.Count == 1)
+                            {
                                 this.contextMenuStripMain.Items.Add(this.changePasswordToolStripMenuItem.Clone());
                             }
                             break;
@@ -491,11 +493,12 @@ namespace MagicMongoDBTool.UserController
                             }
                             break;
                         default:
-                            if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
+                            if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) && !SystemManager.GetCurrentCollection().IsCapped())
                             {
                                 //普通数据
                                 //在顶层的时候，允许添加元素,不允许删除元素和修改元素(删除选中记录)
                                 DelSelectRecordToolStripMenuItem.Enabled = true;
+                                DelSelectRecordToolStripButton.Enabled = true;
                                 AddElementToolStripMenuItem.Enabled = true;
                                 if (MongoDBHelper.CanPasteAsElement)
                                 {
@@ -506,6 +509,7 @@ namespace MagicMongoDBTool.UserController
                             else
                             {
                                 DelSelectRecordToolStripMenuItem.Enabled = false;
+                                DelSelectRecordToolStripButton.Enabled = false;
                             }
                             break;
                     }
@@ -530,7 +534,9 @@ namespace MagicMongoDBTool.UserController
                 case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
                 case MongoDBHelper.COLLECTION_NAME_USER:
                 default:
-                    if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) & !mDataViewInfo.IsReadOnly)
+                    if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) &&
+                        !mDataViewInfo.IsReadOnly &&
+                        !SystemManager.GetCurrentCollection().IsCapped())
                     {
                         //普通数据:允许添加元素,不允许删除元素
                         DropElementToolStripMenuItem.Enabled = true;
@@ -769,7 +775,7 @@ namespace MagicMongoDBTool.UserController
                 case Keys.F2:
                     if (this.ModifyElementToolStripMenuItem.Enabled)
                     {
-                        ModifyElementToolStripMenuItem_Click(sender,e);
+                        ModifyElementToolStripMenuItem_Click(sender, e);
                     }
                     break;
                 default:
@@ -786,16 +792,23 @@ namespace MagicMongoDBTool.UserController
         private void NewDocument()
         {
             BsonValue id = MongoDBHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), mDataViewInfo.IsSafeMode);
-            TreeNode newDoc = new TreeNode(SystemManager.GetCurrentCollection().Name + "[" + (SystemManager.GetCurrentCollection().Count()).ToString() + "]");
-            newDoc.Tag = id;
-            TreeNode newid = new TreeNode("_id:" + id.ToString());
-            newid.Tag = id;
-            newDoc.Nodes.Add(newid);
-            trvData.Nodes.Add(newDoc);
-            tabDataShower.SelectedIndex = 0;
-            trvData.SelectedNode = newid;
-            IsNeedRefresh = true;
-            RefreshStripButton_Click(null, null);
+            if (id != BsonNull.Value)
+            {
+                TreeNode newDoc = new TreeNode(SystemManager.GetCurrentCollection().Name + "[" + (SystemManager.GetCurrentCollection().Count()).ToString() + "]");
+                newDoc.Tag = id;
+                TreeNode newid = new TreeNode("_id:" + id.ToString());
+                newid.Tag = id;
+                newDoc.Nodes.Add(newid);
+                trvData.Nodes.Add(newDoc);
+                tabDataShower.SelectedIndex = 0;
+                trvData.SelectedNode = newid;
+                IsNeedRefresh = true;
+                RefreshStripButton_Click(null, null);
+            }
+            else
+            {
+                MyMessageBox.ShowMessage("Error", "New Document Error");
+            }
         }
         /// <summary>
         /// Delete Selected Documents
@@ -1289,6 +1302,6 @@ namespace MagicMongoDBTool.UserController
             RefreshStripButton_Click(sender, e);
         }
         #endregion
-        
+
     }
 }

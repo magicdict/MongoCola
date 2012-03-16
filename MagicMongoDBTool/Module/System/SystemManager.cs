@@ -31,10 +31,63 @@ namespace MagicMongoDBTool.Module
         /// 选择对象标签
         /// </summary>
         public static String SelectObjectTag = String.Empty;
-        ///// <summary>
-        ///// 当前数据视图信息
-        ///// </summary>
-        //public static MongoDBHelper.DataViewInfo CurrentDataViewInfo { set; get; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static String SelectTagType
+        {
+            get
+            {
+                return GetTagType(SelectObjectTag);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static String SelectTagData
+        {
+            get
+            {
+                return GetTagtData(SelectObjectTag);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static String GetTagType(String ObjectTag)
+        {
+            if (ObjectTag == String.Empty)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return ObjectTag.Split(":".ToCharArray())[0];
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static String GetTagtData(String ObjectTag)
+        {
+            if (ObjectTag == String.Empty)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                if (ObjectTag.Split(":".ToCharArray()).Length == 2)
+                {
+                    return ObjectTag.Split(":".ToCharArray())[1];
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
         /// <summary>
         /// 文字资源
         /// </summary>
@@ -165,7 +218,8 @@ namespace MagicMongoDBTool.Module
             {
                 MyMessageBox.ShowMessage("Exception", "Exception", ex.ToString(), true);
             }
-            else {
+            else
+            {
                 MyMessageBox.ShowMessage("Exception", Title, ex.ToString(), true);
             }
         }

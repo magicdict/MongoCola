@@ -241,8 +241,6 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void trvsrvlst_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-
-            String strNodeType = String.Empty;
             if (e.Node.ImageIndex != -1)
             {
                 statusStripMain.Items[0].Image = GetSystemIcon.MainTreeImage.Images[e.Node.ImageIndex];
@@ -253,8 +251,8 @@ namespace MagicMongoDBTool
             {
                 //选中节点的设置
                 this.trvsrvlst.SelectedNode = e.Node;
-                strNodeType = e.Node.Tag.ToString().Split(":".ToCharArray())[0];
-                String mongoSvrKey = e.Node.Tag.ToString().Split(":".ToCharArray())[1].Split("/".ToCharArray())[0];
+                String strNodeType = SystemManager.GetTagType(e.Node.Tag.ToString());
+                String mongoSvrKey = SystemManager.GetTagtData(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
                 config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
                 if (String.IsNullOrEmpty(config.UserName))
                 {
@@ -288,12 +286,11 @@ namespace MagicMongoDBTool
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         if (SystemManager.IsUseDefaultLanguage())
                         {
-                            statusStripMain.Items[0].Text = "Selected Server:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = "Selected Server:" + SystemManager.SelectTagData;
                         }
                         else
                         {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Server) +
-                                  ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Server) + ":" + SystemManager.SelectTagData;
                         }
                         this.DisconnectToolStripMenuItem.Enabled = true;
                         //解禁 创建数据库,关闭服务器
@@ -410,7 +407,7 @@ namespace MagicMongoDBTool
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
-                        statusStripMain.Items[0].Text = "Selected Server[Single Database]:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        statusStripMain.Items[0].Text = "Selected Server[Single Database]:" + SystemManager.SelectTagData;
                         break;
                     case MongoDBHelper.SERVICE_TAG_EXCEPTION:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
@@ -430,19 +427,18 @@ namespace MagicMongoDBTool
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
-                        statusStripMain.Items[0].Text = "Selected Server[Exception]:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        statusStripMain.Items[0].Text = "Selected Server[Exception]:" + SystemManager.SelectTagData;
                         break;
                     case MongoDBHelper.DATABASE_TAG:
                     case MongoDBHelper.SINGLE_DATABASE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         if (SystemManager.IsUseDefaultLanguage())
                         {
-                            statusStripMain.Items[0].Text = "Selected DataBase:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = "Selected DataBase:" + SystemManager.SelectTagData;
                         }
                         else
                         {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_DataBase) +
-                                  ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_DataBase) + ":" + SystemManager.SelectTagData;
                         }
                         //解禁 删除数据库 创建数据集
                         if (!MongoDBHelper.IsSystemDataBase(SystemManager.GetCurrentDataBase()))
@@ -543,12 +539,11 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.COLLECTION_TAG:
                         if (SystemManager.IsUseDefaultLanguage())
                         {
-                            statusStripMain.Items[0].Text = "Selected Collection:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = "Selected Collection:" + SystemManager.SelectTagData;
                         }
                         else
                         {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Collection) +
-                                  ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Collection) + ":" + SystemManager.SelectTagData;
                         }
                         //解禁 删除数据集
                         if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()))
@@ -636,34 +631,31 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.INDEX_TAG:
                         if (SystemManager.IsUseDefaultLanguage())
                         {
-                            statusStripMain.Items[0].Text = "Selected Index:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = "Selected Index:" + SystemManager.SelectTagData;
                         }
                         else
                         {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Index) +
-                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Index) + ":" + SystemManager.SelectTagData;
                         }
                         break;
                     case MongoDBHelper.INDEXES_TAG:
                         if (SystemManager.IsUseDefaultLanguage())
                         {
-                            statusStripMain.Items[0].Text = "Selected Index:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = "Selected Index:" + SystemManager.SelectTagData;
                         }
                         else
                         {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Indexes) +
-                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Indexes) + ":" + SystemManager.SelectTagData;
                         }
                         break;
                     case MongoDBHelper.USER_LIST_TAG:
                         if (SystemManager.IsUseDefaultLanguage())
                         {
-                            statusStripMain.Items[0].Text = "Selected UserList:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = "Selected UserList:" + SystemManager.SelectTagData;
                         }
                         else
                         {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_UserList) +
-                                 ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_UserList) + ":" + SystemManager.SelectTagData;
                         }
                         this.viewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -679,12 +671,11 @@ namespace MagicMongoDBTool
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         if (SystemManager.IsUseDefaultLanguage())
                         {
-                            statusStripMain.Items[0].Text = "Selected GFS:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = "Selected GFS:" + SystemManager.SelectTagData;
                         }
                         else
                         {
-                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_GFS) +
-                                ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_GFS) + ":" + SystemManager.SelectTagData;
                         }
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
@@ -709,7 +700,7 @@ namespace MagicMongoDBTool
                         statusStripMain.Items[0].Text = "Selected collection Javascript";
                         break;
                     case MongoDBHelper.JAVASCRIPT_DOC_TAG:
-                        statusStripMain.Items[0].Text = "Selected JavaScript:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        statusStripMain.Items[0].Text = "Selected JavaScript:" + SystemManager.SelectTagData;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.viewDataToolStripMenuItem.Enabled = true;
@@ -733,11 +724,12 @@ namespace MagicMongoDBTool
             //重新Reset工具栏
             SetToolBarEnabled();
         }
-
+        /// <summary>
+        /// ViewData
+        /// </summary>
         private void ViewDataObj()
         {
-            String strNodeType = SystemManager.SelectObjectTag.Split(":".ToCharArray())[0];
-            switch (strNodeType)
+            switch (SystemManager.SelectTagType)
             {
                 case MongoDBHelper.USER_LIST_TAG:
                     MongoDBHelper.InitDBUser();
@@ -761,16 +753,17 @@ namespace MagicMongoDBTool
                     break;
             }
         }
-
+        /// <summary>
+        /// View Js
+        /// </summary>
         private void ViewJavascript()
         {
-            String strNodeData = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
-            String[] DataList = strNodeData.Split("/".ToCharArray());
+            String[] DataList = SystemManager.SelectTagData.Split("/".ToCharArray());
             if (DataList.Length == 4)
             {
-                if (ViewTabList.ContainsKey(strNodeData))
+                if (ViewTabList.ContainsKey(SystemManager.SelectTagData))
                 {
-                    tabView.SelectTab(ViewTabList[strNodeData]);
+                    tabView.SelectTab(ViewTabList[SystemManager.SelectTagData]);
                 }
                 else
                 {
@@ -789,12 +782,12 @@ namespace MagicMongoDBTool
                     DataMenuItem.Click += new EventHandler(
                          (x, y) => { tabView.SelectTab(DataTab); }
                     );
-                    ViewTabList.Add(strNodeData, DataTab);
+                    ViewTabList.Add(SystemManager.SelectTagData, DataTab);
                     JsEditor.CloseTab += new System.EventHandler(
                         (x, y) =>
                         {
                             tabView.Controls.Remove(DataTab);
-                            ViewTabList.Remove(strNodeData);
+                            ViewTabList.Remove(SystemManager.SelectTagData);
                             JavaScriptStripMenuItem.DropDownItems.Remove(DataMenuItem);
                         }
                     );
@@ -813,8 +806,7 @@ namespace MagicMongoDBTool
         {
             //由于Collection 和 Document 都可以触发这个事件，所以，先把Tag以前的标题头去掉
             //Collectiong:XXXX 和 Document:XXXX 都统一成 XXXX
-            String DataType = SystemManager.SelectObjectTag.Split(":".ToCharArray())[0];
-            String DataKey = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            String DataKey = SystemManager.SelectTagData;
             if (ViewTabList.ContainsKey(DataKey))
             {
                 tabView.SelectTab(ViewTabList[DataKey]);
@@ -1167,7 +1159,7 @@ namespace MagicMongoDBTool
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
-                String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                String strPath = SystemManager.SelectTagData;
                 String strDBName = strPath.Split("/".ToCharArray())[1];
                 if (trvsrvlst.SelectedNode == null)
                 {
@@ -1265,7 +1257,8 @@ namespace MagicMongoDBTool
             String strJsName = MyMessageBox.ShowInput("pls Input Javascript Name", "Save Javascript");
             if (strJsName != String.Empty)
             {
-                if (MongoDBHelper.IsExistJs(strJsName))
+                MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
+                if (MongoDBHelper.IsExistByKey(jsCol, strJsName))
                 {
                     MyMessageBox.ShowMessage("Error", "javascript is already exist");
                 }
@@ -1788,6 +1781,7 @@ namespace MagicMongoDBTool
             strThanks += "感谢10gen的C# Driver开发者的技术支持" + System.Environment.NewLine;
             strThanks += "感谢Dragon同志的测试和代码规范化" + System.Environment.NewLine;
             strThanks += "感谢MoLing同志的国际化" + System.Environment.NewLine;
+            strThanks += "Thanks Robert Stam for C# driver support" + System.Environment.NewLine;
             MyMessageBox.ShowMessage("Thanks", "MagicCola",
                                      MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile),
                                      strThanks);

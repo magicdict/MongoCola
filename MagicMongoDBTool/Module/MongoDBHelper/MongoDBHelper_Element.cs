@@ -33,6 +33,15 @@ namespace MagicMongoDBTool.Module
             get { return (_ClipElement != null && _IsElementClip); }
         }
 
+        //http://www.mongodb.org/display/DOCS/Capped+Collections#CappedCollections-UsageandRestrictions
+        //Usage and Restrictions Of capped collection.
+        //You may insert new documents in the capped collection.
+        //You may update the existing documents in the collection. However, the documents must not grow in size. If they do, the update will fail. Note if you are performing updates, you will likely want to declare an appropriate index (given there is no _id index for capped collections by default).
+        //The database does not allow deleting documents from a capped collection. Use the drop() method to remove all rows from the collection. (After the drop you must explicitly recreate the collection.)
+        //Capped collection are not shard-able.
+
+
+
         /// <summary>
         /// Paste
         /// </summary>
@@ -52,9 +61,16 @@ namespace MagicMongoDBTool.Module
                     return ex.Message;
                 }
             }
-            SystemManager.GetCurrentCollection().Save(BaseDoc);
+            if (!SystemManager.GetCurrentCollection().IsCapped())
+            {
+                SystemManager.GetCurrentCollection().Save(BaseDoc);
+            }
             return String.Empty;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ElementPath"></param>
         public static void PasteValue(String ElementPath)
         {
             BsonDocument BaseDoc = SystemManager.CurrentDocument;
@@ -63,7 +79,10 @@ namespace MagicMongoDBTool.Module
             {
                 t.AsBsonArray.Insert(t.AsBsonArray.Count, (BsonValue)_ClipElement);
             }
-            SystemManager.GetCurrentCollection().Save(BaseDoc);
+            if (!SystemManager.GetCurrentCollection().IsCapped())
+            {
+                SystemManager.GetCurrentCollection().Save(BaseDoc);
+            }
         }
         /// <summary>
         /// Cut Element
@@ -111,6 +130,7 @@ namespace MagicMongoDBTool.Module
         public static String AddElement(String ElementPath, BsonElement AddElement)
         {
             BsonDocument BaseDoc = SystemManager.CurrentDocument;
+            SafeModeResult rtn;
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonDocument)
             {
@@ -123,7 +143,10 @@ namespace MagicMongoDBTool.Module
                     return ex.Message;
                 }
             }
-            SystemManager.GetCurrentCollection().Save(BaseDoc);
+            if (!SystemManager.GetCurrentCollection().IsCapped())
+            {
+                rtn = SystemManager.GetCurrentCollection().Save(BaseDoc);
+            }
             return String.Empty;
         }
         /// <summary>
@@ -139,7 +162,10 @@ namespace MagicMongoDBTool.Module
             {
                 t.AsBsonArray.Insert(t.AsBsonArray.Count, AddValue);
             }
-            SystemManager.GetCurrentCollection().Save(BaseDoc);
+            if (!SystemManager.GetCurrentCollection().IsCapped())
+            {
+                SystemManager.GetCurrentCollection().Save(BaseDoc);
+            }
         }
 
         /// <summary>
@@ -170,7 +196,10 @@ namespace MagicMongoDBTool.Module
             {
                 t.AsBsonArray.RemoveAt(ValueIndex);
             }
-            SystemManager.GetCurrentCollection().Save(BaseDoc);
+            if (!SystemManager.GetCurrentCollection().IsCapped())
+            {
+                SystemManager.GetCurrentCollection().Save(BaseDoc);
+            }
         }
         /// <summary>
         /// Modify Element
@@ -187,7 +216,10 @@ namespace MagicMongoDBTool.Module
             {
                 t.AsBsonDocument.GetElement(El.Name).Value = NewValue;
             }
-            SystemManager.GetCurrentCollection().Save(BaseDoc);
+            if (!SystemManager.GetCurrentCollection().IsCapped())
+            {
+                SystemManager.GetCurrentCollection().Save(BaseDoc);
+            }
         }
         /// <summary>
         /// Modify A Value of Array
@@ -204,7 +236,10 @@ namespace MagicMongoDBTool.Module
             {
                 t.AsBsonArray[ValueIndex] = NewValue;
             }
-            SystemManager.GetCurrentCollection().Save(BaseDoc);
+            if (!SystemManager.GetCurrentCollection().IsCapped())
+            {
+                SystemManager.GetCurrentCollection().Save(BaseDoc);
+            }
         }
 
 

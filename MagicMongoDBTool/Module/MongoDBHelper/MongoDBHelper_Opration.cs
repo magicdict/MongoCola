@@ -67,7 +67,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="mongoCol"></param>
         /// <returns></returns>
-        public static Boolean IsSystemCollection(String mongoDBName,String mongoColName)
+        public static Boolean IsSystemCollection(String mongoDBName, String mongoColName)
         {
             //系统
             if (mongoColName.StartsWith("system."))
@@ -352,32 +352,39 @@ namespace MagicMongoDBTool.Module
             }
             return false;
         }
+        /// <summary>
+        /// Save Edited Javascript
+        /// </summary>
+        /// <param name="jsName"></param>
+        /// <param name="jsCode"></param>
+        /// <returns></returns>
         public static Boolean SaveEditorJavascript(String jsName, String jsCode)
         {
             //标准的JS库格式未知
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (IsExistByKey(jsCol, jsName))
             {
-                DropDocument(jsCol,(BsonString)jsName);
-                jsCol.Insert<BsonDocument>(new BsonDocument().Add("_id", jsName).Add("value", jsCode));
-                return true;
+                if (DropDocument(jsCol, (BsonString)jsName, "_id"))
+                {
+                    jsCol.Insert<BsonDocument>(new BsonDocument().Add("_id", jsName).Add("value", jsCode));
+                    return true;
+                }
             }
             return false;
         }
+        /// <summary>
+        /// Delete Javascript Collection Document
+        /// </summary>
+        /// <param name="jsName"></param>
+        /// <returns></returns>
         public static Boolean DelJavascript(String jsName)
         {
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (MongoDBHelper.IsExistByKey(jsCol, jsName))
             {
-                MongoDBHelper.DropDocument(jsCol, (BsonString)jsName);
-                return true;
+                return MongoDBHelper.DropDocument(jsCol, (BsonString)jsName, "_id");
             }
             return false;
-        }
-        public static Boolean IsExistJs(String jsName)
-        {
-            MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
-            return IsExistByKey(jsCol, jsName);
         }
         /// <summary>
         /// 获得JS代码
@@ -400,11 +407,25 @@ namespace MagicMongoDBTool.Module
         /// <param name="strKey"></param>
         /// <param name="keyField"></param>
         /// <returns></returns>
-        public static Boolean DropDocument(MongoCollection mongoCol, object strKey, String keyField = "_id")
+        public static Boolean DropDocument(MongoCollection mongoCol, object strKey, String keyField, Boolean SafeMode = false)
         {
             if (IsExistByKey(mongoCol, (BsonValue)strKey, keyField))
             {
-                mongoCol.Remove(Query.EQ(keyField, (BsonValue)strKey));
+                try
+                {
+                    if (SafeMode)
+                    {
+                        mongoCol.Remove(Query.EQ(keyField, (BsonValue)strKey), new SafeMode(true));
+                    }
+                    else
+                    {
+                        mongoCol.Remove(Query.EQ(keyField, (BsonValue)strKey));
+                    }
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
             return true;
         }
@@ -418,9 +439,23 @@ namespace MagicMongoDBTool.Module
             //不支持中文 JIRA ticket is created : SERVER-4412 
             //collection names are limited to 121 bytes after converting to UTF-8. 
             BsonDocument document = new BsonDocument();
-            mongoCol.Insert<BsonDocument>(document, new SafeMode(safeMode));
-            return document.GetElement("_id").Value;
+            if (safeMode)
+            {
+                try
+                {
+                    mongoCol.Insert<BsonDocument>(document, new SafeMode(true));
+                    return document.GetElement("_id").Value;
+                }
+                catch (Exception)
+                {
+                    return BsonNull.Value;
+                }
+            }
+            else
+            {
+                mongoCol.Insert<BsonDocument>(document);
+                return document.GetElement("_id").Value;
+            }
         }
-
     }
 }
