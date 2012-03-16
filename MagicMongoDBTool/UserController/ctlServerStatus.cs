@@ -100,13 +100,14 @@ namespace MagicMongoDBTool.UserController
             switch (e.Column)
             {
                 case 0:
+                case 6:
                     _lvwCollectionStatusColumnSorter.CompareMethod = MongoDBHelper.lvwColumnSorter.SortMethod.StringCompare;
                     break;
                 case 2:
                 case 3:
                 case 4:
                 case 5:
-                case 6:
+                case 8:
                     _lvwCollectionStatusColumnSorter.CompareMethod = MongoDBHelper.lvwColumnSorter.SortMethod.SizeCompare;
                     break;
                 default:
