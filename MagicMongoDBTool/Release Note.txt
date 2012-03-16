@@ -16,9 +16,15 @@ System:
 
 Main Form:
     1.DataView Refresh function
-	
+
+Status Control:
+	1.Fixed Sort Bug at Collection Status
+
+DataView Control:
+	1.Fixed "Open File in Editor" can't be use after DataView is refreshed.
+		
 Connection List Form:
-    1.Fix the bug if there is no connection is selected,the form can't close
+    1.Fix the bug if there is no connection is selected,the form can't close by click Ok button
 	2.Change the command Text "Cancel" to "close"
 
 ========================================================================

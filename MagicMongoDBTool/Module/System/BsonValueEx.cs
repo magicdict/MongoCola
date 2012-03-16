@@ -12,6 +12,8 @@ namespace MagicMongoDBTool.Module
     [Serializable()]
     public class BsonValueEx
     {
+        //TODO:Check the new driver if the function is ready.
+
         /// <summary>
         /// 类型
         /// </summary>
@@ -32,7 +34,10 @@ namespace MagicMongoDBTool.Module
         /// Boolean
         /// </summary>
         public Boolean mBsonBoolean;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<String> GetBasicTypeList(){
             List<String> typelst = new List<String>();
             typelst.Add("BsonString");

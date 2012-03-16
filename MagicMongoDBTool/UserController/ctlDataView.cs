@@ -1275,7 +1275,10 @@ namespace MagicMongoDBTool.UserController
             mDataViewInfo.SkipCnt = 0;
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
             SetDataNav();
-            this.EditDocStripButton.Enabled = false;
+            if (strNodeType != MongoDBHelper.COLLECTION_TAG)
+            {
+                this.EditDocStripButton.Enabled = false;
+            }
             this.DelSelectRecordToolStripButton.Enabled = false;
             IsNeedRefresh = false;
         }
