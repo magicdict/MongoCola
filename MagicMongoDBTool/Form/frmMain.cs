@@ -1269,7 +1269,7 @@ namespace MagicMongoDBTool
                         TreeNode jsNode = new TreeNode(strJsName);
                         jsNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc;
                         jsNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc;
-                        String jsTag = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                        String jsTag = SystemManager.SelectTagData;
                         jsNode.Tag = MongoDBHelper.JAVASCRIPT_DOC_TAG + ":" + jsTag + "/" + strJsName;
                         trvsrvlst.SelectedNode.Nodes.Add(jsNode);
                         trvsrvlst.SelectedNode = jsNode;
@@ -1299,11 +1299,11 @@ namespace MagicMongoDBTool
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
-                String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                String strPath = SystemManager.SelectTagData;
                 String strCollection = strPath.Split("/".ToCharArray())[2];
                 if (SystemManager.GetCurrentDataBase().DropCollection(trvsrvlst.SelectedNode.Text).Ok)
                 {
-                    String strNodeData = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                    String strNodeData = SystemManager.SelectTagData;
                     if (ViewTabList.ContainsKey(strNodeData))
                     {
                         TabPage DataTab = ViewTabList[strNodeData];
@@ -1331,7 +1331,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            String strPath = SystemManager.SelectTagData;
             String strCollection = strPath.Split("/".ToCharArray())[2];
             String strNewCollectionName = String.Empty;
             if (SystemManager.IsUseDefaultLanguage())
@@ -1345,10 +1345,10 @@ namespace MagicMongoDBTool
             }
             if (!String.IsNullOrEmpty(strNewCollectionName) && SystemManager.GetCurrentDataBase().RenameCollection(trvsrvlst.SelectedNode.Text, strNewCollectionName).Ok)
             {
-                String strNodeData = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                String strNodeData = SystemManager.SelectTagData;
                 String strNewNodeTag = SystemManager.SelectObjectTag.Substring(0, SystemManager.SelectObjectTag.Length - trvsrvlst.SelectedNode.Text.Length);
                 strNewNodeTag += strNewCollectionName;
-                String strNewNodeData = strNewNodeTag.Split(":".ToCharArray())[1];
+                String strNewNodeData = SystemManager.GetTagtData(strNewNodeTag);
                 if (ViewTabList.ContainsKey(strNodeData))
                 {
                     TabPage DataTab = ViewTabList[strNodeData];
@@ -1377,12 +1377,12 @@ namespace MagicMongoDBTool
                 trvsrvlst.SelectedNode.Tag = strNewNodeTag;
                 if (SystemManager.IsUseDefaultLanguage())
                 {
-                    statusStripMain.Items[0].Text = "selected Collection:" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                    statusStripMain.Items[0].Text = "selected Collection:" + SystemManager.SelectTagData;
                 }
                 else
                 {
                     statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Collection) +
-                          ":" + SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                          ":" + SystemManager.SelectTagData;
                 }
             }
         }
@@ -1422,7 +1422,7 @@ namespace MagicMongoDBTool
         {
             if (MongoDBHelper.DelJavascript(trvsrvlst.SelectedNode.Text))
             {
-                String strNodeData = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+                String strNodeData = SystemManager.SelectTagData;
                 if (ViewTabList.ContainsKey(strNodeData))
                 {
                     TabPage DataTab = ViewTabList[strNodeData];
@@ -1693,7 +1693,7 @@ namespace MagicMongoDBTool
         private void countToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataFilter Query = new DataFilter();
-            String ColPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            String ColPath = SystemManager.SelectTagData;
             Boolean IsUseFilter = false;
             if (ViewInfoList.ContainsKey(ColPath))
             {
@@ -1721,7 +1721,7 @@ namespace MagicMongoDBTool
         private void distinctToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataFilter Query = new DataFilter();
-            String ColPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            String ColPath = SystemManager.SelectTagData;
             Boolean IsUseFilter = false;
             if (ViewInfoList.ContainsKey(ColPath))
             {
@@ -1738,7 +1738,7 @@ namespace MagicMongoDBTool
         private void groupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataFilter Query = new DataFilter();
-            String ColPath = SystemManager.SelectObjectTag.Split(":".ToCharArray())[1];
+            String ColPath = SystemManager.SelectTagData;
             Boolean IsUseFilter = false;
             if (ViewInfoList.ContainsKey(ColPath))
             {

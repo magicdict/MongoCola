@@ -99,7 +99,7 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
-        /// 
+        /// Command Complete Event
         /// </summary>
         public static EventHandler<RunCommandEventArgs> RunCommandComplete;
         /// <summary>
@@ -110,7 +110,6 @@ namespace MagicMongoDBTool.Module
         {
             e.Raise(null, ref RunCommandComplete);
         }
-
         /// <summary>
         /// 当前对象的MONGO命令
         /// </summary>

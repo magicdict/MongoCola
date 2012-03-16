@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
@@ -21,7 +16,7 @@ namespace MagicMongoDBTool
         private void frmStatus_Load(object sender, EventArgs e)
         {
 
-            String strType = SystemManager.SelectObjectTag.Split(":".ToCharArray())[0];
+            String strType = SystemManager.SelectTagType;
             List<BsonDocument> SrvDocList = new List<BsonDocument>();
             BsonDocument cr;
             switch (strType)
