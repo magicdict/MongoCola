@@ -121,7 +121,7 @@
             <td>
                 <font size="3" color="black">Thanks MoLing for help me correct this document.
                     <br />
-                    Last Editor：2012-03-10<br />
+                    Last Editor：2012-03-16<br />
                     <br />
                 </font>
             </td>
@@ -470,24 +470,37 @@ Ver 1.01 2011/12/27
         <tr>
             <td />
             <td>
-                <font size="3">This function can help you monitor the status of server.You can sort
-                    the data by click the columnheader.
+                <font size="3">This function can help you monitor the status of server.You can sort the data by click the columnheader.
                     <ul>
-                        <li>Menu: Management -> Status</li>
+                        <li>You can display or not display the Status View by click Mainmeun:View -> Status</li>
+                    </ul>
+                    <img src="images/Overview.PNG" alt="" />
+                    
+                    <ul>
+                        <li>Menu: Select the server node right click menu -> Status</li>
                     </ul>
                     <img src="images/StatusServer.PNG" alt="" />
-                    <br />
+                    <br /><br />
+
+                    <ul>
+                        <li>Menu: Select the Database node right click menu -> Status</li>
+                    </ul>
                     <img src="images/StatusDB.PNG" alt="" />
-                    <br />
+                    <br /><br />
+
+                    <ul>
+                        <li>Menu: Select the Collection node right click menu -> Status</li>
+                    </ul>
                     <img src="images/StatusCollection.PNG" alt="" />
-                    <br />
-                    <img src="images/StatusCurrentOp.PNG" alt="" />
+                    <br /><br />
+
+<!--                    <img src="images/StatusCurrentOp.PNG" alt="" />
                     <br />
                     <font color="red"><b>Current Operation fresh 1 time per second.<br />
                         Server Status need to be refreshed manually</b></font>
                     <br />
                     <br />
-                </font>
+-->                </font>                
             </td>
         </tr>
         <tr>
@@ -507,6 +520,28 @@ Ver 1.01 2011/12/27
                     </ul>
                     <font color="red"><b>This function will completely shut down the server!<br />
                     </b></font>
+                    <br />
+                    <br />
+                </font>
+            </td>
+        </tr>
+                <tr>
+            <td align="center">
+                <font size="3" color="black"><b>Profilling Lever</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">You can set profilling Level for database
+                    <ul>
+                        <li>Menu: Operation -> Data -> Profilling Lever</li>
+                        <li>Contextmenu: Right click the Database treenode to show contextmenu,click the Profilling Lever menuitem</li>
+                    </ul>
+                    <img src="images/Profile.PNG" alt=""/>
+                    <br /><br />
+                    <b>This function will create system.profile collection automaticlly!<br /></b>
                     <br />
                     <br />
                 </font>
@@ -549,7 +584,9 @@ Ver 1.01 2011/12/27
                             Collection" menuitem</li>
                     </ul>
                     <img src="images/NewCollectionInput.PNG" alt="" />
-                    <br />
+                    <br /><br />
+                    <a href="http://www.mongodb.org/display/DOCS/Capped+Collections#CappedCollections-UsageandRestrictions">Pay attention to the Usage and Restrictions of Capped Collection</a>
+                    
                     <br />
                 </font>
             </td>
