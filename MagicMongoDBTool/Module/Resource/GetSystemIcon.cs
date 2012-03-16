@@ -13,7 +13,7 @@ namespace MagicMongoDBTool.Module
     /// </summary>
     public static class GetSystemIcon
     {
-#if !MONO
+
         [DllImport("gdi32.dll")]
         public static extern Boolean DeleteObject(IntPtr hObject);
         /// <summary>
@@ -29,7 +29,7 @@ namespace MagicMongoDBTool.Module
             DeleteObject(h);// 释放IntPtr
             return icon;
         }
-#endif
+
         /// <summary>
         /// 扩展名和图片下标关联
         /// </summary>
@@ -56,8 +56,8 @@ namespace MagicMongoDBTool.Module
             DBKey = 6,
             KeyInfo = 7,
             UserIcon = 8,
-            CollectionList =9,
-            JavaScriptList =10,
+            CollectionList = 9,
+            JavaScriptList = 10,
             GFS = 11,
             JsDoc = 12,
             SystemCol = 13,
@@ -94,7 +94,8 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 
         /// </summary>
-        public static void InitTabViewImage() {
+        public static void InitTabViewImage()
+        {
             TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.Monitor);
             TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.JavaScriptList);
             TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.Collection);
@@ -114,17 +115,20 @@ namespace MagicMongoDBTool.Module
             }
             else
             {
-#if !MONO
-                IconImagelist.Images.Add(GetIconByFileType(GetIcon, isLarge));
-#else
-                //TODO:Linux
-#endif
+                if (!SystemManager.MONO_MODE)
+                {
+                    IconImagelist.Images.Add(GetIconByFileType(GetIcon, isLarge));
+                }
+                else
+                {
+                    //TODO:Linux
+                }
                 IconList.Add(GetIcon, IconImagelist.Images.Count - 1);
                 return IconImagelist.Images.Count - 1;
             }
         }
 
-#if !MONO
+
         /// <summary>
         /// 依据文件名读取图标，若指定文件不存在，则返回空值。
         /// </summary>
@@ -212,11 +216,11 @@ namespace MagicMongoDBTool.Module
             catch { }
             return resultIcon;
         }
-#endif
-
     }
 
-#if !MONO
+    /// <summary>
+    /// 
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SHFILEINFO
     {
@@ -228,6 +232,7 @@ namespace MagicMongoDBTool.Module
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
         public String szTypeName;
     };
+
     ///
     /// 定义调用的API方法
     ///
@@ -242,6 +247,6 @@ namespace MagicMongoDBTool.Module
         [DllImport("shell32.dll")]
         public static extern uint ExtractIconEx(String lpszFile, int nIconIndex, int[] phiconLarge, int[] phiconSmall, uint nIcons);
     }
-#endif
 }
+
 

@@ -305,9 +305,10 @@ namespace MagicMongoDBTool
                         if (!config.IsReadOnly)
                         {
                             this.CreateMongoDBToolStripMenuItem.Enabled = true;
-#if !MONO
-                            this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
-#endif
+                            if (!SystemManager.MONO_MODE)
+                            {
+                                this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
+                            }
                             this.AddUserToAdminToolStripMenuItem.Enabled = true;
                             if (!(SystemManager.GetCurrentService().Instance.IsPrimary))
                             {
@@ -338,57 +339,64 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-#if MONO
-                            //悲催MONO不支持
-                            ToolStripMenuItem t1 = this.CreateMongoDBToolStripMenuItem.Clone();
-                            t1.Click += new EventHandler(CreateMongoDBToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t1);
+                            if (SystemManager.MONO_MODE)
+                            {
+                                //悲催MONO不支持
+                                ToolStripMenuItem t1 = this.CreateMongoDBToolStripMenuItem.Clone();
+                                t1.Click += new EventHandler(CreateMongoDBToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t1);
 
-                            ToolStripMenuItem t2 = this.AddUserToAdminToolStripMenuItem.Clone();
-                            t2.Click += new EventHandler(AddUserToAdminToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t2);
+                                ToolStripMenuItem t2 = this.AddUserToAdminToolStripMenuItem.Clone();
+                                t2.Click += new EventHandler(AddUserToAdminToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t2);
 
-                            ToolStripMenuItem t3 = this.RestoreMongoToolStripMenuItem.Clone();
-                            t3.Click += new EventHandler(RestoreMongoToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t3);
+                                ToolStripMenuItem t3 = this.RestoreMongoToolStripMenuItem.Clone();
+                                t3.Click += new EventHandler(RestoreMongoToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t3);
 
-                            ToolStripMenuItem t4 = this.ReplicaSetToolStripMenuItem.Clone();
-                            t4.Click += new EventHandler(ReplicaSetToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t4);
+                                ToolStripMenuItem t4 = this.ReplicaSetToolStripMenuItem.Clone();
+                                t4.Click += new EventHandler(ReplicaSetToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t4);
 
-                            ToolStripMenuItem t5 = this.ShardingConfigToolStripMenuItem.Clone();
-                            t5.Click += new EventHandler(ShardingConfigToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t5);
+                                ToolStripMenuItem t5 = this.ShardingConfigToolStripMenuItem.Clone();
+                                t5.Click += new EventHandler(ShardingConfigToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t5);
 
-                            ToolStripMenuItem t51 = this.slaveResyncToolStripMenuItem.Clone();
-                            t51.Click += new EventHandler(slaveResyncToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t51);
+                                ToolStripMenuItem t6 = this.slaveResyncToolStripMenuItem.Clone();
+                                t6.Click += new EventHandler(slaveResyncToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t6);
 
-                            ToolStripMenuItem t6 = this.DisconnectToolStripMenuItem.Clone();
-                            t6.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t6);
+                                ToolStripMenuItem t7 = this.DisconnectToolStripMenuItem.Clone();
+                                t7.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t7);
 
-                            ToolStripMenuItem t7 = this.ShutDownToolStripMenuItem.Clone();
-                            t7.Click += new EventHandler(ShutDownToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t7);
+                                ToolStripMenuItem t8 = this.ShutDownToolStripMenuItem.Clone();
+                                t8.Click += new EventHandler(ShutDownToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t8);
 
-                            ToolStripMenuItem t8 = this.SvrPropertyToolStripMenuItem.Clone();
-                            t8.Click += new EventHandler(SvrPropertyToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t8);
+                                ToolStripMenuItem t9 = this.ServePropertyToolStripMenuItem.Clone();
+                                t9.Click += new EventHandler(ServePropertyToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t9);
 
-#else
-                            this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.slaveResyncToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ServePropertyToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.SvrStatusToolStripMenuItem.Clone());
-#endif
+                                ToolStripMenuItem t10 = this.SvrStatusToolStripMenuItem.Clone();
+                                t10.Click += new EventHandler(SvrStatusToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t10);
+
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.slaveResyncToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ServePropertyToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.SvrStatusToolStripMenuItem.Clone());
+                            }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -400,18 +408,21 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-#if MONO
-                            //悲催MONO不支持
-                            ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
-                            t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t1);
-                            ToolStripMenuItem t8 = this.SvrPropertyToolStripMenuItem.Clone();
-                            t8.Click += new EventHandler(SvrPropertyToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t8);
-#else
-                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.SvrStatusToolStripMenuItem.Clone());
-#endif
+                            if (SystemManager.MONO_MODE)
+                            {
+                                //悲催MONO不支持
+                                ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
+                                t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t1);
+                                ToolStripMenuItem t2 = this.SvrStatusToolStripMenuItem.Clone();
+                                t2.Click += new EventHandler(SvrStatusToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t2);
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.SvrStatusToolStripMenuItem.Clone());
+                            }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -424,14 +435,17 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-#if MONO
-                            //悲催MONO不支持
-                            ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
-                            t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t1);
-#else
-                            this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
-#endif
+                            if (SystemManager.MONO_MODE)
+                            {
+                                //悲催MONO不支持
+                                ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
+                                t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t1);
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+                            }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -478,60 +492,73 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-#if MONO
-                            //悲催MONO不支持
-                            ToolStripMenuItem t0 = this.DelMongoDBToolStripMenuItem.Clone();
-                            t0.Click += new EventHandler(DelMongoDBToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t0);
+                            if (SystemManager.MONO_MODE)
+                            {
+                                //悲催MONO不支持
+                                ToolStripMenuItem t1 = this.DelMongoDBToolStripMenuItem.Clone();
+                                t1.Click += new EventHandler(DelMongoDBToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t1);
 
-                            ToolStripMenuItem t1 = this.CreateMongoCollectionToolStripMenuItem.Clone();
-                            t1.Click += new EventHandler(CreateMongoCollectionToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t1);
+                                ToolStripMenuItem t2 = this.CreateMongoCollectionToolStripMenuItem.Clone();
+                                t2.Click += new EventHandler(CreateMongoCollectionToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t2);
 
-                            ToolStripMenuItem t2 = this.AddUserToolStripMenuItem.Clone();
-                            t2.Click += new EventHandler(AddUserToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t2);
+                                ToolStripMenuItem t3 = this.AddUserToolStripMenuItem.Clone();
+                                t3.Click += new EventHandler(AddUserToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t3);
 
-                            ToolStripMenuItem t3 = this.evalJSToolStripMenuItem.Clone();
-                            t3.Click += new EventHandler(evalJSToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t3);
+                                ToolStripMenuItem t4 = this.evalJSToolStripMenuItem.Clone();
+                                t4.Click += new EventHandler(evalJSToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t4);
 
-                            ToolStripMenuItem t31 = this.RepairDBToolStripMenuItem.Clone();
-                            t31.Click += new EventHandler(RepairDBToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t31);
-                            
+                                ToolStripMenuItem t5 = this.RepairDBToolStripMenuItem.Clone();
+                                t5.Click += new EventHandler(RepairDBToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t5);
 
-                            ToolStripMenuItem t4 = this.InitGFSToolStripMenuItem.Clone();
-                            t4.Click += new EventHandler(InitGFSToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t4);
 
-                            ToolStripMenuItem t5 = this.DumpDatabaseToolStripMenuItem.Clone();
-                            t5.Click += new EventHandler(DumpDatabaseToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t5);
+                                ToolStripMenuItem t6 = this.InitGFSToolStripMenuItem.Clone();
+                                t6.Click += new EventHandler(InitGFSToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t6);
 
-                            ToolStripMenuItem t6 = this.RestoreMongoToolStripMenuItem.Clone();
-                            t6.Click += new EventHandler(RestoreMongoToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t6);
+                                ToolStripMenuItem t7 = this.DumpDatabaseToolStripMenuItem.Clone();
+                                t7.Click += new EventHandler(DumpDatabaseToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t7);
 
-                            ToolStripMenuItem t7 = this.ConvertSqlToolStripMenuItem.Clone();
-                            t7.Click += new EventHandler(ConvertSqlToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t7);
+                                ToolStripMenuItem t8 = this.RestoreMongoToolStripMenuItem.Clone();
+                                t8.Click += new EventHandler(RestoreMongoToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t8);
 
-#else
-                            this.contextMenuStripMain.Items.Add(this.DelMongoDBToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.CreateMongoCollectionToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.evalJSToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.RepairDBToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ConvertSqlToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
-                            this.contextMenuStripMain.Items.Add(this.profillingLevelToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.DBStatusToolStripMenuItem.Clone());
+                                ToolStripMenuItem t9 = this.ConvertSqlToolStripMenuItem.Clone();
+                                t9.Click += new EventHandler(ConvertSqlToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t9);
 
-#endif
+                                this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
+
+                                ToolStripMenuItem t10 = this.profillingLevelToolStripMenuItem.Clone();
+                                t10.Click += new EventHandler(profillingLevelToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t10);
+
+                                ToolStripMenuItem t11 = this.DBStatusToolStripMenuItem.Clone();
+                                t11.Click += new EventHandler(DBStatusToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t11);
+
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.DelMongoDBToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.CreateMongoCollectionToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.evalJSToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.RepairDBToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ConvertSqlToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
+                                this.contextMenuStripMain.Items.Add(this.profillingLevelToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.DBStatusToolStripMenuItem.Clone());
+
+                            }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -581,57 +608,101 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-#if MONO
-                            //悲催MONO不支持
-                            ToolStripMenuItem t1 = this.DelMongoCollectionToolStripMenuItem.Clone();
-                            t1.Click += new EventHandler(DelMongoCollectionToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t1);
+                            if (SystemManager.MONO_MODE)
+                            {
+                                //悲催MONO不支持
+                                ToolStripMenuItem t1 = this.DelMongoCollectionToolStripMenuItem.Clone();
+                                t1.Click += new EventHandler(DelMongoCollectionToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t1);
 
-                            ToolStripMenuItem t2 = this.RenameCollectionToolStripMenuItem.Clone();
-                            t2.Click += new EventHandler(RenameCollectionToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t2);
+                                ToolStripMenuItem t2 = this.RenameCollectionToolStripMenuItem.Clone();
+                                t2.Click += new EventHandler(RenameCollectionToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t2);
 
-                            ToolStripMenuItem t3 = this.DumpCollectionToolStripMenuItem.Clone();
-                            t3.Click += new EventHandler(DumpCollectionToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t3);
+                                ToolStripMenuItem t3 = this.DumpCollectionToolStripMenuItem.Clone();
+                                t3.Click += new EventHandler(DumpCollectionToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t3);
 
-                            ToolStripMenuItem t4 = this.RestoreMongoToolStripMenuItem.Clone();
-                            t4.Click += new EventHandler(RestoreMongoToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t4);
+                                ToolStripMenuItem t4 = this.RestoreMongoToolStripMenuItem.Clone();
+                                t4.Click += new EventHandler(RestoreMongoToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t4);
 
-                            ToolStripMenuItem t5 = this.ImportCollectionToolStripMenuItem.Clone();
-                            t5.Click += new EventHandler(ImportCollectionToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t5);
+                                ToolStripMenuItem t5 = this.ImportCollectionToolStripMenuItem.Clone();
+                                t5.Click += new EventHandler(ImportCollectionToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t5);
 
-                            ToolStripMenuItem t6 = this.ExportCollectionToolStripMenuItem.Clone();
-                            t6.Click += new EventHandler(ExportCollectionToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t6);
+                                ToolStripMenuItem t6 = this.ExportCollectionToolStripMenuItem.Clone();
+                                t6.Click += new EventHandler(ExportCollectionToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t6);
 
-                            ToolStripMenuItem t7 = this.CompactToolStripMenuItem.Clone();
-                            t7.Click += new EventHandler(CompactToolStripMenuItem_Click);
-                            this.contextMenuStripMain.Items.Add(t7);
+                                ToolStripMenuItem t7 = this.CompactToolStripMenuItem.Clone();
+                                t7.Click += new EventHandler(CompactToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t7);
 
-#else
-                            this.contextMenuStripMain.Items.Add(this.DelMongoCollectionToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.RenameCollectionToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.DumpCollectionToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ImportCollectionToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ExportCollectionToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.CompactToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
-                            this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.countToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.distinctToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
-                            this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
-                            this.contextMenuStripMain.Items.Add(this.CollectionStatusToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
 
-#endif
+                                ToolStripMenuItem t8 = this.viewDataToolStripMenuItem.Clone();
+                                t8.Click += new EventHandler(
+                                    (x, y) => { ViewDataObj(); }
+                                 );
+                                this.contextMenuStripMain.Items.Add(t8);
+
+
+                                ToolStripMenuItem t9 = this.countToolStripMenuItem.Clone();
+                                t9.Click += new EventHandler(countToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t9);
+
+                                ToolStripMenuItem t10 = this.distinctToolStripMenuItem.Clone();
+                                t10.Click += new EventHandler(distinctToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t10);
+
+
+                                ToolStripMenuItem t11 = this.groupToolStripMenuItem.Clone();
+                                t11.Click += new EventHandler(groupToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t11);
+
+                                ToolStripMenuItem t12 = this.mapReduceToolStripMenuItem.Clone();
+                                t12.Click += new EventHandler(mapReduceToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t12);
+
+                                this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
+
+                                ToolStripMenuItem t13 = this.IndexManageToolStripMenuItem.Clone();
+                                t13.Click += new EventHandler(IndexManageToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t13);
+
+                                ToolStripMenuItem t14 = this.ReIndexToolStripMenuItem.Clone();
+                                t14.Click += new EventHandler(ReIndexToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t14);
+
+                                this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
+
+                                ToolStripMenuItem t15 = this.CollectionStatusToolStripMenuItem.Clone();
+                                t15.Click += new EventHandler(CollectionStatusToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t15);
+
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.DelMongoCollectionToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.RenameCollectionToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.DumpCollectionToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ImportCollectionToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ExportCollectionToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.CompactToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
+                                this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.countToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.distinctToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
+                                this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
+                                this.contextMenuStripMain.Items.Add(this.CollectionStatusToolStripMenuItem.Clone());
+                            }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -669,7 +740,18 @@ namespace MagicMongoDBTool
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                            if (SystemManager.MONO_MODE)
+                            {
+                                ToolStripMenuItem t8 = this.viewDataToolStripMenuItem.Clone();
+                                t8.Click += new EventHandler(
+                                    (x, y) => { ViewDataObj(); }
+                                 );
+                                this.contextMenuStripMain.Items.Add(t8);
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                            }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -685,23 +767,43 @@ namespace MagicMongoDBTool
                         {
                             statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_GFS) + ":" + SystemManager.SelectTagData;
                         }
+
+                         this.viewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
-                            this.viewDataToolStripMenuItem.Enabled = true;
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                            if (SystemManager.MONO_MODE)
+                            {
+                                ToolStripMenuItem t8 = this.viewDataToolStripMenuItem.Clone();
+                                t8.Click += new EventHandler(
+                                    (x, y) => { ViewDataObj(); }
+                                 );
+                                this.contextMenuStripMain.Items.Add(t8);
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                            }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
                         break;
                     case MongoDBHelper.JAVASCRIPT_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-
+                         this.viewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
-                            this.creatJavaScriptToolStripMenuItem.Enabled = true;
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Items.Add(this.creatJavaScriptToolStripMenuItem.Clone());
+                            if (SystemManager.MONO_MODE)
+                            {
+                                ToolStripMenuItem t8 = this.creatJavaScriptToolStripMenuItem.Clone();
+                                t8.Click += new EventHandler(creatJavaScriptToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t8);
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.creatJavaScriptToolStripMenuItem.Clone());
+                            }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -709,13 +811,28 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelper.JAVASCRIPT_DOC_TAG:
                         statusStripMain.Items[0].Text = "Selected JavaScript:" + SystemManager.SelectTagData;
+                                                    this.viewDataToolStripMenuItem.Enabled = true;
+                            this.dropJavascriptToolStripMenuItem.Enabled = true;
+
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
-                            this.viewDataToolStripMenuItem.Enabled = true;
-                            this.dropJavascriptToolStripMenuItem.Enabled = true;
                             this.contextMenuStripMain = new ContextMenuStrip();
-                            this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
-                            this.contextMenuStripMain.Items.Add(this.dropJavascriptToolStripMenuItem.Clone());
+                            if (SystemManager.MONO_MODE)
+                            {
+                                ToolStripMenuItem t1 = this.viewDataToolStripMenuItem.Clone();
+                                t1.Click += new EventHandler(
+                                    (x, y) => { ViewDataObj(); }
+                                 );
+                                this.contextMenuStripMain.Items.Add(t1);
+                                ToolStripMenuItem t8 = this.dropJavascriptToolStripMenuItem.Clone();
+                                t8.Click += new EventHandler(dropJavascriptToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t8);
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.dropJavascriptToolStripMenuItem.Clone());
+                            }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
@@ -731,6 +848,69 @@ namespace MagicMongoDBTool
             }
             //重新Reset工具栏
             SetToolBarEnabled();
+        }
+        /// <summary>
+        /// 设置图标
+        /// </summary>
+        private void SetMenuImage()
+        {
+            this.ExitToolStripMenuItem.Image = MagicMongoDBTool.Properties.Resources.exit.ToBitmap();
+
+            this.ShutDownToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.ShutDown);
+
+            this.DelMongoCollectionToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
+            this.DelMongoDBToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
+
+            this.ImportDataFromAccessToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.AccessDB);
+            this.RefreshToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Refresh);
+            this.OptionsToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Option);
+
+            this.ThanksToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile);
+            this.UserGuideToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(MagicMongoDBTool.Module.IconType.UserGuide).ToBitmap();
+
+            this.tabSvrStatus.ImageIndex = 0;
+        }
+        /// <summary>
+        /// 初始化Toolbar
+        /// </summary>
+        private void InitToolBar()
+        {
+            RefreshToolStripButton = this.RefreshToolStripMenuItem.CloneFromMenuItem();
+            ImportDataFromAccessToolStripButton = this.ImportDataFromAccessToolStripMenuItem.CloneFromMenuItem();
+            ShutDownToolStripButton = this.ShutDownToolStripMenuItem.CloneFromMenuItem();
+            OptionToolStripButton = this.OptionsToolStripMenuItem.CloneFromMenuItem();
+            UserGuideToolStripButton = this.UserGuideToolStripMenuItem.CloneFromMenuItem();
+            if (SystemManager.MONO_MODE)
+            {
+                RefreshToolStripButton.Click += new System.EventHandler(RefreshToolStripMenuItem_Click);
+                ShutDownToolStripButton.Click += new System.EventHandler(ShutDownToolStripMenuItem_Click);
+                OptionToolStripButton.Click += new System.EventHandler(OptionToolStripMenuItem_Click);
+                UserGuideToolStripButton.Click += new System.EventHandler(userGuideToolStripMenuItem_Click);
+            }
+            else
+            {
+                this.toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
+            }
+            //Main ToolTip
+            this.toolStripMain.Items.Add(RefreshToolStripButton);
+            this.toolStripMain.Items.Add(ShutDownToolStripButton);
+            this.toolStripMain.Items.Add(OptionToolStripButton);
+            this.toolStripMain.Items.Add(UserGuideToolStripButton);
+
+        }
+        /// <summary>
+        /// 设定工具栏
+        /// </summary>
+        private void SetToolBarEnabled()
+        {
+            UserGuideToolStripButton.Enabled = true;
+            RefreshToolStripButton.Enabled = true;
+            OptionToolStripButton.Enabled = true;
+            ShutDownToolStripButton.Enabled = this.ShutDownToolStripMenuItem.Enabled;
+            if (!SystemManager.MONO_MODE)
+            {
+                ImportDataFromAccessToolStripButton.Enabled = this.ImportDataFromAccessToolStripMenuItem.Enabled;
+            }
         }
         /// <summary>
         /// ViewData
@@ -870,9 +1050,11 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ViewRefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tabView.SelectedTab != null) {
+            if (tabView.SelectedTab != null)
+            {
                 ctlDataView ctl = tabView.SelectedTab.Controls[0] as ctlDataView;
-                if (ctl != null) {
+                if (ctl != null)
+                {
                     ctl.RefreshCtl();
                 }
             }
@@ -927,10 +1109,12 @@ namespace MagicMongoDBTool
 
 
             //工具
-#if !MONO
-            this.ImportDataFromAccessToolStripMenuItem.Enabled = false;
-            this.ImportDataFromAccessToolStripButton.Enabled = false;
-#endif
+            if (!SystemManager.MONO_MODE)
+            {
+                this.ImportDataFromAccessToolStripMenuItem.Enabled = false;
+                this.ImportDataFromAccessToolStripButton.Enabled = false;
+            }
+
             //分布式
             this.ReplicaSetToolStripMenuItem.Enabled = false;
             this.ShardingConfigToolStripMenuItem.Enabled = false;
@@ -1046,15 +1230,16 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
         {
-#if !MONO
-            //MONO not support this function
-            OpenFileDialog AccessFile = new OpenFileDialog();
-            AccessFile.Filter = MongoDBHelper.MdbFilter;
-            if (AccessFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (!SystemManager.MONO_MODE)
             {
-                MongoDBHelper.ImportAccessDataBase(AccessFile.FileName, SystemManager.SelectObjectTag, trvsrvlst.SelectedNode);
+                //MONO not support this function
+                OpenFileDialog AccessFile = new OpenFileDialog();
+                AccessFile.Filter = MongoDBHelper.MdbFilter;
+                if (AccessFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    MongoDBHelper.ImportAccessDataBase(AccessFile.FileName, SystemManager.SelectObjectTag, trvsrvlst.SelectedNode);
+                }
             }
-#endif
         }
         /// <summary>
         /// DOS控制台

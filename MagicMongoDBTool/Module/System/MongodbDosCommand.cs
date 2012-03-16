@@ -363,7 +363,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="sb"></param>
         public static void RunDosCommand(String DosCommand, StringBuilder sb)
         {
-#if !MONO 
+if (!SystemManager.MONO_MODE){ 
             Process myProcess = new Process();
             myProcess.StartInfo.FileName = "cmd";
             myProcess.StartInfo.UseShellExecute = false;
@@ -391,9 +391,9 @@ namespace MagicMongoDBTool.Module
             stringReader.Close();
             streamReaderError.Close();
             myProcess.Close();
-#else
+}else{
             sb.AppendLine("This method is not implement in Linux");
-#endif
+}
         }
     }
 }

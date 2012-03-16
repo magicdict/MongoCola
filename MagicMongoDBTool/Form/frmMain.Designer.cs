@@ -886,74 +886,7 @@ namespace MagicMongoDBTool
             this.PerformLayout();
 
         }
-        /// <summary>
-        /// 设置图标
-        /// </summary>
-        private void SetMenuImage()
-        {
-            this.ExitToolStripMenuItem.Image = MagicMongoDBTool.Properties.Resources.exit.ToBitmap();
-
-            this.ShutDownToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.ShutDown);
-
-            this.DelMongoCollectionToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
-            this.DelMongoDBToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(IconType.No).ToBitmap();
-
-            this.ImportDataFromAccessToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.AccessDB);
-            this.RefreshToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Refresh);
-            this.OptionsToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Option);
-
-            this.ThanksToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile);
-            this.UserGuideToolStripMenuItem.Image = MagicMongoDBTool.Module.GetResource.GetIcon(MagicMongoDBTool.Module.IconType.UserGuide).ToBitmap();
-
-            this.tabSvrStatus.ImageIndex = 0;
-        }
-        /// <summary>
-        /// 初始化Toolbar
-        /// </summary>
-        private void InitToolBar()
-        {
-            RefreshToolStripButton = this.RefreshToolStripMenuItem.CloneFromMenuItem();
-            ImportDataFromAccessToolStripButton = this.ImportDataFromAccessToolStripMenuItem.CloneFromMenuItem();
-            ShutDownToolStripButton = this.ShutDownToolStripMenuItem.CloneFromMenuItem();
-            OptionToolStripButton = this.OptionsToolStripMenuItem.CloneFromMenuItem();
-            UserGuideToolStripButton = this.UserGuideToolStripMenuItem.CloneFromMenuItem();
-#if MONO
-            FirstPageToolStripButton.Click += new System.EventHandler(FirstPageToolStripMenuItem_Click);
-            PrePageToolStripButton.Click += new System.EventHandler(PrePageToolStripMenuItem_Click);
-            NextPageToolStripButton.Click += new System.EventHandler(NextPageToolStripMenuItem_Click);
-            LastPageToolStripButton.Click += new System.EventHandler(LastPageToolStripMenuItem_Click);
-            QueryDataToolStripButton.Click += new System.EventHandler(QueryDataToolStripMenuItem_Click);
-            DataFilterToolStripButton.Click += new System.EventHandler(DataFilterToolStripMenuItem_Click);
-            RefreshToolStripButton.Click += new System.EventHandler(RefreshToolStripMenuItem_Click);
-            ImportDataFromAccessToolStripButton.Click += new System.EventHandler(ImportDataFromAccessToolStripMenuItem_Click);
-            OptionToolStripButton.Click += new System.EventHandler(OptionToolStripMenuItem_Click);
-#endif
-
-
-
-            //Main ToolTip
-            this.toolStripMain.Items.Add(RefreshToolStripButton);
-            this.toolStripMain.Items.Add(ShutDownToolStripButton);
-#if !MONO
-            this.toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
-#endif
-            this.toolStripMain.Items.Add(OptionToolStripButton);
-            this.toolStripMain.Items.Add(UserGuideToolStripButton);
-
-        }
-        /// <summary>
-        /// 设定工具栏
-        /// </summary>
-        private void SetToolBarEnabled()
-        {
-
-            RefreshToolStripButton.Enabled = this.RefreshToolStripMenuItem.Enabled;
-#if !MONO
-            ImportDataFromAccessToolStripButton.Enabled = this.ImportDataFromAccessToolStripMenuItem.Enabled;
-#endif
-            OptionToolStripButton.Enabled = this.OptionsToolStripMenuItem.Enabled;
-        }
-        #endregion
+         #endregion
 
         private System.Windows.Forms.StatusStrip statusStripMain;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusSelectedObj;
