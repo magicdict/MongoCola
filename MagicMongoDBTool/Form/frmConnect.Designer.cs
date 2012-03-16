@@ -31,7 +31,7 @@
             this.cmdModifyCon = new System.Windows.Forms.Button();
             this.cmdDelCon = new System.Windows.Forms.Button();
             this.cmdAddCon = new System.Windows.Forms.Button();
-            this.cmdCancel = new System.Windows.Forms.Button();
+            this.cmdClose = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.lstServerce = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
@@ -69,16 +69,16 @@
             this.cmdAddCon.UseVisualStyleBackColor = false;
             this.cmdAddCon.Click += new System.EventHandler(this.cmdAddCon_Click);
             // 
-            // cmdCancel
+            // cmdClose
             // 
-            this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(286, 212);
-            this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(90, 36);
-            this.cmdCancel.TabIndex = 7;
-            this.cmdCancel.Text = "Cancel";
-            this.cmdCancel.UseVisualStyleBackColor = false;
-            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            this.cmdClose.BackColor = System.Drawing.Color.Transparent;
+            this.cmdClose.Location = new System.Drawing.Point(286, 212);
+            this.cmdClose.Name = "cmdClose";
+            this.cmdClose.Size = new System.Drawing.Size(90, 36);
+            this.cmdClose.TabIndex = 7;
+            this.cmdClose.Text = "Close";
+            this.cmdClose.UseVisualStyleBackColor = false;
+            this.cmdClose.Click += new System.EventHandler(this.cmdClosel_Click);
             // 
             // cmdOK
             // 
@@ -109,7 +109,7 @@
             this.Controls.Add(this.cmdModifyCon);
             this.Controls.Add(this.cmdDelCon);
             this.Controls.Add(this.cmdAddCon);
-            this.Controls.Add(this.cmdCancel);
+            this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.lstServerce);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -129,7 +129,7 @@
         private System.Windows.Forms.Button cmdModifyCon;
         private System.Windows.Forms.Button cmdDelCon;
         private System.Windows.Forms.Button cmdAddCon;
-        private System.Windows.Forms.Button cmdCancel;
+        private System.Windows.Forms.Button cmdClose;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.ListBox lstServerce;
     }

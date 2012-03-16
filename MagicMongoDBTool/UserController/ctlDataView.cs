@@ -1260,7 +1260,12 @@ namespace MagicMongoDBTool.UserController
                 this.DataNaviToolStripLabel.Text = strTitle + "：" + (mDataViewInfo.SkipCnt + 1).ToString() + "/" + mDataViewInfo.CurrentCollectionTotalCnt.ToString();
             }
         }
-
+        /// <summary>
+        /// RefreshCtl
+        /// </summary>
+        public void RefreshCtl() {
+            RefreshStripButton_Click(null, null);
+        }
         /// <summary>
         /// Refresh Data
         /// </summary>

@@ -36,7 +36,7 @@ namespace MagicMongoDBTool
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.chkReadOnly = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblConfirmPsw = new System.Windows.Forms.Label();
             this.txtConfirmPsw = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -108,14 +108,14 @@ namespace MagicMongoDBTool
             this.chkReadOnly.Text = "ReadOnly";
             this.chkReadOnly.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // lblConfirmPsw
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 73);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 15);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Confirm Password";
+            this.lblConfirmPsw.AutoSize = true;
+            this.lblConfirmPsw.Location = new System.Drawing.Point(26, 73);
+            this.lblConfirmPsw.Name = "lblConfirmPsw";
+            this.lblConfirmPsw.Size = new System.Drawing.Size(107, 15);
+            this.lblConfirmPsw.TabIndex = 8;
+            this.lblConfirmPsw.Text = "Confirm Password";
             // 
             // txtConfirmPsw
             // 
@@ -131,7 +131,7 @@ namespace MagicMongoDBTool
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(340, 174);
             this.Controls.Add(this.txtConfirmPsw);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblConfirmPsw);
             this.Controls.Add(this.chkReadOnly);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUserName);
@@ -161,7 +161,7 @@ namespace MagicMongoDBTool
         private TextBox txtPassword;
         private TextBox txtUserName;
         private System.Windows.Forms.CheckBox chkReadOnly;
-        private Label label1;
+        private Label lblConfirmPsw;
         private TextBox txtConfirmPsw;
     }
 }

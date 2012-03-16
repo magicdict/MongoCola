@@ -44,7 +44,11 @@
   <Main_Menu_Operation_DataCollection_DropDocument>ドキュメントの削除</Main_Menu_Operation_DataCollection_DropDocument>
   <Main_Menu_Operation_DataCollection_Rename>リネーム</Main_Menu_Operation_DataCollection_Rename>
   <Main_Menu_Operation_DataCollection_Compact>圧縮</Main_Menu_Operation_DataCollection_Compact>
-  
+  <Main_Menu_Operation_DataCollection_CreateJavaScript>Javascriptの新規</Main_Menu_Operation_DataCollection_CreateJavaScript>
+  <Main_Menu_Operation_DataCollection_DropJavaScript>Javascriptの削除</Main_Menu_Operation_DataCollection_DropJavaScript>
+  <Main_Menu_Operation_DataCollection_View>ビュー</Main_Menu_Operation_DataCollection_View>
+
+
   <Main_Menu_Operation_DataDocument>ドキュメント</Main_Menu_Operation_DataDocument>
   <Main_Menu_Operation_DataDocument_AddElement>エレメントの追加</Main_Menu_Operation_DataDocument_AddElement>
   <Main_Menu_Operation_DataDocument_DropElement>エレメントの削除</Main_Menu_Operation_DataDocument_DropElement>
@@ -308,8 +312,11 @@
   <!--Common-->
   <Common_Username>ユーザー名</Common_Username>
   <Common_Password>パスワード</Common_Password>
+  <Common_ConfirmPassword>パスワード確認</Common_ConfirmPassword>
+
   <Common_ReadOnly>読取り専用 </Common_ReadOnly>
   <Common_OK>OK</Common_OK>
+  <Common_Close>閉じる</Common_Close>
   <Common_Cancel>キャンセル</Common_Cancel>
   <Common_Refresh>更新</Common_Refresh>
   <Common_Yes>はい</Common_Yes>

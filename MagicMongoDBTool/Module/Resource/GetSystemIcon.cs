@@ -86,6 +86,19 @@ namespace MagicMongoDBTool.Module
 
             MainTreeImage.Images.Add(GetResource.GetIcon(IconType.No));
         }
+
+        /// <summary>
+        /// 主树形控件图标数组
+        /// </summary>
+        public static ImageList TabViewImage = new ImageList();
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void InitTabViewImage() {
+            TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.Monitor);
+            TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.JavaScriptList);
+            TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.Collection);
+        }
         /// <summary>
         /// 根据文件名获得图片数组下标
         /// </summary>

@@ -58,7 +58,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.trvStatus);
             this.Name = "frmStatus";
-            this.Text = "frmStatus";
+            this.Text = "Status";
             this.Load += new System.EventHandler(this.frmStatus_Load);
             this.ResumeLayout(false);
 

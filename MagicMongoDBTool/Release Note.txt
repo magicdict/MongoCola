@@ -9,7 +9,16 @@ MongoCola is free and open source.
 ========================================================================
 Release History
 ========================================================================
-Ver 1.10 2012/03/16
+Ver 1.10 2012/03/23
+Main Form:
+    1.DataView Refresh function
+	
+Connection List Form:
+    1.Fix the bug if there is no connection is selected,the form can't close
+	2.Change the command Text "Cancel" to "close"
+
+========================================================================
+Ver 1.10(Beta) 2012/03/16
 1.Multi Collection View is ready.
 2.Divide all collections into GFS,Javascript,User,Gerneral Collections,System Collections 5, Groups
 3.Add comfirm password at "Add New User" form.

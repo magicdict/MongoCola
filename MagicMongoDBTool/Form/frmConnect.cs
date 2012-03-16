@@ -18,7 +18,7 @@ namespace MagicMongoDBTool
                 this.cmdAddCon.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Add);
                 this.cmdDelCon.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Connect_Action_Del);
                 this.cmdModifyCon.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Modify);
-                this.cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);
+                this.cmdClose.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Close);
                 this.cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
                 this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Connect_Title);
             }
@@ -62,8 +62,8 @@ namespace MagicMongoDBTool
                     connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item.Split("@".ToCharArray())[0]]);
                 }
                 MongoDBHelper.AddServer(connLst);
-                this.Close();
             }
+            this.Close();
         }
         /// <summary>
         /// 删除
@@ -109,7 +109,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdCancel_Click(object sender, EventArgs e)
+        private void cmdClosel_Click(object sender, EventArgs e)
         {
             this.Close();
         }

@@ -15,7 +15,7 @@ namespace MagicMongoDBTool
 
         private void frmStatus_Load(object sender, EventArgs e)
         {
-
+            this.Icon = GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.KeyInfo);
             String strType = SystemManager.SelectTagType;
             List<BsonDocument> SrvDocList = new List<BsonDocument>();
             BsonDocument cr;
@@ -35,6 +35,9 @@ namespace MagicMongoDBTool
                 default:
                     cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentService()).Response;
                     break;
+            }
+            if (!SystemManager.IsUseDefaultLanguage()) {
+                this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
             }
             SrvDocList.Add(cr);
             MongoDBHelper.FillDataToTreeView(strType, this.trvStatus, SrvDocList, 0);

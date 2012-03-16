@@ -44,6 +44,9 @@
   <Main_Menu_Operation_DataCollection_DropDocument>删除选中文档</Main_Menu_Operation_DataCollection_DropDocument>
   <Main_Menu_Operation_DataCollection_Rename>重命名</Main_Menu_Operation_DataCollection_Rename>
   <Main_Menu_Operation_DataCollection_Compact>压缩</Main_Menu_Operation_DataCollection_Compact>
+  <Main_Menu_Operation_DataCollection_CreateJavaScript>新建Javascript</Main_Menu_Operation_DataCollection_CreateJavaScript>
+  <Main_Menu_Operation_DataCollection_DropJavaScript>删除Javascript</Main_Menu_Operation_DataCollection_DropJavaScript>
+  <Main_Menu_Operation_DataCollection_View>查看数据</Main_Menu_Operation_DataCollection_View>
 
 
   <Main_Menu_Operation_DataDocument>文档</Main_Menu_Operation_DataDocument>
@@ -309,8 +312,11 @@
   <!--Common-->
   <Common_Username>用户名</Common_Username>
   <Common_Password>密码</Common_Password>
+  <Common_ConfirmPassword>密码确认</Common_ConfirmPassword>
+
   <Common_ReadOnly>只读</Common_ReadOnly>
   <Common_OK>确定</Common_OK>
+  <Common_Close>关闭</Common_Close>
   <Common_Cancel>取消</Common_Cancel>
   <Common_Refresh>刷新</Common_Refresh>
   <Common_Yes>是</Common_Yes>

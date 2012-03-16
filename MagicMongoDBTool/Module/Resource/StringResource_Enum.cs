@@ -52,6 +52,9 @@ namespace MagicMongoDBTool.Module
             Main_Menu_Operation_DataCollection_ReIndex,
             Main_Menu_Operation_DataCollection_Rename,
             Main_Menu_Operation_DataCollection_Compact,
+            Main_Menu_Operation_DataCollection_CreateJavaScript,
+            Main_Menu_Operation_DataCollection_DropJavaScript,
+            Main_Menu_Operation_DataCollection_View,
 
             Main_Menu_Operation_DataDocument,
             Main_Menu_Operation_DataDocument_AddElement,
@@ -296,6 +299,8 @@ namespace MagicMongoDBTool.Module
             Common_Password,
             Common_ReadOnly,
             Common_OK,
+            Common_ConfirmPassword,
+            Common_Close,
             Common_Cancel,
             Common_Refresh,
             Common_Yes,
