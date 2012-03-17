@@ -494,6 +494,51 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\%2800,21%29.png" />
+    <Content Include="Resources\%2800,27%29.png" />
+    <Content Include="Resources\%2800,41%29.png" />
+    <Content Include="Resources\%2800,47%29.png" />
+    <Content Include="Resources\%2800,48%29.png" />
+    <Content Include="Resources\%2801,18%29.png" />
+    <Content Include="Resources\%2802,36%29.png" />
+    <Content Include="Resources\%2803,05%29.png" />
+    <Content Include="Resources\%2804,18%29.png" />
+    <Content Include="Resources\%2804,23%29.png" />
+    <Content Include="Resources\%2805,06%29.png" />
+    <Content Include="Resources\%2805,07%29.png" />
+    <Content Include="Resources\%2805,08%29.png" />
+    <Content Include="Resources\%2806,06%29.png" />
+    <Content Include="Resources\%2807,22%29.png" />
+    <Content Include="Resources\%2807,40%29.png" />
+    <Content Include="Resources\%2807,42%29.png" />
+    <Content Include="Resources\%2809,03%29.png" />
+    <Content Include="Resources\%2809,05%29.png" />
+    <Content Include="Resources\%2809,24%29.png" />
+    <Content Include="Resources\%2811,18%29.png" />
+    <Content Include="Resources\%2812,24%29.png" />
+    <Content Include="Resources\%2813,12%29.png" />
+    <Content Include="Resources\%2813,35%29.png" />
+    <Content Include="Resources\%2815,37%29.png" />
+    <Content Include="Resources\%2818,27%29.png" />
+    <Content Include="Resources\%2819,48%29.png" />
+    <Content Include="Resources\%2821,34%29.png" />
+    <Content Include="Resources\%2831,20%29.png" />
+    <Content Include="Resources\%2832,01%29.png" />
+    <Content Include="Resources\%2841,49%29.png" />
+    <Content Include="Resources\%2842,48%29.png" />
+    <Content Include="Resources\%2845,07%29.png" />
+    <Content Include="Resources\%2845,12%29.png" />
+    <Content Include="Resources\books.ico" />
+    <Content Include="Resources\copy.ico" />
+    <Content Include="Resources\cut.ico" />
+    <Content Include="Resources\database_key.png" />
+    <Content Include="Resources\DELETE.ICO" />
+    <Content Include="Resources\exit.ico" />
+    <Content Include="Resources\logo-mongoDB.png" />
+    <Content Include="Resources\ok.ico" />
+    <Content Include="Resources\Open.ico" />
+    <Content Include="Resources\paste.ico" />
+    <Content Include="Resources\save.ico" />
     <Content Include="UserGuide\images\Access.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -654,9 +699,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

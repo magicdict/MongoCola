@@ -14,7 +14,6 @@
 *.pdb
 /UnitTest
 /MagicMongoDBTool/dll
-/MagicMongoDBTool/Resources
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
 !readme.txt
