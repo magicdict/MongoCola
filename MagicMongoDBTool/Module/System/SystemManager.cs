@@ -225,6 +225,17 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
+        /// JsonWriterSettings
+        /// </summary>
+        public static MongoDB.Bson.IO.JsonWriterSettings JsonWriterSettings = new MongoDB.Bson.IO.JsonWriterSettings()
+        {
+            Indent = true,
+            NewLineChars = System.Environment.NewLine,
+            OutputMode = MongoDB.Bson.IO.JsonOutputMode.Strict
+        };
+            
+
+        /// <summary>
         /// 初始化
         /// </summary>
         internal static void InitLanguage()

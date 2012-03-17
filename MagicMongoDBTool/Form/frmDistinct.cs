@@ -10,7 +10,7 @@ namespace MagicMongoDBTool
 {
     public partial class frmDistinct : Form
     {
-        public frmDistinct(DataFilter mDataFilter,Boolean IsUseFilter)
+        public frmDistinct(DataFilter mDataFilter, Boolean IsUseFilter)
         {
             InitializeComponent();
             if (mDataFilter.QueryConditionList.Count > 0 && IsUseFilter)
@@ -92,9 +92,10 @@ namespace MagicMongoDBTool
                     strResult = "Too many result,Display first 1000 records" + System.Environment.NewLine + strResult;
                     break;
                 }
-                strResult += MongoDBHelper.GetBsonElementText(strKey, item, 0);
+                strResult += item.ToJson(SystemManager.JsonWriterSettings) + System.Environment.NewLine;
                 Count++;
             }
+            strResult = "Distinct Count: " + result.Count + System.Environment.NewLine + System.Environment.NewLine + strResult;
             MyMessageBox.ShowMessage("Distinct", "Distinct:" + strKey, strResult, true);
 
         }

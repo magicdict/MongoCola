@@ -22,6 +22,7 @@ Status Control:
 
 DataView Control:
 	1.Fixed "Open File in Editor" can't be use after DataView is refreshed.
+	2.Use Offical C# Driver .ToJson() for textview
 		
 Connection List Form:
     1.Fix the bug if there is no connection is selected,the form can't close by click Ok button

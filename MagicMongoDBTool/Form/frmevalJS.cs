@@ -89,7 +89,7 @@ namespace MagicMongoDBTool
             try
             {
                 BsonValue result = mongoDB.Eval(js, Params.ToArray());
-                MyMessageBox.ShowMessage("Result", "Result", MongoDBHelper.GetBsonElementText("Result", result, 0), true);
+                MyMessageBox.ShowMessage("Result", "Result", result.ToJson(SystemManager.JsonWriterSettings), true);
             }
             catch (Exception ex)
             {

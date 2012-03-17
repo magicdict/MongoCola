@@ -64,10 +64,6 @@ namespace MagicMongoDBTool.Module
             return _ColumnList;
         }
         /// <summary>
-        /// 是否有二进制数据
-        /// </summary>
-        private static Boolean _hasBSonBinary;
-        /// <summary>
         /// 展示数据
         /// </summary>
         /// <param name="CurrentDataViewInfo"></param>
@@ -119,7 +115,7 @@ namespace MagicMongoDBTool.Module
                 }
             }
             SetPageEnable(ref CurrentDataViewInfo);
-            _hasBSonBinary = false;
+
             foreach (var control in controls)
             {
                 switch (control.GetType().ToString())
@@ -128,8 +124,7 @@ namespace MagicMongoDBTool.Module
                         FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, dataList);
                         break;
                     case "System.Windows.Forms.TextBox":
-                        FillDataToTextBox((TextBox)control, dataList, CurrentDataViewInfo.SkipCnt);
-                        //FillJSONDataToTextBox((TextBox)control, dataList);
+                        FillJSONDataToTextBox((TextBox)control, dataList, CurrentDataViewInfo.SkipCnt);
                         break;
                     case "System.Windows.Forms.TreeView":
                         FillDataToTreeView(cp[(int)PathLv.CollectionLV], (TreeView)control, dataList, CurrentDataViewInfo.SkipCnt);
@@ -163,7 +158,6 @@ namespace MagicMongoDBTool.Module
             //二进制数据
             if (bsonValue.IsBsonBinaryData)
             {
-                _hasBSonBinary = true;
                 return "[Binary]";
             }
             //空值
@@ -199,153 +193,21 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="txtData"></param>
         /// <param name="dataList"></param>
-        public static void FillJSONDataToTextBox(TextBox txtData, List<BsonDocument> dataList, DataViewInfo mDataViewInfo)
+        public static void FillJSONDataToTextBox(TextBox txtData, List<BsonDocument> dataList, int SkipCnt)
         {
             txtData.Clear();
             int Count = 1;
             StringBuilder sb = new StringBuilder();
             foreach (BsonDocument BsonDoc in dataList)
             {
-                sb.AppendLine("/* " + (mDataViewInfo.SkipCnt + Count).ToString() + " */");
-                sb.AppendLine(BsonDoc.ToJson());
+                sb.AppendLine("/* " + (SkipCnt + Count).ToString() + " */");
+
+                sb.AppendLine(BsonDoc.ToJson(SystemManager.JsonWriterSettings));
                 Count++;
             }
             txtData.Text = sb.ToString();
         }
 
-
-        /// <summary>
-        /// 将数据放入TextBox里进行展示
-        /// </summary>
-        /// <param name="collectionName"></param>
-        /// <param name="txtData"></param>
-        /// <param name="dataList"></param>
-        public static void FillDataToTextBox(TextBox txtData, List<BsonDocument> dataList, int SkipCnt)
-        {
-            txtData.Clear();
-            if (_hasBSonBinary)
-            {
-                txtData.Text = "Binary Data";
-            }
-            else
-            {
-                int Count = 1;
-                StringBuilder sb = new StringBuilder();
-                foreach (BsonDocument BsonDoc in dataList)
-                {
-                    sb.AppendLine("/* " + (SkipCnt + Count).ToString() + " */");
-                    sb.AppendLine("{");
-                    foreach (String itemName in BsonDoc.Names)
-                    {
-                        BsonValue value = BsonDoc.GetValue(itemName);
-                        sb.Append(GetBsonElementText(itemName, value, 0));
-                    }
-                    sb.Append("}");
-                    sb.AppendLine("");
-                    sb.AppendLine("");
-                    Count++;
-                }
-                txtData.Text = sb.ToString();
-            }
-        }
-        /// <summary>
-        /// 单个文档的TextView表示整理
-        /// </summary>
-        /// <param name="itemName"></param>
-        /// <param name="value"></param>
-        /// <param name="DeepLv"></param>
-        /// <returns></returns>
-        public static String GetBsonElementText(String itemName, BsonValue value, int DeepLv)
-        {
-            String rtnText = String.Empty;
-            if (value.IsBsonArray)
-            {
-                int count = 1;
-                BsonArray mBsonlst = value.AsBsonArray;
-                for (int BsonNo = 0; BsonNo < mBsonlst.Count; BsonNo++)
-                {
-                    if (BsonNo == 0)
-                    {
-                        if (itemName != String.Empty)
-                        {
-                            for (int i = 0; i < DeepLv; i++)
-                            {
-                                rtnText += "  ";
-                            }
-                            rtnText += "  \"" + itemName + "\":";
-                        }
-                        rtnText += "[";
-                        rtnText += System.Environment.NewLine;
-                        DeepLv++;
-                    }
-                    DeepLv++;
-                    rtnText += GetBsonElementText(String.Empty, mBsonlst[BsonNo], DeepLv);
-                    DeepLv--;
-                    if (BsonNo == mBsonlst.Count - 1)
-                    {
-                        DeepLv--;
-                        //   "itemName": "Value"
-                        for (int i = 0; i < DeepLv; i++)
-                        {
-                            rtnText += "  ";
-                        }
-                        rtnText += "  ]";
-                        rtnText += System.Environment.NewLine;
-                    }
-                    count++;
-                }
-            }
-            else
-            {
-                if (value.IsBsonDocument)
-                {
-                    if (itemName != String.Empty)
-                    {
-                        //   "itemName": "Value"
-                        for (int i = 0; i < DeepLv; i++)
-                        {
-                            rtnText += "  ";
-                        }
-                        rtnText += "  \"" + itemName + "\":";
-                        rtnText += System.Environment.NewLine;
-                    }
-                    DeepLv++;
-                    for (int i = 0; i < DeepLv; i++)
-                    {
-                        rtnText += "  ";
-                    }
-                    rtnText += "{";
-                    rtnText += System.Environment.NewLine;
-                    BsonDocument SubDoc = value.ToBsonDocument();
-                    foreach (String SubitemName in SubDoc.Names)
-                    {
-                        BsonValue Subvalue = SubDoc.GetValue(SubitemName);
-                        rtnText += GetBsonElementText(SubitemName, Subvalue, DeepLv);
-                    }
-                    for (int i = 0; i < DeepLv; i++)
-                    {
-                        rtnText += "  ";
-                    }
-                    rtnText += "}";
-                    rtnText += System.Environment.NewLine;
-                    DeepLv--;
-                }
-                else
-                {
-                    if (itemName != String.Empty)
-                    {
-                        //   "itemName": "Value"
-                        for (int i = 0; i < DeepLv; i++)
-                        {
-                            rtnText += "  ";
-                        }
-                        rtnText += "  \"" + itemName + "\":";
-                    }
-                    rtnText += ConvertToString(value) + System.Environment.NewLine;
-                }
-            }
-            return rtnText;
-        }
         /// <summary>
         /// 将数据放入TreeView里进行展示
         /// </summary>
@@ -413,6 +275,11 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newItem"></param>
+        /// <param name="item"></param>
         public static void AddBSonArrayToTreeNode(TreeNode newItem, BsonArray item)
         {
             foreach (BsonValue SubItem in item)
