@@ -105,11 +105,11 @@ namespace MagicMongoDBTool.Module
             mfrm.Dispose();
         }
         /// <summary>
-        /// 通过服务器名称获得服务器配置
+        /// 获得当前服务器配置
         /// </summary>
         /// <param name="SrvName"></param>
         /// <returns></returns>
-        public static ConfigHelper.MongoConnectionConfig GetSelectedSvrProByName()
+        public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfiig()
         {
             String svrName = SelectObjectTag.Split(":".ToCharArray())[1];
             svrName = svrName.Split("/".ToCharArray())[0];
@@ -117,6 +117,15 @@ namespace MagicMongoDBTool.Module
             if (ConfigHelperInstance.ConnectionList.ContainsKey(svrName))
             {
                 rtnMongoConnectionConfig = ConfigHelperInstance.ConnectionList[svrName];
+            }
+            return rtnMongoConnectionConfig;
+        }
+        public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfiig(String mongoSvrKey)
+        {
+            ConfigHelper.MongoConnectionConfig rtnMongoConnectionConfig = new ConfigHelper.MongoConnectionConfig();
+            if (ConfigHelperInstance.ConnectionList.ContainsKey(mongoSvrKey))
+            {
+                rtnMongoConnectionConfig = ConfigHelperInstance.ConnectionList[mongoSvrKey];
             }
             return rtnMongoConnectionConfig;
         }

@@ -319,7 +319,7 @@ namespace MagicMongoDBTool
                         this.ShutDownToolStripButton.Enabled = true;
                         this.SvrStatusToolStripMenuItem.Enabled = true;
                         this.ServePropertyToolStripMenuItem.Enabled = true;
-                        if (SystemManager.GetSelectedSvrProByName().ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr)
+                        if (SystemManager.GetCurrentServerConfiig().ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr)
                         {
                             //副本服务器专用。
                             //副本初始化的操作 改在连接设置里面完成
@@ -328,7 +328,7 @@ namespace MagicMongoDBTool
                                 this.ReplicaSetToolStripMenuItem.Enabled = true;
                             }
                         }
-                        if (SystemManager.GetSelectedSvrProByName().ServerRole == ConfigHelper.SvrRoleType.RouteSvr)
+                        if (SystemManager.GetCurrentServerConfiig().ServerRole == ConfigHelper.SvrRoleType.RouteSvr)
                         {
                             //Route用
                             if (!config.IsReadOnly)
@@ -1551,12 +1551,12 @@ namespace MagicMongoDBTool
             else
             {
                 strNewCollectionName = MyMessageBox.ShowInput(SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
-                                                                                  SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection));
+                                                              SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection));
             }
             if (!String.IsNullOrEmpty(strNewCollectionName) && SystemManager.GetCurrentDataBase().RenameCollection(trvsrvlst.SelectedNode.Text, strNewCollectionName).Ok)
             {
                 String strNodeData = SystemManager.SelectTagData;
-                String strNewNodeTag = SystemManager.SelectObjectTag.Substring(0, SystemManager.SelectObjectTag.Length - trvsrvlst.SelectedNode.Text.Length);
+                String strNewNodeTag = SystemManager.SelectObjectTag.Substring(0, SystemManager.SelectObjectTag.Length - SystemManager.GetCurrentCollection().Name.Length);
                 strNewNodeTag += strNewCollectionName;
                 String strNewNodeData = SystemManager.GetTagtData(strNewNodeTag);
                 if (ViewTabList.ContainsKey(strNodeData))

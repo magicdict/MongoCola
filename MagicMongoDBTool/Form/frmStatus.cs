@@ -18,12 +18,15 @@ namespace MagicMongoDBTool
             this.Icon = GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.KeyInfo);
             String strType = SystemManager.SelectTagType;
             List<BsonDocument> SrvDocList = new List<BsonDocument>();
-            BsonDocument cr;
+            BsonDocument cr = new BsonDocument();
             switch (strType)
             {
                 case MongoDBHelper.SERVICE_TAG:
                 case MongoDBHelper.SINGLE_DB_SERVICE_TAG:
-                    cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentService()).Response;
+                    if (SystemManager.GetCurrentServerConfiig().LoginAsAdmin)
+                    {
+                        cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentService()).Response;
+                    }
                     break;
                 case MongoDBHelper.DATABASE_TAG:
                 case MongoDBHelper.SINGLE_DATABASE_TAG:
@@ -33,10 +36,14 @@ namespace MagicMongoDBTool
                     cr = SystemManager.GetCurrentCollection().GetStats().Response.ToBsonDocument();
                     break;
                 default:
-                    cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentService()).Response;
+                    if (SystemManager.GetCurrentServerConfiig().LoginAsAdmin)
+                    {
+                        cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentService()).Response;
+                    }
                     break;
             }
-            if (!SystemManager.IsUseDefaultLanguage()) {
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
                 this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
             }
             SrvDocList.Add(cr);

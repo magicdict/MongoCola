@@ -19,6 +19,9 @@ Main Form:
 
 Status Control:
 	1.Fixed Sort Bug at Collection Status
+	2.Fixed the bug while the user login without admin auth. 
+	   Thanks to mailto:mail.james@qq.com to report the bug
+	   
 
 DataView Control:
 	1.Fixed "Open File in Editor" can't be use after DataView is refreshed.

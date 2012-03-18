@@ -27,22 +27,37 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         Boolean AutoRefresh = true;
         /// <summary>
-        /// 
+        /// 刷新状态，不包含当前操作状态
         /// </summary>
-        /// <param name="IsAuto"></param>
+        /// <param name="IsAuto">是否自动刷新</param>
         public void RefreshStatus(Boolean IsAuto) {
-            if (!IsAuto)
+            try
             {
-                MongoDBHelper.FillSrvStatusToList(trvSvrStatus);
+                if (!IsAuto)
+                {
+                    MongoDBHelper.FillSrvStatusToList(trvSvrStatus);
+                }
+                MongoDBHelper.FillDataBaseStatusToList(this.lstDBStatus);
+                MongoDBHelper.FillCollectionStatusToList(this.lstCollectionStatus);
             }
-            MongoDBHelper.FillDataBaseStatusToList(this.lstDBStatus);
-            MongoDBHelper.FillCollectionStatusToList(this.lstCollectionStatus);
+            catch (Exception ex)
+            {
+                
+               throw ex;
+            }
         }
         /// <summary>
-        /// 
+        /// 当前操作状态
         /// </summary>
         public void RefreshCurrentOpr() {
-            MongoDBHelper.FillCurrentOprToList(this.lstSrvOpr);
+            try
+            {
+                MongoDBHelper.FillCurrentOprToList(this.lstSrvOpr);
+            }
+            catch (Exception ex)
+            {
+               throw ex;
+            }
         }
         /// <summary>
         /// 
@@ -176,13 +191,21 @@ namespace MagicMongoDBTool.UserController
             }
             this.lstDBStatus.Sort();
         }
-
+        /// <summary>
+        /// 手动刷新所有状态
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RefreshStripButton_Click(object sender, EventArgs e)
         {
             this.RefreshStatus(false);
             this.RefreshCurrentOpr();
         }
-
+        /// <summary>
+        /// 切换自动手动模式
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSwitch_Click(object sender, EventArgs e)
         {
             AutoRefresh = !AutoRefresh;
