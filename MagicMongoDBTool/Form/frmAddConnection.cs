@@ -145,9 +145,10 @@ namespace MagicMongoDBTool
         {
 
             ModifyConn.ConnectionName = txtConnectionName.Text;
+            ///感谢 呆呆 的Bug 报告，不论txtConnectionString.Text是否存在都进行赋值，防止删除字符后，值还是保留的BUG
+            ModifyConn.ConnectionString = txtConnectionString.Text;
             if (txtConnectionString.Text != String.Empty)
             {
-                ModifyConn.ConnectionString = txtConnectionString.Text;
                 if (!MongoDBHelper.FillConfigWithConnectionString(ref ModifyConn))
                 {
                     MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it");
