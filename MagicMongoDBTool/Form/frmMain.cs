@@ -647,24 +647,26 @@ namespace MagicMongoDBTool
                                  );
                                 this.contextMenuStripMain.Items.Add(t8);
 
+                                ToolStripMenuItem AggregationMenu = this.AggregationToolStripMenuItem.Clone();
 
                                 ToolStripMenuItem t9 = this.countToolStripMenuItem.Clone();
                                 t9.Click += new EventHandler(countToolStripMenuItem_Click);
-                                this.contextMenuStripMain.Items.Add(t9);
+                                AggregationMenu.DropDownItems.Add(t9);
 
                                 ToolStripMenuItem t10 = this.distinctToolStripMenuItem.Clone();
                                 t10.Click += new EventHandler(distinctToolStripMenuItem_Click);
-                                this.contextMenuStripMain.Items.Add(t10);
+                                AggregationMenu.DropDownItems.Add(t10);
 
 
                                 ToolStripMenuItem t11 = this.groupToolStripMenuItem.Clone();
                                 t11.Click += new EventHandler(groupToolStripMenuItem_Click);
-                                this.contextMenuStripMain.Items.Add(t11);
+                                AggregationMenu.DropDownItems.Add(t11);
 
                                 ToolStripMenuItem t12 = this.mapReduceToolStripMenuItem.Clone();
                                 t12.Click += new EventHandler(mapReduceToolStripMenuItem_Click);
-                                this.contextMenuStripMain.Items.Add(t12);
+                                AggregationMenu.DropDownItems.Add(t12);
 
+                                this.contextMenuStripMain.Items.Add(AggregationMenu);
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
 
                                 ToolStripMenuItem t13 = this.IndexManageToolStripMenuItem.Clone();
@@ -693,10 +695,7 @@ namespace MagicMongoDBTool
                                 this.contextMenuStripMain.Items.Add(this.CompactToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
                                 this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.countToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.distinctToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.groupToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.mapReduceToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.AggregationToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
                                 this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());

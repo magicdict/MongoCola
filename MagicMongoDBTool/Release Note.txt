@@ -1,4 +1,4 @@
-========================================================================
+﻿========================================================================
 MongoCola Release Note
 ========================================================================
 MongoCola is developed by Microsoft .NET (C#)
@@ -8,6 +8,11 @@ MongoCola is free and open source.
 
 ========================================================================
 Release History
+========================================================================
+Ver 1.10 2012/03/23
+Main：
+    1.Put count,distinct,group,mapreduce menuitme to Aggregation
+
 ========================================================================
 Ver 1.10 2012/03/23
 System:
@@ -34,7 +39,7 @@ Connection List Form:
 
 Add Connection
     1.Fix bug:The ConnectionString will not be remove in config file.
-	2.Add "Test" Function to test a connection is useful
+	2.Add "Test" Function to test a connection is enable or not.
 
 ========================================================================
 Ver 1.10(Beta) 2012/03/16
