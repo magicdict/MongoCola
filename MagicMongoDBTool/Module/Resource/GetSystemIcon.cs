@@ -213,7 +213,18 @@ namespace MagicMongoDBTool.Module
                 IntPtr IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
                 resultIcon = Icon.FromHandle(IconHnd);
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                regIconString = systemDirectory + "shell32.dll,0";
+                fileIcon = regIconString.Split(new char[] { ',' });
+                resultIcon = null;
+                //调用API方法读取图标
+                int[] phiconLarge = new int[1];
+                int[] phiconSmall = new int[1];
+                Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
+                IntPtr IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
+                resultIcon = Icon.FromHandle(IconHnd);
+            }
             return resultIcon;
         }
     }
