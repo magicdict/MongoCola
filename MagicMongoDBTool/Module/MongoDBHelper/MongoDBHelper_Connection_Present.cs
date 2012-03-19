@@ -382,6 +382,9 @@ namespace MagicMongoDBTool.Module
                         case COLLECTION_NAME_USER:
                             strShowColName = "用户列表(" + strShowColName + ")";
                             break;
+                        case COLLECTION_NAME_SYSTEM_PROFILE:
+                            strShowColName = "日志(" + strShowColName + ")";
+                            break;
                         default:
                             break;
                     }

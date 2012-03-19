@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
-using System.IO;
 
 namespace MagicMongoDBTool
 {

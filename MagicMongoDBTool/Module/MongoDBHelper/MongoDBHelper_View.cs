@@ -335,9 +335,13 @@ namespace MagicMongoDBTool.Module
                     break;
                 default:
                     List<String> _columnlist = new List<String>();
-                    //可以让_id 不在第一位，昏过去了
-                    _columnlist.Add("_id");
-                    lstData.Columns.Add("_id");
+                    //可以让_id 不在第一位，昏过去了,很多逻辑需要调整
+                    bool isSystem = IsSystemCollection(SystemManager.GetCurrentCollection());
+                    if (!isSystem)
+                    {
+                        _columnlist.Add("_id");
+                        lstData.Columns.Add("_id");
+                    }
                     foreach (BsonDocument docItem in dataList)
                     {
                         ListViewItem lstItem = new ListViewItem();
@@ -351,12 +355,27 @@ namespace MagicMongoDBTool.Module
                         }
 
                         //Key:_id
-                        lstItem.Text = docItem.GetValue("_id").ToString();
-                        //这里保存真实的主Key数据，删除的时候使用
-                        lstItem.Tag = docItem.GetValue("_id");
-
+                        if (!isSystem)
+                        {
+                            BsonElement id;
+                            docItem.TryGetElement("_id", out id);
+                            if (id != null)
+                            {
+                                lstItem.Text = docItem.GetValue("_id").ToString();
+                                //这里保存真实的主Key数据，删除的时候使用
+                                lstItem.Tag = docItem.GetValue("_id");
+                            }
+                            else
+                            {
+                                lstItem.Text = "[Empty]";
+                            }
+                        }
+                        else
+                        {
+                            lstItem.Text = docItem.GetValue(_columnlist[0].ToString()).ToString();
+                        }
                         //OtherItems
-                        for (int i = 0 ; i < _columnlist.Count; i++)
+                        for (int i = isSystem ? 1 : 0; i < _columnlist.Count; i++)
                         {
                             if (_columnlist[i].ToString() == "_id") { continue; }
                             BsonValue val;

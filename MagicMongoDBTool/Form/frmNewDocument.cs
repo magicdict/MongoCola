@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using MongoDB.Bson;
 using MagicMongoDBTool.Module;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace MagicMongoDBTool
@@ -32,6 +26,8 @@ namespace MagicMongoDBTool
                 try
                 {
                     newdoc = BsonDocument.Parse(txtDocument.Text);
+                    ///居然可以指定_id...
+                    ///这样的话，可能出现同一个数据库里面两个相同的_id的记录
                     SystemManager.GetCurrentCollection().Insert(newdoc,new SafeMode(true));
                     this.Close();
                 }

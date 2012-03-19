@@ -107,6 +107,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public const String COLLECTION_NAME_SYSTEM_REPLSET = "system.replset";
         /// <summary>
+        /// 系统副本
+        /// </summary>
+        public const String COLLECTION_NAME_SYSTEM_PROFILE = "system.profile";
+        /// <summary>
         /// minvalid数据集名称
         /// </summary>
         public const String COLLECTION_NAME_REPLSET_MINVALID = "replset.minvalid";

@@ -62,6 +62,8 @@ namespace MagicMongoDBTool.UserController
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
             this.NewDocumentStripButton = new System.Windows.Forms.ToolStripButton();
+            this.UpLoadFolderStripButton = new System.Windows.Forms.ToolStripButton();
+            this.DownloadFileStripButton = new System.Windows.Forms.ToolStripButton();
             this.OpenFileStripButton = new System.Windows.Forms.ToolStripButton();
             this.EditDocStripButton = new System.Windows.Forms.ToolStripButton();
             this.DelSelectRecordToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -83,6 +85,7 @@ namespace MagicMongoDBTool.UserController
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
+            this.UploadFileStripButton = new System.Windows.Forms.ToolStripButton();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
@@ -212,7 +215,7 @@ namespace MagicMongoDBTool.UserController
             // 
             // DelSelectRecordToolStripMenuItem
             // 
-            this.DelSelectRecordToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.DeleteDoc;
+            this.DelSelectRecordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DelSelectRecordToolStripMenuItem.Image")));
             this.DelSelectRecordToolStripMenuItem.Name = "DelSelectRecordToolStripMenuItem";
             this.DelSelectRecordToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.DelSelectRecordToolStripMenuItem.Text = "Del Selected Records";
@@ -284,12 +287,14 @@ namespace MagicMongoDBTool.UserController
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
             this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.UploadFileToolStripMenuItem.Text = "Upload File";
+            this.UploadFileToolStripMenuItem.Click += new System.EventHandler(this.UploadFileToolStripMenuItem_Click);
             // 
             // DownloadFileToolStripMenuItem
             // 
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
             this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.DownloadFileToolStripMenuItem.Text = "Download File";
+            this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(this.DownloadFileToolStripMenuItem_Click);
             // 
             // OpenFileToolStripMenuItem
             // 
@@ -326,7 +331,7 @@ namespace MagicMongoDBTool.UserController
             // 
             // changePasswordToolStripMenuItem
             // 
-            this.changePasswordToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.DBkey;
+            this.changePasswordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changePasswordToolStripMenuItem.Image")));
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
             this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
@@ -335,8 +340,11 @@ namespace MagicMongoDBTool.UserController
             // ViewtoolStrip
             // 
             this.ViewtoolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NewDocumentStripButton,
             this.OpenFileStripButton,
+            this.UploadFileStripButton,
+            this.UpLoadFolderStripButton,
+            this.DownloadFileStripButton,
+            this.NewDocumentStripButton,
             this.EditDocStripButton,
             this.DelSelectRecordToolStripButton,
             this.toolStripSeparator4,
@@ -366,12 +374,32 @@ namespace MagicMongoDBTool.UserController
             // NewDocumentStripButton
             // 
             this.NewDocumentStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.NewDocumentStripButton.Image = global::MagicMongoDBTool.Properties.Resources.NewDocument;
+            this.NewDocumentStripButton.Image = ((System.Drawing.Image)(resources.GetObject("NewDocumentStripButton.Image")));
             this.NewDocumentStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NewDocumentStripButton.Name = "NewDocumentStripButton";
             this.NewDocumentStripButton.Size = new System.Drawing.Size(23, 22);
             this.NewDocumentStripButton.Text = "New Document";
             this.NewDocumentStripButton.Click += new System.EventHandler(this.NewDocumentStripButton_Click);
+            // 
+            // UpLoadFolderStripButton
+            // 
+            this.UpLoadFolderStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.UpLoadFolderStripButton.Image = ((System.Drawing.Image)(resources.GetObject("UpLoadFolderStripButton.Image")));
+            this.UpLoadFolderStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UpLoadFolderStripButton.Name = "UpLoadFolderStripButton";
+            this.UpLoadFolderStripButton.Size = new System.Drawing.Size(23, 22);
+            this.UpLoadFolderStripButton.Text = "UpLoad Folder";
+            this.UpLoadFolderStripButton.Click += new System.EventHandler(this.UpLoadFolderStripButton_Click);
+            // 
+            // DownloadFileStripButton
+            // 
+            this.DownloadFileStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DownloadFileStripButton.Image = ((System.Drawing.Image)(resources.GetObject("DownloadFileStripButton.Image")));
+            this.DownloadFileStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DownloadFileStripButton.Name = "DownloadFileStripButton";
+            this.DownloadFileStripButton.Size = new System.Drawing.Size(23, 22);
+            this.DownloadFileStripButton.Text = "Download File";
+            this.DownloadFileStripButton.Click += new System.EventHandler(this.DownloadFileStripButton_Click);
             // 
             // OpenFileStripButton
             // 
@@ -386,7 +414,7 @@ namespace MagicMongoDBTool.UserController
             // EditDocStripButton
             // 
             this.EditDocStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EditDocStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Edit;
+            this.EditDocStripButton.Image = ((System.Drawing.Image)(resources.GetObject("EditDocStripButton.Image")));
             this.EditDocStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EditDocStripButton.Name = "EditDocStripButton";
             this.EditDocStripButton.Size = new System.Drawing.Size(23, 22);
@@ -396,7 +424,7 @@ namespace MagicMongoDBTool.UserController
             // DelSelectRecordToolStripButton
             // 
             this.DelSelectRecordToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DelSelectRecordToolStripButton.Image = global::MagicMongoDBTool.Properties.Resources.DeleteDoc;
+            this.DelSelectRecordToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("DelSelectRecordToolStripButton.Image")));
             this.DelSelectRecordToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DelSelectRecordToolStripButton.Name = "DelSelectRecordToolStripButton";
             this.DelSelectRecordToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -483,7 +511,7 @@ namespace MagicMongoDBTool.UserController
             // ExpandAllStripButton
             // 
             this.ExpandAllStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ExpandAllStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Expand;
+            this.ExpandAllStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ExpandAllStripButton.Image")));
             this.ExpandAllStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ExpandAllStripButton.Name = "ExpandAllStripButton";
             this.ExpandAllStripButton.Size = new System.Drawing.Size(23, 22);
@@ -493,7 +521,7 @@ namespace MagicMongoDBTool.UserController
             // CollapseAllStripButton
             // 
             this.CollapseAllStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CollapseAllStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Collpse;
+            this.CollapseAllStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CollapseAllStripButton.Image")));
             this.CollapseAllStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CollapseAllStripButton.Name = "CollapseAllStripButton";
             this.CollapseAllStripButton.Size = new System.Drawing.Size(23, 22);
@@ -503,7 +531,7 @@ namespace MagicMongoDBTool.UserController
             // QueryStripButton
             // 
             this.QueryStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.QueryStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Query;
+            this.QueryStripButton.Image = ((System.Drawing.Image)(resources.GetObject("QueryStripButton.Image")));
             this.QueryStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.QueryStripButton.Name = "QueryStripButton";
             this.QueryStripButton.Size = new System.Drawing.Size(23, 22);
@@ -513,7 +541,7 @@ namespace MagicMongoDBTool.UserController
             // FilterStripButton
             // 
             this.FilterStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FilterStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Filter;
+            this.FilterStripButton.Image = ((System.Drawing.Image)(resources.GetObject("FilterStripButton.Image")));
             this.FilterStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FilterStripButton.Name = "FilterStripButton";
             this.FilterStripButton.Size = new System.Drawing.Size(23, 22);
@@ -534,7 +562,7 @@ namespace MagicMongoDBTool.UserController
             "100  Documents",
             "200  Documents"});
             this.cmbRecPerPage.Name = "cmbRecPerPage";
-            this.cmbRecPerPage.Size = new System.Drawing.Size(121, 25);
+            this.cmbRecPerPage.Size = new System.Drawing.Size(121, 21);
             this.cmbRecPerPage.SelectedIndexChanged += new System.EventHandler(this.cmbRecPerPage_SelectedIndexChanged);
             // 
             // toolStripSeparator3
@@ -545,22 +573,32 @@ namespace MagicMongoDBTool.UserController
             // RefreshStripButton
             // 
             this.RefreshStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.RefreshStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Refresh;
+            this.RefreshStripButton.Image = ((System.Drawing.Image)(resources.GetObject("RefreshStripButton.Image")));
             this.RefreshStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RefreshStripButton.Name = "RefreshStripButton";
-            this.RefreshStripButton.Size = new System.Drawing.Size(23, 22);
+            this.RefreshStripButton.Size = new System.Drawing.Size(23, 20);
             this.RefreshStripButton.Text = "Refresh";
             this.RefreshStripButton.Click += new System.EventHandler(this.RefreshStripButton_Click);
             // 
             // CloseStripButton
             // 
             this.CloseStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CloseStripButton.Image = global::MagicMongoDBTool.Properties.Resources.ShutDown;
+            this.CloseStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseStripButton.Image")));
             this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CloseStripButton.Name = "CloseStripButton";
-            this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CloseStripButton.Size = new System.Drawing.Size(23, 20);
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
+            // 
+            // UploadFileStripButton
+            // 
+            this.UploadFileStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.UploadFileStripButton.Image = global::MagicMongoDBTool.Properties.Resources.UpLoadFile;
+            this.UploadFileStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UploadFileStripButton.Name = "UploadFileStripButton";
+            this.UploadFileStripButton.Size = new System.Drawing.Size(23, 22);
+            this.UploadFileStripButton.Text = "UpLoad File";
+            this.UploadFileStripButton.Click += new System.EventHandler(this.UploadFileStripButton_Click);
             // 
             // ctlDataView
             // 
@@ -644,6 +682,9 @@ namespace MagicMongoDBTool.UserController
         private ToolStripButton PasteStripButton;
         private ToolStripMenuItem changePasswordToolStripMenuItem;
         private ToolStripComboBox cmbRecPerPage;
+        private ToolStripButton UpLoadFolderStripButton;
+        private ToolStripButton DownloadFileStripButton;
+        private ToolStripButton UploadFileStripButton;
 
     }
 }

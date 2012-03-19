@@ -967,6 +967,7 @@ namespace MagicMongoDBTool
 
                     ToolStripMenuItem DataMenuItem = new ToolStripMenuItem(DataList[3]);
                     DataMenuItem.Tag = DataTab.Tag;
+                    DataMenuItem.Image = GetSystemIcon.TabViewImage.Images[1];
                     JavaScriptStripMenuItem.DropDownItems.Add(DataMenuItem);
                     DataMenuItem.Click += new EventHandler(
                          (x, y) => { tabView.SelectTab(DataTab); }
@@ -1018,13 +1019,27 @@ namespace MagicMongoDBTool
                 TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().Name);
                 DataTab.Tag = SystemManager.SelectObjectTag;
                 DataTab.ToolTipText = SystemManager.SelectObjectTag;
-                DataTab.ImageIndex = 2;
+
+                switch (SystemManager.SelectTagType)
+                {
+                    case MongoDBHelper.COLLECTION_TAG:
+                        DataTab.ImageIndex = 2;
+                        break;
+                    case MongoDBHelper.USER_LIST_TAG:
+                        DataTab.ImageIndex = 3;
+                        break;
+                    default:
+                        DataTab.ImageIndex = 4;
+                        break;
+                }
+                
                 DataTab.Controls.Add(DataViewctl);
                 DataViewctl.Dock = DockStyle.Fill;
                 tabView.Controls.Add(DataTab);
 
                 ToolStripMenuItem DataMenuItem = new ToolStripMenuItem(SystemManager.GetCurrentCollection().Name);
                 DataMenuItem.Tag = DataTab.Tag;
+                DataMenuItem.Image = GetSystemIcon.TabViewImage.Images[DataTab.ImageIndex];
                 collectionToolStripMenuItem.DropDownItems.Add(DataMenuItem);
                 DataMenuItem.Click += new EventHandler(
                      (x, y) => { tabView.SelectTab(DataTab); }

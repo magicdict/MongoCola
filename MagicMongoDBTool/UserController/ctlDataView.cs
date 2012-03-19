@@ -147,12 +147,16 @@ namespace MagicMongoDBTool.UserController
             this.PasteStripButton.Enabled = false;
 
             //Change Icons Visible by DataType
-            OpenFileStripButton.Visible = false;
             ExpandAllStripButton.Visible = false;
             CollapseAllStripButton.Visible = false;
             CutStripButton.Visible = false;
             CopyStripButton.Visible = false;
             PasteStripButton.Visible = false;
+
+            OpenFileStripButton.Visible = false;
+            DownloadFileStripButton.Visible = false;
+            UploadFileStripButton.Visible = false;
+            UpLoadFolderStripButton.Visible = false;
 
             switch (strNodeType)
             {
@@ -166,18 +170,21 @@ namespace MagicMongoDBTool.UserController
                     break;
                 case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
                     OpenFileStripButton.Image = MagicMongoDBTool.Properties.Resources.Open.ToBitmap();
+
                     OpenFileStripButton.Visible = true;
+                    DownloadFileStripButton.Visible = true;
+                    UploadFileStripButton.Visible = true;
+                    UpLoadFolderStripButton.Visible = true;
 
                     if (!SystemManager.IsUseDefaultLanguage())
                     {
-                        NewDocumentStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Upload);
-                        EditDocStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
+                        //OpenFileStripButton.Text = 
+                        UploadFileStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Upload);
+                        DownloadFileStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
                         DelSelectRecordToolStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
                     }
                     else
                     {
-                        NewDocumentStripButton.Text = "Upload File";
-                        EditDocStripButton.Text = "Download File";
                         DelSelectRecordToolStripButton.Text = "Delete File";
                     }
                     break;
@@ -224,9 +231,6 @@ namespace MagicMongoDBTool.UserController
                 case MongoDBHelper.COLLECTION_TAG:
                     NewDocument();
                     break;
-                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
-                    UploadFile();
-                    break;
                 case MongoDBHelper.USER_LIST_TAG:
                     if (mDataViewInfo.strDBTag.EndsWith(MongoDBHelper.DATABASE_NAME_ADMIN + "/" + MongoDBHelper.COLLECTION_NAME_USER))
                     {
@@ -254,15 +258,57 @@ namespace MagicMongoDBTool.UserController
                 case MongoDBHelper.COLLECTION_TAG:
                     MongoDBHelper.SaveAndOpenStringAsFile(txtData.Text);
                     break;
-                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
-                    DownloadFile();
-                    break;
                 case MongoDBHelper.USER_LIST_TAG:
                     changePasswordToolStripMenuItem_Click(sender, e);
                     break;
                 default:
                     break;
             }
+        }
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DownloadFileStripButton_Click(object sender, EventArgs e)
+        {
+            DownloadFile();
+        }
+        /// <summary>
+        /// 下载文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DownloadFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DownloadFile();
+        }
+        /// <summary>
+        /// 上传文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UploadFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UploadFile();
+        }
+        /// <summary>
+        /// 上传文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UploadFileStripButton_Click(object sender, EventArgs e)
+        {
+            UploadFile();
+        }
+        /// <summary>
+        /// 上传文件夹
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UpLoadFolderStripButton_Click(object sender, EventArgs e)
+        {
+
         }
         /// <summary>
         /// 删除数据
@@ -1299,6 +1345,16 @@ namespace MagicMongoDBTool.UserController
             RefreshStripButton_Click(sender, e);
         }
         #endregion
+
+
+
+
+
+
+
+
+
+
 
     }
 }

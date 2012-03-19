@@ -172,6 +172,13 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap DownloadFile {
+            get {
+                object obj = ResourceManager.GetObject("DownloadFile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Edit {
             get {
                 object obj = ResourceManager.GetObject("Edit", resourceCulture);
@@ -354,9 +361,30 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap UpLoadFile {
+            get {
+                object obj = ResourceManager.GetObject("UpLoadFile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap UploadFolder {
+            get {
+                object obj = ResourceManager.GetObject("UploadFolder", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap User {
             get {
                 object obj = ResourceManager.GetObject("User", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap UserCollection {
+            get {
+                object obj = ResourceManager.GetObject("UserCollection", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

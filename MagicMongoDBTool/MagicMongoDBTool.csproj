@@ -517,16 +517,19 @@
     <Content Include="Resources\%2805,07%29.png" />
     <Content Include="Resources\%2805,08%29.png" />
     <Content Include="Resources\%2806,06%29.png" />
+    <None Include="Resources\%2806,41%29.png" />
     <Content Include="Resources\%2807,22%29.png" />
     <Content Include="Resources\%2807,40%29.png" />
     <Content Include="Resources\%2807,42%29.png" />
     <Content Include="Resources\%2809,03%29.png" />
     <Content Include="Resources\%2809,05%29.png" />
     <Content Include="Resources\%2809,24%29.png" />
+    <None Include="Resources\%2811,10%29.png" />
     <Content Include="Resources\%2811,18%29.png" />
     <Content Include="Resources\%2812,24%29.png" />
     <Content Include="Resources\%2813,12%29.png" />
     <Content Include="Resources\%2813,35%29.png" />
+    <None Include="Resources\%2814,20%29.png" />
     <Content Include="Resources\%2815,37%29.png" />
     <Content Include="Resources\%2818,27%29.png" />
     <Content Include="Resources\%2819,48%29.png" />
@@ -537,6 +540,7 @@
     <Content Include="Resources\%2842,48%29.png" />
     <Content Include="Resources\%2845,07%29.png" />
     <Content Include="Resources\%2845,12%29.png" />
+    <None Include="Resources\1332159906_document_small_upload.png" />
     <Content Include="Resources\books.ico" />
     <Content Include="Resources\copy.ico" />
     <Content Include="Resources\cut.ico" />

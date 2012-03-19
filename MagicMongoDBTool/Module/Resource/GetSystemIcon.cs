@@ -99,6 +99,8 @@ namespace MagicMongoDBTool.Module
             TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.Monitor);
             TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.JavaScriptList);
             TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.Collection);
+            TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.User);
+            TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.GFS);
         }
         /// <summary>
         /// 根据文件名获得图片数组下标
