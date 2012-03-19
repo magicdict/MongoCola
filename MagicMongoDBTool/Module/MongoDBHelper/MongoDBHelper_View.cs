@@ -232,8 +232,14 @@ namespace MagicMongoDBTool.Module
                         dataNode.Tag = item.GetElement(1).Value;
                         break;
                     default:
-                        //SelectDocId属性的设置
-                        dataNode.Tag = item.GetElement(0).Value;
+                        //SelectDocId属性的设置,
+                        //2012/03/19 不一定id是在第一位
+                        BsonElement id;
+                        item.TryGetElement("_id", out id);
+                        if (id != null)
+                        {
+                            dataNode.Tag = id.Value;
+                        }
                         break;
                 }
                 AddBsonDocToTreeNode(dataNode, item);
@@ -329,6 +335,9 @@ namespace MagicMongoDBTool.Module
                     break;
                 default:
                     List<String> _columnlist = new List<String>();
+                    //可以让_id 不在第一位，昏过去了
+                    _columnlist.Add("_id");
+                    lstData.Columns.Add("_id");
                     foreach (BsonDocument docItem in dataList)
                     {
                         ListViewItem lstItem = new ListViewItem();
@@ -340,13 +349,16 @@ namespace MagicMongoDBTool.Module
                                 lstData.Columns.Add(item);
                             }
                         }
+
                         //Key:_id
-                        lstItem.Text = docItem.GetValue(_columnlist[0]).ToString();
+                        lstItem.Text = docItem.GetValue("_id").ToString();
                         //这里保存真实的主Key数据，删除的时候使用
-                        lstItem.Tag = docItem.GetValue(_columnlist[0]);
+                        lstItem.Tag = docItem.GetValue("_id");
+
                         //OtherItems
-                        for (int i = 1; i < _columnlist.Count; i++)
+                        for (int i = 0 ; i < _columnlist.Count; i++)
                         {
+                            if (_columnlist[i].ToString() == "_id") { continue; }
                             BsonValue val;
                             docItem.TryGetValue(_columnlist[i].ToString(), out val);
                             if (val == null)
@@ -436,7 +448,8 @@ namespace MagicMongoDBTool.Module
             MongoDBHelper.lvwColumnSorter _lvwGFSColumnSorter = new MongoDBHelper.lvwColumnSorter();
             lstData.ListViewItemSorter = _lvwGFSColumnSorter;
             lstData.ColumnClick += new ColumnClickEventHandler(
-                (sender, e) => {
+                (sender, e) =>
+                {
                     switch (e.Column)
                     {
                         case 1:
@@ -467,7 +480,7 @@ namespace MagicMongoDBTool.Module
                         _lvwGFSColumnSorter.Order = SortOrder.Ascending;
                     }
                     lstData.Sort();
-                
+
                 }
                 );
 

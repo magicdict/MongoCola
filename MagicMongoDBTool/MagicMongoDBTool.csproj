@@ -140,6 +140,12 @@
     <Compile Include="Form\frmStatus.Designer.cs">
       <DependentUpon>frmStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmNewDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmNewDocument.Designer.cs">
+      <DependentUpon>frmNewDocument.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\ctlJsEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -351,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmNewDocument.resx">
+      <DependentUpon>frmNewDocument.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmProfilling.resx">
       <DependentUpon>frmProfilling.cs</DependentUpon>

@@ -213,14 +213,14 @@ namespace MagicMongoDBTool.Module
                 IntPtr IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
                 resultIcon = Icon.FromHandle(IconHnd);
             }
-            catch (Exception ex)
+            catch
             {
                 try
                 {
                     //第二方案
-                    resultIcon = GetIconByExtendFilename(fileType);
+                    resultIcon = GetIconByFileType(fileType);
                 }
-                catch (Exception)
+                catch
                 {
                     //默认方案
                     regIconString = systemDirectory + "shell32.dll,0";
@@ -236,7 +236,12 @@ namespace MagicMongoDBTool.Module
             }
             return resultIcon;
         }
-        public static Icon GetIconByExtendFilename(String sFileExt)
+        /// <summary>
+        /// 根据扩展名获得图标
+        /// </summary>
+        /// <param name="sFileExt"></param>
+        /// <returns></returns>
+        public static Icon GetIconByFileType(String sFileExt)
         {
             {
                 String sProg;

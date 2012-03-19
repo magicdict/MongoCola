@@ -364,7 +364,7 @@ namespace MagicMongoDBTool.Module
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (IsExistByKey(jsCol, jsName))
             {
-                if (DropDocument(jsCol, (BsonString)jsName, "_id"))
+                if (DropDocument(jsCol, (BsonString)jsName))
                 {
                     jsCol.Insert<BsonDocument>(new BsonDocument().Add("_id", jsName).Add("value", jsCode));
                     return true;
@@ -382,7 +382,7 @@ namespace MagicMongoDBTool.Module
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (MongoDBHelper.IsExistByKey(jsCol, jsName))
             {
-                return MongoDBHelper.DropDocument(jsCol, (BsonString)jsName, "_id");
+                return MongoDBHelper.DropDocument(jsCol, (BsonString)jsName);
             }
             return false;
         }
@@ -407,20 +407,13 @@ namespace MagicMongoDBTool.Module
         /// <param name="strKey"></param>
         /// <param name="keyField"></param>
         /// <returns></returns>
-        public static Boolean DropDocument(MongoCollection mongoCol, object strKey, String keyField, Boolean SafeMode = false)
+        public static Boolean DropDocument(MongoCollection mongoCol, object strKey)
         {
-            if (IsExistByKey(mongoCol, (BsonValue)strKey, keyField))
+            if (IsExistByKey(mongoCol, (BsonValue)strKey, "_id"))
             {
                 try
                 {
-                    if (SafeMode)
-                    {
-                        mongoCol.Remove(Query.EQ(keyField, (BsonValue)strKey), new SafeMode(true));
-                    }
-                    else
-                    {
-                        mongoCol.Remove(Query.EQ(keyField, (BsonValue)strKey));
-                    }
+                    mongoCol.Remove(Query.EQ("_id", (BsonValue)strKey), new SafeMode(true));
                 }
                 catch (Exception)
                 {

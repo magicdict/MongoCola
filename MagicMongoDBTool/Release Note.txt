@@ -12,7 +12,7 @@ Release History
 Ver 1.10 2012/03/23
 Main：
     1.Put count,distinct,group,mapreduce menuitme to Aggregation
-
+    2.Fixed the bug,if the "_id" field is not the first item of the document.
 ========================================================================
 Ver 1.10 2012/03/23
 System:

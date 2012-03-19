@@ -791,24 +791,8 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         private void NewDocument()
         {
-            BsonValue id = MongoDBHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), mDataViewInfo.IsSafeMode);
-            if (id != BsonNull.Value)
-            {
-                TreeNode newDoc = new TreeNode(SystemManager.GetCurrentCollection().Name + "[" + (SystemManager.GetCurrentCollection().Count()).ToString() + "]");
-                newDoc.Tag = id;
-                TreeNode newid = new TreeNode("_id:" + id.ToString());
-                newid.Tag = id;
-                newDoc.Nodes.Add(newid);
-                trvData.Nodes.Add(newDoc);
-                tabDataShower.SelectedIndex = 0;
-                trvData.SelectedNode = newid;
-                IsNeedRefresh = true;
-                RefreshStripButton_Click(null, null);
-            }
-            else
-            {
-                MyMessageBox.ShowMessage("Error", "New Document Error");
-            }
+            SystemManager.OpenForm(new frmNewDocument());
+            RefreshStripButton_Click(null, null);
         }
         /// <summary>
         /// Delete Selected Documents
@@ -827,17 +811,21 @@ namespace MagicMongoDBTool.UserController
                 if (tabDataShower.SelectedTab == tabTableView)
                 {
                     //lstData
-                    String strKey = lstData.Columns[0].Text;
+                    String StrErrormsg = String.Empty;
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                        MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), item.Tag, strKey);
+                        if (!MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), item.Tag)) {
+                            StrErrormsg += "Delete Error Key is:" + item.Tag.ToString() + System.Environment.NewLine;
+                        };
                     }
+                    MyMessageBox.ShowMessage("Delete Error", StrErrormsg);
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
-                    String strKey = trvData.SelectedNode.Nodes[0].Text.Split(":".ToCharArray())[0];
-                    MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), trvData.SelectedNode.Tag, strKey);
+                    if (!MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), trvData.SelectedNode.Tag)) {
+                        MyMessageBox.ShowMessage("Delete Error", "Delete Error Key is:" + trvData.SelectedNode.Tag.ToString());
+                    }
                     trvData.ContextMenuStrip = null;
                 }
                 DelSelectRecordToolStripMenuItem.Enabled = false;
@@ -1263,7 +1251,8 @@ namespace MagicMongoDBTool.UserController
         /// <summary>
         /// RefreshCtl
         /// </summary>
-        public void RefreshCtl() {
+        public void RefreshCtl()
+        {
             RefreshStripButton_Click(null, null);
         }
         /// <summary>
