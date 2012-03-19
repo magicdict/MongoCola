@@ -337,6 +337,7 @@
 
   <Common_Browse>参照</Common_Browse>
   <Common_Clear>クリア</Common_Clear>
+  <Common_Test>テスト</Common_Test>
 
   <!--Create New DataBase-->
   <Create_New_DataBase>データベースの新規</Create_New_DataBase>

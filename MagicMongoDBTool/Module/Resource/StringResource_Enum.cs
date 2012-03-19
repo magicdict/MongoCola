@@ -316,6 +316,8 @@ namespace MagicMongoDBTool.Module
             Common_Port,
             Common_Browse,
             Common_Clear,
+            Common_Test,
+
             Common_Collapse,
             Common_Expansion,
 

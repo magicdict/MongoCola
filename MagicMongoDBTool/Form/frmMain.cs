@@ -1018,6 +1018,7 @@ namespace MagicMongoDBTool
 
                 TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().Name);
                 DataTab.Tag = SystemManager.SelectObjectTag;
+                DataTab.ToolTipText = SystemManager.SelectObjectTag;
                 DataTab.ImageIndex = 2;
                 DataTab.Controls.Add(DataViewctl);
                 DataViewctl.Dock = DockStyle.Fill;
@@ -1585,6 +1586,9 @@ namespace MagicMongoDBTool
                 SystemManager.SelectObjectTag = strNewNodeTag;
                 trvsrvlst.SelectedNode.Text = strNewCollectionName;
                 trvsrvlst.SelectedNode.Tag = strNewNodeTag;
+                trvsrvlst.SelectedNode.ToolTipText = strNewCollectionName + System.Environment.NewLine;
+                trvsrvlst.SelectedNode.ToolTipText += "IsCapped:" + SystemManager.GetCurrentCollection().GetStats().IsCapped.ToString();
+
                 if (SystemManager.IsUseDefaultLanguage())
                 {
                     statusStripMain.Items[0].Text = "selected Collection:" + SystemManager.SelectTagData;

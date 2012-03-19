@@ -337,6 +337,7 @@
   
   <Common_Browse>浏览</Common_Browse>
   <Common_Clear>清除</Common_Clear>
+  <Common_Test>测试</Common_Test>
 
   <!--Create New DataBase-->
   <Create_New_DataBase>新建数据库</Create_New_DataBase>

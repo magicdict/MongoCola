@@ -19,7 +19,8 @@ namespace MagicMongoDBTool
             InitializeComponent();
             OnLoad();
         }
-        private void OnLoad() {
+        private void OnLoad()
+        {
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
             numPort.GotFocus += new EventHandler((x, y) =>
             {
@@ -62,6 +63,7 @@ namespace MagicMongoDBTool
 
             cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
             cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
+            cmdTest.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Test);
             lblAttentionPriority.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention_Description)
                     + System.Environment.NewLine + SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Attention2_Description);
         }
@@ -143,7 +145,114 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdAdd_Click(object sender, EventArgs e)
         {
-
+            CreateConnection();
+            //保存配置
+            if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.ConnectionName))
+            {
+                SystemManager.ConfigHelperInstance.ConnectionList[ModifyConn.ConnectionName] = ModifyConn;
+            }
+            else
+            {
+                SystemManager.ConfigHelperInstance.ConnectionList.Add(ModifyConn.ConnectionName, ModifyConn);
+            }
+            this.Close();
+        }
+        /// <summary>
+        /// 动态更新主副本为指定副本的服务器列表
+        /// </summary>
+        /// <param name="strNewText"></param>
+        void txtReplSetName_TextChanged(object sender, System.EventArgs e)
+        {
+            lstServerce.Items.Clear();
+            if (txtReplSetName.Text == String.Empty) { return; }
+            foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
+            {
+                if (item.MainReplSetName == txtReplSetName.Text)
+                {
+                    lstServerce.Items.Add(item.ConnectionName);
+                    if (ModifyConn.ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr && ModifyConn.ReplsetList.Contains(item.ConnectionName))
+                    {
+                        lstServerce.SetSelected(lstServerce.Items.Count - 1, true);
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// 初始化副本
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdInitReplset_Click(object sender, EventArgs e)
+        {
+            List<String> svrKeys = new List<String>();
+            if (lstServerce.SelectedItems.Count > 0)
+            {
+                foreach (String item in lstServerce.SelectedItems)
+                {
+                    svrKeys.Add(item);
+                }
+            }
+            //初始化副本，将多个服务器组合成一个副本组
+            CommandResult rtn = MongoDBHelper.InitReplicaSet(txtReplSetName.Text, svrKeys);
+            if (rtn.Ok)
+            {
+                MyMessageBox.ShowMessage("InitReplicaSet", "InitReplicaSet Succeed, Please wait a minute", rtn.Response.ToString(), true);
+            }
+            else
+            {
+                MyMessageBox.ShowMessage("InitReplicaSet", "InitReplicaSet Failed", rtn.Response.ToString(), true);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdTest_Click(object sender, EventArgs e)
+        {
+            CreateConnection();
+            try
+            {
+                MongoServer srv = MongoDBHelper.CreateMongoSetting(ModifyConn);
+                srv.Connect();
+                srv.Disconnect();
+                MyMessageBox.ShowMessage("Connect Test", "Connected OK.");
+            }
+            catch (MongoAuthenticationException ex)
+            {
+                //需要验证的数据服务器，没有Admin权限无法获得数据库列表
+                if (!SystemManager.IsUseDefaultLanguage())
+                {
+                    MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
+                                             SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
+                }
+                else
+                {
+                    MyMessageBox.ShowMessage("MongoAuthenticationException:", "Please check UserName and Password", ex.ToString(), true);
+                }
+            }
+            catch (Exception ex)
+            {
+                //暂时不处理任何异常，简单跳过
+                //无法连接的理由：
+                //1.服务器没有启动
+                //2.认证模式不正确
+                if (!SystemManager.IsUseDefaultLanguage())
+                {
+                    MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                                             SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note), ex.ToString(), true);
+                }
+                else
+                {
+                    MyMessageBox.ShowMessage("Exception", "Mongo Server may not Startup or Auth Mode is not correct", ex.ToString(), true);
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void CreateConnection()
+        {
             ModifyConn.ConnectionName = txtConnectionName.Text;
             ///感谢 呆呆 的Bug 报告，不论txtConnectionString.Text是否存在都进行赋值，防止删除字符后，值还是保留的BUG
             ModifyConn.ConnectionString = txtConnectionString.Text;
@@ -270,62 +379,6 @@ namespace MagicMongoDBTool
                 {
                     MessageBox.Show("If Priority is 0,then it can't be the ReplaceSet server");
                 }
-            }
-            //保存配置
-            if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.ConnectionName))
-            {
-                SystemManager.ConfigHelperInstance.ConnectionList[ModifyConn.ConnectionName] = ModifyConn;
-            }
-            else
-            {
-                SystemManager.ConfigHelperInstance.ConnectionList.Add(ModifyConn.ConnectionName, ModifyConn);
-            }
-            this.Close();
-        }
-        /// <summary>
-        /// 动态更新主副本为指定副本的服务器列表
-        /// </summary>
-        /// <param name="strNewText"></param>
-        void txtReplSetName_TextChanged(object sender, System.EventArgs e)
-        {
-            lstServerce.Items.Clear();
-            if (txtReplSetName.Text == String.Empty) { return; }
-            foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
-            {
-                if (item.MainReplSetName == txtReplSetName.Text)
-                {
-                    lstServerce.Items.Add(item.ConnectionName);
-                    if (ModifyConn.ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr && ModifyConn.ReplsetList.Contains(item.ConnectionName))
-                    {
-                        lstServerce.SetSelected(lstServerce.Items.Count - 1, true);
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// 初始化副本
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdInitReplset_Click(object sender, EventArgs e)
-        {
-            List<String> svrKeys = new List<String>();
-            if (lstServerce.SelectedItems.Count > 0)
-            {
-                foreach (String item in lstServerce.SelectedItems)
-                {
-                    svrKeys.Add(item);
-                }
-            }
-            //初始化副本，将多个服务器组合成一个副本组
-            CommandResult rtn = MongoDBHelper.InitReplicaSet(txtReplSetName.Text, svrKeys);
-            if (rtn.Ok)
-            {
-                MyMessageBox.ShowMessage("InitReplicaSet", "InitReplicaSet Succeed, Please wait a minute", rtn.Response.ToString(), true);
-            }
-            else
-            {
-                MyMessageBox.ShowMessage("InitReplicaSet", "InitReplicaSet Failed", rtn.Response.ToString(), true);
             }
         }
     }

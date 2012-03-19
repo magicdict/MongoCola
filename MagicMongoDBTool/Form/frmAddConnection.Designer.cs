@@ -72,6 +72,7 @@ namespace MagicMongoDBTool
             this.lblpriority = new System.Windows.Forms.Label();
             this.txtMainReplsetName = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.cmdTest = new System.Windows.Forms.Button();
             this.grpReplset.SuspendLayout();
             this.grpServerRole.SuspendLayout();
             this.tabConnection.SuspendLayout();
@@ -99,7 +100,7 @@ namespace MagicMongoDBTool
             this.radRouteSrv.BackColor = System.Drawing.Color.Transparent;
             this.radRouteSrv.Location = new System.Drawing.Point(132, 61);
             this.radRouteSrv.Name = "radRouteSrv";
-            this.radRouteSrv.Size = new System.Drawing.Size(88, 17);
+            this.radRouteSrv.Size = new System.Drawing.Size(96, 19);
             this.radRouteSrv.TabIndex = 2;
             this.radRouteSrv.Text = "Route Server";
             this.radRouteSrv.UseVisualStyleBackColor = false;
@@ -110,7 +111,7 @@ namespace MagicMongoDBTool
             this.radConfigSrv.BackColor = System.Drawing.Color.Transparent;
             this.radConfigSrv.Location = new System.Drawing.Point(23, 62);
             this.radConfigSrv.Name = "radConfigSrv";
-            this.radConfigSrv.Size = new System.Drawing.Size(89, 17);
+            this.radConfigSrv.Size = new System.Drawing.Size(98, 19);
             this.radConfigSrv.TabIndex = 1;
             this.radConfigSrv.Text = "Config Server";
             this.radConfigSrv.UseVisualStyleBackColor = false;
@@ -122,7 +123,7 @@ namespace MagicMongoDBTool
             this.radDataSrv.Checked = true;
             this.radDataSrv.Location = new System.Drawing.Point(23, 25);
             this.radDataSrv.Name = "radDataSrv";
-            this.radDataSrv.Size = new System.Drawing.Size(92, 17);
+            this.radDataSrv.Size = new System.Drawing.Size(104, 19);
             this.radDataSrv.TabIndex = 0;
             this.radDataSrv.TabStop = true;
             this.radDataSrv.Text = "Normal Server";
@@ -131,7 +132,7 @@ namespace MagicMongoDBTool
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(390, 337);
+            this.cmdCancel.Location = new System.Drawing.Point(481, 338);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(98, 31);
             this.cmdCancel.TabIndex = 2;
@@ -141,9 +142,9 @@ namespace MagicMongoDBTool
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(233, 337);
+            this.cmdAdd.Location = new System.Drawing.Point(184, 338);
             this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(91, 31);
+            this.cmdAdd.Size = new System.Drawing.Size(98, 31);
             this.cmdAdd.TabIndex = 1;
             this.cmdAdd.Text = "Add";
             this.cmdAdd.UseVisualStyleBackColor = false;
@@ -321,7 +322,7 @@ namespace MagicMongoDBTool
             this.radMaster.AutoSize = true;
             this.radMaster.Location = new System.Drawing.Point(23, 99);
             this.radMaster.Name = "radMaster";
-            this.radMaster.Size = new System.Drawing.Size(57, 17);
+            this.radMaster.Size = new System.Drawing.Size(63, 19);
             this.radMaster.TabIndex = 4;
             this.radMaster.TabStop = true;
             this.radMaster.Text = "Master";
@@ -332,7 +333,7 @@ namespace MagicMongoDBTool
             this.radSlave.AutoSize = true;
             this.radSlave.Location = new System.Drawing.Point(132, 99);
             this.radSlave.Name = "radSlave";
-            this.radSlave.Size = new System.Drawing.Size(52, 17);
+            this.radSlave.Size = new System.Drawing.Size(55, 19);
             this.radSlave.TabIndex = 5;
             this.radSlave.TabStop = true;
             this.radSlave.Text = "Slave";
@@ -343,7 +344,7 @@ namespace MagicMongoDBTool
             this.radArbiters.AutoSize = true;
             this.radArbiters.Location = new System.Drawing.Point(243, 61);
             this.radArbiters.Name = "radArbiters";
-            this.radArbiters.Size = new System.Drawing.Size(94, 17);
+            this.radArbiters.Size = new System.Drawing.Size(104, 19);
             this.radArbiters.TabIndex = 3;
             this.radArbiters.TabStop = true;
             this.radArbiters.Text = "Arbiters Server";
@@ -554,12 +555,23 @@ namespace MagicMongoDBTool
             this.tabPage3.Text = "ServerRole";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // cmdTest
+            // 
+            this.cmdTest.Location = new System.Drawing.Point(330, 338);
+            this.cmdTest.Name = "cmdTest";
+            this.cmdTest.Size = new System.Drawing.Size(98, 31);
+            this.cmdTest.TabIndex = 3;
+            this.cmdTest.Text = "Test";
+            this.cmdTest.UseVisualStyleBackColor = true;
+            this.cmdTest.Click += new System.EventHandler(this.cmdTest_Click);
+            // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(736, 379);
+            this.Controls.Add(this.cmdTest);
             this.Controls.Add(this.tabConnection);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdAdd);
@@ -635,5 +647,6 @@ namespace MagicMongoDBTool
         private Label lblAttentionPassword;
         private Label lblAttentionPriority;
         private NumericUpDown numPort;
+        private Button cmdTest;
     }
 }

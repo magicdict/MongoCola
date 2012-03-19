@@ -16,6 +16,7 @@ System:
 
 Main Form:
     1.DataView Refresh function
+	2.Add Tooltips to Dataview and Collection Nodes
 
 Status Control:
 	1.Fixed Sort Bug at Collection Status
@@ -30,6 +31,10 @@ DataView Control:
 Connection List Form:
     1.Fix the bug if there is no connection is selected,the form can't close by click Ok button
 	2.Change the command Text "Cancel" to "close"
+
+Add Connection
+    1.Fix bug:The ConnectionString will not be remove in config file.
+	2.Add "Test" Function to test a connection is useful
 
 ========================================================================
 Ver 1.10(Beta) 2012/03/16

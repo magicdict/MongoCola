@@ -444,12 +444,8 @@ namespace MagicMongoDBTool.Module
             mongoColNode.Nodes.Add(mongoIndexes);
             //End ListIndex
 
-            ////Start Data
-            //TreeNode mongoData = new TreeNode("Data");
-            //mongoData.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Document;
-            //mongoData.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Document;
-            //mongoData.Tag = DOCUMENT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
-            //mongoColNode.Nodes.Add(mongoData);
+            mongoColNode.ToolTipText = strColName + System.Environment.NewLine;
+            mongoColNode.ToolTipText += "IsCapped:" + mongoCol.GetStats().IsCapped.ToString();
 
             if (strColName == COLLECTION_NAME_USER)
             {
