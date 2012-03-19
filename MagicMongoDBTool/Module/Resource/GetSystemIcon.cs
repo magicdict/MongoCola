@@ -213,51 +213,84 @@ namespace MagicMongoDBTool.Module
                 IntPtr IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
                 resultIcon = Icon.FromHandle(IconHnd);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                regIconString = systemDirectory + "shell32.dll,0";
-                fileIcon = regIconString.Split(new char[] { ',' });
-                resultIcon = null;
-                //调用API方法读取图标
-                int[] phiconLarge = new int[1];
-                int[] phiconSmall = new int[1];
-                Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
-                IntPtr IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
-                resultIcon = Icon.FromHandle(IconHnd);
+                try
+                {
+                    //第二方案
+                    resultIcon = GetIconByExtendFilename(fileType);
+                }
+                catch (Exception)
+                {
+                    //默认方案
+                    regIconString = systemDirectory + "shell32.dll,0";
+                    fileIcon = regIconString.Split(new char[] { ',' });
+                    resultIcon = null;
+                    //调用API方法读取图标
+                    int[] phiconLarge = new int[1];
+                    int[] phiconSmall = new int[1];
+                    Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
+                    IntPtr IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
+                    resultIcon = Icon.FromHandle(IconHnd);
+                }
             }
             return resultIcon;
         }
+        public static Icon GetIconByExtendFilename(String sFileExt)
+        {
+            {
+                String sProg;
+                var tmp = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(sFileExt).GetValue("");
+                //Get the program that will open files with this extension
+                sProg = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(tmp.ToString()).OpenSubKey("shell").OpenSubKey("open").OpenSubKey("command").GetValue("").ToString();
+                //strip the filename
+                if (sProg.Substring(0, 1) == System.Convert.ToChar(34).ToString())
+                {
+                    sProg = sProg.Substring(1, sProg.IndexOf(System.Convert.ToChar(34), 2) - 1);
+                }
+                else
+                {
+                    sProg = sProg.Substring(0, sProg.IndexOf(" ", 2));
+                }
+                sProg = sProg.Replace("%1", "");
+                // Extract the icon from the program
+                Icon oIcon = System.Drawing.Icon.ExtractAssociatedIcon(sProg);
+                return oIcon;
+            }
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SHFILEINFO
+        {
+            public IntPtr hIcon;
+            public IntPtr iIcon;
+            public uint dwAttributes;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+            public String szDisplayName;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
+            public String szTypeName;
+        };
+
+        ///
+        /// 定义调用的API方法
+        ///
+        static class Win32
+        {
+            public const uint SHGFI_ICON = 0x100;
+            public const uint SHGFI_LARGEICON = 0x0; // 'Large icon
+            public const uint SHGFI_SMALLICON = 0x1; // 'Small icon
+
+            [DllImport("shell32.dll")]
+            public static extern IntPtr SHGetFileInfo(String pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
+            [DllImport("shell32.dll")]
+            public static extern uint ExtractIconEx(String lpszFile, int nIconIndex, int[] phiconLarge, int[] phiconSmall, uint nIcons);
+        }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct SHFILEINFO
-    {
-        public IntPtr hIcon;
-        public IntPtr iIcon;
-        public uint dwAttributes;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
-        public String szDisplayName;
-        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
-        public String szTypeName;
-    };
 
-    ///
-    /// 定义调用的API方法
-    ///
-    static class Win32
-    {
-        public const uint SHGFI_ICON = 0x100;
-        public const uint SHGFI_LARGEICON = 0x0; // 'Large icon
-        public const uint SHGFI_SMALLICON = 0x1; // 'Small icon
-
-        [DllImport("shell32.dll")]
-        public static extern IntPtr SHGetFileInfo(String pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
-        [DllImport("shell32.dll")]
-        public static extern uint ExtractIconEx(String lpszFile, int nIconIndex, int[] phiconLarge, int[] phiconSmall, uint nIcons);
-    }
 }
-
-
