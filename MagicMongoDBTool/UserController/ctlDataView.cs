@@ -246,6 +246,12 @@ namespace MagicMongoDBTool.UserController
                     break;
             }
 
+            FirstPageStripButton.Visible = true;
+            PrePageStripButton.Visible = true;
+            NextPageStripButton.Visible = true;
+            LastPageStripButton.Visible = true;
+
+            GotoStripButton.Visible = true;
             RefreshStripButton.Visible = true;
             RefreshStripButton.Enabled = true;
             CloseStripButton.Visible = true;
@@ -294,7 +300,7 @@ namespace MagicMongoDBTool.UserController
                 default:
                     break;
             }
-
+            GotoStripButton.Enabled = true;
             RefreshStripButton.Enabled = true;
             CloseStripButton.Enabled = true;
         }
@@ -1224,6 +1230,29 @@ namespace MagicMongoDBTool.UserController
             }
             RefreshGUI(sender, e);
         }
+        private void GotoStripButton_Click(object sender, EventArgs e)
+        {
+            if (txtSkip.Text.IsNumeric())
+            {
+                int skip = Convert.ToInt32(txtSkip.Text);
+                skip--;
+                if (skip >= 0)
+                {
+                    if (mDataViewInfo.CurrentCollectionTotalCnt <= skip)
+                    {
+                        mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - 1;
+                    }
+                    else {
+                        mDataViewInfo.SkipCnt = skip;
+                    }
+                    ReloadData();
+                }
+            }
+            else
+            {
+                txtSkip.Text = string.Empty;
+            }
+        }
         /// <summary>
         /// 第一页
         /// </summary>
@@ -1293,11 +1322,13 @@ namespace MagicMongoDBTool.UserController
             lstData.ContextMenuStrip = null;
             trvData.ContextMenuStrip = null;
         }
+
         /// <summary>
         /// 设置导航可用性
         /// </summary>
         private void SetDataNav()
         {
+            
             PrePageStripButton.Enabled = mDataViewInfo.HasPrePage;
             NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
             FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
@@ -1317,6 +1348,7 @@ namespace MagicMongoDBTool.UserController
             {
                 this.DataNaviToolStripLabel.Text = strTitle + "：" + (mDataViewInfo.SkipCnt + 1).ToString() + "/" + mDataViewInfo.CurrentCollectionTotalCnt.ToString();
             }
+            txtSkip.Text = (mDataViewInfo.SkipCnt + 1).ToString();
         }
         /// <summary>
         /// Refresh Data
@@ -1326,8 +1358,15 @@ namespace MagicMongoDBTool.UserController
             this.clear();
             mDataViewInfo.SkipCnt = 0;
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
-            SetDataNav();
             InitControlsEnable();
+            SetDataNav();
+            IsNeedRefresh = false;
+        }
+        public void ReloadData()
+        {
+            this.clear();
+            MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
+            SetDataNav();
             IsNeedRefresh = false;
         }
         /// <summary>
@@ -1358,6 +1397,12 @@ namespace MagicMongoDBTool.UserController
             RefreshGUI(sender, e);
         }
         #endregion
+
+
+
+
+
+
 
     }
 }

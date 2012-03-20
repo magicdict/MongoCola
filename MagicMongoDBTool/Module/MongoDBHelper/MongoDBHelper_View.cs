@@ -601,9 +601,17 @@ namespace MagicMongoDBTool.Module
                     break;
                 case PageChangeOpr.NextPage:
                     mDataViewInfo.SkipCnt += mDataViewInfo.LimitCnt;
+                    if (mDataViewInfo.SkipCnt >= mDataViewInfo.CurrentCollectionTotalCnt)
+                    {
+                        mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - 1;
+                    }
                     break;
                 case PageChangeOpr.PrePage:
                     mDataViewInfo.SkipCnt -= mDataViewInfo.LimitCnt;
+                    if (mDataViewInfo.SkipCnt < 0)
+                    {
+                        mDataViewInfo.SkipCnt = 0;
+                    }
                     break;
                 default:
                     break;

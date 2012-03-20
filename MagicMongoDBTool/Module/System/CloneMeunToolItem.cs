@@ -8,7 +8,25 @@ using System.ComponentModel;
 namespace MagicMongoDBTool.Module
 {
     static class CloneMeunToolItem
-    {
+    {   
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsNumeric(this string str)
+        {
+            if (str == null || str.Length == 0)
+                return false;
+            foreach (char c in str)
+            {
+                if (!Char.IsNumber(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         /// <summary>
         /// 复制菜单项目
         /// </summary>
