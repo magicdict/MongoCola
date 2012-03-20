@@ -158,6 +158,8 @@ namespace MagicMongoDBTool.UserController
                     CopyStripButton.Visible = true;
                     PasteStripButton.Visible = true;
 
+                    DataDocumentToolStripMenuItem.Visible = true;
+
                     break;
                 case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
                     OpenFileStripButton.Visible = true;
@@ -172,6 +174,10 @@ namespace MagicMongoDBTool.UserController
                     UpLoadFolderStripButton.Enabled = true;
 
                     DeleteFileStripButton.Visible = true;
+
+                    Sp1.Visible = false;
+
+                    gFSToolStripMenuItem.Visible = true;
 
                     if (!SystemManager.IsUseDefaultLanguage())
                     {
@@ -189,7 +195,11 @@ namespace MagicMongoDBTool.UserController
                     RemoveUserStripButton.Visible = true;
 
                     ChangePasswordStripButton.Visible = true;
-                    
+
+                    Sp1.Visible = false;
+
+                    userToolStripMenuItem.Visible = true;
+
                     if (!SystemManager.IsUseDefaultLanguage())
                     {
                         AddUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
@@ -206,8 +216,6 @@ namespace MagicMongoDBTool.UserController
             //数据导航
             SetDataNav();
         }
-
-
 
         /// <summary>
         /// 将所有的按钮和右键菜单无效化
@@ -231,13 +239,17 @@ namespace MagicMongoDBTool.UserController
 
 
 
-            RemoveUserToolStripMenuItem.Visible = false;
+            RemoveUserStripButton.Visible = false;
             AddUserStripButton.Visible = false;
             ChangePasswordStripButton.Visible = false;
 
             //Change Icons Visible by DataType
             ExpandAllStripButton.Visible = false;
             CollapseAllStripButton.Visible = false;
+
+            DataDocumentToolStripMenuItem.Visible = false;
+            userToolStripMenuItem.Visible = false;
+            gFSToolStripMenuItem.Visible = false;
 
             //=======================================================
 

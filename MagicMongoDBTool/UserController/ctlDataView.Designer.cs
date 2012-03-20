@@ -58,7 +58,6 @@ namespace MagicMongoDBTool.UserController
             this.DownloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.RemoveUserFromAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
@@ -73,11 +72,11 @@ namespace MagicMongoDBTool.UserController
             this.NewDocumentStripButton = new System.Windows.Forms.ToolStripButton();
             this.EditDocStripButton = new System.Windows.Forms.ToolStripButton();
             this.DelSelectRecordToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.Sp1 = new System.Windows.Forms.ToolStripSeparator();
             this.CutStripButton = new System.Windows.Forms.ToolStripButton();
             this.CopyStripButton = new System.Windows.Forms.ToolStripButton();
             this.PasteStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.Sp2 = new System.Windows.Forms.ToolStripSeparator();
             this.FirstPageStripButton = new System.Windows.Forms.ToolStripButton();
             this.PrePageStripButton = new System.Windows.Forms.ToolStripButton();
             this.NextPageStripButton = new System.Windows.Forms.ToolStripButton();
@@ -91,6 +90,7 @@ namespace MagicMongoDBTool.UserController
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
+            this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
@@ -185,7 +185,7 @@ namespace MagicMongoDBTool.UserController
             this.gFSToolStripMenuItem,
             this.userToolStripMenuItem});
             this.contextMenuStripMain.Name = "contextMenuStripMain";
-            this.contextMenuStripMain.Size = new System.Drawing.Size(123, 70);
+            this.contextMenuStripMain.Size = new System.Drawing.Size(153, 92);
             // 
             // DataDocumentToolStripMenuItem
             // 
@@ -201,11 +201,12 @@ namespace MagicMongoDBTool.UserController
             this.CutElementToolStripMenuItem,
             this.PasteElementToolStripMenuItem});
             this.DataDocumentToolStripMenuItem.Name = "DataDocumentToolStripMenuItem";
-            this.DataDocumentToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.DataDocumentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DataDocumentToolStripMenuItem.Text = "Document";
             // 
             // AddDocumentToolStripMenuItem
             // 
+            this.AddDocumentToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.NewDocument;
             this.AddDocumentToolStripMenuItem.Name = "AddDocumentToolStripMenuItem";
             this.AddDocumentToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.AddDocumentToolStripMenuItem.Text = "Add Document";
@@ -282,66 +283,66 @@ namespace MagicMongoDBTool.UserController
             this.DownloadFileToolStripMenuItem,
             this.DelFileToolStripMenuItem});
             this.gFSToolStripMenuItem.Name = "gFSToolStripMenuItem";
-            this.gFSToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.gFSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.gFSToolStripMenuItem.Text = "GFS";
             // 
             // OpenFileToolStripMenuItem
             // 
+            this.OpenFileToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.OpenFile;
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
-            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.OpenFileToolStripMenuItem.Text = "Open File";
             // 
             // UploadFileToolStripMenuItem
             // 
+            this.UploadFileToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.UpLoadFile;
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
-            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.UploadFileToolStripMenuItem.Text = "Upload File";
             // 
             // uploadFolderToolStripMenuItem
             // 
+            this.uploadFolderToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.UploadFolder;
             this.uploadFolderToolStripMenuItem.Name = "uploadFolderToolStripMenuItem";
-            this.uploadFolderToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.uploadFolderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.uploadFolderToolStripMenuItem.Text = "UploadFolder";
             // 
             // DownloadFileToolStripMenuItem
             // 
+            this.DownloadFileToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.DownloadFile;
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
-            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DownloadFileToolStripMenuItem.Text = "Download File";
             // 
             // DelFileToolStripMenuItem
             // 
+            this.DelFileToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.delete_file;
             this.DelFileToolStripMenuItem.Name = "DelFileToolStripMenuItem";
-            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.DelFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DelFileToolStripMenuItem.Text = "Delete File";
             // 
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.RemoveUserFromAdminToolStripMenuItem,
-            this.RemoveUserToolStripMenuItem,
-            this.changePasswordToolStripMenuItem});
+            this.createUserToolStripMenuItem,
+            this.changePasswordToolStripMenuItem,
+            this.RemoveUserToolStripMenuItem});
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.userToolStripMenuItem.Text = "User";
-            // 
-            // RemoveUserFromAdminToolStripMenuItem
-            // 
-            this.RemoveUserFromAdminToolStripMenuItem.Name = "RemoveUserFromAdminToolStripMenuItem";
-            this.RemoveUserFromAdminToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.RemoveUserFromAdminToolStripMenuItem.Text = "Remove User From Admin";
             // 
             // RemoveUserToolStripMenuItem
             // 
+            this.RemoveUserToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.DelUser;
             this.RemoveUserToolStripMenuItem.Name = "RemoveUserToolStripMenuItem";
-            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.RemoveUserToolStripMenuItem.Text = "Remove User";
             // 
             // changePasswordToolStripMenuItem
             // 
-            this.changePasswordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changePasswordToolStripMenuItem.Image")));
+            this.changePasswordToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.UserPassword;
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             // 
             // ViewtoolStrip
@@ -358,11 +359,11 @@ namespace MagicMongoDBTool.UserController
             this.NewDocumentStripButton,
             this.EditDocStripButton,
             this.DelSelectRecordToolStripButton,
-            this.toolStripSeparator4,
+            this.Sp1,
             this.CutStripButton,
             this.CopyStripButton,
             this.PasteStripButton,
-            this.toolStripSeparator5,
+            this.Sp2,
             this.FirstPageStripButton,
             this.PrePageStripButton,
             this.NextPageStripButton,
@@ -492,10 +493,10 @@ namespace MagicMongoDBTool.UserController
             this.DelSelectRecordToolStripButton.Text = "Delete Selected Record";
             this.DelSelectRecordToolStripButton.Click += new System.EventHandler(this.DelSelectRecordToolStripButton_Click);
             // 
-            // toolStripSeparator4
+            // Sp1
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            this.Sp1.Name = "Sp1";
+            this.Sp1.Size = new System.Drawing.Size(6, 25);
             // 
             // CutStripButton
             // 
@@ -524,10 +525,10 @@ namespace MagicMongoDBTool.UserController
             this.PasteStripButton.Size = new System.Drawing.Size(23, 22);
             this.PasteStripButton.Text = "Paste";
             // 
-            // toolStripSeparator5
+            // Sp2
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            this.Sp2.Name = "Sp2";
+            this.Sp2.Size = new System.Drawing.Size(6, 25);
             // 
             // FirstPageStripButton
             // 
@@ -651,6 +652,13 @@ namespace MagicMongoDBTool.UserController
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 
+            // createUserToolStripMenuItem
+            // 
+            this.createUserToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddUserToDB;
+            this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
+            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.createUserToolStripMenuItem.Text = "Create User";
+            // 
             // ctlDataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -718,9 +726,9 @@ namespace MagicMongoDBTool.UserController
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripButton EditDocStripButton;
         private ToolStripButton OpenFileStripButton;
-        private ToolStripSeparator toolStripSeparator4;
+        private ToolStripSeparator Sp1;
         private ToolStripButton CutStripButton;
-        private ToolStripSeparator toolStripSeparator5;
+        private ToolStripSeparator Sp2;
         private ToolStripButton CopyStripButton;
         private ToolStripButton PasteStripButton;
         private ToolStripComboBox cmbRecPerPage;
@@ -734,13 +742,13 @@ namespace MagicMongoDBTool.UserController
         private ToolStripMenuItem DownloadFileToolStripMenuItem;
         private ToolStripMenuItem DelFileToolStripMenuItem;
         private ToolStripMenuItem userToolStripMenuItem;
-        private ToolStripMenuItem RemoveUserFromAdminToolStripMenuItem;
         private ToolStripMenuItem RemoveUserToolStripMenuItem;
         private ToolStripMenuItem changePasswordToolStripMenuItem;
         private ToolStripButton DeleteFileStripButton;
         private ToolStripButton AddUserStripButton;
         private ToolStripButton ChangePasswordStripButton;
         private ToolStripButton RemoveUserStripButton;
+        private ToolStripMenuItem createUserToolStripMenuItem;
 
     }
 }
