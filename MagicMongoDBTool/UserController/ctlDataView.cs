@@ -10,12 +10,12 @@ namespace MagicMongoDBTool.UserController
     public partial class ctlDataView : UserControl
     {
 
+        #region"Main"
         /// <summary>
         /// 这里需要控制3中不同的数据类型，普通的Collection，GFS，USER。
         /// 图标复用方式来处理不同的类型。
         /// </summary>
 
-        #region"Main"
         public ctlDataView(MongoDBHelper.DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
@@ -250,6 +250,8 @@ namespace MagicMongoDBTool.UserController
             PrePageStripButton.Visible = true;
             NextPageStripButton.Visible = true;
             LastPageStripButton.Visible = true;
+            this.FilterStripButton.Visible = true;
+            this.QueryStripButton.Visible = true;
 
             GotoStripButton.Visible = true;
             RefreshStripButton.Visible = true;
@@ -279,7 +281,11 @@ namespace MagicMongoDBTool.UserController
                 case MongoDBHelper.COLLECTION_TAG:
                     OpenDocInEditorStripButton.Enabled = true;
                     OpenDocInEditorStripMenuItem.Enabled = true;
-
+                    if (!mDataViewInfo.IsReadOnly)
+                    {
+                        this.NewDocumentStripButton.Enabled = true;
+                        this.NewDocumentToolStripMenuItem.Enabled = true;
+                    }
                     ExpandAllStripButton.Enabled = true;
                     CollapseAllStripButton.Enabled = true;
 
@@ -300,6 +306,16 @@ namespace MagicMongoDBTool.UserController
                 default:
                     break;
             }
+
+            PrePageStripButton.Enabled = mDataViewInfo.HasPrePage;
+            NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
+            FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
+            LastPageStripButton.Enabled = mDataViewInfo.HasNextPage;
+
+            this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            this.FilterStripButton.Enabled = true;
+            this.QueryStripButton.Enabled = true;
+
             GotoStripButton.Enabled = true;
             RefreshStripButton.Enabled = true;
             CloseStripButton.Enabled = true;
@@ -458,68 +474,36 @@ namespace MagicMongoDBTool.UserController
         }
 
         /// <summary>
-        /// 数据树菜单的禁止
-        /// </summary>
-        public void DisableDataTreeOpr()
-        {
-            RemoveUserToolStripMenuItem.Enabled = false;
-            DelSelectRecordToolStripMenuItem.Enabled = false;
-            DeleteFileToolStripMenuItem.Enabled = false;
-            AddElementToolStripMenuItem.Enabled = false;
-            DropElementToolStripMenuItem.Enabled = false;
-            ModifyElementToolStripMenuItem.Enabled = false;
-            CopyElementToolStripMenuItem.Enabled = false;
-            CutElementToolStripMenuItem.Enabled = false;
-            PasteElementToolStripMenuItem.Enabled = false;
-
-            this.CutStripButton.Enabled = false;
-            this.CopyStripButton.Enabled = false;
-            this.PasteStripButton.Enabled = false;
-        }
-
-        /// <summary>
         /// 数据树形被选择后(TOP)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void trvData_AfterSelect_Top(object sender, TreeViewEventArgs e)
         {
-            DisableDataTreeOpr();
+            InitControlsEnable();
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
             if (trvData.SelectedNode.Level == 0)
             {
                 //顶层可以删除的节点
                 if (!mDataViewInfo.IsReadOnly)
                 {
-                    switch (SystemManager.GetCurrentCollection().Name)
+                    if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) && !SystemManager.GetCurrentCollection().IsCapped())
                     {
-                        case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
-
-                            DeleteFileToolStripMenuItem.Enabled = true;
-                            break;
-                        case MongoDBHelper.COLLECTION_NAME_USER:
-                            RemoveUserToolStripMenuItem.Enabled = true;
-                            break;
-                        default:
-                            if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) && !SystemManager.GetCurrentCollection().IsCapped())
-                            {
-                                //普通数据
-                                //在顶层的时候，允许添加元素,不允许删除元素和修改元素(删除选中记录)
-                                DelSelectRecordToolStripMenuItem.Enabled = true;
-                                DelSelectRecordToolStripButton.Enabled = true;
-                                AddElementToolStripMenuItem.Enabled = true;
-                                if (MongoDBHelper.CanPasteAsElement)
-                                {
-                                    PasteElementToolStripMenuItem.Enabled = true;
-                                    PasteStripButton.Enabled = true;
-                                }
-                            }
-                            else
-                            {
-                                DelSelectRecordToolStripMenuItem.Enabled = false;
-                                DelSelectRecordToolStripButton.Enabled = false;
-                            }
-                            break;
+                        //普通数据
+                        //在顶层的时候，允许添加元素,不允许删除元素和修改元素(删除选中记录)
+                        DelSelectRecordToolStripMenuItem.Enabled = true;
+                        DelSelectRecordToolStripButton.Enabled = true;
+                        AddElementToolStripMenuItem.Enabled = true;
+                        if (MongoDBHelper.CanPasteAsElement)
+                        {
+                            PasteElementToolStripMenuItem.Enabled = true;
+                            PasteStripButton.Enabled = true;
+                        }
+                    }
+                    else
+                    {
+                        DelSelectRecordToolStripMenuItem.Enabled = false;
+                        DelSelectRecordToolStripButton.Enabled = false;
                     }
                 }
             }
@@ -693,25 +677,12 @@ namespace MagicMongoDBTool.UserController
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
-
-                    //顶层可以修改的节点
-                    switch (SystemManager.GetCurrentCollection().Name)
-                    {
-                        case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
-                            this.contextMenuStripMain.Items.Add(this.DeleteFileToolStripMenuItem.Clone());
-                            break;
-                        case MongoDBHelper.COLLECTION_NAME_USER:
-                            this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
-                            break;
-                        default:
-                            ///允许删除
-                            this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
-                            ///允许添加
-                            this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
-                            ///允许粘贴
-                            this.contextMenuStripMain.Items.Add(this.PasteElementToolStripMenuItem.Clone());
-                            break;
-                    }
+                    ///允许删除
+                    this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
+                    ///允许添加
+                    this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
+                    ///允许粘贴
+                    this.contextMenuStripMain.Items.Add(this.PasteElementToolStripMenuItem.Clone());
                     trvData.ContextMenuStrip = this.contextMenuStripMain;
                     contextMenuStripMain.Show(trvData.PointToScreen(e.Location));
                 }
@@ -732,21 +703,12 @@ namespace MagicMongoDBTool.UserController
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 this.contextMenuStripMain = new ContextMenuStrip();
-
-                //顶层可以删除的节点
-                switch (SystemManager.GetCurrentCollection().Name)
-                {
-                    case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
-                    case MongoDBHelper.COLLECTION_NAME_USER:
-                    default:
-                        this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
-                        this.contextMenuStripMain.Items.Add(this.ModifyElementToolStripMenuItem.Clone());
-                        this.contextMenuStripMain.Items.Add(this.DropElementToolStripMenuItem.Clone());
-                        this.contextMenuStripMain.Items.Add(this.CopyElementToolStripMenuItem.Clone());
-                        this.contextMenuStripMain.Items.Add(this.CutElementToolStripMenuItem.Clone());
-                        this.contextMenuStripMain.Items.Add(this.PasteElementToolStripMenuItem.Clone());
-                        break;
-                }
+                this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
+                this.contextMenuStripMain.Items.Add(this.ModifyElementToolStripMenuItem.Clone());
+                this.contextMenuStripMain.Items.Add(this.DropElementToolStripMenuItem.Clone());
+                this.contextMenuStripMain.Items.Add(this.CopyElementToolStripMenuItem.Clone());
+                this.contextMenuStripMain.Items.Add(this.CutElementToolStripMenuItem.Clone());
+                this.contextMenuStripMain.Items.Add(this.PasteElementToolStripMenuItem.Clone());
                 trvData.ContextMenuStrip = this.contextMenuStripMain;
                 contextMenuStripMain.Show(trvData.PointToScreen(e.Location));
             }
@@ -989,7 +951,7 @@ namespace MagicMongoDBTool.UserController
         /// <summary>
         /// Upload File
         /// </summary>
-        public void UploadFileStripButton_Click(object sender, EventArgs e)
+        private void UploadFileStripButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog upfile = new OpenFileDialog();
             MongoDBHelper.enumGFSFileName filename;
@@ -1228,7 +1190,7 @@ namespace MagicMongoDBTool.UserController
                     mDataViewInfo.LimitCnt = 100;
                     break;
             }
-            RefreshGUI(sender, e);
+            ReloadData();
         }
         private void GotoStripButton_Click(object sender, EventArgs e)
         {
@@ -1242,7 +1204,8 @@ namespace MagicMongoDBTool.UserController
                     {
                         mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - 1;
                     }
-                    else {
+                    else
+                    {
                         mDataViewInfo.SkipCnt = skip;
                     }
                     ReloadData();
@@ -1314,7 +1277,7 @@ namespace MagicMongoDBTool.UserController
         /// <summary>
         /// 清除所有数据
         /// </summary>
-        public void clear()
+        private void clear()
         {
             lstData.Clear();
             txtData.Text = String.Empty;
@@ -1328,7 +1291,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         private void SetDataNav()
         {
-            
+
             PrePageStripButton.Enabled = mDataViewInfo.HasPrePage;
             NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
             FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
@@ -1362,7 +1325,7 @@ namespace MagicMongoDBTool.UserController
             SetDataNav();
             IsNeedRefresh = false;
         }
-        public void ReloadData()
+        private void ReloadData()
         {
             this.clear();
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
@@ -1397,12 +1360,6 @@ namespace MagicMongoDBTool.UserController
             RefreshGUI(sender, e);
         }
         #endregion
-
-
-
-
-
-
 
     }
 }

@@ -1012,9 +1012,7 @@ namespace MagicMongoDBTool
                 mDataViewInfo.mDataFilter = new DataFilter();
 
                 ctlDataView DataViewctl = new ctlDataView(mDataViewInfo);
-
                 DataViewctl.mDataViewInfo = mDataViewInfo;
-                DataViewctl.DisableDataTreeOpr();
 
                 TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().Name);
                 DataTab.Tag = SystemManager.SelectObjectTag;
