@@ -151,6 +151,13 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap delete_file {
+            get {
+                object obj = ResourceManager.GetObject("delete_file", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap DeleteDoc {
             get {
                 object obj = ResourceManager.GetObject("DeleteDoc", resourceCulture);
@@ -284,6 +291,13 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap OpenFile {
+            get {
+                object obj = ResourceManager.GetObject("OpenFile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Option {
             get {
                 object obj = ResourceManager.GetObject("Option", resourceCulture);
@@ -347,6 +361,13 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Sql {
+            get {
+                object obj = ResourceManager.GetObject("Sql", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap sync {
             get {
                 object obj = ResourceManager.GetObject("sync", resourceCulture);
@@ -385,6 +406,13 @@ namespace MagicMongoDBTool.Properties {
         internal static System.Drawing.Bitmap UserCollection {
             get {
                 object obj = ResourceManager.GetObject("UserCollection", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap UserPassword {
+            get {
+                object obj = ResourceManager.GetObject("UserPassword", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

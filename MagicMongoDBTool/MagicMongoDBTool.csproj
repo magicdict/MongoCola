@@ -511,6 +511,7 @@
     <Content Include="Resources\%2801,18%29.png" />
     <Content Include="Resources\%2802,36%29.png" />
     <Content Include="Resources\%2803,05%29.png" />
+    <None Include="Resources\%2804,06%29.png" />
     <Content Include="Resources\%2804,18%29.png" />
     <Content Include="Resources\%2804,23%29.png" />
     <Content Include="Resources\%2805,06%29.png" />
@@ -518,6 +519,7 @@
     <Content Include="Resources\%2805,08%29.png" />
     <Content Include="Resources\%2806,06%29.png" />
     <None Include="Resources\%2806,41%29.png" />
+    <None Include="Resources\%2806,33%29.png" />
     <Content Include="Resources\%2807,22%29.png" />
     <Content Include="Resources\%2807,40%29.png" />
     <Content Include="Resources\%2807,42%29.png" />
@@ -525,11 +527,14 @@
     <Content Include="Resources\%2809,05%29.png" />
     <Content Include="Resources\%2809,24%29.png" />
     <None Include="Resources\%2811,10%29.png" />
+    <None Include="Resources\%2810,25%29.png" />
     <Content Include="Resources\%2811,18%29.png" />
     <Content Include="Resources\%2812,24%29.png" />
     <Content Include="Resources\%2813,12%29.png" />
+    <None Include="Resources\%2813,28%29.png" />
     <Content Include="Resources\%2813,35%29.png" />
     <None Include="Resources\%2814,20%29.png" />
+    <None Include="Resources\%2814,28%29.png" />
     <Content Include="Resources\%2815,37%29.png" />
     <Content Include="Resources\%2818,27%29.png" />
     <Content Include="Resources\%2819,48%29.png" />
@@ -547,6 +552,7 @@
     <Content Include="Resources\database_key.png" />
     <Content Include="Resources\DELETE.ICO" />
     <Content Include="Resources\exit.ico" />
+    <None Include="Resources\icon_delete_file.gif" />
     <Content Include="Resources\logo-mongoDB.png" />
     <Content Include="Resources\ok.ico" />
     <Content Include="Resources\Open.ico" />
