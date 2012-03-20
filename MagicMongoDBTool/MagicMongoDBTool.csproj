@@ -343,6 +343,12 @@
     <Compile Include="UserController\ctlServerStatus.Designer.cs">
       <DependentUpon>ctlServerStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserController\TreeViewColumns.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\TreeViewColumns.Designer.cs">
+      <DependentUpon>TreeViewColumns.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form\Box\frmConfirm.resx">
       <DependentUpon>frmConfirm.cs</DependentUpon>
     </EmbeddedResource>
@@ -466,6 +472,9 @@
     </Compile>
     <EmbeddedResource Include="UserController\ctlServerStatus.resx">
       <DependentUpon>ctlServerStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserController\TreeViewColumns.resx">
+      <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

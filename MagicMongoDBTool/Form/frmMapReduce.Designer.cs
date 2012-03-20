@@ -35,10 +35,10 @@
             this.lblReduceFunction = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblMapFunction = new System.Windows.Forms.Label();
-            this.trvResult = new System.Windows.Forms.TreeView();
             this.txtMapJs = new System.Windows.Forms.TextBox();
             this.txtReduceJs = new System.Windows.Forms.TextBox();
             this.cmdRun = new System.Windows.Forms.Button();
+            this.trvResult = new TreeViewColumnsProject.TreeViewColumns();
             this.SuspendLayout();
             // 
             // cmbForMap
@@ -109,14 +109,6 @@
             this.lblMapFunction.TabIndex = 14;
             this.lblMapFunction.Text = "Map Js";
             // 
-            // trvResult
-            // 
-            this.trvResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.trvResult.Location = new System.Drawing.Point(372, 52);
-            this.trvResult.Name = "trvResult";
-            this.trvResult.Size = new System.Drawing.Size(423, 434);
-            this.trvResult.TabIndex = 6;
-            // 
             // txtMapJs
             // 
             this.txtMapJs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -152,12 +144,23 @@
             this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdRun_Click);
             // 
+            // trvResult
+            // 
+            this.trvResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
+            this.trvResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.trvResult.Location = new System.Drawing.Point(378, 53);
+            this.trvResult.Name = "trvResult";
+            this.trvResult.Padding = new System.Windows.Forms.Padding(1);
+            this.trvResult.Size = new System.Drawing.Size(417, 432);
+            this.trvResult.TabIndex = 17;
+            // 
             // frmMapReduce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(807, 543);
+            this.Controls.Add(this.trvResult);
             this.Controls.Add(this.cmbForMap);
             this.Controls.Add(this.cmbForReduce);
             this.Controls.Add(this.cmdSaveReduceJs);
@@ -165,7 +168,6 @@
             this.Controls.Add(this.lblReduceFunction);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.lblMapFunction);
-            this.Controls.Add(this.trvResult);
             this.Controls.Add(this.txtMapJs);
             this.Controls.Add(this.txtReduceJs);
             this.Controls.Add(this.cmdRun);
@@ -191,9 +193,9 @@
         private System.Windows.Forms.Label lblReduceFunction;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label lblMapFunction;
-        private System.Windows.Forms.TreeView trvResult;
         private System.Windows.Forms.TextBox txtMapJs;
         private System.Windows.Forms.TextBox txtReduceJs;
         private System.Windows.Forms.Button cmdRun;
+        private TreeViewColumnsProject.TreeViewColumns trvResult;
     }
 }

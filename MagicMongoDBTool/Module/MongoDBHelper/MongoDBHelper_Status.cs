@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using TreeViewColumnsProject;
 
 namespace MagicMongoDBTool.Module
 {
@@ -15,7 +16,7 @@ namespace MagicMongoDBTool.Module
         /// Fill Server Status to treeview
         /// </summary>
         /// <param name="trvSvrStatus"></param>
-        public static void FillSrvStatusToList(TreeView trvSvrStatus)
+        public static void FillSrvStatusToList(TreeViewColumns trvSvrStatus)
         {
             List<BsonDocument> SrvDocList = new List<BsonDocument>();
             foreach (String mongoSvrKey in _mongoSrvLst.Keys)

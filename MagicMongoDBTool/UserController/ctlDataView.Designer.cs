@@ -34,7 +34,6 @@ namespace MagicMongoDBTool.UserController
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlDataView));
             this.tabDataShower = new System.Windows.Forms.TabControl();
             this.tabTreeView = new System.Windows.Forms.TabPage();
-            this.trvData = new System.Windows.Forms.TreeView();
             this.tabTableView = new System.Windows.Forms.TabPage();
             this.lstData = new System.Windows.Forms.ListView();
             this.tabTextView = new System.Windows.Forms.TabPage();
@@ -91,6 +90,7 @@ namespace MagicMongoDBTool.UserController
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
+            this.trvData = new TreeViewColumnsProject.TreeViewColumns();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
@@ -122,14 +122,6 @@ namespace MagicMongoDBTool.UserController
             this.tabTreeView.Size = new System.Drawing.Size(909, 427);
             this.tabTreeView.TabIndex = 0;
             this.tabTreeView.Text = "TreeView";
-            // 
-            // trvData
-            // 
-            this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvData.Location = new System.Drawing.Point(3, 3);
-            this.trvData.Name = "trvData";
-            this.trvData.Size = new System.Drawing.Size(903, 421);
-            this.trvData.TabIndex = 0;
             // 
             // tabTableView
             // 
@@ -660,6 +652,16 @@ namespace MagicMongoDBTool.UserController
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 
+            // trvData
+            // 
+            this.trvData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
+            this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvData.Location = new System.Drawing.Point(3, 3);
+            this.trvData.Name = "trvData";
+            this.trvData.Padding = new System.Windows.Forms.Padding(1);
+            this.trvData.Size = new System.Drawing.Size(903, 421);
+            this.trvData.TabIndex = 0;
+            // 
             // ctlDataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -687,7 +689,6 @@ namespace MagicMongoDBTool.UserController
 
         private System.Windows.Forms.TabControl tabDataShower;
         private System.Windows.Forms.TabPage tabTreeView;
-        private System.Windows.Forms.TreeView trvData;
         private System.Windows.Forms.TabPage tabTableView;
         private System.Windows.Forms.ListView lstData;
         private System.Windows.Forms.TabPage tabTextView;
@@ -752,6 +753,7 @@ namespace MagicMongoDBTool.UserController
         private ToolStripMenuItem OpenDocInEditorStripMenuItem;
         private ToolStripTextBox txtSkip;
         private ToolStripButton GotoStripButton;
+        private TreeViewColumnsProject.TreeViewColumns trvData;
 
     }
 }

@@ -30,7 +30,6 @@
         {
             this.tabSvrStatus = new System.Windows.Forms.TabControl();
             this.tabSvrBasicInfo = new System.Windows.Forms.TabPage();
-            this.trvSvrStatus = new System.Windows.Forms.TreeView();
             this.tabDBBasicInfo = new System.Windows.Forms.TabPage();
             this.lstDBStatus = new System.Windows.Forms.ListView();
             this.tabCollectionInfo = new System.Windows.Forms.TabPage();
@@ -41,6 +40,7 @@
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this.btnSwitch = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
+            this.trvSvrStatus = new TreeViewColumnsProject.TreeViewColumns();
             this.tabSvrStatus.SuspendLayout();
             this.tabSvrBasicInfo.SuspendLayout();
             this.tabDBBasicInfo.SuspendLayout();
@@ -72,14 +72,6 @@
             this.tabSvrBasicInfo.TabIndex = 3;
             this.tabSvrBasicInfo.Text = "Server Status[manually Refresh]";
             this.tabSvrBasicInfo.UseVisualStyleBackColor = true;
-            // 
-            // trvSvrStatus
-            // 
-            this.trvSvrStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvSvrStatus.Location = new System.Drawing.Point(3, 3);
-            this.trvSvrStatus.Name = "trvSvrStatus";
-            this.trvSvrStatus.Size = new System.Drawing.Size(873, 400);
-            this.trvSvrStatus.TabIndex = 0;
             // 
             // tabDBBasicInfo
             // 
@@ -192,6 +184,16 @@
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 
+            // trvSvrStatus
+            // 
+            this.trvSvrStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
+            this.trvSvrStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvSvrStatus.Location = new System.Drawing.Point(3, 3);
+            this.trvSvrStatus.Name = "trvSvrStatus";
+            this.trvSvrStatus.Padding = new System.Windows.Forms.Padding(1);
+            this.trvSvrStatus.Size = new System.Drawing.Size(873, 400);
+            this.trvSvrStatus.TabIndex = 0;
+            // 
             // ctlServerStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,7 +219,6 @@
 
         private System.Windows.Forms.TabControl tabSvrStatus;
         private System.Windows.Forms.TabPage tabSvrBasicInfo;
-        private System.Windows.Forms.TreeView trvSvrStatus;
         private System.Windows.Forms.TabPage tabDBBasicInfo;
         private System.Windows.Forms.ListView lstDBStatus;
         private System.Windows.Forms.TabPage tabCollectionInfo;
@@ -228,6 +229,7 @@
         private System.Windows.Forms.ToolStripButton RefreshStripButton;
         private System.Windows.Forms.ToolStripButton btnSwitch;
         private System.Windows.Forms.ToolStripButton CloseStripButton;
+        private TreeViewColumnsProject.TreeViewColumns trvSvrStatus;
 
     }
 }

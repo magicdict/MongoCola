@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using TreeViewColumnsProject;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -126,8 +127,8 @@ namespace MagicMongoDBTool.Module
                     case "System.Windows.Forms.TextBox":
                         FillJSONDataToTextBox((TextBox)control, dataList, CurrentDataViewInfo.SkipCnt);
                         break;
-                    case "System.Windows.Forms.TreeView":
-                        FillDataToTreeView(cp[(int)PathLv.CollectionLV], (TreeView)control, dataList, CurrentDataViewInfo.SkipCnt);
+                    case "TreeViewColumnsProject.TreeViewColumns":
+                        FillDataToTreeView(cp[(int)PathLv.CollectionLV], (TreeViewColumns)control, dataList, CurrentDataViewInfo.SkipCnt);
                         break;
                     default:
                         break;
@@ -214,9 +215,9 @@ namespace MagicMongoDBTool.Module
         /// <param name="collectionName"></param>
         /// <param name="trvData"></param>
         /// <param name="dataList"></param>
-        public static void FillDataToTreeView(String collectionName, TreeView trvData, List<BsonDocument> dataList, int mSkip = 0)
+        public static void FillDataToTreeView(String collectionName, TreeViewColumns trvData, List<BsonDocument> dataList, int mSkip = 0)
         {
-            trvData.Nodes.Clear();
+            trvData.treeView1.Nodes.Clear();
             int SkipCnt = mSkip;
             int Count = 1;
             foreach (BsonDocument item in dataList)
@@ -243,7 +244,7 @@ namespace MagicMongoDBTool.Module
                         break;
                 }
                 AddBsonDocToTreeNode(dataNode, item);
-                trvData.Nodes.Add(dataNode);
+                trvData.treeView1.Nodes.Add(dataNode);
                 Count++;
             }
         }
@@ -258,24 +259,24 @@ namespace MagicMongoDBTool.Module
             {
                 if (item.Value.IsBsonDocument)
                 {
-                    TreeNode newItem = new TreeNode(item.Name + ":" + Document_Mark);
+                    TreeNode newItem = new TreeNode(item.Name);
                     AddBsonDocToTreeNode(newItem, item.Value.ToBsonDocument());
-                    newItem.Tag = item;
+                    newItem.Tag = new string[]{String.Empty,Document_Mark};
                     treeNode.Nodes.Add(newItem);
                 }
                 else
                 {
                     if (item.Value.IsBsonArray)
                     {
-                        TreeNode newItem = new TreeNode(item.Name + ":" + Array_Mark);
+                        TreeNode newItem = new TreeNode(item.Name);
                         AddBSonArrayToTreeNode(newItem, item.Value.AsBsonArray);
-                        newItem.Tag = item;
+                        newItem.Tag = new string[] { String.Empty, Array_Mark };
                         treeNode.Nodes.Add(newItem);
                     }
                     else
                     {
-                        TreeNode ElementNode = new TreeNode(item.Name + ":" + ConvertToString(item.Value));
-                        ElementNode.Tag = item;
+                        TreeNode ElementNode = new TreeNode(item.Name );
+                        ElementNode.Tag = new string[] { ConvertToString(item.Value), item.GetType().Name };
                         treeNode.Nodes.Add(ElementNode);
                     }
                 }

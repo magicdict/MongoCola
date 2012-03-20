@@ -48,7 +48,7 @@ namespace MagicMongoDBTool
             }
             SrvDocList.Add(cr);
             MongoDBHelper.FillDataToTreeView(strType, this.trvStatus, SrvDocList, 0);
-            this.trvStatus.Nodes[0].Expand();
+            this.trvStatus.treeView1.Nodes[0].Expand();
 
         }
 
