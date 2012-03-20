@@ -67,15 +67,70 @@ namespace MagicMongoDBTool.Module
             MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
             gfs.Download(strLocalFileName, strRemoteFileName);
         }
+        public enum enumGFSFileName
+        {
+            filename,
+            path
+        }
+        public enum enumGFSAlready
+        {
+            JustAddIt,
+            RenameIt,
+            SkipIt,
+            OverwriteIt,
+            Stop
+        }
         /// <summary>
         /// 上传文件
         /// </summary>
+        /// <remarks>Mongo允许同名文件，因为id才是主键</remarks>
         /// <param name="strFileName"></param>
-        public static void UpLoadFile(String strFileName)
+        public static bool UpLoadFile(String strFileName, enumGFSFileName FileName, enumGFSAlready Option)
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
             MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
-            gfs.Upload(strFileName);
+            String RemoteName = String.Empty;
+            if (FileName == enumGFSFileName.filename)
+            {
+                RemoteName = new FileInfo(strFileName).Name;
+            }
+            else
+            {
+                RemoteName = strFileName;
+            }
+            if (!gfs.Exists(RemoteName))
+            {
+                gfs.Upload(strFileName, RemoteName);
+                return true;
+            }
+            else
+            {
+                switch (Option)
+                {
+                    case enumGFSAlready.JustAddIt:
+                        gfs.Upload(strFileName, RemoteName);
+                        return true;
+                    case enumGFSAlready.RenameIt:
+                        String ExtendName = new FileInfo(strFileName).Extension;
+                        String MainName = RemoteName.Substring(0, RemoteName.Length - ExtendName.Length);
+                        int i = 1;
+                        while (gfs.Exists(MainName + i.ToString() + ExtendName))
+                        {
+                            i++;
+                        }
+                        gfs.Upload(strFileName, MainName + i.ToString() + ExtendName);
+                        return true;
+                    case enumGFSAlready.SkipIt:
+                        return false;
+                    case enumGFSAlready.OverwriteIt:
+                        gfs.Delete(RemoteName);
+                        gfs.Upload(strFileName, RemoteName);
+                        return true;
+                    case enumGFSAlready.Stop:
+                        return false;
+                }
+                return true;
+            }
         }
         /// <summary>
         /// 删除文件

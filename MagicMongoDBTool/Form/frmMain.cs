@@ -1070,7 +1070,7 @@ namespace MagicMongoDBTool
                 ctlDataView ctl = tabView.SelectedTab.Controls[0] as ctlDataView;
                 if (ctl != null)
                 {
-                    ctl.RefreshCtl();
+                    ctl.RefreshGUI(sender,e);
                 }
             }
         }

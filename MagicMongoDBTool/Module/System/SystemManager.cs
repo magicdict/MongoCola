@@ -96,13 +96,13 @@ namespace MagicMongoDBTool.Module
         /// 对话框子窗体的统一管理
         /// </summary>
         /// <param name="frm"></param>
-        public static void OpenForm(Form mfrm)
+        public static void OpenForm(Form mfrm,Boolean isDispose = true)
         {
             mfrm.StartPosition = FormStartPosition.CenterParent;
             mfrm.BackColor = System.Drawing.Color.White;
             mfrm.ShowDialog();
             mfrm.Close();
-            mfrm.Dispose();
+            if (isDispose) { mfrm.Dispose(); }
         }
         /// <summary>
         /// 获得当前服务器配置
