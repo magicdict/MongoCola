@@ -44,22 +44,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtException.BackColor = System.Drawing.Color.White;
-            this.txtException.Location = new System.Drawing.Point(13, 65);
+            this.txtException.Location = new System.Drawing.Point(13, 61);
             this.txtException.Multiline = true;
             this.txtException.Name = "txtException";
             this.txtException.ReadOnly = true;
             this.txtException.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtException.Size = new System.Drawing.Size(528, 157);
+            this.txtException.Size = new System.Drawing.Size(528, 161);
             this.txtException.TabIndex = 5;
             // 
             // lblMessage
             // 
-            this.lblMessage.AutoSize = true;
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(49, 14);
+            this.lblMessage.Location = new System.Drawing.Point(47, 24);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(67, 15);
+            this.lblMessage.Size = new System.Drawing.Size(477, 31);
             this.lblMessage.TabIndex = 6;
             this.lblMessage.Text = "Summary";
             // 
@@ -100,7 +99,7 @@
             // picImage
             // 
             this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.Location = new System.Drawing.Point(14, 14);
+            this.picImage.Location = new System.Drawing.Point(13, 27);
             this.picImage.Name = "picImage";
             this.picImage.Size = new System.Drawing.Size(28, 28);
             this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -111,6 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(556, 279);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.txtException);

@@ -38,12 +38,11 @@ namespace MagicMongoDBTool
             // 
             // lblMessage
             // 
-            this.lblMessage.AutoSize = true;
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.Location = new System.Drawing.Point(64, 30);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(65, 15);
+            this.lblMessage.Size = new System.Drawing.Size(222, 38);
             this.lblMessage.TabIndex = 8;
             this.lblMessage.Text = "Message";
             // 
@@ -60,9 +59,9 @@ namespace MagicMongoDBTool
             // cmdYes
             // 
             this.cmdYes.BackColor = System.Drawing.Color.Transparent;
-            this.cmdYes.Location = new System.Drawing.Point(119, 111);
+            this.cmdYes.Location = new System.Drawing.Point(67, 83);
             this.cmdYes.Name = "cmdYes";
-            this.cmdYes.Size = new System.Drawing.Size(117, 37);
+            this.cmdYes.Size = new System.Drawing.Size(79, 25);
             this.cmdYes.TabIndex = 0;
             this.cmdYes.Text = "Yes";
             this.cmdYes.UseVisualStyleBackColor = false;
@@ -71,9 +70,9 @@ namespace MagicMongoDBTool
             // cmdNo
             // 
             this.cmdNo.BackColor = System.Drawing.Color.Transparent;
-            this.cmdNo.Location = new System.Drawing.Point(290, 111);
+            this.cmdNo.Location = new System.Drawing.Point(181, 83);
             this.cmdNo.Name = "cmdNo";
-            this.cmdNo.Size = new System.Drawing.Size(117, 37);
+            this.cmdNo.Size = new System.Drawing.Size(86, 25);
             this.cmdNo.TabIndex = 1;
             this.cmdNo.Text = "No";
             this.cmdNo.UseVisualStyleBackColor = false;
@@ -83,7 +82,8 @@ namespace MagicMongoDBTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 175);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(331, 126);
             this.Controls.Add(this.cmdNo);
             this.Controls.Add(this.cmdYes);
             this.Controls.Add(this.lblMessage);
@@ -97,7 +97,6 @@ namespace MagicMongoDBTool
             this.Text = "frmconfirm";
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

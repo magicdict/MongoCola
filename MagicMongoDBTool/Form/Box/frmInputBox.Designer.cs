@@ -37,27 +37,26 @@ namespace MagicMongoDBTool
             // 
             // lblMessage
             // 
-            this.lblMessage.AutoSize = true;
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
-            this.lblMessage.Location = new System.Drawing.Point(49, 31);
+            this.lblMessage.Location = new System.Drawing.Point(32, 20);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(71, 15);
+            this.lblMessage.Size = new System.Drawing.Size(293, 33);
             this.lblMessage.TabIndex = 5;
             this.lblMessage.Text = "lblMessage";
             // 
             // txtResult
             // 
-            this.txtResult.Location = new System.Drawing.Point(52, 65);
+            this.txtResult.Location = new System.Drawing.Point(35, 65);
             this.txtResult.Name = "txtResult";
-            this.txtResult.Size = new System.Drawing.Size(576, 21);
+            this.txtResult.Size = new System.Drawing.Size(290, 21);
             this.txtResult.TabIndex = 6;
             // 
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(139, 125);
+            this.cmdOK.Location = new System.Drawing.Point(78, 92);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(117, 37);
+            this.cmdOK.Size = new System.Drawing.Size(71, 25);
             this.cmdOK.TabIndex = 5;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
@@ -66,9 +65,9 @@ namespace MagicMongoDBTool
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(407, 125);
+            this.cmdCancel.Location = new System.Drawing.Point(194, 92);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(117, 37);
+            this.cmdCancel.Size = new System.Drawing.Size(86, 25);
             this.cmdCancel.TabIndex = 6;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
@@ -78,7 +77,8 @@ namespace MagicMongoDBTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 182);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(353, 134);
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.cmdCancel);
