@@ -139,42 +139,61 @@
 ========================================================================
 MongoCola Release Note
 ========================================================================
-Ver 1.00 2011/12/22 
-
-This is the first release of MongoCola.
+MongoCola is developed by Microsoft .NET (C#)
+You need install .NET framework3.5 to run it.
+The C# Mongo driver is mongo offical C# driver 1.3.1.
+Test Based on MongoDB 2.0.4
+MongoCola is free and open source.
 
 ========================================================================
 Release History
 ========================================================================
-Ver 1.10 2012/03/19
+Ver 1.10 2012/03/23
+Main：
+    1.Put count,distinct,group,mapreduce menuitme to Aggregation
+
+GFS:
+    1.Upload Folder
+
+Collection DataView
+    1.Set start position when view data records
+    2.New TreeListView for show data records
+    3.Fixed the bug,if the "_id" field is not the first item of the document.
+    4.Add new document by json String.
+
+Connection List
+    1.Double Click to start at connection list form.
+
+========================================================================
+Ver 1.10 2012/03/23
 System:
-    1.Set all popup form backcolor to white.
-    2.Add some Language Resource
+	1.Set all popup form backcolor to white.
+	2.Add some Language Resource
 
 Main Form:
     1.DataView Refresh function
-    2.Add Tooltips to Dataview and Collection Nodes
+	2.Add Tooltips to Dataview and Collection Nodes
 
 Status Control:
-    1.Fixed Sort Bug at Collection Status
-    2.Fixed the bug while the user login without admin auth. 
-    Thanks to mailto:mail.james@qq.com to report the bug
+	1.Fixed Sort Bug at Collection Status
+	2.Fixed the bug while the user login without admin auth. 
+	   Thanks to mailto:mail.james@qq.com to report the bug
 	   
 
 DataView Control:
-    1.Fixed "Open File in Editor" can't be use after DataView is refreshed.
-    2.Use Offical C# Driver .ToJson() for textview
+	1.Fixed "Open File in Editor" can't be use after DataView is refreshed.
+	2.Use Offical C# Driver .ToJson() for textview
 		
 Connection List Form:
     1.Fix the bug if there is no connection is selected,the form can't close by click Ok button
-    2.Change the command Text "Cancel" to "close"
+	2.Change the command Text "Cancel" to "close"
 
 Add Connection
     1.Fix bug:The ConnectionString will not be remove in config file.
-    2.Add "Test" Function to test a connection is enable or not.
+	2.Add "Test" Function to test a connection is enable or not.
 
 ========================================================================
-Ver 1.10 2012/03/16
+Ver 1.10(Beta) 2012/03/16
 1.Multi Collection View is ready.
 2.Divide all collections into GFS,Javascript,User,Gerneral Collections,System Collections 5, Groups
 3.Add comfirm password at "Add New User" form.
@@ -185,13 +204,16 @@ Ver 1.10 2012/03/16
 8.Create/Drop Javascript 
 9.Records count at display at perpage can be set at dataview.
 10.Capped Collection Restrictions.
-
+ 
 ========================================================================
 Ver 1.05 2012/03/10
+
 1.Change the Name of ClusterInfo to CurrentOperationInfo.
 2.Add Switch Auto Refresh Botton at Status form.
 3.Modify the way of get the total count of a collection,and the performance is up.Thanks to Shadower (cnblogs.com).
 4.Fixed Some bugs in GUI
+5.Modify repairDatabase from "compact" Command to "repairDatabase" Command.
+6.Catch TimeOut Exception When Run Command
 
 ========================================================================
 Ver 1.04 2012/03/07
@@ -231,6 +253,10 @@ Ver 1.01 2011/12/27
 1.Add Chinese and Japanese Language File
 2.Make Status Form Sizable
 
+========================================================================
+Ver 1.00 2011/12/22 
+
+This is the first release of MongoCola.
 ========================================================================
                     </font>
                 </pre>

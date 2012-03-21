@@ -3,7 +3,8 @@ MongoCola Release Note
 ========================================================================
 MongoCola is developed by Microsoft .NET (C#)
 You need install .NET framework3.5 to run it.
-The C# Mongo driver is mongo offical C# driver.
+The C# Mongo driver is mongo offical C# driver 1.3.1.
+Test Based on MongoDB 2.0.4
 MongoCola is free and open source.
 
 ========================================================================
@@ -12,10 +13,18 @@ Release History
 Ver 1.10 2012/03/23
 Main：
     1.Put count,distinct,group,mapreduce menuitme to Aggregation
-    2.Fixed the bug,if the "_id" field is not the first item of the document.
-    3.Add new document by json String.
-    4.Upload Folder
-    5.Set start position when view data records
+
+GFS:
+    1.Upload Folder
+
+Collection DataView
+    1.Set start position when view data records
+    2.New TreeListView for show data records
+    3.Fixed the bug,if the "_id" field is not the first item of the document.
+    4.Add new document by json String.
+
+Connection List
+    1.Double Click to start at connection list form.
 
 ========================================================================
 Ver 1.10 2012/03/23

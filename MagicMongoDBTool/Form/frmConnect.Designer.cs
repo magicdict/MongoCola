@@ -100,6 +100,7 @@
             this.lstServerce.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lstServerce.Size = new System.Drawing.Size(412, 169);
             this.lstServerce.TabIndex = 5;
+            this.lstServerce.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.cmdConnect_Click);
             // 
             // frmConnect
             // 

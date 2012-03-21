@@ -122,7 +122,7 @@ namespace TreeViewColumnsProject
                     }
                     else
                     {
-                        strColumnText = Element.Value.GetType().Name;
+                        strColumnText = Element.Value.GetType().Name.Substring(4);
                     }
                     TextFormatFlags flags = TextFormatFlags.EndEllipsis;
                     switch (this.listView1.Columns[intColumn].TextAlign)
