@@ -34,9 +34,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(256, 419);
+            this.btnClose.Location = new System.Drawing.Point(299, 483);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(107, 34);
+            this.btnClose.Size = new System.Drawing.Size(125, 39);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -45,19 +45,20 @@
             // trvStatus
             // 
             this.trvStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
-            this.trvStatus.Location = new System.Drawing.Point(12, 12);
+            this.trvStatus.Location = new System.Drawing.Point(14, 14);
             this.trvStatus.Name = "trvStatus";
             this.trvStatus.Padding = new System.Windows.Forms.Padding(1);
-            this.trvStatus.Size = new System.Drawing.Size(351, 401);
+            this.trvStatus.Size = new System.Drawing.Size(409, 463);
             this.trvStatus.TabIndex = 2;
             // 
             // frmStatus
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(375, 465);
+            this.ClientSize = new System.Drawing.Size(437, 537);
             this.Controls.Add(this.trvStatus);
             this.Controls.Add(this.btnClose);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmStatus";
             this.Text = "Status";
             this.Load += new System.EventHandler(this.frmStatus_Load);

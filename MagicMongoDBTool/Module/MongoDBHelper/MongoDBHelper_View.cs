@@ -261,7 +261,7 @@ namespace MagicMongoDBTool.Module
                 {
                     TreeNode newItem = new TreeNode(item.Name);
                     AddBsonDocToTreeNode(newItem, item.Value.ToBsonDocument());
-                    newItem.Tag = new string[]{String.Empty,Document_Mark};
+                    newItem.Tag = item;
                     treeNode.Nodes.Add(newItem);
                 }
                 else
@@ -270,13 +270,13 @@ namespace MagicMongoDBTool.Module
                     {
                         TreeNode newItem = new TreeNode(item.Name);
                         AddBSonArrayToTreeNode(newItem, item.Value.AsBsonArray);
-                        newItem.Tag = new string[] { String.Empty, Array_Mark };
+                        newItem.Tag = item;
                         treeNode.Nodes.Add(newItem);
                     }
                     else
                     {
-                        TreeNode ElementNode = new TreeNode(item.Name );
-                        ElementNode.Tag = new string[] { ConvertToString(item.Value), item.GetType().Name };
+                        TreeNode ElementNode = new TreeNode(item.Name);
+                        ElementNode.Tag = item;
                         treeNode.Nodes.Add(ElementNode);
                     }
                 }
