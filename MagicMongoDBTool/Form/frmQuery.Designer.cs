@@ -36,6 +36,7 @@
             this.panFilter = new System.Windows.Forms.Panel();
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
+            this.cmdCancel = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabCondition.SuspendLayout();
             this.SuspendLayout();
@@ -43,9 +44,9 @@
             // cmdAddCondition
             // 
             this.cmdAddCondition.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddCondition.Location = new System.Drawing.Point(426, 393);
+            this.cmdAddCondition.Location = new System.Drawing.Point(445, 393);
             this.cmdAddCondition.Name = "cmdAddCondition";
-            this.cmdAddCondition.Size = new System.Drawing.Size(133, 36);
+            this.cmdAddCondition.Size = new System.Drawing.Size(114, 36);
             this.cmdAddCondition.TabIndex = 14;
             this.cmdAddCondition.Text = "AddFilter";
             this.cmdAddCondition.UseVisualStyleBackColor = false;
@@ -54,9 +55,9 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(450, 504);
+            this.cmdOK.Location = new System.Drawing.Point(389, 504);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(133, 33);
+            this.cmdOK.Size = new System.Drawing.Size(88, 33);
             this.cmdOK.TabIndex = 12;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
@@ -106,7 +107,7 @@
             // cmdLoad
             // 
             this.cmdLoad.BackColor = System.Drawing.Color.Transparent;
-            this.cmdLoad.Location = new System.Drawing.Point(203, 504);
+            this.cmdLoad.Location = new System.Drawing.Point(160, 504);
             this.cmdLoad.Name = "cmdLoad";
             this.cmdLoad.Size = new System.Drawing.Size(117, 33);
             this.cmdLoad.TabIndex = 13;
@@ -117,20 +118,31 @@
             // cmdSave
             // 
             this.cmdSave.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSave.Location = new System.Drawing.Point(327, 504);
+            this.cmdSave.Location = new System.Drawing.Point(284, 504);
             this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(117, 33);
+            this.cmdSave.Size = new System.Drawing.Size(99, 33);
             this.cmdSave.TabIndex = 14;
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = false;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
+            // 
+            // cmdCancel
+            // 
+            this.cmdCancel.Location = new System.Drawing.Point(483, 504);
+            this.cmdCancel.Name = "cmdCancel";
+            this.cmdCancel.Size = new System.Drawing.Size(108, 33);
+            this.cmdCancel.TabIndex = 15;
+            this.cmdCancel.Text = "Cancel";
+            this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // frmQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(622, 554);
+            this.ClientSize = new System.Drawing.Size(613, 554);
+            this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.cmdLoad);
             this.Controls.Add(this.tabControl);
@@ -159,5 +171,6 @@
         private System.Windows.Forms.Button cmdSave;
         private System.Windows.Forms.Button cmdLoad;
         private System.Windows.Forms.Panel panFilter;
+        private System.Windows.Forms.Button cmdCancel;
     }
 }

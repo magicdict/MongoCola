@@ -35,17 +35,17 @@
             // 
             // txtDocument
             // 
-            this.txtDocument.Location = new System.Drawing.Point(12, 12);
+            this.txtDocument.Location = new System.Drawing.Point(16, 15);
             this.txtDocument.Multiline = true;
             this.txtDocument.Name = "txtDocument";
-            this.txtDocument.Size = new System.Drawing.Size(437, 182);
+            this.txtDocument.Size = new System.Drawing.Size(581, 223);
             this.txtDocument.TabIndex = 0;
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(114, 216);
+            this.cmdOK.Location = new System.Drawing.Point(152, 266);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(98, 28);
+            this.cmdOK.Size = new System.Drawing.Size(130, 34);
             this.cmdOK.TabIndex = 1;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
@@ -53,9 +53,9 @@
             // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(245, 216);
+            this.cmdClose.Location = new System.Drawing.Point(327, 266);
             this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(92, 28);
+            this.cmdClose.Size = new System.Drawing.Size(122, 34);
             this.cmdClose.TabIndex = 2;
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
@@ -63,14 +63,15 @@
             // 
             // frmNewDocument
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(461, 262);
+            this.ClientSize = new System.Drawing.Size(615, 322);
             this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.txtDocument);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmNewDocument";
-            this.Text = "frmNewDocument";
+            this.Text = "New Document";
             this.ResumeLayout(false);
             this.PerformLayout();
 

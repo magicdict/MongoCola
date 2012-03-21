@@ -1340,10 +1340,8 @@ namespace MagicMongoDBTool.UserController
         private void QueryStripButton_Click(object sender, EventArgs e)
         {
             SystemManager.OpenForm(new frmQuery(mDataViewInfo));
-            Boolean HasContiditon = mDataViewInfo.mDataFilter.QueryConditionList.Count > 0 ? true : false;
-            this.FilterStripButton.Enabled = HasContiditon;
-            this.FilterStripButton.Checked = HasContiditon;
-            mDataViewInfo.IsUseFilter = HasContiditon;
+            this.FilterStripButton.Enabled = mDataViewInfo.IsUseFilter;
+            this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
             //重新展示数据
             RefreshGUI(sender, e);
         }

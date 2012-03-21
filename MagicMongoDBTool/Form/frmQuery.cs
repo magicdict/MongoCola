@@ -52,8 +52,23 @@ namespace MagicMongoDBTool
                 //输出配置的初始化
                 DataFilter.QueryFieldItem queryFieldItem = new DataFilter.QueryFieldItem();
                 queryFieldItem.ColName = item;
-                queryFieldItem.IsShow = true;
-                queryFieldItem.sortType = DataFilter.SortType.NoSort;
+                if (!CurrentDataViewInfo.IsUseFilter)
+                {
+                    queryFieldItem.IsShow = true;
+                    queryFieldItem.sortType = DataFilter.SortType.NoSort;
+                }
+                else
+                {
+                    DataFilter.QueryFieldItem find = CurrentDataViewInfo.mDataFilter.QueryFieldList.Find
+                        (
+                            (x) => { return x.ColName == item; }
+                        );
+                    if (find.ColName != String.Empty)
+                    {
+                        queryFieldItem.IsShow = find.IsShow;
+                        queryFieldItem.sortType = find.sortType;
+                    }
+                }
                 //动态加载控件
                 ctlFieldInfo ctrItem = new ctlFieldInfo();
                 ctrItem.Name = item;
@@ -111,6 +126,8 @@ namespace MagicMongoDBTool
         {
             // 设置DataFilter
             SetCurrDataFilter();
+            ///按下OK，不论是否做更改都认为True
+            CurrentDataViewInfo.IsUseFilter = true;
             //启用过滤器
             //MongoDBHelper.IsUseFilter = true;
             this.Close();
@@ -169,7 +186,8 @@ namespace MagicMongoDBTool
                 CurrentDataViewInfo.mDataFilter = NewDataFilter;
             }
         }
-        private void PutQueryToUI(DataFilter NewDataFilter) {
+        private void PutQueryToUI(DataFilter NewDataFilter)
+        {
             String strErrMsg = String.Empty;
             List<String> ShowColumnList = new List<String>();
             foreach (String item in ColumnList)
@@ -241,7 +259,16 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Load Exception", "A Exception is happened when loading", strErrMsg, true);
             }
 
-        
+
+        }
+        /// <summary>
+        /// 直接关闭窗体
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
