@@ -69,6 +69,9 @@ namespace MagicMongoDBTool
                         queryFieldItem.sortType = find.sortType;
                     }
                 }
+                if (queryFieldItem.ColName == "_id") {
+                    queryFieldItem.IsShow = true;
+                }
                 //动态加载控件
                 ctlFieldInfo ctrItem = new ctlFieldInfo();
                 ctrItem.Name = item;

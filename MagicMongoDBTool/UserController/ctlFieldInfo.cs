@@ -25,6 +25,10 @@ namespace MagicMongoDBTool
             {
                 lblFieldName.Text = value.ColName;
                 chkIsShow.Checked = value.IsShow;
+                if (value.ColName == "_id") {
+                    chkIsShow.Checked = true;
+                    chkIsShow.Enabled = false;
+                }
                 switch (value.sortType)
                 {
                     case DataFilter.SortType.NoSort:

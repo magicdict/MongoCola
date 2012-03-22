@@ -80,11 +80,6 @@
                 <font size="3" color="black">You can download the Executable File [ZIP package]from
                     GitHub: <a href="https://github.com/magicdict/MagicMongoDBTool/downloads">Downloads
                         @GitHub</a><br />
-<!--                    Or you can download the Executable File from this website:
-                    <br />
-                    <a href="http://www.magicdict.com/MongoCola.zip">Download MongoCola 1.02 from @www.magicdict.com
-                        [ZIP]</a>
-                    <br />-->
                     Anyone can help me to compile the source code on Mono platform? I need an executable
                     file for linux. please email me: <a href="mailto:mynightelfplayer@hotmail.com">email
                         address</a> </font>
@@ -103,7 +98,7 @@
                     <br />
                     <ul>
                         <li>.Net Framework 3.5</li>
-                        <li>MongoDB 2.0.2(Test is based on 2.0.3 Now)</li>
+                        <li>MongoDB 2.0.4</li>
                         <li>C# Offical Driver(1.3.1) if you download the executable file(RAR or ZIP package)
                             contains the driver DLL,you don't need to download it again.</li>
                         <li>Linux User:<font Color="red">apttitude install libmono-windowsbase3.0-cil</font>(Thanks to Voltron for test Mono on ubuntu.)</li>
@@ -121,7 +116,7 @@
             <td>
                 <font size="3" color="black">Thanks MoLing for help me correct this document.
                     <br />
-                    Last Editor：2012-03-19<br />
+                    Last Editor：2012-03-23<br />
                     <br />
                 </font>
             </td>
@@ -148,24 +143,36 @@ MongoCola is free and open source.
 ========================================================================
 Release History
 ========================================================================
-Ver 1.10 2012/03/23
+Ver 1.13 2012/03/23
+All:
+    1.Add Icon to form.
+    2.Set all popup window's FormBorderStyle to FormBorderStyle.FixedSingle;
+
 Main：
     1.Put count,distinct,group,mapreduce menuitme to Aggregation
+    2.Fix the bug when a server is shutdown by this application,the serverlist is not update
 
 GFS:
     1.Upload Folder
+    2.Before Upload file,let user choose what to do if file is existed.
+    3.The remote filename can be the name or Fullname of a localfile
 
 Collection DataView
     1.Set start position when view data records
     2.New TreeListView for show data records
     3.Fixed the bug,if the "_id" field is not the first item of the document.
     4.Add new document by json String.
+    5.Fixed the display field bugs of datafilter
+    6.Make the "_id" field always IsShow to true. 
 
 Connection List
     1.Double Click to start at connection list form.
 
+MessageBox
+    1.Make the visualStyle of Messagebox better.
+
 ========================================================================
-Ver 1.10 2012/03/23
+Ver 1.10 2012/03/16
 System:
 	1.Set all popup form backcolor to white.
 	2.Add some Language Resource

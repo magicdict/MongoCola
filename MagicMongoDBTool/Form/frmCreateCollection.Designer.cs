@@ -40,6 +40,7 @@
             this.lblMaxDocument = new System.Windows.Forms.Label();
             this.grpAdvanced = new System.Windows.Forms.GroupBox();
             this.chkAdvance = new System.Windows.Forms.CheckBox();
+            this.Icon = Module.GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.AddCollection);
             ((System.ComponentModel.ISupportInitialize)(this.numMaxSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxDocument)).BeginInit();
             this.grpAdvanced.SuspendLayout();

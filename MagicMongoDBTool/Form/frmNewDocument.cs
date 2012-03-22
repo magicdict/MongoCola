@@ -58,10 +58,5 @@ namespace MagicMongoDBTool
         {
             this.Close();
         }
-
-        private void frmNewDocument_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
