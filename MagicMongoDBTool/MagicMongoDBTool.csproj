@@ -523,6 +523,7 @@
     </Content>
     <Content Include="Resources\%2800,21%29.png" />
     <Content Include="Resources\%2800,27%29.png" />
+    <None Include="Resources\%2800,33%29.png" />
     <Content Include="Resources\%2800,41%29.png" />
     <Content Include="Resources\%2800,47%29.png" />
     <Content Include="Resources\%2800,48%29.png" />
@@ -530,6 +531,8 @@
     <Content Include="Resources\%2802,36%29.png" />
     <Content Include="Resources\%2803,05%29.png" />
     <None Include="Resources\%2804,06%29.png" />
+    <None Include="Resources\%2804,05%29.png" />
+    <None Include="Resources\%2803,10%29.png" />
     <Content Include="Resources\%2804,18%29.png" />
     <Content Include="Resources\%2804,23%29.png" />
     <Content Include="Resources\%2805,06%29.png" />

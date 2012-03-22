@@ -29,6 +29,7 @@ namespace MagicMongoDBTool
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUser));
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.lblUserName = new System.Windows.Forms.Label();
@@ -68,9 +69,9 @@ namespace MagicMongoDBTool
             this.lblUserName.BackColor = System.Drawing.Color.Transparent;
             this.lblUserName.Location = new System.Drawing.Point(28, 18);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(33, 15);
+            this.lblUserName.Size = new System.Drawing.Size(65, 15);
             this.lblUserName.TabIndex = 6;
-            this.lblUserName.Text = "User";
+            this.lblUserName.Text = "Username";
             // 
             // lblPassword
             // 
@@ -141,6 +142,7 @@ namespace MagicMongoDBTool
             this.Controls.Add(this.cmdOK);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUser";

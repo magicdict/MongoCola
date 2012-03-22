@@ -37,6 +37,8 @@
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
+            this.Icon = Module.GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.Query);
+
             this.tabControl.SuspendLayout();
             this.tabCondition.SuspendLayout();
             this.SuspendLayout();

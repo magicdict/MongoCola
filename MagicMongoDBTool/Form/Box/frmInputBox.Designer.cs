@@ -33,14 +33,16 @@ namespace MagicMongoDBTool
             this.txtResult = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
+            this.imgInfo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.imgInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMessage
             // 
             this.lblMessage.BackColor = System.Drawing.Color.Transparent;
-            this.lblMessage.Location = new System.Drawing.Point(32, 20);
+            this.lblMessage.Location = new System.Drawing.Point(74, 20);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(293, 33);
+            this.lblMessage.Size = new System.Drawing.Size(262, 33);
             this.lblMessage.TabIndex = 5;
             this.lblMessage.Text = "lblMessage";
             // 
@@ -73,12 +75,24 @@ namespace MagicMongoDBTool
             this.cmdCancel.UseVisualStyleBackColor = false;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
+            // imgInfo
+            // 
+            this.imgInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.imgInfo.Image = global::MagicMongoDBTool.Properties.Resources.Input;
+            this.imgInfo.Location = new System.Drawing.Point(35, 20);
+            this.imgInfo.Name = "imgInfo";
+            this.imgInfo.Size = new System.Drawing.Size(32, 32);
+            this.imgInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgInfo.TabIndex = 7;
+            this.imgInfo.TabStop = false;
+            // 
             // frmInputBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(353, 134);
+            this.Controls.Add(this.imgInfo);
             this.Controls.Add(this.txtResult);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.cmdCancel);
@@ -90,6 +104,7 @@ namespace MagicMongoDBTool
             this.Name = "frmInputBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmInputBox";
+            ((System.ComponentModel.ISupportInitialize)(this.imgInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,5 +116,6 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.Button cmdOK;
+        private PictureBox imgInfo;
     }
 }

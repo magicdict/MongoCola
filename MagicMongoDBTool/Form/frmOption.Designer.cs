@@ -34,6 +34,7 @@
             this.cmdOK = new System.Windows.Forms.Button();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.Icon = Module.GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.Option);
             this.ctlFilePickerMongoBinPath = new MagicMongoDBTool.ctlFilePicker();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             this.SuspendLayout();

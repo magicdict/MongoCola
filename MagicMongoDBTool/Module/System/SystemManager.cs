@@ -32,7 +32,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public static String SelectObjectTag = String.Empty;
         /// <summary>
-        /// 
+        /// 获得当前对象的种类
         /// </summary>
         public static String SelectTagType
         {
@@ -42,7 +42,7 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
-        /// 
+        /// 获得当前对象的路径
         /// </summary>
         public static String SelectTagData
         {
@@ -52,7 +52,7 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
-        /// 
+        /// 获得对象的种类
         /// </summary>
         /// <returns></returns>
         public static String GetTagType(String ObjectTag)
@@ -67,7 +67,7 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
-        /// 
+        /// 获得对象的路径
         /// </summary>
         /// <returns></returns>
         public static String GetTagtData(String ObjectTag)
@@ -100,6 +100,7 @@ namespace MagicMongoDBTool.Module
         {
             mfrm.StartPosition = FormStartPosition.CenterParent;
             mfrm.BackColor = System.Drawing.Color.White;
+            mfrm.FormBorderStyle = FormBorderStyle.FixedSingle;
             mfrm.ShowDialog();
             mfrm.Close();
             if (isDispose) { mfrm.Dispose(); }
@@ -120,6 +121,11 @@ namespace MagicMongoDBTool.Module
             }
             return rtnMongoConnectionConfig;
         }
+        /// <summary>
+        /// 根据服务器名称获取配置
+        /// </summary>
+        /// <param name="mongoSvrKey"></param>
+        /// <returns></returns>
         public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfiig(String mongoSvrKey)
         {
             ConfigHelper.MongoConnectionConfig rtnMongoConnectionConfig = new ConfigHelper.MongoConnectionConfig();
@@ -173,19 +179,24 @@ namespace MagicMongoDBTool.Module
         /// <param name="SelectDocId"></param>
         public static void SetCurrentDocument(TreeNode CurrentNode)
         {
-            TreeNode rootNode = findroot(CurrentNode);
+            TreeNode rootNode = FindRootNode(CurrentNode);
             BsonValue SelectDocId = (BsonValue)rootNode.Tag;
             MongoCollection mongoCol = GetCurrentCollection();
             BsonDocument doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ("_id", SelectDocId));
             CurrentDocument = doc;
         }
-        private static TreeNode findroot(TreeNode node)
+        /// <summary>
+        /// 获取树形的根
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        private static TreeNode FindRootNode(TreeNode node)
         {
             if (node.Parent == null)
                 return node;
             else
             {
-                return findroot(node.Parent);
+                return FindRootNode(node.Parent);
             }
         }
         /// <summary>

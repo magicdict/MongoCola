@@ -32,6 +32,7 @@
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.lblAttentionSelectOnly = new System.Windows.Forms.Label();
+            this.Icon = Module.GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.Sql);
             this.SuspendLayout();
             // 
             // txtSql

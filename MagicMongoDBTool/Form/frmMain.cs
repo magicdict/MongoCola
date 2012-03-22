@@ -1349,6 +1349,8 @@ namespace MagicMongoDBTool
                 try
                 {
                     //the server will be  shutdown with exception
+                    MongoDBHelper._mongoSrvLst.Remove(SystemManager.SelectTagData);
+                    MongoDBHelper._mongoStatusLst.Remove(SystemManager.SelectTagData);
                     mongoSvr.Shutdown();
                 }
                 catch (System.IO.IOException)

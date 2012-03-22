@@ -49,9 +49,10 @@ namespace MagicMongoDBTool
             // picImage
             // 
             this.picImage.BackColor = System.Drawing.Color.Transparent;
+            this.picImage.Image = global::MagicMongoDBTool.Properties.Resources.QuestionMark;
             this.picImage.Location = new System.Drawing.Point(29, 30);
             this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(28, 28);
+            this.picImage.Size = new System.Drawing.Size(32, 32);
             this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picImage.TabIndex = 7;
             this.picImage.TabStop = false;

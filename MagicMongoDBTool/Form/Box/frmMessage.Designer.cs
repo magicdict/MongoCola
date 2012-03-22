@@ -99,9 +99,10 @@
             // picImage
             // 
             this.picImage.BackColor = System.Drawing.Color.Transparent;
-            this.picImage.Location = new System.Drawing.Point(13, 27);
+            this.picImage.Image = global::MagicMongoDBTool.Properties.Resources.Info;
+            this.picImage.Location = new System.Drawing.Point(13, 23);
             this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(28, 28);
+            this.picImage.Size = new System.Drawing.Size(32, 32);
             this.picImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picImage.TabIndex = 5;
             this.picImage.TabStop = false;

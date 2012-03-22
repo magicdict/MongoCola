@@ -10,10 +10,10 @@ MongoCola is free and open source.
 ========================================================================
 Release History
 ========================================================================
-Ver 1.10 2012/03/23
+Ver 1.12 2012/03/23
 Main：
     1.Put count,distinct,group,mapreduce menuitme to Aggregation
-
+    2.Set all popup window's FormBorderStyle to FormBorderStyle.FixedSingle;
 GFS:
     1.Upload Folder
 
@@ -22,12 +22,16 @@ Collection DataView
     2.New TreeListView for show data records
     3.Fixed the bug,if the "_id" field is not the first item of the document.
     4.Add new document by json String.
+    5.Fixed the display field bugs of datafilter
 
 Connection List
     1.Double Click to start at connection list form.
 
+MessageBox
+    1.Make the visualStyle of Messagebox better.
+
 ========================================================================
-Ver 1.10 2012/03/23
+Ver 1.10 2012/03/16
 System:
 	1.Set all popup form backcolor to white.
 	2.Add some Language Resource

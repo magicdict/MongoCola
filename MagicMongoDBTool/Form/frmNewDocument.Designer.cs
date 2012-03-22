@@ -31,6 +31,7 @@
             this.txtDocument = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
+            this.Icon = Module.GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.NewDocument);
             this.SuspendLayout();
             // 
             // txtDocument
@@ -45,7 +46,7 @@
             // 
             this.cmdOK.Location = new System.Drawing.Point(152, 266);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(130, 34);
+            this.cmdOK.Size = new System.Drawing.Size(104, 34);
             this.cmdOK.TabIndex = 1;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
@@ -55,7 +56,7 @@
             // 
             this.cmdClose.Location = new System.Drawing.Point(327, 266);
             this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(122, 34);
+            this.cmdClose.Size = new System.Drawing.Size(110, 34);
             this.cmdClose.TabIndex = 2;
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
