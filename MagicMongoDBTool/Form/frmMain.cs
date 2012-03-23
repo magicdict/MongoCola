@@ -260,7 +260,7 @@ namespace MagicMongoDBTool
                 //选中节点的设置
                 this.trvsrvlst.SelectedNode = e.Node;
                 String strNodeType = SystemManager.GetTagType(e.Node.Tag.ToString());
-                String mongoSvrKey = SystemManager.GetTagtData(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
+                String mongoSvrKey = SystemManager.GetTagData(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
                 config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
                 if (String.IsNullOrEmpty(config.UserName))
                 {
@@ -312,9 +312,12 @@ namespace MagicMongoDBTool
                                 this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
                             }
                             this.AddUserToAdminToolStripMenuItem.Enabled = true;
-                            if (!(SystemManager.GetCurrentService().Instance.IsPrimary))
+                            if (SystemManager.GetCurrentService().Instances.Length == 1)
                             {
-                                this.slaveResyncToolStripMenuItem.Enabled = true;
+                                if (!(SystemManager.GetCurrentService().Instance.IsPrimary))
+                                {
+                                    this.slaveResyncToolStripMenuItem.Enabled = true;
+                                }
                             }
                         }
                         this.ShutDownToolStripMenuItem.Enabled = true;
@@ -1157,7 +1160,7 @@ namespace MagicMongoDBTool
         private void DisconnectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SystemManager.GetCurrentService().Disconnect();
-            MongoDBHelper._mongoSrvLst.Remove(config.ConnectionName);
+            MongoDBHelper._mongoConnSvrLst.Remove(config.ConnectionName);
             trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
             RefreshToolStripMenuItem_Click(sender, e);
             if (!SystemManager.IsUseDefaultLanguage())
@@ -1198,7 +1201,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ExpandAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.trvsrvlst.ExpandAll();
+            this.trvsrvlst.CollapseAll();
         }
         /// <summary>
         /// Collapse All
@@ -1207,7 +1210,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CollapseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.trvsrvlst.CollapseAll();
+            this.trvsrvlst.ExpandAll();
         }
         /// <summary>
         /// Exit Application
@@ -1353,7 +1356,7 @@ namespace MagicMongoDBTool
                 try
                 {
                     //the server will be  shutdown with exception
-                    MongoDBHelper._mongoSrvLst.Remove(SystemManager.SelectTagData);
+                    MongoDBHelper._mongoConnSvrLst.Remove(SystemManager.SelectTagData);
                     mongoSvr.Shutdown();
                 }
                 catch (System.IO.IOException)
@@ -1592,7 +1595,7 @@ namespace MagicMongoDBTool
                 String strNodeData = SystemManager.SelectTagData;
                 String strNewNodeTag = SystemManager.SelectObjectTag.Substring(0, SystemManager.SelectObjectTag.Length - SystemManager.GetCurrentCollection().Name.Length);
                 strNewNodeTag += strNewCollectionName;
-                String strNewNodeData = SystemManager.GetTagtData(strNewNodeTag);
+                String strNewNodeData = SystemManager.GetTagData(strNewNodeTag);
                 if (ViewTabList.ContainsKey(strNodeData))
                 {
                     TabPage DataTab = ViewTabList[strNodeData];

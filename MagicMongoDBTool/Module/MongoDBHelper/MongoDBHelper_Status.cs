@@ -19,11 +19,11 @@ namespace MagicMongoDBTool.Module
         public static void FillSrvStatusToList(TreeViewColumns trvSvrStatus)
         {
             List<BsonDocument> SrvDocList = new List<BsonDocument>();
-            foreach (String mongoSvrKey in _mongoSrvLst.Keys)
+            foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
             {
                 try
                 {
-                    MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                    MongoServer mongoSvr = _mongoConnSvrLst[mongoSvrKey];
                     if (!SystemManager.GetCurrentServerConfig(mongoSvrKey).Health) { continue; }
                     //flydreamer提供的代码
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
@@ -39,6 +39,11 @@ namespace MagicMongoDBTool.Module
                 }
             }
             FillDataToTreeView("Server Status", trvSvrStatus, SrvDocList);
+            //打开第一层
+            foreach (TreeNode item in trvSvrStatus.treeView1.Nodes)
+            {
+                item.Expand();
+            }
         }
 
         /// <summary>
@@ -71,11 +76,11 @@ namespace MagicMongoDBTool.Module
                 lstSvr.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_StorageSize));
 
             }
-            foreach (String mongoSvrKey in _mongoSrvLst.Keys)
+            foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
             {
                 try
                 {
-                    MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                    MongoServer mongoSvr = _mongoConnSvrLst[mongoSvrKey];
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
                     if (!SystemManager.GetCurrentServerConfig(mongoSvrKey).Health || 
                         !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin) { continue; }
@@ -150,11 +155,11 @@ namespace MagicMongoDBTool.Module
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_AverageObjectSize));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_PaddingFactor));
             }
-            foreach (String mongoSvrKey in _mongoSrvLst.Keys)
+            foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
             {
                 try
                 {
-                    MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                    MongoServer mongoSvr = _mongoConnSvrLst[mongoSvrKey];
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
                     if ( !SystemManager.GetCurrentServerConfig(mongoSvrKey).Health ||
                          !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin) { continue; }
@@ -238,11 +243,11 @@ namespace MagicMongoDBTool.Module
             lstSrvOpr.Columns.Add("connectionId");
             lstSrvOpr.Columns.Add("numYields");
 
-            foreach (String mongoSvrKey in _mongoSrvLst.Keys)
+            foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
             {
                 try
                 {
-                    MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                    MongoServer mongoSvr = _mongoConnSvrLst[mongoSvrKey];
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
                     if (!SystemManager.GetCurrentServerConfig(mongoSvrKey).Health ||
                         !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin) { continue; }

@@ -37,9 +37,9 @@ namespace MagicMongoDBTool.Module
         public static void FillConnectionToTreeView(TreeView trvMongoDB)
         {
             trvMongoDB.Nodes.Clear();
-            foreach (String mongoSvrKey in _mongoSrvLst.Keys)
+            foreach (String mongoConnKey in _mongoConnSvrLst.Keys)
             {
-                MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
+                MongoServer mongoConn = _mongoConnSvrLst[mongoConnKey];
                 TreeNode ConnectionNode = new TreeNode();
                 try
                 {
@@ -53,20 +53,22 @@ namespace MagicMongoDBTool.Module
                     {
                         strReplset = SystemManager.mStringResource.GetText(StringResource.TextType.ShardingConfig_ReplsetName);
                     }
-                    ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
-                    ConnectionNode.Text = mongoSvr.Instances.Length != 1 ? strReplset + "：" + mongoSvr.ReplicaSetName : config.ConnectionName;
+                    ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey];
                     ConnectionNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
                     ConnectionNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
                     ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName;
                     //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
                     //不过现在改为全部显示的打开连接
-                    mongoSvr.Connect();
-                    foreach (MongoServerInstance Server in mongoSvr.Instances)
+                    mongoConn.Connect();
+                    ///mongoSvr.ReplicaSetName只有在连接后才有效，但是也可以使用Config.ReplsetName
+                    ConnectionNode.Text = mongoConn.Instances.Length != 1 ? strReplset + "：" + mongoConn.ReplicaSetName : config.ConnectionName;
+                    foreach (MongoServerInstance ServerInstace in mongoConn.Instances)
                     {
                         TreeNode SvrInstanceNode = new TreeNode();
+                        String ConnSvrKey = mongoConnKey + "/" + ServerInstace.Address.ToString().Replace(":", "@");
                         SvrInstanceNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
                         SvrInstanceNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
-                        SvrInstanceNode.Text = "Address[" + Server.Address.Host + ":" + Server.Address.Port.ToString() + "]";
+                        SvrInstanceNode.Text = "Address[" + ServerInstace.Address.ToString() + "]";
                         
                         if ((!String.IsNullOrEmpty(config.UserName)) & (!String.IsNullOrEmpty(config.Password)))
                         {
@@ -78,26 +80,26 @@ namespace MagicMongoDBTool.Module
                         if (!String.IsNullOrEmpty(config.DataBaseName))
                         {
                             //单数据库模式
-                            TreeNode mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mongoSvr, mongoSvrKey);
-                            mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + mongoSvrKey + "/" + config.DataBaseName;
+                            TreeNode mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, ServerInstace.Server, mongoConnKey + "/" + ServerInstace.Address.ToString());
+                            mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + ConnSvrKey + "/" + config.DataBaseName;
                             mongoSingleDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                             mongoSingleDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                             SvrInstanceNode.Nodes.Add(mongoSingleDBNode);
-                            SvrInstanceNode.Tag = SINGLE_DB_SERVICE_TAG + ":" + mongoSvrKey;
+                            SvrInstanceNode.Tag = SINGLE_DB_SERVICE_TAG + ":" + ConnSvrKey;
                             if (config.AuthMode)
                             {
-                                config.IsReadOnly = mongoSvr.GetDatabase(config.DataBaseName).FindUser(config.UserName).IsReadOnly;
+                                config.IsReadOnly = mongoConn.GetDatabase(config.DataBaseName).FindUser(config.UserName).IsReadOnly;
                             }
                         }
                         else
                         {
-                            databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
+                            databaseNameList = mongoConn.GetDatabaseNames().ToList<String>();
                             foreach (String strDBName in databaseNameList)
                             {
                                 TreeNode mongoDBNode;
                                 try
                                 {
-                                    mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, mongoSvr, mongoSvrKey);
+                                    mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, ServerInstace.Server, ConnSvrKey);
                                     mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                                     mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                                     SvrInstanceNode.Nodes.Add(mongoDBNode);
@@ -105,7 +107,7 @@ namespace MagicMongoDBTool.Module
                                     {
                                         if (config.AuthMode)
                                         {
-                                            config.IsReadOnly = mongoSvr.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
+                                            config.IsReadOnly = mongoConn.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
                                         }
                                     }
                                 }
@@ -117,12 +119,16 @@ namespace MagicMongoDBTool.Module
                                     SvrInstanceNode.Nodes.Add(mongoDBNode);
                                 }
                             }
-                            SvrInstanceNode.Tag = SERVICE_TAG + ":" + mongoSvrKey;
+                            SvrInstanceNode.Tag = SERVICE_TAG + ":" + mongoConnKey + "/" + ServerInstace.Address.ToString().Replace(":", "@");
                         }
+                        if (_mongoInstanceLst.ContainsKey(ConnSvrKey)) {
+                            _mongoInstanceLst.Remove(ConnSvrKey);
+                        }
+                        _mongoInstanceLst.Add(ConnSvrKey, ServerInstace);
                         ConnectionNode.Nodes.Add(SvrInstanceNode);
                     }
                     config.Health = true;
-                    SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey] = config;
+                    SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey] = config;
                     trvMongoDB.Nodes.Add(ConnectionNode);
                 }
                 catch (MongoAuthenticationException ex)
@@ -139,7 +145,7 @@ namespace MagicMongoDBTool.Module
                         ConnectionNode.Text += "[MongoAuthenticationException]";
                         MyMessageBox.ShowMessage("MongoAuthenticationException:", "Please check UserName and Password", ex.ToString(), true);
                     }
-                    ConnectionNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
+                    ConnectionNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
                 }
                 catch (Exception ex)
@@ -159,7 +165,7 @@ namespace MagicMongoDBTool.Module
                         ConnectionNode.Text += "[Exception]";
                         MyMessageBox.ShowMessage("Exception", "Mongo Server may not Startup or Auth Mode is not correct", ex.ToString(), true);
                     }
-                    ConnectionNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
+                    ConnectionNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
                 }
             }
@@ -273,9 +279,9 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="strShowColName"></param>
         /// <param name="mongoDB"></param>
-        /// <param name="mongoSvrKey"></param>
+        /// <param name="mongoConnSvrKey"></param>
         /// <returns></returns>
-        private static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase mongoDB, String mongoSvrKey)
+        private static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase mongoDB, String mongoConnSvrKey)
         {
             String strShowColName = strColName;
             if (!SystemManager.IsUseDefaultLanguage())
@@ -399,13 +405,13 @@ namespace MagicMongoDBTool.Module
             switch (strColName)
             {
                 case COLLECTION_NAME_GFS_FILES:
-                    mongoColNode.Tag = GRID_FILE_SYSTEM_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                    mongoColNode.Tag = GRID_FILE_SYSTEM_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
                     break;
                 case COLLECTION_NAME_USER:
-                    mongoColNode.Tag = USER_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                    mongoColNode.Tag = USER_LIST_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
                     break;
                 default:
-                    mongoColNode.Tag = COLLECTION_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                    mongoColNode.Tag = COLLECTION_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
                     break;
             }
 
@@ -442,12 +448,12 @@ namespace MagicMongoDBTool.Module
                 }
                 mongoIndex.ImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
                 mongoIndex.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
-                mongoIndex.Tag = INDEX_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName + "/" + indexDoc.Name;
+                mongoIndex.Tag = INDEX_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName + "/" + indexDoc.Name;
                 mongoIndexes.Nodes.Add(mongoIndex);
             }
             mongoIndexes.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
             mongoIndexes.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Keys;
-            mongoIndexes.Tag = INDEXES_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + strColName;
+            mongoIndexes.Tag = INDEXES_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
             mongoColNode.Nodes.Add(mongoIndexes);
             //End ListIndex
 

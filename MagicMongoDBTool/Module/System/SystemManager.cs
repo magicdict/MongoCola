@@ -22,7 +22,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 版本号
         /// </summary>
-        public static String Version = "1.1.5";
+        public static String Version = "1.2.0";
         /// <summary>
         /// 配置实例
         /// </summary>
@@ -48,7 +48,7 @@ namespace MagicMongoDBTool.Module
         {
             get
             {
-                return GetTagtData(SelectObjectTag);
+                return GetTagData(SelectObjectTag);
             }
         }
         /// <summary>
@@ -70,7 +70,7 @@ namespace MagicMongoDBTool.Module
         /// 获得对象的路径
         /// </summary>
         /// <returns></returns>
-        public static String GetTagtData(String ObjectTag)
+        public static String GetTagData(String ObjectTag)
         {
             if (ObjectTag == String.Empty)
             {

@@ -29,6 +29,26 @@ namespace MagicMongoDBTool
             {
                 numPort.Select(0, 5);
             });
+            NumReplPort.GotFocus += new EventHandler((x, y) =>
+            {
+                this.NumReplPort.Select(0, 5);
+            });
+            NumSocketTimeOut.GotFocus += new EventHandler((x, y) =>
+            {
+                this.NumSocketTimeOut.Select(0, 5);
+            });
+            NumConnectTimeOut.GotFocus += new EventHandler((x, y) =>
+            {
+                this.NumConnectTimeOut.Select(0, 5);
+            });
+            NumWTimeoutMS.GotFocus += new EventHandler((x, y) =>
+            {
+                this.NumWTimeoutMS.Select(0, 5);
+            });
+            NumWaitQueueSize.GotFocus += new EventHandler((x, y) =>
+            {
+                this.NumWaitQueueSize.Select(0, 5);
+            });
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Title);
@@ -80,8 +100,8 @@ namespace MagicMongoDBTool
             NumWTimeoutMS.Value = (decimal)ModifyConn.wtimeoutMS;
             NumSocketTimeOut.Value = (decimal)ModifyConn.socketTimeoutMS;
             NumConnectTimeOut.Value = (decimal)ModifyConn.connectTimeoutMS;
-            NumW.Value = ModifyConn.WaitQueueSize;
-            
+            NumWaitQueueSize.Value = ModifyConn.WaitQueueSize;
+
             txtReplsetName.Text = ModifyConn.ReplSetName;
 
             txtConnectionString.Text = ModifyConn.ConnectionString;
@@ -217,7 +237,8 @@ namespace MagicMongoDBTool
                 ModifyConn.socketTimeoutMS = (double)NumSocketTimeOut.Value;
                 ModifyConn.connectTimeoutMS = (double)NumConnectTimeOut.Value;
                 ModifyConn.wtimeoutMS = (double)NumWTimeoutMS.Value;
-                ModifyConn.WaitQueueSize = (int)NumW.Value;
+                ModifyConn.WaitQueueSize = (int)NumWaitQueueSize.Value;
+
                 ModifyConn.journal = chkJournal.Checked;
                 ModifyConn.fsync = chkFsync.Checked;
                 ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
@@ -247,8 +268,15 @@ namespace MagicMongoDBTool
             }
             lstHost.Items.Add(strHost);
         }
-
-
+        /// <summary>
+        /// 移除HostList
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdRemoveHost_Click(object sender, EventArgs e)
+        {
+            lstHost.Items.Remove(lstHost.SelectedItem);
+        }
 
     }
 }

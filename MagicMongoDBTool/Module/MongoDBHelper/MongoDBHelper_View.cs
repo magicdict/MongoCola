@@ -73,7 +73,7 @@ namespace MagicMongoDBTool.Module
         {
             String collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
             String[] cp = collectionPath.Split("/".ToCharArray());
-            MongoCollection mongoCol = _mongoSrvLst[cp[(int)PathLv.ServerLV]]
+            MongoCollection mongoCol = _mongoInstanceLst[cp[(int)PathLv.ConnectionLV] + "/" + cp[(int)PathLv.ServerLV]].Server
                                       .GetDatabase(cp[(int)PathLv.DatabaseLV])
                                       .GetCollection(cp[(int)PathLv.CollectionLV]);
 

@@ -73,17 +73,21 @@ namespace MagicMongoDBTool.Module
         public enum PathLv : int
         {
             /// <summary>
+            /// 连接
+            /// </summary>
+            ConnectionLV =0,
+            /// <summary>
             /// 服务器
             /// </summary>
-            ServerLV = 0,
+            ServerLV = 1,
             /// <summary>
             /// 数据库
             /// </summary>
-            DatabaseLV = 1,
+            DatabaseLV = 2,
             /// <summary>
             /// 数据集
             /// </summary>
-            CollectionLV = 2
+            CollectionLV = 3
         }
 
         #region"系统数据集名称常量"

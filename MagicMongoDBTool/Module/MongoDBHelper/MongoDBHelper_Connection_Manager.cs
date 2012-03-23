@@ -10,7 +10,10 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 管理中服务器列表
         /// </summary>
-        public static Dictionary<String, MongoServer> _mongoSrvLst = new Dictionary<String, MongoServer>();
+        public static Dictionary<String, MongoServer> _mongoConnSvrLst = new Dictionary<String, MongoServer>();
+
+        public static Dictionary<String, MongoServerInstance> _mongoInstanceLst = new Dictionary<String, MongoServerInstance>();
+
         /// <summary>
         /// 增加管理服务器
         /// </summary>
@@ -23,11 +26,11 @@ namespace MagicMongoDBTool.Module
                 ConfigHelper.MongoConnectionConfig config = configLst[i];
                 try
                 {
-                    if (_mongoSrvLst.ContainsKey(config.ConnectionName))
+                    if (_mongoConnSvrLst.ContainsKey(config.ConnectionName))
                     {
-                        _mongoSrvLst.Remove(config.ConnectionName);
+                        _mongoConnSvrLst.Remove(config.ConnectionName);
                     }
-                    _mongoSrvLst.Add(config.ConnectionName, CreateMongoSetting(ref config));
+                    _mongoConnSvrLst.Add(config.ConnectionName, CreateMongoSetting(ref config));
                     ///更新一些运行时的变量
                     SystemManager.ConfigHelperInstance.ConnectionList[config.ConnectionName] = config;
                 }
@@ -66,6 +69,10 @@ namespace MagicMongoDBTool.Module
                 if (config.wtimeoutMS != 0)
                 {
                     mongoSvrSetting.WaitQueueTimeout = new TimeSpan(0, 0, (int)(config.wtimeoutMS / 1000));
+                }
+                if (config.WaitQueueSize != 0)
+                {
+                    mongoSvrSetting.WaitQueueSize = config.WaitQueueSize;
                 }
                 //运行时LoginAsAdmin的设定
                 config.LoginAsAdmin = (config.DataBaseName == String.Empty);
@@ -106,7 +113,6 @@ namespace MagicMongoDBTool.Module
                         ReplsetSvrList.Add(ReplSrv);
                     }
                     mongoSvrSetting.Servers = ReplsetSvrList;
-                    mongoSvrSetting.WaitQueueSize = config.WaitQueueSize;
                 }
             }
             else

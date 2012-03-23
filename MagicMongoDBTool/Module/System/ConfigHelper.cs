@@ -85,9 +85,9 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public bool IsSafeMode;
             /// <summary>
-            /// The driver adds { w : n } to the getLastError command.
+            /// WaitQueueSize;
             /// </summary>
-            /// <remarks>The driver adds { w : n } to the getLastError command. Implies safe=true.</remarks>
+            /// <remarks></remarks>
             public int WaitQueueSize;
             /// <summary>
             /// wtimeoutMS
@@ -201,7 +201,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// Config Format Version
         /// </summary>
-        public byte ConfigVer = 1; 
+        public byte ConfigVer = 1;
         /// <summary>
         /// MongoBin的路径，用于Dos命令
         /// </summary>

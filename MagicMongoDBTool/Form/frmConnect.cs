@@ -31,8 +31,15 @@ namespace MagicMongoDBTool
             lstServerce.Items.Clear();
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
-                lstServerce.Items.Add(item.ConnectionName + "@" + 
-                    (item.Host==null?"localhost":item.Host) + (item.Port==0?String.Empty:":" + item.Port.ToString()));
+                if (item.ReplSetName == String.Empty)
+                {
+                    lstServerce.Items.Add(item.ConnectionName + "@" + (item.Host == String.Empty ? "localhost" : item.Host)
+                                                              + (item.Port == 0 ? String.Empty : ":" + item.Port.ToString()));
+                }
+                else
+                {
+                    lstServerce.Items.Add(item.ConnectionName);
+                }
             }
             lstServerce.Sorted = true;
             SystemManager.ConfigHelperInstance.SaveToConfigFile(ConfigHelper._configFilename);

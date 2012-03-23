@@ -118,17 +118,17 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 数据库操作
         /// </summary>
-        /// <param name="strSvrPathWithTag"></param>
+        /// <param name="strObjTag"></param>
         /// <param name="dbName"></param>
         /// <param name="func"></param>
         /// <param name="tr"></param>
         /// <returns></returns>
-        public static Boolean DataBaseOpration(String strSvrPathWithTag, String dbName, Oprcode func, TreeNode tr)
+        public static Boolean DataBaseOpration(String strObjTag, String dbName, Oprcode func, TreeNode tr)
         {
             Boolean rtnResult = false;
-            MongoServer mongoSvr = GetMongoServerBySvrPath(strSvrPathWithTag);
-            String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
-            String svrKey = strSvrPath.Split("/".ToCharArray())[0];
+            MongoServer mongoSvr = GetMongoServerBySvrPath(strObjTag);
+            String strSvrPath = SystemManager.GetTagData(strObjTag);
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ServerLV];
             if (mongoSvr != null)
             {
                 switch (func)
@@ -165,7 +165,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 带有参数的CreateOption
         /// </summary>
-        /// <param name="strSvrPathWithTag"></param>
+        /// <param name="strObjTag"></param>
         /// <param name="treeNode"></param>
         /// <param name="collectionName"></param>
         /// <param name="IsCapped"></param>
@@ -173,14 +173,13 @@ namespace MagicMongoDBTool.Module
         /// <param name="IsAutoIndexId"></param>
         /// <param name="IsMaxDocument"></param>
         /// <returns></returns>
-        public static Boolean CreateCollectionWithOptions(String strSvrPathWithTag, TreeNode treeNode, String collectionName,
+        public static Boolean CreateCollectionWithOptions(String strObjTag, TreeNode treeNode, String collectionName,
             Boolean IsCapped, long MaxSize, Boolean IsAutoIndexId, long IsMaxDocument)
         {
             Boolean rtnResult = false;
-            MongoDatabase mongoDB = GetMongoDBBySvrPath(strSvrPathWithTag);
-
-            String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
-            String svrkey = strSvrPath.Split("/".ToCharArray())[0];
+            MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
+            String strSvrPath = SystemManager.GetTagData(strObjTag);
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ServerLV];
             if (mongoDB != null)
             {
                 if (!mongoDB.CollectionExists(collectionName))
@@ -195,7 +194,7 @@ namespace MagicMongoDBTool.Module
                     {
                         if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
                         {
-                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
+                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrKey));
                         }
                     }
                     rtnResult = true;
@@ -206,17 +205,16 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// Create Collection
         /// </summary>
-        /// <param name="strSvrPathWithTag"></param>
+        /// <param name="strObjTag"></param>
         /// <param name="treeNode"></param>
         /// <param name="collectionName"></param>
         /// <returns></returns>
-        public static Boolean CreateCollection(String strSvrPathWithTag, TreeNode treeNode, String collectionName)
+        public static Boolean CreateCollection(String strObjTag, TreeNode treeNode, String collectionName)
         {
             Boolean rtnResult = false;
-            MongoDatabase mongoDB = GetMongoDBBySvrPath(strSvrPathWithTag);
-
-            String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
-            String svrkey = strSvrPath.Split("/".ToCharArray())[0];
+            MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
+            String strSvrPath = SystemManager.GetTagData(strObjTag);
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ServerLV];
             if (mongoDB != null)
             {
                 if (!mongoDB.CollectionExists(collectionName))
@@ -226,7 +224,7 @@ namespace MagicMongoDBTool.Module
                     {
                         if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
                         {
-                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrkey));
+                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrKey));
                         }
                     }
                     rtnResult = true;
@@ -238,18 +236,19 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 根据路径字符获得服务器
         /// </summary>
-        /// <param name="strSvrPathWithTag">[Tag:Service/DBName/Collection]</param>
+        /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
         /// <returns></returns>
-        public static MongoServer GetMongoServerBySvrPath(String strSvrPathWithTag)
+        public static MongoServer GetMongoServerBySvrPath(String strObjTag)
         {
             MongoServer rtnMongoSvr = null;
-            String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
+            String strSvrPath = SystemManager.GetTagData(strObjTag);
             String[] strPath = strSvrPath.Split("/".ToCharArray());
+            String strInstKey = strPath[(int)PathLv.ConnectionLV] + "/" + strPath[(int)PathLv.ServerLV];
             if (strPath.Length > 0)
             {
-                if (_mongoSrvLst.ContainsKey(strPath[(int)PathLv.ServerLV]))
+                if (_mongoInstanceLst.ContainsKey(strInstKey))
                 {
-                    rtnMongoSvr = _mongoSrvLst[strPath[(int)PathLv.ServerLV]];
+                    rtnMongoSvr = _mongoInstanceLst[strInstKey].Server;
                 }
             }
             return rtnMongoSvr;
@@ -257,15 +256,15 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 根据路径字符获得数据库
         /// </summary>
-        /// <param name="strSvrPath">[Tag:Service/DBName/Collection]</param>
+        /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
         /// <returns></returns>
-        public static MongoDatabase GetMongoDBBySvrPath(String strSvrPathWithTag)
+        public static MongoDatabase GetMongoDBBySvrPath(String strObjTag)
         {
             MongoDatabase rtnMongoDB = null;
-            MongoServer mongoSvr = GetMongoServerBySvrPath(strSvrPathWithTag);
+            MongoServer mongoSvr = GetMongoServerBySvrPath(strObjTag);
             if (mongoSvr != null)
             {
-                String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
+                String strSvrPath = SystemManager.GetTagData(strObjTag);
                 String[] strPathArray = strSvrPath.Split("/".ToCharArray());
                 if (strPathArray.Length > 1)
                 {
@@ -277,15 +276,15 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 通过路径获得数据集
         /// </summary>
-        /// <param name="strSvrPath">[Tag:Service/DBName/Collection]</param>
+        /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
         /// <returns></returns>
-        public static MongoCollection GetMongoCollectionBySvrPath(String strSvrPathWithTag)
+        public static MongoCollection GetMongoCollectionBySvrPath(String strObjTag)
         {
             MongoCollection rtnMongoCollection = null;
-            MongoDatabase mongoDB = GetMongoDBBySvrPath(strSvrPathWithTag);
+            MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
             if (mongoDB != null)
             {
-                String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
+                String strSvrPath = SystemManager.GetTagData(strObjTag);
                 String[] strPathArray = strSvrPath.Split("/".ToCharArray());
                 rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int)PathLv.CollectionLV]);
             }
@@ -303,7 +302,8 @@ namespace MagicMongoDBTool.Module
         /// <param name="IndexName"></param>
         /// <returns></returns>
         public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey,
-            Boolean IsBackground = false, Boolean IsDropDups = false, Boolean IsSparse = false, Boolean IsUnique = false, String IndexName = "")
+            Boolean IsBackground = false, Boolean IsDropDups = false, Boolean IsSparse = false, 
+            Boolean IsUnique = false, String IndexName = "")
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             IndexKeysBuilder indexkeys = new IndexKeysBuilder();
