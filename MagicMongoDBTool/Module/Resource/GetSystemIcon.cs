@@ -61,7 +61,8 @@ namespace MagicMongoDBTool.Module
             GFS = 11,
             JsDoc = 12,
             SystemCol = 13,
-            Err = 14
+            Err = 14,
+            Connection = 15
         }
         /// <summary>
         /// 主树形控件图标数组初始化
@@ -85,6 +86,8 @@ namespace MagicMongoDBTool.Module
             MainTreeImage.Images.Add(MagicMongoDBTool.Properties.Resources.SystemCollection);
 
             MainTreeImage.Images.Add(GetResource.GetIcon(IconType.No));
+            MainTreeImage.Images.Add(MagicMongoDBTool.Properties.Resources.Connection);
+
         }
 
         /// <summary>

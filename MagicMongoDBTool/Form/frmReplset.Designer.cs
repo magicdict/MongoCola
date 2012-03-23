@@ -79,17 +79,17 @@
             this.lstServerOutReplset.ItemHeight = 15;
             this.lstServerOutReplset.Location = new System.Drawing.Point(23, 23);
             this.lstServerOutReplset.Name = "lstServerOutReplset";
-            this.lstServerOutReplset.Size = new System.Drawing.Size(408, 124);
+            this.lstServerOutReplset.Size = new System.Drawing.Size(410, 124);
             this.lstServerOutReplset.TabIndex = 5;
             // 
             // tabRemoveSvr
             // 
             this.tabRemoveSvr.Controls.Add(this.cmdRemove);
             this.tabRemoveSvr.Controls.Add(this.lstServerInReplset);
-            this.tabRemoveSvr.Location = new System.Drawing.Point(4, 22);
+            this.tabRemoveSvr.Location = new System.Drawing.Point(4, 24);
             this.tabRemoveSvr.Name = "tabRemoveSvr";
             this.tabRemoveSvr.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRemoveSvr.Size = new System.Drawing.Size(462, 234);
+            this.tabRemoveSvr.Size = new System.Drawing.Size(462, 232);
             this.tabRemoveSvr.TabIndex = 1;
             this.tabRemoveSvr.Text = "Remove Server";
             this.tabRemoveSvr.UseVisualStyleBackColor = true;

@@ -349,7 +349,7 @@ namespace MagicMongoDBTool
             // 
             this.NumWTimeoutMS.Location = new System.Drawing.Point(135, 77);
             this.NumWTimeoutMS.Maximum = new decimal(new int[] {
-            9999,
+            999999,
             0,
             0,
             0});
@@ -358,7 +358,7 @@ namespace MagicMongoDBTool
             this.NumWTimeoutMS.TabIndex = 31;
             this.NumWTimeoutMS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NumWTimeoutMS.Value = new decimal(new int[] {
-            60,
+            60000,
             0,
             0,
             0});
@@ -434,7 +434,7 @@ namespace MagicMongoDBTool
             // 
             this.NumConnectTimeOut.Location = new System.Drawing.Point(389, 15);
             this.NumConnectTimeOut.Maximum = new decimal(new int[] {
-            9999,
+            999999,
             0,
             0,
             0});
@@ -443,7 +443,7 @@ namespace MagicMongoDBTool
             this.NumConnectTimeOut.TabIndex = 23;
             this.NumConnectTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NumConnectTimeOut.Value = new decimal(new int[] {
-            60,
+            60000,
             0,
             0,
             0});
@@ -452,7 +452,7 @@ namespace MagicMongoDBTool
             // 
             this.NumSocketTimeOut.Location = new System.Drawing.Point(160, 13);
             this.NumSocketTimeOut.Maximum = new decimal(new int[] {
-            9999,
+            999999,
             0,
             0,
             0});
@@ -461,7 +461,7 @@ namespace MagicMongoDBTool
             this.NumSocketTimeOut.TabIndex = 23;
             this.NumSocketTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NumSocketTimeOut.Value = new decimal(new int[] {
-            60,
+            60000,
             0,
             0,
             0});

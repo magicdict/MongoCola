@@ -4,6 +4,7 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
+        public const String CONNECTION_TAG = "MongoConnection";
         //各种节点的Tag前缀
         public const String SERVICE_TAG_EXCEPTION = "MongoServiceWithException";
         /// <summary>

@@ -23,7 +23,7 @@ namespace MagicMongoDBTool
             {
                 case MongoDBHelper.SERVICE_TAG:
                 case MongoDBHelper.SINGLE_DB_SERVICE_TAG:
-                    if (SystemManager.GetCurrentServerConfiig().LoginAsAdmin)
+                    if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentService()).Response;
                     }
@@ -36,7 +36,7 @@ namespace MagicMongoDBTool
                     cr = SystemManager.GetCurrentCollection().GetStats().Response.ToBsonDocument();
                     break;
                 default:
-                    if (SystemManager.GetCurrentServerConfiig().LoginAsAdmin)
+                    if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentService()).Response;
                     }

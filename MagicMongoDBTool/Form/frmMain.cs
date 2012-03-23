@@ -290,6 +290,8 @@ namespace MagicMongoDBTool
                 }
                 switch (strNodeType)
                 {
+                    case MongoDBHelper.CONNECTION_TAG:
+                        break;
                     case MongoDBHelper.SERVICE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         if (SystemManager.IsUseDefaultLanguage())
@@ -319,7 +321,8 @@ namespace MagicMongoDBTool
                         this.ShutDownToolStripButton.Enabled = true;
                         this.SvrStatusToolStripMenuItem.Enabled = true;
                         this.ServePropertyToolStripMenuItem.Enabled = true;
-                        if (SystemManager.GetCurrentServerConfiig().ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr)
+                        this.InitReplsetToolStripMenuItem.Enabled = true;
+                        if (SystemManager.GetCurrentServerConfig().ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr)
                         {
                             //副本服务器专用。
                             //副本初始化的操作 改在连接设置里面完成
@@ -328,7 +331,7 @@ namespace MagicMongoDBTool
                                 this.ReplicaSetToolStripMenuItem.Enabled = true;
                             }
                         }
-                        if (SystemManager.GetCurrentServerConfiig().ServerRole == ConfigHelper.SvrRoleType.RouteSvr)
+                        if (SystemManager.GetCurrentServerConfig().ServerRole == ConfigHelper.SvrRoleType.RouteSvr)
                         {
                             //Route用
                             if (!config.IsReadOnly)
@@ -396,6 +399,7 @@ namespace MagicMongoDBTool
                                 this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ServePropertyToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.SvrStatusToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.InitReplsetToolStripMenuItem.Clone());
                             }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -767,7 +771,7 @@ namespace MagicMongoDBTool
                             statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_GFS) + ":" + SystemManager.SelectTagData;
                         }
 
-                         this.viewDataToolStripMenuItem.Enabled = true;
+                        this.viewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -789,7 +793,7 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelper.JAVASCRIPT_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                         this.viewDataToolStripMenuItem.Enabled = true;
+                        this.viewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -810,8 +814,8 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelper.JAVASCRIPT_DOC_TAG:
                         statusStripMain.Items[0].Text = "Selected JavaScript:" + SystemManager.SelectTagData;
-                                                    this.viewDataToolStripMenuItem.Enabled = true;
-                            this.dropJavascriptToolStripMenuItem.Enabled = true;
+                        this.viewDataToolStripMenuItem.Enabled = true;
+                        this.dropJavascriptToolStripMenuItem.Enabled = true;
 
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
@@ -1030,7 +1034,7 @@ namespace MagicMongoDBTool
                         DataTab.ImageIndex = 4;
                         break;
                 }
-                
+
                 DataTab.Controls.Add(DataViewctl);
                 DataViewctl.Dock = DockStyle.Fill;
                 tabView.Controls.Add(DataTab);
@@ -1068,7 +1072,7 @@ namespace MagicMongoDBTool
                 ctlDataView ctl = tabView.SelectedTab.Controls[0] as ctlDataView;
                 if (ctl != null)
                 {
-                    ctl.RefreshGUI(sender,e);
+                    ctl.RefreshGUI(sender, e);
                 }
             }
         }
@@ -1086,7 +1090,7 @@ namespace MagicMongoDBTool
             this.slaveResyncToolStripMenuItem.Enabled = false;
             this.ShutDownToolStripMenuItem.Enabled = false;
             this.ShutDownToolStripButton.Enabled = false;
-
+            this.InitReplsetToolStripMenuItem.Enabled = false;
             this.DisconnectToolStripMenuItem.Enabled = false;
 
             //管理-数据库
@@ -1129,8 +1133,8 @@ namespace MagicMongoDBTool
             }
 
             //分布式
-            this.ReplicaSetToolStripMenuItem.Enabled = false;
-            this.ShardingConfigToolStripMenuItem.Enabled = false;
+            this.ReplicaSetToolStripMenuItem.Enabled = true;
+            this.ShardingConfigToolStripMenuItem.Enabled = true;
         }
         #endregion
 
@@ -1172,7 +1176,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
+            MongoDBHelper.FillConnectionToTreeView(trvsrvlst);
 
             this.ServerStatusCtl.RefreshStatus(false);
             this.ServerStatusCtl.RefreshCurrentOpr();
@@ -1363,6 +1367,22 @@ namespace MagicMongoDBTool
                 trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
             }
         }
+        /// <summary>
+        /// 初始化ReplSet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InitReplsetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String ReplSetName = MyMessageBox.ShowInput("ReplSetName", "Please fill ReplSetName:");
+            if (ReplSetName != String.Empty)
+            {
+                CommandResult Result = MongoDBHelper.InitReplicaSet(ReplSetName, new List<string>() { SystemManager.GetCurrentServerConfig().ConnectionName });
+                MyMessageBox.ShowMessage("ReplSetName", Result.Ok ? "OK" : "ERROR");
+            }
+            //
+            MongoDBHelper.AddToReplsetServer(SystemManager.GetCurrentService(), "localhost:10002");
+        }
         #endregion
 
         #region"管理：数据库"
@@ -1451,7 +1471,7 @@ namespace MagicMongoDBTool
         {
             MongoDBHelper.InitGFS();
             DisableAllOpr();
-            MongoDBHelper.FillMongoServerToTreeView(trvsrvlst);
+            MongoDBHelper.FillConnectionToTreeView(trvsrvlst);
         }
         /// <summary>
         /// Profilling Level
@@ -2024,6 +2044,8 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
+
+
 
     }
 }

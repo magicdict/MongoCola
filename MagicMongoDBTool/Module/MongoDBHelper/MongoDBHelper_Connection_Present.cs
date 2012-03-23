@@ -34,13 +34,13 @@ namespace MagicMongoDBTool.Module
         /// 将Mongodb的服务器在树形控件中展示
         /// </summary>
         /// <param name="trvMongoDB"></param>
-        public static void FillMongoServerToTreeView(TreeView trvMongoDB)
+        public static void FillConnectionToTreeView(TreeView trvMongoDB)
         {
             trvMongoDB.Nodes.Clear();
             foreach (String mongoSvrKey in _mongoSrvLst.Keys)
             {
                 MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                TreeNode mongoSvrNode = new TreeNode();
+                TreeNode ConnectionNode = new TreeNode();
                 try
                 {
                     //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
@@ -53,87 +53,94 @@ namespace MagicMongoDBTool.Module
                     {
                         strReplset = SystemManager.mStringResource.GetText(StringResource.TextType.ShardingConfig_ReplsetName);
                     }
-                    mongoSvrNode.Text = mongoSvr.ReplicaSetName != null ?
-                                                        strReplset + "：" + mongoSvr.ReplicaSetName :
-                                                        (mongoSvrKey + " [" + mongoSvr.Settings.Server.Host + ":" + mongoSvr.Settings.Server.Port + "]");
-                    mongoSvrNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
-                    mongoSvrNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+                    ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
+                    ConnectionNode.Text = mongoSvr.Instances.Length != 1 ? strReplset + "：" + mongoSvr.ReplicaSetName : config.ConnectionName;
+                    ConnectionNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
+                    ConnectionNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
+                    ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName;
                     //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
                     //不过现在改为全部显示的打开连接
                     mongoSvr.Connect();
-
-                    ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
-                    if ((!String.IsNullOrEmpty(config.UserName)) & (!String.IsNullOrEmpty(config.Password)))
+                    foreach (MongoServerInstance Server in mongoSvr.Instances)
                     {
-                        config.AuthMode = true;
-                    }
-                    //获取ReadOnly
-                    config.IsReadOnly = false;
-                    List<String> databaseNameList = new List<String>();
-                    if (!String.IsNullOrEmpty(config.DataBaseName))
-                    {
-                        //单数据库模式
-                        TreeNode mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mongoSvr, mongoSvrKey);
-                        mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + mongoSvrKey + "/" + config.DataBaseName;
-                        mongoSingleDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                        mongoSingleDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                        mongoSvrNode.Nodes.Add(mongoSingleDBNode);
-                        mongoSvrNode.Tag = SINGLE_DB_SERVICE_TAG + ":" + mongoSvrKey;
-                        if (config.AuthMode)
+                        TreeNode SvrInstanceNode = new TreeNode();
+                        SvrInstanceNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+                        SvrInstanceNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+                        SvrInstanceNode.Text = "Address[" + Server.Address.Host + ":" + Server.Address.Port.ToString() + "]";
+                        
+                        if ((!String.IsNullOrEmpty(config.UserName)) & (!String.IsNullOrEmpty(config.Password)))
                         {
-                            config.IsReadOnly = mongoSvr.GetDatabase(config.DataBaseName).FindUser(config.UserName).IsReadOnly;
+                            config.AuthMode = true;
                         }
-                    }
-                    else
-                    {
-                        databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
-                        foreach (String strDBName in databaseNameList)
+                        //获取ReadOnly
+                        config.IsReadOnly = false;
+                        List<String> databaseNameList = new List<String>();
+                        if (!String.IsNullOrEmpty(config.DataBaseName))
                         {
-                            TreeNode mongoDBNode;
-                            try
+                            //单数据库模式
+                            TreeNode mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mongoSvr, mongoSvrKey);
+                            mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + mongoSvrKey + "/" + config.DataBaseName;
+                            mongoSingleDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                            mongoSingleDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                            SvrInstanceNode.Nodes.Add(mongoSingleDBNode);
+                            SvrInstanceNode.Tag = SINGLE_DB_SERVICE_TAG + ":" + mongoSvrKey;
+                            if (config.AuthMode)
                             {
-                                mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, mongoSvr, mongoSvrKey);
-                                mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                                mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                                mongoSvrNode.Nodes.Add(mongoDBNode);
-                                if (strDBName == MongoDBHelper.DATABASE_NAME_ADMIN)
+                                config.IsReadOnly = mongoSvr.GetDatabase(config.DataBaseName).FindUser(config.UserName).IsReadOnly;
+                            }
+                        }
+                        else
+                        {
+                            databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
+                            foreach (String strDBName in databaseNameList)
+                            {
+                                TreeNode mongoDBNode;
+                                try
                                 {
-                                    if (config.AuthMode)
+                                    mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, mongoSvr, mongoSvrKey);
+                                    mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                                    mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                                    SvrInstanceNode.Nodes.Add(mongoDBNode);
+                                    if (strDBName == MongoDBHelper.DATABASE_NAME_ADMIN)
                                     {
-                                        config.IsReadOnly = mongoSvr.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
+                                        if (config.AuthMode)
+                                        {
+                                            config.IsReadOnly = mongoSvr.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
+                                        }
                                     }
                                 }
+                                catch (Exception)
+                                {
+                                    mongoDBNode = new TreeNode(strDBName + " (Exception)");
+                                    mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                                    mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                                    SvrInstanceNode.Nodes.Add(mongoDBNode);
+                                }
                             }
-                            catch (Exception)
-                            {
-                                mongoDBNode = new TreeNode(strDBName + " (Exception)");
-                                mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                                mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                                mongoSvrNode.Nodes.Add(mongoDBNode);
-                            }
+                            SvrInstanceNode.Tag = SERVICE_TAG + ":" + mongoSvrKey;
                         }
-                        mongoSvrNode.Tag = SERVICE_TAG + ":" + mongoSvrKey;
+                        ConnectionNode.Nodes.Add(SvrInstanceNode);
                     }
                     config.Health = true;
                     SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey] = config;
-                    trvMongoDB.Nodes.Add(mongoSvrNode);
+                    trvMongoDB.Nodes.Add(ConnectionNode);
                 }
                 catch (MongoAuthenticationException ex)
                 {
                     //需要验证的数据服务器，没有Admin权限无法获得数据库列表
                     if (!SystemManager.IsUseDefaultLanguage())
                     {
-                        mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]";
+                        ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]";
                         MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
                                                  SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
                     }
                     else
                     {
-                        mongoSvrNode.Text += "[MongoAuthenticationException]";
+                        ConnectionNode.Text += "[MongoAuthenticationException]";
                         MyMessageBox.ShowMessage("MongoAuthenticationException:", "Please check UserName and Password", ex.ToString(), true);
                     }
-                    mongoSvrNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
-                    trvMongoDB.Nodes.Add(mongoSvrNode);
+                    ConnectionNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
+                    trvMongoDB.Nodes.Add(ConnectionNode);
                 }
                 catch (Exception ex)
                 {
@@ -143,17 +150,17 @@ namespace MagicMongoDBTool.Module
                     //2.认证模式不正确
                     if (!SystemManager.IsUseDefaultLanguage())
                     {
-                        mongoSvrNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
+                        ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
                         MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
                                                  SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note), ex.ToString(), true);
                     }
                     else
                     {
-                        mongoSvrNode.Text += "[Exception]";
+                        ConnectionNode.Text += "[Exception]";
                         MyMessageBox.ShowMessage("Exception", "Mongo Server may not Startup or Auth Mode is not correct", ex.ToString(), true);
                     }
-                    mongoSvrNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
-                    trvMongoDB.Nodes.Add(mongoSvrNode);
+                    ConnectionNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
+                    trvMongoDB.Nodes.Add(ConnectionNode);
                 }
             }
         }

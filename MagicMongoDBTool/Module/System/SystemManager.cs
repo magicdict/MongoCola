@@ -110,7 +110,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="SrvName"></param>
         /// <returns></returns>
-        public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfiig()
+        public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfig()
         {
             String svrName = SelectObjectTag.Split(":".ToCharArray())[1];
             svrName = svrName.Split("/".ToCharArray())[0];

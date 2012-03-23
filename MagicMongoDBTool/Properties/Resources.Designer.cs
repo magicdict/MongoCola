@@ -116,6 +116,13 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Connection {
+            get {
+                object obj = ResourceManager.GetObject("Connection", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon copy {
             get {
                 object obj = ResourceManager.GetObject("copy", resourceCulture);

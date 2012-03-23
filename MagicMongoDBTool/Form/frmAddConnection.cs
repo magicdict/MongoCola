@@ -174,9 +174,10 @@ namespace MagicMongoDBTool
             ModifyConn.ConnectionString = txtConnectionString.Text;
             if (txtConnectionString.Text != String.Empty)
             {
-                if (!MongoDBHelper.FillConfigWithConnectionString(ref ModifyConn))
+                String strException = MongoDBHelper.FillConfigWithConnectionString(ref ModifyConn);
+                if (strException != String.Empty)
                 {
-                    MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it");
+                    MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it", strException);
                     return;
                 };
             }
@@ -223,6 +224,7 @@ namespace MagicMongoDBTool
                 ModifyConn.IsSafeMode = chkSafeMode.Checked;
 
                 ModifyConn.ReplSetName = txtReplsetName.Text;
+                ModifyConn.ReplsetList.Clear();
                 foreach (String item in lstHost.Items)
                 {
                     ModifyConn.ReplsetList.Add(item);

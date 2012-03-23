@@ -74,10 +74,18 @@ namespace MagicMongoDBTool.Module
                     //认证的设定:注意，这里的密码是明文
                     mongoSvrSetting.DefaultCredentials = new MongoCredentials(config.UserName, config.Password, config.LoginAsAdmin);
                 }
+                if (config.ReplSetName != String.Empty)
+                {
+                    mongoSvrSetting.ReplicaSetName = config.ReplSetName;
+                    config.ServerRole = ConfigHelper.SvrRoleType.ReplsetSvr;
+                }
+                else
+                {
+                    config.ServerRole = ConfigHelper.SvrRoleType.DataSvr;
+                }
                 if (config.ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr)
                 {
                     //ReplsetName不是固有属性,可以设置，不过必须保持与配置文件的一致
-                    mongoSvrSetting.ReplicaSetName = config.ReplSetName;
                     mongoSvrSetting.ConnectionMode = ConnectionMode.ReplicaSet;
                     //添加Replset服务器，注意，这里可能需要事先初始化副本
                     List<MongoServerAddress> ReplsetSvrList = new List<MongoServerAddress>();
@@ -115,7 +123,7 @@ namespace MagicMongoDBTool.Module
         /// <remarks>http://www.mongodb.org/display/DOCS/Connections</remarks>
         /// <param name="connectionString"></param>
         /// <param name="config"></param>
-        public static Boolean FillConfigWithConnectionString(ref ConfigHelper.MongoConnectionConfig config)
+        public static String FillConfigWithConnectionString(ref ConfigHelper.MongoConnectionConfig config)
         {
             String connectionString = config.ConnectionString;
             //mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
@@ -142,11 +150,14 @@ namespace MagicMongoDBTool.Module
                 {
                     config.ReplsetList.Add(item.Host + (item.Port == 0 ? String.Empty : ":" + item.Port.ToString()));
                 }
-                return true;
+                return String.Empty;
             }
-            catch (FormatException)
+            catch (FormatException ex)
             {
-                return false;
+                return ex.ToString();
+            }
+            catch (Exception ex) {
+                return ex.ToString();
             }
         }
         #endregion
