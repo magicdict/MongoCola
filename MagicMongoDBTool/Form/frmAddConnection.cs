@@ -63,7 +63,7 @@ namespace MagicMongoDBTool
 
                 chkSlaveOk.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MasterSlave);
                 chkSafeMode.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SafeMode);
-                lblTimeOut.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_TimeOut);
+                lblsocketTimeout.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_TimeOut);
 
                 lblMainReplsetName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName);
 

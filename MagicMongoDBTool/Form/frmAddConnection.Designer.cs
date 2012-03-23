@@ -51,31 +51,31 @@ namespace MagicMongoDBTool
             this.tabBasic = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.tabOption = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblWtimeoutDescript = new System.Windows.Forms.Label();
             this.NumWTimeoutMS = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblQueueSize = new System.Windows.Forms.Label();
+            this.lblWTimeout = new System.Windows.Forms.Label();
             this.chkJournal = new System.Windows.Forms.CheckBox();
             this.chkFsync = new System.Windows.Forms.CheckBox();
             this.chkSlaveOk = new System.Windows.Forms.CheckBox();
             this.NumWaitQueueSize = new System.Windows.Forms.NumericUpDown();
             this.NumConnectTimeOut = new System.Windows.Forms.NumericUpDown();
             this.NumSocketTimeOut = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblTimeOut = new System.Windows.Forms.Label();
+            this.lblConnectTimeout = new System.Windows.Forms.Label();
+            this.lblsocketTimeout = new System.Windows.Forms.Label();
             this.chkSafeMode = new System.Windows.Forms.CheckBox();
             this.tabreplicaSet = new System.Windows.Forms.TabPage();
+            this.cmdRemoveHost = new System.Windows.Forms.Button();
             this.NumReplPort = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblReplPort = new System.Windows.Forms.Label();
             this.txtReplHost = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblReplHost = new System.Windows.Forms.Label();
             this.cmdAddHost = new System.Windows.Forms.Button();
             this.lstHost = new System.Windows.Forms.ListBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblReplsetNameDescription = new System.Windows.Forms.Label();
             this.lblMainReplsetName = new System.Windows.Forms.Label();
             this.txtReplsetName = new System.Windows.Forms.TextBox();
             this.tabConnectionS = new System.Windows.Forms.TabPage();
-            this.cmdRemoveHost = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -304,18 +304,18 @@ namespace MagicMongoDBTool
             // 
             // tabOption
             // 
-            this.tabOption.Controls.Add(this.label5);
+            this.tabOption.Controls.Add(this.lblWtimeoutDescript);
             this.tabOption.Controls.Add(this.NumWTimeoutMS);
-            this.tabOption.Controls.Add(this.label3);
-            this.tabOption.Controls.Add(this.label1);
+            this.tabOption.Controls.Add(this.lblQueueSize);
+            this.tabOption.Controls.Add(this.lblWTimeout);
             this.tabOption.Controls.Add(this.chkJournal);
             this.tabOption.Controls.Add(this.chkFsync);
             this.tabOption.Controls.Add(this.chkSlaveOk);
             this.tabOption.Controls.Add(this.NumWaitQueueSize);
             this.tabOption.Controls.Add(this.NumConnectTimeOut);
             this.tabOption.Controls.Add(this.NumSocketTimeOut);
-            this.tabOption.Controls.Add(this.label2);
-            this.tabOption.Controls.Add(this.lblTimeOut);
+            this.tabOption.Controls.Add(this.lblConnectTimeout);
+            this.tabOption.Controls.Add(this.lblsocketTimeout);
             this.tabOption.Controls.Add(this.chkSafeMode);
             this.tabOption.Location = new System.Drawing.Point(4, 25);
             this.tabOption.Name = "tabOption";
@@ -325,14 +325,14 @@ namespace MagicMongoDBTool
             this.tabOption.Text = "Option";
             this.tabOption.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // lblWtimeoutDescript
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(242, 85);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(480, 16);
-            this.label5.TabIndex = 33;
-            this.label5.Text = "The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true." +
+            this.lblWtimeoutDescript.AutoSize = true;
+            this.lblWtimeoutDescript.Location = new System.Drawing.Point(242, 85);
+            this.lblWtimeoutDescript.Name = "lblWtimeoutDescript";
+            this.lblWtimeoutDescript.Size = new System.Drawing.Size(480, 16);
+            this.lblWtimeoutDescript.TabIndex = 33;
+            this.lblWtimeoutDescript.Text = "The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true." +
     "";
             // 
             // NumWTimeoutMS
@@ -348,23 +348,23 @@ namespace MagicMongoDBTool
             this.NumWTimeoutMS.TabIndex = 6;
             this.NumWTimeoutMS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label3
+            // lblQueueSize
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 113);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 16);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "WaitQueueSize";
+            this.lblQueueSize.AutoSize = true;
+            this.lblQueueSize.Location = new System.Drawing.Point(30, 113);
+            this.lblQueueSize.Name = "lblQueueSize";
+            this.lblQueueSize.Size = new System.Drawing.Size(101, 16);
+            this.lblQueueSize.TabIndex = 30;
+            this.lblQueueSize.Text = "WaitQueueSize";
             // 
-            // label1
+            // lblWTimeout
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 85);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 16);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "wtimeout(MS)";
+            this.lblWTimeout.AutoSize = true;
+            this.lblWTimeout.Location = new System.Drawing.Point(32, 85);
+            this.lblWTimeout.Name = "lblWTimeout";
+            this.lblWTimeout.Size = new System.Drawing.Size(88, 16);
+            this.lblWTimeout.TabIndex = 30;
+            this.lblWTimeout.Text = "wtimeout(MS)";
             // 
             // chkJournal
             // 
@@ -436,23 +436,23 @@ namespace MagicMongoDBTool
             this.NumSocketTimeOut.TabIndex = 0;
             this.NumSocketTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label2
+            // lblConnectTimeout
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(288, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 16);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "connectTimeout(MS)";
+            this.lblConnectTimeout.AutoSize = true;
+            this.lblConnectTimeout.Location = new System.Drawing.Point(288, 16);
+            this.lblConnectTimeout.Name = "lblConnectTimeout";
+            this.lblConnectTimeout.Size = new System.Drawing.Size(132, 16);
+            this.lblConnectTimeout.TabIndex = 22;
+            this.lblConnectTimeout.Text = "connectTimeout(MS)";
             // 
-            // lblTimeOut
+            // lblsocketTimeout
             // 
-            this.lblTimeOut.AutoSize = true;
-            this.lblTimeOut.Location = new System.Drawing.Point(30, 19);
-            this.lblTimeOut.Name = "lblTimeOut";
-            this.lblTimeOut.Size = new System.Drawing.Size(125, 16);
-            this.lblTimeOut.TabIndex = 22;
-            this.lblTimeOut.Text = "socketTimeout(MS)";
+            this.lblsocketTimeout.AutoSize = true;
+            this.lblsocketTimeout.Location = new System.Drawing.Point(30, 19);
+            this.lblsocketTimeout.Name = "lblsocketTimeout";
+            this.lblsocketTimeout.Size = new System.Drawing.Size(125, 16);
+            this.lblsocketTimeout.TabIndex = 22;
+            this.lblsocketTimeout.Text = "socketTimeout(MS)";
             // 
             // chkSafeMode
             // 
@@ -468,12 +468,12 @@ namespace MagicMongoDBTool
             // 
             this.tabreplicaSet.Controls.Add(this.cmdRemoveHost);
             this.tabreplicaSet.Controls.Add(this.NumReplPort);
-            this.tabreplicaSet.Controls.Add(this.label8);
+            this.tabreplicaSet.Controls.Add(this.lblReplPort);
             this.tabreplicaSet.Controls.Add(this.txtReplHost);
-            this.tabreplicaSet.Controls.Add(this.label9);
+            this.tabreplicaSet.Controls.Add(this.lblReplHost);
             this.tabreplicaSet.Controls.Add(this.cmdAddHost);
             this.tabreplicaSet.Controls.Add(this.lstHost);
-            this.tabreplicaSet.Controls.Add(this.label6);
+            this.tabreplicaSet.Controls.Add(this.lblReplsetNameDescription);
             this.tabreplicaSet.Controls.Add(this.lblMainReplsetName);
             this.tabreplicaSet.Controls.Add(this.txtReplsetName);
             this.tabreplicaSet.Location = new System.Drawing.Point(4, 25);
@@ -482,6 +482,16 @@ namespace MagicMongoDBTool
             this.tabreplicaSet.TabIndex = 3;
             this.tabreplicaSet.Text = "replicaSet";
             this.tabreplicaSet.UseVisualStyleBackColor = true;
+            // 
+            // cmdRemoveHost
+            // 
+            this.cmdRemoveHost.Location = new System.Drawing.Point(133, 163);
+            this.cmdRemoveHost.Name = "cmdRemoveHost";
+            this.cmdRemoveHost.Size = new System.Drawing.Size(108, 27);
+            this.cmdRemoveHost.TabIndex = 4;
+            this.cmdRemoveHost.Text = "Remove Host";
+            this.cmdRemoveHost.UseVisualStyleBackColor = true;
+            this.cmdRemoveHost.Click += new System.EventHandler(this.cmdRemoveHost_Click);
             // 
             // NumReplPort
             // 
@@ -496,15 +506,15 @@ namespace MagicMongoDBTool
             this.NumReplPort.TabIndex = 2;
             this.NumReplPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label8
+            // lblReplPort
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(31, 122);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 16);
-            this.label8.TabIndex = 35;
-            this.label8.Text = "Port";
+            this.lblReplPort.AutoSize = true;
+            this.lblReplPort.BackColor = System.Drawing.Color.Transparent;
+            this.lblReplPort.Location = new System.Drawing.Point(31, 122);
+            this.lblReplPort.Name = "lblReplPort";
+            this.lblReplPort.Size = new System.Drawing.Size(32, 16);
+            this.lblReplPort.TabIndex = 35;
+            this.lblReplPort.Text = "Port";
             // 
             // txtReplHost
             // 
@@ -514,15 +524,15 @@ namespace MagicMongoDBTool
             this.txtReplHost.Size = new System.Drawing.Size(135, 22);
             this.txtReplHost.TabIndex = 1;
             // 
-            // label9
+            // lblReplHost
             // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Location = new System.Drawing.Point(31, 92);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(36, 16);
-            this.label9.TabIndex = 33;
-            this.label9.Text = "Host";
+            this.lblReplHost.AutoSize = true;
+            this.lblReplHost.BackColor = System.Drawing.Color.Transparent;
+            this.lblReplHost.Location = new System.Drawing.Point(31, 92);
+            this.lblReplHost.Name = "lblReplHost";
+            this.lblReplHost.Size = new System.Drawing.Size(36, 16);
+            this.lblReplHost.TabIndex = 33;
+            this.lblReplHost.Text = "Host";
             // 
             // cmdAddHost
             // 
@@ -543,13 +553,13 @@ namespace MagicMongoDBTool
             this.lstHost.Size = new System.Drawing.Size(473, 100);
             this.lstHost.TabIndex = 5;
             // 
-            // label6
+            // lblReplsetNameDescription
             // 
-            this.label6.Location = new System.Drawing.Point(31, 48);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(707, 41);
-            this.label6.TabIndex = 30;
-            this.label6.Text = "The driver verifies that the name of the replica set it connects to matches this " +
+            this.lblReplsetNameDescription.Location = new System.Drawing.Point(31, 48);
+            this.lblReplsetNameDescription.Name = "lblReplsetNameDescription";
+            this.lblReplsetNameDescription.Size = new System.Drawing.Size(707, 41);
+            this.lblReplsetNameDescription.TabIndex = 30;
+            this.lblReplsetNameDescription.Text = "The driver verifies that the name of the replica set it connects to matches this " +
     "name. Implies that the hosts given are a seed list, and the driver will attempt " +
     "to find all members of the set.";
             // 
@@ -580,16 +590,6 @@ namespace MagicMongoDBTool
             this.tabConnectionS.TabIndex = 1;
             this.tabConnectionS.Text = "Connection String";
             this.tabConnectionS.UseVisualStyleBackColor = true;
-            // 
-            // cmdRemoveHost
-            // 
-            this.cmdRemoveHost.Location = new System.Drawing.Point(133, 163);
-            this.cmdRemoveHost.Name = "cmdRemoveHost";
-            this.cmdRemoveHost.Size = new System.Drawing.Size(108, 27);
-            this.cmdRemoveHost.TabIndex = 4;
-            this.cmdRemoveHost.Text = "Remove Host";
-            this.cmdRemoveHost.UseVisualStyleBackColor = true;
-            this.cmdRemoveHost.Click += new System.EventHandler(this.cmdRemoveHost_Click);
             // 
             // frmAddConnection
             // 
@@ -656,28 +656,28 @@ namespace MagicMongoDBTool
         private TabPage tabOption;
         private CheckBox chkSlaveOk;
         private NumericUpDown NumSocketTimeOut;
-        private Label lblTimeOut;
+        private Label lblsocketTimeout;
         private CheckBox chkSafeMode;
-        private Label label2;
+        private Label lblConnectTimeout;
         private NumericUpDown NumConnectTimeOut;
         private CheckBox chkFsync;
         private CheckBox chkJournal;
         private NumericUpDown NumWTimeoutMS;
-        private Label label1;
-        private Label label3;
+        private Label lblWTimeout;
+        private Label lblQueueSize;
         private NumericUpDown NumWaitQueueSize;
         private TabPage tabreplicaSet;
         private Label lblMainReplsetName;
         private TextBox txtReplsetName;
-        private Label label5;
-        private Label label6;
+        private Label lblWtimeoutDescript;
+        private Label lblReplsetNameDescription;
         private Label label7;
         private ListBox lstHost;
         private Button cmdAddHost;
         private NumericUpDown NumReplPort;
-        private Label label8;
+        private Label lblReplPort;
         private TextBox txtReplHost;
-        private Label label9;
+        private Label lblReplHost;
         private Button cmdRemoveHost;
     }
 }
