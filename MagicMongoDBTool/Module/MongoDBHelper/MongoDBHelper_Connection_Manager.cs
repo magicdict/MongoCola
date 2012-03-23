@@ -13,8 +13,6 @@ namespace MagicMongoDBTool.Module
         /// 管理中服务器列表
         /// </summary>
         public static Dictionary<String, MongoServer> _mongoSrvLst = new Dictionary<String, MongoServer>();
-        public static Dictionary<String, Boolean> _mongoStatusLst = new Dictionary<String, Boolean>();
-
         /// <summary>
         /// 增加管理服务器
         /// </summary>
@@ -22,15 +20,18 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static void AddServer(List<ConfigHelper.MongoConnectionConfig> configLst)
         {
-            foreach (ConfigHelper.MongoConnectionConfig config in configLst)
+            for (int i = 0; i < configLst.Count; i++)
             {
+                ConfigHelper.MongoConnectionConfig config = configLst[i];
                 try
                 {
                     if (_mongoSrvLst.ContainsKey(config.ConnectionName))
                     {
                         _mongoSrvLst.Remove(config.ConnectionName);
                     }
-                    _mongoSrvLst.Add(config.ConnectionName, CreateMongoSetting(config));
+                    _mongoSrvLst.Add(config.ConnectionName, CreateMongoSetting(ref config));
+                    ///更新一些运行时的变量
+                    SystemManager.ConfigHelperInstance.ConnectionList[config.ConnectionName] = config;
                 }
                 catch (Exception ex)
                 {
@@ -43,7 +44,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static MongoServer CreateMongoSetting(ConfigHelper.MongoConnectionConfig config)
+        public static MongoServer CreateMongoSetting(ref ConfigHelper.MongoConnectionConfig config)
         {
             MongoServerSettings mongoSvrSetting = new MongoServerSettings();
             if (String.IsNullOrEmpty(config.ConnectionString))
@@ -56,11 +57,13 @@ namespace MagicMongoDBTool.Module
                 //Replset时候可以不用设置吗？                    
                 mongoSvrSetting.Server = new MongoServerAddress(config.Host, config.Port);
                 //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
-                if (config.SocketTimeOut != 0)
+                if (config.socketTimeoutMS != 0)
                 {
-                    mongoSvrSetting.SocketTimeout = new TimeSpan(0, 0, config.SocketTimeOut);
+                    mongoSvrSetting.SocketTimeout = new TimeSpan(0, 0, config.socketTimeoutMS / 1000);
                 }
-                if (!(String.IsNullOrEmpty(config.UserName) | String.IsNullOrEmpty(config.Password)))
+                //运行时LoginAsAdmin的设定
+                config.LoginAsAdmin = (config.DataBaseName == String.Empty);
+                if (!(String.IsNullOrEmpty(config.UserName) || String.IsNullOrEmpty(config.Password)))
                 {
                     //认证的设定:注意，这里的密码是明文
                     mongoSvrSetting.DefaultCredentials = new MongoCredentials(config.UserName, config.Password, config.LoginAsAdmin);
@@ -116,7 +119,7 @@ namespace MagicMongoDBTool.Module
                 config.IsSlaveOk = mongourl.SlaveOk;
                 config.IsSafeMode = mongourl.SafeMode.Enabled;
                 config.ReplSetName = mongourl.ReplicaSetName;
-                config.SocketTimeOut = (int)mongourl.SocketTimeout.TotalSeconds;
+                config.socketTimeoutMS = (int)mongourl.SocketTimeout.TotalSeconds;
                 return true;
             }
             catch (FormatException)

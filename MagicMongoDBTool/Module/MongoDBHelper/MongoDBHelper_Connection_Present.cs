@@ -37,7 +37,6 @@ namespace MagicMongoDBTool.Module
         public static void FillMongoServerToTreeView(TreeView trvMongoDB)
         {
             trvMongoDB.Nodes.Clear();
-            _mongoStatusLst.Clear();
             foreach (String mongoSvrKey in _mongoSrvLst.Keys)
             {
                 MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
@@ -115,9 +114,9 @@ namespace MagicMongoDBTool.Module
                         }
                         mongoSvrNode.Tag = SERVICE_TAG + ":" + mongoSvrKey;
                     }
+                    config.Health = true;
                     SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey] = config;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
-                    _mongoStatusLst.Add(mongoSvrKey, true);
                 }
                 catch (MongoAuthenticationException ex)
                 {
@@ -135,7 +134,6 @@ namespace MagicMongoDBTool.Module
                     }
                     mongoSvrNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
-                    _mongoStatusLst.Add(mongoSvrKey, false);
                 }
                 catch (Exception ex)
                 {
@@ -156,7 +154,6 @@ namespace MagicMongoDBTool.Module
                     }
                     mongoSvrNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoSvrKey;
                     trvMongoDB.Nodes.Add(mongoSvrNode);
-                    _mongoStatusLst.Add(mongoSvrKey, false);
                 }
             }
         }

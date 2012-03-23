@@ -1169,7 +1169,7 @@ namespace MagicMongoDBTool.UserController
 
         #region"数据导航"
         /// <summary>
-        /// 
+        /// 换页操作
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1192,6 +1192,11 @@ namespace MagicMongoDBTool.UserController
             }
             ReloadData();
         }
+        /// <summary>
+        /// 指定起始位置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GotoStripButton_Click(object sender, EventArgs e)
         {
             if (txtSkip.Text.IsNumeric())
@@ -1203,6 +1208,10 @@ namespace MagicMongoDBTool.UserController
                     if (mDataViewInfo.CurrentCollectionTotalCnt <= skip)
                     {
                         mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - 1;
+                        if (mDataViewInfo.SkipCnt == -1) {
+                            ///CurrentCollectionTotalCnt可能为0
+                            mDataViewInfo.SkipCnt = 0;
+                        }
                     }
                     else
                     {

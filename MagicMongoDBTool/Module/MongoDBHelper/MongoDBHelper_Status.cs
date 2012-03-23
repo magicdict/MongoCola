@@ -24,10 +24,10 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
-                    if (!_mongoStatusLst.ContainsKey(mongoSvrKey) || !_mongoStatusLst[mongoSvrKey]) { continue; }
+                    if (!SystemManager.GetCurrentServerConfig(mongoSvrKey).Health) { continue; }
                     //flydreamer提供的代码
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                    if (SystemManager.GetCurrentServerConfiig(mongoSvrKey).LoginAsAdmin)
+                    if (SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin)
                     {
                         BsonDocument cr = ExecuteMongoSvrCommand(serverStatus_Command, mongoSvr).Response;
                         SrvDocList.Add(cr);
@@ -77,9 +77,8 @@ namespace MagicMongoDBTool.Module
                 {
                     MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                    if (!_mongoStatusLst.ContainsKey(mongoSvrKey) || 
-                        !_mongoStatusLst[mongoSvrKey] || 
-                        !SystemManager.GetCurrentServerConfiig(mongoSvrKey).LoginAsAdmin) { continue; }
+                    if (!SystemManager.GetCurrentServerConfig(mongoSvrKey).Health || 
+                        !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin) { continue; }
                     List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                     foreach (String strDBName in databaseNameList)
                     {
@@ -157,9 +156,8 @@ namespace MagicMongoDBTool.Module
                 {
                     MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                    if (!_mongoStatusLst.ContainsKey(mongoSvrKey) ||
-                         !_mongoStatusLst[mongoSvrKey] ||
-                         !SystemManager.GetCurrentServerConfiig(mongoSvrKey).LoginAsAdmin) { continue; }
+                    if ( !SystemManager.GetCurrentServerConfig(mongoSvrKey).Health ||
+                         !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin) { continue; }
                     List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                     foreach (String strDBName in databaseNameList)
                     {
@@ -246,9 +244,8 @@ namespace MagicMongoDBTool.Module
                 {
                     MongoServer mongoSvr = _mongoSrvLst[mongoSvrKey];
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                    if (!_mongoStatusLst.ContainsKey(mongoSvrKey) ||
-                        !_mongoStatusLst[mongoSvrKey] ||
-                        !SystemManager.GetCurrentServerConfiig(mongoSvrKey).LoginAsAdmin) { continue; }
+                    if (!SystemManager.GetCurrentServerConfig(mongoSvrKey).Health ||
+                        !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin) { continue; }
                     List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
                     foreach (String strDBName in databaseNameList)
                     {

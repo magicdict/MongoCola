@@ -43,7 +43,7 @@ namespace MagicMongoDBTool
             }
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
             {
-                if (item.MainReplSetName == _prmSvr.ReplicaSetName)
+                if (item.ReplSetName == _prmSvr.ReplicaSetName)
                 {
                     if (!HostPortList.Contains(item.Host + ":" + item.Port))
                     {

@@ -22,7 +22,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 版本号
         /// </summary>
-        public static String Version = "1.1.3";
+        public static String Version = "1.1.5";
         /// <summary>
         /// 配置实例
         /// </summary>
@@ -126,7 +126,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="mongoSvrKey"></param>
         /// <returns></returns>
-        public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfiig(String mongoSvrKey)
+        public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfig(String mongoSvrKey)
         {
             ConfigHelper.MongoConnectionConfig rtnMongoConnectionConfig = new ConfigHelper.MongoConnectionConfig();
             if (ConfigHelperInstance.ConnectionList.ContainsKey(mongoSvrKey))

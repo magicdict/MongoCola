@@ -43,18 +43,18 @@ namespace MagicMongoDBTool.Module
             SlaveSvr
         }
         /// <summary>
-        /// 链接结构体
+        /// 连接结构体
         /// </summary>
         public struct MongoConnectionConfig
         {
             /// <summary>
-            /// 连接名称
-            /// </summary>
-            public String ConnectionName;
-            /// <summary>
             /// 连接字符串
             /// </summary>
             public String ConnectionString;
+            /// <summary>
+            /// 连接名称
+            /// </summary>
+            public String ConnectionName;
             /// <summary>
             /// IP地址
             /// </summary>
@@ -64,9 +64,17 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public int Port;
             /// <summary>
-            /// 主副本名称
+            /// 用户名
             /// </summary>
-            public String MainReplSetName;
+            public String UserName;
+            /// <summary>
+            /// 密码
+            /// </summary>
+            public String Password;
+            /// <summary>
+            /// 数据库名称
+            /// </summary>
+            public String DataBaseName;
             /// <summary>
             /// 是否启用主从模式[Route的时候，不能设置为True]
             /// </summary>
@@ -76,17 +84,48 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public bool IsSafeMode;
             /// <summary>
-            /// 作为Admin登陆
+            /// w
             /// </summary>
+            /// <remarks>The driver adds { w : n } to the getLastError command. Implies safe=true.</remarks>
+            public bool w;
+            /// <summary>
+            /// wtimeoutMS
+            /// </summary>
+            /// <remarks>The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true.</remarks>
+            public int wtimeoutMS;
+            /// <summary>
+            /// fsync
+            /// </summary>
+            /// <remarks>
+            /// true: the driver adds { fsync : true } to the getlasterror command. Implies safe=true.
+            /// false: the driver does not not add fsync to the getlasterror command.
+            /// </remarks>
+            public bool fsync;
+            /// <summary>
+            /// journal
+            /// </summary>
+            public bool journal;
+            /// <summary>
+            /// connect TimeOut (Sec)
+            /// </summary>
+            public int connectTimeoutMS;
+            /// <summary>
+            /// Socket TimeOut (Sec)
+            /// </summary>
+            public int socketTimeoutMS;
+            /// <summary>
+            /// 副本名称
+            /// </summary>
+            public String ReplSetName;
+            /// <summary>
+            /// 副本服务器列表
+            /// </summary>
+            public List<String> ReplsetList;
+            /// <summary>
+            /// 只读[这个属性是运行时决定的]
+            /// </summary>
+            [XmlIgnore()]
             public bool LoginAsAdmin;
-            /// <summary>
-            /// 用户名
-            /// </summary>
-            public String UserName;
-            /// <summary>
-            /// 密码
-            /// </summary>
-            public String Password;
             /// <summary>
             /// 只读[这个属性是运行时决定的]
             /// </summary>
@@ -98,29 +137,15 @@ namespace MagicMongoDBTool.Module
             [XmlIgnore()]
             public Boolean AuthMode;
             /// <summary>
-            /// Server Role
+            /// 服务器角色[这个属性是运行时决定的]
             /// </summary>
+            [XmlIgnore()]
             public SvrRoleType ServerRole;
             /// <summary>
-            /// 副本名称
+            /// Health
             /// </summary>
-            public String ReplSetName;
-            /// <summary>
-            /// 数据库名称
-            /// </summary>
-            public String DataBaseName;
-            /// <summary>
-            /// 副本服务器列表
-            /// </summary>
-            public List<String> ReplsetList;
-            /// <summary>
-            /// 副本主机裁决优先度
-            /// </summary>
-            public int Priority;
-            /// <summary>
-            /// Socket TimeOut (Sec)
-            /// </summary>
-            public int SocketTimeOut;
+            [XmlIgnore()]
+            public Boolean Health;
         }
         /// <summary>
         /// 通过Host信息获得连接名称

@@ -208,7 +208,6 @@ namespace MagicMongoDBTool.Module
             }
             txtData.Text = sb.ToString();
         }
-
         /// <summary>
         /// 将数据放入TreeView里进行展示
         /// </summary>

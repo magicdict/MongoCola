@@ -129,7 +129,7 @@ namespace MagicMongoDBTool.Module
                 else
                 {
                     //优先度
-                    host.Add("priority", SystemManager.ConfigHelperInstance.ConnectionList[item].Priority);
+                    //host.Add("priority", SystemManager.ConfigHelperInstance.ConnectionList[item].Priority);
                 }
                 hosts.Add(host);
             }
