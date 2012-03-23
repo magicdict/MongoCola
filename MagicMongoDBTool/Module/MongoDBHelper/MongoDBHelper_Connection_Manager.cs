@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using MongoDB.Driver;
-using System.Windows.Forms;
 
 namespace MagicMongoDBTool.Module
 {
@@ -40,7 +38,7 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
-        /// 根据config获得Server
+        /// 根据config获得Server,同时更新一些运行时变量
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
@@ -50,7 +48,7 @@ namespace MagicMongoDBTool.Module
             if (String.IsNullOrEmpty(config.ConnectionString))
             {
                 mongoSvrSetting.ConnectionMode = ConnectionMode.Direct;
-                //当一个服务器作为从属服务器，副本组中的备用服务器，这里一定要设置为SlaveOK
+                //当一个服务器作为从属服务器，副本组中的备用服务器，这里一定要设置为SlaveOK,默认情况下是不可以读取的
                 mongoSvrSetting.SlaveOk = config.IsSlaveOk;
                 //安全模式
                 mongoSvrSetting.SafeMode = new SafeMode(config.IsSafeMode);
@@ -59,7 +57,15 @@ namespace MagicMongoDBTool.Module
                 //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
                 if (config.socketTimeoutMS != 0)
                 {
-                    mongoSvrSetting.SocketTimeout = new TimeSpan(0, 0, config.socketTimeoutMS / 1000);
+                    mongoSvrSetting.SocketTimeout = new TimeSpan(0, 0, (int)(config.socketTimeoutMS / 1000));
+                }
+                if (config.connectTimeoutMS != 0)
+                {
+                    mongoSvrSetting.ConnectTimeout = new TimeSpan(0, 0, (int)(config.connectTimeoutMS / 1000));
+                }
+                if (config.wtimeoutMS != 0)
+                {
+                    mongoSvrSetting.WaitQueueTimeout = new TimeSpan(0, 0, (int)(config.wtimeoutMS / 1000));
                 }
                 //运行时LoginAsAdmin的设定
                 config.LoginAsAdmin = (config.DataBaseName == String.Empty);
@@ -78,12 +84,21 @@ namespace MagicMongoDBTool.Module
                     foreach (String item in config.ReplsetList)
                     {
                         //如果这里的服务器在启动的时候没有--Replset参数，将会出错，当然作为单体的服务器，启动是没有任何问题的
-                        MongoServerAddress ReplSrv = new MongoServerAddress(
-                                        SystemManager.ConfigHelperInstance.ConnectionList[item].Host,
-                                        SystemManager.ConfigHelperInstance.ConnectionList[item].Port);
+                        MongoServerAddress ReplSrv;
+                        if (item.Split(":".ToCharArray()).Length == 2)
+                        {
+                            ReplSrv = new MongoServerAddress(
+                                            item.Split(":".ToCharArray())[0],
+                                            Convert.ToInt16(item.Split(":".ToCharArray())[1]));
+                        }
+                        else
+                        {
+                            ReplSrv = new MongoServerAddress(item);
+                        }
                         ReplsetSvrList.Add(ReplSrv);
                     }
                     mongoSvrSetting.Servers = ReplsetSvrList;
+                    mongoSvrSetting.WaitQueueSize = config.WaitQueueSize;
                 }
             }
             else
@@ -118,8 +133,15 @@ namespace MagicMongoDBTool.Module
                 config.Port = mongourl.Server.Port;
                 config.IsSlaveOk = mongourl.SlaveOk;
                 config.IsSafeMode = mongourl.SafeMode.Enabled;
+                config.socketTimeoutMS = (int)mongourl.SocketTimeout.TotalMilliseconds;
+                config.connectTimeoutMS = (int)mongourl.ConnectTimeout.TotalMilliseconds;
+                config.wtimeoutMS = (int)mongourl.WaitQueueTimeout.TotalMilliseconds;
+                config.WaitQueueSize = (int)mongourl.WaitQueueSize;
                 config.ReplSetName = mongourl.ReplicaSetName;
-                config.socketTimeoutMS = (int)mongourl.SocketTimeout.TotalSeconds;
+                foreach (var item in mongourl.Servers)
+                {
+                    config.ReplsetList.Add(item.Host + (item.Port == 0 ? String.Empty : ":" + item.Port.ToString()));
+                }
                 return true;
             }
             catch (FormatException)

@@ -277,6 +277,7 @@ namespace MagicMongoDBTool.Module
             }
         }
         #endregion
+
         #region "辅助方法和排序器"
 
         internal class lvwColumnSorter : System.Collections.IComparer

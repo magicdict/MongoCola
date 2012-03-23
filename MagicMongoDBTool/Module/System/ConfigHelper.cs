@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using MongoDB.Driver;
+
 namespace MagicMongoDBTool.Module
 {
     [Serializable]
@@ -84,15 +85,15 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public bool IsSafeMode;
             /// <summary>
-            /// w
+            /// The driver adds { w : n } to the getLastError command.
             /// </summary>
             /// <remarks>The driver adds { w : n } to the getLastError command. Implies safe=true.</remarks>
-            public bool w;
+            public int WaitQueueSize;
             /// <summary>
             /// wtimeoutMS
             /// </summary>
             /// <remarks>The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true.</remarks>
-            public int wtimeoutMS;
+            public double wtimeoutMS;
             /// <summary>
             /// fsync
             /// </summary>
@@ -108,11 +109,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// connect TimeOut (Sec)
             /// </summary>
-            public int connectTimeoutMS;
+            public double connectTimeoutMS;
             /// <summary>
             /// Socket TimeOut (Sec)
             /// </summary>
-            public int socketTimeoutMS;
+            public double socketTimeoutMS;
             /// <summary>
             /// 副本名称
             /// </summary>
@@ -142,7 +143,7 @@ namespace MagicMongoDBTool.Module
             [XmlIgnore()]
             public SvrRoleType ServerRole;
             /// <summary>
-            /// Health
+            /// 当前连接是否可以使用[这个属性是运行时决定的]
             /// </summary>
             [XmlIgnore()]
             public Boolean Health;

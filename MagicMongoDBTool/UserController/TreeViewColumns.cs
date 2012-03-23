@@ -92,7 +92,7 @@ namespace TreeViewColumnsProject
             //画框
             if (e.Node.GetNodeCount(true) > 0)
             {
-                int LeftPoint = e.Bounds.X + IndentWidth - 12 ;
+                int LeftPoint = e.Bounds.X + IndentWidth - 20 ;
                 e.Graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(LeftPoint, e.Bounds.Y + 4, 12, 12));
                 Point LeftMid = new Point(LeftPoint + 2, e.Bounds.Y + 10);
                 Point RightMid = new Point(LeftPoint + 10, e.Bounds.Y + 10);

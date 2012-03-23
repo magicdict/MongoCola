@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
+
 namespace MagicMongoDBTool
 {
 
@@ -63,20 +63,33 @@ namespace MagicMongoDBTool
             //Modify Mode
             ModifyConn = SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName];
             OnLoad();
+
             txtConnectionName.Text = ModifyConn.ConnectionName;
             txtConnectionName.Enabled = false;
             txtHost.Text = ModifyConn.Host;
             numPort.Text = ModifyConn.Port.ToString();
             txtUsername.Text = ModifyConn.UserName;
             txtPassword.Text = ModifyConn.Password;
-
             txtDataBaseName.Text = ModifyConn.DataBaseName;
-            txtConnectionString.Text = ModifyConn.ConnectionString;
 
             chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
             chkSafeMode.Checked = ModifyConn.IsSafeMode;
-            NumSocketTimeOut.Value = ModifyConn.socketTimeoutMS;
+            chkFsync.Checked = ModifyConn.fsync;
+            chkJournal.Checked = ModifyConn.journal;
+
+            NumWTimeoutMS.Value = (decimal)ModifyConn.wtimeoutMS;
+            NumSocketTimeOut.Value = (decimal)ModifyConn.socketTimeoutMS;
+            NumConnectTimeOut.Value = (decimal)ModifyConn.connectTimeoutMS;
+            NumW.Value = ModifyConn.WaitQueueSize;
+            
             txtReplsetName.Text = ModifyConn.ReplSetName;
+
+            txtConnectionString.Text = ModifyConn.ConnectionString;
+
+            foreach (string item in ModifyConn.ReplsetList)
+            {
+                lstHost.Items.Add(item);
+            }
 
             if (SystemManager.IsUseDefaultLanguage())
             {
@@ -200,10 +213,20 @@ namespace MagicMongoDBTool
                     }
                 }
 
-                ModifyConn.IsSafeMode = chkSafeMode.Checked;
-                ModifyConn.socketTimeoutMS = (int)NumSocketTimeOut.Value;
+                ModifyConn.socketTimeoutMS = (double)NumSocketTimeOut.Value;
+                ModifyConn.connectTimeoutMS = (double)NumConnectTimeOut.Value;
+                ModifyConn.wtimeoutMS = (double)NumWTimeoutMS.Value;
+                ModifyConn.WaitQueueSize = (int)NumW.Value;
+                ModifyConn.journal = chkJournal.Checked;
+                ModifyConn.fsync = chkFsync.Checked;
                 ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
+                ModifyConn.IsSafeMode = chkSafeMode.Checked;
+
                 ModifyConn.ReplSetName = txtReplsetName.Text;
+                foreach (String item in lstHost.Items)
+                {
+                    ModifyConn.ReplsetList.Add(item);
+                }
 
             }
         }
@@ -222,6 +245,8 @@ namespace MagicMongoDBTool
             }
             lstHost.Items.Add(strHost);
         }
+
+
 
     }
 }
