@@ -29,7 +29,7 @@ namespace MagicMongoDBTool
         {
             if (txtConfirmPsw.Text != txtPassword.Text)
             {
-                MyMessageBox.ShowConfirm("Error", "Password and Confirm Password not match!");
+                MyMessageBox.ShowMessage("Error", "Password and Confirm Password not match!");
                 return;
             }
             if (_ModifyName == String.Empty)
@@ -38,7 +38,7 @@ namespace MagicMongoDBTool
 
                 if (txtUserName.Text == String.Empty)
                 {
-                    MyMessageBox.ShowConfirm("Error", "Please fill username!");
+                    MyMessageBox.ShowMessage("Error", "Please fill username!");
                     return;
                 }
                 if (_IsAdmin)

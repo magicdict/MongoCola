@@ -52,7 +52,7 @@ namespace MagicMongoDBTool.Module
                     }
                     catch (Exception ex)
                     {
-                        SystemManager.ExceptionDeal(ex);
+                        SystemManager.ExceptionDeal(ex, cloneMenuItem.Text);
                     }
                 }
             }

@@ -159,7 +159,7 @@ namespace MagicMongoDBTool.Module
                 TreeNode mongoSingleDBNode;
                 if (isServer)
                 {
-                    mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mServer, mongoConnKey + "/" + mServerInstace.Address.ToString());
+                    mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mServer, mongoConnKey + "/" + mongoConnKey);
                 }
                 else
                 {
@@ -178,7 +178,8 @@ namespace MagicMongoDBTool.Module
             else
             {
                 MongoServer InstantSrv;
-                if (isServer) {
+                if (isServer)
+                {
                     InstantSrv = mServer;
                     databaseNameList = mServer.GetDatabaseNames().ToList<String>();
                 }
@@ -216,7 +217,8 @@ namespace MagicMongoDBTool.Module
                         SvrInstanceNode.Nodes.Add(mongoDBNode);
                     }
                 }
-                if (isServer) {
+                if (isServer)
+                {
                     SvrInstanceNode.Tag = SERVICE_TAG + ":" + mongoConnKey + "/" + mongoConnKey;
                 }
                 else
@@ -312,17 +314,15 @@ namespace MagicMongoDBTool.Module
                         {
                             mongoColNode = FillCollectionInfoToTreeNode(strColName, mongoDB, mongoSvrKey);
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
-                            mongoColNode = new TreeNode(strColName + "[exception]");
+                            mongoColNode = new TreeNode(strColName + "[exception:]");
                             mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
                             mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
                         }
-
                         if (IsSystemCollection(mongoDB.Name, strColName))
                         {
                             mongoSysColListNode.Nodes.Add(mongoColNode);
-
                         }
                         else
                         {

@@ -42,8 +42,8 @@ namespace MagicMongoDBTool.UserController
             }
             catch (Exception ex)
             {
-                
-               throw ex;
+                btnSwitch_Click(null, null);
+                SystemManager.ExceptionDeal(ex, "Refresh Status");
             }
         }
         /// <summary>
@@ -56,7 +56,8 @@ namespace MagicMongoDBTool.UserController
             }
             catch (Exception ex)
             {
-               throw ex;
+               btnSwitch_Click(null, null);
+               SystemManager.ExceptionDeal(ex, "Refresh Current Opreation Exception");
             }
         }
         /// <summary>
