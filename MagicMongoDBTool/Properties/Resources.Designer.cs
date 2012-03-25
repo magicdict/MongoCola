@@ -375,6 +375,13 @@ namespace MagicMongoDBTool.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Servers {
+            get {
+                object obj = ResourceManager.GetObject("Servers", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ShutDown {
             get {
                 object obj = ResourceManager.GetObject("ShutDown", resourceCulture);

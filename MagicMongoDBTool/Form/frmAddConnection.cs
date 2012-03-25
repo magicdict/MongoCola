@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 namespace MagicMongoDBTool
 {
@@ -245,7 +246,7 @@ namespace MagicMongoDBTool
                 ModifyConn.IsSafeMode = chkSafeMode.Checked;
 
                 ModifyConn.ReplSetName = txtReplsetName.Text;
-                ModifyConn.ReplsetList.Clear();
+                ModifyConn.ReplsetList = new List<string>();
                 foreach (String item in lstHost.Items)
                 {
                     ModifyConn.ReplsetList.Add(item);

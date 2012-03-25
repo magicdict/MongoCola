@@ -62,70 +62,17 @@ namespace MagicMongoDBTool.Module
                     mongoConn.Connect();
                     ///mongoSvr.ReplicaSetName只有在连接后才有效，但是也可以使用Config.ReplsetName
                     ConnectionNode.Text = mongoConn.Instances.Length != 1 ? strReplset + "：" + mongoConn.ReplicaSetName : config.ConnectionName;
-                    foreach (MongoServerInstance ServerInstace in mongoConn.Instances)
+                    ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, null, mongoConn));
+                    if (mongoConn.ReplicaSetName != String.Empty)
                     {
-                        TreeNode SvrInstanceNode = new TreeNode();
-                        String ConnSvrKey = mongoConnKey + "/" + ServerInstace.Address.ToString().Replace(":", "@");
-                        SvrInstanceNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
-                        SvrInstanceNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
-                        SvrInstanceNode.Text = "Address[" + ServerInstace.Address.ToString() + "]";
-                        
-                        if ((!String.IsNullOrEmpty(config.UserName)) & (!String.IsNullOrEmpty(config.Password)))
+                        TreeNode ServerListNode = new TreeNode("Servers");
+                        ServerListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
+                        ServerListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
+                        foreach (MongoServerInstance ServerInstace in mongoConn.Instances)
                         {
-                            config.AuthMode = true;
+                            ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, ServerInstace, null));
                         }
-                        //获取ReadOnly
-                        config.IsReadOnly = false;
-                        List<String> databaseNameList = new List<String>();
-                        if (!String.IsNullOrEmpty(config.DataBaseName))
-                        {
-                            //单数据库模式
-                            TreeNode mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, ServerInstace.Server, mongoConnKey + "/" + ServerInstace.Address.ToString());
-                            mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + ConnSvrKey + "/" + config.DataBaseName;
-                            mongoSingleDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                            mongoSingleDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                            SvrInstanceNode.Nodes.Add(mongoSingleDBNode);
-                            SvrInstanceNode.Tag = SINGLE_DB_SERVICE_TAG + ":" + ConnSvrKey;
-                            if (config.AuthMode)
-                            {
-                                config.IsReadOnly = mongoConn.GetDatabase(config.DataBaseName).FindUser(config.UserName).IsReadOnly;
-                            }
-                        }
-                        else
-                        {
-                            databaseNameList = mongoConn.GetDatabaseNames().ToList<String>();
-                            foreach (String strDBName in databaseNameList)
-                            {
-                                TreeNode mongoDBNode;
-                                try
-                                {
-                                    mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, ServerInstace.Server, ConnSvrKey);
-                                    mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                                    mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                                    SvrInstanceNode.Nodes.Add(mongoDBNode);
-                                    if (strDBName == MongoDBHelper.DATABASE_NAME_ADMIN)
-                                    {
-                                        if (config.AuthMode)
-                                        {
-                                            config.IsReadOnly = mongoConn.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
-                                        }
-                                    }
-                                }
-                                catch (Exception)
-                                {
-                                    mongoDBNode = new TreeNode(strDBName + " (Exception)");
-                                    mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                                    mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
-                                    SvrInstanceNode.Nodes.Add(mongoDBNode);
-                                }
-                            }
-                            SvrInstanceNode.Tag = SERVICE_TAG + ":" + mongoConnKey + "/" + ServerInstace.Address.ToString().Replace(":", "@");
-                        }
-                        if (_mongoInstanceLst.ContainsKey(ConnSvrKey)) {
-                            _mongoInstanceLst.Remove(ConnSvrKey);
-                        }
-                        _mongoInstanceLst.Add(ConnSvrKey, ServerInstace);
-                        ConnectionNode.Nodes.Add(SvrInstanceNode);
+                        ConnectionNode.Nodes.Add(ServerListNode);
                     }
                     config.Health = true;
                     SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey] = config;
@@ -169,6 +116,123 @@ namespace MagicMongoDBTool.Module
                     trvMongoDB.Nodes.Add(ConnectionNode);
                 }
             }
+        }
+
+        private static TreeNode GetInstanceNode(String mongoConnKey, ConfigHelper.MongoConnectionConfig config,
+                         MongoServer mongoConn, MongoServerInstance mServerInstace, MongoServer mServer)
+        {
+            Boolean isServer = false;
+            if (mServerInstace == null)
+            {
+                isServer = true;
+            }
+            TreeNode SvrInstanceNode = new TreeNode();
+            String ConnSvrKey;
+            if (isServer)
+            {
+                ConnSvrKey = mongoConnKey + "/" + mongoConnKey;
+            }
+            else
+            {
+                ConnSvrKey = mongoConnKey + "/" + mServerInstace.Address.ToString().Replace(":", "@");
+            }
+            SvrInstanceNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+            SvrInstanceNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+            if (isServer)
+            {
+                SvrInstanceNode.Text = "Host";
+            }
+            else
+            {
+                SvrInstanceNode.Text = "MemberHost[" + mServerInstace.Address.ToString() + "]";
+            }
+            if ((!String.IsNullOrEmpty(config.UserName)) & (!String.IsNullOrEmpty(config.Password)))
+            {
+                config.AuthMode = true;
+            }
+            //获取ReadOnly
+            config.IsReadOnly = false;
+            List<String> databaseNameList = new List<String>();
+            if (!String.IsNullOrEmpty(config.DataBaseName))
+            {
+                //单数据库模式
+                TreeNode mongoSingleDBNode;
+                if (isServer)
+                {
+                    mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mServer, mongoConnKey + "/" + mServerInstace.Address.ToString());
+                }
+                else
+                {
+                    mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mServerInstace.Server, mongoConnKey + "/" + mServerInstace.Address.ToString());
+                }
+                mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + ConnSvrKey + "/" + config.DataBaseName;
+                mongoSingleDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                mongoSingleDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                SvrInstanceNode.Nodes.Add(mongoSingleDBNode);
+                SvrInstanceNode.Tag = SINGLE_DB_SERVICE_TAG + ":" + ConnSvrKey;
+                if (config.AuthMode)
+                {
+                    config.IsReadOnly = mongoConn.GetDatabase(config.DataBaseName).FindUser(config.UserName).IsReadOnly;
+                }
+            }
+            else
+            {
+                MongoServer InstantSrv;
+                if (isServer) {
+                    InstantSrv = mServer;
+                    databaseNameList = mServer.GetDatabaseNames().ToList<String>();
+                }
+                else
+                {
+                    MongoServerSettings setting = mongoConn.Settings.Clone();
+                    setting.ConnectionMode = ConnectionMode.Direct;
+                    setting.SlaveOk = true;
+                    setting.Server = mServerInstace.Address;
+                    InstantSrv = new MongoServer(setting);
+                    databaseNameList = InstantSrv.GetDatabaseNames().ToList<String>();
+                }
+                foreach (String strDBName in databaseNameList)
+                {
+                    TreeNode mongoDBNode;
+                    try
+                    {
+                        mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, InstantSrv, ConnSvrKey);
+                        mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                        mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                        SvrInstanceNode.Nodes.Add(mongoDBNode);
+                        if (strDBName == MongoDBHelper.DATABASE_NAME_ADMIN)
+                        {
+                            if (config.AuthMode)
+                            {
+                                config.IsReadOnly = mongoConn.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        mongoDBNode = new TreeNode(strDBName + " (Exception)");
+                        mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                        mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                        SvrInstanceNode.Nodes.Add(mongoDBNode);
+                    }
+                }
+                if (isServer) {
+                    SvrInstanceNode.Tag = SERVICE_TAG + ":" + mongoConnKey + "/" + mongoConnKey;
+                }
+                else
+                {
+                    SvrInstanceNode.Tag = SERVICE_TAG + ":" + mongoConnKey + "/" + mServerInstace.Address.ToString().Replace(":", "@");
+                }
+            }
+            if (_mongoInstanceLst.ContainsKey(ConnSvrKey))
+            {
+                _mongoInstanceLst.Remove(ConnSvrKey);
+            }
+            if (!isServer)
+            {
+                _mongoInstanceLst.Add(ConnSvrKey, mServerInstace);
+            }
+            return SvrInstanceNode;
         }
         /// <summary>
         /// 获得一个表示数据库结构的节点
@@ -248,7 +312,7 @@ namespace MagicMongoDBTool.Module
                         {
                             mongoColNode = FillCollectionInfoToTreeNode(strColName, mongoDB, mongoSvrKey);
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
                             mongoColNode = new TreeNode(strColName + "[exception]");
                             mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;

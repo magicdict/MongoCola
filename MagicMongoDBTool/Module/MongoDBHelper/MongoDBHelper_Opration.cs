@@ -137,7 +137,7 @@ namespace MagicMongoDBTool.Module
                         if (!mongoSvr.DatabaseExists(dbName))
                         {
                             mongoSvr.GetDatabase(dbName);
-                            tr.Nodes.Add(FillDataBaseInfoToTreeNode(dbName, mongoSvr, svrKey));
+                            tr.Nodes.Add(FillDataBaseInfoToTreeNode(dbName, mongoSvr, svrKey + "/" + svrKey));
                             rtnResult = true;
                         }
                         break;
@@ -249,6 +249,13 @@ namespace MagicMongoDBTool.Module
                 if (_mongoInstanceLst.ContainsKey(strInstKey))
                 {
                     rtnMongoSvr = _mongoInstanceLst[strInstKey].Server;
+                    return rtnMongoSvr;
+                }
+                strInstKey = strInstKey.Split("/".ToCharArray())[0];
+                if (_mongoConnSvrLst.ContainsKey(strInstKey))
+                {
+                    rtnMongoSvr = _mongoConnSvrLst[strInstKey];
+                    return rtnMongoSvr;
                 }
             }
             return rtnMongoSvr;
@@ -302,7 +309,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="IndexName"></param>
         /// <returns></returns>
         public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey,
-            Boolean IsBackground = false, Boolean IsDropDups = false, Boolean IsSparse = false, 
+            Boolean IsBackground = false, Boolean IsDropDups = false, Boolean IsSparse = false,
             Boolean IsUnique = false, String IndexName = "")
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
