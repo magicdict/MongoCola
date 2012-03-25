@@ -11,8 +11,13 @@ MongoCola is free and open source.
 Release History
 ========================================================================
 Ver 1.15 2012/03/23 [Last Version @IBM GDC]
-AddConnection 
-    1.Only 6 field is left at new connection form.
+Connection Config:
+    1.Add other connection config arg.
+    
+Other
+    1.If getStatus exception happend,stop the auto refresh to avoid endless exception.
+    2.fixed the bug that the userform show confirmbox instead of messagebox.
+    
 
 ========================================================================
 Ver 1.13 2012/03/23

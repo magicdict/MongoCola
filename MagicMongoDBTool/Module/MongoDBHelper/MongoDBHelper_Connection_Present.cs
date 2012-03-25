@@ -61,9 +61,9 @@ namespace MagicMongoDBTool.Module
                     //不过现在改为全部显示的打开连接
                     mongoConn.Connect();
                     ///mongoSvr.ReplicaSetName只有在连接后才有效，但是也可以使用Config.ReplsetName
-                    ConnectionNode.Text = mongoConn.Instances.Length != 1 ? strReplset + "：" + mongoConn.ReplicaSetName : config.ConnectionName;
+                    ConnectionNode.Text = mongoConnKey;
                     ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, null, mongoConn));
-                    if (mongoConn.ReplicaSetName != String.Empty)
+                    if (mongoConn.ReplicaSetName != null)
                     {
                         TreeNode ServerListNode = new TreeNode("Servers");
                         ServerListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
@@ -140,11 +140,11 @@ namespace MagicMongoDBTool.Module
             SvrInstanceNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
             if (isServer)
             {
-                SvrInstanceNode.Text = "Host";
+                SvrInstanceNode.Text = "Connection";
             }
             else
             {
-                SvrInstanceNode.Text = "MemberHost[" + mServerInstace.Address.ToString() + "]";
+                SvrInstanceNode.Text = "Server[" + mServerInstace.Address.ToString() + "]";
             }
             if ((!String.IsNullOrEmpty(config.UserName)) & (!String.IsNullOrEmpty(config.Password)))
             {
