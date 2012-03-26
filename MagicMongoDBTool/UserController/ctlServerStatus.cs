@@ -42,7 +42,20 @@ namespace MagicMongoDBTool.UserController
             }
             catch (Exception ex)
             {
-                btnSwitch_Click(null, null);
+                refreshTimer.Stop();
+                ShortTimer.Stop();
+                if (!SystemManager.IsUseDefaultLanguage())
+                {
+                    this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Resume_AutoRefresh);
+                }
+                else
+                {
+                    btnSwitch.Text = "Resume Auto Refresh";
+                }
+                btnSwitch.Image = MagicMongoDBTool.Properties.Resources.Run;
+                btnSwitch.Enabled = false;
+                RefreshStripButton.Enabled = false;
+
                 SystemManager.ExceptionDeal(ex, "Refresh Status");
             }
         }
@@ -56,8 +69,21 @@ namespace MagicMongoDBTool.UserController
             }
             catch (Exception ex)
             {
-               btnSwitch_Click(null, null);
-               SystemManager.ExceptionDeal(ex, "Refresh Current Opreation Exception");
+                refreshTimer.Stop();
+                ShortTimer.Stop();
+                if (!SystemManager.IsUseDefaultLanguage())
+                {
+                    this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Resume_AutoRefresh);
+                }
+                else
+                {
+                    btnSwitch.Text = "Resume Auto Refresh";
+                }
+                btnSwitch.Image = MagicMongoDBTool.Properties.Resources.Run;
+                btnSwitch.Enabled = false;
+                RefreshStripButton.Enabled = false;
+
+                SystemManager.ExceptionDeal(ex, "Refresh Current Opreation Exception");
             }
         }
         /// <summary>

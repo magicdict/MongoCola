@@ -106,8 +106,8 @@ namespace MagicMongoDBTool
                 if (ConnectionName.Contains("@"))
                 {
                     ConnectionName = ConnectionName.Split("@".ToCharArray())[0];
-                    SystemManager.OpenForm(new frmAddConnection(ConnectionName));
                 }
+                SystemManager.OpenForm(new frmAddConnection(ConnectionName));
                 RefreshConnection();
             }
         }

@@ -53,6 +53,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="routeSvr"></param>
         /// <param name="replicaSetName"></param>
         /// <param name="shardingNames"></param>
+        /// <remarks>注意：有个命令可能只能用在mongos上面</remarks>
         /// <returns></returns>
         public static CommandResult AddSharding(MongoServer routeSvr, String replicaSetName, List<String> shardingNames)
         {

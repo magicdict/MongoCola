@@ -23,9 +23,9 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             ConfigSvr,
             /// <summary>
-            /// 路由服务器[mongos]
+            /// Sharding服务器[mongos]
             /// </summary>
-            RouteSvr,
+            ShardSvr,
             /// <summary>
             /// 副本服务器[Virtul]
             /// </summary>

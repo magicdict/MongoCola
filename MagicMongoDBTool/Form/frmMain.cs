@@ -292,6 +292,35 @@ namespace MagicMongoDBTool
                 switch (strNodeType)
                 {
                     case MongoDBHelper.CONNECTION_TAG:
+                    case MongoDBHelper.CONNECTION_REPLSET_TAG:
+                    case MongoDBHelper.CONNECTION_SHARDING_TAG:
+                        //普通连接
+                        statusStripMain.Items[0].Text = "Selected JavaScript:" + SystemManager.SelectTagData;
+                        this.DisconnectToolStripMenuItem.Enabled = true;
+                        if (strNodeType == MongoDBHelper.CONNECTION_TAG)
+                        {
+                            this.InitReplsetToolStripMenuItem.Enabled = true;
+                        }
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            this.contextMenuStripMain = new ContextMenuStrip();
+                            if (SystemManager.MONO_MODE)
+                            {
+                                ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
+                                t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t1);
+                                ToolStripMenuItem t2 = this.InitReplsetToolStripMenuItem.Clone();
+                                t2.Click += new EventHandler(InitReplsetToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t2);
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.InitReplsetToolStripMenuItem.Clone());
+                            }
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+                        }
                         break;
                     case MongoDBHelper.SERVICE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
@@ -335,7 +364,7 @@ namespace MagicMongoDBTool
                                 this.ReplicaSetToolStripMenuItem.Enabled = true;
                             }
                         }
-                        if (SystemManager.GetCurrentServerConfig().ServerRole == ConfigHelper.SvrRoleType.RouteSvr)
+                        if (SystemManager.GetCurrentServerConfig().ServerRole == ConfigHelper.SvrRoleType.ShardSvr)
                         {
                             //Route用
                             if (!config.IsReadOnly)
@@ -373,10 +402,6 @@ namespace MagicMongoDBTool
                                 t6.Click += new EventHandler(slaveResyncToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t6);
 
-                                ToolStripMenuItem t7 = this.DisconnectToolStripMenuItem.Clone();
-                                t7.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
-                                this.contextMenuStripMain.Items.Add(t7);
-
                                 ToolStripMenuItem t8 = this.ShutDownToolStripMenuItem.Clone();
                                 t8.Click += new EventHandler(ShutDownToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t8);
@@ -399,11 +424,9 @@ namespace MagicMongoDBTool
                                 this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.slaveResyncToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ServePropertyToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.SvrStatusToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.InitReplsetToolStripMenuItem.Clone());
                             }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -436,7 +459,7 @@ namespace MagicMongoDBTool
                         }
                         statusStripMain.Items[0].Text = "Selected Server[Single Database]:" + SystemManager.SelectTagData;
                         break;
-                    case MongoDBHelper.SERVICE_TAG_EXCEPTION:
+                    case MongoDBHelper.CONNECTION_EXCEPTION_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         this.DisconnectToolStripMenuItem.Enabled = true;
                         this.RestoreMongoToolStripMenuItem.Enabled = false;
@@ -1385,7 +1408,7 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("ReplSetName", Result.Ok ? "OK" : "ERROR");
             }
             //
-            MongoDBHelper.AddToReplsetServer(SystemManager.GetCurrentService(), "localhost:10002");
+            MongoDBHelper.AddToReplsetServer(SystemManager.GetCurrentService(), "localhost:20002");
         }
         #endregion
 

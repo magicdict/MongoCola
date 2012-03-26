@@ -44,19 +44,9 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
-                    String strReplset = String.Empty;
-                    if (SystemManager.IsUseDefaultLanguage())
-                    {
-                        strReplset = "ReplsetName";
-                    }
-                    else
-                    {
-                        strReplset = SystemManager.mStringResource.GetText(StringResource.TextType.ShardingConfig_ReplsetName);
-                    }
                     ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey];
                     ConnectionNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
                     ConnectionNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
-                    ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName;
                     //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
                     //不过现在改为全部显示的打开连接
                     mongoConn.Connect();
@@ -65,6 +55,7 @@ namespace MagicMongoDBTool.Module
                     ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, null, mongoConn));
                     if (mongoConn.ReplicaSetName != null)
                     {
+                        ConnectionNode.Tag = CONNECTION_REPLSET_TAG + ":" + config.ConnectionName;
                         TreeNode ServerListNode = new TreeNode("Servers");
                         ServerListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
                         ServerListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
@@ -73,6 +64,10 @@ namespace MagicMongoDBTool.Module
                             ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, ServerInstace, null));
                         }
                         ConnectionNode.Nodes.Add(ServerListNode);
+                    }
+                    else
+                    {
+                        ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName;
                     }
                     config.Health = true;
                     SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey] = config;
@@ -92,7 +87,7 @@ namespace MagicMongoDBTool.Module
                         ConnectionNode.Text += "[MongoAuthenticationException]";
                         MyMessageBox.ShowMessage("MongoAuthenticationException:", "Please check UserName and Password", ex.ToString(), true);
                     }
-                    ConnectionNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoConnKey;
+                    ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
                 }
                 catch (Exception ex)
@@ -112,7 +107,7 @@ namespace MagicMongoDBTool.Module
                         ConnectionNode.Text += "[Exception]";
                         MyMessageBox.ShowMessage("Exception", "Mongo Server may not Startup or Auth Mode is not correct", ex.ToString(), true);
                     }
-                    ConnectionNode.Tag = SERVICE_TAG_EXCEPTION + ":" + mongoConnKey;
+                    ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
                 }
             }

@@ -510,6 +510,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bug.txt" />
     <Content Include="clody.ico" />
     <Content Include="dll\MongoDB.Bson.dll" />
     <Content Include="dll\MongoDB.Driver.dll" />

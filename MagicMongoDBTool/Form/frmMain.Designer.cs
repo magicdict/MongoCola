@@ -62,7 +62,6 @@ namespace MagicMongoDBTool
             this.AddUserToAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.slaveResyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DisconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServePropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SvrStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,6 +122,7 @@ namespace MagicMongoDBTool
             this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.ctlShellCommandEditor = new MagicMongoDBTool.ctlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.DisconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -319,7 +319,8 @@ namespace MagicMongoDBTool
             // 
             this.connectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ReplicaSetToolStripMenuItem,
-            this.ShardingConfigToolStripMenuItem});
+            this.ShardingConfigToolStripMenuItem,
+            this.DisconnectToolStripMenuItem});
             this.connectionToolStripMenuItem.Name = "connectionToolStripMenuItem";
             this.connectionToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.connectionToolStripMenuItem.Text = "Connection";
@@ -346,7 +347,6 @@ namespace MagicMongoDBTool
             this.AddUserToAdminToolStripMenuItem,
             this.toolStripMenuItem3,
             this.slaveResyncToolStripMenuItem,
-            this.DisconnectToolStripMenuItem,
             this.ShutDownToolStripMenuItem,
             this.ServePropertyToolStripMenuItem,
             this.SvrStatusToolStripMenuItem,
@@ -388,13 +388,6 @@ namespace MagicMongoDBTool
             this.slaveResyncToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.slaveResyncToolStripMenuItem.Text = "Slave Resync";
             this.slaveResyncToolStripMenuItem.Click += new System.EventHandler(this.slaveResyncToolStripMenuItem_Click);
-            // 
-            // DisconnectToolStripMenuItem
-            // 
-            this.DisconnectToolStripMenuItem.Name = "DisconnectToolStripMenuItem";
-            this.DisconnectToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.DisconnectToolStripMenuItem.Text = "Disconnect";
-            this.DisconnectToolStripMenuItem.Click += new System.EventHandler(this.DisconnectToolStripMenuItem_Click);
             // 
             // ShutDownToolStripMenuItem
             // 
@@ -877,6 +870,13 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
+            // DisconnectToolStripMenuItem
+            // 
+            this.DisconnectToolStripMenuItem.Name = "DisconnectToolStripMenuItem";
+            this.DisconnectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DisconnectToolStripMenuItem.Text = "Disconnect";
+            this.DisconnectToolStripMenuItem.Click += new System.EventHandler(this.DisconnectToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -964,7 +964,6 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem ReIndexToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem11;
         private ToolStripMenuItem evalJSToolStripMenuItem;
-        private ToolStripMenuItem DisconnectToolStripMenuItem;
         private ToolStripStatusLabel lblUserInfo;
         private TreeView trvsrvlst;
         private ToolStripMenuItem RepairDBToolStripMenuItem;
@@ -1005,5 +1004,6 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem connectionToolStripMenuItem;
         private ToolStripMenuItem ReplicaSetToolStripMenuItem;
         private ToolStripMenuItem ShardingConfigToolStripMenuItem;
+        private ToolStripMenuItem DisconnectToolStripMenuItem;
     }
 }

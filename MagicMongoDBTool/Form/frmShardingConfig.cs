@@ -98,7 +98,12 @@ namespace MagicMongoDBTool
                 }
             }
             List<CommandResult> Resultlst = new List<CommandResult>();
-            Resultlst.Add(MongoDBHelper.AddSharding(_prmSvr, cmbReplsetName.Text, srvKeys));
+            cmbReplsetName.Text = "set2";
+            srvKeys.Add("shard3");
+            srvKeys.Add("shard4");
+
+            CommandResult rtn = MongoDBHelper.AddSharding(_prmSvr, cmbReplsetName.Text, srvKeys);
+            //Resultlst.Add(MongoDBHelper.AddSharding(_prmSvr, cmbReplsetName.Text, srvKeys));
         }
         /// <summary>
         /// 数据库切换

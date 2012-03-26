@@ -8,6 +8,8 @@ namespace MagicMongoDBTool.Module
     public static partial class MongoDBHelper
     {
 
+        ///注意：有些命令可能只能用在mongos上面，例如addshard
+
         #region"Shell Command"
         //Replica Set Commands
         //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
