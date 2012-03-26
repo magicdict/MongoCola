@@ -13,7 +13,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// Sharding连接
         /// </summary>
-        public const String CONNECTION_SHARDING_TAG = "MongoShardingConnection";
+        public const String CONNECTION_CLUSTER_TAG = "MongoClusterConnection";
         /// <summary>
         /// Replset连接
         /// </summary>
@@ -26,6 +26,10 @@ namespace MagicMongoDBTool.Module
         /// 普通服务器Tag
         /// </summary>
         public const String SERVICE_TAG = "MongoService";
+        /// <summary>
+        /// Replset Member 
+        /// </summary>
+        public const String SERVICE_REPLSET_MEMBER_TAG = "MongoReplsetMemberService";
         /// <summary>
         /// 该服务器只允许操作其下的某个数据库
         /// </summary>

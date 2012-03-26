@@ -70,7 +70,7 @@ namespace MagicMongoDBTool.Module
                         BsonDocument ServerStatusDoc = ExecuteMongoSvrCommand(serverStatus_Command, mongoConn).Response;
                         if (ServerStatusDoc.GetElement("process").Value == "mongos")
                         {
-                            ConnectionNode.Tag = CONNECTION_SHARDING_TAG + ":" + config.ConnectionName + "/" + config.ConnectionName;
+                            ConnectionNode.Tag = CONNECTION_CLUSTER_TAG + ":" + config.ConnectionName + "/" + config.ConnectionName;
                             TreeNode ShardListNode = new TreeNode("Shards");
                             ShardListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
                             ShardListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
@@ -268,7 +268,10 @@ namespace MagicMongoDBTool.Module
                 }
                 else
                 {
-                    SvrInstanceNode.Tag = SERVICE_TAG + ":" + mongoConnKey + "/" + mServerInstace.Address.ToString().Replace(":", "@");
+                    if (mongoConn.ReplicaSetName != null)
+                    {
+                        SvrInstanceNode.Tag = SERVICE_REPLSET_MEMBER_TAG + ":" + mongoConnKey + "/" + mServerInstace.Address.ToString().Replace(":", "@");
+                    }
                 }
             }
             if (_mongoInstanceLst.ContainsKey(ConnSvrKey))

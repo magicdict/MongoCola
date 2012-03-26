@@ -56,17 +56,7 @@ namespace MagicMongoDBTool
             this.connectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ReplicaSetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShardingConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CreateMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
-            this.AddUserToAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.slaveResyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ServePropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SvrStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-            this.InitReplsetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DisconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +112,17 @@ namespace MagicMongoDBTool
             this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.ctlShellCommandEditor = new MagicMongoDBTool.ctlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.DisconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CreateMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.AddUserToAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.slaveResyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ServePropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SvrStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.InitReplsetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -320,6 +320,8 @@ namespace MagicMongoDBTool
             this.connectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ReplicaSetToolStripMenuItem,
             this.ShardingConfigToolStripMenuItem,
+            this.InitReplsetToolStripMenuItem,
+            this.toolStripMenuItem2,
             this.DisconnectToolStripMenuItem});
             this.connectionToolStripMenuItem.Name = "connectionToolStripMenuItem";
             this.connectionToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
@@ -339,90 +341,12 @@ namespace MagicMongoDBTool
             this.ShardingConfigToolStripMenuItem.Text = "&Sharding Config";
             this.ShardingConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardingConfigToolStripMenuItem_Click);
             // 
-            // ServerToolStripMenuItem
+            // DisconnectToolStripMenuItem
             // 
-            this.ServerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CreateMongoDBToolStripMenuItem,
-            this.toolStripMenuItem4,
-            this.AddUserToAdminToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.slaveResyncToolStripMenuItem,
-            this.ShutDownToolStripMenuItem,
-            this.ServePropertyToolStripMenuItem,
-            this.SvrStatusToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.InitReplsetToolStripMenuItem});
-            this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
-            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.ServerToolStripMenuItem.Text = "Server";
-            // 
-            // CreateMongoDBToolStripMenuItem
-            // 
-            this.CreateMongoDBToolStripMenuItem.Name = "CreateMongoDBToolStripMenuItem";
-            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.CreateMongoDBToolStripMenuItem.Text = "New Database";
-            this.CreateMongoDBToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoDBToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(194, 6);
-            // 
-            // AddUserToAdminToolStripMenuItem
-            // 
-            this.AddUserToAdminToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddUserToDB;
-            this.AddUserToAdminToolStripMenuItem.Name = "AddUserToAdminToolStripMenuItem";
-            this.AddUserToAdminToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.AddUserToAdminToolStripMenuItem.Text = "Add User To Admin Group";
-            this.AddUserToAdminToolStripMenuItem.Click += new System.EventHandler(this.AddUserToAdminToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(194, 6);
-            // 
-            // slaveResyncToolStripMenuItem
-            // 
-            this.slaveResyncToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.sync;
-            this.slaveResyncToolStripMenuItem.Name = "slaveResyncToolStripMenuItem";
-            this.slaveResyncToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.slaveResyncToolStripMenuItem.Text = "Slave Resync";
-            this.slaveResyncToolStripMenuItem.Click += new System.EventHandler(this.slaveResyncToolStripMenuItem_Click);
-            // 
-            // ShutDownToolStripMenuItem
-            // 
-            this.ShutDownToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.ShutDown;
-            this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
-            this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.ShutDownToolStripMenuItem.Text = "ShutDown Server";
-            this.ShutDownToolStripMenuItem.Click += new System.EventHandler(this.ShutDownToolStripMenuItem_Click);
-            // 
-            // ServePropertyToolStripMenuItem
-            // 
-            this.ServePropertyToolStripMenuItem.Name = "ServePropertyToolStripMenuItem";
-            this.ServePropertyToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.ServePropertyToolStripMenuItem.Text = "Serve Info";
-            this.ServePropertyToolStripMenuItem.Click += new System.EventHandler(this.ServePropertyToolStripMenuItem_Click);
-            // 
-            // SvrStatusToolStripMenuItem
-            // 
-            this.SvrStatusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.KeyInfo;
-            this.SvrStatusToolStripMenuItem.Name = "SvrStatusToolStripMenuItem";
-            this.SvrStatusToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.SvrStatusToolStripMenuItem.Text = "Status";
-            this.SvrStatusToolStripMenuItem.Click += new System.EventHandler(this.SvrStatusToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(194, 6);
-            // 
-            // InitReplsetToolStripMenuItem
-            // 
-            this.InitReplsetToolStripMenuItem.Name = "InitReplsetToolStripMenuItem";
-            this.InitReplsetToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.InitReplsetToolStripMenuItem.Text = "Initiate Replset";
-            this.InitReplsetToolStripMenuItem.Click += new System.EventHandler(this.InitReplsetToolStripMenuItem_Click);
+            this.DisconnectToolStripMenuItem.Name = "DisconnectToolStripMenuItem";
+            this.DisconnectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DisconnectToolStripMenuItem.Text = "Disconnect";
+            this.DisconnectToolStripMenuItem.Click += new System.EventHandler(this.DisconnectToolStripMenuItem_Click);
             // 
             // DataBaseToolStripMenuItem
             // 
@@ -870,12 +794,88 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // DisconnectToolStripMenuItem
+            // CreateMongoDBToolStripMenuItem
             // 
-            this.DisconnectToolStripMenuItem.Name = "DisconnectToolStripMenuItem";
-            this.DisconnectToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.DisconnectToolStripMenuItem.Text = "Disconnect";
-            this.DisconnectToolStripMenuItem.Click += new System.EventHandler(this.DisconnectToolStripMenuItem_Click);
+            this.CreateMongoDBToolStripMenuItem.Name = "CreateMongoDBToolStripMenuItem";
+            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.CreateMongoDBToolStripMenuItem.Text = "New Database";
+            this.CreateMongoDBToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoDBToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(194, 6);
+            // 
+            // AddUserToAdminToolStripMenuItem
+            // 
+            this.AddUserToAdminToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddUserToDB;
+            this.AddUserToAdminToolStripMenuItem.Name = "AddUserToAdminToolStripMenuItem";
+            this.AddUserToAdminToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.AddUserToAdminToolStripMenuItem.Text = "Add User To Admin Group";
+            this.AddUserToAdminToolStripMenuItem.Click += new System.EventHandler(this.AddUserToAdminToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(194, 6);
+            // 
+            // slaveResyncToolStripMenuItem
+            // 
+            this.slaveResyncToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.sync;
+            this.slaveResyncToolStripMenuItem.Name = "slaveResyncToolStripMenuItem";
+            this.slaveResyncToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.slaveResyncToolStripMenuItem.Text = "Slave Resync";
+            this.slaveResyncToolStripMenuItem.Click += new System.EventHandler(this.slaveResyncToolStripMenuItem_Click);
+            // 
+            // ShutDownToolStripMenuItem
+            // 
+            this.ShutDownToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.ShutDown;
+            this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
+            this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.ShutDownToolStripMenuItem.Text = "ShutDown Server";
+            this.ShutDownToolStripMenuItem.Click += new System.EventHandler(this.ShutDownToolStripMenuItem_Click);
+            // 
+            // ServePropertyToolStripMenuItem
+            // 
+            this.ServePropertyToolStripMenuItem.Name = "ServePropertyToolStripMenuItem";
+            this.ServePropertyToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.ServePropertyToolStripMenuItem.Text = "Serve Info";
+            this.ServePropertyToolStripMenuItem.Click += new System.EventHandler(this.ServePropertyToolStripMenuItem_Click);
+            // 
+            // SvrStatusToolStripMenuItem
+            // 
+            this.SvrStatusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.KeyInfo;
+            this.SvrStatusToolStripMenuItem.Name = "SvrStatusToolStripMenuItem";
+            this.SvrStatusToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.SvrStatusToolStripMenuItem.Text = "Status";
+            this.SvrStatusToolStripMenuItem.Click += new System.EventHandler(this.SvrStatusToolStripMenuItem_Click);
+            // 
+            // ServerToolStripMenuItem
+            // 
+            this.ServerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CreateMongoDBToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.AddUserToAdminToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.slaveResyncToolStripMenuItem,
+            this.ShutDownToolStripMenuItem,
+            this.ServePropertyToolStripMenuItem,
+            this.SvrStatusToolStripMenuItem});
+            this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
+            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.ServerToolStripMenuItem.Text = "Server";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // InitReplsetToolStripMenuItem
+            // 
+            this.InitReplsetToolStripMenuItem.Name = "InitReplsetToolStripMenuItem";
+            this.InitReplsetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.InitReplsetToolStripMenuItem.Text = "Initiate Replset";
+            this.InitReplsetToolStripMenuItem.Click += new System.EventHandler(this.InitReplsetToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -917,9 +917,6 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OperationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ServerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ShutDownToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem CreateMongoDBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DataBaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DelMongoDBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CreateMongoCollectionToolStripMenuItem;
@@ -933,13 +930,11 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.ToolStripMenuItem ImportDataFromAccessToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OptionsToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
-        private System.Windows.Forms.ToolStripMenuItem AddUserToAdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ThanksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExpandAllConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CollapseAllConnectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SvrStatusToolStripMenuItem;
 
         private ToolStripButton ImportDataFromAccessToolStripButton;
         private ToolStripButton RefreshToolStripButton;
@@ -955,8 +950,6 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem ExportCollectionToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem10;
         private ToolStripSeparator toolStripMenuItem1;
-        private ToolStripSeparator toolStripMenuItem4;
-        private ToolStripSeparator toolStripMenuItem3;
         private ToolStripSeparator toolStripMenuItem5;
         private ToolStripSeparator toolStripMenuItem8;
         private ToolStripSeparator toolStripMenuItem6;
@@ -967,7 +960,6 @@ namespace MagicMongoDBTool
         private ToolStripStatusLabel lblUserInfo;
         private TreeView trvsrvlst;
         private ToolStripMenuItem RepairDBToolStripMenuItem;
-        private ToolStripMenuItem slaveResyncToolStripMenuItem;
         private Panel panel1;
         private Panel panel2;
         private Splitter splitter1;
@@ -996,14 +988,22 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem creatJavaScriptToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem dropJavascriptToolStripMenuItem;
-        private ToolStripMenuItem ServePropertyToolStripMenuItem;
         private ToolStripMenuItem DBStatusToolStripMenuItem;
         private ToolStripMenuItem CollectionStatusToolStripMenuItem;
-        private ToolStripSeparator toolStripMenuItem2;
-        private ToolStripMenuItem InitReplsetToolStripMenuItem;
         private ToolStripMenuItem connectionToolStripMenuItem;
         private ToolStripMenuItem ReplicaSetToolStripMenuItem;
         private ToolStripMenuItem ShardingConfigToolStripMenuItem;
         private ToolStripMenuItem DisconnectToolStripMenuItem;
+        private ToolStripMenuItem InitReplsetToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem2;
+        private ToolStripMenuItem ServerToolStripMenuItem;
+        private ToolStripMenuItem CreateMongoDBToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem4;
+        private ToolStripMenuItem AddUserToAdminToolStripMenuItem;
+        private ToolStripSeparator toolStripMenuItem3;
+        private ToolStripMenuItem slaveResyncToolStripMenuItem;
+        private ToolStripMenuItem ShutDownToolStripMenuItem;
+        private ToolStripMenuItem ServePropertyToolStripMenuItem;
+        private ToolStripMenuItem SvrStatusToolStripMenuItem;
     }
 }

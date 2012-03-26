@@ -46,7 +46,7 @@ namespace MagicMongoDBTool.Module
         //http://www.mongodb.org/display/DOCS/Master+Slave
         /// </summary>
         public static MongoCommand resync_Command = new MongoCommand("resync", PathLv.ServerLV);
-       
+
         /// <summary>
         /// 增加数据分片
         /// </summary>
@@ -100,12 +100,12 @@ namespace MagicMongoDBTool.Module
         /// <param name="mongoSvr">副本组主服务器</param>
         /// <param name="replicaSetName">副本名称</param>
         /// <param name="HostList">从属服务器列表</param>
-        public static CommandResult InitReplicaSet(String replicaSetName, List<String> HostList)
+        public static CommandResult InitReplicaSet(String replicaSetName, String HostList)
         {
             //第一台服务器作为Primary服务器
             MongoServerSettings PrimarySetting = new MongoServerSettings();
-            PrimarySetting.Server = new MongoServerAddress(SystemManager.ConfigHelperInstance.ConnectionList[HostList[0]].Host,
-                                                           SystemManager.ConfigHelperInstance.ConnectionList[HostList[0]].Port);
+            PrimarySetting.Server = new MongoServerAddress(SystemManager.ConfigHelperInstance.ConnectionList[HostList].Host,
+                                                           SystemManager.ConfigHelperInstance.ConnectionList[HostList].Port);
             //如果不设置的话，会有错误：不是Primary服务器，SlaveOK 是 False
             PrimarySetting.SlaveOk = true;
 
@@ -115,29 +115,12 @@ namespace MagicMongoDBTool.Module
             BsonDocument cmd = new BsonDocument();
             BsonDocument host = new BsonDocument();
             //生成命令
-            byte id = 0;
-            foreach (var item in HostList)
-            {
-                id++;
-                host = new BsonDocument();
-                host.Add("_id", id);
-                host.Add("host", SystemManager.ConfigHelperInstance.ConnectionList[item].Host + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString());
-                if (SystemManager.ConfigHelperInstance.ConnectionList[item].ServerRole == ConfigHelper.SvrRoleType.ArbiterSvr)
-                {
-                    //仲裁服务器
-                    host.Add("arbiterOnly", true);
-                }
-                else
-                {
-                    //优先度
-                    //host.Add("priority", SystemManager.ConfigHelperInstance.ConnectionList[item].Priority);
-                }
-                hosts.Add(host);
-            }
-
+            host = new BsonDocument();
+            host.Add("_id", 1);
+            host.Add("host", SystemManager.ConfigHelperInstance.ConnectionList[HostList].Host + ":" + SystemManager.ConfigHelperInstance.ConnectionList[HostList].Port.ToString());
+            hosts.Add(host);
             config.Add("_id", replicaSetName);
             config.Add("members", hosts);
-
             cmd.Add("replSetInitiate", config);
 
             CommandDocument mongoCmd = new CommandDocument() { cmd };

@@ -265,7 +265,13 @@ namespace MagicMongoDBTool.UserController
                 btnSwitch.Image = MagicMongoDBTool.Properties.Resources.Run;
             }
         }
-
+        public void ResetCtl() {
+            refreshTimer.Enabled = true;
+            ShortTimer.Enabled = true;
+            btnSwitch.Enabled = true;
+            RefreshStripButton.Enabled = true;
+            btnSwitch.Image = MagicMongoDBTool.Properties.Resources.Pause;
+        }
         private void CloseStripButton_Click(object sender, EventArgs e)
         {
             refreshTimer.Stop();

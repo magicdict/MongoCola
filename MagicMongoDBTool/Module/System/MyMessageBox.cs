@@ -35,7 +35,10 @@ namespace MagicMongoDBTool
         {
             _frmInputBox.Text = Title;
             _frmInputBox.SetMessage(Message);
-            _frmInputBox.ShowDialog();
+            if (_frmInputBox.Visible == false)
+            {
+                _frmInputBox.ShowDialog();
+            }
             return _frmInputBox.Result;
         }
         /// <summary>
@@ -45,7 +48,10 @@ namespace MagicMongoDBTool
         {
             _frmConfirm.Text = Title;
             _frmConfirm.SetMessage(Message);
-            _frmConfirm.ShowDialog();
+            if (_frmConfirm.Visible == false)
+            {
+                _frmConfirm.ShowDialog();
+            }
             return _frmConfirm.Result;
         }
         /// <summary>
@@ -57,7 +63,10 @@ namespace MagicMongoDBTool
         {
             _frmMessage.Text = Title;
             _frmMessage.SetMessage(Message, Details, false);
-            _frmMessage.ShowDialog();
+            if (_frmMessage.Visible == false)
+            {
+                _frmMessage.ShowDialog();
+            }
         }
         /// <summary>
         /// 消息表示
@@ -68,7 +77,10 @@ namespace MagicMongoDBTool
         {
             _frmMessage.Text = Title;
             _frmMessage.SetMessage(Message, Details, IsShowDetail);
-            _frmMessage.ShowDialog();
+            if (_frmMessage.Visible == false)
+            {
+                _frmMessage.ShowDialog();
+            }
         }
         /// <summary>
         /// 消息表示
@@ -79,7 +91,10 @@ namespace MagicMongoDBTool
         {
             _frmMessage.Text = Title;
             _frmMessage.SetMessage(Message, img, Details);
-            _frmMessage.ShowDialog();
+            if (_frmMessage.Visible == false)
+            {
+                _frmMessage.ShowDialog();
+            }
         }
     }
 }

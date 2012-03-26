@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MagicMongoDBTool.UserController;
 using MongoDB.Driver;
+using System.Threading;
 
 namespace MagicMongoDBTool
 {
@@ -293,7 +294,7 @@ namespace MagicMongoDBTool
                 {
                     case MongoDBHelper.CONNECTION_TAG:
                     case MongoDBHelper.CONNECTION_REPLSET_TAG:
-                    case MongoDBHelper.CONNECTION_SHARDING_TAG:
+                    case MongoDBHelper.CONNECTION_CLUSTER_TAG:
                         //普通连接
                         statusStripMain.Items[0].Text = "Selected JavaScript:" + SystemManager.SelectTagData;
                         this.DisconnectToolStripMenuItem.Enabled = true;
@@ -1204,7 +1205,7 @@ namespace MagicMongoDBTool
         private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MongoDBHelper.FillConnectionToTreeView(trvsrvlst);
-
+            this.ServerStatusCtl.ResetCtl();
             this.ServerStatusCtl.RefreshStatus(false);
             this.ServerStatusCtl.RefreshCurrentOpr();
 
@@ -1248,55 +1249,7 @@ namespace MagicMongoDBTool
 
         #endregion
 
-        #region"工具"
-        /// <summary>
-        /// Options
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OptionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SystemManager.OpenForm(new frmOption());
-            SystemManager.InitLanguage();
-            if (SystemManager.IsUseDefaultLanguage())
-            {
-                MyMessageBox.ShowMessage("Language", "Language will change to \"English\" when you restart this tool");
-            }
-            else
-            {
-                SetMenuText();
-            }
-        }
-        /// <summary>
-        /// Import data from access
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!SystemManager.MONO_MODE)
-            {
-                //MONO not support this function
-                OpenFileDialog AccessFile = new OpenFileDialog();
-                AccessFile.Filter = MongoDBHelper.MdbFilter;
-                if (AccessFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    MongoDBHelper.ImportAccessDataBase(AccessFile.FileName, SystemManager.SelectObjectTag, trvsrvlst.SelectedNode);
-                }
-            }
-        }
-        /// <summary>
-        /// DOS控制台
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DosCommandToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SystemManager.OpenForm(new frmDosCommand());
-        }
-        #endregion
-
-        #region"管理：服务器"
+         #region"管理：服务器"
         /// <summary>
         /// 建立数据库
         /// </summary>
@@ -1404,12 +1357,47 @@ namespace MagicMongoDBTool
             String ReplSetName = MyMessageBox.ShowInput("ReplSetName", "Please fill ReplSetName:");
             if (ReplSetName != String.Empty)
             {
-                CommandResult Result = MongoDBHelper.InitReplicaSet(ReplSetName, new List<string>() { SystemManager.GetCurrentServerConfig().ConnectionName });
-                MyMessageBox.ShowMessage("ReplSetName", Result.Ok ? "OK" : "ERROR");
+                CommandResult Result = MongoDBHelper.InitReplicaSet(ReplSetName, SystemManager.GetCurrentServerConfig().ConnectionName);
+                if (Result.Ok)
+                {
+                    //修改配置
+                    ConfigHelper.MongoConnectionConfig newConfig = SystemManager.GetCurrentServerConfig();
+                    newConfig.ReplSetName = ReplSetName;
+                    newConfig.ReplsetList = new List<string>();
+                    newConfig.ReplsetList.Add(newConfig.Host +
+                                             (newConfig.Port != 0 ? ":" + newConfig.Port.ToString() : String.Empty));
+                    SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
+                    SystemManager.ConfigHelperInstance.SaveToConfigFile();
+                    MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
+                    MongoDBHelper._mongoConnSvrLst.Add(config.ConnectionName, MongoDBHelper.CreateMongoSetting(ref newConfig));
+                    this.ServerStatusCtl.SetEnable(false);
+                    MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
+                    this.ServerStatusCtl.SetEnable(true);
+                }
+                else {
+                    MyMessageBox.ShowMessage("ReplSetName", "Failed", Result.ErrorMessage);
+                }
             }
-            //
-            MongoDBHelper.AddToReplsetServer(SystemManager.GetCurrentService(), "localhost:20002");
         }
+        /// <summary>
+        /// 副本管理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmReplset());
+        }
+        /// <summary>
+        /// 分片管理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShardingConfigToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmShardingConfig());
+        }
+
         #endregion
 
         #region"管理：数据库"
@@ -1927,28 +1915,6 @@ namespace MagicMongoDBTool
         }
         #endregion
 
-        #region"分布式"
-        /// <summary>
-        /// 副本管理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SystemManager.OpenForm(new frmReplset());
-        }
-        /// <summary>
-        /// 分片管理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ShardingConfigToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SystemManager.OpenForm(new frmShardingConfig());
-        }
-
-        #endregion
-
         #region"聚合"
         /// <summary>
         /// 转换Sql到Query
@@ -2032,6 +1998,54 @@ namespace MagicMongoDBTool
         }
         #endregion
 
+        #region"工具"
+        /// <summary>
+        /// Options
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OptionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmOption());
+            SystemManager.InitLanguage();
+            if (SystemManager.IsUseDefaultLanguage())
+            {
+                MyMessageBox.ShowMessage("Language", "Language will change to \"English\" when you restart this tool");
+            }
+            else
+            {
+                SetMenuText();
+            }
+        }
+        /// <summary>
+        /// Import data from access
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!SystemManager.MONO_MODE)
+            {
+                //MONO not support this function
+                OpenFileDialog AccessFile = new OpenFileDialog();
+                AccessFile.Filter = MongoDBHelper.MdbFilter;
+                if (AccessFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    MongoDBHelper.ImportAccessDataBase(AccessFile.FileName, SystemManager.SelectObjectTag, trvsrvlst.SelectedNode);
+                }
+            }
+        }
+        /// <summary>
+        /// DOS控制台
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DosCommandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmDosCommand());
+        }
+        #endregion
+
         #region "Help"
         /// <summary>
         /// About
@@ -2071,6 +2085,8 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
+
+
 
     }
 }
