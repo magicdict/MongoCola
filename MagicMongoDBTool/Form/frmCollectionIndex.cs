@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 
 namespace MagicMongoDBTool
 {
@@ -111,13 +112,16 @@ namespace MagicMongoDBTool
                     }
                 }
             }
-            MongoDBHelper.CreateMongoIndex(AscendingKey.ToArray(),
-                                            DescendingKey.ToArray(),
-                                            chkIsBackground.Checked,
-                                            chkIsDroppedDups.Checked,
-                                            chkIsSparse.Checked,
-                                            chkIsUnique.Checked,
-                                            txtIndexName.Text);
+            IndexOptionsBuilder option = new IndexOptionsBuilder();
+            option.SetBackground(chkIsBackground.Checked);
+            option.SetDropDups(chkIsDroppedDups.Checked);
+            option.SetSparse(chkIsSparse.Checked);
+            option.SetUnique(chkIsUnique.Checked);
+            if (txtIndexName.Text != String.Empty && !SystemManager.GetCurrentCollection().IndexExists(txtIndexName.Text))
+            {
+                option.SetName(txtIndexName.Text);
+            }
+            MongoDBHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), option);
             RefreshList();
             MessageBox.Show("Index Add Completed!");
         }

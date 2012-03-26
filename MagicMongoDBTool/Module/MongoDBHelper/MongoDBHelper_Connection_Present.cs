@@ -55,7 +55,7 @@ namespace MagicMongoDBTool.Module
                     ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, null, mongoConn));
                     if (mongoConn.ReplicaSetName != null)
                     {
-                        ConnectionNode.Tag = CONNECTION_REPLSET_TAG + ":" + config.ConnectionName;
+                        ConnectionNode.Tag = CONNECTION_REPLSET_TAG + ":" + config.ConnectionName + "/" + config.ConnectionName;
                         TreeNode ServerListNode = new TreeNode("Servers");
                         ServerListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
                         ServerListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
@@ -67,7 +67,7 @@ namespace MagicMongoDBTool.Module
                     }
                     else
                     {
-                        ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName;
+                        ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName + "/" + config.ConnectionName;
                     }
                     config.Health = true;
                     SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey] = config;

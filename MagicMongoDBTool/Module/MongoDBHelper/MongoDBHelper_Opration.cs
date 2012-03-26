@@ -308,23 +308,12 @@ namespace MagicMongoDBTool.Module
         /// <param name="IsUnique"></param>
         /// <param name="IndexName"></param>
         /// <returns></returns>
-        public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey,
-            Boolean IsBackground = false, Boolean IsDropDups = false, Boolean IsSparse = false,
-            Boolean IsUnique = false, String IndexName = "")
+        public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey,IndexOptionsBuilder option)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             IndexKeysBuilder indexkeys = new IndexKeysBuilder();
             indexkeys.Ascending(AscendingKey);
             indexkeys.Descending(DescendingKey);
-            IndexOptionsBuilder option = new IndexOptionsBuilder();
-            option.SetBackground(IsBackground);
-            option.SetDropDups(IsDropDups);
-            option.SetSparse(IsSparse);
-            option.SetUnique(IsUnique);
-            if (IndexName != String.Empty && !mongoCol.IndexExists(IndexName))
-            {
-                option.SetName(IndexName);
-            }
             mongoCol.CreateIndex(indexkeys, option);
             return true;
         }
