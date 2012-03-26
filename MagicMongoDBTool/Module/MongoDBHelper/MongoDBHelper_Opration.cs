@@ -3,9 +3,9 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
-using MongoDB.Driver.GridFS;
-using MongoDB.Bson.Serialization;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -298,15 +298,30 @@ namespace MagicMongoDBTool.Module
             return rtnMongoCollection;
         }
         /// <summary>
+        /// 获得Shard情报
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<String, String> GetShardInfo(MongoServer server) 
+        {
+            Dictionary<String, String> ShardInfo = new Dictionary<String, String>();
+            if (server.DatabaseExists(CONFIG_DBNAME_TAG))
+            {
+                MongoDatabase configdb = server.GetDatabase(CONFIG_DBNAME_TAG);
+                if (configdb.CollectionExists("shards")) {
+                    foreach (BsonDocument item in configdb.GetCollection("shards").FindAll().ToList<BsonDocument>())
+                    {
+                        ShardInfo.Add(item.GetElement("_id").Value.ToString(), item.GetElement("host").Value.ToString());
+                    }
+                }
+            }
+            return ShardInfo;
+        }
+        /// <summary>
         /// 添加索引
         /// </summary>
         /// <param name="AscendingKey"></param>
         /// <param name="DescendingKey"></param>
-        /// <param name="IsBackground"></param>
-        /// <param name="IsDropDups"></param>
-        /// <param name="IsSparse"></param>
-        /// <param name="IsUnique"></param>
-        /// <param name="IndexName"></param>
+        /// <param name="option"></param>
         /// <returns></returns>
         public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey,IndexOptionsBuilder option)
         {

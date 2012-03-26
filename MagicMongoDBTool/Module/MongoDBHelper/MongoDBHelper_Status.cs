@@ -29,8 +29,8 @@ namespace MagicMongoDBTool.Module
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
                     if (SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin)
                     {
-                        BsonDocument cr = ExecuteMongoSvrCommand(serverStatus_Command, mongoSvr).Response;
-                        SrvDocList.Add(cr);
+                        BsonDocument ServerStatusDoc = ExecuteMongoSvrCommand(serverStatus_Command, mongoSvr).Response;
+                        SrvDocList.Add(ServerStatusDoc);
                     }
                 }
                 catch (Exception ex)

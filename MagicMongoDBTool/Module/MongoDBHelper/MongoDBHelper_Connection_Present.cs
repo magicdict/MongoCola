@@ -67,7 +67,57 @@ namespace MagicMongoDBTool.Module
                     }
                     else
                     {
-                        ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName + "/" + config.ConnectionName;
+                        BsonDocument ServerStatusDoc = ExecuteMongoSvrCommand(serverStatus_Command, mongoConn).Response;
+                        if (ServerStatusDoc.GetElement("process").Value == "mongos")
+                        {
+                            ConnectionNode.Tag = CONNECTION_SHARDING_TAG + ":" + config.ConnectionName + "/" + config.ConnectionName;
+                            TreeNode ShardListNode = new TreeNode("Shards");
+                            ShardListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
+                            ShardListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
+                            foreach (var lst in GetShardInfo(mongoConn))
+                            {
+                                TreeNode ShardNode = new TreeNode();
+                                ShardNode.Text = lst.Key;
+                                ShardNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
+                                ShardNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
+                                String strHostList = lst.Value.ToString();
+                                String[] strAddress = strHostList.Split("/".ToCharArray());
+                                String strAddresslst;
+                                if (strAddress.Length == 2)
+                                {
+                                    //#1  replset/host:port,host:port
+                                    ShardNode.Text += "[Replset:" + strAddress[0] + "]";
+                                    strAddresslst = strAddress[1];
+                                }
+                                else {
+                                    //#2  host:port,host:port
+                                    strAddresslst = strHostList;
+                                }
+                                foreach (String item in strAddresslst.Split(",".ToCharArray()))
+                                {
+                                    MongoServerSettings tinySetting = new MongoServerSettings();
+                                    tinySetting.ConnectionMode = ConnectionMode.Direct;
+                                    tinySetting.ReplicaSetName = strAddress[0];
+                                    MongoServerAddress tinyAddr;
+                                    if (item.Split(":".ToCharArray()).Length== 2)
+                                    {
+                                        tinyAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0],Convert.ToInt32(item.Split(":".ToCharArray())[1]));
+                                    }
+                                    else {
+                                        tinyAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0]);
+                                    }
+                                    tinySetting.Server = tinyAddr;
+                                    MongoServer tiny = MongoServer.Create(tinySetting);
+                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey,config,mongoConn,tiny.Instance,null));
+                                }
+                                ShardListNode.Nodes.Add(ShardNode);
+                            }
+                            ConnectionNode.Nodes.Add(ShardListNode);
+                        }
+                        else
+                        {
+                            ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName + "/" + config.ConnectionName;
+                        }
                     }
                     config.Health = true;
                     SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey] = config;
