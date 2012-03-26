@@ -152,6 +152,12 @@
     <Compile Include="Form\frmGFSOption.Designer.cs">
       <DependentUpon>frmGFSOption.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmAddReplsetMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmAddReplsetMember.Designer.cs">
+      <DependentUpon>frmAddReplsetMember.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\ctlJsEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -276,12 +282,6 @@
     <Compile Include="Form\frmQuery.Designer.cs">
       <DependentUpon>frmQuery.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmReplset.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\frmReplset.Designer.cs">
-      <DependentUpon>frmReplset.cs</DependentUpon>
-    </Compile>
     <Compile Include="Module\Resource\GetSystemIcon.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Const.cs" />
     <Compile Include="UserController\ctlFieldInfo.cs">
@@ -382,6 +382,9 @@
     <EmbeddedResource Include="Form\frmGFSOption.resx">
       <DependentUpon>frmGFSOption.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmAddReplsetMember.resx">
+      <DependentUpon>frmAddReplsetMember.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlJsEditor.resx">
       <DependentUpon>ctlJsEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -435,9 +438,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmQuery.resx">
       <DependentUpon>frmQuery.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmReplset.resx">
-      <DependentUpon>frmReplset.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlFieldInfo.resx">
       <DependentUpon>ctlFieldInfo.cs</DependentUpon>

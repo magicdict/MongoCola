@@ -33,11 +33,11 @@ namespace MagicMongoDBTool.Module
         /// <param name="HostPort">服务器信息</param>
         /// <param name="IsArb">是否为仲裁服务器</param>
         /// <returns></returns>
-        public static CommandResult AddToReplsetServer(MongoServer mongoSvr, String HostPort, Boolean IsArb = false)
+        public static CommandResult AddToReplsetServer(MongoServer mongoSvr, String HostPort, int priority, Boolean IsArb = false)
         {
             if (!IsArb)
             {
-                return ExecuteJsShell("rs.add('" + HostPort + "');", mongoSvr);
+                return ExecuteJsShell("rs.add({_id:" + mongoSvr.Instances.Length + 1 + ",host:'" + HostPort + "',priority:" + priority.ToString() + "});", mongoSvr);
             }
             else
             {
@@ -142,7 +142,8 @@ namespace MagicMongoDBTool.Module
                 ResultCommandList.Add(rtn);
                 MyMessageBox.ShowMessage(cmd.CommandString, cmd.CommandString + " Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
             }
-            catch (System.IO.IOException ex) {
+            catch (System.IO.IOException ex)
+            {
                 MyMessageBox.ShowMessage(cmd.CommandString, "IOException,Try to set Socket TimeOut more long at connection config", ex.ToString(), true);
             }
             catch (Exception ex)

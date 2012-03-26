@@ -302,6 +302,10 @@ namespace MagicMongoDBTool
                         {
                             this.InitReplsetToolStripMenuItem.Enabled = true;
                         }
+                        if (strNodeType == MongoDBHelper.CONNECTION_REPLSET_TAG)
+                        {
+                            this.ReplicaSetToolStripMenuItem.Enabled = true;
+                        }
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -318,6 +322,7 @@ namespace MagicMongoDBTool
                             {
                                 this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.InitReplsetToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
                             }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -1386,7 +1391,16 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmReplset());
+            ConfigHelper.MongoConnectionConfig newConfig = SystemManager.GetCurrentServerConfig();
+            SystemManager.OpenForm(new frmAddReplsetMember(ref newConfig));
+            SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
+            SystemManager.ConfigHelperInstance.SaveToConfigFile();
+            MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
+            MongoDBHelper._mongoConnSvrLst.Add(config.ConnectionName, MongoDBHelper.CreateMongoSetting(ref newConfig));
+            this.ServerStatusCtl.SetEnable(false);
+            MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
+            this.ServerStatusCtl.SetEnable(true);
+
         }
         /// <summary>
         /// 分片管理
