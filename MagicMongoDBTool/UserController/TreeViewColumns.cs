@@ -92,20 +92,14 @@ namespace TreeViewColumnsProject
             //画框
             if (e.Node.GetNodeCount(true) > 0)
             {
-                int LeftPoint = e.Bounds.X + IndentWidth - 20 ;
-                e.Graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(LeftPoint, e.Bounds.Y + 4, 12, 12));
-                Point LeftMid = new Point(LeftPoint + 2, e.Bounds.Y + 10);
-                Point RightMid = new Point(LeftPoint + 10, e.Bounds.Y + 10);
-
-                Point TopMid = new Point(LeftPoint + 6 ,e.Bounds.Y + 6);
-                Point BottomMid = new Point(LeftPoint + 6, e.Bounds.Y + 14);
-
-                e.Graphics.DrawLine(new Pen(Color.Black), LeftMid, RightMid);
-                if (!e.Node.IsExpanded)
-                {
-                    e.Graphics.DrawLine(new Pen(Color.Black), TopMid, BottomMid);
-                }
+                int LeftPoint = e.Bounds.X + IndentWidth - 20;
+                //感谢 Shadower http://home.cnblogs.com/u/14697/ 贡献的代码
+                var thisNode = e.Node;
+                var glyph = thisNode.IsExpanded ? VisualStyleElement.TreeView.Glyph.Opened : VisualStyleElement.TreeView.Glyph.Closed;
+                var vsr = new VisualStyleRenderer(glyph);
+                vsr.DrawBackground(e.Graphics, new Rectangle(LeftPoint, e.Bounds.Y + 4, 16, 16));
             }
+            
             for (int intColumn = 1; intColumn < 3; intColumn++)
             {
                 rect.Offset(this.listView1.Columns[intColumn - 1].Width, 0);
