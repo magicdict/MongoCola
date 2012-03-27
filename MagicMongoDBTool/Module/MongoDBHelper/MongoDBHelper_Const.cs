@@ -86,14 +86,7 @@ namespace MagicMongoDBTool.Module
         /// 索引
         /// </summary>
         public const String INDEX_TAG = "MongoIndex";
-        /// <summary>
-        /// 
-        /// </summary>
-        public const String CONFIG_DBNAME_TAG = "config";
-        /// <summary>
-        /// 
-        /// </summary>
-        public const String ADMIN_DBNAME_TAG = "admin";
+
         /// <summary>
         /// 路径阶层[考虑到以后可能阶层会变换]
         /// </summary>
@@ -122,6 +115,12 @@ namespace MagicMongoDBTool.Module
         /// Default Port
         /// </summary>
         public const int DEFAULT_PORT = 27017;
+
+        public const String KEY_ID = "_id";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const String DATABASE_NAME_CONFIG = "config";
         /// <summary>
         /// ADMIN
         /// </summary>

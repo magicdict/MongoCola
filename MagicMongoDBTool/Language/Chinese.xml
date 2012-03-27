@@ -35,6 +35,7 @@
   <Main_Menu_Operation_Database_DelUser>删除用户</Main_Menu_Operation_Database_DelUser>
   <Main_Menu_Operation_Database_EvalJs>实行JavaScript</Main_Menu_Operation_Database_EvalJs>
   <Main_Menu_Operation_Database_RepairDatabase>修复数据库</Main_Menu_Operation_Database_RepairDatabase>
+  <Main_Menu_Operation_ProfillingLevel>日志等级</Main_Menu_Operation_ProfillingLevel>
   
   <Main_Menu_Operation_DataCollection>数据集</Main_Menu_Operation_DataCollection>
   <Main_Menu_Operation_DataCollection_DelDC>删除数据集</Main_Menu_Operation_DataCollection_DelDC>
@@ -104,7 +105,8 @@
   <AddConnection_MainReplsetName>副本名称</AddConnection_MainReplsetName>
   <AddConnection_MainReplsetName_Description>ReplaceSet Name(Option)</AddConnection_MainReplsetName_Description>
   <AddConnection_Priority>优先度</AddConnection_Priority>
-  <AddConnection_TimeOut>Socket超时(Sec)</AddConnection_TimeOut>
+  <AddConnection_SocketTimeOut>Socket超时(ms)</AddConnection_SocketTimeOut>
+  <AddConnection_ConnectionTimeOut>Connection超时(ms)</AddConnection_ConnectionTimeOut>
 
   <AddConnection_MasterSlave>SlaveOK</AddConnection_MasterSlave>
   <AddConnection_SafeMode>Safe Mode</AddConnection_SafeMode>
@@ -119,7 +121,8 @@
   <AddConnection_Region_ReplaceSetName>副本名称</AddConnection_Region_ReplaceSetName>
   <AddConnection_Region_ReplaceSetName_Description>ReplaceSet Name(Option)</AddConnection_Region_ReplaceSetName_Description>
   <AddConnection_Region_ReplaceSetList>服务器列表</AddConnection_Region_ReplaceSetList>
-  <AddConnection_Region_ReplaceSetInit>初始化副本</AddConnection_Region_ReplaceSetInit>
+  <AddConnection_Region_AddHost>添加主机</AddConnection_Region_AddHost>
+  <AddConnection_Region_RemoveHost>移除主机</AddConnection_Region_RemoveHost>
 
   <AddConnection_ConnectionString>直接使用ConnectionString</AddConnection_ConnectionString>
   <AddConnection_Attention_Description>优先度为0的服务器不可能成为Master服务器</AddConnection_Attention_Description>
@@ -222,6 +225,7 @@
   <Replset_AddServer>添加服务器</Replset_AddServer>
   <Replset_RemoveServer>移除服务器</Replset_RemoveServer>
   <Replset_Remove>移除</Replset_Remove>
+  <Replset_InitReplset>副本初始化</Replset_InitReplset>
 
   <!--frmServiceStatus-->
   <ServiceStatus_Title>服务器状态</ServiceStatus_Title>
@@ -301,7 +305,7 @@
   <Exception_AuthenticationException_Note>请检查用户名和密码</Exception_AuthenticationException_Note>
   
   <!--StatusBar-->
-  <Selected_Server>选中服务器r</Selected_Server>
+  <Selected_Server>选中服务器</Selected_Server>
   <Selected_DataBase>选中数据库</Selected_DataBase>
   <Selected_Collection>选中数据集</Selected_Collection>
   <Selected_Data>选中文档</Selected_Data>
@@ -328,7 +332,8 @@
   
   <Common_Server>服务器</Common_Server>
   <Common_DataBase>数据库</Common_DataBase>
-  <Common_Collection>连接</Common_Collection>
+  <Common_Connect>连接</Common_Connect>
+  <Common_Collection>数据集</Common_Collection>
   <Common_Host>主机</Common_Host>
   <Common_Port>端口</Common_Port>
 

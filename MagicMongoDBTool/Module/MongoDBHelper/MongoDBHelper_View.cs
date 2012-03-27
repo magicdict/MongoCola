@@ -234,7 +234,7 @@ namespace MagicMongoDBTool.Module
                         //SelectDocId属性的设置,
                         //2012/03/19 不一定id是在第一位
                         BsonElement id;
-                        item.TryGetElement("_id", out id);
+                        item.TryGetElement(KEY_ID, out id);
                         if (id != null)
                         {
                             dataNode.Tag = id.Value;
@@ -338,8 +338,8 @@ namespace MagicMongoDBTool.Module
                     bool isSystem = IsSystemCollection(SystemManager.GetCurrentCollection());
                     if (!isSystem)
                     {
-                        _columnlist.Add("_id");
-                        lstData.Columns.Add("_id");
+                        _columnlist.Add(KEY_ID);
+                        lstData.Columns.Add(KEY_ID);
                     }
                     foreach (BsonDocument docItem in dataList)
                     {
@@ -357,12 +357,12 @@ namespace MagicMongoDBTool.Module
                         if (!isSystem)
                         {
                             BsonElement id;
-                            docItem.TryGetElement("_id", out id);
+                            docItem.TryGetElement(KEY_ID, out id);
                             if (id != null)
                             {
-                                lstItem.Text = docItem.GetValue("_id").ToString();
+                                lstItem.Text = docItem.GetValue(KEY_ID).ToString();
                                 //这里保存真实的主Key数据，删除的时候使用
-                                lstItem.Tag = docItem.GetValue("_id");
+                                lstItem.Tag = docItem.GetValue(KEY_ID);
                             }
                             else
                             {
@@ -376,7 +376,7 @@ namespace MagicMongoDBTool.Module
                         //OtherItems
                         for (int i = isSystem ? 1 : 0; i < _columnlist.Count; i++)
                         {
-                            if (_columnlist[i].ToString() == "_id") { continue; }
+                            if (_columnlist[i].ToString() == KEY_ID) { continue; }
                             BsonValue val;
                             docItem.TryGetValue(_columnlist[i].ToString(), out val);
                             if (val == null)
@@ -418,7 +418,7 @@ namespace MagicMongoDBTool.Module
             foreach (BsonDocument docFile in dataList)
             {
                 ListViewItem lstItem = new ListViewItem();
-                lstItem.Text = docFile.GetValue("_id").ToString();
+                lstItem.Text = docFile.GetValue(KEY_ID).ToString();
                 lstItem.SubItems.Add(docFile.GetValue("user").ToString());
                 lstItem.SubItems.Add(docFile.GetValue("readOnly").ToString());
                 //密码是密文表示的，这里没有安全隐患

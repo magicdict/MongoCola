@@ -39,20 +39,21 @@
             this.lblDBName = new System.Windows.Forms.Label();
             this.tabSharding = new System.Windows.Forms.TabControl();
             this.tabAddSharding = new System.Windows.Forms.TabPage();
-            this.tabShardingConfig = new System.Windows.Forms.TabPage();
+            this.cmdRemoveHost = new System.Windows.Forms.Button();
+            this.cmdAddHost = new System.Windows.Forms.Button();
+            this.lstHost = new System.Windows.Forms.ListBox();
             this.NumReplPort = new System.Windows.Forms.NumericUpDown();
             this.lblReplPort = new System.Windows.Forms.Label();
             this.txtReplHost = new System.Windows.Forms.TextBox();
             this.lblReplHost = new System.Windows.Forms.Label();
             this.lblMainReplsetName = new System.Windows.Forms.Label();
             this.txtReplsetName = new System.Windows.Forms.TextBox();
-            this.lstHost = new System.Windows.Forms.ListBox();
-            this.cmdAddHost = new System.Windows.Forms.Button();
-            this.cmdRemoveHost = new System.Windows.Forms.Button();
+            this.tabShardingConfig = new System.Windows.Forms.TabPage();
+            this.cmdClose = new System.Windows.Forms.Button();
             this.tabSharding.SuspendLayout();
             this.tabAddSharding.SuspendLayout();
-            this.tabShardingConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).BeginInit();
+            this.tabShardingConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdAddSharding
@@ -149,10 +150,10 @@
             // 
             this.tabSharding.Controls.Add(this.tabAddSharding);
             this.tabSharding.Controls.Add(this.tabShardingConfig);
-            this.tabSharding.Location = new System.Drawing.Point(13, 21);
+            this.tabSharding.Location = new System.Drawing.Point(13, 12);
             this.tabSharding.Name = "tabSharding";
             this.tabSharding.SelectedIndex = 0;
-            this.tabSharding.Size = new System.Drawing.Size(525, 213);
+            this.tabSharding.Size = new System.Drawing.Size(525, 206);
             this.tabSharding.TabIndex = 35;
             // 
             // tabAddSharding
@@ -170,28 +171,39 @@
             this.tabAddSharding.Location = new System.Drawing.Point(4, 24);
             this.tabAddSharding.Name = "tabAddSharding";
             this.tabAddSharding.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAddSharding.Size = new System.Drawing.Size(517, 185);
+            this.tabAddSharding.Size = new System.Drawing.Size(517, 178);
             this.tabAddSharding.TabIndex = 0;
             this.tabAddSharding.Text = "Add Sharding";
             this.tabAddSharding.UseVisualStyleBackColor = true;
             // 
-            // tabShardingConfig
+            // cmdRemoveHost
             // 
-            this.tabShardingConfig.Controls.Add(this.lblField);
-            this.tabShardingConfig.Controls.Add(this.lblDBName);
-            this.tabShardingConfig.Controls.Add(this.cmbKeyList);
-            this.tabShardingConfig.Controls.Add(this.lblCollection);
-            this.tabShardingConfig.Controls.Add(this.cmdEnableCollectionSharding);
-            this.tabShardingConfig.Controls.Add(this.cmbDataBase);
-            this.tabShardingConfig.Controls.Add(this.cmdEnableDBSharding);
-            this.tabShardingConfig.Controls.Add(this.cmbCollection);
-            this.tabShardingConfig.Location = new System.Drawing.Point(4, 24);
-            this.tabShardingConfig.Name = "tabShardingConfig";
-            this.tabShardingConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShardingConfig.Size = new System.Drawing.Size(517, 185);
-            this.tabShardingConfig.TabIndex = 1;
-            this.tabShardingConfig.Text = "Sharding Setting";
-            this.tabShardingConfig.UseVisualStyleBackColor = true;
+            this.cmdRemoveHost.Location = new System.Drawing.Point(140, 125);
+            this.cmdRemoveHost.Name = "cmdRemoveHost";
+            this.cmdRemoveHost.Size = new System.Drawing.Size(108, 33);
+            this.cmdRemoveHost.TabIndex = 45;
+            this.cmdRemoveHost.Text = "Remove Host";
+            this.cmdRemoveHost.UseVisualStyleBackColor = true;
+            this.cmdRemoveHost.Click += new System.EventHandler(this.cmdRemoveHost_Click);
+            // 
+            // cmdAddHost
+            // 
+            this.cmdAddHost.Location = new System.Drawing.Point(27, 127);
+            this.cmdAddHost.Name = "cmdAddHost";
+            this.cmdAddHost.Size = new System.Drawing.Size(93, 31);
+            this.cmdAddHost.TabIndex = 44;
+            this.cmdAddHost.Text = "Add Host";
+            this.cmdAddHost.UseVisualStyleBackColor = true;
+            this.cmdAddHost.Click += new System.EventHandler(this.cmdAddHost_Click);
+            // 
+            // lstHost
+            // 
+            this.lstHost.FormattingEnabled = true;
+            this.lstHost.ItemHeight = 15;
+            this.lstHost.Location = new System.Drawing.Point(277, 23);
+            this.lstHost.Name = "lstHost";
+            this.lstHost.Size = new System.Drawing.Size(223, 79);
+            this.lstHost.TabIndex = 43;
             // 
             // NumReplPort
             // 
@@ -250,40 +262,41 @@
             this.txtReplsetName.Size = new System.Drawing.Size(135, 21);
             this.txtReplsetName.TabIndex = 36;
             // 
-            // lstHost
+            // tabShardingConfig
             // 
-            this.lstHost.FormattingEnabled = true;
-            this.lstHost.ItemHeight = 15;
-            this.lstHost.Location = new System.Drawing.Point(277, 23);
-            this.lstHost.Name = "lstHost";
-            this.lstHost.Size = new System.Drawing.Size(223, 79);
-            this.lstHost.TabIndex = 43;
+            this.tabShardingConfig.Controls.Add(this.lblField);
+            this.tabShardingConfig.Controls.Add(this.lblDBName);
+            this.tabShardingConfig.Controls.Add(this.cmbKeyList);
+            this.tabShardingConfig.Controls.Add(this.lblCollection);
+            this.tabShardingConfig.Controls.Add(this.cmdEnableCollectionSharding);
+            this.tabShardingConfig.Controls.Add(this.cmbDataBase);
+            this.tabShardingConfig.Controls.Add(this.cmdEnableDBSharding);
+            this.tabShardingConfig.Controls.Add(this.cmbCollection);
+            this.tabShardingConfig.Location = new System.Drawing.Point(4, 24);
+            this.tabShardingConfig.Name = "tabShardingConfig";
+            this.tabShardingConfig.Padding = new System.Windows.Forms.Padding(3);
+            this.tabShardingConfig.Size = new System.Drawing.Size(517, 185);
+            this.tabShardingConfig.TabIndex = 1;
+            this.tabShardingConfig.Text = "Sharding Setting";
+            this.tabShardingConfig.UseVisualStyleBackColor = true;
             // 
-            // cmdAddHost
+            // cmdClose
             // 
-            this.cmdAddHost.Location = new System.Drawing.Point(27, 127);
-            this.cmdAddHost.Name = "cmdAddHost";
-            this.cmdAddHost.Size = new System.Drawing.Size(93, 31);
-            this.cmdAddHost.TabIndex = 44;
-            this.cmdAddHost.Text = "Add Host";
-            this.cmdAddHost.UseVisualStyleBackColor = true;
-            this.cmdAddHost.Click += new System.EventHandler(this.cmdAddHost_Click);
-            // 
-            // cmdRemoveHost
-            // 
-            this.cmdRemoveHost.Location = new System.Drawing.Point(140, 125);
-            this.cmdRemoveHost.Name = "cmdRemoveHost";
-            this.cmdRemoveHost.Size = new System.Drawing.Size(108, 33);
-            this.cmdRemoveHost.TabIndex = 45;
-            this.cmdRemoveHost.Text = "Remove Host";
-            this.cmdRemoveHost.UseVisualStyleBackColor = true;
-            this.cmdRemoveHost.Click += new System.EventHandler(this.cmdRemoveHost_Click);
+            this.cmdClose.Location = new System.Drawing.Point(211, 235);
+            this.cmdClose.Name = "cmdClose";
+            this.cmdClose.Size = new System.Drawing.Size(121, 32);
+            this.cmdClose.TabIndex = 36;
+            this.cmdClose.Text = "Close";
+            this.cmdClose.UseVisualStyleBackColor = true;
+            this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
             // frmShardingConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 249);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(555, 279);
+            this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.tabSharding);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -296,9 +309,9 @@
             this.tabSharding.ResumeLayout(false);
             this.tabAddSharding.ResumeLayout(false);
             this.tabAddSharding.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).EndInit();
             this.tabShardingConfig.ResumeLayout(false);
             this.tabShardingConfig.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -326,5 +339,6 @@
         private System.Windows.Forms.ListBox lstHost;
         private System.Windows.Forms.Button cmdAddHost;
         private System.Windows.Forms.Button cmdRemoveHost;
+        private System.Windows.Forms.Button cmdClose;
     }
 }

@@ -182,7 +182,7 @@ namespace MagicMongoDBTool.Module
             TreeNode rootNode = FindRootNode(CurrentNode);
             BsonValue SelectDocId = (BsonValue)rootNode.Tag;
             MongoCollection mongoCol = GetCurrentCollection();
-            BsonDocument doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ("_id", SelectDocId));
+            BsonDocument doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ(MongoDBHelper.KEY_ID, SelectDocId));
             CurrentDocument = doc;
         }
         /// <summary>
@@ -208,7 +208,7 @@ namespace MagicMongoDBTool.Module
             List<String> jsNamelst = new List<String>();
             foreach (var item in GetCurrentJsCollection().FindAllAs<BsonDocument>())
             {
-                jsNamelst.Add(item.GetValue("_id").ToString());
+                jsNamelst.Add(item.GetValue(MongoDBHelper.KEY_ID).ToString());
             }
             return jsNamelst;
 

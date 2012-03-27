@@ -29,6 +29,12 @@ namespace MagicMongoDBTool
         {
             if (!SystemManager.IsUseDefaultLanguage())
             {
+                cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                cmdAddHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                cmdRemoveHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+                lblReplHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Host);
+                lblReplPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
+
                 this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_Title);
                 tabAddSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_AddSharding);
                 lblMainReplsetName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_ReplsetName);
@@ -42,13 +48,13 @@ namespace MagicMongoDBTool
                 cmdEnableDBSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_Action_DBSharding);
             }
             _prmSvr = SystemManager.GetCurrentService();
-            MongoDatabase mongoDB = _prmSvr.GetDatabase("config");
+            MongoDatabase mongoDB = _prmSvr.GetDatabase(MongoDBHelper.DATABASE_NAME_CONFIG);
             MongoCollection mongoCol = mongoDB.GetCollection("databases");
             foreach (var item in mongoCol.FindAllAs<BsonDocument>())
             {
-                if (item.GetValue("_id") != "admin")
+                if (item.GetValue(MongoDBHelper.KEY_ID) != MongoDBHelper.DATABASE_NAME_ADMIN)
                 {
-                    cmbDataBase.Items.Add(item.GetValue("_id"));
+                    cmbDataBase.Items.Add(item.GetValue(MongoDBHelper.KEY_ID));
                 };
             }
         }
@@ -164,6 +170,11 @@ namespace MagicMongoDBTool
             List<CommandResult> Resultlst = new List<CommandResult>();
             Resultlst.Add(MongoDBHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, cmbKeyList.SelectedItem.ToBsonDocument()));
             MyMessageBox.ShowMessage("EnableSharding", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
+        }
+
+        private void cmdClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

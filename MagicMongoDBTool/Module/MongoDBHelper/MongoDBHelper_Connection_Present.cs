@@ -349,10 +349,10 @@ namespace MagicMongoDBTool.Module
                     case COLLECTION_NAME_JAVASCRIPT:
                         foreach (BsonDocument t in mongoDB.GetCollection(COLLECTION_NAME_JAVASCRIPT).FindAll())
                         {
-                            TreeNode js = new TreeNode(t.GetValue("_id").ToString());
+                            TreeNode js = new TreeNode(t.GetValue(KEY_ID).ToString());
                             js.ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc;
                             js.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc;
-                            js.Tag = JAVASCRIPT_DOC_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_JAVASCRIPT + "/" + t.GetValue("_id").ToString();
+                            js.Tag = JAVASCRIPT_DOC_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_JAVASCRIPT + "/" + t.GetValue(KEY_ID).ToString();
                             JsNode.Nodes.Add(js);
                         }
                         break;

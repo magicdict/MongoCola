@@ -69,7 +69,7 @@ namespace MagicMongoDBTool
                         queryFieldItem.sortType = find.sortType;
                     }
                 }
-                if (queryFieldItem.ColName == "_id") {
+                if (queryFieldItem.ColName == MongoDBHelper.KEY_ID) {
                     queryFieldItem.IsShow = true;
                 }
                 //动态加载控件

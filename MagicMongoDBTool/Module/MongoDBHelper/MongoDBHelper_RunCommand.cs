@@ -254,7 +254,7 @@ namespace MagicMongoDBTool.Module
             CommandResult rtn;
             try
             {
-                rtn = mongoSvr.GetDatabase(ADMIN_DBNAME_TAG).RunCommand(mongoCmd);
+                rtn = mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).RunCommand(mongoCmd);
             }
             catch (MongoCommandException ex)
             {
@@ -278,7 +278,7 @@ namespace MagicMongoDBTool.Module
             CommandResult rtn;
             try
             {
-                rtn = mongoSvr.GetDatabase(ADMIN_DBNAME_TAG).RunCommand(mongoCmd);
+                rtn = mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).RunCommand(mongoCmd);
             }
             catch (MongoCommandException ex)
             {

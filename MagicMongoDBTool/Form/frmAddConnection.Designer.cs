@@ -298,9 +298,10 @@ namespace MagicMongoDBTool
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(25, 129);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(419, 16);
+            this.label7.Size = new System.Drawing.Size(588, 16);
             this.label7.TabIndex = 19;
-            this.label7.Text = "If you try to connect to a replica Set please don\'t fill any thing at this tab";
+            this.label7.Text = "If you try to connect to a replica Set please don\'t fill any thing at this tab ex" +
+    "cept the connectionName";
             // 
             // tabOption
             // 

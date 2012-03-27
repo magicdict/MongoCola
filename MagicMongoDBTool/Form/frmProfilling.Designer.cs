@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.cmbProfillingLv = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblProfilingLevel = new System.Windows.Forms.Label();
+            this.lblSlow = new System.Windows.Forms.Label();
             this.NumTime = new System.Windows.Forms.NumericUpDown();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
@@ -46,23 +46,23 @@
             this.cmbProfillingLv.TabIndex = 0;
             this.cmbProfillingLv.SelectedIndexChanged += new System.EventHandler(this.cmbProfillingLv_SelectedIndexChanged);
             // 
-            // label1
+            // lblProfilingLevel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(56, 29);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Profile Level";
+            this.lblProfilingLevel.AutoSize = true;
+            this.lblProfilingLevel.Location = new System.Drawing.Point(56, 29);
+            this.lblProfilingLevel.Name = "lblProfilingLevel";
+            this.lblProfilingLevel.Size = new System.Drawing.Size(65, 13);
+            this.lblProfilingLevel.TabIndex = 1;
+            this.lblProfilingLevel.Text = "Profile Level";
             // 
-            // label2
+            // lblSlow
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(56, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Slow(msec)";
+            this.lblSlow.AutoSize = true;
+            this.lblSlow.Location = new System.Drawing.Point(56, 61);
+            this.lblSlow.Name = "lblSlow";
+            this.lblSlow.Size = new System.Drawing.Size(61, 13);
+            this.lblSlow.TabIndex = 2;
+            this.lblSlow.Text = "Slow(msec)";
             // 
             // NumTime
             // 
@@ -111,8 +111,8 @@
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.NumTime);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSlow);
+            this.Controls.Add(this.lblProfilingLevel);
             this.Controls.Add(this.cmbProfillingLv);
             this.Name = "frmProfilling";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -127,8 +127,8 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cmbProfillingLv;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblProfilingLevel;
+        private System.Windows.Forms.Label lblSlow;
         private System.Windows.Forms.NumericUpDown NumTime;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.Button cmdCancel;

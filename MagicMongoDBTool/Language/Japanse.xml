@@ -35,7 +35,8 @@
   <Main_Menu_Operation_Database_DelUser>ユーザーの削除</Main_Menu_Operation_Database_DelUser>
   <Main_Menu_Operation_Database_EvalJs>JavaScript実行</Main_Menu_Operation_Database_EvalJs>
   <Main_Menu_Operation_Database_RepairDatabase>復元</Main_Menu_Operation_Database_RepairDatabase>
-
+  <Main_Menu_Operation_ProfillingLevel>ログレベル</Main_Menu_Operation_ProfillingLevel>
+  
   <Main_Menu_Operation_DataCollection>コレクション</Main_Menu_Operation_DataCollection>
   <Main_Menu_Operation_DataCollection_DelDC>削除</Main_Menu_Operation_DataCollection_DelDC>
   <Main_Menu_Operation_DataCollection_ReIndex>再索引</Main_Menu_Operation_DataCollection_ReIndex>
@@ -104,8 +105,9 @@
   <AddConnection_MainReplsetName>レプリケーション</AddConnection_MainReplsetName>
   <AddConnection_MainReplsetName_Description>ReplaceSet Name(Option)</AddConnection_MainReplsetName_Description>
   <AddConnection_Priority>優先度</AddConnection_Priority>
-  <AddConnection_TimeOut>タイムアウト(Sec)</AddConnection_TimeOut>
-
+  <AddConnection_SocketTimeOut>Socketタイムアウト(ms)</AddConnection_SocketTimeOut>
+  <AddConnection_ConnectionTimeOut>Connectionタイムアウト(ms)</AddConnection_ConnectionTimeOut>
+  
   <AddConnection_MasterSlave>SlaveOK</AddConnection_MasterSlave>
   <AddConnection_SafeMode>Safe Mode</AddConnection_SafeMode>
   <AddConnection_ShardingSvrType>ロール</AddConnection_ShardingSvrType>
@@ -119,7 +121,8 @@
   <AddConnection_Region_ReplaceSetName>レプリケーション</AddConnection_Region_ReplaceSetName>
   <AddConnection_Region_ReplaceSetName_Description>ReplaceSet Name(Option)</AddConnection_Region_ReplaceSetName_Description>
   <AddConnection_Region_ReplaceSetList>ザーバーリスト</AddConnection_Region_ReplaceSetList>
-  <AddConnection_Region_ReplaceSetInit>初期化</AddConnection_Region_ReplaceSetInit>
+  <AddConnection_Region_AddHost>ホストの追加</AddConnection_Region_AddHost>
+  <AddConnection_Region_RemoveHost>ホストの削除</AddConnection_Region_RemoveHost>
 
   <AddConnection_ConnectionString>ConnectionString</AddConnection_ConnectionString>
   <AddConnection_Attention_Description>優先度は0のザーバーはマスターザーバーになりません</AddConnection_Attention_Description>
@@ -222,6 +225,7 @@
   <Replset_AddServer>サーバーの追加</Replset_AddServer>
   <Replset_RemoveServer>サーバーの削除</Replset_RemoveServer>
   <Replset_Remove>削除</Replset_Remove>
+  <Replset_InitReplset>レプリケーションの初期化</Replset_InitReplset>
 
   <!--frmServiceStatus-->
   <ServiceStatus_Title>サーバー状態</ServiceStatus_Title>
@@ -328,6 +332,7 @@
 
   <Common_Server>サーバー</Common_Server>
   <Common_DataBase>データベース</Common_DataBase>
+  <Common_Connect>コネクション</Common_Connect>
   <Common_Collection>コレクション </Common_Collection>
   <Common_Host>ホスト</Common_Host>
   <Common_Port>ポート</Common_Port>

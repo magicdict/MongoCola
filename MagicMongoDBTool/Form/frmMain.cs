@@ -68,9 +68,10 @@ namespace MagicMongoDBTool
             //Operation
             this.OperationToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation);
 
-            //分布式
+            this.connectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Connect);
             this.ReplicaSetToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ReplicaSet);
             this.ShardingConfigToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ShardingConfig);
+            this.InitReplsetToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Replset_InitReplset);
 
 
             this.ServerToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server);
@@ -96,9 +97,9 @@ namespace MagicMongoDBTool
             this.ReIndexToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_ReIndex);
             this.CompactToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Compact);
             this.CollectionStatusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
-
-
             this.InitGFSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_InitGFS);
+            this.ProfillingLevelToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
+
 
             this.DumpAndRestoreToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore);
             this.RestoreMongoToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Restore);
@@ -306,6 +307,10 @@ namespace MagicMongoDBTool
                         {
                             this.ReplicaSetToolStripMenuItem.Enabled = true;
                         }
+                        if (strNodeType == MongoDBHelper.CONNECTION_CLUSTER_TAG)
+                        {
+                            this.ShardingConfigToolStripMenuItem.Enabled = true;
+                        }
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -323,6 +328,8 @@ namespace MagicMongoDBTool
                                 this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.InitReplsetToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
+
                             }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -520,7 +527,7 @@ namespace MagicMongoDBTool
                         }
                         //备份数据库
                         this.DumpDatabaseToolStripMenuItem.Enabled = true;
-                        this.profillingLevelToolStripMenuItem.Enabled = true;
+                        this.ProfillingLevelToolStripMenuItem.Enabled = true;
                         if (strNodeType == MongoDBHelper.SINGLE_DATABASE_TAG)
                         {
                             this.DelMongoDBToolStripMenuItem.Enabled = false;
@@ -571,7 +578,7 @@ namespace MagicMongoDBTool
 
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
 
-                                ToolStripMenuItem t10 = this.profillingLevelToolStripMenuItem.Clone();
+                                ToolStripMenuItem t10 = this.ProfillingLevelToolStripMenuItem.Clone();
                                 t10.Click += new EventHandler(profillingLevelToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t10);
 
@@ -592,7 +599,7 @@ namespace MagicMongoDBTool
                                 this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ConvertSqlToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
-                                this.contextMenuStripMain.Items.Add(this.profillingLevelToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ProfillingLevelToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.DBStatusToolStripMenuItem.Clone());
 
                             }
@@ -1124,6 +1131,8 @@ namespace MagicMongoDBTool
             this.ShutDownToolStripMenuItem.Enabled = false;
             this.ShutDownToolStripButton.Enabled = false;
             this.InitReplsetToolStripMenuItem.Enabled = false;
+            this.ReplicaSetToolStripMenuItem.Enabled = false;
+            this.ShardingConfigToolStripMenuItem.Enabled = false;
             this.DisconnectToolStripMenuItem.Enabled = false;
 
             //管理-数据库
@@ -1142,10 +1151,12 @@ namespace MagicMongoDBTool
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
             this.CompactToolStripMenuItem.Enabled = false;
             this.viewDataToolStripMenuItem.Enabled = false;
+            this.ConvertSqlToolStripMenuItem.Enabled = false;
+            this.AggregationToolStripMenuItem.Enabled = false;
             this.creatJavaScriptToolStripMenuItem.Enabled = false;
             this.dropJavascriptToolStripMenuItem.Enabled = false;
             this.CollectionStatusToolStripMenuItem.Enabled = false;
-            this.profillingLevelToolStripMenuItem.Enabled = false;
+            this.ProfillingLevelToolStripMenuItem.Enabled = false;
 
             //管理-备份和恢复
             this.DumpDatabaseToolStripMenuItem.Enabled = false;
@@ -1153,9 +1164,6 @@ namespace MagicMongoDBTool
             this.DumpCollectionToolStripMenuItem.Enabled = false;
             this.ImportCollectionToolStripMenuItem.Enabled = false;
             this.ExportCollectionToolStripMenuItem.Enabled = false;
-
-            this.ConvertSqlToolStripMenuItem.Enabled = false;
-            this.AggregationToolStripMenuItem.Enabled = false;
 
 
             //工具
@@ -1165,9 +1173,6 @@ namespace MagicMongoDBTool
                 this.ImportDataFromAccessToolStripButton.Enabled = false;
             }
 
-            //分布式
-            this.ReplicaSetToolStripMenuItem.Enabled = true;
-            this.ShardingConfigToolStripMenuItem.Enabled = true;
         }
         #endregion
 

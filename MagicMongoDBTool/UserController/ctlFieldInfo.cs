@@ -25,7 +25,7 @@ namespace MagicMongoDBTool
             {
                 lblFieldName.Text = value.ColName;
                 chkIsShow.Checked = value.IsShow;
-                if (value.ColName == "_id") {
+                if (value.ColName == MongoDBHelper.KEY_ID) {
                     chkIsShow.Checked = true;
                     chkIsShow.Enabled = false;
                 }

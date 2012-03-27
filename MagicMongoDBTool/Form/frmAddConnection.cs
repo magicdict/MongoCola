@@ -64,10 +64,15 @@ namespace MagicMongoDBTool
 
                 chkSlaveOk.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MasterSlave);
                 chkSafeMode.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SafeMode);
-                lblsocketTimeout.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_TimeOut);
+                lblsocketTimeout.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SocketTimeOut);
+                lblConnectTimeout.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionTimeOut);
+
 
                 lblMainReplsetName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName);
-
+                lblReplHost.Text = lblHost.Text;
+                lblReplPort.Text = lblPort.Text;
+                cmdAddHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                cmdRemoveHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
 
                 cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
                 cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);

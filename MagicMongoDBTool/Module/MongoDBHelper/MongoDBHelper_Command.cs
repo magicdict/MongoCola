@@ -117,10 +117,10 @@ namespace MagicMongoDBTool.Module
             BsonDocument host = new BsonDocument();
             //生成命令
             host = new BsonDocument();
-            host.Add("_id", 1);
+            host.Add(KEY_ID, 1);
             host.Add("host", SystemManager.ConfigHelperInstance.ConnectionList[HostList].Host + ":" + SystemManager.ConfigHelperInstance.ConnectionList[HostList].Port.ToString());
             hosts.Add(host);
-            config.Add("_id", replicaSetName);
+            config.Add(KEY_ID, replicaSetName);
             config.Add("members", hosts);
             cmd.Add("replSetInitiate", config);
 

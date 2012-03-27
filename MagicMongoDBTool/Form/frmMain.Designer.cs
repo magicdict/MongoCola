@@ -80,7 +80,7 @@ namespace MagicMongoDBTool
             this.RepairDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InitGFSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConvertSqlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.profillingLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProfillingLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DBStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -445,7 +445,7 @@ namespace MagicMongoDBTool
             this.RepairDBToolStripMenuItem,
             this.InitGFSToolStripMenuItem,
             this.ConvertSqlToolStripMenuItem,
-            this.profillingLevelToolStripMenuItem,
+            this.ProfillingLevelToolStripMenuItem,
             this.DBStatusToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
             this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
@@ -528,10 +528,10 @@ namespace MagicMongoDBTool
             // 
             // profillingLevelToolStripMenuItem
             // 
-            this.profillingLevelToolStripMenuItem.Name = "profillingLevelToolStripMenuItem";
-            this.profillingLevelToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.profillingLevelToolStripMenuItem.Text = "Profilling Level";
-            this.profillingLevelToolStripMenuItem.Click += new System.EventHandler(this.profillingLevelToolStripMenuItem_Click);
+            this.ProfillingLevelToolStripMenuItem.Name = "profillingLevelToolStripMenuItem";
+            this.ProfillingLevelToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.ProfillingLevelToolStripMenuItem.Text = "Profilling Level";
+            this.ProfillingLevelToolStripMenuItem.Click += new System.EventHandler(this.profillingLevelToolStripMenuItem_Click);
             // 
             // DBStatusToolStripMenuItem
             // 
@@ -984,7 +984,7 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem mapReduceToolStripMenuItem;
         private ToolStripMenuItem viewDataToolStripMenuItem;
         private ToolStripMenuItem ConvertSqlToolStripMenuItem;
-        private ToolStripMenuItem profillingLevelToolStripMenuItem;
+        private ToolStripMenuItem ProfillingLevelToolStripMenuItem;
         private ToolStripMenuItem creatJavaScriptToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem dropJavascriptToolStripMenuItem;

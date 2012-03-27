@@ -20,6 +20,12 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void frmProfilling_Load(object sender, EventArgs e)
         {
+            if (!SystemManager.IsUseDefaultLanguage()) {
+                cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
+                cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+                lblProfilingLevel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
+            }
+            
             cmbProfillingLv.Items.Add("0-No Logging");
             cmbProfillingLv.Items.Add("1-Log Slow Operations");
             cmbProfillingLv.Items.Add("2-Log All Operations");

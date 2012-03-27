@@ -304,13 +304,13 @@ namespace MagicMongoDBTool.Module
         public static Dictionary<String, String> GetShardInfo(MongoServer server) 
         {
             Dictionary<String, String> ShardInfo = new Dictionary<String, String>();
-            if (server.DatabaseExists(CONFIG_DBNAME_TAG))
+            if (server.DatabaseExists(DATABASE_NAME_CONFIG))
             {
-                MongoDatabase configdb = server.GetDatabase(CONFIG_DBNAME_TAG);
+                MongoDatabase configdb = server.GetDatabase(DATABASE_NAME_CONFIG);
                 if (configdb.CollectionExists("shards")) {
                     foreach (BsonDocument item in configdb.GetCollection("shards").FindAll().ToList<BsonDocument>())
                     {
-                        ShardInfo.Add(item.GetElement("_id").Value.ToString(), item.GetElement("host").Value.ToString());
+                        ShardInfo.Add(item.GetElement(KEY_ID).Value.ToString(), item.GetElement("host").Value.ToString());
                     }
                 }
             }
@@ -333,13 +333,13 @@ namespace MagicMongoDBTool.Module
             return true;
         }
         /// <summary>
-        /// 删除索引["_id"]以外
+        /// 删除索引[KEY_ID]以外
         /// </summary>
         /// <param name="indexName"></param>
         /// <returns></returns>
         public static Boolean DropMongoIndex(String indexName)
         {
-            if (indexName == "_id") { return false; }
+            if (indexName == KEY_ID) { return false; }
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             if (mongoCol.IndexExistsByName(indexName))
             {
@@ -358,7 +358,7 @@ namespace MagicMongoDBTool.Module
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (!IsExistByKey(jsCol, jsName))
             {
-                jsCol.Insert<BsonDocument>(new BsonDocument().Add("_id", jsName).Add("value", jsCode));
+                jsCol.Insert<BsonDocument>(new BsonDocument().Add(KEY_ID, jsName).Add("value", jsCode));
                 return true;
             }
             return false;
@@ -377,7 +377,7 @@ namespace MagicMongoDBTool.Module
             {
                 if (DropDocument(jsCol, (BsonString)jsName))
                 {
-                    jsCol.Insert<BsonDocument>(new BsonDocument().Add("_id", jsName).Add("value", jsCode));
+                    jsCol.Insert<BsonDocument>(new BsonDocument().Add(KEY_ID, jsName).Add("value", jsCode));
                     return true;
                 }
             }
@@ -407,7 +407,7 @@ namespace MagicMongoDBTool.Module
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (IsExistByKey(jsCol, jsName))
             {
-                return jsCol.FindOneAs<BsonDocument>(Query.EQ("_id", jsName)).GetValue("value").ToString();
+                return jsCol.FindOneAs<BsonDocument>(Query.EQ(KEY_ID, jsName)).GetValue("value").ToString();
             }
             return String.Empty;
         }
@@ -420,11 +420,11 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Boolean DropDocument(MongoCollection mongoCol, object strKey)
         {
-            if (IsExistByKey(mongoCol, (BsonValue)strKey, "_id"))
+            if (IsExistByKey(mongoCol, (BsonValue)strKey))
             {
                 try
                 {
-                    mongoCol.Remove(Query.EQ("_id", (BsonValue)strKey), new SafeMode(true));
+                    mongoCol.Remove(Query.EQ(KEY_ID, (BsonValue)strKey), new SafeMode(true));
                 }
                 catch (Exception)
                 {
@@ -448,7 +448,7 @@ namespace MagicMongoDBTool.Module
                 try
                 {
                     mongoCol.Insert<BsonDocument>(document, new SafeMode(true));
-                    return document.GetElement("_id").Value;
+                    return document.GetElement(KEY_ID).Value;
                 }
                 catch (Exception)
                 {
@@ -458,7 +458,7 @@ namespace MagicMongoDBTool.Module
             else
             {
                 mongoCol.Insert<BsonDocument>(document);
-                return document.GetElement("_id").Value;
+                return document.GetElement(KEY_ID).Value;
             }
         }
     }

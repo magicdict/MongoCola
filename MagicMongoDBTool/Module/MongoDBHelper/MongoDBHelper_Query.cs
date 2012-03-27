@@ -179,9 +179,9 @@ namespace MagicMongoDBTool.Module
         /// <param name="KeyValue">KeyValue</param>
         /// <param name="Field">KeyField</param>
         /// <returns></returns>
-        public static Boolean IsExistByKey(MongoCollection mongoCol, BsonValue KeyValue, String Field = "_id")
+        public static Boolean IsExistByKey(MongoCollection mongoCol, BsonValue KeyValue)
         {
-            return mongoCol.FindAs<BsonDocument>(Query.EQ(Field, KeyValue)).Count() > 0;
+            return mongoCol.FindAs<BsonDocument>(Query.EQ(KEY_ID, KeyValue)).Count() > 0;
         }
     }
 }

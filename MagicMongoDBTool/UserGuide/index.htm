@@ -116,7 +116,7 @@
             <td>
                 <font size="3" color="black">Thanks MoLing for help me correct this document.
                     <br />
-                    Last Editor：2012-03-27<br />
+                    Last Editor：2012-03-28<br />
                     <br />
                 </font>
             </td>
@@ -143,6 +143,21 @@ MongoCola is free and open source.
 ========================================================================
 Release History
 ========================================================================
+Ver 1.15 2012/03/28 [Last Version @IBM GDC]
+C# Driver:
+    upgrade to C# offical driver 1.41
+
+Connection Config:
+    1.Add some argument of connection,eg.connectionTimeout.
+
+Replset and sharding Manger
+    1.Redesign the way to manger the replset and sharding.
+	    
+Other
+    1.If getStatus exception happend,stop the auto refresh to avoid endless exception.
+    2.fixed the bug that the userform show confirmbox instead of messagebox.
+
+========================================================================
 Ver 1.13 2012/03/23
 All:
     1.Add Icon to form.
@@ -160,10 +175,10 @@ GFS:
 Collection DataView
     1.Set start position when view data records
     2.New TreeListView for show data records
-    3.Fixed the bug,if the "_id" field is not the first item of the document.
+    3.Fixed the bug,if the KEY_ID field is not the first item of the document.
     4.Add new document by json String.
     5.Fixed the display field bugs of datafilter
-    6.Make the "_id" field always IsShow to true. 
+    6.Make the KEY_ID field always IsShow to true. 
 
 Connection List
     1.Double Click to start at connection list form.
