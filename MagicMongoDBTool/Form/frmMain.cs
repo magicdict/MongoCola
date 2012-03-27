@@ -2083,6 +2083,7 @@ namespace MagicMongoDBTool
             strThanks += "感谢10gen的C# Driver开发者的技术支持" + System.Environment.NewLine;
             strThanks += "感谢Dragon同志的测试和代码规范化" + System.Environment.NewLine;
             strThanks += "感谢MoLing同志的国际化" + System.Environment.NewLine;
+            strThanks += "感谢Cnblogs的各位网友的帮助" + System.Environment.NewLine;
             strThanks += "Thanks Robert Stam for C# driver support" + System.Environment.NewLine;
             MyMessageBox.ShowMessage("Thanks", "MagicCola",
                                      MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile),

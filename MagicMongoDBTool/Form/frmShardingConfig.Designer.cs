@@ -28,10 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmbReplsetName = new System.Windows.Forms.ComboBox();
-            this.lblReplsetName = new System.Windows.Forms.Label();
             this.cmdAddSharding = new System.Windows.Forms.Button();
-            this.lstShard = new System.Windows.Forms.ListBox();
             this.lblField = new System.Windows.Forms.Label();
             this.cmbKeyList = new System.Windows.Forms.ComboBox();
             this.cmdEnableCollectionSharding = new System.Windows.Forms.Button();
@@ -43,49 +40,32 @@
             this.tabSharding = new System.Windows.Forms.TabControl();
             this.tabAddSharding = new System.Windows.Forms.TabPage();
             this.tabShardingConfig = new System.Windows.Forms.TabPage();
+            this.NumReplPort = new System.Windows.Forms.NumericUpDown();
+            this.lblReplPort = new System.Windows.Forms.Label();
+            this.txtReplHost = new System.Windows.Forms.TextBox();
+            this.lblReplHost = new System.Windows.Forms.Label();
+            this.lblMainReplsetName = new System.Windows.Forms.Label();
+            this.txtReplsetName = new System.Windows.Forms.TextBox();
+            this.lstHost = new System.Windows.Forms.ListBox();
+            this.cmdAddHost = new System.Windows.Forms.Button();
+            this.cmdRemoveHost = new System.Windows.Forms.Button();
             this.tabSharding.SuspendLayout();
             this.tabAddSharding.SuspendLayout();
             this.tabShardingConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).BeginInit();
             this.SuspendLayout();
-            // 
-            // cmbReplsetName
-            // 
-            this.cmbReplsetName.FormattingEnabled = true;
-            this.cmbReplsetName.Location = new System.Drawing.Point(94, 23);
-            this.cmbReplsetName.Name = "cmbReplsetName";
-            this.cmbReplsetName.Size = new System.Drawing.Size(216, 23);
-            this.cmbReplsetName.TabIndex = 0;
-            // 
-            // lblReplsetName
-            // 
-            this.lblReplsetName.AutoSize = true;
-            this.lblReplsetName.BackColor = System.Drawing.Color.Transparent;
-            this.lblReplsetName.Location = new System.Drawing.Point(23, 27);
-            this.lblReplsetName.Name = "lblReplsetName";
-            this.lblReplsetName.Size = new System.Drawing.Size(49, 15);
-            this.lblReplsetName.TabIndex = 14;
-            this.lblReplsetName.Text = "Replset";
             // 
             // cmdAddSharding
             // 
             this.cmdAddSharding.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddSharding.Location = new System.Drawing.Point(351, 21);
+            this.cmdAddSharding.Enabled = false;
+            this.cmdAddSharding.Location = new System.Drawing.Point(328, 125);
             this.cmdAddSharding.Name = "cmdAddSharding";
             this.cmdAddSharding.Size = new System.Drawing.Size(139, 33);
             this.cmdAddSharding.TabIndex = 2;
             this.cmdAddSharding.Text = "Add Sharding";
             this.cmdAddSharding.UseVisualStyleBackColor = false;
             this.cmdAddSharding.Click += new System.EventHandler(this.cmdAddSharding_Click);
-            // 
-            // lstShard
-            // 
-            this.lstShard.FormattingEnabled = true;
-            this.lstShard.ItemHeight = 15;
-            this.lstShard.Location = new System.Drawing.Point(28, 61);
-            this.lstShard.Name = "lstShard";
-            this.lstShard.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.lstShard.Size = new System.Drawing.Size(461, 94);
-            this.lstShard.TabIndex = 1;
             // 
             // lblField
             // 
@@ -177,10 +157,16 @@
             // 
             // tabAddSharding
             // 
-            this.tabAddSharding.Controls.Add(this.lblReplsetName);
-            this.tabAddSharding.Controls.Add(this.lstShard);
+            this.tabAddSharding.Controls.Add(this.cmdRemoveHost);
+            this.tabAddSharding.Controls.Add(this.cmdAddHost);
+            this.tabAddSharding.Controls.Add(this.lstHost);
+            this.tabAddSharding.Controls.Add(this.NumReplPort);
+            this.tabAddSharding.Controls.Add(this.lblReplPort);
+            this.tabAddSharding.Controls.Add(this.txtReplHost);
+            this.tabAddSharding.Controls.Add(this.lblReplHost);
+            this.tabAddSharding.Controls.Add(this.lblMainReplsetName);
+            this.tabAddSharding.Controls.Add(this.txtReplsetName);
             this.tabAddSharding.Controls.Add(this.cmdAddSharding);
-            this.tabAddSharding.Controls.Add(this.cmbReplsetName);
             this.tabAddSharding.Location = new System.Drawing.Point(4, 24);
             this.tabAddSharding.Name = "tabAddSharding";
             this.tabAddSharding.Padding = new System.Windows.Forms.Padding(3);
@@ -199,13 +185,99 @@
             this.tabShardingConfig.Controls.Add(this.cmbDataBase);
             this.tabShardingConfig.Controls.Add(this.cmdEnableDBSharding);
             this.tabShardingConfig.Controls.Add(this.cmbCollection);
-            this.tabShardingConfig.Location = new System.Drawing.Point(4, 22);
+            this.tabShardingConfig.Location = new System.Drawing.Point(4, 24);
             this.tabShardingConfig.Name = "tabShardingConfig";
             this.tabShardingConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShardingConfig.Size = new System.Drawing.Size(517, 187);
+            this.tabShardingConfig.Size = new System.Drawing.Size(517, 185);
             this.tabShardingConfig.TabIndex = 1;
             this.tabShardingConfig.Text = "Sharding Setting";
             this.tabShardingConfig.UseVisualStyleBackColor = true;
+            // 
+            // NumReplPort
+            // 
+            this.NumReplPort.Location = new System.Drawing.Point(113, 80);
+            this.NumReplPort.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.NumReplPort.Name = "NumReplPort";
+            this.NumReplPort.Size = new System.Drawing.Size(135, 21);
+            this.NumReplPort.TabIndex = 38;
+            this.NumReplPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblReplPort
+            // 
+            this.lblReplPort.AutoSize = true;
+            this.lblReplPort.BackColor = System.Drawing.Color.Transparent;
+            this.lblReplPort.Location = new System.Drawing.Point(24, 80);
+            this.lblReplPort.Name = "lblReplPort";
+            this.lblReplPort.Size = new System.Drawing.Size(29, 15);
+            this.lblReplPort.TabIndex = 42;
+            this.lblReplPort.Text = "Port";
+            // 
+            // txtReplHost
+            // 
+            this.txtReplHost.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.txtReplHost.Location = new System.Drawing.Point(113, 52);
+            this.txtReplHost.Name = "txtReplHost";
+            this.txtReplHost.Size = new System.Drawing.Size(135, 21);
+            this.txtReplHost.TabIndex = 37;
+            // 
+            // lblReplHost
+            // 
+            this.lblReplHost.AutoSize = true;
+            this.lblReplHost.BackColor = System.Drawing.Color.Transparent;
+            this.lblReplHost.Location = new System.Drawing.Point(24, 50);
+            this.lblReplHost.Name = "lblReplHost";
+            this.lblReplHost.Size = new System.Drawing.Size(32, 15);
+            this.lblReplHost.TabIndex = 41;
+            this.lblReplHost.Text = "Host";
+            // 
+            // lblMainReplsetName
+            // 
+            this.lblMainReplsetName.AutoSize = true;
+            this.lblMainReplsetName.Location = new System.Drawing.Point(24, 23);
+            this.lblMainReplsetName.Name = "lblMainReplsetName";
+            this.lblMainReplsetName.Size = new System.Drawing.Size(83, 15);
+            this.lblMainReplsetName.TabIndex = 40;
+            this.lblMainReplsetName.Text = "ReplsetName";
+            // 
+            // txtReplsetName
+            // 
+            this.txtReplsetName.Location = new System.Drawing.Point(113, 23);
+            this.txtReplsetName.Name = "txtReplsetName";
+            this.txtReplsetName.Size = new System.Drawing.Size(135, 21);
+            this.txtReplsetName.TabIndex = 36;
+            // 
+            // lstHost
+            // 
+            this.lstHost.FormattingEnabled = true;
+            this.lstHost.ItemHeight = 15;
+            this.lstHost.Location = new System.Drawing.Point(277, 23);
+            this.lstHost.Name = "lstHost";
+            this.lstHost.Size = new System.Drawing.Size(223, 79);
+            this.lstHost.TabIndex = 43;
+            // 
+            // cmdAddHost
+            // 
+            this.cmdAddHost.Location = new System.Drawing.Point(27, 127);
+            this.cmdAddHost.Name = "cmdAddHost";
+            this.cmdAddHost.Size = new System.Drawing.Size(93, 31);
+            this.cmdAddHost.TabIndex = 44;
+            this.cmdAddHost.Text = "Add Host";
+            this.cmdAddHost.UseVisualStyleBackColor = true;
+            this.cmdAddHost.Click += new System.EventHandler(this.cmdAddHost_Click);
+            // 
+            // cmdRemoveHost
+            // 
+            this.cmdRemoveHost.Location = new System.Drawing.Point(140, 125);
+            this.cmdRemoveHost.Name = "cmdRemoveHost";
+            this.cmdRemoveHost.Size = new System.Drawing.Size(108, 33);
+            this.cmdRemoveHost.TabIndex = 45;
+            this.cmdRemoveHost.Text = "Remove Host";
+            this.cmdRemoveHost.UseVisualStyleBackColor = true;
+            this.cmdRemoveHost.Click += new System.EventHandler(this.cmdRemoveHost_Click);
             // 
             // frmShardingConfig
             // 
@@ -226,16 +298,14 @@
             this.tabAddSharding.PerformLayout();
             this.tabShardingConfig.ResumeLayout(false);
             this.tabShardingConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbReplsetName;
-        private System.Windows.Forms.Label lblReplsetName;
         private System.Windows.Forms.Button cmdAddSharding;
-        private System.Windows.Forms.ListBox lstShard;
         private System.Windows.Forms.Label lblField;
         private System.Windows.Forms.ComboBox cmbKeyList;
         private System.Windows.Forms.Button cmdEnableCollectionSharding;
@@ -247,5 +317,14 @@
         private System.Windows.Forms.TabControl tabSharding;
         private System.Windows.Forms.TabPage tabAddSharding;
         private System.Windows.Forms.TabPage tabShardingConfig;
+        private System.Windows.Forms.NumericUpDown NumReplPort;
+        private System.Windows.Forms.Label lblReplPort;
+        private System.Windows.Forms.TextBox txtReplHost;
+        private System.Windows.Forms.Label lblReplHost;
+        private System.Windows.Forms.Label lblMainReplsetName;
+        private System.Windows.Forms.TextBox txtReplsetName;
+        private System.Windows.Forms.ListBox lstHost;
+        private System.Windows.Forms.Button cmdAddHost;
+        private System.Windows.Forms.Button cmdRemoveHost;
     }
 }

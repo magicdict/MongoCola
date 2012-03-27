@@ -58,6 +58,12 @@ namespace MagicMongoDBTool.Module
                 //Replset时候可以不用设置吗？                    
                 mongoSvrSetting.Server = new MongoServerAddress(config.Host, config.Port);
                 //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
+                //From Driver 1.4 Pay attention to this comment
+                //The default value for SocketTimeout has been changed from 30 seconds to 0, 
+                //which is a special value meaning to use the operating system default value, 
+                //which in turn is infinity. If you actually want a SocketTimeout you now have to set it yourself. 
+                //The SocketTimeout is currently a server level setting, but most likely in a future release it will be possible to set it at other levels, 
+                //including for individual operations.
                 if (config.socketTimeoutMS != 0)
                 {
                     mongoSvrSetting.SocketTimeout = new TimeSpan(0, 0, (int)(config.socketTimeoutMS / 1000));

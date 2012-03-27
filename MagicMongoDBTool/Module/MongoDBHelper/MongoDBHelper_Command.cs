@@ -52,15 +52,16 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="routeSvr"></param>
         /// <param name="replicaSetName"></param>
-        /// <param name="shardingNames"></param>
+        /// <param name="lstAddress"></param>
         /// <remarks>注意：有个命令可能只能用在mongos上面</remarks>
         /// <returns></returns>
-        public static CommandResult AddSharding(MongoServer routeSvr, String replicaSetName, List<String> shardingNames)
+        public static CommandResult AddSharding(MongoServer routeSvr, String replicaSetName, List<String> lstAddress)
         {
-            String cmdPara = replicaSetName + "/";
-            foreach (var item in shardingNames)
+            // replset/host:port,host:port
+            String cmdPara = replicaSetName == String.Empty ? String.Empty : (replicaSetName + "/");
+            foreach (String item in lstAddress)
             {
-                cmdPara += SystemManager.ConfigHelperInstance.ConnectionList[item].Host + ":" + SystemManager.ConfigHelperInstance.ConnectionList[item].Port.ToString() + ",";
+                cmdPara += item + ",";
             }
             cmdPara = cmdPara.TrimEnd(",".ToCharArray());
             CommandDocument mongoCmd = new CommandDocument();

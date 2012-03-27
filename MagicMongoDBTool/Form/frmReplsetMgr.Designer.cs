@@ -58,7 +58,7 @@
             0});
             this.NumReplPort.Name = "NumReplPort";
             this.NumReplPort.Size = new System.Drawing.Size(122, 22);
-            this.NumReplPort.TabIndex = 37;
+            this.NumReplPort.TabIndex = 3;
             this.NumReplPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblReplPort
@@ -69,7 +69,7 @@
             this.lblReplPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblReplPort.Name = "lblReplPort";
             this.lblReplPort.Size = new System.Drawing.Size(32, 16);
-            this.lblReplPort.TabIndex = 40;
+            this.lblReplPort.TabIndex = 2;
             this.lblReplPort.Text = "Port";
             // 
             // txtReplHost
@@ -79,7 +79,7 @@
             this.txtReplHost.Margin = new System.Windows.Forms.Padding(4);
             this.txtReplHost.Name = "txtReplHost";
             this.txtReplHost.Size = new System.Drawing.Size(121, 22);
-            this.txtReplHost.TabIndex = 36;
+            this.txtReplHost.TabIndex = 1;
             // 
             // lblReplHost
             // 
@@ -89,7 +89,7 @@
             this.lblReplHost.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblReplHost.Name = "lblReplHost";
             this.lblReplHost.Size = new System.Drawing.Size(36, 16);
-            this.lblReplHost.TabIndex = 39;
+            this.lblReplHost.TabIndex = 0;
             this.lblReplHost.Text = "Host";
             // 
             // cmdAddHost
@@ -98,7 +98,7 @@
             this.cmdAddHost.Margin = new System.Windows.Forms.Padding(4);
             this.cmdAddHost.Name = "cmdAddHost";
             this.cmdAddHost.Size = new System.Drawing.Size(124, 38);
-            this.cmdAddHost.TabIndex = 38;
+            this.cmdAddHost.TabIndex = 7;
             this.cmdAddHost.Text = "Add Host";
             this.cmdAddHost.UseVisualStyleBackColor = true;
             this.cmdAddHost.Click += new System.EventHandler(this.cmdAddHost_Click);
@@ -114,7 +114,7 @@
             0});
             this.NumPriority.Name = "NumPriority";
             this.NumPriority.Size = new System.Drawing.Size(122, 22);
-            this.NumPriority.TabIndex = 41;
+            this.NumPriority.TabIndex = 5;
             this.NumPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NumPriority.Value = new decimal(new int[] {
             1,
@@ -130,7 +130,7 @@
             this.lblpriority.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblpriority.Name = "lblpriority";
             this.lblpriority.Size = new System.Drawing.Size(48, 16);
-            this.lblpriority.TabIndex = 42;
+            this.lblpriority.TabIndex = 4;
             this.lblpriority.Text = "priority";
             // 
             // chkArbiterOnly
@@ -138,8 +138,8 @@
             this.chkArbiterOnly.AutoSize = true;
             this.chkArbiterOnly.Location = new System.Drawing.Point(33, 120);
             this.chkArbiterOnly.Name = "chkArbiterOnly";
-            this.chkArbiterOnly.Size = new System.Drawing.Size(93, 20);
-            this.chkArbiterOnly.TabIndex = 43;
+            this.chkArbiterOnly.Size = new System.Drawing.Size(77, 17);
+            this.chkArbiterOnly.TabIndex = 6;
             this.chkArbiterOnly.Text = "ArbiterOnly";
             this.chkArbiterOnly.UseVisualStyleBackColor = true;
             // 
@@ -156,7 +156,7 @@
             this.groupBox1.Location = new System.Drawing.Point(21, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(245, 212);
-            this.groupBox1.TabIndex = 44;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add Host Member";
             // 
@@ -165,7 +165,7 @@
             this.cmdClose.Location = new System.Drawing.Point(216, 240);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(124, 36);
-            this.cmdClose.TabIndex = 45;
+            this.cmdClose.TabIndex = 2;
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
@@ -177,16 +177,17 @@
             this.groupBox2.Location = new System.Drawing.Point(290, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(271, 212);
-            this.groupBox2.TabIndex = 46;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Remove Host Member";
             // 
             // cmdRemoveHost
             // 
+            this.cmdRemoveHost.Enabled = false;
             this.cmdRemoveHost.Location = new System.Drawing.Point(66, 147);
             this.cmdRemoveHost.Name = "cmdRemoveHost";
             this.cmdRemoveHost.Size = new System.Drawing.Size(123, 38);
-            this.cmdRemoveHost.TabIndex = 47;
+            this.cmdRemoveHost.TabIndex = 1;
             this.cmdRemoveHost.Text = "Remove Host";
             this.cmdRemoveHost.UseVisualStyleBackColor = true;
             this.cmdRemoveHost.Click += new System.EventHandler(this.cmdRemoveHost_Click);
@@ -198,7 +199,7 @@
             this.lstHost.Location = new System.Drawing.Point(15, 29);
             this.lstHost.Name = "lstHost";
             this.lstHost.Size = new System.Drawing.Size(235, 100);
-            this.lstHost.TabIndex = 48;
+            this.lstHost.TabIndex = 0;
             // 
             // frmReplsetMgr
             // 

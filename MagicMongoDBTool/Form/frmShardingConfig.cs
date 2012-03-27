@@ -31,7 +31,7 @@ namespace MagicMongoDBTool
             {
                 this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_Title);
                 tabAddSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_AddSharding);
-                lblReplsetName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_ReplsetName);
+                lblMainReplsetName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_ReplsetName);
                 cmdAddSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Add);
 
                 tabShardingConfig.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_EnableSharding);
@@ -51,35 +51,34 @@ namespace MagicMongoDBTool
                     cmbDataBase.Items.Add(item.GetValue("_id"));
                 };
             }
-            cmbReplsetName.SelectedIndexChanged += new EventHandler(
-                (x, y) => { RefreshSrv(); }
-                );
-            foreach (var item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
-            {
-                if (item.ReplSetName != null)
-                {
-                    if (!cmbReplsetName.Items.Contains(item.ReplSetName))
-                    {
-                        cmbReplsetName.Items.Add(item.ReplSetName);
-                    }
-                }
-            }
         }
         /// <summary>
-        /// 刷新服务器
+        /// 添加HostList
         /// </summary>
-        private void RefreshSrv()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdAddHost_Click(object sender, EventArgs e)
         {
-            lstShard.Items.Clear();
-            foreach (var item in SystemManager.ConfigHelperInstance.ConnectionList.Values)
+            String strHost = String.Empty;
+            strHost = txtReplHost.Text;
+            if (NumReplPort.Value != 0)
             {
-                if (item.ReplSetName != null)
-                {
-                    if (item.ReplSetName == cmbReplsetName.Text)
-                    {
-                        lstShard.Items.Add(item.ConnectionName);
-                    }
-                }
+                strHost += ":" + NumReplPort.Value.ToString();
+            }
+            lstHost.Items.Add(strHost);
+            cmdAddSharding.Enabled = true;
+        }
+        /// <summary>
+        /// 移除HostList
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdRemoveHost_Click(object sender, EventArgs e)
+        {
+            lstHost.Items.Remove(lstHost.SelectedItem);
+            if (lstHost.Items.Count == 0)
+            {
+                cmdAddSharding.Enabled = false;
             }
         }
         /// <summary>
@@ -89,21 +88,15 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdAddSharding_Click(object sender, EventArgs e)
         {
-            List<String> srvKeys = new List<String>();
-            if (lstShard.SelectedItems.Count > 0)
+            List<String> lstAddress = new List<String>();
+            foreach (String item in lstHost.Items)
             {
-                foreach (String item in lstShard.SelectedItems)
-                {
-                    srvKeys.Add(item);
-                }
+                lstAddress.Add(item.Trim());
             }
             List<CommandResult> Resultlst = new List<CommandResult>();
-            cmbReplsetName.Text = "set2";
-            srvKeys.Add("shard3");
-            srvKeys.Add("shard4");
-
-            CommandResult rtn = MongoDBHelper.AddSharding(_prmSvr, cmbReplsetName.Text, srvKeys);
-            //Resultlst.Add(MongoDBHelper.AddSharding(_prmSvr, cmbReplsetName.Text, srvKeys));
+            CommandResult Result = MongoDBHelper.AddSharding(_prmSvr, this.txtReplsetName.Text, lstAddress);
+            Resultlst.Add(Result);
+            MyMessageBox.ShowMessage("Add Sharding", "Result:" + (Result.Ok ? "OK" : "Fail"), MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
         }
         /// <summary>
         /// 数据库切换
