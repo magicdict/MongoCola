@@ -73,17 +73,19 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=1.4.0.4468, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.4.0.4468, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="MongoDB.Bson">
-      <HintPath>dll\MongoDB.Bson.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>dll\MongoDB.Driver.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form\Box\frmConfirm.cs">
@@ -152,11 +154,11 @@
     <Compile Include="Form\frmGFSOption.Designer.cs">
       <DependentUpon>frmGFSOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmAddReplsetMember.cs">
+    <Compile Include="Form\frmReplsetMgr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmAddReplsetMember.Designer.cs">
-      <DependentUpon>frmAddReplsetMember.cs</DependentUpon>
+    <Compile Include="Form\frmReplsetMgr.Designer.cs">
+      <DependentUpon>frmReplsetMgr.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\ctlJsEditor.cs">
       <SubType>UserControl</SubType>
@@ -382,8 +384,8 @@
     <EmbeddedResource Include="Form\frmGFSOption.resx">
       <DependentUpon>frmGFSOption.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmAddReplsetMember.resx">
-      <DependentUpon>frmAddReplsetMember.cs</DependentUpon>
+    <EmbeddedResource Include="Form\frmReplsetMgr.resx">
+      <DependentUpon>frmReplsetMgr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlJsEditor.resx">
       <DependentUpon>ctlJsEditor.cs</DependentUpon>

@@ -1392,7 +1392,7 @@ namespace MagicMongoDBTool
         private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigHelper.MongoConnectionConfig newConfig = SystemManager.GetCurrentServerConfig();
-            SystemManager.OpenForm(new frmAddReplsetMember(ref newConfig));
+            SystemManager.OpenForm(new frmReplsetMgr(ref newConfig));
             SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
             SystemManager.ConfigHelperInstance.SaveToConfigFile();
             MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);

@@ -123,7 +123,6 @@ namespace MagicMongoDBTool
             this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.ctlShellCommandEditor = new MagicMongoDBTool.ctlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -320,7 +319,6 @@ namespace MagicMongoDBTool
             // 
             this.connectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ReplicaSetToolStripMenuItem,
-            this.toolStripMenuItem12,
             this.ShardingConfigToolStripMenuItem,
             this.InitReplsetToolStripMenuItem,
             this.toolStripMenuItem2,
@@ -332,33 +330,33 @@ namespace MagicMongoDBTool
             // ReplicaSetToolStripMenuItem
             // 
             this.ReplicaSetToolStripMenuItem.Name = "ReplicaSetToolStripMenuItem";
-            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.ReplicaSetToolStripMenuItem.Text = "Add &Replset Member";
+            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.ReplicaSetToolStripMenuItem.Text = "Replset Manager";
             this.ReplicaSetToolStripMenuItem.Click += new System.EventHandler(this.ReplicaSetToolStripMenuItem_Click);
             // 
             // ShardingConfigToolStripMenuItem
             // 
             this.ShardingConfigToolStripMenuItem.Name = "ShardingConfigToolStripMenuItem";
-            this.ShardingConfigToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.ShardingConfigToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.ShardingConfigToolStripMenuItem.Text = "&Sharding Config";
             this.ShardingConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardingConfigToolStripMenuItem_Click);
             // 
             // InitReplsetToolStripMenuItem
             // 
             this.InitReplsetToolStripMenuItem.Name = "InitReplsetToolStripMenuItem";
-            this.InitReplsetToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.InitReplsetToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.InitReplsetToolStripMenuItem.Text = "Initiate Replset";
             this.InitReplsetToolStripMenuItem.Click += new System.EventHandler(this.InitReplsetToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(190, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(170, 6);
             // 
             // DisconnectToolStripMenuItem
             // 
             this.DisconnectToolStripMenuItem.Name = "DisconnectToolStripMenuItem";
-            this.DisconnectToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.DisconnectToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.DisconnectToolStripMenuItem.Text = "Disconnect";
             this.DisconnectToolStripMenuItem.Click += new System.EventHandler(this.DisconnectToolStripMenuItem_Click);
             // 
@@ -879,12 +877,6 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // toolStripMenuItem12
-            // 
-            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(193, 22);
-            this.toolStripMenuItem12.Text = "Remove Replset Member";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1013,6 +1005,5 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem ShutDownToolStripMenuItem;
         private ToolStripMenuItem ServePropertyToolStripMenuItem;
         private ToolStripMenuItem SvrStatusToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem12;
     }
 }

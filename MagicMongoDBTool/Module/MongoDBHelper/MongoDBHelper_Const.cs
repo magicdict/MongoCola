@@ -86,11 +86,14 @@ namespace MagicMongoDBTool.Module
         /// 索引
         /// </summary>
         public const String INDEX_TAG = "MongoIndex";
-
         /// <summary>
         /// 
         /// </summary>
         public const String CONFIG_DBNAME_TAG = "config";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const String ADMIN_DBNAME_TAG = "admin";
         /// <summary>
         /// 路径阶层[考虑到以后可能阶层会变换]
         /// </summary>
