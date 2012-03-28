@@ -31,7 +31,7 @@ namespace MagicMongoDBTool
             numMaxDocument.Maximum = decimal.MaxValue;
             numMaxSize.Maximum = decimal.MaxValue;
             chkAdvance.Checked = false;
-            chkAdvance.Location = new System.Drawing.Point(grpAdvanced.Location.X + 10, grpAdvanced.Location.Y );
+            chkAdvance.Location = new System.Drawing.Point(grpAdvanced.Location.X + 10, grpAdvanced.Location.Y);
             chkAdvance.BringToFront();
             grpAdvanced.Enabled = false;
         }
@@ -44,20 +44,32 @@ namespace MagicMongoDBTool
         {
             if (txtCollectionName.Text != String.Empty)
             {
-                if (chkAdvance.Checked)
+                try
                 {
-                    CollectionOptionsBuilder option = new CollectionOptionsBuilder();
-                    option.SetCapped(chkIsCapped.Checked);
-                    option.SetMaxSize((long)numMaxSize.Value);
-                    option.SetMaxDocuments((long)numMaxDocument.Value);
-                    option.SetAutoIndexId(chkIsAutoIndexId.Checked);
-                    Result = MongoDBHelper.CreateCollectionWithOptions(strSvrPathWithTag, treeNode, txtCollectionName.Text,option);
+                    if (chkAdvance.Checked)
+                    {
+                        CollectionOptionsBuilder option = new CollectionOptionsBuilder();
+                        option.SetCapped(chkIsCapped.Checked);
+                        option.SetMaxSize((long)numMaxSize.Value);
+                        option.SetMaxDocuments((long)numMaxDocument.Value);
+                        option.SetAutoIndexId(chkIsAutoIndexId.Checked);
+                        Result = MongoDBHelper.CreateCollectionWithOptions(strSvrPathWithTag, treeNode, txtCollectionName.Text, option);
+                    }
+                    else
+                    {
+                        Result = MongoDBHelper.CreateCollection(strSvrPathWithTag, treeNode, txtCollectionName.Text);
+                    }
+                    this.Close();
                 }
-                else
+                catch (ArgumentException ex)
                 {
-                    Result = MongoDBHelper.CreateCollection(strSvrPathWithTag, treeNode, txtCollectionName.Text);
+                    MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", ex.Message, true);
+                    Result = false;
                 }
-                this.Close();
+            }
+            else
+            {
+                MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception:Please fill Collection Name");
             }
         }
         /// <summary>

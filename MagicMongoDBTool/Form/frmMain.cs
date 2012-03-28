@@ -1370,12 +1370,18 @@ namespace MagicMongoDBTool
             }
             if (strDBName != String.Empty)
             {
-                if (MongoDBHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelper.Oprcode.Create, trvsrvlst.SelectedNode))
+                try
                 {
-                    DisableAllOpr();
+                    Boolean rtn = MongoDBHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelper.Oprcode.Create, trvsrvlst.SelectedNode);
+                    if (rtn) { DisableAllOpr(); }
+                }
+                catch (ArgumentException ex)
+                {
+                    MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", ex.Message,true);
                 }
             }
         }
+
         /// <summary>
         /// Create User to Admin Group
         /// </summary>
