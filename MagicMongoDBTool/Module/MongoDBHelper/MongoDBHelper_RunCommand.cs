@@ -50,10 +50,38 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="mongoSvr">副本组主服务器</param>
         /// <param name="HostPort">服务器信息</param>
+        /// <remarks>这个命令C#无法正确执行</remarks>
         /// <returns></returns>
         public static CommandResult RemoveFromReplsetServer(MongoServer mongoSvr, String HostPort)
         {
-            return ExecuteJsShell("rs.remove('" + HostPort + "');", mongoSvr);
+            CommandResult cmdRtn = new CommandResult();
+            try
+            {
+                ExecuteJsShell("rs.remove('" + HostPort + "');", mongoSvr);
+            }
+            catch (Exception)
+            {
+            }
+            return cmdRtn;
+        }
+        /// <summary>
+        /// 重新启动
+        /// </summary>
+        /// <param name="mongoSvr">副本组主服务器</param>
+        /// <param name="HostPort">服务器信息</param>
+        /// <remarks>这个命令C#无法正确执行</remarks>
+        /// <returns></returns>
+        public static CommandResult ReconfigReplsetServer(MongoServer PrimarySvr, BsonDocument config)
+        {
+            CommandResult cmdRtn = new CommandResult();
+            try
+            {
+                return ExecuteJsShell("rs.reconfig(" + config.ToString() + ",{force : true})", PrimarySvr);
+            }
+            catch (Exception)
+            {
+            }
+            return cmdRtn;
         }
         /// <summary>
         /// 使用Shell Helper命令

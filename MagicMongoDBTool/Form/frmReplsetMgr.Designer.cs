@@ -183,7 +183,6 @@
             // 
             // cmdRemoveHost
             // 
-            this.cmdRemoveHost.Enabled = false;
             this.cmdRemoveHost.Location = new System.Drawing.Point(66, 147);
             this.cmdRemoveHost.Name = "cmdRemoveHost";
             this.cmdRemoveHost.Size = new System.Drawing.Size(123, 38);

@@ -60,7 +60,7 @@
             // 
             this.cmdAddSharding.BackColor = System.Drawing.Color.Transparent;
             this.cmdAddSharding.Enabled = false;
-            this.cmdAddSharding.Location = new System.Drawing.Point(328, 125);
+            this.cmdAddSharding.Location = new System.Drawing.Point(316, 125);
             this.cmdAddSharding.Name = "cmdAddSharding";
             this.cmdAddSharding.Size = new System.Drawing.Size(139, 33);
             this.cmdAddSharding.TabIndex = 2;
@@ -275,7 +275,7 @@
             this.tabShardingConfig.Location = new System.Drawing.Point(4, 24);
             this.tabShardingConfig.Name = "tabShardingConfig";
             this.tabShardingConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabShardingConfig.Size = new System.Drawing.Size(517, 185);
+            this.tabShardingConfig.Size = new System.Drawing.Size(517, 178);
             this.tabShardingConfig.TabIndex = 1;
             this.tabShardingConfig.Text = "Sharding Setting";
             this.tabShardingConfig.UseVisualStyleBackColor = true;
