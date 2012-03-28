@@ -168,33 +168,26 @@ namespace MagicMongoDBTool.Module
         /// <param name="strObjTag"></param>
         /// <param name="treeNode"></param>
         /// <param name="collectionName"></param>
-        /// <param name="IsCapped"></param>
-        /// <param name="MaxSize"></param>
-        /// <param name="IsAutoIndexId"></param>
-        /// <param name="IsMaxDocument"></param>
+        /// <param name="option"></param>
         /// <returns></returns>
         public static Boolean CreateCollectionWithOptions(String strObjTag, TreeNode treeNode, String collectionName,
-            Boolean IsCapped, long MaxSize, Boolean IsAutoIndexId, long IsMaxDocument)
+                                                          CollectionOptionsBuilder option)
         {
             Boolean rtnResult = false;
             MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
             String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ServerLV];
+            String ConKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ConnectionLV];
             if (mongoDB != null)
             {
                 if (!mongoDB.CollectionExists(collectionName))
                 {
-                    CollectionOptionsBuilder COB = new CollectionOptionsBuilder();
-                    COB.SetCapped(IsCapped);
-                    COB.SetMaxSize(MaxSize);
-                    COB.SetAutoIndexId(IsAutoIndexId);
-                    COB.SetMaxDocuments(IsMaxDocument);
-                    mongoDB.CreateCollection(collectionName, COB);
+                    mongoDB.CreateCollection(collectionName, option);
                     foreach (TreeNode item in treeNode.Nodes)
                     {
                         if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
                         {
-                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrKey));
+                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, ConKey + "/" + svrKey));
                         }
                     }
                     rtnResult = true;
@@ -215,6 +208,7 @@ namespace MagicMongoDBTool.Module
             MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
             String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ServerLV];
+            String ConKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ConnectionLV];
             if (mongoDB != null)
             {
                 if (!mongoDB.CollectionExists(collectionName))
@@ -224,7 +218,7 @@ namespace MagicMongoDBTool.Module
                     {
                         if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
                         {
-                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, svrKey));
+                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, ConKey + "/" + svrKey));
                         }
                     }
                     rtnResult = true;
@@ -301,13 +295,14 @@ namespace MagicMongoDBTool.Module
         /// 获得Shard情报
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<String, String> GetShardInfo(MongoServer server) 
+        public static Dictionary<String, String> GetShardInfo(MongoServer server)
         {
             Dictionary<String, String> ShardInfo = new Dictionary<String, String>();
             if (server.DatabaseExists(DATABASE_NAME_CONFIG))
             {
                 MongoDatabase configdb = server.GetDatabase(DATABASE_NAME_CONFIG);
-                if (configdb.CollectionExists("shards")) {
+                if (configdb.CollectionExists("shards"))
+                {
                     foreach (BsonDocument item in configdb.GetCollection("shards").FindAll().ToList<BsonDocument>())
                     {
                         ShardInfo.Add(item.GetElement(KEY_ID).Value.ToString(), item.GetElement("host").Value.ToString());
@@ -323,7 +318,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="DescendingKey"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey,IndexOptionsBuilder option)
+        public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey, IndexOptionsBuilder option)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             IndexKeysBuilder indexkeys = new IndexKeysBuilder();

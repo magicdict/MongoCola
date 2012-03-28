@@ -1438,7 +1438,7 @@ namespace MagicMongoDBTool
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 String strPath = SystemManager.SelectTagData;
-                String strDBName = strPath.Split("/".ToCharArray())[1];
+                String strDBName = strPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.DatabaseLV];
                 if (trvsrvlst.SelectedNode == null)
                 {
                     trvsrvlst.SelectedNode = null;

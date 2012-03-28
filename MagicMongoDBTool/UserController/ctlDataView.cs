@@ -1057,9 +1057,14 @@ namespace MagicMongoDBTool.UserController
         #endregion
 
         #region"用户"
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddUserStripButton_Click(object sender, EventArgs e)
         {
-            if (mDataViewInfo.strDBTag.EndsWith(MongoDBHelper.DATABASE_NAME_ADMIN + "/" + MongoDBHelper.COLLECTION_NAME_USER))
+            if (IsAdminDB)
             {
                 SystemManager.OpenForm(new frmUser(true));
             }
@@ -1067,7 +1072,13 @@ namespace MagicMongoDBTool.UserController
             {
                 SystemManager.OpenForm(new frmUser(false));
             }
+            RefreshGUI(sender, e);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveUserStripButton_Click(object sender, EventArgs e)
         {
             if (IsAdminDB)
@@ -1078,6 +1089,7 @@ namespace MagicMongoDBTool.UserController
             {
                 RemoveUserToolStripMenuItem_Click(sender, e);
             }
+            RefreshGUI(sender, e);
         }
         /// <summary>
         /// Drop User from Admin Group

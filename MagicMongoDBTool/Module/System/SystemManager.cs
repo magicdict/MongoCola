@@ -112,12 +112,12 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfig()
         {
-            String svrName = SelectObjectTag.Split(":".ToCharArray())[1];
-            svrName = svrName.Split("/".ToCharArray())[0];
+            String ServerName = SelectObjectTag.Split(":".ToCharArray())[1];
+            ServerName = ServerName.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.ConnectionLV];
             ConfigHelper.MongoConnectionConfig rtnMongoConnectionConfig = new ConfigHelper.MongoConnectionConfig();
-            if (ConfigHelperInstance.ConnectionList.ContainsKey(svrName))
+            if (ConfigHelperInstance.ConnectionList.ContainsKey(ServerName))
             {
-                rtnMongoConnectionConfig = ConfigHelperInstance.ConnectionList[svrName];
+                rtnMongoConnectionConfig = ConfigHelperInstance.ConnectionList[ServerName];
             }
             return rtnMongoConnectionConfig;
         }

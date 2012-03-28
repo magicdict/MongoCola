@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+using MongoDB.Driver.Builders;
 
 namespace MagicMongoDBTool
 {
@@ -45,8 +46,12 @@ namespace MagicMongoDBTool
             {
                 if (chkAdvance.Checked)
                 {
-                    Result = MongoDBHelper.CreateCollectionWithOptions(strSvrPathWithTag, treeNode, txtCollectionName.Text, chkIsCapped.Checked,
-                         (long)numMaxSize.Value, chkIsAutoIndexId.Checked, (long)numMaxDocument.Value);
+                    CollectionOptionsBuilder option = new CollectionOptionsBuilder();
+                    option.SetCapped(chkIsCapped.Checked);
+                    option.SetMaxSize((long)numMaxSize.Value);
+                    option.SetMaxDocuments((long)numMaxDocument.Value);
+                    option.SetAutoIndexId(chkIsAutoIndexId.Checked);
+                    Result = MongoDBHelper.CreateCollectionWithOptions(strSvrPathWithTag, treeNode, txtCollectionName.Text,option);
                 }
                 else
                 {
