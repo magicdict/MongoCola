@@ -234,28 +234,35 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoServer GetMongoServerBySvrPath(String strObjTag)
         {
-            MongoServer rtnMongoSvr = null;
             String strSvrPath = SystemManager.GetTagData(strObjTag);
             String[] strPath = strSvrPath.Split("/".ToCharArray());
             if (strPath.Length == 1)
             {
-                if (_mongoConnSvrLst.ContainsKey(strSvrPath))
+                //[Tag:Connection
+                if (_mongoConnSvrLst.ContainsKey(strPath[0]))
                 {
-                    rtnMongoSvr = _mongoConnSvrLst[strSvrPath];
-                    return rtnMongoSvr;
+                    return _mongoConnSvrLst[strPath[0]];
                 }
             }
             if (strPath.Length > 1)
             {
-                String strInstKey = String.Empty;
-                strInstKey = strPath[(int)PathLv.ConnectionLV] + "/" + strPath[(int)PathLv.ServerLV];
-                if (_mongoInstanceLst.ContainsKey(strInstKey))
+                if (strPath[0] == strPath[1])
                 {
-                    rtnMongoSvr = _mongoInstanceLst[strInstKey].Server;
-                    return rtnMongoSvr;
+                    //[Tag:Connection/Connection/DBName/Collection]
+                    return _mongoConnSvrLst[strPath[0]];
+                }
+                else
+                {
+                    //[Tag:Connection/Host@Port/DBName/Collection]
+                    String strInstKey = String.Empty;
+                    strInstKey = strPath[(int)PathLv.ConnectionLV] + "/" + strPath[(int)PathLv.ServerLV];
+                    if (_mongoInstanceLst.ContainsKey(strInstKey))
+                    {
+                        return _mongoInstanceLst[strInstKey].Server;
+                    }
                 }
             }
-            return rtnMongoSvr;
+            return null;
         }
         /// <summary>
         /// 根据路径字符获得数据库
