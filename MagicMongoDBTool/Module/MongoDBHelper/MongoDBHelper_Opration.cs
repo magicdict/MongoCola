@@ -237,18 +237,21 @@ namespace MagicMongoDBTool.Module
             MongoServer rtnMongoSvr = null;
             String strSvrPath = SystemManager.GetTagData(strObjTag);
             String[] strPath = strSvrPath.Split("/".ToCharArray());
-            String strInstKey = strPath[(int)PathLv.ConnectionLV] + "/" + strPath[(int)PathLv.ServerLV];
-            if (strPath.Length > 0)
+            if (strPath.Length == 1)
             {
+                if (_mongoConnSvrLst.ContainsKey(strSvrPath))
+                {
+                    rtnMongoSvr = _mongoConnSvrLst[strSvrPath];
+                    return rtnMongoSvr;
+                }
+            }
+            if (strPath.Length > 1)
+            {
+                String strInstKey = String.Empty;
+                strInstKey = strPath[(int)PathLv.ConnectionLV] + "/" + strPath[(int)PathLv.ServerLV];
                 if (_mongoInstanceLst.ContainsKey(strInstKey))
                 {
                     rtnMongoSvr = _mongoInstanceLst[strInstKey].Server;
-                    return rtnMongoSvr;
-                }
-                strInstKey = strInstKey.Split("/".ToCharArray())[0];
-                if (_mongoConnSvrLst.ContainsKey(strInstKey))
-                {
-                    rtnMongoSvr = _mongoConnSvrLst[strInstKey];
                     return rtnMongoSvr;
                 }
             }

@@ -47,7 +47,7 @@ namespace MagicMongoDBTool
                 cmdEnableCollectionSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_Action_CollectionSharding);
                 cmdEnableDBSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_Action_DBSharding);
             }
-            _prmSvr = SystemManager.GetCurrentService();
+            _prmSvr = SystemManager.GetCurrentServer();
             MongoDatabase mongoDB = _prmSvr.GetDatabase(MongoDBHelper.DATABASE_NAME_CONFIG);
             MongoCollection mongoCol = mongoDB.GetCollection("databases");
             foreach (var item in mongoCol.FindAllAs<BsonDocument>())

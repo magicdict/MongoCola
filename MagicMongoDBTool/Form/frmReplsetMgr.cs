@@ -23,7 +23,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdAddHost_Click(object sender, EventArgs e)
         {
-            CommandResult Result = MongoDBHelper.AddToReplsetServer(SystemManager.GetCurrentService(),
+            CommandResult Result = MongoDBHelper.AddToReplsetServer(SystemManager.GetCurrentServer(),
                           txtReplHost.Text.ToString() + ":" + NumReplPort.Value.ToString(), (int)NumPriority.Value, chkArbiterOnly.Checked);
             if (MongoDBHelper.IsShellOK(Result))
             {
@@ -43,7 +43,7 @@ namespace MagicMongoDBTool
         private void cmdRemoveHost_Click(object sender, EventArgs e)
         {
             //使用修改系统数据集和repleSetReconfig
-            MongoCollection replsetCol = SystemManager.GetCurrentService().
+            MongoCollection replsetCol = SystemManager.GetCurrentServer().
                                       GetDatabase(MongoDBHelper.DATABASE_NAME_LOCAL).GetCollection("system.replset");
             BsonDocument ReplsetDoc = replsetCol.FindOneAs<BsonDocument>();
             BsonArray memberlist = ReplsetDoc.GetElement("members").Value.AsBsonArray;
@@ -57,7 +57,7 @@ namespace MagicMongoDBTool
                 }
             }
             List<CommandResult> Resultlst = new List<CommandResult>();
-            CommandResult Result = MongoDBHelper.ReconfigReplsetServer(SystemManager.GetCurrentService(), ReplsetDoc);
+            CommandResult Result = MongoDBHelper.ReconfigReplsetServer(SystemManager.GetCurrentServer(), ReplsetDoc);
             ///由于这个命令会触发异常，所以没有Result可以获得
             _config.ReplsetList.Remove(strHost);
             lstHost.Items.Remove(lstHost.SelectedItem);
@@ -77,7 +77,7 @@ namespace MagicMongoDBTool
                 lblReplPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
             }
 
-            MongoServer server = SystemManager.GetCurrentService();
+            MongoServer server = SystemManager.GetCurrentServer();
             foreach (var item in server.Instances)
             {
                 lstHost.Items.Add(item.Address.ToString());

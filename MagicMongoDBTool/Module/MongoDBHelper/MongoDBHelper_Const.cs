@@ -25,15 +25,15 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 普通服务器Tag
         /// </summary>
-        public const String SERVICE_TAG = "MongoService";
+        public const String SERVER_TAG = "MongoServer";
         /// <summary>
         /// Replset Member 
         /// </summary>
-        public const String SERVICE_REPLSET_MEMBER_TAG = "MongoReplsetMemberService";
+        public const String SERVER_REPLSET_MEMBER_TAG = "MongoReplsetMemberServer";
         /// <summary>
         /// 该服务器只允许操作其下的某个数据库
         /// </summary>
-        public const String SINGLE_DB_SERVICE_TAG = "MongoSingleDBService";
+        public const String SINGLE_DB_SERVER_TAG = "MongoSingleDBServer";
         /// <summary>
         /// 数据库
         /// </summary>

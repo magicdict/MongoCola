@@ -62,8 +62,9 @@ namespace MagicMongoDBTool
             //数据视图
             this.ViewToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
             this.ViewRefreshToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Refresh);
-            this.ConvertSqlToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_ConvertSql);
-            this.AggregationToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Aggregation);
+            this.collectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Collection);
+            this.statusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+
 
             //Operation
             this.OperationToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation);
@@ -99,7 +100,8 @@ namespace MagicMongoDBTool
             this.CollectionStatusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
             this.InitGFSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_InitGFS);
             this.ProfillingLevelToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
-
+            this.ConvertSqlToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_ConvertSql);
+            this.AggregationToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Aggregation);
 
             this.DumpAndRestoreToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore);
             this.RestoreMongoToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Restore);
@@ -127,8 +129,6 @@ namespace MagicMongoDBTool
 
             //其他控件
             this.statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
-            this.statusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
-            this.collectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
             this.tabSvrStatus.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
         }
 
@@ -299,6 +299,9 @@ namespace MagicMongoDBTool
                         //普通连接
                         statusStripMain.Items[0].Text = "Selected JavaScript:" + SystemManager.SelectTagData;
                         this.DisconnectToolStripMenuItem.Enabled = true;
+                        this.ShutDownToolStripMenuItem.Enabled = true;
+                        this.ShutDownToolStripButton.Enabled = true;
+
                         if (strNodeType == MongoDBHelper.CONNECTION_TAG)
                         {
                             this.InitReplsetToolStripMenuItem.Enabled = true;
@@ -322,10 +325,24 @@ namespace MagicMongoDBTool
                                 ToolStripMenuItem t2 = this.InitReplsetToolStripMenuItem.Clone();
                                 t2.Click += new EventHandler(InitReplsetToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t2);
+
+                                ToolStripMenuItem t3 = this.ReplicaSetToolStripMenuItem.Clone();
+                                t3.Click += new EventHandler(ReplicaSetToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t3);
+
+                                ToolStripMenuItem t4 = this.ShardingConfigToolStripMenuItem.Clone();
+                                t4.Click += new EventHandler(ShardingConfigToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t4);
+
+                                ToolStripMenuItem t5 = this.ShutDownToolStripMenuItem.Clone();
+                                t5.Click += new EventHandler(ShutDownToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t5);
+
                             }
                             else
                             {
                                 this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.InitReplsetToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
@@ -358,7 +375,7 @@ namespace MagicMongoDBTool
                         }
                         statusStripMain.Items[0].Text = "Selected Server[Exception]:" + SystemManager.SelectTagData;
                         break;
-                    case MongoDBHelper.SERVICE_TAG:
+                    case MongoDBHelper.SERVER_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         if (SystemManager.IsUseDefaultLanguage())
                         {
@@ -368,7 +385,6 @@ namespace MagicMongoDBTool
                         {
                             statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Server) + ":" + SystemManager.SelectTagData;
                         }
-                        this.DisconnectToolStripMenuItem.Enabled = true;
                         //解禁 创建数据库,关闭服务器
                         if (!config.IsReadOnly)
                         {
@@ -378,16 +394,14 @@ namespace MagicMongoDBTool
                                 this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
                             }
                             this.AddUserToAdminToolStripMenuItem.Enabled = true;
-                            if (SystemManager.GetCurrentService().Instances.Length == 1)
+                            if (SystemManager.GetCurrentServer().Instances.Length == 1)
                             {
-                                if (!(SystemManager.GetCurrentService().Instance.IsPrimary))
+                                if (!(SystemManager.GetCurrentServer().Instance.IsPrimary))
                                 {
                                     this.slaveResyncToolStripMenuItem.Enabled = true;
                                 }
                             }
                         }
-                        this.ShutDownToolStripMenuItem.Enabled = true;
-                        this.ShutDownToolStripButton.Enabled = true;
                         this.SvrStatusToolStripMenuItem.Enabled = true;
                         this.ServePropertyToolStripMenuItem.Enabled = true;
                         this.InitReplsetToolStripMenuItem.Enabled = true;
@@ -438,10 +452,6 @@ namespace MagicMongoDBTool
                                 t6.Click += new EventHandler(slaveResyncToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t6);
 
-                                ToolStripMenuItem t8 = this.ShutDownToolStripMenuItem.Clone();
-                                t8.Click += new EventHandler(ShutDownToolStripMenuItem_Click);
-                                this.contextMenuStripMain.Items.Add(t8);
-
                                 ToolStripMenuItem t9 = this.ServePropertyToolStripMenuItem.Clone();
                                 t9.Click += new EventHandler(ServePropertyToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t9);
@@ -460,7 +470,6 @@ namespace MagicMongoDBTool
                                 this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.slaveResyncToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.ShutDownToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ServePropertyToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.SvrStatusToolStripMenuItem.Clone());
                             }
@@ -468,10 +477,9 @@ namespace MagicMongoDBTool
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
                         break;
-                    case MongoDBHelper.SINGLE_DB_SERVICE_TAG:
+                    case MongoDBHelper.SINGLE_DB_SERVER_TAG:
                         //单数据库模式,禁止所有服务器操作
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        this.DisconnectToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -1196,19 +1204,99 @@ namespace MagicMongoDBTool
         {
             if (SystemManager.SelectTagType != MongoDBHelper.CONNECTION_EXCEPTION_TAG)
             {
-                SystemManager.GetCurrentService().Disconnect();
+                SystemManager.GetCurrentServer().Disconnect();
             }
             MongoDBHelper._mongoConnSvrLst.Remove(config.ConnectionName);
             trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
             RefreshToolStripMenuItem_Click(sender, e);
-            if (!SystemManager.IsUseDefaultLanguage())
+        }
+        /// <summary>
+        /// Shut Down Server
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShutDownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MyMessageBox.ShowConfirm("ShutDown Server", "Are you sure to shutDown the Server?"))
             {
-                this.statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
+                MongoServer mongoSvr = SystemManager.GetCurrentServer();
+                try
+                {
+                    //the server will be  shutdown with exception
+                    MongoDBHelper._mongoConnSvrLst.Remove(SystemManager.SelectTagData);
+                    mongoSvr.Shutdown();
+                }
+                catch (System.IO.IOException)
+                {
+                    //if IOException,ignore it
+                }
+                catch (Exception ex)
+                {
+                    SystemManager.ExceptionDeal(ex);
+                }
+                trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
+                RefreshToolStripMenuItem_Click(sender, e);
             }
-            else
+        }
+        /// <summary>
+        /// 初始化ReplSet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InitReplsetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String ReplSetName = MyMessageBox.ShowInput("ReplSetName", "Please fill ReplSetName:");
+            if (ReplSetName != String.Empty)
             {
-                this.statusStripMain.Items[0].Text = "Ready";
+                CommandResult Result = MongoDBHelper.InitReplicaSet(ReplSetName, SystemManager.GetCurrentServerConfig().ConnectionName);
+                if (Result.Ok)
+                {
+                    //修改配置
+                    ConfigHelper.MongoConnectionConfig newConfig = SystemManager.GetCurrentServerConfig();
+                    newConfig.ReplSetName = ReplSetName;
+                    newConfig.ReplsetList = new List<string>();
+                    newConfig.ReplsetList.Add(newConfig.Host +
+                                             (newConfig.Port != 0 ? ":" + newConfig.Port.ToString() : String.Empty));
+                    SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
+                    SystemManager.ConfigHelperInstance.SaveToConfigFile();
+                    MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
+                    MongoDBHelper._mongoConnSvrLst.Add(config.ConnectionName, MongoDBHelper.CreateMongoSetting(ref newConfig));
+                    this.ServerStatusCtl.SetEnable(false);
+                    MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
+                    this.ServerStatusCtl.SetEnable(true);
+                }
+                else
+                {
+                    MyMessageBox.ShowMessage("ReplSetName", "Failed", Result.ErrorMessage);
+                }
             }
+        }
+        /// <summary>
+        /// 副本管理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigHelper.MongoConnectionConfig newConfig = SystemManager.GetCurrentServerConfig();
+            SystemManager.OpenForm(new frmReplsetMgr(ref newConfig));
+            SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
+            SystemManager.ConfigHelperInstance.SaveToConfigFile();
+            MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
+            MongoDBHelper._mongoConnSvrLst.Add(config.ConnectionName, MongoDBHelper.CreateMongoSetting(ref newConfig));
+            this.ServerStatusCtl.SetEnable(false);
+            MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
+            this.ServerStatusCtl.SetEnable(true);
+
+        }
+        /// <summary>
+        /// 分片管理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ShardingConfigToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmShardingConfig());
         }
         /// <summary>
         /// Refresh
@@ -1224,11 +1312,11 @@ namespace MagicMongoDBTool
 
             if (!SystemManager.IsUseDefaultLanguage())
             {
-                this.collectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName); ;
+                this.statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
             }
             else
             {
-                this.collectionToolStripMenuItem.Text = "Collection";
+                this.statusStripMain.Items[0].Text = "Ready";
             }
             DisableAllOpr();
         }
@@ -1262,7 +1350,7 @@ namespace MagicMongoDBTool
 
         #endregion
 
-         #region"管理：服务器"
+        #region"管理：服务器"
         /// <summary>
         /// 建立数据库
         /// </summary>
@@ -1333,93 +1421,6 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmStatus());
         }
-        /// <summary>
-        /// Shut Down Server
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ShutDownToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (MyMessageBox.ShowConfirm("ShutDown Server", "Are you sure to shutDown the Server?"))
-            {
-                MongoServer mongoSvr = SystemManager.GetCurrentService();
-                try
-                {
-                    //the server will be  shutdown with exception
-                    MongoDBHelper._mongoConnSvrLst.Remove(SystemManager.SelectTagData);
-                    mongoSvr.Shutdown();
-                }
-                catch (System.IO.IOException)
-                {
-                    //if IOException,ignore it
-                }
-                catch (Exception ex)
-                {
-                    SystemManager.ExceptionDeal(ex);
-                }
-                trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
-            }
-        }
-        /// <summary>
-        /// 初始化ReplSet
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void InitReplsetToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String ReplSetName = MyMessageBox.ShowInput("ReplSetName", "Please fill ReplSetName:");
-            if (ReplSetName != String.Empty)
-            {
-                CommandResult Result = MongoDBHelper.InitReplicaSet(ReplSetName, SystemManager.GetCurrentServerConfig().ConnectionName);
-                if (Result.Ok)
-                {
-                    //修改配置
-                    ConfigHelper.MongoConnectionConfig newConfig = SystemManager.GetCurrentServerConfig();
-                    newConfig.ReplSetName = ReplSetName;
-                    newConfig.ReplsetList = new List<string>();
-                    newConfig.ReplsetList.Add(newConfig.Host +
-                                             (newConfig.Port != 0 ? ":" + newConfig.Port.ToString() : String.Empty));
-                    SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
-                    SystemManager.ConfigHelperInstance.SaveToConfigFile();
-                    MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
-                    MongoDBHelper._mongoConnSvrLst.Add(config.ConnectionName, MongoDBHelper.CreateMongoSetting(ref newConfig));
-                    this.ServerStatusCtl.SetEnable(false);
-                    MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
-                    this.ServerStatusCtl.SetEnable(true);
-                }
-                else {
-                    MyMessageBox.ShowMessage("ReplSetName", "Failed", Result.ErrorMessage);
-                }
-            }
-        }
-        /// <summary>
-        /// 副本管理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigHelper.MongoConnectionConfig newConfig = SystemManager.GetCurrentServerConfig();
-            SystemManager.OpenForm(new frmReplsetMgr(ref newConfig));
-            SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
-            SystemManager.ConfigHelperInstance.SaveToConfigFile();
-            MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
-            MongoDBHelper._mongoConnSvrLst.Add(config.ConnectionName, MongoDBHelper.CreateMongoSetting(ref newConfig));
-            this.ServerStatusCtl.SetEnable(false);
-            MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
-            this.ServerStatusCtl.SetEnable(true);
-
-        }
-        /// <summary>
-        /// 分片管理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ShardingConfigToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SystemManager.OpenForm(new frmShardingConfig());
-        }
-
         #endregion
 
         #region"管理：数据库"
@@ -1821,7 +1822,7 @@ namespace MagicMongoDBTool
             {
                 if (!MongoPathCheck()) { return; }
                 MongodbDosCommand.StruMongoRestore MongoRestore = new MongodbDosCommand.StruMongoRestore();
-                MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+                MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentServer().Instance;
                 MongoRestore.HostAddr = Mongosrv.Address.Host;
                 MongoRestore.Port = Mongosrv.Address.Port;
                 FolderBrowserDialog dumpFile = new FolderBrowserDialog();
@@ -1843,7 +1844,7 @@ namespace MagicMongoDBTool
         {
             if (!MongoPathCheck()) { return; }
             MongodbDosCommand.StruMongoDump MongoDump = new MongodbDosCommand.StruMongoDump();
-            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentServer().Instance;
             MongoDump.HostAddr = Mongosrv.Address.Host;
             MongoDump.Port = Mongosrv.Address.Port;
             MongoDump.DBName = SystemManager.GetCurrentDataBase().Name;
@@ -1864,7 +1865,7 @@ namespace MagicMongoDBTool
         {
             if (!MongoPathCheck()) { return; }
             MongodbDosCommand.StruMongoDump MongoDump = new MongodbDosCommand.StruMongoDump();
-            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentServer().Instance;
             MongoDump.HostAddr = Mongosrv.Address.Host;
             MongoDump.Port = Mongosrv.Address.Port;
             MongoDump.DBName = SystemManager.GetCurrentDataBase().Name;
@@ -1886,7 +1887,7 @@ namespace MagicMongoDBTool
         {
             if (!MongoPathCheck()) { return; }
             MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
-            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+            MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentServer().Instance;
             MongoImportExport.HostAddr = Mongosrv.Address.Host;
             MongoImportExport.Port = Mongosrv.Address.Port;
             MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
@@ -1920,7 +1921,7 @@ namespace MagicMongoDBTool
             {
                 if (!MongoPathCheck()) { return; }
                 MongodbDosCommand.StruImportExport MongoImportExport = new MongodbDosCommand.StruImportExport();
-                MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentService().Instance;
+                MongoDB.Driver.MongoServerInstance Mongosrv = SystemManager.GetCurrentServer().Instance;
                 MongoImportExport.HostAddr = Mongosrv.Address.Host;
                 MongoImportExport.Port = Mongosrv.Address.Port;
                 MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
@@ -2108,8 +2109,6 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start(strUrl);
         }
         #endregion
-
-
 
     }
 }

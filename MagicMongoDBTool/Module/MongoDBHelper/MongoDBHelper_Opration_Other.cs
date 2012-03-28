@@ -190,7 +190,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="isReadOnly">Is ReadOnly</param>
         public static void AddUserToSvr(String strUser, String password, Boolean isReadOnly)
         {
-            MongoServer mongoSvr = SystemManager.GetCurrentService();
+            MongoServer mongoSvr = SystemManager.GetCurrentServer();
             //必须使用MongoCredentials来添加用户不然的话，Password将使用明文登入到数据库中！
             //这样的话，在使用MongoCredentials登入的时候，会发生密码错误引发的认证失败
             MongoCredentials newUser = new MongoCredentials(strUser, password, true);
@@ -205,7 +205,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="strUser">UserName</param>
         public static void RemoveUserFromSvr(String strUser)
         {
-            MongoServer mongoSvr = SystemManager.GetCurrentService();
+            MongoServer mongoSvr = SystemManager.GetCurrentServer();
             if (mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).FindUser(strUser) != null)
             {
                 mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).RemoveUser(strUser);

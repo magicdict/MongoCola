@@ -21,11 +21,11 @@ namespace MagicMongoDBTool
             BsonDocument cr = new BsonDocument();
             switch (strType)
             {
-                case MongoDBHelper.SERVICE_TAG:
-                case MongoDBHelper.SINGLE_DB_SERVICE_TAG:
+                case MongoDBHelper.SERVER_TAG:
+                case MongoDBHelper.SINGLE_DB_SERVER_TAG:
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
-                        cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentService()).Response;
+                        cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
                     }
                     break;
                 case MongoDBHelper.DATABASE_TAG:
@@ -38,7 +38,7 @@ namespace MagicMongoDBTool
                 default:
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
-                        cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentService()).Response;
+                        cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
                     }
                     break;
             }

@@ -179,7 +179,7 @@ namespace MagicMongoDBTool.Module
                         rtn = ExecuteMongoDBCommand(Command, SystemManager.GetCurrentDataBase());
                         break;
                     case PathLv.ServerLV:
-                        rtn = ExecuteMongoSvrCommand(Command, SystemManager.GetCurrentService());
+                        rtn = ExecuteMongoSvrCommand(Command, SystemManager.GetCurrentServer());
                         break;
                     default:
                         break;

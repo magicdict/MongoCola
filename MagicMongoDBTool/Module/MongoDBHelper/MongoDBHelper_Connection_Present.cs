@@ -17,7 +17,7 @@ namespace MagicMongoDBTool.Module
         public static String GetCurrentSvrInfo()
         {
             String rtnSvrInfo = String.Empty;
-            MongoServer mongosvr = SystemManager.GetCurrentService();
+            MongoServer mongosvr = SystemManager.GetCurrentServer();
             rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter.ToString() + System.Environment.NewLine;
             rtnSvrInfo += "IsPrimary：" + mongosvr.Instance.IsPrimary.ToString() + System.Environment.NewLine;
             rtnSvrInfo += "IsSecondary：" + mongosvr.Instance.IsSecondary.ToString() + System.Environment.NewLine;
@@ -55,7 +55,7 @@ namespace MagicMongoDBTool.Module
                     ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, null, mongoConn));
                     if (mongoConn.ReplicaSetName != null)
                     {
-                        ConnectionNode.Tag = CONNECTION_REPLSET_TAG + ":" + config.ConnectionName + "/" + config.ConnectionName;
+                        ConnectionNode.Tag = CONNECTION_REPLSET_TAG + ":" + config.ConnectionName;
                         TreeNode ServerListNode = new TreeNode("Servers");
                         ServerListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
                         ServerListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
@@ -70,7 +70,7 @@ namespace MagicMongoDBTool.Module
                         BsonDocument ServerStatusDoc = ExecuteMongoSvrCommand(serverStatus_Command, mongoConn).Response;
                         if (ServerStatusDoc.GetElement("process").Value == "mongos")
                         {
-                            ConnectionNode.Tag = CONNECTION_CLUSTER_TAG + ":" + config.ConnectionName + "/" + config.ConnectionName;
+                            ConnectionNode.Tag = CONNECTION_CLUSTER_TAG + ":" + config.ConnectionName;
                             TreeNode ShardListNode = new TreeNode("Shards");
                             ShardListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
                             ShardListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
@@ -116,7 +116,7 @@ namespace MagicMongoDBTool.Module
                         }
                         else
                         {
-                            ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName + "/" + config.ConnectionName;
+                            ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName;
                         }
                     }
                     config.Health = true;
@@ -214,7 +214,7 @@ namespace MagicMongoDBTool.Module
                 mongoSingleDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                 mongoSingleDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                 SvrInstanceNode.Nodes.Add(mongoSingleDBNode);
-                SvrInstanceNode.Tag = SINGLE_DB_SERVICE_TAG + ":" + ConnSvrKey;
+                SvrInstanceNode.Tag = SINGLE_DB_SERVER_TAG + ":" + ConnSvrKey;
                 if (config.AuthMode)
                 {
                     config.IsReadOnly = mongoConn.GetDatabase(config.DataBaseName).FindUser(config.UserName).IsReadOnly;
@@ -264,13 +264,13 @@ namespace MagicMongoDBTool.Module
                 }
                 if (isServer)
                 {
-                    SvrInstanceNode.Tag = SERVICE_TAG + ":" + mongoConnKey + "/" + mongoConnKey;
+                    SvrInstanceNode.Tag = SERVER_TAG + ":" + mongoConnKey + "/" + mongoConnKey;
                 }
                 else
                 {
                     if (mongoConn.ReplicaSetName != null)
                     {
-                        SvrInstanceNode.Tag = SERVICE_REPLSET_MEMBER_TAG + ":" + mongoConnKey + "/" + mServerInstace.Address.ToString().Replace(":", "@");
+                        SvrInstanceNode.Tag = SERVER_REPLSET_MEMBER_TAG + ":" + mongoConnKey + "/" + mServerInstace.Address.ToString().Replace(":", "@");
                     }
                 }
             }

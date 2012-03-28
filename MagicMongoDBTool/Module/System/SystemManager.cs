@@ -139,7 +139,7 @@ namespace MagicMongoDBTool.Module
         /// 获得当前服务器
         /// </summary>
         /// <returns></returns>
-        public static MongoServer GetCurrentService()
+        public static MongoServer GetCurrentServer()
         {
             return MongoDBHelper.GetMongoServerBySvrPath(SelectObjectTag);
         }
