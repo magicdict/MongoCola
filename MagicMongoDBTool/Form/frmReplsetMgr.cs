@@ -25,22 +25,14 @@ namespace MagicMongoDBTool
         {
             CommandResult Result = MongoDBHelper.AddToReplsetServer(SystemManager.GetCurrentService(),
                           txtReplHost.Text.ToString() + ":" + NumReplPort.Value.ToString(), (int)NumPriority.Value, chkArbiterOnly.Checked);
-            if (!Result.Response.ToBsonDocument().GetElement("retval").Value.IsBsonDocument)
+            if (MongoDBHelper.IsShellOK(Result))
             {
                 _config.ReplsetList.Add(txtReplHost.Text.ToString() + ":" + NumReplPort.Value.ToString());
                 MyMessageBox.ShowMessage("Add Memeber", "Result:OK");
             }
             else
             {
-                if (Result.Response.ToBsonDocument().GetElement("retval").Value.AsBsonDocument.GetElement("ok").Value.ToString() == "1")
-                {
-                    _config.ReplsetList.Add(txtReplHost.Text.ToString() + ":" + NumReplPort.Value.ToString());
-                    MyMessageBox.ShowMessage("Add Memeber", "Result:OK");
-                }
-                else
-                {
-                    MyMessageBox.ShowMessage("Add Memeber", "Result:Fail", Result.Response.ToString());
-                }
+                MyMessageBox.ShowMessage("Add Memeber", "Result:Fail", Result.Response.ToString());
             }
         }
         /// <summary>

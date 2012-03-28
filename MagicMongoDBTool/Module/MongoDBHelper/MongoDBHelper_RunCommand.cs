@@ -98,6 +98,23 @@ namespace MagicMongoDBTool.Module
             CommandDocument mongoCmd = new CommandDocument() { cmd };
             return ExecuteMongoSvrCommand(mongoCmd, mongoSvr);
         }
+        /// <summary>
+        /// Js Shell 的结果判定
+        /// </summary>
+        /// <param name="Result"></param>
+        /// <returns></returns>
+        public static Boolean IsShellOK(CommandResult Result)
+        {
+            if (!Result.Response.ToBsonDocument().GetElement("retval").Value.IsBsonDocument)
+            {
+                return true;
+            }
+            else
+            {
+                return Result.Response.ToBsonDocument().GetElement("retval").Value.AsBsonDocument.GetElement("ok").Value.ToString() == "1";
+            }
+        }
+
         #endregion
 
         //查看命令方法：http://localhost:29018/_commands

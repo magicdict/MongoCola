@@ -16,6 +16,10 @@ namespace MagicMongoDBTool
         /// </summary>
         public ConfigHelper.MongoConnectionConfig ModifyConn = new ConfigHelper.MongoConnectionConfig();
         /// <summary>
+        /// 
+        /// </summary>
+        public String OldConnectionName = String.Empty;
+        /// <summary>
         /// 初始化（新建）
         /// </summary>
         public frmAddConnection()
@@ -86,12 +90,13 @@ namespace MagicMongoDBTool
         public frmAddConnection(String ConnectionName)
         {
             InitializeComponent();
+            OldConnectionName = ConnectionName;
             //Modify Mode
             ModifyConn = SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName];
             OnLoad();
 
             txtConnectionName.Text = ModifyConn.ConnectionName;
-            txtConnectionName.Enabled = false;
+
             txtHost.Text = ModifyConn.Host;
             numPort.Text = ModifyConn.Port.ToString();
             txtUsername.Text = ModifyConn.UserName;
@@ -134,14 +139,34 @@ namespace MagicMongoDBTool
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             CreateConnection();
-            //保存配置
-            if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ModifyConn.ConnectionName))
+            String NewCollectionName = txtConnectionName.Text;
+            if (OldConnectionName != String.Empty)
             {
-                SystemManager.ConfigHelperInstance.ConnectionList[ModifyConn.ConnectionName] = ModifyConn;
+                //如果有旧名称，说明是修改模式
+                if (OldConnectionName != NewCollectionName)
+                {
+                    //修改了名称,检查一下新的名字是否存在
+                    if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(NewCollectionName))
+                    {
+                        //存在则警告
+                        MyMessageBox.ShowMessage("Connection", "Connection Name Already Exist!");
+                        return;
+                    }
+                    else
+                    {
+                        //不存在则删除旧的记录
+                        SystemManager.ConfigHelperInstance.ConnectionList.Remove(OldConnectionName);
+                    }
+                }
+            }
+            //保存配置
+            if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(NewCollectionName))
+            {
+                SystemManager.ConfigHelperInstance.ConnectionList[NewCollectionName] = ModifyConn;
             }
             else
             {
-                SystemManager.ConfigHelperInstance.ConnectionList.Add(ModifyConn.ConnectionName, ModifyConn);
+                SystemManager.ConfigHelperInstance.ConnectionList.Add(NewCollectionName, ModifyConn);
             }
             this.Close();
         }

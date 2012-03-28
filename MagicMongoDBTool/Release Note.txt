@@ -10,12 +10,16 @@ MongoCola is free and open source.
 ========================================================================
 Release History
 ========================================================================
-Ver 1.15 2012/03/28 [Last Version @IBM GDC]
+Ver 1.20 2012/03/28 [Last Version @IBM GDC]
 C# Driver:
-    upgrade to C# offical driver 1.41
+    upgrade to C# offical driver 1.4.1
+
+Mainfrom:
+    1.Replset,Cluster will show member server at treeview.
 
 Connection Config:
     1.Add some argument of connection,eg.connectionTimeout.
+	2.Connection name is editable.
 
 Replset and sharding Manger
     1.Redesign the way to manger the replset and sharding.

@@ -129,8 +129,8 @@
         <tr>
             <td />
             <td>
+               <font size="3" color="black">
                     <pre>
-                        <font size="3" color="black">
 ========================================================================
 MongoCola Release Note
 ========================================================================
@@ -143,12 +143,16 @@ MongoCola is free and open source.
 ========================================================================
 Release History
 ========================================================================
-Ver 1.15 2012/03/28 [Last Version @IBM GDC]
+Ver 1.20 2012/03/28 [Last Version @IBM GDC]
 C# Driver:
-    upgrade to C# offical driver 1.41
+    upgrade to C# offical driver 1.4.1
+
+Mainfrom:
+    1.Replset,Cluster will show member server at treeview.
 
 Connection Config:
     1.Add some argument of connection,eg.connectionTimeout.
+	2.Connection name is editable.
 
 Replset and sharding Manger
     1.Redesign the way to manger the replset and sharding.
@@ -156,6 +160,7 @@ Replset and sharding Manger
 Other
     1.If getStatus exception happend,stop the auto refresh to avoid endless exception.
     2.fixed the bug that the userform show confirmbox instead of messagebox.
+	
 
 ========================================================================
 Ver 1.13 2012/03/23
@@ -280,8 +285,8 @@ Ver 1.00 2011/12/22
 
 This is the first release of MongoCola.
 ========================================================================
-                    </font>
                 </pre>
+             </font>
             </td>
         </tr>
     </table>
@@ -394,41 +399,79 @@ This is the first release of MongoCola.
         <tr>
             <td />
             <td>
-                <font size="3">This application support to manage a master-slave server.
+                <font size="3">This application support to manage a Master-Slave server.
                     <br />
-                    Connect to a master server.<br />
+                    Start a master server.<br />
                     Master can be startup by Dos console like:
                     <br />
                     <code>cd C:\runmongo\bin<br />
                         mkdir C:\mongodb\master<br />
                         mongod --port 28018 --dbpath C:\mongodb\master <font color='red'>--master</font>
-                        --rest --journal </code>
+                    </code>
                     <br />
                     <br />
-                    <img src="images/ServerConnection_Master_Role.PNG" alt="" />
-                    <br />
-                    <br />
-                    please select the Master at the server role tabpage.<br />
-                    Connect to a slave server.<br />
-                    Master can be startup by Dos console like:
+                    Start a slave server.<br />
+                    Slave can be startup by Dos console like:
                     <br />
                     <code>cd C:\runmongo\bin<br />
                         mkdir C:\mongodb\slave<br />
                         mongod --port 28019 --dbpath C:\mongodb\slave <font color='red'>--slave --source localhost:28018
                         </font></code>
-                    <br />
-                    <br />
-                    <img src="images/ServerConnection_Slave_Basic.PNG" alt="" />
+   
                     <br />
                     <br />
                     <font color="red">You must select the SlaveOK checkbox if the server is a slave server.</font>
                     <br />
+                    <img src="images/ServerConnection_Option.PNG" alt="" />
                     <br />
-                    <img src="images/ServerConnection_Slave_Role.PNG" alt="" />
                     <br />
-                    <br />
-                    please select the Slave at the server role tabpage.<br />
                 </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Replset</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">This application support to manage a Replset server.<br />
+                If you have a replset consist of 2 server:
+                <code>
+                      cd C:\runmongo\bin<br />
+                      mkdir C:\mongodb\shard1<br />
+                      mongod --port 10001 --dbpath  C:\mongodb\shard1 <font color='red'>--replSet set1</font> --rest
+                </code>
+                <br />
+                <code>
+                      cd C:\runmongo\bin<br />
+                      mkdir C:\mongodb\shard2<br />
+                      mongod --port 10002 --dbpath  C:\mongodb\shard2 <font color='red'>--replSet set1</font> --rest
+                </code>
+                <br />
+                <br />
+                Connection name is need at basic tab.(Skip Host and port)
+                <br />
+                <br />
+                <img src="images/ServerConnection_Replse_Basic.PNG" alt="" />
+                <br />
+                <br />
+                Add Host list at replset tab.
+                <br />
+                <br />
+                <img src="images/ServerConnection_Replse_Replset.PNG" alt="" />
+                <br />
+                <br />
+                if every thing is ok,the main gui will look like this.(Replset init is needed).
+                <br />
+                <br />
+                <img src = "images/Main_Replset.PNG" alt ="" />
+                <br />
+                <br />
+                </font> 
             </td>
         </tr>
         <tr>
