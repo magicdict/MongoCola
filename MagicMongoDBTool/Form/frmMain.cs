@@ -335,6 +335,29 @@ namespace MagicMongoDBTool
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
                         break;
+                    case MongoDBHelper.CONNECTION_EXCEPTION_TAG:
+                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        this.DisconnectToolStripMenuItem.Enabled = true;
+                        this.RestoreMongoToolStripMenuItem.Enabled = false;
+                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                        {
+                            this.contextMenuStripMain = new ContextMenuStrip();
+                            if (SystemManager.MONO_MODE)
+                            {
+                                //悲催MONO不支持
+                                ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
+                                t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
+                                this.contextMenuStripMain.Items.Add(t1);
+                            }
+                            else
+                            {
+                                this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
+                            }
+                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
+                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+                        }
+                        statusStripMain.Items[0].Text = "Selected Server[Exception]:" + SystemManager.SelectTagData;
+                        break;
                     case MongoDBHelper.SERVICE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         if (SystemManager.IsUseDefaultLanguage())
@@ -471,29 +494,6 @@ namespace MagicMongoDBTool
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
                         statusStripMain.Items[0].Text = "Selected Server[Single Database]:" + SystemManager.SelectTagData;
-                        break;
-                    case MongoDBHelper.CONNECTION_EXCEPTION_TAG:
-                        SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        this.DisconnectToolStripMenuItem.Enabled = true;
-                        this.RestoreMongoToolStripMenuItem.Enabled = false;
-                        if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                        {
-                            this.contextMenuStripMain = new ContextMenuStrip();
-                            if (SystemManager.MONO_MODE)
-                            {
-                                //悲催MONO不支持
-                                ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
-                                t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
-                                this.contextMenuStripMain.Items.Add(t1);
-                            }
-                            else
-                            {
-                                this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
-                            }
-                            e.Node.ContextMenuStrip = this.contextMenuStripMain;
-                            contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
-                        }
-                        statusStripMain.Items[0].Text = "Selected Server[Exception]:" + SystemManager.SelectTagData;
                         break;
                     case MongoDBHelper.DATABASE_TAG:
                     case MongoDBHelper.SINGLE_DATABASE_TAG:
@@ -1194,7 +1194,10 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DisconnectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.GetCurrentService().Disconnect();
+            if (SystemManager.SelectTagType != MongoDBHelper.CONNECTION_EXCEPTION_TAG)
+            {
+                SystemManager.GetCurrentService().Disconnect();
+            }
             MongoDBHelper._mongoConnSvrLst.Remove(config.ConnectionName);
             trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
             RefreshToolStripMenuItem_Click(sender, e);

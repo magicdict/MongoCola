@@ -178,6 +178,10 @@ namespace MagicMongoDBTool.Module
         #endregion
 
         #region"用户操作"
+        //这里有个漏洞,对于数据库来说，对于local的验证和对于admin的验证是相同的。
+        //如果是加入用户到服务器中，是加入到local还是admin，需要考虑一下。
+
+
         /// <summary>
         /// Add A User to Admin database
         /// </summary>

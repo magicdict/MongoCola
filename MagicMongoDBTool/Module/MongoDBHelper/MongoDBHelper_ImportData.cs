@@ -277,9 +277,10 @@ namespace MagicMongoDBTool.Module
                         mongoCollection.Insert<BsonDocument>(insertDoc);
                     }
                 }
-                String strSvrPath = strSvrPathWithTag.Split(":".ToCharArray())[1];
-                String svrKey = strSvrPath.Split("/".ToCharArray())[0];
-                currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, svrKey));
+                String strSvrPath = SystemManager.GetTagData(strSvrPathWithTag);
+                String strKey = strSvrPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.ConnectionLV] + "/" + 
+                                strSvrPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.ServerLV];
+                currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, strKey));
                 rtnCode = true;
             }
             catch (Exception ex)

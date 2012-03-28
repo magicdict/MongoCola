@@ -16,6 +16,7 @@ C# Driver:
 
 Mainfrom:
     1.Replset,Cluster will show member server at treeview.
+	2.Fix the bug :  when disconnect a connection witch can't be connected a exception happened.
 
 Connection Config:
     1.Add some argument of connection,eg.connectionTimeout.
