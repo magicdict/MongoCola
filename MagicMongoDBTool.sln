@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicMongoDBTool", "MagicMongoDBTool\MagicMongoDBTool.csproj", "{08ED1E3B-366B-42EF-B795-0FF1BDAA0B7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{F51280EB-8CDF-49F7-88DF-915D96A55FCD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,16 +24,6 @@ Global
 		{08ED1E3B-366B-42EF-B795-0FF1BDAA0B7A}.Release|Mixed Platforms.Build.0 = Release|x86
 		{08ED1E3B-366B-42EF-B795-0FF1BDAA0B7A}.Release|x86.ActiveCfg = Release|x86
 		{08ED1E3B-366B-42EF-B795-0FF1BDAA0B7A}.Release|x86.Build.0 = Release|x86
-		{F51280EB-8CDF-49F7-88DF-915D96A55FCD}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{F51280EB-8CDF-49F7-88DF-915D96A55FCD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{F51280EB-8CDF-49F7-88DF-915D96A55FCD}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{F51280EB-8CDF-49F7-88DF-915D96A55FCD}.Debug|x86.ActiveCfg = Debug|x86
-		{F51280EB-8CDF-49F7-88DF-915D96A55FCD}.Debug|x86.Build.0 = Debug|x86
-		{F51280EB-8CDF-49F7-88DF-915D96A55FCD}.Release|Any CPU.ActiveCfg = Release|x86
-		{F51280EB-8CDF-49F7-88DF-915D96A55FCD}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{F51280EB-8CDF-49F7-88DF-915D96A55FCD}.Release|Mixed Platforms.Build.0 = Release|x86
-		{F51280EB-8CDF-49F7-88DF-915D96A55FCD}.Release|x86.ActiveCfg = Release|x86
-		{F51280EB-8CDF-49F7-88DF-915D96A55FCD}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
