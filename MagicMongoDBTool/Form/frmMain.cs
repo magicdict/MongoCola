@@ -1103,6 +1103,7 @@ namespace MagicMongoDBTool
                         ViewTabList.Remove(DataKey);
                         ViewInfoList.Remove(DataKey);
                         collectionToolStripMenuItem.DropDownItems.Remove(DataMenuItem);
+                        DataTab = null;
                     }
                 );
                 tabView.SelectTab(DataTab);
@@ -1456,6 +1457,38 @@ namespace MagicMongoDBTool
                 if (MongoDBHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelper.Oprcode.Drop, trvsrvlst.SelectedNode))
                 {
                     DisableAllOpr();
+                    //关闭所有的相关视图
+                    //foreach不能直接修改，需要一个备份
+                    Dictionary<String, TabPage> tempTable = new Dictionary<string, TabPage>();
+                    foreach (String item in ViewTabList.Keys) {
+                        tempTable.Add(item, ViewTabList[item]);
+                    }
+
+                    foreach (String KeyItem in tempTable.Keys)
+                    {
+                        //如果有相同的前缀
+                        if (KeyItem.StartsWith(strPath)) {
+                            ToolStripMenuItem DataMenuItem = null;
+                            foreach (ToolStripMenuItem Menuitem in collectionToolStripMenuItem.DropDownItems)
+                            {
+                                //菜单的寻找
+                                if (Menuitem.Tag == ViewTabList[KeyItem].Tag){
+                                    DataMenuItem = Menuitem;
+                                }
+                            }
+                            if (DataMenuItem != null)
+                            {
+                                //菜单的删除
+                                collectionToolStripMenuItem.DropDownItems.Remove(DataMenuItem);
+                            }
+                            //TabPage的删除
+                            tabView.Controls.Remove(ViewTabList[KeyItem]);
+                            ViewTabList.Remove(KeyItem);
+                            ViewInfoList.Remove(KeyItem);
+                            ViewTabList[KeyItem] = null;
+                        }
+                    }
+                    tempTable = null;
                 }
             }
         }
@@ -1606,6 +1639,7 @@ namespace MagicMongoDBTool
                         tabView.Controls.Remove(DataTab);
                         ViewTabList.Remove(strNodeData);
                         ViewInfoList.Remove(strNodeData);
+                        DataTab = null;
                     }
                     this.trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
                     DisableAllOpr();
