@@ -273,7 +273,9 @@
   <Collection_Status_AverageObjectSize>对象平均大小</Collection_Status_AverageObjectSize>
   <Collection_Status_PaddingFactor>填充因子</Collection_Status_PaddingFactor>
   <Collection_Status_MaxDocuments>最大文档数</Collection_Status_MaxDocuments>
+  <Collection_Status_MaxSize>最大尺寸</Collection_Status_MaxSize>
   <Collection_Status_IsCapped>容量限制</Collection_Status_IsCapped>
+  <Collection_Status_IsAutoIndexId>自动Id索引</Collection_Status_IsAutoIndexId>
 
   <Collection_Resume_AutoRefresh>启用自动刷新</Collection_Resume_AutoRefresh>
   <Collection_Stop_AutoRefresh>禁止自动刷新</Collection_Stop_AutoRefresh>
@@ -343,7 +345,8 @@
   <Common_Browse>浏览</Common_Browse>
   <Common_Clear>清除</Common_Clear>
   <Common_Test>测试</Common_Test>
-
+  <Common_Advance_Option>高级选项</Common_Advance_Option>
+  
   <!--Create New DataBase-->
   <Create_New_DataBase>新建数据库</Create_New_DataBase>
   <Create_New_DataBase_Input>请输入数据库名称:</Create_New_DataBase_Input>
@@ -351,6 +354,7 @@
   <Drop_DataBase_Confirm>确定是否要删除数据库?</Drop_DataBase_Confirm>
 
   <Create_New_Collection>新建数据集</Create_New_Collection>
+
 
   <Drop_Collection>删除数据集</Drop_Collection>
   <Drop_Collection_Confirm>确定是否要删除数据集?</Drop_Collection_Confirm>

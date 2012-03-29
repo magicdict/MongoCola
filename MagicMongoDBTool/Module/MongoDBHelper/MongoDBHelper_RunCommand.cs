@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.IO;
 
 namespace MagicMongoDBTool.Module
 {
@@ -35,15 +36,24 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static CommandResult AddToReplsetServer(MongoServer mongoSvr, String HostPort, int priority, Boolean IsArb = false)
         {
-            if (!IsArb)
+            CommandResult cmdRtn = new CommandResult();
+            try
             {
-                return ExecuteJsShell("rs.add({_id:" + mongoSvr.Instances.Length + 1 + ",host:'" + HostPort + "',priority:" + priority.ToString() + "});", mongoSvr);
+                if (!IsArb)
+                {
+                    cmdRtn = ExecuteJsShell("rs.add({_id:" + mongoSvr.Instances.Length + 1 + ",host:'" + HostPort + "',priority:" + priority.ToString() + "});", mongoSvr);
+                }
+                else
+                {
+                    //其实addArb最后也只是调用了add方法
+                    cmdRtn = ExecuteJsShell("rs.addArb('" + HostPort + "');", mongoSvr);
+                }
             }
-            else
+            catch (EndOfStreamException)
             {
-                //其实addArb最后也只是调用了add方法
-                return ExecuteJsShell("rs.addArb('" + HostPort + "');", mongoSvr);
+
             }
+            return cmdRtn;
         }
         /// <summary>
         /// 删除服务器
@@ -59,8 +69,9 @@ namespace MagicMongoDBTool.Module
             {
                 ExecuteJsShell("rs.remove('" + HostPort + "');", mongoSvr);
             }
-            catch (Exception)
+            catch (EndOfStreamException)
             {
+
             }
             return cmdRtn;
         }
@@ -78,8 +89,9 @@ namespace MagicMongoDBTool.Module
             {
                 return ExecuteJsShell("rs.reconfig(" + config.ToString() + ",{force : true})", PrimarySvr);
             }
-            catch (Exception)
+            catch (EndOfStreamException)
             {
+
             }
             return cmdRtn;
         }

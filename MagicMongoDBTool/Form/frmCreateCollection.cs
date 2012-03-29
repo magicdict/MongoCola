@@ -21,10 +21,13 @@ namespace MagicMongoDBTool
             {
                 this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection);
                 this.lblCollectionName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
+                this.chkAdvance.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Advance_Option);
                 this.cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
                 this.cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
                 this.chkIsCapped.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped);
                 this.lblMaxDocument.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments);
+                this.lblMaxSize.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_MaxSize);
+                this.chkIsAutoIndexId.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_IsAutoIndexId);
             }
 
             ///Difference between with long and decimal.....

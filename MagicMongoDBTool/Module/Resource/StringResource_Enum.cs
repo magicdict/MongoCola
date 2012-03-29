@@ -265,7 +265,9 @@ namespace MagicMongoDBTool.Module
             Collection_Status_AverageObjectSize,
             Collection_Status_PaddingFactor,
             Collection_Status_MaxDocuments,
+            Collection_Status_MaxSize,
             Collection_Status_IsCapped,
+            Collection_Status_IsAutoIndexId,
 
             Collection_Resume_AutoRefresh,
             Collection_Stop_AutoRefresh,
@@ -323,7 +325,7 @@ namespace MagicMongoDBTool.Module
             Common_Browse,
             Common_Clear,
             Common_Test,
-
+            Common_Advance_Option,
             Common_Collapse,
             Common_Expansion,
 

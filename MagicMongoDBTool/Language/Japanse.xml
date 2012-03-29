@@ -273,7 +273,9 @@
   <Collection_Status_AverageObjectSize>AverageObjectSize</Collection_Status_AverageObjectSize>
   <Collection_Status_PaddingFactor>PaddingFactor</Collection_Status_PaddingFactor>
   <Collection_Status_MaxDocuments>最大ドキュメント数</Collection_Status_MaxDocuments>
+  <Collection_Status_MaxSize>最大サイズ</Collection_Status_MaxSize>
   <Collection_Status_IsCapped>IsCapped</Collection_Status_IsCapped>
+  <Collection_Status_IsAutoIndexId>IsAutoIndexId</Collection_Status_IsAutoIndexId>
 
   <Collection_Resume_AutoRefresh>自動更新開始</Collection_Resume_AutoRefresh>
   <Collection_Stop_AutoRefresh>自動更新停止</Collection_Stop_AutoRefresh>
@@ -343,6 +345,7 @@
   <Common_Browse>参照</Common_Browse>
   <Common_Clear>クリア</Common_Clear>
   <Common_Test>テスト</Common_Test>
+  <Common_Advance_Option>高級設定</Common_Advance_Option>
 
   <!--Create New DataBase-->
   <Create_New_DataBase>データベースの新規</Create_New_DataBase>

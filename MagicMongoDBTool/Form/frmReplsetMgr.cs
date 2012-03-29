@@ -23,16 +23,23 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdAddHost_Click(object sender, EventArgs e)
         {
-            CommandResult Result = MongoDBHelper.AddToReplsetServer(SystemManager.GetCurrentServer(),
-                          txtReplHost.Text.ToString() + ":" + NumReplPort.Value.ToString(), (int)NumPriority.Value, chkArbiterOnly.Checked);
-            if (MongoDBHelper.IsShellOK(Result))
+            try
             {
-                _config.ReplsetList.Add(txtReplHost.Text.ToString() + ":" + NumReplPort.Value.ToString());
-                MyMessageBox.ShowMessage("Add Memeber", "Result:OK");
+                CommandResult Result = MongoDBHelper.AddToReplsetServer(SystemManager.GetCurrentServer(),
+                              txtReplHost.Text.ToString() + ":" + NumReplPort.Value.ToString(), (int)NumPriority.Value, chkArbiterOnly.Checked);
+                if (MongoDBHelper.IsShellOK(Result))
+                {
+                    _config.ReplsetList.Add(txtReplHost.Text.ToString() + ":" + NumReplPort.Value.ToString());
+                    MyMessageBox.ShowMessage("Add Memeber", "Result:OK");
+                }
+                else
+                {
+                    MyMessageBox.ShowMessage("Add Memeber", "Result:Fail", Result.Response.ToString());
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MyMessageBox.ShowMessage("Add Memeber", "Result:Fail", Result.Response.ToString());
+                SystemManager.ExceptionDeal(ex);
             }
         }
         /// <summary>
@@ -57,12 +64,18 @@ namespace MagicMongoDBTool
                 }
             }
             List<CommandResult> Resultlst = new List<CommandResult>();
-            CommandResult Result = MongoDBHelper.ReconfigReplsetServer(SystemManager.GetCurrentServer(), ReplsetDoc);
-            ///由于这个命令会触发异常，所以没有Result可以获得
-            _config.ReplsetList.Remove(strHost);
-            lstHost.Items.Remove(lstHost.SelectedItem);
-            MyMessageBox.ShowMessage("Remove Memeber", "Please wait one minute and check the server list");
-
+            try
+            {
+                CommandResult Result = MongoDBHelper.ReconfigReplsetServer(SystemManager.GetCurrentServer(), ReplsetDoc);
+                ///由于这个命令会触发异常，所以没有Result可以获得
+                _config.ReplsetList.Remove(strHost);
+                lstHost.Items.Remove(lstHost.SelectedItem);
+                MyMessageBox.ShowMessage("Remove Memeber", "Please wait one minute and check the server list");
+            }
+            catch (Exception ex)
+            {
+                SystemManager.ExceptionDeal(ex);
+            }
         }
 
         private void frmReplsetMgr_Load(object sender, EventArgs e)
