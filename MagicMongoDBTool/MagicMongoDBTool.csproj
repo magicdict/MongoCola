@@ -161,6 +161,12 @@
     <Compile Include="Form\frmReplsetMgr.Designer.cs">
       <DependentUpon>frmReplsetMgr.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Box\frmEasyMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Box\frmEasyMessage.Designer.cs">
+      <DependentUpon>frmEasyMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\ctlJsEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -354,6 +360,9 @@
     </Compile>
     <EmbeddedResource Include="Form\Box\frmConfirm.resx">
       <DependentUpon>frmConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Box\frmEasyMessage.resx">
+      <DependentUpon>frmEasyMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Box\frmInputBox.resx">
       <DependentUpon>frmInputBox.cs</DependentUpon>
@@ -574,6 +583,7 @@
     <Content Include="Resources\%2845,12%29.png" />
     <None Include="Resources\1332159906_document_small_upload.png" />
     <Content Include="Resources\books.ico" />
+    <None Include="Resources\compress.png" />
     <Content Include="Resources\copy.ico" />
     <Content Include="Resources\cut.ico" />
     <Content Include="Resources\database_key.png" />

@@ -22,7 +22,7 @@ namespace TreeViewColumnsProject
         {
             get
             {
-                return this.treeView1;
+                return this.DatatreeView;
             }
         }
 
@@ -37,27 +37,27 @@ namespace TreeViewColumnsProject
 
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            this.treeView1.Focus();
+            this.DatatreeView.Focus();
         }
 
         private void treeView1_Click(object sender, EventArgs e)
         {
-            Point p = this.treeView1.PointToClient(Control.MousePosition);
-            TreeNode tn = this.treeView1.GetNodeAt(p);
+            Point p = this.DatatreeView.PointToClient(Control.MousePosition);
+            TreeNode tn = this.DatatreeView.GetNodeAt(p);
             if (tn != null)
-                this.treeView1.SelectedNode = tn;
+                this.DatatreeView.SelectedNode = tn;
         }
 
         private void listView1_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
-            this.treeView1.Focus();
-            this.treeView1.Invalidate();
+            this.DatatreeView.Focus();
+            this.DatatreeView.Invalidate();
         }
 
         private void listView1_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
-            this.treeView1.Focus();
-            this.treeView1.Invalidate();
+            this.DatatreeView.Focus();
+            this.DatatreeView.Invalidate();
         }
 
         private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e)
@@ -84,7 +84,7 @@ namespace TreeViewColumnsProject
             {
                 e.Graphics.FillRectangle(Brushes.White, rect);
             }
-            int IndentWidth = treeView1.Indent * e.Node.Level + 25;
+            int IndentWidth = DatatreeView.Indent * e.Node.Level + 25;
             e.Graphics.DrawRectangle(SystemPens.Control, rect);
             Rectangle StringRect = new Rectangle(e.Bounds.X + IndentWidth, e.Bounds.Y, colName.Width - IndentWidth, e.Bounds.Height);
             e.Graphics.DrawString(e.Node.Text, this.Font, new SolidBrush(Color.Black), StringRect);

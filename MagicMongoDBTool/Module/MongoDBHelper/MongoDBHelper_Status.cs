@@ -40,7 +40,7 @@ namespace MagicMongoDBTool.Module
             }
             FillDataToTreeView("Server Status", trvSvrStatus, SrvDocList);
             //打开第一层
-            foreach (TreeNode item in trvSvrStatus.treeView1.Nodes)
+            foreach (TreeNode item in trvSvrStatus.DatatreeView.Nodes)
             {
                 item.Expand();
             }

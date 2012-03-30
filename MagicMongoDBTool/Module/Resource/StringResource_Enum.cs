@@ -304,6 +304,7 @@ namespace MagicMongoDBTool.Module
             //Common
             Common_Username,
             Common_Password,
+            Common_ChangePassword,
             Common_ReadOnly,
             Common_OK,
             Common_ConfirmPassword,

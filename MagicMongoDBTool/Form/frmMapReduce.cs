@@ -58,7 +58,7 @@ namespace MagicMongoDBTool
             List<BsonDocument> result = new List<BsonDocument>();
             result.Add(rtn.Response);
             MongoDBHelper.FillDataToTreeView("MapReduce Result", trvResult, result);
-            trvResult.treeView1.ExpandAll();
+            trvResult.DatatreeView.ExpandAll();
         }
         /// <summary>
         /// 保存MapJs

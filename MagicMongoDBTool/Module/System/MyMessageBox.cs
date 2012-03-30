@@ -14,11 +14,16 @@ namespace MagicMongoDBTool
             _frmConfirm.SetText(mString.GetText(StringResource.TextType.Common_Yes), mString.GetText(StringResource.TextType.Common_No));
             _frmMessage.SetText(mString.GetText(StringResource.TextType.Common_Detail), mString.GetText(StringResource.TextType.Common_OK));
             _frmInputBox.SetText(mString.GetText(StringResource.TextType.Common_Cancel), mString.GetText(StringResource.TextType.Common_OK));
+            _frmEasyMessage.SetText(mString.GetText(StringResource.TextType.Common_OK));
         }
         /// <summary>
         /// 消息窗体
         /// </summary>
         private static frmMesssage _frmMessage = new frmMesssage();
+        /// <summary>
+        /// 消息窗体
+        /// </summary>
+        private static frmEasyMessage _frmEasyMessage = new frmEasyMessage();
         /// <summary>
         /// 确认窗体
         /// </summary>
@@ -94,6 +99,20 @@ namespace MagicMongoDBTool
             if (_frmMessage.Visible == false)
             {
                 _frmMessage.ShowDialog();
+            }
+        }
+        /// <summary>
+        /// 消息表示
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="Details"></param>
+        public static void ShowEasyMessage(String Title, String Message)
+        {
+            _frmEasyMessage.Text = Title;
+            _frmEasyMessage.SetMessage(Message);
+            if (_frmMessage.Visible == false)
+            {
+                _frmEasyMessage.ShowDialog();
             }
         }
     }

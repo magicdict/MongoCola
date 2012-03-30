@@ -57,7 +57,7 @@ namespace MagicMongoDBTool.UserController
             this.DownloadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChangePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
             this.OpenFileStripButton = new System.Windows.Forms.ToolStripButton();
@@ -200,10 +200,10 @@ namespace MagicMongoDBTool.UserController
             this.DownloadFileToolStripMenuItem,
             this.DeleteFileToolStripMenuItem,
             this.AddUserToolStripMenuItem,
-            this.changePasswordToolStripMenuItem,
+            this.ChangePasswordToolStripMenuItem,
             this.RemoveUserToolStripMenuItem});
             this.contextMenuStripMain.Name = "contextMenuStripMain";
-            this.contextMenuStripMain.Size = new System.Drawing.Size(176, 390);
+            this.contextMenuStripMain.Size = new System.Drawing.Size(176, 412);
             // 
             // NewDocumentToolStripMenuItem
             // 
@@ -326,10 +326,10 @@ namespace MagicMongoDBTool.UserController
             // 
             // changePasswordToolStripMenuItem
             // 
-            this.changePasswordToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.UserPassword;
-            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.ChangePasswordToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.UserPassword;
+            this.ChangePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.ChangePasswordToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.ChangePasswordToolStripMenuItem.Text = "Change Password";
             // 
             // RemoveUserToolStripMenuItem
             // 
@@ -744,7 +744,7 @@ namespace MagicMongoDBTool.UserController
         private ToolStripMenuItem DeleteFileToolStripMenuItem;
 
         private ToolStripMenuItem RemoveUserToolStripMenuItem;
-        private ToolStripMenuItem changePasswordToolStripMenuItem;
+        private ToolStripMenuItem ChangePasswordToolStripMenuItem;
         private ToolStripButton DeleteFileStripButton;
         private ToolStripButton AddUserStripButton;
         private ToolStripButton ChangePasswordStripButton;

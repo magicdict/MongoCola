@@ -319,7 +319,7 @@
   <Common_Username>用户名</Common_Username>
   <Common_Password>密码</Common_Password>
   <Common_ConfirmPassword>密码确认</Common_ConfirmPassword>
-
+  <Common_ChangePassword>密码变更</Common_ChangePassword>
   <Common_ReadOnly>只读</Common_ReadOnly>
   <Common_OK>确定</Common_OK>
   <Common_Close>关闭</Common_Close>

@@ -215,7 +215,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="dataList"></param>
         public static void FillDataToTreeView(String collectionName, TreeViewColumns trvData, List<BsonDocument> dataList, int mSkip = 0)
         {
-            trvData.treeView1.Nodes.Clear();
+            trvData.DatatreeView.Nodes.Clear();
             int SkipCnt = mSkip;
             int Count = 1;
             foreach (BsonDocument item in dataList)
@@ -242,7 +242,7 @@ namespace MagicMongoDBTool.Module
                         break;
                 }
                 AddBsonDocToTreeNode(dataNode, item);
-                trvData.treeView1.Nodes.Add(dataNode);
+                trvData.DatatreeView.Nodes.Add(dataNode);
                 Count++;
             }
         }

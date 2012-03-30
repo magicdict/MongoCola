@@ -58,6 +58,7 @@ namespace MagicMongoDBTool
             this.ShardingConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InitReplsetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DisconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +123,6 @@ namespace MagicMongoDBTool
             this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.ctlShellCommandEditor = new MagicMongoDBTool.ctlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -354,6 +354,14 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(155, 6);
             // 
+            // ShutDownToolStripMenuItem
+            // 
+            this.ShutDownToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.ShutDown;
+            this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
+            this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.ShutDownToolStripMenuItem.Text = "ShutDown Server";
+            this.ShutDownToolStripMenuItem.Click += new System.EventHandler(this.ShutDownToolStripMenuItem_Click);
+            // 
             // DisconnectToolStripMenuItem
             // 
             this.DisconnectToolStripMenuItem.Name = "DisconnectToolStripMenuItem";
@@ -580,6 +588,7 @@ namespace MagicMongoDBTool
             // 
             // CompactToolStripMenuItem
             // 
+            this.CompactToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.compress;
             this.CompactToolStripMenuItem.Name = "CompactToolStripMenuItem";
             this.CompactToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.CompactToolStripMenuItem.Text = "Compact";
@@ -868,14 +877,6 @@ namespace MagicMongoDBTool
             this.splitter1.Size = new System.Drawing.Size(3, 631);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
-            // 
-            // ShutDownToolStripMenuItem
-            // 
-            this.ShutDownToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.ShutDown;
-            this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
-            this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.ShutDownToolStripMenuItem.Text = "ShutDown Server";
-            this.ShutDownToolStripMenuItem.Click += new System.EventHandler(this.ShutDownToolStripMenuItem_Click);
             // 
             // frmMain
             // 

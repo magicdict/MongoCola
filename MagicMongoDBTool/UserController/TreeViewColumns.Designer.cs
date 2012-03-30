@@ -32,7 +32,7 @@ namespace TreeViewColumnsProject
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.DatatreeView = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
             // listView1
@@ -74,23 +74,23 @@ namespace TreeViewColumnsProject
             // 
             // treeView1
             // 
-            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
-            this.treeView1.FullRowSelect = true;
-            this.treeView1.HideSelection = false;
-            this.treeView1.Location = new System.Drawing.Point(0, 20);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(438, 164);
-            this.treeView1.TabIndex = 2;
-            this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
-            this.treeView1.Click += new System.EventHandler(this.treeView1_Click);
+            this.DatatreeView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DatatreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DatatreeView.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawAll;
+            this.DatatreeView.FullRowSelect = true;
+            this.DatatreeView.HideSelection = false;
+            this.DatatreeView.Location = new System.Drawing.Point(0, 20);
+            this.DatatreeView.Name = "treeView1";
+            this.DatatreeView.Size = new System.Drawing.Size(438, 164);
+            this.DatatreeView.TabIndex = 2;
+            this.DatatreeView.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
+            this.DatatreeView.Click += new System.EventHandler(this.treeView1_Click);
             // 
             // TreeViewColumns
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.DatatreeView);
             this.Controls.Add(this.listView1);
             this.Name = "TreeViewColumns";
             this.Size = new System.Drawing.Size(438, 184);
@@ -105,6 +105,6 @@ namespace TreeViewColumnsProject
 		private System.Windows.Forms.ColumnHeader colName;
 		private System.Windows.Forms.ColumnHeader colValue;
 		private System.Windows.Forms.ColumnHeader colType;
-		public System.Windows.Forms.TreeView treeView1;
+		public System.Windows.Forms.TreeView DatatreeView;
 	}
 }

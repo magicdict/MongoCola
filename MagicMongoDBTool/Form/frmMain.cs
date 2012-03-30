@@ -2011,7 +2011,7 @@ namespace MagicMongoDBTool
 
             if (Query.QueryConditionList.Count == 0 || !IsUseFilter)
             {
-                MyMessageBox.ShowMessage("Count", "Count:" + SystemManager.GetCurrentCollection().Count().ToString());
+                MyMessageBox.ShowEasyMessage("Count", "Count Result : " + SystemManager.GetCurrentCollection().Count().ToString());
             }
             else
             {

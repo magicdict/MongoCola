@@ -319,6 +319,7 @@
   <Common_Username>ユーザー名</Common_Username>
   <Common_Password>パスワード</Common_Password>
   <Common_ConfirmPassword>パスワード確認</Common_ConfirmPassword>
+  <Common_ChangePassword>パスワード変更</Common_ChangePassword>
 
   <Common_ReadOnly>読取り専用 </Common_ReadOnly>
   <Common_OK>OK</Common_OK>
