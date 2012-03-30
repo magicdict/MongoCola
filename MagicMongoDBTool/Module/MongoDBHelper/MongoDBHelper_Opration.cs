@@ -305,7 +305,7 @@ namespace MagicMongoDBTool.Module
         /// 获得Shard情报
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<String, String> GetShardInfo(MongoServer server)
+        public static Dictionary<String, String> GetShardInfo(MongoServer server,String Key)
         {
             Dictionary<String, String> ShardInfo = new Dictionary<String, String>();
             if (server.DatabaseExists(DATABASE_NAME_CONFIG))
@@ -315,7 +315,7 @@ namespace MagicMongoDBTool.Module
                 {
                     foreach (BsonDocument item in configdb.GetCollection("shards").FindAll().ToList<BsonDocument>())
                     {
-                        ShardInfo.Add(item.GetElement(KEY_ID).Value.ToString(), item.GetElement("host").Value.ToString());
+                        ShardInfo.Add(item.GetElement(KEY_ID).Value.ToString(), item.GetElement(Key).Value.ToString());
                     }
                 }
             }

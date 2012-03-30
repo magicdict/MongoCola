@@ -74,7 +74,7 @@ namespace MagicMongoDBTool.Module
                             TreeNode ShardListNode = new TreeNode("Shards");
                             ShardListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
                             ShardListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
-                            foreach (var lst in GetShardInfo(mongoConn))
+                            foreach (var lst in GetShardInfo(mongoConn, "host"))
                             {
                                 TreeNode ShardNode = new TreeNode();
                                 ShardNode.Text = lst.Key;

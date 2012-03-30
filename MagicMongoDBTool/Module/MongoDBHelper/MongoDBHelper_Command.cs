@@ -55,7 +55,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="lstAddress"></param>
         /// <remarks>注意：有个命令可能只能用在mongos上面</remarks>
         /// <returns></returns>
-        public static CommandResult AddSharding(MongoServer routeSvr, String replicaSetName, List<String> lstAddress)
+        public static CommandResult AddSharding(MongoServer routeSvr, String replicaSetName, List<String> lstAddress,String Name,Decimal MaxSize)
         {
             // replset/host:port,host:port
             String cmdPara = replicaSetName == String.Empty ? String.Empty : (replicaSetName + "/");
@@ -66,6 +66,26 @@ namespace MagicMongoDBTool.Module
             cmdPara = cmdPara.TrimEnd(",".ToCharArray());
             CommandDocument mongoCmd = new CommandDocument();
             mongoCmd.Add("addshard", cmdPara);
+            if (MaxSize != 0)
+            {
+                mongoCmd.Add("maxSize", (BsonValue)MaxSize);
+            }
+            if (Name != String.Empty)
+            {
+                mongoCmd.Add("name", Name);
+            }
+
+            return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="routeSvr"></param>
+        /// <param name="ShardName"></param>
+        /// <returns></returns>
+        public static CommandResult RemoveSharding(MongoServer routeSvr, String ShardName) {
+            CommandDocument mongoCmd = new CommandDocument();
+            mongoCmd.Add("removeshard", ShardName);
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
         /// <summary>

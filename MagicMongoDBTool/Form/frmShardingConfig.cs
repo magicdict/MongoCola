@@ -39,7 +39,7 @@ namespace MagicMongoDBTool
                 tabAddSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_AddSharding);
                 lblMainReplsetName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_ReplsetName);
                 cmdAddSharding.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Add);
-
+                chkAdvance.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Advance_Option);
                 tabShardingConfig.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_EnableSharding);
                 lblDBName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_DBName);
                 lblCollection.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ShardingConfig_CollectionName);
@@ -57,6 +57,19 @@ namespace MagicMongoDBTool
                     cmbDataBase.Items.Add(item.GetValue(MongoDBHelper.KEY_ID));
                 };
             }
+            foreach (var lst in MongoDBHelper.GetShardInfo(_prmSvr, "_id"))
+            {
+                lstSharding.Items.Add(lst.Value);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkAdvance_CheckedChanged(object sender, EventArgs e)
+        {
+            grpAdvanced.Enabled = chkAdvance.Checked;
         }
         /// <summary>
         /// 添加HostList
@@ -100,9 +113,22 @@ namespace MagicMongoDBTool
                 lstAddress.Add(item.Trim());
             }
             List<CommandResult> Resultlst = new List<CommandResult>();
-            CommandResult Result = MongoDBHelper.AddSharding(_prmSvr, this.txtReplsetName.Text, lstAddress);
+            CommandResult Result;
+            if (chkAdvance.Checked)
+            {
+                Result = MongoDBHelper.AddSharding(_prmSvr, this.txtReplsetName.Text, lstAddress, txtName.Text, NumMaxSize.Value);
+            }
+            else
+            {
+                Result = MongoDBHelper.AddSharding(_prmSvr, this.txtReplsetName.Text, lstAddress, String.Empty, 0);
+            }
             Resultlst.Add(Result);
             MyMessageBox.ShowMessage("Add Sharding", "Result:" + (Result.Ok ? "OK" : "Fail"), MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
+            lstSharding.Items.Clear();
+            foreach (var lst in MongoDBHelper.GetShardInfo(_prmSvr, "_id"))
+            {
+                lstSharding.Items.Add(lst.Value);
+            }
         }
         /// <summary>
         /// 数据库切换
@@ -175,6 +201,24 @@ namespace MagicMongoDBTool
         private void cmdClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cmdRemoveSharding_Click(object sender, EventArgs e)
+        {
+            foreach (String item in lstSharding.SelectedItems)
+            {
+                List<CommandResult> Resultlst = new List<CommandResult>();
+                Resultlst.Add(MongoDBHelper.RemoveSharding(_prmSvr, item));
+                MyMessageBox.ShowMessage("Remove Sharding", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
+
+            }
+
+            lstSharding.Items.Clear();
+            foreach (var lst in MongoDBHelper.GetShardInfo(_prmSvr, "_id"))
+            {
+                lstSharding.Items.Add(lst.Value);
+            }
+
         }
     }
 }

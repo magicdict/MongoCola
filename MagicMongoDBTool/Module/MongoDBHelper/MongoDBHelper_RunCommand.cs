@@ -53,6 +53,9 @@ namespace MagicMongoDBTool.Module
             {
 
             }
+            catch (Exception ex) {
+                throw ex;
+            }
             return cmdRtn;
         }
         /// <summary>
@@ -72,6 +75,10 @@ namespace MagicMongoDBTool.Module
             catch (EndOfStreamException)
             {
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return cmdRtn;
         }
