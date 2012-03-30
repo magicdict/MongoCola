@@ -67,11 +67,25 @@ namespace MagicMongoDBTool.Module
             MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
             gfs.Download(strLocalFileName, strRemoteFileName);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public struct UpLoadFileOption { 
+           public enumGFSFileName FileNameOpt;
+           public enumGFSAlready AlreadyOpt;
+           public Boolean IgnoreSubFolder;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         public enum enumGFSFileName
         {
             filename,
             path
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public enum enumGFSAlready
         {
             JustAddIt,
@@ -81,16 +95,24 @@ namespace MagicMongoDBTool.Module
             Stop
         }
         /// <summary>
+        /// 
+        /// </summary>
+        public enum UploadResult { 
+            Complete,
+            Skip,
+            Exception
+        }
+        /// <summary>
         /// 上传文件
         /// </summary>
         /// <remarks>Mongo允许同名文件，因为id才是主键</remarks>
         /// <param name="strFileName"></param>
-        public static bool UpLoadFile(String strFileName, enumGFSFileName FileName, enumGFSAlready Option)
+        public static UploadResult UpLoadFile(String strFileName, UpLoadFileOption Option)
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
             MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
             String RemoteName = String.Empty;
-            if (FileName == enumGFSFileName.filename)
+            if (Option.FileNameOpt == enumGFSFileName.filename)
             {
                 RemoteName = new FileInfo(strFileName).Name;
             }
@@ -98,38 +120,46 @@ namespace MagicMongoDBTool.Module
             {
                 RemoteName = strFileName;
             }
-            if (!gfs.Exists(RemoteName))
+            try
             {
-                gfs.Upload(strFileName, RemoteName);
-                return true;
-            }
-            else
-            {
-                switch (Option)
+                if (!gfs.Exists(RemoteName))
                 {
-                    case enumGFSAlready.JustAddIt:
-                        gfs.Upload(strFileName, RemoteName);
-                        return true;
-                    case enumGFSAlready.RenameIt:
-                        String ExtendName = new FileInfo(strFileName).Extension;
-                        String MainName = RemoteName.Substring(0, RemoteName.Length - ExtendName.Length);
-                        int i = 1;
-                        while (gfs.Exists(MainName + i.ToString() + ExtendName))
-                        {
-                            i++;
-                        }
-                        gfs.Upload(strFileName, MainName + i.ToString() + ExtendName);
-                        return true;
-                    case enumGFSAlready.SkipIt:
-                        return false;
-                    case enumGFSAlready.OverwriteIt:
-                        gfs.Delete(RemoteName);
-                        gfs.Upload(strFileName, RemoteName);
-                        return true;
-                    case enumGFSAlready.Stop:
-                        return false;
+                    gfs.Upload(strFileName, RemoteName);
+                    return  UploadResult.Complete;
                 }
-                return true;
+                else
+                {
+                    switch (Option.AlreadyOpt)
+                    {
+                        case enumGFSAlready.JustAddIt:
+                            gfs.Upload(strFileName, RemoteName);
+                            return UploadResult.Complete;
+                        case enumGFSAlready.RenameIt:
+                            String ExtendName = new FileInfo(strFileName).Extension;
+                            String MainName = RemoteName.Substring(0, RemoteName.Length - ExtendName.Length);
+                            int i = 1;
+                            while (gfs.Exists(MainName + i.ToString() + ExtendName))
+                            {
+                                i++;
+                            }
+                            gfs.Upload(strFileName, MainName + i.ToString() + ExtendName);
+                            return UploadResult.Complete;
+                        case enumGFSAlready.SkipIt:
+                            return UploadResult.Skip;
+                        case enumGFSAlready.OverwriteIt:
+                            gfs.Delete(RemoteName);
+                            gfs.Upload(strFileName, RemoteName);
+                            return UploadResult.Complete;
+                        case enumGFSAlready.Stop:
+                            return UploadResult.Skip;
+                    }
+                    return UploadResult.Skip;
+                }
+            }
+            catch (Exception ex)
+            {
+                SystemManager.ExceptionDeal(ex);
+                return UploadResult.Exception;
             }
         }
         /// <summary>

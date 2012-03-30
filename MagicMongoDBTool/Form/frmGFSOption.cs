@@ -13,6 +13,7 @@ namespace MagicMongoDBTool
     {
         public MongoDBHelper.enumGFSFileName filename;
         public MongoDBHelper.enumGFSAlready option;
+        public Boolean ignoreSubFolder;
 
         public frmGFSOption()
         {
@@ -34,6 +35,7 @@ namespace MagicMongoDBTool
             if (this.radRenameIt.Checked) { option = MongoDBHelper.enumGFSAlready.RenameIt; }
             if (this.radSkipIt.Checked) { option = MongoDBHelper.enumGFSAlready.SkipIt; }
             if (this.radStopIt.Checked) { option = MongoDBHelper.enumGFSAlready.Stop; }
+            ignoreSubFolder = chkIgnore.Checked;
             this.Close();
         }
 

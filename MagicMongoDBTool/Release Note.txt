@@ -26,6 +26,8 @@ Connection Config:
 GFS View:
     1.Add Content-Type List (windows only)
     2.Collection fs.chunk is shown at collection list 
+	3.Now you can delete multi Files.
+	4.Upload Folder can select if subfolder is ignor or not.
 	 
 Replset and sharding Manger
     1.Redesign the way to manger the replset and sharding.

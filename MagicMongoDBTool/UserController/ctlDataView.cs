@@ -954,16 +954,15 @@ namespace MagicMongoDBTool.UserController
         private void UploadFileStripButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog upfile = new OpenFileDialog();
-            MongoDBHelper.enumGFSFileName filename;
-            MongoDBHelper.enumGFSAlready option;
+            MongoDBHelper.UpLoadFileOption opt = new MongoDBHelper.UpLoadFileOption();
             if (upfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 frmGFSOption frm = new frmGFSOption();
                 SystemManager.OpenForm(frm, false);
-                filename = frm.filename;
-                option = frm.option;
+                opt.FileNameOpt = frm.filename;
+                opt.AlreadyOpt = frm.option;
                 frm.Dispose();
-                MongoDBHelper.UpLoadFile(upfile.FileName, filename, option);
+                MongoDBHelper.UpLoadFile(upfile.FileName,opt);
                 RefreshGUI(null, null);
             }
         }
@@ -975,33 +974,64 @@ namespace MagicMongoDBTool.UserController
         private void UpLoadFolderStripButton_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog upfolder = new FolderBrowserDialog();
-            OpenFileDialog upfile = new OpenFileDialog();
-            MongoDBHelper.enumGFSFileName filename;
-            MongoDBHelper.enumGFSAlready option;
+            MongoDBHelper.UpLoadFileOption opt = new MongoDBHelper.UpLoadFileOption();
 
             if (upfolder.ShowDialog() == DialogResult.OK)
             {
                 frmGFSOption frm = new frmGFSOption();
                 SystemManager.OpenForm(frm, false);
-                filename = frm.filename;
-                option = frm.option;
+                opt.FileNameOpt = frm.filename;
+                opt.AlreadyOpt = frm.option;
+                opt.IgnoreSubFolder = frm.ignoreSubFolder;
                 frm.Dispose();
                 DirectoryInfo uploadDir = new DirectoryInfo(upfolder.SelectedPath);
                 int count = 0;
-                foreach (FileInfo item in uploadDir.GetFiles())
-                {
-                    if (!MongoDBHelper.UpLoadFile(item.FullName, filename, option))
-                    {
-                        if (option == MongoDBHelper.enumGFSAlready.Stop) { break; }
-                    }
-                    else
-                    {
-                        count++;
-                    };
-                }
+                UploadFolder(uploadDir, ref count, opt);
                 MyMessageBox.ShowMessage("Upload", "Upload Completed! Upload Files Count: " + count.ToString());
                 RefreshGUI(null, null);
             }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uploadDir"></param>
+        /// <param name="fileCount"></param>
+        /// <param name="opt"></param>
+        /// <returns>是否继续执行后续的所有操作</returns>
+        private Boolean UploadFolder(DirectoryInfo uploadDir, ref int fileCount, MongoDBHelper.UpLoadFileOption opt)
+        {
+
+            foreach (FileInfo file in uploadDir.GetFiles())
+            {
+                MongoDBHelper.UploadResult rtn = MongoDBHelper.UpLoadFile(file.FullName, opt);
+                switch (rtn)
+                {
+                    case MongoDBHelper.UploadResult.Complete:
+                        fileCount++;
+                        break;
+                    case MongoDBHelper.UploadResult.Skip:
+                        if (opt.AlreadyOpt == MongoDBHelper.enumGFSAlready.Stop)
+                        {
+                            ///这个操作返回为False，停止包括父亲过程在内的所有操作
+                            return false;
+                        }
+                        break;
+                    case MongoDBHelper.UploadResult.Exception:
+                        return MyMessageBox.ShowConfirm("Upload Exception", "Is Continue?");
+                     default:
+                        break;
+                }
+            }
+            if (!opt.IgnoreSubFolder)
+            {
+                foreach (DirectoryInfo dir in uploadDir.GetDirectories())
+                {
+                    ///递归文件夹操作，如果下层有任何停止的意愿，则立刻停止，并且使上层也立刻停止
+                    Boolean IsContinue = UploadFolder(dir, ref fileCount, opt);
+                    if (!IsContinue) { return false; }
+                }
+            }
+            return true;
         }
         /// <summary>
         /// DownLoad File
@@ -1040,16 +1070,9 @@ namespace MagicMongoDBTool.UserController
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
-                if (tabDataShower.SelectedTab == tabTableView)
+                foreach (ListViewItem item in lstData.SelectedItems)
                 {
-                    String strFileName = lstData.SelectedItems[0].Text;
-                    MongoDBHelper.DelFile(strFileName);
-                    lstData.ContextMenuStrip = null;
-                }
-                else
-                {
-                    MongoDBHelper.DelFile(trvData.treeView1.SelectedNode.Tag.ToString());
-                    trvData.treeView1.ContextMenuStrip = null;
+                    MongoDBHelper.DelFile(item.Text);
                 }
                 RefreshGUI(null, null);
             }

@@ -125,6 +125,8 @@ namespace MagicMongoDBTool.Module
             TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.Collection);
             TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.User);
             TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.GFS);
+
+            IconImagelist.Images.Add(MagicMongoDBTool.Properties.Resources.NewDocument);
         }
         /// <summary>
         /// 根据文件名获得图片数组下标
@@ -141,20 +143,19 @@ namespace MagicMongoDBTool.Module
             }
             else
             {
-                if (!SystemManager.MONO_MODE)
+                Icon mIcon = GetIconByFileType(GetIcon, isLarge);
+                if (mIcon != null)
                 {
-                    IconImagelist.Images.Add(GetIconByFileType(GetIcon, isLarge));
+                    IconImagelist.Images.Add(mIcon);
+                    IconList.Add(GetIcon, IconImagelist.Images.Count - 1);
+                    return IconImagelist.Images.Count - 1;
                 }
-                else
-                {
-                    //TODO:Linux
+                else {
+                    IconList.Add(GetIcon, 0);
+                    return 0;
                 }
-                IconList.Add(GetIcon, IconImagelist.Images.Count - 1);
-                return IconImagelist.Images.Count - 1;
             }
         }
-
-
         /// <summary>
         /// 依据文件名读取图标，若指定文件不存在，则返回空值。
         /// </summary>
