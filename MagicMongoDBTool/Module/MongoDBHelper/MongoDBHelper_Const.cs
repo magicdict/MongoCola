@@ -107,7 +107,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 数据集
             /// </summary>
-            CollectionLV = 3
+            CollectionLV = 3,
+            /// <summary>
+            /// 数据文档
+            /// </summary>
+            DocumentLV = 4
         }
 
         #region"系统数据集名称常量"

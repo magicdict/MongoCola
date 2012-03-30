@@ -192,7 +192,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         void tabView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabView.SelectedTab.Tag != null)
+            if (tabView.SelectedTab != null && tabView.SelectedTab.Tag != null)
             {
                 SystemManager.SelectObjectTag = tabView.SelectedTab.Tag.ToString();
             }
@@ -842,6 +842,10 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.JAVASCRIPT_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
                         this.viewDataToolStripMenuItem.Enabled = true;
+                        if (!config.IsReadOnly)
+                        {
+                            creatJavaScriptToolStripMenuItem.Enabled = true;
+                        }
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -998,45 +1002,43 @@ namespace MagicMongoDBTool
         private void ViewJavascript()
         {
             String[] DataList = SystemManager.SelectTagData.Split("/".ToCharArray());
-            if (DataList.Length == 4)
+
+            if (ViewTabList.ContainsKey(SystemManager.SelectTagData))
             {
-                if (ViewTabList.ContainsKey(SystemManager.SelectTagData))
-                {
-                    tabView.SelectTab(ViewTabList[SystemManager.SelectTagData]);
-                }
-                else
-                {
-                    ctlJsEditor JsEditor = new ctlJsEditor();
-                    JsEditor.strDBtag = SystemManager.SelectObjectTag;
-                    TabPage DataTab = new TabPage(DataList[3]);
-                    DataTab.Tag = SystemManager.SelectObjectTag;
-                    DataTab.ImageIndex = 1;
-
-                    JsEditor.JsName = DataList[3];
-                    DataTab.Controls.Add(JsEditor);
-                    JsEditor.Dock = DockStyle.Fill;
-                    tabView.Controls.Add(DataTab);
-
-                    ToolStripMenuItem DataMenuItem = new ToolStripMenuItem(DataList[3]);
-                    DataMenuItem.Tag = DataTab.Tag;
-                    DataMenuItem.Image = GetSystemIcon.TabViewImage.Images[1];
-                    JavaScriptStripMenuItem.DropDownItems.Add(DataMenuItem);
-                    DataMenuItem.Click += new EventHandler(
-                         (x, y) => { tabView.SelectTab(DataTab); }
-                    );
-                    ViewTabList.Add(SystemManager.SelectTagData, DataTab);
-                    JsEditor.CloseTab += new System.EventHandler(
-                        (x, y) =>
-                        {
-                            tabView.Controls.Remove(DataTab);
-                            ViewTabList.Remove(SystemManager.SelectTagData);
-                            JavaScriptStripMenuItem.DropDownItems.Remove(DataMenuItem);
-                        }
-                    );
-                    tabView.SelectTab(DataTab);
-                }
+                tabView.SelectTab(ViewTabList[SystemManager.SelectTagData]);
             }
+            else
+            {
+                String JsName = DataList[(int)MongoDBHelper.PathLv.DocumentLV];
+                ctlJsEditor JsEditor = new ctlJsEditor();
+                JsEditor.strDBtag = SystemManager.SelectObjectTag;
+                TabPage DataTab = new TabPage(JsName);
+                DataTab.Tag = SystemManager.SelectObjectTag;
+                DataTab.ImageIndex = 1;
 
+                JsEditor.JsName = JsName;
+                DataTab.Controls.Add(JsEditor);
+                JsEditor.Dock = DockStyle.Fill;
+                tabView.Controls.Add(DataTab);
+
+                ToolStripMenuItem DataMenuItem = new ToolStripMenuItem(JsName);
+                DataMenuItem.Tag = DataTab.Tag;
+                DataMenuItem.Image = GetSystemIcon.TabViewImage.Images[1];
+                JavaScriptStripMenuItem.DropDownItems.Add(DataMenuItem);
+                DataMenuItem.Click += new EventHandler(
+                     (x, y) => { tabView.SelectTab(DataTab); }
+                );
+                ViewTabList.Add(SystemManager.SelectTagData, DataTab);
+                JsEditor.CloseTab += new System.EventHandler(
+                    (x, y) =>
+                    {
+                        tabView.Controls.Remove(DataTab);
+                        ViewTabList.Remove(SystemManager.SelectTagData);
+                        JavaScriptStripMenuItem.DropDownItems.Remove(DataMenuItem);
+                    }
+                );
+                tabView.SelectTab(DataTab);
+            }
         }
 
         /// <summary>
@@ -1378,7 +1380,7 @@ namespace MagicMongoDBTool
                 }
                 catch (ArgumentException ex)
                 {
-                    MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", ex.Message,true);
+                    MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", ex.Message, true);
                 }
             }
         }
@@ -1460,19 +1462,22 @@ namespace MagicMongoDBTool
                     //关闭所有的相关视图
                     //foreach不能直接修改，需要一个备份
                     Dictionary<String, TabPage> tempTable = new Dictionary<string, TabPage>();
-                    foreach (String item in ViewTabList.Keys) {
+                    foreach (String item in ViewTabList.Keys)
+                    {
                         tempTable.Add(item, ViewTabList[item]);
                     }
 
                     foreach (String KeyItem in tempTable.Keys)
                     {
                         //如果有相同的前缀
-                        if (KeyItem.StartsWith(strPath)) {
+                        if (KeyItem.StartsWith(strPath))
+                        {
                             ToolStripMenuItem DataMenuItem = null;
                             foreach (ToolStripMenuItem Menuitem in collectionToolStripMenuItem.DropDownItems)
                             {
                                 //菜单的寻找
-                                if (Menuitem.Tag == ViewTabList[KeyItem].Tag){
+                                if (Menuitem.Tag == ViewTabList[KeyItem].Tag)
+                                {
                                     DataMenuItem = Menuitem;
                                 }
                             }

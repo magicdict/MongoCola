@@ -29,7 +29,27 @@ namespace MagicMongoDBTool.Module
             DeleteObject(h);// 释放IntPtr
             return icon;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static string GetContentType(string fileName)
+        {
+            string contentType = "application/octetstream";
+            try
+            {
+                string ext = System.IO.Path.GetExtension(fileName).ToLower();
+                Microsoft.Win32.RegistryKey registryKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
+                if (registryKey != null && registryKey.GetValue("Content Type") != null)
+                    contentType = registryKey.GetValue("Content Type").ToString();
+            }
+            catch (Exception)
+            {
+                
+            }
+            return contentType;
+        }
         /// <summary>
         /// 扩展名和图片下标关联
         /// </summary>

@@ -89,7 +89,8 @@ namespace MagicMongoDBTool.Module
                                     ShardNode.Text += "[Replset:" + strAddress[0] + "]";
                                     strAddresslst = strAddress[1];
                                 }
-                                else {
+                                else
+                                {
                                     //#2  host:port,host:port
                                     strAddresslst = strHostList;
                                 }
@@ -99,16 +100,17 @@ namespace MagicMongoDBTool.Module
                                     tinySetting.ConnectionMode = ConnectionMode.Direct;
                                     tinySetting.ReplicaSetName = strAddress[0];
                                     MongoServerAddress tinyAddr;
-                                    if (item.Split(":".ToCharArray()).Length== 2)
+                                    if (item.Split(":".ToCharArray()).Length == 2)
                                     {
-                                        tinyAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0],Convert.ToInt32(item.Split(":".ToCharArray())[1]));
+                                        tinyAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0], Convert.ToInt32(item.Split(":".ToCharArray())[1]));
                                     }
-                                    else {
+                                    else
+                                    {
                                         tinyAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0]);
                                     }
                                     tinySetting.Server = tinyAddr;
                                     MongoServer tiny = MongoServer.Create(tinySetting);
-                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey,config,mongoConn,tiny.Instance,null));
+                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, tiny.Instance, null));
                                 }
                                 ShardListNode.Nodes.Add(ShardNode);
                             }
@@ -341,8 +343,6 @@ namespace MagicMongoDBTool.Module
             {
                 switch (strColName)
                 {
-                    case COLLECTION_NAME_GFS_CHUNKS:
-                    case COLLECTION_NAME_GFS_FILES:
                     case COLLECTION_NAME_USER:
                         //system.users,fs,system.js这几个系统级别的Collection不需要放入
                         break;
@@ -370,7 +370,16 @@ namespace MagicMongoDBTool.Module
                         }
                         if (IsSystemCollection(mongoDB.Name, strColName))
                         {
-                            mongoSysColListNode.Nodes.Add(mongoColNode);
+                            switch (strColName)
+                            {
+                                case COLLECTION_NAME_GFS_CHUNKS:
+                                case COLLECTION_NAME_GFS_FILES:
+                                    GFSNode.Nodes.Add(mongoColNode);
+                                    break;
+                                default:
+                                    mongoSysColListNode.Nodes.Add(mongoColNode);
+                                    break;
+                            }
                         }
                         else
                         {

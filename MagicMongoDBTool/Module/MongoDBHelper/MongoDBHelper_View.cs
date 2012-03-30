@@ -441,6 +441,10 @@ namespace MagicMongoDBTool.Module
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.GFS_chunkSize));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.GFS_uploadDate));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.GFS_md5));
+                if (!SystemManager.MONO_MODE)
+                {
+                    lstData.Columns.Add("ContentType");
+                }
             }
             else
             {
@@ -449,17 +453,26 @@ namespace MagicMongoDBTool.Module
                 lstData.Columns.Add("chunkSize");
                 lstData.Columns.Add("uploadDate");
                 lstData.Columns.Add("MD5");
+                if (!SystemManager.MONO_MODE)
+                {
+                    lstData.Columns.Add("ContentType");
+                }
             }
             lstData.SmallImageList = GetSystemIcon.IconImagelist;
             foreach (BsonDocument docFile in dataList)
             {
+                String Filename = docFile.GetValue("filename").ToString();
                 ListViewItem lstItem = new ListViewItem();
-                lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(docFile.GetValue("filename").ToString(), false);
-                lstItem.Text = docFile.GetValue("filename").ToString();
+                lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(Filename, false);
+                lstItem.Text = Filename;
                 lstItem.SubItems.Add(GetSize(docFile.GetValue("length")));
                 lstItem.SubItems.Add(GetSize(docFile.GetValue("chunkSize")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("uploadDate")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("md5")));
+                if (!SystemManager.MONO_MODE)
+                {
+                    lstItem.SubItems.Add(GetSystemIcon.GetContentType(Filename));
+                }
                 lstData.Items.Add(lstItem);
             }
             // 用新的排序方法对ListView排序

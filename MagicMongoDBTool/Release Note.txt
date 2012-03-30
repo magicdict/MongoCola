@@ -23,10 +23,15 @@ Connection Config:
     1.Add some argument of connection,eg.connectionTimeout.
 	2.Connection name is editable.
 
+GFS View:
+    1.Add Content-Type List (windows only)
+    2.Collection fs.chunk is shown at collection list 
+	 
 Replset and sharding Manger
     1.Redesign the way to manger the replset and sharding.
-	    
-Other
+	2.Skip EndOfStreamException.
+	     
+Others
     1.If getStatus exception happend,stop the auto refresh to avoid endless exception.
     2.fixed the bug that the userform show confirmbox instead of messagebox.
 	
