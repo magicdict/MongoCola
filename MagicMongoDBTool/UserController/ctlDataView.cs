@@ -111,8 +111,10 @@ namespace MagicMongoDBTool.UserController
                 this.tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
 
                 this.NewDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
+                this.NewDocumentStripButton.Text = this.NewDocumentToolStripMenuItem.Text;
                 this.OpenDocInEditorStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.OpenInNativeEditor);
                 this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
+                this.DelSelectRecordToolStripButton.Text = this.DelSelectRecordToolStripMenuItem.Text;
 
                 this.PrePageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
                 this.NextPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
@@ -124,23 +126,40 @@ namespace MagicMongoDBTool.UserController
                 this.AddElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
                 this.DropElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_DropElement);
                 this.ModifyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_ModifyElement);
+                
                 this.CopyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CopyElement);
+                this.CopyElementStripButton.Text = this.CopyElementToolStripMenuItem.Text;
                 this.CutElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CutElement);
+                this.CutElementStripButton.Text = this.CutElementToolStripMenuItem.Text;
                 this.PasteElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_PasteElement);
+                this.PasteElementStripButton.Text = this.PasteElementToolStripMenuItem.Text;
 
                 this.DeleteFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
-                this.UploadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Upload);
+                this.DeleteFileStripButton.Text = this.DeleteFileToolStripMenuItem.Text;
+
+                this.UploadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFile);
+                this.UploadFileStripButton.Text = this.UploadFileToolStripMenuItem.Text;
+
+                this.UploadFolderToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFolder);
+                this.UpLoadFolderStripButton.Text = this.UploadFolderToolStripMenuItem.Text;
+
                 this.DownloadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
+                this.DownloadFileStripButton.Text = this.DownloadFileToolStripMenuItem.Text;
+
                 this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
+                this.OpenFileStripButton.Text = this.OpenFileToolStripMenuItem.Text;
 
-                UploadFileStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Upload);
-                DownloadFileStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
-                DelSelectRecordToolStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
+                this.RefreshStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Refresh);
+                this.CloseStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                this.ExpandAllStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Expansion);
+                this.CollapseAllStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Collapse);
 
-                AddUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
-                ChangePasswordStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_ChangePassword);
-                RemoveUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
-
+                this.AddUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                this.AddUserToolStripMenuItem.Text = this.AddUserStripButton.Text;
+                this.ChangePasswordStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_ChangePassword);
+                this.ChangePasswordToolStripMenuItem.Text = this.ChangePasswordStripButton.Text;
+                this.RemoveUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
+                this.RemoveUserToolStripMenuItem.Text = this.RemoveUserStripButton.Text;
             }
             InitControlsVisiableAndEvent();
             InitControlsEnable();
@@ -186,16 +205,16 @@ namespace MagicMongoDBTool.UserController
                     ExpandAllStripButton.Visible = true;
                     CollapseAllStripButton.Visible = true;
 
-                    CutStripButton.Visible = true;
-                    CutStripButton.Click += new EventHandler(CutElementToolStripMenuItem_Click);
+                    CutElementStripButton.Visible = true;
+                    CutElementStripButton.Click += new EventHandler(CutElementToolStripMenuItem_Click);
                     CutElementToolStripMenuItem.Visible = true;
 
-                    CopyStripButton.Visible = true;
-                    CopyStripButton.Click += new EventHandler(CopyElementToolStripMenuItem_Click);
+                    CopyElementStripButton.Visible = true;
+                    CopyElementStripButton.Click += new EventHandler(CopyElementToolStripMenuItem_Click);
                     CopyElementToolStripMenuItem.Visible = true;
 
-                    PasteStripButton.Visible = true;
-                    PasteStripButton.Click += new EventHandler(PasteElementToolStripMenuItem_Click);
+                    PasteElementStripButton.Visible = true;
+                    PasteElementStripButton.Click += new EventHandler(PasteElementToolStripMenuItem_Click);
                     PasteElementToolStripMenuItem.Visible = true;
 
                     AddElementToolStripMenuItem.Visible = true;
@@ -504,7 +523,7 @@ namespace MagicMongoDBTool.UserController
                         if (MongoDBHelper.CanPasteAsElement)
                         {
                             PasteElementToolStripMenuItem.Enabled = true;
-                            PasteStripButton.Enabled = true;
+                            PasteElementStripButton.Enabled = true;
                         }
                     }
                     else
@@ -540,9 +559,9 @@ namespace MagicMongoDBTool.UserController
                         //普通数据:允许添加元素,不允许删除元素
                         DropElementToolStripMenuItem.Enabled = true;
                         CopyElementToolStripMenuItem.Enabled = true;
-                        CopyStripButton.Enabled = true;
+                        CopyElementStripButton.Enabled = true;
                         CutElementToolStripMenuItem.Enabled = true;
-                        CutStripButton.Enabled = true;
+                        CutElementStripButton.Enabled = true;
                         if (trvData.DatatreeView.SelectedNode.Nodes.Count != 0)
                         {
                             //父节点
@@ -554,7 +573,7 @@ namespace MagicMongoDBTool.UserController
                                 if (MongoDBHelper.CanPasteAsValue)
                                 {
                                     PasteElementToolStripMenuItem.Enabled = true;
-                                    PasteStripButton.Enabled = true;
+                                    PasteElementStripButton.Enabled = true;
                                 }
                             }
                             else
@@ -563,7 +582,7 @@ namespace MagicMongoDBTool.UserController
                                 if (MongoDBHelper.CanPasteAsElement)
                                 {
                                     PasteElementToolStripMenuItem.Enabled = true;
-                                    PasteStripButton.Enabled = true;
+                                    PasteElementStripButton.Enabled = true;
                                 }
                             }
                             AddElementToolStripMenuItem.Enabled = true;
@@ -593,7 +612,7 @@ namespace MagicMongoDBTool.UserController
                                         if (MongoDBHelper.CanPasteAsElement)
                                         {
                                             PasteElementToolStripMenuItem.Enabled = true;
-                                            PasteStripButton.Enabled = true;
+                                            PasteElementStripButton.Enabled = true;
                                         }
 
                                     }
@@ -603,7 +622,7 @@ namespace MagicMongoDBTool.UserController
                                         if (MongoDBHelper.CanPasteAsValue)
                                         {
                                             PasteElementToolStripMenuItem.Enabled = true;
-                                            PasteStripButton.Enabled = true;
+                                            PasteElementStripButton.Enabled = true;
                                         }
                                     }
                                 }

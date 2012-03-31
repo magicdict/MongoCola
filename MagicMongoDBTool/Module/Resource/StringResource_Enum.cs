@@ -61,11 +61,13 @@ namespace MagicMongoDBTool.Module
             Main_Menu_Operation_DataDocument_PasteElement,
 
             Main_Menu_Operation_FileSystem,
-            Main_Menu_Operation_FileSystem_Upload,
+            Main_Menu_Operation_FileSystem_UploadFile,
+            Main_Menu_Operation_FileSystem_UploadFolder,
             Main_Menu_Operation_FileSystem_Download,
             Main_Menu_Operation_FileSystem_OpenFile,
             Main_Menu_Operation_FileSystem_DelFile,
             Main_Menu_Operation_FileSystem_InitGFS,
+
             Main_Menu_Operation_ProfillingLevel,
             Main_Menu_Operation_BackupAndRestore,
             Main_Menu_Operation_BackupAndRestore_Restore,

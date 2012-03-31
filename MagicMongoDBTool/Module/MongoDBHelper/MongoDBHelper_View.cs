@@ -239,6 +239,10 @@ namespace MagicMongoDBTool.Module
                         {
                             dataNode.Tag = id.Value;
                         }
+                        else
+                        {
+                            dataNode.Tag = item.GetElement(0).Value;
+                        }
                         break;
                 }
                 AddBsonDocToTreeNode(dataNode, item);

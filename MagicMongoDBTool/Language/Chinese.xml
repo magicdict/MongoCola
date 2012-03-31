@@ -60,14 +60,14 @@
 
 
   <Main_Menu_Operation_FileSystem>文件系统</Main_Menu_Operation_FileSystem>
-  <Main_Menu_Operation_FileSystem_Upload>上传文件</Main_Menu_Operation_FileSystem_Upload>
+  <Main_Menu_Operation_FileSystem_UploadFile>上传文件</Main_Menu_Operation_FileSystem_UploadFile>
+  <Main_Menu_Operation_FileSystem_UploadFolder>上传文件夹</Main_Menu_Operation_FileSystem_UploadFolder>
   <Main_Menu_Operation_FileSystem_Download>下载文件</Main_Menu_Operation_FileSystem_Download>
   <Main_Menu_Operation_FileSystem_OpenFile>打开文件</Main_Menu_Operation_FileSystem_OpenFile>
   <Main_Menu_Operation_FileSystem_DelFile>删除文件</Main_Menu_Operation_FileSystem_DelFile>
   <Main_Menu_Operation_FileSystem_InitGFS>初始化文件系统</Main_Menu_Operation_FileSystem_InitGFS>
 
   <Main_Menu_Operation_BackupAndRestore>备份和恢复</Main_Menu_Operation_BackupAndRestore>
-
   <Main_Menu_Operation_BackupAndRestore_Restore>恢复</Main_Menu_Operation_BackupAndRestore_Restore>
   <Main_Menu_Operation_BackupAndRestore_BackupDB>备份数据库</Main_Menu_Operation_BackupAndRestore_BackupDB>
   <Main_Menu_Operation_BackupAndRestore_BackupDC>备份数据集</Main_Menu_Operation_BackupAndRestore_BackupDC>

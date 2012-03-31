@@ -60,14 +60,14 @@
 
 
   <Main_Menu_Operation_FileSystem>ファイルシステム</Main_Menu_Operation_FileSystem>
-  <Main_Menu_Operation_FileSystem_Upload>アップロード</Main_Menu_Operation_FileSystem_Upload>
+  <Main_Menu_Operation_FileSystem_UploadFile>アップロードファイル</Main_Menu_Operation_FileSystem_UploadFile>
+  <Main_Menu_Operation_FileSystem_UploadFolder>アップロードフォルダ</Main_Menu_Operation_FileSystem_UploadFolder>
   <Main_Menu_Operation_FileSystem_Download>ダウンロード</Main_Menu_Operation_FileSystem_Download>
   <Main_Menu_Operation_FileSystem_OpenFile>開く</Main_Menu_Operation_FileSystem_OpenFile>
   <Main_Menu_Operation_FileSystem_DelFile>削除</Main_Menu_Operation_FileSystem_DelFile>
   <Main_Menu_Operation_FileSystem_InitGFS>初期化</Main_Menu_Operation_FileSystem_InitGFS>
 
   <Main_Menu_Operation_BackupAndRestore>バックアップと復元</Main_Menu_Operation_BackupAndRestore>
-
   <Main_Menu_Operation_BackupAndRestore_Restore>復元</Main_Menu_Operation_BackupAndRestore_Restore>
   <Main_Menu_Operation_BackupAndRestore_BackupDB>データベースのバックアップ</Main_Menu_Operation_BackupAndRestore_BackupDB>
   <Main_Menu_Operation_BackupAndRestore_BackupDC>コレクションのバックアップ</Main_Menu_Operation_BackupAndRestore_BackupDC>

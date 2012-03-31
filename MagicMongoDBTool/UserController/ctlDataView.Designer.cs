@@ -72,9 +72,9 @@ namespace MagicMongoDBTool.UserController
             this.OpenDocInEditorStripButton = new System.Windows.Forms.ToolStripButton();
             this.DelSelectRecordToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.SeperateBar1 = new System.Windows.Forms.ToolStripSeparator();
-            this.CutStripButton = new System.Windows.Forms.ToolStripButton();
-            this.CopyStripButton = new System.Windows.Forms.ToolStripButton();
-            this.PasteStripButton = new System.Windows.Forms.ToolStripButton();
+            this.CutElementStripButton = new System.Windows.Forms.ToolStripButton();
+            this.CopyElementStripButton = new System.Windows.Forms.ToolStripButton();
+            this.PasteElementStripButton = new System.Windows.Forms.ToolStripButton();
             this.SeperateBar2 = new System.Windows.Forms.ToolStripSeparator();
             this.FirstPageStripButton = new System.Windows.Forms.ToolStripButton();
             this.PrePageStripButton = new System.Windows.Forms.ToolStripButton();
@@ -353,9 +353,9 @@ namespace MagicMongoDBTool.UserController
             this.OpenDocInEditorStripButton,
             this.DelSelectRecordToolStripButton,
             this.SeperateBar1,
-            this.CutStripButton,
-            this.CopyStripButton,
-            this.PasteStripButton,
+            this.CutElementStripButton,
+            this.CopyElementStripButton,
+            this.PasteElementStripButton,
             this.SeperateBar2,
             this.FirstPageStripButton,
             this.PrePageStripButton,
@@ -495,30 +495,30 @@ namespace MagicMongoDBTool.UserController
             // 
             // CutStripButton
             // 
-            this.CutStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CutStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CutStripButton.Image")));
-            this.CutStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CutStripButton.Name = "CutStripButton";
-            this.CutStripButton.Size = new System.Drawing.Size(23, 22);
-            this.CutStripButton.Text = "Cut";
+            this.CutElementStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CutElementStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CutStripButton.Image")));
+            this.CutElementStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CutElementStripButton.Name = "CutStripButton";
+            this.CutElementStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CutElementStripButton.Text = "Cut";
             // 
             // CopyStripButton
             // 
-            this.CopyStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CopyStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CopyStripButton.Image")));
-            this.CopyStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CopyStripButton.Name = "CopyStripButton";
-            this.CopyStripButton.Size = new System.Drawing.Size(23, 22);
-            this.CopyStripButton.Text = "Copy";
+            this.CopyElementStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CopyElementStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CopyStripButton.Image")));
+            this.CopyElementStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CopyElementStripButton.Name = "CopyStripButton";
+            this.CopyElementStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CopyElementStripButton.Text = "Copy";
             // 
             // PasteStripButton
             // 
-            this.PasteStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.PasteStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PasteStripButton.Image")));
-            this.PasteStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PasteStripButton.Name = "PasteStripButton";
-            this.PasteStripButton.Size = new System.Drawing.Size(23, 22);
-            this.PasteStripButton.Text = "Paste";
+            this.PasteElementStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.PasteElementStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PasteStripButton.Image")));
+            this.PasteElementStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PasteElementStripButton.Name = "PasteStripButton";
+            this.PasteElementStripButton.Size = new System.Drawing.Size(23, 22);
+            this.PasteElementStripButton.Text = "Paste";
             // 
             // SeperateBar2
             // 
@@ -728,10 +728,10 @@ namespace MagicMongoDBTool.UserController
         private ToolStripButton OpenDocInEditorStripButton;
         private ToolStripButton OpenFileStripButton;
         private ToolStripSeparator SeperateBar1;
-        private ToolStripButton CutStripButton;
+        private ToolStripButton CutElementStripButton;
         private ToolStripSeparator SeperateBar2;
-        private ToolStripButton CopyStripButton;
-        private ToolStripButton PasteStripButton;
+        private ToolStripButton CopyElementStripButton;
+        private ToolStripButton PasteElementStripButton;
         private ToolStripComboBox cmbRecPerPage;
         private ToolStripButton UpLoadFolderStripButton;
         private ToolStripButton DownloadFileStripButton;
