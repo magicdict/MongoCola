@@ -172,7 +172,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmGFSOption";
-            this.Text = "frmGFSOption";
+            this.Text = "GFS Insert Option";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

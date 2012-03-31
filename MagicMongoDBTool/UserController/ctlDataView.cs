@@ -1371,6 +1371,7 @@ namespace MagicMongoDBTool.UserController
         {
             this.clear();
             mDataViewInfo.SkipCnt = 0;
+            SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
             InitControlsEnable();
             SetDataNav();
@@ -1379,6 +1380,7 @@ namespace MagicMongoDBTool.UserController
         private void ReloadData()
         {
             this.clear();
+            SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
             MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
             SetDataNav();
             IsNeedRefresh = false;

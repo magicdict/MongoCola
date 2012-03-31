@@ -324,10 +324,10 @@ namespace MagicMongoDBTool.UserController
             this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.AddUserToolStripMenuItem.Text = "Create User";
             // 
-            // changePasswordToolStripMenuItem
+            // ChangePasswordToolStripMenuItem
             // 
             this.ChangePasswordToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.UserPassword;
-            this.ChangePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem";
             this.ChangePasswordToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.ChangePasswordToolStripMenuItem.Text = "Change Password";
             // 
