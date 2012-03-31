@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+
 namespace MagicMongoDBTool
 {
     public partial class ctlFieldInfo : UserControl
@@ -25,7 +26,8 @@ namespace MagicMongoDBTool
             {
                 lblFieldName.Text = value.ColName;
                 chkIsShow.Checked = value.IsShow;
-                if (value.ColName == MongoDBHelper.KEY_ID) {
+                if (value.ColName == MongoDBHelper.KEY_ID)
+                {
                     chkIsShow.Checked = true;
                     chkIsShow.Enabled = false;
                 }
@@ -49,17 +51,17 @@ namespace MagicMongoDBTool
                 DataFilter.QueryFieldItem rtn = new DataFilter.QueryFieldItem();
                 rtn.IsShow = chkIsShow.Checked;
                 rtn.ColName = lblFieldName.Text;
-                if (this.radNoSort.Checked) 
+                if (this.radNoSort.Checked)
                 {
                     rtn.sortType = DataFilter.SortType.NoSort;
                 }
-                if (this.radSortAcs.Checked) 
+                if (this.radSortAcs.Checked)
                 {
-                    rtn.sortType = DataFilter.SortType.Ascending; 
+                    rtn.sortType = DataFilter.SortType.Ascending;
                 }
-                if (this.radSortDes.Checked) 
+                if (this.radSortDes.Checked)
                 {
-                    rtn.sortType = DataFilter.SortType.Descending; 
+                    rtn.sortType = DataFilter.SortType.Descending;
                 }
                 return rtn;
             }

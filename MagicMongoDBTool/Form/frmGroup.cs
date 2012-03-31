@@ -6,7 +6,6 @@ using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-
 namespace MagicMongoDBTool
 {
     public partial class frmGroup : Form
@@ -18,9 +17,9 @@ namespace MagicMongoDBTool
             {
                 this.Text += "[With DataView Filter]";
                 foreach (var item in mDataFilter.QueryConditionList)
-	            {
+                {
                     GroupConditionList.Add(item);
-	            }
+                }
             }
         }
         /// <summary>
@@ -73,7 +72,7 @@ namespace MagicMongoDBTool
                     resultlst.Add(item);
                     Count++;
                 };
-                MongoDBHelper.FillJSONDataToTextBox(this.txtResult, resultlst,0);
+                MongoDBHelper.FillJSONDataToTextBox(this.txtResult, resultlst, 0);
                 if (Count == 1001)
                 {
                     this.txtResult.Text = "Too many result,Display first 1000 records" + System.Environment.NewLine + this.txtResult.Text;

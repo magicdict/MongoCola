@@ -122,7 +122,7 @@ namespace MagicMongoDBTool
                         }
                         else
                         {
-                            NewNode = new TreeNode(AddBsonElement.getElement().Name + ":" + 
+                            NewNode = new TreeNode(AddBsonElement.getElement().Name + ":" +
                                                    MongoDBHelper.ConvertToString(AddBsonElement.getElement().Value));
                         }
                     }
@@ -131,7 +131,8 @@ namespace MagicMongoDBTool
                 {
                     NewNode.Tag = AddBsonElement.getElement();
                 }
-                else {
+                else
+                {
                     NewNode.Tag = AddBsonElement.getElement().Value;
                 }
                 _SelectNode.Nodes.Add(NewNode);

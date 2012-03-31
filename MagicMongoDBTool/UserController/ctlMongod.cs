@@ -6,7 +6,7 @@ namespace MagicMongoDBTool
     public partial class ctlMongod : UserControl
     {
 
-        public  EventHandler<TextChangeEventArgs> CommandChanged;
+        public EventHandler<TextChangeEventArgs> CommandChanged;
         private MongodbDosCommand.StruMongod MongodCommand = new MongodbDosCommand.StruMongod();
         /// <summary>
         /// 构造函数

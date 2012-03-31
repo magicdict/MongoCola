@@ -36,7 +36,8 @@ namespace MagicMongoDBTool
                 txtJavaScript.Select(0, 0);
             }
             this.txtJavaScript.GotFocus += new EventHandler(
-                (x, y) => {
+                (x, y) =>
+                {
                     SystemManager.SelectObjectTag = strDBtag;
                 }
             );
@@ -45,7 +46,8 @@ namespace MagicMongoDBTool
         /// 添加行
         /// </summary>
         /// <param name="strText"></param>
-        public void AppendLine(String strText) {
+        public void AppendLine(String strText)
+        {
             txtJavaScript.Text += strText + System.Environment.NewLine;
         }
         /// <summary>
@@ -69,11 +71,13 @@ namespace MagicMongoDBTool
         {
             if (JsName != null && JsName != String.Empty)
             {
-                MongoDBHelper.SaveEditorJavascript(JsName,txtJavaScript.Text);
+                MongoDBHelper.SaveEditorJavascript(JsName, txtJavaScript.Text);
             }
-            else {
+            else
+            {
                 SaveFileDialog mSave = new SaveFileDialog();
-                if (mSave.ShowDialog() == DialogResult.OK) {
+                if (mSave.ShowDialog() == DialogResult.OK)
+                {
                     StreamWriter mStreamWriter = new StreamWriter(mSave.FileName, false);
                     mStreamWriter.Write(this.txtJavaScript.Text);
                     mStreamWriter.Close();

@@ -5,7 +5,6 @@ using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 using System.Windows.Forms;
 
-
 namespace MagicMongoDBTool
 {
     public partial class frmQuery : Form
@@ -69,7 +68,8 @@ namespace MagicMongoDBTool
                         queryFieldItem.sortType = find.sortType;
                     }
                 }
-                if (queryFieldItem.ColName == MongoDBHelper.KEY_ID) {
+                if (queryFieldItem.ColName == MongoDBHelper.KEY_ID)
+                {
                     queryFieldItem.IsShow = true;
                 }
                 //动态加载控件

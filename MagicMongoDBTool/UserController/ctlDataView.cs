@@ -969,7 +969,7 @@ namespace MagicMongoDBTool.UserController
                 opt.FileNameOpt = frm.filename;
                 opt.AlreadyOpt = frm.option;
                 frm.Dispose();
-                MongoDBHelper.UpLoadFile(upfile.FileName,opt);
+                MongoDBHelper.UpLoadFile(upfile.FileName, opt);
                 RefreshGUI(null, null);
             }
         }
@@ -1025,7 +1025,7 @@ namespace MagicMongoDBTool.UserController
                         break;
                     case MongoDBHelper.UploadResult.Exception:
                         return MyMessageBox.ShowConfirm("Upload Exception", "Is Continue?");
-                     default:
+                    default:
                         break;
                 }
             }
@@ -1250,7 +1250,8 @@ namespace MagicMongoDBTool.UserController
                     if (mDataViewInfo.CurrentCollectionTotalCnt <= skip)
                     {
                         mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - 1;
-                        if (mDataViewInfo.SkipCnt == -1) {
+                        if (mDataViewInfo.SkipCnt == -1)
+                        {
                             ///CurrentCollectionTotalCnt可能为0
                             mDataViewInfo.SkipCnt = 0;
                         }
@@ -1411,8 +1412,6 @@ namespace MagicMongoDBTool.UserController
             RefreshGUI(sender, e);
         }
         #endregion
-
-
 
     }
 }

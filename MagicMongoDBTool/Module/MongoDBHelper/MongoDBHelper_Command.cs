@@ -18,7 +18,7 @@ namespace MagicMongoDBTool.Module
         #endregion
 
         #region"DataBase Command"
-        
+
         ///数据库命令 http://www.mongodb.org/display/DOCS/List+of+Database+Commands
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace MagicMongoDBTool.Module
         /// http://www.mongodb.org/display/DOCS/Durability+and+Repair
         /// </summary>
         public static MongoCommand repairDatabase_Command = new MongoCommand("repairDatabase", PathLv.DatabaseLV);
-       
+
         #endregion
 
         #region"Server Command"

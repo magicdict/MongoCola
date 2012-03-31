@@ -13,7 +13,7 @@ namespace MagicMongoDBTool
             txtElName.Visible = false;
             lblElement.Visible = true;
         }
-        public void switchToValueMode() 
+        public void switchToValueMode()
         {
             txtElName.Visible = false;
             lblElement.Visible = false;

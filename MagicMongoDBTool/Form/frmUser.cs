@@ -1,5 +1,6 @@
 ﻿using System;
 using MagicMongoDBTool.Module;
+
 namespace MagicMongoDBTool
 {
     public partial class frmUser : System.Windows.Forms.Form

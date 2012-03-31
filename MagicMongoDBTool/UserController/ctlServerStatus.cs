@@ -30,7 +30,8 @@ namespace MagicMongoDBTool.UserController
         /// 刷新状态，不包含当前操作状态
         /// </summary>
         /// <param name="IsAuto">是否自动刷新</param>
-        public void RefreshStatus(Boolean IsAuto) {
+        public void RefreshStatus(Boolean IsAuto)
+        {
             try
             {
                 if (!IsAuto)
@@ -62,7 +63,8 @@ namespace MagicMongoDBTool.UserController
         /// <summary>
         /// 当前操作状态
         /// </summary>
-        public void RefreshCurrentOpr() {
+        public void RefreshCurrentOpr()
+        {
             try
             {
                 MongoDBHelper.FillCurrentOprToList(this.lstSrvOpr);
@@ -131,7 +133,8 @@ namespace MagicMongoDBTool.UserController
             this.lstCollectionStatus.ListViewItemSorter = _lvwCollectionStatusColumnSorter;
             lstCollectionStatus.ColumnClick += new ColumnClickEventHandler(lstCollectionStatus_ColumnClick);
         }
-        public void SetEnable(Boolean Enable) {
+        public void SetEnable(Boolean Enable)
+        {
             refreshTimer.Enabled = Enable;
             ShortTimer.Enabled = Enable;
         }
@@ -265,7 +268,8 @@ namespace MagicMongoDBTool.UserController
                 btnSwitch.Image = MagicMongoDBTool.Properties.Resources.Run;
             }
         }
-        public void ResetCtl() {
+        public void ResetCtl()
+        {
             refreshTimer.Enabled = true;
             ShortTimer.Enabled = true;
             btnSwitch.Enabled = true;

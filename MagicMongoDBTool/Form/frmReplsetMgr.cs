@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {

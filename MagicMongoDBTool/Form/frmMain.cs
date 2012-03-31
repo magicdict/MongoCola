@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MagicMongoDBTool.UserController;
 using MongoDB.Driver;
-using System.Threading;
 
 namespace MagicMongoDBTool
 {

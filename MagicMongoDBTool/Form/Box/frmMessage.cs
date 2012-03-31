@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+
 namespace MagicMongoDBTool
 {
     public partial class frmMesssage : Form
@@ -19,7 +20,8 @@ namespace MagicMongoDBTool
             this.lblMessage.Text = Message;
             this.txtException.Text = Details;
             this.txtException.Select(0, 0);
-            if (Details == String.Empty) {
+            if (Details == String.Empty)
+            {
                 IsShowDetails = false;
             }
             _ShowDetails = IsShowDetails;
@@ -56,7 +58,8 @@ namespace MagicMongoDBTool
             {
                 this.Height = 130;
             }
-            else {
+            else
+            {
                 this.Height = 350;
             }
             _ShowDetails = !_ShowDetails;

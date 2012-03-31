@@ -99,7 +99,7 @@ namespace TreeViewColumnsProject
                 var vsr = new VisualStyleRenderer(glyph);
                 vsr.DrawBackground(e.Graphics, new Rectangle(LeftPoint, e.Bounds.Y + 4, 16, 16));
             }
-            
+
             for (int intColumn = 1; intColumn < 3; intColumn++)
             {
                 rect.Offset(this.listView1.Columns[intColumn - 1].Width, 0);

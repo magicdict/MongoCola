@@ -28,12 +28,12 @@ namespace MagicMongoDBTool
                     newdoc = BsonDocument.Parse(txtDocument.Text);
                     ///居然可以指定_id...
                     ///这样的话，可能出现同一个数据库里面两个相同的_id的记录
-                    SystemManager.GetCurrentCollection().Insert(newdoc,new SafeMode(true));
+                    SystemManager.GetCurrentCollection().Insert(newdoc, new SafeMode(true));
                     this.Close();
                 }
                 catch (Exception ex)
                 {
-                    MyMessageBox.ShowMessage("Error", "Format Error",ex.ToString(),true);
+                    MyMessageBox.ShowMessage("Error", "Format Error", ex.ToString(), true);
                 }
             }
             else

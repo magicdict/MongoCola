@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MagicMongoDBTool.Module
@@ -24,7 +18,8 @@ namespace MagicMongoDBTool.Module
             {
                 lblLogLv.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_LogLevel);
             }
-            else {
+            else
+            {
                 lblLogLv.Text = "日志等级：";
             }
             switch (trbLogLv.Value)
@@ -57,7 +52,8 @@ namespace MagicMongoDBTool.Module
         {
             trbLogLv.Minimum = (int)MongodbDosCommand.MongologLevel.Quiet;
             trbLogLv.Maximum = (int)MongodbDosCommand.MongologLevel.VVVVV;
-            if (!SystemManager.IsUseDefaultLanguage()) {
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
                 lblLogLv.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_LogLevel);
             }
         }

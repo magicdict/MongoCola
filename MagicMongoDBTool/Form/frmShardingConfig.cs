@@ -4,7 +4,6 @@ using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 using MongoDB.Bson;
 
-
 namespace MagicMongoDBTool
 {
     public partial class frmShardingConfig : System.Windows.Forms.Form

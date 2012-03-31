@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+
 namespace MagicMongoDBTool
 {
     public partial class frmGFSOption : Form
@@ -41,7 +36,8 @@ namespace MagicMongoDBTool
 
         private void frmGFSOption_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage()) {
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
                 grpFilename.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_RemoteFileName);
                 radFilename.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_OnlyFilename);
                 radFullPath.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FullPath);
