@@ -43,6 +43,7 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             SlaveSvr
         }
+
         /// <summary>
         /// 连接结构体
         /// </summary>

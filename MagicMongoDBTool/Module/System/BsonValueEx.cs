@@ -87,7 +87,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public BsonValue GetBsonValue()
         {
-            BsonValue Value = new BsonString("");
+            BsonValue Value = new BsonString(String.Empty);
             switch (mBsonType)
             {
                 case "BsonString":

@@ -209,12 +209,12 @@ namespace MagicMongoDBTool.Module
                 regVersion = Registry.ClassesRoot.OpenSubKey(fileType, true);
                 if (regVersion != null)
                 {
-                    regFileType = regVersion.GetValue("") as String;
+                    regFileType = regVersion.GetValue(String.Empty) as String;
                     regVersion.Close();
                     regVersion = Registry.ClassesRoot.OpenSubKey(regFileType + @"\DefaultIcon", true);
                     if (regVersion != null)
                     {
-                        regIconString = regVersion.GetValue("") as String;
+                        regIconString = regVersion.GetValue(String.Empty) as String;
                         regVersion.Close();
                     }
                 }
@@ -277,9 +277,9 @@ namespace MagicMongoDBTool.Module
         {
             {
                 String sProg;
-                var tmp = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(sFileExt).GetValue("");
+                var tmp = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(sFileExt).GetValue(String.Empty);
                 //Get the program that will open files with this extension
-                sProg = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(tmp.ToString()).OpenSubKey("shell").OpenSubKey("open").OpenSubKey("command").GetValue("").ToString();
+                sProg = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(tmp.ToString()).OpenSubKey("shell").OpenSubKey("open").OpenSubKey("command").GetValue(String.Empty).ToString();
                 //strip the filename
                 if (sProg.Substring(0, 1) == System.Convert.ToChar(34).ToString())
                 {
@@ -289,15 +289,12 @@ namespace MagicMongoDBTool.Module
                 {
                     sProg = sProg.Substring(0, sProg.IndexOf(" ", 2));
                 }
-                sProg = sProg.Replace("%1", "");
+                sProg = sProg.Replace("%1", String.Empty);
                 // Extract the icon from the program
                 Icon oIcon = System.Drawing.Icon.ExtractAssociatedIcon(sProg);
                 return oIcon;
             }
         }
-
-
-
         /// <summary>
         /// 
         /// </summary>
