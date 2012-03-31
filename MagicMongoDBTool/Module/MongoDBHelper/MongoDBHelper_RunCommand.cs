@@ -53,7 +53,8 @@ namespace MagicMongoDBTool.Module
             {
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw ex;
             }
             return cmdRtn;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace MagicMongoDBTool.Module
 {
     public partial class StringResource
@@ -133,7 +129,7 @@ namespace MagicMongoDBTool.Module
             CollectionIndex_Tab_Current,
             CollectionIndex_Tab_Current_Del,
             CollectionIndex_Tab_Manager,
-            
+
             CollectionIndex_TabMangt_IndexName,
             CollectionIndex_TabMangt_IndexName_Description,
 
@@ -142,7 +138,7 @@ namespace MagicMongoDBTool.Module
             Connect_Action_Cancel,
 
             ConvertSql_Title,
-            
+
             Distinct_Action_LoadQuery,
             Distinct_SelectField,
 

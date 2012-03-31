@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
@@ -39,7 +36,8 @@ namespace MagicMongoDBTool
     /// <summary>
     /// RunCommandEventArgs
     /// </summary>
-    public class RunCommandEventArgs : EventArgs {
+    public class RunCommandEventArgs : EventArgs
+    {
         /// <summary>
         /// CommandString
         /// </summary>

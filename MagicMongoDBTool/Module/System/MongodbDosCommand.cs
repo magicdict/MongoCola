@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
@@ -229,7 +230,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// MongoRestore使用的结构
         /// </summary>
-        public class StruMongoRestore 
+        public class StruMongoRestore
         {
             /// <summary>
             /// 主机地址
@@ -352,9 +353,10 @@ namespace MagicMongoDBTool.Module
         /// Mongo可执行文件目录的检查
         /// </summary>
         /// <returns></returns>
-        public static Boolean IsMongoPathExist(){
+        public static Boolean IsMongoPathExist()
+        {
             return Directory.Exists(SystemManager.ConfigHelperInstance.MongoBinPath);
-        } 
+        }
         /// <summary>
         /// 执行Dos下的命令
         /// </summary>
@@ -363,37 +365,47 @@ namespace MagicMongoDBTool.Module
         /// <param name="sb"></param>
         public static void RunDosCommand(String DosCommand, StringBuilder sb)
         {
-if (!SystemManager.MONO_MODE){ 
-            Process myProcess = new Process();
-            myProcess.StartInfo.FileName = "cmd";
-            myProcess.StartInfo.UseShellExecute = false;
-            myProcess.StartInfo.CreateNoWindow = true;
-            myProcess.StartInfo.RedirectStandardInput = true;
-            myProcess.StartInfo.RedirectStandardOutput = true;
-            myProcess.StartInfo.RedirectStandardError = true;
-            myProcess.Start();
-            StreamWriter stringWriter = myProcess.StandardInput;//标准输出流
-            stringWriter.AutoFlush = true;
-            StreamReader stringReader = myProcess.StandardOutput;//标准输入流
-            StreamReader streamReaderError = myProcess.StandardError;//标准错误流
-            stringWriter.Write(@"cd " + SystemManager.ConfigHelperInstance.MongoBinPath + System.Environment.NewLine);//DOS控制平台上的命令
-            stringWriter.Write(DosCommand + System.Environment.NewLine);//DOS控制平台上的命令
-            stringWriter.Write("exit" + System.Environment.NewLine);
-            String s = stringReader.ReadToEnd();//读取执行DOS命令后输出信息
-            String er = streamReaderError.ReadToEnd();//读取执行DOS命令后错误信息
-            sb.AppendLine(s);
-            sb.AppendLine(er);
-            if (myProcess.HasExited == false)
+            if (!SystemManager.MONO_MODE)
             {
-                myProcess.Kill();
+                Process myProcess = new Process();
+                myProcess.StartInfo.FileName = "cmd";
+                myProcess.StartInfo.UseShellExecute = false;
+                myProcess.StartInfo.CreateNoWindow = true;
+                myProcess.StartInfo.RedirectStandardInput = true;
+                myProcess.StartInfo.RedirectStandardOutput = true;
+                myProcess.StartInfo.RedirectStandardError = true;
+                myProcess.Start();
+                //标准输出流
+                StreamWriter stringWriter = myProcess.StandardInput;
+                stringWriter.AutoFlush = true;
+                //标准输入流
+                StreamReader stringReader = myProcess.StandardOutput;
+                //标准错误流
+                StreamReader streamReaderError = myProcess.StandardError;
+                //DOS控制平台上的命令
+                stringWriter.Write(@"cd " + SystemManager.ConfigHelperInstance.MongoBinPath + System.Environment.NewLine);
+                //DOS控制平台上的命令
+                stringWriter.Write(DosCommand + System.Environment.NewLine);
+                stringWriter.Write("exit" + System.Environment.NewLine);
+                //读取执行DOS命令后输出信息
+                String s = stringReader.ReadToEnd();
+                //读取执行DOS命令后错误信息
+                String er = streamReaderError.ReadToEnd();
+                sb.AppendLine(s);
+                sb.AppendLine(er);
+                if (myProcess.HasExited == false)
+                {
+                    myProcess.Kill();
+                }
+                stringWriter.Close();
+                stringReader.Close();
+                streamReaderError.Close();
+                myProcess.Close();
             }
-            stringWriter.Close();
-            stringReader.Close();
-            streamReaderError.Close();
-            myProcess.Close();
-}else{
-            sb.AppendLine("This method is not implement in Linux");
-}
+            else
+            {
+                sb.AppendLine("This method is not implement in Linux");
+            }
         }
     }
 }

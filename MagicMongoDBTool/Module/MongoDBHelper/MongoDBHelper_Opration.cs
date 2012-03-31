@@ -305,7 +305,7 @@ namespace MagicMongoDBTool.Module
         /// 获得Shard情报
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<String, String> GetShardInfo(MongoServer server,String Key)
+        public static Dictionary<String, String> GetShardInfo(MongoServer server, String Key)
         {
             Dictionary<String, String> ShardInfo = new Dictionary<String, String>();
             if (server.DatabaseExists(DATABASE_NAME_CONFIG))

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MongoDB.Bson;
 
 namespace MagicMongoDBTool.Module
@@ -12,7 +10,7 @@ namespace MagicMongoDBTool.Module
     [Serializable()]
     public class BsonValueEx
     {
-        //TODO:Check the new driver if the function is ready.
+        // TODO:Check the new driver if the function is ready.
 
         /// <summary>
         /// 类型
@@ -38,7 +36,8 @@ namespace MagicMongoDBTool.Module
         /// 
         /// </summary>
         /// <returns></returns>
-        public static List<String> GetBasicTypeList(){
+        public static List<String> GetBasicTypeList()
+        {
             List<String> typelst = new List<String>();
             typelst.Add("BsonString");
             typelst.Add("BsonInt32");

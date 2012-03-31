@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MongoDB.Driver;
 using MongoDB.Bson;
-
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
@@ -39,8 +35,6 @@ namespace MagicMongoDBTool.Module
         //You may update the existing documents in the collection. However, the documents must not grow in size. If they do, the update will fail. Note if you are performing updates, you will likely want to declare an appropriate index (given there is no _id index for capped collections by default).
         //The database does not allow deleting documents from a capped collection. Use the drop() method to remove all rows from the collection. (After the drop you must explicitly recreate the collection.)
         //Capped collection are not shard-able.
-
-
 
         /// <summary>
         /// Paste

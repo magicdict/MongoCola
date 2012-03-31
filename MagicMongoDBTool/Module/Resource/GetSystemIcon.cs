@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.Win32;
-using MagicMongoDBTool.Module;
+
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
@@ -26,7 +26,8 @@ namespace MagicMongoDBTool.Module
             Bitmap bmp = new Bitmap(orgImg);
             IntPtr h = bmp.GetHicon();
             Icon icon = System.Drawing.Icon.FromHandle(h);
-            DeleteObject(h);// 释放IntPtr
+            // 释放IntPtr
+            DeleteObject(h);
             return icon;
         }
         /// <summary>
@@ -46,7 +47,7 @@ namespace MagicMongoDBTool.Module
             }
             catch (Exception)
             {
-                
+
             }
             return contentType;
         }
@@ -128,6 +129,7 @@ namespace MagicMongoDBTool.Module
 
             IconImagelist.Images.Add(MagicMongoDBTool.Properties.Resources.NewDocument);
         }
+
         /// <summary>
         /// 根据文件名获得图片数组下标
         /// </summary>
@@ -150,12 +152,14 @@ namespace MagicMongoDBTool.Module
                     IconList.Add(GetIcon, IconImagelist.Images.Count - 1);
                     return IconImagelist.Images.Count - 1;
                 }
-                else {
+                else
+                {
                     IconList.Add(GetIcon, 0);
                     return 0;
                 }
             }
         }
+
         /// <summary>
         /// 依据文件名读取图标，若指定文件不存在，则返回空值。
         /// </summary>
@@ -179,6 +183,7 @@ namespace MagicMongoDBTool.Module
             System.Drawing.Icon myIcon = System.Drawing.Icon.FromHandle(shInfo.hIcon);
             return myIcon;
         }
+
         /// <summary>
         /// 给出文件扩展名（.*），返回相应图标
         /// 若不以"."开头则返回文件夹的图标。

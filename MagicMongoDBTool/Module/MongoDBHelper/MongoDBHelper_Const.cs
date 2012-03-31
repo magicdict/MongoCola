@@ -1,5 +1,5 @@
-﻿
-using System;
+﻿using System;
+
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -95,7 +95,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 连接
             /// </summary>
-            ConnectionLV =0,
+            ConnectionLV = 0,
             /// <summary>
             /// 服务器
             /// </summary>

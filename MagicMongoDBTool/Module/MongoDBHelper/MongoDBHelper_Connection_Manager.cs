@@ -168,7 +168,8 @@ namespace MagicMongoDBTool.Module
             {
                 return ex.ToString();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return ex.ToString();
             }
         }

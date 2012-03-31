@@ -11,21 +11,22 @@ namespace MagicMongoDBTool.Module
         #region"Collection Command"
         /// <summary>
         /// Compact
-        /// http://www.mongodb.org/display/DOCS/Compact+Command
         /// </summary>
+        /// <see cref="http://www.mongodb.org/display/DOCS/Compact+Command"/>
         public static MongoCommand Compact_Command = new MongoCommand("compact", PathLv.CollectionLV);
+
         #endregion
 
         #region"DataBase Command"
-        /// <summary>
-        ///数据库命令 
-        ///http://www.mongodb.org/display/DOCS/List+of+Database+Commands
-        /// </summary>
+        
+        ///数据库命令 http://www.mongodb.org/display/DOCS/List+of+Database+Commands
+
         /// <summary>
         /// 修复数据库
         /// http://www.mongodb.org/display/DOCS/Durability+and+Repair
         /// </summary>
         public static MongoCommand repairDatabase_Command = new MongoCommand("repairDatabase", PathLv.DatabaseLV);
+       
         #endregion
 
         #region"Server Command"
@@ -55,7 +56,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="lstAddress"></param>
         /// <remarks>注意：有个命令可能只能用在mongos上面</remarks>
         /// <returns></returns>
-        public static CommandResult AddSharding(MongoServer routeSvr, String replicaSetName, List<String> lstAddress,String Name,Decimal MaxSize)
+        public static CommandResult AddSharding(MongoServer routeSvr, String replicaSetName, List<String> lstAddress, String Name, Decimal MaxSize)
         {
             // replset/host:port,host:port
             String cmdPara = replicaSetName == String.Empty ? String.Empty : (replicaSetName + "/");
@@ -83,7 +84,8 @@ namespace MagicMongoDBTool.Module
         /// <param name="routeSvr"></param>
         /// <param name="ShardName"></param>
         /// <returns></returns>
-        public static CommandResult RemoveSharding(MongoServer routeSvr, String ShardName) {
+        public static CommandResult RemoveSharding(MongoServer routeSvr, String ShardName)
+        {
             CommandDocument mongoCmd = new CommandDocument();
             mongoCmd.Add("removeshard", ShardName);
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);

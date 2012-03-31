@@ -10,7 +10,8 @@ namespace MagicMongoDBTool
         /// 语言切换
         /// </summary>
         /// <param name="mString"></param>
-        public static void SwitchLanguage(StringResource mString) {
+        public static void SwitchLanguage(StringResource mString)
+        {
             _frmConfirm.SetText(mString.GetText(StringResource.TextType.Common_Yes), mString.GetText(StringResource.TextType.Common_No));
             _frmMessage.SetText(mString.GetText(StringResource.TextType.Common_Detail), mString.GetText(StringResource.TextType.Common_OK));
             _frmInputBox.SetText(mString.GetText(StringResource.TextType.Common_Cancel), mString.GetText(StringResource.TextType.Common_OK));
@@ -36,7 +37,7 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 确认信息表示
         /// </summary>
-        public static String ShowInput(String Message,String Title)
+        public static String ShowInput(String Message, String Title)
         {
             _frmInputBox.Text = Title;
             _frmInputBox.SetMessage(Message);

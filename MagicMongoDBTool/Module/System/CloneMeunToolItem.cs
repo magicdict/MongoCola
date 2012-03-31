@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Reflection;
 using System.ComponentModel;
+using System.Reflection;
+using System.Windows.Forms;
+
 namespace MagicMongoDBTool.Module
 {
     static class CloneMeunToolItem
-    {   
+    {
         /// <summary>
         /// 
         /// </summary>
@@ -35,7 +33,7 @@ namespace MagicMongoDBTool.Module
         public static ToolStripMenuItem Clone(this ToolStripMenuItem orgMenuItem)
         {
             ToolStripMenuItem cloneMenuItem = new ToolStripMenuItem();
-            //!!!typeof的参数必须是ToolStripMenuItem的基类!!!如果使用Control则不能取到值!!!
+            ///!!!typeof的参数必须是ToolStripMenuItem的基类!!!如果使用Control则不能取到值!!!
             ///感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
             ///坑爹啊。。。。。。。。
             Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));

@@ -70,10 +70,11 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 
         /// </summary>
-        public struct UpLoadFileOption { 
-           public enumGFSFileName FileNameOpt;
-           public enumGFSAlready AlreadyOpt;
-           public Boolean IgnoreSubFolder;
+        public struct UpLoadFileOption
+        {
+            public enumGFSFileName FileNameOpt;
+            public enumGFSAlready AlreadyOpt;
+            public Boolean IgnoreSubFolder;
         }
         /// <summary>
         /// 
@@ -97,7 +98,8 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 
         /// </summary>
-        public enum UploadResult { 
+        public enum UploadResult
+        {
             Complete,
             Skip,
             Exception
@@ -125,7 +127,7 @@ namespace MagicMongoDBTool.Module
                 if (!gfs.Exists(RemoteName))
                 {
                     gfs.Upload(strFileName, RemoteName);
-                    return  UploadResult.Complete;
+                    return UploadResult.Complete;
                 }
                 else
                 {

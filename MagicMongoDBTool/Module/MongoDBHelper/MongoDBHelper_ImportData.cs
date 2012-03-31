@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
+
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -278,7 +279,7 @@ namespace MagicMongoDBTool.Module
                     }
                 }
                 String strSvrPath = SystemManager.GetTagData(strSvrPathWithTag);
-                String strKey = strSvrPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.ConnectionLV] + "/" + 
+                String strKey = strSvrPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.ConnectionLV] + "/" +
                                 strSvrPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.ServerLV];
                 currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, strKey));
                 rtnCode = true;
