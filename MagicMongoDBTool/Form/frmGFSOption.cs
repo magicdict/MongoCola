@@ -39,5 +39,22 @@ namespace MagicMongoDBTool
             this.Close();
         }
 
+        private void frmGFSOption_Load(object sender, EventArgs e)
+        {
+            if (!SystemManager.IsUseDefaultLanguage()) {
+                grpFilename.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_RemoteFileName);
+                radFilename.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_OnlyFilename);
+                radFullPath.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FullPath);
+                grpFileAlreadyExist.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FileAlreadyExist);
+                radAddIt.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_JustAddIt);
+                radOverwrite.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Overwrite);
+                radRenameIt.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Rename);
+                radSkipIt.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_SkipIt);
+                radStopIt.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Stop);
+                chkIgnore.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_IngoreSubFolder);
+                cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+            }
+        }
+
     }
 }

@@ -287,6 +287,17 @@
   <GFS_uploadDate>更新時間</GFS_uploadDate>
   <GFS_md5>md5</GFS_md5>
 
+  <GFS_Insert_Option_RemoteFileName>サーバー側ファイル名</GFS_Insert_Option_RemoteFileName>
+  <GFS_Insert_Option_OnlyFilename>ファイル名(例えば，readme.txt)</GFS_Insert_Option_OnlyFilename>
+  <GFS_Insert_Option_FullPath>フルパス(例えば，C:\readme.txt)</GFS_Insert_Option_FullPath>
+  <GFS_Insert_Option_FileAlreadyExist>ファイルすでに存在の場合</GFS_Insert_Option_FileAlreadyExist>
+  <GFS_Insert_Option_JustAddIt>追加</GFS_Insert_Option_JustAddIt>
+  <GFS_Insert_Option_Rename>名前変更(例えば、readme1.txt)</GFS_Insert_Option_Rename>
+  <GFS_Insert_Option_SkipIt>スキップ</GFS_Insert_Option_SkipIt>
+  <GFS_Insert_Option_Overwrite>上書き</GFS_Insert_Option_Overwrite>
+  <GFS_Insert_Option_Stop>中止</GFS_Insert_Option_Stop>
+  <GFS_Insert_Option_IngoreSubFolder>サッブフォルダをスキップ</GFS_Insert_Option_IngoreSubFolder>
+
   <!--Index-->
   <Index_Background>Background</Index_Background>
   <Index_RepeatDel>Repeat Delete</Index_RepeatDel>

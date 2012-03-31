@@ -244,6 +244,16 @@ namespace MagicMongoDBTool.Module
             GFS_chunkSize,
             GFS_uploadDate,
             GFS_md5,
+            GFS_Insert_Option_RemoteFileName,
+            GFS_Insert_Option_OnlyFilename,
+            GFS_Insert_Option_FullPath,
+            GFS_Insert_Option_FileAlreadyExist,
+            GFS_Insert_Option_JustAddIt,
+            GFS_Insert_Option_Rename,
+            GFS_Insert_Option_SkipIt,
+            GFS_Insert_Option_Overwrite,
+            GFS_Insert_Option_Stop,
+            GFS_Insert_Option_IngoreSubFolder,
 
             //DataBase_Status
             DataBase_Status_DataBaseName,

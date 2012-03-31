@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpFilename = new System.Windows.Forms.GroupBox();
             this.radFullPath = new System.Windows.Forms.RadioButton();
             this.radFilename = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpFileAlreadyExist = new System.Windows.Forms.GroupBox();
             this.radStopIt = new System.Windows.Forms.RadioButton();
             this.radOverwrite = new System.Windows.Forms.RadioButton();
             this.radSkipIt = new System.Windows.Forms.RadioButton();
@@ -39,20 +39,20 @@
             this.radRenameIt = new System.Windows.Forms.RadioButton();
             this.cmdOK = new System.Windows.Forms.Button();
             this.chkIgnore = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.grpFilename.SuspendLayout();
+            this.grpFileAlreadyExist.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // grpFilename
             // 
-            this.groupBox1.Controls.Add(this.radFullPath);
-            this.groupBox1.Controls.Add(this.radFilename);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 79);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "For MongoDB filename ,use";
+            this.grpFilename.Controls.Add(this.radFullPath);
+            this.grpFilename.Controls.Add(this.radFilename);
+            this.grpFilename.Location = new System.Drawing.Point(12, 12);
+            this.grpFilename.Name = "grpFilename";
+            this.grpFilename.Size = new System.Drawing.Size(278, 79);
+            this.grpFilename.TabIndex = 0;
+            this.grpFilename.TabStop = false;
+            this.grpFilename.Text = "For MongoDB filename ,use";
             // 
             // radFullPath
             // 
@@ -76,19 +76,19 @@
             this.radFilename.Text = "only the filename (eg.readme.txt)";
             this.radFilename.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // grpFileAlreadyExist
             // 
-            this.groupBox2.Controls.Add(this.radStopIt);
-            this.groupBox2.Controls.Add(this.radOverwrite);
-            this.groupBox2.Controls.Add(this.radSkipIt);
-            this.groupBox2.Controls.Add(this.radAddIt);
-            this.groupBox2.Controls.Add(this.radRenameIt);
-            this.groupBox2.Location = new System.Drawing.Point(12, 97);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(278, 146);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "if file already exist";
+            this.grpFileAlreadyExist.Controls.Add(this.radStopIt);
+            this.grpFileAlreadyExist.Controls.Add(this.radOverwrite);
+            this.grpFileAlreadyExist.Controls.Add(this.radSkipIt);
+            this.grpFileAlreadyExist.Controls.Add(this.radAddIt);
+            this.grpFileAlreadyExist.Controls.Add(this.radRenameIt);
+            this.grpFileAlreadyExist.Location = new System.Drawing.Point(12, 97);
+            this.grpFileAlreadyExist.Name = "grpFileAlreadyExist";
+            this.grpFileAlreadyExist.Size = new System.Drawing.Size(278, 146);
+            this.grpFileAlreadyExist.TabIndex = 1;
+            this.grpFileAlreadyExist.TabStop = false;
+            this.grpFileAlreadyExist.Text = "if file already exist";
             // 
             // radStopIt
             // 
@@ -166,17 +166,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(304, 313);
             this.Controls.Add(this.chkIgnore);
             this.Controls.Add(this.cmdOK);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpFileAlreadyExist);
+            this.Controls.Add(this.grpFilename);
             this.Name = "frmGFSOption";
             this.Text = "GFS Insert Option";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.Load += new System.EventHandler(this.frmGFSOption_Load);
+            this.grpFilename.ResumeLayout(false);
+            this.grpFilename.PerformLayout();
+            this.grpFileAlreadyExist.ResumeLayout(false);
+            this.grpFileAlreadyExist.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,10 +186,10 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpFilename;
         private System.Windows.Forms.RadioButton radFullPath;
         private System.Windows.Forms.RadioButton radFilename;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpFileAlreadyExist;
         private System.Windows.Forms.RadioButton radStopIt;
         private System.Windows.Forms.RadioButton radOverwrite;
         private System.Windows.Forms.RadioButton radSkipIt;

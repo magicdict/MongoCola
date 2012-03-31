@@ -287,6 +287,18 @@
   <GFS_uploadDate>日期</GFS_uploadDate>
   <GFS_md5>md5</GFS_md5>
 
+  <GFS_Insert_Option_RemoteFileName>服务器端的文件名</GFS_Insert_Option_RemoteFileName>
+  <GFS_Insert_Option_OnlyFilename>仅文件名(例如，readme.txt)</GFS_Insert_Option_OnlyFilename>
+  <GFS_Insert_Option_FullPath>全路径(例如，C:\readme.txt)</GFS_Insert_Option_FullPath>
+  <GFS_Insert_Option_FileAlreadyExist>文件已经存在</GFS_Insert_Option_FileAlreadyExist>
+  <GFS_Insert_Option_JustAddIt>添加</GFS_Insert_Option_JustAddIt>
+  <GFS_Insert_Option_Rename>重命名(例如readme1.txt)</GFS_Insert_Option_Rename>
+  <GFS_Insert_Option_SkipIt>跳过</GFS_Insert_Option_SkipIt>
+  <GFS_Insert_Option_Overwrite>覆盖文件</GFS_Insert_Option_Overwrite>
+  <GFS_Insert_Option_Stop>停止上传</GFS_Insert_Option_Stop>
+  <GFS_Insert_Option_IngoreSubFolder>忽略子文件夹</GFS_Insert_Option_IngoreSubFolder>
+
+
   <!--Index-->
   <Index_Background>Background</Index_Background>
   <Index_RepeatDel>Repeat Delete</Index_RepeatDel>
