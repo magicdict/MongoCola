@@ -43,7 +43,6 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             ///ArbiterSvr,
         }
-
         /// <summary>
         /// 连接结构体
         /// </summary>

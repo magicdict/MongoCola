@@ -80,7 +80,7 @@ namespace MagicMongoDBTool
             this.slaveResyncToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_SlaveResync);
             this.ShutDownToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_CloseServer);
             this.ServePropertyToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties);
-            this.SvrStatusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+            this.ServerStatusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
 
             this.DataBaseToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database);
             this.DelMongoDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelDB);
@@ -388,39 +388,21 @@ namespace MagicMongoDBTool
                         if (!config.IsReadOnly)
                         {
                             this.CreateMongoDBToolStripMenuItem.Enabled = true;
+                            this.AddUserToAdminToolStripMenuItem.Enabled = true;
                             if (!SystemManager.MONO_MODE)
                             {
                                 this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
                             }
-                            this.AddUserToAdminToolStripMenuItem.Enabled = true;
-                            if (SystemManager.GetCurrentServer().Instances.Length == 1)
+                            if (config.ServerRole == ConfigHelper.SvrRoleType.MasterSvr || 
+                                config.ServerRole == ConfigHelper.SvrRoleType.SlaveSvr)
                             {
-                                if (!(SystemManager.GetCurrentServer().Instance.IsPrimary))
-                                {
-                                    this.slaveResyncToolStripMenuItem.Enabled = true;
-                                }
+                                //Master，Slave都可以执行
+                                this.slaveResyncToolStripMenuItem.Enabled = true;
                             }
                         }
-                        this.SvrStatusToolStripMenuItem.Enabled = true;
+                        this.ServerStatusToolStripMenuItem.Enabled = true;
                         this.ServePropertyToolStripMenuItem.Enabled = true;
-                        this.InitReplsetToolStripMenuItem.Enabled = true;
-                        if (SystemManager.GetCurrentServerConfig().ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr)
-                        {
-                            //副本服务器专用。
-                            //副本初始化的操作 改在连接设置里面完成
-                            if (!config.IsReadOnly)
-                            {
-                                this.ReplicaSetToolStripMenuItem.Enabled = true;
-                            }
-                        }
-                        if (SystemManager.GetCurrentServerConfig().ServerRole == ConfigHelper.SvrRoleType.ShardSvr)
-                        {
-                            //Route用
-                            if (!config.IsReadOnly)
-                            {
-                                this.ShardingConfigToolStripMenuItem.Enabled = true;
-                            }
-                        }
+
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -439,14 +421,6 @@ namespace MagicMongoDBTool
                                 t3.Click += new EventHandler(RestoreMongoToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t3);
 
-                                ToolStripMenuItem t4 = this.ReplicaSetToolStripMenuItem.Clone();
-                                t4.Click += new EventHandler(ReplicaSetToolStripMenuItem_Click);
-                                this.contextMenuStripMain.Items.Add(t4);
-
-                                ToolStripMenuItem t5 = this.ShardingConfigToolStripMenuItem.Clone();
-                                t5.Click += new EventHandler(ShardingConfigToolStripMenuItem_Click);
-                                this.contextMenuStripMain.Items.Add(t5);
-
                                 ToolStripMenuItem t6 = this.slaveResyncToolStripMenuItem.Clone();
                                 t6.Click += new EventHandler(slaveResyncToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t6);
@@ -455,7 +429,7 @@ namespace MagicMongoDBTool
                                 t9.Click += new EventHandler(ServePropertyToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t9);
 
-                                ToolStripMenuItem t10 = this.SvrStatusToolStripMenuItem.Clone();
+                                ToolStripMenuItem t10 = this.ServerStatusToolStripMenuItem.Clone();
                                 t10.Click += new EventHandler(SvrStatusToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t10);
 
@@ -466,11 +440,9 @@ namespace MagicMongoDBTool
                                 this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.ReplicaSetToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.ShardingConfigToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.slaveResyncToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ServePropertyToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.SvrStatusToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ServerStatusToolStripMenuItem.Clone());
                             }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -488,14 +460,14 @@ namespace MagicMongoDBTool
                                 ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
                                 t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t1);
-                                ToolStripMenuItem t2 = this.SvrStatusToolStripMenuItem.Clone();
+                                ToolStripMenuItem t2 = this.ServerStatusToolStripMenuItem.Clone();
                                 t2.Click += new EventHandler(SvrStatusToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t2);
                             }
                             else
                             {
                                 this.contextMenuStripMain.Items.Add(this.DisconnectToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.SvrStatusToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ServerStatusToolStripMenuItem.Clone());
                             }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -516,18 +488,15 @@ namespace MagicMongoDBTool
                         //解禁 删除数据库 创建数据集
                         if (!MongoDBHelper.IsSystemDataBase(SystemManager.GetCurrentDataBase()))
                         {
+                            //系统库不允许修改
                             if (!config.IsReadOnly)
                             {
-                                //系统库不允许修改
                                 this.DelMongoDBToolStripMenuItem.Enabled = true;
                                 this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                                 this.AddUserToolStripMenuItem.Enabled = true;
                                 this.InitGFSToolStripMenuItem.Enabled = true;
-                                //if (config.ServerRole == ConfigHelper.SvrRoleType.SlaveSvr)
-                                //{
-                                ///Slave server @ Master-Slave
+                                ///If a Slave server can repair database @ Master-Slave is not sure ??
                                 this.RepairDBToolStripMenuItem.Enabled = true;
-                                //}
                             }
                             this.evalJSToolStripMenuItem.Enabled = true;
                             this.ConvertSqlToolStripMenuItem.Enabled = true;
@@ -1135,7 +1104,7 @@ namespace MagicMongoDBTool
             //管理-服务器
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
             this.AddUserToAdminToolStripMenuItem.Enabled = false;
-            this.SvrStatusToolStripMenuItem.Enabled = false;
+            this.ServerStatusToolStripMenuItem.Enabled = false;
             this.ServePropertyToolStripMenuItem.Enabled = false;
             this.slaveResyncToolStripMenuItem.Enabled = false;
             this.ShutDownToolStripMenuItem.Enabled = false;

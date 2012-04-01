@@ -67,7 +67,7 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.slaveResyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServePropertyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SvrStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ServerStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CreateMongoCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -378,7 +378,7 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem3,
             this.slaveResyncToolStripMenuItem,
             this.ServePropertyToolStripMenuItem,
-            this.SvrStatusToolStripMenuItem});
+            this.ServerStatusToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
             this.ServerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.ServerToolStripMenuItem.Text = "Server";
@@ -425,11 +425,11 @@ namespace MagicMongoDBTool
             // 
             // SvrStatusToolStripMenuItem
             // 
-            this.SvrStatusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.KeyInfo;
-            this.SvrStatusToolStripMenuItem.Name = "SvrStatusToolStripMenuItem";
-            this.SvrStatusToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.SvrStatusToolStripMenuItem.Text = "Status";
-            this.SvrStatusToolStripMenuItem.Click += new System.EventHandler(this.SvrStatusToolStripMenuItem_Click);
+            this.ServerStatusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.KeyInfo;
+            this.ServerStatusToolStripMenuItem.Name = "SvrStatusToolStripMenuItem";
+            this.ServerStatusToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.ServerStatusToolStripMenuItem.Text = "Status";
+            this.ServerStatusToolStripMenuItem.Click += new System.EventHandler(this.SvrStatusToolStripMenuItem_Click);
             // 
             // DataBaseToolStripMenuItem
             // 
@@ -1004,7 +1004,7 @@ namespace MagicMongoDBTool
         private ToolStripSeparator toolStripMenuItem3;
         private ToolStripMenuItem slaveResyncToolStripMenuItem;
         private ToolStripMenuItem ServePropertyToolStripMenuItem;
-        private ToolStripMenuItem SvrStatusToolStripMenuItem;
+        private ToolStripMenuItem ServerStatusToolStripMenuItem;
         private ToolStripMenuItem ShutDownToolStripMenuItem;
     }
 }

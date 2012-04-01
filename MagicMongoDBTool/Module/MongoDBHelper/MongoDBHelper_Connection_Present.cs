@@ -144,6 +144,26 @@ namespace MagicMongoDBTool.Module
                     }
                     config.Health = true;
                     SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey] = config;
+                    switch (config.ServerRole)
+                    {
+                        case ConfigHelper.SvrRoleType.DataSvr:
+                            ConnectionNode.Text = "[Data]  " + ConnectionNode.Text;
+                            break;
+                        case ConfigHelper.SvrRoleType.ShardSvr:
+                            ConnectionNode.Text = "[Cluster]  " + ConnectionNode.Text;
+                            break;
+                        case ConfigHelper.SvrRoleType.ReplsetSvr:
+                            ConnectionNode.Text = "[Replset]  " + ConnectionNode.Text;
+                            break;
+                        case ConfigHelper.SvrRoleType.MasterSvr:
+                            ConnectionNode.Text = "[Master]  " + ConnectionNode.Text;
+                            break;
+                        case ConfigHelper.SvrRoleType.SlaveSvr:
+                            ConnectionNode.Text = "[Slave]  " + ConnectionNode.Text;
+                            break;
+                        default:
+                            break;
+                    }
                     trvMongoDB.Nodes.Add(ConnectionNode);
                 }
                 catch (MongoAuthenticationException ex)

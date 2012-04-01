@@ -11,14 +11,16 @@ MongoCola is free and open source.
 Release History
 ========================================================================
 Ver 1.21 2012/04/06 [First Version @Accenture CDC]
-
+Main form:
+    1.Display server role before connection name at node text.
+    2. 
 ========================================================================
 ========================================================================
 Ver 1.20 2012/03/31 [Last Version @IBM GDC]
 C# Driver:
     upgrade to C# offical driver 1.4.1
 
-Mainfrom:
+Main form:
     1.Replset,Cluster will show member server at treeview.
     2.Fix the bug :  when disconnect a connection witch can't be connected a exception happened.
     3.Close ViewTabs of collection when the database witch the collection belongs to is droped. 
