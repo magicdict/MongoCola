@@ -64,12 +64,14 @@ namespace MagicMongoDBTool.Module
                             ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, ServerInstace, null));
                         }
                         ConnectionNode.Nodes.Add(ServerListNode);
+                        config.ServerRole = ConfigHelper.SvrRoleType.ReplsetSvr;
                     }
                     else
                     {
                         BsonDocument ServerStatusDoc = ExecuteMongoSvrCommand(serverStatus_Command, mongoConn).Response;
                         if (ServerStatusDoc.GetElement("process").Value == "mongos")
                         {
+                            config.ServerRole = ConfigHelper.SvrRoleType.ShardSvr;
                             ConnectionNode.Tag = CONNECTION_CLUSTER_TAG + ":" + config.ConnectionName;
                             TreeNode ShardListNode = new TreeNode("Shards");
                             ShardListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
@@ -118,6 +120,25 @@ namespace MagicMongoDBTool.Module
                         }
                         else
                         {
+                            ///Master - Slave 的判断
+                            BsonElement replElement;
+                            ServerStatusDoc.TryGetElement("repl", out replElement);
+                            if (replElement == null)
+                            {
+                                config.ServerRole = ConfigHelper.SvrRoleType.DataSvr;
+                            }
+                            else
+                            {
+                                if (replElement.Value.AsBsonDocument.GetElement("ismaster").Value == BsonBoolean.True)
+                                {
+                                    config.ServerRole = ConfigHelper.SvrRoleType.MasterSvr;
+                                }
+                                else
+                                {
+                                    //ismaster 的值不一定是True和False...
+                                    config.ServerRole = ConfigHelper.SvrRoleType.SlaveSvr;
+                                }
+                            }
                             ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName;
                         }
                     }
@@ -164,9 +185,17 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mongoConnKey"></param>
+        /// <param name="config"></param>
+        /// <param name="mongoConn"></param>
+        /// <param name="mServerInstace"></param>
+        /// <param name="mServer"></param>
+        /// <returns></returns>
         private static TreeNode GetInstanceNode(String mongoConnKey, ConfigHelper.MongoConnectionConfig config,
-                         MongoServer mongoConn, MongoServerInstance mServerInstace, MongoServer mServer)
+                       MongoServer mongoConn, MongoServerInstance mServerInstace, MongoServer mServer)
         {
             Boolean isServer = false;
             if (mServerInstace == null)

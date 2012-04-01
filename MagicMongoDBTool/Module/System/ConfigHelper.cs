@@ -19,10 +19,6 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             DataSvr,
             /// <summary>
-            /// 配置服务器[mongod]
-            /// </summary>
-            ConfigSvr,
-            /// <summary>
             /// Sharding服务器[mongos]
             /// </summary>
             ShardSvr,
@@ -31,10 +27,6 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             ReplsetSvr,
             /// <summary>
-            /// 仲裁服务器[mongod --replset,without data]
-            /// </summary>
-            ArbiterSvr,
-            /// <summary>
             /// Master主服务器
             /// </summary>
             MasterSvr,
@@ -42,6 +34,14 @@ namespace MagicMongoDBTool.Module
             /// Slave从属服务器
             /// </summary>
             SlaveSvr
+            /// <summary>
+            /// 配置服务器[mongod]
+            /// </summary>
+            ///ConfigSvr,
+            /// <summary>
+            /// 仲裁服务器[mongod --replset,without data]
+            /// </summary>
+            ///ArbiterSvr,
         }
 
         /// <summary>
