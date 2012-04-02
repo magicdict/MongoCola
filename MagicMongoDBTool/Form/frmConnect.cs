@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using MagicMongoDBTool.Module;
+using System.Windows.Forms;
+using System.Threading;
 
 namespace MagicMongoDBTool
 {
@@ -121,5 +123,40 @@ namespace MagicMongoDBTool
             this.Close();
         }
 
+        delegate void WriteInfo(String Info, byte Message);
+
+        private void Write(String Info,byte Message)
+        {
+            txtInfo.Text += Info + System.Environment.NewLine;
+        }
+        /// <summary>
+        /// Entry Of MongoCola@Browser
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lnkTryBrowse_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            this.Height += 200;
+            HTTP.HTTPServer.ServerPath = Application.StartupPath;
+            HTTP.HTTPServer svr = new HTTP.HTTPServer();
+            svr.LogInfo += new EventHandler<HTTP.HTTPServer.LogOutEvent>(
+                 (x, y) =>
+                 {
+                     if (txtInfo.InvokeRequired)
+                     {
+                         WriteInfo t = new WriteInfo(Write);
+                         object[] o = new object[2] { y.Info,y.Level };
+                         ((Control)this).Invoke(t, o);
+                         return;
+                     }
+                     else
+                     {
+                         Write(y.Info,y.Level);
+                     }
+                 });
+            Thread q = new Thread(new ThreadStart(svr.Start));
+            q.Start();
+            System.Diagnostics.Process.Start("http://localhost:13000/");
+        }
     }
 }

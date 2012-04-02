@@ -321,6 +321,7 @@ namespace MagicMongoDBTool
                                 ToolStripMenuItem t1 = this.DisconnectToolStripMenuItem.Clone();
                                 t1.Click += new EventHandler(DisconnectToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t1);
+
                                 ToolStripMenuItem t2 = this.InitReplsetToolStripMenuItem.Clone();
                                 t2.Click += new EventHandler(InitReplsetToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t2);

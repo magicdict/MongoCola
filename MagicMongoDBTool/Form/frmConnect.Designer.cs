@@ -34,6 +34,8 @@
             this.cmdClose = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.lstServerce = new System.Windows.Forms.ListBox();
+            this.lnkTryBrowse = new System.Windows.Forms.LinkLabel();
+            this.txtInfo = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cmdModifyCon
@@ -72,7 +74,7 @@
             // cmdClose
             // 
             this.cmdClose.BackColor = System.Drawing.Color.Transparent;
-            this.cmdClose.Location = new System.Drawing.Point(286, 212);
+            this.cmdClose.Location = new System.Drawing.Point(226, 212);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(90, 36);
             this.cmdClose.TabIndex = 7;
@@ -83,7 +85,7 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(129, 212);
+            this.cmdOK.Location = new System.Drawing.Point(103, 212);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(90, 36);
             this.cmdOK.TabIndex = 6;
@@ -102,11 +104,32 @@
             this.lstServerce.TabIndex = 5;
             this.lstServerce.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.cmdConnect_Click);
             // 
+            // lnkTryBrowse
+            // 
+            this.lnkTryBrowse.AutoSize = true;
+            this.lnkTryBrowse.Location = new System.Drawing.Point(369, 223);
+            this.lnkTryBrowse.Name = "lnkTryBrowse";
+            this.lnkTryBrowse.Size = new System.Drawing.Size(154, 15);
+            this.lnkTryBrowse.TabIndex = 11;
+            this.lnkTryBrowse.TabStop = true;
+            this.lnkTryBrowse.Text = "Try MongoCola By Browser";
+            this.lnkTryBrowse.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkTryBrowse_LinkClicked);
+            // 
+            // txtInfo
+            // 
+            this.txtInfo.Location = new System.Drawing.Point(13, 264);
+            this.txtInfo.Multiline = true;
+            this.txtInfo.Name = "txtInfo";
+            this.txtInfo.Size = new System.Drawing.Size(508, 153);
+            this.txtInfo.TabIndex = 12;
+            // 
             // frmConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 269);
+            this.ClientSize = new System.Drawing.Size(542, 255);
+            this.Controls.Add(this.txtInfo);
+            this.Controls.Add(this.lnkTryBrowse);
             this.Controls.Add(this.cmdModifyCon);
             this.Controls.Add(this.cmdDelCon);
             this.Controls.Add(this.cmdAddCon);
@@ -122,6 +145,7 @@
             this.Text = "Server Connection";
             this.Load += new System.EventHandler(this.frmConnect_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -133,5 +157,7 @@
         private System.Windows.Forms.Button cmdClose;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.ListBox lstServerce;
+        private System.Windows.Forms.LinkLabel lnkTryBrowse;
+        private System.Windows.Forms.TextBox txtInfo;
     }
 }

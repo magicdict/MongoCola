@@ -85,6 +85,7 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -167,6 +168,8 @@
     <Compile Include="Form\Box\frmEasyMessage.Designer.cs">
       <DependentUpon>frmEasyMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module\HTTPServer\FileOperation.cs" />
+    <Compile Include="Module\HTTPServer\Server.cs" />
     <Compile Include="UserController\ctlJsEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
