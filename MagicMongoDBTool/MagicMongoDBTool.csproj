@@ -168,7 +168,7 @@
     <Compile Include="Form\Box\frmEasyMessage.Designer.cs">
       <DependentUpon>frmEasyMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\HTTPServer\FileOperation.cs" />
+    <Compile Include="Module\HTTPServer\GetPage.cs" />
     <Compile Include="Module\HTTPServer\Server.cs" />
     <Compile Include="UserController\ctlJsEditor.cs">
       <SubType>UserControl</SubType>
@@ -537,6 +537,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="HTML\ConnectionList.htm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Resources\%2800,21%29.png" />
     <Content Include="Resources\%2800,27%29.png" />
     <None Include="Resources\%2800,33%29.png" />

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.IO;
 using System.Threading;
 using System.Web;
 
@@ -39,13 +36,21 @@ namespace MagicMongoDBTool.HTTP
                 LogInfo(null, new LogOutEvent(StrText, MessageLv));
             }
         }
+        private static string mServerPath;
         /// <summary>
         /// 服务器路径
         /// </summary>
         public static String ServerPath
         {
-            set;
-            get;
+            set
+            {
+                GetPage.FilePath = value;
+                mServerPath = value;
+            }
+            get
+            {
+                return mServerPath;
+            }
         }
         public void Start()
         {
@@ -107,28 +112,31 @@ namespace MagicMongoDBTool.HTTP
                 String data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
                 //OutputLog("Received:" + data);
 
-                string[] Rec = data.Split(Environment.NewLine.ToCharArray());
-                if (Rec[0].StartsWith("GET"))
+                string[] OrgRequest = data.Split(Environment.NewLine.ToCharArray());
+                if (OrgRequest[0].StartsWith("GET"))
                 {
-                    string[] Request = Rec[0].Split(" ".ToCharArray());
+                    String[] Request = OrgRequest[0].Split(" ".ToCharArray());
                     String RequestItem = HttpUtility.UrlDecode(Request[1], System.Text.Encoding.UTF8);
                     OutputLog("[RequestItem]Received : " + RequestItem, 0);
-                    switch (RequestItem)
+                    String[] RequestPath = RequestItem.Split("?".ToCharArray());
+                    switch (RequestPath[0])
                     {
                         case "/":
                             //根节点 
-
+                            GETPage(stream, GetPage.ConnectionList());
+                            break;
+                        case "/Connection":
+                            GETPage(stream, GetPage.Connection(RequestPath[1]));
                             break;
                         default:
+                            String FileName = ServerPath + RequestItem.Replace("/", "\\");
+                            GETFile(stream, FileName);
                             break;
                     }
-
-                    String FileName = ServerPath + RequestItem.Replace("/", "\\");
-                    GETFile(stream, FileName);
                 }
                 else
                 {
-                    if (Rec[0].StartsWith("POST"))
+                    if (OrgRequest[0].StartsWith("POST"))
                     {
 
                     }
@@ -138,14 +146,54 @@ namespace MagicMongoDBTool.HTTP
             // Shutdown and end connection
             client.Close();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="FileName"></param>
+        private void GETPage(NetworkStream stream, String PageContent)
+        {
+            byte[] msg = null;
+            byte[] bFile = System.Text.Encoding.UTF8.GetBytes(PageContent);
+            String data = String.Empty;
+            data = "HTTP/1.1 200 OK" + Environment.NewLine;
+            data += "Content-Type: text/html; charset=utf-8" + Environment.NewLine;
+            data += "Content-Length: ";
+            data += (bFile.Length).ToString();
+            data += Environment.NewLine + Environment.NewLine;
+            msg = System.Text.Encoding.ASCII.GetBytes(data);
+            // Send back a response.
+            stream.Write(msg, 0, msg.Length);
+            stream.Write(bFile, 0, bFile.Length);
+        }
+        /// <summary>
+        /// 文件读取
+        /// </summary>
+        /// <param name="Path"></param>
+        /// <returns></returns>
+        public static byte[] ReadFile(String Path)
+        {
+            FileStream fs = new FileStream(Path, FileMode.Open);
+            byte[] bFile = new byte[fs.Length];
+            BinaryReader r = new BinaryReader(fs);
+            bFile = r.ReadBytes((int)fs.Length);
+            r.Close();
+            r = null;
+            fs.Close();
+            return bFile;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="FileName"></param>
         private void GETFile(NetworkStream stream, String FileName)
         {
             byte[] msg = null;
             String data = String.Empty;
             if (File.Exists(FileName))
             {
-                byte[] bFile = FileOperation.ReadFile(FileName);
+                byte[] bFile = ReadFile(FileName);
                 // Process the data sent by the client.
                 data = "HTTP/1.1 200 OK" + Environment.NewLine;
                 data += "Content-Type: text/html; charset=utf-8" + Environment.NewLine;
@@ -156,7 +204,6 @@ namespace MagicMongoDBTool.HTTP
                 // Send back a response.
                 stream.Write(msg, 0, msg.Length);
                 stream.Write(bFile, 0, bFile.Length);
-                stream.Flush();
             }
             else
             {
@@ -165,6 +212,7 @@ namespace MagicMongoDBTool.HTTP
                 // Send back a response.
                 stream.Write(msg, 0, msg.Length);
             }
+            stream.Flush();
             OutputLog("[System]Sent HTML OK", 0);
         }
     }

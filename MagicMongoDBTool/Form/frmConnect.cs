@@ -123,8 +123,17 @@ namespace MagicMongoDBTool
             this.Close();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Info"></param>
+        /// <param name="Message"></param>
         delegate void WriteInfo(String Info, byte Message);
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Info"></param>
+        /// <param name="Message"></param>
         private void Write(String Info,byte Message)
         {
             txtInfo.Text += Info + System.Environment.NewLine;

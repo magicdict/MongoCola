@@ -107,12 +107,12 @@
             // lnkTryBrowse
             // 
             this.lnkTryBrowse.AutoSize = true;
-            this.lnkTryBrowse.Location = new System.Drawing.Point(369, 223);
+            this.lnkTryBrowse.Location = new System.Drawing.Point(343, 223);
             this.lnkTryBrowse.Name = "lnkTryBrowse";
-            this.lnkTryBrowse.Size = new System.Drawing.Size(154, 15);
+            this.lnkTryBrowse.Size = new System.Drawing.Size(187, 15);
             this.lnkTryBrowse.TabIndex = 11;
             this.lnkTryBrowse.TabStop = true;
-            this.lnkTryBrowse.Text = "Try MongoCola By Browser";
+            this.lnkTryBrowse.Text = "Try MongoCola By Browser(Beta)";
             this.lnkTryBrowse.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkTryBrowse_LinkClicked);
             // 
             // txtInfo
