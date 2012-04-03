@@ -74,7 +74,7 @@
             // cmdClose
             // 
             this.cmdClose.BackColor = System.Drawing.Color.Transparent;
-            this.cmdClose.Location = new System.Drawing.Point(226, 212);
+            this.cmdClose.Location = new System.Drawing.Point(226, 205);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(90, 36);
             this.cmdClose.TabIndex = 7;
@@ -85,7 +85,7 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(103, 212);
+            this.cmdOK.Location = new System.Drawing.Point(103, 205);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(90, 36);
             this.cmdOK.TabIndex = 6;
@@ -127,7 +127,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 255);
+            this.ClientSize = new System.Drawing.Size(542, 248);
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.lnkTryBrowse);
             this.Controls.Add(this.cmdModifyCon);

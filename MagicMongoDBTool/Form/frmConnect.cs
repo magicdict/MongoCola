@@ -145,8 +145,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void lnkTryBrowse_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
-            this.Height += 200;
-            HTTP.HTTPServer.ServerPath = Application.StartupPath;
+            this.Height = 500;
+            HTTP.HTTPServer.ServerPath = Application.StartupPath + "\\HTML";
             HTTP.HTTPServer svr = new HTTP.HTTPServer();
             svr.LogInfo += new EventHandler<HTTP.HTTPServer.LogOutEvent>(
                  (x, y) =>

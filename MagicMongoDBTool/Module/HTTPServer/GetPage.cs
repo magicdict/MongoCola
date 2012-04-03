@@ -19,7 +19,7 @@ namespace MagicMongoDBTool.HTTP
         /// <returns></returns>
         internal static string ConnectionList()
         {
-            String FileName = FilePath + "\\HTML\\ConnectionList.htm";
+            String FileName = FilePath + "\\ConnectionList.htm";
             String content = String.Empty;
             StreamReader stream = new StreamReader(FileName);
             content = stream.ReadToEnd();
@@ -47,7 +47,13 @@ namespace MagicMongoDBTool.HTTP
         /// <returns></returns>
         internal static string Connection(String ConnectionName)
         {
-            throw new NotImplementedException();
+            String FileName = FilePath + "\\Connection.htm";
+            String content = String.Empty;
+            StreamReader stream = new StreamReader(FileName);
+            content = stream.ReadToEnd();
+
+            //content = content.Replace("<%=ConnectionList%>", ConnectionList);
+            return content;
         }
     }
 }

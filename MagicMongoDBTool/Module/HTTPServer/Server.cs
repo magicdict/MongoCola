@@ -196,7 +196,20 @@ namespace MagicMongoDBTool.HTTP
                 byte[] bFile = ReadFile(FileName);
                 // Process the data sent by the client.
                 data = "HTTP/1.1 200 OK" + Environment.NewLine;
-                data += "Content-Type: text/html; charset=utf-8" + Environment.NewLine;
+                //if content-type is wrong,FF can;t render it,but IE can
+                string filetype = String.Empty;
+                switch (new FileInfo(FileName).Extension)
+                {
+                    case ".css":
+                        filetype = "text/css";
+                        break;
+                    case ".js":
+                        filetype = "text/javascript";
+                        break;
+                    default:
+                        break;
+                }
+                data += "Content-Type: @filetype; charset=utf-8".Replace("@filetype",filetype) + Environment.NewLine;
                 data += "Content-Length: ";
                 data += (bFile.Length).ToString();
                 data += Environment.NewLine + Environment.NewLine;
@@ -204,6 +217,7 @@ namespace MagicMongoDBTool.HTTP
                 // Send back a response.
                 stream.Write(msg, 0, msg.Length);
                 stream.Write(bFile, 0, bFile.Length);
+                OutputLog("[System]Sent HTML OK", 0);
             }
             else
             {
@@ -211,9 +225,10 @@ namespace MagicMongoDBTool.HTTP
                 msg = System.Text.Encoding.ASCII.GetBytes(data);
                 // Send back a response.
                 stream.Write(msg, 0, msg.Length);
+                OutputLog("[System]FileName Not Found:" + FileName, 0);
             }
             stream.Flush();
-            OutputLog("[System]Sent HTML OK", 0);
+            
         }
     }
 }
