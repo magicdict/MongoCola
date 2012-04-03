@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using MagicMongoDBTool.Module;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool.HTTP
 {
-    public static class GetPage{
+    public static class GetPage
+    {
         /// <summary>
         /// 
         /// </summary>
@@ -52,7 +55,12 @@ namespace MagicMongoDBTool.HTTP
             StreamReader stream = new StreamReader(FileName);
             content = stream.ReadToEnd();
 
-            //content = content.Replace("<%=ConnectionList%>", ConnectionList);
+            List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
+            connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName]);
+            MongoDBHelper.AddServer(connLst);
+
+            content = content.Replace("<%=NodeJSon%>", MongoDBHelper.FillConnectionToJSON(ConnectionName));
+            content = content.Replace("<%=ConnectionName%>", ConnectionName);
             return content;
         }
     }
