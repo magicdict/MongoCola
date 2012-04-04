@@ -32,362 +32,45 @@ namespace MagicMongoDBTool.Module
 
         #region"展示数据库结构 WebForm"
         /// <summary>
-        /// FillConnectionToJSON
+        /// 
         /// </summary>
-        /// <param name="mongoConnKey"></param>
+        /// <param name="ConnectionName"></param>
         /// <returns></returns>
-        public static String FillConnectionToJSON(String mongoConnKey)
+        public static String FillConnectionToJSON(String ConnectionName)
         {
-            MongoServer mongoConn = _mongoConnSvrLst[mongoConnKey];
-            BsonDocument ConnectionNode = new BsonDocument();
-            try
-            {
-                //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
-                ConfigHelper.MongoConnectionConfig config = SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey];
-                //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
-                //不过现在改为全部显示的打开连接
-                mongoConn.Connect();
-                ///mongoSvr.ReplicaSetName只有在连接后才有效，但是也可以使用Config.ReplsetName
-                ConnectionNode.Add("children", new BsonArray() { GetInstanceDocument(mongoConnKey, config, mongoConn, null, mongoConn) });
-
-                if (mongoConn.ReplicaSetName != null)
-                {
-
-                    TreeNode ServerListNode = new TreeNode("Servers");
-                    ServerListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
-                    ServerListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
-                    foreach (MongoServerInstance ServerInstace in mongoConn.Instances)
-                    {
-                        ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, ServerInstace, null));
-                    }
-                    //ConnectionNode.Add(ServerListNode);
-                    config.ServerRole = ConfigHelper.SvrRoleType.ReplsetSvr;
-                }
-                else
-                {
-                    BsonDocument ServerStatusDoc = ExecuteMongoSvrCommand(serverStatus_Command, mongoConn).Response;
-                    if (ServerStatusDoc.GetElement("process").Value == "mongos")
-                    {
-                        config.ServerRole = ConfigHelper.SvrRoleType.ShardSvr;
-
-                        TreeNode ShardListNode = new TreeNode("Shards");
-                        ShardListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
-                        ShardListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
-                        foreach (var lst in GetShardInfo(mongoConn, "host"))
-                        {
-                            TreeNode ShardNode = new TreeNode();
-                            ShardNode.Text = lst.Key;
-                            ShardNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
-                            ShardNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
-                            String strHostList = lst.Value.ToString();
-                            String[] strAddress = strHostList.Split("/".ToCharArray());
-                            String strAddresslst;
-                            if (strAddress.Length == 2)
-                            {
-                                //#1  replset/host:port,host:port
-                                ShardNode.Text += "[Replset:" + strAddress[0] + "]";
-                                strAddresslst = strAddress[1];
-                            }
-                            else
-                            {
-                                //#2  host:port,host:port
-                                strAddresslst = strHostList;
-                            }
-                            foreach (String item in strAddresslst.Split(",".ToCharArray()))
-                            {
-                                MongoServerSettings tinySetting = new MongoServerSettings();
-                                tinySetting.ConnectionMode = ConnectionMode.Direct;
-                                tinySetting.ReplicaSetName = strAddress[0];
-                                MongoServerAddress tinyAddr;
-                                if (item.Split(":".ToCharArray()).Length == 2)
-                                {
-                                    tinyAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0], Convert.ToInt32(item.Split(":".ToCharArray())[1]));
-                                }
-                                else
-                                {
-                                    tinyAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0]);
-                                }
-                                tinySetting.Server = tinyAddr;
-                                MongoServer tiny = MongoServer.Create(tinySetting);
-                                ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, tiny.Instance, null));
-                            }
-                            ShardListNode.Nodes.Add(ShardNode);
-                        }
-                        //ConnectionNode.Nodes.Add(ShardListNode);
-                    }
-                    else
-                    {
-                        ///Master - Slave 的判断
-                        BsonElement replElement;
-                        ServerStatusDoc.TryGetElement("repl", out replElement);
-                        if (replElement == null)
-                        {
-                            config.ServerRole = ConfigHelper.SvrRoleType.DataSvr;
-                        }
-                        else
-                        {
-                            if (replElement.Value.AsBsonDocument.GetElement("ismaster").Value == BsonBoolean.True)
-                            {
-                                config.ServerRole = ConfigHelper.SvrRoleType.MasterSvr;
-                            }
-                            else
-                            {
-                                //ismaster 的值不一定是True和False...
-                                config.ServerRole = ConfigHelper.SvrRoleType.SlaveSvr;
-                            }
-                        }
-                    }
-                }
-                config.Health = true;
-                SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey] = config;
-                switch (config.ServerRole)
-                {
-                    case ConfigHelper.SvrRoleType.DataSvr:
-                        ConnectionNode.Add("name", "[Data]  " + mongoConnKey);
-                        break;
-                    case ConfigHelper.SvrRoleType.ShardSvr:
-                        ConnectionNode.Add("name", "[Cluster]  " + mongoConnKey);
-                        break;
-                    case ConfigHelper.SvrRoleType.ReplsetSvr:
-                        ConnectionNode.Add("name", "[Replset]  " + mongoConnKey);
-                        break;
-                    case ConfigHelper.SvrRoleType.MasterSvr:
-                        ConnectionNode.Add("name", "[Master]  " + mongoConnKey);
-
-                        break;
-                    case ConfigHelper.SvrRoleType.SlaveSvr:
-                        ConnectionNode.Add("name", "[Slave]  " + mongoConnKey);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            catch (MongoAuthenticationException)
-            {
-                //需要验证的数据服务器，没有Admin权限无法获得数据库列表
-                if (!SystemManager.IsUseDefaultLanguage())
-                {
-                    ConnectionNode.Add("name", "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]");
-                }
-                else
-                {
-                    ConnectionNode.Add("name", "[MongoAuthenticationException]");
-                }
-            }
-            catch (Exception)
-            {
-                //暂时不处理任何异常，简单跳过
-                //无法连接的理由：
-                //1.服务器没有启动
-                //2.认证模式不正确
-                if (!SystemManager.IsUseDefaultLanguage())
-                {
-                    ConnectionNode.Add("name", "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]");
-                }
-                else
-                {
-                    ConnectionNode.Add("name", "[Exception]");
-                }
-            }
-            return ConnectionNode.ToJson();
+            String strJSON = String.Empty;
+            TreeView tree = new TreeView();
+            FillConnectionToTreeView(tree);
+            //Transform Treeview To JSON
+            //必须这样做，防止二重管理的问题。如果这里的逻辑有两套的话，维护起来比较麻烦。
+            //一套逻辑，来控制树的内容。然后将TreeView的内容转换为JSON。
+            //递归GetSubTreeNode
+            strJSON = GetSubTreeNode(tree.Nodes[0]).ToJson();
+            return strJSON;
         }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="mongoConnKey"></param>
-        /// <param name="config"></param>
-        /// <param name="mongoConn"></param>
-        /// <param name="mServerInstace"></param>
-        /// <param name="mServer"></param>
+        /// <param name="SubNode"></param>
         /// <returns></returns>
-        private static BsonDocument GetInstanceDocument(String mongoConnKey, ConfigHelper.MongoConnectionConfig config,
-                                                        MongoServer mongoConn, MongoServerInstance mServerInstace, MongoServer mServer)
+        private static BsonDocument GetSubTreeNode(TreeNode SubNode)
         {
-            Boolean isServer = false;
-            if (mServerInstace == null)
+            if (SubNode.Nodes.Count == 0)
             {
-                isServer = true;
-            }
-            BsonDocument SvrInstanceNode = new BsonDocument();
-            String ConnSvrKey;
-            if (isServer)
-            {
-                ConnSvrKey = mongoConnKey + "/" + mongoConnKey;
+                return new BsonDocument("name", SubNode.Text);
             }
             else
             {
-                ConnSvrKey = mongoConnKey + "/" + mServerInstace.Address.ToString().Replace(":", "@");
-            }
-            if (isServer)
-            {
-                SvrInstanceNode.Add("name", "Connection");
-            }
-            else
-            {
-                SvrInstanceNode.Add("name", "Server[" + mServerInstace.Address.ToString() + "]");
-            }
-            if ((!String.IsNullOrEmpty(config.UserName)) & (!String.IsNullOrEmpty(config.Password)))
-            {
-                config.AuthMode = true;
-            }
-            //获取ReadOnly
-            config.IsReadOnly = false;
-            List<String> databaseNameList = new List<String>();
-            BsonArray mongoDBArray = new BsonArray();
-            if (!String.IsNullOrEmpty(config.DataBaseName))
-            {
-                //单数据库模式
-                BsonDocument mongoDBInfoNode = new BsonDocument();
-                mongoDBInfoNode.Add("name", config.DataBaseName);
-                if (isServer)
+                BsonDocument MultiNode = new BsonDocument();
+                MultiNode.Add("name", SubNode.Text);
+                BsonArray ChildrenList = new BsonArray();
+                foreach (TreeNode item in SubNode.Nodes)
                 {
-                    mongoDBInfoNode.Add("children", GetDataBaseInfoDocument(config.DataBaseName, mServer, mongoConnKey + "/" + mongoConnKey));
+                    ChildrenList.Add(GetSubTreeNode(item));
                 }
-                else
-                {
-                    mongoDBInfoNode.Add("children", GetDataBaseInfoDocument(config.DataBaseName, mServerInstace.Server, mongoConnKey + "/" + mServerInstace.Address.ToString()));
-                }
-                mongoDBArray.Add(mongoDBInfoNode);
-                if (config.AuthMode)
-                {
-                    config.IsReadOnly = mongoConn.GetDatabase(config.DataBaseName).FindUser(config.UserName).IsReadOnly;
-                }
-                SvrInstanceNode.Add("children", mongoDBArray);
+                MultiNode.Add("children", ChildrenList);
+                return MultiNode;
             }
-            else
-            {
-                MongoServer InstantSrv;
-                if (isServer)
-                {
-                    InstantSrv = mServer;
-                    databaseNameList = mServer.GetDatabaseNames().ToList<String>();
-                }
-                else
-                {
-                    MongoServerSettings setting = mongoConn.Settings.Clone();
-                    setting.ConnectionMode = ConnectionMode.Direct;
-                    setting.SlaveOk = true;
-                    setting.Server = mServerInstace.Address;
-                    InstantSrv = new MongoServer(setting);
-                    databaseNameList = InstantSrv.GetDatabaseNames().ToList<String>();
-                }
-
-                foreach (String strDBName in databaseNameList)
-                {
-                    try
-                    {
-                        BsonDocument mongoDBInfoNode = new BsonDocument();
-                        String strShowDBName = strDBName;
-                        if (!SystemManager.IsUseDefaultLanguage())
-                        {
-                            if (SystemManager.mStringResource.LanguageType == "Chinese")
-                            {
-                                switch (strDBName)
-                                {
-                                    case "admin":
-                                        strShowDBName = "管理员权限(admin)";
-                                        break;
-                                    case "local":
-                                        strShowDBName = "本地(local)";
-                                        break;
-                                    case "config":
-                                        strShowDBName = "配置(config)";
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            }
-                        }
-                        mongoDBInfoNode.Add("name", strShowDBName);
-                        mongoDBInfoNode.Add("children", GetDataBaseInfoDocument(strDBName, InstantSrv, ConnSvrKey));
-                        if (strDBName == MongoDBHelper.DATABASE_NAME_ADMIN)
-                        {
-                            if (config.AuthMode)
-                            {
-                                config.IsReadOnly = mongoConn.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
-                            }
-                        }
-                        mongoDBArray.Add(mongoDBInfoNode);
-                    }
-                    catch (Exception)
-                    {
-                        mongoDBArray.Add(new BsonDocument().Add(new BsonElement("name", strDBName + "Exception")));
-                    }
-                }
-                SvrInstanceNode.Add("children", mongoDBArray);
-            }
-            if (_mongoInstanceLst.ContainsKey(ConnSvrKey))
-            {
-                _mongoInstanceLst.Remove(ConnSvrKey);
-            }
-            if (!isServer)
-            {
-                _mongoInstanceLst.Add(ConnSvrKey, mServerInstace);
-            }
-            return SvrInstanceNode;
-        }
-        /// <summary>
-        /// 获得一个表示数据库结构的节点
-        /// </summary>
-        /// <param name="strDBName"></param>
-        /// <param name="mongoSvr"></param>
-        /// <param name="mongoSvrKey"></param>
-        /// <returns></returns>
-        private static BsonArray GetDataBaseInfoDocument(String strDBName, MongoServer mongoSvr, String mongoSvrKey)
-        {
-            BsonArray mongoDBNode = new BsonArray();
-            MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
-
-            BsonArray JavaDocument = new BsonArray();
-            BsonArray SystemCollection = new BsonArray();
-            BsonArray GeneralCollection = new BsonArray();
-            BsonArray GFSCollection = new BsonArray();
-
-            List<String> colNameList = mongoDB.GetCollectionNames().ToList<String>();
-            foreach (String strColName in colNameList)
-            {
-                switch (strColName)
-                {
-                    case COLLECTION_NAME_USER:
-                        //system.users,fs,system.js这几个系统级别的Collection不需要放入
-                        break;
-                    case COLLECTION_NAME_JAVASCRIPT:
-                        foreach (BsonDocument t in mongoDB.GetCollection(COLLECTION_NAME_JAVASCRIPT).FindAll())
-                        {
-                            BsonDocument js = new BsonDocument();
-                            js.Add("name", t.GetValue(KEY_ID).ToString());
-                            JavaDocument.Add(js);
-                        }
-                        break;
-                    default:
-                        if (IsSystemCollection(mongoDB.Name, strColName))
-                        {
-                            switch (strColName)
-                            {
-                                case COLLECTION_NAME_GFS_CHUNKS:
-                                case COLLECTION_NAME_GFS_FILES:
-                                    GFSCollection.Add(new BsonDocument().Add("name", strColName));
-                                    break;
-                                default:
-                                    SystemCollection.Add(new BsonDocument().Add("name", strColName));
-                                    break;
-                            }
-                        }
-                        else
-                        {
-                            GeneralCollection.Add(new BsonDocument().Add("name", strColName));
-                        }
-                        break;
-                }
-            }
-
-            mongoDBNode.Add(new BsonDocument().Add(new BsonElement("name", "User")));
-            mongoDBNode.Add(new BsonDocument().Add(new BsonElement("name", "JavaScript")).Add("children", JavaDocument));
-            mongoDBNode.Add(new BsonDocument().Add(new BsonElement("name", "Grid File System")).Add("children", GFSCollection));
-            mongoDBNode.Add(new BsonDocument().Add(new BsonElement("name", "Collections(System)")).Add("children", SystemCollection));
-            mongoDBNode.Add(new BsonDocument().Add(new BsonElement("name", "Collections(General)")).Add("children", GeneralCollection));
-
-            return mongoDBNode;
         }
         #endregion
 
