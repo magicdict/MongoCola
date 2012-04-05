@@ -28,7 +28,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="IsUpdateMode"></param>
         /// <param name="FullPath"></param>
-        public frmElement(Boolean IsUpdateMode, TreeNode SelectNode, Boolean IsElement = true)
+        public frmElement(Boolean IsUpdateMode, TreeNode SelectNode, Boolean IsElement)
         {
             InitializeComponent();
             _IsUpdateMode = IsUpdateMode;

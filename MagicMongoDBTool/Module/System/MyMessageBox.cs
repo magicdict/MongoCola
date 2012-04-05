@@ -60,12 +60,15 @@ namespace MagicMongoDBTool
             }
             return _frmConfirm.Result;
         }
+        public static void ShowMessage(String Title, String Message) {
+            ShowMessage(Title, Message, String.Empty);
+        }
         /// <summary>
         /// 消息表示
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Details"></param>
-        public static void ShowMessage(String Title, String Message, String Details = "")
+        public static void ShowMessage(String Title, String Message, String Details)
         {
             _frmMessage.Text = Title;
             _frmMessage.SetMessage(Message, Details, false);
@@ -93,7 +96,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Details"></param>
-        public static void ShowMessage(String Title, String Message, Image img, String Details = "")
+        public static void ShowMessage(String Title, String Message, Image img, String Details)
         {
             _frmMessage.Text = Title;
             _frmMessage.SetMessage(Message, img, Details);

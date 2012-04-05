@@ -15,7 +15,7 @@ namespace MagicMongoDBTool
         /// <param name="Message">Message</param>
         /// <param name="Details">Details</param>
         /// <param name="IsShowDetails">Is Show Details</param>
-        internal void SetMessage(String Message, String Details, Boolean IsShowDetails = true)
+        internal void SetMessage(String Message, String Details, Boolean IsShowDetails)
         {
             this.lblMessage.Text = Message;
             this.txtException.Text = Details;
@@ -73,7 +73,7 @@ namespace MagicMongoDBTool
         internal void SetMessage(String Message, System.Drawing.Image img, String Details)
         {
             this.picImage.Image = img;
-            SetMessage(Message, Details);
+            SetMessage(Message, Details,true);
         }
         /// <summary>
         /// Set Text

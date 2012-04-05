@@ -19,8 +19,9 @@ namespace MagicMongoDBTool.Module
         /// <param name="mongoCol">数据集</param>
         /// <param name="CheckRecordCnt">使用数据量，省略时为全部，海量数据时相当消耗性能</param>
         /// <returns></returns>
-        public static List<String> GetCollectionSchame(MongoCollection mongoCol, int CheckRecordCnt = 100)
+        public static List<String> GetCollectionSchame(MongoCollection mongoCol)
         {
+            int CheckRecordCnt = 100;
             List<String> _ColumnList = new List<String>();
             List<BsonDocument> _dataList = new List<BsonDocument>();
             _dataList = mongoCol.FindAllAs<BsonDocument>()
@@ -213,7 +214,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="collectionName"></param>
         /// <param name="trvData"></param>
         /// <param name="dataList"></param>
-        public static void FillDataToTreeView(String collectionName, TreeViewColumns trvData, List<BsonDocument> dataList, int mSkip = 0)
+        public static void FillDataToTreeView(String collectionName, TreeViewColumns trvData, List<BsonDocument> dataList, int mSkip)
         {
             trvData.DatatreeView.Nodes.Clear();
             int SkipCnt = mSkip;

@@ -4,6 +4,10 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Web;
+using System.Collections.Generic;
+using MagicMongoDBTool.Module;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace MagicMongoDBTool.HTTP
 {
@@ -129,8 +133,7 @@ namespace MagicMongoDBTool.HTTP
                             GETPage(stream, GetPage.Connection(RequestPath[1]));
                             break;
                         default:
-                            String FileName = ServerPath + RequestItem.Replace("/", "\\");
-                            GETFile(stream, FileName);
+                            GETFile(stream, RequestItem.Replace("/", "\\"));
                             break;
                     }
                 }
@@ -190,10 +193,29 @@ namespace MagicMongoDBTool.HTTP
         private void GETFile(NetworkStream stream, String FileName)
         {
             byte[] msg = null;
+            byte[] bFile = new byte[0];
             String data = String.Empty;
-            if (File.Exists(FileName))
+            Boolean IsFound = false;
+            if (File.Exists(ServerPath + FileName))
             {
-                byte[] bFile = ReadFile(FileName);
+                IsFound = true;
+                bFile = ReadFile(ServerPath + FileName);
+            }
+            else
+            {
+                //资源文件里面获得
+                if (FileName.StartsWith("\\MainTreeImage"))
+                {
+                    //MainTreeImage00.png -- 从MainTreeImage 里面获得
+                    int MainTreeImageIndex = Convert.ToInt32(FileName.Substring("\\MainTreeImage".Length, 2));
+                    Image img = GetSystemIcon.MainTreeImage.Images[MainTreeImageIndex];
+                    bFile = GetSystemIcon.imageToByteArray(img,ImageFormat.Png);
+                    IsFound = true;
+                }
+            }
+
+            if (IsFound)
+            {
                 // Process the data sent by the client.
                 data = "HTTP/1.1 200 OK" + Environment.NewLine;
                 //if content-type is wrong,FF can;t render it,but IE can
@@ -206,10 +228,13 @@ namespace MagicMongoDBTool.HTTP
                     case ".js":
                         filetype = "text/javascript";
                         break;
+                    case ".png":
+                        filetype = "image";
+                        break;
                     default:
                         break;
                 }
-                data += "Content-Type: @filetype; charset=utf-8".Replace("@filetype",filetype) + Environment.NewLine;
+                data += "Content-Type: @filetype; charset=utf-8".Replace("@filetype", filetype) + Environment.NewLine;
                 data += "Content-Length: ";
                 data += (bFile.Length).ToString();
                 data += Environment.NewLine + Environment.NewLine;
@@ -218,6 +243,7 @@ namespace MagicMongoDBTool.HTTP
                 stream.Write(msg, 0, msg.Length);
                 stream.Write(bFile, 0, bFile.Length);
                 OutputLog("[System]Sent HTML OK", 0);
+
             }
             else
             {
@@ -228,7 +254,7 @@ namespace MagicMongoDBTool.HTTP
                 OutputLog("[System]FileName Not Found:" + FileName, 0);
             }
             stream.Flush();
-            
+
         }
     }
 }

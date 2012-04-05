@@ -170,7 +170,7 @@ namespace MagicMongoDBTool.Module
         public static void DropElement(String ElementPath, BsonElement El)
         {
             BsonDocument BaseDoc = SystemManager.CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
+            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath,false);
             if (t.IsBsonDocument)
             {
                 t.AsBsonDocument.Remove(El.Name);
@@ -185,7 +185,7 @@ namespace MagicMongoDBTool.Module
         public static void DropArrayValue(String ElementPath, int ValueIndex)
         {
             BsonDocument BaseDoc = SystemManager.CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
+            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, false);
             if (t.IsBsonArray)
             {
                 t.AsBsonArray.RemoveAt(ValueIndex);
@@ -205,7 +205,7 @@ namespace MagicMongoDBTool.Module
         public static void ModifyElement(String ElementPath, BsonValue NewValue, BsonElement El)
         {
             BsonDocument BaseDoc = SystemManager.CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
+            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, false);
             if (t.IsBsonDocument)
             {
                 t.AsBsonDocument.GetElement(El.Name).Value = NewValue;
@@ -225,7 +225,7 @@ namespace MagicMongoDBTool.Module
         public static void ModifyArrayValue(String ElementPath, BsonValue NewValue, int ValueIndex)
         {
             BsonDocument BaseDoc = SystemManager.CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath);
+            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, false);
             if (t.IsBsonArray)
             {
                 t.AsBsonArray[ValueIndex] = NewValue;
@@ -244,7 +244,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="ElementPath"></param>
         /// <param name="IsGetLast">T:GetOperationPlace F:GetOperationPlace Parent</param>
         /// <returns></returns>
-        public static BsonValue GetLastParentDocument(BsonDocument BaseDoc, String ElementPath, Boolean IsGetLast = false)
+        public static BsonValue GetLastParentDocument(BsonDocument BaseDoc, String ElementPath, Boolean IsGetLast)
         {
             BsonValue Current = BaseDoc;
             //JpCnWord[1]\Translations[ARRAY]\Translations[1]\Sentences[ARRAY]\Sentences[1]\Japanese:"ああいう文章はなかなか書けない"

@@ -897,7 +897,7 @@ namespace MagicMongoDBTool.UserController
             }
             else
             {
-                SystemManager.OpenForm(new frmElement(true, trvData.DatatreeView.SelectedNode));
+                SystemManager.OpenForm(new frmElement(true, trvData.DatatreeView.SelectedNode,true));
             }
             IsNeedRefresh = true;
         }

@@ -34,7 +34,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="HostPort">服务器信息</param>
         /// <param name="IsArb">是否为仲裁服务器</param>
         /// <returns></returns>
-        public static CommandResult AddToReplsetServer(MongoServer mongoSvr, String HostPort, int priority, Boolean IsArb = false)
+        public static CommandResult AddToReplsetServer(MongoServer mongoSvr, String HostPort, int priority, Boolean IsArb)
         {
             CommandResult cmdRtn = new CommandResult();
             try

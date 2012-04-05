@@ -95,7 +95,7 @@ namespace MagicMongoDBTool.Module
         /// 对话框子窗体的统一管理
         /// </summary>
         /// <param name="frm"></param>
-        public static void OpenForm(Form mfrm, Boolean isDispose = true)
+        public static void OpenForm(Form mfrm, Boolean isDispose)
         {
             mfrm.StartPosition = FormStartPosition.CenterParent;
             mfrm.BackColor = System.Drawing.Color.White;
@@ -103,6 +103,14 @@ namespace MagicMongoDBTool.Module
             mfrm.ShowDialog();
             mfrm.Close();
             if (isDispose) { mfrm.Dispose(); }
+        }
+        /// <summary>
+        /// 对话框子窗体的统一管理
+        /// </summary>
+        /// <param name="frm"></param>
+        public static void OpenForm(Form mfrm)
+        {
+            OpenForm(mfrm, true);
         }
         /// <summary>
         /// 获得当前服务器配置
@@ -232,7 +240,11 @@ namespace MagicMongoDBTool.Module
                 return false;
             }
         }
-        internal static void ExceptionDeal(Exception ex, String Title = "")
+        internal static void ExceptionDeal(Exception ex)
+        {
+            MyMessageBox.ShowMessage("Exception", "Exception", ex.ToString(), true);
+        }
+        internal static void ExceptionDeal(Exception ex, String Title)
         {
             if (Title == String.Empty)
             {

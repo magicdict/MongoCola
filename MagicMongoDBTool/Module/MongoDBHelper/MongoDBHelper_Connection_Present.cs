@@ -45,7 +45,7 @@ namespace MagicMongoDBTool.Module
             //必须这样做，防止二重管理的问题。如果这里的逻辑有两套的话，维护起来比较麻烦。
             //一套逻辑，来控制树的内容。然后将TreeView的内容转换为JSON。
             //递归GetSubTreeNode
-            strJSON = GetSubTreeNode(tree.Nodes[0]).ToJson();
+            strJSON = GetSubTreeNode(tree.Nodes[0]).ToJson(SystemManager.JsonWriterSettings);
             return strJSON;
         }
         /// <summary>
@@ -57,7 +57,10 @@ namespace MagicMongoDBTool.Module
         {
             if (SubNode.Nodes.Count == 0)
             {
-                return new BsonDocument("name", SubNode.Text);
+                BsonDocument SingleNode = new BsonDocument();
+                SingleNode.Add("name", SubNode.Text);
+                SingleNode.Add("icon", "MainTreeImage" + String.Format("{0:00}",SubNode.ImageIndex) + ".png");
+                return SingleNode;
             }
             else
             {
@@ -69,6 +72,7 @@ namespace MagicMongoDBTool.Module
                     ChildrenList.Add(GetSubTreeNode(item));
                 }
                 MultiNode.Add("children", ChildrenList);
+                MultiNode.Add("icon", "MainTreeImage" + String.Format("{0:00}", SubNode.ImageIndex) + ".png");
                 return MultiNode;
             }
         }
