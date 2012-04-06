@@ -11,6 +11,19 @@ namespace MagicMongoDBTool.Module
     public static partial class MongoDBHelper
     {
 
+        #region"展示数据集内容[WebForm]"
+        public static String GetCollectionzTreeJSON(ref DataViewInfo CurrentDataViewInfo)
+        {
+            //获得数据
+            List<BsonDocument> datalist = GetDataList(ref CurrentDataViewInfo);
+
+
+
+            return string.Empty;
+        }
+
+        #endregion
+
         #region"展示数据集内容"
 
         /// <summary>
@@ -66,11 +79,10 @@ namespace MagicMongoDBTool.Module
             return _ColumnList;
         }
         /// <summary>
-        /// 展示数据
+        /// 获得展示数据
         /// </summary>
         /// <param name="CurrentDataViewInfo"></param>
-        /// <param name="controls"></param>
-        public static void FillDataToControl(ref DataViewInfo CurrentDataViewInfo, List<Control> controls)
+        public static List<BsonDocument> GetDataList(ref DataViewInfo CurrentDataViewInfo)
         {
             String collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
             String[] cp = collectionPath.Split("/".ToCharArray());
@@ -107,22 +119,30 @@ namespace MagicMongoDBTool.Module
                     CurrentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count();
                 }
             }
-            if (dataList.Count == 0)
-            {
-                if (CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[0] == COLLECTION_TAG)
-                {
-                    ///只有在纯数据集的时候才退出，不然的话，至少需要将字段结构在ListView中显示出来。
-                    return;
-                }
-            }
             SetPageEnable(ref CurrentDataViewInfo);
+            return dataList;
 
+        }
+        /// <summary>
+        /// 展示数据
+        /// </summary>
+        /// <param name="dataList"></param>
+        /// <param name="controls"></param>
+        /// <param name="CurrentDataViewInfo"></param>
+        public static void FillDataToControl(List<BsonDocument> dataList, List<Control> controls, DataViewInfo CurrentDataViewInfo)
+        {
+            String collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
+            String[] cp = collectionPath.Split("/".ToCharArray());
             foreach (var control in controls)
             {
                 switch (control.GetType().ToString())
                 {
                     case "System.Windows.Forms.ListView":
-                        FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, dataList);
+                        if (!(dataList.Count == 0 && CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[0] == COLLECTION_TAG))
+                        {
+                            ///只有在纯数据集的时候才退出，不然的话，至少需要将字段结构在ListView中显示出来。
+                            FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, dataList);
+                        }
                         break;
                     case "System.Windows.Forms.TextBox":
                         FillJSONDataToTextBox((TextBox)control, dataList, CurrentDataViewInfo.SkipCnt);
@@ -135,6 +155,7 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
+
         /// <summary>
         /// 字符转Bsonvalue
         /// </summary>
@@ -633,7 +654,8 @@ namespace MagicMongoDBTool.Module
                 default:
                     break;
             }
-            FillDataToControl(ref mDataViewInfo, dataShower);
+            List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);
+            MongoDBHelper.FillDataToControl(datalist, dataShower, mDataViewInfo);
         }
         /// <summary>
         /// 设置导航状态

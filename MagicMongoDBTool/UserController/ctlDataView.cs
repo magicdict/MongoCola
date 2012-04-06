@@ -164,7 +164,8 @@ namespace MagicMongoDBTool.UserController
             InitControlsVisiableAndEvent();
             InitControlsEnable();
             //加载数据
-            MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
+            List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);
+            MongoDBHelper.FillDataToControl(datalist,_dataShower,mDataViewInfo);
             //数据导航
             SetDataNav();
         }
@@ -1392,7 +1393,8 @@ namespace MagicMongoDBTool.UserController
             this.clear();
             mDataViewInfo.SkipCnt = 0;
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
-            MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
+            List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);
+            MongoDBHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             InitControlsEnable();
             SetDataNav();
             IsNeedRefresh = false;
@@ -1401,7 +1403,8 @@ namespace MagicMongoDBTool.UserController
         {
             this.clear();
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
-            MongoDBHelper.FillDataToControl(ref mDataViewInfo, _dataShower);
+            List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);
+            MongoDBHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             SetDataNav();
             IsNeedRefresh = false;
         }

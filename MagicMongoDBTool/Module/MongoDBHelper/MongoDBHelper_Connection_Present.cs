@@ -36,7 +36,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="ConnectionName"></param>
         /// <returns></returns>
-        public static String FillConnectionToJSON(String ConnectionName)
+        public static String GetConnectionzTreeJSON(String ConnectionName)
         {
             String strJSON = String.Empty;
             TreeView tree = new TreeView();
@@ -55,26 +55,25 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         private static BsonDocument GetSubTreeNode(TreeNode SubNode)
         {
+            BsonDocument SingleNode = new BsonDocument();
             if (SubNode.Nodes.Count == 0)
             {
-                BsonDocument SingleNode = new BsonDocument();
                 SingleNode.Add("name", SubNode.Text);
                 SingleNode.Add("icon", "MainTreeImage" + String.Format("{0:00}",SubNode.ImageIndex) + ".png");
-                return SingleNode;
             }
             else
             {
-                BsonDocument MultiNode = new BsonDocument();
-                MultiNode.Add("name", SubNode.Text);
+                SingleNode.Add("name", SubNode.Text);
                 BsonArray ChildrenList = new BsonArray();
                 foreach (TreeNode item in SubNode.Nodes)
                 {
                     ChildrenList.Add(GetSubTreeNode(item));
                 }
-                MultiNode.Add("children", ChildrenList);
-                MultiNode.Add("icon", "MainTreeImage" + String.Format("{0:00}", SubNode.ImageIndex) + ".png");
-                return MultiNode;
+                SingleNode.Add("children", ChildrenList);
+                SingleNode.Add("icon", "MainTreeImage" + String.Format("{0:00}", SubNode.ImageIndex) + ".png");
             }
+            SingleNode.Add("click", "alert(this.id)");
+            return SingleNode;
         }
         #endregion
 

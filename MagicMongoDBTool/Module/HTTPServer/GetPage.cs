@@ -59,7 +59,7 @@ namespace MagicMongoDBTool.HTTP
             connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName]);
             MongoDBHelper.AddServer(connLst);
 
-            content = content.Replace("<%=NodeJSon%>", MongoDBHelper.FillConnectionToJSON(ConnectionName));
+            content = content.Replace("<%=NodeJSon%>", MongoDBHelper.GetConnectionzTreeJSON(ConnectionName));
             content = content.Replace("<%=ConnectionName%>", ConnectionName);
             return content;
         }
