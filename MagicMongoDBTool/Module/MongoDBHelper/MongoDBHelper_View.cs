@@ -12,16 +12,30 @@ namespace MagicMongoDBTool.Module
     {
 
         #region"展示数据集内容[WebForm]"
-        public static String GetCollectionzTreeJSON(ref DataViewInfo CurrentDataViewInfo)
+        /// <summary>
+        /// 唯一的网页展示数据的数据信息
+        /// </summary>
+        public static DataViewInfo WebDataViewInfo;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static String GetCollectionzTreeJSON()
         {
             //获得数据
-            List<BsonDocument> datalist = GetDataList(ref CurrentDataViewInfo);
-
-
-
-            return string.Empty;
+            WebDataViewInfo.LimitCnt = 100;
+            List<BsonDocument> dataList = GetDataList(ref WebDataViewInfo);
+            String collectionName = SystemManager.GetTagData(WebDataViewInfo.strDBTag).Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.CollectionLV];
+            int SkipCnt = WebDataViewInfo.SkipCnt;
+            TreeViewColumns tree = new TreeViewColumns();
+            FillDataToTreeView(collectionName, tree, dataList, WebDataViewInfo.SkipCnt);
+            BsonArray array = new BsonArray();
+            foreach (TreeNode item in tree.TreeView.Nodes)
+            {
+                array.Add(GetSubTreeNode(item));
+            }
+            return array.ToJson(SystemManager.JsonWriterSettings); ;
         }
-
         #endregion
 
         #region"展示数据集内容"

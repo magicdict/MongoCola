@@ -38,15 +38,18 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static String GetConnectionzTreeJSON(String ConnectionName)
         {
-            String strJSON = String.Empty;
             TreeView tree = new TreeView();
             FillConnectionToTreeView(tree);
             //Transform Treeview To JSON
             //必须这样做，防止二重管理的问题。如果这里的逻辑有两套的话，维护起来比较麻烦。
             //一套逻辑，来控制树的内容。然后将TreeView的内容转换为JSON。
             //递归GetSubTreeNode
-            strJSON = GetSubTreeNode(tree.Nodes[0]).ToJson(SystemManager.JsonWriterSettings);
-            return strJSON;
+            BsonArray array = new BsonArray();
+            foreach (TreeNode item in tree.Nodes)
+            {
+                array.Add(GetSubTreeNode(item));
+            }
+            return array.ToJson(SystemManager.JsonWriterSettings);
         }
         /// <summary>
         /// 
@@ -56,14 +59,13 @@ namespace MagicMongoDBTool.Module
         private static BsonDocument GetSubTreeNode(TreeNode SubNode)
         {
             BsonDocument SingleNode = new BsonDocument();
+            SingleNode.Add("name", SubNode.Text + GetTagText(SubNode));
             if (SubNode.Nodes.Count == 0)
             {
-                SingleNode.Add("name", SubNode.Text);
-                SingleNode.Add("icon", "MainTreeImage" + String.Format("{0:00}",SubNode.ImageIndex) + ".png");
+                SingleNode.Add("icon", "MainTreeImage" + String.Format("{0:00}", SubNode.ImageIndex) + ".png");
             }
             else
             {
-                SingleNode.Add("name", SubNode.Text);
                 BsonArray ChildrenList = new BsonArray();
                 foreach (TreeNode item in SubNode.Nodes)
                 {
@@ -72,8 +74,27 @@ namespace MagicMongoDBTool.Module
                 SingleNode.Add("children", ChildrenList);
                 SingleNode.Add("icon", "MainTreeImage" + String.Format("{0:00}", SubNode.ImageIndex) + ".png");
             }
-            SingleNode.Add("click", "alert(this.id)");
+            if (SubNode.Tag != null)
+            {
+                SingleNode.Add("click", "ShowData('" + SystemManager.GetTagType(SubNode.Tag.ToString()) + "','" + SystemManager.GetTagData(SubNode.Tag.ToString()) + "')");
+            }
             return SingleNode;
+        }
+        /// <summary>
+        /// 展示数据值和类型
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        private static string GetTagText(TreeNode node)
+        {
+            string strColumnText = String.Empty;
+            BsonElement Element = node.Tag as BsonElement;
+            if (Element != null && !Element.Value.IsBsonDocument && !Element.Value.IsBsonArray)
+            {
+                strColumnText = ":" + Element.Value.ToString();
+                strColumnText += "[" + Element.Value.GetType().Name.Substring(4) + "]";
+            }
+            return strColumnText;
         }
         #endregion
 

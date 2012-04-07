@@ -61,7 +61,14 @@ namespace MagicMongoDBTool.HTTP
 
             content = content.Replace("<%=NodeJSon%>", MongoDBHelper.GetConnectionzTreeJSON(ConnectionName));
             content = content.Replace("<%=ConnectionName%>", ConnectionName);
+            content = content.Replace("<%=CollectionTag%>", MongoDBHelper.COLLECTION_TAG);
             return content;
+        }
+        internal static string GetCollection(String DBTag) {
+            MongoDBHelper.WebDataViewInfo = new MongoDBHelper.DataViewInfo();
+            MongoDBHelper.WebDataViewInfo.strDBTag = DBTag;
+            SystemManager.SelectObjectTag = DBTag;
+            return MongoDBHelper.GetCollectionzTreeJSON();
         }
     }
 }

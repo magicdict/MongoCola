@@ -131,6 +131,12 @@ namespace MagicMongoDBTool.HTTP
                         case "/Connection":
                             GETPage(stream, GetPage.Connection(RequestPath[1]));
                             break;
+                        case "/ASHX/GetCollection.ashx":
+                            String[] Arg = RequestPath[1].Split("&".ToCharArray());
+                            String strTag = Arg[0].Substring("Tag=".Length);
+                            String strData = Arg[1].Substring("Data=".Length);
+                            GETPage(stream, GetPage.GetCollection(strTag + ":" + strData));
+                            break;
                         default:
                             GETFile(stream, RequestItem.Replace("/", "\\"));
                             break;
