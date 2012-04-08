@@ -34,8 +34,8 @@
             this.cmdClose = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.lstServerce = new System.Windows.Forms.ListBox();
-            this.lnkTryBrowse = new System.Windows.Forms.LinkLabel();
             this.txtInfo = new System.Windows.Forms.TextBox();
+            this.lnkWebFormEntry = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // cmdModifyCon
@@ -102,18 +102,6 @@
             this.lstServerce.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lstServerce.Size = new System.Drawing.Size(412, 169);
             this.lstServerce.TabIndex = 5;
-            this.lstServerce.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.cmdConnect_Click);
-            // 
-            // lnkTryBrowse
-            // 
-            this.lnkTryBrowse.AutoSize = true;
-            this.lnkTryBrowse.Location = new System.Drawing.Point(343, 223);
-            this.lnkTryBrowse.Name = "lnkTryBrowse";
-            this.lnkTryBrowse.Size = new System.Drawing.Size(187, 15);
-            this.lnkTryBrowse.TabIndex = 11;
-            this.lnkTryBrowse.TabStop = true;
-            this.lnkTryBrowse.Text = "Try MongoCola By Browser(Beta)";
-            this.lnkTryBrowse.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkTryBrowse_LinkClicked);
             // 
             // txtInfo
             // 
@@ -123,13 +111,24 @@
             this.txtInfo.Size = new System.Drawing.Size(508, 153);
             this.txtInfo.TabIndex = 12;
             // 
+            // lnkWebFormEntry
+            // 
+            this.lnkWebFormEntry.AutoSize = true;
+            this.lnkWebFormEntry.Location = new System.Drawing.Point(343, 223);
+            this.lnkWebFormEntry.Name = "lnkWebFormEntry";
+            this.lnkWebFormEntry.Size = new System.Drawing.Size(161, 15);
+            this.lnkWebFormEntry.TabIndex = 11;
+            this.lnkWebFormEntry.TabStop = true;
+            this.lnkWebFormEntry.Text = "MongoCola WebForm(Beta)";
+            this.lnkWebFormEntry.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkWebFormEntry_LinkClicked);
+            // 
             // frmConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(542, 248);
             this.Controls.Add(this.txtInfo);
-            this.Controls.Add(this.lnkTryBrowse);
+            this.Controls.Add(this.lnkWebFormEntry);
             this.Controls.Add(this.cmdModifyCon);
             this.Controls.Add(this.cmdDelCon);
             this.Controls.Add(this.cmdAddCon);
@@ -157,7 +156,7 @@
         private System.Windows.Forms.Button cmdClose;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.ListBox lstServerce;
-        private System.Windows.Forms.LinkLabel lnkTryBrowse;
         private System.Windows.Forms.TextBox txtInfo;
+        private System.Windows.Forms.LinkLabel lnkWebFormEntry;
     }
 }

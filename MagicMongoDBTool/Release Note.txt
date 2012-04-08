@@ -11,9 +11,15 @@ MongoCola is free and open source.
 Release History
 ========================================================================
 Ver 1.21 2012/04/06 [First Version @Accenture CDC]
+WebForm
+    1.You can select a connection at connection list page to jump to connection detail page.
+    2.Show Connection Status when click the connection node.
+    3.Show Database Status when click the database node.
+    4.Show Collection records when click the collection node.
+    
 Main form:
     1.Display server role before connection name at node text.
-    2. 
+    
 ========================================================================
 ========================================================================
 Ver 1.20 2012/03/31 [Last Version @IBM GDC]

@@ -143,7 +143,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void lnkTryBrowse_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        private void lnkWebFormEntry_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
             this.Height = 500;
             HTTP.HTTPServer.ServerPath = Application.StartupPath + "\\HTML";

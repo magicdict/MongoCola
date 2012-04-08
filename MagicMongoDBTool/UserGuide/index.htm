@@ -102,6 +102,7 @@
                         <li>C# Offical Driver(1.4.1) if you download the executable file(RAR or ZIP package)
                             contains the driver DLL,you don't need to download it again.</li>
                         <li>Linux User:<font Color="red">apttitude install libmono-windowsbase3.0-cil</font>(Thanks to Voltron for test Mono on ubuntu.)</li>
+                        <li>zTree Jquery-Plugin,Jquery(Rar or Zip Package contains)</li>
                     </ul>
                 </font>
             </td>
@@ -114,9 +115,12 @@
         <tr>
             <td />
             <td>
-                <font size="3" color="black">Thanks MoLing for help me correct this document.
-                    <br />
-                    Last Editor：2012-03-31<br />
+                <font size="3" color="black">
+                  Thanks MoLing for help me correct this document.<br />
+                  Thanks zTree Jquery Plugin http://www.baby666.cn/v3/main.php#_zTreeInfo<br />
+                  Thanks 10gen for C# Driver <br />
+                  Thanks friends @ www.Cnblogs.com for advice,test,supports <br />
+                  Last Editor：2012-04-08<br />
                     <br />
                 </font>
             </td>
@@ -143,11 +147,18 @@ MongoCola is free and open source.
 ========================================================================
 Release History
 ========================================================================
-Ver 1.21 2012/04/06 [First Version @Accenture CDC]
+Ver 1.21 2012/04/08 [First Version @Accenture CDC]
+WebForm
+    1.You can select a connection at connection list page to jump to connection detail page.
+    2.Show Connection Status when click the connection node.
+    3.Show Database Status when click the database node.
+    4.Show Collection records when click the collection node.
+    
 Main form:
     1.Display server role before connection name at node text.
-    2. 
+    
 ========================================================================
+
 ========================================================================
 Ver 1.20 2012/03/31 [Last Version @IBM GDC]
 C# Driver:
@@ -404,13 +415,38 @@ This is the first release of MongoCola.
             </td>
         </tr>
         <tr>
+          <td align="center">
+            <br />
+            <font size="3" color="black">
+              <b>Try WebForm</b>
+            </font>
+           </td>
+           <td />
+         </tr>
+        <tr>
+          <td />
+          <td>
+            <font size="3">
+              Click "MongoCola Web Form",then you can try the use MongoCola at your browser.
+            <br />
+            <img src="images/ConnectionManager_WebForm.PNG" alt="" />
+            <br />
+              Click a connection , jump to the connection detail page.<br />
+              At connection detail page,you can click connection node and database node to see the status,or click the collection node to see records in the collection.<br />
+              <br />
+              <img src="images/Main_WebForm.PNG" alt="" />
+              <br />
+            </font>
+          </td>
+        </tr>
+        <tr>
             <td align="center">
                 <br />
                 <font size="3" color="black"><b>Master-Slave</b></font>
             </td>
             <td />
         </tr>
-        <tr>
+          <tr>
             <td />
             <td>
                 <font size="3">This application support to manage a Master-Slave server.
