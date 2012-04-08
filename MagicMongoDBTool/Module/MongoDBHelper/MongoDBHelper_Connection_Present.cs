@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MongoDB.Driver;
 using System.Linq;
 using MongoDB.Bson;
+using TreeViewColumnsProject;
 
 namespace MagicMongoDBTool.Module
 {
@@ -36,18 +37,29 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="ConnectionName"></param>
         /// <returns></returns>
-        public static String GetConnectionzTreeJSON(String ConnectionName)
+        public static String GetConnectionzTreeJSON()
         {
             TreeView tree = new TreeView();
             FillConnectionToTreeView(tree);
-            //Transform Treeview To JSON
-            //必须这样做，防止二重管理的问题。如果这里的逻辑有两套的话，维护起来比较麻烦。
-            //一套逻辑，来控制树的内容。然后将TreeView的内容转换为JSON。
-            //递归GetSubTreeNode
+            return ConvertTreeViewTozTreeJson(tree);
+        }
+        public static String ConvertBsonTozTreeJson(String RootName,BsonDocument doc,Boolean IsOpen)
+        {
+            TreeViewColumns trvStatus = new TreeViewColumns();
+            List<BsonDocument> datalist = new List<BsonDocument>();
+            datalist.Add(doc);
+            MongoDBHelper.FillDataToTreeView(RootName, trvStatus, datalist, 0);
+            if (IsOpen) {
+                trvStatus.TreeView.Nodes[0].Expand();
+            }
+            return ConvertTreeViewTozTreeJson(trvStatus.TreeView);
+        }
+        public static String ConvertTreeViewTozTreeJson(TreeView tree)
+        {
             BsonArray array = new BsonArray();
             foreach (TreeNode item in tree.Nodes)
             {
-                array.Add(GetSubTreeNode(item));
+                array.Add(ConvertTreeNodeTozTreeBsonDoc(item));
             }
             return array.ToJson(SystemManager.JsonWriterSettings);
         }
@@ -56,7 +68,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="SubNode"></param>
         /// <returns></returns>
-        private static BsonDocument GetSubTreeNode(TreeNode SubNode)
+        private static BsonDocument ConvertTreeNodeTozTreeBsonDoc(TreeNode SubNode)
         {
             BsonDocument SingleNode = new BsonDocument();
             SingleNode.Add("name", SubNode.Text + GetTagText(SubNode));
@@ -69,10 +81,13 @@ namespace MagicMongoDBTool.Module
                 BsonArray ChildrenList = new BsonArray();
                 foreach (TreeNode item in SubNode.Nodes)
                 {
-                    ChildrenList.Add(GetSubTreeNode(item));
+                    ChildrenList.Add(ConvertTreeNodeTozTreeBsonDoc(item));
                 }
                 SingleNode.Add("children", ChildrenList);
                 SingleNode.Add("icon", "MainTreeImage" + String.Format("{0:00}", SubNode.ImageIndex) + ".png");
+            }
+            if (SubNode.IsExpanded) {
+                SingleNode.Add("open", "true");
             }
             if (SubNode.Tag != null)
             {

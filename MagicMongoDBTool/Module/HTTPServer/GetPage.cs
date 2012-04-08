@@ -6,6 +6,7 @@ using System.IO;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Windows.Forms;
 
 namespace MagicMongoDBTool.HTTP
 {
@@ -58,13 +59,44 @@ namespace MagicMongoDBTool.HTTP
             List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
             connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName]);
             MongoDBHelper.AddServer(connLst);
-
-            content = content.Replace("<%=NodeJSon%>", MongoDBHelper.GetConnectionzTreeJSON(ConnectionName));
+            content = content.Replace("<%=NodeJSon%>", MongoDBHelper.GetConnectionzTreeJSON());
             content = content.Replace("<%=ConnectionName%>", ConnectionName);
+            content = content.Replace("<%=ConnectionTag%>", MongoDBHelper.CONNECTION_TAG);
+            content = content.Replace("<%=DataBaseTag%>", MongoDBHelper.DATABASE_TAG);
             content = content.Replace("<%=CollectionTag%>", MongoDBHelper.COLLECTION_TAG);
             return content;
         }
-        internal static string GetCollection(String DBTag) {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="DBTag"></param>
+        /// <returns></returns>
+        public static string GetConnection(String DBTag)
+        {
+            SystemManager.SelectObjectTag = DBTag;
+            BsonDocument cr = new BsonDocument();
+            cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
+            return MongoDBHelper.ConvertBsonTozTreeJson("Connection Status",cr,true);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="DBTag"></param>
+        /// <returns></returns>
+        public static string GetDatabase(String DBTag)
+        {
+            SystemManager.SelectObjectTag = DBTag;
+            BsonDocument cr = new BsonDocument();
+            cr = SystemManager.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
+            return MongoDBHelper.ConvertBsonTozTreeJson("DataBase Status", cr,true);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="DBTag"></param>
+        /// <returns></returns>
+        public static string GetCollection(String DBTag)
+        {
             MongoDBHelper.WebDataViewInfo = new MongoDBHelper.DataViewInfo();
             MongoDBHelper.WebDataViewInfo.strDBTag = DBTag;
             SystemManager.SelectObjectTag = DBTag;

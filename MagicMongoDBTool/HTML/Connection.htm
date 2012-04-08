@@ -11,7 +11,7 @@
 
     //生词本的操作
   function ShowData(TagType,TagData) {
-    var rtnWordBook;
+  
     if (TagType === "<%=CollectionTag%>"){    
       $.getJSON("ASHX/GetCollection.ashx",
         { Tag: TagType,
@@ -25,6 +25,36 @@
         }
       );
     }
+  
+    if (TagType === "<%=ConnectionTag%>"){    
+      $.getJSON("ASHX/GetConnection.ashx",
+        { Tag: TagType,
+          Data:TagData },
+        function(data) {
+             if (data != "") {
+          			$.fn.zTree.init($("#treeData"), setting , data);
+             } else {
+                alert("Error")
+             }
+        }
+      );
+    }
+
+    if (TagType === "<%=DataBaseTag%>"){    
+      $.getJSON("ASHX/GetDatabase.ashx",
+        { Tag: TagType,
+          Data:TagData },
+        function(data) {
+             if (data != "") {
+          			$.fn.zTree.init($("#treeData"), setting , data);
+             } else {
+                alert("Error")
+             }
+        }
+      );
+    }
+
+
   }
   var setting = {	};
   var zNodes = <%=NodeJSon%>;
