@@ -31,4 +31,31 @@ C# 驱动问题：
 2012/03/26
    1.无法知道Mongos的Config服务器的位置
    2.rs.remove会出现问题，这个功能暂时关闭
-   3.ValidateDataBaseName 无法使用
+   3.ValidateDataBaseName 无法使用(1.4.1实现)
+
+需要添加的功能：
+2012/4/10
+1.在发生错误的时候，通过getLastError来获取错误信息，并且表示出来
+2.考虑组合索引的创建功能，以及子字段的索引创建功能
+3.获得DB版本，有些功能可能在某些版本上才有，或者某些版本上该功能已经被废止了
+4.Bsonval的序列化问题。
+5.Js.eval界面过于简单了
+6.Sql --> Query功能的强化
+7.Command List of Database资料中没有实现的功能
+8.更多的注释，例如Reanme Collection 不能用于Sharding
+9.插入元素等等，BsonValue的输入框的强化（C#Driver参考手册，TimeStamp）
+10.单个节点的更新，不用Refresh（all）
+11.GFS中可能内置了ContentType属性
+12.连接时候的 {w:n}的详细调查
+13.Acess导入，上传文件夹等耗时操作，时事进度的表示
+14.Config.ini 生成工具
+============================================
+MongoVUE 
+1.Duplicate Collection 功能
+2.Copy Collection to Server 功能
+3.通过explain将一些命令表示出来（MongoCursor.Explain)
+4.文件夹上传时候，分隔符的制定
+5.导出数据到CSV,MsExcel,JSON(text/plain)
+6.SSL
+7.状态栏强化 
+8.ctlDataView作为基类，User，GFS从中抽出
