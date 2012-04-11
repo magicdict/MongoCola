@@ -38,7 +38,7 @@ C# 驱动问题：
 1.在发生错误的时候，通过getLastError来获取错误信息，并且表示出来
 2.考虑组合索引的创建功能，以及子字段的索引创建功能
 3.获得DB版本，有些功能可能在某些版本上才有，或者某些版本上该功能已经被废止了
-4.Bsonval的序列化问题。
+4.BSonvalue的序列化问题。
 5.Js.eval界面过于简单了
 6.Sql --> Query功能的强化
 7.Command List of Database资料中没有实现的功能
@@ -52,19 +52,19 @@ C# 驱动问题：
    http://www.mongodb.org/display/DOCS/File+Based+Configuration
 15.解析 _id 字段信息来展示生成Document的时间信息 
 16.连接池大小，每个连接池消耗内存是不是能通过工具修改呢？
-17.TreeView没有_id的时候，使用第一个项目作为Key（Tag），不过在ListView中却没有使用第一个项目作为Key（Tag）。
+【OK】17.TreeView没有_id的时候，使用第一个项目作为Key（Tag），不过在ListView中却没有使用第一个项目作为Key（Tag）。
     a）Tag !=null && Tag.IsObjectId 需要处理
     b) 删除时候用到了IsExistByKey，对于后一种情况不适合（永远不满足）。
     同时，由于ListView中却没有使用第一个项目作为Key（Tag）。在删除逻辑中可能会出现NullRef错误
-18.Opration -〉Operation 模块文件名需要修改
-19.InsertEmptyDocument没有地方调用了，删除或者增加插入空文档功能
+【OK】18.Opration -〉Operation 模块文件名需要修改  
+【OK】19.InsertEmptyDocument没有地方调用了，删除或者增加插入空文档功能
 20.一些细节问题。例如窗口的标题还是frmXXX.
 ============================================
 ============================================
 MongoVUE 
 1.Duplicate Collection 功能
 2.Copy Collection to Server 功能
-3.通过explain将一些命令表示出来（MongoCursor.Explain)
+【OK】3.通过explain将一些命令表示出来（MongoCursor.Explain)
 4.文件夹上传时候，分隔符的制定
 5.导出数据到CSV,MsExcel,JSON(text/plain)
 6.SSH （貌似需要修改驱动程序）

@@ -312,7 +312,7 @@
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\System\CloneMeunToolItem.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Opration_Other.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Operation_Other.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Query.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_RunCommand.cs" />
     <Compile Include="UserController\ctlMongoImportExport.cs">
@@ -347,7 +347,7 @@
       <DependentUpon>ctlMongodump.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\System\MongodbDosCommand.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Opration.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Operation.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_View.cs" />
     <Compile Include="Module\System\SystemManager.cs" />
     <Compile Include="Program.cs" />

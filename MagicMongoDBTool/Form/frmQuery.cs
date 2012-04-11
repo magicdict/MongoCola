@@ -87,12 +87,10 @@ namespace MagicMongoDBTool
             firstQueryCtl.Location = _conditionPos;
             firstQueryCtl.Name = "Condition" + _conditionCount.ToString();
             panFilter.Controls.Add(firstQueryCtl);
-
             if (CurrentDataViewInfo.mDataFilter.QueryConditionList.Count > 0)
             {
                 PutQueryToUI(CurrentDataViewInfo.mDataFilter);
             }
-
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Title);
@@ -102,8 +100,8 @@ namespace MagicMongoDBTool
                 cmdLoad.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Action_Load);
                 cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
                 cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
             }
-
         }
         /// <summary>
         /// 新增条件

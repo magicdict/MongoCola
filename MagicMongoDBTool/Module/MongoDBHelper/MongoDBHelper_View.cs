@@ -103,24 +103,30 @@ namespace MagicMongoDBTool.Module
             MongoServer mServer = SystemManager.GetCurrentServer();
             MongoCollection mongoCol = mServer.GetDatabase(cp[(int)PathLv.DatabaseLV]).GetCollection(cp[(int)PathLv.CollectionLV]);
 
-            List<BsonDocument> dataList = new List<BsonDocument>();
+            
+            MongoCursor<BsonDocument> cursor;
             //Query condition:
             if (CurrentDataViewInfo.IsUseFilter)
             {
-                dataList = mongoCol.FindAs<BsonDocument>(GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
+                cursor = mongoCol.FindAs<BsonDocument>(GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
                                    .SetSkip(CurrentDataViewInfo.SkipCnt)
                                    .SetFields(GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
                                    .SetSortOrder(GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList))
-                                   .SetLimit(CurrentDataViewInfo.LimitCnt)
-                                   .ToList<BsonDocument>();
+                                   .SetLimit(CurrentDataViewInfo.LimitCnt);
             }
             else
             {
-                dataList = mongoCol.FindAllAs<BsonDocument>()
+                cursor = mongoCol.FindAllAs<BsonDocument>()
                                    .SetSkip(CurrentDataViewInfo.SkipCnt)
-                                   .SetLimit(CurrentDataViewInfo.LimitCnt)
-                                   .ToList<BsonDocument>();
+                                   .SetLimit(CurrentDataViewInfo.LimitCnt);
+
             }
+            if (cursor.Query != null)
+            {
+                CurrentDataViewInfo.Query = cursor.Query.ToJson(SystemManager.JsonWriterSettings);
+            }
+            CurrentDataViewInfo.Explain = cursor.Explain().ToJson(SystemManager.JsonWriterSettings);
+            List<BsonDocument> dataList = cursor.ToList();
             if (CurrentDataViewInfo.SkipCnt == 0)
             {
                 if (CurrentDataViewInfo.IsUseFilter)
@@ -407,6 +413,7 @@ namespace MagicMongoDBTool.Module
                             else
                             {
                                 lstItem.Text = "[Empty]";
+                                lstItem.Tag = docItem.GetElement(0).Value;
                             }
                         }
                         else
@@ -602,6 +609,12 @@ namespace MagicMongoDBTool.Module
             /// 每页显示数
             /// </summary>
             public int LimitCnt;
+            /// <summary>
+            /// 
+            /// </summary>
+            public String Query;
+
+            public String Explain;
         }
         /// <summary>
         /// 数据导航

@@ -126,7 +126,7 @@ namespace MagicMongoDBTool.UserController
                 this.AddElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
                 this.DropElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_DropElement);
                 this.ModifyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_ModifyElement);
-                
+
                 this.CopyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CopyElement);
                 this.CopyElementStripButton.Text = this.CopyElementToolStripMenuItem.Text;
                 this.CutElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CutElement);
@@ -165,9 +165,10 @@ namespace MagicMongoDBTool.UserController
             InitControlsEnable();
             //加载数据
             List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);
-            MongoDBHelper.FillDataToControl(datalist,_dataShower,mDataViewInfo);
+            MongoDBHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             //数据导航
             SetDataNav();
+            tabDataShower.TabPages.Remove(tabQuery);
         }
         /// <summary>
         /// 将所有的按钮和右键菜单无效化
@@ -494,7 +495,10 @@ namespace MagicMongoDBTool.UserController
             {
                 if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
-                    lstData.ContextMenuStrip = this.contextMenuStripMain;
+                    this.contextMenuStripMain = new ContextMenuStrip();
+                    this.contextMenuStripMain.Items.Add(this.NewDocumentToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.OpenDocInEditorStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
                     contextMenuStripMain.Show(lstData.PointToScreen(e.Location));
                 }
             }
@@ -705,10 +709,13 @@ namespace MagicMongoDBTool.UserController
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
                     ///允许删除
+                    DelSelectRecordToolStripMenuItem.Enabled = true;
                     this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
                     ///允许添加
+                    AddElementToolStripMenuItem.Enabled = true;
                     this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
                     ///允许粘贴
+                    PasteElementToolStripMenuItem.Enabled = true;
                     this.contextMenuStripMain.Items.Add(this.PasteElementToolStripMenuItem.Clone());
                     trvData.DatatreeView.ContextMenuStrip = this.contextMenuStripMain;
                     contextMenuStripMain.Show(trvData.DatatreeView.PointToScreen(e.Location));
@@ -807,25 +814,33 @@ namespace MagicMongoDBTool.UserController
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
+                String StrErrormsg = String.Empty;
                 if (tabDataShower.SelectedTab == tabTableView)
                 {
                     //lstData
-                    String StrErrormsg = String.Empty;
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                        if (!MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), item.Tag))
+                        if (item.Tag != null && ((BsonValue)item.Tag).IsObjectId)
                         {
-                            StrErrormsg += "Delete Error Key is:" + item.Tag.ToString() + System.Environment.NewLine;
+                            if (!MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), item.Tag))
+                            {
+                                StrErrormsg = "Delete Error Key is:" + item.Tag.ToString();
+                                MyMessageBox.ShowMessage("Delete Error", StrErrormsg);
+                                break;
+                            }
                         };
                     }
-                    MyMessageBox.ShowMessage("Delete Error", StrErrormsg);
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
-                    if (!MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), trvData.DatatreeView.SelectedNode.Tag))
+                    if (trvData.DatatreeView.SelectedNode.Tag != null && ((BsonValue)trvData.DatatreeView.SelectedNode.Tag).IsObjectId)
                     {
-                        MyMessageBox.ShowMessage("Delete Error", "Delete Error Key is:" + trvData.DatatreeView.SelectedNode.Tag.ToString());
+                        if (!MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), trvData.DatatreeView.SelectedNode.Tag))
+                        {
+                            StrErrormsg = "Delete Error Key is:" + trvData.DatatreeView.SelectedNode.Tag.ToString();
+                            MyMessageBox.ShowMessage("Delete Error", StrErrormsg);
+                        }
                     }
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
@@ -898,7 +913,7 @@ namespace MagicMongoDBTool.UserController
             }
             else
             {
-                SystemManager.OpenForm(new frmElement(true, trvData.DatatreeView.SelectedNode,true));
+                SystemManager.OpenForm(new frmElement(true, trvData.DatatreeView.SelectedNode, true));
             }
             IsNeedRefresh = true;
         }
@@ -1397,6 +1412,21 @@ namespace MagicMongoDBTool.UserController
             MongoDBHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             InitControlsEnable();
             SetDataNav();
+            if (mDataViewInfo.Query != String.Empty)
+            {
+                txtQuery.Text = mDataViewInfo.Query;
+                if (!tabDataShower.TabPages.Contains(tabQuery))
+                {
+                    tabDataShower.TabPages.Add(tabQuery);
+                }
+            }
+            else
+            {
+                if (tabDataShower.TabPages.Contains(tabQuery))
+                {
+                    tabDataShower.TabPages.Remove(tabQuery);
+                }
+            }
             IsNeedRefresh = false;
         }
         private void ReloadData()
