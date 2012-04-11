@@ -21,14 +21,52 @@ OK 3.在删除数据库，数据集后，应该将所有的打开的相关的视
 
 2012/03/30
     TODO:增加Js成员改名字的功能
-	TODD:某些操作时间过长，操作进度的显示
+     TODD:某些操作时间过长，操作进度的显示
 
 2012/03/31
     1.如果没有 _id 的数据，则文档节点将会把第一个元素的值放入Tag，在删除的时候，默认是按照_id来删除的，这里会出现问题，无法删除
-      好在没有 _id 的数据都是比较特殊的，不能删除的数据集。
+       好在没有 _id 的数据都是比较特殊的，不能删除的数据集。
 
 C# 驱动问题：
 2012/03/26
    1.无法知道Mongos的Config服务器的位置
    2.rs.remove会出现问题，这个功能暂时关闭
-   3.ValidateDataBaseName 无法使用
+   3.ValidateDataBaseName 无法使用(1.4.1已经实现，不过需要等待新版本的发布)
+
+需要添加的功能：
+2012/4/10
+1.在发生错误的时候，通过getLastError来获取错误信息，并且表示出来
+2.考虑组合索引的创建功能，以及子字段的索引创建功能
+3.获得DB版本，有些功能可能在某些版本上才有，或者某些版本上该功能已经被废止了
+4.Bsonval的序列化问题。
+5.Js.eval界面过于简单了
+6.Sql --> Query功能的强化
+7.Command List of Database资料中没有实现的功能
+8.更多的注释，例如Reanme Collection 不能用于Sharding
+9.插入元素等等，BsonValue的输入框的强化（C#Driver参考手册，TimeStamp）
+10.单个节点的更新，不用Refresh（all）
+11.GFS中可能内置了ContentType属性
+12.连接时候的 {w:n}的详细调查
+13.Acess导入，上传文件夹等耗时操作，时事进度的表示
+14.Config.ini 生成工具 
+   http://www.mongodb.org/display/DOCS/File+Based+Configuration
+15.解析 _id 字段信息来展示生成Document的时间信息 
+16.连接池大小，每个连接池消耗内存是不是能通过工具修改呢？
+17.TreeView没有_id的时候，使用第一个项目作为Key（Tag），不过在ListView中却没有使用第一个项目作为Key（Tag）。
+    a）Tag !=null && Tag.IsObjectId 需要处理
+    b) 删除时候用到了IsExistByKey，对于后一种情况不适合（永远不满足）。
+    同时，由于ListView中却没有使用第一个项目作为Key（Tag）。在删除逻辑中可能会出现NullRef错误
+18.Opration -〉Operation 模块文件名需要修改
+19.InsertEmptyDocument没有地方调用了，删除或者增加插入空文档功能
+20.一些细节问题。例如窗口的标题还是frmXXX.
+============================================
+============================================
+MongoVUE 
+1.Duplicate Collection 功能
+2.Copy Collection to Server 功能
+3.通过explain将一些命令表示出来（MongoCursor.Explain)
+4.文件夹上传时候，分隔符的制定
+5.导出数据到CSV,MsExcel,JSON(text/plain)
+6.SSH （貌似需要修改驱动程序）
+7.状态栏强化 
+8.ctlDataView作为基类，User，GFS从中抽出 （比较耗时间）
