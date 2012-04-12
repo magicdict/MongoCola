@@ -171,6 +171,12 @@
     <Compile Include="Form\Box\frmEasyMessage.Designer.cs">
       <DependentUpon>frmEasyMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmGenerateConfigIni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmGenerateConfigIni.Designer.cs">
+      <DependentUpon>frmGenerateConfigIni.cs</DependentUpon>
+    </Compile>
     <Compile Include="Module\HTTPServer\GetPage.cs" />
     <Compile Include="Module\HTTPServer\Server.cs" />
     <Compile Include="UserController\ctlJsEditor.cs">
@@ -402,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmReplsetMgr.resx">
       <DependentUpon>frmReplsetMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmGenerateConfigIni.resx">
+      <DependentUpon>frmGenerateConfigIni.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlJsEditor.resx">
       <DependentUpon>ctlJsEditor.cs</DependentUpon>

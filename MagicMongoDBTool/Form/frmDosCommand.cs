@@ -67,6 +67,7 @@ namespace MagicMongoDBTool
         private void cmdSave_Click(object sender, EventArgs e)
         {
             SaveFileDialog savefile = new SaveFileDialog();
+            savefile.Filter = MongoDBHelper.IniFilter;
             if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 StreamWriter save = new StreamWriter(savefile.FileName);

@@ -103,7 +103,7 @@ namespace MagicMongoDBTool.Module
             MongoServer mServer = SystemManager.GetCurrentServer();
             MongoCollection mongoCol = mServer.GetDatabase(cp[(int)PathLv.DatabaseLV]).GetCollection(cp[(int)PathLv.CollectionLV]);
 
-            
+
             MongoCursor<BsonDocument> cursor;
             //Query condition:
             if (CurrentDataViewInfo.IsUseFilter)
@@ -124,6 +124,10 @@ namespace MagicMongoDBTool.Module
             if (cursor.Query != null)
             {
                 CurrentDataViewInfo.Query = cursor.Query.ToJson(SystemManager.JsonWriterSettings);
+            }
+            else
+            {
+                CurrentDataViewInfo.Query = String.Empty;
             }
             CurrentDataViewInfo.Explain = cursor.Explain().ToJson(SystemManager.JsonWriterSettings);
             List<BsonDocument> dataList = cursor.ToList();

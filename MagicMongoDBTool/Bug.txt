@@ -48,7 +48,7 @@ C# 驱动问题：
 11.GFS中可能内置了ContentType属性
 12.连接时候的 {w:n}的详细调查
 13.Acess导入，上传文件夹等耗时操作，时事进度的表示
-14.Config.ini 生成工具 
+【1/2 OK】14.Config.ini 生成工具 
    http://www.mongodb.org/display/DOCS/File+Based+Configuration
 15.解析 _id 字段信息来展示生成Document的时间信息 
 16.连接池大小，每个连接池消耗内存是不是能通过工具修改呢？
@@ -59,6 +59,7 @@ C# 驱动问题：
 【OK】18.Opration -〉Operation 模块文件名需要修改  
 【OK】19.InsertEmptyDocument没有地方调用了，删除或者增加插入空文档功能
 20.一些细节问题。例如窗口的标题还是frmXXX.
+[OK]21.LogLevel 改为下拉框
 ============================================
 ============================================
 MongoVUE 

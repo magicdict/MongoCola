@@ -2073,6 +2073,15 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GernerateConfigtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmGenerateConfigIni());
+        }
+        /// <summary>
         /// DOS控制台
         /// </summary>
         /// <param name="sender"></param>

@@ -36,6 +36,10 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public String DBPath = String.Empty;
             /// <summary>
+            /// IP
+            /// </summary>
+            public String bind_ip = String.Empty;
+            /// <summary>
             /// 端口号
             /// </summary>
             public int Port = MongoDBHelper.DEFAULT_PORT;
@@ -73,6 +77,58 @@ namespace MagicMongoDBTool.Module
             public bool IsAuth = false;
         }
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static String GenerateIniFile(StruMongod mongod)
+        {
+            //http://www.mongodb.org/display/DOCS/File+Based+Configuration
+            //Location of the database files 
+            string strIni = String.Empty;
+
+            strIni = "#Basic database configuration" + System.Environment.NewLine;
+
+            if (mongod.DBPath != String.Empty)
+            {
+                strIni += "#Location of the database files   " + System.Environment.NewLine;
+                strIni += "dbpath = " + mongod.DBPath + System.Environment.NewLine;
+            }
+
+            if (mongod.Port != 0)
+            {
+                strIni += "#Port the mongod will listen on  " + System.Environment.NewLine;
+                strIni += "port = " + mongod.Port.ToString() + System.Environment.NewLine;
+            }
+
+            strIni += "#Specific IP address that mongod will listen on  " + System.Environment.NewLine;
+            if (mongod.bind_ip != String.Empty)
+            {
+                strIni += "bind_ip  = " + mongod.bind_ip + System.Environment.NewLine;
+            }
+            else
+            {
+                strIni += "bind_ip = 127.0.0.1" + System.Environment.NewLine;
+            }
+
+            if (mongod.LogPath != String.Empty)
+            {
+                strIni += "#Full filename path to where log messages will be written  " + System.Environment.NewLine;
+                strIni += "logpath = " + mongod.LogPath + System.Environment.NewLine;
+            }
+
+            strIni += "#Full filename path to where log messages will be written  " + System.Environment.NewLine;
+            if (mongod.Islogappend)
+            {
+                strIni += "logappend = true" + System.Environment.NewLine;
+            }
+            else
+            {
+                strIni += "logappend = false " + mongod.LogPath + System.Environment.NewLine;
+            }
+
+            return strIni;
+        }
+        /// <summary>
         /// 日志等级
         /// </summary>
         public enum MongologLevel : int
@@ -80,7 +136,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 最少
             /// </summary>
-            Quiet = 1,
+            Quiet = 0,
             /// <summary>
             /// Verb * 1
             /// </summary>

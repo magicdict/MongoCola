@@ -7,7 +7,7 @@ namespace MagicMongoDBTool
     {
 
         public EventHandler<TextChangeEventArgs> CommandChanged;
-        private MongodbDosCommand.StruMongod MongodCommand = new MongodbDosCommand.StruMongod();
+        public MongodbDosCommand.StruMongod MongodCommand = new MongodbDosCommand.StruMongod();
         /// <summary>
         /// 构造函数
         /// </summary>

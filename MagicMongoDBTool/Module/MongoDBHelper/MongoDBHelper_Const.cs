@@ -184,6 +184,9 @@ namespace MagicMongoDBTool.Module
         /// 在标识元素路径时候，这个后缀表示当期元素只是数组的开始标志
         /// </summary>
         public const String Array_Mark = "[ARRAY]";
+        /// <summary>
+        /// 在标识元素路径时候，这个后缀表示当期元素只是文档的开始标志
+        /// </summary>
         public const String Document_Mark = "[DOCUMENT]";
         /// <summary>
         /// XML文件选择过滤器
@@ -201,7 +204,10 @@ namespace MagicMongoDBTool.Module
         /// MDB文件选择过滤器
         /// </summary>
         public const String MdbFilter = "*.mdb(Access File)|*.mdb";
-
+        /// <summary>
+        /// INI文件选择过滤器
+        /// </summary>
+        public const String IniFilter = "*.ini(Config File)|*.ini";
         /// <summary>
         /// TempFileFolder
         /// </summary>

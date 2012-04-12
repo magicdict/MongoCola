@@ -5,57 +5,28 @@ namespace MagicMongoDBTool.Module
 {
     public partial class ctllogLv : UserControl
     {
+        public delegate void LogLvChangedHandler(MongodbDosCommand.MongologLevel logLV);
+        public event LogLvChangedHandler LoglvChanged;
         public ctllogLv()
         {
             InitializeComponent();
         }
-        public delegate void LogLvChangedHandler(MongodbDosCommand.MongologLevel logLV);
-        public event LogLvChangedHandler LoglvChanged;
-
-        private void trbLogLv_Scroll(object sender, EventArgs e)
-        {
-            if (!SystemManager.IsUseDefaultLanguage())
-            {
-                lblLogLv.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_LogLevel);
-            }
-            else
-            {
-                lblLogLv.Text = "日志等级：";
-            }
-            switch (trbLogLv.Value)
-            {
-                case (int)MongodbDosCommand.MongologLevel.Quiet:
-                    lblLogLv.Text += "最少";
-                    break;
-                case (int)MongodbDosCommand.MongologLevel.V:
-                    lblLogLv.Text += "1级";
-                    break;
-                case (int)MongodbDosCommand.MongologLevel.VV:
-                    lblLogLv.Text += "2级";
-                    break;
-                case (int)MongodbDosCommand.MongologLevel.VVV:
-                    lblLogLv.Text += "3级";
-                    break;
-                case (int)MongodbDosCommand.MongologLevel.VVVV:
-                    lblLogLv.Text += "4级";
-                    break;
-                case (int)MongodbDosCommand.MongologLevel.VVVVV:
-                    lblLogLv.Text += "最多";
-                    break;
-                default:
-                    break;
-            }
-            LoglvChanged((MongodbDosCommand.MongologLevel)trbLogLv.Value);
-        }
-
         private void ctllogLv_Load(object sender, EventArgs e)
         {
-            trbLogLv.Minimum = (int)MongodbDosCommand.MongologLevel.Quiet;
-            trbLogLv.Maximum = (int)MongodbDosCommand.MongologLevel.VVVVV;
             if (!SystemManager.IsUseDefaultLanguage())
             {
                 lblLogLv.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_LogLevel);
             }
+            cmbLogLevel.Items.Add("Quiet");
+            cmbLogLevel.Items.Add("V");
+            cmbLogLevel.Items.Add("VV");
+            cmbLogLevel.Items.Add("VVV");
+            cmbLogLevel.Items.Add("VVVV");
+            cmbLogLevel.Items.Add("VVVVV");
+        }
+        private void cmbLogLevel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoglvChanged((MongodbDosCommand.MongologLevel)cmbLogLevel.SelectedIndex);
         }
     }
 }
