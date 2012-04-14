@@ -106,6 +106,7 @@ namespace MagicMongoDBTool
             this.ExportCollectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DosCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GernerateConfigtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportDataFromAccessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
             this.OptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,7 +124,7 @@ namespace MagicMongoDBTool
             this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.ctlShellCommandEditor = new MagicMongoDBTool.ctlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.GernerateConfigtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblAction = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -138,7 +139,8 @@ namespace MagicMongoDBTool
             this.statusStripMain.BackColor = System.Drawing.Color.Transparent;
             this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusSelectedObj,
-            this.lblUserInfo});
+            this.lblUserInfo,
+            this.lblAction});
             this.statusStripMain.Location = new System.Drawing.Point(0, 680);
             this.statusStripMain.Name = "statusStripMain";
             this.statusStripMain.Padding = new System.Windows.Forms.Padding(1, 0, 18, 0);
@@ -733,6 +735,13 @@ namespace MagicMongoDBTool
             this.DosCommandToolStripMenuItem.Text = "&DOS Command";
             this.DosCommandToolStripMenuItem.Click += new System.EventHandler(this.DosCommandToolStripMenuItem_Click);
             // 
+            // GernerateConfigtoolStripMenuItem
+            // 
+            this.GernerateConfigtoolStripMenuItem.Name = "GernerateConfigtoolStripMenuItem";
+            this.GernerateConfigtoolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.GernerateConfigtoolStripMenuItem.Text = "Gernerate Config INI";
+            this.GernerateConfigtoolStripMenuItem.Click += new System.EventHandler(this.GernerateConfigtoolStripMenuItem_Click);
+            // 
             // ImportDataFromAccessToolStripMenuItem
             // 
             this.ImportDataFromAccessToolStripMenuItem.Name = "ImportDataFromAccessToolStripMenuItem";
@@ -880,12 +889,11 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // GernerateConfigtoolStripMenuItem
+            // lblAction
             // 
-            this.GernerateConfigtoolStripMenuItem.Name = "GernerateConfigtoolStripMenuItem";
-            this.GernerateConfigtoolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.GernerateConfigtoolStripMenuItem.Text = "Gernerate Config INI";
-            this.GernerateConfigtoolStripMenuItem.Click += new System.EventHandler(this.GernerateConfigtoolStripMenuItem_Click);
+            this.lblAction.Name = "lblAction";
+            this.lblAction.Size = new System.Drawing.Size(37, 17);
+            this.lblAction.Text = "Action";
             // 
             // frmMain
             // 
@@ -1016,5 +1024,6 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem ServerStatusToolStripMenuItem;
         private ToolStripMenuItem ShutDownToolStripMenuItem;
         private ToolStripMenuItem GernerateConfigtoolStripMenuItem;
+        private ToolStripStatusLabel lblAction;
     }
 }

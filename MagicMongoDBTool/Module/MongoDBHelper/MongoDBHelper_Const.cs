@@ -4,8 +4,20 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public static EventHandler<ActionDoneEventArgs> ActionDone;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        public static void OnActionDone(ActionDoneEventArgs e)
+        {
+            e.Raise(null, ref ActionDone);
+        }
         //各种节点的Tag前缀
-
+        
         /// <summary>
         /// 普通连接
         /// </summary>

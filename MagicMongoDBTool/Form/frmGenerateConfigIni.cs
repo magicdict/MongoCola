@@ -36,6 +36,7 @@ namespace MagicMongoDBTool
                 StreamWriter save = new StreamWriter(savefile.FileName);
                 save.Write(MongodbDosCommand.GenerateIniFile(ctlGenerateMongod.MongodCommand));
                 save.Close();
+                System.Diagnostics.Process.Start(savefile.FileName);
             }
         }
     }

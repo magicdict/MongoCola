@@ -155,27 +155,34 @@ namespace MagicMongoDBTool.Module
             }
             //return null;
         }
+
+
+        public struct ImportAccessPara
+        {
+            public String accessFileName;
+            public String strSvrPathWithTag;
+            public TreeNode currentTreeNode;
+        }
         /// <summary>
         /// 导入数据
         /// </summary>
-        /// <param name="accessFileName"></param>
-        /// <param name="strSvrPathWithTag"></param>
-        /// <param name="currentTreeNode"></param>
+        /// <param name="parm"></param>
         /// <returns></returns>
-        public static Boolean ImportAccessDataBase(String accessFileName, String strSvrPathWithTag, TreeNode currentTreeNode)
+        public static void ImportAccessDataBase(Object obj)
         {
-            Boolean rtnCode = false;
-
-            MongoServer mongoSvr = GetMongoServerBySvrPath(strSvrPathWithTag);
-            String[] fileName = accessFileName.Split(@"\".ToCharArray());
+            ImportAccessPara parm = (ImportAccessPara)obj;
+            MongoServer mongoSvr = GetMongoServerBySvrPath(parm.strSvrPathWithTag);
+            String[] fileName = parm.accessFileName.Split(@"\".ToCharArray());
             String fileMain = fileName[fileName.Length - 1];
             String insertDBName = fileMain.Split(".".ToCharArray())[0];
             MongoDatabase mongoDB = mongoSvr.GetDatabase(insertDBName);
-            OleDbConnection conn = new OleDbConnection(ACCESS_CONNECTION_STRING.Replace("@AccessPath", accessFileName));
+            OleDbConnection conn = new OleDbConnection(ACCESS_CONNECTION_STRING.Replace("@AccessPath", parm.accessFileName));
             try
             {
                 conn.Open();
+                int err = 0;
                 DataTable tblTableList = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "Table" });
+                String strCreateTableInfo = String.Empty;
                 foreach (DataRow recTable in tblTableList.Rows)
                 {
                     String strTableName = recTable[2].ToString();
@@ -183,6 +190,8 @@ namespace MagicMongoDBTool.Module
                     {
                         //不支持UTF....,执行会失败，但是Collection已经添加了
                         mongoDB.CreateCollection(strTableName);
+                        strCreateTableInfo = strTableName + " Creating " + System.Environment.NewLine + strCreateTableInfo;
+                        OnActionDone(new ActionDoneEventArgs(strTableName + " Creating "));
                     }
                     catch (Exception)
                     {
@@ -190,9 +199,11 @@ namespace MagicMongoDBTool.Module
                         {
                             mongoDB.DropCollection(strTableName);
                         }
+                        strCreateTableInfo = strTableName + " Create Error " + System.Environment.NewLine + strCreateTableInfo;
+                        OnActionDone(new ActionDoneEventArgs(strTableName + " Creating Error "));
+                        err++;
                         continue;
                     }
-
                     MongoCollection mongoCollection = mongoDB.GetCollection(strTableName);
                     DataTable tblSchema = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Columns, new object[] { null, null, strTableName, null });
                     Dictionary<String, String> colPro = new Dictionary<String, String>();
@@ -278,11 +289,11 @@ namespace MagicMongoDBTool.Module
                         mongoCollection.Insert<BsonDocument>(insertDoc);
                     }
                 }
-                String strSvrPath = SystemManager.GetTagData(strSvrPathWithTag);
+                String strSvrPath = SystemManager.GetTagData(parm.strSvrPathWithTag);
                 String strKey = strSvrPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.ConnectionLV] + "/" +
                                 strSvrPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.ServerLV];
-                currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, strKey));
-                rtnCode = true;
+                parm.currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, strKey));
+                MyMessageBox.ShowMessage("Import Message", (tblTableList.Rows.Count - err).ToString() + "Created   " + err + "failed", strCreateTableInfo, true);
             }
             catch (Exception ex)
             {
@@ -292,8 +303,6 @@ namespace MagicMongoDBTool.Module
             {
                 conn.Close();
             }
-
-            return rtnCode;
         }
     }
 }

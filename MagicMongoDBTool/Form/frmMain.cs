@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MagicMongoDBTool.UserController;
 using MongoDB.Driver;
+using System.Threading;
 
 namespace MagicMongoDBTool
 {
@@ -42,6 +43,15 @@ namespace MagicMongoDBTool
             {
                 this.Text += " MONO";
             }
+            MongoDBHelper.ActionDone += new EventHandler<ActionDoneEventArgs>(
+                (x, y) =>
+                {
+                    //1.lblAction 没有InvokeRequired
+                    //2.DoEvents必须
+                    lblAction.Text = y.Message;
+                    Application.DoEvents();
+                }
+            );
         }
         /// <summary>
         /// Set Menu Text
@@ -394,7 +404,7 @@ namespace MagicMongoDBTool
                             {
                                 this.ImportDataFromAccessToolStripMenuItem.Enabled = true;
                             }
-                            if (config.ServerRole == ConfigHelper.SvrRoleType.MasterSvr || 
+                            if (config.ServerRole == ConfigHelper.SvrRoleType.MasterSvr ||
                                 config.ServerRole == ConfigHelper.SvrRoleType.SlaveSvr)
                             {
                                 //Master，Slave都可以执行
@@ -2068,7 +2078,13 @@ namespace MagicMongoDBTool
                 AccessFile.Filter = MongoDBHelper.MdbFilter;
                 if (AccessFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    MongoDBHelper.ImportAccessDataBase(AccessFile.FileName, SystemManager.SelectObjectTag, trvsrvlst.SelectedNode);
+                    MongoDBHelper.ImportAccessPara parm = new MongoDBHelper.ImportAccessPara();
+                    parm.accessFileName = AccessFile.FileName;
+                    parm.currentTreeNode = trvsrvlst.SelectedNode;
+                    parm.strSvrPathWithTag = SystemManager.SelectObjectTag;
+                    ParameterizedThreadStart Parmthread = new ParameterizedThreadStart(MongoDBHelper.ImportAccessDataBase);
+                    Thread t = new Thread(Parmthread);
+                    Parmthread.Invoke(parm);
                 }
             }
         }
