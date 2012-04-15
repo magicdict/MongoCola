@@ -297,6 +297,7 @@
   <GFS_Insert_Option_Overwrite>上書き</GFS_Insert_Option_Overwrite>
   <GFS_Insert_Option_Stop>中止</GFS_Insert_Option_Stop>
   <GFS_Insert_Option_IngoreSubFolder>サッブフォルダをスキップ</GFS_Insert_Option_IngoreSubFolder>
+  <GFS_Insert_Option_DirectorySeparatorChar>フォルダパス分割</GFS_Insert_Option_DirectorySeparatorChar>
 
   <!--Index-->
   <Index_Background>Background</Index_Background>

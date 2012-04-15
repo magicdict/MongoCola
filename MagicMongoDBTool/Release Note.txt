@@ -10,6 +10,12 @@ MongoCola is free and open source.
 ========================================================================
 Release History
 ========================================================================
+Ver 1.22 2012/04/15 
+1.Show the process at status bar when import data from Access And Upload Folder  
+2.Fix the bug of delete document.Now only the record has a _id ObjectKey can be delete.
+3.DirectorySeparatorChar can be customize.
+
+========================================================================
 Ver 1.21 2012/04/06 [First Version @Accenture CDC]
 WebForm
     1.You can select a connection at connection list page to jump to connection detail page.

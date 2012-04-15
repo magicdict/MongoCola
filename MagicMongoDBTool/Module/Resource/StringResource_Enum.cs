@@ -59,6 +59,7 @@ namespace MagicMongoDBTool.Module
             Main_Menu_Operation_DataDocument_CopyElement,
             Main_Menu_Operation_DataDocument_CutElement,
             Main_Menu_Operation_DataDocument_PasteElement,
+            Main_Menu_Operation_DataDocument_OpenInNativeEditor,
 
             Main_Menu_Operation_FileSystem,
             Main_Menu_Operation_FileSystem_UploadFile,
@@ -91,7 +92,6 @@ namespace MagicMongoDBTool.Module
             Main_Tab_Tree,
             Main_Tab_Table,
             Main_Tab_Text,
-            OpenInNativeEditor,
             Main_StatusBar_Text_Ready,
 
             AddConnection_Title,
@@ -252,6 +252,7 @@ namespace MagicMongoDBTool.Module
             GFS_Insert_Option_Overwrite,
             GFS_Insert_Option_Stop,
             GFS_Insert_Option_IngoreSubFolder,
+            GFS_Insert_Option_DirectorySeparatorChar,
 
             //DataBase_Status
             DataBase_Status_DataBaseName,

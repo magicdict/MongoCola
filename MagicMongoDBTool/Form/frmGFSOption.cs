@@ -9,7 +9,7 @@ namespace MagicMongoDBTool
         public MongoDBHelper.enumGFSFileName filename;
         public MongoDBHelper.enumGFSAlready option;
         public Boolean ignoreSubFolder;
-
+        public Char DirectorySeparatorChar = System.IO.Path.PathSeparator;
         public frmGFSOption()
         {
             InitializeComponent();
@@ -30,6 +30,9 @@ namespace MagicMongoDBTool
             if (this.radRenameIt.Checked) { option = MongoDBHelper.enumGFSAlready.RenameIt; }
             if (this.radSkipIt.Checked) { option = MongoDBHelper.enumGFSAlready.SkipIt; }
             if (this.radStopIt.Checked) { option = MongoDBHelper.enumGFSAlready.Stop; }
+            if (this.txtSeperateChar.Text != String.Empty){
+                DirectorySeparatorChar = this.txtSeperateChar.Text.ToCharArray()[0];
+            }
             ignoreSubFolder = chkIgnore.Checked;
             this.Close();
         }
@@ -48,6 +51,7 @@ namespace MagicMongoDBTool
                 radSkipIt.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_SkipIt);
                 radStopIt.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Stop);
                 chkIgnore.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_IngoreSubFolder);
+                lblSeperateChar.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_DirectorySeparatorChar);
                 cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
             }
         }

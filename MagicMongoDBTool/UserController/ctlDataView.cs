@@ -112,7 +112,7 @@ namespace MagicMongoDBTool.UserController
 
                 this.NewDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
                 this.NewDocumentStripButton.Text = this.NewDocumentToolStripMenuItem.Text;
-                this.OpenDocInEditorStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.OpenInNativeEditor);
+                this.OpenDocInEditorStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_OpenInNativeEditor);
                 this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
                 this.DelSelectRecordToolStripButton.Text = this.DelSelectRecordToolStripMenuItem.Text;
 
@@ -1003,6 +1003,7 @@ namespace MagicMongoDBTool.UserController
                 SystemManager.OpenForm(frm, false);
                 opt.FileNameOpt = frm.filename;
                 opt.AlreadyOpt = frm.option;
+                opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
                 frm.Dispose();
                 MongoDBHelper.UpLoadFile(upfile.FileName, opt);
                 RefreshGUI(null, null);
@@ -1017,7 +1018,6 @@ namespace MagicMongoDBTool.UserController
         {
             FolderBrowserDialog upfolder = new FolderBrowserDialog();
             MongoDBHelper.UpLoadFileOption opt = new MongoDBHelper.UpLoadFileOption();
-
             if (upfolder.ShowDialog() == DialogResult.OK)
             {
                 frmGFSOption frm = new frmGFSOption();
@@ -1025,6 +1025,7 @@ namespace MagicMongoDBTool.UserController
                 opt.FileNameOpt = frm.filename;
                 opt.AlreadyOpt = frm.option;
                 opt.IgnoreSubFolder = frm.ignoreSubFolder;
+                opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
                 frm.Dispose();
                 DirectoryInfo uploadDir = new DirectoryInfo(upfolder.SelectedPath);
                 int count = 0;

@@ -297,8 +297,8 @@
   <GFS_Insert_Option_Overwrite>覆盖文件</GFS_Insert_Option_Overwrite>
   <GFS_Insert_Option_Stop>停止上传</GFS_Insert_Option_Stop>
   <GFS_Insert_Option_IngoreSubFolder>忽略子文件夹</GFS_Insert_Option_IngoreSubFolder>
-
-
+  <GFS_Insert_Option_DirectorySeparatorChar>路径分割符号</GFS_Insert_Option_DirectorySeparatorChar>
+  
   <!--Index-->
   <Index_Background>Background</Index_Background>
   <Index_RepeatDel>Repeat Delete</Index_RepeatDel>

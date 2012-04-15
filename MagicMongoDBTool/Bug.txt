@@ -47,27 +47,30 @@ C# 驱动问题：
 10.单个节点的更新，不用Refresh（all）
 11.GFS中可能内置了ContentType属性
 12.连接时候的 {w:n}的详细调查
-13.Acess导入，上传文件夹等耗时操作，时事进度的表示
 【1/2 OK】14.Config.ini 生成工具 
    http://www.mongodb.org/display/DOCS/File+Based+Configuration
 15.解析 _id 字段信息来展示生成Document的时间信息 
 16.连接池大小，每个连接池消耗内存是不是能通过工具修改呢？
+20.一些细节问题。例如窗口的标题还是frmXXX.
+
 【OK】17.TreeView没有_id的时候，使用第一个项目作为Key（Tag），不过在ListView中却没有使用第一个项目作为Key（Tag）。
     a）Tag !=null && Tag.IsObjectId 需要处理
     b) 删除时候用到了IsExistByKey，对于后一种情况不适合（永远不满足）。
     同时，由于ListView中却没有使用第一个项目作为Key（Tag）。在删除逻辑中可能会出现NullRef错误
 【OK】18.Opration -〉Operation 模块文件名需要修改  
 【OK】19.InsertEmptyDocument没有地方调用了，删除或者增加插入空文档功能
-20.一些细节问题。例如窗口的标题还是frmXXX.
-[OK]21.LogLevel 改为下拉框
+【OK】21.LogLevel 改为下拉框
+【OK】13.Acess导入，上传文件夹等耗时操作，状态栏上实时进度的表示
+
 ============================================
 ============================================
 MongoVUE 
 1.Duplicate Collection 功能
 2.Copy Collection to Server 功能
-【OK】3.通过explain将一些命令表示出来（MongoCursor.Explain)
 4.文件夹上传时候，分隔符的制定
 5.导出数据到CSV,MsExcel,JSON(text/plain)
 6.SSH （貌似需要修改驱动程序）
 7.状态栏强化 
 8.ctlDataView作为基类，User，GFS从中抽出 （比较耗时间）
+
+【OK】3.通过explain将一些命令表示出来（MongoCursor.Explain)

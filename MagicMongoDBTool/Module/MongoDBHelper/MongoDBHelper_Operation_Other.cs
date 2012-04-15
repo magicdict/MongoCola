@@ -75,6 +75,7 @@ namespace MagicMongoDBTool.Module
             public enumGFSFileName FileNameOpt;
             public enumGFSAlready AlreadyOpt;
             public Boolean IgnoreSubFolder;
+            public Char DirectorySeparatorChar;
         }
         /// <summary>
         /// 
@@ -120,10 +121,17 @@ namespace MagicMongoDBTool.Module
             }
             else
             {
-                RemoteName = strFileName;
+                if (Option.DirectorySeparatorChar != Path.DirectorySeparatorChar)
+                {
+                    RemoteName = strFileName.Replace(Path.DirectorySeparatorChar, Option.DirectorySeparatorChar);
+                }
+                else {
+                    RemoteName = strFileName;
+                }
             }
             try
             {
+                OnActionDone(new ActionDoneEventArgs(RemoteName + " Uploading "));
                 if (!gfs.Exists(RemoteName))
                 {
                     gfs.Upload(strFileName, RemoteName);
