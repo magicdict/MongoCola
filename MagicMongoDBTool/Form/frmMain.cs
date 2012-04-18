@@ -1350,7 +1350,9 @@ namespace MagicMongoDBTool
                 strDBName = MyMessageBox.ShowInput(SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_DataBase_Input),
                                                                        SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_DataBase));
             }
-            if (strDBName != String.Empty)
+            String ErrMessage;
+            SystemManager.GetCurrentServer().IsDatabaseNameValid(strDBName, out ErrMessage);
+            if (ErrMessage == null)
             {
                 try
                 {
@@ -1361,6 +1363,10 @@ namespace MagicMongoDBTool
                 {
                     MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", ex.Message, true);
                 }
+            }
+            else
+            {
+                MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", ErrMessage, true);
             }
         }
 

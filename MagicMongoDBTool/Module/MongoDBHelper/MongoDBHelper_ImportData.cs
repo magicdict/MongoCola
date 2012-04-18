@@ -189,6 +189,14 @@ namespace MagicMongoDBTool.Module
                     try
                     {
                         //不支持UTF....,执行会失败，但是Collection已经添加了
+                        String ErrMsg;
+                        mongoDB.IsCollectionNameValid(strTableName,out ErrMsg);
+                        if (ErrMsg != null) {
+                            strCreateTableInfo = strTableName + " Create Error " + System.Environment.NewLine + strCreateTableInfo;
+                            OnActionDone(new ActionDoneEventArgs(strTableName + " IsCollectionNameValid Error "));
+                            err++;
+                            continue;
+                        }
                         mongoDB.CreateCollection(strTableName);
                         strCreateTableInfo = strTableName + " Creating " + System.Environment.NewLine + strCreateTableInfo;
                         OnActionDone(new ActionDoneEventArgs(strTableName + " Creating "));

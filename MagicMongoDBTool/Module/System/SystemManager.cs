@@ -21,7 +21,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 版本号
         /// </summary>
-        public static String Version = "1.2.1";
+        public static String Version = "1.2.2";
         /// <summary>
         /// 配置实例
         /// </summary>

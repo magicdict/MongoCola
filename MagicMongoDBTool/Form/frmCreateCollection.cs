@@ -49,6 +49,12 @@ namespace MagicMongoDBTool
             {
                 try
                 {
+                    String ErrMessage;
+                    SystemManager.GetCurrentDataBase().IsCollectionNameValid(txtCollectionName.Text, out ErrMessage);
+                    if (ErrMessage  != null) {
+                        MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", ErrMessage, true);
+                        return;
+                    }
                     if (chkAdvance.Checked)
                     {
                         CollectionOptionsBuilder option = new CollectionOptionsBuilder();
@@ -70,10 +76,6 @@ namespace MagicMongoDBTool
                     Result = false;
                 }
             }
-            else
-            {
-                MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception:Please fill Collection Name");
-            }
         }
         /// <summary>
         /// Cancel
@@ -93,7 +95,5 @@ namespace MagicMongoDBTool
         {
             grpAdvanced.Enabled = chkAdvance.Checked;
         }
-
-
     }
 }
