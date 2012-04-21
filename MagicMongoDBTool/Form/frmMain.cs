@@ -1019,7 +1019,6 @@ namespace MagicMongoDBTool
                 tabView.SelectTab(DataTab);
             }
         }
-
         /// <summary>
         /// Create a DataView Tab
         /// </summary>
@@ -1044,7 +1043,21 @@ namespace MagicMongoDBTool
                 mDataViewInfo.IsSafeMode = config.IsSafeMode;
                 mDataViewInfo.mDataFilter = new DataFilter();
 
-                ctlDataView DataViewctl = new ctlDataView(mDataViewInfo);
+                ctlDataView DataViewctl;
+                 switch (SystemManager.SelectTagType)
+                {
+                    case MongoDBHelper.COLLECTION_TAG:
+                        DataViewctl = new ctlDataView(mDataViewInfo);
+                        break;
+                    case MongoDBHelper.USER_LIST_TAG:
+                        DataViewctl = new ctlUserView(mDataViewInfo);
+                        break;
+                    default:
+                        DataViewctl = new ctlGFSView(mDataViewInfo);
+                        break;
+                }
+               
+                
                 DataViewctl.mDataViewInfo = mDataViewInfo;
 
                 TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().Name);

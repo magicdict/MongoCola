@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using System.IO;
+using System.ComponentModel;
 
 namespace MagicMongoDBTool.UserController
 {
@@ -11,11 +12,35 @@ namespace MagicMongoDBTool.UserController
     {
 
         #region"Main"
+
         /// <summary>
         /// 这里需要控制3中不同的数据类型，普通的Collection，GFS，USER。
         /// 图标复用方式来处理不同的类型。
         /// </summary>
+        public ctlDataView()
+        {
+            InitializeComponent();
+        }
 
+        private Boolean _IsDataView = true;
+        [Description("Is used for display a data collection")]
+        public Boolean IsDataView
+        {
+            set
+            {
+                _IsDataView = value;
+                this.tabTextView.Visible = _IsDataView;
+                this.tabTreeView.Visible = _IsDataView;
+                this.tabQuery.Visible = _IsDataView;
+                NewDocumentStripButton.Visible = _IsDataView;
+                OpenDocInEditorStripButton.Visible = _IsDataView;
+                DelSelectRecordToolStripButton.Visible = _IsDataView;
+            }
+            get
+            {
+                return _IsDataView;
+            }
+        }
         public ctlDataView(MongoDBHelper.DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
@@ -36,7 +61,7 @@ namespace MagicMongoDBTool.UserController
         /// <summary>
         /// 是否为Admin数据库
         /// </summary>
-        private Boolean IsAdminDB;
+        protected Boolean IsAdminDB;
         /// <summary>
         /// 是否为系统数据集
         /// </summary>
@@ -56,6 +81,7 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void ctlDataView_Load(object sender, EventArgs e)
         {
+            if (mDataViewInfo == null) { return; }
             this.cmbRecPerPage.SelectedIndex = 1;
             mDataViewInfo.LimitCnt = 100;
             strNodeType = mDataViewInfo.strDBTag.Split(":".ToCharArray())[0];
@@ -134,32 +160,11 @@ namespace MagicMongoDBTool.UserController
                 this.PasteElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_PasteElement);
                 this.PasteElementStripButton.Text = this.PasteElementToolStripMenuItem.Text;
 
-                this.DeleteFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
-                this.DeleteFileStripButton.Text = this.DeleteFileToolStripMenuItem.Text;
-
-                this.UploadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFile);
-                this.UploadFileStripButton.Text = this.UploadFileToolStripMenuItem.Text;
-
-                this.UploadFolderToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFolder);
-                this.UpLoadFolderStripButton.Text = this.UploadFolderToolStripMenuItem.Text;
-
-                this.DownloadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
-                this.DownloadFileStripButton.Text = this.DownloadFileToolStripMenuItem.Text;
-
-                this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
-                this.OpenFileStripButton.Text = this.OpenFileToolStripMenuItem.Text;
-
                 this.RefreshStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Refresh);
                 this.CloseStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
                 this.ExpandAllStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Expansion);
                 this.CollapseAllStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Collapse);
 
-                this.AddUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
-                this.AddUserToolStripMenuItem.Text = this.AddUserStripButton.Text;
-                this.ChangePasswordStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_ChangePassword);
-                this.ChangePasswordToolStripMenuItem.Text = this.ChangePasswordStripButton.Text;
-                this.RemoveUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
-                this.RemoveUserToolStripMenuItem.Text = this.RemoveUserStripButton.Text;
             }
             InitControlsVisiableAndEvent();
             InitControlsEnable();
@@ -189,90 +194,36 @@ namespace MagicMongoDBTool.UserController
                     ((ToolStripButton)item).Visible = false;
                 }
             }
-            switch (strNodeType)
-            {
-                case MongoDBHelper.COLLECTION_TAG:
-                    NewDocumentStripButton.Visible = true;
-                    NewDocumentToolStripMenuItem.Visible = true;
-                    NewDocumentToolStripMenuItem.Click += new EventHandler(NewDocumentStripButton_Click);
+            NewDocumentStripButton.Visible = true;
+            NewDocumentToolStripMenuItem.Visible = true;
+            NewDocumentToolStripMenuItem.Click += new EventHandler(NewDocumentStripButton_Click);
 
-                    OpenDocInEditorStripButton.Visible = true;
-                    OpenDocInEditorStripMenuItem.Visible = true;
-                    OpenDocInEditorStripMenuItem.Click += new EventHandler(OpenDocInEditorDocStripButton_Click);
+            OpenDocInEditorStripButton.Visible = true;
+            OpenDocInEditorStripMenuItem.Visible = true;
+            OpenDocInEditorStripMenuItem.Click += new EventHandler(OpenDocInEditorDocStripButton_Click);
 
-                    DelSelectRecordToolStripButton.Visible = true;
-                    DelSelectRecordToolStripMenuItem.Visible = true;
-                    DelSelectRecordToolStripMenuItem.Click += new EventHandler(DelSelectRecordToolStripButton_Click);
+            DelSelectRecordToolStripButton.Visible = true;
+            DelSelectRecordToolStripMenuItem.Visible = true;
+            DelSelectRecordToolStripMenuItem.Click += new EventHandler(DelSelectRecordToolStripButton_Click);
 
-                    ExpandAllStripButton.Visible = true;
-                    CollapseAllStripButton.Visible = true;
+            ExpandAllStripButton.Visible = true;
+            CollapseAllStripButton.Visible = true;
 
-                    CutElementStripButton.Visible = true;
-                    CutElementStripButton.Click += new EventHandler(CutElementToolStripMenuItem_Click);
-                    CutElementToolStripMenuItem.Visible = true;
+            CutElementStripButton.Visible = true;
+            CutElementStripButton.Click += new EventHandler(CutElementToolStripMenuItem_Click);
+            CutElementToolStripMenuItem.Visible = true;
 
-                    CopyElementStripButton.Visible = true;
-                    CopyElementStripButton.Click += new EventHandler(CopyElementToolStripMenuItem_Click);
-                    CopyElementToolStripMenuItem.Visible = true;
+            CopyElementStripButton.Visible = true;
+            CopyElementStripButton.Click += new EventHandler(CopyElementToolStripMenuItem_Click);
+            CopyElementToolStripMenuItem.Visible = true;
 
-                    PasteElementStripButton.Visible = true;
-                    PasteElementStripButton.Click += new EventHandler(PasteElementToolStripMenuItem_Click);
-                    PasteElementToolStripMenuItem.Visible = true;
+            PasteElementStripButton.Visible = true;
+            PasteElementStripButton.Click += new EventHandler(PasteElementToolStripMenuItem_Click);
+            PasteElementToolStripMenuItem.Visible = true;
 
-                    AddElementToolStripMenuItem.Visible = true;
-                    DropElementToolStripMenuItem.Visible = true;
-                    ModifyElementToolStripMenuItem.Visible = true;
-
-                    break;
-                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
-                    OpenFileStripButton.Visible = true;
-                    OpenFileToolStripMenuItem.Visible = true;
-                    OpenFileToolStripMenuItem.Click += new EventHandler(OpenFileStripButton_Click);
-
-                    DownloadFileStripButton.Visible = true;
-                    DownloadFileToolStripMenuItem.Visible = true;
-                    DownloadFileToolStripMenuItem.Click += new EventHandler(DownloadFileStripButton_Click);
-
-                    UploadFileStripButton.Visible = true;
-                    UploadFileToolStripMenuItem.Visible = true;
-                    UploadFileToolStripMenuItem.Click += new EventHandler(UploadFileStripButton_Click);
-
-                    UpLoadFolderStripButton.Visible = true;
-                    UploadFolderToolStripMenuItem.Visible = true;
-                    UploadFolderToolStripMenuItem.Click += new EventHandler(UpLoadFolderStripButton_Click);
-
-                    DeleteFileStripButton.Visible = true;
-                    DeleteFileToolStripMenuItem.Visible = true;
-                    DeleteFileToolStripMenuItem.Click += new EventHandler(DeleteFileStripButton_Click);
-
-                    SeperateBar1.Visible = false;
-                    SeperateBarForMenuItem1.Visible = false;
-                    SeperateBarForMenuItem2.Visible = false;
-
-                    break;
-
-                case MongoDBHelper.USER_LIST_TAG:
-                    AddUserStripButton.Visible = true;
-                    AddUserStripButton.Enabled = true;
-                    AddUserToolStripMenuItem.Visible = true;
-                    AddUserToolStripMenuItem.Click += new EventHandler(AddUserStripButton_Click);
-
-                    RemoveUserStripButton.Visible = true;
-                    RemoveUserToolStripMenuItem.Visible = true;
-                    RemoveUserToolStripMenuItem.Click += new EventHandler(RemoveUserStripButton_Click);
-
-                    ChangePasswordStripButton.Visible = true;
-                    ChangePasswordToolStripMenuItem.Visible = true;
-                    ChangePasswordToolStripMenuItem.Click += new EventHandler(ChangePasswordStripButton_Click);
-
-                    SeperateBar1.Visible = false;
-                    SeperateBarForMenuItem1.Visible = false;
-                    SeperateBarForMenuItem2.Visible = false;
-
-                    break;
-                default:
-                    break;
-            }
+            AddElementToolStripMenuItem.Visible = true;
+            DropElementToolStripMenuItem.Visible = true;
+            ModifyElementToolStripMenuItem.Visible = true;
 
             FirstPageStripButton.Visible = true;
             PrePageStripButton.Visible = true;
@@ -304,36 +255,17 @@ namespace MagicMongoDBTool.UserController
                 }
             }
 
-            switch (strNodeType)
+
+            OpenDocInEditorStripButton.Enabled = true;
+            OpenDocInEditorStripMenuItem.Enabled = true;
+            if (!mDataViewInfo.IsReadOnly)
             {
-                case MongoDBHelper.COLLECTION_TAG:
-                    OpenDocInEditorStripButton.Enabled = true;
-                    OpenDocInEditorStripMenuItem.Enabled = true;
-                    if (!mDataViewInfo.IsReadOnly)
-                    {
-                        this.NewDocumentStripButton.Enabled = true;
-                        this.NewDocumentToolStripMenuItem.Enabled = true;
-                    }
-                    ExpandAllStripButton.Enabled = true;
-                    CollapseAllStripButton.Enabled = true;
-
-                    break;
-                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
-                    UploadFileStripButton.Enabled = true;
-                    UploadFileToolStripMenuItem.Enabled = true;
-
-                    UpLoadFolderStripButton.Enabled = true;
-                    UploadFolderToolStripMenuItem.Enabled = true;
-
-                    break;
-
-                case MongoDBHelper.USER_LIST_TAG:
-                    AddUserStripButton.Enabled = true;
-                    AddUserToolStripMenuItem.Enabled = true;
-                    break;
-                default:
-                    break;
+                this.NewDocumentStripButton.Enabled = true;
+                this.NewDocumentToolStripMenuItem.Enabled = true;
             }
+            ExpandAllStripButton.Enabled = true;
+            CollapseAllStripButton.Enabled = true;
+
 
             PrePageStripButton.Enabled = mDataViewInfo.HasPrePage;
             NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
@@ -375,93 +307,23 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void lstData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (SystemManager.GetCurrentCollection().Name)
+
+            if (lstData.SelectedItems.Count > 0 && !IsSystemCollection && !mDataViewInfo.IsReadOnly)
             {
-                case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
-                    //文件系统
-                    this.UploadFileToolStripMenuItem.Enabled = true;
-                    this.UploadFileStripButton.Enabled = true;
-
-                    this.UpLoadFolderStripButton.Enabled = true;
-                    this.UploadFolderToolStripMenuItem.Enabled = true;
-                    switch (lstData.SelectedItems.Count)
-                    {
-                        case 0:
-                            //禁止所有操作
-                            this.OpenFileStripButton.Enabled = false;
-                            this.OpenFileToolStripMenuItem.Enabled = false;
-
-                            this.DownloadFileToolStripMenuItem.Enabled = false;
-                            this.DownloadFileStripButton.Enabled = false;
-
-                            this.DeleteFileStripButton.Enabled = false;
-                            this.DeleteFileToolStripMenuItem.Enabled = false;
-
-                            lstData.ContextMenuStrip = null;
-                            break;
-                        case 1:
-                            //可以进行所有操作
-                            this.OpenFileStripButton.Enabled = true;
-                            this.OpenFileToolStripMenuItem.Enabled = true;
-                            this.DownloadFileToolStripMenuItem.Enabled = true;
-                            this.DownloadFileStripButton.Enabled = true;
-                            if (!mDataViewInfo.IsReadOnly)
-                            {
-                                this.DeleteFileStripButton.Enabled = true;
-                                this.DeleteFileToolStripMenuItem.Enabled = true;
-                            }
-                            break;
-                        default:
-                            //可以删除多个文件
-                            this.OpenFileStripButton.Enabled = false;
-                            this.OpenFileToolStripMenuItem.Enabled = false;
-
-                            this.DownloadFileToolStripMenuItem.Enabled = false;
-                            this.DownloadFileStripButton.Enabled = false;
-                            if (!mDataViewInfo.IsReadOnly)
-                            {
-                                this.DeleteFileStripButton.Enabled = true;
-                                this.DeleteFileToolStripMenuItem.Enabled = true;
-                            }
-                            break;
-                    }
-                    break;
-                case MongoDBHelper.COLLECTION_NAME_USER:
-                    //用户数据库
-                    if (lstData.SelectedItems.Count > 0 && !mDataViewInfo.IsReadOnly)
-                    {
-                        this.AddUserToolStripMenuItem.Enabled = true;
-                        this.AddUserStripButton.Enabled = true;
-
-                        this.RemoveUserStripButton.Enabled = true;
-                        this.RemoveUserToolStripMenuItem.Enabled = true;
-
-                        if (this.lstData.SelectedItems.Count == 1)
-                        {
-                            this.ChangePasswordStripButton.Enabled = true;
-                            this.ChangePasswordToolStripMenuItem.Enabled = true;
-                        }
-                    }
-                    break;
-                default:
-                    //数据系统
-                    if (lstData.SelectedItems.Count > 0 && !IsSystemCollection && !mDataViewInfo.IsReadOnly)
-                    {
-                        DelSelectRecordToolStripMenuItem.Enabled = true;
-                        DelSelectRecordToolStripButton.Enabled = true;
-                    }
-                    else
-                    {
-                        DelSelectRecordToolStripButton.Enabled = false;
-                        DelSelectRecordToolStripMenuItem.Enabled = false;
-                    }
-                    if (this.lstData.SelectedItems.Count == 1)
-                    {
-                        OpenDocInEditorStripButton.Enabled = true;
-                        OpenDocInEditorStripMenuItem.Enabled = true;
-                    }
-                    break;
+                DelSelectRecordToolStripMenuItem.Enabled = true;
+                DelSelectRecordToolStripButton.Enabled = true;
             }
+            else
+            {
+                DelSelectRecordToolStripButton.Enabled = false;
+                DelSelectRecordToolStripMenuItem.Enabled = false;
+            }
+            if (this.lstData.SelectedItems.Count == 1)
+            {
+                OpenDocInEditorStripButton.Enabled = true;
+                OpenDocInEditorStripMenuItem.Enabled = true;
+            }
+
         }
         /// <summary>
         /// 双击列表
@@ -470,18 +332,7 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            switch (strNodeType)
-            {
-                case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
-                    OpenFileStripButton_Click(sender, e);
-                    break;
-                case MongoDBHelper.USER_LIST_TAG:
-                    ChangePasswordStripButton_Click(sender, e);
-                    break;
-                case MongoDBHelper.COLLECTION_TAG:
-                    OpenDocInEditorDocStripButton_Click(sender, e);
-                    break;
-            }
+            OpenDocInEditorDocStripButton_Click(sender, e);
         }
         /// <summary>
         /// 数据列表右键菜单
@@ -989,262 +840,6 @@ namespace MagicMongoDBTool.UserController
         }
         #endregion
 
-        #region"管理：GFS"
-        /// <summary>
-        /// Upload File
-        /// </summary>
-        private void UploadFileStripButton_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog upfile = new OpenFileDialog();
-            MongoDBHelper.UpLoadFileOption opt = new MongoDBHelper.UpLoadFileOption();
-            if (upfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                frmGFSOption frm = new frmGFSOption();
-                SystemManager.OpenForm(frm, false);
-                opt.FileNameOpt = frm.filename;
-                opt.AlreadyOpt = frm.option;
-                opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
-                frm.Dispose();
-                MongoDBHelper.UpLoadFile(upfile.FileName, opt);
-                RefreshGUI(null, null);
-            }
-        }
-        /// <summary>
-        /// 上传文件夹
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void UpLoadFolderStripButton_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog upfolder = new FolderBrowserDialog();
-            MongoDBHelper.UpLoadFileOption opt = new MongoDBHelper.UpLoadFileOption();
-            if (upfolder.ShowDialog() == DialogResult.OK)
-            {
-                frmGFSOption frm = new frmGFSOption();
-                SystemManager.OpenForm(frm, false);
-                opt.FileNameOpt = frm.filename;
-                opt.AlreadyOpt = frm.option;
-                opt.IgnoreSubFolder = frm.ignoreSubFolder;
-                opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
-                frm.Dispose();
-                DirectoryInfo uploadDir = new DirectoryInfo(upfolder.SelectedPath);
-                int count = 0;
-                UploadFolder(uploadDir, ref count, opt);
-                MyMessageBox.ShowMessage("Upload", "Upload Completed! Upload Files Count: " + count.ToString());
-                RefreshGUI(null, null);
-            }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="uploadDir"></param>
-        /// <param name="fileCount"></param>
-        /// <param name="opt"></param>
-        /// <returns>是否继续执行后续的所有操作</returns>
-        private Boolean UploadFolder(DirectoryInfo uploadDir, ref int fileCount, MongoDBHelper.UpLoadFileOption opt)
-        {
-
-            foreach (FileInfo file in uploadDir.GetFiles())
-            {
-                MongoDBHelper.UploadResult rtn = MongoDBHelper.UpLoadFile(file.FullName, opt);
-                switch (rtn)
-                {
-                    case MongoDBHelper.UploadResult.Complete:
-                        fileCount++;
-                        break;
-                    case MongoDBHelper.UploadResult.Skip:
-                        if (opt.AlreadyOpt == MongoDBHelper.enumGFSAlready.Stop)
-                        {
-                            ///这个操作返回为False，停止包括父亲过程在内的所有操作
-                            return false;
-                        }
-                        break;
-                    case MongoDBHelper.UploadResult.Exception:
-                        return MyMessageBox.ShowConfirm("Upload Exception", "Is Continue?");
-                    default:
-                        break;
-                }
-            }
-            if (!opt.IgnoreSubFolder)
-            {
-                foreach (DirectoryInfo dir in uploadDir.GetDirectories())
-                {
-                    ///递归文件夹操作，如果下层有任何停止的意愿，则立刻停止，并且使上层也立刻停止
-                    Boolean IsContinue = UploadFolder(dir, ref fileCount, opt);
-                    if (!IsContinue) { return false; }
-                }
-            }
-            return true;
-        }
-        /// <summary>
-        /// DownLoad File
-        /// </summary>
-        public void DownloadFileStripButton_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog downfile = new SaveFileDialog();
-            String strFileName = lstData.SelectedItems[0].Text;
-            //For Winodws,Linux user DirectorySeparatorChar Replace with @"\"
-            downfile.FileName = strFileName.Split(System.IO.Path.DirectorySeparatorChar)[strFileName.Split(System.IO.Path.DirectorySeparatorChar).Length - 1];
-            if (downfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                MongoDBHelper.DownloadFile(downfile.FileName, strFileName);
-            }
-            RefreshGUI(null, null);
-        }
-        /// <summary>
-        /// Open File
-        /// </summary>
-        private void OpenFileStripButton_Click(object sender, EventArgs e)
-        {
-            String strFileName = lstData.SelectedItems[0].Text;
-            MongoDBHelper.OpenFile(strFileName);
-        }
-        /// <summary>
-        /// Delete File
-        /// </summary>
-        public void DeleteFileStripButton_Click(object sender, EventArgs e)
-        {
-            String strTitle = "Delete Files";
-            String strMessage = "Are you sure to delete selected File(s)?";
-            if (!SystemManager.IsUseDefaultLanguage())
-            {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
-            }
-            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
-            {
-                foreach (ListViewItem item in lstData.SelectedItems)
-                {
-                    MongoDBHelper.DelFile(item.Text);
-                }
-                RefreshGUI(null, null);
-            }
-        }
-        #endregion
-
-        #region"用户"
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddUserStripButton_Click(object sender, EventArgs e)
-        {
-            if (IsAdminDB)
-            {
-                SystemManager.OpenForm(new frmUser(true));
-            }
-            else
-            {
-                SystemManager.OpenForm(new frmUser(false));
-            }
-            RefreshGUI(sender, e);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RemoveUserStripButton_Click(object sender, EventArgs e)
-        {
-            if (IsAdminDB)
-            {
-                RemoveUserFromAdminToolStripMenuItem_Click(sender, e);
-            }
-            else
-            {
-                RemoveUserToolStripMenuItem_Click(sender, e);
-            }
-            RefreshGUI(sender, e);
-        }
-        /// <summary>
-        /// Drop User from Admin Group
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RemoveUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strTitle = "Drop User";
-            String strMessage = "Are you sure to delete user(s) from Admin Group?";
-            if (!SystemManager.IsUseDefaultLanguage())
-            {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
-            }
-
-            //这里也可以使用普通的删除数据的方法来删除用户。
-            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
-            {
-                if (tabDataShower.SelectedTab == tabTableView)
-                {
-                    //lstData
-                    foreach (ListViewItem item in lstData.SelectedItems)
-                    {
-                        MongoDBHelper.RemoveUserFromSvr(item.SubItems[1].Text);
-                    }
-                    lstData.ContextMenuStrip = null;
-                }
-                else
-                {
-                    MongoDBHelper.RemoveUserFromSvr(trvData.DatatreeView.SelectedNode.Tag.ToString());
-                    trvData.DatatreeView.ContextMenuStrip = null;
-                }
-                RefreshGUI(sender, e);
-            }
-        }
-        /// <summary>
-        /// Delete User
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String strTitle = "Drop User";
-            String strMessage = "Are you sure to delete user(s) from this database";
-            if (!SystemManager.IsUseDefaultLanguage())
-            {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
-            }
-            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
-            {
-                if (tabDataShower.SelectedTab == tabTableView)
-                {
-                    //lstData
-                    foreach (ListViewItem item in lstData.SelectedItems)
-                    {
-                        MongoDBHelper.RemoveUserFromDB(item.SubItems[1].Text);
-                    }
-                    lstData.ContextMenuStrip = null;
-                }
-                else
-                {
-                    MongoDBHelper.RemoveUserFromDB(trvData.DatatreeView.SelectedNode.Tag.ToString());
-                    trvData.DatatreeView.ContextMenuStrip = null;
-                }
-                RemoveUserToolStripMenuItem.Enabled = false;
-                RefreshGUI(sender, e);
-            }
-        }
-        /// <summary>
-        /// 密码变更
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ChangePasswordStripButton_Click(object sender, EventArgs e)
-        {
-            if (mDataViewInfo.strDBTag.EndsWith(MongoDBHelper.DATABASE_NAME_ADMIN + "/" + MongoDBHelper.COLLECTION_NAME_USER))
-            {
-                SystemManager.OpenForm(new frmUser(true, lstData.SelectedItems[0].SubItems[1].Text));
-            }
-            else
-            {
-                SystemManager.OpenForm(new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text));
-            }
-            RefreshGUI(sender, e);
-        }
-        #endregion
-
         #region"数据导航"
         /// <summary>
         /// 换页操作
@@ -1432,6 +1027,7 @@ namespace MagicMongoDBTool.UserController
         }
         private void ReloadData()
         {
+            if (mDataViewInfo == null) { return; }
             this.clear();
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
             List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);

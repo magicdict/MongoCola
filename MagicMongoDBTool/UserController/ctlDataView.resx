@@ -180,31 +180,6 @@
   <metadata name="ViewtoolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>179, 17</value>
   </metadata>
-  <data name="UpLoadFolderStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAYJJREFUOE+tkyFz
-        AjEQhfkJ+QesrLvIyvyDRuIaWUck8hw4IpFx4DhJ3cm6nqw8icw/2L5N7oACnWE67cwzZd+3b19gMnnw
-        rzpU9sHR27FqWxkdNVf7yt98+vk+180u8LX227WR4ely6nTQrFtodwcixnRsmFNREvUAxsCv65eGauIT
-        4ADIdRIZvKeI/yurmGbEtAAERi2ATUmyXs5dPkfMnNorDYmOkfkYmN4AaIqxaS3GHdfecQbIpgI4n8Cp
-        GBmncF+XBAJAiv5guNvQBWBT/wDwsHU0py/PtAJA4iNBD7VBsXd2SDAApLyyGRo2M8x1NPluCsQer5EB
-        K8XOjoAgCS5uvjCHnWHyKBEJDNTJCZG4qRVbY4YEAORnPEUHEJvtQudXUDNsQwdJ4gsA9wvAPOsCCKsR
-        UAoTc+qgD4du0ThKy2YRzB3uj1LqE40ADPcxm/qD5R5ty3CHqC0MLW5v8GUqKuYgZ5E6A+qFZ493dWjW
-        WpPjyQYZIvW7/vzj+lfjN6iS0TgdEGJFAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="DownloadFileStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAATBJREFUOE+tk7FO
-        wzAQhuFJ4A2aR8iIWEi3CgnhrWyYrVs7suGRLR4zWkwdPXb0yNYbYcqNbMddjNukVMSVOOliyfF99//n
-        5Nx5oLMuMD55aT+306f51MX9kRBAP6zzVFwpmlzfF2O13XvnwwBgGk9+E6isdB7ErYcAUWAZIms10z/2
-        /tAiB48FfhGVWQDu9iu4GD4wU8EBQDojIgEwQGm2AmSamHadbqxnydi9gl0xd08AOWrfALUBWlkgtfB0
-        cVNf7hAJIJIlwzvEDDCw4DzinYmgUvv9cI113bAkRXLKtNefvxIVDTIgjN/OsYtTz/8A0JYVPPQs5Hyu
-        +pXnseIBsgVlIqCYWSoqm2fl8WVbJvkdgGcggMltnfe/iMpl02rpXC6k2J1WnGwu61Yfdv4G4OljMdhg
-        Ns8AAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="NewDocumentStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

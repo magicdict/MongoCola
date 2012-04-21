@@ -89,6 +89,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserController\ctlUserView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ctlUserView.Designer.cs">
+      <DependentUpon>ctlUserView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserController\ctlGFSView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ctlGFSView.Designer.cs">
+      <DependentUpon>ctlGFSView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Box\frmConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,6 +378,9 @@
     <Compile Include="UserController\TreeViewColumns.Designer.cs">
       <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserController\ctlUserView.resx">
+      <DependentUpon>ctlUserView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Box\frmConfirm.resx">
       <DependentUpon>frmConfirm.cs</DependentUpon>
     </EmbeddedResource>
@@ -407,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmGenerateConfigIni.resx">
       <DependentUpon>frmGenerateConfigIni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserController\ctlGFSView.resx">
+      <DependentUpon>ctlGFSView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlJsEditor.resx">
       <DependentUpon>ctlJsEditor.cs</DependentUpon>
