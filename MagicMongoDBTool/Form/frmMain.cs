@@ -31,11 +31,12 @@ namespace MagicMongoDBTool
 
             if (SystemManager.DEBUG_MODE)
             {
-                //For test
+                //For test only
                 List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
                 connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList["Master"]);
                 MongoDBHelper.AddServer(connLst);
                 RefreshToolStripMenuItem_Click(null, null);
+                InitTestData.InitData(SystemManager.GetCurrentServer());
             }
             this.Text += SystemManager.Version;
             this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
@@ -43,6 +44,7 @@ namespace MagicMongoDBTool
             {
                 this.Text += " MONO";
             }
+            //长时间操作时候，实时提示进度在状态栏中
             MongoDBHelper.ActionDone += new EventHandler<ActionDoneEventArgs>(
                 (x, y) =>
                 {

@@ -89,6 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Module\System\InitTestData.cs" />
     <Compile Include="UserController\ctlUserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
