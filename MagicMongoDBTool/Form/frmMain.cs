@@ -1046,14 +1046,14 @@ namespace MagicMongoDBTool
                 ctlDataView DataViewctl;
                  switch (SystemManager.SelectTagType)
                 {
-                    case MongoDBHelper.COLLECTION_TAG:
-                        DataViewctl = new ctlDataView(mDataViewInfo);
+                    case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
+                        DataViewctl = new ctlGFSView(mDataViewInfo);
                         break;
                     case MongoDBHelper.USER_LIST_TAG:
                         DataViewctl = new ctlUserView(mDataViewInfo);
                         break;
                     default:
-                        DataViewctl = new ctlGFSView(mDataViewInfo);
+                        DataViewctl = new ctlDataView(mDataViewInfo);
                         break;
                 }
                
@@ -1115,7 +1115,7 @@ namespace MagicMongoDBTool
                 ctlDataView ctl = tabView.SelectedTab.Controls[0] as ctlDataView;
                 if (ctl != null)
                 {
-                    ctl.RefreshGUI(sender, e);
+                    ctl.RefreshGUI();
                 }
             }
         }

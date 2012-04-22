@@ -15,21 +15,26 @@ namespace MagicMongoDBTool
         public ctlUserView(MongoDBHelper.DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
-            this.AddUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
-            this.AddUserToolStripMenuItem.Text = this.AddUserStripButton.Text;
-            this.ChangePasswordStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_ChangePassword);
-            this.ChangePasswordToolStripMenuItem.Text = this.ChangePasswordStripButton.Text;
-            this.RemoveUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
-            this.RemoveUserToolStripMenuItem.Text = this.RemoveUserStripButton.Text;
+            InitToolAndMenu();
+            mDataViewInfo = _DataViewInfo;
 
+        }
+        private void ctlUserView_Load(object sender, EventArgs e)
+        {
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                this.AddUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                this.AddUserToolStripMenuItem.Text = this.AddUserStripButton.Text;
+                this.ChangePasswordStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_ChangePassword);
+                this.ChangePasswordToolStripMenuItem.Text = this.ChangePasswordStripButton.Text;
+                this.RemoveUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
+                this.RemoveUserToolStripMenuItem.Text = this.RemoveUserStripButton.Text;
+            }
             AddUserStripButton.Enabled = true;
             ChangePasswordStripButton.Enabled = false;
             RemoveUserStripButton.Enabled = false;
 
-            mDataViewInfo = _DataViewInfo;
-
         }
-
         #region"用户"
         /// <summary>
         /// 
@@ -46,7 +51,7 @@ namespace MagicMongoDBTool
             {
                 SystemManager.OpenForm(new frmUser(false));
             }
-            RefreshGUI(sender, e);
+            RefreshGUI();
         }
         /// <summary>
         /// 
@@ -57,20 +62,21 @@ namespace MagicMongoDBTool
         {
             if (IsAdminDB)
             {
-                RemoveUserFromAdminToolStripMenuItem_Click(sender, e);
+                RemoveUserFromAdmin();
             }
             else
             {
-                RemoveUserToolStripMenuItem_Click(sender, e);
+                RemoveUser();
             }
-            RefreshGUI(sender, e);
+            RefreshGUI();
+
         }
         /// <summary>
         /// Drop User from Admin Group
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RemoveUserFromAdminToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RemoveUserFromAdmin()
         {
             String strTitle = "Drop User";
             String strMessage = "Are you sure to delete user(s) from Admin Group?";
@@ -97,7 +103,7 @@ namespace MagicMongoDBTool
                     MongoDBHelper.RemoveUserFromSvr(trvData.DatatreeView.SelectedNode.Tag.ToString());
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
-                RefreshGUI(sender, e);
+                RefreshGUI();
             }
         }
         /// <summary>
@@ -105,7 +111,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RemoveUserToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RemoveUser()
         {
             String strTitle = "Drop User";
             String strMessage = "Are you sure to delete user(s) from this database";
@@ -131,7 +137,8 @@ namespace MagicMongoDBTool
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
                 RemoveUserToolStripMenuItem.Enabled = false;
-                RefreshGUI(sender, e);
+                RefreshGUI();
+
             }
         }
         /// <summary>
@@ -149,7 +156,8 @@ namespace MagicMongoDBTool
             {
                 SystemManager.OpenForm(new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text));
             }
-            RefreshGUI(sender, e);
+            RefreshGUI();
+
         }
         #endregion
 
@@ -171,10 +179,25 @@ namespace MagicMongoDBTool
             }
 
         }
-
-        private void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
+        protected override void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ChangePasswordStripButton_Click(sender, e);
+        }
+
+        protected override void lstData_MouseClick(object sender, MouseEventArgs e)
+        {
+            SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
+            if (lstData.SelectedItems.Count > 0)
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    this.contextMenuStripMain = new ContextMenuStrip();
+                    this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.ChangePasswordToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.RemoveUserToolStripMenuItem.Clone());
+                    contextMenuStripMain.Show(lstData.PointToScreen(e.Location));
+                }
+            }
         }
     }
 }

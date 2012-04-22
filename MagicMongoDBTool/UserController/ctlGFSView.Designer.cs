@@ -48,6 +48,7 @@ namespace MagicMongoDBTool
             // lstData
             // 
             this.lstData.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseDoubleClick);
+            this.lstData.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseClick);
             this.lstData.SelectedIndexChanged += new System.EventHandler(this.lstData_SelectedIndexChanged);
             // 
             // OpenFileToolStripMenuItem
@@ -132,15 +133,6 @@ namespace MagicMongoDBTool
             this.OpenFileStripButton.Size = new System.Drawing.Size(23, 22);
             this.OpenFileStripButton.Text = "Open File";
             this.OpenFileStripButton.Click += new System.EventHandler(this.OpenFileStripButton_Click);
-
-
-            this.ViewtoolStrip.Items.Insert(0, DeleteFileStripButton);
-            this.ViewtoolStrip.Items.Insert(0, DownloadFileStripButton);
-            this.ViewtoolStrip.Items.Insert(0, UpLoadFolderStripButton);
-            this.ViewtoolStrip.Items.Insert(0, UploadFileStripButton);
-            this.ViewtoolStrip.Items.Insert(0, OpenFileStripButton);
-
-
             // 
             // ctlGFSView
             // 
@@ -148,6 +140,7 @@ namespace MagicMongoDBTool
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.IsDataView = false;
             this.Name = "ctlGFSView";
+            this.Load += new System.EventHandler(this.ctlGFSView_Load);
             this.Controls.SetChildIndex(this.tabDataShower, 0);
             this.tabDataShower.ResumeLayout(false);
             this.tabTreeView.ResumeLayout(false);
@@ -159,12 +152,19 @@ namespace MagicMongoDBTool
 
         }
 
-        private void InitTool() {
+        private void InitTool()
+        {
             this.ViewtoolStrip.Items.Insert(0, DeleteFileStripButton);
-            this.ViewtoolStrip.Items.Insert(0,DownloadFileStripButton);
+            this.ViewtoolStrip.Items.Insert(0, DownloadFileStripButton);
             this.ViewtoolStrip.Items.Insert(0, UpLoadFolderStripButton);
             this.ViewtoolStrip.Items.Insert(0, UploadFileStripButton);
-            this.ViewtoolStrip.Items.Insert(0,OpenFileStripButton);
+            this.ViewtoolStrip.Items.Insert(0, OpenFileStripButton);
+
+            this.contextMenuStripMain.Items.Insert(0, DeleteFileToolStripMenuItem);
+            this.contextMenuStripMain.Items.Insert(0, DownloadFileToolStripMenuItem);
+            this.contextMenuStripMain.Items.Insert(0, UploadFolderToolStripMenuItem);
+            this.contextMenuStripMain.Items.Insert(0, UploadFileToolStripMenuItem);
+            this.contextMenuStripMain.Items.Insert(0, OpenFileToolStripMenuItem);
         }
         #endregion
 

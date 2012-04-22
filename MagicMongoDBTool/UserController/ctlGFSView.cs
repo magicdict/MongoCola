@@ -9,52 +9,42 @@ namespace MagicMongoDBTool
         public ctlGFSView(MongoDBHelper.DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
-            OpenFileStripButton.Visible = true;
-            OpenFileToolStripMenuItem.Visible = true;
+            InitTool();
+            mDataViewInfo = _DataViewInfo;
+
+        }
+        private void ctlGFSView_Load(object sender, EventArgs e)
+        {
             OpenFileToolStripMenuItem.Click += new EventHandler(OpenFileStripButton_Click);
-
-            DownloadFileStripButton.Visible = true;
-            DownloadFileToolStripMenuItem.Visible = true;
             DownloadFileToolStripMenuItem.Click += new EventHandler(DownloadFileStripButton_Click);
-
-            UploadFileStripButton.Visible = true;
-            UploadFileToolStripMenuItem.Visible = true;
             UploadFileToolStripMenuItem.Click += new EventHandler(UploadFileStripButton_Click);
-
-            UpLoadFolderStripButton.Visible = true;
-            UploadFolderToolStripMenuItem.Visible = true;
             UploadFolderToolStripMenuItem.Click += new EventHandler(UpLoadFolderStripButton_Click);
-
-            DeleteFileStripButton.Visible = true;
-            DeleteFileToolStripMenuItem.Visible = true;
             DeleteFileToolStripMenuItem.Click += new EventHandler(DeleteFileStripButton_Click);
 
+            if (!SystemManager.IsUseDefaultLanguage())
+            {
+                this.DeleteFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
+                this.DeleteFileStripButton.Text = this.DeleteFileToolStripMenuItem.Text;
 
-            this.DeleteFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
-            this.DeleteFileStripButton.Text = this.DeleteFileToolStripMenuItem.Text;
+                this.UploadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFile);
+                this.UploadFileStripButton.Text = this.UploadFileToolStripMenuItem.Text;
 
-            this.UploadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFile);
-            this.UploadFileStripButton.Text = this.UploadFileToolStripMenuItem.Text;
+                this.UploadFolderToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFolder);
+                this.UpLoadFolderStripButton.Text = this.UploadFolderToolStripMenuItem.Text;
 
-            this.UploadFolderToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFolder);
-            this.UpLoadFolderStripButton.Text = this.UploadFolderToolStripMenuItem.Text;
+                this.DownloadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
+                this.DownloadFileStripButton.Text = this.DownloadFileToolStripMenuItem.Text;
 
-            this.DownloadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
-            this.DownloadFileStripButton.Text = this.DownloadFileToolStripMenuItem.Text;
-
-            this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
-            this.OpenFileStripButton.Text = this.OpenFileToolStripMenuItem.Text;
-
+                this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
+                this.OpenFileStripButton.Text = this.OpenFileToolStripMenuItem.Text;
+            }
             UploadFileStripButton.Enabled = true;
             UploadFileToolStripMenuItem.Enabled = true;
 
             UpLoadFolderStripButton.Enabled = true;
             UploadFolderToolStripMenuItem.Enabled = true;
 
-            mDataViewInfo = _DataViewInfo;
-
         }
-
         #region"管理：GFS"
         /// <summary>
         /// Upload File
@@ -72,7 +62,7 @@ namespace MagicMongoDBTool
                 opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
                 frm.Dispose();
                 MongoDBHelper.UpLoadFile(upfile.FileName, opt);
-                RefreshGUI(null, null);
+                RefreshGUI();
             }
         }
         /// <summary>
@@ -97,7 +87,7 @@ namespace MagicMongoDBTool
                 int count = 0;
                 UploadFolder(uploadDir, ref count, opt);
                 MyMessageBox.ShowMessage("Upload", "Upload Completed! Upload Files Count: " + count.ToString());
-                RefreshGUI(null, null);
+                RefreshGUI();
             }
         }
         /// <summary>
@@ -155,7 +145,7 @@ namespace MagicMongoDBTool
             {
                 MongoDBHelper.DownloadFile(downfile.FileName, strFileName);
             }
-            RefreshGUI(null, null);
+            RefreshGUI();
         }
         /// <summary>
         /// Open File
@@ -183,7 +173,7 @@ namespace MagicMongoDBTool
                 {
                     MongoDBHelper.DelFile(item.Text);
                 }
-                RefreshGUI(null, null);
+                RefreshGUI();
             }
         }
         #endregion
@@ -241,9 +231,29 @@ namespace MagicMongoDBTool
             }
         }
 
-        private void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
+        protected override void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             OpenFileStripButton_Click(sender, e);
         }
+
+        protected override void lstData_MouseClick(object sender, MouseEventArgs e)
+        {
+            SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
+            if (lstData.SelectedItems.Count > 0)
+            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
+                    this.contextMenuStripMain = new ContextMenuStrip();
+                    this.contextMenuStripMain.Items.Add(this.OpenFileToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.UploadFileToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.UploadFolderToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.DownloadFileToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.DeleteFileToolStripMenuItem.Clone());
+                    contextMenuStripMain.Show(lstData.PointToScreen(e.Location));
+                }
+            }
+        }
+
+
     }
 }

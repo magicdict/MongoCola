@@ -43,8 +43,8 @@ namespace MagicMongoDBTool.UserController
             this.txtQuery = new System.Windows.Forms.TextBox();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.NewDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenDocInEditorStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DelSelectRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenDocInEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DelSelectRecordToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SeperateBarForMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.AddElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DropElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -194,8 +194,8 @@ namespace MagicMongoDBTool.UserController
             // 
             this.contextMenuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewDocumentToolStripMenuItem,
-            this.OpenDocInEditorStripMenuItem,
-            this.DelSelectRecordToolStripMenuItem,
+            this.OpenDocInEditorToolStripMenuItem,
+            this.DelSelectRecordToolToolStripMenuItem,
             this.SeperateBarForMenuItem1,
             this.AddElementToolStripMenuItem,
             this.DropElementToolStripMenuItem,
@@ -205,7 +205,7 @@ namespace MagicMongoDBTool.UserController
             this.CutElementToolStripMenuItem,
             this.PasteElementToolStripMenuItem});
             this.contextMenuStripMain.Name = "contextMenuStripMain";
-            this.contextMenuStripMain.Size = new System.Drawing.Size(176, 280);
+            this.contextMenuStripMain.Size = new System.Drawing.Size(176, 236);
             // 
             // NewDocumentToolStripMenuItem
             // 
@@ -214,19 +214,19 @@ namespace MagicMongoDBTool.UserController
             this.NewDocumentToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.NewDocumentToolStripMenuItem.Text = "Add Document";
             // 
-            // OpenDocInEditorStripMenuItem
+            // OpenDocInEditorToolStripMenuItem
             // 
-            this.OpenDocInEditorStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Edit;
-            this.OpenDocInEditorStripMenuItem.Name = "OpenDocInEditorStripMenuItem";
-            this.OpenDocInEditorStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.OpenDocInEditorStripMenuItem.Text = "Open Doc In Editor";
+            this.OpenDocInEditorToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Edit;
+            this.OpenDocInEditorToolStripMenuItem.Name = "OpenDocInEditorToolStripMenuItem";
+            this.OpenDocInEditorToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.OpenDocInEditorToolStripMenuItem.Text = "Open Doc In Editor";
             // 
-            // DelSelectRecordToolStripMenuItem
+            // DelSelectRecordToolToolStripMenuItem
             // 
-            this.DelSelectRecordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DelSelectRecordToolStripMenuItem.Image")));
-            this.DelSelectRecordToolStripMenuItem.Name = "DelSelectRecordToolStripMenuItem";
-            this.DelSelectRecordToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.DelSelectRecordToolStripMenuItem.Text = "Del Selected Records";
+            this.DelSelectRecordToolToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DelSelectRecordToolToolStripMenuItem.Image")));
+            this.DelSelectRecordToolToolStripMenuItem.Name = "DelSelectRecordToolToolStripMenuItem";
+            this.DelSelectRecordToolToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.DelSelectRecordToolToolStripMenuItem.Text = "Del Selected Records";
             // 
             // SeperateBarForMenuItem1
             // 
@@ -466,8 +466,8 @@ namespace MagicMongoDBTool.UserController
             // DataNaviToolStripLabel
             // 
             this.DataNaviToolStripLabel.Name = "DataNaviToolStripLabel";
-            this.DataNaviToolStripLabel.Size = new System.Drawing.Size(118, 22);
-            this.DataNaviToolStripLabel.Text = "DataNaviToolStripLabel";
+            this.DataNaviToolStripLabel.Size = new System.Drawing.Size(47, 22);
+            this.DataNaviToolStripLabel.Text = "100/200";
             // 
             // txtSkip
             // 
@@ -508,7 +508,7 @@ namespace MagicMongoDBTool.UserController
             this.RefreshStripButton.Name = "RefreshStripButton";
             this.RefreshStripButton.Size = new System.Drawing.Size(23, 22);
             this.RefreshStripButton.Text = "Refresh";
-            this.RefreshStripButton.Click += new System.EventHandler(this.RefreshGUI);
+            this.RefreshStripButton.Click += new System.EventHandler(this.RefreshStripButton_Click);
             // 
             // CloseStripButton
             // 
@@ -586,10 +586,10 @@ namespace MagicMongoDBTool.UserController
         private ToolStripLabel DataNaviToolStripLabel;
 
         private ToolStripButton OpenDocInEditorStripButton;
-        private ToolStripMenuItem OpenDocInEditorStripMenuItem;
+        private ToolStripMenuItem OpenDocInEditorToolStripMenuItem;
         private ToolStripButton NewDocumentStripButton;
         private ToolStripMenuItem NewDocumentToolStripMenuItem;
-        private ToolStripMenuItem DelSelectRecordToolStripMenuItem;
+        private ToolStripMenuItem DelSelectRecordToolToolStripMenuItem;
         private ToolStripButton DelSelectRecordToolStripButton;
 
         //Record

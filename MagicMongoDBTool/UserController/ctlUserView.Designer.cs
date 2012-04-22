@@ -44,6 +44,7 @@ namespace MagicMongoDBTool
             // lstData
             // 
             this.lstData.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseDoubleClick);
+            this.lstData.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseClick);
             this.lstData.SelectedIndexChanged += new System.EventHandler(this.lstData_SelectedIndexChanged);
             // 
             // AddUserToolStripMenuItem
@@ -59,6 +60,7 @@ namespace MagicMongoDBTool
             this.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem";
             this.ChangePasswordToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.ChangePasswordToolStripMenuItem.Text = "Change Password";
+            this.ChangePasswordToolStripMenuItem.Click += new System.EventHandler(this.ChangePasswordStripButton_Click);
             // 
             // RemoveUserToolStripMenuItem
             // 
@@ -66,6 +68,7 @@ namespace MagicMongoDBTool
             this.RemoveUserToolStripMenuItem.Name = "RemoveUserToolStripMenuItem";
             this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.RemoveUserToolStripMenuItem.Text = "Remove User";
+            this.RemoveUserToolStripMenuItem.Click += new System.EventHandler(this.RemoveUserStripButton_Click);
             // 
             // AddUserStripButton
             // 
@@ -75,6 +78,7 @@ namespace MagicMongoDBTool
             this.AddUserStripButton.Name = "AddUserStripButton";
             this.AddUserStripButton.Size = new System.Drawing.Size(23, 22);
             this.AddUserStripButton.Text = "Add User";
+            this.AddUserStripButton.Click += new System.EventHandler(this.AddUserStripButton_Click);
             // 
             // ChangePasswordStripButton
             // 
@@ -84,6 +88,7 @@ namespace MagicMongoDBTool
             this.ChangePasswordStripButton.Name = "ChangePasswordStripButton";
             this.ChangePasswordStripButton.Size = new System.Drawing.Size(23, 22);
             this.ChangePasswordStripButton.Text = "ChangePassword";
+            this.ChangePasswordStripButton.Click += new System.EventHandler(this.ChangePasswordStripButton_Click);
             // 
             // RemoveUserStripButton
             // 
@@ -93,11 +98,7 @@ namespace MagicMongoDBTool
             this.RemoveUserStripButton.Name = "RemoveUserStripButton";
             this.RemoveUserStripButton.Size = new System.Drawing.Size(23, 22);
             this.RemoveUserStripButton.Text = "RemoveUser";
-
-            this.ViewtoolStrip.Items.Insert(0, RemoveUserStripButton);
-            this.ViewtoolStrip.Items.Insert(0, ChangePasswordStripButton);
-            this.ViewtoolStrip.Items.Insert(0, AddUserStripButton);
-
+            this.RemoveUserStripButton.Click += new System.EventHandler(this.RemoveUserStripButton_Click);
             // 
             // ctlUserView
             // 
@@ -105,6 +106,7 @@ namespace MagicMongoDBTool
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.IsDataView = false;
             this.Name = "ctlUserView";
+            this.Load += new System.EventHandler(this.ctlUserView_Load);
             this.Controls.SetChildIndex(this.tabDataShower, 0);
             this.tabDataShower.ResumeLayout(false);
             this.tabTreeView.ResumeLayout(false);
@@ -116,18 +118,22 @@ namespace MagicMongoDBTool
 
         }
 
-        private void InitTool(){
+        private void InitToolAndMenu(){
             this.ViewtoolStrip.Items.Insert(0, RemoveUserStripButton);
             this.ViewtoolStrip.Items.Insert(0, ChangePasswordStripButton);
             this.ViewtoolStrip.Items.Insert(0, AddUserStripButton);
+            this.contextMenuStripMain.Items.Insert(0,RemoveUserToolStripMenuItem);
+            this.contextMenuStripMain.Items.Insert(0,ChangePasswordToolStripMenuItem);
+            this.contextMenuStripMain.Items.Insert(0,AddUserToolStripMenuItem);
         }
 
+        private ToolStripMenuItem AddUserToolStripMenuItem;
         private ToolStripMenuItem RemoveUserToolStripMenuItem;
         private ToolStripMenuItem ChangePasswordToolStripMenuItem;
+        
         private ToolStripButton AddUserStripButton;
         private ToolStripButton ChangePasswordStripButton;
         private ToolStripButton RemoveUserStripButton;
-        private ToolStripMenuItem AddUserToolStripMenuItem;
         #endregion
     }
 }

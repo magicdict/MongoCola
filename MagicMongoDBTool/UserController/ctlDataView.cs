@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
-using System.IO;
-using System.ComponentModel;
 
 namespace MagicMongoDBTool.UserController
 {
@@ -14,8 +13,7 @@ namespace MagicMongoDBTool.UserController
         #region"Main"
 
         /// <summary>
-        /// 这里需要控制3中不同的数据类型，普通的Collection，GFS，USER。
-        /// 图标复用方式来处理不同的类型。
+        ///
         /// </summary>
         public ctlDataView()
         {
@@ -29,12 +27,30 @@ namespace MagicMongoDBTool.UserController
             set
             {
                 _IsDataView = value;
+
                 this.tabTextView.Visible = _IsDataView;
                 this.tabTreeView.Visible = _IsDataView;
                 this.tabQuery.Visible = _IsDataView;
+
                 NewDocumentStripButton.Visible = _IsDataView;
                 OpenDocInEditorStripButton.Visible = _IsDataView;
                 DelSelectRecordToolStripButton.Visible = _IsDataView;
+                CutElementStripButton.Visible = _IsDataView;
+                CopyElementStripButton.Visible = _IsDataView;
+                PasteElementStripButton.Visible = _IsDataView;
+                CollapseAllStripButton.Visible = _IsDataView;
+                ExpandAllStripButton.Visible = _IsDataView;
+
+
+                NewDocumentToolStripMenuItem.Visible = _IsDataView;
+                OpenDocInEditorToolStripMenuItem.Visible = _IsDataView;
+                DelSelectRecordToolToolStripMenuItem.Visible = _IsDataView;
+                CutElementToolStripMenuItem.Visible = _IsDataView;
+                CopyElementToolStripMenuItem.Visible = _IsDataView;
+                PasteElementToolStripMenuItem.Visible = _IsDataView;
+                AddElementToolStripMenuItem.Visible = _IsDataView;
+                CutElementToolStripMenuItem.Visible = _IsDataView;
+                PasteElementToolStripMenuItem.Visible = _IsDataView;
             }
             get
             {
@@ -122,10 +138,10 @@ namespace MagicMongoDBTool.UserController
                 //If tabpage changed,the selected data in dataview will disappear,set delete selected record to false
                 (x, y) =>
                 {
-                    this.DelSelectRecordToolStripMenuItem.Enabled = false;
+                    this.DelSelectRecordToolToolStripMenuItem.Enabled = false;
                     if (IsNeedRefresh)
                     {
-                        RefreshGUI(sender, e);
+                        RefreshGUI();
                     }
                 }
             );
@@ -139,8 +155,8 @@ namespace MagicMongoDBTool.UserController
                 this.NewDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
                 this.NewDocumentStripButton.Text = this.NewDocumentToolStripMenuItem.Text;
                 this.OpenDocInEditorStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_OpenInNativeEditor);
-                this.DelSelectRecordToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
-                this.DelSelectRecordToolStripButton.Text = this.DelSelectRecordToolStripMenuItem.Text;
+                this.DelSelectRecordToolToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
+                this.DelSelectRecordToolStripButton.Text = this.DelSelectRecordToolToolStripMenuItem.Text;
 
                 this.PrePageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
                 this.NextPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
@@ -180,50 +196,13 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         private void InitControlsVisiableAndEvent()
         {
-            foreach (var item in this.contextMenuStripMain.Items)
-            {
-                if (item is ToolStripMenuItem)
-                {
-                    ((ToolStripMenuItem)item).Visible = false;
-                }
-            }
-            foreach (var item in ViewtoolStrip.Items)
-            {
-                if (item is ToolStripButton)
-                {
-                    ((ToolStripButton)item).Visible = false;
-                }
-            }
-            NewDocumentStripButton.Visible = true;
-            NewDocumentToolStripMenuItem.Visible = true;
             NewDocumentToolStripMenuItem.Click += new EventHandler(NewDocumentStripButton_Click);
+            OpenDocInEditorToolStripMenuItem.Click += new EventHandler(OpenDocInEditorDocStripButton_Click);
+            DelSelectRecordToolToolStripMenuItem.Click += new EventHandler(DelSelectRecordToolStripButton_Click);
 
-            OpenDocInEditorStripButton.Visible = true;
-            OpenDocInEditorStripMenuItem.Visible = true;
-            OpenDocInEditorStripMenuItem.Click += new EventHandler(OpenDocInEditorDocStripButton_Click);
-
-            DelSelectRecordToolStripButton.Visible = true;
-            DelSelectRecordToolStripMenuItem.Visible = true;
-            DelSelectRecordToolStripMenuItem.Click += new EventHandler(DelSelectRecordToolStripButton_Click);
-
-            ExpandAllStripButton.Visible = true;
-            CollapseAllStripButton.Visible = true;
-
-            CutElementStripButton.Visible = true;
             CutElementStripButton.Click += new EventHandler(CutElementToolStripMenuItem_Click);
-            CutElementToolStripMenuItem.Visible = true;
-
-            CopyElementStripButton.Visible = true;
             CopyElementStripButton.Click += new EventHandler(CopyElementToolStripMenuItem_Click);
-            CopyElementToolStripMenuItem.Visible = true;
-
-            PasteElementStripButton.Visible = true;
             PasteElementStripButton.Click += new EventHandler(PasteElementToolStripMenuItem_Click);
-            PasteElementToolStripMenuItem.Visible = true;
-
-            AddElementToolStripMenuItem.Visible = true;
-            DropElementToolStripMenuItem.Visible = true;
-            ModifyElementToolStripMenuItem.Visible = true;
 
             FirstPageStripButton.Visible = true;
             PrePageStripButton.Visible = true;
@@ -233,6 +212,7 @@ namespace MagicMongoDBTool.UserController
             this.QueryStripButton.Visible = true;
 
             GotoStripButton.Visible = true;
+
             RefreshStripButton.Visible = true;
             RefreshStripButton.Enabled = true;
             CloseStripButton.Visible = true;
@@ -254,10 +234,8 @@ namespace MagicMongoDBTool.UserController
                     ((ToolStripButton)item).Enabled = false;
                 }
             }
-
-
             OpenDocInEditorStripButton.Enabled = true;
-            OpenDocInEditorStripMenuItem.Enabled = true;
+            OpenDocInEditorToolStripMenuItem.Enabled = true;
             if (!mDataViewInfo.IsReadOnly)
             {
                 this.NewDocumentStripButton.Enabled = true;
@@ -310,18 +288,18 @@ namespace MagicMongoDBTool.UserController
 
             if (lstData.SelectedItems.Count > 0 && !IsSystemCollection && !mDataViewInfo.IsReadOnly)
             {
-                DelSelectRecordToolStripMenuItem.Enabled = true;
+                DelSelectRecordToolToolStripMenuItem.Enabled = true;
                 DelSelectRecordToolStripButton.Enabled = true;
             }
             else
             {
                 DelSelectRecordToolStripButton.Enabled = false;
-                DelSelectRecordToolStripMenuItem.Enabled = false;
+                DelSelectRecordToolToolStripMenuItem.Enabled = false;
             }
             if (this.lstData.SelectedItems.Count == 1)
             {
                 OpenDocInEditorStripButton.Enabled = true;
-                OpenDocInEditorStripMenuItem.Enabled = true;
+                OpenDocInEditorToolStripMenuItem.Enabled = true;
             }
 
         }
@@ -330,7 +308,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
+        protected virtual void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             OpenDocInEditorDocStripButton_Click(sender, e);
         }
@@ -339,7 +317,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void lstData_MouseClick(object sender, MouseEventArgs e)
+        protected virtual void lstData_MouseClick(object sender, MouseEventArgs e)
         {
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
             if (lstData.SelectedItems.Count > 0)
@@ -348,8 +326,8 @@ namespace MagicMongoDBTool.UserController
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
                     this.contextMenuStripMain.Items.Add(this.NewDocumentToolStripMenuItem.Clone());
-                    this.contextMenuStripMain.Items.Add(this.OpenDocInEditorStripMenuItem.Clone());
-                    this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.OpenDocInEditorToolStripMenuItem.Clone());
+                    this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolToolStripMenuItem.Clone());
                     contextMenuStripMain.Show(lstData.PointToScreen(e.Location));
                 }
             }
@@ -373,7 +351,7 @@ namespace MagicMongoDBTool.UserController
                     {
                         //普通数据
                         //在顶层的时候，允许添加元素,不允许删除元素和修改元素(删除选中记录)
-                        DelSelectRecordToolStripMenuItem.Enabled = true;
+                        DelSelectRecordToolToolStripMenuItem.Enabled = true;
                         DelSelectRecordToolStripButton.Enabled = true;
                         AddElementToolStripMenuItem.Enabled = true;
                         if (MongoDBHelper.CanPasteAsElement)
@@ -384,7 +362,7 @@ namespace MagicMongoDBTool.UserController
                     }
                     else
                     {
-                        DelSelectRecordToolStripMenuItem.Enabled = false;
+                        DelSelectRecordToolToolStripMenuItem.Enabled = false;
                         DelSelectRecordToolStripButton.Enabled = false;
                     }
                 }
@@ -403,111 +381,104 @@ namespace MagicMongoDBTool.UserController
         private void trvData_AfterSelect_NotTop(object sender, TreeViewEventArgs e)
         {
             //非顶层可以删除的节点
-            switch (SystemManager.GetCurrentCollection().Name)
+            if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) &&
+                !mDataViewInfo.IsReadOnly &&
+                !SystemManager.GetCurrentCollection().IsCapped())
             {
-                case MongoDBHelper.COLLECTION_NAME_GFS_FILES:
-                case MongoDBHelper.COLLECTION_NAME_USER:
-                default:
-                    if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) &&
-                        !mDataViewInfo.IsReadOnly &&
-                        !SystemManager.GetCurrentCollection().IsCapped())
+                //普通数据:允许添加元素,不允许删除元素
+                DropElementToolStripMenuItem.Enabled = true;
+                CopyElementToolStripMenuItem.Enabled = true;
+                CopyElementStripButton.Enabled = true;
+                CutElementToolStripMenuItem.Enabled = true;
+                CutElementStripButton.Enabled = true;
+                if (trvData.DatatreeView.SelectedNode.Nodes.Count != 0)
+                {
+                    //父节点
+                    //1. 以Array_Mark结尾的数组
+                    //2. Document
+                    if (trvData.DatatreeView.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
                     {
-                        //普通数据:允许添加元素,不允许删除元素
-                        DropElementToolStripMenuItem.Enabled = true;
-                        CopyElementToolStripMenuItem.Enabled = true;
-                        CopyElementStripButton.Enabled = true;
-                        CutElementToolStripMenuItem.Enabled = true;
-                        CutElementStripButton.Enabled = true;
-                        if (trvData.DatatreeView.SelectedNode.Nodes.Count != 0)
+                        //列表的父节点
+                        if (MongoDBHelper.CanPasteAsValue)
                         {
-                            //父节点
-                            //1. 以Array_Mark结尾的数组
-                            //2. Document
-                            if (trvData.DatatreeView.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
+                            PasteElementToolStripMenuItem.Enabled = true;
+                            PasteElementStripButton.Enabled = true;
+                        }
+                    }
+                    else
+                    {
+                        //文档的父节点
+                        if (MongoDBHelper.CanPasteAsElement)
+                        {
+                            PasteElementToolStripMenuItem.Enabled = true;
+                            PasteElementStripButton.Enabled = true;
+                        }
+                    }
+                    AddElementToolStripMenuItem.Enabled = true;
+                    ModifyElementToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    //子节点
+                    //1.简单元素
+                    //2.空的Array
+                    //3.空的文档
+                    //4.Array中的Value
+                    BsonValue t;
+                    if (trvData.DatatreeView.SelectedNode.Tag is BsonElement)
+                    {
+                        //子节点是一个元素，获得子节点的Value
+                        t = ((BsonElement)trvData.DatatreeView.SelectedNode.Tag).Value;
+                        if (t.IsBsonDocument || t.IsBsonArray)
+                        {
+                            //2.空的Array
+                            //3.空的文档
+                            ModifyElementToolStripMenuItem.Enabled = false;
+                            AddElementToolStripMenuItem.Enabled = true;
+                            if (t.IsBsonDocument)
                             {
-                                //列表的父节点
+                                //3.空的文档
+                                if (MongoDBHelper.CanPasteAsElement)
+                                {
+                                    PasteElementToolStripMenuItem.Enabled = true;
+                                    PasteElementStripButton.Enabled = true;
+                                }
+
+                            }
+                            if (t.IsBsonArray)
+                            {
+                                //3.Array
                                 if (MongoDBHelper.CanPasteAsValue)
                                 {
                                     PasteElementToolStripMenuItem.Enabled = true;
                                     PasteElementStripButton.Enabled = true;
                                 }
                             }
-                            else
-                            {
-                                //文档的父节点
-                                if (MongoDBHelper.CanPasteAsElement)
-                                {
-                                    PasteElementToolStripMenuItem.Enabled = true;
-                                    PasteElementStripButton.Enabled = true;
-                                }
-                            }
-                            AddElementToolStripMenuItem.Enabled = true;
-                            ModifyElementToolStripMenuItem.Enabled = false;
                         }
                         else
                         {
-                            //子节点
                             //1.简单元素
-                            //2.空的Array
-                            //3.空的文档
-                            //4.Array中的Value
-                            BsonValue t;
-                            if (trvData.DatatreeView.SelectedNode.Tag is BsonElement)
-                            {
-                                //子节点是一个元素，获得子节点的Value
-                                t = ((BsonElement)trvData.DatatreeView.SelectedNode.Tag).Value;
-                                if (t.IsBsonDocument || t.IsBsonArray)
-                                {
-                                    //2.空的Array
-                                    //3.空的文档
-                                    ModifyElementToolStripMenuItem.Enabled = false;
-                                    AddElementToolStripMenuItem.Enabled = true;
-                                    if (t.IsBsonDocument)
-                                    {
-                                        //3.空的文档
-                                        if (MongoDBHelper.CanPasteAsElement)
-                                        {
-                                            PasteElementToolStripMenuItem.Enabled = true;
-                                            PasteElementStripButton.Enabled = true;
-                                        }
-
-                                    }
-                                    if (t.IsBsonArray)
-                                    {
-                                        //3.Array
-                                        if (MongoDBHelper.CanPasteAsValue)
-                                        {
-                                            PasteElementToolStripMenuItem.Enabled = true;
-                                            PasteElementStripButton.Enabled = true;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    //1.简单元素
-                                    ModifyElementToolStripMenuItem.Enabled = true;
-                                    AddElementToolStripMenuItem.Enabled = false;
-                                }
-                            }
-                            else
-                            {
-                                //子节点是一个Array的Value，获得Value
-                                //4.Array中的Value
-                                t = (BsonValue)trvData.DatatreeView.SelectedNode.Tag;
-                                ModifyElementToolStripMenuItem.Enabled = true;
-                                if (t.IsBsonArray || t.IsBsonDocument)
-                                {
-                                    //当这个值是一个数组或者文档时候，仍然允许其添加子元素
-                                    AddElementToolStripMenuItem.Enabled = true;
-                                }
-                                else
-                                {
-                                    AddElementToolStripMenuItem.Enabled = false;
-                                }
-                            }
+                            ModifyElementToolStripMenuItem.Enabled = true;
+                            AddElementToolStripMenuItem.Enabled = false;
                         }
                     }
-                    break;
+                    else
+                    {
+                        //子节点是一个Array的Value，获得Value
+                        //4.Array中的Value
+                        t = (BsonValue)trvData.DatatreeView.SelectedNode.Tag;
+                        ModifyElementToolStripMenuItem.Enabled = true;
+                        if (t.IsBsonArray || t.IsBsonDocument)
+                        {
+                            //当这个值是一个数组或者文档时候，仍然允许其添加子元素
+                            AddElementToolStripMenuItem.Enabled = true;
+                        }
+                        else
+                        {
+                            AddElementToolStripMenuItem.Enabled = false;
+                        }
+                    }
+                }
             }
         }
         /// <summary>
@@ -560,8 +531,8 @@ namespace MagicMongoDBTool.UserController
                 {
                     this.contextMenuStripMain = new ContextMenuStrip();
                     ///允许删除
-                    DelSelectRecordToolStripMenuItem.Enabled = true;
-                    this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolStripMenuItem.Clone());
+                    DelSelectRecordToolToolStripMenuItem.Enabled = true;
+                    this.contextMenuStripMain.Items.Add(this.DelSelectRecordToolToolStripMenuItem.Clone());
                     ///允许添加
                     AddElementToolStripMenuItem.Enabled = true;
                     this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
@@ -608,7 +579,7 @@ namespace MagicMongoDBTool.UserController
             switch (e.KeyCode)
             {
                 case Keys.Delete:
-                    if (DelSelectRecordToolStripMenuItem.Enabled)
+                    if (DelSelectRecordToolToolStripMenuItem.Enabled)
                     {
                         //DelSelectedRecord_Click(sender, e);
                     }
@@ -640,7 +611,8 @@ namespace MagicMongoDBTool.UserController
         private void NewDocumentStripButton_Click(object sender, EventArgs e)
         {
             SystemManager.OpenForm(new frmNewDocument());
-            RefreshGUI(null, null);
+            RefreshGUI();
+
         }
         /// <summary>
         /// 
@@ -695,8 +667,8 @@ namespace MagicMongoDBTool.UserController
                     }
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
-                DelSelectRecordToolStripMenuItem.Enabled = false;
-                RefreshGUI(null, null);
+                DelSelectRecordToolToolStripMenuItem.Enabled = false;
+                RefreshGUI();
             }
         }
         /// <summary>
@@ -999,7 +971,7 @@ namespace MagicMongoDBTool.UserController
         /// <summary>
         /// Refresh Data
         /// </summary>
-        public void RefreshGUI(object sender, EventArgs e)
+        public void RefreshGUI()
         {
             this.clear();
             mDataViewInfo.SkipCnt = 0;
@@ -1046,7 +1018,7 @@ namespace MagicMongoDBTool.UserController
             this.FilterStripButton.Enabled = mDataViewInfo.IsUseFilter;
             this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
             //重新展示数据
-            RefreshGUI(sender, e);
+            RefreshGUI();
         }
         /// <summary>
         /// 过滤器
@@ -1058,9 +1030,12 @@ namespace MagicMongoDBTool.UserController
             mDataViewInfo.IsUseFilter = !mDataViewInfo.IsUseFilter;
             this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
             //过滤变更后，重新刷新
-            RefreshGUI(sender, e);
+            RefreshGUI();
+        }
+        private void RefreshStripButton_Click(object sender, EventArgs e)
+        {
+            RefreshGUI();
         }
         #endregion
-
     }
 }
