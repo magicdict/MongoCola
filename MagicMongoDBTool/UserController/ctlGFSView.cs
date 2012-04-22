@@ -1,7 +1,8 @@
-﻿using MagicMongoDBTool.Module;
-using System;
-using System.Windows.Forms;
+﻿using System;
 using System.IO;
+using System.Windows.Forms;
+using MagicMongoDBTool.Module;
+
 namespace MagicMongoDBTool
 {
     public partial class ctlGFSView : UserController.ctlDataView
@@ -11,10 +12,10 @@ namespace MagicMongoDBTool
             InitializeComponent();
             InitTool();
             mDataViewInfo = _DataViewInfo;
-
         }
         private void ctlGFSView_Load(object sender, EventArgs e)
         {
+
             OpenFileToolStripMenuItem.Click += new EventHandler(OpenFileStripButton_Click);
             DownloadFileToolStripMenuItem.Click += new EventHandler(DownloadFileStripButton_Click);
             UploadFileToolStripMenuItem.Click += new EventHandler(UploadFileStripButton_Click);
@@ -44,6 +45,13 @@ namespace MagicMongoDBTool
             UpLoadFolderStripButton.Enabled = true;
             UploadFolderToolStripMenuItem.Enabled = true;
 
+            cmbListViewStyle.Visible = true;
+            this.cmbListViewStyle.SelectedIndexChanged += new EventHandler(
+                (x, y) =>
+                {
+                    lstData.View = (View)cmbListViewStyle.SelectedIndex;
+                }
+           );
         }
         #region"管理：GFS"
         /// <summary>

@@ -35,6 +35,7 @@ namespace MagicMongoDBTool.UserController
                 NewDocumentStripButton.Visible = _IsDataView;
                 OpenDocInEditorStripButton.Visible = _IsDataView;
                 DelSelectRecordToolStripButton.Visible = _IsDataView;
+                SeperateBar1.Visible = _IsDataView;
                 CutElementStripButton.Visible = _IsDataView;
                 CopyElementStripButton.Visible = _IsDataView;
                 PasteElementStripButton.Visible = _IsDataView;
@@ -99,6 +100,7 @@ namespace MagicMongoDBTool.UserController
         {
             if (mDataViewInfo == null) { return; }
             this.cmbRecPerPage.SelectedIndex = 1;
+            this.cmbListViewStyle.Visible = false;
             mDataViewInfo.LimitCnt = 100;
             strNodeType = mDataViewInfo.strDBTag.Split(":".ToCharArray())[0];
             strNodeData = mDataViewInfo.strDBTag.Split(":".ToCharArray())[1];

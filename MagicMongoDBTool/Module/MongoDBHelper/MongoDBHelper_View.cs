@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using TreeViewColumnsProject;
+using System.Drawing;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
@@ -510,16 +511,21 @@ namespace MagicMongoDBTool.Module
                 }
             }
             lstData.SmallImageList = GetSystemIcon.IconImagelist;
+            lstData.LargeImageList = GetSystemIcon.IconImagelist;
+            lstData.TileSize = new Size(200, 100);
+
             foreach (BsonDocument docFile in dataList)
             {
                 String Filename = docFile.GetValue("filename").ToString();
                 ListViewItem lstItem = new ListViewItem();
                 lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(Filename, false);
                 lstItem.Text = Filename;
+                lstItem.ToolTipText = Filename;
                 lstItem.SubItems.Add(GetSize(docFile.GetValue("length")));
                 lstItem.SubItems.Add(GetSize(docFile.GetValue("chunkSize")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("uploadDate")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("md5")));
+                
                 if (!SystemManager.MONO_MODE)
                 {
                     lstItem.SubItems.Add(GetSystemIcon.GetContentType(Filename));

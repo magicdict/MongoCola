@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
-    public partial class ctlUserView :  UserController.ctlDataView
+    public partial class ctlUserView : UserController.ctlDataView
     {
         public ctlUserView(MongoDBHelper.DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
             InitToolAndMenu();
             mDataViewInfo = _DataViewInfo;
-
+            this.cmbListViewStyle.Visible = false;
         }
         private void ctlUserView_Load(object sender, EventArgs e)
         {
