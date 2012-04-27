@@ -62,7 +62,7 @@
             this.cmdSaveReduceJs.BackColor = System.Drawing.Color.Transparent;
             this.cmdSaveReduceJs.Location = new System.Drawing.Point(283, 260);
             this.cmdSaveReduceJs.Name = "cmdSaveReduceJs";
-            this.cmdSaveReduceJs.Size = new System.Drawing.Size(82, 31);
+            this.cmdSaveReduceJs.Size = new System.Drawing.Size(82, 25);
             this.cmdSaveReduceJs.TabIndex = 4;
             this.cmdSaveReduceJs.Text = "Save";
             this.cmdSaveReduceJs.UseVisualStyleBackColor = false;
@@ -71,9 +71,9 @@
             // cmdSaveMapJs
             // 
             this.cmdSaveMapJs.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSaveMapJs.Location = new System.Drawing.Point(283, 18);
+            this.cmdSaveMapJs.Location = new System.Drawing.Point(283, 21);
             this.cmdSaveMapJs.Name = "cmdSaveMapJs";
-            this.cmdSaveMapJs.Size = new System.Drawing.Size(82, 28);
+            this.cmdSaveMapJs.Size = new System.Drawing.Size(82, 25);
             this.cmdSaveMapJs.TabIndex = 1;
             this.cmdSaveMapJs.Text = "Save";
             this.cmdSaveMapJs.UseVisualStyleBackColor = false;
@@ -130,8 +130,8 @@
             this.txtReduceJs.Size = new System.Drawing.Size(348, 194);
             this.txtReduceJs.TabIndex = 5;
             this.txtReduceJs.Text = "function Reduce(key, arr_values) {\r\n     var total = 0;\r\n     for(var i in arr_va" +
-    "lues){\r\n         temp = arr_values[i];\r\n         total += temp;\r\n     }\r\n     re" +
-    "turn total;\r\n     }\r\n";
+                "lues){\r\n         temp = arr_values[i];\r\n         total += temp;\r\n     }\r\n     re" +
+                "turn total;\r\n     }\r\n";
             // 
             // cmdRun
             // 

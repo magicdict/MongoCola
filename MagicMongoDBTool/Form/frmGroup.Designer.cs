@@ -161,6 +161,7 @@
             // 
             // panColumn
             // 
+            this.panColumn.AutoScroll = true;
             this.panColumn.BackColor = System.Drawing.Color.White;
             this.panColumn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panColumn.Location = new System.Drawing.Point(23, 32);
@@ -191,6 +192,7 @@
             // 
             // panBsonEl
             // 
+            this.panBsonEl.AutoScroll = true;
             this.panBsonEl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panBsonEl.Location = new System.Drawing.Point(24, 50);
             this.panBsonEl.Name = "panBsonEl";

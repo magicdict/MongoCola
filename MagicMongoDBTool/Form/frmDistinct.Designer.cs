@@ -36,6 +36,7 @@
             // 
             // panColumn
             // 
+            this.panColumn.AutoScroll = true;
             this.panColumn.BackColor = System.Drawing.Color.Transparent;
             this.panColumn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panColumn.Location = new System.Drawing.Point(13, 50);
