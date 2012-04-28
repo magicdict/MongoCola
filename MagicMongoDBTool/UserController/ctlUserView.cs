@@ -15,7 +15,7 @@ namespace MagicMongoDBTool
         }
         private void ctlUserView_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 this.AddUserStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
                 this.AddUserToolStripMenuItem.Text = this.AddUserStripButton.Text;
@@ -74,7 +74,7 @@ namespace MagicMongoDBTool
         {
             String strTitle = "Drop User";
             String strMessage = "Are you sure to delete user(s) from Admin Group?";
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
                 strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
@@ -109,7 +109,7 @@ namespace MagicMongoDBTool
         {
             String strTitle = "Drop User";
             String strMessage = "Are you sure to delete user(s) from this database";
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
                 strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);

@@ -112,7 +112,7 @@ namespace MagicMongoDBTool.UserController
                 this.tabDataShower.Controls.Remove(tabTextView);
             }
 
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 //数据显示区
                 this.tabTreeView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Tree);
@@ -359,7 +359,7 @@ namespace MagicMongoDBTool.UserController
             this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
             this.QueryStripButton.Enabled = true;
             String strTitle = "Records";
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
             }

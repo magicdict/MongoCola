@@ -13,7 +13,7 @@ namespace MagicMongoDBTool.Module
         }
         private void ctllogLv_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 lblLogLv.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_LogLevel);
             }

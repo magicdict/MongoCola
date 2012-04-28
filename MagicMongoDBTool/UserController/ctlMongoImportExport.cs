@@ -16,7 +16,7 @@ namespace MagicMongoDBTool.Module
         {
             this.ctllogLvT.LoglvChanged += new ctllogLv.LogLvChangedHandler(ctllogLvT_LoglvChanged);
             this.ctlFilePickerOutput.PathChanged += new ctlFilePicker.PathChangedHandler(ctlFilePickerOutput_PathChanged);
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 lblCollectionName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Status_CollectionName);
                 lblDBName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.AddConnection_DBName);

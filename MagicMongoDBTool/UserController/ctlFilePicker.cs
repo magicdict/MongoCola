@@ -128,7 +128,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ctlFilePicker_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 cmdBrowse.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Browse);
                 cmdClearPath.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Clear);

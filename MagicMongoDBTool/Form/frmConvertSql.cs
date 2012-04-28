@@ -14,7 +14,7 @@ namespace MagicMongoDBTool
         private void frmRunSql_Load(object sender, EventArgs e)
         {
             txtSql.Text = "select * from CollectionName where FieldName=1 order by FieldName asc";
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ConvertSql_Title);
                 cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);

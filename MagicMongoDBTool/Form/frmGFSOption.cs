@@ -39,7 +39,7 @@ namespace MagicMongoDBTool
 
         private void frmGFSOption_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 grpFilename.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_RemoteFileName);
                 radFilename.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_OnlyFilename);

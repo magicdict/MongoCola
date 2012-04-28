@@ -45,7 +45,7 @@ namespace MagicMongoDBTool.UserController
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
-                if (!SystemManager.IsUseDefaultLanguage())
+                if (!SystemManager.IsUseDefaultLanguage)
                 {
                     this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Resume_AutoRefresh);
                 }
@@ -73,7 +73,7 @@ namespace MagicMongoDBTool.UserController
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
-                if (!SystemManager.IsUseDefaultLanguage())
+                if (!SystemManager.IsUseDefaultLanguage)
                 {
                     this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Resume_AutoRefresh);
                 }
@@ -96,7 +96,7 @@ namespace MagicMongoDBTool.UserController
         private void ctlServerStatus_Load(object sender, EventArgs e)
         {
             RefreshStatus(false);
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_Title);
                 this.tabSvrBasicInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_ServerInfo);
@@ -243,7 +243,7 @@ namespace MagicMongoDBTool.UserController
             {
                 refreshTimer.Start();
                 ShortTimer.Start();
-                if (!SystemManager.IsUseDefaultLanguage())
+                if (!SystemManager.IsUseDefaultLanguage)
                 {
                     this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Stop_AutoRefresh);
                 }
@@ -257,7 +257,7 @@ namespace MagicMongoDBTool.UserController
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
-                if (!SystemManager.IsUseDefaultLanguage())
+                if (!SystemManager.IsUseDefaultLanguage)
                 {
                     this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Resume_AutoRefresh);
                 }

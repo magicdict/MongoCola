@@ -224,20 +224,23 @@ namespace MagicMongoDBTool.Module
         /// 是否使用默认语言
         /// </summary>
         /// <returns></returns>
-        internal static Boolean IsUseDefaultLanguage()
+        internal static Boolean IsUseDefaultLanguage
         {
-            if (ConfigHelperInstance == null)
+            get
             {
-                return true;
-            }
-            if (ConfigHelperInstance.LanguageFileName == "English" ||
-                String.IsNullOrEmpty(ConfigHelperInstance.LanguageFileName))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
+                if (ConfigHelperInstance == null)
+                {
+                    return true;
+                }
+                if (ConfigHelperInstance.LanguageFileName == "English" ||
+                    String.IsNullOrEmpty(ConfigHelperInstance.LanguageFileName))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
         internal static void ExceptionDeal(Exception ex)
@@ -272,7 +275,7 @@ namespace MagicMongoDBTool.Module
         internal static void InitLanguage()
         {
             //语言的初始化
-            if (!IsUseDefaultLanguage())
+            if (!IsUseDefaultLanguage)
             {
                 String LanguageFile = "Language" + System.IO.Path.DirectorySeparatorChar + SystemManager.ConfigHelperInstance.LanguageFileName;
                 if (File.Exists(LanguageFile))

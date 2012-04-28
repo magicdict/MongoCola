@@ -22,7 +22,7 @@ namespace MagicMongoDBTool
             UploadFolderToolStripMenuItem.Click += new EventHandler(UpLoadFolderStripButton_Click);
             DeleteFileToolStripMenuItem.Click += new EventHandler(DeleteFileStripButton_Click);
 
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 this.DeleteFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
                 this.DeleteFileStripButton.Text = this.DeleteFileToolStripMenuItem.Text;
@@ -170,7 +170,7 @@ namespace MagicMongoDBTool
         {
             String strTitle = "Delete Files";
             String strMessage = "Are you sure to delete selected File(s)?";
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
                 strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);

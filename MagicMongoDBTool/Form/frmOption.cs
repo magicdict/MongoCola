@@ -24,7 +24,7 @@ namespace MagicMongoDBTool
                 }
             }
 
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 if (File.Exists("Language" + System.IO.Path.DirectorySeparatorChar + SystemManager.ConfigHelperInstance.LanguageFileName))
                 {
@@ -40,7 +40,7 @@ namespace MagicMongoDBTool
                 this.cmbLanguage.Text = "English";
             }
 
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 //国际化
                 this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Option_Title);

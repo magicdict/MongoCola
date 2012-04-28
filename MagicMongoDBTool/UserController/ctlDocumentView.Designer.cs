@@ -36,7 +36,6 @@ namespace MagicMongoDBTool
             this.CutElementStripButton = new System.Windows.Forms.ToolStripButton();
             this.CopyElementStripButton = new System.Windows.Forms.ToolStripButton();
             this.PasteElementStripButton = new System.Windows.Forms.ToolStripButton();
-
             this.NewDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenDocInEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DelSelectRecordToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,7 +47,93 @@ namespace MagicMongoDBTool
             this.CopyElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CutElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PasteElementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-
+            this.tabDataShower.SuspendLayout();
+            this.tabTreeView.SuspendLayout();
+            this.tabTableView.SuspendLayout();
+            this.tabTextView.SuspendLayout();
+            this.toolStripContainer1.ContentPanel.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // tabDataShower
+            // 
+            this.tabDataShower.Size = new System.Drawing.Size(917, 391);
+            // 
+            // tabTreeView
+            // 
+            this.tabTreeView.Size = new System.Drawing.Size(909, 366);
+            // 
+            // trvData
+            // 
+            this.trvData.Size = new System.Drawing.Size(903, 360);
+            // 
+            // lstData
+            // 
+            this.lstData.SelectedIndexChanged += new System.EventHandler(this.lstData_SelectedIndexChanged);
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(917, 391);
+            // 
+            // NewDocumentStripButton
+            // 
+            this.NewDocumentStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.NewDocumentStripButton.Image = ((System.Drawing.Image)(resources.GetObject("NewDocumentStripButton.Image")));
+            this.NewDocumentStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NewDocumentStripButton.Name = "NewDocumentStripButton";
+            this.NewDocumentStripButton.Size = new System.Drawing.Size(23, 22);
+            this.NewDocumentStripButton.Text = "New Document";
+            this.NewDocumentStripButton.Click += new System.EventHandler(this.NewDocumentStripButton_Click);
+            // 
+            // DelSelectRecordToolStripButton
+            // 
+            this.DelSelectRecordToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.DelSelectRecordToolStripButton.Image = global::MagicMongoDBTool.Properties.Resources.DeleteDoc;
+            this.DelSelectRecordToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DelSelectRecordToolStripButton.Name = "DelSelectRecordToolStripButton";
+            this.DelSelectRecordToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.DelSelectRecordToolStripButton.Text = "Delete Selected Record";
+            this.DelSelectRecordToolStripButton.Click += new System.EventHandler(this.DelSelectRecordToolStripButton_Click);
+            // 
+            // OpenDocInEditorStripButton
+            // 
+            this.OpenDocInEditorStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.OpenDocInEditorStripButton.Image = ((System.Drawing.Image)(resources.GetObject("OpenDocInEditorStripButton.Image")));
+            this.OpenDocInEditorStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OpenDocInEditorStripButton.Name = "OpenDocInEditorStripButton";
+            this.OpenDocInEditorStripButton.Size = new System.Drawing.Size(23, 22);
+            this.OpenDocInEditorStripButton.Text = "Editor";
+            this.OpenDocInEditorStripButton.Click += new System.EventHandler(this.OpenDocInEditorDocStripButton_Click);
+            // 
+            // CutElementStripButton
+            // 
+            this.CutElementStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CutElementStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CutElementStripButton.Image")));
+            this.CutElementStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CutElementStripButton.Name = "CutElementStripButton";
+            this.CutElementStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CutElementStripButton.Text = "Cut";
+            // 
+            // CopyElementStripButton
+            // 
+            this.CopyElementStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CopyElementStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CopyElementStripButton.Image")));
+            this.CopyElementStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CopyElementStripButton.Name = "CopyElementStripButton";
+            this.CopyElementStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CopyElementStripButton.Text = "Copy";
+            // 
+            // PasteElementStripButton
+            // 
+            this.PasteElementStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.PasteElementStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PasteElementStripButton.Image")));
+            this.PasteElementStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PasteElementStripButton.Name = "PasteElementStripButton";
+            this.PasteElementStripButton.Size = new System.Drawing.Size(23, 22);
+            this.PasteElementStripButton.Text = "Paste";
             // 
             // NewDocumentToolStripMenuItem
             // 
@@ -84,7 +169,6 @@ namespace MagicMongoDBTool
             // 
             // DropElementToolStripMenuItem
             // 
-            this.DropElementToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("DropElementToolStripMenuItem.Image")));
             this.DropElementToolStripMenuItem.Name = "DropElementToolStripMenuItem";
             this.DropElementToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DropElementToolStripMenuItem.Text = "Drop Element";
@@ -104,7 +188,6 @@ namespace MagicMongoDBTool
             // 
             // CopyElementToolStripMenuItem
             // 
-            this.CopyElementToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("CopyElementToolStripMenuItem.Image")));
             this.CopyElementToolStripMenuItem.Name = "CopyElementToolStripMenuItem";
             this.CopyElementToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.CopyElementToolStripMenuItem.Text = "Copy Element";
@@ -112,7 +195,6 @@ namespace MagicMongoDBTool
             // 
             // CutElementToolStripMenuItem
             // 
-            this.CutElementToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("CutElementToolStripMenuItem.Image")));
             this.CutElementToolStripMenuItem.Name = "CutElementToolStripMenuItem";
             this.CutElementToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.CutElementToolStripMenuItem.Text = "Cut Element";
@@ -120,117 +202,17 @@ namespace MagicMongoDBTool
             // 
             // PasteElementToolStripMenuItem
             // 
-            this.PasteElementToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("PasteElementToolStripMenuItem.Image")));
             this.PasteElementToolStripMenuItem.Name = "PasteElementToolStripMenuItem";
             this.PasteElementToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.PasteElementToolStripMenuItem.Text = "Paste Element";
             this.PasteElementToolStripMenuItem.Click += new System.EventHandler(this.PasteElementToolStripMenuItem_Click);
-
-            // 
-            // contextMenuStripMain
-            // 
-            this.contextMenuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NewDocumentToolStripMenuItem,
-            this.OpenDocInEditorToolStripMenuItem,
-            this.DelSelectRecordToolToolStripMenuItem,
-            this.SeperateBarForMenuItem1,
-            this.AddElementToolStripMenuItem,
-            this.DropElementToolStripMenuItem,
-            this.ModifyElementToolStripMenuItem,
-            this.SeperateBarForMenuItem2,
-            this.CopyElementToolStripMenuItem,
-            this.CutElementToolStripMenuItem,
-            this.PasteElementToolStripMenuItem});
-
-
-            this.tabDataShower.SuspendLayout();
-            this.tabTreeView.SuspendLayout();
-            this.tabTableView.SuspendLayout();
-            this.tabTextView.SuspendLayout();
-            this.toolStripContainer1.ContentPanel.SuspendLayout();
-            this.toolStripContainer1.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // tabTableView
-            // 
-            this.tabTableView.Size = new System.Drawing.Size(909, 341);
-            // 
-            // lstData
-            // 
-            this.lstData.Size = new System.Drawing.Size(903, 335);
-            // 
-            // tabTextView
-            // 
-            this.tabTextView.Size = new System.Drawing.Size(909, 341);
-            // 
-            // txtData
-            // 
-            this.txtData.Size = new System.Drawing.Size(903, 335);
-            // 
-            // toolStripContainer1
-            // 
-            // 
-            // NewDocumentStripButton
-            // 
-            this.NewDocumentStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.NewDocumentStripButton.Image = ((System.Drawing.Image)(resources.GetObject("NewDocumentStripButton.Image")));
-            this.NewDocumentStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.NewDocumentStripButton.Name = "NewDocumentStripButton";
-            this.NewDocumentStripButton.Size = new System.Drawing.Size(23, 22);
-            this.NewDocumentStripButton.Text = "New Document";
-            // 
-            // DelSelectRecordToolStripButton
-            // 
-            this.DelSelectRecordToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DelSelectRecordToolStripButton.Image = global::MagicMongoDBTool.Properties.Resources.DeleteDoc;
-            this.DelSelectRecordToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DelSelectRecordToolStripButton.Name = "DelSelectRecordToolStripButton";
-            this.DelSelectRecordToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.DelSelectRecordToolStripButton.Text = "Delete Selected Record";
-            // 
-            // OpenDocInEditorStripButton
-            // 
-            this.OpenDocInEditorStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.OpenDocInEditorStripButton.Image = ((System.Drawing.Image)(resources.GetObject("OpenDocInEditorStripButton.Image")));
-            this.OpenDocInEditorStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OpenDocInEditorStripButton.Name = "OpenDocInEditorStripButton";
-            this.OpenDocInEditorStripButton.Size = new System.Drawing.Size(23, 22);
-            this.OpenDocInEditorStripButton.Text = "Editor";
-            // 
-            // CutElementStripButton
-            // 
-            this.CutElementStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CutElementStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CutElementStripButton.Image")));
-            this.CutElementStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CutElementStripButton.Name = "CutElementStripButton";
-            this.CutElementStripButton.Size = new System.Drawing.Size(23, 22);
-            this.CutElementStripButton.Text = "Cut";
-            // 
-            // CopyElementStripButton
-            // 
-            this.CopyElementStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CopyElementStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CopyElementStripButton.Image")));
-            this.CopyElementStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CopyElementStripButton.Name = "CopyElementStripButton";
-            this.CopyElementStripButton.Size = new System.Drawing.Size(23, 22);
-            this.CopyElementStripButton.Text = "Copy";
-            // 
-            // PasteElementStripButton
-            // 
-            this.PasteElementStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.PasteElementStripButton.Image = ((System.Drawing.Image)(resources.GetObject("PasteElementStripButton.Image")));
-            this.PasteElementStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PasteElementStripButton.Name = "PasteElementStripButton";
-            this.PasteElementStripButton.Size = new System.Drawing.Size(23, 22);
-            this.PasteElementStripButton.Text = "Paste";
-
-            
             // 
             // ctlDocumentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "ctlDocumentView";
+            this.Load += new System.EventHandler(this.ctlDocumentView_Load);
             this.Controls.SetChildIndex(this.toolStripContainer1, 0);
             this.tabDataShower.ResumeLayout(false);
             this.tabTreeView.ResumeLayout(false);

@@ -15,7 +15,7 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
             ctlFilePickerLogPath.FileFilter = MongoDBHelper.LogFilter;
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 lblPort.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Port);
                 lblSource.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy_SlaveSource);

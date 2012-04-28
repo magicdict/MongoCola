@@ -47,7 +47,7 @@ namespace MagicMongoDBTool
                 //纵向位置的累加
                 _conditionPos.Y += ctrItem.Height;
             }
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 cmdQuery.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Distinct_Action_LoadQuery);
                 cmdRun.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);

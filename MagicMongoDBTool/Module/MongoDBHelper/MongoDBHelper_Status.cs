@@ -53,7 +53,7 @@ namespace MagicMongoDBTool.Module
         public static void FillDataBaseStatusToList(ListView lstSvr)
         {
             lstSvr.Clear();
-            if (SystemManager.IsUseDefaultLanguage())
+            if (SystemManager.IsUseDefaultLanguage)
             {
                 lstSvr.Columns.Add("DataBaseName");
                 lstSvr.Columns.Add("CollectionCount");
@@ -122,7 +122,7 @@ namespace MagicMongoDBTool.Module
         {
             lstData.Clear();
 
-            if (SystemManager.IsUseDefaultLanguage())
+            if (SystemManager.IsUseDefaultLanguage)
             {
                 lstData.Columns.Add("CollectionName");
                 lstData.Columns.Add("ObjectCount");

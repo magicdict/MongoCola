@@ -31,7 +31,7 @@ namespace MagicMongoDBTool
                 cmbForReduce.Items.Add(item);
             }
 
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 lblMapFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_MapFunction);
                 lblReduceFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_ReduceFunction);

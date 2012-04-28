@@ -26,7 +26,7 @@ namespace MagicMongoDBTool
             this.ctlMongoImportExportPanel.CommandChanged += new EventHandler<TextChangeEventArgs>(
                 (x, y) => { CommandChanged(y.NewString); }
             );
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
                 cmdRunDos.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Run);

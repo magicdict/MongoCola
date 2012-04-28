@@ -21,7 +21,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void frmProfilling_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
                 cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);

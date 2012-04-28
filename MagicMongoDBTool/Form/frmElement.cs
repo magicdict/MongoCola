@@ -49,7 +49,7 @@ namespace MagicMongoDBTool
                 AddBsonElement.switchToUpdateMode();
                 AddBsonElement.setElement(_SelectNode.Tag);
             }
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
                 cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);

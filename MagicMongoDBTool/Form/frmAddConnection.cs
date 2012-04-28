@@ -54,7 +54,7 @@ namespace MagicMongoDBTool
             {
                 this.NumWaitQueueSize.Select(0, 5);
             });
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Title);
                 lblConnectionName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionName);
@@ -122,7 +122,7 @@ namespace MagicMongoDBTool
                 lstHost.Items.Add(item);
             }
 
-            if (SystemManager.IsUseDefaultLanguage())
+            if (SystemManager.IsUseDefaultLanguage)
             {
                 cmdAdd.Text = "Modify";
             }
@@ -188,7 +188,7 @@ namespace MagicMongoDBTool
             catch (MongoAuthenticationException ex)
             {
                 //需要验证的数据服务器，没有Admin权限无法获得数据库列表
-                if (!SystemManager.IsUseDefaultLanguage())
+                if (!SystemManager.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
                                              SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
@@ -204,7 +204,7 @@ namespace MagicMongoDBTool
                 //无法连接的理由：
                 //1.服务器没有启动
                 //2.认证模式不正确
-                if (!SystemManager.IsUseDefaultLanguage())
+                if (!SystemManager.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
                                              SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note), ex.ToString(), true);

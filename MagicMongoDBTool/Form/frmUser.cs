@@ -87,7 +87,7 @@ namespace MagicMongoDBTool
                 txtUserName.Enabled = false;
                 txtUserName.Text = _ModifyName;
             }
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 if (_ModifyName == String.Empty)
                 {

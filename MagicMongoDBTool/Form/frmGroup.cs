@@ -130,7 +130,7 @@ namespace MagicMongoDBTool
             firstAddBsonElCtl.setElement(el);
             panBsonEl.Controls.Add(firstAddBsonElCtl);
 
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 lblReduceFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_Reduce);
                 cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);

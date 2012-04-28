@@ -26,7 +26,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void frmAddSharding_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
                 cmdAddHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);

@@ -17,7 +17,7 @@ namespace MagicMongoDBTool
 
         private void frmCreateCollection_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection);
                 this.lblCollectionName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);

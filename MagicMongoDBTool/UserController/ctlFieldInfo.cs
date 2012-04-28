@@ -8,7 +8,7 @@ namespace MagicMongoDBTool
         public ctlFieldInfo()
         {
             InitializeComponent();
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 this.lblFieldName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
                 this.radSortAcs.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Asce);

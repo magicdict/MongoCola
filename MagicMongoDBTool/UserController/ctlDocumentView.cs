@@ -36,12 +36,37 @@ namespace MagicMongoDBTool
         }
         private void ctlDocumentView_Load(object sender, EventArgs e)
         {
-            this.NewDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
-            this.DelSelectRecordToolToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
+            if (!SystemManager.IsUseDefaultLanguage)
+            {
+                this.NewDocumentToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
+                this.DelSelectRecordToolToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
 
-            this.AddElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
-            this.DropElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_DropElement);
-            this.ModifyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_ModifyElement);
+                this.AddElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
+                this.DropElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_DropElement);
+                this.ModifyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_ModifyElement);
+
+                this.NewDocumentStripButton.Text = this.NewDocumentToolStripMenuItem.Text;
+                this.OpenDocInEditorStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_OpenInNativeEditor);
+                this.DelSelectRecordToolStripButton.Text = this.DelSelectRecordToolToolStripMenuItem.Text;
+                this.CopyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CopyElement);
+                this.CopyElementStripButton.Text = this.CopyElementToolStripMenuItem.Text;
+                this.CutElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CutElement);
+                this.CutElementStripButton.Text = this.CutElementToolStripMenuItem.Text;
+                this.PasteElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_PasteElement);
+                this.PasteElementStripButton.Text = this.PasteElementToolStripMenuItem.Text;
+            }
+
+            CutElementStripButton.Click += new EventHandler(CutElementToolStripMenuItem_Click);
+            CopyElementStripButton.Click += new EventHandler(CopyElementToolStripMenuItem_Click);
+            PasteElementStripButton.Click += new EventHandler(PasteElementToolStripMenuItem_Click);
+            OpenDocInEditorStripButton.Enabled = true;
+            OpenDocInEditorToolStripMenuItem.Enabled = true;
+            if (!mDataViewInfo.IsReadOnly)
+            {
+                this.NewDocumentStripButton.Enabled = true;
+                this.NewDocumentToolStripMenuItem.Enabled = true;
+            }
+            
             this.trvData.DatatreeView.MouseClick += new MouseEventHandler(trvData_MouseClick_Top);
             this.trvData.DatatreeView.AfterSelect += new TreeViewEventHandler(trvData_AfterSelect_Top);
             this.trvData.DatatreeView.KeyDown += new KeyEventHandler(trvData_KeyDown);
@@ -55,14 +80,14 @@ namespace MagicMongoDBTool
             this.lstData.MouseDoubleClick += new MouseEventHandler(lstData_MouseDoubleClick);
             this.tabDataShower.SelectedIndexChanged += new EventHandler(
             //If tabpage changed,the selected data in dataview will disappear,set delete selected record to false
-            (x, y) =>
-            {
-                this.DelSelectRecordToolToolStripMenuItem.Enabled = false;
-                if (IsNeedRefresh)
+                (x, y) =>
                 {
-                    RefreshGUI();
+                    this.DelSelectRecordToolToolStripMenuItem.Enabled = false;
+                    if (IsNeedRefresh)
+                    {
+                        RefreshGUI();
+                    }
                 }
-            }
             );
         }
 
@@ -400,7 +425,7 @@ namespace MagicMongoDBTool
         {
             String strTitle = "Delete Document";
             String strMessage = "Are you sure to delete selected document(s)?";
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
                 strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
@@ -581,25 +606,7 @@ namespace MagicMongoDBTool
             IsNeedRefresh = true;
         }
         #endregion
-        //this.NewDocumentStripButton.Text = this.NewDocumentToolStripMenuItem.Text;
-        //this.OpenDocInEditorStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_OpenInNativeEditor);
-        //this.DelSelectRecordToolStripButton.Text = this.DelSelectRecordToolToolStripMenuItem.Text;
-        //this.CopyElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CopyElement);
-        //this.CopyElementStripButton.Text = this.CopyElementToolStripMenuItem.Text;
-        //this.CutElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_CutElement);
-        //this.CutElementStripButton.Text = this.CutElementToolStripMenuItem.Text;
-        //this.PasteElementToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataDocument_PasteElement);
-        //this.PasteElementStripButton.Text = this.PasteElementToolStripMenuItem.Text;
-        //CutElementStripButton.Click += new EventHandler(CutElementToolStripMenuItem_Click);
-        //CopyElementStripButton.Click += new EventHandler(CopyElementToolStripMenuItem_Click);
-        //PasteElementStripButton.Click += new EventHandler(PasteElementToolStripMenuItem_Click);
-        //OpenDocInEditorStripButton.Enabled = true;
-        //OpenDocInEditorToolStripMenuItem.Enabled = true;
-        //if (!mDataViewInfo.IsReadOnly)
-        //{
-        //    this.NewDocumentStripButton.Enabled = true;
-        //    this.NewDocumentToolStripMenuItem.Enabled = true;
-        //}
+
 
     }
 }

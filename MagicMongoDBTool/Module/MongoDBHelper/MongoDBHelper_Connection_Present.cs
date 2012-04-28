@@ -253,7 +253,7 @@ namespace MagicMongoDBTool.Module
                 catch (MongoAuthenticationException ex)
                 {
                     //需要验证的数据服务器，没有Admin权限无法获得数据库列表
-                    if (!SystemManager.IsUseDefaultLanguage())
+                    if (!SystemManager.IsUseDefaultLanguage)
                     {
                         ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]";
                         MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
@@ -273,7 +273,7 @@ namespace MagicMongoDBTool.Module
                     //无法连接的理由：
                     //1.服务器没有启动
                     //2.认证模式不正确
-                    if (!SystemManager.IsUseDefaultLanguage())
+                    if (!SystemManager.IsUseDefaultLanguage)
                     {
                         ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
                         MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
@@ -429,7 +429,7 @@ namespace MagicMongoDBTool.Module
         private static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongoSvr, String mongoSvrKey)
         {
             String strShowDBName = strDBName;
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 if (SystemManager.mStringResource.LanguageType == "Chinese")
                 {
@@ -538,7 +538,7 @@ namespace MagicMongoDBTool.Module
         private static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase mongoDB, String mongoConnSvrKey)
         {
             String strShowColName = strColName;
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 if (SystemManager.mStringResource.LanguageType == "Chinese")
                 {
@@ -677,7 +677,7 @@ namespace MagicMongoDBTool.Module
             foreach (IndexInfo indexDoc in indexList.ToList<IndexInfo>())
             {
                 TreeNode mongoIndex = new TreeNode();
-                if (!SystemManager.IsUseDefaultLanguage())
+                if (!SystemManager.IsUseDefaultLanguage)
                 {
                     mongoIndex.Text = (SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name) + ":" + indexDoc.Name);
                     mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Keys) + ":" + indexDoc.Key.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);

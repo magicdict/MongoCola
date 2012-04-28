@@ -21,7 +21,7 @@ namespace MagicMongoDBTool
             trvsrvlst.ImageList = GetSystemIcon.MainTreeImage;
             tabView.ImageList = GetSystemIcon.TabViewImage;
             SetMenuImage();
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 //Set Menu Text
                 SetMenuText();
@@ -389,7 +389,7 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelper.SERVER_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        if (SystemManager.IsUseDefaultLanguage())
+                        if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected Server:" + SystemManager.SelectTagData;
                         }
@@ -490,7 +490,7 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.DATABASE_TAG:
                     case MongoDBHelper.SINGLE_DATABASE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        if (SystemManager.IsUseDefaultLanguage())
+                        if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected DataBase:" + SystemManager.SelectTagData;
                         }
@@ -605,7 +605,7 @@ namespace MagicMongoDBTool
                         statusStripMain.Items[0].Text = "Collection List ";
                         break;
                     case MongoDBHelper.COLLECTION_TAG:
-                        if (SystemManager.IsUseDefaultLanguage())
+                        if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected Collection:" + SystemManager.SelectTagData;
                         }
@@ -740,7 +740,7 @@ namespace MagicMongoDBTool
                         }
                         break;
                     case MongoDBHelper.INDEX_TAG:
-                        if (SystemManager.IsUseDefaultLanguage())
+                        if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected Index:" + SystemManager.SelectTagData;
                         }
@@ -750,7 +750,7 @@ namespace MagicMongoDBTool
                         }
                         break;
                     case MongoDBHelper.INDEXES_TAG:
-                        if (SystemManager.IsUseDefaultLanguage())
+                        if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected Index:" + SystemManager.SelectTagData;
                         }
@@ -760,7 +760,7 @@ namespace MagicMongoDBTool
                         }
                         break;
                     case MongoDBHelper.USER_LIST_TAG:
-                        if (SystemManager.IsUseDefaultLanguage())
+                        if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected UserList:" + SystemManager.SelectTagData;
                         }
@@ -791,7 +791,7 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
                         //GridFileSystem
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        if (SystemManager.IsUseDefaultLanguage())
+                        if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected GFS:" + SystemManager.SelectTagData;
                         }
@@ -1307,7 +1307,7 @@ namespace MagicMongoDBTool
             this.ServerStatusCtl.RefreshStatus(false);
             this.ServerStatusCtl.RefreshCurrentOpr();
 
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 this.statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
             }
@@ -1356,7 +1356,7 @@ namespace MagicMongoDBTool
         private void CreateMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strDBName = String.Empty;
-            if (SystemManager.IsUseDefaultLanguage())
+            if (SystemManager.IsUseDefaultLanguage)
             {
                 strDBName = MyMessageBox.ShowInput("Please Input DataBaseName：", "Create Database");
             }
@@ -1410,7 +1410,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ServePropertyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SystemManager.IsUseDefaultLanguage())
+            if (SystemManager.IsUseDefaultLanguage)
             {
                 MyMessageBox.ShowMessage("Server Property", "Server Property", MongoDBHelper.GetCurrentSvrInfo(), true);
             }
@@ -1443,7 +1443,7 @@ namespace MagicMongoDBTool
         {
             String strTitle = "Drop Database";
             String strMessage = "Are you really want to Drop current Database?";
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_DataBase);
                 strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_DataBase_Confirm);
@@ -1618,7 +1618,7 @@ namespace MagicMongoDBTool
         {
             String strTitle = "Drop Collection";
             String strMessage = "Are you sure to drop this Collection?";
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Collection);
                 strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Collection_Confirm);
@@ -1661,7 +1661,7 @@ namespace MagicMongoDBTool
             String strPath = SystemManager.SelectTagData;
             String strCollection = strPath.Split("/".ToCharArray())[2];
             String strNewCollectionName = String.Empty;
-            if (SystemManager.IsUseDefaultLanguage())
+            if (SystemManager.IsUseDefaultLanguage)
             {
                 strNewCollectionName = MyMessageBox.ShowInput("Please input new collection name：", "Rename collection");
             }
@@ -1705,7 +1705,7 @@ namespace MagicMongoDBTool
                 trvsrvlst.SelectedNode.ToolTipText = strNewCollectionName + System.Environment.NewLine;
                 trvsrvlst.SelectedNode.ToolTipText += "IsCapped:" + SystemManager.GetCurrentCollection().GetStats().IsCapped.ToString();
 
-                if (SystemManager.IsUseDefaultLanguage())
+                if (SystemManager.IsUseDefaultLanguage)
                 {
                     statusStripMain.Items[0].Text = "selected Collection:" + SystemManager.SelectTagData;
                 }
@@ -1858,7 +1858,7 @@ namespace MagicMongoDBTool
         {
             String strTitle = "Restore";
             String strMessage = "Are you sure to Restore?";
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
                 strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
@@ -1957,7 +1957,7 @@ namespace MagicMongoDBTool
         {
             String strTitle = "Import Collection";
             String strMessage = "Are you sure to Import Collection?";
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
                 strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
@@ -2076,7 +2076,7 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmOption());
             SystemManager.InitLanguage();
-            if (SystemManager.IsUseDefaultLanguage())
+            if (SystemManager.IsUseDefaultLanguage)
             {
                 MyMessageBox.ShowMessage("Language", "Language will change to \"English\" when you restart this tool");
             }

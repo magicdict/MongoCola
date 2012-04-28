@@ -453,7 +453,7 @@ namespace MagicMongoDBTool.Module
         private static void SetUserListToListView(List<BsonDocument> dataList, ListView lstData)
         {
             lstData.Clear();
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 lstData.Columns.Add("ID");
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username));
@@ -486,7 +486,7 @@ namespace MagicMongoDBTool.Module
         private static void SetGridFileToListView(List<BsonDocument> dataList, ListView lstData)
         {
             lstData.Clear();
-            if (!SystemManager.IsUseDefaultLanguage())
+            if (!SystemManager.IsUseDefaultLanguage)
             {
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.GFS_filename));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.GFS_length));
