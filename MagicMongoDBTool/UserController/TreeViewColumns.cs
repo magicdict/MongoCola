@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using MongoDB.Bson;
+using MagicMongoDBTool.Module;
 
 namespace TreeViewColumnsProject
 {
@@ -89,8 +90,12 @@ namespace TreeViewColumnsProject
             Rectangle StringRect = new Rectangle(e.Bounds.X + IndentWidth, e.Bounds.Y, colName.Width - IndentWidth, e.Bounds.Height);
             e.Graphics.DrawString(e.Node.Text, this.Font, new SolidBrush(Color.Black), StringRect);
 
+
+            BsonElement mElement = e.Node.Tag as BsonElement;
+            BsonValue mValue = e.Node.Tag as BsonValue;
+
             //画框
-            if (e.Node.GetNodeCount(true) > 0)
+            if (e.Node.GetNodeCount(true) > 0 || (mElement != null && (mElement.Value.IsBsonDocument || mElement.Value.IsBsonArray)))
             {
                 if (VisualStyleRenderer.IsSupported)
                 {
@@ -121,20 +126,47 @@ namespace TreeViewColumnsProject
             {
                 rect.Offset(this.listView1.Columns[intColumn - 1].Width, 0);
                 rect.Width = this.listView1.Columns[intColumn].Width;
-
                 e.Graphics.DrawRectangle(SystemPens.Control, rect);
-                BsonElement Element = e.Node.Tag as BsonElement;
-                if (Element != null && !Element.Value.IsBsonDocument && !Element.Value.IsBsonArray)
+                if (mElement != null || mValue != null)
                 {
                     string strColumnText = String.Empty;
                     if (intColumn == 1)
                     {
-                        strColumnText = Element.Value.ToString();
+                        if (mElement != null)
+                        {
+                            if (!mElement.Value.IsBsonDocument && !mElement.Value.IsBsonArray)
+                            {
+                                strColumnText = mElement.Value.ToString();
+                            }
+                        }
+                        else
+                        {
+                            if (mValue != null)
+                            {
+                                if (!mValue.IsBsonDocument && !mValue.IsBsonArray)
+                                {
+                                    strColumnText = mValue.ToString();
+                                }
+                                else
+                                {
+                                    if (mValue.IsBsonDocument) { strColumnText = MongoDBHelper.Document_Mark; }
+                                    if (mValue.IsBsonArray) { strColumnText = MongoDBHelper.Array_Mark; }
+                                }
+                            }
+                        }
                     }
                     else
                     {
-                        strColumnText = Element.Value.GetType().Name.Substring(4);
+                        if (mElement != null)
+                        {
+                            strColumnText = mElement.Value.GetType().Name.Substring(4);
+                        }
+                        else
+                        {
+                            strColumnText = mValue.GetType().Name.Substring(4);
+                        }
                     }
+
                     TextFormatFlags flags = TextFormatFlags.EndEllipsis;
                     switch (this.listView1.Columns[intColumn].TextAlign)
                     {

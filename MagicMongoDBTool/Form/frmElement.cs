@@ -32,6 +32,7 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
             _IsUpdateMode = IsUpdateMode;
+            //TODO:
             _FullPath = SelectNode.FullPath;
             _SelectNode = SelectNode;
             _IsElement = IsElement;
@@ -78,11 +79,11 @@ namespace MagicMongoDBTool
                 }
                 if (String.IsNullOrEmpty(AddBsonElement.getElement().Name))
                 {
-                    _SelectNode.Text = MongoDBHelper.ConvertToString(AddBsonElement.getElement().Value);
+                    _SelectNode.Text = String.Empty;
                 }
                 else
                 {
-                    _SelectNode.Text = AddBsonElement.getElement().Name + ":" + MongoDBHelper.ConvertToString(AddBsonElement.getElement().Value);
+                    _SelectNode.Text = AddBsonElement.getElement().Name;
                 }
             }
             else
@@ -104,28 +105,12 @@ namespace MagicMongoDBTool
                 TreeNode NewNode;
                 if (String.IsNullOrEmpty(AddBsonElement.getElement().Name))
                 {
-                    //Array Value
-                    NewNode = new TreeNode(MongoDBHelper.ConvertToString(AddBsonElement.getElement().Value));
+                    //Array Or Document
+                    NewNode = new TreeNode();
                 }
                 else
                 {
-                    //Document Element
-                    if (AddBsonElement.getElement().Value.IsBsonArray)
-                    {
-                        NewNode = new TreeNode(AddBsonElement.getElement().Name + MongoDBHelper.Array_Mark);
-                    }
-                    else
-                    {
-                        if (AddBsonElement.getElement().Value.IsBsonDocument)
-                        {
-                            NewNode = new TreeNode(AddBsonElement.getElement().Name);
-                        }
-                        else
-                        {
-                            NewNode = new TreeNode(AddBsonElement.getElement().Name + ":" +
-                                                   MongoDBHelper.ConvertToString(AddBsonElement.getElement().Value));
-                        }
-                    }
+                    NewNode = new TreeNode(AddBsonElement.getElement().Name);
                 }
                 if (_IsElement)
                 {

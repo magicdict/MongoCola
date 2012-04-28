@@ -342,7 +342,7 @@ namespace MagicMongoDBTool.Module
             {
                 if (SubItem.IsBsonDocument)
                 {
-                    TreeNode newSubItem = new TreeNode(Document_Mark);
+                    TreeNode newSubItem = new TreeNode();
                     AddBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument());
                     newSubItem.Tag = SubItem;
                     newItem.Nodes.Add(newSubItem);
@@ -351,14 +351,14 @@ namespace MagicMongoDBTool.Module
                 {
                     if (SubItem.IsBsonArray)
                     {
-                        TreeNode newSubItem = new TreeNode(Array_Mark);
+                        TreeNode newSubItem = new TreeNode();
                         AddBSonArrayToTreeNode(newSubItem, SubItem.AsBsonArray);
                         newSubItem.Tag = SubItem;
                         newItem.Nodes.Add(newSubItem);
                     }
                     else
                     {
-                        TreeNode newSubItem = new TreeNode(ConvertToString(SubItem));
+                        TreeNode newSubItem = new TreeNode();
                         newSubItem.Tag = SubItem;
                         newItem.Nodes.Add(newSubItem);
                     }

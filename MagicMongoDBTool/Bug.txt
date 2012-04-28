@@ -32,6 +32,12 @@ C# 驱动问题：
    1.无法知道Mongos的Config服务器的位置
    2.rs.remove会出现问题，这个功能暂时关闭
    3.ValidateDataBaseName 无法使用(1.4.1已经实现，不过需要等待新版本的发布)
+   
+【BUG！！！！！！】
+  2012/04/28
+  添加元素的时候需要使用Node.FullPath来定位，不过当前的代码，在有Array和Document嵌套的时候会发生严重的错误。
+  原因是Array和Document无法表示在FullPath路径中（原因为TreeNode的Text是空的）
+   
 
 需要添加的功能：
 2012/4/10
