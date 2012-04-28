@@ -107,7 +107,6 @@ namespace MagicMongoDBTool
             this.IsDataView = false;
             this.Name = "ctlUserView";
             this.Load += new System.EventHandler(this.ctlUserView_Load);
-            this.Controls.SetChildIndex(this.tabDataShower, 0);
             this.tabDataShower.ResumeLayout(false);
             this.tabTreeView.ResumeLayout(false);
             this.tabTableView.ResumeLayout(false);

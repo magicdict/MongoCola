@@ -239,12 +239,12 @@ namespace MagicMongoDBTool
             }
         }
 
-        protected override void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
+        protected  void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             OpenFileStripButton_Click(sender, e);
         }
 
-        protected override void lstData_MouseClick(object sender, MouseEventArgs e)
+        protected  void lstData_MouseClick(object sender, MouseEventArgs e)
         {
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
             if (lstData.SelectedItems.Count > 0)

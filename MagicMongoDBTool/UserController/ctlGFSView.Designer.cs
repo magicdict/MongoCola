@@ -141,7 +141,6 @@ namespace MagicMongoDBTool
             this.IsDataView = false;
             this.Name = "ctlGFSView";
             this.Load += new System.EventHandler(this.ctlGFSView_Load);
-            this.Controls.SetChildIndex(this.tabDataShower, 0);
             this.tabDataShower.ResumeLayout(false);
             this.tabTreeView.ResumeLayout(false);
             this.tabTableView.ResumeLayout(false);

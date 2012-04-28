@@ -1046,7 +1046,7 @@ namespace MagicMongoDBTool
                 mDataViewInfo.mDataFilter = new DataFilter();
 
                 ctlDataView DataViewctl;
-                 switch (SystemManager.SelectTagType)
+                switch (SystemManager.SelectTagType)
                 {
                     case MongoDBHelper.GRID_FILE_SYSTEM_TAG:
                         DataViewctl = new ctlGFSView(mDataViewInfo);
@@ -1055,11 +1055,11 @@ namespace MagicMongoDBTool
                         DataViewctl = new ctlUserView(mDataViewInfo);
                         break;
                     default:
-                        DataViewctl = new ctlDataView(mDataViewInfo);
+                        DataViewctl = new ctlDocumentView(mDataViewInfo);
                         break;
                 }
-               
-                
+
+
                 DataViewctl.mDataViewInfo = mDataViewInfo;
 
                 TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().Name);

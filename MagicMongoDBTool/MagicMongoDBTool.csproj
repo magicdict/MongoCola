@@ -89,6 +89,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserController\ctlDocumentView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ctlDocumentView.Designer.cs">
+      <DependentUpon>ctlDocumentView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Module\System\InitTestData.cs" />
     <Compile Include="UserController\ctlUserView.cs">
       <SubType>UserControl</SubType>
@@ -379,6 +385,9 @@
     <Compile Include="UserController\TreeViewColumns.Designer.cs">
       <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserController\ctlDocumentView.resx">
+      <DependentUpon>ctlDocumentView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlUserView.resx">
       <DependentUpon>ctlUserView.cs</DependentUpon>
     </EmbeddedResource>

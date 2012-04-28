@@ -180,62 +180,6 @@
   <metadata name="ViewtoolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>179, 17</value>
   </metadata>
-  <data name="NewDocumentStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAL1JREFUOE+tkzEO
-        wjAMRXskjsExOFJuQEY2MjJ67IbHjhkZM7IZ/4pAlDoJSP1S1C7/fefXnaa9FCjK9rCEG4sPLOfr3XWz
-        YG7JX0gOx1MfEoibAKcAmrkPwagtOR9Wcz7mVXwHADAgGWQDtKiW0lMkpTQCkO1/m+NjBNCiLCEd5hgH
-        ADRdK48OAC8jgJa0AaRvOi+x3wEaLvVJ19GRTvwPoCiOAVAzzT8C8vduPbFM5h7U21ZuXv2+1w+8cl6s
-        u/KtOFDiiwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="OpenDocInEditorStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAVBJREFUOE+lky9z
-        wkAQxfMR+CZEti4SebJTw30DTnZqiESexHESx0ocJ3GsRJ6sjKx73d0AQwcIgjez+SN+b9/tJlX1qigX
-        3BaDtoxEjNXmEAd7KPxIaZ1RT/w/k9185ih4aO2+p3VFmY3nYwFzQZZ32mZ7jmKQ93wx2azmjYIlBvBX
-        b1Jp1EeKiQzWcj4gU2tH40UwOL7VqNLJ4Lq7RtdEpXSIS0JKSeCArkSUfUC7aA2ev49dpYN6pO4XKEc5
-        0tobzFliLx1GoxGmn+Pahpso3+cVLgIndwPPpuPmshmNq2qaBs3EIYQgsaPFfgqri05a5b2XiWeUnwKN
-        TkTIWzkzy8BOsaVzH/taOmmVdu7hDjCD3phif+bGycru6WxgkXX/sndmRtu2cB8GmZmuctDA2knnTgJ0
-        ctEV8rEvHfRTA00yVIMG56/t2f3VH/cu/wf0BhNRrP3AIQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="CutElementStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAANVJREFUOE9jYMAD
-        0qum/ccnT1AOZIC1ezjxhqDbCOKDANGGoNsI4j97+YE0A5BtBBlw9c5z4g0ABQrIuTBNIANOXXhImgEw
-        Q3YdugDWuHYXhCYY4ugKQJpWbT36v2/+DvIMgLmkqnvJf2Xn/v8MMg1gzGG5mzjXaKY//c+q2f5f0LQL
-        rpHdqAduEF4vgTRHd73+j6wBZjNIDi6OzRRkzcgKQQZgGIzLAJhtIFeA/Q4EIDEQBhkKw1i9AbIF2TaY
-        AeiG4AwDmAEwG5ENIDotgL0AjTZCmgCpN8Zq5XhMIQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="CopyElementStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAThJREFUOE+NkMFK
-        AlEUhnPXE7TyEaoHCAKfoB6gRWtp56r3GKpNmxbRpjaCFkpoYcKEoFHDyJAyOgyDI+PIKGNY8Me5cmu6
-        Xuz+8HPhcM93/nNSJ5dVrEl0dJBJyepLNQKIolp6e08KVgZ03VANwhNkNQNkEk9AKf5NIq4wjefwgwls
-        J4Dx7qkDeILkm9NMyPznDjyBOLnx1mfNonJaD+n9wu+BCRBGM7a/aDnABB14Y+d0ASGAOxjDsn28tF3o
-        LRu1Rgflp/ZPgt1sHWQSQamZmwGSzRXdQvHBwE2ptbRCFH/BCT5gODF0a4L1zWMwwFbmUGq+Ak+QfO9f
-        xwvAKnGAOJma888jNcAw+mT7i756HKoBOt4Mze4UNTPCXTNkk6n5vDxQAySbr+sBLio+zm49ZqUb0KdV
-        /gYzqQJ09f4/NwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="PasteElementStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAATtJREFUOE+Fk7Fq
-        AkEQhk/wMXwAIWCXR7CxsLFImdo6hZVwVXptfIhUdkEjBtGAcIWiATkULoqRHJgEEwzYjPlXZp0993Rh
-        mONuv292Z/cSjmW4WYfka7fpJGzz9LvHkkMyINi+lVUUrsxvJyKAPBmZYYCI905B5flTTgWeDYkUMMwQ
-        sv9wTa1yUoGN/2IXBVzZli8K5FYqtS6dC6OBEsTzxr9TcNyoVJ8plckfehFtIuDPcTFW8LvdEQQYSiIF
-        DIferRakXY84AIfrHyUAbAgkvHq5OVkBw8FiTa/TFd3X6kdBFF6089YV8Eq88dwUYM9YNioDDhpZLYhW
-        Btz1ZqYAMM5YBk7ha/On9y970exNjgKchO3SQLD8+CY/CGk4WVJ/EKjKgOutkSmw/WkQAEaz4kLfhTgB
-        H9W5vAcU7kTEGSp2mgAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="FirstPageStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -348,4 +292,7 @@
         +RT66zyc2xceyL0D2HGfuEtpNwoAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="CustomtoolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>296, 17</value>
+  </metadata>
 </root>
