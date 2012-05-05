@@ -105,6 +105,7 @@ namespace MagicMongoDBTool
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
             this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(80, 25);
             this.OpenFileToolStripMenuItem.Text = "Open File";
+            this.OpenFileToolStripMenuItem.Click += new System.EventHandler(this.OpenFileStripButton_Click);
             // 
             // UploadFileToolStripMenuItem
             // 
@@ -112,6 +113,7 @@ namespace MagicMongoDBTool
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
             this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.UploadFileToolStripMenuItem.Text = "Upload File";
+            this.UploadFileToolStripMenuItem.Click += new System.EventHandler(this.UploadFileStripButton_Click);
             // 
             // UploadFolderToolStripMenuItem
             // 
@@ -119,6 +121,7 @@ namespace MagicMongoDBTool
             this.UploadFolderToolStripMenuItem.Name = "UploadFolderToolStripMenuItem";
             this.UploadFolderToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.UploadFolderToolStripMenuItem.Text = "UploadFolder";
+            this.UploadFolderToolStripMenuItem.Click += new System.EventHandler(this.UpLoadFolderStripButton_Click);
             // 
             // DownloadFileToolStripMenuItem
             // 
@@ -126,6 +129,7 @@ namespace MagicMongoDBTool
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
             this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DownloadFileToolStripMenuItem.Text = "Download File";
+            this.DownloadFileToolStripMenuItem.Click += new System.EventHandler(this.DownloadFileStripButton_Click);
             // 
             // DeleteFileToolStripMenuItem
             // 
@@ -133,6 +137,7 @@ namespace MagicMongoDBTool
             this.DeleteFileToolStripMenuItem.Name = "DeleteFileToolStripMenuItem";
             this.DeleteFileToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DeleteFileToolStripMenuItem.Text = "Delete File";
+            this.DeleteFileToolStripMenuItem.Click += new System.EventHandler(this.DeleteFileStripButton_Click);
             // 
             // DeleteFileStripButton
             // 

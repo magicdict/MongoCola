@@ -63,13 +63,26 @@ namespace MagicMongoDBTool
             // 
             this.tabTreeView.Size = new System.Drawing.Size(909, 366);
             // 
+            // tabTableView
+            // 
+            this.tabTableView.Size = new System.Drawing.Size(909, 366);
+            // 
             // trvData
             // 
             this.trvData.Size = new System.Drawing.Size(903, 360);
             // 
             // lstData
             // 
+            this.lstData.Size = new System.Drawing.Size(903, 360);
             this.lstData.SelectedIndexChanged += new System.EventHandler(this.lstData_SelectedIndexChanged);
+            // 
+            // tabTextView
+            // 
+            this.tabTextView.Size = new System.Drawing.Size(909, 366);
+            // 
+            // txtData
+            // 
+            this.txtData.Size = new System.Drawing.Size(903, 360);
             // 
             // toolStripContainer1
             // 
@@ -141,6 +154,7 @@ namespace MagicMongoDBTool
             this.NewDocumentToolStripMenuItem.Name = "NewDocumentToolStripMenuItem";
             this.NewDocumentToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.NewDocumentToolStripMenuItem.Text = "Add Document";
+            this.NewDocumentToolStripMenuItem.Click += new System.EventHandler(this.NewDocumentStripButton_Click);
             // 
             // OpenDocInEditorToolStripMenuItem
             // 
@@ -148,12 +162,14 @@ namespace MagicMongoDBTool
             this.OpenDocInEditorToolStripMenuItem.Name = "OpenDocInEditorToolStripMenuItem";
             this.OpenDocInEditorToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.OpenDocInEditorToolStripMenuItem.Text = "Open Doc In Editor";
+            this.OpenDocInEditorToolStripMenuItem.Click += new System.EventHandler(this.OpenDocInEditorDocStripButton_Click);
             // 
             // DelSelectRecordToolToolStripMenuItem
             // 
             this.DelSelectRecordToolToolStripMenuItem.Name = "DelSelectRecordToolToolStripMenuItem";
             this.DelSelectRecordToolToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DelSelectRecordToolToolStripMenuItem.Text = "Del Selected Records";
+            this.DelSelectRecordToolToolStripMenuItem.Click += new System.EventHandler(this.DelSelectRecordToolStripButton_Click);
             // 
             // SeperateBarForMenuItem1
             // 
