@@ -34,6 +34,7 @@ namespace MagicMongoDBTool.UserController
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlDataView));
             this.tabDataShower = new System.Windows.Forms.TabControl();
             this.tabTreeView = new System.Windows.Forms.TabPage();
+            this.trvData = new TreeViewColumnsProject.TreeViewColumns();
             this.tabTableView = new System.Windows.Forms.TabPage();
             this.lstData = new System.Windows.Forms.ListView();
             this.tabTextView = new System.Windows.Forms.TabPage();
@@ -41,10 +42,7 @@ namespace MagicMongoDBTool.UserController
             this.tabQuery = new System.Windows.Forms.TabPage();
             this.txtQuery = new System.Windows.Forms.TextBox();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
- 
             this.ViewtoolStrip = new System.Windows.Forms.ToolStrip();
-            this.cmbListViewStyle = new System.Windows.Forms.ToolStripComboBox();
-            this.SeperateBar2 = new System.Windows.Forms.ToolStripSeparator();
             this.FirstPageStripButton = new System.Windows.Forms.ToolStripButton();
             this.PrePageStripButton = new System.Windows.Forms.ToolStripButton();
             this.NextPageStripButton = new System.Windows.Forms.ToolStripButton();
@@ -62,13 +60,11 @@ namespace MagicMongoDBTool.UserController
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.CustomtoolStrip = new System.Windows.Forms.ToolStrip();
-            this.trvData = new TreeViewColumnsProject.TreeViewColumns();
             this.tabDataShower.SuspendLayout();
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
             this.tabTextView.SuspendLayout();
             this.tabQuery.SuspendLayout();
-            this.contextMenuStripMain.SuspendLayout();
             this.ViewtoolStrip.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -101,6 +97,16 @@ namespace MagicMongoDBTool.UserController
             this.tabTreeView.Text = "TreeView";
             this.tabTreeView.UseVisualStyleBackColor = true;
             // 
+            // trvData
+            // 
+            this.trvData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
+            this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvData.Location = new System.Drawing.Point(3, 3);
+            this.trvData.Name = "trvData";
+            this.trvData.Padding = new System.Windows.Forms.Padding(1);
+            this.trvData.Size = new System.Drawing.Size(903, 385);
+            this.trvData.TabIndex = 0;
+            // 
             // tabTableView
             // 
             this.tabTableView.BackColor = System.Drawing.Color.LightSkyBlue;
@@ -109,7 +115,7 @@ namespace MagicMongoDBTool.UserController
             this.tabTableView.Location = new System.Drawing.Point(4, 21);
             this.tabTableView.Name = "tabTableView";
             this.tabTableView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTableView.Size = new System.Drawing.Size(909, 366);
+            this.tabTableView.Size = new System.Drawing.Size(909, 391);
             this.tabTableView.TabIndex = 1;
             this.tabTableView.Text = "TableView";
             this.tabTableView.UseVisualStyleBackColor = true;
@@ -123,7 +129,7 @@ namespace MagicMongoDBTool.UserController
             this.lstData.HideSelection = false;
             this.lstData.Location = new System.Drawing.Point(3, 3);
             this.lstData.Name = "lstData";
-            this.lstData.Size = new System.Drawing.Size(903, 360);
+            this.lstData.Size = new System.Drawing.Size(903, 385);
             this.lstData.TabIndex = 1;
             this.lstData.UseCompatibleStateImageBehavior = false;
             this.lstData.View = System.Windows.Forms.View.Details;
@@ -136,7 +142,7 @@ namespace MagicMongoDBTool.UserController
             this.tabTextView.Location = new System.Drawing.Point(4, 21);
             this.tabTextView.Name = "tabTextView";
             this.tabTextView.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTextView.Size = new System.Drawing.Size(909, 366);
+            this.tabTextView.Size = new System.Drawing.Size(909, 391);
             this.tabTextView.TabIndex = 2;
             this.tabTextView.Text = "TextView";
             this.tabTextView.UseVisualStyleBackColor = true;
@@ -148,7 +154,7 @@ namespace MagicMongoDBTool.UserController
             this.txtData.Multiline = true;
             this.txtData.Name = "txtData";
             this.txtData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtData.Size = new System.Drawing.Size(903, 360);
+            this.txtData.Size = new System.Drawing.Size(903, 385);
             this.txtData.TabIndex = 0;
             // 
             // tabQuery
@@ -156,7 +162,7 @@ namespace MagicMongoDBTool.UserController
             this.tabQuery.Controls.Add(this.txtQuery);
             this.tabQuery.Location = new System.Drawing.Point(4, 21);
             this.tabQuery.Name = "tabQuery";
-            this.tabQuery.Size = new System.Drawing.Size(909, 366);
+            this.tabQuery.Size = new System.Drawing.Size(909, 391);
             this.tabQuery.TabIndex = 3;
             this.tabQuery.Text = "Query";
             this.tabQuery.UseVisualStyleBackColor = true;
@@ -167,18 +173,18 @@ namespace MagicMongoDBTool.UserController
             this.txtQuery.Location = new System.Drawing.Point(0, 0);
             this.txtQuery.Multiline = true;
             this.txtQuery.Name = "txtQuery";
-            this.txtQuery.Size = new System.Drawing.Size(909, 366);
+            this.txtQuery.Size = new System.Drawing.Size(909, 391);
             this.txtQuery.TabIndex = 0;
+            // 
+            // contextMenuStripMain
+            // 
             this.contextMenuStripMain.Name = "contextMenuStripMain";
-            this.contextMenuStripMain.Size = new System.Drawing.Size(176, 214);
-
+            this.contextMenuStripMain.Size = new System.Drawing.Size(61, 4);
             // 
             // ViewtoolStrip
             // 
             this.ViewtoolStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.ViewtoolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmbListViewStyle,
-            this.SeperateBar2,
             this.FirstPageStripButton,
             this.PrePageStripButton,
             this.NextPageStripButton,
@@ -194,29 +200,11 @@ namespace MagicMongoDBTool.UserController
             this.toolStripSeparator3,
             this.RefreshStripButton,
             this.CloseStripButton});
-            this.ViewtoolStrip.Location = new System.Drawing.Point(139, 0);
+            this.ViewtoolStrip.Location = new System.Drawing.Point(112, 0);
             this.ViewtoolStrip.Name = "ViewtoolStrip";
-            this.ViewtoolStrip.Size = new System.Drawing.Size(670, 25);
+            this.ViewtoolStrip.Size = new System.Drawing.Size(572, 25);
             this.ViewtoolStrip.TabIndex = 2;
             this.ViewtoolStrip.Text = "toolStrip1";
-            // 
-            // cmbListViewStyle
-            // 
-            this.cmbListViewStyle.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cmbListViewStyle.Items.AddRange(new object[] {
-            "LagreIcon",
-            "Details",
-            "SmallIcon",
-            "List",
-            "Tile"});
-            this.cmbListViewStyle.Name = "cmbListViewStyle";
-            this.cmbListViewStyle.Size = new System.Drawing.Size(121, 25);
-            this.cmbListViewStyle.Text = "Details";
-            // 
-            // SeperateBar2
-            // 
-            this.SeperateBar2.Name = "SeperateBar2";
-            this.SeperateBar2.Size = new System.Drawing.Size(6, 25);
             // 
             // FirstPageStripButton
             // 
@@ -383,16 +371,6 @@ namespace MagicMongoDBTool.UserController
             this.CustomtoolStrip.TabIndex = 4;
             this.CustomtoolStrip.Text = "toolStrip1";
             // 
-            // trvData
-            // 
-            this.trvData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
-            this.trvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvData.Location = new System.Drawing.Point(3, 3);
-            this.trvData.Name = "trvData";
-            this.trvData.Padding = new System.Windows.Forms.Padding(1);
-            this.trvData.Size = new System.Drawing.Size(903, 385);
-            this.trvData.TabIndex = 0;
-            // 
             // ctlDataView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -408,7 +386,6 @@ namespace MagicMongoDBTool.UserController
             this.tabTextView.PerformLayout();
             this.tabQuery.ResumeLayout(false);
             this.tabQuery.PerformLayout();
-            this.contextMenuStripMain.ResumeLayout(false);
             this.ViewtoolStrip.ResumeLayout(false);
             this.ViewtoolStrip.PerformLayout();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
@@ -451,14 +428,13 @@ namespace MagicMongoDBTool.UserController
 
         //Record
         private ToolStripSeparator toolStripSeparator3;
-        private ToolStripSeparator SeperateBar2;
         private ToolStripComboBox cmbRecPerPage;
 
         private ToolStripTextBox txtSkip;
         private ToolStripButton GotoStripButton;
         private TabPage tabQuery;
         private TextBox txtQuery;
-        protected ToolStripComboBox cmbListViewStyle;
+
         protected ToolStripContainer toolStripContainer1;
         public ToolStrip CustomtoolStrip;
 

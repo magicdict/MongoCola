@@ -11,7 +11,7 @@ namespace MagicMongoDBTool
             InitializeComponent();
             InitToolAndMenu();
             mDataViewInfo = _DataViewInfo;
-            this.cmbListViewStyle.Visible = false;
+            _dataShower.Add(lstData);
         }
         private void ctlUserView_Load(object sender, EventArgs e)
         {
@@ -37,7 +37,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddUserStripButton_Click(object sender, EventArgs e)
         {
-            if (IsAdminDB)
+            if (mDataViewInfo.IsAdminDB)
             {
                 SystemManager.OpenForm(new frmUser(true));
             }
@@ -54,7 +54,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RemoveUserStripButton_Click(object sender, EventArgs e)
         {
-            if (IsAdminDB)
+            if (mDataViewInfo.IsAdminDB)
             {
                 RemoveUserFromAdmin();
             }

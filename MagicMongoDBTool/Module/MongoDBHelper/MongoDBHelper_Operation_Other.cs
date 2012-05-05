@@ -52,9 +52,12 @@ namespace MagicMongoDBTool.Module
                 gfs.Download(LocalFileName, strRemoteFileName);
                 System.Diagnostics.Process.Start(LocalFileName);
             }
-            catch
+            catch (System.ComponentModel.Win32Exception) {
+                MyMessageBox.ShowEasyMessage("Error", "No Program can open this file");
+            }
+            catch (Exception ex)
             {
-                throw;
+                MyMessageBox.ShowMessage("Error", "Exception happend when open file", ex.ToString());
             }
         }
         /// <summary>

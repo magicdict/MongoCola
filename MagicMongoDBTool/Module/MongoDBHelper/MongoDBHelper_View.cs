@@ -620,11 +620,45 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public int LimitCnt;
             /// <summary>
-            /// 
+            /// 查询
             /// </summary>
             public String Query;
-
+            /// <summary>
+            /// 解释
+            /// </summary>
             public String Explain;
+            /// <summary>
+            /// 是否为Admin数据库
+            /// </summary>
+            public Boolean IsAdminDB{
+                get
+                {
+                    String strNodeData = strDBTag.Split(":".ToCharArray())[1];
+                    String[] DataList = strNodeData.Split("/".ToCharArray());
+                    if (DataList[(int)MongoDBHelper.PathLv.DatabaseLV] == MongoDBHelper.DATABASE_NAME_ADMIN)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            /// <summary>
+            /// 是否为系统数据集
+            /// </summary>
+            public Boolean IsSystemCollection
+            {
+                get
+                {
+                    String strNodeData = strDBTag.Split(":".ToCharArray())[1];
+                    String[] DataList = strNodeData.Split("/".ToCharArray());
+                    return MongoDBHelper.IsSystemCollection(DataList[(int)MongoDBHelper.PathLv.DatabaseLV],
+                                                            DataList[(int)MongoDBHelper.PathLv.CollectionLV]);
+
+                }
+            }
         }
         /// <summary>
         /// 数据导航

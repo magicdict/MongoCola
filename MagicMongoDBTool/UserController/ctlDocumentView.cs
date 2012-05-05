@@ -12,27 +12,9 @@ namespace MagicMongoDBTool
             InitializeComponent();
             InitToolAndMenu();
             mDataViewInfo = _DataViewInfo;
-            this.cmbListViewStyle.Visible = false;
-        }
-        /// <summary>
-        /// 鼠标动作（非顶层）
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void trvData_MouseClick_NotTop(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                this.contextMenuStripMain = new ContextMenuStrip();
-                this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
-                this.contextMenuStripMain.Items.Add(this.ModifyElementToolStripMenuItem.Clone());
-                this.contextMenuStripMain.Items.Add(this.DropElementToolStripMenuItem.Clone());
-                this.contextMenuStripMain.Items.Add(this.CopyElementToolStripMenuItem.Clone());
-                this.contextMenuStripMain.Items.Add(this.CutElementToolStripMenuItem.Clone());
-                this.contextMenuStripMain.Items.Add(this.PasteElementToolStripMenuItem.Clone());
-                trvData.DatatreeView.ContextMenuStrip = this.contextMenuStripMain;
-                contextMenuStripMain.Show(trvData.DatatreeView.PointToScreen(e.Location));
-            }
+            _dataShower.Add(lstData);
+            _dataShower.Add(txtData);
+            _dataShower.Add(trvData);
         }
         private void ctlDocumentView_Load(object sender, EventArgs e)
         {
@@ -66,7 +48,7 @@ namespace MagicMongoDBTool
                 this.NewDocumentStripButton.Enabled = true;
                 this.NewDocumentToolStripMenuItem.Enabled = true;
             }
-            
+
             this.trvData.DatatreeView.MouseClick += new MouseEventHandler(trvData_MouseClick_Top);
             this.trvData.DatatreeView.AfterSelect += new TreeViewEventHandler(trvData_AfterSelect_Top);
             this.trvData.DatatreeView.KeyDown += new KeyEventHandler(trvData_KeyDown);
@@ -79,7 +61,7 @@ namespace MagicMongoDBTool
             this.lstData.MouseClick += new MouseEventHandler(lstData_MouseClick);
             this.lstData.MouseDoubleClick += new MouseEventHandler(lstData_MouseDoubleClick);
             this.tabDataShower.SelectedIndexChanged += new EventHandler(
-            //If tabpage changed,the selected data in dataview will disappear,set delete selected record to false
+                //If tabpage changed,the selected data in dataview will disappear,set delete selected record to false
                 (x, y) =>
                 {
                     this.DelSelectRecordToolToolStripMenuItem.Enabled = false;
@@ -92,7 +74,26 @@ namespace MagicMongoDBTool
         }
 
         #region"数据展示区操作"
-
+        /// <summary>
+        /// 鼠标动作（非顶层）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trvData_MouseClick_NotTop(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                this.contextMenuStripMain = new ContextMenuStrip();
+                this.contextMenuStripMain.Items.Add(this.AddElementToolStripMenuItem.Clone());
+                this.contextMenuStripMain.Items.Add(this.ModifyElementToolStripMenuItem.Clone());
+                this.contextMenuStripMain.Items.Add(this.DropElementToolStripMenuItem.Clone());
+                this.contextMenuStripMain.Items.Add(this.CopyElementToolStripMenuItem.Clone());
+                this.contextMenuStripMain.Items.Add(this.CutElementToolStripMenuItem.Clone());
+                this.contextMenuStripMain.Items.Add(this.PasteElementToolStripMenuItem.Clone());
+                trvData.DatatreeView.ContextMenuStrip = this.contextMenuStripMain;
+                contextMenuStripMain.Show(trvData.DatatreeView.PointToScreen(e.Location));
+            }
+        }
         /// <summary>
         /// 是否需要改变选中节点
         /// </summary>
@@ -380,8 +381,7 @@ namespace MagicMongoDBTool
         //<param name="e"></param>
         private void lstData_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            if (lstData.SelectedItems.Count > 0 && !IsSystemCollection && !mDataViewInfo.IsReadOnly)
+            if (lstData.SelectedItems.Count > 0 && !mDataViewInfo.IsSystemCollection && !mDataViewInfo.IsReadOnly)
             {
                 DelSelectRecordToolToolStripMenuItem.Enabled = true;
                 DelSelectRecordToolStripButton.Enabled = true;
@@ -606,7 +606,5 @@ namespace MagicMongoDBTool
             IsNeedRefresh = true;
         }
         #endregion
-
-
     }
 }

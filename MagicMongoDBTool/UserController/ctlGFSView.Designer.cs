@@ -29,6 +29,7 @@ namespace MagicMongoDBTool
         /// </summary>
         private void InitializeComponent()
         {
+            this.cmbListViewStyle = new System.Windows.Forms.ToolStripComboBox();
             this.OpenFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UploadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UploadFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,13 +44,60 @@ namespace MagicMongoDBTool
             this.tabTreeView.SuspendLayout();
             this.tabTableView.SuspendLayout();
             this.tabTextView.SuspendLayout();
+            this.toolStripContainer1.ContentPanel.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tabDataShower
+            // 
+            this.tabDataShower.Size = new System.Drawing.Size(917, 391);
+            // 
+            // tabTreeView
+            // 
+            this.tabTreeView.Size = new System.Drawing.Size(909, 366);
+            // 
+            // tabTableView
+            // 
+            this.tabTableView.Size = new System.Drawing.Size(909, 366);
+            // 
+            // trvData
+            // 
+            this.trvData.Size = new System.Drawing.Size(903, 360);
             // 
             // lstData
             // 
+            this.lstData.Size = new System.Drawing.Size(903, 360);
             this.lstData.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseDoubleClick);
             this.lstData.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lstData_MouseClick);
             this.lstData.SelectedIndexChanged += new System.EventHandler(this.lstData_SelectedIndexChanged);
+            // 
+            // tabTextView
+            // 
+            this.tabTextView.Size = new System.Drawing.Size(909, 366);
+            // 
+            // txtData
+            // 
+            this.txtData.Size = new System.Drawing.Size(903, 360);
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(917, 391);
+            // 
+            // cmbListViewStyle
+            // 
+            this.cmbListViewStyle.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cmbListViewStyle.Items.AddRange(new object[] {
+            "LagreIcon",
+            "Details",
+            "SmallIcon",
+            "List",
+            "Tile"});
+            this.cmbListViewStyle.Name = "cmbListViewStyle";
+            this.cmbListViewStyle.Size = new System.Drawing.Size(121, 21);
+            this.cmbListViewStyle.Text = "Details";
             // 
             // OpenFileToolStripMenuItem
             // 
@@ -138,26 +186,33 @@ namespace MagicMongoDBTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.IsDataView = false;
+            this.IsDocumentView = false;
             this.Name = "ctlGFSView";
             this.Load += new System.EventHandler(this.ctlGFSView_Load);
+            this.Controls.SetChildIndex(this.toolStripContainer1, 0);
             this.tabDataShower.ResumeLayout(false);
             this.tabTreeView.ResumeLayout(false);
             this.tabTableView.ResumeLayout(false);
             this.tabTextView.ResumeLayout(false);
             this.tabTextView.PerformLayout();
+            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         private void InitTool()
         {
-            this.ViewtoolStrip.Items.Insert(0, DeleteFileStripButton);
-            this.ViewtoolStrip.Items.Insert(0, DownloadFileStripButton);
-            this.ViewtoolStrip.Items.Insert(0, UpLoadFolderStripButton);
-            this.ViewtoolStrip.Items.Insert(0, UploadFileStripButton);
-            this.ViewtoolStrip.Items.Insert(0, OpenFileStripButton);
+            this.CustomtoolStrip.Items.Insert(0, cmbListViewStyle);
+            this.CustomtoolStrip.Items.Insert(0, DeleteFileStripButton);
+            this.CustomtoolStrip.Items.Insert(0, DownloadFileStripButton);
+            this.CustomtoolStrip.Items.Insert(0, UpLoadFolderStripButton);
+            this.CustomtoolStrip.Items.Insert(0, UploadFileStripButton);
+            this.CustomtoolStrip.Items.Insert(0, OpenFileStripButton);
+
+            this.tabDataShower.TabPages.Remove(tabTextView);
+            this.tabDataShower.TabPages.Remove(tabTreeView);
 
             this.contextMenuStripMain.Items.Insert(0, DeleteFileToolStripMenuItem);
             this.contextMenuStripMain.Items.Insert(0, DownloadFileToolStripMenuItem);
@@ -167,6 +222,7 @@ namespace MagicMongoDBTool
         }
         #endregion
 
+        private ToolStripComboBox cmbListViewStyle;
 
         private ToolStripMenuItem OpenFileToolStripMenuItem;
         private ToolStripMenuItem UploadFileToolStripMenuItem;

@@ -104,7 +104,7 @@ namespace MagicMongoDBTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.IsDataView = false;
+            this.IsDocumentView = false;
             this.Name = "ctlUserView";
             this.Load += new System.EventHandler(this.ctlUserView_Load);
             this.tabDataShower.ResumeLayout(false);
@@ -118,9 +118,13 @@ namespace MagicMongoDBTool
         }
 
         private void InitToolAndMenu(){
-            this.ViewtoolStrip.Items.Insert(0, RemoveUserStripButton);
-            this.ViewtoolStrip.Items.Insert(0, ChangePasswordStripButton);
-            this.ViewtoolStrip.Items.Insert(0, AddUserStripButton);
+            this.CustomtoolStrip.Items.Insert(0, RemoveUserStripButton);
+            this.CustomtoolStrip.Items.Insert(0, ChangePasswordStripButton);
+            this.CustomtoolStrip.Items.Insert(0, AddUserStripButton);
+
+            this.tabDataShower.TabPages.Remove(tabTextView);
+            this.tabDataShower.TabPages.Remove(tabTreeView);
+
             this.contextMenuStripMain.Items.Insert(0,RemoveUserToolStripMenuItem);
             this.contextMenuStripMain.Items.Insert(0,ChangePasswordToolStripMenuItem);
             this.contextMenuStripMain.Items.Insert(0,AddUserToolStripMenuItem);

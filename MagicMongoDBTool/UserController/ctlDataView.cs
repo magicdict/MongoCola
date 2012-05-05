@@ -25,17 +25,11 @@ namespace MagicMongoDBTool.UserController
         public Boolean IsNeedRefresh = false;
         private Boolean _IsDataView = true;
         [Description("Is used for display a data collection")]
-        public Boolean IsDataView
+        public Boolean IsDocumentView
         {
             set
             {
                 _IsDataView = value;
-
-                this.tabTextView.Visible = _IsDataView;
-                this.tabTreeView.Visible = _IsDataView;
-                this.tabQuery.Visible = _IsDataView;
-
-
                 CollapseAllStripButton.Visible = _IsDataView;
                 ExpandAllStripButton.Visible = _IsDataView;
             }
@@ -62,22 +56,6 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         public event EventHandler CloseTab;
         /// <summary>
-        /// 是否为Admin数据库
-        /// </summary>
-        protected Boolean IsAdminDB;
-        /// <summary>
-        /// 是否为系统数据集
-        /// </summary>
-        protected Boolean IsSystemCollection;
-        /// <summary>
-        /// 节点类型
-        /// </summary>
-        private String strNodeType;
-        /// <summary>
-        /// 节点路径
-        /// </summary>
-        private String strNodeData;
-        /// <summary>
         /// 加载数据集控件
         /// </summary>
         /// <param name="sender"></param>
@@ -86,50 +64,19 @@ namespace MagicMongoDBTool.UserController
         {
             if (mDataViewInfo == null) { return; }
             this.cmbRecPerPage.SelectedIndex = 1;
-            this.cmbListViewStyle.Visible = false;
             mDataViewInfo.LimitCnt = 100;
-            strNodeType = mDataViewInfo.strDBTag.Split(":".ToCharArray())[0];
-            strNodeData = mDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
-
-            String[] DataList = strNodeData.Split("/".ToCharArray());
-            if (DataList[(int)MongoDBHelper.PathLv.DatabaseLV] == MongoDBHelper.DATABASE_NAME_ADMIN)
-            {
-                IsAdminDB = true;
-            }
-            IsSystemCollection = MongoDBHelper.IsSystemCollection(DataList[(int)MongoDBHelper.PathLv.DatabaseLV],
-                                                                  DataList[(int)MongoDBHelper.PathLv.CollectionLV]);
-
-            if (strNodeType == MongoDBHelper.COLLECTION_TAG)
-            {
-                _dataShower.Add(lstData);
-                _dataShower.Add(trvData);
-                _dataShower.Add(txtData);
-            }
-            else
-            {
-                _dataShower.Add(lstData);
-                this.tabDataShower.Controls.Remove(tabTreeView);
-                this.tabDataShower.Controls.Remove(tabTextView);
-            }
-
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 //数据显示区
                 this.tabTreeView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Tree);
                 this.tabTableView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Table);
                 this.tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
-
-
-
                 this.PrePageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
                 this.NextPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
                 this.FirstPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_First);
                 this.LastPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Last);
                 this.QueryStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Query);
                 this.FilterStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_DataFilter);
-
-
-
                 this.RefreshStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Refresh);
                 this.CloseStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
                 this.ExpandAllStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Expansion);

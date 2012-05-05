@@ -12,10 +12,10 @@ namespace MagicMongoDBTool
             InitializeComponent();
             InitTool();
             mDataViewInfo = _DataViewInfo;
+            _dataShower.Add(lstData);
         }
         private void ctlGFSView_Load(object sender, EventArgs e)
         {
-
             OpenFileToolStripMenuItem.Click += new EventHandler(OpenFileStripButton_Click);
             DownloadFileToolStripMenuItem.Click += new EventHandler(DownloadFileStripButton_Click);
             UploadFileToolStripMenuItem.Click += new EventHandler(UploadFileStripButton_Click);
@@ -239,12 +239,12 @@ namespace MagicMongoDBTool
             }
         }
 
-        protected  void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
+        protected void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             OpenFileStripButton_Click(sender, e);
         }
 
-        protected  void lstData_MouseClick(object sender, MouseEventArgs e)
+        protected void lstData_MouseClick(object sender, MouseEventArgs e)
         {
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
             if (lstData.SelectedItems.Count > 0)
