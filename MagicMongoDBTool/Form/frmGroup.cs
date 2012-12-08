@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -61,15 +62,21 @@ namespace MagicMongoDBTool
             {
                 ///SkipCnt Reset
                 var Result = mongoCol.Group(query, groupdoc, Initial, reduce, finalize);
+                //图形化初始化
+                chartResult.Series.Clear();
+                Series SeriesResult = new Series("Result");
+
                 //防止错误的条件造成的海量数据
                 int Count = 0;
-                foreach (var item in Result)
+                foreach (BsonDocument item in Result)
                 {
                     if (Count == 1000)
                     {
                         break;
                     }
                     resultlst.Add(item);
+                    //必须带有Count元素
+                    SeriesResult.Points.Add(new DataPoint(0,(double)item.GetElement("count").Value));
                     Count++;
                 };
                 MongoDBHelper.FillJSONDataToTextBox(this.txtResult, resultlst, 0);
@@ -78,7 +85,11 @@ namespace MagicMongoDBTool
                     this.txtResult.Text = "Too many result,Display first 1000 records" + System.Environment.NewLine + this.txtResult.Text;
                 }
                 this.txtResult.Select(0, 0);
+                //图形化初始化
+                chartResult.Series.Add(SeriesResult);
+
                 tabGroup.SelectedIndex = 4;
+
             }
             catch (Exception ex)
             {

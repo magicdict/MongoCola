@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.cmbForReduce = new System.Windows.Forms.ComboBox();
             this.cmdSaveReduceJs = new System.Windows.Forms.Button();
             this.lblReduceFunction = new System.Windows.Forms.Label();
@@ -50,6 +53,7 @@
             this.tabGroupField = new System.Windows.Forms.TabPage();
             this.tabInitialize = new System.Windows.Forms.TabPage();
             this.tabResult = new System.Windows.Forms.TabPage();
+            this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmdQuery = new System.Windows.Forms.Button();
             this.tabGroup.SuspendLayout();
             this.tabReduce.SuspendLayout();
@@ -57,6 +61,7 @@
             this.tabGroupField.SuspendLayout();
             this.tabInitialize.SuspendLayout();
             this.tabResult.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbForReduce
@@ -177,7 +182,7 @@
             this.txtResult.Multiline = true;
             this.txtResult.Name = "txtResult";
             this.txtResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResult.Size = new System.Drawing.Size(468, 487);
+            this.txtResult.Size = new System.Drawing.Size(468, 233);
             this.txtResult.TabIndex = 0;
             // 
             // lblAddInitField
@@ -288,6 +293,7 @@
             // 
             // tabResult
             // 
+            this.tabResult.Controls.Add(this.chartResult);
             this.tabResult.Controls.Add(this.lblResult);
             this.tabResult.Controls.Add(this.txtResult);
             this.tabResult.Location = new System.Drawing.Point(4, 24);
@@ -297,6 +303,22 @@
             this.tabResult.TabIndex = 4;
             this.tabResult.Text = "Result";
             this.tabResult.UseVisualStyleBackColor = true;
+            // 
+            // chartResult
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartResult.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartResult.Legends.Add(legend1);
+            this.chartResult.Location = new System.Drawing.Point(22, 278);
+            this.chartResult.Name = "chartResult";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartResult.Series.Add(series1);
+            this.chartResult.Size = new System.Drawing.Size(469, 241);
+            this.chartResult.TabIndex = 28;
+            this.chartResult.Text = "chartResult";
             // 
             // cmdQuery
             // 
@@ -335,6 +357,7 @@
             this.tabInitialize.PerformLayout();
             this.tabResult.ResumeLayout(false);
             this.tabResult.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartResult)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -364,5 +387,6 @@
         private System.Windows.Forms.TabPage tabInitialize;
         private System.Windows.Forms.TabPage tabResult;
         private System.Windows.Forms.Button cmdQuery;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartResult;
     }
 }
