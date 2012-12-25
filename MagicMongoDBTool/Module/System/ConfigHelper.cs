@@ -79,11 +79,28 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 是否启用主从模式[Route的时候，不能设置为True]
             /// </summary>
-            public bool IsSlaveOk;
+            ///public bool IsSlaveOk;
             /// <summary>
             /// 是否为安全模式
             /// </summary>
-            public bool IsSafeMode;
+            ///public bool IsSafeMode;
+
+            /// <summary>
+            /// 使用SSL初始化连接
+            /// </summary>
+            public Boolean UseSsl;
+            /// <summary>
+            /// VerifySslCertificate
+            /// </summary>
+            public Boolean VerifySslCertificate;
+            /// <summary>
+            /// ReadPreference
+            /// </summary>
+            public String ReadPreference;
+            /// <summary>
+            /// WriteConcern
+            /// </summary>
+            public String WriteConcern;
             /// <summary>
             /// WaitQueueSize;
             /// </summary>

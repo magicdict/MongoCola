@@ -1042,7 +1042,7 @@ namespace MagicMongoDBTool
                 mDataViewInfo.IsUseFilter = false;
 
                 mDataViewInfo.IsReadOnly = config.IsReadOnly;
-                mDataViewInfo.IsSafeMode = config.IsSafeMode;
+                //mDataViewInfo.IsSafeMode = config.IsSafeMode;
                 mDataViewInfo.mDataFilter = new DataFilter();
 
                 ctlDataView DataViewctl;

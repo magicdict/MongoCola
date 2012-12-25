@@ -429,7 +429,7 @@ namespace MagicMongoDBTool.Module
             {
                 try
                 {
-                    mongoCol.Remove(Query.EQ(KEY_ID, (BsonValue)strKey), new SafeMode(true));
+                    mongoCol.Remove(Query.EQ(KEY_ID, (BsonValue)strKey), WriteConcern.W2);
                 }
                 catch (Exception)
                 {
@@ -452,7 +452,7 @@ namespace MagicMongoDBTool.Module
             {
                 try
                 {
-                    mongoCol.Insert<BsonDocument>(document, new SafeMode(true));
+                    mongoCol.Insert<BsonDocument>(document, WriteConcern.W2);
                     return document.GetElement(KEY_ID).Value;
                 }
                 catch (Exception)

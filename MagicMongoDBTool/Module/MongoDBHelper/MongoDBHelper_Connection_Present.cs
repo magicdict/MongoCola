@@ -182,7 +182,7 @@ namespace MagicMongoDBTool.Module
                                 }
                                 foreach (String item in strAddresslst.Split(",".ToCharArray()))
                                 {
-                                    MongoServerSettings tinySetting = new MongoServerSettings();
+                                    MongoClientSettings tinySetting = new MongoClientSettings();
                                     tinySetting.ConnectionMode = ConnectionMode.Direct;
                                     tinySetting.ReplicaSetName = strAddress[0];
                                     MongoServerAddress tinyAddr;
@@ -195,7 +195,8 @@ namespace MagicMongoDBTool.Module
                                         tinyAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0]);
                                     }
                                     tinySetting.Server = tinyAddr;
-                                    MongoServer tiny = MongoServer.Create(tinySetting);
+                                    //MongoServer tiny = MongoServer.Create(tinySetting);
+                                    MongoServer tiny = new MongoClient(tinySetting).GetServer();
                                     ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, tiny.Instance, null));
                                 }
                                 ShardListNode.Nodes.Add(ShardNode);
@@ -367,7 +368,7 @@ namespace MagicMongoDBTool.Module
                 {
                     MongoServerSettings setting = mongoConn.Settings.Clone();
                     setting.ConnectionMode = ConnectionMode.Direct;
-                    setting.SlaveOk = true;
+                    setting.ReadPreference = ReadPreference.Primary;
                     setting.Server = mServerInstace.Address;
                     InstantSrv = new MongoServer(setting);
                     databaseNameList = InstantSrv.GetDatabaseNames().ToList<String>();

@@ -54,6 +54,26 @@ namespace MagicMongoDBTool
             {
                 this.NumWaitQueueSize.Select(0, 5);
             });
+
+            //读策略
+            //https://github.com/mongodb/mongo-csharp-driver/blob/master/MongoDB.Driver/ReadPreference.cs
+            cmbReadPreference.Items.Add(ReadPreference.Primary.ToString());
+            cmbReadPreference.Items.Add(ReadPreference.PrimaryPreferred.ToString());
+            cmbReadPreference.Items.Add(ReadPreference.Secondary.ToString());
+            cmbReadPreference.Items.Add(ReadPreference.SecondaryPreferred.ToString());
+            cmbReadPreference.Items.Add(ReadPreference.Nearest.ToString());
+
+            //写确认
+            //http://docs.mongodb.org/manual/reference/connection-string/
+            //https://github.com/mongodb/mongo-csharp-driver/blob/master/MongoDB.Driver/WriteConcern.cs
+            cmbWriteConcern.Items.Add(WriteConcern.Unacknowledged.ToString());
+            cmbWriteConcern.Items.Add(WriteConcern.Acknowledged.ToString());
+            cmbWriteConcern.Items.Add(WriteConcern.W2.ToString());
+            cmbWriteConcern.Items.Add(WriteConcern.W3.ToString());
+            cmbWriteConcern.Items.Add(WriteConcern.W4.ToString());
+            cmbWriteConcern.Items.Add(WriteConcern.WMajority.ToString());
+
+
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Title);
@@ -66,8 +86,7 @@ namespace MagicMongoDBTool
                 lblConnectionString.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionString);
                 lblAttentionPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
 
-                chkSlaveOk.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MasterSlave);
-                chkSafeMode.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SafeMode);
+
                 lblsocketTimeout.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SocketTimeOut);
                 lblConnectTimeout.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionTimeOut);
 
@@ -102,9 +121,9 @@ namespace MagicMongoDBTool
             txtUsername.Text = ModifyConn.UserName;
             txtPassword.Text = ModifyConn.Password;
             txtDataBaseName.Text = ModifyConn.DataBaseName;
-
-            chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
-            chkSafeMode.Checked = ModifyConn.IsSafeMode;
+            //Obsolete
+            //chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
+            //chkSafeMode.Checked = ModifyConn.IsSafeMode;
             chkFsync.Checked = ModifyConn.fsync;
             chkJournal.Checked = ModifyConn.journal;
 
@@ -272,8 +291,8 @@ namespace MagicMongoDBTool
 
                 ModifyConn.journal = chkJournal.Checked;
                 ModifyConn.fsync = chkFsync.Checked;
-                ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
-                ModifyConn.IsSafeMode = chkSafeMode.Checked;
+                //ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
+                //ModifyConn.IsSafeMode = chkSafeMode.Checked;
 
                 ModifyConn.ReplSetName = txtReplsetName.Text;
                 ModifyConn.ReplsetList = new List<string>();

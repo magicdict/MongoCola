@@ -57,13 +57,11 @@ namespace MagicMongoDBTool
             this.lblWTimeout = new System.Windows.Forms.Label();
             this.chkJournal = new System.Windows.Forms.CheckBox();
             this.chkFsync = new System.Windows.Forms.CheckBox();
-            this.chkSlaveOk = new System.Windows.Forms.CheckBox();
             this.NumWaitQueueSize = new System.Windows.Forms.NumericUpDown();
             this.NumConnectTimeOut = new System.Windows.Forms.NumericUpDown();
             this.NumSocketTimeOut = new System.Windows.Forms.NumericUpDown();
             this.lblConnectTimeout = new System.Windows.Forms.Label();
             this.lblsocketTimeout = new System.Windows.Forms.Label();
-            this.chkSafeMode = new System.Windows.Forms.CheckBox();
             this.tabreplicaSet = new System.Windows.Forms.TabPage();
             this.cmdRemoveHost = new System.Windows.Forms.Button();
             this.NumReplPort = new System.Windows.Forms.NumericUpDown();
@@ -76,6 +74,12 @@ namespace MagicMongoDBTool
             this.lblMainReplsetName = new System.Windows.Forms.Label();
             this.txtReplsetName = new System.Windows.Forms.TextBox();
             this.tabConnectionS = new System.Windows.Forms.TabPage();
+            this.chkUseSsl = new System.Windows.Forms.CheckBox();
+            this.chkVerifySslCertificate = new System.Windows.Forms.CheckBox();
+            this.lblReadPreference = new System.Windows.Forms.Label();
+            this.cmbReadPreference = new System.Windows.Forms.ComboBox();
+            this.lblWriteConcern = new System.Windows.Forms.Label();
+            this.cmbWriteConcern = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -301,23 +305,27 @@ namespace MagicMongoDBTool
             this.label7.Size = new System.Drawing.Size(468, 16);
             this.label7.TabIndex = 19;
             this.label7.Text = "If you want to connect to a replSet please  fill  replset information at  replset" +
-    " tab.";
+                " tab.";
             // 
             // tabOption
             // 
+            this.tabOption.Controls.Add(this.cmbWriteConcern);
+            this.tabOption.Controls.Add(this.lblWriteConcern);
+            this.tabOption.Controls.Add(this.cmbReadPreference);
+            this.tabOption.Controls.Add(this.lblReadPreference);
+            this.tabOption.Controls.Add(this.chkVerifySslCertificate);
+            this.tabOption.Controls.Add(this.chkUseSsl);
             this.tabOption.Controls.Add(this.lblWtimeoutDescript);
             this.tabOption.Controls.Add(this.NumWTimeoutMS);
             this.tabOption.Controls.Add(this.lblQueueSize);
             this.tabOption.Controls.Add(this.lblWTimeout);
             this.tabOption.Controls.Add(this.chkJournal);
             this.tabOption.Controls.Add(this.chkFsync);
-            this.tabOption.Controls.Add(this.chkSlaveOk);
             this.tabOption.Controls.Add(this.NumWaitQueueSize);
             this.tabOption.Controls.Add(this.NumConnectTimeOut);
             this.tabOption.Controls.Add(this.NumSocketTimeOut);
             this.tabOption.Controls.Add(this.lblConnectTimeout);
             this.tabOption.Controls.Add(this.lblsocketTimeout);
-            this.tabOption.Controls.Add(this.chkSafeMode);
             this.tabOption.Location = new System.Drawing.Point(4, 25);
             this.tabOption.Name = "tabOption";
             this.tabOption.Padding = new System.Windows.Forms.Padding(3);
@@ -334,7 +342,7 @@ namespace MagicMongoDBTool
             this.lblWtimeoutDescript.Size = new System.Drawing.Size(480, 16);
             this.lblWtimeoutDescript.TabIndex = 33;
             this.lblWtimeoutDescript.Text = "The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true." +
-    "";
+                "";
             // 
             // NumWTimeoutMS
             // 
@@ -370,7 +378,7 @@ namespace MagicMongoDBTool
             // chkJournal
             // 
             this.chkJournal.AutoSize = true;
-            this.chkJournal.Location = new System.Drawing.Point(232, 49);
+            this.chkJournal.Location = new System.Drawing.Point(119, 38);
             this.chkJournal.Name = "chkJournal";
             this.chkJournal.Size = new System.Drawing.Size(67, 20);
             this.chkJournal.TabIndex = 4;
@@ -380,23 +388,12 @@ namespace MagicMongoDBTool
             // chkFsync
             // 
             this.chkFsync.AutoSize = true;
-            this.chkFsync.Location = new System.Drawing.Point(146, 49);
+            this.chkFsync.Location = new System.Drawing.Point(33, 38);
             this.chkFsync.Name = "chkFsync";
             this.chkFsync.Size = new System.Drawing.Size(58, 20);
             this.chkFsync.TabIndex = 3;
             this.chkFsync.Text = "fsync";
             this.chkFsync.UseVisualStyleBackColor = true;
-            // 
-            // chkSlaveOk
-            // 
-            this.chkSlaveOk.AutoSize = true;
-            this.chkSlaveOk.BackColor = System.Drawing.Color.Transparent;
-            this.chkSlaveOk.Location = new System.Drawing.Point(312, 49);
-            this.chkSlaveOk.Name = "chkSlaveOk";
-            this.chkSlaveOk.Size = new System.Drawing.Size(80, 20);
-            this.chkSlaveOk.TabIndex = 5;
-            this.chkSlaveOk.Text = "SlaveOK";
-            this.chkSlaveOk.UseVisualStyleBackColor = false;
             // 
             // NumWaitQueueSize
             // 
@@ -454,16 +451,6 @@ namespace MagicMongoDBTool
             this.lblsocketTimeout.Size = new System.Drawing.Size(125, 16);
             this.lblsocketTimeout.TabIndex = 22;
             this.lblsocketTimeout.Text = "socketTimeout(MS)";
-            // 
-            // chkSafeMode
-            // 
-            this.chkSafeMode.AutoSize = true;
-            this.chkSafeMode.Location = new System.Drawing.Point(33, 49);
-            this.chkSafeMode.Name = "chkSafeMode";
-            this.chkSafeMode.Size = new System.Drawing.Size(90, 20);
-            this.chkSafeMode.TabIndex = 2;
-            this.chkSafeMode.Text = "SafeMode";
-            this.chkSafeMode.UseVisualStyleBackColor = true;
             // 
             // tabreplicaSet
             // 
@@ -561,8 +548,8 @@ namespace MagicMongoDBTool
             this.lblReplsetNameDescription.Size = new System.Drawing.Size(707, 41);
             this.lblReplsetNameDescription.TabIndex = 30;
             this.lblReplsetNameDescription.Text = "The driver verifies that the name of the replica set it connects to matches this " +
-    "name. Implies that the hosts given are a seed list, and the driver will attempt " +
-    "to find all members of the set.";
+                "name. Implies that the hosts given are a seed list, and the driver will attempt " +
+                "to find all members of the set.";
             // 
             // lblMainReplsetName
             // 
@@ -591,6 +578,60 @@ namespace MagicMongoDBTool
             this.tabConnectionS.TabIndex = 1;
             this.tabConnectionS.Text = "Connection String";
             this.tabConnectionS.UseVisualStyleBackColor = true;
+            // 
+            // chkUseSsl
+            // 
+            this.chkUseSsl.AutoSize = true;
+            this.chkUseSsl.Location = new System.Drawing.Point(245, 42);
+            this.chkUseSsl.Name = "chkUseSsl";
+            this.chkUseSsl.Size = new System.Drawing.Size(71, 20);
+            this.chkUseSsl.TabIndex = 34;
+            this.chkUseSsl.Text = "UseSsl";
+            this.chkUseSsl.UseVisualStyleBackColor = true;
+            // 
+            // chkVerifySslCertificate
+            // 
+            this.chkVerifySslCertificate.AutoSize = true;
+            this.chkVerifySslCertificate.Location = new System.Drawing.Point(358, 42);
+            this.chkVerifySslCertificate.Name = "chkVerifySslCertificate";
+            this.chkVerifySslCertificate.Size = new System.Drawing.Size(139, 20);
+            this.chkVerifySslCertificate.TabIndex = 35;
+            this.chkVerifySslCertificate.Text = "VerifySslCertificate";
+            this.chkVerifySslCertificate.UseVisualStyleBackColor = true;
+            // 
+            // lblReadPreference
+            // 
+            this.lblReadPreference.AutoSize = true;
+            this.lblReadPreference.Location = new System.Drawing.Point(32, 141);
+            this.lblReadPreference.Name = "lblReadPreference";
+            this.lblReadPreference.Size = new System.Drawing.Size(108, 16);
+            this.lblReadPreference.TabIndex = 36;
+            this.lblReadPreference.Text = "ReadPreference";
+            // 
+            // cmbReadPreference
+            // 
+            this.cmbReadPreference.FormattingEnabled = true;
+            this.cmbReadPreference.Location = new System.Drawing.Point(154, 141);
+            this.cmbReadPreference.Name = "cmbReadPreference";
+            this.cmbReadPreference.Size = new System.Drawing.Size(170, 24);
+            this.cmbReadPreference.TabIndex = 37;
+            // 
+            // lblWriteConcern
+            // 
+            this.lblWriteConcern.AutoSize = true;
+            this.lblWriteConcern.Location = new System.Drawing.Point(355, 144);
+            this.lblWriteConcern.Name = "lblWriteConcern";
+            this.lblWriteConcern.Size = new System.Drawing.Size(89, 16);
+            this.lblWriteConcern.TabIndex = 38;
+            this.lblWriteConcern.Text = "WriteConcern";
+            // 
+            // cmbWriteConcern
+            // 
+            this.cmbWriteConcern.FormattingEnabled = true;
+            this.cmbWriteConcern.Location = new System.Drawing.Point(477, 141);
+            this.cmbWriteConcern.Name = "cmbWriteConcern";
+            this.cmbWriteConcern.Size = new System.Drawing.Size(170, 24);
+            this.cmbWriteConcern.TabIndex = 39;
             // 
             // frmAddConnection
             // 
@@ -655,10 +696,8 @@ namespace MagicMongoDBTool
         private TabPage tabBasic;
         private TabPage tabConnectionS;
         private TabPage tabOption;
-        private CheckBox chkSlaveOk;
         private NumericUpDown NumSocketTimeOut;
         private Label lblsocketTimeout;
-        private CheckBox chkSafeMode;
         private Label lblConnectTimeout;
         private NumericUpDown NumConnectTimeOut;
         private CheckBox chkFsync;
@@ -680,5 +719,11 @@ namespace MagicMongoDBTool
         private TextBox txtReplHost;
         private Label lblReplHost;
         private Button cmdRemoveHost;
+        private CheckBox chkUseSsl;
+        private CheckBox chkVerifySslCertificate;
+        private ComboBox cmbReadPreference;
+        private Label lblReadPreference;
+        private ComboBox cmbWriteConcern;
+        private Label lblWriteConcern;
     }
 }

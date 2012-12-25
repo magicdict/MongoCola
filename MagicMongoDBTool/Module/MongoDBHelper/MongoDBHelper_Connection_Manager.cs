@@ -52,9 +52,12 @@ namespace MagicMongoDBTool.Module
             {
                 mongoSvrSetting.ConnectionMode = ConnectionMode.Direct;
                 //当一个服务器作为从属服务器，副本组中的备用服务器，这里一定要设置为SlaveOK,默认情况下是不可以读取的
-                mongoSvrSetting.SlaveOk = config.IsSlaveOk;
+                //mongoSvrSetting.SlaveOk = config.IsSlaveOk;
+                mongoSvrSetting.ReadPreference = new ReadPreference();
                 //安全模式
-                mongoSvrSetting.SafeMode = new SafeMode(config.IsSafeMode);
+                //mongoSvrSetting.SafeMode = new SafeMode(config.IsSafeMode);
+                mongoSvrSetting.WriteConcern = new WriteConcern();
+
                 //Replset时候可以不用设置吗？                    
                 mongoSvrSetting.Server = new MongoServerAddress(config.Host, config.Port);
                 //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
@@ -124,7 +127,8 @@ namespace MagicMongoDBTool.Module
             else
             {
                 //使用MongoConnectionString建立连接
-                mongoSvrSetting = MongoUrl.Create(config.ConnectionString).ToServerSettings();
+                //mongoSvrSetting = MongoUrl.Create(config.ConnectionString).ToServerSettings();
+                mongoSvrSetting = MongoServerSettings.FromUrl(MongoUrl.Create(config.ConnectionString));
             }
             MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
             return masterMongoSvr;
@@ -151,8 +155,8 @@ namespace MagicMongoDBTool.Module
                 }
                 config.Host = mongourl.Server.Host;
                 config.Port = mongourl.Server.Port;
-                config.IsSlaveOk = mongourl.SlaveOk;
-                config.IsSafeMode = mongourl.SafeMode.Enabled;
+                //config.ReadPreference = mongourl.ReadPreference;
+                //config.IsSafeMode = mongourl.SafeMode.Enabled;
                 config.socketTimeoutMS = (int)mongourl.SocketTimeout.TotalMilliseconds;
                 config.connectTimeoutMS = (int)mongourl.ConnectTimeout.TotalMilliseconds;
                 config.wtimeoutMS = (int)mongourl.WaitQueueTimeout.TotalMilliseconds;

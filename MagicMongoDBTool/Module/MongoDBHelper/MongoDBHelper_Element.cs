@@ -124,7 +124,7 @@ namespace MagicMongoDBTool.Module
         public static String AddElement(String ElementPath, BsonElement AddElement)
         {
             BsonDocument BaseDoc = SystemManager.CurrentDocument;
-            SafeModeResult rtn;
+            WriteConcernResult rtn;
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonDocument)
             {

@@ -130,7 +130,7 @@ namespace MagicMongoDBTool.Module
             PrimarySetting.Server = new MongoServerAddress(SystemManager.ConfigHelperInstance.ConnectionList[HostList].Host,
                                                            SystemManager.ConfigHelperInstance.ConnectionList[HostList].Port);
             //如果不设置的话，会有错误：不是Primary服务器，SlaveOK 是 False
-            PrimarySetting.SlaveOk = true;
+            PrimarySetting.ReadPreference = ReadPreference.Primary;
 
             MongoServer PrimarySvr = new MongoServer(PrimarySetting);
             BsonDocument config = new BsonDocument();
