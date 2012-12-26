@@ -52,12 +52,52 @@ namespace MagicMongoDBTool.Module
             {
                 mongoSvrSetting.ConnectionMode = ConnectionMode.Direct;
                 //当一个服务器作为从属服务器，副本组中的备用服务器，这里一定要设置为SlaveOK,默认情况下是不可以读取的
-                //mongoSvrSetting.SlaveOk = config.IsSlaveOk;
-                mongoSvrSetting.ReadPreference = new ReadPreference();
+                //SlaveOK 过时,使用ReadPreference
+                if (config.ReadPreference == ReadPreference.Primary.ToString())
+                {
+                    mongoSvrSetting.ReadPreference = ReadPreference.Primary;
+                }
+                if (config.ReadPreference == ReadPreference.PrimaryPreferred.ToString())
+                {
+                    mongoSvrSetting.ReadPreference = ReadPreference.PrimaryPreferred;
+                }
+                if (config.ReadPreference == ReadPreference.Secondary.ToString())
+                {
+                    mongoSvrSetting.ReadPreference = ReadPreference.Secondary;
+                }
+                if (config.ReadPreference == ReadPreference.SecondaryPreferred.ToString())
+                {
+                    mongoSvrSetting.ReadPreference = ReadPreference.SecondaryPreferred;
+                }
+                if (config.ReadPreference == ReadPreference.Nearest.ToString())
+                {
+                    mongoSvrSetting.ReadPreference = ReadPreference.Nearest;
+                }
                 //安全模式
-                //mongoSvrSetting.SafeMode = new SafeMode(config.IsSafeMode);
-                mongoSvrSetting.WriteConcern = new WriteConcern();
-
+                if (config.WriteConcern == WriteConcern.Unacknowledged.ToString())
+                {
+                    mongoSvrSetting.WriteConcern = WriteConcern.Unacknowledged;
+                }
+                if (config.WriteConcern == WriteConcern.Acknowledged.ToString())
+                {
+                    mongoSvrSetting.WriteConcern = WriteConcern.Acknowledged;
+                }
+                if (config.WriteConcern == WriteConcern.W2.ToString())
+                {
+                    mongoSvrSetting.WriteConcern = WriteConcern.W2;
+                }
+                if (config.WriteConcern == WriteConcern.W3.ToString())
+                {
+                    mongoSvrSetting.WriteConcern = WriteConcern.W3;
+                }
+                if (config.WriteConcern == WriteConcern.W4.ToString())
+                {
+                    mongoSvrSetting.WriteConcern = WriteConcern.W4;
+                }
+                if (config.WriteConcern == WriteConcern.WMajority.ToString())
+                {
+                    mongoSvrSetting.WriteConcern = WriteConcern.WMajority;
+                } 
                 //Replset时候可以不用设置吗？                    
                 mongoSvrSetting.Server = new MongoServerAddress(config.Host, config.Port);
                 //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题

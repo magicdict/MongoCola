@@ -121,9 +121,14 @@ namespace MagicMongoDBTool
             txtUsername.Text = ModifyConn.UserName;
             txtPassword.Text = ModifyConn.Password;
             txtDataBaseName.Text = ModifyConn.DataBaseName;
-            //Obsolete
-            //chkSlaveOk.Checked = ModifyConn.IsSlaveOk;
-            //chkSafeMode.Checked = ModifyConn.IsSafeMode;
+            if (ModifyConn.ReadPreference != string.Empty)
+            {
+                cmbReadPreference.Text = ModifyConn.ReadPreference;
+            }
+            if (ModifyConn.WriteConcern != string.Empty)
+            {
+                cmbWriteConcern.Text = ModifyConn.WriteConcern;
+            }
             chkFsync.Checked = ModifyConn.fsync;
             chkJournal.Checked = ModifyConn.journal;
 
@@ -291,8 +296,8 @@ namespace MagicMongoDBTool
 
                 ModifyConn.journal = chkJournal.Checked;
                 ModifyConn.fsync = chkFsync.Checked;
-                //ModifyConn.IsSlaveOk = chkSlaveOk.Checked;
-                //ModifyConn.IsSafeMode = chkSafeMode.Checked;
+                ModifyConn.WriteConcern = cmbWriteConcern.Text;
+                ModifyConn.ReadPreference = cmbReadPreference.Text;
 
                 ModifyConn.ReplSetName = txtReplsetName.Text;
                 ModifyConn.ReplsetList = new List<string>();

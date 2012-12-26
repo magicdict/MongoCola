@@ -51,6 +51,12 @@ namespace MagicMongoDBTool
             this.tabBasic = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.tabOption = new System.Windows.Forms.TabPage();
+            this.cmbWriteConcern = new System.Windows.Forms.ComboBox();
+            this.lblWriteConcern = new System.Windows.Forms.Label();
+            this.cmbReadPreference = new System.Windows.Forms.ComboBox();
+            this.lblReadPreference = new System.Windows.Forms.Label();
+            this.chkVerifySslCertificate = new System.Windows.Forms.CheckBox();
+            this.chkUseSsl = new System.Windows.Forms.CheckBox();
             this.lblWtimeoutDescript = new System.Windows.Forms.Label();
             this.NumWTimeoutMS = new System.Windows.Forms.NumericUpDown();
             this.lblQueueSize = new System.Windows.Forms.Label();
@@ -74,12 +80,6 @@ namespace MagicMongoDBTool
             this.lblMainReplsetName = new System.Windows.Forms.Label();
             this.txtReplsetName = new System.Windows.Forms.TextBox();
             this.tabConnectionS = new System.Windows.Forms.TabPage();
-            this.chkUseSsl = new System.Windows.Forms.CheckBox();
-            this.chkVerifySslCertificate = new System.Windows.Forms.CheckBox();
-            this.lblReadPreference = new System.Windows.Forms.Label();
-            this.cmbReadPreference = new System.Windows.Forms.ComboBox();
-            this.lblWriteConcern = new System.Windows.Forms.Label();
-            this.cmbWriteConcern = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -334,6 +334,62 @@ namespace MagicMongoDBTool
             this.tabOption.Text = "Option";
             this.tabOption.UseVisualStyleBackColor = true;
             // 
+            // cmbWriteConcern
+            // 
+            this.cmbWriteConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWriteConcern.FormattingEnabled = true;
+            this.cmbWriteConcern.Location = new System.Drawing.Point(477, 141);
+            this.cmbWriteConcern.Name = "cmbWriteConcern";
+            this.cmbWriteConcern.Size = new System.Drawing.Size(170, 24);
+            this.cmbWriteConcern.TabIndex = 39;
+            // 
+            // lblWriteConcern
+            // 
+            this.lblWriteConcern.AutoSize = true;
+            this.lblWriteConcern.Location = new System.Drawing.Point(355, 144);
+            this.lblWriteConcern.Name = "lblWriteConcern";
+            this.lblWriteConcern.Size = new System.Drawing.Size(89, 16);
+            this.lblWriteConcern.TabIndex = 38;
+            this.lblWriteConcern.Text = "WriteConcern";
+            // 
+            // cmbReadPreference
+            // 
+            this.cmbReadPreference.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReadPreference.FormattingEnabled = true;
+            this.cmbReadPreference.Location = new System.Drawing.Point(154, 141);
+            this.cmbReadPreference.Name = "cmbReadPreference";
+            this.cmbReadPreference.Size = new System.Drawing.Size(170, 24);
+            this.cmbReadPreference.TabIndex = 37;
+            // 
+            // lblReadPreference
+            // 
+            this.lblReadPreference.AutoSize = true;
+            this.lblReadPreference.Location = new System.Drawing.Point(32, 141);
+            this.lblReadPreference.Name = "lblReadPreference";
+            this.lblReadPreference.Size = new System.Drawing.Size(108, 16);
+            this.lblReadPreference.TabIndex = 36;
+            this.lblReadPreference.Text = "ReadPreference";
+            // 
+            // chkVerifySslCertificate
+            // 
+            this.chkVerifySslCertificate.AutoSize = true;
+            this.chkVerifySslCertificate.Location = new System.Drawing.Point(358, 42);
+            this.chkVerifySslCertificate.Name = "chkVerifySslCertificate";
+            this.chkVerifySslCertificate.Size = new System.Drawing.Size(139, 20);
+            this.chkVerifySslCertificate.TabIndex = 35;
+            this.chkVerifySslCertificate.Text = "VerifySslCertificate";
+            this.chkVerifySslCertificate.UseVisualStyleBackColor = true;
+            // 
+            // chkUseSsl
+            // 
+            this.chkUseSsl.AutoSize = true;
+            this.chkUseSsl.Location = new System.Drawing.Point(245, 42);
+            this.chkUseSsl.Name = "chkUseSsl";
+            this.chkUseSsl.Size = new System.Drawing.Size(71, 20);
+            this.chkUseSsl.TabIndex = 34;
+            this.chkUseSsl.Text = "UseSsl";
+            this.chkUseSsl.UseVisualStyleBackColor = true;
+            // 
             // lblWtimeoutDescript
             // 
             this.lblWtimeoutDescript.AutoSize = true;
@@ -578,60 +634,6 @@ namespace MagicMongoDBTool
             this.tabConnectionS.TabIndex = 1;
             this.tabConnectionS.Text = "Connection String";
             this.tabConnectionS.UseVisualStyleBackColor = true;
-            // 
-            // chkUseSsl
-            // 
-            this.chkUseSsl.AutoSize = true;
-            this.chkUseSsl.Location = new System.Drawing.Point(245, 42);
-            this.chkUseSsl.Name = "chkUseSsl";
-            this.chkUseSsl.Size = new System.Drawing.Size(71, 20);
-            this.chkUseSsl.TabIndex = 34;
-            this.chkUseSsl.Text = "UseSsl";
-            this.chkUseSsl.UseVisualStyleBackColor = true;
-            // 
-            // chkVerifySslCertificate
-            // 
-            this.chkVerifySslCertificate.AutoSize = true;
-            this.chkVerifySslCertificate.Location = new System.Drawing.Point(358, 42);
-            this.chkVerifySslCertificate.Name = "chkVerifySslCertificate";
-            this.chkVerifySslCertificate.Size = new System.Drawing.Size(139, 20);
-            this.chkVerifySslCertificate.TabIndex = 35;
-            this.chkVerifySslCertificate.Text = "VerifySslCertificate";
-            this.chkVerifySslCertificate.UseVisualStyleBackColor = true;
-            // 
-            // lblReadPreference
-            // 
-            this.lblReadPreference.AutoSize = true;
-            this.lblReadPreference.Location = new System.Drawing.Point(32, 141);
-            this.lblReadPreference.Name = "lblReadPreference";
-            this.lblReadPreference.Size = new System.Drawing.Size(108, 16);
-            this.lblReadPreference.TabIndex = 36;
-            this.lblReadPreference.Text = "ReadPreference";
-            // 
-            // cmbReadPreference
-            // 
-            this.cmbReadPreference.FormattingEnabled = true;
-            this.cmbReadPreference.Location = new System.Drawing.Point(154, 141);
-            this.cmbReadPreference.Name = "cmbReadPreference";
-            this.cmbReadPreference.Size = new System.Drawing.Size(170, 24);
-            this.cmbReadPreference.TabIndex = 37;
-            // 
-            // lblWriteConcern
-            // 
-            this.lblWriteConcern.AutoSize = true;
-            this.lblWriteConcern.Location = new System.Drawing.Point(355, 144);
-            this.lblWriteConcern.Name = "lblWriteConcern";
-            this.lblWriteConcern.Size = new System.Drawing.Size(89, 16);
-            this.lblWriteConcern.TabIndex = 38;
-            this.lblWriteConcern.Text = "WriteConcern";
-            // 
-            // cmbWriteConcern
-            // 
-            this.cmbWriteConcern.FormattingEnabled = true;
-            this.cmbWriteConcern.Location = new System.Drawing.Point(477, 141);
-            this.cmbWriteConcern.Name = "cmbWriteConcern";
-            this.cmbWriteConcern.Size = new System.Drawing.Size(170, 24);
-            this.cmbWriteConcern.TabIndex = 39;
             // 
             // frmAddConnection
             // 
