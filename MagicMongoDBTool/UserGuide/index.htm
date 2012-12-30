@@ -98,8 +98,8 @@
                     <br />
                     <ul>
                         <li>.Net Framework 3.5</li>
-                        <li>MongoDB 2.0.4</li>
-                        <li>C# Offical Driver(1.4.1) if you download the executable file(RAR or ZIP package)
+                        <li>MongoDB 2.2.2</li>
+                        <li>C# Offical Driver(1.7.1) if you download the executable file(RAR or ZIP package)
                             contains the driver DLL,you don't need to download it again.</li>
                         <li>Linux User:<font Color="red">apttitude install libmono-windowsbase3.0-cil</font>(Thanks to Voltron for test Mono on ubuntu.)</li>
                         <li>zTree Jquery-Plugin,Jquery(Rar or Zip Package contains)</li>
@@ -120,7 +120,7 @@
                   Thanks zTree Jquery Plugin http://www.baby666.cn/v3/main.php#_zTreeInfo<br />
                   Thanks 10gen for C# Driver <br />
                   Thanks friends @ www.Cnblogs.com for advice,test,supports <br />
-                  Last Editor：2012-04-15<br />
+                  Last Editor：2013-01-01<br />
                     <br />
                 </font>
             </td>
@@ -140,13 +140,21 @@ MongoCola Release Note
 ========================================================================
 MongoCola is developed by Microsoft .NET (C#)
 You need install .NET framework3.5 to run it.
-The C# Mongo driver is mongo offical C# driver 1.4.2.
-Test Based on MongoDB 2.0.4
+The C# Mongo driver is mongo offical C# driver 1.7.1.
+Test Based on MongoDB 2.2.2
 MongoCola is free and open source.
 
 ========================================================================
 Release History
 ========================================================================
+Ver 1.24 2013/01/01 [Back to IBM GDC]
+1.Upgrade to C# Driver to 1.7.1
+2.System.Windows.Forms.DataVisualization.dll For Data Visualization
+3.Support SSL
+4.Change SafeMode and SlaveOK to ReadPreferce and WriteConcern
+========================================================================
+
+
 Ver 1.22 2012/04/15 
 1.Show the process at status bar when import data from Access And Upload Folder  
 2.Fix the bug of delete document.Now only the record has a _id ObjectKey can be delete.
@@ -477,7 +485,7 @@ This is the first release of MongoCola.
    
                     <br />
                     <br />
-                    <font color="red">You must select the SlaveOK checkbox if the server is a slave server.</font>
+                    <font color="red">You must select the ReadPerference and WriteConcern if the server is a slave server.</font>
                     <br />
                     <img src="images/ServerConnection_Option.PNG" alt="" />
                     <br />

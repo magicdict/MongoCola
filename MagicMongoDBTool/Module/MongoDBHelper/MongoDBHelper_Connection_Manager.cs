@@ -47,6 +47,34 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoServer CreateMongoSetting(ref ConfigHelper.MongoConnectionConfig config)
         {
+
+
+            //            New MongoClient class and default WriteConcern
+            //----------------------------------------------
+
+            //The new default WriteConcern is Acknowledged, but we have introduced the new
+            //default in a way that doesn't alter the behavior of existing programs. We
+            //are introducing a new root class called MongoClient that defaults the 
+            //WriteConcern to Acknowledged. The existing MongoServer Create methods are
+            //deprecated but when used continue to default to a WriteConcern of Unacknowledged.
+
+            //In prior releases you would start using the C# driver with code like this:
+
+            //    var connectionString = "mongodb://localhost";
+            //    var server = MongoServer.Create(connectionString); // deprecated
+            //    var database = server.GetDatabase("test"); // WriteConcern defaulted to Unacknowledged
+
+            //The new way to start using the C# driver is:
+
+            //    var connectionString = "mongodb://localhost";
+            //    var client = new MongoClient(connectionString);
+            //    var server = client.GetServer();
+            //    var database = server.GetDatabase("test"); // WriteConcern defaulted to Acknowledged
+
+            //If you use the old way to start using the driver the default WriteConcern will
+            //be Unacknowledged, but if you use the new way (using MongoClient) the default
+            //WriteConcern will be Acknowledged.
+
             MongoServerSettings mongoSvrSetting = new MongoServerSettings();
             if (String.IsNullOrEmpty(config.ConnectionString))
             {
@@ -73,6 +101,7 @@ namespace MagicMongoDBTool.Module
                 {
                     mongoSvrSetting.ReadPreference = ReadPreference.Nearest;
                 }
+                //Default ReadPreference is Primary
                 //安全模式
                 if (config.WriteConcern == WriteConcern.Unacknowledged.ToString())
                 {
@@ -97,7 +126,9 @@ namespace MagicMongoDBTool.Module
                 if (config.WriteConcern == WriteConcern.WMajority.ToString())
                 {
                     mongoSvrSetting.WriteConcern = WriteConcern.WMajority;
-                } 
+                }
+                //Default WriteConcern is w=0
+
                 //Replset时候可以不用设置吗？                    
                 mongoSvrSetting.Server = new MongoServerAddress(config.Host, config.Port);
                 //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
@@ -195,8 +226,9 @@ namespace MagicMongoDBTool.Module
                 }
                 config.Host = mongourl.Server.Host;
                 config.Port = mongourl.Server.Port;
-                //config.ReadPreference = mongourl.ReadPreference;
-                //config.IsSafeMode = mongourl.SafeMode.Enabled;
+                config.ReadPreference = mongourl.ReadPreference.ToString();
+                //TODO: Is this OK??
+                config.WriteConcern = mongourl.GetWriteConcern(true).ToString();
                 config.socketTimeoutMS = (int)mongourl.SocketTimeout.TotalMilliseconds;
                 config.connectTimeoutMS = (int)mongourl.ConnectTimeout.TotalMilliseconds;
                 config.wtimeoutMS = (int)mongourl.WaitQueueTimeout.TotalMilliseconds;
@@ -218,7 +250,5 @@ namespace MagicMongoDBTool.Module
             }
         }
         #endregion
-
-
     }
 }
