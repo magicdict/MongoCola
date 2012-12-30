@@ -3,13 +3,22 @@ MongoCola Release Note
 ========================================================================
 MongoCola is developed by Microsoft .NET (C#)
 You need install .NET framework3.5 to run it.
-The C# Mongo driver is mongo offical C# driver 1.4.2.
-Test Based on MongoDB 2.0.4
+The C# Mongo driver is mongo offical C# driver 1.7.1.
+Test Based on MongoDB 2.2.2
 MongoCola is free and open source.
 
 ========================================================================
 Release History
 ========================================================================
+Ver 1.24 2013/01/01 [Back to IBM GDC]
+1.Upgrade to C# Driver to 1.7.1
+2.System.Windows.Forms.DataVisualization.dll For Data Visualization
+3.Support SSL
+4.Change SafeMode and SlaveOK to ReadPreferce and WriteConcern
+5.Support TimeToLive Index
+========================================================================
+
+
 Ver 1.22 2012/05/6 
 1.Show the process at status bar when import data from Access And Upload Folder  
 2.Fix the bug of delete document.Now only the record has a _id ObjectKey can be delete.

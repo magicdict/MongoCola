@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MagicMongoDBTool.UserController;
 using MongoDB.Driver;
+using MagicMongoDBTool.UnitTest;
 using System.Threading;
 
 namespace MagicMongoDBTool
@@ -29,14 +30,11 @@ namespace MagicMongoDBTool
             //Init ToolBar
             InitToolBar();
 
-            if (SystemManager.DEBUG_MODE)
+            if (!SystemManager.DEBUG_MODE) 
             {
-                //For test only
-                List<ConfigHelper.MongoConnectionConfig> connLst = new List<ConfigHelper.MongoConnectionConfig>();
-                connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList["Master"]);
-                MongoDBHelper.AddServer(connLst);
-                RefreshToolStripMenuItem_Click(null, null);
-                InitTestData.InitData(SystemManager.GetCurrentServer());
+                //非Debug模式的时候,UT菜单不可使用
+                toolStripMenuItem12.Visible = false;
+                ForMySelfToolStripMenuItem.Visible = false;
             }
             this.Text += SystemManager.Version;
             this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
@@ -2168,7 +2166,19 @@ namespace MagicMongoDBTool
             String strUrl = @"UserGuide\index.htm";
             System.Diagnostics.Process.Start(strUrl);
         }
+        /// <summary>
+        /// Unit Test Form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void forMySelfToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmUnitTest()); 
+        }
+
         #endregion
+
+
 
     }
 }

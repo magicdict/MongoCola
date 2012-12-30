@@ -35,6 +35,8 @@ namespace MagicMongoDBTool
             this.tabIndexMgr = new System.Windows.Forms.TabControl();
             this.tabCurrentIndex = new System.Windows.Forms.TabPage();
             this.tabIndexManager = new System.Windows.Forms.TabPage();
+            this.numTTL = new System.Windows.Forms.NumericUpDown();
+            this.chkExpireData = new System.Windows.Forms.CheckBox();
             this.txtIndexName = new System.Windows.Forms.TextBox();
             this.lblIndexName = new System.Windows.Forms.Label();
             this.chkIsUnique = new System.Windows.Forms.CheckBox();
@@ -49,6 +51,7 @@ namespace MagicMongoDBTool
             this.tabIndexMgr.SuspendLayout();
             this.tabCurrentIndex.SuspendLayout();
             this.tabIndexManager.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTTL)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdAddIndex
@@ -108,6 +111,8 @@ namespace MagicMongoDBTool
             // tabIndexManager
             // 
             this.tabIndexManager.BackColor = System.Drawing.Color.White;
+            this.tabIndexManager.Controls.Add(this.numTTL);
+            this.tabIndexManager.Controls.Add(this.chkExpireData);
             this.tabIndexManager.Controls.Add(this.txtIndexName);
             this.tabIndexManager.Controls.Add(this.lblIndexName);
             this.tabIndexManager.Controls.Add(this.chkIsUnique);
@@ -126,6 +131,31 @@ namespace MagicMongoDBTool
             this.tabIndexManager.Size = new System.Drawing.Size(646, 299);
             this.tabIndexManager.TabIndex = 1;
             this.tabIndexManager.Text = "Create Index";
+            // 
+            // numTTL
+            // 
+            this.numTTL.Enabled = false;
+            this.numTTL.Location = new System.Drawing.Point(167, 230);
+            this.numTTL.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.numTTL.Name = "numTTL";
+            this.numTTL.Size = new System.Drawing.Size(110, 21);
+            this.numTTL.TabIndex = 21;
+            this.numTTL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // chkTTL
+            // 
+            this.chkExpireData.AutoSize = true;
+            this.chkExpireData.Location = new System.Drawing.Point(26, 230);
+            this.chkExpireData.Name = "chkTTL";
+            this.chkExpireData.Size = new System.Drawing.Size(117, 19);
+            this.chkExpireData.TabIndex = 20;
+            this.chkExpireData.Text = "Expire Data(sec)";
+            this.chkExpireData.UseVisualStyleBackColor = true;
+            this.chkExpireData.CheckedChanged += new System.EventHandler(this.chkTTL_CheckedChanged);
             // 
             // txtIndexName
             // 
@@ -146,7 +176,7 @@ namespace MagicMongoDBTool
             // chkIsUnique
             // 
             this.chkIsUnique.AutoSize = true;
-            this.chkIsUnique.Location = new System.Drawing.Point(469, 219);
+            this.chkIsUnique.Location = new System.Drawing.Point(439, 205);
             this.chkIsUnique.Name = "chkIsUnique";
             this.chkIsUnique.Size = new System.Drawing.Size(99, 19);
             this.chkIsUnique.TabIndex = 16;
@@ -156,7 +186,7 @@ namespace MagicMongoDBTool
             // chkIsSparse
             // 
             this.chkIsSparse.AutoSize = true;
-            this.chkIsSparse.Location = new System.Drawing.Point(345, 219);
+            this.chkIsSparse.Location = new System.Drawing.Point(315, 205);
             this.chkIsSparse.Name = "chkIsSparse";
             this.chkIsSparse.Size = new System.Drawing.Size(98, 19);
             this.chkIsSparse.TabIndex = 15;
@@ -166,7 +196,7 @@ namespace MagicMongoDBTool
             // chkIsDroppedDups
             // 
             this.chkIsDroppedDups.AutoSize = true;
-            this.chkIsDroppedDups.Location = new System.Drawing.Point(197, 220);
+            this.chkIsDroppedDups.Location = new System.Drawing.Point(167, 206);
             this.chkIsDroppedDups.Name = "chkIsDroppedDups";
             this.chkIsDroppedDups.Size = new System.Drawing.Size(136, 19);
             this.chkIsDroppedDups.TabIndex = 14;
@@ -176,7 +206,7 @@ namespace MagicMongoDBTool
             // chkIsBackground
             // 
             this.chkIsBackground.AutoSize = true;
-            this.chkIsBackground.Location = new System.Drawing.Point(56, 219);
+            this.chkIsBackground.Location = new System.Drawing.Point(26, 205);
             this.chkIsBackground.Name = "chkIsBackground";
             this.chkIsBackground.Size = new System.Drawing.Size(127, 19);
             this.chkIsBackground.TabIndex = 13;
@@ -242,6 +272,7 @@ namespace MagicMongoDBTool
             this.tabCurrentIndex.ResumeLayout(false);
             this.tabIndexManager.ResumeLayout(false);
             this.tabIndexManager.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numTTL)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -265,5 +296,7 @@ namespace MagicMongoDBTool
         private ctlIndexCreate ctlIndexCreate2;
         private TextBox txtIndexName;
         private System.Windows.Forms.Label lblIndexName;
+        private CheckBox chkExpireData;
+        private NumericUpDown numTTL;
     }
 }

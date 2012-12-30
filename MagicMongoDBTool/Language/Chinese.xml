@@ -132,10 +132,8 @@
   <CollectionIndex_Title>索引管理器</CollectionIndex_Title>
   <CollectionIndex_Tab_Current>当前索引</CollectionIndex_Tab_Current>
   <CollectionIndex_Tab_Current_Del>删除选中</CollectionIndex_Tab_Current_Del>
-
   <CollectionIndex_Tab_Manager>添加索引</CollectionIndex_Tab_Manager>
-  <CollectionIndex_Tab_Manager_ADD>添加索引</CollectionIndex_Tab_Manager_ADD>
-  <CollectionIndex_TabMangt_IndexName_Description>Index Name(Option)</CollectionIndex_TabMangt_IndexName_Description>
+
 
   <!--frmConnect-->
   <Connect_Title>连接</Connect_Title>
@@ -300,14 +298,15 @@
   <GFS_Insert_Option_DirectorySeparatorChar>路径分割符号</GFS_Insert_Option_DirectorySeparatorChar>
   
   <!--Index-->
-  <Index_Background>Background</Index_Background>
-  <Index_RepeatDel>Repeat Delete</Index_RepeatDel>
-  <Index_Sparse>Sparse</Index_Sparse>
-  <Index_Unify>Unify</Index_Unify>
-  <Index_Name>Index Name</Index_Name>
-  <Index_Keys>Keys</Index_Keys>
-  <Index_Version>Version</Index_Version>
-  <Index_NameSpace>NameSpace</Index_NameSpace>
+  <Index_Background>背景</Index_Background>
+  <Index_RepeatDel>删除重复</Index_RepeatDel>
+  <Index_Sparse>稀疏</Index_Sparse>
+  <Index_Unify>唯一</Index_Unify>
+  <Index_Name>索引名称</Index_Name>
+  <Index_Keys>索引键</Index_Keys>
+  <Index_Version>版本</Index_Version>
+  <Index_ExpireData>过期时效(秒)</Index_ExpireData>
+  <Index_NameSpace>名字空间</Index_NameSpace>
   <Index_Asce>升序</Index_Asce>
   <Index_Desc>降序</Index_Desc>
   <Index_NoSort>不排序</Index_NoSort>

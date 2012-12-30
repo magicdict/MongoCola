@@ -132,9 +132,6 @@ namespace MagicMongoDBTool.Module
             CollectionIndex_Tab_Current_Del,
             CollectionIndex_Tab_Manager,
 
-            CollectionIndex_TabMangt_IndexName,
-            CollectionIndex_TabMangt_IndexName_Description,
-
             Connect_Title,
             Connect_Action_Del,
             Connect_Action_Cancel,
@@ -293,6 +290,7 @@ namespace MagicMongoDBTool.Module
             Index_Name,
             Index_Keys,
             Index_Version,
+            Index_ExpireData,
             Index_NameSpace,
 
             //Exception

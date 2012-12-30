@@ -92,6 +92,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UnitTest\frmUnitTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnitTest\frmUnitTest.Designer.cs">
+      <DependentUpon>frmUnitTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\ctlDocumentView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -388,6 +394,9 @@
     <Compile Include="UserController\TreeViewColumns.Designer.cs">
       <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UnitTest\frmUnitTest.resx">
+      <DependentUpon>frmUnitTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlDocumentView.resx">
       <DependentUpon>ctlDocumentView.cs</DependentUpon>
     </EmbeddedResource>

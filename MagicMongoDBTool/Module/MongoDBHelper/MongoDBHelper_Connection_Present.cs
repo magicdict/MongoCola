@@ -43,13 +43,14 @@ namespace MagicMongoDBTool.Module
             FillConnectionToTreeView(tree);
             return ConvertTreeViewTozTreeJson(tree);
         }
-        public static String ConvertBsonTozTreeJson(String RootName,BsonDocument doc,Boolean IsOpen)
+        public static String ConvertBsonTozTreeJson(String RootName, BsonDocument doc, Boolean IsOpen)
         {
             TreeViewColumns trvStatus = new TreeViewColumns();
             List<BsonDocument> datalist = new List<BsonDocument>();
             datalist.Add(doc);
             MongoDBHelper.FillDataToTreeView(RootName, trvStatus, datalist, 0);
-            if (IsOpen) {
+            if (IsOpen)
+            {
                 trvStatus.TreeView.Nodes[0].Expand();
             }
             return ConvertTreeViewTozTreeJson(trvStatus.TreeView);
@@ -86,7 +87,8 @@ namespace MagicMongoDBTool.Module
                 SingleNode.Add("children", ChildrenList);
                 SingleNode.Add("icon", "MainTreeImage" + String.Format("{0:00}", SubNode.ImageIndex) + ".png");
             }
-            if (SubNode.IsExpanded) {
+            if (SubNode.IsExpanded)
+            {
                 SingleNode.Add("open", "true");
             }
             if (SubNode.Tag != null)
@@ -688,7 +690,14 @@ namespace MagicMongoDBTool.Module
                     mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify) + ":" + indexDoc.IsUnique.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_NameSpace) + ":" + indexDoc.Namespace.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Version) + ":" + indexDoc.Version.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
-
+                    if (indexDoc.TimeToLive == TimeSpan.MaxValue)
+                    {
+                        mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_ExpireData) + ":Not Set", (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    }
+                    else
+                    {
+                        mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_ExpireData) + ":" +indexDoc.TimeToLive.TotalSeconds.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    }
                 }
                 else
                 {
@@ -700,6 +709,14 @@ namespace MagicMongoDBTool.Module
                     mongoIndex.Nodes.Add(String.Empty, "IsUnique:" + indexDoc.IsUnique.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty, "NameSpace:" + indexDoc.Namespace.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty, "Version:" + indexDoc.Version.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    if (indexDoc.TimeToLive == TimeSpan.MaxValue)
+                    {
+                        mongoIndex.Nodes.Add(String.Empty, "Expire Data:Not Set", (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    }
+                    else
+                    {
+                        mongoIndex.Nodes.Add(String.Empty, "Expire Data(sec):" + indexDoc.TimeToLive.TotalSeconds.ToString() , (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    }
                 }
                 mongoIndex.ImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
                 mongoIndex.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;

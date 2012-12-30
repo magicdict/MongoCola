@@ -40,7 +40,8 @@ namespace MagicMongoDBTool
                 chkIsSparse.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse);
                 chkIsUnique.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify);
 
-                lblIndexName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_TabMangt_IndexName);
+                lblIndexName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name);
+                chkExpireData.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_ExpireData);
 
                 lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name));
                 lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Version));
@@ -51,7 +52,7 @@ namespace MagicMongoDBTool
                 lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse));
                 lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify));
                 lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel));
-
+                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_ExpireData));
             }
             else
             {
@@ -63,6 +64,7 @@ namespace MagicMongoDBTool
                 lstIndex.Columns.Add("Sparse");
                 lstIndex.Columns.Add("Unify");
                 lstIndex.Columns.Add("DroppedDups");
+                lstIndex.Columns.Add("Expire Data");
             }
             RefreshList();
         }
@@ -117,6 +119,9 @@ namespace MagicMongoDBTool
             option.SetDropDups(chkIsDroppedDups.Checked);
             option.SetSparse(chkIsSparse.Checked);
             option.SetUnique(chkIsUnique.Checked);
+            if (chkExpireData.Checked){
+                option.SetTimeToLive(new TimeSpan(0,0,(int)numTTL.Value));
+            }
             if (txtIndexName.Text != String.Empty && !SystemManager.GetCurrentCollection().IndexExists(txtIndexName.Text))
             {
                 option.SetName(txtIndexName.Text);
@@ -141,8 +146,24 @@ namespace MagicMongoDBTool
                 lst.SubItems.Add(item.IsSparse.ToString());
                 lst.SubItems.Add(item.IsUnique.ToString());
                 lst.SubItems.Add(item.DroppedDups.ToString());
+                if (item.TimeToLive != TimeSpan.MaxValue)
+                {
+                    lst.SubItems.Add(item.TimeToLive.TotalSeconds.ToString());
+                }
+                else {
+                    lst.SubItems.Add("Not Set");
+                }
                 lstIndex.Items.Add(lst);
             }
+        }
+        /// <summary>
+        /// TTL Changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkTTL_CheckedChanged(object sender, EventArgs e)
+        {
+            numTTL.Enabled = chkExpireData.Checked;
         }
     }
 }

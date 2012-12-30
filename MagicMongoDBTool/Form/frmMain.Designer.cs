@@ -112,9 +112,10 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
             this.OptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ThanksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.trvsrvlst = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -125,7 +126,8 @@ namespace MagicMongoDBTool
             this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.ctlShellCommandEditor = new MagicMongoDBTool.ctlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripSeparator();
+            this.ForMySelfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -152,19 +154,19 @@ namespace MagicMongoDBTool
             // 
             this.toolStripStatusSelectedObj.BackColor = System.Drawing.Color.Transparent;
             this.toolStripStatusSelectedObj.Name = "toolStripStatusSelectedObj";
-            this.toolStripStatusSelectedObj.Size = new System.Drawing.Size(38, 17);
+            this.toolStripStatusSelectedObj.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatusSelectedObj.Text = "Ready";
             // 
             // lblUserInfo
             // 
             this.lblUserInfo.Name = "lblUserInfo";
-            this.lblUserInfo.Size = new System.Drawing.Size(29, 17);
+            this.lblUserInfo.Size = new System.Drawing.Size(30, 17);
             this.lblUserInfo.Text = "User";
             // 
             // lblAction
             // 
             this.lblAction.Name = "lblAction";
-            this.lblAction.Size = new System.Drawing.Size(37, 17);
+            this.lblAction.Size = new System.Drawing.Size(42, 17);
             this.lblAction.Text = "Action";
             // 
             // toolStripMain
@@ -203,14 +205,14 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem1,
             this.ExitToolStripMenuItem});
             this.ManagerToolStripMenuItem.Name = "ManagerToolStripMenuItem";
-            this.ManagerToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.ManagerToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.ManagerToolStripMenuItem.Text = "&Management";
             // 
             // AddConnectionToolStripMenuItem
             // 
             this.AddConnectionToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.AddConnectionToolStripMenuItem.Name = "AddConnectionToolStripMenuItem";
-            this.AddConnectionToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.AddConnectionToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.AddConnectionToolStripMenuItem.Text = "&Connection Manager";
             this.AddConnectionToolStripMenuItem.Click += new System.EventHandler(this.AddConnectionToolStripMenuItem_Click);
             // 
@@ -219,20 +221,20 @@ namespace MagicMongoDBTool
             this.RefreshToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Refresh;
             this.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem";
             this.RefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.RefreshToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.RefreshToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.RefreshToolStripMenuItem.Text = "Refresh Connections";
             this.RefreshToolStripMenuItem.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
             // 
             // toolStripMenuItem10
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(190, 6);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(199, 6);
             // 
             // ExpandAllConnectionToolStripMenuItem
             // 
             this.ExpandAllConnectionToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Collpse;
             this.ExpandAllConnectionToolStripMenuItem.Name = "ExpandAllConnectionToolStripMenuItem";
-            this.ExpandAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.ExpandAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.ExpandAllConnectionToolStripMenuItem.Text = "Collapse";
             this.ExpandAllConnectionToolStripMenuItem.Click += new System.EventHandler(this.ExpandAllToolStripMenuItem_Click);
             // 
@@ -240,20 +242,20 @@ namespace MagicMongoDBTool
             // 
             this.CollapseAllConnectionToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Expand;
             this.CollapseAllConnectionToolStripMenuItem.Name = "CollapseAllConnectionToolStripMenuItem";
-            this.CollapseAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.CollapseAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.CollapseAllConnectionToolStripMenuItem.Text = "Expansion";
             this.CollapseAllConnectionToolStripMenuItem.Click += new System.EventHandler(this.CollapseAllToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(190, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(199, 6);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
             this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.ExitToolStripMenuItem.Text = "Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -267,21 +269,21 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem9,
             this.ViewRefreshToolStripMenuItem});
             this.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem";
-            this.ViewToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.ViewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.ViewToolStripMenuItem.Text = "&View";
             // 
             // statusToolStripMenuItem
             // 
             this.statusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Monitor;
             this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
-            this.statusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statusToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.statusToolStripMenuItem.Text = "Server Status";
             this.statusToolStripMenuItem.Click += new System.EventHandler(this.statusToolStripMenuItem_Click);
             // 
             // commandShellToolStripMenuItem
             // 
             this.commandShellToolStripMenuItem.Name = "commandShellToolStripMenuItem";
-            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.commandShellToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.commandShellToolStripMenuItem.Text = "Command Shell";
             this.commandShellToolStripMenuItem.Click += new System.EventHandler(this.commandShellToolStripMenuItem_Click);
             // 
@@ -289,27 +291,27 @@ namespace MagicMongoDBTool
             // 
             this.collectionToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.CollectionList;
             this.collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.collectionToolStripMenuItem.Text = "Collection Data";
             // 
             // JavaScriptStripMenuItem
             // 
             this.JavaScriptStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.JavaScriptList;
             this.JavaScriptStripMenuItem.Name = "JavaScriptStripMenuItem";
-            this.JavaScriptStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.JavaScriptStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.JavaScriptStripMenuItem.Text = "JavaScript";
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(156, 6);
             // 
             // ViewRefreshToolStripMenuItem
             // 
             this.ViewRefreshToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Refresh;
             this.ViewRefreshToolStripMenuItem.Name = "ViewRefreshToolStripMenuItem";
             this.ViewRefreshToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F5)));
-            this.ViewRefreshToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ViewRefreshToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.ViewRefreshToolStripMenuItem.Text = "Refresh";
             this.ViewRefreshToolStripMenuItem.Click += new System.EventHandler(this.ViewRefreshToolStripMenuItem_Click);
             // 
@@ -322,7 +324,7 @@ namespace MagicMongoDBTool
             this.DataCollectionToolStripMenuItem,
             this.DumpAndRestoreToolStripMenuItem});
             this.OperationToolStripMenuItem.Name = "OperationToolStripMenuItem";
-            this.OperationToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.OperationToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.OperationToolStripMenuItem.Text = "&Operation";
             // 
             // connectionToolStripMenuItem
@@ -335,47 +337,47 @@ namespace MagicMongoDBTool
             this.ShutDownToolStripMenuItem,
             this.DisconnectToolStripMenuItem});
             this.connectionToolStripMenuItem.Name = "connectionToolStripMenuItem";
-            this.connectionToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.connectionToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.connectionToolStripMenuItem.Text = "Connection";
             // 
             // ReplicaSetToolStripMenuItem
             // 
             this.ReplicaSetToolStripMenuItem.Name = "ReplicaSetToolStripMenuItem";
-            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.ReplicaSetToolStripMenuItem.Text = "Replset Manager";
             this.ReplicaSetToolStripMenuItem.Click += new System.EventHandler(this.ReplicaSetToolStripMenuItem_Click);
             // 
             // ShardingConfigToolStripMenuItem
             // 
             this.ShardingConfigToolStripMenuItem.Name = "ShardingConfigToolStripMenuItem";
-            this.ShardingConfigToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.ShardingConfigToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.ShardingConfigToolStripMenuItem.Text = "&Sharding Config";
             this.ShardingConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardingConfigToolStripMenuItem_Click);
             // 
             // InitReplsetToolStripMenuItem
             // 
             this.InitReplsetToolStripMenuItem.Name = "InitReplsetToolStripMenuItem";
-            this.InitReplsetToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.InitReplsetToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.InitReplsetToolStripMenuItem.Text = "Initiate Replset";
             this.InitReplsetToolStripMenuItem.Click += new System.EventHandler(this.InitReplsetToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(155, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(161, 6);
             // 
             // ShutDownToolStripMenuItem
             // 
             this.ShutDownToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.ShutDown;
             this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
-            this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.ShutDownToolStripMenuItem.Text = "ShutDown Server";
             this.ShutDownToolStripMenuItem.Click += new System.EventHandler(this.ShutDownToolStripMenuItem_Click);
             // 
             // DisconnectToolStripMenuItem
             // 
             this.DisconnectToolStripMenuItem.Name = "DisconnectToolStripMenuItem";
-            this.DisconnectToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.DisconnectToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.DisconnectToolStripMenuItem.Text = "Disconnect";
             this.DisconnectToolStripMenuItem.Click += new System.EventHandler(this.DisconnectToolStripMenuItem_Click);
             // 
@@ -390,46 +392,46 @@ namespace MagicMongoDBTool
             this.ServePropertyToolStripMenuItem,
             this.ServerStatusToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
-            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.ServerToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.ServerToolStripMenuItem.Text = "Server";
             // 
             // CreateMongoDBToolStripMenuItem
             // 
             this.CreateMongoDBToolStripMenuItem.Name = "CreateMongoDBToolStripMenuItem";
-            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.CreateMongoDBToolStripMenuItem.Text = "New Database";
             this.CreateMongoDBToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoDBToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(194, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(211, 6);
             // 
             // AddUserToAdminToolStripMenuItem
             // 
             this.AddUserToAdminToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddUserToDB;
             this.AddUserToAdminToolStripMenuItem.Name = "AddUserToAdminToolStripMenuItem";
-            this.AddUserToAdminToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.AddUserToAdminToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.AddUserToAdminToolStripMenuItem.Text = "Add User To Admin Group";
             this.AddUserToAdminToolStripMenuItem.Click += new System.EventHandler(this.AddUserToAdminToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(194, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(211, 6);
             // 
             // slaveResyncToolStripMenuItem
             // 
             this.slaveResyncToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.sync;
             this.slaveResyncToolStripMenuItem.Name = "slaveResyncToolStripMenuItem";
-            this.slaveResyncToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.slaveResyncToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.slaveResyncToolStripMenuItem.Text = "Slave Resync";
             this.slaveResyncToolStripMenuItem.Click += new System.EventHandler(this.slaveResyncToolStripMenuItem_Click);
             // 
             // ServePropertyToolStripMenuItem
             // 
             this.ServePropertyToolStripMenuItem.Name = "ServePropertyToolStripMenuItem";
-            this.ServePropertyToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.ServePropertyToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.ServePropertyToolStripMenuItem.Text = "Serve Info";
             this.ServePropertyToolStripMenuItem.Click += new System.EventHandler(this.ServePropertyToolStripMenuItem_Click);
             // 
@@ -437,7 +439,7 @@ namespace MagicMongoDBTool
             // 
             this.ServerStatusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.KeyInfo;
             this.ServerStatusToolStripMenuItem.Name = "ServerStatusToolStripMenuItem";
-            this.ServerStatusToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.ServerStatusToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.ServerStatusToolStripMenuItem.Text = "Status";
             this.ServerStatusToolStripMenuItem.Click += new System.EventHandler(this.SvrStatusToolStripMenuItem_Click);
             // 
@@ -458,66 +460,66 @@ namespace MagicMongoDBTool
             this.ProfillingLevelToolStripMenuItem,
             this.DBStatusToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
-            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.DataBaseToolStripMenuItem.Text = "Database";
             // 
             // CreateMongoCollectionToolStripMenuItem
             // 
             this.CreateMongoCollectionToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddCollection;
             this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
-            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.CreateMongoCollectionToolStripMenuItem.Text = "New Collection";
             this.CreateMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoCollectionToolStripMenuItem_Click);
             // 
             // DelMongoDBToolStripMenuItem
             // 
             this.DelMongoDBToolStripMenuItem.Name = "DelMongoDBToolStripMenuItem";
-            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.DelMongoDBToolStripMenuItem.Text = "Del Database";
             this.DelMongoDBToolStripMenuItem.Click += new System.EventHandler(this.DelMongoDBToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(159, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(166, 6);
             // 
             // AddUserToolStripMenuItem
             // 
             this.AddUserToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddUserToDB;
             this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
-            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.AddUserToolStripMenuItem.Text = "Add User";
             this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(159, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(166, 6);
             // 
             // evalJSToolStripMenuItem
             // 
             this.evalJSToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.JavaScriptList;
             this.evalJSToolStripMenuItem.Name = "evalJSToolStripMenuItem";
-            this.evalJSToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.evalJSToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.evalJSToolStripMenuItem.Text = "Eval Javascript";
             this.evalJSToolStripMenuItem.Click += new System.EventHandler(this.evalJSToolStripMenuItem_Click);
             // 
             // creatJavaScriptToolStripMenuItem
             // 
             this.creatJavaScriptToolStripMenuItem.Name = "creatJavaScriptToolStripMenuItem";
-            this.creatJavaScriptToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.creatJavaScriptToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.creatJavaScriptToolStripMenuItem.Text = "Creat JavaScript";
             this.creatJavaScriptToolStripMenuItem.Click += new System.EventHandler(this.creatJavaScriptToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(159, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(166, 6);
             // 
             // RepairDBToolStripMenuItem
             // 
             this.RepairDBToolStripMenuItem.Name = "RepairDBToolStripMenuItem";
-            this.RepairDBToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.RepairDBToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.RepairDBToolStripMenuItem.Text = "Repair Database";
             this.RepairDBToolStripMenuItem.Click += new System.EventHandler(this.RepairDBToolStripMenuItem_Click);
             // 
@@ -525,21 +527,21 @@ namespace MagicMongoDBTool
             // 
             this.InitGFSToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.GFS;
             this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
-            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.InitGFSToolStripMenuItem.Text = "Init GFS";
             // 
             // ConvertSqlToolStripMenuItem
             // 
             this.ConvertSqlToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Sql;
             this.ConvertSqlToolStripMenuItem.Name = "ConvertSqlToolStripMenuItem";
-            this.ConvertSqlToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.ConvertSqlToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.ConvertSqlToolStripMenuItem.Text = "Convert Select Sql";
             this.ConvertSqlToolStripMenuItem.Click += new System.EventHandler(this.ConvertSqlToolStripMenuItem_Click);
             // 
             // ProfillingLevelToolStripMenuItem
             // 
             this.ProfillingLevelToolStripMenuItem.Name = "ProfillingLevelToolStripMenuItem";
-            this.ProfillingLevelToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.ProfillingLevelToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.ProfillingLevelToolStripMenuItem.Text = "Profilling Level";
             this.ProfillingLevelToolStripMenuItem.Click += new System.EventHandler(this.profillingLevelToolStripMenuItem_Click);
             // 
@@ -547,7 +549,7 @@ namespace MagicMongoDBTool
             // 
             this.DBStatusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.KeyInfo;
             this.DBStatusToolStripMenuItem.Name = "DBStatusToolStripMenuItem";
-            this.DBStatusToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.DBStatusToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.DBStatusToolStripMenuItem.Text = "Status";
             this.DBStatusToolStripMenuItem.Click += new System.EventHandler(this.DBStatusToolStripMenuItem_Click);
             // 
@@ -565,34 +567,34 @@ namespace MagicMongoDBTool
             this.dropJavascriptToolStripMenuItem,
             this.CollectionStatusToolStripMenuItem});
             this.DataCollectionToolStripMenuItem.Name = "DataCollectionToolStripMenuItem";
-            this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.DataCollectionToolStripMenuItem.Text = "Collection";
             // 
             // DelMongoCollectionToolStripMenuItem
             // 
             this.DelMongoCollectionToolStripMenuItem.Name = "DelMongoCollectionToolStripMenuItem";
-            this.DelMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.DelMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.DelMongoCollectionToolStripMenuItem.Text = "Drop Collection";
             this.DelMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.DelMongoCollectionToolStripMenuItem_Click);
             // 
             // RenameCollectionToolStripMenuItem
             // 
             this.RenameCollectionToolStripMenuItem.Name = "RenameCollectionToolStripMenuItem";
-            this.RenameCollectionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.RenameCollectionToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.RenameCollectionToolStripMenuItem.Text = "Rename Collection";
             this.RenameCollectionToolStripMenuItem.Click += new System.EventHandler(this.RenameCollectionToolStripMenuItem_Click);
             // 
             // IndexManageToolStripMenuItem
             // 
             this.IndexManageToolStripMenuItem.Name = "IndexManageToolStripMenuItem";
-            this.IndexManageToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.IndexManageToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.IndexManageToolStripMenuItem.Text = "Index Management";
             this.IndexManageToolStripMenuItem.Click += new System.EventHandler(this.IndexManageToolStripMenuItem_Click);
             // 
             // ReIndexToolStripMenuItem
             // 
             this.ReIndexToolStripMenuItem.Name = "ReIndexToolStripMenuItem";
-            this.ReIndexToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ReIndexToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.ReIndexToolStripMenuItem.Text = "ReIndex";
             this.ReIndexToolStripMenuItem.Click += new System.EventHandler(this.ReIndexToolStripMenuItem_Click);
             // 
@@ -600,14 +602,14 @@ namespace MagicMongoDBTool
             // 
             this.CompactToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.compress;
             this.CompactToolStripMenuItem.Name = "CompactToolStripMenuItem";
-            this.CompactToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.CompactToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.CompactToolStripMenuItem.Text = "Compact";
             this.CompactToolStripMenuItem.Click += new System.EventHandler(this.CompactToolStripMenuItem_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(164, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(173, 6);
             // 
             // AggregationToolStripMenuItem
             // 
@@ -617,34 +619,34 @@ namespace MagicMongoDBTool
             this.groupToolStripMenuItem,
             this.mapReduceToolStripMenuItem});
             this.AggregationToolStripMenuItem.Name = "AggregationToolStripMenuItem";
-            this.AggregationToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.AggregationToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.AggregationToolStripMenuItem.Text = "Aggregation";
             // 
             // countToolStripMenuItem
             // 
             this.countToolStripMenuItem.Name = "countToolStripMenuItem";
-            this.countToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.countToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.countToolStripMenuItem.Text = "Count";
             this.countToolStripMenuItem.Click += new System.EventHandler(this.countToolStripMenuItem_Click);
             // 
             // distinctToolStripMenuItem
             // 
             this.distinctToolStripMenuItem.Name = "distinctToolStripMenuItem";
-            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.distinctToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.distinctToolStripMenuItem.Text = "Distinct";
             this.distinctToolStripMenuItem.Click += new System.EventHandler(this.distinctToolStripMenuItem_Click);
             // 
             // groupToolStripMenuItem
             // 
             this.groupToolStripMenuItem.Name = "groupToolStripMenuItem";
-            this.groupToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.groupToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.groupToolStripMenuItem.Text = "Group";
             this.groupToolStripMenuItem.Click += new System.EventHandler(this.groupToolStripMenuItem_Click);
             // 
             // mapReduceToolStripMenuItem
             // 
             this.mapReduceToolStripMenuItem.Name = "mapReduceToolStripMenuItem";
-            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.mapReduceToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.mapReduceToolStripMenuItem.Text = "MapReduce";
             this.mapReduceToolStripMenuItem.Click += new System.EventHandler(this.mapReduceToolStripMenuItem_Click);
             // 
@@ -652,13 +654,13 @@ namespace MagicMongoDBTool
             // 
             this.viewDataToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.View;
             this.viewDataToolStripMenuItem.Name = "viewDataToolStripMenuItem";
-            this.viewDataToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.viewDataToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.viewDataToolStripMenuItem.Text = "ViewData";
             // 
             // dropJavascriptToolStripMenuItem
             // 
             this.dropJavascriptToolStripMenuItem.Name = "dropJavascriptToolStripMenuItem";
-            this.dropJavascriptToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.dropJavascriptToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.dropJavascriptToolStripMenuItem.Text = "Drop Javascript";
             this.dropJavascriptToolStripMenuItem.Click += new System.EventHandler(this.dropJavascriptToolStripMenuItem_Click);
             // 
@@ -666,7 +668,7 @@ namespace MagicMongoDBTool
             // 
             this.CollectionStatusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.KeyInfo;
             this.CollectionStatusToolStripMenuItem.Name = "CollectionStatusToolStripMenuItem";
-            this.CollectionStatusToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.CollectionStatusToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.CollectionStatusToolStripMenuItem.Text = "Status";
             this.CollectionStatusToolStripMenuItem.Click += new System.EventHandler(this.CollectionStatusToolStripMenuItem_Click);
             // 
@@ -680,46 +682,46 @@ namespace MagicMongoDBTool
             this.ImportCollectionToolStripMenuItem,
             this.ExportCollectionToolStripMenuItem});
             this.DumpAndRestoreToolStripMenuItem.Name = "DumpAndRestoreToolStripMenuItem";
-            this.DumpAndRestoreToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.DumpAndRestoreToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.DumpAndRestoreToolStripMenuItem.Text = "Dump And Restore";
             // 
             // RestoreMongoToolStripMenuItem
             // 
             this.RestoreMongoToolStripMenuItem.Name = "RestoreMongoToolStripMenuItem";
-            this.RestoreMongoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.RestoreMongoToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.RestoreMongoToolStripMenuItem.Text = "Restore";
             this.RestoreMongoToolStripMenuItem.Click += new System.EventHandler(this.RestoreMongoToolStripMenuItem_Click);
             // 
             // DumpDatabaseToolStripMenuItem
             // 
             this.DumpDatabaseToolStripMenuItem.Name = "DumpDatabaseToolStripMenuItem";
-            this.DumpDatabaseToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.DumpDatabaseToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.DumpDatabaseToolStripMenuItem.Text = "Dump DataBase";
             this.DumpDatabaseToolStripMenuItem.Click += new System.EventHandler(this.DumpDatabaseToolStripMenuItem_Click);
             // 
             // DumpCollectionToolStripMenuItem
             // 
             this.DumpCollectionToolStripMenuItem.Name = "DumpCollectionToolStripMenuItem";
-            this.DumpCollectionToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.DumpCollectionToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.DumpCollectionToolStripMenuItem.Text = "Dump Collection";
             this.DumpCollectionToolStripMenuItem.Click += new System.EventHandler(this.DumpCollectionToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(175, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(188, 6);
             // 
             // ImportCollectionToolStripMenuItem
             // 
             this.ImportCollectionToolStripMenuItem.Name = "ImportCollectionToolStripMenuItem";
-            this.ImportCollectionToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.ImportCollectionToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.ImportCollectionToolStripMenuItem.Text = "Import DataCollection";
             this.ImportCollectionToolStripMenuItem.Click += new System.EventHandler(this.ImportCollectionToolStripMenuItem_Click);
             // 
             // ExportCollectionToolStripMenuItem
             // 
             this.ExportCollectionToolStripMenuItem.Name = "ExportCollectionToolStripMenuItem";
-            this.ExportCollectionToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.ExportCollectionToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.ExportCollectionToolStripMenuItem.Text = "Export DataCollection";
             this.ExportCollectionToolStripMenuItem.Click += new System.EventHandler(this.ExportCollectionToolStripMenuItem_Click);
             // 
@@ -732,39 +734,39 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem7,
             this.OptionsToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
-            this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.ToolsToolStripMenuItem.Text = "&Tools";
             // 
             // DosCommandToolStripMenuItem
             // 
             this.DosCommandToolStripMenuItem.Name = "DosCommandToolStripMenuItem";
-            this.DosCommandToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.DosCommandToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.DosCommandToolStripMenuItem.Text = "&DOS Command";
             this.DosCommandToolStripMenuItem.Click += new System.EventHandler(this.DosCommandToolStripMenuItem_Click);
             // 
             // GernerateConfigtoolStripMenuItem
             // 
             this.GernerateConfigtoolStripMenuItem.Name = "GernerateConfigtoolStripMenuItem";
-            this.GernerateConfigtoolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.GernerateConfigtoolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.GernerateConfigtoolStripMenuItem.Text = "Gernerate Config INI";
             this.GernerateConfigtoolStripMenuItem.Click += new System.EventHandler(this.GernerateConfigtoolStripMenuItem_Click);
             // 
             // ImportDataFromAccessToolStripMenuItem
             // 
             this.ImportDataFromAccessToolStripMenuItem.Name = "ImportDataFromAccessToolStripMenuItem";
-            this.ImportDataFromAccessToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.ImportDataFromAccessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.ImportDataFromAccessToolStripMenuItem.Text = "&Import Access DB";
             this.ImportDataFromAccessToolStripMenuItem.Click += new System.EventHandler(this.ImportDataFromAccessToolStripMenuItem_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(172, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(179, 6);
             // 
             // OptionsToolStripMenuItem
             // 
             this.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem";
-            this.OptionsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.OptionsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.OptionsToolStripMenuItem.Text = "&Options";
             this.OptionsToolStripMenuItem.Click += new System.EventHandler(this.OptionToolStripMenuItem_Click);
             // 
@@ -774,17 +776,12 @@ namespace MagicMongoDBTool
             this.ThanksToolStripMenuItem,
             this.UserGuideToolStripMenuItem,
             this.toolStripSeparator2,
-            this.AboutToolStripMenuItem});
+            this.AboutToolStripMenuItem,
+            this.toolStripMenuItem12,
+            this.ForMySelfToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
-            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.HelpToolStripMenuItem.Text = "&Help";
-            // 
-            // AboutToolStripMenuItem
-            // 
-            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.AboutToolStripMenuItem.Text = "&About";
-            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // ThanksToolStripMenuItem
             // 
@@ -800,6 +797,18 @@ namespace MagicMongoDBTool
             this.UserGuideToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.UserGuideToolStripMenuItem.Text = "UserGuide";
             this.UserGuideToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // AboutToolStripMenuItem
+            // 
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AboutToolStripMenuItem.Text = "&About";
+            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // contextMenuStripMain
             // 
@@ -897,10 +906,17 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // toolStripSeparator2
+            // toolStripMenuItem12
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(149, 6);
+            // 
+            // forMySelfToolStripMenuItem
+            // 
+            this.ForMySelfToolStripMenuItem.Name = "forMySelfToolStripMenuItem";
+            this.ForMySelfToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ForMySelfToolStripMenuItem.Text = "ForMySelf";
+            this.ForMySelfToolStripMenuItem.Click += new System.EventHandler(this.forMySelfToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -1033,5 +1049,7 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem GernerateConfigtoolStripMenuItem;
         private ToolStripStatusLabel lblAction;
         private ToolStripSeparator toolStripSeparator2;
+        private ToolStripSeparator toolStripMenuItem12;
+        private ToolStripMenuItem ForMySelfToolStripMenuItem;
     }
 }

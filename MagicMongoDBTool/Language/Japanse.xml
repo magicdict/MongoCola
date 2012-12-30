@@ -132,10 +132,8 @@
   <CollectionIndex_Title>インデックス管理</CollectionIndex_Title>
   <CollectionIndex_Tab_Current>既存インデックス</CollectionIndex_Tab_Current>
   <CollectionIndex_Tab_Current_Del>削除</CollectionIndex_Tab_Current_Del>
-
   <CollectionIndex_Tab_Manager>インデックスの追加</CollectionIndex_Tab_Manager>
-  <CollectionIndex_Tab_Manager_ADD>追加</CollectionIndex_Tab_Manager_ADD>
-  <CollectionIndex_TabMangt_IndexName_Description>Index Name(Option)</CollectionIndex_TabMangt_IndexName_Description>
+
 
   <!--frmConnect-->
   <Connect_Title>接続</Connect_Title>
@@ -307,6 +305,7 @@
   <Index_Name>Index Name</Index_Name>
   <Index_Keys>Keys</Index_Keys>
   <Index_Version>Version</Index_Version>
+  <Index_ExpireData>Expire Data(Sec)</Index_ExpireData>
   <Index_NameSpace>NameSpace</Index_NameSpace>
   <Index_Asce>昇順</Index_Asce>
   <Index_Desc>降順 </Index_Desc>

@@ -30,7 +30,7 @@ namespace MagicMongoDBTool.Module
             public int Zip;
         }
 
-        public static void InitData(MongoServer mongosvr)
+        public static void FillDataForUser(MongoServer mongosvr)
         {
             MongoDatabase mongodb = mongosvr.GetDatabase("mongodb");
 
