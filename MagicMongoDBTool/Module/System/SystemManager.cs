@@ -100,6 +100,7 @@ namespace MagicMongoDBTool.Module
             mfrm.StartPosition = FormStartPosition.CenterParent;
             mfrm.BackColor = System.Drawing.Color.White;
             mfrm.FormBorderStyle = FormBorderStyle.FixedSingle;
+            mfrm.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             mfrm.ShowDialog();
             mfrm.Close();
             if (isDispose) { mfrm.Dispose(); }
@@ -110,6 +111,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="frm"></param>
         public static void OpenForm(Form mfrm)
         {
+            mfrm.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             OpenForm(mfrm, true);
         }
         /// <summary>

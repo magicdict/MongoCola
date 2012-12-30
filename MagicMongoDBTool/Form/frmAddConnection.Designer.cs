@@ -51,6 +51,8 @@ namespace MagicMongoDBTool
             this.tabBasic = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.tabOption = new System.Windows.Forms.TabPage();
+            this.lnkWriteConcern = new System.Windows.Forms.LinkLabel();
+            this.lnkReadPreference = new System.Windows.Forms.LinkLabel();
             this.cmbWriteConcern = new System.Windows.Forms.ComboBox();
             this.lblWriteConcern = new System.Windows.Forms.Label();
             this.cmbReadPreference = new System.Windows.Forms.ComboBox();
@@ -305,10 +307,12 @@ namespace MagicMongoDBTool
             this.label7.Size = new System.Drawing.Size(468, 16);
             this.label7.TabIndex = 19;
             this.label7.Text = "If you want to connect to a replSet please  fill  replset information at  replset" +
-                " tab.";
+    " tab.";
             // 
             // tabOption
             // 
+            this.tabOption.Controls.Add(this.lnkWriteConcern);
+            this.tabOption.Controls.Add(this.lnkReadPreference);
             this.tabOption.Controls.Add(this.cmbWriteConcern);
             this.tabOption.Controls.Add(this.lblWriteConcern);
             this.tabOption.Controls.Add(this.cmbReadPreference);
@@ -334,11 +338,33 @@ namespace MagicMongoDBTool
             this.tabOption.Text = "Option";
             this.tabOption.UseVisualStyleBackColor = true;
             // 
+            // lnkWriteConcern
+            // 
+            this.lnkWriteConcern.AutoSize = true;
+            this.lnkWriteConcern.Location = new System.Drawing.Point(350, 168);
+            this.lnkWriteConcern.Name = "lnkWriteConcern";
+            this.lnkWriteConcern.Size = new System.Drawing.Size(127, 16);
+            this.lnkWriteConcern.TabIndex = 41;
+            this.lnkWriteConcern.TabStop = true;
+            this.lnkWriteConcern.Text = "About WriteConcern";
+            this.lnkWriteConcern.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkWriteConcern_LinkClicked);
+            // 
+            // lnkReadPreference
+            // 
+            this.lnkReadPreference.AutoSize = true;
+            this.lnkReadPreference.Location = new System.Drawing.Point(351, 144);
+            this.lnkReadPreference.Name = "lnkReadPreference";
+            this.lnkReadPreference.Size = new System.Drawing.Size(146, 16);
+            this.lnkReadPreference.TabIndex = 40;
+            this.lnkReadPreference.TabStop = true;
+            this.lnkReadPreference.Text = "About ReadPreference";
+            this.lnkReadPreference.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkReadPreference_LinkClicked);
+            // 
             // cmbWriteConcern
             // 
             this.cmbWriteConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWriteConcern.FormattingEnabled = true;
-            this.cmbWriteConcern.Location = new System.Drawing.Point(477, 141);
+            this.cmbWriteConcern.Location = new System.Drawing.Point(154, 168);
             this.cmbWriteConcern.Name = "cmbWriteConcern";
             this.cmbWriteConcern.Size = new System.Drawing.Size(170, 24);
             this.cmbWriteConcern.TabIndex = 39;
@@ -346,7 +372,7 @@ namespace MagicMongoDBTool
             // lblWriteConcern
             // 
             this.lblWriteConcern.AutoSize = true;
-            this.lblWriteConcern.Location = new System.Drawing.Point(355, 144);
+            this.lblWriteConcern.Location = new System.Drawing.Point(32, 168);
             this.lblWriteConcern.Name = "lblWriteConcern";
             this.lblWriteConcern.Size = new System.Drawing.Size(89, 16);
             this.lblWriteConcern.TabIndex = 38;
@@ -373,7 +399,7 @@ namespace MagicMongoDBTool
             // chkVerifySslCertificate
             // 
             this.chkVerifySslCertificate.AutoSize = true;
-            this.chkVerifySslCertificate.Location = new System.Drawing.Point(358, 42);
+            this.chkVerifySslCertificate.Location = new System.Drawing.Point(445, 47);
             this.chkVerifySslCertificate.Name = "chkVerifySslCertificate";
             this.chkVerifySslCertificate.Size = new System.Drawing.Size(139, 20);
             this.chkVerifySslCertificate.TabIndex = 35;
@@ -383,7 +409,7 @@ namespace MagicMongoDBTool
             // chkUseSsl
             // 
             this.chkUseSsl.AutoSize = true;
-            this.chkUseSsl.Location = new System.Drawing.Point(245, 42);
+            this.chkUseSsl.Location = new System.Drawing.Point(295, 47);
             this.chkUseSsl.Name = "chkUseSsl";
             this.chkUseSsl.Size = new System.Drawing.Size(71, 20);
             this.chkUseSsl.TabIndex = 34;
@@ -398,7 +424,7 @@ namespace MagicMongoDBTool
             this.lblWtimeoutDescript.Size = new System.Drawing.Size(480, 16);
             this.lblWtimeoutDescript.TabIndex = 33;
             this.lblWtimeoutDescript.Text = "The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true." +
-                "";
+    "";
             // 
             // NumWTimeoutMS
             // 
@@ -434,7 +460,7 @@ namespace MagicMongoDBTool
             // chkJournal
             // 
             this.chkJournal.AutoSize = true;
-            this.chkJournal.Location = new System.Drawing.Point(119, 38);
+            this.chkJournal.Location = new System.Drawing.Point(183, 47);
             this.chkJournal.Name = "chkJournal";
             this.chkJournal.Size = new System.Drawing.Size(67, 20);
             this.chkJournal.TabIndex = 4;
@@ -444,7 +470,7 @@ namespace MagicMongoDBTool
             // chkFsync
             // 
             this.chkFsync.AutoSize = true;
-            this.chkFsync.Location = new System.Drawing.Point(33, 38);
+            this.chkFsync.Location = new System.Drawing.Point(34, 47);
             this.chkFsync.Name = "chkFsync";
             this.chkFsync.Size = new System.Drawing.Size(58, 20);
             this.chkFsync.TabIndex = 3;
@@ -604,8 +630,8 @@ namespace MagicMongoDBTool
             this.lblReplsetNameDescription.Size = new System.Drawing.Size(707, 41);
             this.lblReplsetNameDescription.TabIndex = 30;
             this.lblReplsetNameDescription.Text = "The driver verifies that the name of the replica set it connects to matches this " +
-                "name. Implies that the hosts given are a seed list, and the driver will attempt " +
-                "to find all members of the set.";
+    "name. Implies that the hosts given are a seed list, and the driver will attempt " +
+    "to find all members of the set.";
             // 
             // lblMainReplsetName
             // 
@@ -727,5 +753,7 @@ namespace MagicMongoDBTool
         private Label lblReadPreference;
         private ComboBox cmbWriteConcern;
         private Label lblWriteConcern;
+        private LinkLabel lnkReadPreference;
+        private LinkLabel lnkWriteConcern;
     }
 }

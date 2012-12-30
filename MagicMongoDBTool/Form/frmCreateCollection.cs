@@ -61,6 +61,7 @@ namespace MagicMongoDBTool
                         option.SetCapped(chkIsCapped.Checked);
                         option.SetMaxSize((long)numMaxSize.Value);
                         option.SetMaxDocuments((long)numMaxDocument.Value);
+                        //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
                         option.SetAutoIndexId(chkIsAutoIndexId.Checked);
                         Result = MongoDBHelper.CreateCollectionWithOptions(strSvrPathWithTag, treeNode, txtCollectionName.Text, option);
                     }
@@ -94,6 +95,11 @@ namespace MagicMongoDBTool
         private void chkAdvance_CheckedChanged(object sender, EventArgs e)
         {
             grpAdvanced.Enabled = chkAdvance.Checked;
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/core/capped-collections/");
         }
     }
 }

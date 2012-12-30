@@ -39,8 +39,8 @@
             this.lblMaxSize = new System.Windows.Forms.Label();
             this.lblMaxDocument = new System.Windows.Forms.Label();
             this.grpAdvanced = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.chkAdvance = new System.Windows.Forms.CheckBox();
-            this.Icon = Module.GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.AddCollection);
             ((System.ComponentModel.ISupportInitialize)(this.numMaxSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxDocument)).BeginInit();
             this.grpAdvanced.SuspendLayout();
@@ -48,7 +48,7 @@
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(55, 183);
+            this.cmdOK.Location = new System.Drawing.Point(56, 191);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(87, 27);
             this.cmdOK.TabIndex = 4;
@@ -58,7 +58,7 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(209, 183);
+            this.cmdCancel.Location = new System.Drawing.Point(210, 191);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(87, 27);
             this.cmdCancel.TabIndex = 5;
@@ -85,9 +85,11 @@
             // chkIsCapped
             // 
             this.chkIsCapped.AutoSize = true;
+            this.chkIsCapped.Checked = true;
+            this.chkIsCapped.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkIsCapped.Location = new System.Drawing.Point(23, 32);
             this.chkIsCapped.Name = "chkIsCapped";
-            this.chkIsCapped.Size = new System.Drawing.Size(71, 17);
+            this.chkIsCapped.Size = new System.Drawing.Size(78, 19);
             this.chkIsCapped.TabIndex = 0;
             this.chkIsCapped.Text = "IsCapped";
             this.chkIsCapped.UseVisualStyleBackColor = true;
@@ -95,16 +97,18 @@
             // chkIsAutoIndexId
             // 
             this.chkIsAutoIndexId.AutoSize = true;
+            this.chkIsAutoIndexId.Checked = true;
+            this.chkIsAutoIndexId.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkIsAutoIndexId.Location = new System.Drawing.Point(131, 32);
             this.chkIsAutoIndexId.Name = "chkIsAutoIndexId";
-            this.chkIsAutoIndexId.Size = new System.Drawing.Size(91, 17);
+            this.chkIsAutoIndexId.Size = new System.Drawing.Size(99, 19);
             this.chkIsAutoIndexId.TabIndex = 1;
             this.chkIsAutoIndexId.Text = "IsAutoIndexId";
             this.chkIsAutoIndexId.UseVisualStyleBackColor = true;
             // 
             // numMaxSize
             // 
-            this.numMaxSize.Location = new System.Drawing.Point(131, 62);
+            this.numMaxSize.Location = new System.Drawing.Point(131, 57);
             this.numMaxSize.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -117,7 +121,7 @@
             // 
             // numMaxDocument
             // 
-            this.numMaxDocument.Location = new System.Drawing.Point(131, 90);
+            this.numMaxDocument.Location = new System.Drawing.Point(131, 85);
             this.numMaxDocument.Maximum = new decimal(new int[] {
             10000000,
             0,
@@ -131,7 +135,7 @@
             // lblMaxSize
             // 
             this.lblMaxSize.AutoSize = true;
-            this.lblMaxSize.Location = new System.Drawing.Point(23, 65);
+            this.lblMaxSize.Location = new System.Drawing.Point(23, 60);
             this.lblMaxSize.Name = "lblMaxSize";
             this.lblMaxSize.Size = new System.Drawing.Size(55, 15);
             this.lblMaxSize.TabIndex = 2;
@@ -140,7 +144,7 @@
             // lblMaxDocument
             // 
             this.lblMaxDocument.AutoSize = true;
-            this.lblMaxDocument.Location = new System.Drawing.Point(23, 92);
+            this.lblMaxDocument.Location = new System.Drawing.Point(23, 87);
             this.lblMaxDocument.Name = "lblMaxDocument";
             this.lblMaxDocument.Size = new System.Drawing.Size(88, 15);
             this.lblMaxDocument.TabIndex = 4;
@@ -148,6 +152,7 @@
             // 
             // grpAdvanced
             // 
+            this.grpAdvanced.Controls.Add(this.linkLabel1);
             this.grpAdvanced.Controls.Add(this.chkIsAutoIndexId);
             this.grpAdvanced.Controls.Add(this.lblMaxDocument);
             this.grpAdvanced.Controls.Add(this.chkIsCapped);
@@ -156,10 +161,21 @@
             this.grpAdvanced.Controls.Add(this.numMaxDocument);
             this.grpAdvanced.Location = new System.Drawing.Point(30, 45);
             this.grpAdvanced.Name = "grpAdvanced";
-            this.grpAdvanced.Size = new System.Drawing.Size(297, 122);
+            this.grpAdvanced.Size = new System.Drawing.Size(297, 140);
             this.grpAdvanced.TabIndex = 3;
             this.grpAdvanced.TabStop = false;
             this.grpAdvanced.Text = "Advanced";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(22, 111);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(141, 15);
+            this.linkLabel1.TabIndex = 6;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "About Capped Collection";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // chkAdvance
             // 
@@ -211,5 +227,6 @@
         private System.Windows.Forms.Label lblMaxDocument;
         private System.Windows.Forms.GroupBox grpAdvanced;
         private System.Windows.Forms.CheckBox chkAdvance;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

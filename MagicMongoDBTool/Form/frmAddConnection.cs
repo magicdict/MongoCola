@@ -56,6 +56,7 @@ namespace MagicMongoDBTool
             });
 
             //读策略
+            //http://docs.mongodb.org/manual/reference/connection-string/#read-preference-options
             //https://github.com/mongodb/mongo-csharp-driver/blob/master/MongoDB.Driver/ReadPreference.cs
             cmbReadPreference.Items.Add(ReadPreference.Primary.ToString());
             cmbReadPreference.Items.Add(ReadPreference.PrimaryPreferred.ToString());
@@ -64,9 +65,11 @@ namespace MagicMongoDBTool
             cmbReadPreference.Items.Add(ReadPreference.Nearest.ToString());
 
             //写确认
-            //http://docs.mongodb.org/manual/reference/connection-string/
+            //http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options
             //https://github.com/mongodb/mongo-csharp-driver/blob/master/MongoDB.Driver/WriteConcern.cs
+            //-1 – The driver will not acknowledge write operations and will suppress all network or socket errors.
             cmbWriteConcern.Items.Add(WriteConcern.Unacknowledged.ToString());
+            //1   -  Provides basic acknowledgment of write operations.
             cmbWriteConcern.Items.Add(WriteConcern.Acknowledged.ToString());
             cmbWriteConcern.Items.Add(WriteConcern.W2.ToString());
             cmbWriteConcern.Items.Add(WriteConcern.W3.ToString());
@@ -331,6 +334,16 @@ namespace MagicMongoDBTool
         private void cmdRemoveHost_Click(object sender, EventArgs e)
         {
             lstHost.Items.Remove(lstHost.SelectedItem);
+        }
+
+        private void lnkReadPreference_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#read-preference-options");
+        }
+
+        private void lnkWriteConcern_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options");
         }
 
     }

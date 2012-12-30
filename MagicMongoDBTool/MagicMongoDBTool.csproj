@@ -925,6 +925,7 @@
     </Content>
     <Content Include="UserGuide\index.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Release Note.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -30,7 +30,7 @@ namespace MagicMongoDBTool
             //Init ToolBar
             InitToolBar();
 
-            if (!SystemManager.DEBUG_MODE) 
+            if (!SystemManager.DEBUG_MODE)
             {
                 //非Debug模式的时候,UT菜单不可使用
                 toolStripMenuItem12.Visible = false;
@@ -2173,7 +2173,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void forMySelfToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmUnitTest()); 
+            SystemManager.OpenForm(new frmUnitTest());
         }
 
         #endregion
