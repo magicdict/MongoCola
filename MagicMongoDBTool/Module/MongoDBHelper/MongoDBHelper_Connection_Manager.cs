@@ -48,87 +48,11 @@ namespace MagicMongoDBTool.Module
         public static MongoServer CreateMongoSetting(ref ConfigHelper.MongoConnectionConfig config)
         {
 
-
-            //            New MongoClient class and default WriteConcern
-            //----------------------------------------------
-
-            //The new default WriteConcern is Acknowledged, but we have introduced the new
-            //default in a way that doesn't alter the behavior of existing programs. We
-            //are introducing a new root class called MongoClient that defaults the 
-            //WriteConcern to Acknowledged. The existing MongoServer Create methods are
-            //deprecated but when used continue to default to a WriteConcern of Unacknowledged.
-
-            //In prior releases you would start using the C# driver with code like this:
-
-            //    var connectionString = "mongodb://localhost";
-            //    var server = MongoServer.Create(connectionString); // deprecated
-            //    var database = server.GetDatabase("test"); // WriteConcern defaulted to Unacknowledged
-
-            //The new way to start using the C# driver is:
-
-            //    var connectionString = "mongodb://localhost";
-            //    var client = new MongoClient(connectionString);
-            //    var server = client.GetServer();
-            //    var database = server.GetDatabase("test"); // WriteConcern defaulted to Acknowledged
-
-            //If you use the old way to start using the driver the default WriteConcern will
-            //be Unacknowledged, but if you use the new way (using MongoClient) the default
-            //WriteConcern will be Acknowledged.
-
             MongoServerSettings mongoSvrSetting = new MongoServerSettings();
             if (String.IsNullOrEmpty(config.ConnectionString))
             {
                 mongoSvrSetting.ConnectionMode = ConnectionMode.Direct;
-                //当一个服务器作为从属服务器，副本组中的备用服务器，这里一定要设置为SlaveOK,默认情况下是不可以读取的
-                //SlaveOK 过时,使用ReadPreference
-                if (config.ReadPreference == ReadPreference.Primary.ToString())
-                {
-                    mongoSvrSetting.ReadPreference = ReadPreference.Primary;
-                }
-                if (config.ReadPreference == ReadPreference.PrimaryPreferred.ToString())
-                {
-                    mongoSvrSetting.ReadPreference = ReadPreference.PrimaryPreferred;
-                }
-                if (config.ReadPreference == ReadPreference.Secondary.ToString())
-                {
-                    mongoSvrSetting.ReadPreference = ReadPreference.Secondary;
-                }
-                if (config.ReadPreference == ReadPreference.SecondaryPreferred.ToString())
-                {
-                    mongoSvrSetting.ReadPreference = ReadPreference.SecondaryPreferred;
-                }
-                if (config.ReadPreference == ReadPreference.Nearest.ToString())
-                {
-                    mongoSvrSetting.ReadPreference = ReadPreference.Nearest;
-                }
-                //Default ReadPreference is Primary
-                //安全模式
-                if (config.WriteConcern == WriteConcern.Unacknowledged.ToString())
-                {
-                    mongoSvrSetting.WriteConcern = WriteConcern.Unacknowledged;
-                }
-                if (config.WriteConcern == WriteConcern.Acknowledged.ToString())
-                {
-                    mongoSvrSetting.WriteConcern = WriteConcern.Acknowledged;
-                }
-                if (config.WriteConcern == WriteConcern.W2.ToString())
-                {
-                    mongoSvrSetting.WriteConcern = WriteConcern.W2;
-                }
-                if (config.WriteConcern == WriteConcern.W3.ToString())
-                {
-                    mongoSvrSetting.WriteConcern = WriteConcern.W3;
-                }
-                if (config.WriteConcern == WriteConcern.W4.ToString())
-                {
-                    mongoSvrSetting.WriteConcern = WriteConcern.W4;
-                }
-                if (config.WriteConcern == WriteConcern.WMajority.ToString())
-                {
-                    mongoSvrSetting.WriteConcern = WriteConcern.WMajority;
-                }
-                //Default WriteConcern is w=0
-
+                SetReadPreferenceWriteConcern(ref mongoSvrSetting, config);
                 //Replset时候可以不用设置吗？                    
                 mongoSvrSetting.Server = new MongoServerAddress(config.Host, config.Port);
                 //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
@@ -203,6 +127,90 @@ namespace MagicMongoDBTool.Module
             }
             MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
             return masterMongoSvr;
+        }
+        /// <summary>
+        /// Set ReadPreference And WriteConcern 
+        /// </summary>
+        /// <param name="mongoSvrSetting"></param>
+        /// <param name="config"></param>
+        private static void SetReadPreferenceWriteConcern(ref MongoServerSettings mongoSvrSetting, ConfigHelper.MongoConnectionConfig config)
+        {
+            //----------------------------------------------
+            //            New MongoClient class and default WriteConcern
+            //----------------------------------------------
+
+            //The new default WriteConcern is Acknowledged, but we have introduced the new
+            //default in a way that doesn't alter the behavior of existing programs. We
+            //are introducing a new root class called MongoClient that defaults the 
+            //WriteConcern to Acknowledged. The existing MongoServer Create methods are
+            //deprecated but when used continue to default to a WriteConcern of Unacknowledged.
+
+            //In prior releases you would start using the C# driver with code like this:
+
+            //    var connectionString = "mongodb://localhost";
+            //    var server = MongoServer.Create(connectionString); // deprecated
+            //    var database = server.GetDatabase("test"); // WriteConcern defaulted to Unacknowledged
+
+            //The new way to start using the C# driver is:
+
+            //    var connectionString = "mongodb://localhost";
+            //    var client = new MongoClient(connectionString);
+            //    var server = client.GetServer();
+            //    var database = server.GetDatabase("test"); // WriteConcern defaulted to Acknowledged
+
+            //If you use the old way to start using the driver the default WriteConcern will
+            //be Unacknowledged, but if you use the new way (using MongoClient) the default
+            //WriteConcern will be Acknowledged.
+
+            //当一个服务器作为从属服务器，副本组中的备用服务器，这里一定要设置为SlaveOK,默认情况下是不可以读取的
+            //SlaveOK 过时,使用ReadPreference
+            if (config.ReadPreference == ReadPreference.Primary.ToString())
+            {
+                mongoSvrSetting.ReadPreference = ReadPreference.Primary;
+            }
+            if (config.ReadPreference == ReadPreference.PrimaryPreferred.ToString())
+            {
+                mongoSvrSetting.ReadPreference = ReadPreference.PrimaryPreferred;
+            }
+            if (config.ReadPreference == ReadPreference.Secondary.ToString())
+            {
+                mongoSvrSetting.ReadPreference = ReadPreference.Secondary;
+            }
+            if (config.ReadPreference == ReadPreference.SecondaryPreferred.ToString())
+            {
+                mongoSvrSetting.ReadPreference = ReadPreference.SecondaryPreferred;
+            }
+            if (config.ReadPreference == ReadPreference.Nearest.ToString())
+            {
+                mongoSvrSetting.ReadPreference = ReadPreference.Nearest;
+            }
+            //Default ReadPreference is Primary
+            //安全模式
+            if (config.WriteConcern == WriteConcern.Unacknowledged.ToString())
+            {
+                mongoSvrSetting.WriteConcern = WriteConcern.Unacknowledged;
+            }
+            if (config.WriteConcern == WriteConcern.Acknowledged.ToString())
+            {
+                mongoSvrSetting.WriteConcern = WriteConcern.Acknowledged;
+            }
+            if (config.WriteConcern == WriteConcern.W2.ToString())
+            {
+                mongoSvrSetting.WriteConcern = WriteConcern.W2;
+            }
+            if (config.WriteConcern == WriteConcern.W3.ToString())
+            {
+                mongoSvrSetting.WriteConcern = WriteConcern.W3;
+            }
+            if (config.WriteConcern == WriteConcern.W4.ToString())
+            {
+                mongoSvrSetting.WriteConcern = WriteConcern.W4;
+            }
+            if (config.WriteConcern == WriteConcern.WMajority.ToString())
+            {
+                mongoSvrSetting.WriteConcern = WriteConcern.WMajority;
+            }
+            //Default WriteConcern is w=0
         }
         /// <summary>
         /// 使用字符串连接来填充

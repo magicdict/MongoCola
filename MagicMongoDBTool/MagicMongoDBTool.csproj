@@ -104,7 +104,7 @@
     <Compile Include="UserController\ctlDocumentView.Designer.cs">
       <DependentUpon>ctlDocumentView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\System\InitTestData.cs" />
+    <Compile Include="UnitTest\InitTestData.cs" />
     <Compile Include="UserController\ctlUserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
