@@ -1240,7 +1240,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void InitReplsetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String ReplSetName = MyMessageBox.ShowInput("ReplSetName", "Please fill ReplSetName:");
+            String ReplSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :", 
+                SystemManager.IsUseDefaultLanguage?"ReplSetName":SystemManager.mStringResource.GetText(StringResource.TextType.Replset_InitReplset));
             if (ReplSetName != String.Empty)
             {
                 CommandResult Result = MongoDBHelper.InitReplicaSet(ReplSetName, SystemManager.GetCurrentServerConfig().ConnectionName);

@@ -36,15 +36,15 @@
             this.NumPriority = new System.Windows.Forms.NumericUpDown();
             this.lblpriority = new System.Windows.Forms.Label();
             this.chkArbiterOnly = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpAddHost = new System.Windows.Forms.GroupBox();
             this.cmdClose = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpRemoveHost = new System.Windows.Forms.GroupBox();
             this.cmdRemoveHost = new System.Windows.Forms.Button();
             this.lstHost = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumPriority)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.grpAddHost.SuspendLayout();
+            this.grpRemoveHost.SuspendLayout();
             this.SuspendLayout();
             // 
             // NumReplPort
@@ -138,27 +138,27 @@
             this.chkArbiterOnly.AutoSize = true;
             this.chkArbiterOnly.Location = new System.Drawing.Point(33, 120);
             this.chkArbiterOnly.Name = "chkArbiterOnly";
-            this.chkArbiterOnly.Size = new System.Drawing.Size(77, 17);
+            this.chkArbiterOnly.Size = new System.Drawing.Size(93, 20);
             this.chkArbiterOnly.TabIndex = 6;
             this.chkArbiterOnly.Text = "ArbiterOnly";
             this.chkArbiterOnly.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // grpAddHost
             // 
-            this.groupBox1.Controls.Add(this.chkArbiterOnly);
-            this.groupBox1.Controls.Add(this.txtReplHost);
-            this.groupBox1.Controls.Add(this.NumPriority);
-            this.groupBox1.Controls.Add(this.lblReplHost);
-            this.groupBox1.Controls.Add(this.lblpriority);
-            this.groupBox1.Controls.Add(this.NumReplPort);
-            this.groupBox1.Controls.Add(this.lblReplPort);
-            this.groupBox1.Controls.Add(this.cmdAddHost);
-            this.groupBox1.Location = new System.Drawing.Point(21, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(245, 212);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Add Host Member";
+            this.grpAddHost.Controls.Add(this.chkArbiterOnly);
+            this.grpAddHost.Controls.Add(this.txtReplHost);
+            this.grpAddHost.Controls.Add(this.NumPriority);
+            this.grpAddHost.Controls.Add(this.lblReplHost);
+            this.grpAddHost.Controls.Add(this.lblpriority);
+            this.grpAddHost.Controls.Add(this.NumReplPort);
+            this.grpAddHost.Controls.Add(this.lblReplPort);
+            this.grpAddHost.Controls.Add(this.cmdAddHost);
+            this.grpAddHost.Location = new System.Drawing.Point(21, 12);
+            this.grpAddHost.Name = "grpAddHost";
+            this.grpAddHost.Size = new System.Drawing.Size(245, 212);
+            this.grpAddHost.TabIndex = 0;
+            this.grpAddHost.TabStop = false;
+            this.grpAddHost.Text = "Add Host Member";
             // 
             // cmdClose
             // 
@@ -170,16 +170,16 @@
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
-            // groupBox2
+            // grpRemoveHost
             // 
-            this.groupBox2.Controls.Add(this.cmdRemoveHost);
-            this.groupBox2.Controls.Add(this.lstHost);
-            this.groupBox2.Location = new System.Drawing.Point(290, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(271, 212);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Remove Host Member";
+            this.grpRemoveHost.Controls.Add(this.cmdRemoveHost);
+            this.grpRemoveHost.Controls.Add(this.lstHost);
+            this.grpRemoveHost.Location = new System.Drawing.Point(290, 12);
+            this.grpRemoveHost.Name = "grpRemoveHost";
+            this.grpRemoveHost.Size = new System.Drawing.Size(271, 212);
+            this.grpRemoveHost.TabIndex = 1;
+            this.grpRemoveHost.TabStop = false;
+            this.grpRemoveHost.Text = "Remove Host Member";
             // 
             // cmdRemoveHost
             // 
@@ -206,9 +206,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(587, 288);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.grpRemoveHost);
             this.Controls.Add(this.cmdClose);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpAddHost);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmReplsetMgr";
@@ -216,9 +216,9 @@
             this.Load += new System.EventHandler(this.frmReplsetMgr_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumPriority)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
+            this.grpAddHost.ResumeLayout(false);
+            this.grpAddHost.PerformLayout();
+            this.grpRemoveHost.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -233,9 +233,9 @@
         private System.Windows.Forms.NumericUpDown NumPriority;
         private System.Windows.Forms.Label lblpriority;
         private System.Windows.Forms.CheckBox chkArbiterOnly;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpAddHost;
         private System.Windows.Forms.Button cmdClose;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpRemoveHost;
         private System.Windows.Forms.Button cmdRemoveHost;
         private System.Windows.Forms.ListBox lstHost;
     }
