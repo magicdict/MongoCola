@@ -1255,7 +1255,7 @@ namespace MagicMongoDBTool
                     SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
                     SystemManager.ConfigHelperInstance.SaveToConfigFile();
                     MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
-                    MongoDBHelper._mongoConnSvrLst.Add(config.ConnectionName, MongoDBHelper.CreateMongoSetting(ref newConfig));
+                    MongoDBHelper._mongoConnSvrLst.Add(config.ConnectionName, MongoDBHelper.CreateMongoServer(ref newConfig));
                     this.ServerStatusCtl.SetEnable(false);
                     MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
                     this.ServerStatusCtl.SetEnable(true);
@@ -1278,7 +1278,7 @@ namespace MagicMongoDBTool
             SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
             SystemManager.ConfigHelperInstance.SaveToConfigFile();
             MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
-            MongoDBHelper._mongoConnSvrLst.Add(config.ConnectionName, MongoDBHelper.CreateMongoSetting(ref newConfig));
+            MongoDBHelper._mongoConnSvrLst.Add(config.ConnectionName, MongoDBHelper.CreateMongoServer(ref newConfig));
             this.ServerStatusCtl.SetEnable(false);
             MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
             this.ServerStatusCtl.SetEnable(true);

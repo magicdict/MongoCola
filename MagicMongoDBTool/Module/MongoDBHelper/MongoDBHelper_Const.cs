@@ -126,6 +126,10 @@ namespace MagicMongoDBTool.Module
             DocumentLV = 4
         }
 
+       //The process field identifies which kind of MongoDB instance is running. Possible values are:
+        public const String ServerStatus_PROCESS_MONGOS = "mongos";
+        public const String ServerStatus_PROCESS_MONGOD = "mongod";
+
         #region"系统数据集名称常量"
         /// <summary>
         /// Default Port

@@ -155,7 +155,7 @@ namespace MagicMongoDBTool.Module
                     else
                     {
                         BsonDocument ServerStatusDoc = ExecuteMongoSvrCommand(serverStatus_Command, mongoConn).Response;
-                        if (ServerStatusDoc.GetElement("process").Value == "mongos")
+                        if (ServerStatusDoc.GetElement("process").Value == ServerStatus_PROCESS_MONGOS)
                         {
                             config.ServerRole = ConfigHelper.SvrRoleType.ShardSvr;
                             ConnectionNode.Tag = CONNECTION_CLUSTER_TAG + ":" + config.ConnectionName;
@@ -207,6 +207,7 @@ namespace MagicMongoDBTool.Module
                         }
                         else
                         {
+                            ///Server Status mongod
                             ///Master - Slave 的判断
                             BsonElement replElement;
                             ServerStatusDoc.TryGetElement("repl", out replElement);
@@ -370,7 +371,9 @@ namespace MagicMongoDBTool.Module
                 {
                     MongoServerSettings setting = mongoConn.Settings.Clone();
                     setting.ConnectionMode = ConnectionMode.Direct;
-                    setting.ReadPreference = ReadPreference.Primary;
+                    //When Replset Case,Application need to read admin DB information
+                    //if Primary,there will be exception
+                    setting.ReadPreference = ReadPreference.PrimaryPreferred;
                     setting.Server = mServerInstace.Address;
                     InstantSrv = new MongoServer(setting);
                     databaseNameList = InstantSrv.GetDatabaseNames().ToList<String>();
@@ -392,8 +395,9 @@ namespace MagicMongoDBTool.Module
                             }
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        MyMessageBox.ShowMessage(strDBName + "Exception", strDBName + "Exception", ex.ToString());
                         mongoDBNode = new TreeNode(strDBName + " (Exception)");
                         mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
@@ -696,7 +700,7 @@ namespace MagicMongoDBTool.Module
                     }
                     else
                     {
-                        mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_ExpireData) + ":" +indexDoc.TimeToLive.TotalSeconds.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                        mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_ExpireData) + ":" + indexDoc.TimeToLive.TotalSeconds.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     }
                 }
                 else
@@ -715,7 +719,7 @@ namespace MagicMongoDBTool.Module
                     }
                     else
                     {
-                        mongoIndex.Nodes.Add(String.Empty, "Expire Data(sec):" + indexDoc.TimeToLive.TotalSeconds.ToString() , (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                        mongoIndex.Nodes.Add(String.Empty, "Expire Data(sec):" + indexDoc.TimeToLive.TotalSeconds.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     }
                 }
                 mongoIndex.ImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;

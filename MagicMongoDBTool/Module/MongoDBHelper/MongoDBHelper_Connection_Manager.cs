@@ -30,7 +30,7 @@ namespace MagicMongoDBTool.Module
                     {
                         _mongoConnSvrLst.Remove(config.ConnectionName);
                     }
-                    _mongoConnSvrLst.Add(config.ConnectionName, CreateMongoSetting(ref config));
+                    _mongoConnSvrLst.Add(config.ConnectionName, CreateMongoServer(ref config));
                     ///更新一些运行时的变量
                     SystemManager.ConfigHelperInstance.ConnectionList[config.ConnectionName] = config;
                 }
@@ -45,14 +45,14 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static MongoServer CreateMongoSetting(ref ConfigHelper.MongoConnectionConfig config)
+        public static MongoServer CreateMongoServer(ref ConfigHelper.MongoConnectionConfig config)
         {
 
             MongoServerSettings mongoSvrSetting = new MongoServerSettings();
             if (String.IsNullOrEmpty(config.ConnectionString))
             {
                 mongoSvrSetting.ConnectionMode = ConnectionMode.Direct;
-                SetReadPreferenceWriteConcern(ref mongoSvrSetting, config);
+                SetReadPreferenceWriteConcern(mongoSvrSetting, config);
                 //Replset时候可以不用设置吗？                    
                 mongoSvrSetting.Server = new MongoServerAddress(config.Host, config.Port);
                 //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
@@ -122,7 +122,6 @@ namespace MagicMongoDBTool.Module
             else
             {
                 //使用MongoConnectionString建立连接
-                //mongoSvrSetting = MongoUrl.Create(config.ConnectionString).ToServerSettings();
                 mongoSvrSetting = MongoServerSettings.FromUrl(MongoUrl.Create(config.ConnectionString));
             }
             MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
@@ -133,7 +132,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="mongoSvrSetting"></param>
         /// <param name="config"></param>
-        private static void SetReadPreferenceWriteConcern(ref MongoServerSettings mongoSvrSetting, ConfigHelper.MongoConnectionConfig config)
+        private static void SetReadPreferenceWriteConcern(MongoServerSettings mongoSvrSetting, ConfigHelper.MongoConnectionConfig config)
         {
             //----------------------------------------------
             //            New MongoClient class and default WriteConcern

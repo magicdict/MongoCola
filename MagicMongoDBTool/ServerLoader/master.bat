@@ -1,2 +1,3 @@
 cd C:\runmongo\bin
-mongod --port  28018 --dbpath C:\mongodb\master --rest 
+mkdir C:\mongodb\master
+mongod --port 28018  --master --dbpath C:\mongodb\master --rest 

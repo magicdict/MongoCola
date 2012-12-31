@@ -207,7 +207,7 @@ namespace MagicMongoDBTool
             CreateConnection();
             try
             {
-                MongoServer srv = MongoDBHelper.CreateMongoSetting(ref ModifyConn);
+                MongoServer srv = MongoDBHelper.CreateMongoServer(ref ModifyConn);
                 srv.Connect();
                 srv.Disconnect();
                 MyMessageBox.ShowMessage("Connect Test", "Connected OK.");
@@ -266,6 +266,10 @@ namespace MagicMongoDBTool
                 {
                     ModifyConn.Port = Convert.ToInt32(numPort.Text);
                 }
+                else
+                {
+                    ModifyConn.Port = 0;
+                }
                 ModifyConn.UserName = txtUsername.Text;
                 ModifyConn.Password = txtPassword.Text;
                 ModifyConn.DataBaseName = txtDataBaseName.Text;
@@ -319,12 +323,16 @@ namespace MagicMongoDBTool
         private void cmdAddHost_Click(object sender, EventArgs e)
         {
             String strHost = String.Empty;
-            strHost = txtReplHost.Text;
-            if (NumReplPort.Value != 0)
+            if (!string.IsNullOrEmpty(strHost))
             {
-                strHost += ":" + NumReplPort.Value.ToString();
+                strHost = txtReplHost.Text;
+                if (NumReplPort.Value != 0)
+                {
+                    strHost += ":" + NumReplPort.Value.ToString();
+                    lstHost.Items.Add(strHost);
+                }
+
             }
-            lstHost.Items.Add(strHost);
         }
         /// <summary>
         /// 移除HostList
