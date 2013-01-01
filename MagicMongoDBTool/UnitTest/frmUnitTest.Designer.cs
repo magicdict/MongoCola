@@ -30,6 +30,7 @@
         {
             this.btnFillDataForUser = new System.Windows.Forms.Button();
             this.btnFillDataForTTL = new System.Windows.Forms.Button();
+            this.btnFillDataForGeoObject = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFillDataForUser
@@ -52,11 +53,22 @@
             this.btnFillDataForTTL.UseVisualStyleBackColor = true;
             this.btnFillDataForTTL.Click += new System.EventHandler(this.btnFillDataForTTL_Click);
             // 
+            // btnFillDataForGeoObject
+            // 
+            this.btnFillDataForGeoObject.Location = new System.Drawing.Point(42, 70);
+            this.btnFillDataForGeoObject.Name = "btnFillDataForGeoObject";
+            this.btnFillDataForGeoObject.Size = new System.Drawing.Size(137, 23);
+            this.btnFillDataForGeoObject.TabIndex = 2;
+            this.btnFillDataForGeoObject.Text = "FillDataForGeoObject";
+            this.btnFillDataForGeoObject.UseVisualStyleBackColor = true;
+            this.btnFillDataForGeoObject.Click += new System.EventHandler(this.btnFillDataForGeoObject_Click);
+            // 
             // frmUnitTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(219, 80);
+            this.ClientSize = new System.Drawing.Size(219, 111);
+            this.Controls.Add(this.btnFillDataForGeoObject);
             this.Controls.Add(this.btnFillDataForTTL);
             this.Controls.Add(this.btnFillDataForUser);
             this.Name = "frmUnitTest";
@@ -70,5 +82,6 @@
 
         private System.Windows.Forms.Button btnFillDataForUser;
         private System.Windows.Forms.Button btnFillDataForTTL;
+        private System.Windows.Forms.Button btnFillDataForGeoObject;
     }
 }

@@ -17,7 +17,7 @@ namespace MagicMongoDBTool.Module
             e.Raise(null, ref ActionDone);
         }
         //各种节点的Tag前缀
-        
+
         /// <summary>
         /// 普通连接
         /// </summary>
@@ -125,8 +125,7 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             DocumentLV = 4
         }
-
-       //The process field identifies which kind of MongoDB instance is running. Possible values are:
+        //The process field identifies which kind of MongoDB instance is running. Possible values are:
         public const String ServerStatus_PROCESS_MONGOS = "mongos";
         public const String ServerStatus_PROCESS_MONGOD = "mongod";
 

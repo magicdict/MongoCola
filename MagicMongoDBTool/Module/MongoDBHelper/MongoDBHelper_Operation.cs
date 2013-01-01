@@ -328,10 +328,14 @@ namespace MagicMongoDBTool.Module
         /// <param name="DescendingKey"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey, IndexOptionsBuilder option)
+        public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey, String GeoSpatialKey, IndexOptionsBuilder option)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             IndexKeysBuilder indexkeys = new IndexKeysBuilder();
+            if (!String.IsNullOrEmpty(GeoSpatialKey))
+            {
+                indexkeys.GeoSpatial(GeoSpatialKey);
+            }
             indexkeys.Ascending(AscendingKey);
             indexkeys.Descending(DescendingKey);
             mongoCol.CreateIndex(indexkeys, option);

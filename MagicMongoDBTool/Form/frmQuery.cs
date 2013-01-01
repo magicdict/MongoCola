@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using MagicMongoDBTool.Module;
 using MongoDB.Driver;
+using MongoDB.Bson;
 using System.Windows.Forms;
+using MongoDB.Driver.Builders;
 
 namespace MagicMongoDBTool
 {
@@ -129,8 +131,6 @@ namespace MagicMongoDBTool
             SetCurrDataFilter();
             ///按下OK，不论是否做更改都认为True
             CurrentDataViewInfo.IsUseFilter = true;
-            //启用过滤器
-            //MongoDBHelper.IsUseFilter = true;
             this.Close();
         }
         /// <summary>
@@ -155,6 +155,7 @@ namespace MagicMongoDBTool
                     CurrentDataViewInfo.mDataFilter.QueryConditionList.Add(ctl.ConditionItem);
                 }
             }
+            CurrentDataViewInfo.mDataFilter.GeoNearCondition = GeoNearOptions.SetDistanceMultiplier(1);
         }
         /// <summary>
         /// 保存
@@ -259,8 +260,6 @@ namespace MagicMongoDBTool
             {
                 MyMessageBox.ShowMessage("Load Exception", "A Exception is happened when loading", strErrMsg, true);
             }
-
-
         }
         /// <summary>
         /// 直接关闭窗体
@@ -270,6 +269,20 @@ namespace MagicMongoDBTool
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void lnkGeoNear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/commands/#geoNear");
+        }
+
+        private void cmdGeoNear_Click(object sender, EventArgs e)
+        {
+            List<BsonDocument> SrvDocList = new List<BsonDocument>();
+            BsonDocument T = SystemManager.GetCurrentCollection().GeoNearAs<BsonDocument>(null, (int)NumGeoX.Value, (int)NumGeoY.Value, (int)NumResultCount.Value).Response;
+            SrvDocList.Add(T);
+            MongoDBHelper.FillDataToTreeView("Result", this.trvGeoResult, SrvDocList, 0);
+            this.trvGeoResult.DatatreeView.Nodes[0].Expand();
         }
     }
 }

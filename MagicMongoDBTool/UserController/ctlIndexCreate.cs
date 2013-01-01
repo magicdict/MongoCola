@@ -6,13 +6,19 @@ namespace MagicMongoDBTool
 {
     public partial class ctlIndexCreate : UserControl
     {
-        public Boolean IsAscendingKey
+        public MagicMongoDBTool.Module.DataFilter.SortType SortKeyType
         {
-            get { return radAscendingKey.Checked; }
+            get
+            {
+                if (this.radAscendingKey.Checked) { return DataFilter.SortType.Ascending; }
+                if (this.radDescendingKey.Checked) { return DataFilter.SortType.Descending; }
+                if (this.radGeoSpatial.Checked) { return DataFilter.SortType.GeoSpatial; }
+                return DataFilter.SortType.NoSort;
+            }
         }
         public String KeyName
         {
-            get { return txtKeyName.Text; }
+            get { return cmbKeyName.Text; }
         }
         public ctlIndexCreate()
         {
@@ -23,7 +29,9 @@ namespace MagicMongoDBTool
                 this.radAscendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Asce);
                 this.radDescendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Desc);
             }
-
+            foreach  (String FieldName in MongoDBHelper.GetCollectionSchame(SystemManager.GetCurrentCollection())){
+                cmbKeyName.Items.Add(FieldName);
+            }
         }
     }
 }

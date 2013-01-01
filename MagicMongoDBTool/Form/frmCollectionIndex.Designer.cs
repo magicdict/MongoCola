@@ -146,11 +146,11 @@ namespace MagicMongoDBTool
             this.numTTL.TabIndex = 21;
             this.numTTL.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // chkTTL
+            // chkExpireData
             // 
             this.chkExpireData.AutoSize = true;
             this.chkExpireData.Location = new System.Drawing.Point(26, 230);
-            this.chkExpireData.Name = "chkTTL";
+            this.chkExpireData.Name = "chkExpireData";
             this.chkExpireData.Size = new System.Drawing.Size(117, 19);
             this.chkExpireData.TabIndex = 20;
             this.chkExpireData.Text = "Expire Data(sec)";
@@ -216,41 +216,41 @@ namespace MagicMongoDBTool
             // ctlIndexCreate5
             // 
             this.ctlIndexCreate5.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate5.Location = new System.Drawing.Point(56, 167);
+            this.ctlIndexCreate5.Location = new System.Drawing.Point(29, 167);
             this.ctlIndexCreate5.Name = "ctlIndexCreate5";
-            this.ctlIndexCreate5.Size = new System.Drawing.Size(491, 37);
+            this.ctlIndexCreate5.Size = new System.Drawing.Size(544, 37);
             this.ctlIndexCreate5.TabIndex = 13;
             // 
             // ctlIndexCreate4
             // 
             this.ctlIndexCreate4.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate4.Location = new System.Drawing.Point(56, 130);
+            this.ctlIndexCreate4.Location = new System.Drawing.Point(29, 130);
             this.ctlIndexCreate4.Name = "ctlIndexCreate4";
-            this.ctlIndexCreate4.Size = new System.Drawing.Size(491, 37);
+            this.ctlIndexCreate4.Size = new System.Drawing.Size(544, 37);
             this.ctlIndexCreate4.TabIndex = 13;
             // 
             // ctlIndexCreate3
             // 
             this.ctlIndexCreate3.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate3.Location = new System.Drawing.Point(56, 93);
+            this.ctlIndexCreate3.Location = new System.Drawing.Point(29, 93);
             this.ctlIndexCreate3.Name = "ctlIndexCreate3";
-            this.ctlIndexCreate3.Size = new System.Drawing.Size(491, 37);
+            this.ctlIndexCreate3.Size = new System.Drawing.Size(544, 37);
             this.ctlIndexCreate3.TabIndex = 13;
             // 
             // ctlIndexCreate2
             // 
             this.ctlIndexCreate2.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate2.Location = new System.Drawing.Point(56, 56);
+            this.ctlIndexCreate2.Location = new System.Drawing.Point(29, 56);
             this.ctlIndexCreate2.Name = "ctlIndexCreate2";
-            this.ctlIndexCreate2.Size = new System.Drawing.Size(491, 37);
+            this.ctlIndexCreate2.Size = new System.Drawing.Size(544, 37);
             this.ctlIndexCreate2.TabIndex = 13;
             // 
             // ctlIndexCreate1
             // 
             this.ctlIndexCreate1.BackColor = System.Drawing.Color.Transparent;
-            this.ctlIndexCreate1.Location = new System.Drawing.Point(56, 19);
+            this.ctlIndexCreate1.Location = new System.Drawing.Point(29, 19);
             this.ctlIndexCreate1.Name = "ctlIndexCreate1";
-            this.ctlIndexCreate1.Size = new System.Drawing.Size(491, 37);
+            this.ctlIndexCreate1.Size = new System.Drawing.Size(544, 37);
             this.ctlIndexCreate1.TabIndex = 13;
             // 
             // frmCollectionIndex

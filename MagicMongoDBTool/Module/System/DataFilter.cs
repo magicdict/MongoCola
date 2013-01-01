@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
@@ -64,7 +66,11 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 降序
             /// </summary>
-            Descending
+            Descending,
+            /// <summary>
+            /// Geo
+            /// </summary>
+            GeoSpatial
         }
         /// <summary>
         /// 字段信息
@@ -119,6 +125,10 @@ namespace MagicMongoDBTool.Module
         /// 输出项目配置
         /// </summary>
         public List<QueryFieldItem> QueryFieldList = new List<QueryFieldItem>();
+        /// <summary>
+        /// GEO
+        /// </summary>
+        public GeoNearOptionsBuilder GeoNearCondition = new GeoNearOptionsBuilder();
         /// <summary>
         /// 保存数据过滤器
         /// </summary>

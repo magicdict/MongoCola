@@ -43,5 +43,18 @@ namespace MagicMongoDBTool.UnitTest
                 MessageBox.Show("Please select a server");
             }
         }
+
+        private void btnFillDataForGeoObject_Click(object sender, EventArgs e)
+        {
+            if (SystemManager.GetCurrentServer() != null)
+            {
+                InitTestData.FillDataForGeoObject(SystemManager.GetCurrentServer());
+                MessageBox.Show("Complete");
+            }
+            else
+            {
+                MessageBox.Show("Please select a server");
+            }
+        }
     }
 }

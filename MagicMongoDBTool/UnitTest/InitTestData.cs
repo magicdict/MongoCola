@@ -28,14 +28,37 @@ namespace MagicMongoDBTool.Module
             public String City;
             public String state;
             public int Zip;
-        }
 
+        }
+        internal class GeoObject
+        {
+            [BsonId]
+            public String ID;
+            public int[] Geo;
+        }
         internal class TLLObject
         {
             [BsonId]
             public String ID;
             public DateTime CreateDateTime;
             public int Game;
+        }
+        public static void FillDataForGeoObject(MongoServer mongosvr)
+        {
+            MongoDatabase mongodb = mongosvr.GetDatabase("mongodb");
+            MongoCollection<User> mongoCol = mongodb.GetCollection<User>("GEO");
+            mongoCol.RemoveAll();
+            Random Ro = new Random();
+            ///HugeData
+            for (int i = 0; i < 1000; i++)
+            {
+                mongoCol.Insert(new GeoObject()
+                {
+                    ID = i.ToString(),
+                    Geo = new int[2] { Ro.Next() % 180, Ro.Next() % 180 } 
+                    //[-180,180] 如果已经有索引，则操作这个范围的记录无法插入数据库
+                });
+            }
         }
         public static void FillDataForTTL(MongoServer mongosvr)
         {
@@ -54,7 +77,6 @@ namespace MagicMongoDBTool.Module
                 });
             }
         }
-
         public static void FillDataForUser(MongoServer mongosvr)
         {
             MongoDatabase mongodb = mongosvr.GetDatabase("mongodb");

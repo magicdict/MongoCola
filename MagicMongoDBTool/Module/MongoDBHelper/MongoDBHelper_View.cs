@@ -525,7 +525,7 @@ namespace MagicMongoDBTool.Module
                 lstItem.SubItems.Add(GetSize(docFile.GetValue("chunkSize")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("uploadDate")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("md5")));
-                
+
                 if (!SystemManager.MONO_MODE)
                 {
                     lstItem.SubItems.Add(GetSystemIcon.GetContentType(Filename));
@@ -630,7 +630,8 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 是否为Admin数据库
             /// </summary>
-            public Boolean IsAdminDB{
+            public Boolean IsAdminDB
+            {
                 get
                 {
                     String strNodeData = strDBTag.Split(":".ToCharArray())[1];

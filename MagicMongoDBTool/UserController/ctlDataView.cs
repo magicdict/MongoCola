@@ -161,9 +161,6 @@ namespace MagicMongoDBTool.UserController
 
         #endregion
 
-
-
-
         #region"数据导航"
         /// <summary>
         /// 换页操作

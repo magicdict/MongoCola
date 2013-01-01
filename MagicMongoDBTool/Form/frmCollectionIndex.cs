@@ -98,6 +98,7 @@ namespace MagicMongoDBTool
         {
             List<String> AscendingKey = new List<String>();
             List<String> DescendingKey = new List<String>();
+            String GeoSpatialKey = string.Empty;
             String FirstKey = string.Empty;
             for (int i = 0; i < 5; i++)
             {
@@ -105,13 +106,19 @@ namespace MagicMongoDBTool
                 if (ctl.KeyName != String.Empty)
                 {
                     FirstKey = ctl.KeyName.Trim();
-                    if (ctl.IsAscendingKey)
+                    switch (ctl.SortKeyType)
                     {
-                        AscendingKey.Add(ctl.KeyName.Trim());
-                    }
-                    else
-                    {
-                        DescendingKey.Add(ctl.KeyName.Trim());
+                        case DataFilter.SortType.Ascending:
+                            AscendingKey.Add(ctl.KeyName.Trim());
+                            break;
+                        case DataFilter.SortType.Descending:
+                            DescendingKey.Add(ctl.KeyName.Trim());
+                            break;
+                        case DataFilter.SortType.GeoSpatial:
+                            GeoSpatialKey = ctl.KeyName.Trim();
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
@@ -126,7 +133,7 @@ namespace MagicMongoDBTool
                 //http://docs.mongodb.org/manual/tutorial/expire-data/
                 //不能是组合键
                 Boolean CanUseTTL = true;
-                if ((AscendingKey.Count + DescendingKey.Count) != 1)
+                if ((AscendingKey.Count + DescendingKey.Count + (String.IsNullOrEmpty(GeoSpatialKey)?0:1)) != 1 )
                 {
                     MyMessageBox.ShowMessage("Can't Set TTL", "the TTL index may not be compound (may not have multiple fields).");
                     CanUseTTL = false;
@@ -149,21 +156,29 @@ namespace MagicMongoDBTool
                 {
                     MyMessageBox.ShowMessage("Constraints", "Constraints Of TimeToLive",
                                             "the indexed field must be a date BSON type. If the field does not have a date type, the data will not expire." + System.Environment.NewLine +
-                                            "if the field holds an array, and there are multiple date-typed data in the index, the document will expire when the lowest (i.e. earliest) matches the expiration threshold.",true);
+                                            "if the field holds an array, and there are multiple date-typed data in the index, the document will expire when the lowest (i.e. earliest) matches the expiration threshold.", true);
                     option.SetTimeToLive(new TimeSpan(0, 0, (int)numTTL.Value));
                 }
             }
             if (txtIndexName.Text != String.Empty &&
                 !SystemManager.GetCurrentCollection().IndexExists(txtIndexName.Text) &&
-                (AscendingKey.Count + DescendingKey.Count) != 0)
+                (AscendingKey.Count + DescendingKey.Count + (String.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1)) != 0)
             {
                 option.SetName(txtIndexName.Text);
-                MongoDBHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), option);
+                try
+                {
+                    MongoDBHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), GeoSpatialKey, option);
+                    MyMessageBox.ShowMessage("Index Add Completed!", "IndexName:" + txtIndexName.Text + " is add to collection.");
+                }
+                catch (Exception ex)
+                {
+                    MyMessageBox.ShowMessage("Index Add Failed!", "IndexName:" + txtIndexName.Text, ex.ToString(), true);
+                }
                 RefreshList();
-                MyMessageBox.ShowMessage("Index Add Completed!", "IndexName:" + txtIndexName.Text + " is add to collection.");
             }
-            else {
-                MyMessageBox.ShowMessage("Index Add Fail!", "Please Check the index information.");
+            else
+            {
+                MyMessageBox.ShowMessage("Index Add Failed!", "Please Check the index information.");
             }
         }
         /// <summary>
