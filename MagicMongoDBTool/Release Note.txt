@@ -19,6 +19,7 @@ Ver 1.24 2013/01/01 [Back to IBM GDC]
 6.From Mongo2.2.2 Capped Collection is default AutoIdIndex. 
 7.Add some useful link
 8.Change dialog from icon to application icon.
+9.Tag Aware Sharding
 ========================================================================
 
 

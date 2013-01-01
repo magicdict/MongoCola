@@ -44,7 +44,7 @@
             this.NumMaxSize = new System.Windows.Forms.NumericUpDown();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblShardingName = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblMaxSize = new System.Windows.Forms.Label();
             this.cmdRemoveHost = new System.Windows.Forms.Button();
             this.cmdAddHost = new System.Windows.Forms.Button();
             this.lstHost = new System.Windows.Forms.ListBox();
@@ -59,6 +59,12 @@
             this.lstSharding = new System.Windows.Forms.ListBox();
             this.cmdRemoveSharding = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
+            this.tabAddShardTag = new System.Windows.Forms.TabPage();
+            this.lblShardName = new System.Windows.Forms.Label();
+            this.lblTagShard = new System.Windows.Forms.Label();
+            this.txtShardName = new System.Windows.Forms.TextBox();
+            this.txtTagShard = new System.Windows.Forms.TextBox();
+            this.btnAddShardTag = new System.Windows.Forms.Button();
             this.tabSharding.SuspendLayout();
             this.tabAddSharding.SuspendLayout();
             this.grpAdvanced.SuspendLayout();
@@ -66,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).BeginInit();
             this.tabShardingConfig.SuspendLayout();
             this.tabRemoveSharding.SuspendLayout();
+            this.tabAddShardTag.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmdAddSharding
@@ -163,6 +170,7 @@
             this.tabSharding.Controls.Add(this.tabAddSharding);
             this.tabSharding.Controls.Add(this.tabShardingConfig);
             this.tabSharding.Controls.Add(this.tabRemoveSharding);
+            this.tabSharding.Controls.Add(this.tabAddShardTag);
             this.tabSharding.Location = new System.Drawing.Point(13, 12);
             this.tabSharding.Name = "tabSharding";
             this.tabSharding.SelectedIndex = 0;
@@ -207,7 +215,7 @@
             this.grpAdvanced.Controls.Add(this.NumMaxSize);
             this.grpAdvanced.Controls.Add(this.txtName);
             this.grpAdvanced.Controls.Add(this.lblShardingName);
-            this.grpAdvanced.Controls.Add(this.label2);
+            this.grpAdvanced.Controls.Add(this.lblMaxSize);
             this.grpAdvanced.Enabled = false;
             this.grpAdvanced.Location = new System.Drawing.Point(27, 119);
             this.grpAdvanced.Name = "grpAdvanced";
@@ -245,14 +253,14 @@
             this.lblShardingName.TabIndex = 1;
             this.lblShardingName.Text = "Name";
             // 
-            // label2
+            // lblMaxSize
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "MaxSize(MB)";
+            this.lblMaxSize.AutoSize = true;
+            this.lblMaxSize.Location = new System.Drawing.Point(16, 40);
+            this.lblMaxSize.Name = "lblMaxSize";
+            this.lblMaxSize.Size = new System.Drawing.Size(82, 15);
+            this.lblMaxSize.TabIndex = 2;
+            this.lblMaxSize.Text = "MaxSize(MB)";
             // 
             // cmdRemoveHost
             // 
@@ -376,12 +384,12 @@
             this.lstSharding.ItemHeight = 15;
             this.lstSharding.Location = new System.Drawing.Point(34, 23);
             this.lstSharding.Name = "lstSharding";
-            this.lstSharding.Size = new System.Drawing.Size(191, 139);
+            this.lstSharding.Size = new System.Drawing.Size(465, 139);
             this.lstSharding.TabIndex = 0;
             // 
             // cmdRemoveSharding
             // 
-            this.cmdRemoveSharding.Location = new System.Drawing.Point(64, 172);
+            this.cmdRemoveSharding.Location = new System.Drawing.Point(196, 168);
             this.cmdRemoveSharding.Name = "cmdRemoveSharding";
             this.cmdRemoveSharding.Size = new System.Drawing.Size(124, 34);
             this.cmdRemoveSharding.TabIndex = 1;
@@ -398,6 +406,63 @@
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
+            // 
+            // tabAddShardTag
+            // 
+            this.tabAddShardTag.Controls.Add(this.btnAddShardTag);
+            this.tabAddShardTag.Controls.Add(this.txtTagShard);
+            this.tabAddShardTag.Controls.Add(this.txtShardName);
+            this.tabAddShardTag.Controls.Add(this.lblTagShard);
+            this.tabAddShardTag.Controls.Add(this.lblShardName);
+            this.tabAddShardTag.Location = new System.Drawing.Point(4, 24);
+            this.tabAddShardTag.Name = "tabAddShardTag";
+            this.tabAddShardTag.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAddShardTag.Size = new System.Drawing.Size(517, 229);
+            this.tabAddShardTag.TabIndex = 3;
+            this.tabAddShardTag.Text = "Add Shard Tag";
+            this.tabAddShardTag.UseVisualStyleBackColor = true;
+            // 
+            // lblShardName
+            // 
+            this.lblShardName.AutoSize = true;
+            this.lblShardName.Location = new System.Drawing.Point(60, 27);
+            this.lblShardName.Name = "lblShardName";
+            this.lblShardName.Size = new System.Drawing.Size(77, 15);
+            this.lblShardName.TabIndex = 0;
+            this.lblShardName.Text = "Shard Name";
+            // 
+            // lblTagShard
+            // 
+            this.lblTagShard.AutoSize = true;
+            this.lblTagShard.Location = new System.Drawing.Point(60, 55);
+            this.lblTagShard.Name = "lblTagShard";
+            this.lblTagShard.Size = new System.Drawing.Size(85, 15);
+            this.lblTagShard.TabIndex = 1;
+            this.lblTagShard.Text = "Tag For Shard";
+            // 
+            // txtShardName
+            // 
+            this.txtShardName.Location = new System.Drawing.Point(165, 27);
+            this.txtShardName.Name = "txtShardName";
+            this.txtShardName.Size = new System.Drawing.Size(223, 21);
+            this.txtShardName.TabIndex = 2;
+            // 
+            // txtTagShard
+            // 
+            this.txtTagShard.Location = new System.Drawing.Point(165, 55);
+            this.txtTagShard.Name = "txtTagShard";
+            this.txtTagShard.Size = new System.Drawing.Size(223, 21);
+            this.txtTagShard.TabIndex = 3;
+            // 
+            // btnAddShardTag
+            // 
+            this.btnAddShardTag.Location = new System.Drawing.Point(199, 99);
+            this.btnAddShardTag.Name = "btnAddShardTag";
+            this.btnAddShardTag.Size = new System.Drawing.Size(121, 33);
+            this.btnAddShardTag.TabIndex = 4;
+            this.btnAddShardTag.Text = "Add Shard Tag";
+            this.btnAddShardTag.UseVisualStyleBackColor = true;
+            this.btnAddShardTag.Click += new System.EventHandler(this.btnAddShardTag_Click);
             // 
             // frmShardingConfig
             // 
@@ -425,6 +490,8 @@
             this.tabShardingConfig.ResumeLayout(false);
             this.tabShardingConfig.PerformLayout();
             this.tabRemoveSharding.ResumeLayout(false);
+            this.tabAddShardTag.ResumeLayout(false);
+            this.tabAddShardTag.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -458,9 +525,15 @@
         private System.Windows.Forms.NumericUpDown NumMaxSize;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblShardingName;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblMaxSize;
         private System.Windows.Forms.TabPage tabRemoveSharding;
         private System.Windows.Forms.ListBox lstSharding;
         private System.Windows.Forms.Button cmdRemoveSharding;
+        private System.Windows.Forms.TabPage tabAddShardTag;
+        private System.Windows.Forms.Label lblTagShard;
+        private System.Windows.Forms.Label lblShardName;
+        private System.Windows.Forms.TextBox txtTagShard;
+        private System.Windows.Forms.TextBox txtShardName;
+        private System.Windows.Forms.Button btnAddShardTag;
     }
 }

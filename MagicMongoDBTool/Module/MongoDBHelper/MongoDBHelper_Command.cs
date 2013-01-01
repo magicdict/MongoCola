@@ -79,7 +79,18 @@ namespace MagicMongoDBTool.Module
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
         /// <summary>
-        /// 
+        /// 增加分片Tag
+        /// </summary>
+        /// <param name="routeSvr">服务器</param>
+        /// <param name="ShardName">Shard名称</param>
+        /// <param name="TagName">Tag名称</param>
+        /// <returns></returns>
+        public static CommandResult AddShardTag(MongoServer routeSvr, String ShardName, String TagName) {
+            CommandDocument mongoCmd = new CommandDocument();
+            return ExecuteJsShell("sh.addShardTag('" + ShardName + "', '" + TagName + "')", routeSvr);
+        }
+        /// <summary>
+        /// 移除Shard
         /// </summary>
         /// <param name="routeSvr"></param>
         /// <param name="ShardName"></param>

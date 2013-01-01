@@ -201,7 +201,11 @@ namespace MagicMongoDBTool
         {
             this.Close();
         }
-
+        /// <summary>
+        /// 移除Sharding
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdRemoveSharding_Click(object sender, EventArgs e)
         {
             foreach (String item in lstSharding.SelectedItems)
@@ -217,6 +221,18 @@ namespace MagicMongoDBTool
             {
                 lstSharding.Items.Add(lst.Value);
             }
+
+        }
+        /// <summary>
+        /// 为Sharding增加Tag
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddShardTag_Click(object sender, EventArgs e)
+        {
+            List<CommandResult> Resultlst = new List<CommandResult>();
+            Resultlst.Add(MongoDBHelper.AddShardTag(_prmSvr,txtShardName.Text,tabAddShardTag.Text));
+            MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
 
         }
     }
