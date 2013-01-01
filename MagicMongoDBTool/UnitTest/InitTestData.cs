@@ -30,6 +30,31 @@ namespace MagicMongoDBTool.Module
             public int Zip;
         }
 
+        internal class TLLObject
+        {
+            [BsonId]
+            public String ID;
+            public DateTime CreateDateTime;
+            public int Game;
+        }
+        public static void FillDataForTTL(MongoServer mongosvr)
+        {
+            MongoDatabase mongodb = mongosvr.GetDatabase("mongodb");
+            MongoCollection<User> mongoCol = mongodb.GetCollection<User>("TTL");
+            mongoCol.RemoveAll();
+            Random Ro = new Random();
+            ///HugeData
+            for (int i = 0; i < 1000; i++)
+            {
+                mongoCol.Insert(new TLLObject()
+                {
+                    ID = i.ToString(),
+                    CreateDateTime = System.DateTime.Now.AddSeconds(i),
+                    Game = Ro.Next()
+                });
+            }
+        }
+
         public static void FillDataForUser(MongoServer mongosvr)
         {
             MongoDatabase mongodb = mongosvr.GetDatabase("mongodb");
@@ -39,7 +64,7 @@ namespace MagicMongoDBTool.Module
                           new BsonDocument().Add("_id", "sum")
                                             .Add("value", "function (x, y) { return x + y; }"));
             MongoGridFS mongofs = mongodb.GetGridFS(new MongoGridFSSettings());
-            MongoCollection<User> mongoCol = mongodb.GetCollection<User>("Test");
+            MongoCollection<User> mongoCol = mongodb.GetCollection<User>("User");
             mongoCol.RemoveAll();
             Random Ro = new Random();
             ///HugeData

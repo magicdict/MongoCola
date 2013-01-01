@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.btnFillDataForUser = new System.Windows.Forms.Button();
+            this.btnFillDataForTTL = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnFillDataForUser
             // 
-            this.btnFillDataForUser.Location = new System.Drawing.Point(36, 26);
+            this.btnFillDataForUser.Location = new System.Drawing.Point(42, 12);
             this.btnFillDataForUser.Name = "btnFillDataForUser";
             this.btnFillDataForUser.Size = new System.Drawing.Size(137, 23);
             this.btnFillDataForUser.TabIndex = 0;
@@ -41,11 +42,22 @@
             this.btnFillDataForUser.UseVisualStyleBackColor = true;
             this.btnFillDataForUser.Click += new System.EventHandler(this.btnFillDataForUser_Click);
             // 
+            // btnFillDataForTTL
+            // 
+            this.btnFillDataForTTL.Location = new System.Drawing.Point(42, 41);
+            this.btnFillDataForTTL.Name = "btnFillDataForTTL";
+            this.btnFillDataForTTL.Size = new System.Drawing.Size(137, 23);
+            this.btnFillDataForTTL.TabIndex = 1;
+            this.btnFillDataForTTL.Text = "FillDataForTTL";
+            this.btnFillDataForTTL.UseVisualStyleBackColor = true;
+            this.btnFillDataForTTL.Click += new System.EventHandler(this.btnFillDataForTTL_Click);
+            // 
             // frmUnitTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(480, 80);
+            this.ClientSize = new System.Drawing.Size(219, 80);
+            this.Controls.Add(this.btnFillDataForTTL);
             this.Controls.Add(this.btnFillDataForUser);
             this.Name = "frmUnitTest";
             this.Text = "frmUnitTest";
@@ -57,5 +69,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnFillDataForUser;
+        private System.Windows.Forms.Button btnFillDataForTTL;
     }
 }

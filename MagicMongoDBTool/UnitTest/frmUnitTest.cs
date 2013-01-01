@@ -30,5 +30,18 @@ namespace MagicMongoDBTool.UnitTest
                 MessageBox.Show("Please select a server");
             }
         }
+
+        private void btnFillDataForTTL_Click(object sender, EventArgs e)
+        {
+            if (SystemManager.GetCurrentServer() != null)
+            {
+                InitTestData.FillDataForTTL(SystemManager.GetCurrentServer());
+                MessageBox.Show("Complete");
+            }
+            else
+            {
+                MessageBox.Show("Please select a server");
+            }
+        }
     }
 }

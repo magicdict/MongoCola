@@ -2136,9 +2136,10 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+             
             MyMessageBox.ShowMessage("About", "MagicCola",
                                      MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile),
-                                     "GitHub： https://github.com/magicdict/MagicMongoDBTool");
+                                     new System.IO.StreamReader("Release Note.txt").ReadToEnd());
         }
         /// <summary>
         /// Thanks

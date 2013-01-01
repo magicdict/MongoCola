@@ -98,19 +98,20 @@ namespace MagicMongoDBTool
         {
             List<String> AscendingKey = new List<String>();
             List<String> DescendingKey = new List<String>();
-
+            String FirstKey = string.Empty;
             for (int i = 0; i < 5; i++)
             {
                 ctlIndexCreate ctl = (ctlIndexCreate)Controls.Find("ctlIndexCreate" + (i + 1).ToString(), true)[0];
                 if (ctl.KeyName != String.Empty)
                 {
+                    FirstKey = ctl.KeyName.Trim();
                     if (ctl.IsAscendingKey)
                     {
-                        AscendingKey.Add(ctl.KeyName);
+                        AscendingKey.Add(ctl.KeyName.Trim());
                     }
                     else
                     {
-                        DescendingKey.Add(ctl.KeyName);
+                        DescendingKey.Add(ctl.KeyName.Trim());
                     }
                 }
             }
@@ -119,16 +120,51 @@ namespace MagicMongoDBTool
             option.SetDropDups(chkIsDroppedDups.Checked);
             option.SetSparse(chkIsSparse.Checked);
             option.SetUnique(chkIsUnique.Checked);
-            if (chkExpireData.Checked){
-                option.SetTimeToLive(new TimeSpan(0,0,(int)numTTL.Value));
+            if (chkExpireData.Checked)
+            {
+                //TTL的限制条件很多
+                //http://docs.mongodb.org/manual/tutorial/expire-data/
+                //不能是组合键
+                Boolean CanUseTTL = true;
+                if ((AscendingKey.Count + DescendingKey.Count) != 1)
+                {
+                    MyMessageBox.ShowMessage("Can't Set TTL", "the TTL index may not be compound (may not have multiple fields).");
+                    CanUseTTL = false;
+                }
+                else
+                {
+                    //不能是_id
+                    if (FirstKey == MongoDBHelper.KEY_ID)
+                    {
+                        MyMessageBox.ShowMessage("Can't Set TTL", "you cannot create this index on the _id field, or a field that already has an index.");
+                        CanUseTTL = false;
+                    }
+                }
+                if (SystemManager.GetCurrentCollection().IsCapped())
+                {
+                    MyMessageBox.ShowMessage("Can't Set TTL", "you cannot use a TTL index on a capped collection, because MongoDB cannot remove documents from a capped collection.");
+                    CanUseTTL = false;
+                }
+                if (CanUseTTL)
+                {
+                    MyMessageBox.ShowMessage("Constraints", "Constraints Of TimeToLive",
+                                            "the indexed field must be a date BSON type. If the field does not have a date type, the data will not expire." + System.Environment.NewLine +
+                                            "if the field holds an array, and there are multiple date-typed data in the index, the document will expire when the lowest (i.e. earliest) matches the expiration threshold.",true);
+                    option.SetTimeToLive(new TimeSpan(0, 0, (int)numTTL.Value));
+                }
             }
-            if (txtIndexName.Text != String.Empty && !SystemManager.GetCurrentCollection().IndexExists(txtIndexName.Text))
+            if (txtIndexName.Text != String.Empty &&
+                !SystemManager.GetCurrentCollection().IndexExists(txtIndexName.Text) &&
+                (AscendingKey.Count + DescendingKey.Count) != 0)
             {
                 option.SetName(txtIndexName.Text);
+                MongoDBHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), option);
+                RefreshList();
+                MyMessageBox.ShowMessage("Index Add Completed!", "IndexName:" + txtIndexName.Text + " is add to collection.");
             }
-            MongoDBHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), option);
-            RefreshList();
-            MessageBox.Show("Index Add Completed!");
+            else {
+                MyMessageBox.ShowMessage("Index Add Fail!", "Please Check the index information.");
+            }
         }
         /// <summary>
         /// 刷新索引列表
@@ -150,7 +186,8 @@ namespace MagicMongoDBTool
                 {
                     lst.SubItems.Add(item.TimeToLive.TotalSeconds.ToString());
                 }
-                else {
+                else
+                {
                     lst.SubItems.Add("Not Set");
                 }
                 lstIndex.Items.Add(lst);
