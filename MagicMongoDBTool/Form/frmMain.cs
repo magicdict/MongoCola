@@ -169,7 +169,7 @@ namespace MagicMongoDBTool
             SetToolBarEnabled();
 
             //Open ConnectionManagement Form
-            SystemManager.OpenForm(new frmConnect());
+            SystemManager.OpenForm(new frmConnect(), true, true);
             ServerStatusCtl.SetEnable(true);
             RefreshToolStripMenuItem_Click(sender, e);
 
@@ -1187,7 +1187,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddConnectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmConnect());
+            SystemManager.OpenForm(new frmConnect(), true, true);
             RefreshToolStripMenuItem_Click(sender, e);
         }
         /// <summary>
@@ -1275,7 +1275,7 @@ namespace MagicMongoDBTool
         private void ReplicaSetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigHelper.MongoConnectionConfig newConfig = SystemManager.GetCurrentServerConfig();
-            SystemManager.OpenForm(new frmReplsetMgr(ref newConfig));
+            SystemManager.OpenForm(new frmReplsetMgr(ref newConfig), true, true);
             SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
             SystemManager.ConfigHelperInstance.SaveToConfigFile();
             MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
@@ -1292,7 +1292,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ShardingConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmShardingConfig());
+            SystemManager.OpenForm(new frmShardingConfig(), true, true);
         }
         /// <summary>
         /// Refresh
@@ -1391,7 +1391,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddUserToAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmUser(true));
+            SystemManager.OpenForm(new frmUser(true), true, true);
         }
         /// <summary>
         /// SlaveResync
@@ -1427,7 +1427,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void SvrStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmStatus());
+            SystemManager.OpenForm(new frmStatus(), true, true);
         }
         #endregion
 
@@ -1510,7 +1510,7 @@ namespace MagicMongoDBTool
                     strSvrPathWithTag = SystemManager.SelectObjectTag,
                     treeNode = trvsrvlst.SelectedNode
                 };
-            SystemManager.OpenForm(frm);
+            SystemManager.OpenForm(frm, true, true);
             if (frm.Result)
             {
                 DisableAllOpr();
@@ -1523,7 +1523,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmUser(false));
+            SystemManager.OpenForm(new frmUser(false), true, true);
         }
         /// <summary>
         /// Eval JS
@@ -1532,7 +1532,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void evalJSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmevalJS());
+            SystemManager.OpenForm(new frmevalJS(), true, true);
         }
         /// <summary>
         /// Repair DataBase
@@ -1561,7 +1561,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void profillingLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmProfilling());
+            SystemManager.OpenForm(new frmProfilling(), true, true);
         }
         /// <summary>
         /// 
@@ -1570,7 +1570,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DBStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmStatus());
+            SystemManager.OpenForm(new frmStatus(), true, true);
         }
         /// <summary>
         /// Create Js
@@ -1722,7 +1722,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void IndexManageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmCollectionIndex());
+            SystemManager.OpenForm(new frmCollectionIndex(), true, true);
         }
         /// <summary>
         /// ReIndex
@@ -1817,7 +1817,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CollectionStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmStatus());
+            SystemManager.OpenForm(new frmStatus(), true, true);
         }
         #endregion
 
@@ -1833,7 +1833,7 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Exception",
                                          "Mongo Bin Path Can't be found",
                                          "Mongo Bin Path[" + SystemManager.ConfigHelperInstance.MongoBinPath + "]Can't be found");
-                SystemManager.OpenForm(new frmOption());
+                SystemManager.OpenForm(new frmOption(), true, true);
                 return false;
             }
             return true;
@@ -1990,7 +1990,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ConvertSqlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmConvertSql());
+            SystemManager.OpenForm(new frmConvertSql(), true, true);
         }
         /// <summary>
         /// Count
@@ -2035,7 +2035,7 @@ namespace MagicMongoDBTool
                 Query = ViewInfoList[ColPath].mDataFilter;
                 IsUseFilter = ViewInfoList[ColPath].IsUseFilter;
             }
-            SystemManager.OpenForm(new frmDistinct(Query, IsUseFilter));
+            SystemManager.OpenForm(new frmDistinct(Query, IsUseFilter), true, true);
         }
         /// <summary>
         /// Group
@@ -2052,7 +2052,7 @@ namespace MagicMongoDBTool
                 Query = ViewInfoList[ColPath].mDataFilter;
                 IsUseFilter = ViewInfoList[ColPath].IsUseFilter;
             }
-            SystemManager.OpenForm(new frmGroup(Query, IsUseFilter));
+            SystemManager.OpenForm(new frmGroup(Query, IsUseFilter), true, true);
         }
         /// <summary>
         /// MapReduce
@@ -2061,7 +2061,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void mapReduceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmMapReduce());
+            SystemManager.OpenForm(new frmMapReduce(), true, true);
         }
         #endregion
 
@@ -2073,7 +2073,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void OptionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmOption());
+            SystemManager.OpenForm(new frmOption(), true, true);
             SystemManager.InitLanguage();
             if (SystemManager.IsUseDefaultLanguage)
             {
@@ -2115,7 +2115,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void GernerateConfigtoolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmGenerateConfigIni());
+            SystemManager.OpenForm(new frmGenerateConfigIni(), true, true);
         }
         /// <summary>
         /// DOS控制台
@@ -2124,7 +2124,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DosCommandToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmDosCommand());
+            SystemManager.OpenForm(new frmDosCommand(), true, true);
         }
         #endregion
 
@@ -2175,12 +2175,10 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void forMySelfToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmUnitTest());
+            SystemManager.OpenForm(new frmUnitTest(), true, true);
         }
 
         #endregion
-
-
-
+        
     }
 }

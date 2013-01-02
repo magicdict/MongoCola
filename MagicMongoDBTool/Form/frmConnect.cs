@@ -53,7 +53,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdAddCon_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmAddConnection());
+            SystemManager.OpenForm(new frmAddConnection(), true, true);
             RefreshConnection();
         }
         /// <summary>
@@ -109,7 +109,7 @@ namespace MagicMongoDBTool
                 {
                     ConnectionName = ConnectionName.Split("@".ToCharArray())[0];
                 }
-                SystemManager.OpenForm(new frmAddConnection(ConnectionName));
+                SystemManager.OpenForm(new frmAddConnection(ConnectionName), true, true);
                 RefreshConnection();
             }
         }

@@ -16,6 +16,9 @@ namespace MagicMongoDBTool
                 return DataFilter.SortType.NoSort;
             }
         }
+        /// <summary>
+        /// 键名称
+        /// </summary>
         public String KeyName
         {
             get { return cmbKeyName.Text; }
@@ -29,8 +32,12 @@ namespace MagicMongoDBTool
                 this.radAscendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Asce);
                 this.radDescendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Desc);
             }
-            foreach  (String FieldName in MongoDBHelper.GetCollectionSchame(SystemManager.GetCurrentCollection())){
-                cmbKeyName.Items.Add(FieldName);
+            if (SystemManager.GetCurrentCollection() != null)
+            {
+                foreach (String FieldName in MongoDBHelper.GetCollectionSchame(SystemManager.GetCurrentCollection()))
+                {
+                    cmbKeyName.Items.Add(FieldName);
+                }
             }
         }
     }

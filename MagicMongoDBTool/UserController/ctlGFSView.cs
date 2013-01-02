@@ -64,7 +64,7 @@ namespace MagicMongoDBTool
             if (upfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 frmGFSOption frm = new frmGFSOption();
-                SystemManager.OpenForm(frm, false);
+                SystemManager.OpenForm(frm, false,true);
                 opt.FileNameOpt = frm.filename;
                 opt.AlreadyOpt = frm.option;
                 opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
@@ -85,7 +85,7 @@ namespace MagicMongoDBTool
             if (upfolder.ShowDialog() == DialogResult.OK)
             {
                 frmGFSOption frm = new frmGFSOption();
-                SystemManager.OpenForm(frm, false);
+                SystemManager.OpenForm(frm, false,true);
                 opt.FileNameOpt = frm.filename;
                 opt.AlreadyOpt = frm.option;
                 opt.IgnoreSubFolder = frm.ignoreSubFolder;
@@ -160,8 +160,11 @@ namespace MagicMongoDBTool
         /// </summary>
         private void OpenFileStripButton_Click(object sender, EventArgs e)
         {
-            String strFileName = lstData.SelectedItems[0].Text;
-            MongoDBHelper.OpenFile(strFileName);
+            if (lstData.SelectedItems.Count == 1)
+            {
+                String strFileName = lstData.SelectedItems[0].Text;
+                MongoDBHelper.OpenFile(strFileName);
+            }
         }
         /// <summary>
         /// Delete File

@@ -363,7 +363,7 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void QueryStripButton_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmQuery(mDataViewInfo));
+            SystemManager.OpenForm(new frmQuery(mDataViewInfo), true, false);
             this.FilterStripButton.Enabled = mDataViewInfo.IsUseFilter;
             this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
             //重新展示数据

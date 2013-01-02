@@ -39,11 +39,11 @@ namespace MagicMongoDBTool
         {
             if (mDataViewInfo.IsAdminDB)
             {
-                SystemManager.OpenForm(new frmUser(true));
+                SystemManager.OpenForm(new frmUser(true), true, true);
             }
             else
             {
-                SystemManager.OpenForm(new frmUser(false));
+                SystemManager.OpenForm(new frmUser(false), true, true);
             }
             RefreshGUI();
         }
@@ -144,11 +144,11 @@ namespace MagicMongoDBTool
         {
             if (mDataViewInfo.strDBTag.EndsWith(MongoDBHelper.DATABASE_NAME_ADMIN + "/" + MongoDBHelper.COLLECTION_NAME_USER))
             {
-                SystemManager.OpenForm(new frmUser(true, lstData.SelectedItems[0].SubItems[1].Text));
+                SystemManager.OpenForm(new frmUser(true, lstData.SelectedItems[0].SubItems[1].Text), true, true);
             }
             else
             {
-                SystemManager.OpenForm(new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text));
+                SystemManager.OpenForm(new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text), true, true);
             }
             RefreshGUI();
 

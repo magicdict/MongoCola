@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQuery));
             this.cmdAddCondition = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
@@ -36,9 +35,13 @@
             this.tabCondition = new System.Windows.Forms.TabPage();
             this.panFilter = new System.Windows.Forms.Panel();
             this.tabgeoNear = new System.Windows.Forms.TabPage();
+            this.lblMaxDistance = new System.Windows.Forms.Label();
+            this.lblDistanceMultiplier = new System.Windows.Forms.Label();
+            this.chkSpherical = new System.Windows.Forms.CheckBox();
+            this.NumMaxDistance = new System.Windows.Forms.NumericUpDown();
+            this.NumDistanceMultiplier = new System.Windows.Forms.NumericUpDown();
             this.NumResultCount = new System.Windows.Forms.NumericUpDown();
             this.cmdGeoNear = new System.Windows.Forms.Button();
-            this.trvGeoResult = new TreeViewColumnsProject.TreeViewColumns();
             this.NumGeoY = new System.Windows.Forms.NumericUpDown();
             this.NumGeoX = new System.Windows.Forms.NumericUpDown();
             this.lblGeoNear = new System.Windows.Forms.Label();
@@ -47,9 +50,12 @@
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
+            this.trvGeoResult = new TreeViewColumnsProject.TreeViewColumns();
             this.tabControl.SuspendLayout();
             this.tabCondition.SuspendLayout();
             this.tabgeoNear.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumMaxDistance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumDistanceMultiplier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumResultCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumGeoY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumGeoX)).BeginInit();
@@ -121,14 +127,19 @@
             // 
             // tabgeoNear
             // 
+            this.tabgeoNear.Controls.Add(this.lblMaxDistance);
+            this.tabgeoNear.Controls.Add(this.lblDistanceMultiplier);
+            this.tabgeoNear.Controls.Add(this.chkSpherical);
+            this.tabgeoNear.Controls.Add(this.NumMaxDistance);
+            this.tabgeoNear.Controls.Add(this.NumDistanceMultiplier);
             this.tabgeoNear.Controls.Add(this.NumResultCount);
             this.tabgeoNear.Controls.Add(this.cmdGeoNear);
-            this.tabgeoNear.Controls.Add(this.trvGeoResult);
             this.tabgeoNear.Controls.Add(this.NumGeoY);
             this.tabgeoNear.Controls.Add(this.NumGeoX);
             this.tabgeoNear.Controls.Add(this.lblGeoNear);
             this.tabgeoNear.Controls.Add(this.lblResultCount);
             this.tabgeoNear.Controls.Add(this.lnkGeoNear);
+            this.tabgeoNear.Controls.Add(this.trvGeoResult);
             this.tabgeoNear.Location = new System.Drawing.Point(4, 24);
             this.tabgeoNear.Name = "tabgeoNear";
             this.tabgeoNear.Padding = new System.Windows.Forms.Padding(3);
@@ -137,9 +148,68 @@
             this.tabgeoNear.Text = "geoNear";
             this.tabgeoNear.UseVisualStyleBackColor = true;
             // 
+            // lblMaxDistance
+            // 
+            this.lblMaxDistance.AutoSize = true;
+            this.lblMaxDistance.Location = new System.Drawing.Point(37, 85);
+            this.lblMaxDistance.Name = "lblMaxDistance";
+            this.lblMaxDistance.Size = new System.Drawing.Size(82, 15);
+            this.lblMaxDistance.TabIndex = 13;
+            this.lblMaxDistance.Text = "Max Distance";
+            // 
+            // lblDistanceMultiplier
+            // 
+            this.lblDistanceMultiplier.AutoSize = true;
+            this.lblDistanceMultiplier.Location = new System.Drawing.Point(281, 85);
+            this.lblDistanceMultiplier.Name = "lblDistanceMultiplier";
+            this.lblDistanceMultiplier.Size = new System.Drawing.Size(109, 15);
+            this.lblDistanceMultiplier.TabIndex = 12;
+            this.lblDistanceMultiplier.Text = "Distance Multiplier";
+            // 
+            // chkSpherical
+            // 
+            this.chkSpherical.AutoSize = true;
+            this.chkSpherical.Location = new System.Drawing.Point(285, 55);
+            this.chkSpherical.Name = "chkSpherical";
+            this.chkSpherical.Size = new System.Drawing.Size(78, 19);
+            this.chkSpherical.TabIndex = 11;
+            this.chkSpherical.Text = "Spherical";
+            this.chkSpherical.UseVisualStyleBackColor = true;
+            // 
+            // NumMaxDistance
+            // 
+            this.NumMaxDistance.Location = new System.Drawing.Point(149, 83);
+            this.NumMaxDistance.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.NumMaxDistance.Name = "NumMaxDistance";
+            this.NumMaxDistance.Size = new System.Drawing.Size(108, 21);
+            this.NumMaxDistance.TabIndex = 10;
+            this.NumMaxDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // NumDistanceMultiplier
+            // 
+            this.NumDistanceMultiplier.Location = new System.Drawing.Point(393, 83);
+            this.NumDistanceMultiplier.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.NumDistanceMultiplier.Name = "NumDistanceMultiplier";
+            this.NumDistanceMultiplier.Size = new System.Drawing.Size(108, 21);
+            this.NumDistanceMultiplier.TabIndex = 9;
+            this.NumDistanceMultiplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NumDistanceMultiplier.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // NumResultCount
             // 
-            this.NumResultCount.Location = new System.Drawing.Point(127, 25);
+            this.NumResultCount.Location = new System.Drawing.Point(149, 25);
             this.NumResultCount.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -151,7 +221,7 @@
             0,
             0});
             this.NumResultCount.Name = "NumResultCount";
-            this.NumResultCount.Size = new System.Drawing.Size(120, 21);
+            this.NumResultCount.Size = new System.Drawing.Size(108, 21);
             this.NumResultCount.TabIndex = 8;
             this.NumResultCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NumResultCount.Value = new decimal(new int[] {
@@ -162,7 +232,7 @@
             // 
             // cmdGeoNear
             // 
-            this.cmdGeoNear.Location = new System.Drawing.Point(419, 17);
+            this.cmdGeoNear.Location = new System.Drawing.Point(405, 17);
             this.cmdGeoNear.Name = "cmdGeoNear";
             this.cmdGeoNear.Size = new System.Drawing.Size(116, 29);
             this.cmdGeoNear.TabIndex = 7;
@@ -170,18 +240,9 @@
             this.cmdGeoNear.UseVisualStyleBackColor = true;
             this.cmdGeoNear.Click += new System.EventHandler(this.cmdGeoNear_Click);
             // 
-            // trvGeoResult
-            // 
-            this.trvGeoResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvGeoResult.Location = new System.Drawing.Point(40, 87);
-            this.trvGeoResult.Name = "trvGeoResult";
-            this.trvGeoResult.Padding = new System.Windows.Forms.Padding(1);
-            this.trvGeoResult.Size = new System.Drawing.Size(496, 295);
-            this.trvGeoResult.TabIndex = 6;
-            // 
             // NumGeoY
             // 
-            this.NumGeoY.Location = new System.Drawing.Point(279, 50);
+            this.NumGeoY.Location = new System.Drawing.Point(206, 57);
             this.NumGeoY.Maximum = new decimal(new int[] {
             180,
             0,
@@ -193,13 +254,13 @@
             0,
             -2147483648});
             this.NumGeoY.Name = "NumGeoY";
-            this.NumGeoY.Size = new System.Drawing.Size(120, 21);
+            this.NumGeoY.Size = new System.Drawing.Size(51, 21);
             this.NumGeoY.TabIndex = 5;
             this.NumGeoY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // NumGeoX
             // 
-            this.NumGeoX.Location = new System.Drawing.Point(127, 50);
+            this.NumGeoX.Location = new System.Drawing.Point(149, 57);
             this.NumGeoX.Maximum = new decimal(new int[] {
             180,
             0,
@@ -211,14 +272,14 @@
             0,
             -2147483648});
             this.NumGeoX.Name = "NumGeoX";
-            this.NumGeoX.Size = new System.Drawing.Size(120, 21);
+            this.NumGeoX.Size = new System.Drawing.Size(51, 21);
             this.NumGeoX.TabIndex = 4;
             this.NumGeoX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblGeoNear
             // 
             this.lblGeoNear.AutoSize = true;
-            this.lblGeoNear.Location = new System.Drawing.Point(37, 52);
+            this.lblGeoNear.Location = new System.Drawing.Point(37, 59);
             this.lblGeoNear.Name = "lblGeoNear";
             this.lblGeoNear.Size = new System.Drawing.Size(63, 15);
             this.lblGeoNear.TabIndex = 3;
@@ -227,7 +288,7 @@
             // lblResultCount
             // 
             this.lblResultCount.AutoSize = true;
-            this.lblResultCount.Location = new System.Drawing.Point(37, 24);
+            this.lblResultCount.Location = new System.Drawing.Point(37, 27);
             this.lblResultCount.Name = "lblResultCount";
             this.lblResultCount.Size = new System.Drawing.Size(74, 15);
             this.lblResultCount.TabIndex = 1;
@@ -276,6 +337,15 @@
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
+            // trvGeoResult
+            // 
+            this.trvGeoResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvGeoResult.Location = new System.Drawing.Point(40, 110);
+            this.trvGeoResult.Name = "trvGeoResult";
+            this.trvGeoResult.Padding = new System.Windows.Forms.Padding(1);
+            this.trvGeoResult.Size = new System.Drawing.Size(496, 295);
+            this.trvGeoResult.TabIndex = 6;
+            // 
             // frmQuery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -289,7 +359,6 @@
             this.Controls.Add(this.cmdOK);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmQuery";
@@ -300,6 +369,8 @@
             this.tabCondition.ResumeLayout(false);
             this.tabgeoNear.ResumeLayout(false);
             this.tabgeoNear.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumMaxDistance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumDistanceMultiplier)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumResultCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumGeoY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumGeoX)).EndInit();
@@ -327,5 +398,10 @@
         private System.Windows.Forms.Button cmdGeoNear;
         private TreeViewColumnsProject.TreeViewColumns trvGeoResult;
         private System.Windows.Forms.NumericUpDown NumResultCount;
+        private System.Windows.Forms.CheckBox chkSpherical;
+        private System.Windows.Forms.NumericUpDown NumMaxDistance;
+        private System.Windows.Forms.NumericUpDown NumDistanceMultiplier;
+        private System.Windows.Forms.Label lblMaxDistance;
+        private System.Windows.Forms.Label lblDistanceMultiplier;
     }
 }

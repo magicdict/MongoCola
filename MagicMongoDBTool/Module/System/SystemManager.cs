@@ -95,24 +95,18 @@ namespace MagicMongoDBTool.Module
         /// 对话框子窗体的统一管理
         /// </summary>
         /// <param name="frm"></param>
-        public static void OpenForm(Form mfrm, Boolean isDispose)
+        public static void OpenForm(Form mfrm, Boolean isDispose, Boolean isUseAppIcon)
         {
             mfrm.StartPosition = FormStartPosition.CenterParent;
             mfrm.BackColor = System.Drawing.Color.White;
             mfrm.FormBorderStyle = FormBorderStyle.FixedSingle;
-            mfrm.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            if (isUseAppIcon)
+            {
+                mfrm.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            }
             mfrm.ShowDialog();
             mfrm.Close();
             if (isDispose) { mfrm.Dispose(); }
-        }
-        /// <summary>
-        /// 对话框子窗体的统一管理
-        /// </summary>
-        /// <param name="frm"></param>
-        public static void OpenForm(Form mfrm)
-        {
-            mfrm.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-            OpenForm(mfrm, true);
         }
         /// <summary>
         /// 获得当前服务器配置

@@ -47,6 +47,7 @@ namespace MagicMongoDBTool
         /// </summary>
         private void frmQuery_Load(object sender, EventArgs e)
         {
+            this.Icon = GetSystemIcon.ConvertImgToIcon(GetResource.GetImage(ImageType.Query));
             ColumnList = MongoDBHelper.GetCollectionSchame(_mongoCol);
             foreach (String item in ColumnList)
             {
@@ -279,7 +280,12 @@ namespace MagicMongoDBTool
         private void cmdGeoNear_Click(object sender, EventArgs e)
         {
             List<BsonDocument> SrvDocList = new List<BsonDocument>();
-            BsonDocument T = SystemManager.GetCurrentCollection().GeoNearAs<BsonDocument>(null, (int)NumGeoX.Value, (int)NumGeoY.Value, (int)NumResultCount.Value).Response;
+            GeoNearOptionsBuilder opt = new GeoNearOptionsBuilder();
+            opt.SetDistanceMultiplier((double)NumDistanceMultiplier.Value);
+            opt.SetMaxDistance((double)NumMaxDistance.Value);
+            opt.SetSpherical(chkSpherical.Checked);
+            BsonDocument T = SystemManager.GetCurrentCollection().GeoNearAs<BsonDocument>
+                (null, (int)NumGeoX.Value, (int)NumGeoY.Value, (int)NumResultCount.Value,opt).Response;
             SrvDocList.Add(T);
             MongoDBHelper.FillDataToTreeView("Result", this.trvGeoResult, SrvDocList, 0);
             this.trvGeoResult.DatatreeView.Nodes[0].Expand();

@@ -405,7 +405,7 @@ namespace MagicMongoDBTool
         /// </summary>
         private void NewDocumentStripButton_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmNewDocument());
+            SystemManager.OpenForm(new frmNewDocument(),true,true);
             RefreshGUI();
 
         }
@@ -487,7 +487,7 @@ namespace MagicMongoDBTool
             {
                 IsElement = false;
             }
-            SystemManager.OpenForm(new frmElement(false, trvData.DatatreeView.SelectedNode, IsElement));
+            SystemManager.OpenForm(new frmElement(false, trvData.DatatreeView.SelectedNode, IsElement), true, true);
             IsNeedRefresh = true;
         }
         /// <summary>
@@ -527,11 +527,11 @@ namespace MagicMongoDBTool
             }
             if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
             {
-                SystemManager.OpenForm(new frmElement(true, trvData.DatatreeView.SelectedNode, false));
+                SystemManager.OpenForm(new frmElement(true, trvData.DatatreeView.SelectedNode, false), true, true);
             }
             else
             {
-                SystemManager.OpenForm(new frmElement(true, trvData.DatatreeView.SelectedNode, true));
+                SystemManager.OpenForm(new frmElement(true, trvData.DatatreeView.SelectedNode, true), true, true);
             }
             IsNeedRefresh = true;
         }
