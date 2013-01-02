@@ -350,10 +350,11 @@
   <Common_Collection>コレクション </Common_Collection>
   <Common_Host>ホスト</Common_Host>
   <Common_Port>ポート</Common_Port>
-
   <Common_Collapse>折り畳む</Common_Collapse>
   <Common_Expansion>展開</Common_Expansion>
-
+  <Common_Name>名称</Common_Name>
+  <Common_Value>値</Common_Value>
+  <Common_Type>タイプ</Common_Type>
   <Common_Browse>参照</Common_Browse>
   <Common_Clear>クリア</Common_Clear>
   <Common_Test>テスト</Common_Test>

@@ -725,6 +725,9 @@
     <Content Include="UserGuide\images\ConnectionManager_WebForm.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="UserGuide\images\Connection_Shard1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="UserGuide\images\data.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -752,6 +755,9 @@
     <Content Include="UserGuide\images\FirstDocument_Nosql.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="UserGuide\images\GEONEAR.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="UserGuide\images\GFS.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -768,6 +774,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="UserGuide\images\Index.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\images\INDEXMGR_ADD.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\images\INDEXMGR_CURR.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\images\InitReplset.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="UserGuide\images\LanguagePicker.PNG">
@@ -858,6 +873,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="UserGuide\images\Query_init.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\images\ReplsetWithOneSrv.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="UserGuide\images\Replset_Mgr.PNG">

@@ -336,6 +336,9 @@ namespace MagicMongoDBTool.Module
             Common_Advance_Option,
             Common_Collapse,
             Common_Expansion,
+            Common_Name,
+            Common_Value,
+            Common_Type,
 
             //MessageBo
             Create_New_DataBase,

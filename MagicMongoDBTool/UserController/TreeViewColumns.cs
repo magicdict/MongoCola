@@ -16,6 +16,11 @@ namespace TreeViewColumnsProject
 
             this.BackColor = VisualStyleInformation.TextControlBorder;
             this.Padding = new Padding(1);
+            if (!SystemManager.IsUseDefaultLanguage) {
+                this.colName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Name);
+                this.colValue.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Value);
+                this.colType.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Type);
+            }
         }
 
         [Description("TreeView associated with the control"), Category("Behavior")]

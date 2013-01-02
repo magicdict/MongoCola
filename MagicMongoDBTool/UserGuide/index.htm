@@ -77,12 +77,11 @@
         <tr>
             <td />
             <td>
-                <font size="3" color="black">You can download the Executable File [ZIP package]from
-                    GitHub: <a href="https://github.com/magicdict/MagicMongoDBTool/downloads">Downloads
-                        @GitHub</a><br />
-                    Anyone can help me to compile the source code on Mono platform? I need an executable
-                    file for linux. please email me: <a href="mailto:mynightelfplayer@hotmail.com">email
-                        address</a> </font>
+                <font size="3" color="black">You can download the Executable File [ZIP package] </br >
+	                from wojilu.com For the lastest Version(Since 1.2.4): <a href="https://github.com/magicdict/MagicMongoDBTool/downloads">Downloads @GitHub</a><br />
+	                from GitHub     For the Old     Version(Before1.2.4): <a href="http://www.wojilu.com/Forum1/Topic/4601">Downloads @wojilu</a><br />
+	                Anyone can help me to compile the source code on Mono platform? I need an executable file for linux. please email me: <a href="mailto:mynightelfplayer@hotmail.com">mynightelfplayer@hotmail.com</a>
+                </font>
             </td>
         </tr>
         <tr>
@@ -141,13 +140,13 @@ MongoCola Release Note
 MongoCola is developed by Microsoft .NET (C#)
 You need install .NET framework3.5 to run it.
 The C# Mongo driver is mongo offical C# driver 1.7.1.
-Test Based on MongoDB 2.2.2
+Test Based on MongoDB 2.2.2 OS: Windows 7
 MongoCola is free and open source.
 
 ========================================================================
 Release History
 ========================================================================
-Ver 1.24 2013/01/01 [Back to IBM GDC]
+Ver 1.24 2013/01/06 [Back to IBM GDC]
 1.Upgrade to C# Driver to 1.7.1
 2.System.Windows.Forms.DataVisualization.dll For Data Visualization
 3.Support SSL
@@ -156,6 +155,8 @@ Ver 1.24 2013/01/01 [Back to IBM GDC]
 6.From Mongo2.2.2 Capped Collection is default AutoIdIndex. 
 7.Add some useful link
 8.Change dialog from icon to application icon.
+9.Tag Aware Sharding
+10.GEONEAR QUERY
 ========================================================================
 
 
@@ -1057,6 +1058,23 @@ This is the first release of MongoCola.
         <tr>
             <td align="center">
                 <br />
+                <font size="3" color="black"><b>GEONEAR</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+            	<font size="3">
+            		When you add a "2d Geospatial Indexes" for a collection,then you can use geoNear function to query the near point to a special location.
+            		<br /><br />
+            		<img src="images/GEONEAR.png" alt="" /> 
+            	</font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br />
                 <font size="3" color="black"><b>Dump and Restore</b></font>
             </td>
             <td />
@@ -1145,6 +1163,28 @@ This is the first release of MongoCola.
                     You can also copy,cut,paste Element of a document or value of a array to  generate your owner layout quickly.
                     <br />
                     <br />
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <br />
+                <font size="3" color="black"><b>Index Manager</b></font>
+            </td>
+            <td />
+        </tr>
+        <tr>
+            <td />
+            <td>
+                <font size="3">
+                You can watch the all index status of current collection,and delete a index.
+                <BR /><BR />
+                <img src="images/INDEXMGR_CURR.PNG" alt="" />
+                <BR /><BR />
+                You can add a new index.
+                <BR /><BR />
+                <img src="images/INDEXMGR_ADD.PNG" alt="" />
+                <BR /><BR />
                 </font>
             </td>
         </tr>

@@ -10,7 +10,7 @@ MongoCola is free and open source.
 ========================================================================
 Release History
 ========================================================================
-Ver 1.24 2013/01/01 [Back to IBM GDC]
+Ver 1.24 2013/01/06 [Back to IBM GDC]
 1.Upgrade to C# Driver to 1.7.1
 2.System.Windows.Forms.DataVisualization.dll For Data Visualization
 3.Support SSL
@@ -20,6 +20,7 @@ Ver 1.24 2013/01/01 [Back to IBM GDC]
 7.Add some useful link
 8.Change dialog from icon to application icon.
 9.Tag Aware Sharding
+10.GEONEAR QUERY
 ========================================================================
 
 
