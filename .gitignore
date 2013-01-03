@@ -12,6 +12,7 @@
 *.suo
 *.mdb
 *.pdb
+*.doc
 /UnitTest
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
