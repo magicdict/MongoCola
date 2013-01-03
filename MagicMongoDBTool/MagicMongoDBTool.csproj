@@ -117,22 +117,22 @@
     <Compile Include="UserController\ctlGFSView.Designer.cs">
       <DependentUpon>ctlGFSView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Box\frmConfirm.cs">
+    <Compile Include="MessageBox\frmConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Box\frmConfirm.Designer.cs">
+    <Compile Include="MessageBox\frmConfirm.Designer.cs">
       <DependentUpon>frmConfirm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Box\frmInputBox.cs">
+    <Compile Include="MessageBox\frmInputBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Box\frmInputBox.Designer.cs">
+    <Compile Include="MessageBox\frmInputBox.Designer.cs">
       <DependentUpon>frmInputBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Box\frmMessage.cs">
+    <Compile Include="MessageBox\frmMessage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Box\frmMessage.Designer.cs">
+    <Compile Include="MessageBox\frmMessage.Designer.cs">
       <DependentUpon>frmMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmElement.cs">
@@ -189,10 +189,10 @@
     <Compile Include="Form\frmReplsetMgr.Designer.cs">
       <DependentUpon>frmReplsetMgr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Box\frmEasyMessage.cs">
+    <Compile Include="MessageBox\frmEasyMessage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Box\frmEasyMessage.Designer.cs">
+    <Compile Include="MessageBox\frmEasyMessage.Designer.cs">
       <DependentUpon>frmEasyMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmGenerateConfigIni.cs">
@@ -218,7 +218,7 @@
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection_Manager.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_ImportData.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command.cs" />
-    <Compile Include="Form\Box\MyMessageBox.cs" />
+    <Compile Include="MessageBox\MyMessageBox.cs" />
     <Compile Include="Module\Resource\StringResources.cs" />
     <Compile Include="Module\Resource\StringResource_Enum.cs" />
     <Compile Include="Module\System\EventHelper.cs" />
@@ -403,16 +403,16 @@
     <EmbeddedResource Include="UserController\ctlUserView.resx">
       <DependentUpon>ctlUserView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Box\frmConfirm.resx">
+    <EmbeddedResource Include="MessageBox\frmConfirm.resx">
       <DependentUpon>frmConfirm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Box\frmEasyMessage.resx">
+    <EmbeddedResource Include="MessageBox\frmEasyMessage.resx">
       <DependentUpon>frmEasyMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Box\frmInputBox.resx">
+    <EmbeddedResource Include="MessageBox\frmInputBox.resx">
       <DependentUpon>frmInputBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Box\frmMessage.resx">
+    <EmbeddedResource Include="MessageBox\frmMessage.resx">
       <DependentUpon>frmMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmCreateCollection.resx">
@@ -590,13 +590,13 @@
   <ItemGroup>
     <Content Include="Bug.txt" />
     <Content Include="clody.ico" />
-    <Content Include="dll\MongoDB.Bson.dll">
+    <Content Include="DLL\MongoDB.Bson.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="dll\MongoDB.Driver.dll">
+    <Content Include="DLL\MongoDB.Driver.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="dll\System.Windows.Forms.DataVisualization.dll">
+    <Content Include="DLL\System.Windows.Forms.DataVisualization.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="HTML\Connection.htm">
