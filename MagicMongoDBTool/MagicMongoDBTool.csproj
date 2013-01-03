@@ -218,7 +218,7 @@
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection_Manager.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_ImportData.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command.cs" />
-    <Compile Include="Module\System\MyMessageBox.cs" />
+    <Compile Include="Form\Box\MyMessageBox.cs" />
     <Compile Include="Module\Resource\StringResources.cs" />
     <Compile Include="Module\Resource\StringResource_Enum.cs" />
     <Compile Include="Module\System\EventHelper.cs" />
