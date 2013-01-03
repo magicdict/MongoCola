@@ -588,17 +588,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Bug.txt" />
     <Content Include="clody.ico" />
-    <Content Include="DLL\MongoDB.Bson.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DLL\MongoDB.Driver.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DLL\System.Windows.Forms.DataVisualization.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="DLL\MongoDB.Bson.dll" />
+    <Content Include="DLL\MongoDB.Driver.dll" />
+    <Content Include="DLL\System.Windows.Forms.DataVisualization.dll" />
     <Content Include="HTML\Connection.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
