@@ -19,6 +19,8 @@ namespace MagicMongoDBTool
         /// Mongo服务器
         /// </summary>
         private MongoServer _prmSvr;
+
+        private Dictionary<String, String> TagSet = new Dictionary<string, string>();
         /// <summary>
         /// 加载
         /// </summary>
@@ -59,6 +61,21 @@ namespace MagicMongoDBTool
             foreach (var lst in MongoDBHelper.GetShardInfo(_prmSvr, MongoDBHelper.KEY_ID))
             {
                 lstSharding.Items.Add(lst.Value);
+            }
+            mongoCol = mongoDB.GetCollection("shards");
+            cmbTagList.Items.Clear();
+            foreach (BsonDocument mShard in mongoCol.FindAllAs<BsonDocument>())
+            {
+                if (mShard.Contains("tags"))
+                {
+                    foreach (BsonValue tag in mShard.GetElement("tags").Value.AsBsonArray)
+                    {
+                        if (!TagSet.ContainsKey(tag.ToString())){
+                            TagSet.Add(tag.ToString(), mShard.GetElement(MongoDBHelper.KEY_ID).Value.ToString());
+                            cmbTagList.Items.Add(mShard.GetElement(MongoDBHelper.KEY_ID).Value.ToString() + "." + tag.ToString());
+                        }
+                    }
+                }
             }
         }
         /// <summary>
@@ -172,14 +189,14 @@ namespace MagicMongoDBTool
                 //Tag和数据集绑定，从系统数据集tags里面读取tag的信息
                 MongoDatabase mongoDBConfig = _prmSvr.GetDatabase(MongoDBHelper.DATABASE_NAME_CONFIG);
                 MongoCollection mongoCol = mongoDBConfig.GetCollection("tags");
-                cmbShardTag.Items.Clear();
+                cmbExistShardTag.Items.Clear();
                 foreach (BsonDocument tags in mongoCol.FindAllAs<BsonDocument>())
                 {
                     if (tags.GetElement("ns").Value.ToString() != BsonUndefined.Value.ToString())
                     {
                         if (tags.GetElement("ns").Value.ToString() == cmbDataBase.Text + "." + cmbCollection.Text)
                         {
-                            cmbShardTag.Items.Add(tags.GetElement("tag").Value.ToString());
+                            cmbExistShardTag.Items.Add(TagSet[tags.GetElement("tag").Value.ToString()] + "." + tags.GetElement("tag").Value.ToString());
                         }
                     }
                 }
@@ -246,7 +263,19 @@ namespace MagicMongoDBTool
         private void btnAddShardTag_Click(object sender, EventArgs e)
         {
             List<CommandResult> Resultlst = new List<CommandResult>();
-            Resultlst.Add(MongoDBHelper.AddShardTag(_prmSvr, txtShardName.Text, tabAddShardTag.Text));
+            Resultlst.Add(MongoDBHelper.AddShardTag(_prmSvr, txtShardName.Text, txtTagShard.Text));
+            MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
+        }
+        /// <summary>
+        /// Add Tag Range
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdaddTagRange_Click(object sender, EventArgs e)
+        {
+            List<CommandResult> Resultlst = new List<CommandResult>();
+            Resultlst.Add(MongoDBHelper.AddTagRange(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, ctlBsonValueShardKeyFrom.getValue(),
+                                                    ctlBsonValueShardKeyTo.getValue(), cmbTagList.Text.Split(".".ToCharArray())[1]));
             MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
 
         }

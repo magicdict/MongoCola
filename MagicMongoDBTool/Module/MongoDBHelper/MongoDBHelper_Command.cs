@@ -85,15 +85,74 @@ namespace MagicMongoDBTool.Module
         /// <param name="ShardName">Shard名称</param>
         /// <param name="TagName">Tag名称</param>
         /// <returns></returns>
-        public static CommandResult AddShardTag(MongoServer routeSvr, String ShardName, String TagName) {
+        public static CommandResult AddShardTag(MongoServer routeSvr, String ShardName, String TagName)
+        {
+            //mongos> sh.addShardTag
+            //function (shard, tag) {
+            //    var config = db.getSisterDB("config");
+            //    if (config.shards.findOne({_id:shard}) == null) {
+            //        throw "can't find a shard with name: " + shard;
+            //    }
+            //    config.shards.update({_id:shard}, {$addToSet:{tags:tag}});
+            //    sh._checkLastError(config);
+            //}
             CommandDocument mongoCmd = new CommandDocument();
             return ExecuteJsShell("sh.addShardTag('" + ShardName + "', '" + TagName + "')", routeSvr);
+        }
+        /// <summary>
+        /// AddTagRange
+        /// </summary>
+        /// <param name="routeSvr">路由服务器</param>
+        /// <param name="NameSpace">名字空间</param>
+        /// <param name="Min">最小值</param>
+        /// <param name="Max">最大值</param>
+        /// <param name="Tag">标签</param>
+        /// <returns></returns>
+        public static CommandResult AddTagRange(MongoServer routeSvr, String NameSpace, BsonValue Min, BsonValue Max, String Tag)
+        {
+            //mongos> sh.addTagRange
+            //function (ns, min, max, tag) {
+            //    var config = db.getSisterDB("config");
+            //    config.tags.update(
+            //                       {_id:{ns:ns, min:min}},
+            //                       {
+            //                             _id:{ns:ns, min:min},
+            //                             ns:ns,
+            //                             min:min,
+            //                             max:max, 
+            //                             tag:tag
+            //                       }, 
+            //                       true
+            //                       );
+            //    sh._checkLastError(config);
+            //}
+            CommandDocument mongoCmd = new CommandDocument();
+            String MaxValue = String.Empty;
+            String MinValue = String.Empty;
+            if (Min.IsString)
+            {
+                MinValue = "'" + Min.ToString() + "'";
+            }
+            if (Max.IsString)
+            {
+                MaxValue = "'" + Max.ToString() + "'";
+            }
+
+            if (Min.IsNumeric)
+            {
+                MinValue = Min.ToString();
+            }
+            if (Max.IsNumeric)
+            {
+                MaxValue = Max.ToString();
+            }
+            return ExecuteJsShell("sh.addTagRange('" + NameSpace + "'," + MinValue + "," + MaxValue + ",'" + Tag + "')", routeSvr);
         }
         /// <summary>
         /// 移除Shard
         /// </summary>
         /// <param name="routeSvr"></param>
-        /// <param name="ShardName"></param>
+        /// <param name="ShardName">Shard名称</param>
         /// <returns></returns>
         public static CommandResult RemoveSharding(MongoServer routeSvr, String ShardName)
         {
