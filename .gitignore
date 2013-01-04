@@ -16,6 +16,7 @@
 /UnitTest
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
+/CNBLOGS
 !readme.txt
 !app.config
 !Release Note.txt
