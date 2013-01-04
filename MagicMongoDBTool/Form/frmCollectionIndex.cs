@@ -191,7 +191,7 @@ namespace MagicMongoDBTool
             {
                 ListViewItem lst = new ListViewItem(item.Name);
                 lst.SubItems.Add(item.Version.ToString());
-                lst.SubItems.Add(item.Key.ToString());
+                lst.SubItems.Add(MongoDBHelper.GetKeyString(item.Key));
                 lst.SubItems.Add(item.Namespace.ToString());
                 lst.SubItems.Add(item.IsBackground.ToString());
                 lst.SubItems.Add(item.IsSparse.ToString());

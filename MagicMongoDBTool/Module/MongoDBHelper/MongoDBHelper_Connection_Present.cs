@@ -687,7 +687,8 @@ namespace MagicMongoDBTool.Module
                 if (!SystemManager.IsUseDefaultLanguage)
                 {
                     mongoIndex.Text = (SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name) + ":" + indexDoc.Name);
-                    mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Keys) + ":" + indexDoc.Key.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Keys) + ":" +
+                        GetKeyString(indexDoc.Key), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel) + ":" + indexDoc.DroppedDups.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Background) + ":" + indexDoc.IsBackground.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty, SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse) + ":" + indexDoc.IsSparse.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
@@ -706,7 +707,7 @@ namespace MagicMongoDBTool.Module
                 else
                 {
                     mongoIndex.Text = "IndexName:" + indexDoc.Name;
-                    mongoIndex.Nodes.Add(String.Empty, "Keys:" + indexDoc.Key.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, "Keys:" + GetKeyString(indexDoc.Key), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty, "DroppedDups :" + indexDoc.DroppedDups.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty, "IsBackground:" + indexDoc.IsBackground.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty, "IsSparse:" + indexDoc.IsSparse.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
@@ -748,6 +749,32 @@ namespace MagicMongoDBTool.Module
             }
             //End Data
             return mongoColNode;
+        }
+
+        public static string GetKeyString(IndexKeysDocument keys)
+        {
+            String KeyString = string.Empty;
+            foreach (BsonElement key in keys.Elements)
+            {
+                KeyString +=  key.Name + ":";
+                switch (key.Value.ToString())
+                {
+                    case "1":
+                        KeyString += MagicMongoDBTool.Module.DataFilter.SortType.Ascending.ToString();
+                        break;
+                    case "-1":
+                        KeyString += MagicMongoDBTool.Module.DataFilter.SortType.Descending.ToString();
+                        break;
+                    case "2d":
+                        KeyString += MagicMongoDBTool.Module.DataFilter.SortType.GeoSpatial.ToString();
+                        break;
+                    default:
+                        break;
+                }
+                KeyString += ";";
+            }
+            KeyString = "[" + KeyString.TrimEnd(";".ToArray()) + "]";
+            return KeyString;
         }
         #endregion
     }
