@@ -56,9 +56,21 @@ namespace MagicMongoDBTool
                     cmbDataBase.Items.Add(item.GetValue(MongoDBHelper.KEY_ID));
                 };
             }
-            foreach (var lst in MongoDBHelper.GetShardInfo(_prmSvr, "_id"))
+            foreach (var lst in MongoDBHelper.GetShardInfo(_prmSvr, MongoDBHelper.KEY_ID))
             {
                 lstSharding.Items.Add(lst.Value);
+            }
+            mongoCol = mongoDB.GetCollection("shards");
+            cmbShardTag.Items.Clear();
+            foreach (BsonDocument mShard in mongoCol.FindAllAs<BsonDocument>())
+            {
+                if (mShard.Contains("tags"))
+                {
+                    foreach (BsonValue tag in mShard.GetElement("tags").Value.AsBsonArray)
+                    {
+                        cmbShardTag.Items.Add(mShard.GetElement(MongoDBHelper.KEY_ID).Value.ToString() + "." + tag.ToString());
+                    }
+                }
             }
         }
         /// <summary>
@@ -163,6 +175,7 @@ namespace MagicMongoDBTool
                 MongoDatabase mongoDB = _prmSvr.GetDatabase(cmbDataBase.Text);
                 cmbKeyList.Items.Clear();
                 cmbKeyList.Text = String.Empty;
+                //Sharding Must Index
                 foreach (var Indexitem in mongoDB.GetCollection(cmbCollection.Text).GetIndexes())
                 {
                     cmbKeyList.Items.Add(Indexitem.Name);
@@ -231,7 +244,7 @@ namespace MagicMongoDBTool
         private void btnAddShardTag_Click(object sender, EventArgs e)
         {
             List<CommandResult> Resultlst = new List<CommandResult>();
-            Resultlst.Add(MongoDBHelper.AddShardTag(_prmSvr,txtShardName.Text,tabAddShardTag.Text));
+            Resultlst.Add(MongoDBHelper.AddShardTag(_prmSvr, txtShardName.Text, tabAddShardTag.Text));
             MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
 
         }

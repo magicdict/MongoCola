@@ -157,6 +157,7 @@ namespace MagicMongoDBTool.Module
                         BsonDocument ServerStatusDoc = ExecuteMongoSvrCommand(serverStatus_Command, mongoConn).Response;
                         if (ServerStatusDoc.GetElement("process").Value == ServerStatus_PROCESS_MONGOS)
                         {
+                            //Shard的时候，必须将所有服务器的ReadPreferred设成可读
                             config.ServerRole = ConfigHelper.SvrRoleType.ShardSvr;
                             ConnectionNode.Tag = CONNECTION_CLUSTER_TAG + ":" + config.ConnectionName;
                             TreeNode ShardListNode = new TreeNode("Shards");
@@ -186,6 +187,8 @@ namespace MagicMongoDBTool.Module
                                 {
                                     MongoClientSettings tinySetting = new MongoClientSettings();
                                     tinySetting.ConnectionMode = ConnectionMode.Direct;
+                                    //防止无法读取Sharding状态。Sharding可能是一个Slaver
+                                    tinySetting.ReadPreference = ReadPreference.PrimaryPreferred;
                                     tinySetting.ReplicaSetName = strAddress[0];
                                     MongoServerAddress tinyAddr;
                                     if (item.Split(":".ToCharArray()).Length == 2)
