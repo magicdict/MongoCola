@@ -340,7 +340,7 @@ namespace MagicMongoDBTool.Module
             Common_Value,
             Common_Type,
 
-            //MessageBo
+            //MessageBox
             Create_New_DataBase,
             Create_New_DataBase_Input,
             Drop_DataBase,
@@ -353,7 +353,31 @@ namespace MagicMongoDBTool.Module
             Drop_User,
             Drop_User_Confirm,
             Drop_Data,
-            Drop_Data_Confirm
+            Drop_Data_Confirm,
+
+            SYSTEMC_COLNAME_chunks,
+            SYSTEMC_COLNAME_collections,
+            SYSTEMC_COLNAME_changelog,
+            SYSTEMC_COLNAME_databases,
+            SYSTEMC_COLNAME_lockpings,
+            SYSTEMC_COLNAME_locks,
+            SYSTEMC_COLNAME_mongos,
+            SYSTEMC_COLNAME_settings,
+            SYSTEMC_COLNAME_shards,
+            SYSTEMC_COLNAME_tags,
+            SYSTEMC_COLNAME_version,
+            SYSTEMC_COLNAME_me,
+            SYSTEMC_COLNAME_sources,
+            SYSTEMC_COLNAME_slaves,
+            COLLECTION_NAME_GFS_CHUNKS,
+            COLLECTION_NAME_GFS_FILES,
+            COLLECTION_NAME_OPERATION_LOG,
+            COLLECTION_NAME_SYSTEM_INDEXES,
+            COLLECTION_NAME_JAVASCRIPT,
+            COLLECTION_NAME_SYSTEM_REPLSET,
+            COLLECTION_NAME_REPLSET_MINVALID,
+            COLLECTION_NAME_USER,
+            COLLECTION_NAME_SYSTEM_PROFILE
         }
     }
 }

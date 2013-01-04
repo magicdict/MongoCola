@@ -55,6 +55,8 @@
             this.lblMainReplsetName = new System.Windows.Forms.Label();
             this.txtReplsetName = new System.Windows.Forms.TextBox();
             this.tabShardingConfig = new System.Windows.Forms.TabPage();
+            this.cmbShardTag = new System.Windows.Forms.ComboBox();
+            this.lblShardTag = new System.Windows.Forms.Label();
             this.tabRemoveSharding = new System.Windows.Forms.TabPage();
             this.lstSharding = new System.Windows.Forms.ListBox();
             this.cmdRemoveSharding = new System.Windows.Forms.Button();
@@ -65,8 +67,10 @@
             this.lblTagShard = new System.Windows.Forms.Label();
             this.lblShardName = new System.Windows.Forms.Label();
             this.cmdClose = new System.Windows.Forms.Button();
-            this.lblShardTag = new System.Windows.Forms.Label();
-            this.cmbShardTag = new System.Windows.Forms.ComboBox();
+            this.lblShardKeyFrom = new System.Windows.Forms.Label();
+            this.lblShardKeyTo = new System.Windows.Forms.Label();
+            this.ctlBsonValueShardKeyFrom = new MagicMongoDBTool.ctlBsonValue();
+            this.ctlBsonValueShardKeyTo = new MagicMongoDBTool.ctlBsonValue();
             this.tabSharding.SuspendLayout();
             this.tabAddSharding.SuspendLayout();
             this.grpAdvanced.SuspendLayout();
@@ -93,7 +97,7 @@
             // 
             this.lblField.AutoSize = true;
             this.lblField.BackColor = System.Drawing.Color.Transparent;
-            this.lblField.Location = new System.Drawing.Point(26, 119);
+            this.lblField.Location = new System.Drawing.Point(27, 95);
             this.lblField.Name = "lblField";
             this.lblField.Size = new System.Drawing.Size(71, 15);
             this.lblField.TabIndex = 6;
@@ -103,17 +107,17 @@
             // 
             this.cmbKeyList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbKeyList.FormattingEnabled = true;
-            this.cmbKeyList.Location = new System.Drawing.Point(121, 115);
+            this.cmbKeyList.Location = new System.Drawing.Point(137, 91);
             this.cmbKeyList.Name = "cmbKeyList";
-            this.cmbKeyList.Size = new System.Drawing.Size(196, 23);
+            this.cmbKeyList.Size = new System.Drawing.Size(162, 23);
             this.cmbKeyList.TabIndex = 7;
             // 
             // cmdEnableCollectionSharding
             // 
             this.cmdEnableCollectionSharding.BackColor = System.Drawing.Color.Transparent;
-            this.cmdEnableCollectionSharding.Location = new System.Drawing.Point(346, 74);
+            this.cmdEnableCollectionSharding.Location = new System.Drawing.Point(313, 62);
             this.cmdEnableCollectionSharding.Name = "cmdEnableCollectionSharding";
-            this.cmdEnableCollectionSharding.Size = new System.Drawing.Size(139, 35);
+            this.cmdEnableCollectionSharding.Size = new System.Drawing.Size(172, 35);
             this.cmdEnableCollectionSharding.TabIndex = 5;
             this.cmdEnableCollectionSharding.Text = "Sharding Collection";
             this.cmdEnableCollectionSharding.UseVisualStyleBackColor = false;
@@ -122,9 +126,9 @@
             // cmdEnableDBSharding
             // 
             this.cmdEnableDBSharding.BackColor = System.Drawing.Color.Transparent;
-            this.cmdEnableDBSharding.Location = new System.Drawing.Point(346, 27);
+            this.cmdEnableDBSharding.Location = new System.Drawing.Point(313, 16);
             this.cmdEnableDBSharding.Name = "cmdEnableDBSharding";
-            this.cmdEnableDBSharding.Size = new System.Drawing.Size(139, 38);
+            this.cmdEnableDBSharding.Size = new System.Drawing.Size(172, 38);
             this.cmdEnableDBSharding.TabIndex = 2;
             this.cmdEnableDBSharding.Text = "Sharding DataBase";
             this.cmdEnableDBSharding.UseVisualStyleBackColor = false;
@@ -134,9 +138,9 @@
             // 
             this.cmbCollection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCollection.FormattingEnabled = true;
-            this.cmbCollection.Location = new System.Drawing.Point(122, 74);
+            this.cmbCollection.Location = new System.Drawing.Point(137, 58);
             this.cmbCollection.Name = "cmbCollection";
-            this.cmbCollection.Size = new System.Drawing.Size(196, 23);
+            this.cmbCollection.Size = new System.Drawing.Size(162, 23);
             this.cmbCollection.TabIndex = 4;
             this.cmbCollection.SelectedIndexChanged += new System.EventHandler(this.cmbCollection_SelectedIndexChanged);
             // 
@@ -144,9 +148,9 @@
             // 
             this.cmbDataBase.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDataBase.FormattingEnabled = true;
-            this.cmbDataBase.Location = new System.Drawing.Point(122, 32);
+            this.cmbDataBase.Location = new System.Drawing.Point(137, 21);
             this.cmbDataBase.Name = "cmbDataBase";
-            this.cmbDataBase.Size = new System.Drawing.Size(196, 23);
+            this.cmbDataBase.Size = new System.Drawing.Size(162, 23);
             this.cmbDataBase.TabIndex = 1;
             this.cmbDataBase.SelectedIndexChanged += new System.EventHandler(this.cmbDataBase_SelectedIndexChanged);
             // 
@@ -154,7 +158,7 @@
             // 
             this.lblCollection.AutoSize = true;
             this.lblCollection.BackColor = System.Drawing.Color.Transparent;
-            this.lblCollection.Location = new System.Drawing.Point(24, 77);
+            this.lblCollection.Location = new System.Drawing.Point(27, 65);
             this.lblCollection.Name = "lblCollection";
             this.lblCollection.Size = new System.Drawing.Size(95, 15);
             this.lblCollection.TabIndex = 3;
@@ -164,7 +168,7 @@
             // 
             this.lblDBName.AutoSize = true;
             this.lblDBName.BackColor = System.Drawing.Color.Transparent;
-            this.lblDBName.Location = new System.Drawing.Point(24, 36);
+            this.lblDBName.Location = new System.Drawing.Point(27, 25);
             this.lblDBName.Name = "lblDBName";
             this.lblDBName.Size = new System.Drawing.Size(95, 15);
             this.lblDBName.TabIndex = 0;
@@ -174,8 +178,8 @@
             // 
             this.tabSharding.Controls.Add(this.tabAddSharding);
             this.tabSharding.Controls.Add(this.tabShardingConfig);
-            this.tabSharding.Controls.Add(this.tabRemoveSharding);
             this.tabSharding.Controls.Add(this.tabAddShardTag);
+            this.tabSharding.Controls.Add(this.tabRemoveSharding);
             this.tabSharding.Location = new System.Drawing.Point(13, 12);
             this.tabSharding.Name = "tabSharding";
             this.tabSharding.SelectedIndex = 0;
@@ -355,6 +359,10 @@
             // 
             // tabShardingConfig
             // 
+            this.tabShardingConfig.Controls.Add(this.ctlBsonValueShardKeyTo);
+            this.tabShardingConfig.Controls.Add(this.ctlBsonValueShardKeyFrom);
+            this.tabShardingConfig.Controls.Add(this.lblShardKeyTo);
+            this.tabShardingConfig.Controls.Add(this.lblShardKeyFrom);
             this.tabShardingConfig.Controls.Add(this.cmbShardTag);
             this.tabShardingConfig.Controls.Add(this.lblShardTag);
             this.tabShardingConfig.Controls.Add(this.lblField);
@@ -372,6 +380,24 @@
             this.tabShardingConfig.TabIndex = 1;
             this.tabShardingConfig.Text = "Sharding Setting";
             this.tabShardingConfig.UseVisualStyleBackColor = true;
+            // 
+            // cmbShardTag
+            // 
+            this.cmbShardTag.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbShardTag.FormattingEnabled = true;
+            this.cmbShardTag.Location = new System.Drawing.Point(137, 187);
+            this.cmbShardTag.Name = "cmbShardTag";
+            this.cmbShardTag.Size = new System.Drawing.Size(165, 23);
+            this.cmbShardTag.TabIndex = 9;
+            // 
+            // lblShardTag
+            // 
+            this.lblShardTag.AutoSize = true;
+            this.lblShardTag.Location = new System.Drawing.Point(27, 190);
+            this.lblShardTag.Name = "lblShardTag";
+            this.lblShardTag.Size = new System.Drawing.Size(64, 15);
+            this.lblShardTag.TabIndex = 8;
+            this.lblShardTag.Text = "Shard Tag";
             // 
             // tabRemoveSharding
             // 
@@ -471,23 +497,37 @@
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
-            // lblShardTag
+            // lblShardKeyFrom
             // 
-            this.lblShardTag.AutoSize = true;
-            this.lblShardTag.Location = new System.Drawing.Point(26, 155);
-            this.lblShardTag.Name = "lblShardTag";
-            this.lblShardTag.Size = new System.Drawing.Size(64, 15);
-            this.lblShardTag.TabIndex = 8;
-            this.lblShardTag.Text = "Shard Tag";
+            this.lblShardKeyFrom.AutoSize = true;
+            this.lblShardKeyFrom.Location = new System.Drawing.Point(27, 126);
+            this.lblShardKeyFrom.Name = "lblShardKeyFrom";
+            this.lblShardKeyFrom.Size = new System.Drawing.Size(92, 15);
+            this.lblShardKeyFrom.TabIndex = 10;
+            this.lblShardKeyFrom.Text = "ShardKeyFrom:";
             // 
-            // cmbShardTag
+            // lblShardKeyTo
             // 
-            this.cmbShardTag.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbShardTag.FormattingEnabled = true;
-            this.cmbShardTag.Location = new System.Drawing.Point(121, 152);
-            this.cmbShardTag.Name = "cmbShardTag";
-            this.cmbShardTag.Size = new System.Drawing.Size(199, 23);
-            this.cmbShardTag.TabIndex = 9;
+            this.lblShardKeyTo.AutoSize = true;
+            this.lblShardKeyTo.Location = new System.Drawing.Point(27, 157);
+            this.lblShardKeyTo.Name = "lblShardKeyTo";
+            this.lblShardKeyTo.Size = new System.Drawing.Size(77, 15);
+            this.lblShardKeyTo.TabIndex = 11;
+            this.lblShardKeyTo.Text = "ShardKeyTo:";
+            // 
+            // ctlBsonValueShardKeyFrom
+            // 
+            this.ctlBsonValueShardKeyFrom.Location = new System.Drawing.Point(137, 123);
+            this.ctlBsonValueShardKeyFrom.Name = "ctlBsonValueShardKeyFrom";
+            this.ctlBsonValueShardKeyFrom.Size = new System.Drawing.Size(253, 28);
+            this.ctlBsonValueShardKeyFrom.TabIndex = 12;
+            // 
+            // ctlBsonValueShardKeyTo
+            // 
+            this.ctlBsonValueShardKeyTo.Location = new System.Drawing.Point(137, 154);
+            this.ctlBsonValueShardKeyTo.Name = "ctlBsonValueShardKeyTo";
+            this.ctlBsonValueShardKeyTo.Size = new System.Drawing.Size(253, 28);
+            this.ctlBsonValueShardKeyTo.TabIndex = 13;
             // 
             // frmShardingConfig
             // 
@@ -562,5 +602,9 @@
         private System.Windows.Forms.Button btnAddShardTag;
         private System.Windows.Forms.Label lblShardTag;
         private System.Windows.Forms.ComboBox cmbShardTag;
+        private System.Windows.Forms.Label lblShardKeyTo;
+        private System.Windows.Forms.Label lblShardKeyFrom;
+        private ctlBsonValue ctlBsonValueShardKeyTo;
+        private ctlBsonValue ctlBsonValueShardKeyFrom;
     }
 }

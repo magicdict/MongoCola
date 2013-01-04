@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using MongoDB.Bson;
+using System.Windows.Forms;
 using TreeViewColumnsProject;
 
 namespace MagicMongoDBTool.Module
@@ -550,118 +550,122 @@ namespace MagicMongoDBTool.Module
             String strShowColName = strColName;
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                if (SystemManager.mStringResource.LanguageType == "Chinese")
+                switch (strShowColName)
                 {
-                    switch (strShowColName)
-                    {
-                        case "chunks":
-                            if (mongoDB.Name == "config")
-                            {
-                                strShowColName = "数据块(" + strShowColName + ")";
-                            }
-                            break;
-                        case "collections":
-                            if (mongoDB.Name == "config")
-                            {
-                                strShowColName = "数据集(" + strShowColName + ")";
-                            }
-                            break;
-                        case "changelog":
-                            if (mongoDB.Name == "config")
-                            {
-                                strShowColName = "变更日志(" + strShowColName + ")";
-                            }
-                            break;
-                        case "databases":
-                            if (mongoDB.Name == "config")
-                            {
-                                strShowColName = "数据库(" + strShowColName + ")";
-                            }
-                            break;
-                        case "lockpings":
-                            if (mongoDB.Name == "config")
-                            {
-                                strShowColName = "数据锁(" + strShowColName + ")";
-                            }
-                            break;
-                        case "locks":
-                            if (mongoDB.Name == "config")
-                            {
-                                strShowColName = "数据锁(" + strShowColName + ")";
-                            }
-                            break;
-                        case "mongos":
-                            if (mongoDB.Name == "config")
-                            {
-                                strShowColName = "路由服务器(" + strShowColName + ")";
-                            }
-                            break;
-                        case "settings":
-                            if (mongoDB.Name == "config")
-                            {
-                                strShowColName = "配置(" + strShowColName + ")";
-                            }
-                            break;
-                        case "shards":
-                            if (mongoDB.Name == "config")
-                            {
-                                strShowColName = "分片(" + strShowColName + ")";
-                            }
-                            break;
-                        case "version":
-                            if (mongoDB.Name == "config")
-                            {
-                                strShowColName = "版本(" + strShowColName + ")";
-                            }
-                            break;
-                        case "me":
-                            if (mongoDB.Name == "local")
-                            {
-                                strShowColName = "副本组[从属机信息](" + strShowColName + ")";
-                            }
-                            break;
-                        case "sources":
-                            if (mongoDB.Name == "local")
-                            {
-                                strShowColName = "主机地址(" + strShowColName + ")";
-                            }
-                            break;
-                        case "slaves":
-                            if (mongoDB.Name == "local")
-                            {
-                                strShowColName = "副本组[主机信息](" + strShowColName + ")";
-                            }
-                            break;
-                        case COLLECTION_NAME_GFS_CHUNKS:
-                            strShowColName = "数据块(" + strShowColName + ")";
-                            break;
-                        case COLLECTION_NAME_GFS_FILES:
-                            strShowColName = "文件系统(" + strShowColName + ")";
-                            break;
-                        case COLLECTION_NAME_OPERATION_LOG:
-                            strShowColName = "操作结果(" + strShowColName + ")";
-                            break;
-                        case COLLECTION_NAME_SYSTEM_INDEXES:
-                            strShowColName = "索引(" + strShowColName + ")";
-                            break;
-                        case COLLECTION_NAME_JAVASCRIPT:
-                            strShowColName = "存储Javascript(" + strShowColName + ")";
-                            break;
-                        case COLLECTION_NAME_SYSTEM_REPLSET:
-                            strShowColName = "副本组(" + strShowColName + ")";
-                            break;
-                        case COLLECTION_NAME_REPLSET_MINVALID:
-                            strShowColName = "初始化同步(" + strShowColName + ")";
-                            break;
-                        case COLLECTION_NAME_USER:
-                            strShowColName = "用户列表(" + strShowColName + ")";
-                            break;
-                        case COLLECTION_NAME_SYSTEM_PROFILE:
-                            strShowColName = "日志(" + strShowColName + ")";
-                            break;
-                        default:
-                            break;
-                    }
+                    case "chunks":
+                        if (mongoDB.Name == "config")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_chunks) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "collections":
+                        if (mongoDB.Name == "config")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_collections) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "changelog":
+                        if (mongoDB.Name == "config")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_changelog) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "databases":
+                        if (mongoDB.Name == "config")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_databases) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "lockpings":
+                        if (mongoDB.Name == "config")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_lockpings) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "locks":
+                        if (mongoDB.Name == "config")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_locks) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "mongos":
+                        if (mongoDB.Name == "config")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_mongos) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "settings":
+                        if (mongoDB.Name == "config")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_settings) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "shards":
+                        if (mongoDB.Name == "config")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_shards) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "tags":
+                        //ADD: 2013/01/04 Mongo2.2.2开始支持ShardTag了 
+                        if (mongoDB.Name == "config")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_tags) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "version":
+                        if (mongoDB.Name == "config")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_version) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "me":
+                        if (mongoDB.Name == "local")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_me) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "sources":
+                        if (mongoDB.Name == "local")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_sources) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case "slaves":
+                        if (mongoDB.Name == "local")
+                        {
+                            strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_slaves) + "(" + strShowColName + ")";
+                        }
+                        break;
+                    case COLLECTION_NAME_GFS_CHUNKS:
+                        strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_GFS_CHUNKS) + "(" + strShowColName + ")";
+                        break;
+                    case COLLECTION_NAME_GFS_FILES:
+                        strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_GFS_FILES) + "(" + strShowColName + ")";
+                        break;
+                    case COLLECTION_NAME_OPERATION_LOG:
+                        strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_OPERATION_LOG) + "(" + strShowColName + ")";
+                        break;
+                    case COLLECTION_NAME_SYSTEM_INDEXES:
+                        strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_INDEXES) + "(" + strShowColName + ")";
+                        break;
+                    case COLLECTION_NAME_JAVASCRIPT:
+                        strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_JAVASCRIPT) + "(" + strShowColName + ")";
+                        break;
+                    case COLLECTION_NAME_SYSTEM_REPLSET:
+                        strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_REPLSET) + "(" + strShowColName + ")";
+                        break;
+                    case COLLECTION_NAME_REPLSET_MINVALID:
+                        strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_REPLSET_MINVALID) + "(" + strShowColName + ")";
+                        break;
+                    case COLLECTION_NAME_USER:
+                        strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_USER) + "(" + strShowColName + ")";
+                        break;
+                    case COLLECTION_NAME_SYSTEM_PROFILE:
+                        strShowColName = SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_PROFILE) + "(" + strShowColName + ")";
+                        break;
+                    default:
+                        break;
                 }
             }
             TreeNode mongoColNode;
@@ -759,7 +763,7 @@ namespace MagicMongoDBTool.Module
             String KeyString = string.Empty;
             foreach (BsonElement key in keys.Elements)
             {
-                KeyString +=  key.Name + ":";
+                KeyString += key.Name + ":";
                 switch (key.Value.ToString())
                 {
                     case "1":

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using MagicMongoDBTool.Module;
-using MongoDB.Driver;
+﻿using MagicMongoDBTool.Module;
 using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
 
 namespace MagicMongoDBTool
 {
@@ -59,18 +59,6 @@ namespace MagicMongoDBTool
             foreach (var lst in MongoDBHelper.GetShardInfo(_prmSvr, MongoDBHelper.KEY_ID))
             {
                 lstSharding.Items.Add(lst.Value);
-            }
-            mongoCol = mongoDB.GetCollection("shards");
-            cmbShardTag.Items.Clear();
-            foreach (BsonDocument mShard in mongoCol.FindAllAs<BsonDocument>())
-            {
-                if (mShard.Contains("tags"))
-                {
-                    foreach (BsonValue tag in mShard.GetElement("tags").Value.AsBsonArray)
-                    {
-                        cmbShardTag.Items.Add(mShard.GetElement(MongoDBHelper.KEY_ID).Value.ToString() + "." + tag.ToString());
-                    }
-                }
             }
         }
         /// <summary>
@@ -181,6 +169,20 @@ namespace MagicMongoDBTool
                     cmbKeyList.Items.Add(Indexitem.Name);
                 }
                 cmbKeyList.Text = cmbKeyList.Items[0].ToString();
+                //Tag和数据集绑定，从系统数据集tags里面读取tag的信息
+                MongoDatabase mongoDBConfig = _prmSvr.GetDatabase(MongoDBHelper.DATABASE_NAME_CONFIG);
+                MongoCollection mongoCol = mongoDBConfig.GetCollection("tags");
+                cmbShardTag.Items.Clear();
+                foreach (BsonDocument tags in mongoCol.FindAllAs<BsonDocument>())
+                {
+                    if (tags.GetElement("ns").Value.ToString() != BsonUndefined.Value.ToString())
+                    {
+                        if (tags.GetElement("ns").Value.ToString() == cmbDataBase.Text + "." + cmbCollection.Text)
+                        {
+                            cmbShardTag.Items.Add(tags.GetElement("tag").Value.ToString());
+                        }
+                    }
+                }
             }
             catch (Exception)
             {
