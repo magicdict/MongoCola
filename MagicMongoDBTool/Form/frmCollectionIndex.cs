@@ -189,23 +189,23 @@ namespace MagicMongoDBTool
             lstIndex.Items.Clear();
             foreach (IndexInfo item in _mongoCollection.GetIndexes())
             {
-                ListViewItem lst = new ListViewItem(item.Name);
-                lst.SubItems.Add(item.Version.ToString());
-                lst.SubItems.Add(MongoDBHelper.GetKeyString(item.Key));
-                lst.SubItems.Add(item.Namespace.ToString());
-                lst.SubItems.Add(item.IsBackground.ToString());
-                lst.SubItems.Add(item.IsSparse.ToString());
-                lst.SubItems.Add(item.IsUnique.ToString());
-                lst.SubItems.Add(item.DroppedDups.ToString());
+                ListViewItem ListItem = new ListViewItem(item.Name);
+                ListItem.SubItems.Add(item.Version.ToString());
+                ListItem.SubItems.Add(MongoDBHelper.GetKeyString(item.Key));
+                ListItem.SubItems.Add(item.Namespace.ToString());
+                ListItem.SubItems.Add(item.IsBackground.ToString());
+                ListItem.SubItems.Add(item.IsSparse.ToString());
+                ListItem.SubItems.Add(item.IsUnique.ToString());
+                ListItem.SubItems.Add(item.DroppedDups.ToString());
                 if (item.TimeToLive != TimeSpan.MaxValue)
                 {
-                    lst.SubItems.Add(item.TimeToLive.TotalSeconds.ToString());
+                    ListItem.SubItems.Add(item.TimeToLive.TotalSeconds.ToString());
                 }
                 else
                 {
-                    lst.SubItems.Add("Not Set");
+                    ListItem.SubItems.Add("Not Set");
                 }
-                lstIndex.Items.Add(lst);
+                lstIndex.Items.Add(ListItem);
             }
         }
         /// <summary>
