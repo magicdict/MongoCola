@@ -22,6 +22,7 @@ Ver 1.24 2013/01/06 [Back to IBM GDC]
 9.Tag Aware Sharding
 10.GEONEAR QUERY
 11.Add Geo Index at index manager
+12.Rewrite Sharding Config
 ========================================================================
 
 

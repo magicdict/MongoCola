@@ -75,17 +75,17 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Distinct", "Pick the field");
                 return;
             }
-            var ResultLst = SystemManager.GetCurrentCollection().Distinct(strKey, MongoDBHelper.GetQuery(DistinctConditionList));
-            List<BsonValue> result = new List<BsonValue>();
-            foreach (BsonValue item in ResultLst)
+            BsonArray ResultArray = (BsonArray)SystemManager.GetCurrentCollection().Distinct(strKey, MongoDBHelper.GetQuery(DistinctConditionList));
+            List<BsonValue> ResultList = new List<BsonValue>();
+            foreach (BsonValue item in ResultArray)
             {
-                result.Add(item);
+                ResultList.Add(item);
             }
-            String strResult = String.Empty;
-
             //防止错误的条件造成的海量数据
             int Count = 0;
-            foreach (BsonValue item in result)
+            String strResult = String.Empty;
+            ResultList.Sort();
+            foreach (BsonValue item in ResultList)
             {
                 if (Count == 1000)
                 {
@@ -95,7 +95,7 @@ namespace MagicMongoDBTool
                 strResult += item.ToJson(SystemManager.JsonWriterSettings) + System.Environment.NewLine;
                 Count++;
             }
-            strResult = "Distinct Count: " + result.Count + System.Environment.NewLine + System.Environment.NewLine + strResult;
+            strResult = "Distinct Count: " + ResultList.Count + System.Environment.NewLine + System.Environment.NewLine + strResult;
             MyMessageBox.ShowMessage("Distinct", "Distinct:" + strKey, strResult, true);
 
         }
