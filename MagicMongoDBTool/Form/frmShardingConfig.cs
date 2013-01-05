@@ -20,7 +20,9 @@ namespace MagicMongoDBTool
         /// Mongo服务器
         /// </summary>
         private MongoServer _prmSvr;
-
+        /// <summary>
+        /// Tag和Set的字典
+        /// </summary>
         private Dictionary<String, String> TagSet = new Dictionary<string, string>();
         /// <summary>
         /// 加载
@@ -72,6 +74,7 @@ namespace MagicMongoDBTool
                 {
                     foreach (BsonValue tag in mShard.GetElement("tags").Value.AsBsonArray)
                     {
+                        //严格意义上说，不应该在同一个路由里面出现两个同名的标签。
                         if (!TagSet.ContainsKey(tag.ToString()))
                         {
                             TagSet.Add(tag.ToString(), mShard.GetElement(MongoDBHelper.KEY_ID).Value.ToString());
@@ -82,7 +85,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 
+        /// 增加Shard的高级选项
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -256,13 +259,10 @@ namespace MagicMongoDBTool
         private void cmdEnableCollectionSharding_Click(object sender, EventArgs e)
         {
             List<CommandResult> Resultlst = new List<CommandResult>();
-            Resultlst.Add(MongoDBHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, cmbIndexList.SelectedItem.ToBsonDocument()));
+            GetIndexesResult Result = _prmSvr.GetDatabase(cmbDataBase.Text).GetCollection(cmbCollection.Text).GetIndexes();
+            BsonDocument IndexDoc = Result[cmbIndexList.SelectedIndex].Key;
+            Resultlst.Add(MongoDBHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text,IndexDoc));
             MyMessageBox.ShowMessage("EnableSharding", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
-        }
-
-        private void cmdClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
         /// <summary>
         /// 移除Sharding
@@ -276,15 +276,12 @@ namespace MagicMongoDBTool
                 List<CommandResult> Resultlst = new List<CommandResult>();
                 Resultlst.Add(MongoDBHelper.RemoveSharding(_prmSvr, item));
                 MyMessageBox.ShowMessage("Remove Sharding", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
-
             }
-
             lstSharding.Items.Clear();
             foreach (var lst in MongoDBHelper.GetShardInfo(_prmSvr, "_id"))
             {
                 lstSharding.Items.Add(lst.Value);
             }
-
         }
         /// <summary>
         /// 为Sharding增加Tag
@@ -309,6 +306,15 @@ namespace MagicMongoDBTool
                                                     ctlBsonValueShardKeyTo.getValue(), cmbTagList.Text.Split(".".ToCharArray())[1]));
             MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
 
+        }
+        /// <summary>
+        /// 关闭窗体
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

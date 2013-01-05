@@ -183,7 +183,7 @@ namespace MagicMongoDBTool.Module
         public static CommandResult ShardCollection(MongoServer routeSvr, String sharingCollection, BsonDocument shardingKey)
         {
             CommandDocument mongoCmd = new CommandDocument();
-            mongoCmd.Add("shardcollection", sharingCollection);
+            mongoCmd.Add("shardCollection", sharingCollection);
             mongoCmd.Add("key", shardingKey);
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
         }
