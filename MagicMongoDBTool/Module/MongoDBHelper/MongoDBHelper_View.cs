@@ -81,6 +81,7 @@ namespace MagicMongoDBTool.Module
                 if (doc.GetValue(strName).IsBsonDocument)
                 {
                     //包含子文档的时候
+                    _ColumnList.Add(strName);
                     foreach (var item in getBsonNameList(strName, doc.GetValue(strName).AsBsonDocument))
                     {
                         _ColumnList.Add(item);
