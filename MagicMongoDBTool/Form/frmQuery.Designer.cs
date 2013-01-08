@@ -39,7 +39,6 @@
             this.lblDistanceMultiplier = new System.Windows.Forms.Label();
             this.chkSpherical = new System.Windows.Forms.CheckBox();
             this.NumMaxDistance = new System.Windows.Forms.NumericUpDown();
-            this.NumDistanceMultiplier = new System.Windows.Forms.NumericUpDown();
             this.NumResultCount = new System.Windows.Forms.NumericUpDown();
             this.cmdGeoNear = new System.Windows.Forms.Button();
             this.NumGeoY = new System.Windows.Forms.NumericUpDown();
@@ -50,12 +49,15 @@
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
+            this.NumDistanceMultiplier = new System.Windows.Forms.TextBox();
+            this.btnKM = new System.Windows.Forms.Button();
+            this.btnMile = new System.Windows.Forms.Button();
             this.trvGeoResult = new TreeViewColumnsProject.TreeViewColumns();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabCondition.SuspendLayout();
             this.tabgeoNear.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumMaxDistance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumDistanceMultiplier)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumResultCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumGeoY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumGeoX)).BeginInit();
@@ -127,11 +129,14 @@
             // 
             // tabgeoNear
             // 
+            this.tabgeoNear.Controls.Add(this.btnHelp);
+            this.tabgeoNear.Controls.Add(this.btnMile);
+            this.tabgeoNear.Controls.Add(this.btnKM);
+            this.tabgeoNear.Controls.Add(this.NumDistanceMultiplier);
             this.tabgeoNear.Controls.Add(this.lblMaxDistance);
             this.tabgeoNear.Controls.Add(this.lblDistanceMultiplier);
             this.tabgeoNear.Controls.Add(this.chkSpherical);
             this.tabgeoNear.Controls.Add(this.NumMaxDistance);
-            this.tabgeoNear.Controls.Add(this.NumDistanceMultiplier);
             this.tabgeoNear.Controls.Add(this.NumResultCount);
             this.tabgeoNear.Controls.Add(this.cmdGeoNear);
             this.tabgeoNear.Controls.Add(this.NumGeoY);
@@ -160,7 +165,7 @@
             // lblDistanceMultiplier
             // 
             this.lblDistanceMultiplier.AutoSize = true;
-            this.lblDistanceMultiplier.Location = new System.Drawing.Point(281, 85);
+            this.lblDistanceMultiplier.Location = new System.Drawing.Point(281, 60);
             this.lblDistanceMultiplier.Name = "lblDistanceMultiplier";
             this.lblDistanceMultiplier.Size = new System.Drawing.Size(109, 15);
             this.lblDistanceMultiplier.TabIndex = 12;
@@ -169,7 +174,7 @@
             // chkSpherical
             // 
             this.chkSpherical.AutoSize = true;
-            this.chkSpherical.Location = new System.Drawing.Point(285, 55);
+            this.chkSpherical.Location = new System.Drawing.Point(285, 27);
             this.chkSpherical.Name = "chkSpherical";
             this.chkSpherical.Size = new System.Drawing.Size(78, 19);
             this.chkSpherical.TabIndex = 11;
@@ -188,24 +193,6 @@
             this.NumMaxDistance.Size = new System.Drawing.Size(108, 21);
             this.NumMaxDistance.TabIndex = 10;
             this.NumMaxDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // NumDistanceMultiplier
-            // 
-            this.NumDistanceMultiplier.Location = new System.Drawing.Point(393, 83);
-            this.NumDistanceMultiplier.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-            this.NumDistanceMultiplier.Name = "NumDistanceMultiplier";
-            this.NumDistanceMultiplier.Size = new System.Drawing.Size(108, 21);
-            this.NumDistanceMultiplier.TabIndex = 9;
-            this.NumDistanceMultiplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.NumDistanceMultiplier.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // NumResultCount
             // 
@@ -337,6 +324,36 @@
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
+            // NumDistanceMultiplier
+            // 
+            this.NumDistanceMultiplier.Location = new System.Drawing.Point(405, 57);
+            this.NumDistanceMultiplier.Name = "NumDistanceMultiplier";
+            this.NumDistanceMultiplier.Size = new System.Drawing.Size(116, 21);
+            this.NumDistanceMultiplier.TabIndex = 14;
+            this.NumDistanceMultiplier.Text = "1";
+            this.NumDistanceMultiplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NumDistanceMultiplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumDistanceMultiplier_KeyPress);
+            // 
+            // btnKM
+            // 
+            this.btnKM.Location = new System.Drawing.Point(284, 81);
+            this.btnKM.Name = "btnKM";
+            this.btnKM.Size = new System.Drawing.Size(52, 23);
+            this.btnKM.TabIndex = 15;
+            this.btnKM.Text = "KM";
+            this.btnKM.UseVisualStyleBackColor = true;
+            this.btnKM.Click += new System.EventHandler(this.btnKM_Click);
+            // 
+            // btnMile
+            // 
+            this.btnMile.Location = new System.Drawing.Point(342, 81);
+            this.btnMile.Name = "btnMile";
+            this.btnMile.Size = new System.Drawing.Size(58, 23);
+            this.btnMile.TabIndex = 16;
+            this.btnMile.Text = "mile";
+            this.btnMile.UseVisualStyleBackColor = true;
+            this.btnMile.Click += new System.EventHandler(this.btnMile_Click);
+            // 
             // trvGeoResult
             // 
             this.trvGeoResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
@@ -345,6 +362,16 @@
             this.trvGeoResult.Padding = new System.Windows.Forms.Padding(1);
             this.trvGeoResult.Size = new System.Drawing.Size(496, 295);
             this.trvGeoResult.TabIndex = 6;
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(406, 81);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(35, 23);
+            this.btnHelp.TabIndex = 17;
+            this.btnHelp.Text = "?";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // frmQuery
             // 
@@ -370,7 +397,6 @@
             this.tabgeoNear.ResumeLayout(false);
             this.tabgeoNear.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumMaxDistance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumDistanceMultiplier)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumResultCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumGeoY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumGeoX)).EndInit();
@@ -400,8 +426,11 @@
         private System.Windows.Forms.NumericUpDown NumResultCount;
         private System.Windows.Forms.CheckBox chkSpherical;
         private System.Windows.Forms.NumericUpDown NumMaxDistance;
-        private System.Windows.Forms.NumericUpDown NumDistanceMultiplier;
         private System.Windows.Forms.Label lblMaxDistance;
         private System.Windows.Forms.Label lblDistanceMultiplier;
+        private System.Windows.Forms.TextBox NumDistanceMultiplier;
+        private System.Windows.Forms.Button btnMile;
+        private System.Windows.Forms.Button btnKM;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

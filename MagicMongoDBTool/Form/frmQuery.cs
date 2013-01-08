@@ -281,7 +281,7 @@ namespace MagicMongoDBTool
         {
             List<BsonDocument> SrvDocList = new List<BsonDocument>();
             GeoNearOptionsBuilder opt = new GeoNearOptionsBuilder();
-            opt.SetDistanceMultiplier((double)NumDistanceMultiplier.Value);
+            opt.SetDistanceMultiplier(float.Parse(NumDistanceMultiplier.Text));
             opt.SetMaxDistance((double)NumMaxDistance.Value);
             opt.SetSpherical(chkSpherical.Checked);
             BsonDocument T = SystemManager.GetCurrentCollection().GeoNearAs<BsonDocument>
@@ -289,6 +289,60 @@ namespace MagicMongoDBTool
             SrvDocList.Add(T);
             MongoDBHelper.FillDataToTreeView("Result", this.trvGeoResult, SrvDocList, 0);
             this.trvGeoResult.DatatreeView.Nodes[0].Expand();
+        }
+
+        private void NumDistanceMultiplier_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46)
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == 46)                       //小数点
+            {
+                if (NumDistanceMultiplier.Text.Length <= 0)
+                    e.Handled = true;           //小数点不能在第一位
+                else
+                {
+                    float f;
+                    float oldf;
+                    bool b1 = false, b2 = false;
+                    b1 = float.TryParse(NumDistanceMultiplier.Text, out oldf);
+                    b2 = float.TryParse(NumDistanceMultiplier.Text + e.KeyChar.ToString(), out f);
+                    if (b2 == false)
+                    {
+                        if (b1 == true)
+                            e.Handled = true;
+                        else
+                            e.Handled = false;
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// 设置公里
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnKM_Click(object sender, EventArgs e)
+        {
+            NumDistanceMultiplier.Text = (1 / 6378.137).ToString();
+        }
+        /// <summary>
+        /// 设置英里
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnMile_Click(object sender, EventArgs e)
+        {
+            NumDistanceMultiplier.Text = (1 / 3963.192).ToString();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            MyMessageBox.ShowMessage("Convert", "About Convert",
+                @"distance to radians: divide the distance by the radius of the sphere (e.g. the Earth) in the same units as the distance measurement.
+radians to distance: multiply the rad ian measure by the radius of the sphere (e.g. the Earth) in the units system that you want to convert the distance to.
+The radius of the Earth is approximately 3963.192 miles or 6378.137 kilometers.", true);
         }
     }
 }

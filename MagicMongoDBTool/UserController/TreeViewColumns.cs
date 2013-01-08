@@ -37,36 +37,36 @@ namespace TreeViewColumnsProject
         {
             get
             {
-                return this.listView1.Columns;
+                return this.listView.Columns;
             }
         }
 
-        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void listView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             this.DatatreeView.Focus();
         }
 
-        private void treeView1_Click(object sender, EventArgs e)
+        private void treeView_Click(object sender, EventArgs e)
         {
             Point p = this.DatatreeView.PointToClient(Control.MousePosition);
-            TreeNode tn = this.DatatreeView.GetNodeAt(p);
-            if (tn != null)
-                this.DatatreeView.SelectedNode = tn;
+            TreeNode mTreeNode = this.DatatreeView.GetNodeAt(p);
+            if (mTreeNode != null)
+                this.DatatreeView.SelectedNode = mTreeNode;
         }
 
-        private void listView1_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        private void listView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
             this.DatatreeView.Focus();
             this.DatatreeView.Invalidate();
         }
 
-        private void listView1_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        private void listView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             this.DatatreeView.Focus();
             this.DatatreeView.Invalidate();
         }
 
-        private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e)
+        private void treeView_DrawNode(object sender, DrawTreeNodeEventArgs e)
         {
             e.DrawDefault = false;
             Rectangle rect = e.Bounds;
@@ -129,8 +129,8 @@ namespace TreeViewColumnsProject
 
             for (int intColumn = 1; intColumn < 3; intColumn++)
             {
-                rect.Offset(this.listView1.Columns[intColumn - 1].Width, 0);
-                rect.Width = this.listView1.Columns[intColumn].Width;
+                rect.Offset(this.listView.Columns[intColumn - 1].Width, 0);
+                rect.Width = this.listView.Columns[intColumn].Width;
                 e.Graphics.DrawRectangle(SystemPens.Control, rect);
                 if (mElement != null || mValue != null)
                 {
@@ -173,7 +173,7 @@ namespace TreeViewColumnsProject
                     }
 
                     TextFormatFlags flags = TextFormatFlags.EndEllipsis;
-                    switch (this.listView1.Columns[intColumn].TextAlign)
+                    switch (this.listView.Columns[intColumn].TextAlign)
                     {
                         case HorizontalAlignment.Center:
                             flags |= TextFormatFlags.HorizontalCenter;

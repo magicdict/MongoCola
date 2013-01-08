@@ -28,7 +28,7 @@ namespace TreeViewColumnsProject
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listView = new System.Windows.Forms.ListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -37,24 +37,24 @@ namespace TreeViewColumnsProject
             // 
             // listView1
             // 
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
             this.colValue,
             this.colType});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Scrollable = false;
-            this.listView1.Size = new System.Drawing.Size(438, 20);
-            this.listView1.TabIndex = 3;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
-            this.listView1.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.listView1_ColumnWidthChanged);
-            this.listView1.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.listView1_ColumnWidthChanging);
+            this.listView.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listView.FullRowSelect = true;
+            this.listView.GridLines = true;
+            this.listView.Location = new System.Drawing.Point(0, 0);
+            this.listView.Name = "listView1";
+            this.listView.Scrollable = false;
+            this.listView.Size = new System.Drawing.Size(438, 20);
+            this.listView.TabIndex = 3;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
+            this.listView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_ColumnClick);
+            this.listView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.listView_ColumnWidthChanged);
+            this.listView.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.listView_ColumnWidthChanging);
             // 
             // colName
             // 
@@ -83,15 +83,15 @@ namespace TreeViewColumnsProject
             this.DatatreeView.Name = "treeView1";
             this.DatatreeView.Size = new System.Drawing.Size(438, 164);
             this.DatatreeView.TabIndex = 2;
-            this.DatatreeView.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
-            this.DatatreeView.Click += new System.EventHandler(this.treeView1_Click);
+            this.DatatreeView.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView_DrawNode);
+            this.DatatreeView.Click += new System.EventHandler(this.treeView_Click);
             // 
             // TreeViewColumns
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.DatatreeView);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.listView);
             this.Name = "TreeViewColumns";
             this.Size = new System.Drawing.Size(438, 184);
             this.SizeChanged += new System.EventHandler(this.Control_SizeChanged);
@@ -101,7 +101,7 @@ namespace TreeViewColumnsProject
 
 		#endregion
 
-        public System.Windows.Forms.ListView listView1;
+        public System.Windows.Forms.ListView listView;
 		private System.Windows.Forms.ColumnHeader colName;
 		private System.Windows.Forms.ColumnHeader colValue;
 		private System.Windows.Forms.ColumnHeader colType;
