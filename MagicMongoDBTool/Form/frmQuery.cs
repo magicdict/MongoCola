@@ -280,18 +280,25 @@ namespace MagicMongoDBTool
         private void cmdGeoNear_Click(object sender, EventArgs e)
         {
             List<BsonDocument> SrvDocList = new List<BsonDocument>();
-            GeoNearOptionsBuilder opt = new GeoNearOptionsBuilder();
-            opt.SetDistanceMultiplier(float.Parse(NumDistanceMultiplier.Text));
-            opt.SetMaxDistance((double)NumMaxDistance.Value);
-            opt.SetSpherical(chkSpherical.Checked);
-            BsonDocument T = SystemManager.GetCurrentCollection().GeoNearAs<BsonDocument>
-                (null, (int)NumGeoX.Value, (int)NumGeoY.Value, (int)NumResultCount.Value,opt).Response;
-            SrvDocList.Add(T);
-            MongoDBHelper.FillDataToTreeView("Result", this.trvGeoResult, SrvDocList, 0);
-            this.trvGeoResult.DatatreeView.Nodes[0].Expand();
+            GeoNearOptionsBuilder GeoOption = new GeoNearOptionsBuilder();
+            GeoOption.SetDistanceMultiplier(double.Parse(NumDistanceMultiplier.Text));
+            GeoOption.SetMaxDistance(double.Parse(NumMaxDistance.Text));
+            GeoOption.SetSpherical(chkSpherical.Checked);
+            try
+            {
+                BsonDocument T = SystemManager.GetCurrentCollection().GeoNearAs<BsonDocument>
+                    (null, double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text), (int)NumResultCount.Value, GeoOption).Response;
+                SrvDocList.Add(T);
+                MongoDBHelper.FillDataToTreeView("Result", this.trvGeoResult, SrvDocList, 0);
+                this.trvGeoResult.DatatreeView.Nodes[0].Expand();
+            }
+            catch (Exception ex)
+            {
+                SystemManager.ExceptionDeal(ex);                
+            }
         }
 
-        private void NumDistanceMultiplier_KeyPress(object sender, KeyPressEventArgs e)
+        private void NumberText_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46)
             {
@@ -299,15 +306,15 @@ namespace MagicMongoDBTool
             }
             if (e.KeyChar == 46)                       //小数点
             {
-                if (NumDistanceMultiplier.Text.Length <= 0)
+                if (((TextBox)sender).Text.Length <= 0)
                     e.Handled = true;           //小数点不能在第一位
                 else
                 {
                     float f;
                     float oldf;
                     bool b1 = false, b2 = false;
-                    b1 = float.TryParse(NumDistanceMultiplier.Text, out oldf);
-                    b2 = float.TryParse(NumDistanceMultiplier.Text + e.KeyChar.ToString(), out f);
+                    b1 = float.TryParse(((TextBox)sender).Text, out oldf);
+                    b2 = float.TryParse(((TextBox)sender).Text + e.KeyChar.ToString(), out f);
                     if (b2 == false)
                     {
                         if (b1 == true)

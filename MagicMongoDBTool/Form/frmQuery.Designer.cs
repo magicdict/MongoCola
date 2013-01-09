@@ -34,33 +34,30 @@
             this.tabFieldInfo = new System.Windows.Forms.TabPage();
             this.tabCondition = new System.Windows.Forms.TabPage();
             this.panFilter = new System.Windows.Forms.Panel();
-            this.tabgeoNear = new System.Windows.Forms.TabPage();
+            this.tabGeoNear = new System.Windows.Forms.TabPage();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.btnMile = new System.Windows.Forms.Button();
+            this.btnKM = new System.Windows.Forms.Button();
+            this.NumDistanceMultiplier = new System.Windows.Forms.TextBox();
             this.lblMaxDistance = new System.Windows.Forms.Label();
             this.lblDistanceMultiplier = new System.Windows.Forms.Label();
             this.chkSpherical = new System.Windows.Forms.CheckBox();
-            this.NumMaxDistance = new System.Windows.Forms.NumericUpDown();
             this.NumResultCount = new System.Windows.Forms.NumericUpDown();
             this.cmdGeoNear = new System.Windows.Forms.Button();
-            this.NumGeoY = new System.Windows.Forms.NumericUpDown();
-            this.NumGeoX = new System.Windows.Forms.NumericUpDown();
             this.lblGeoNear = new System.Windows.Forms.Label();
             this.lblResultCount = new System.Windows.Forms.Label();
             this.lnkGeoNear = new System.Windows.Forms.LinkLabel();
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
-            this.NumDistanceMultiplier = new System.Windows.Forms.TextBox();
-            this.btnKM = new System.Windows.Forms.Button();
-            this.btnMile = new System.Windows.Forms.Button();
             this.trvGeoResult = new TreeViewColumnsProject.TreeViewColumns();
-            this.btnHelp = new System.Windows.Forms.Button();
+            this.NumGeoY = new System.Windows.Forms.TextBox();
+            this.NumGeoX = new System.Windows.Forms.TextBox();
+            this.NumMaxDistance = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tabCondition.SuspendLayout();
-            this.tabgeoNear.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumMaxDistance)).BeginInit();
+            this.tabGeoNear.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumResultCount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumGeoY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumGeoX)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdAddCondition
@@ -89,7 +86,7 @@
             // 
             this.tabControl.Controls.Add(this.tabFieldInfo);
             this.tabControl.Controls.Add(this.tabCondition);
-            this.tabControl.Controls.Add(this.tabgeoNear);
+            this.tabControl.Controls.Add(this.tabGeoNear);
             this.tabControl.Location = new System.Drawing.Point(16, 23);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -127,31 +124,71 @@
             this.panFilter.Size = new System.Drawing.Size(565, 383);
             this.panFilter.TabIndex = 15;
             // 
-            // tabgeoNear
+            // tabGeoNear
             // 
-            this.tabgeoNear.Controls.Add(this.btnHelp);
-            this.tabgeoNear.Controls.Add(this.btnMile);
-            this.tabgeoNear.Controls.Add(this.btnKM);
-            this.tabgeoNear.Controls.Add(this.NumDistanceMultiplier);
-            this.tabgeoNear.Controls.Add(this.lblMaxDistance);
-            this.tabgeoNear.Controls.Add(this.lblDistanceMultiplier);
-            this.tabgeoNear.Controls.Add(this.chkSpherical);
-            this.tabgeoNear.Controls.Add(this.NumMaxDistance);
-            this.tabgeoNear.Controls.Add(this.NumResultCount);
-            this.tabgeoNear.Controls.Add(this.cmdGeoNear);
-            this.tabgeoNear.Controls.Add(this.NumGeoY);
-            this.tabgeoNear.Controls.Add(this.NumGeoX);
-            this.tabgeoNear.Controls.Add(this.lblGeoNear);
-            this.tabgeoNear.Controls.Add(this.lblResultCount);
-            this.tabgeoNear.Controls.Add(this.lnkGeoNear);
-            this.tabgeoNear.Controls.Add(this.trvGeoResult);
-            this.tabgeoNear.Location = new System.Drawing.Point(4, 24);
-            this.tabgeoNear.Name = "tabgeoNear";
-            this.tabgeoNear.Padding = new System.Windows.Forms.Padding(3);
-            this.tabgeoNear.Size = new System.Drawing.Size(571, 438);
-            this.tabgeoNear.TabIndex = 2;
-            this.tabgeoNear.Text = "geoNear";
-            this.tabgeoNear.UseVisualStyleBackColor = true;
+            this.tabGeoNear.Controls.Add(this.btnHelp);
+            this.tabGeoNear.Controls.Add(this.btnMile);
+            this.tabGeoNear.Controls.Add(this.btnKM);
+            this.tabGeoNear.Controls.Add(this.NumGeoX);
+            this.tabGeoNear.Controls.Add(this.NumGeoY);
+            this.tabGeoNear.Controls.Add(this.NumMaxDistance);
+            this.tabGeoNear.Controls.Add(this.NumDistanceMultiplier);
+            this.tabGeoNear.Controls.Add(this.lblMaxDistance);
+            this.tabGeoNear.Controls.Add(this.lblDistanceMultiplier);
+            this.tabGeoNear.Controls.Add(this.chkSpherical);
+            this.tabGeoNear.Controls.Add(this.NumResultCount);
+            this.tabGeoNear.Controls.Add(this.cmdGeoNear);
+            this.tabGeoNear.Controls.Add(this.lblGeoNear);
+            this.tabGeoNear.Controls.Add(this.lblResultCount);
+            this.tabGeoNear.Controls.Add(this.lnkGeoNear);
+            this.tabGeoNear.Controls.Add(this.trvGeoResult);
+            this.tabGeoNear.Location = new System.Drawing.Point(4, 24);
+            this.tabGeoNear.Name = "tabGeoNear";
+            this.tabGeoNear.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGeoNear.Size = new System.Drawing.Size(571, 438);
+            this.tabGeoNear.TabIndex = 2;
+            this.tabGeoNear.Text = "GeoNear";
+            this.tabGeoNear.UseVisualStyleBackColor = true;
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(406, 81);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(35, 23);
+            this.btnHelp.TabIndex = 17;
+            this.btnHelp.Text = "?";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
+            // btnMile
+            // 
+            this.btnMile.Location = new System.Drawing.Point(342, 81);
+            this.btnMile.Name = "btnMile";
+            this.btnMile.Size = new System.Drawing.Size(58, 23);
+            this.btnMile.TabIndex = 16;
+            this.btnMile.Text = "Mile";
+            this.btnMile.UseVisualStyleBackColor = true;
+            this.btnMile.Click += new System.EventHandler(this.btnMile_Click);
+            // 
+            // btnKM
+            // 
+            this.btnKM.Location = new System.Drawing.Point(284, 81);
+            this.btnKM.Name = "btnKM";
+            this.btnKM.Size = new System.Drawing.Size(52, 23);
+            this.btnKM.TabIndex = 15;
+            this.btnKM.Text = "KM";
+            this.btnKM.UseVisualStyleBackColor = true;
+            this.btnKM.Click += new System.EventHandler(this.btnKM_Click);
+            // 
+            // NumDistanceMultiplier
+            // 
+            this.NumDistanceMultiplier.Location = new System.Drawing.Point(405, 57);
+            this.NumDistanceMultiplier.Name = "NumDistanceMultiplier";
+            this.NumDistanceMultiplier.Size = new System.Drawing.Size(116, 21);
+            this.NumDistanceMultiplier.TabIndex = 14;
+            this.NumDistanceMultiplier.Text = "1";
+            this.NumDistanceMultiplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NumDistanceMultiplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
             // 
             // lblMaxDistance
             // 
@@ -180,19 +217,6 @@
             this.chkSpherical.TabIndex = 11;
             this.chkSpherical.Text = "Spherical";
             this.chkSpherical.UseVisualStyleBackColor = true;
-            // 
-            // NumMaxDistance
-            // 
-            this.NumMaxDistance.Location = new System.Drawing.Point(149, 83);
-            this.NumMaxDistance.Maximum = new decimal(new int[] {
-            99999,
-            0,
-            0,
-            0});
-            this.NumMaxDistance.Name = "NumMaxDistance";
-            this.NumMaxDistance.Size = new System.Drawing.Size(108, 21);
-            this.NumMaxDistance.TabIndex = 10;
-            this.NumMaxDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // NumResultCount
             // 
@@ -226,42 +250,6 @@
             this.cmdGeoNear.Text = "GeoNear";
             this.cmdGeoNear.UseVisualStyleBackColor = true;
             this.cmdGeoNear.Click += new System.EventHandler(this.cmdGeoNear_Click);
-            // 
-            // NumGeoY
-            // 
-            this.NumGeoY.Location = new System.Drawing.Point(206, 57);
-            this.NumGeoY.Maximum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            0});
-            this.NumGeoY.Minimum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            -2147483648});
-            this.NumGeoY.Name = "NumGeoY";
-            this.NumGeoY.Size = new System.Drawing.Size(51, 21);
-            this.NumGeoY.TabIndex = 5;
-            this.NumGeoY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // NumGeoX
-            // 
-            this.NumGeoX.Location = new System.Drawing.Point(149, 57);
-            this.NumGeoX.Maximum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            0});
-            this.NumGeoX.Minimum = new decimal(new int[] {
-            180,
-            0,
-            0,
-            -2147483648});
-            this.NumGeoX.Name = "NumGeoX";
-            this.NumGeoX.Size = new System.Drawing.Size(51, 21);
-            this.NumGeoX.TabIndex = 4;
-            this.NumGeoX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblGeoNear
             // 
@@ -324,36 +312,6 @@
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
-            // NumDistanceMultiplier
-            // 
-            this.NumDistanceMultiplier.Location = new System.Drawing.Point(405, 57);
-            this.NumDistanceMultiplier.Name = "NumDistanceMultiplier";
-            this.NumDistanceMultiplier.Size = new System.Drawing.Size(116, 21);
-            this.NumDistanceMultiplier.TabIndex = 14;
-            this.NumDistanceMultiplier.Text = "1";
-            this.NumDistanceMultiplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.NumDistanceMultiplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumDistanceMultiplier_KeyPress);
-            // 
-            // btnKM
-            // 
-            this.btnKM.Location = new System.Drawing.Point(284, 81);
-            this.btnKM.Name = "btnKM";
-            this.btnKM.Size = new System.Drawing.Size(52, 23);
-            this.btnKM.TabIndex = 15;
-            this.btnKM.Text = "KM";
-            this.btnKM.UseVisualStyleBackColor = true;
-            this.btnKM.Click += new System.EventHandler(this.btnKM_Click);
-            // 
-            // btnMile
-            // 
-            this.btnMile.Location = new System.Drawing.Point(342, 81);
-            this.btnMile.Name = "btnMile";
-            this.btnMile.Size = new System.Drawing.Size(58, 23);
-            this.btnMile.TabIndex = 16;
-            this.btnMile.Text = "mile";
-            this.btnMile.UseVisualStyleBackColor = true;
-            this.btnMile.Click += new System.EventHandler(this.btnMile_Click);
-            // 
             // trvGeoResult
             // 
             this.trvGeoResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
@@ -363,15 +321,35 @@
             this.trvGeoResult.Size = new System.Drawing.Size(496, 295);
             this.trvGeoResult.TabIndex = 6;
             // 
-            // btnHelp
+            // NumGeoY
             // 
-            this.btnHelp.Location = new System.Drawing.Point(406, 81);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(35, 23);
-            this.btnHelp.TabIndex = 17;
-            this.btnHelp.Text = "?";
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            this.NumGeoY.Location = new System.Drawing.Point(206, 54);
+            this.NumGeoY.Name = "NumGeoY";
+            this.NumGeoY.Size = new System.Drawing.Size(51, 21);
+            this.NumGeoY.TabIndex = 14;
+            this.NumGeoY.Text = "1";
+            this.NumGeoY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NumGeoY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
+            // 
+            // NumGeoX
+            // 
+            this.NumGeoX.Location = new System.Drawing.Point(149, 54);
+            this.NumGeoX.Name = "NumGeoX";
+            this.NumGeoX.Size = new System.Drawing.Size(51, 21);
+            this.NumGeoX.TabIndex = 14;
+            this.NumGeoX.Text = "1";
+            this.NumGeoX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NumGeoX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
+            // 
+            // NumMaxDistance
+            // 
+            this.NumMaxDistance.Location = new System.Drawing.Point(149, 85);
+            this.NumMaxDistance.Name = "NumMaxDistance";
+            this.NumMaxDistance.Size = new System.Drawing.Size(116, 21);
+            this.NumMaxDistance.TabIndex = 14;
+            this.NumMaxDistance.Text = "1";
+            this.NumMaxDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NumMaxDistance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
             // 
             // frmQuery
             // 
@@ -394,12 +372,9 @@
             this.Load += new System.EventHandler(this.frmQuery_Load);
             this.tabControl.ResumeLayout(false);
             this.tabCondition.ResumeLayout(false);
-            this.tabgeoNear.ResumeLayout(false);
-            this.tabgeoNear.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumMaxDistance)).EndInit();
+            this.tabGeoNear.ResumeLayout(false);
+            this.tabGeoNear.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumResultCount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumGeoY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NumGeoX)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -415,22 +390,22 @@
         private System.Windows.Forms.Button cmdLoad;
         private System.Windows.Forms.Panel panFilter;
         private System.Windows.Forms.Button cmdCancel;
-        private System.Windows.Forms.TabPage tabgeoNear;
+        private System.Windows.Forms.TabPage tabGeoNear;
         private System.Windows.Forms.LinkLabel lnkGeoNear;
         private System.Windows.Forms.Label lblResultCount;
-        private System.Windows.Forms.NumericUpDown NumGeoY;
-        private System.Windows.Forms.NumericUpDown NumGeoX;
         private System.Windows.Forms.Label lblGeoNear;
         private System.Windows.Forms.Button cmdGeoNear;
         private TreeViewColumnsProject.TreeViewColumns trvGeoResult;
         private System.Windows.Forms.NumericUpDown NumResultCount;
         private System.Windows.Forms.CheckBox chkSpherical;
-        private System.Windows.Forms.NumericUpDown NumMaxDistance;
         private System.Windows.Forms.Label lblMaxDistance;
         private System.Windows.Forms.Label lblDistanceMultiplier;
         private System.Windows.Forms.TextBox NumDistanceMultiplier;
         private System.Windows.Forms.Button btnMile;
         private System.Windows.Forms.Button btnKM;
         private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.TextBox NumGeoX;
+        private System.Windows.Forms.TextBox NumGeoY;
+        private System.Windows.Forms.TextBox NumMaxDistance;
     }
 }
