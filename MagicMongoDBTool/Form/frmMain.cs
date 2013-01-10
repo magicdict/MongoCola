@@ -1658,11 +1658,11 @@ namespace MagicMongoDBTool
         private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strPath = SystemManager.SelectTagData;
-            String strCollection = strPath.Split("/".ToCharArray())[2];
+            String strCollection = strPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.CollectionLV];
             String strNewCollectionName = String.Empty;
             if (SystemManager.IsUseDefaultLanguage)
             {
-                strNewCollectionName = MyMessageBox.ShowInput("Please input new collection name：", "Rename collection");
+                strNewCollectionName = MyMessageBox.ShowInput("Please input new collection name：", "Rename collection", strCollection);
             }
             else
             {
@@ -2175,7 +2175,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void forMySelfToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmUnitTest(), true, true);
+            //SystemManager.OpenForm(new frmUnitTest(), true, true);
+            SystemManager.OpenForm(new frmSinaWeiBo(), true, true);
         }
 
         #endregion

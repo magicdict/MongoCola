@@ -38,6 +38,9 @@
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnMile = new System.Windows.Forms.Button();
             this.btnKM = new System.Windows.Forms.Button();
+            this.NumGeoX = new System.Windows.Forms.TextBox();
+            this.NumGeoY = new System.Windows.Forms.TextBox();
+            this.NumMaxDistance = new System.Windows.Forms.TextBox();
             this.NumDistanceMultiplier = new System.Windows.Forms.TextBox();
             this.lblMaxDistance = new System.Windows.Forms.Label();
             this.lblDistanceMultiplier = new System.Windows.Forms.Label();
@@ -47,13 +50,10 @@
             this.lblGeoNear = new System.Windows.Forms.Label();
             this.lblResultCount = new System.Windows.Forms.Label();
             this.lnkGeoNear = new System.Windows.Forms.LinkLabel();
+            this.trvGeoResult = new TreeViewColumnsProject.TreeViewColumns();
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
-            this.trvGeoResult = new TreeViewColumnsProject.TreeViewColumns();
-            this.NumGeoY = new System.Windows.Forms.TextBox();
-            this.NumGeoX = new System.Windows.Forms.TextBox();
-            this.NumMaxDistance = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
             this.tabCondition.SuspendLayout();
             this.tabGeoNear.SuspendLayout();
@@ -95,6 +95,7 @@
             // 
             // tabFieldInfo
             // 
+            this.tabFieldInfo.AutoScroll = true;
             this.tabFieldInfo.Location = new System.Drawing.Point(4, 24);
             this.tabFieldInfo.Name = "tabFieldInfo";
             this.tabFieldInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -179,6 +180,36 @@
             this.btnKM.Text = "KM";
             this.btnKM.UseVisualStyleBackColor = true;
             this.btnKM.Click += new System.EventHandler(this.btnKM_Click);
+            // 
+            // NumGeoX
+            // 
+            this.NumGeoX.Location = new System.Drawing.Point(149, 54);
+            this.NumGeoX.Name = "NumGeoX";
+            this.NumGeoX.Size = new System.Drawing.Size(51, 21);
+            this.NumGeoX.TabIndex = 14;
+            this.NumGeoX.Text = "1";
+            this.NumGeoX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NumGeoX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
+            // 
+            // NumGeoY
+            // 
+            this.NumGeoY.Location = new System.Drawing.Point(206, 54);
+            this.NumGeoY.Name = "NumGeoY";
+            this.NumGeoY.Size = new System.Drawing.Size(51, 21);
+            this.NumGeoY.TabIndex = 14;
+            this.NumGeoY.Text = "1";
+            this.NumGeoY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NumGeoY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
+            // 
+            // NumMaxDistance
+            // 
+            this.NumMaxDistance.Location = new System.Drawing.Point(149, 85);
+            this.NumMaxDistance.Name = "NumMaxDistance";
+            this.NumMaxDistance.Size = new System.Drawing.Size(116, 21);
+            this.NumMaxDistance.TabIndex = 14;
+            this.NumMaxDistance.Text = "1";
+            this.NumMaxDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.NumMaxDistance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
             // 
             // NumDistanceMultiplier
             // 
@@ -280,6 +311,15 @@
             this.lnkGeoNear.Text = "http://docs.mongodb.org/manual/reference/commands/#geoNear";
             this.lnkGeoNear.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkGeoNear_LinkClicked);
             // 
+            // trvGeoResult
+            // 
+            this.trvGeoResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvGeoResult.Location = new System.Drawing.Point(40, 110);
+            this.trvGeoResult.Name = "trvGeoResult";
+            this.trvGeoResult.Padding = new System.Windows.Forms.Padding(1);
+            this.trvGeoResult.Size = new System.Drawing.Size(496, 295);
+            this.trvGeoResult.TabIndex = 6;
+            // 
             // cmdLoad
             // 
             this.cmdLoad.BackColor = System.Drawing.Color.Transparent;
@@ -311,45 +351,6 @@
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
-            // 
-            // trvGeoResult
-            // 
-            this.trvGeoResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvGeoResult.Location = new System.Drawing.Point(40, 110);
-            this.trvGeoResult.Name = "trvGeoResult";
-            this.trvGeoResult.Padding = new System.Windows.Forms.Padding(1);
-            this.trvGeoResult.Size = new System.Drawing.Size(496, 295);
-            this.trvGeoResult.TabIndex = 6;
-            // 
-            // NumGeoY
-            // 
-            this.NumGeoY.Location = new System.Drawing.Point(206, 54);
-            this.NumGeoY.Name = "NumGeoY";
-            this.NumGeoY.Size = new System.Drawing.Size(51, 21);
-            this.NumGeoY.TabIndex = 14;
-            this.NumGeoY.Text = "1";
-            this.NumGeoY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.NumGeoY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
-            // 
-            // NumGeoX
-            // 
-            this.NumGeoX.Location = new System.Drawing.Point(149, 54);
-            this.NumGeoX.Name = "NumGeoX";
-            this.NumGeoX.Size = new System.Drawing.Size(51, 21);
-            this.NumGeoX.TabIndex = 14;
-            this.NumGeoX.Text = "1";
-            this.NumGeoX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.NumGeoX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
-            // 
-            // NumMaxDistance
-            // 
-            this.NumMaxDistance.Location = new System.Drawing.Point(149, 85);
-            this.NumMaxDistance.Name = "NumMaxDistance";
-            this.NumMaxDistance.Size = new System.Drawing.Size(116, 21);
-            this.NumMaxDistance.TabIndex = 14;
-            this.NumMaxDistance.Text = "1";
-            this.NumMaxDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.NumMaxDistance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
             // 
             // frmQuery
             // 

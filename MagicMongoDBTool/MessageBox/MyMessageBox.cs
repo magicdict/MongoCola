@@ -37,10 +37,10 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 确认信息表示
         /// </summary>
-        public static String ShowInput(String Message, String Title)
+        public static String ShowInput(String Message, String Title,String DefaultValue="")
         {
             _frmInputBox.Text = Title;
-            _frmInputBox.SetMessage(Message);
+            _frmInputBox.SetMessage(Message, DefaultValue);
             if (_frmInputBox.Visible == false)
             {
                 _frmInputBox.ShowDialog();

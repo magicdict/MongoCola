@@ -75,6 +75,9 @@
   <ItemGroup>
     <Reference Include="MongoDB.Bson, Version=1.7.0.4714, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL" />
     <Reference Include="MongoDB.Driver, Version=1.7.0.4714, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL" />
+    <Reference Include="NetDimension.Weibo">
+      <HintPath>DLL\NetDimension.Weibo.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -97,6 +100,12 @@
     </Compile>
     <Compile Include="UnitTest\frmUnitTest.Designer.cs">
       <DependentUpon>frmUnitTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UnitTest\frmSinaWeiBo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnitTest\frmSinaWeiBo.Designer.cs">
+      <DependentUpon>frmSinaWeiBo.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\ctlDocumentView.cs">
       <SubType>UserControl</SubType>
@@ -396,6 +405,9 @@
     </Compile>
     <EmbeddedResource Include="UnitTest\frmUnitTest.resx">
       <DependentUpon>frmUnitTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UnitTest\frmSinaWeiBo.resx">
+      <DependentUpon>frmSinaWeiBo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlDocumentView.resx">
       <DependentUpon>ctlDocumentView.cs</DependentUpon>
