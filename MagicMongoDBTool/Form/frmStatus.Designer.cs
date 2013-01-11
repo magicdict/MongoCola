@@ -28,13 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnClose = new System.Windows.Forms.Button();
+            this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.trvStatus = new TreeViewColumnsProject.TreeViewColumns();
+            ((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(157, 486);
+            this.btnClose.Location = new System.Drawing.Point(358, 469);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(125, 39);
             this.btnClose.TabIndex = 1;
@@ -42,26 +47,44 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // chartResult
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartResult.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartResult.Legends.Add(legend1);
+            this.chartResult.Location = new System.Drawing.Point(14, 222);
+            this.chartResult.Name = "chartResult";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartResult.Series.Add(series1);
+            this.chartResult.Size = new System.Drawing.Size(469, 241);
+            this.chartResult.TabIndex = 29;
+            // 
             // trvStatus
             // 
             this.trvStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
             this.trvStatus.Location = new System.Drawing.Point(14, 14);
             this.trvStatus.Name = "trvStatus";
             this.trvStatus.Padding = new System.Windows.Forms.Padding(1);
-            this.trvStatus.Size = new System.Drawing.Size(409, 463);
+            this.trvStatus.Size = new System.Drawing.Size(469, 202);
             this.trvStatus.TabIndex = 2;
             // 
             // frmStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(438, 537);
+            this.ClientSize = new System.Drawing.Size(498, 537);
+            this.Controls.Add(this.chartResult);
             this.Controls.Add(this.trvStatus);
             this.Controls.Add(this.btnClose);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmStatus";
             this.Text = "Status";
             this.Load += new System.EventHandler(this.frmStatus_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.chartResult)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -70,5 +93,6 @@
 
         private System.Windows.Forms.Button btnClose;
         private TreeViewColumnsProject.TreeViewColumns trvStatus;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartResult;
     }
 }

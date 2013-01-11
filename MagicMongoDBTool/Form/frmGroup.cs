@@ -1,11 +1,11 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using MagicMongoDBTool.Module;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
@@ -37,13 +37,16 @@ namespace MagicMongoDBTool
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             IMongoQuery query = MongoDBHelper.GetQuery(GroupConditionList);
             GroupByDocument groupdoc = new GroupByDocument();
+            String ChartTite = string.Empty;
             foreach (CheckBox item in panColumn.Controls)
             {
                 if (item.Checked)
                 {
                     groupdoc.Add(item.Name, true);
+                    ChartTite += item.Name + ",";
                 }
             }
+            ChartTite = ChartTite.TrimEnd(",".ToCharArray());
             BsonDocument Initial = new BsonDocument();
             for (int i = 0; i < _conditionCount; i++)
             {
@@ -64,6 +67,7 @@ namespace MagicMongoDBTool
                 var Result = mongoCol.Group(query, groupdoc, Initial, reduce, finalize);
                 //图形化初始化
                 chartResult.Series.Clear();
+                chartResult.Titles.Clear();
                 Series SeriesResult = new Series("Result");
 
                 //防止错误的条件造成的海量数据
@@ -76,7 +80,8 @@ namespace MagicMongoDBTool
                     }
                     resultlst.Add(item);
                     //必须带有Count元素
-                    SeriesResult.Points.Add(new DataPoint(0,(double)item.GetElement("count").Value));
+                    DataPoint dPoint = new DataPoint(0, (double)item.GetElement("count").Value);
+                    SeriesResult.Points.Add(dPoint);
                     Count++;
                 };
                 MongoDBHelper.FillJSONDataToTextBox(this.txtResult, resultlst, 0);
@@ -85,9 +90,9 @@ namespace MagicMongoDBTool
                     this.txtResult.Text = "Too many result,Display first 1000 records" + System.Environment.NewLine + this.txtResult.Text;
                 }
                 this.txtResult.Select(0, 0);
-                //图形化初始化
+                //图形化加载
                 chartResult.Series.Add(SeriesResult);
-
+                chartResult.Titles.Add(ChartTite);
                 tabGroup.SelectedIndex = 4;
 
             }

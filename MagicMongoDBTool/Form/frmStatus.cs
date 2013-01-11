@@ -1,8 +1,9 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
+using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;
-using MongoDB.Bson;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace MagicMongoDBTool
 {
@@ -31,6 +32,21 @@ namespace MagicMongoDBTool
                 case MongoDBHelper.DATABASE_TAG:
                 case MongoDBHelper.SINGLE_DATABASE_TAG:
                     cr = SystemManager.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
+                    //图形化初始化
+                    chartResult.Series.Clear();
+                    chartResult.Titles.Clear();
+                    Series SeriesResult = new Series("Result");
+                    foreach (String colName in SystemManager.GetCurrentDataBase().GetCollectionNames())
+                    {
+                        DataPoint ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
+                        ColPoint.LegendText = colName;
+                        SeriesResult.Points.Add(ColPoint);
+                    }
+                    //图形化加载
+
+                    SeriesResult.ChartType = SeriesChartType.Pie;
+                    chartResult.Series.Add(SeriesResult);
+                    chartResult.Titles.Add("StorageSize");
                     break;
                 case MongoDBHelper.COLLECTION_TAG:
                     cr = SystemManager.GetCurrentCollection().GetStats().Response.ToBsonDocument();
