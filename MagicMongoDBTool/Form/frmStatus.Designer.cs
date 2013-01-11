@@ -34,7 +34,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(299, 483);
+            this.btnClose.Location = new System.Drawing.Point(157, 486);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(125, 39);
             this.btnClose.TabIndex = 1;
@@ -55,7 +55,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(437, 537);
+            this.ClientSize = new System.Drawing.Size(438, 537);
             this.Controls.Add(this.trvStatus);
             this.Controls.Add(this.btnClose);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
