@@ -20,6 +20,8 @@ namespace MagicMongoDBTool
             String strType = SystemManager.SelectTagType;
             List<BsonDocument> SrvDocList = new List<BsonDocument>();
             BsonDocument cr = new BsonDocument();
+            cmbChartField.Visible = false;
+            chartResult.Visible = false;
             switch (strType)
             {
                 case MongoDBHelper.SERVER_TAG:
@@ -27,11 +29,16 @@ namespace MagicMongoDBTool
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
+                        this.trvStatus.Height = this.trvStatus.Height * 2;
+
                     }
                     break;
                 case MongoDBHelper.DATABASE_TAG:
                 case MongoDBHelper.SINGLE_DATABASE_TAG:
                     cr = SystemManager.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
+                    cmbChartField.Visible = true;
+                    chartResult.Visible = true;
+
                     cmbChartField.Items.Add("AverageObjectSize");
                     cmbChartField.Items.Add("DataSize");
                     cmbChartField.Items.Add("ExtentCount");
@@ -46,8 +53,9 @@ namespace MagicMongoDBTool
                     break;
                 case MongoDBHelper.COLLECTION_TAG:
                     cr = SystemManager.GetCurrentCollection().GetStats().Response.ToBsonDocument();
-                    cmbChartField.Visible = false;
                     //图形化初始化
+                    chartResult.Visible = true;
+
                     chartResult.Series.Clear();
                     chartResult.Titles.Clear();
                     Series SeriesResult = new Series("Usage");
@@ -63,8 +71,8 @@ namespace MagicMongoDBTool
                     dpTotalIndexSize.ToolTip = "TotalIndexSize";
                     SeriesResult.Points.Add(dpTotalIndexSize);
 
-                    DataPoint dpFreeSize = new DataPoint(0, SystemManager.GetCurrentCollection().GetStats().StorageSize - 
-                                                               SystemManager.GetCurrentCollection().GetStats().TotalIndexSize - 
+                    DataPoint dpFreeSize = new DataPoint(0, SystemManager.GetCurrentCollection().GetStats().StorageSize -
+                                                               SystemManager.GetCurrentCollection().GetStats().TotalIndexSize -
                                                                SystemManager.GetCurrentCollection().GetStats().DataSize);
                     dpFreeSize.LegendText = "FreeSize";
                     dpFreeSize.LegendToolTip = "FreeSize";
@@ -80,6 +88,7 @@ namespace MagicMongoDBTool
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
+                        this.trvStatus.Height = this.trvStatus.Height * 2;
                     }
                     break;
             }

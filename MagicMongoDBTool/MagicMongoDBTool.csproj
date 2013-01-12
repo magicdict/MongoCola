@@ -12,7 +12,7 @@
     <AssemblyName>Mongo-Cola</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <PublishUrl>C:\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -487,6 +487,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlDataView.resx">
       <DependentUpon>ctlDataView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlIndexCreate.resx">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>

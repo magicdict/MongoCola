@@ -267,7 +267,9 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void ExpandAll_Click(object sender, EventArgs e)
         {
+            trvData.DatatreeView.BeginUpdate();
             trvData.DatatreeView.ExpandAll();
+            trvData.DatatreeView.EndUpdate();
         }
         /// <summary>
         /// 折叠所有

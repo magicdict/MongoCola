@@ -36,7 +36,7 @@ namespace MagicMongoDBTool
                 toolStripMenuItem12.Visible = false;
                 ForMySelfToolStripMenuItem.Visible = false;
             }
-            this.Text += SystemManager.Version;
+            this.Text += "  " + SystemManager.Version;
             this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (SystemManager.MONO_MODE)
             {
@@ -1332,7 +1332,9 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CollapseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.trvsrvlst.BeginUpdate();
             this.trvsrvlst.ExpandAll();
+            this.trvsrvlst.EndUpdate();
         }
         /// <summary>
         /// Exit Application
