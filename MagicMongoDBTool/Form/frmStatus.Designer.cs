@@ -33,15 +33,16 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnClose = new System.Windows.Forms.Button();
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.cmbChartField = new System.Windows.Forms.ComboBox();
             this.trvStatus = new TreeViewColumnsProject.TreeViewColumns();
             ((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(358, 469);
+            this.btnClose.Location = new System.Drawing.Point(358, 498);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(125, 39);
+            this.btnClose.Size = new System.Drawing.Size(125, 28);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -53,7 +54,7 @@
             this.chartResult.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartResult.Legends.Add(legend1);
-            this.chartResult.Location = new System.Drawing.Point(14, 222);
+            this.chartResult.Location = new System.Drawing.Point(14, 251);
             this.chartResult.Name = "chartResult";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
@@ -62,6 +63,16 @@
             this.chartResult.Series.Add(series1);
             this.chartResult.Size = new System.Drawing.Size(469, 241);
             this.chartResult.TabIndex = 29;
+            // 
+            // cmbChartField
+            // 
+            this.cmbChartField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbChartField.FormattingEnabled = true;
+            this.cmbChartField.Location = new System.Drawing.Point(41, 222);
+            this.cmbChartField.Name = "cmbChartField";
+            this.cmbChartField.Size = new System.Drawing.Size(200, 23);
+            this.cmbChartField.TabIndex = 30;
+            this.cmbChartField.SelectedIndexChanged += new System.EventHandler(this.cmbChartField_SelectedIndexChanged);
             // 
             // trvStatus
             // 
@@ -77,6 +88,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(498, 537);
+            this.Controls.Add(this.cmbChartField);
             this.Controls.Add(this.chartResult);
             this.Controls.Add(this.trvStatus);
             this.Controls.Add(this.btnClose);
@@ -94,5 +106,6 @@
         private System.Windows.Forms.Button btnClose;
         private TreeViewColumnsProject.TreeViewColumns trvStatus;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartResult;
+        private System.Windows.Forms.ComboBox cmbChartField;
     }
 }
