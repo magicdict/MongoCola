@@ -102,7 +102,8 @@ namespace TreeViewColumnsProject
             //画框
             if (e.Node.GetNodeCount(true) > 0 || (mElement != null && (mElement.Value.IsBsonDocument || mElement.Value.IsBsonArray)))
             {
-                if (VisualStyleRenderer.IsSupported)
+                //感谢Cyrus
+                if (VisualStyleRenderer.IsSupported && Application.RenderWithVisualStyles)
                 {
                     int LeftPoint = e.Bounds.X + IndentWidth - 20;
                     //感谢 Shadower http://home.cnblogs.com/u/14697/ 贡献的代码
