@@ -93,7 +93,14 @@ namespace TreeViewColumnsProject
             int IndentWidth = DatatreeView.Indent * e.Node.Level + 25;
             e.Graphics.DrawRectangle(SystemPens.Control, rect);
             Rectangle StringRect = new Rectangle(e.Bounds.X + IndentWidth, e.Bounds.Y, colName.Width - IndentWidth, e.Bounds.Height);
-            e.Graphics.DrawString(e.Node.Text, this.Font, new SolidBrush(Color.Black), StringRect);
+
+            String TreeNameString = e.Node.Text;
+            if (TreeNameString.EndsWith(MongoDBHelper.Array_Mark))
+            {
+                //Array_Mark 在计算路径的时候使用，不过，在表示的时候，则不能表示
+                TreeNameString = TreeNameString.Substring(0,TreeNameString.Length - MongoDBHelper.Array_Mark.Length);
+            }
+            e.Graphics.DrawString(TreeNameString, this.Font, new SolidBrush(Color.Black), StringRect);
 
 
             BsonElement mElement = e.Node.Tag as BsonElement;
@@ -102,7 +109,7 @@ namespace TreeViewColumnsProject
             //画框
             if (e.Node.GetNodeCount(true) > 0 || (mElement != null && (mElement.Value.IsBsonDocument || mElement.Value.IsBsonArray)))
             {
-                //感谢Cyrus
+                //感谢Cyrus测试出来的问题：RenderWithVisualStyles应该加上去的。
                 if (VisualStyleRenderer.IsSupported && Application.RenderWithVisualStyles)
                 {
                     int LeftPoint = e.Bounds.X + IndentWidth - 20;

@@ -318,8 +318,8 @@ namespace MagicMongoDBTool.Module
                 {
                     if (item.Value.IsBsonArray)
                     {
-                        TreeNode newItem = new TreeNode(item.Name);
-                        AddBSonArrayToTreeNode(newItem, item.Value.AsBsonArray);
+                        TreeNode newItem = new TreeNode(item.Name + Array_Mark);
+                        AddBsonArrayToTreeNode(newItem, item.Value.AsBsonArray);
                         newItem.Tag = item;
                         treeNode.Nodes.Add(newItem);
                     }
@@ -337,7 +337,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="newItem"></param>
         /// <param name="item"></param>
-        public static void AddBSonArrayToTreeNode(TreeNode newItem, BsonArray item)
+        public static void AddBsonArrayToTreeNode(TreeNode newItem, BsonArray item)
         {
             foreach (BsonValue SubItem in item)
             {
@@ -353,7 +353,7 @@ namespace MagicMongoDBTool.Module
                     if (SubItem.IsBsonArray)
                     {
                         TreeNode newSubItem = new TreeNode();
-                        AddBSonArrayToTreeNode(newSubItem, SubItem.AsBsonArray);
+                        AddBsonArrayToTreeNode(newSubItem, SubItem.AsBsonArray);
                         newSubItem.Tag = SubItem;
                         newItem.Nodes.Add(newSubItem);
                     }

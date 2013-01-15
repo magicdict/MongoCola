@@ -405,7 +405,7 @@ namespace MagicMongoDBTool
         /// </summary>
         private void NewDocumentStripButton_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmNewDocument(),true,true);
+            SystemManager.OpenForm(new frmNewDocument(), true, true);
             RefreshGUI();
 
         }

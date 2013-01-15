@@ -21,6 +21,7 @@ namespace MagicMongoDBTool.Module
             public Byte Age2;
             public Byte Age3;
             public Address address;
+            public string[] Pets;
         }
         internal class Address
         {
@@ -105,7 +106,8 @@ namespace MagicMongoDBTool.Module
                         City = "Centerville",
                         state = "PA",
                         Zip = Ro.Next(20)
-                    }
+                    },
+                    Pets = new string[]{"Cat","Dog"}
                 });
             }
         }
