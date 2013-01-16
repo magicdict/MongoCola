@@ -125,6 +125,28 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             DocumentLV = 4
         }
+        /// <summary>
+        /// 索引类型
+        /// </summary>
+        public enum IndexType
+        {
+            /// <summary>
+            /// 升序
+            /// </summary>
+            Ascending,
+            /// <summary>
+            /// 降序
+            /// </summary>
+            Descending,
+            /// <summary>
+            /// Geo
+            /// </summary>
+            GeoSpatial,
+            /// <summary>
+            /// 拉丁语的全文检索(Since mongodb 2.2.4)
+            /// </summary>
+            Text
+        }
         //The process field identifies which kind of MongoDB instance is running. Possible values are:
         public const String ServerStatus_PROCESS_MONGOS = "mongos";
         public const String ServerStatus_PROCESS_MONGOD = "mongod";

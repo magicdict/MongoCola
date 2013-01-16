@@ -767,13 +767,13 @@ namespace MagicMongoDBTool.Module
                 switch (key.Value.ToString())
                 {
                     case "1":
-                        KeyString += MagicMongoDBTool.Module.DataFilter.SortType.Ascending.ToString();
+                        KeyString += MongoDBHelper.IndexType.Ascending.ToString();
                         break;
                     case "-1":
-                        KeyString += MagicMongoDBTool.Module.DataFilter.SortType.Descending.ToString();
+                        KeyString += MongoDBHelper.IndexType.Descending.ToString();
                         break;
                     case "2d":
-                        KeyString += MagicMongoDBTool.Module.DataFilter.SortType.GeoSpatial.ToString();
+                        KeyString += MongoDBHelper.IndexType.GeoSpatial.ToString();
                         break;
                     default:
                         break;

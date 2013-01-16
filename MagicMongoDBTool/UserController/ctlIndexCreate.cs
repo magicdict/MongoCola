@@ -6,14 +6,14 @@ namespace MagicMongoDBTool
 {
     public partial class ctlIndexCreate : UserControl
     {
-        public MagicMongoDBTool.Module.DataFilter.SortType SortKeyType
+        public MongoDBHelper.IndexType IndexKeyType
         {
             get
             {
-                if (this.radAscendingKey.Checked) { return DataFilter.SortType.Ascending; }
-                if (this.radDescendingKey.Checked) { return DataFilter.SortType.Descending; }
-                if (this.radGeoSpatial.Checked) { return DataFilter.SortType.GeoSpatial; }
-                return DataFilter.SortType.NoSort;
+                if (this.radAscendingKey.Checked) { return MongoDBHelper.IndexType.Ascending; }
+                if (this.radDescendingKey.Checked) { return MongoDBHelper.IndexType.Descending; }
+                if (this.radGeoSpatial.Checked) { return MongoDBHelper.IndexType.GeoSpatial; }
+                return MongoDBHelper.IndexType.Ascending;
             }
         }
         /// <summary>

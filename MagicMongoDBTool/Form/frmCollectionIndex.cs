@@ -106,15 +106,15 @@ namespace MagicMongoDBTool
                 if (ctl.KeyName != String.Empty)
                 {
                     FirstKey = ctl.KeyName.Trim();
-                    switch (ctl.SortKeyType)
+                    switch (ctl.IndexKeyType)
                     {
-                        case DataFilter.SortType.Ascending:
+                        case MongoDBHelper.IndexType.Ascending:
                             AscendingKey.Add(ctl.KeyName.Trim());
                             break;
-                        case DataFilter.SortType.Descending:
+                        case MongoDBHelper.IndexType.Descending:
                             DescendingKey.Add(ctl.KeyName.Trim());
                             break;
-                        case DataFilter.SortType.GeoSpatial:
+                        case MongoDBHelper.IndexType.GeoSpatial:
                             GeoSpatialKey = ctl.KeyName.Trim();
                             break;
                         default:

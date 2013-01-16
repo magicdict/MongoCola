@@ -67,10 +67,6 @@ namespace MagicMongoDBTool.Module
             /// 降序
             /// </summary>
             Descending,
-            /// <summary>
-            /// Geo
-            /// </summary>
-            GeoSpatial
         }
         /// <summary>
         /// 字段信息
