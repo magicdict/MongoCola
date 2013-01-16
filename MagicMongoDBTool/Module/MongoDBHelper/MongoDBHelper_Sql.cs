@@ -9,7 +9,8 @@ namespace MagicMongoDBTool.Module
     public static partial class MongoDBHelper
     {
 
-        //http://www.mongodb.org/display/DOCS/SQL+to+Mongo+Mapping+Chart
+        //http://www.mongodb.org/display/DOCS/SQL+to+Mongo+Mapping+Chart(旧网址)
+        //http://docs.mongodb.org/manual/reference/sql-comparison/
 
         /// <summary>
         /// Convert Query Sql To DataFilter
@@ -136,6 +137,13 @@ namespace MagicMongoDBTool.Module
 
             return rtnQuery;
         }
+        /// <summary>
+        /// Group
+        /// </summary>
+        /// <param name="KeyWordStartIndex"></param>
+        /// <param name="SqlToken"></param>
+        /// <param name="KeyWords"></param>
+        /// <returns></returns>
         private static String GetKeyContent(int KeyWordStartIndex, String[] SqlToken, String[] KeyWords)
         {
             String strSelect = String.Empty;
@@ -197,9 +205,9 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// Order 的设置
         /// </summary>
-        /// <param name="Curr"></param>
+        /// <param name="CurrentDataFilter"></param>
         /// <param name="SqlContent"></param>
-        private static void SetQueryOrder(DataFilter Curr, String SqlContent)
+        private static void SetQueryOrder(DataFilter CurrentDataFilter, String SqlContent)
         {
             //如果获得了内容，应该是这个样子的 By A ASC,B DES
             //1.删除By By A ASC,B DES -> A Asc,B Des
@@ -212,12 +220,12 @@ namespace MagicMongoDBTool.Module
             foreach (String SortField in SortFieldLst)
             {
                 String[] Sortfld = SortField.Trim().Split(" ".ToCharArray());
-                for (int i = 0; i < Curr.QueryFieldList.Count; i++)
+                for (int i = 0; i < CurrentDataFilter.QueryFieldList.Count; i++)
                 {
-                    if (Curr.QueryFieldList[i].ColName.ToLower() == Sortfld[0].ToLower())
+                    if (CurrentDataFilter.QueryFieldList[i].ColName.ToLower() == Sortfld[0].ToLower())
                     {
                         //无参数时候，默认是升序[Can't Modify]QueryFieldList是一个结构体
-                        DataFilter.QueryFieldItem queryfld = Curr.QueryFieldList[i];
+                        DataFilter.QueryFieldItem queryfld = CurrentDataFilter.QueryFieldList[i];
                         if (Sortfld.Length == 1)
                         {
                             queryfld.sortType = DataFilter.SortType.Ascending;
@@ -233,16 +241,17 @@ namespace MagicMongoDBTool.Module
                                 queryfld.sortType = DataFilter.SortType.Ascending;
                             }
                         }
-                        Curr.QueryFieldList[i] = queryfld;
+                        CurrentDataFilter.QueryFieldList[i] = queryfld;
                         break;
                     }
                 }
             }
         }
         /// <summary>
-        /// 
+        /// 通过Sql文的Where条件和列名称来获取Query条件
         /// </summary>
-        /// <param name="Sql"></param>
+        /// <param name="SqlContent">Where条件</param>
+        /// <param name="ColumnNameLst">列名称</param>
         /// <returns></returns>
         private static List<DataFilter.QueryConditionInputItem> SetQueryCondition(String SqlContent, List<String> ColumnNameLst)
         {

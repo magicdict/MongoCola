@@ -1,7 +1,6 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
+using System;
 using System.Windows.Forms;
-
-using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
@@ -23,6 +22,7 @@ namespace MagicMongoDBTool
         }
         private void cmdOK_Click(object sender, EventArgs e)
         {
+            //SystemManager.GetCurrentCollection().Aggregate();
             this.Close();
         }
         private void cmdSave_Click(object sender, EventArgs e)
