@@ -318,6 +318,8 @@ namespace MagicMongoDBTool.Module
                 {
                     if (item.Value.IsBsonArray)
                     {
+                        //虽然TreeNode的Text属性带有Array_Mark，表示的时候则会屏蔽掉，
+                        //必须要加上，不然FullPath会出现错误
                         TreeNode newItem = new TreeNode(item.Name + Array_Mark);
                         AddBsonArrayToTreeNode(newItem, item.Value.AsBsonArray);
                         newItem.Tag = item;

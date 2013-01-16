@@ -14,7 +14,8 @@ Ver 1.25 2013/01/13
 1.Add chart to DB status and Collection status.
 2.Use BeginUpdate,EndUpdate to freeze UI when expend treeview.
 3.Show oldCollection name when the collection rename dialog is shown 
-4.Fix Bug of not check Application.RenderWithVisualStyles
+4.Fix Bug of not check Application.RenderWithVisualStyles (Thank cyrus for report bug)
+5.Fix Bug of delete a member of array at treeview (Thank cyrus for report bug)
 ========================================================================
 
 Ver 1.24 2013/01/06 [Back to IBM GDC]
