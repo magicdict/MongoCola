@@ -263,6 +263,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="dataList"></param>
         public static void FillDataToTreeView(String collectionName, TreeViewColumns trvData, List<BsonDocument> dataList, int mSkip)
         {
+            trvData.DatatreeView.BeginUpdate();
             trvData.DatatreeView.Nodes.Clear();
             int SkipCnt = mSkip;
             int Count = 1;
@@ -297,6 +298,7 @@ namespace MagicMongoDBTool.Module
                 trvData.DatatreeView.Nodes.Add(dataNode);
                 Count++;
             }
+            trvData.DatatreeView.EndUpdate();
         }
         /// <summary>
         /// 将数据放入TreeNode里进行展示

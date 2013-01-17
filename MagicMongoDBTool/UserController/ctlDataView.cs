@@ -13,7 +13,7 @@ namespace MagicMongoDBTool.UserController
         #region"Main"
 
         /// <summary>
-        ///
+        ///初始化
         /// </summary>
         public ctlDataView()
         {
@@ -23,7 +23,13 @@ namespace MagicMongoDBTool.UserController
         /// Is Need Refresh after the element is modify
         /// </summary>
         public Boolean IsNeedRefresh = false;
+        /// <summary>
+        /// 是否是一个数据容器
+        /// </summary>
         private Boolean _IsDataView = true;
+        /// <summary>
+        /// 是否是一个数据容器
+        /// </summary>
         [Description("Is used for display a data collection")]
         public Boolean IsDocumentView
         {
@@ -38,6 +44,10 @@ namespace MagicMongoDBTool.UserController
                 return _IsDataView;
             }
         }
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="_DataViewInfo"></param>
         public ctlDataView(MongoDBHelper.DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
@@ -52,7 +62,7 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         public MongoDBHelper.DataViewInfo mDataViewInfo;
         /// <summary>
-        /// 关闭Tab事件
+        /// 关闭Tab事件(主界面操作这个文档的时候用的事件)
         /// </summary>
         public event EventHandler CloseTab;
         /// <summary>
@@ -84,16 +94,15 @@ namespace MagicMongoDBTool.UserController
 
             }
             InitControlsVisiableAndEvent();
-            InitControlsEnable();
             //加载数据
-            List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);
-            MongoDBHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
+            //第一次加载数据的时候，会发生滚动条位置不正确的问题，需要DoEvents,RefreshGUI.
+            //可能是太多的事情一起做，造成了一些诡异的位置计算问题。DoEvents暂停一下，然后再刷新一下
+            Application.DoEvents();
             //数据导航
-            SetDataNav();
-            tabDataShower.TabPages.Remove(tabQuery);
+            RefreshGUI();
         }
         /// <summary>
-        /// 将所有的按钮和右键菜单无效化
+        /// 将部分的按钮和右键菜单有效化
         /// </summary>
         private void InitControlsVisiableAndEvent()
         {
@@ -112,6 +121,9 @@ namespace MagicMongoDBTool.UserController
             CloseStripButton.Visible = true;
             CloseStripButton.Enabled = true;
         }
+        /// <summary>
+        /// 初始化控件状态
+        /// </summary>
         private void InitControlsEnable()
         {
             foreach (var item in this.contextMenuStripMain.Items)
@@ -297,7 +309,6 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         private void SetDataNav()
         {
-
             PrePageStripButton.Enabled = mDataViewInfo.HasPrePage;
             NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
             FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
@@ -348,6 +359,9 @@ namespace MagicMongoDBTool.UserController
             }
             IsNeedRefresh = false;
         }
+        /// <summary>
+        /// 重新加载数据
+        /// </summary>
         private void ReloadData()
         {
             if (mDataViewInfo == null) { return; }
@@ -383,6 +397,7 @@ namespace MagicMongoDBTool.UserController
             //过滤变更后，重新刷新
             RefreshGUI();
         }
+        //刷新
         private void RefreshStripButton_Click(object sender, EventArgs e)
         {
             RefreshGUI();
