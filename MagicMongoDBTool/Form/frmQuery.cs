@@ -99,6 +99,7 @@ namespace MagicMongoDBTool
                 this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Title);
                 tabFieldInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_FieldInfo);
                 tabCondition.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Filter);
+                tabSql.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ConvertSql_Title);
                 cmdAddCondition.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Filter_AddCondition);
                 cmdLoad.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Action_Load);
                 cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
@@ -129,7 +130,14 @@ namespace MagicMongoDBTool
         private void cmdOK_Click(object sender, EventArgs e)
         {
             // 设置DataFilter
-            SetCurrDataFilter();
+            if (string.IsNullOrEmpty(txtSql.Text))
+            {
+                //设置DataFilter
+                SetCurrDataFilter();
+            }
+            else { 
+                CurrentDataViewInfo.mDataFilter = MongoDBHelper.ConvertQuerySql(txtSql.Text);
+            }
             ///按下OK，不论是否做更改都认为True
             CurrentDataViewInfo.IsUseFilter = true;
             this.Close();
@@ -143,11 +151,12 @@ namespace MagicMongoDBTool
             CurrentDataViewInfo.mDataFilter.Clear();
             CurrentDataViewInfo.mDataFilter.DBName = SystemManager.GetCurrentDataBase().Name;
             CurrentDataViewInfo.mDataFilter.CollectionName = SystemManager.GetCurrentCollection().Name;
-
+            //显示项目
             foreach (var item in ColumnList)
             {
                 CurrentDataViewInfo.mDataFilter.QueryFieldList.Add(((ctlFieldInfo)Controls.Find(item, true)[0]).QueryFieldItem);
             }
+            //过滤条件
             for (int i = 0; i < _conditionCount; i++)
             {
                 ctlQueryCondition ctl = (ctlQueryCondition)Controls.Find("Condition" + (i + 1).ToString(), true)[0];
@@ -156,7 +165,6 @@ namespace MagicMongoDBTool
                     CurrentDataViewInfo.mDataFilter.QueryConditionList.Add(ctl.ConditionItem);
                 }
             }
-            CurrentDataViewInfo.mDataFilter.GeoNearCondition = GeoNearOptions.SetDistanceMultiplier(1);
         }
         /// <summary>
         /// 保存
@@ -170,7 +178,15 @@ namespace MagicMongoDBTool
             if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 // 设置DataFilter
-                SetCurrDataFilter();
+                if (string.IsNullOrEmpty(txtSql.Text))
+                {
+                    //设置DataFilter
+                    SetCurrDataFilter();
+                }
+                else
+                {
+                    CurrentDataViewInfo.mDataFilter = MongoDBHelper.ConvertQuerySql(txtSql.Text);
+                }
                 CurrentDataViewInfo.mDataFilter.SaveFilter(savefile.FileName);
             }
         }
@@ -189,6 +205,10 @@ namespace MagicMongoDBTool
                 CurrentDataViewInfo.mDataFilter = NewDataFilter;
             }
         }
+        /// <summary>
+        /// 将条件转成UI
+        /// </summary>
+        /// <param name="NewDataFilter"></param>
         private void PutQueryToUI(DataFilter NewDataFilter)
         {
             String strErrMsg = String.Empty;
@@ -272,84 +292,5 @@ namespace MagicMongoDBTool
             this.Close();
         }
 
-        private void lnkGeoNear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/commands/#geoNear");
-        }
-
-        private void cmdGeoNear_Click(object sender, EventArgs e)
-        {
-            List<BsonDocument> SrvDocList = new List<BsonDocument>();
-            GeoNearOptionsBuilder GeoOption = new GeoNearOptionsBuilder();
-            GeoOption.SetDistanceMultiplier(double.Parse(NumDistanceMultiplier.Text));
-            GeoOption.SetMaxDistance(double.Parse(NumMaxDistance.Text));
-            GeoOption.SetSpherical(chkSpherical.Checked);
-            try
-            {
-                BsonDocument T = SystemManager.GetCurrentCollection().GeoNearAs<BsonDocument>
-                    (null, double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text), (int)NumResultCount.Value, GeoOption).Response;
-                SrvDocList.Add(T);
-                MongoDBHelper.FillDataToTreeView("Result", this.trvGeoResult, SrvDocList, 0);
-                this.trvGeoResult.DatatreeView.Nodes[0].Expand();
-            }
-            catch (Exception ex)
-            {
-                SystemManager.ExceptionDeal(ex);                
-            }
-        }
-
-        private void NumberText_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46)
-            {
-                e.Handled = true;
-            }
-            if (e.KeyChar == 46)                       //小数点
-            {
-                if (((TextBox)sender).Text.Length <= 0)
-                    e.Handled = true;           //小数点不能在第一位
-                else
-                {
-                    float f;
-                    float oldf;
-                    bool b1 = false, b2 = false;
-                    b1 = float.TryParse(((TextBox)sender).Text, out oldf);
-                    b2 = float.TryParse(((TextBox)sender).Text + e.KeyChar.ToString(), out f);
-                    if (b2 == false)
-                    {
-                        if (b1 == true)
-                            e.Handled = true;
-                        else
-                            e.Handled = false;
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// 设置公里
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnKM_Click(object sender, EventArgs e)
-        {
-            NumDistanceMultiplier.Text = (1 / 6378.137).ToString();
-        }
-        /// <summary>
-        /// 设置英里
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnMile_Click(object sender, EventArgs e)
-        {
-            NumDistanceMultiplier.Text = (1 / 3963.192).ToString();
-        }
-
-        private void btnHelp_Click(object sender, EventArgs e)
-        {
-            MyMessageBox.ShowMessage("Convert", "About Convert",
-                @"distance to radians: divide the distance by the radius of the sphere (e.g. the Earth) in the same units as the distance measurement.
-radians to distance: multiply the rad ian measure by the radius of the sphere (e.g. the Earth) in the units system that you want to convert the distance to.
-The radius of the Earth is approximately 3963.192 miles or 6378.137 kilometers.", true);
-        }
     }
 }

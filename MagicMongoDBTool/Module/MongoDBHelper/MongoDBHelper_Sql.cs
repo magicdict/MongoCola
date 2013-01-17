@@ -65,19 +65,19 @@ namespace MagicMongoDBTool.Module
 
             String[] KeyWords = new String[] { "select", "from", "where", "group", "order" };
 
-            //From 设定 必须项
             //From - > CollectionName
             String strFrom = GetKeyContent(FromStartIndex, SqlToken, KeyWords);
             MongoCollection mongoCol;
-            if ((strFrom != String.Empty) & SystemManager.GetCurrentDataBase().CollectionExists(strFrom))
-            {
-                mongoCol = SystemManager.GetCurrentDataBase().GetCollection(strFrom);
-            }
-            else
-            {
-                return null;
-            }
-
+            //if ((strFrom != String.Empty) & SystemManager.GetCurrentDataBase().CollectionExists(strFrom))
+            //{
+            //    mongoCol = SystemManager.GetCurrentDataBase().GetCollection(strFrom);
+            //}
+            //else
+            //{
+            //    return null;
+            //}
+            //From:由于当前肯定是从固定表里面取数据
+            mongoCol = SystemManager.GetCurrentCollection();
 
             //Select 设定 必须项
             //Select - > FieldList
@@ -110,7 +110,6 @@ namespace MagicMongoDBTool.Module
                     field.sortType = DataFilter.SortType.NoSort;
                     rtnQuery.QueryFieldList.Add(field);
                 }
-
             }
 
             //Where 设定,可选项

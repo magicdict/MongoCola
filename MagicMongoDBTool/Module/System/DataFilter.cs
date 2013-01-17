@@ -122,10 +122,6 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public List<QueryFieldItem> QueryFieldList = new List<QueryFieldItem>();
         /// <summary>
-        /// GEO
-        /// </summary>
-        public GeoNearOptionsBuilder GeoNearCondition = new GeoNearOptionsBuilder();
-        /// <summary>
         /// 保存数据过滤器
         /// </summary>
         /// <param name="FileName"></param>

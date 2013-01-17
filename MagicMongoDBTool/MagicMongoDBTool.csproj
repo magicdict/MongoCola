@@ -12,7 +12,7 @@
     <AssemblyName>Mongo-Cola</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <PublishUrl>C:\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -121,6 +121,12 @@
       <DependentUpon>ctlDocumentView.cs</DependentUpon>
     </Compile>
     <Compile Include="UnitTest\InitTestData.cs" />
+    <Compile Include="UserController\ctlGeoNear.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ctlGeoNear.Designer.cs">
+      <DependentUpon>ctlGeoNear.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\ctlUserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -255,12 +261,6 @@
     </Compile>
     <Compile Include="Form\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form\frmConvertSql.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\frmConvertSql.Designer.cs">
-      <DependentUpon>frmConvertSql.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Element.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Sql.cs" />
@@ -410,6 +410,9 @@
     <Compile Include="UserController\TreeViewColumns.Designer.cs">
       <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form\frmAggregation.resx">
+      <DependentUpon>frmAggregation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UnitTest\frmUnitTest.resx">
       <DependentUpon>frmUnitTest.cs</DependentUpon>
     </EmbeddedResource>
@@ -418,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlDocumentView.resx">
       <DependentUpon>ctlDocumentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserController\ctlGeoNear.resx">
+      <DependentUpon>ctlGeoNear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlUserView.resx">
       <DependentUpon>ctlUserView.cs</DependentUpon>
@@ -475,9 +481,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmevalJS.resx">
       <DependentUpon>frmevalJS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmConvertSql.resx">
-      <DependentUpon>frmConvertSql.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>

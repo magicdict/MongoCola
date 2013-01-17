@@ -109,7 +109,6 @@ namespace MagicMongoDBTool
             this.CollectionStatusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
             this.InitGFSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_InitGFS);
             this.ProfillingLevelToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
-            this.ConvertSqlToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_ConvertSql);
             this.AggregationToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Aggregation);
 
             this.DumpAndRestoreToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore);
@@ -510,7 +509,6 @@ namespace MagicMongoDBTool
                                 this.RepairDBToolStripMenuItem.Enabled = true;
                             }
                             this.evalJSToolStripMenuItem.Enabled = true;
-                            this.ConvertSqlToolStripMenuItem.Enabled = true;
                         }
                         //备份数据库
                         this.DumpDatabaseToolStripMenuItem.Enabled = true;
@@ -559,9 +557,6 @@ namespace MagicMongoDBTool
                                 t8.Click += new EventHandler(RestoreMongoToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t8);
 
-                                ToolStripMenuItem t9 = this.ConvertSqlToolStripMenuItem.Clone();
-                                t9.Click += new EventHandler(ConvertSqlToolStripMenuItem_Click);
-                                this.contextMenuStripMain.Items.Add(t9);
 
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
 
@@ -584,7 +579,6 @@ namespace MagicMongoDBTool
                                 this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.ConvertSqlToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
                                 this.contextMenuStripMain.Items.Add(this.ProfillingLevelToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.DBStatusToolStripMenuItem.Clone());
@@ -1154,7 +1148,6 @@ namespace MagicMongoDBTool
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
             this.CompactToolStripMenuItem.Enabled = false;
             this.viewDataToolStripMenuItem.Enabled = false;
-            this.ConvertSqlToolStripMenuItem.Enabled = false;
             this.AggregationToolStripMenuItem.Enabled = false;
             this.creatJavaScriptToolStripMenuItem.Enabled = false;
             this.dropJavascriptToolStripMenuItem.Enabled = false;
@@ -1985,15 +1978,6 @@ namespace MagicMongoDBTool
         #endregion
 
         #region"聚合"
-        /// <summary>
-        /// 转换Sql到Query
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ConvertSqlToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SystemManager.OpenForm(new frmConvertSql(), true, true);
-        }
         /// <summary>
         /// Count
         /// </summary>

@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewDocument));
             this.txtDocument = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
-            this.Icon = Module.GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.NewDocument);
             this.SuspendLayout();
             // 
             // txtDocument
             // 
+            this.txtDocument.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDocument.Location = new System.Drawing.Point(16, 15);
             this.txtDocument.Multiline = true;
             this.txtDocument.Name = "txtDocument";
@@ -71,6 +72,7 @@
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.txtDocument);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmNewDocument";
             this.Text = "New Document";
             this.ResumeLayout(false);

@@ -112,7 +112,7 @@
             // txtMapJs
             // 
             this.txtMapJs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMapJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMapJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMapJs.Location = new System.Drawing.Point(16, 52);
             this.txtMapJs.Multiline = true;
             this.txtMapJs.Name = "txtMapJs";
@@ -123,15 +123,15 @@
             // txtReduceJs
             // 
             this.txtReduceJs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtReduceJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReduceJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReduceJs.Location = new System.Drawing.Point(16, 292);
             this.txtReduceJs.Multiline = true;
             this.txtReduceJs.Name = "txtReduceJs";
             this.txtReduceJs.Size = new System.Drawing.Size(348, 194);
             this.txtReduceJs.TabIndex = 5;
             this.txtReduceJs.Text = "function Reduce(key, arr_values) {\r\n     var total = 0;\r\n     for(var i in arr_va" +
-                "lues){\r\n         temp = arr_values[i];\r\n         total += temp;\r\n     }\r\n     re" +
-                "turn total;\r\n     }\r\n";
+    "lues){\r\n         temp = arr_values[i];\r\n         total += temp;\r\n     }\r\n     re" +
+    "turn total;\r\n     }\r\n";
             // 
             // cmdRun
             // 

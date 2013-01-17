@@ -68,7 +68,7 @@
             // 
             // txtevalJs
             // 
-            this.txtevalJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtevalJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtevalJs.Location = new System.Drawing.Point(9, 47);
             this.txtevalJs.Multiline = true;
             this.txtevalJs.Name = "txtevalJs";
