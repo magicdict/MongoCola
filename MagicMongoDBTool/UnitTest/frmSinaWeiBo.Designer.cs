@@ -42,6 +42,9 @@
             this.btnGetFollowers = new System.Windows.Forms.Button();
             this.txtSupperStarID = new System.Windows.Forms.TextBox();
             this.txtSupperStarName = new System.Windows.Forms.TextBox();
+            this.btnFillDataForGeoObject = new System.Windows.Forms.Button();
+            this.btnFillDataForTTL = new System.Windows.Forms.Button();
+            this.btnFillDataForUser = new System.Windows.Forms.Button();
             this.grpAuth.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -171,11 +174,44 @@
             this.txtSupperStarName.Size = new System.Drawing.Size(95, 20);
             this.txtSupperStarName.TabIndex = 4;
             // 
+            // btnFillDataForGeoObject
+            // 
+            this.btnFillDataForGeoObject.Location = new System.Drawing.Point(13, 340);
+            this.btnFillDataForGeoObject.Name = "btnFillDataForGeoObject";
+            this.btnFillDataForGeoObject.Size = new System.Drawing.Size(342, 23);
+            this.btnFillDataForGeoObject.TabIndex = 7;
+            this.btnFillDataForGeoObject.Text = "FillDataForGeoObject";
+            this.btnFillDataForGeoObject.UseVisualStyleBackColor = true;
+            this.btnFillDataForGeoObject.Click += new System.EventHandler(this.btnFillDataForGeoObject_Click);
+            // 
+            // btnFillDataForTTL
+            // 
+            this.btnFillDataForTTL.Location = new System.Drawing.Point(13, 311);
+            this.btnFillDataForTTL.Name = "btnFillDataForTTL";
+            this.btnFillDataForTTL.Size = new System.Drawing.Size(342, 23);
+            this.btnFillDataForTTL.TabIndex = 6;
+            this.btnFillDataForTTL.Text = "FillDataForTTL";
+            this.btnFillDataForTTL.UseVisualStyleBackColor = true;
+            this.btnFillDataForTTL.Click += new System.EventHandler(this.btnFillDataForTTL_Click);
+            // 
+            // btnFillDataForUser
+            // 
+            this.btnFillDataForUser.Location = new System.Drawing.Point(13, 282);
+            this.btnFillDataForUser.Name = "btnFillDataForUser";
+            this.btnFillDataForUser.Size = new System.Drawing.Size(342, 23);
+            this.btnFillDataForUser.TabIndex = 5;
+            this.btnFillDataForUser.Text = "FillDataForUser";
+            this.btnFillDataForUser.UseVisualStyleBackColor = true;
+            this.btnFillDataForUser.Click += new System.EventHandler(this.btnFillDataForUser_Click);
+            // 
             // frmSinaWeiBo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 290);
+            this.ClientSize = new System.Drawing.Size(367, 390);
+            this.Controls.Add(this.btnFillDataForGeoObject);
+            this.Controls.Add(this.btnFillDataForTTL);
+            this.Controls.Add(this.btnFillDataForUser);
             this.Controls.Add(this.txtSupperStarName);
             this.Controls.Add(this.txtSupperStarID);
             this.Controls.Add(this.btnGetFollowers);
@@ -208,5 +244,8 @@
         private System.Windows.Forms.Button btnGetFollowers;
         private System.Windows.Forms.TextBox txtSupperStarID;
         private System.Windows.Forms.TextBox txtSupperStarName;
+        private System.Windows.Forms.Button btnFillDataForGeoObject;
+        private System.Windows.Forms.Button btnFillDataForTTL;
+        private System.Windows.Forms.Button btnFillDataForUser;
     }
 }

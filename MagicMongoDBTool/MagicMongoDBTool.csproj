@@ -102,12 +102,6 @@
     <Compile Include="Form\frmAggregation.Designer.cs">
       <DependentUpon>frmAggregation.cs</DependentUpon>
     </Compile>
-    <Compile Include="UnitTest\frmUnitTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnitTest\frmUnitTest.Designer.cs">
-      <DependentUpon>frmUnitTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="UnitTest\frmSinaWeiBo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -412,9 +406,6 @@
     </Compile>
     <EmbeddedResource Include="Form\frmAggregation.resx">
       <DependentUpon>frmAggregation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnitTest\frmUnitTest.resx">
-      <DependentUpon>frmUnitTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UnitTest\frmSinaWeiBo.resx">
       <DependentUpon>frmSinaWeiBo.cs</DependentUpon>
