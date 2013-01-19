@@ -94,7 +94,9 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 对话框子窗体的统一管理
         /// </summary>
-        /// <param name="frm"></param>
+        /// <param name="mfrm"></param>
+        /// <param name="isDispose">有些时候需要使用被打开窗体产生的数据，所以不能Dispose</param>
+        /// <param name="isUseAppIcon"></param>
         public static void OpenForm(Form mfrm, Boolean isDispose, Boolean isUseAppIcon)
         {
             mfrm.StartPosition = FormStartPosition.CenterParent;

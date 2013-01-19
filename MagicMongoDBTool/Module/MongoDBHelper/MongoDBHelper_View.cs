@@ -261,6 +261,19 @@ namespace MagicMongoDBTool.Module
         /// <param name="collectionName"></param>
         /// <param name="trvData"></param>
         /// <param name="dataList"></param>
+        public static void FillDataToTreeView(String collectionName, TreeViewColumns trvData, BsonDocument dataList)
+        {
+            List<BsonDocument> DocList = new List<BsonDocument>();
+            DocList.Add(dataList);
+            FillDataToTreeView(collectionName, trvData, DocList, 0);
+        }
+
+        /// <summary>
+        /// 将数据放入TreeView里进行展示
+        /// </summary>
+        /// <param name="collectionName"></param>
+        /// <param name="trvData"></param>
+        /// <param name="dataList"></param>
         public static void FillDataToTreeView(String collectionName, TreeViewColumns trvData, List<BsonDocument> dataList, int mSkip)
         {
             trvData.DatatreeView.BeginUpdate();

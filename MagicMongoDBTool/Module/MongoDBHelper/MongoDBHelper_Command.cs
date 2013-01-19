@@ -26,7 +26,6 @@ namespace MagicMongoDBTool.Module
         /// http://www.mongodb.org/display/DOCS/Durability+and+Repair
         /// </summary>
         public static MongoCommand repairDatabase_Command = new MongoCommand("repairDatabase", PathLv.DatabaseLV);
-
         #endregion
 
         #region"Server Command"

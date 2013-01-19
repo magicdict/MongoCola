@@ -16,6 +16,11 @@ namespace MagicMongoDBTool
         /// 数据集
         /// </summary>
         private MongoCollection _mongocol = SystemManager.GetCurrentCollection();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
             cmbForMap.SelectedIndexChanged += new EventHandler(
@@ -53,11 +58,8 @@ namespace MagicMongoDBTool
             BsonJavaScript reduce = new BsonJavaScript(txtReduceJs.Text);
             //TODO:这里可能会超时，失去响应
             //需要设置SocketTimeOut
-            MapReduceResult rtn = _mongocol.MapReduce(map, reduce);
-
-            List<BsonDocument> result = new List<BsonDocument>();
-            result.Add(rtn.Response);
-            MongoDBHelper.FillDataToTreeView("MapReduce Result", trvResult, result,0);
+            MapReduceResult mMapReduceResult = _mongocol.MapReduce(map, reduce);
+            MongoDBHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
             trvResult.DatatreeView.BeginUpdate();
             trvResult.DatatreeView.ExpandAll();
             trvResult.DatatreeView.EndUpdate();

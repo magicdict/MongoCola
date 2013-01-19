@@ -103,6 +103,26 @@ namespace MagicMongoDBTool.Module
             }
             return cmdRtn;
         }
+        public static CommandResult Aggregate(String AggregateDoc)
+        {
+
+            //db.runCommand( { aggregate: "people", pipeline: [<pipeline>] } )
+            try
+            {
+                CommandDocument agg = new CommandDocument();
+                agg.Add(new BsonElement("aggregate", new BsonString(SystemManager.GetCurrentCollection().Name)));
+                BsonArray aggArr = new BsonArray();
+                aggArr.Add(BsonDocument.Parse(AggregateDoc));
+                agg.Add(new BsonElement("pipeline", aggArr));
+                MongoCommand Aggregate_Command = new MongoCommand(agg, PathLv.DatabaseLV);
+                return ExecuteMongoCommand(Aggregate_Command, false);
+            }
+            catch (Exception ex)
+            {
+                SystemManager.ExceptionDeal(ex);
+                return new CommandResult();
+            }
+        }
         /// <summary>
         /// 使用Shell Helper命令
         /// </summary>
@@ -155,6 +175,10 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public PathLv RunLevel;
             /// <summary>
+            /// 
+            /// </summary>
+            public CommandDocument cmdDocument;
+            /// <summary>
             /// 初始化
             /// </summary>
             /// <param name="_CommandString"></param>
@@ -163,6 +187,18 @@ namespace MagicMongoDBTool.Module
             {
                 CommandString = _CommandString;
                 RunLevel = _RunLevel;
+                cmdDocument = new CommandDocument { { _CommandString, 1 } };
+            }
+            /// <summary>
+            /// 初始化
+            /// </summary>
+            /// <param name="_CommandDocument"></param>
+            /// <param name="_RunLevel"></param>
+            public MongoCommand(CommandDocument _CommandDocument, PathLv _RunLevel)
+            {
+                cmdDocument = _CommandDocument;
+                RunLevel = _RunLevel;
+                CommandString = String.Empty;
             }
         }
         /// <summary>
@@ -181,31 +217,31 @@ namespace MagicMongoDBTool.Module
         /// 当前对象的MONGO命令
         /// </summary>
         /// <param name="mMongoCommand">命令对象</param>
+        /// <param name="ShowMsgBox"></param>
         /// <returns></returns>
-        public static void ExecuteMongoCommand(MongoCommand mMongoCommand)
+        public static CommandResult ExecuteMongoCommand(MongoCommand mMongoCommand, Boolean ShowMsgBox = true)
         {
-            var Command = new CommandDocument { { mMongoCommand.CommandString, 1 } };
             List<CommandResult> ResultCommandList = new List<CommandResult>();
 
-            CommandResult rtn = new CommandResult();
+            CommandResult mCommandResult = new CommandResult();
             try
             {
                 switch (mMongoCommand.RunLevel)
                 {
                     case PathLv.CollectionLV:
-                        rtn = ExecuteMongoColCommand(mMongoCommand.CommandString, SystemManager.GetCurrentCollection());
+                        mCommandResult = ExecuteMongoColCommand(mMongoCommand.CommandString, SystemManager.GetCurrentCollection());
                         break;
                     case PathLv.DatabaseLV:
-                        rtn = ExecuteMongoDBCommand(Command, SystemManager.GetCurrentDataBase());
+                        mCommandResult = ExecuteMongoDBCommand(mMongoCommand.cmdDocument, SystemManager.GetCurrentDataBase());
                         break;
                     case PathLv.ServerLV:
-                        rtn = ExecuteMongoSvrCommand(Command, SystemManager.GetCurrentServer());
+                        mCommandResult = ExecuteMongoSvrCommand(mMongoCommand.cmdDocument, SystemManager.GetCurrentServer());
                         break;
                     default:
                         break;
                 }
-                ResultCommandList.Add(rtn);
-                MyMessageBox.ShowMessage(mMongoCommand.CommandString, mMongoCommand.CommandString + " Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
+                ResultCommandList.Add(mCommandResult);
+                if (ShowMsgBox) MyMessageBox.ShowMessage(mMongoCommand.CommandString, mMongoCommand.CommandString + " Result", MongoDBHelper.ConvertCommandResultlstToString(ResultCommandList), true);
             }
             catch (System.IO.IOException ex)
             {
@@ -215,6 +251,8 @@ namespace MagicMongoDBTool.Module
             {
                 SystemManager.ExceptionDeal(ex, mMongoCommand.CommandString);
             }
+
+            return mCommandResult;
         }
 
         /// <summary>

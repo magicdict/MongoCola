@@ -8,28 +8,25 @@ namespace MagicMongoDBTool
 {
     public partial class frmNewDocument : Form
     {
-
+        public BsonDocument mBsonDocument;
         public frmNewDocument()
         {
             InitializeComponent();
         }
         /// <summary>
-        /// 
+        /// 插入文档
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            BsonDocument newdoc;
+            BsonDocument newBsonDocument;
             if (txtDocument.Text != string.Empty)
             {
                 try
                 {
-                    newdoc = BsonDocument.Parse(txtDocument.Text);
-                    ///居然可以指定_id...
-                    ///这样的话，可能出现同一个数据库里面两个相同的_id的记录
-                    //SystemManager.GetCurrentCollection().Insert(newdoc, new SafeMode(true));
-                    SystemManager.GetCurrentCollection().Insert(newdoc,WriteConcern.W2);
+                    newBsonDocument = BsonDocument.Parse(txtDocument.Text);
+                    mBsonDocument = newBsonDocument;
                     this.Close();
                 }
                 catch (Exception ex)
@@ -51,13 +48,32 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 
+        /// 关闭
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        /// <summary>
+        /// 预览
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdPreview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BsonDocument newdoc;
+                newdoc = BsonDocument.Parse(txtDocument.Text);
+                MongoDBHelper.FillDataToTreeView("InsertDocument", this.treeViewColumns1, newdoc);
+                this.treeViewColumns1.TreeView.ExpandAll();
+            }
+            catch (Exception ex)
+            {
+                SystemManager.ExceptionDeal(ex);
+            }
         }
     }
 }

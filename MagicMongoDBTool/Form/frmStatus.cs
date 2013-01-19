@@ -18,8 +18,7 @@ namespace MagicMongoDBTool
         {
             this.Icon = GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.KeyInfo);
             String strType = SystemManager.SelectTagType;
-            List<BsonDocument> SrvDocList = new List<BsonDocument>();
-            BsonDocument cr = new BsonDocument();
+            BsonDocument DocStatus = new BsonDocument();
             cmbChartField.Visible = false;
             chartResult.Visible = false;
             switch (strType)
@@ -28,14 +27,13 @@ namespace MagicMongoDBTool
                 case MongoDBHelper.SINGLE_DB_SERVER_TAG:
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
-                        cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
+                        DocStatus = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
                         this.trvStatus.Height = this.trvStatus.Height * 2;
-
                     }
                     break;
                 case MongoDBHelper.DATABASE_TAG:
                 case MongoDBHelper.SINGLE_DATABASE_TAG:
-                    cr = SystemManager.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
+                    DocStatus = SystemManager.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
                     cmbChartField.Visible = true;
                     chartResult.Visible = true;
 
@@ -52,7 +50,7 @@ namespace MagicMongoDBTool
                     RefreshDBStatusChart("StorageSize");
                     break;
                 case MongoDBHelper.COLLECTION_TAG:
-                    cr = SystemManager.GetCurrentCollection().GetStats().Response.ToBsonDocument();
+                    DocStatus = SystemManager.GetCurrentCollection().GetStats().Response.ToBsonDocument();
                     //图形化初始化
                     chartResult.Visible = true;
 
@@ -87,7 +85,7 @@ namespace MagicMongoDBTool
                 default:
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
-                        cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
+                        DocStatus = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
                         this.trvStatus.Height = this.trvStatus.Height * 2;
                     }
                     break;
@@ -96,8 +94,7 @@ namespace MagicMongoDBTool
             {
                 this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
             }
-            SrvDocList.Add(cr);
-            MongoDBHelper.FillDataToTreeView(strType, this.trvStatus, SrvDocList, 0);
+            MongoDBHelper.FillDataToTreeView(strType, this.trvStatus, DocStatus);
             this.trvStatus.DatatreeView.Nodes[0].Expand();
 
         }

@@ -35,7 +35,7 @@ namespace MagicMongoDBTool.Module
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    SystemManager.ExceptionDeal(ex);
                 }
             }
             FillDataToTreeView("Server Status", trvSvrStatus, SrvDocList,0);
@@ -110,7 +110,7 @@ namespace MagicMongoDBTool.Module
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    SystemManager.ExceptionDeal(ex);
                 }
             }
         }
@@ -207,18 +207,19 @@ namespace MagicMongoDBTool.Module
                                 }
                                 lstData.Items.Add(lst);
                             }
-                            catch (Exception)
+                            catch (Exception ex)
                             {
                                 //throw;
                                 //TODO:排序时候会发生错误，所以暂时不对应
                                 //lstData.Items.Add(new ListViewItem(strColName + "[Exception]"));
+                                SystemManager.ExceptionDeal(ex);
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    SystemManager.ExceptionDeal(ex);
                 }
             }
         }
@@ -271,13 +272,13 @@ namespace MagicMongoDBTool.Module
                         }
                         catch (Exception ex)
                         {
-                            throw ex;
+                            SystemManager.ExceptionDeal(ex);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw ex;
+                    SystemManager.ExceptionDeal(ex);
                 }
             }
         }

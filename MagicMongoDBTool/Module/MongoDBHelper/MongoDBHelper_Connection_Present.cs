@@ -46,9 +46,7 @@ namespace MagicMongoDBTool.Module
         public static String ConvertBsonTozTreeJson(String RootName, BsonDocument doc, Boolean IsOpen)
         {
             TreeViewColumns trvStatus = new TreeViewColumns();
-            List<BsonDocument> datalist = new List<BsonDocument>();
-            datalist.Add(doc);
-            MongoDBHelper.FillDataToTreeView(RootName, trvStatus, datalist, 0);
+            MongoDBHelper.FillDataToTreeView(RootName, trvStatus, doc);
             if (IsOpen)
             {
                 trvStatus.TreeView.Nodes[0].Expand();

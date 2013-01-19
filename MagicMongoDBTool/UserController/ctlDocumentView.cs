@@ -405,9 +405,13 @@ namespace MagicMongoDBTool
         /// </summary>
         private void NewDocumentStripButton_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmNewDocument(), true, true);
+            frmNewDocument frmInsertDoc = new frmNewDocument();
+            SystemManager.OpenForm(frmInsertDoc, false, true);
+            ///居然可以指定_id...
+            ///这样的话，可能出现同一个数据库里面两个相同的_id的记录
+            //SystemManager.GetCurrentCollection().Insert(newdoc, new SafeMode(true));
+            SystemManager.GetCurrentCollection().Insert(frmInsertDoc.mBsonDocument);
             RefreshGUI();
-
         }
         /// <summary>
         /// 

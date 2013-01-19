@@ -7,6 +7,7 @@ namespace MagicMongoDBTool
 {
     public partial class ctlBsonValue : UserControl
     {
+        BsonDocument mBsonDocument = new BsonDocument();
         /// <summary>
         /// 使用属性会发生一些MONO上的移植问题
         /// </summary>
@@ -39,7 +40,7 @@ namespace MagicMongoDBTool
                     mValue = new BsonArray();
                     break;
                 case 5:
-                    mValue = new BsonDocument();
+                    mValue = mBsonDocument;
                     break;
             }
             return mValue;
@@ -52,6 +53,7 @@ namespace MagicMongoDBTool
         {
             txtBsonValue.Visible = false;
             txtBsonValue.Text = String.Empty;
+            txtBsonValue.ReadOnly = true;
             radTrue.Visible = false;
             radFalse.Visible = false;
             radFalse.Checked = true;
@@ -95,6 +97,12 @@ namespace MagicMongoDBTool
             }
             if (value.IsBsonDocument)
             {
+                frmNewDocument frmInsertDoc = new frmNewDocument();
+                SystemManager.OpenForm(frmInsertDoc, false, true);
+                mBsonDocument = frmInsertDoc.mBsonDocument;
+                txtBsonValue.Visible = true;
+                txtBsonValue.Text = mBsonDocument.ToString();
+                txtBsonValue.ReadOnly = false;
                 cmbDataType.SelectedIndex = 5;
             }
         }
@@ -125,6 +133,11 @@ namespace MagicMongoDBTool
                 cmbDataType.Items.Add(item);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbDataType_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtBsonValue.Visible = false;
