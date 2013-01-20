@@ -102,6 +102,7 @@ namespace MagicMongoDBTool.Module
             mfrm.StartPosition = FormStartPosition.CenterParent;
             mfrm.BackColor = System.Drawing.Color.White;
             mfrm.FormBorderStyle = FormBorderStyle.FixedSingle;
+            mfrm.MaximizeBox = false;
             if (isUseAppIcon)
             {
                 mfrm.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);

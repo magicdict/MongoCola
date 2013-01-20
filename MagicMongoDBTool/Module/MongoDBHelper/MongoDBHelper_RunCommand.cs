@@ -103,7 +103,7 @@ namespace MagicMongoDBTool.Module
             }
             return cmdRtn;
         }
-        public static CommandResult Aggregate(String AggregateDoc)
+        public static CommandResult Aggregate(BsonArray AggregateDoc)
         {
 
             //db.runCommand( { aggregate: "people", pipeline: [<pipeline>] } )
@@ -111,9 +111,7 @@ namespace MagicMongoDBTool.Module
             {
                 CommandDocument agg = new CommandDocument();
                 agg.Add(new BsonElement("aggregate", new BsonString(SystemManager.GetCurrentCollection().Name)));
-                BsonArray aggArr = new BsonArray();
-                aggArr.Add(BsonDocument.Parse(AggregateDoc));
-                agg.Add(new BsonElement("pipeline", aggArr));
+                agg.Add(new BsonElement("pipeline", AggregateDoc));
                 MongoCommand Aggregate_Command = new MongoCommand(agg, PathLv.DatabaseLV);
                 return ExecuteMongoCommand(Aggregate_Command, false);
             }
