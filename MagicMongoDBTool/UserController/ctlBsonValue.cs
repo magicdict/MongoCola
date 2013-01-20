@@ -53,7 +53,7 @@ namespace MagicMongoDBTool
         {
             txtBsonValue.Visible = false;
             txtBsonValue.Text = String.Empty;
-            txtBsonValue.ReadOnly = true;
+            txtBsonValue.ReadOnly = false;
             radTrue.Visible = false;
             radFalse.Visible = false;
             radFalse.Checked = true;
@@ -102,7 +102,7 @@ namespace MagicMongoDBTool
                 mBsonDocument = frmInsertDoc.mBsonDocument;
                 txtBsonValue.Visible = true;
                 txtBsonValue.Text = mBsonDocument.ToString();
-                txtBsonValue.ReadOnly = false;
+                txtBsonValue.ReadOnly = true;
                 cmbDataType.SelectedIndex = 5;
             }
         }

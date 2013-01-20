@@ -336,7 +336,7 @@ namespace MagicMongoDBTool.Module
                         //虽然TreeNode的Text属性带有Array_Mark，表示的时候则会屏蔽掉，
                         //必须要加上，不然FullPath会出现错误
                         TreeNode newItem = new TreeNode(item.Name + Array_Mark);
-                        AddBsonArrayToTreeNode(newItem, item.Value.AsBsonArray);
+                        AddBsonArrayToTreeNode(item.Name, newItem, item.Value.AsBsonArray);
                         newItem.Tag = item;
                         treeNode.Nodes.Add(newItem);
                     }
@@ -354,13 +354,14 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="newItem"></param>
         /// <param name="item"></param>
-        public static void AddBsonArrayToTreeNode(TreeNode newItem, BsonArray item)
+        public static void AddBsonArrayToTreeNode(String ArrayName, TreeNode newItem, BsonArray item)
         {
+            int Count = 1;
             foreach (BsonValue SubItem in item)
             {
                 if (SubItem.IsBsonDocument)
                 {
-                    TreeNode newSubItem = new TreeNode();
+                    TreeNode newSubItem = new TreeNode(ArrayName + "[" + Count + "]");
                     AddBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument());
                     newSubItem.Tag = SubItem;
                     newItem.Nodes.Add(newSubItem);
@@ -369,18 +370,19 @@ namespace MagicMongoDBTool.Module
                 {
                     if (SubItem.IsBsonArray)
                     {
-                        TreeNode newSubItem = new TreeNode();
-                        AddBsonArrayToTreeNode(newSubItem, SubItem.AsBsonArray);
+                        TreeNode newSubItem = new TreeNode(Array_Mark);
+                        AddBsonArrayToTreeNode(ArrayName, newSubItem, SubItem.AsBsonArray);
                         newSubItem.Tag = SubItem;
                         newItem.Nodes.Add(newSubItem);
                     }
                     else
                     {
-                        TreeNode newSubItem = new TreeNode();
+                        TreeNode newSubItem = new TreeNode(ArrayName + "[" + Count + "]");
                         newSubItem.Tag = SubItem;
                         newItem.Nodes.Add(newSubItem);
                     }
                 }
+                Count++;
             }
         }
         /// <summary>

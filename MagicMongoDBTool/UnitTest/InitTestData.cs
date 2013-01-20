@@ -29,8 +29,9 @@ namespace MagicMongoDBTool.Module
             public String City;
             public String state;
             public int Zip;
-
+            public GeoObject[] GeoObj;
         }
+
         internal class GeoObject
         {
             [BsonId]
@@ -105,9 +106,15 @@ namespace MagicMongoDBTool.Module
                         street = "123 Main St.",
                         City = "Centerville",
                         state = "PA",
-                        Zip = Ro.Next(20)
+                        Zip = Ro.Next(20),
+                        GeoObj = new GeoObject[]{
+                            new GeoObject(){
+                                ID = "aaaa",
+                                Geo = new int[2]{1,1}
+                            }
+                        },
                     },
-                    Pets = new string[]{"Cat","Dog"}
+                    Pets = new string[]{"Cat","Dog"},
                 });
             }
         }

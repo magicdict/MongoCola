@@ -16,7 +16,8 @@ namespace TreeViewColumnsProject
 
             this.BackColor = VisualStyleInformation.TextControlBorder;
             this.Padding = new Padding(1);
-            if (!SystemManager.IsUseDefaultLanguage) {
+            if (!SystemManager.IsUseDefaultLanguage)
+            {
                 this.colName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Name);
                 this.colValue.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Value);
                 this.colType.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Type);
@@ -98,10 +99,22 @@ namespace TreeViewColumnsProject
             if (TreeNameString.EndsWith(MongoDBHelper.Array_Mark))
             {
                 //Array_Mark 在计算路径的时候使用，不过，在表示的时候，则不能表示
-                TreeNameString = TreeNameString.Substring(0,TreeNameString.Length - MongoDBHelper.Array_Mark.Length);
+                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - MongoDBHelper.Array_Mark.Length);
             }
-            e.Graphics.DrawString(TreeNameString, this.Font, new SolidBrush(Color.Black), StringRect);
-
+            if (TreeNameString.EndsWith(MongoDBHelper.Document_Mark))
+            {
+                //Document_Mark 在计算路径的时候使用，不过，在表示的时候，则不能表示
+                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - MongoDBHelper.Document_Mark.Length);
+            }
+            //感谢cyrus的建议，选中节点的文字表示，底色变更
+            if ((e.State & TreeNodeStates.Selected) != 0 && (e.State & TreeNodeStates.Focused) != 0)
+            {
+                e.Graphics.DrawString(TreeNameString, this.Font, new SolidBrush(SystemColors.HighlightText), StringRect);
+            }
+            else
+            {
+                e.Graphics.DrawString(TreeNameString, this.Font, new SolidBrush(Color.Black), StringRect);
+            }
 
             BsonElement mElement = e.Node.Tag as BsonElement;
             BsonValue mValue = e.Node.Tag as BsonValue;
@@ -160,11 +173,12 @@ namespace TreeViewColumnsProject
                                 {
                                     strColumnText = mValue.ToString();
                                 }
-                                else
-                                {
-                                    if (mValue.IsBsonDocument) { strColumnText = MongoDBHelper.Document_Mark; }
-                                    if (mValue.IsBsonArray) { strColumnText = MongoDBHelper.Array_Mark; }
-                                }
+                                //Type这里已经有表示Type的标识了，这里就不重复显示了。
+                                //else
+                                //{
+                                    //if (mValue.IsBsonDocument) { strColumnText = MongoDBHelper.Document_Mark; }
+                                    //if (mValue.IsBsonArray) { strColumnText = MongoDBHelper.Array_Mark; }
+                                //}
                             }
                         }
                     }
