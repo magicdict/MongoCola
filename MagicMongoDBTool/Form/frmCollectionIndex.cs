@@ -66,6 +66,12 @@ namespace MagicMongoDBTool
                 lstIndex.Columns.Add("DroppedDups");
                 lstIndex.Columns.Add("Expire Data");
             }
+            //2.2.2 开始支持TTL索引
+            if (SystemManager.GetCurrentServer().BuildInfo.Version < new Version(2, 2, 2, 0))
+            {
+                chkExpireData.Enabled = false;
+                numTTL.Enabled = false;
+            } 
             RefreshList();
         }
         /// <summary>

@@ -5,11 +5,11 @@ namespace MagicMongoDBTool.Module
     public static partial class MongoDBHelper
     {
         /// <summary>
-        /// 
+        /// ActionDone
         /// </summary>
         public static EventHandler<ActionDoneEventArgs> ActionDone;
         /// <summary>
-        /// 
+        /// OnActionDone
         /// </summary>
         /// <param name="e"></param>
         public static void OnActionDone(ActionDoneEventArgs e)
@@ -147,8 +147,14 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             Text
         }
-        //The process field identifies which kind of MongoDB instance is running. Possible values are:
+        //The process field identifies which kind of MongoDB instance is running. Possible values are:mongos,mongod
+        /// <summary>
+        /// MongoS
+        /// </summary>
         public const String ServerStatus_PROCESS_MONGOS = "mongos";
+        /// <summary>
+        /// MongoD
+        /// </summary>
         public const String ServerStatus_PROCESS_MONGOD = "mongod";
 
         #region"系统数据集名称常量"
@@ -156,7 +162,9 @@ namespace MagicMongoDBTool.Module
         /// Default Port
         /// </summary>
         public const int DEFAULT_PORT = 27017;
-
+        /// <summary>
+        /// 主键
+        /// </summary>
         public const String KEY_ID = "_id";
         /// <summary>
         /// 

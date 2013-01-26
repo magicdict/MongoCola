@@ -35,13 +35,13 @@
             this.tabCondition = new System.Windows.Forms.TabPage();
             this.panFilter = new System.Windows.Forms.Panel();
             this.tabGeoNear = new System.Windows.Forms.TabPage();
+            this.ctlGeoNear1 = new MagicMongoDBTool.ctlGeoNear();
             this.tabSql = new System.Windows.Forms.TabPage();
             this.lblAttentionSelectOnly = new System.Windows.Forms.Label();
             this.txtSql = new System.Windows.Forms.TextBox();
             this.cmdLoad = new System.Windows.Forms.Button();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
-            this.ctlGeoNear1 = new MagicMongoDBTool.ctlGeoNear();
             this.tabControl.SuspendLayout();
             this.tabCondition.SuspendLayout();
             this.tabGeoNear.SuspendLayout();
@@ -125,6 +125,14 @@
             this.tabGeoNear.Text = "GeoNear";
             this.tabGeoNear.UseVisualStyleBackColor = true;
             // 
+            // ctlGeoNear1
+            // 
+            this.ctlGeoNear1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctlGeoNear1.Location = new System.Drawing.Point(3, 3);
+            this.ctlGeoNear1.Name = "ctlGeoNear1";
+            this.ctlGeoNear1.Size = new System.Drawing.Size(581, 462);
+            this.ctlGeoNear1.TabIndex = 0;
+            // 
             // tabSql
             // 
             this.tabSql.Controls.Add(this.lblAttentionSelectOnly);
@@ -175,7 +183,7 @@
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(99, 33);
             this.cmdSave.TabIndex = 14;
-            this.cmdSave.Text = "Save";
+            this.cmdSave.Text = "Save Query";
             this.cmdSave.UseVisualStyleBackColor = false;
             this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
@@ -188,14 +196,6 @@
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
-            // 
-            // ctlGeoNear1
-            // 
-            this.ctlGeoNear1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlGeoNear1.Location = new System.Drawing.Point(3, 3);
-            this.ctlGeoNear1.Name = "ctlGeoNear1";
-            this.ctlGeoNear1.Size = new System.Drawing.Size(581, 462);
-            this.ctlGeoNear1.TabIndex = 0;
             // 
             // frmQuery
             // 

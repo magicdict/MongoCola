@@ -231,7 +231,13 @@ namespace MagicMongoDBTool.Module
                             ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName;
                         }
                     }
+                    //设定是否可用
                     config.Health = true;
+                    //设定版本
+                    if (mongoConn.BuildInfo != null)
+                    {
+                        config.MongoDBVersion = mongoConn.BuildInfo.Version;
+                    }
                     SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey] = config;
                     switch (config.ServerRole)
                     {

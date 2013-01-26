@@ -164,6 +164,11 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             [XmlIgnore()]
             public Boolean Health;
+            /// <summary>
+            /// 当前连接的MongoDB版本[这个属性是运行时决定的]
+            /// </summary>
+            [XmlIgnore()]
+            public Version MongoDBVersion;
         }
         /// <summary>
         /// 通过Host信息获得连接名称
