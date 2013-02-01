@@ -18,6 +18,14 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
+        /// 是否表示
+        /// </summary>
+        public bool IsShow
+        {
+            get { return chkIsShow.Checked; }
+            set { chkIsShow.Checked = value; }
+        }
+        /// <summary>
         /// Query Field Item
         /// </summary>
         public DataFilter.QueryFieldItem QueryFieldItem

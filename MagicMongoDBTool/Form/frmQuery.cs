@@ -49,6 +49,7 @@ namespace MagicMongoDBTool
         {
             this.Icon = GetSystemIcon.ConvertImgToIcon(GetResource.GetImage(ImageType.Query));
             ColumnList = MongoDBHelper.GetCollectionSchame(_mongoCol);
+            List<DataFilter.QueryFieldItem> FieldList = new List<DataFilter.QueryFieldItem>();
             foreach (String item in ColumnList)
             {
                 //输出配置的初始化
@@ -75,15 +76,11 @@ namespace MagicMongoDBTool
                 {
                     queryFieldItem.IsShow = true;
                 }
-                //动态加载控件
-                ctlFieldInfo ctrItem = new ctlFieldInfo();
-                ctrItem.Name = item;
-                ctrItem.Location = _conditionPos;
-                ctrItem.QueryFieldItem = queryFieldItem;
-                tabFieldInfo.Controls.Add(ctrItem);
-                //纵向位置的累加
-                _conditionPos.Y += ctrItem.Height;
+                FieldList.Add(queryFieldItem);
             }
+            QueryFieldPicker.QueryFieldList = FieldList;
+
+
             _conditionPos = new Point(5, 20);
             ctlQueryCondition firstQueryCtl = new ctlQueryCondition();
             firstQueryCtl.Init(ColumnList);
@@ -132,10 +129,10 @@ namespace MagicMongoDBTool
             // 设置DataFilter
             if (string.IsNullOrEmpty(txtSql.Text))
             {
-                //设置DataFilter
                 SetCurrDataFilter();
             }
-            else { 
+            else
+            {
                 CurrentDataViewInfo.mDataFilter = MongoDBHelper.ConvertQuerySql(txtSql.Text);
             }
             ///按下OK，不论是否做更改都认为True
@@ -151,11 +148,7 @@ namespace MagicMongoDBTool
             CurrentDataViewInfo.mDataFilter.Clear();
             CurrentDataViewInfo.mDataFilter.DBName = SystemManager.GetCurrentDataBase().Name;
             CurrentDataViewInfo.mDataFilter.CollectionName = SystemManager.GetCurrentCollection().Name;
-            //显示项目
-            foreach (var item in ColumnList)
-            {
-                CurrentDataViewInfo.mDataFilter.QueryFieldList.Add(((ctlFieldInfo)Controls.Find(item, true)[0]).QueryFieldItem);
-            }
+            CurrentDataViewInfo.mDataFilter.QueryFieldList = QueryFieldPicker.QueryFieldList;
             //过滤条件
             for (int i = 0; i < _conditionCount; i++)
             {
@@ -218,44 +211,26 @@ namespace MagicMongoDBTool
                 ShowColumnList.Add(item);
             }
             //清除所有的控件
-            tabFieldInfo.Controls.Clear();
+            List<DataFilter.QueryFieldItem> FieldList = NewDataFilter.QueryFieldList;
             foreach (DataFilter.QueryFieldItem queryFieldItem in NewDataFilter.QueryFieldList)
             {
                 //动态加载控件
                 if (!ColumnList.Contains(queryFieldItem.ColName))
                 {
-                    strErrMsg += queryFieldItem.ColName + "Display Field is not exist in current collection any more" + System.Environment.NewLine;
+                    strErrMsg += "Display Field [" + queryFieldItem.ColName + "] is not exist in current collection any more" + System.Environment.NewLine;
                 }
                 else
                 {
-                    ctlFieldInfo ctrItem = new ctlFieldInfo();
-                    ctrItem.Name = queryFieldItem.ColName;
-                    ctrItem.Location = _conditionPos;
-                    ctrItem.QueryFieldItem = queryFieldItem;
-                    tabFieldInfo.Controls.Add(ctrItem);
-                    //纵向位置的累加
-                    _conditionPos.Y += ctrItem.Height;
                     ShowColumnList.Remove(queryFieldItem.ColName);
                 }
             }
-            //新增字段
-            _conditionPos = new Point(5, 0);
             foreach (String item in ShowColumnList)
             {
                 strErrMsg += "New Field" + item + "Is Append" + System.Environment.NewLine;
                 //输出配置的初始化
-                DataFilter.QueryFieldItem queryFieldItem = new DataFilter.QueryFieldItem();
-                queryFieldItem.ColName = item;
-                queryFieldItem.IsShow = true;
-                queryFieldItem.sortType = DataFilter.SortType.NoSort;
-                //动态加载控件
-                ctlFieldInfo ctrItem = new ctlFieldInfo();
-                ctrItem.Name = item;
-                _conditionPos.Y += ctrItem.Height;
-                ctrItem.Location = _conditionPos;
-                ctrItem.QueryFieldItem = queryFieldItem;
-                tabFieldInfo.Controls.Add(ctrItem);
+                FieldList.Add(new DataFilter.QueryFieldItem(item));
             }
+            QueryFieldPicker.QueryFieldList = FieldList;
 
             panFilter.Controls.Clear();
             _conditionPos = new Point(5, 0);

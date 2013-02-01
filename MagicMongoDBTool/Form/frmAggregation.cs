@@ -15,19 +15,6 @@ namespace MagicMongoDBTool
             InitializeComponent();
         }
         /// <summary>
-        /// 保存Aggregate
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdSaveAggregate_Click(object sender, EventArgs e)
-        {
-            if (txtAggregate.Text!= string.Empty)
-            {
-                String strJsName = MyMessageBox.ShowInput("pls Input Aggregate Name：", "Save Aggregate");
-                MongoDBHelper.CreateNewJavascript(strJsName, txtAggregate.Text);
-            }
-        }
-        /// <summary>
         /// Aggregate
         /// </summary>
         /// <param name="sender"></param>
@@ -55,12 +42,8 @@ namespace MagicMongoDBTool
         {
             foreach (String item in SystemManager.GetJsNameList())
             {
-                cmbForAggregate.Items.Add(item);
                 cmbForAggregatePipeline.Items.Add(item);
             }
-            cmbForAggregate.SelectedIndexChanged += new EventHandler(
-                (x, y) => { this.txtAggregate.Text = MongoDBHelper.LoadJavascript(cmbForAggregate.Text); }
-            );
             cmbForAggregatePipeline.SelectedIndexChanged += new EventHandler(
                 (x, y) => {
                     _AggrArray = (BsonArray)BsonDocument.Parse(MongoDBHelper.LoadJavascript(cmbForAggregatePipeline.Text)).GetValue(0); 
@@ -77,8 +60,9 @@ namespace MagicMongoDBTool
         {
             try
             {
-                _AggrArray.Add(BsonDocument.Parse(txtAggregate.Text));
-                txtAggregate.Text = "";
+                frmNewDocument frmInsertDoc = new frmNewDocument();
+                SystemManager.OpenForm(frmInsertDoc, false, true);
+                _AggrArray.Add(frmInsertDoc.mBsonDocument);
                 FillAggreationTreeview();
             }
             catch (Exception ex)
@@ -108,7 +92,6 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdClear_Click(object sender, EventArgs e)
         {
-            txtAggregate.Text = "";
             _AggrArray.Clear();
             trvCondition.TreeView.Nodes.Clear();
         }

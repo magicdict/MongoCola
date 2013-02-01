@@ -35,6 +35,7 @@
             this.treeViewColumns1 = new TreeViewColumnsProject.TreeViewColumns();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdPreview = new System.Windows.Forms.Button();
+            this.cmdSaveAggregate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtDocument
@@ -48,9 +49,9 @@
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(467, 276);
+            this.cmdOK.Location = new System.Drawing.Point(634, 276);
             this.cmdOK.Name = "cmdOK";
-            this.cmdOK.Size = new System.Drawing.Size(104, 34);
+            this.cmdOK.Size = new System.Drawing.Size(82, 25);
             this.cmdOK.TabIndex = 1;
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = true;
@@ -58,9 +59,9 @@
             // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(694, 276);
+            this.cmdClose.Location = new System.Drawing.Point(722, 276);
             this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(110, 34);
+            this.cmdClose.Size = new System.Drawing.Size(82, 25);
             this.cmdClose.TabIndex = 2;
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
@@ -70,7 +71,7 @@
             // 
             this.treeViewColumns1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
             this.treeViewColumns1.Location = new System.Drawing.Point(444, 13);
-            this.treeViewColumns1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeViewColumns1.Margin = new System.Windows.Forms.Padding(4);
             this.treeViewColumns1.Name = "treeViewColumns1";
             this.treeViewColumns1.Padding = new System.Windows.Forms.Padding(1);
             this.treeViewColumns1.Size = new System.Drawing.Size(360, 237);
@@ -87,13 +88,24 @@
             // 
             // cmdPreview
             // 
-            this.cmdPreview.Location = new System.Drawing.Point(586, 276);
+            this.cmdPreview.Location = new System.Drawing.Point(546, 276);
             this.cmdPreview.Name = "cmdPreview";
-            this.cmdPreview.Size = new System.Drawing.Size(102, 34);
+            this.cmdPreview.Size = new System.Drawing.Size(82, 25);
             this.cmdPreview.TabIndex = 5;
             this.cmdPreview.Text = "Preview";
             this.cmdPreview.UseVisualStyleBackColor = true;
             this.cmdPreview.Click += new System.EventHandler(this.cmdPreview_Click);
+            // 
+            // cmdSaveAggregate
+            // 
+            this.cmdSaveAggregate.BackColor = System.Drawing.Color.Transparent;
+            this.cmdSaveAggregate.Location = new System.Drawing.Point(458, 276);
+            this.cmdSaveAggregate.Name = "cmdSaveAggregate";
+            this.cmdSaveAggregate.Size = new System.Drawing.Size(82, 25);
+            this.cmdSaveAggregate.TabIndex = 26;
+            this.cmdSaveAggregate.Text = "Save";
+            this.cmdSaveAggregate.UseVisualStyleBackColor = false;
+            this.cmdSaveAggregate.Click += new System.EventHandler(this.cmdSaveDocument_Click);
             // 
             // frmNewDocument
             // 
@@ -101,6 +113,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(817, 322);
+            this.Controls.Add(this.cmdSaveAggregate);
             this.Controls.Add(this.cmdPreview);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.treeViewColumns1);
@@ -124,5 +137,6 @@
         private TreeViewColumnsProject.TreeViewColumns treeViewColumns1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button cmdPreview;
+        private System.Windows.Forms.Button cmdSaveAggregate;
     }
 }

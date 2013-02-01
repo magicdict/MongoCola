@@ -96,11 +96,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserController\FieldPicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\FieldPicker.Designer.cs">
+      <DependentUpon>FieldPicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\frmAggregation.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\frmAggregation.Designer.cs">
       <DependentUpon>frmAggregation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmAggregationCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmAggregationCondition.Designer.cs">
+      <DependentUpon>frmAggregationCondition.cs</DependentUpon>
     </Compile>
     <Compile Include="UnitTest\frmSinaWeiBo.cs">
       <SubType>Form</SubType>
@@ -407,6 +419,9 @@
     <EmbeddedResource Include="Form\frmAggregation.resx">
       <DependentUpon>frmAggregation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmAggregationCondition.resx">
+      <DependentUpon>frmAggregationCondition.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UnitTest\frmSinaWeiBo.resx">
       <DependentUpon>frmSinaWeiBo.cs</DependentUpon>
     </EmbeddedResource>
@@ -549,6 +564,9 @@
     </Compile>
     <EmbeddedResource Include="UserController\ctlServerStatus.resx">
       <DependentUpon>ctlServerStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserController\FieldPicker.resx">
+      <DependentUpon>FieldPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\TreeViewColumns.resx">
       <DependentUpon>TreeViewColumns.cs</DependentUpon>

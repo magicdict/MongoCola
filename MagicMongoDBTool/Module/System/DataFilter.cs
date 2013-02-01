@@ -85,6 +85,15 @@ namespace MagicMongoDBTool.Module
             /// 排序类型
             /// </summary>
             public SortType sortType;
+            /// <summary>
+            /// 构造器
+            /// </summary>
+            /// <param name="mColName"></param>
+            public QueryFieldItem(String mColName) {
+                ColName = mColName;
+                IsShow = false;
+                sortType = SortType.NoSort;
+            }
         }
         /// <summary>
         /// 比较条件[输入]

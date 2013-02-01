@@ -32,6 +32,7 @@
             this.cmdOK = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabFieldInfo = new System.Windows.Forms.TabPage();
+            this.QueryFieldPicker = new MagicMongoDBTool.FieldPicker();
             this.tabCondition = new System.Windows.Forms.TabPage();
             this.panFilter = new System.Windows.Forms.Panel();
             this.tabGeoNear = new System.Windows.Forms.TabPage();
@@ -43,6 +44,7 @@
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
+            this.tabFieldInfo.SuspendLayout();
             this.tabCondition.SuspendLayout();
             this.tabGeoNear.SuspendLayout();
             this.tabSql.SuspendLayout();
@@ -85,6 +87,7 @@
             // tabFieldInfo
             // 
             this.tabFieldInfo.AutoScroll = true;
+            this.tabFieldInfo.Controls.Add(this.QueryFieldPicker);
             this.tabFieldInfo.Location = new System.Drawing.Point(4, 24);
             this.tabFieldInfo.Name = "tabFieldInfo";
             this.tabFieldInfo.Padding = new System.Windows.Forms.Padding(3);
@@ -92,6 +95,16 @@
             this.tabFieldInfo.TabIndex = 0;
             this.tabFieldInfo.Text = "Output Fields";
             this.tabFieldInfo.UseVisualStyleBackColor = true;
+            // 
+            // fieldPicker1
+            // 
+            this.QueryFieldPicker.AutoScroll = true;
+            this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
+            this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
+            this.QueryFieldPicker.Name = "fieldPicker1";
+            this.QueryFieldPicker.Size = new System.Drawing.Size(581, 462);
+            this.QueryFieldPicker.TabIndex = 0;
             // 
             // tabCondition
             // 
@@ -217,6 +230,7 @@
             this.Text = "Query";
             this.Load += new System.EventHandler(this.frmQuery_Load);
             this.tabControl.ResumeLayout(false);
+            this.tabFieldInfo.ResumeLayout(false);
             this.tabCondition.ResumeLayout(false);
             this.tabGeoNear.ResumeLayout(false);
             this.tabSql.ResumeLayout(false);
@@ -230,7 +244,6 @@
         private System.Windows.Forms.Button cmdAddCondition;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabFieldInfo;
         private System.Windows.Forms.TabPage tabCondition;
         private System.Windows.Forms.Button cmdSave;
         private System.Windows.Forms.Button cmdLoad;
@@ -241,5 +254,7 @@
         private System.Windows.Forms.TabPage tabSql;
         private System.Windows.Forms.Label lblAttentionSelectOnly;
         private System.Windows.Forms.TextBox txtSql;
+        private System.Windows.Forms.TabPage tabFieldInfo;
+        private FieldPicker QueryFieldPicker;
     }
 }
