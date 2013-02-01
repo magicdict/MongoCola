@@ -1,20 +1,14 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using MagicMongoDBTool.Module;
-using MongoDB.Driver;
-using MongoDB.Bson;
 using System.Windows.Forms;
-using MongoDB.Driver.Builders;
 
 namespace MagicMongoDBTool
 {
     public partial class frmQuery : Form
     {
-        /// <summary>
-        /// 当前数据集
-        /// </summary>
-        private MongoCollection _mongoCol;
         /// <summary>
         /// 当前数据集的字段列表
         /// </summary>
@@ -40,7 +34,6 @@ namespace MagicMongoDBTool
             InitializeComponent();
             CurrentDataViewInfo = mDataViewInfo;
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
-            _mongoCol = SystemManager.GetCurrentCollection();
         }
         /// <summary>
         /// 输出配置字典
@@ -48,39 +41,17 @@ namespace MagicMongoDBTool
         private void frmQuery_Load(object sender, EventArgs e)
         {
             this.Icon = GetSystemIcon.ConvertImgToIcon(GetResource.GetImage(ImageType.Query));
-            ColumnList = MongoDBHelper.GetCollectionSchame(_mongoCol);
-            List<DataFilter.QueryFieldItem> FieldList = new List<DataFilter.QueryFieldItem>();
-            foreach (String item in ColumnList)
+
+            if (CurrentDataViewInfo.IsUseFilter)
             {
-                //输出配置的初始化
-                DataFilter.QueryFieldItem queryFieldItem = new DataFilter.QueryFieldItem();
-                queryFieldItem.ColName = item;
-                if (!CurrentDataViewInfo.IsUseFilter)
-                {
-                    queryFieldItem.IsShow = true;
-                    queryFieldItem.sortType = DataFilter.SortType.NoSort;
-                }
-                else
-                {
-                    DataFilter.QueryFieldItem find = CurrentDataViewInfo.mDataFilter.QueryFieldList.Find
-                        (
-                            (x) => { return x.ColName == item; }
-                        );
-                    if (find.ColName != String.Empty)
-                    {
-                        queryFieldItem.IsShow = find.IsShow;
-                        queryFieldItem.sortType = find.sortType;
-                    }
-                }
-                if (queryFieldItem.ColName == MongoDBHelper.KEY_ID)
-                {
-                    queryFieldItem.IsShow = true;
-                }
-                FieldList.Add(queryFieldItem);
+                List<DataFilter.QueryFieldItem> FieldList = new List<DataFilter.QueryFieldItem>();
+                FieldList = CurrentDataViewInfo.mDataFilter.QueryFieldList;
+                QueryFieldPicker.setQueryFieldList(FieldList);
             }
-            QueryFieldPicker.QueryFieldList = FieldList;
-
-
+            else
+            {
+                QueryFieldPicker.InitByCurrentCollection(true);
+            }
             _conditionPos = new Point(5, 20);
             ctlQueryCondition firstQueryCtl = new ctlQueryCondition();
             firstQueryCtl.Init(ColumnList);
@@ -148,7 +119,7 @@ namespace MagicMongoDBTool
             CurrentDataViewInfo.mDataFilter.Clear();
             CurrentDataViewInfo.mDataFilter.DBName = SystemManager.GetCurrentDataBase().Name;
             CurrentDataViewInfo.mDataFilter.CollectionName = SystemManager.GetCurrentCollection().Name;
-            CurrentDataViewInfo.mDataFilter.QueryFieldList = QueryFieldPicker.QueryFieldList;
+            CurrentDataViewInfo.mDataFilter.QueryFieldList = QueryFieldPicker.getQueryFieldList();
             //过滤条件
             for (int i = 0; i < _conditionCount; i++)
             {
@@ -230,7 +201,7 @@ namespace MagicMongoDBTool
                 //输出配置的初始化
                 FieldList.Add(new DataFilter.QueryFieldItem(item));
             }
-            QueryFieldPicker.QueryFieldList = FieldList;
+            QueryFieldPicker.setQueryFieldList(FieldList);
 
             panFilter.Controls.Clear();
             _conditionPos = new Point(5, 0);

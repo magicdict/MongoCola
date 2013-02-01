@@ -96,13 +96,14 @@
             this.tabFieldInfo.Text = "Output Fields";
             this.tabFieldInfo.UseVisualStyleBackColor = true;
             // 
-            // fieldPicker1
+            // QueryFieldPicker
             // 
             this.QueryFieldPicker.AutoScroll = true;
             this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
             this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QueryFieldPicker.IsIDProtect = true;
             this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
-            this.QueryFieldPicker.Name = "fieldPicker1";
+            this.QueryFieldPicker.Name = "QueryFieldPicker";
             this.QueryFieldPicker.Size = new System.Drawing.Size(581, 462);
             this.QueryFieldPicker.TabIndex = 0;
             // 
@@ -181,7 +182,7 @@
             // cmdLoad
             // 
             this.cmdLoad.BackColor = System.Drawing.Color.Transparent;
-            this.cmdLoad.Location = new System.Drawing.Point(167, 514);
+            this.cmdLoad.Location = new System.Drawing.Point(168, 514);
             this.cmdLoad.Name = "cmdLoad";
             this.cmdLoad.Size = new System.Drawing.Size(117, 33);
             this.cmdLoad.TabIndex = 13;

@@ -45,8 +45,9 @@ namespace MagicMongoDBTool
                 cmbForAggregatePipeline.Items.Add(item);
             }
             cmbForAggregatePipeline.SelectedIndexChanged += new EventHandler(
-                (x, y) => {
-                    _AggrArray = (BsonArray)BsonDocument.Parse(MongoDBHelper.LoadJavascript(cmbForAggregatePipeline.Text)).GetValue(0); 
+                (x, y) =>
+                {
+                    _AggrArray = (BsonArray)BsonDocument.Parse(MongoDBHelper.LoadJavascript(cmbForAggregatePipeline.Text)).GetValue(0);
                     FillAggreationTreeview();
                 }
             );
@@ -116,6 +117,18 @@ namespace MagicMongoDBTool
                 String strJsName = MyMessageBox.ShowInput("pls Input Aggregate Pipeline Name ：", "Save Aggregate Pipeline");
                 MongoDBHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _AggrArray).ToString());
             }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAggrBuilder_Click(object sender, EventArgs e)
+        {
+            frmAggregationCondition frmAggregationBuilder = new frmAggregationCondition();
+            SystemManager.OpenForm(frmAggregationBuilder, false, true);
+            _AggrArray.Add(frmAggregationBuilder.Aggregation);
+            FillAggreationTreeview();
         }
     }
 }

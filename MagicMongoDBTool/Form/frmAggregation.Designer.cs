@@ -32,12 +32,13 @@
             this.cmdRun = new System.Windows.Forms.Button();
             this.cmdAddCondition = new System.Windows.Forms.Button();
             this.lnkReference = new System.Windows.Forms.LinkLabel();
-            this.trvCondition = new TreeViewColumnsProject.TreeViewColumns();
-            this.trvResult = new TreeViewColumnsProject.TreeViewColumns();
             this.cmdSaveAggregatePipeline = new System.Windows.Forms.Button();
             this.lblAggregatePipeline = new System.Windows.Forms.Label();
             this.cmbForAggregatePipeline = new System.Windows.Forms.ComboBox();
             this.cmdClear = new System.Windows.Forms.Button();
+            this.trvCondition = new TreeViewColumnsProject.TreeViewColumns();
+            this.trvResult = new TreeViewColumnsProject.TreeViewColumns();
+            this.btnAggrBuilder = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblResult
@@ -82,24 +83,6 @@
             this.lnkReference.Text = "Aggregation Framework Reference";
             this.lnkReference.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkReference_LinkClicked);
             // 
-            // trvCondition
-            // 
-            this.trvCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvCondition.Location = new System.Drawing.Point(12, 49);
-            this.trvCondition.Name = "trvCondition";
-            this.trvCondition.Padding = new System.Windows.Forms.Padding(1);
-            this.trvCondition.Size = new System.Drawing.Size(393, 329);
-            this.trvCondition.TabIndex = 22;
-            // 
-            // trvResult
-            // 
-            this.trvResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.trvResult.Location = new System.Drawing.Point(433, 45);
-            this.trvResult.Name = "trvResult";
-            this.trvResult.Padding = new System.Windows.Forms.Padding(1);
-            this.trvResult.Size = new System.Drawing.Size(385, 333);
-            this.trvResult.TabIndex = 0;
-            // 
             // cmdSaveAggregatePipeline
             // 
             this.cmdSaveAggregatePipeline.Location = new System.Drawing.Point(581, 388);
@@ -138,12 +121,41 @@
             this.cmdClear.UseVisualStyleBackColor = true;
             this.cmdClear.Click += new System.EventHandler(this.cmdClear_Click);
             // 
+            // trvCondition
+            // 
+            this.trvCondition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvCondition.Location = new System.Drawing.Point(12, 49);
+            this.trvCondition.Name = "trvCondition";
+            this.trvCondition.Padding = new System.Windows.Forms.Padding(1);
+            this.trvCondition.Size = new System.Drawing.Size(393, 329);
+            this.trvCondition.TabIndex = 22;
+            // 
+            // trvResult
+            // 
+            this.trvResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvResult.Location = new System.Drawing.Point(433, 45);
+            this.trvResult.Name = "trvResult";
+            this.trvResult.Padding = new System.Windows.Forms.Padding(1);
+            this.trvResult.Size = new System.Drawing.Size(385, 333);
+            this.trvResult.TabIndex = 0;
+            // 
+            // btnAggrBuilder
+            // 
+            this.btnAggrBuilder.Location = new System.Drawing.Point(31, 390);
+            this.btnAggrBuilder.Name = "btnAggrBuilder";
+            this.btnAggrBuilder.Size = new System.Drawing.Size(135, 23);
+            this.btnAggrBuilder.TabIndex = 30;
+            this.btnAggrBuilder.Text = "Aggregation Builder";
+            this.btnAggrBuilder.UseVisualStyleBackColor = true;
+            this.btnAggrBuilder.Click += new System.EventHandler(this.btnAggrBuilder_Click);
+            // 
             // frmAggregation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(829, 423);
+            this.Controls.Add(this.btnAggrBuilder);
             this.Controls.Add(this.cmdClear);
             this.Controls.Add(this.cmbForAggregatePipeline);
             this.Controls.Add(this.lblAggregatePipeline);
@@ -174,5 +186,6 @@
         private System.Windows.Forms.Label lblAggregatePipeline;
         private System.Windows.Forms.ComboBox cmbForAggregatePipeline;
         private System.Windows.Forms.Button cmdClear;
+        private System.Windows.Forms.Button btnAggrBuilder;
     }
 }

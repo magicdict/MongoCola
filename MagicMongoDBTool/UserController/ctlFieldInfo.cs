@@ -23,7 +23,20 @@ namespace MagicMongoDBTool
         public bool IsShow
         {
             get { return chkIsShow.Checked; }
-            set { chkIsShow.Checked = value; }
+            set { 
+                if ((lblFieldName.Text == MongoDBHelper.KEY_ID) && mIDProtectMode){
+                    return;
+                }
+                chkIsShow.Checked = value; 
+            }
+        }
+        private bool mIDProtectMode;
+        /// <summary>
+        /// ID的显示属性是否可变
+        /// </summary>
+        public bool IsIDProtect{
+            set { mIDProtectMode = value; }
+            get { return mIDProtectMode; }
         }
         /// <summary>
         /// Query Field Item
@@ -37,7 +50,7 @@ namespace MagicMongoDBTool
                 if (value.ColName == MongoDBHelper.KEY_ID)
                 {
                     chkIsShow.Checked = true;
-                    chkIsShow.Enabled = false;
+                    chkIsShow.Enabled = !(mIDProtectMode);
                 }
                 switch (value.sortType)
                 {
