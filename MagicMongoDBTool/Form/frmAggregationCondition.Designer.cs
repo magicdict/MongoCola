@@ -30,12 +30,17 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.QueryFieldPicker = new MagicMongoDBTool.FieldPicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chkSkip = new System.Windows.Forms.CheckBox();
+            this.chkLimit = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnOK = new System.Windows.Forms.Button();
+            this.txtLimit = new System.Windows.Forms.TextBox();
+            this.txtSkip = new System.Windows.Forms.TextBox();
+            this.QueryFieldPicker = new MagicMongoDBTool.FieldPicker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -60,26 +65,39 @@
             this.tabPage1.Text = "$project(Basic)";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // QueryFieldPicker
-            // 
-            this.QueryFieldPicker.AutoScroll = true;
-            this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
-            this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryFieldPicker.IsIDProtect = false;
-            this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
-            this.QueryFieldPicker.Name = "QueryFieldPicker";
-            this.QueryFieldPicker.Size = new System.Drawing.Size(598, 322);
-            this.QueryFieldPicker.TabIndex = 1;
-            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.txtSkip);
+            this.tabPage2.Controls.Add(this.txtLimit);
+            this.tabPage2.Controls.Add(this.chkSkip);
+            this.tabPage2.Controls.Add(this.chkLimit);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(604, 328);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Options";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // chkSkip
+            // 
+            this.chkSkip.AutoSize = true;
+            this.chkSkip.Location = new System.Drawing.Point(26, 40);
+            this.chkSkip.Name = "chkSkip";
+            this.chkSkip.Size = new System.Drawing.Size(51, 17);
+            this.chkSkip.TabIndex = 1;
+            this.chkSkip.Text = "$skip";
+            this.chkSkip.UseVisualStyleBackColor = true;
+            // 
+            // chkLimit
+            // 
+            this.chkLimit.AutoSize = true;
+            this.chkLimit.Location = new System.Drawing.Point(26, 17);
+            this.chkLimit.Name = "chkLimit";
+            this.chkLimit.Size = new System.Drawing.Size(49, 17);
+            this.chkLimit.TabIndex = 0;
+            this.chkLimit.Text = "$limit";
+            this.chkLimit.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
@@ -99,6 +117,36 @@
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // txtLimit
+            // 
+            this.txtLimit.Location = new System.Drawing.Point(81, 15);
+            this.txtLimit.Name = "txtLimit";
+            this.txtLimit.Size = new System.Drawing.Size(135, 20);
+            this.txtLimit.TabIndex = 28;
+            this.txtLimit.Text = "1";
+            this.txtLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtSkip
+            // 
+            this.txtSkip.Location = new System.Drawing.Point(81, 37);
+            this.txtSkip.Name = "txtSkip";
+            this.txtSkip.Size = new System.Drawing.Size(135, 20);
+            this.txtSkip.TabIndex = 29;
+            this.txtSkip.Text = "1";
+            this.txtSkip.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // QueryFieldPicker
+            // 
+            this.QueryFieldPicker.AutoScroll = true;
+            this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
+            this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QueryFieldPicker.IsIDProtect = false;
+            this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
+            this.QueryFieldPicker.Name = "QueryFieldPicker";
+            this.QueryFieldPicker.Size = new System.Drawing.Size(598, 322);
+            this.QueryFieldPicker.TabIndex = 1;
             // 
             // frmAggregationCondition
             // 
@@ -113,6 +161,8 @@
             this.Load += new System.EventHandler(this.frmAggregationCondition_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -125,6 +175,10 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.CheckBox chkSkip;
+        private System.Windows.Forms.CheckBox chkLimit;
+        private System.Windows.Forms.TextBox txtSkip;
+        private System.Windows.Forms.TextBox txtLimit;
 
 
     }

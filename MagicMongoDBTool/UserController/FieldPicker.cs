@@ -106,7 +106,10 @@ namespace MagicMongoDBTool
             }
             //Note The $sort cannot begin sorting documents until previous operators in the pipeline have returned all output.
             //如果先$project，再$sort的话，全字段输出
-            Aggregation.Add(new BsonElement("$sort", sort));
+            if (sort.ElementCount > 0)
+            {
+                Aggregation.Add(new BsonElement("$sort", sort));
+            }
             Aggregation.Add(new BsonElement("$project", project));
             return Aggregation;
         }

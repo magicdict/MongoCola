@@ -85,7 +85,6 @@
             this.NumGeoX.TabIndex = 27;
             this.NumGeoX.Text = "1";
             this.NumGeoX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.NumGeoX.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
             // 
             // NumGeoY
             // 
@@ -95,7 +94,6 @@
             this.NumGeoY.TabIndex = 28;
             this.NumGeoY.Text = "1";
             this.NumGeoY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.NumGeoY.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
             // 
             // NumMaxDistance
             // 
@@ -105,7 +103,6 @@
             this.NumMaxDistance.TabIndex = 29;
             this.NumMaxDistance.Text = "1";
             this.NumMaxDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.NumMaxDistance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
             // 
             // NumDistanceMultiplier
             // 
@@ -115,7 +112,6 @@
             this.NumDistanceMultiplier.TabIndex = 30;
             this.NumDistanceMultiplier.Text = "1";
             this.NumDistanceMultiplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.NumDistanceMultiplier.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberText_KeyPress);
             // 
             // lblMaxDistance
             // 

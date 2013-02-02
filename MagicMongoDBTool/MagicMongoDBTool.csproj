@@ -96,6 +96,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Module\System\NumberTextBox.cs" />
     <Compile Include="UserController\FieldPicker.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -17,6 +17,10 @@ namespace MagicMongoDBTool
         public ctlGeoNear()
         {
             InitializeComponent();
+            NumGeoX.KeyPress += MongoDBHelper.NumberText_KeyPress;
+            NumGeoY.KeyPress += MongoDBHelper.NumberText_KeyPress;
+            NumDistanceMultiplier.KeyPress += MongoDBHelper.NumberText_KeyPress;
+            NumMaxDistance.KeyPress += MongoDBHelper.NumberText_KeyPress;
         }
         private void lnkGeoNear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -39,34 +43,6 @@ namespace MagicMongoDBTool
             catch (Exception ex)
             {
                 SystemManager.ExceptionDeal(ex);
-            }
-        }
-
-        private void NumberText_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46)
-            {
-                e.Handled = true;
-            }
-            if (e.KeyChar == 46)                       //小数点
-            {
-                if (((TextBox)sender).Text.Length <= 0)
-                    e.Handled = true;           //小数点不能在第一位
-                else
-                {
-                    float f;
-                    float oldf;
-                    bool b1 = false, b2 = false;
-                    b1 = float.TryParse(((TextBox)sender).Text, out oldf);
-                    b2 = float.TryParse(((TextBox)sender).Text + e.KeyChar.ToString(), out f);
-                    if (b2 == false)
-                    {
-                        if (b1 == true)
-                            e.Handled = true;
-                        else
-                            e.Handled = false;
-                    }
-                }
             }
         }
         /// <summary>
