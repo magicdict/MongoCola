@@ -11,7 +11,9 @@ namespace MagicMongoDBTool.Module
         /// 管理中服务器列表
         /// </summary>
         public static Dictionary<String, MongoServer> _mongoConnSvrLst = new Dictionary<String, MongoServer>();
-
+        /// <summary>
+        /// 
+        /// </summary>
         public static Dictionary<String, MongoServerInstance> _mongoInstanceLst = new Dictionary<String, MongoServerInstance>();
 
         /// <summary>
@@ -124,6 +126,15 @@ namespace MagicMongoDBTool.Module
                 //使用MongoConnectionString建立连接
                 mongoSvrSetting = MongoServerSettings.FromUrl(MongoUrl.Create(config.ConnectionString));
             }
+            //为了避免出现无法读取数据库结构的问题，将读权限都设置为Preferred
+            if (mongoSvrSetting.ReadPreference == ReadPreference.Primary)
+            {
+                mongoSvrSetting.ReadPreference = ReadPreference.PrimaryPreferred;
+            }
+            if (mongoSvrSetting.ReadPreference == ReadPreference.Secondary)
+            {
+                mongoSvrSetting.ReadPreference = ReadPreference.SecondaryPreferred;
+            }
             MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
             return masterMongoSvr;
         }
@@ -234,6 +245,7 @@ namespace MagicMongoDBTool.Module
                 config.Host = mongourl.Server.Host;
                 config.Port = mongourl.Server.Port;
                 config.ReadPreference = mongourl.ReadPreference.ToString();
+                //config.ReadPreference = ReadPreference.PrimaryPreferred.ToString();
                 //TODO: Is this OK??
                 config.WriteConcern = mongourl.GetWriteConcern(true).ToString();
                 config.socketTimeoutMS = (int)mongourl.SocketTimeout.TotalMilliseconds;

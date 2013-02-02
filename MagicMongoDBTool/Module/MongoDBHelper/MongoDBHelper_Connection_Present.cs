@@ -313,6 +313,7 @@ namespace MagicMongoDBTool.Module
                                                 MongoServer mongoConn, MongoServerInstance mServerInstace, MongoServer mServer)
         {
             Boolean isServer = false;
+            //无论如何，都改为主要服务器读优先
             if (mServerInstace == null)
             {
                 isServer = true;

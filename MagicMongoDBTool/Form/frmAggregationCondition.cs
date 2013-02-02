@@ -32,15 +32,16 @@ namespace MagicMongoDBTool
 
         private void btnOK_Click(object sender, System.EventArgs e)
         {
+            //这里必须要考虑一下顺序的问题
             if (chkSkip.Checked && int.Parse(txtSkip.Text) > 0)
             {
                 Aggregation.Add(new BsonElement("$skip", int.Parse(txtSkip.Text)));
             }
+            Aggregation.Add(QueryFieldPicker.GetAggregation());
             if (chkLimit.Checked && int.Parse(txtLimit.Text) > 0)
             {
                 Aggregation.Add(new BsonElement("$limit", int.Parse(txtLimit.Text)));
             }
-            Aggregation.Add(QueryFieldPicker.GetAggregation());
             this.Close();
         }
     }

@@ -183,7 +183,15 @@ namespace MagicMongoDBTool.Module
 
                                 //2012-3-6
                                 lst.SubItems.Add(CollectionStatus.IsCapped.ToString());
-                                lst.SubItems.Add(CollectionStatus.MaxDocuments.ToString());
+                                //https://jira.mongodb.org/browse/CSHARP-665
+                                try
+                                {
+                                    lst.SubItems.Add(CollectionStatus.MaxDocuments.ToString());
+                                }
+                                catch (Exception)
+                                {
+                                    lst.SubItems.Add(Int32.MaxValue.ToString());
+                                }
 
                                 if (CollectionStatus.ObjectCount != 0)
                                 {
