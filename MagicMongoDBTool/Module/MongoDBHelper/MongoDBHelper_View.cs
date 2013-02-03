@@ -295,6 +295,7 @@ namespace MagicMongoDBTool.Module
                     default:
                         //SelectDocId属性的设置,
                         //2012/03/19 不一定id是在第一位
+                        //这里是为了操作顶层节点的删除，修改用的，所以必须要放item.GetElement(0).Value;
                         BsonElement id;
                         item.TryGetElement(KEY_ID, out id);
                         if (id != null)

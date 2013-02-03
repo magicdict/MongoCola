@@ -171,13 +171,17 @@ namespace TreeViewColumnsProject
                             {
                                 if (!mValue.IsBsonDocument && !mValue.IsBsonArray)
                                 {
-                                    strColumnText = mValue.ToString();
+                                    if (e.Node.Level > 0)
+                                    {
+                                        //根节点有Value，可能是ID，用来取得选中节点的信息
+                                        strColumnText = mValue.ToString();
+                                    }
                                 }
                                 //Type这里已经有表示Type的标识了，这里就不重复显示了。
                                 //else
                                 //{
-                                    //if (mValue.IsBsonDocument) { strColumnText = MongoDBHelper.Document_Mark; }
-                                    //if (mValue.IsBsonArray) { strColumnText = MongoDBHelper.Array_Mark; }
+                                //if (mValue.IsBsonDocument) { strColumnText = MongoDBHelper.Document_Mark; }
+                                //if (mValue.IsBsonArray) { strColumnText = MongoDBHelper.Array_Mark; }
                                 //}
                             }
                         }
