@@ -10,12 +10,17 @@ MongoCola is free and open source.
 ========================================================================
 Release History
 ========================================================================
+Ver 1.27 2013/01/27
+Aggregation Framework
+
+========================================================================
+
 Ver 1.26 2013/01/27
 Only Fix Bugs
 1.Change the ForeColor to HighlightText of the selected node text. (Thank cyrus for report bug)
 2.Try to fix the bugs of modify documents. (Thank cyrus for report bug)
 3.Report the MaxDocument Bugs of C#1.7.1 Driver
-
+ 
 ========================================================================
 Ver 1.25 2013/01/20
 1.Add chart to DB status and Collection status.

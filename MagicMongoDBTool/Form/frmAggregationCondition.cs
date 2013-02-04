@@ -6,7 +6,7 @@ namespace MagicMongoDBTool
 {
     public partial class frmAggregationCondition : Form
     {
-        public BsonDocument Aggregation = new BsonDocument();
+        public BsonArray Aggregation = new BsonArray();
         public frmAggregationCondition()
         {
             InitializeComponent();
@@ -32,15 +32,15 @@ namespace MagicMongoDBTool
 
         private void btnOK_Click(object sender, System.EventArgs e)
         {
-            //这里必须要考虑一下顺序的问题
+            //这里必须要考虑一下顺序的问题?
+            Aggregation.Add(QueryFieldPicker.GetAggregation());
             if (chkSkip.Checked && int.Parse(txtSkip.Text) > 0)
             {
-                Aggregation.Add(new BsonElement("$skip", int.Parse(txtSkip.Text)));
+                Aggregation.Add(new BsonDocument("$skip", int.Parse(txtSkip.Text)));
             }
-            Aggregation.Add(QueryFieldPicker.GetAggregation());
             if (chkLimit.Checked && int.Parse(txtLimit.Text) > 0)
             {
-                Aggregation.Add(new BsonElement("$limit", int.Parse(txtLimit.Text)));
+                Aggregation.Add(new BsonDocument("$limit", int.Parse(txtLimit.Text)));
             }
             this.Close();
         }

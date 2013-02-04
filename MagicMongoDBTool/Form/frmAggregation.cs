@@ -8,14 +8,16 @@ namespace MagicMongoDBTool
 {
     public partial class frmAggregation : System.Windows.Forms.Form
     {
-        private MongoCollection _mongocol = SystemManager.GetCurrentCollection();
+        /// <summary>
+        /// 
+        /// </summary>
         private BsonArray _AggrArray = new BsonArray();
         public frmAggregation()
         {
             InitializeComponent();
         }
         /// <summary>
-        /// Aggregate
+        /// Run Aggregate
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -106,7 +108,7 @@ namespace MagicMongoDBTool
             System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/aggregation/");
         }
         /// <summary>
-        /// 
+        /// Save Aggregate Pipeline
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -119,7 +121,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 
+        /// Aggregation Builder
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -127,7 +129,7 @@ namespace MagicMongoDBTool
         {
             frmAggregationCondition frmAggregationBuilder = new frmAggregationCondition();
             SystemManager.OpenForm(frmAggregationBuilder, false, true);
-            _AggrArray.Add(frmAggregationBuilder.Aggregation);
+            _AggrArray= frmAggregationBuilder.Aggregation;
             FillAggreationTreeview();
         }
     }
