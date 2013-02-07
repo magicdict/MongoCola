@@ -243,7 +243,7 @@ namespace MagicMongoDBTool.Module
             }
             catch (System.IO.IOException ex)
             {
-                MyMessageBox.ShowMessage(mMongoCommand.CommandString, "IOException,Try to set Socket TimeOut more long at connection config", ex.ToString(), true);
+                SystemManager.ExceptionDeal(ex,mMongoCommand.CommandString, "IOException,Try to set Socket TimeOut more long at connection config");
             }
             catch (Exception ex)
             {

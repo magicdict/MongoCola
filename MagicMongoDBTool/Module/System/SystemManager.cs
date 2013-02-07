@@ -41,6 +41,15 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
+        /// 驱动版本 MongoDB.Driver.DLL
+        /// </summary>
+        public static String MongoDBDriverVersion;
+        /// <summary>
+        /// 驱动版本 MongoDB.Bson.DLL
+        /// </summary>
+        public static String MongoDBBsonVersion;
+
+        /// <summary>
         /// 获得当前对象的路径
         /// </summary>
         public static String SelectTagData
@@ -199,7 +208,9 @@ namespace MagicMongoDBTool.Module
         private static TreeNode FindRootNode(TreeNode node)
         {
             if (node.Parent == null)
+            {
                 return node;
+            }
             else
             {
                 return FindRootNode(node.Parent);
@@ -217,7 +228,6 @@ namespace MagicMongoDBTool.Module
                 jsNamelst.Add(item.GetValue(MongoDBHelper.KEY_ID).ToString());
             }
             return jsNamelst;
-
         }
         /// <summary>
         /// 是否使用默认语言
@@ -231,31 +241,40 @@ namespace MagicMongoDBTool.Module
                 {
                     return true;
                 }
-                if (ConfigHelperInstance.LanguageFileName == "English" ||
-                    String.IsNullOrEmpty(ConfigHelperInstance.LanguageFileName))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return (ConfigHelperInstance.LanguageFileName == "English" ||
+                        String.IsNullOrEmpty(ConfigHelperInstance.LanguageFileName));
             }
         }
+        /// <summary>
+        /// 异常处理
+        /// </summary>
+        /// <param name="ex">异常</param>
         internal static void ExceptionDeal(Exception ex)
         {
-            MyMessageBox.ShowMessage("Exception", "Exception", ex.ToString(), true);
+            ExceptionDeal(ex, "Exception", "Exception");
         }
-        internal static void ExceptionDeal(Exception ex, String Title)
+        /// <summary>
+        /// 异常处理
+        /// </summary>
+        /// <param name="ex">异常</param>
+        /// <param name="Message">消息</param>
+        internal static void ExceptionDeal(Exception ex, String Message)
         {
-            if (Title == String.Empty)
-            {
-                MyMessageBox.ShowMessage("Exception", "Exception", ex.ToString(), true);
-            }
-            else
-            {
-                MyMessageBox.ShowMessage("Exception", Title, ex.ToString(), true);
-            }
+            ExceptionDeal(ex, "Exception", Message);
+        }
+        /// <summary>
+        /// 异常处理
+        /// </summary>
+        /// <param name="ex">异常</param>
+        /// <param name="Title">标题</param>
+        /// <param name="Message">消息</param>
+        internal static void ExceptionDeal(Exception ex, String Title, String Message)
+        {
+            String ExceptionString;
+            ExceptionString = "MongoDB.Driver.DLL:" + MongoDBDriverVersion + System.Environment.NewLine;
+            ExceptionString += "MongoDB.Bson.DLL:" + MongoDBBsonVersion + System.Environment.NewLine;
+            ExceptionString += ex.ToString();
+            MyMessageBox.ShowMessage(Title, Message, ExceptionString, true);
         }
         /// <summary>
         /// JsonWriterSettings
@@ -266,8 +285,6 @@ namespace MagicMongoDBTool.Module
             NewLineChars = System.Environment.NewLine,
             OutputMode = MongoDB.Bson.IO.JsonOutputMode.Strict
         };
-
-
         /// <summary>
         /// 初始化
         /// </summary>

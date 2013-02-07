@@ -171,11 +171,16 @@ namespace MagicMongoDBTool
                 cmbIndexList.Items.Clear();
                 lstExistShardTag.Items.Clear();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                SystemManager.ExceptionDeal(ex);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbShardKeyDB_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -188,9 +193,9 @@ namespace MagicMongoDBTool
                     cmbShardKeyCol.Items.Add(item);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                SystemManager.ExceptionDeal(ex);
             }
         }
 
@@ -235,9 +240,9 @@ namespace MagicMongoDBTool
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                SystemManager.ExceptionDeal(ex);
             }
         }
         /// <summary>

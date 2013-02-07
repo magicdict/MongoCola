@@ -98,7 +98,7 @@ namespace MagicMongoDBTool
             }
             catch (Exception ex)
             {
-                MyMessageBox.ShowMessage("Exception", "Exception is Happened", ex.ToString(), true);
+                SystemManager.ExceptionDeal(ex,"Exception", "Exception is Happened");
             }
         }
         /// <summary>

@@ -73,7 +73,7 @@ namespace MagicMongoDBTool
                 }
                 catch (ArgumentException ex)
                 {
-                    MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", ex.Message, true);
+                    SystemManager.ExceptionDeal(ex,"Create MongoDatabase", "Argument Exception");
                     Result = false;
                 }
             }

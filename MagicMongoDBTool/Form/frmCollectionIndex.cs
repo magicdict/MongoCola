@@ -178,7 +178,7 @@ namespace MagicMongoDBTool
                 }
                 catch (Exception ex)
                 {
-                    MyMessageBox.ShowMessage("Index Add Failed!", "IndexName:" + txtIndexName.Text, ex.ToString(), true);
+                    SystemManager.ExceptionDeal(ex,"Index Add Failed!", "IndexName:" + txtIndexName.Text);
                 }
                 RefreshList();
             }

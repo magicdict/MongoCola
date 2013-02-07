@@ -31,7 +31,7 @@ namespace MagicMongoDBTool
                 }
                 catch (Exception ex)
                 {
-                    MyMessageBox.ShowMessage("Error", "Format Error", ex.ToString(), true);
+                    SystemManager.ExceptionDeal(ex,"Error", "Format Error");
                 }
             }
             else
@@ -43,7 +43,7 @@ namespace MagicMongoDBTool
                 }
                 catch (Exception ex)
                 {
-                    MyMessageBox.ShowMessage("Error", "InsertEmptyDocument Error", ex.ToString(), true);
+                    SystemManager.ExceptionDeal(ex,"Error", "InsertEmptyDocument Error");
                 }
             }
         }

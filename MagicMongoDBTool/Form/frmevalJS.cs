@@ -81,7 +81,7 @@ namespace MagicMongoDBTool
                         }
                         catch (Exception ex)
                         {
-                            MyMessageBox.ShowMessage("Exception", "Parameter Exception", ex.ToString(), true);
+                            SystemManager.ExceptionDeal(ex,"Exception", "Parameter Exception");
                         }
                     }
                 }
@@ -93,7 +93,7 @@ namespace MagicMongoDBTool
             }
             catch (Exception ex)
             {
-                MyMessageBox.ShowMessage("Exception", "Result", ex.ToString(), true);
+                SystemManager.ExceptionDeal(ex, "Exception", "Result");
             }
 
         }

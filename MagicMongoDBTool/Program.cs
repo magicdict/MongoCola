@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+using System.Diagnostics;
 namespace MagicMongoDBTool
 {
     static class Program
@@ -15,6 +16,12 @@ namespace MagicMongoDBTool
             Application.SetCompatibleTextRenderingDefault(false);
             ///这句话如果写到后面去的话，在没有Config文件的时候，服务器树形列表显示不正确
             Application.EnableVisualStyles();
+
+            FileVersionInfo info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Driver.dll");
+            SystemManager.MongoDBDriverVersion = info.ProductVersion.ToString();
+
+            info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Bson.dll");
+            SystemManager.MongoDBBsonVersion = info.ProductVersion.ToString();
 
             if (File.Exists(ConfigHelper._configFilename))
             {

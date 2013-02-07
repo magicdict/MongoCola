@@ -38,7 +38,7 @@ namespace MagicMongoDBTool.Module
                 }
                 catch (Exception ex)
                 {
-                    MyMessageBox.ShowMessage("Exception", "Can't Connect to Server：" + config.ConnectionName, ex.ToString(), true);
+                    SystemManager.ExceptionDeal(ex,"Exception", "Can't Connect to Server：" + config.ConnectionName);
                 }
             }
         }

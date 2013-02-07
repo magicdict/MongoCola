@@ -57,7 +57,7 @@ namespace MagicMongoDBTool.Module
             }
             catch (Exception ex)
             {
-                MyMessageBox.ShowMessage("Error", "Exception happend when open file", ex.ToString());
+                SystemManager.ExceptionDeal(ex,"Error", "Exception happend when open file");
             }
         }
         /// <summary>

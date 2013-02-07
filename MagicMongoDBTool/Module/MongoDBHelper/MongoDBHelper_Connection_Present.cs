@@ -33,7 +33,7 @@ namespace MagicMongoDBTool.Module
 
         #region"展示数据库结构 WebForm"
         /// <summary>
-        /// 
+        /// 获取JSON
         /// </summary>
         /// <param name="ConnectionName"></param>
         /// <returns></returns>
@@ -43,6 +43,13 @@ namespace MagicMongoDBTool.Module
             FillConnectionToTreeView(tree);
             return ConvertTreeViewTozTreeJson(tree);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="RootName"></param>
+        /// <param name="doc"></param>
+        /// <param name="IsOpen"></param>
+        /// <returns></returns>
         public static String ConvertBsonTozTreeJson(String RootName, BsonDocument doc, Boolean IsOpen)
         {
             TreeViewColumns trvStatus = new TreeViewColumns();
@@ -53,6 +60,11 @@ namespace MagicMongoDBTool.Module
             }
             return ConvertTreeViewTozTreeJson(trvStatus.TreeView);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tree"></param>
+        /// <returns></returns>
         public static String ConvertTreeViewTozTreeJson(TreeView tree)
         {
             BsonArray array = new BsonArray();
@@ -267,13 +279,13 @@ namespace MagicMongoDBTool.Module
                     if (!SystemManager.IsUseDefaultLanguage)
                     {
                         ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]";
-                        MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
-                                                 SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
+                        SystemManager.ExceptionDeal(ex,SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
+                                                       SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException_Note));
                     }
                     else
                     {
                         ConnectionNode.Text += "[MongoAuthenticationException]";
-                        MyMessageBox.ShowMessage("MongoAuthenticationException:", "Please check UserName and Password", ex.ToString(), true);
+                        SystemManager.ExceptionDeal(ex,"MongoAuthenticationException:", "Please check UserName and Password");
                     }
                     ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
@@ -287,13 +299,13 @@ namespace MagicMongoDBTool.Module
                     if (!SystemManager.IsUseDefaultLanguage)
                     {
                         ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
-                        MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
-                                                 SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note), ex.ToString(), true);
+                        SystemManager.ExceptionDeal(ex,SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                                                       SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note));
                     }
                     else
                     {
                         ConnectionNode.Text += "[Exception]";
-                        MyMessageBox.ShowMessage("Exception", "Mongo Server may not Startup or Auth Mode is not correct", ex.ToString(), true);
+                        SystemManager.ExceptionDeal(ex,"Not Connected","Mongo Server may not Startup or Auth Mode is not correct");
                     }
                     ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
@@ -405,7 +417,7 @@ namespace MagicMongoDBTool.Module
                     }
                     catch (Exception ex)
                     {
-                        MyMessageBox.ShowMessage(strDBName + "Exception", strDBName + "Exception", ex.ToString());
+                        SystemManager.ExceptionDeal(ex,strDBName + "Exception", strDBName + "Exception");
                         mongoDBNode = new TreeNode(strDBName + " (Exception)");
                         mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
@@ -510,11 +522,12 @@ namespace MagicMongoDBTool.Module
                         {
                             mongoColNode = FillCollectionInfoToTreeNode(strColName, mongoDB, mongoSvrKey);
                         }
-                        catch (Exception)
+                        catch (Exception ex)
                         {
                             mongoColNode = new TreeNode(strColName + "[exception:]");
                             mongoColNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
                             mongoColNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Err;
+                            SystemManager.ExceptionDeal(ex);
                         }
                         if (IsSystemCollection(mongoDB.Name, strColName))
                         {
