@@ -10,18 +10,6 @@ namespace MagicMongoDBTool
     public partial class frmQuery : Form
     {
         /// <summary>
-        /// 当前数据集的字段列表
-        /// </summary>
-        private List<String> ColumnList = new List<String>();
-        /// <summary>
-        /// 条件输入器数量
-        /// </summary>
-        private byte _conditionCount = 1;
-        /// <summary>
-        /// 条件输入器位置
-        /// </summary>
-        private Point _conditionPos = new Point(5, 20);
-        /// <summary>
         /// 当前DataViewInfo
         /// </summary>
         MongoDBHelper.DataViewInfo CurrentDataViewInfo;
@@ -41,26 +29,23 @@ namespace MagicMongoDBTool
         private void frmQuery_Load(object sender, EventArgs e)
         {
             this.Icon = GetSystemIcon.ConvertImgToIcon(GetResource.GetImage(ImageType.Query));
-
+            List<DataFilter.QueryFieldItem> FieldList = new List<DataFilter.QueryFieldItem>();
+            FieldList = CurrentDataViewInfo.mDataFilter.QueryFieldList;
+            //增加第一个条件
+            ConditionPan.AddCondition();
             if (CurrentDataViewInfo.IsUseFilter)
             {
-                List<DataFilter.QueryFieldItem> FieldList = new List<DataFilter.QueryFieldItem>();
-                FieldList = CurrentDataViewInfo.mDataFilter.QueryFieldList;
+                //使用过滤：字段和条件的设定
                 QueryFieldPicker.setQueryFieldList(FieldList);
+                if (CurrentDataViewInfo.mDataFilter.QueryConditionList.Count > 0)
+                {
+                    ConditionPan.PutQueryToUI(CurrentDataViewInfo.mDataFilter);
+                }
             }
             else
             {
+                //不使用过滤：字段初始化
                 QueryFieldPicker.InitByCurrentCollection(true);
-            }
-            _conditionPos = new Point(5, 20);
-            ctlQueryCondition firstQueryCtl = new ctlQueryCondition();
-            firstQueryCtl.Init(ColumnList);
-            firstQueryCtl.Location = _conditionPos;
-            firstQueryCtl.Name = "Condition" + _conditionCount.ToString();
-            panFilter.Controls.Add(firstQueryCtl);
-            if (CurrentDataViewInfo.mDataFilter.QueryConditionList.Count > 0)
-            {
-                PutQueryToUI(CurrentDataViewInfo.mDataFilter);
             }
             if (!SystemManager.IsUseDefaultLanguage)
             {
@@ -76,19 +61,22 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 新增条件
+        /// 添加条件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdAddCondition_Click(object sender, EventArgs e)
         {
-            _conditionCount++;
-            ctlQueryCondition newCondition = new ctlQueryCondition();
-            newCondition.Init(ColumnList);
-            _conditionPos.Y += newCondition.Height;
-            newCondition.Location = _conditionPos;
-            newCondition.Name = "Condition" + _conditionCount.ToString();
-            panFilter.Controls.Add(newCondition);
+            ConditionPan.AddCondition();
+        }
+        /// <summary>
+        /// 清空条件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ConditionPan.ClearCondition();
         }
         /// <summary>
         /// 确定
@@ -111,24 +99,13 @@ namespace MagicMongoDBTool
             this.Close();
         }
         /// <summary>
-        /// 设置DataFilter
+        /// 直接关闭窗体
         /// </summary>
-        private void SetCurrDataFilter()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdCancel_Click(object sender, EventArgs e)
         {
-            //清除以前的结果和内部变量，重要！
-            CurrentDataViewInfo.mDataFilter.Clear();
-            CurrentDataViewInfo.mDataFilter.DBName = SystemManager.GetCurrentDataBase().Name;
-            CurrentDataViewInfo.mDataFilter.CollectionName = SystemManager.GetCurrentCollection().Name;
-            CurrentDataViewInfo.mDataFilter.QueryFieldList = QueryFieldPicker.getQueryFieldList();
-            //过滤条件
-            for (int i = 0; i < _conditionCount; i++)
-            {
-                ctlQueryCondition ctl = (ctlQueryCondition)Controls.Find("Condition" + (i + 1).ToString(), true)[0];
-                if (ctl.IsSeted)
-                {
-                    CurrentDataViewInfo.mDataFilter.QueryConditionList.Add(ctl.ConditionItem);
-                }
-            }
+            this.Close();
         }
         /// <summary>
         /// 保存
@@ -155,6 +132,19 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
+        /// 设置DataFilter
+        /// </summary>
+        private void SetCurrDataFilter()
+        {
+            //清除以前的结果和内部变量，重要！
+            CurrentDataViewInfo.mDataFilter.Clear();
+            CurrentDataViewInfo.mDataFilter.DBName = SystemManager.GetCurrentDataBase().Name;
+            CurrentDataViewInfo.mDataFilter.CollectionName = SystemManager.GetCurrentCollection().Name;
+            CurrentDataViewInfo.mDataFilter.QueryFieldList = QueryFieldPicker.getQueryFieldList();
+            ConditionPan.SetCurrDataFilter(CurrentDataViewInfo);
+
+        }
+        /// <summary>
         /// 加载
         /// </summary>
         /// <param name="sender"></param>
@@ -169,74 +159,5 @@ namespace MagicMongoDBTool
                 CurrentDataViewInfo.mDataFilter = NewDataFilter;
             }
         }
-        /// <summary>
-        /// 将条件转成UI
-        /// </summary>
-        /// <param name="NewDataFilter"></param>
-        private void PutQueryToUI(DataFilter NewDataFilter)
-        {
-            String strErrMsg = String.Empty;
-            List<String> ShowColumnList = new List<String>();
-            foreach (String item in ColumnList)
-            {
-                ShowColumnList.Add(item);
-            }
-            //清除所有的控件
-            List<DataFilter.QueryFieldItem> FieldList = NewDataFilter.QueryFieldList;
-            foreach (DataFilter.QueryFieldItem queryFieldItem in NewDataFilter.QueryFieldList)
-            {
-                //动态加载控件
-                if (!ColumnList.Contains(queryFieldItem.ColName))
-                {
-                    strErrMsg += "Display Field [" + queryFieldItem.ColName + "] is not exist in current collection any more" + System.Environment.NewLine;
-                }
-                else
-                {
-                    ShowColumnList.Remove(queryFieldItem.ColName);
-                }
-            }
-            foreach (String item in ShowColumnList)
-            {
-                strErrMsg += "New Field" + item + "Is Append" + System.Environment.NewLine;
-                //输出配置的初始化
-                FieldList.Add(new DataFilter.QueryFieldItem(item));
-            }
-            QueryFieldPicker.setQueryFieldList(FieldList);
-
-            panFilter.Controls.Clear();
-            _conditionPos = new Point(5, 0);
-            _conditionCount = 0;
-            foreach (DataFilter.QueryConditionInputItem queryConditionItem in NewDataFilter.QueryConditionList)
-            {
-                ctlQueryCondition newCondition = new ctlQueryCondition();
-                newCondition.Init(ColumnList);
-                _conditionPos.Y += newCondition.Height;
-                newCondition.Location = _conditionPos;
-                newCondition.ConditionItem = queryConditionItem;
-                _conditionCount++;
-                newCondition.Name = "Condition" + _conditionCount.ToString();
-                panFilter.Controls.Add(newCondition);
-
-                if (!ColumnList.Contains(queryConditionItem.ColName))
-                {
-                    strErrMsg += queryConditionItem.ColName + "Query Condition Field is not exist in collection any more" + System.Environment.NewLine;
-                }
-            }
-
-            if (strErrMsg != String.Empty)
-            {
-                MyMessageBox.ShowMessage("Load Exception", "A Exception is happened when loading", strErrMsg, true);
-            }
-        }
-        /// <summary>
-        /// 直接关闭窗体
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
     }
 }

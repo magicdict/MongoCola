@@ -96,6 +96,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserController\ConditionPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ConditionPanel.Designer.cs">
+      <DependentUpon>ConditionPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Aggregation.cs" />
     <Compile Include="Module\System\NumberTextBox.cs" />
     <Compile Include="UserController\FieldPicker.cs">
       <SubType>UserControl</SubType>
@@ -417,6 +424,9 @@
     <Compile Include="UserController\TreeViewColumns.Designer.cs">
       <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserController\ConditionPanel.resx">
+      <DependentUpon>ConditionPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmAggregation.resx">
       <DependentUpon>frmAggregation.cs</DependentUpon>
     </EmbeddedResource>

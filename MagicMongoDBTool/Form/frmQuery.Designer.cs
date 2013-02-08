@@ -34,7 +34,9 @@
             this.tabFieldInfo = new System.Windows.Forms.TabPage();
             this.QueryFieldPicker = new MagicMongoDBTool.FieldPicker();
             this.tabCondition = new System.Windows.Forms.TabPage();
+            this.btnClear = new System.Windows.Forms.Button();
             this.panFilter = new System.Windows.Forms.Panel();
+            this.ConditionPan = new MagicMongoDBTool.ConditionPanel();
             this.tabGeoNear = new System.Windows.Forms.TabPage();
             this.ctlGeoNear1 = new MagicMongoDBTool.ctlGeoNear();
             this.tabSql = new System.Windows.Forms.TabPage();
@@ -46,6 +48,7 @@
             this.tabControl.SuspendLayout();
             this.tabFieldInfo.SuspendLayout();
             this.tabCondition.SuspendLayout();
+            this.panFilter.SuspendLayout();
             this.tabGeoNear.SuspendLayout();
             this.tabSql.SuspendLayout();
             this.SuspendLayout();
@@ -55,9 +58,9 @@
             this.cmdAddCondition.BackColor = System.Drawing.Color.Transparent;
             this.cmdAddCondition.Location = new System.Drawing.Point(445, 393);
             this.cmdAddCondition.Name = "cmdAddCondition";
-            this.cmdAddCondition.Size = new System.Drawing.Size(114, 36);
+            this.cmdAddCondition.Size = new System.Drawing.Size(96, 36);
             this.cmdAddCondition.TabIndex = 14;
-            this.cmdAddCondition.Text = "AddFilter";
+            this.cmdAddCondition.Text = "Add Filter";
             this.cmdAddCondition.UseVisualStyleBackColor = false;
             this.cmdAddCondition.Click += new System.EventHandler(this.cmdAddCondition_Click);
             // 
@@ -109,6 +112,7 @@
             // 
             // tabCondition
             // 
+            this.tabCondition.Controls.Add(this.btnClear);
             this.tabCondition.Controls.Add(this.panFilter);
             this.tabCondition.Controls.Add(this.cmdAddCondition);
             this.tabCondition.Location = new System.Drawing.Point(4, 24);
@@ -119,14 +123,33 @@
             this.tabCondition.Text = "Condition";
             this.tabCondition.UseVisualStyleBackColor = true;
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(328, 393);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(96, 36);
+            this.btnClear.TabIndex = 16;
+            this.btnClear.Text = "Clear Filter";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // panFilter
             // 
             this.panFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panFilter.Controls.Add(this.ConditionPan);
             this.panFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.panFilter.Location = new System.Drawing.Point(3, 3);
             this.panFilter.Name = "panFilter";
             this.panFilter.Size = new System.Drawing.Size(581, 383);
             this.panFilter.TabIndex = 15;
+            // 
+            // conditionPanel1
+            // 
+            this.ConditionPan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConditionPan.Location = new System.Drawing.Point(0, 0);
+            this.ConditionPan.Name = "conditionPanel1";
+            this.ConditionPan.Size = new System.Drawing.Size(579, 381);
+            this.ConditionPan.TabIndex = 0;
             // 
             // tabGeoNear
             // 
@@ -233,6 +256,7 @@
             this.tabControl.ResumeLayout(false);
             this.tabFieldInfo.ResumeLayout(false);
             this.tabCondition.ResumeLayout(false);
+            this.panFilter.ResumeLayout(false);
             this.tabGeoNear.ResumeLayout(false);
             this.tabSql.ResumeLayout(false);
             this.tabSql.PerformLayout();
@@ -257,5 +281,7 @@
         private System.Windows.Forms.TextBox txtSql;
         private System.Windows.Forms.TabPage tabFieldInfo;
         private FieldPicker QueryFieldPicker;
+        private System.Windows.Forms.Button btnClear;
+        private ConditionPanel ConditionPan;
     }
 }
