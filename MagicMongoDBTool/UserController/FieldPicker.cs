@@ -128,6 +128,32 @@ namespace MagicMongoDBTool
             return Aggregation;
         }
         /// <summary>
+        /// 获取Group的ID
+        /// </summary>
+        /// <returns></returns>
+        public BsonDocument GetAggregationGroup()
+        {
+            BsonDocument Aggregation = new BsonDocument();
+            BsonDocument project = new BsonDocument();
+            foreach (var item in mQueryFieldList)
+            {
+                var ctl = ((ctlFieldInfo)Controls.Find(item.ColName, true)[0]).QueryFieldItem;
+                if (ctl.IsShow)
+                {
+                    if (string.IsNullOrEmpty(ctl.ProjectName))
+                    {
+                        project.Add(new BsonElement(ctl.ColName, ctl.ColName));
+                    }
+                    else
+                    {
+                        project.Add(new BsonElement(ctl.ProjectName, "$" + ctl.ColName));
+                    }
+                }
+            }
+            Aggregation.Add("_id", project);
+            return Aggregation;
+        }
+        /// <summary>
         /// FieldPicker
         /// </summary>
         public FieldPicker()

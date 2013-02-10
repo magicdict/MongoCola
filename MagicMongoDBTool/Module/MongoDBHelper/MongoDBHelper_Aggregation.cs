@@ -11,7 +11,8 @@ namespace MagicMongoDBTool.Module
         /// group aggregation function
         /// </summary>
         /// <returns></returns>
-        static public string[] getGroupfunction(){
+        static public string[] getGroupfunction()
+        {
             return new string[]{
                 "$addToSet",
                 "$first",

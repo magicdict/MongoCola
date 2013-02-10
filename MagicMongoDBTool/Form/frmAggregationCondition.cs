@@ -28,6 +28,7 @@ namespace MagicMongoDBTool
         private void frmAggregationCondition_Load(object sender, System.EventArgs e)
         {
             QueryFieldPicker.InitByCurrentCollection(false);
+            GroupFieldPicker.InitByCurrentCollection(false);
         }
 
         private void btnOK_Click(object sender, System.EventArgs e)
@@ -42,6 +43,8 @@ namespace MagicMongoDBTool
             {
                 Aggregation.Add(new BsonDocument("$limit", int.Parse(txtLimit.Text)));
             }
+
+
             this.Close();
         }
     }
