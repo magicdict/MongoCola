@@ -33,6 +33,7 @@
             this.radNoSort = new System.Windows.Forms.RadioButton();
             this.radSortAcs = new System.Windows.Forms.RadioButton();
             this.radSortDes = new System.Windows.Forms.RadioButton();
+            this.txtProject = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lblFieldName
@@ -87,17 +88,25 @@
             this.radSortDes.Text = "Des";
             this.radSortDes.UseVisualStyleBackColor = true;
             // 
+            // txtProject
+            // 
+            this.txtProject.Location = new System.Drawing.Point(347, 3);
+            this.txtProject.Name = "txtProject";
+            this.txtProject.Size = new System.Drawing.Size(100, 20);
+            this.txtProject.TabIndex = 5;
+            // 
             // ctlFieldInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtProject);
             this.Controls.Add(this.radSortDes);
             this.Controls.Add(this.radSortAcs);
             this.Controls.Add(this.radNoSort);
             this.Controls.Add(this.chkIsShow);
             this.Controls.Add(this.lblFieldName);
             this.Name = "ctlFieldInfo";
-            this.Size = new System.Drawing.Size(342, 21);
+            this.Size = new System.Drawing.Size(457, 26);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,5 +119,6 @@
         private System.Windows.Forms.RadioButton radNoSort;
         private System.Windows.Forms.RadioButton radSortAcs;
         private System.Windows.Forms.RadioButton radSortDes;
+        private System.Windows.Forms.TextBox txtProject;
     }
 }

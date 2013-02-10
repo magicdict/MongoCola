@@ -9,6 +9,13 @@ namespace MagicMongoDBTool
 {
     public partial class FieldPicker : UserControl
     {
+        private ctlFieldInfo.FieldMode mFieldListMode;
+        public ctlFieldInfo.FieldMode FieldListMode
+        {
+            get { return mFieldListMode; }
+            set { mFieldListMode = value; }
+        }
+
         private bool mIDProtectMode;
         /// <summary>
         /// ID的显示属性是否可变
@@ -87,7 +94,14 @@ namespace MagicMongoDBTool
                 {
                     if (ctl.IsShow)
                     {
-                        project.Add(new BsonElement(ctl.ColName, 1));
+                        if (string.IsNullOrEmpty(ctl.ProjectName))
+                        {
+                            project.Add(new BsonElement(ctl.ColName, 1));
+                        }
+                        else
+                        {
+                            project.Add(new BsonElement(ctl.ProjectName, "$" + ctl.ColName));
+                        }
                     }
                 }
                 switch (ctl.sortType)
@@ -135,6 +149,7 @@ namespace MagicMongoDBTool
             {
                 //动态加载控件
                 ctlFieldInfo ctrItem = new ctlFieldInfo();
+                ctrItem.Mode = mFieldListMode;
                 ctrItem.Name = queryFieldItem.ColName;
                 ctrItem.Location = _conditionPos;
                 ctrItem.IsIDProtect = mIDProtectMode;

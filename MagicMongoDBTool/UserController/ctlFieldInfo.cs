@@ -18,23 +18,110 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
+        /// 模式
+        /// </summary>
+        public enum FieldMode
+        {
+            /// <summary>
+            /// 字段
+            /// </summary>
+            Field,
+            /// <summary>
+            /// 字段加排序
+            /// </summary>
+            FiledSort,
+            /// <summary>
+            /// 字段加Project
+            /// </summary>
+            FieldProject,
+            Full
+        }
+        private FieldMode mMode;
+        /// <summary>
+        /// 控件模式
+        /// </summary>
+        public FieldMode Mode
+        {
+            set
+            {
+                mMode = value;
+                switch (mMode)
+                {
+                    case FieldMode.Field:
+                        chkIsShow.Visible = true;
+                        radNoSort.Visible = false;
+                        radSortAcs.Visible = false;
+                        radSortDes.Visible = false;
+                        txtProject.Visible = false;
+                        break;
+                    case FieldMode.FiledSort:
+                        chkIsShow.Visible = true;
+                        radNoSort.Visible = true;
+                        radSortAcs.Visible = true;
+                        radSortDes.Visible = true;
+                        txtProject.Visible = false;
+
+                        break;
+                    case FieldMode.FieldProject:
+                        chkIsShow.Visible = true;
+                        radNoSort.Visible = false;
+                        radSortAcs.Visible = false;
+                        radSortDes.Visible = false;
+                        txtProject.Visible = true;
+                        txtProject.Left = radNoSort.Left;
+                        break;
+                    case FieldMode.Full:
+                        chkIsShow.Visible = true;
+                        radNoSort.Visible = true;
+                        radSortAcs.Visible = true;
+                        radSortDes.Visible = true;
+                        txtProject.Visible = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            get { return mMode; }
+        }
+        /// <summary>
+        /// 是否显示字段重命名
+        /// </summary>
+        public bool IsProject
+        {
+            get { return txtProject.Visible; }
+            set { txtProject.Visible = value; }
+        }
+        /// <summary>
         /// 是否表示
         /// </summary>
         public bool IsShow
         {
             get { return chkIsShow.Checked; }
-            set { 
-                if ((lblFieldName.Text == MongoDBHelper.KEY_ID) && mIDProtectMode){
+            set
+            {
+                if ((lblFieldName.Text == MongoDBHelper.KEY_ID) && mIDProtectMode)
+                {
                     return;
                 }
-                chkIsShow.Checked = value; 
+                chkIsShow.Checked = value;
             }
         }
+        /// <summary>
+        /// 投影名称
+        /// </summary>
+        public string ProjectName {
+            get { return txtProject.Text; }
+            set { txtProject.Text = value; }
+        }
+        /// <summary>
+        /// 是否是主键保护模式
+        /// </summary>
         private bool mIDProtectMode;
         /// <summary>
         /// ID的显示属性是否可变
         /// </summary>
-        public bool IsIDProtect{
+        public bool IsIDProtect
+        {
             set { mIDProtectMode = value; }
             get { return mIDProtectMode; }
         }
@@ -47,6 +134,7 @@ namespace MagicMongoDBTool
             {
                 lblFieldName.Text = value.ColName;
                 chkIsShow.Checked = value.IsShow;
+                txtProject.Text = value.ProjectName;
                 if (value.ColName == MongoDBHelper.KEY_ID)
                 {
                     chkIsShow.Checked = true;
@@ -69,22 +157,23 @@ namespace MagicMongoDBTool
             }
             get
             {
-                DataFilter.QueryFieldItem rtn = new DataFilter.QueryFieldItem();
-                rtn.IsShow = chkIsShow.Checked;
-                rtn.ColName = lblFieldName.Text;
+                DataFilter.QueryFieldItem rtnQueryFieldItem = new DataFilter.QueryFieldItem();
+                rtnQueryFieldItem.IsShow = chkIsShow.Checked;
+                rtnQueryFieldItem.ColName = lblFieldName.Text;
+                rtnQueryFieldItem.ProjectName = txtProject.Text;
                 if (this.radNoSort.Checked)
                 {
-                    rtn.sortType = DataFilter.SortType.NoSort;
+                    rtnQueryFieldItem.sortType = DataFilter.SortType.NoSort;
                 }
                 if (this.radSortAcs.Checked)
                 {
-                    rtn.sortType = DataFilter.SortType.Ascending;
+                    rtnQueryFieldItem.sortType = DataFilter.SortType.Ascending;
                 }
                 if (this.radSortDes.Checked)
                 {
-                    rtn.sortType = DataFilter.SortType.Descending;
+                    rtnQueryFieldItem.sortType = DataFilter.SortType.Descending;
                 }
-                return rtn;
+                return rtnQueryFieldItem;
             }
 
         }

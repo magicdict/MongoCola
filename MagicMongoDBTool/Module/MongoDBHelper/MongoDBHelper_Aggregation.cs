@@ -7,7 +7,11 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
-        static public string[] getGroupOpt(){
+        /// <summary>
+        /// group aggregation function
+        /// </summary>
+        /// <returns></returns>
+        static public string[] getGroupfunction(){
             return new string[]{
                 "$addToSet",
                 "$first",

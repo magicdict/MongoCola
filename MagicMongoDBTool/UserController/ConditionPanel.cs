@@ -23,7 +23,10 @@ namespace MagicMongoDBTool
         public ConditionPanel()
         {
             InitializeComponent();
-            ColumnList = MongoDBHelper.GetCollectionSchame(SystemManager.GetCurrentCollection());
+            if (SystemManager.GetCurrentCollection() != null)
+            {
+                ColumnList = MongoDBHelper.GetCollectionSchame(SystemManager.GetCurrentCollection());
+            }
         }
         /// <summary>
         /// 新增条件
@@ -122,5 +125,6 @@ namespace MagicMongoDBTool
             _conditionPos = new Point(5, 0);
             AddCondition();
         }
+
     }
 }

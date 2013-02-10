@@ -86,10 +86,15 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public SortType sortType;
             /// <summary>
+            /// 
+            /// </summary>
+            public string ProjectName;
+            /// <summary>
             /// 构造器
             /// </summary>
             /// <param name="mColName"></param>
             public QueryFieldItem(String mColName) {
+                ProjectName = string.Empty;
                 ColName = mColName;
                 IsShow = false;
                 sortType = SortType.NoSort;

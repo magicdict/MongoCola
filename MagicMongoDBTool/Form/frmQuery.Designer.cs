@@ -38,7 +38,7 @@
             this.panFilter = new System.Windows.Forms.Panel();
             this.ConditionPan = new MagicMongoDBTool.ConditionPanel();
             this.tabGeoNear = new System.Windows.Forms.TabPage();
-            this.ctlGeoNear1 = new MagicMongoDBTool.ctlGeoNear();
+            this.GeoNear = new MagicMongoDBTool.ctlGeoNear();
             this.tabSql = new System.Windows.Forms.TabPage();
             this.lblAttentionSelectOnly = new System.Windows.Forms.Label();
             this.txtSql = new System.Windows.Forms.TextBox();
@@ -104,6 +104,7 @@
             this.QueryFieldPicker.AutoScroll = true;
             this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
             this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QueryFieldPicker.FieldListMode = MagicMongoDBTool.ctlFieldInfo.FieldMode.FiledSort;
             this.QueryFieldPicker.IsIDProtect = true;
             this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
             this.QueryFieldPicker.Name = "QueryFieldPicker";
@@ -143,17 +144,17 @@
             this.panFilter.Size = new System.Drawing.Size(581, 383);
             this.panFilter.TabIndex = 15;
             // 
-            // conditionPanel1
+            // ConditionPan
             // 
             this.ConditionPan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ConditionPan.Location = new System.Drawing.Point(0, 0);
-            this.ConditionPan.Name = "conditionPanel1";
+            this.ConditionPan.Name = "ConditionPan";
             this.ConditionPan.Size = new System.Drawing.Size(579, 381);
             this.ConditionPan.TabIndex = 0;
             // 
             // tabGeoNear
             // 
-            this.tabGeoNear.Controls.Add(this.ctlGeoNear1);
+            this.tabGeoNear.Controls.Add(this.GeoNear);
             this.tabGeoNear.Location = new System.Drawing.Point(4, 24);
             this.tabGeoNear.Name = "tabGeoNear";
             this.tabGeoNear.Padding = new System.Windows.Forms.Padding(3);
@@ -162,13 +163,13 @@
             this.tabGeoNear.Text = "GeoNear";
             this.tabGeoNear.UseVisualStyleBackColor = true;
             // 
-            // ctlGeoNear1
+            // GeoNear
             // 
-            this.ctlGeoNear1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlGeoNear1.Location = new System.Drawing.Point(3, 3);
-            this.ctlGeoNear1.Name = "ctlGeoNear1";
-            this.ctlGeoNear1.Size = new System.Drawing.Size(581, 462);
-            this.ctlGeoNear1.TabIndex = 0;
+            this.GeoNear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GeoNear.Location = new System.Drawing.Point(3, 3);
+            this.GeoNear.Name = "GeoNear";
+            this.GeoNear.Size = new System.Drawing.Size(581, 462);
+            this.GeoNear.TabIndex = 0;
             // 
             // tabSql
             // 
@@ -275,7 +276,7 @@
         private System.Windows.Forms.Panel panFilter;
         private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.TabPage tabGeoNear;
-        private ctlGeoNear ctlGeoNear1;
+        private ctlGeoNear GeoNear;
         private System.Windows.Forms.TabPage tabSql;
         private System.Windows.Forms.Label lblAttentionSelectOnly;
         private System.Windows.Forms.TextBox txtSql;

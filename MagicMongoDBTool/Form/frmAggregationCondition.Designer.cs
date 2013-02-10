@@ -30,15 +30,15 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabProject = new System.Windows.Forms.TabPage();
+            this.QueryFieldPicker = new MagicMongoDBTool.FieldPicker();
             this.tabMatch = new System.Windows.Forms.TabPage();
             this.tabOption = new System.Windows.Forms.TabPage();
             this.txtSkip = new System.Windows.Forms.TextBox();
             this.txtLimit = new System.Windows.Forms.TextBox();
             this.chkSkip = new System.Windows.Forms.CheckBox();
             this.chkLimit = new System.Windows.Forms.CheckBox();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.QueryFieldPicker = new MagicMongoDBTool.FieldPicker();
             this.tabGroup = new System.Windows.Forms.TabPage();
+            this.btnOK = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabProject.SuspendLayout();
             this.tabOption.SuspendLayout();
@@ -66,6 +66,18 @@
             this.tabProject.TabIndex = 0;
             this.tabProject.Text = "$project(Basic)";
             this.tabProject.UseVisualStyleBackColor = true;
+            // 
+            // QueryFieldPicker
+            // 
+            this.QueryFieldPicker.AutoScroll = true;
+            this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
+            this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QueryFieldPicker.FieldListMode = MagicMongoDBTool.ctlFieldInfo.FieldMode.FieldProject;
+            this.QueryFieldPicker.IsIDProtect = false;
+            this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
+            this.QueryFieldPicker.Name = "QueryFieldPicker";
+            this.QueryFieldPicker.Size = new System.Drawing.Size(598, 322);
+            this.QueryFieldPicker.TabIndex = 1;
             // 
             // tabMatch
             // 
@@ -129,27 +141,6 @@
             this.chkLimit.Text = "$limit";
             this.chkLimit.UseVisualStyleBackColor = true;
             // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(542, 377);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // QueryFieldPicker
-            // 
-            this.QueryFieldPicker.AutoScroll = true;
-            this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
-            this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryFieldPicker.IsIDProtect = false;
-            this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
-            this.QueryFieldPicker.Name = "QueryFieldPicker";
-            this.QueryFieldPicker.Size = new System.Drawing.Size(598, 322);
-            this.QueryFieldPicker.TabIndex = 1;
-            // 
             // tabGroup
             // 
             this.tabGroup.Location = new System.Drawing.Point(4, 22);
@@ -159,6 +150,16 @@
             this.tabGroup.TabIndex = 3;
             this.tabGroup.Text = "$group";
             this.tabGroup.UseVisualStyleBackColor = true;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(542, 377);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 1;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // frmAggregationCondition
             // 
