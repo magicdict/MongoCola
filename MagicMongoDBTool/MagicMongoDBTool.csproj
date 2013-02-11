@@ -96,16 +96,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GroupItem.cs">
+    <Compile Include="UserController\GroupItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GroupItem.Designer.cs">
+    <Compile Include="UserController\GroupItem.Designer.cs">
       <DependentUpon>GroupItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="GroupPan.cs">
+    <Compile Include="UserController\GroupPan.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GroupPan.Designer.cs">
+    <Compile Include="UserController\GroupPan.Designer.cs">
       <DependentUpon>GroupPan.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\ConditionPanel.cs">
@@ -436,10 +436,10 @@
     <Compile Include="UserController\TreeViewColumns.Designer.cs">
       <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="GroupItem.resx">
+    <EmbeddedResource Include="UserController\GroupItem.resx">
       <DependentUpon>GroupItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GroupPan.resx">
+    <EmbeddedResource Include="UserController\GroupPan.resx">
       <DependentUpon>GroupPan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ConditionPanel.resx">
