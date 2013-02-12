@@ -186,11 +186,14 @@ namespace MagicMongoDBTool.Module
                                 //https://jira.mongodb.org/browse/CSHARP-665
                                 try
                                 {
+                                    //注意：这个MaxDocuments只是在CappedCollection时候有效
                                     lst.SubItems.Add(CollectionStatus.MaxDocuments.ToString());
                                 }
-                                catch (Exception)
+                                catch (Exception ex)
                                 {
+                                    //溢出
                                     lst.SubItems.Add(Int32.MaxValue.ToString());
+                                    SystemManager.ExceptionLog(ex);
                                 }
 
                                 if (CollectionStatus.ObjectCount != 0)

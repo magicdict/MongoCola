@@ -128,6 +128,11 @@ namespace MagicMongoDBTool.UnitTest
                 MessageBox.Show("MongoDB Not Found");
             }
         }
+        /// <summary>
+        /// User类的测试数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFillDataForUser_Click(object sender, EventArgs e)
         {
             if (SystemManager.GetCurrentServer() != null)
@@ -140,7 +145,11 @@ namespace MagicMongoDBTool.UnitTest
                 MessageBox.Show("Please select a server");
             }
         }
-
+        /// <summary>
+        /// TTL的测试数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFillDataForTTL_Click(object sender, EventArgs e)
         {
             if (SystemManager.GetCurrentServer() != null)
@@ -153,12 +162,33 @@ namespace MagicMongoDBTool.UnitTest
                 MessageBox.Show("Please select a server");
             }
         }
-
+        /// <summary>
+        /// Geo测试数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFillDataForGeoObject_Click(object sender, EventArgs e)
         {
             if (SystemManager.GetCurrentServer() != null)
             {
                 InitTestData.FillDataForGeoObject(SystemManager.GetCurrentServer());
+                MessageBox.Show("Complete");
+            }
+            else
+            {
+                MessageBox.Show("Please select a server");
+            }
+        }
+        /// <summary>
+        /// 聚合测试数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFillDataForAggregation_Click(object sender, EventArgs e)
+        {
+            if (SystemManager.GetCurrentServer() != null)
+            {
+                InitTestData.FillDataForAggregation(SystemManager.GetCurrentServer());
                 MessageBox.Show("Complete");
             }
             else

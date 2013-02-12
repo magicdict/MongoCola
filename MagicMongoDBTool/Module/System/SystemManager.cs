@@ -275,6 +275,28 @@ namespace MagicMongoDBTool.Module
             ExceptionString += "MongoDB.Bson.DLL:" + MongoDBBsonVersion + System.Environment.NewLine;
             ExceptionString += ex.ToString();
             MyMessageBox.ShowMessage(Title, Message, ExceptionString, true);
+            ExceptionLog(ExceptionString);
+        }
+        /// <summary>
+        /// 错误日志
+        /// </summary>
+        /// <param name="ExceptionString">异常文字</param>
+        internal static void ExceptionLog(String ExceptionString) {
+            StreamWriter exLog = new StreamWriter("Exception.log",true);
+            exLog.WriteLine("DateTime:" + DateTime.Now.ToString());
+            exLog.Write(ExceptionString);
+            exLog.Close();
+        }   
+        /// <summary>
+        /// 错误日志
+        /// </summary>
+        /// <param name="ex">异常对象</param>
+        internal static void ExceptionLog(Exception ex) {
+            String ExceptionString;
+            ExceptionString = "MongoDB.Driver.DLL:" + MongoDBDriverVersion + System.Environment.NewLine;
+            ExceptionString += "MongoDB.Bson.DLL:" + MongoDBBsonVersion + System.Environment.NewLine;
+            ExceptionString += ex.ToString();
+            ExceptionLog(ExceptionString);
         }
         /// <summary>
         /// JsonWriterSettings

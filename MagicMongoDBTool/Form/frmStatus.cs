@@ -42,12 +42,20 @@ namespace MagicMongoDBTool
                     cmbChartField.Items.Add("ExtentCount");
                     cmbChartField.Items.Add("IndexCount");
                     cmbChartField.Items.Add("LastExtentSize");
+                    //MaxDocuments仅在CapedCollection时候有效
                     //cmbChartField.Items.Add("MaxDocuments");
                     cmbChartField.Items.Add("ObjectCount");
                     cmbChartField.Items.Add("PaddingFactor");
                     cmbChartField.Items.Add("StorageSize");
                     cmbChartField.SelectedIndex = 0;
-                    RefreshDBStatusChart("StorageSize");
+                    try
+                    {
+                        RefreshDBStatusChart("StorageSize");
+                    }
+                    catch (Exception ex)
+                    {
+                        SystemManager.ExceptionDeal(ex);
+                    }
                     break;
                 case MongoDBHelper.COLLECTION_TAG:
                     DocStatus = SystemManager.GetCurrentCollection().GetStats().Response.ToBsonDocument();
@@ -111,7 +119,16 @@ namespace MagicMongoDBTool
                 switch (strField)
                 {
                     case "AverageObjectSize":
-                        ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().AverageObjectSize);
+                        try
+                        {
+                            //如果没有任何对象的时候，平均值无法取得
+                            ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().AverageObjectSize);
+                        }
+                        catch (Exception ex)
+                        {
+                            ColPoint = new DataPoint(0, 0);
+                            SystemManager.ExceptionLog(ex);
+                        }
                         break;
                     case "DataSize":
                         ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().DataSize);
@@ -129,6 +146,7 @@ namespace MagicMongoDBTool
                         ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().LastExtentSize);
                         break;
                     //case "MaxDocuments":
+                    //    仅在CappedCollection时候有效 
                     //    ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().MaxDocuments);
                     //    break;
                     case "ObjectCount":
@@ -169,7 +187,14 @@ namespace MagicMongoDBTool
             {
                 case MongoDBHelper.DATABASE_TAG:
                 case MongoDBHelper.SINGLE_DATABASE_TAG:
-                    RefreshDBStatusChart(cmbChartField.Text);
+                    try
+                    {
+                        RefreshDBStatusChart(cmbChartField.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        SystemManager.ExceptionDeal(ex);                        
+                    }
                     break;
             }
         }

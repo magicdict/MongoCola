@@ -6,13 +6,16 @@ namespace MagicMongoDBTool
 {
     public partial class frmAggregationCondition : Form
     {
+        /// <summary>
+        /// 聚合数组
+        /// </summary>
         public BsonArray Aggregation = new BsonArray();
         public frmAggregationCondition()
         {
             InitializeComponent();
             txtLimit.Enabled = chkLimit.Checked;
             txtSkip.Enabled = chkSkip.Checked;
-            txtLimit.KeyPress +=  MongoDBHelper.NumberTextInt_KeyPress;
+            txtLimit.KeyPress += MongoDBHelper.NumberTextInt_KeyPress;
             txtSkip.KeyPress += MongoDBHelper.NumberTextInt_KeyPress;
 
             chkSkip.CheckedChanged += (x, y) =>
@@ -43,16 +46,22 @@ namespace MagicMongoDBTool
             {
                 Aggregation.Add(new BsonDocument("$limit", int.Parse(txtLimit.Text)));
             }
-
-
             this.Close();
         }
-
+        /// <summary>
+        /// 添加一个Group项目
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdAddGroupItem_Click(object sender, System.EventArgs e)
         {
             groupPanelCreator.AddGroupItem();
         }
-
+        /// <summary>
+        /// 清除所有Group项目
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, System.EventArgs e)
         {
             groupPanelCreator.Clear();

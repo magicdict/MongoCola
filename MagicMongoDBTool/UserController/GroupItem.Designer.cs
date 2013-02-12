@@ -44,7 +44,7 @@
             // 
             // txtProject
             // 
-            this.txtProject.Location = new System.Drawing.Point(17, 3);
+            this.txtProject.Location = new System.Drawing.Point(17, 5);
             this.txtProject.Name = "txtProject";
             this.txtProject.Size = new System.Drawing.Size(129, 20);
             this.txtProject.TabIndex = 1;
