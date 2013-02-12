@@ -47,5 +47,15 @@ namespace MagicMongoDBTool
 
             this.Close();
         }
+
+        private void cmdAddGroupItem_Click(object sender, System.EventArgs e)
+        {
+            groupPanelCreator.AddGroupItem();
+        }
+
+        private void btnClear_Click(object sender, System.EventArgs e)
+        {
+            groupPanelCreator.Clear();
+        }
     }
 }

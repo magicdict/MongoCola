@@ -28,29 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupItem1 = new MagicMongoDBTool.GroupItem();
             this.SuspendLayout();
-            // 
-            // groupItem1
-            // 
-            this.groupItem1.Location = new System.Drawing.Point(25, 3);
-            this.groupItem1.Name = "groupItem1";
-            this.groupItem1.Size = new System.Drawing.Size(439, 29);
-            this.groupItem1.TabIndex = 0;
             // 
             // GroupPan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupItem1);
             this.Name = "GroupPan";
-            this.Size = new System.Drawing.Size(524, 134);
+            this.Size = new System.Drawing.Size(524, 175);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private GroupItem groupItem1;
+
     }
 }

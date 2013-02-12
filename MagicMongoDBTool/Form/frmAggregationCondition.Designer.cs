@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabProject = new System.Windows.Forms.TabPage();
+            this.QueryFieldPicker = new MagicMongoDBTool.FieldPicker();
             this.tabMatch = new System.Windows.Forms.TabPage();
             this.tabOption = new System.Windows.Forms.TabPage();
             this.txtSkip = new System.Windows.Forms.TextBox();
@@ -37,11 +38,12 @@
             this.chkSkip = new System.Windows.Forms.CheckBox();
             this.chkLimit = new System.Windows.Forms.CheckBox();
             this.tabGroup = new System.Windows.Forms.TabPage();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.cmdAddGroupItem = new System.Windows.Forms.Button();
+            this.GroupFieldPicker = new MagicMongoDBTool.FieldPicker();
+            this.groupPanelCreator = new MagicMongoDBTool.GroupPan();
             this.lblID = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
-            this.QueryFieldPicker = new MagicMongoDBTool.FieldPicker();
-            this.GroupFieldPicker = new MagicMongoDBTool.FieldPicker();
-            this.groupPan1 = new MagicMongoDBTool.GroupPan();
             this.tabControl1.SuspendLayout();
             this.tabProject.SuspendLayout();
             this.tabOption.SuspendLayout();
@@ -70,6 +72,18 @@
             this.tabProject.TabIndex = 0;
             this.tabProject.Text = "$project(Basic)";
             this.tabProject.UseVisualStyleBackColor = true;
+            // 
+            // QueryFieldPicker
+            // 
+            this.QueryFieldPicker.AutoScroll = true;
+            this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
+            this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.QueryFieldPicker.FieldListMode = MagicMongoDBTool.ctlFieldInfo.FieldMode.FieldProject;
+            this.QueryFieldPicker.IsIDProtect = false;
+            this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
+            this.QueryFieldPicker.Name = "QueryFieldPicker";
+            this.QueryFieldPicker.Size = new System.Drawing.Size(598, 322);
+            this.QueryFieldPicker.TabIndex = 1;
             // 
             // tabMatch
             // 
@@ -135,8 +149,10 @@
             // 
             // tabGroup
             // 
+            this.tabGroup.Controls.Add(this.btnClear);
+            this.tabGroup.Controls.Add(this.cmdAddGroupItem);
             this.tabGroup.Controls.Add(this.GroupFieldPicker);
-            this.tabGroup.Controls.Add(this.groupPan1);
+            this.tabGroup.Controls.Add(this.groupPanelCreator);
             this.tabGroup.Controls.Add(this.lblID);
             this.tabGroup.Location = new System.Drawing.Point(4, 22);
             this.tabGroup.Name = "tabGroup";
@@ -145,6 +161,45 @@
             this.tabGroup.TabIndex = 3;
             this.tabGroup.Text = "$group";
             this.tabGroup.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(119, 173);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 5;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // cmdAddGroupItem
+            // 
+            this.cmdAddGroupItem.Location = new System.Drawing.Point(9, 173);
+            this.cmdAddGroupItem.Name = "cmdAddGroupItem";
+            this.cmdAddGroupItem.Size = new System.Drawing.Size(104, 23);
+            this.cmdAddGroupItem.TabIndex = 4;
+            this.cmdAddGroupItem.Text = "Add GroupItem";
+            this.cmdAddGroupItem.UseVisualStyleBackColor = true;
+            this.cmdAddGroupItem.Click += new System.EventHandler(this.cmdAddGroupItem_Click);
+            // 
+            // GroupFieldPicker
+            // 
+            this.GroupFieldPicker.AutoScroll = true;
+            this.GroupFieldPicker.BackColor = System.Drawing.Color.White;
+            this.GroupFieldPicker.FieldListMode = MagicMongoDBTool.ctlFieldInfo.FieldMode.FieldProject;
+            this.GroupFieldPicker.IsIDProtect = false;
+            this.GroupFieldPicker.Location = new System.Drawing.Point(6, 30);
+            this.GroupFieldPicker.Name = "GroupFieldPicker";
+            this.GroupFieldPicker.Size = new System.Drawing.Size(592, 137);
+            this.GroupFieldPicker.TabIndex = 3;
+            // 
+            // groupPanelCreator
+            // 
+            this.groupPanelCreator.AutoScroll = true;
+            this.groupPanelCreator.Location = new System.Drawing.Point(0, 199);
+            this.groupPanelCreator.Name = "groupPanelCreator";
+            this.groupPanelCreator.Size = new System.Drawing.Size(601, 129);
+            this.groupPanelCreator.TabIndex = 2;
             // 
             // lblID
             // 
@@ -164,37 +219,6 @@
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // QueryFieldPicker
-            // 
-            this.QueryFieldPicker.AutoScroll = true;
-            this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
-            this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryFieldPicker.FieldListMode = MagicMongoDBTool.ctlFieldInfo.FieldMode.FieldProject;
-            this.QueryFieldPicker.IsIDProtect = false;
-            this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
-            this.QueryFieldPicker.Name = "QueryFieldPicker";
-            this.QueryFieldPicker.Size = new System.Drawing.Size(598, 322);
-            this.QueryFieldPicker.TabIndex = 1;
-            // 
-            // GroupFieldPicker
-            // 
-            this.GroupFieldPicker.AutoScroll = true;
-            this.GroupFieldPicker.BackColor = System.Drawing.Color.White;
-            this.GroupFieldPicker.FieldListMode = MagicMongoDBTool.ctlFieldInfo.FieldMode.FieldProject;
-            this.GroupFieldPicker.IsIDProtect = false;
-            this.GroupFieldPicker.Location = new System.Drawing.Point(6, 30);
-            this.GroupFieldPicker.Name = "GroupFieldPicker";
-            this.GroupFieldPicker.Size = new System.Drawing.Size(592, 160);
-            this.GroupFieldPicker.TabIndex = 3;
-            // 
-            // groupPan1
-            // 
-            this.groupPan1.AutoScroll = true;
-            this.groupPan1.Location = new System.Drawing.Point(0, 196);
-            this.groupPan1.Name = "groupPan1";
-            this.groupPan1.Size = new System.Drawing.Size(601, 79);
-            this.groupPan1.TabIndex = 2;
             // 
             // frmAggregationCondition
             // 
@@ -231,8 +255,10 @@
         private System.Windows.Forms.TextBox txtLimit;
         private System.Windows.Forms.TabPage tabGroup;
         private System.Windows.Forms.Label lblID;
-        private GroupPan groupPan1;
+        private GroupPan groupPanelCreator;
         private FieldPicker GroupFieldPicker;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button cmdAddGroupItem;
 
 
     }

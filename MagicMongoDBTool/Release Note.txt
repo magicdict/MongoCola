@@ -10,7 +10,7 @@ MongoCola is free and open source.
 ========================================================================
 Release History
 ========================================================================
-Ver 1.27 2013/01/27
+Ver 1.27 2013/03/01
 1.Aggregation Framework
 2.Show MongoDB Driver version at exception message box.
 
