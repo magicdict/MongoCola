@@ -284,7 +284,7 @@ namespace MagicMongoDBTool.Module
         internal static void ExceptionLog(String ExceptionString) {
             StreamWriter exLog = new StreamWriter("Exception.log",true);
             exLog.WriteLine("DateTime:" + DateTime.Now.ToString());
-            exLog.Write(ExceptionString);
+            exLog.WriteLine(ExceptionString);
             exLog.Close();
         }   
         /// <summary>

@@ -37,6 +37,8 @@ namespace MagicMongoDBTool
         internal frmMesssage()
         {
             InitializeComponent();
+            //系统图标
+            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         }
         /// <summary>
         /// OK
