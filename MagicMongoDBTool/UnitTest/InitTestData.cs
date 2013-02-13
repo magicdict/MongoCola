@@ -161,6 +161,29 @@ namespace MagicMongoDBTool.Module
                     //[-180,180] 如果已经有索引，则操作这个范围的记录无法插入数据库
                 });
             }
+            var group = new BsonDocument 
+                { 
+                    { "$group", 
+                        new BsonDocument 
+                            { 
+                                { "_id", new BsonDocument 
+                                             { 
+                                                 { 
+                                                     "MyUser","$User" 
+                                                 } 
+                                             } 
+                                }, 
+                                { 
+                                    "Count", new BsonDocument 
+                                                 { 
+                                                     { 
+                                                         "$sum", 1 
+                                                     } 
+                                                 } 
+                                } 
+                            } 
+                  } 
+                };
         }
         /// <summary>
         /// 生成TTL测试数据

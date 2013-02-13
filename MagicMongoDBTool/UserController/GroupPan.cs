@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using MongoDB.Bson;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MagicMongoDBTool
@@ -32,6 +34,22 @@ namespace MagicMongoDBTool
             newGroupItem.Name = "GroupItem" + _conditionCount.ToString();
             Controls.Add(newGroupItem);
             _conditionPos.Y += newGroupItem.Height;
+        }
+        public List<BsonElement> GetGroup()
+        {
+            //db.article.aggregate(
+            //    { $group : {
+            //        _id : "$author",
+            //        docsPerAuthor : { $sum : 1 },
+            //        viewsPerAuthor : { $sum : "$pageViews" }
+            //    }}
+            //);
+            List<BsonElement> grouplist = new List<BsonElement>();
+            foreach (GroupItem item in this.Controls)
+            {
+                grouplist.Add(item.getGroupItem());
+            }
+            return grouplist;
         }
         /// <summary>
         /// 清除所有GroupItem

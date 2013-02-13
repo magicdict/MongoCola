@@ -37,7 +37,10 @@ namespace MagicMongoDBTool
         private void btnOK_Click(object sender, System.EventArgs e)
         {
             //这里必须要考虑一下顺序的问题?
-            Aggregation.Add(QueryFieldPicker.GetAggregation());
+            BsonDocument project = QueryFieldPicker.GetAggregation();
+            if (project[0].AsBsonDocument.ElementCount > 0) { 
+                Aggregation.Add(project); 
+            }
             if (chkSkip.Checked && int.Parse(txtSkip.Text) > 0)
             {
                 Aggregation.Add(new BsonDocument("$skip", int.Parse(txtSkip.Text)));
@@ -46,6 +49,13 @@ namespace MagicMongoDBTool
             {
                 Aggregation.Add(new BsonDocument("$limit", int.Parse(txtLimit.Text)));
             }
+            BsonDocument groupDetail = GroupFieldPicker.getGroupID();
+            foreach (var item in groupPanelCreator.GetGroup())
+            {
+                groupDetail.Add(item);
+            }
+            BsonDocument group = new BsonDocument("$group", groupDetail);
+            Aggregation.Add(group);
             this.Close();
         }
         /// <summary>

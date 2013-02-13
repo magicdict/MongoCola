@@ -210,5 +210,31 @@ namespace MagicMongoDBTool
             }
 
         }
+        /// <summary>
+        /// GroupID
+        /// </summary>
+        /// <returns></returns>
+        internal BsonDocument getGroupID()
+        {
+            // { _id : { author: '$author', pageViews: '$pageViews', posted: '$posted' } }
+            BsonDocument id = new BsonDocument();
+            BsonDocument member = new BsonDocument();
+            foreach (var item in mQueryFieldList)
+            {
+                var ctl = ((ctlFieldInfo)Controls.Find(item.ColName, true)[0]).QueryFieldItem;
+                if (ctl.IsShow && ctl.ColName != "_id")
+                {
+                    if (string.IsNullOrEmpty(ctl.ProjectName))
+                    {
+                        member.Add(new BsonElement(ctl.ColName, "$" + ctl.ColName));
+                    }
+                    else {
+                        member.Add(new BsonElement(ctl.ProjectName, "$" + ctl.ColName));
+                    }
+                }
+            }
+            id.Add("_id", member);
+            return id;
+        }
     }
 }
