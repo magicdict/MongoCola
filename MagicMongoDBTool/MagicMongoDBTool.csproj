@@ -96,30 +96,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserController\GroupItem.cs">
+    <Compile Include="UserController\Aggregation\GroupItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\GroupItem.Designer.cs">
+    <Compile Include="UserController\Aggregation\GroupItem.Designer.cs">
       <DependentUpon>GroupItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\GroupPan.cs">
+    <Compile Include="UserController\Aggregation\GroupPan.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\GroupPan.Designer.cs">
+    <Compile Include="UserController\Aggregation\GroupPan.Designer.cs">
       <DependentUpon>GroupPan.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ConditionPanel.cs">
+    <Compile Include="UserController\Aggregation\ConditionPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ConditionPanel.Designer.cs">
+    <Compile Include="UserController\Aggregation\ConditionPanel.Designer.cs">
       <DependentUpon>ConditionPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Aggregation.cs" />
     <Compile Include="Module\System\NumberTextBox.cs" />
-    <Compile Include="UserController\FieldPicker.cs">
+    <Compile Include="UserController\Aggregation\FieldPicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\FieldPicker.Designer.cs">
+    <Compile Include="UserController\Aggregation\FieldPicker.Designer.cs">
       <DependentUpon>FieldPicker.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmAggregation.cs">
@@ -371,10 +371,10 @@
     </Compile>
     <Compile Include="Module\Resource\GetSystemIcon.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Const.cs" />
-    <Compile Include="UserController\ctlFieldInfo.cs">
+    <Compile Include="UserController\Aggregation\ctlFieldInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlFieldInfo.Designer.cs">
+    <Compile Include="UserController\Aggregation\ctlFieldInfo.Designer.cs">
       <DependentUpon>ctlFieldInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\ctlQueryCondition.cs">
@@ -436,13 +436,13 @@
     <Compile Include="UserController\TreeViewColumns.Designer.cs">
       <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UserController\GroupItem.resx">
+    <EmbeddedResource Include="UserController\Aggregation\GroupItem.resx">
       <DependentUpon>GroupItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\GroupPan.resx">
+    <EmbeddedResource Include="UserController\Aggregation\GroupPan.resx">
       <DependentUpon>GroupPan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ConditionPanel.resx">
+    <EmbeddedResource Include="UserController\Aggregation\ConditionPanel.resx">
       <DependentUpon>ConditionPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmAggregation.resx">
@@ -560,7 +560,7 @@
     <EmbeddedResource Include="Form\frmQuery.resx">
       <DependentUpon>frmQuery.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlFieldInfo.resx">
+    <EmbeddedResource Include="UserController\Aggregation\ctlFieldInfo.resx">
       <DependentUpon>ctlFieldInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlQueryCondition.resx">
@@ -594,7 +594,7 @@
     <EmbeddedResource Include="UserController\ctlServerStatus.resx">
       <DependentUpon>ctlServerStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\FieldPicker.resx">
+    <EmbeddedResource Include="UserController\Aggregation\FieldPicker.resx">
       <DependentUpon>FieldPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\TreeViewColumns.resx">
