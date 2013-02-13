@@ -27,37 +27,59 @@ namespace MagicMongoDBTool
                 txtLimit.Enabled = chkLimit.Checked;
             };
         }
-
+        /// <summary>
+        /// 加载窗体
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmAggregationCondition_Load(object sender, System.EventArgs e)
         {
             QueryFieldPicker.InitByCurrentCollection(false);
             GroupFieldPicker.InitByCurrentCollection(false);
         }
-
+        /// <summary>
+        /// OK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOK_Click(object sender, System.EventArgs e)
         {
-            //这里必须要考虑一下顺序的问题?
+            //Project
             BsonDocument project = QueryFieldPicker.GetAggregation();
-            if (project[0].AsBsonDocument.ElementCount > 0) { 
-                Aggregation.Add(project); 
+            if (project[0].AsBsonDocument.ElementCount > 0)
+            {
+                Aggregation.Add(project);
             }
+            //match
+            BsonDocument match =  MatchListPanel.GetMatch();
+            if (match.ElementCount > 0){
+                Aggregation.Add(match);
+            }
+            //Skip
             if (chkSkip.Checked && int.Parse(txtSkip.Text) > 0)
             {
                 Aggregation.Add(new BsonDocument("$skip", int.Parse(txtSkip.Text)));
             }
+            //Limit
             if (chkLimit.Checked && int.Parse(txtLimit.Text) > 0)
             {
                 Aggregation.Add(new BsonDocument("$limit", int.Parse(txtLimit.Text)));
             }
+            //Group
             BsonDocument groupDetail = GroupFieldPicker.getGroupID();
-            foreach (var item in groupPanelCreator.GetGroup())
+            if (groupDetail.GetElement(0).Value.AsBsonDocument.ElementCount != 0)
             {
-                groupDetail.Add(item);
+                foreach (var item in groupPanelCreator.GetGroup())
+                {
+                    groupDetail.Add(item);
+                }
+                BsonDocument group = new BsonDocument("$group", groupDetail);
+                Aggregation.Add(group);
             }
-            BsonDocument group = new BsonDocument("$group", groupDetail);
-            Aggregation.Add(group);
             this.Close();
         }
+        
+        #region"Group"
         /// <summary>
         /// 添加一个Group项目
         /// </summary>
@@ -76,5 +98,27 @@ namespace MagicMongoDBTool
         {
             groupPanelCreator.Clear();
         }
+        #endregion
+
+        #region"Match"
+        /// <summary>
+        /// 新增MatchItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddMatch_Click(object sender, System.EventArgs e)
+        {
+            MatchListPanel.AddMatchItem();
+        }
+        /// <summary>
+        /// 清除MatchItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClearMatch_Click(object sender, System.EventArgs e)
+        {
+            MatchListPanel.Clear();
+        }
+        #endregion
     }
 }

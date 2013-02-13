@@ -33,6 +33,10 @@ namespace MagicMongoDBTool
                     trvResult.DatatreeView.ExpandAll();
                     trvResult.DatatreeView.EndUpdate();
                 }
+                else {
+                    MyMessageBox.ShowMessage("Aggregate Result",mCommandResult.ErrorMessage);
+                }
+
             }
         }
         /// <summary>

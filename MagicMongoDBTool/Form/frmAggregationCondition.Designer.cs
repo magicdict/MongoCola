@@ -28,39 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabAggregation = new System.Windows.Forms.TabControl();
             this.tabProject = new System.Windows.Forms.TabPage();
             this.QueryFieldPicker = new MagicMongoDBTool.FieldPicker();
             this.tabMatch = new System.Windows.Forms.TabPage();
+            this.btnClearMatch = new System.Windows.Forms.Button();
+            this.btnAddMatch = new System.Windows.Forms.Button();
+            this.tabGroup = new System.Windows.Forms.TabPage();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.cmdAddGroupItem = new System.Windows.Forms.Button();
+            this.GroupFieldPicker = new MagicMongoDBTool.FieldPicker();
+            this.groupPanelCreator = new MagicMongoDBTool.GroupPanel();
+            this.lblID = new System.Windows.Forms.Label();
             this.tabOption = new System.Windows.Forms.TabPage();
             this.txtSkip = new System.Windows.Forms.TextBox();
             this.txtLimit = new System.Windows.Forms.TextBox();
             this.chkSkip = new System.Windows.Forms.CheckBox();
             this.chkLimit = new System.Windows.Forms.CheckBox();
-            this.tabGroup = new System.Windows.Forms.TabPage();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.cmdAddGroupItem = new System.Windows.Forms.Button();
-            this.GroupFieldPicker = new MagicMongoDBTool.FieldPicker();
-            this.groupPanelCreator = new MagicMongoDBTool.GroupPan();
-            this.lblID = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
+            this.MatchListPanel = new MagicMongoDBTool.MatchPanel();
+            this.tabAggregation.SuspendLayout();
             this.tabProject.SuspendLayout();
-            this.tabOption.SuspendLayout();
+            this.tabMatch.SuspendLayout();
             this.tabGroup.SuspendLayout();
+            this.tabOption.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabAggregation
             // 
-            this.tabControl1.Controls.Add(this.tabProject);
-            this.tabControl1.Controls.Add(this.tabMatch);
-            this.tabControl1.Controls.Add(this.tabOption);
-            this.tabControl1.Controls.Add(this.tabGroup);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(612, 354);
-            this.tabControl1.TabIndex = 0;
+            this.tabAggregation.Controls.Add(this.tabProject);
+            this.tabAggregation.Controls.Add(this.tabMatch);
+            this.tabAggregation.Controls.Add(this.tabGroup);
+            this.tabAggregation.Controls.Add(this.tabOption);
+            this.tabAggregation.Location = new System.Drawing.Point(12, 12);
+            this.tabAggregation.Name = "tabAggregation";
+            this.tabAggregation.SelectedIndex = 0;
+            this.tabAggregation.Size = new System.Drawing.Size(612, 354);
+            this.tabAggregation.TabIndex = 0;
             // 
             // tabProject
             // 
@@ -87,6 +91,9 @@
             // 
             // tabMatch
             // 
+            this.tabMatch.Controls.Add(this.MatchListPanel);
+            this.tabMatch.Controls.Add(this.btnClearMatch);
+            this.tabMatch.Controls.Add(this.btnAddMatch);
             this.tabMatch.Location = new System.Drawing.Point(4, 22);
             this.tabMatch.Name = "tabMatch";
             this.tabMatch.Padding = new System.Windows.Forms.Padding(3);
@@ -94,6 +101,90 @@
             this.tabMatch.TabIndex = 2;
             this.tabMatch.Text = "$match";
             this.tabMatch.UseVisualStyleBackColor = true;
+            // 
+            // btnClearMatch
+            // 
+            this.btnClearMatch.Location = new System.Drawing.Point(101, 20);
+            this.btnClearMatch.Name = "btnClearMatch";
+            this.btnClearMatch.Size = new System.Drawing.Size(75, 23);
+            this.btnClearMatch.TabIndex = 1;
+            this.btnClearMatch.Text = "Clear";
+            this.btnClearMatch.UseVisualStyleBackColor = true;
+            this.btnClearMatch.Click += new System.EventHandler(this.btnClearMatch_Click);
+            // 
+            // btnAddMatch
+            // 
+            this.btnAddMatch.Location = new System.Drawing.Point(20, 20);
+            this.btnAddMatch.Name = "btnAddMatch";
+            this.btnAddMatch.Size = new System.Drawing.Size(75, 23);
+            this.btnAddMatch.TabIndex = 0;
+            this.btnAddMatch.Text = "Add";
+            this.btnAddMatch.UseVisualStyleBackColor = true;
+            this.btnAddMatch.Click += new System.EventHandler(this.btnAddMatch_Click);
+            // 
+            // tabGroup
+            // 
+            this.tabGroup.Controls.Add(this.btnClear);
+            this.tabGroup.Controls.Add(this.cmdAddGroupItem);
+            this.tabGroup.Controls.Add(this.GroupFieldPicker);
+            this.tabGroup.Controls.Add(this.groupPanelCreator);
+            this.tabGroup.Controls.Add(this.lblID);
+            this.tabGroup.Location = new System.Drawing.Point(4, 22);
+            this.tabGroup.Name = "tabGroup";
+            this.tabGroup.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGroup.Size = new System.Drawing.Size(604, 328);
+            this.tabGroup.TabIndex = 3;
+            this.tabGroup.Text = "$group";
+            this.tabGroup.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(134, 173);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 5;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // cmdAddGroupItem
+            // 
+            this.cmdAddGroupItem.Location = new System.Drawing.Point(40, 173);
+            this.cmdAddGroupItem.Name = "cmdAddGroupItem";
+            this.cmdAddGroupItem.Size = new System.Drawing.Size(88, 23);
+            this.cmdAddGroupItem.TabIndex = 4;
+            this.cmdAddGroupItem.Text = "Add GroupItem";
+            this.cmdAddGroupItem.UseVisualStyleBackColor = true;
+            this.cmdAddGroupItem.Click += new System.EventHandler(this.cmdAddGroupItem_Click);
+            // 
+            // GroupFieldPicker
+            // 
+            this.GroupFieldPicker.AutoScroll = true;
+            this.GroupFieldPicker.BackColor = System.Drawing.Color.White;
+            this.GroupFieldPicker.FieldListMode = MagicMongoDBTool.ctlFieldInfo.FieldMode.FieldProject;
+            this.GroupFieldPicker.IsIDProtect = false;
+            this.GroupFieldPicker.Location = new System.Drawing.Point(6, 30);
+            this.GroupFieldPicker.Name = "GroupFieldPicker";
+            this.GroupFieldPicker.Size = new System.Drawing.Size(592, 137);
+            this.GroupFieldPicker.TabIndex = 3;
+            // 
+            // groupPanelCreator
+            // 
+            this.groupPanelCreator.AutoScroll = true;
+            this.groupPanelCreator.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupPanelCreator.Location = new System.Drawing.Point(3, 196);
+            this.groupPanelCreator.Name = "groupPanelCreator";
+            this.groupPanelCreator.Size = new System.Drawing.Size(598, 129);
+            this.groupPanelCreator.TabIndex = 2;
+            // 
+            // lblID
+            // 
+            this.lblID.AutoSize = true;
+            this.lblID.Location = new System.Drawing.Point(6, 14);
+            this.lblID.Name = "lblID";
+            this.lblID.Size = new System.Drawing.Size(126, 13);
+            this.lblID.TabIndex = 1;
+            this.lblID.Text = "ID (group by fields below)";
             // 
             // tabOption
             // 
@@ -147,69 +238,6 @@
             this.chkLimit.Text = "$limit";
             this.chkLimit.UseVisualStyleBackColor = true;
             // 
-            // tabGroup
-            // 
-            this.tabGroup.Controls.Add(this.btnClear);
-            this.tabGroup.Controls.Add(this.cmdAddGroupItem);
-            this.tabGroup.Controls.Add(this.GroupFieldPicker);
-            this.tabGroup.Controls.Add(this.groupPanelCreator);
-            this.tabGroup.Controls.Add(this.lblID);
-            this.tabGroup.Location = new System.Drawing.Point(4, 22);
-            this.tabGroup.Name = "tabGroup";
-            this.tabGroup.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGroup.Size = new System.Drawing.Size(604, 328);
-            this.tabGroup.TabIndex = 3;
-            this.tabGroup.Text = "$group";
-            this.tabGroup.UseVisualStyleBackColor = true;
-            // 
-            // btnClear
-            // 
-            this.btnClear.Location = new System.Drawing.Point(119, 173);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 5;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // cmdAddGroupItem
-            // 
-            this.cmdAddGroupItem.Location = new System.Drawing.Point(9, 173);
-            this.cmdAddGroupItem.Name = "cmdAddGroupItem";
-            this.cmdAddGroupItem.Size = new System.Drawing.Size(104, 23);
-            this.cmdAddGroupItem.TabIndex = 4;
-            this.cmdAddGroupItem.Text = "Add GroupItem";
-            this.cmdAddGroupItem.UseVisualStyleBackColor = true;
-            this.cmdAddGroupItem.Click += new System.EventHandler(this.cmdAddGroupItem_Click);
-            // 
-            // GroupFieldPicker
-            // 
-            this.GroupFieldPicker.AutoScroll = true;
-            this.GroupFieldPicker.BackColor = System.Drawing.Color.White;
-            this.GroupFieldPicker.FieldListMode = MagicMongoDBTool.ctlFieldInfo.FieldMode.FieldProject;
-            this.GroupFieldPicker.IsIDProtect = false;
-            this.GroupFieldPicker.Location = new System.Drawing.Point(6, 30);
-            this.GroupFieldPicker.Name = "GroupFieldPicker";
-            this.GroupFieldPicker.Size = new System.Drawing.Size(592, 137);
-            this.GroupFieldPicker.TabIndex = 3;
-            // 
-            // groupPanelCreator
-            // 
-            this.groupPanelCreator.AutoScroll = true;
-            this.groupPanelCreator.Location = new System.Drawing.Point(0, 199);
-            this.groupPanelCreator.Name = "groupPanelCreator";
-            this.groupPanelCreator.Size = new System.Drawing.Size(601, 129);
-            this.groupPanelCreator.TabIndex = 2;
-            // 
-            // lblID
-            // 
-            this.lblID.AutoSize = true;
-            this.lblID.Location = new System.Drawing.Point(6, 14);
-            this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(126, 13);
-            this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID (group by fields below)";
-            // 
             // btnOK
             // 
             this.btnOK.Location = new System.Drawing.Point(542, 377);
@@ -220,6 +248,15 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // MatchListPanel
+            // 
+            this.MatchListPanel.AutoScroll = true;
+            this.MatchListPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.MatchListPanel.Location = new System.Drawing.Point(3, 49);
+            this.MatchListPanel.Name = "MatchListPanel";
+            this.MatchListPanel.Size = new System.Drawing.Size(598, 276);
+            this.MatchListPanel.TabIndex = 2;
+            // 
             // frmAggregationCondition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,23 +264,24 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(636, 412);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabAggregation);
             this.Name = "frmAggregationCondition";
             this.Text = "Aggregation Condition Builder";
             this.Load += new System.EventHandler(this.frmAggregationCondition_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.tabAggregation.ResumeLayout(false);
             this.tabProject.ResumeLayout(false);
-            this.tabOption.ResumeLayout(false);
-            this.tabOption.PerformLayout();
+            this.tabMatch.ResumeLayout(false);
             this.tabGroup.ResumeLayout(false);
             this.tabGroup.PerformLayout();
+            this.tabOption.ResumeLayout(false);
+            this.tabOption.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabAggregation;
         private System.Windows.Forms.TabPage tabProject;
         private FieldPicker QueryFieldPicker;
         private System.Windows.Forms.TabPage tabOption;
@@ -255,10 +293,13 @@
         private System.Windows.Forms.TextBox txtLimit;
         private System.Windows.Forms.TabPage tabGroup;
         private System.Windows.Forms.Label lblID;
-        private GroupPan groupPanelCreator;
+        private GroupPanel groupPanelCreator;
         private FieldPicker GroupFieldPicker;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button cmdAddGroupItem;
+        private System.Windows.Forms.Button btnClearMatch;
+        private System.Windows.Forms.Button btnAddMatch;
+        private MatchPanel MatchListPanel;
 
 
     }

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MagicMongoDBTool
 {
-    public partial class GroupPan : UserControl
+    public partial class GroupPanel : UserControl
     {
         /// <summary>
         /// GroupItem数量
@@ -18,7 +18,7 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 构造器
         /// </summary>
-        public GroupPan()
+        public GroupPanel()
         {
             InitializeComponent();
             AddGroupItem();

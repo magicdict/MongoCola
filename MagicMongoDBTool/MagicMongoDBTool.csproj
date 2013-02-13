@@ -96,17 +96,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserController\Aggregation\MatchPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\Aggregation\MatchPanel.Designer.cs">
+      <DependentUpon>MatchPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserController\Aggregation\ctlMatchItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\Aggregation\ctlMatchItem.Designer.cs">
+      <DependentUpon>ctlMatchItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\Aggregation\GroupItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserController\Aggregation\GroupItem.Designer.cs">
       <DependentUpon>GroupItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\Aggregation\GroupPan.cs">
+    <Compile Include="UserController\Aggregation\GroupPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\Aggregation\GroupPan.Designer.cs">
-      <DependentUpon>GroupPan.cs</DependentUpon>
+    <Compile Include="UserController\Aggregation\GroupPanel.Designer.cs">
+      <DependentUpon>GroupPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\Aggregation\ConditionPanel.cs">
       <SubType>UserControl</SubType>
@@ -436,11 +448,14 @@
     <Compile Include="UserController\TreeViewColumns.Designer.cs">
       <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserController\Aggregation\ctlMatchItem.resx">
+      <DependentUpon>ctlMatchItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\Aggregation\GroupItem.resx">
       <DependentUpon>GroupItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\GroupPan.resx">
-      <DependentUpon>GroupPan.cs</DependentUpon>
+    <EmbeddedResource Include="UserController\Aggregation\GroupPanel.resx">
+      <DependentUpon>GroupPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\Aggregation\ConditionPanel.resx">
       <DependentUpon>ConditionPanel.cs</DependentUpon>

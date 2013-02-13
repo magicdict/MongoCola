@@ -161,29 +161,6 @@ namespace MagicMongoDBTool.Module
                     //[-180,180] 如果已经有索引，则操作这个范围的记录无法插入数据库
                 });
             }
-            var group = new BsonDocument 
-                { 
-                    { "$group", 
-                        new BsonDocument 
-                            { 
-                                { "_id", new BsonDocument 
-                                             { 
-                                                 { 
-                                                     "MyUser","$User" 
-                                                 } 
-                                             } 
-                                }, 
-                                { 
-                                    "Count", new BsonDocument 
-                                                 { 
-                                                     { 
-                                                         "$sum", 1 
-                                                     } 
-                                                 } 
-                                } 
-                            } 
-                  } 
-                };
         }
         /// <summary>
         /// 生成TTL测试数据
@@ -258,7 +235,7 @@ namespace MagicMongoDBTool.Module
             MongoDatabase mongodb = mongoServer.GetDatabase("mongodb");
             MongoCollection<AggregationObject> mongoCol = mongodb.GetCollection<AggregationObject>("Aggregation");
             mongoCol.RemoveAll();
-            for (int i = 0; i < 1000000; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 mongoCol.Insert(CreateAggregationObject(i.ToString()));
             }

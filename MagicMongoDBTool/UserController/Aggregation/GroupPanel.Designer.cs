@@ -1,6 +1,6 @@
 ﻿namespace MagicMongoDBTool
 {
-    partial class GroupPan
+    partial class GroupPanel
     {
         /// <summary> 
         /// 必需的设计器变量。

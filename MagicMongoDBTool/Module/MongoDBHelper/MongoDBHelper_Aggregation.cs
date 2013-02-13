@@ -24,5 +24,23 @@ namespace MagicMongoDBTool.Module
                 "$sum"
             };
         }
+
+        /// <summary>
+        /// group aggregation function
+        /// </summary>
+        /// <returns></returns>
+        static public string[] getComparisonfunction()
+        {
+            return new string[]{
+                "$all",
+                "$gt",
+                "$gte",
+                "$in",
+                "$lt",
+                "$lte",
+                "$ne",
+                "$nin"
+            };
+        }
     }
 }
