@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
+using System;
+using System.IO;
 
 namespace MagicMongoDBTool.Module
 {
@@ -52,12 +52,13 @@ namespace MagicMongoDBTool.Module
                 gfs.Download(LocalFileName, strRemoteFileName);
                 System.Diagnostics.Process.Start(LocalFileName);
             }
-            catch (System.ComponentModel.Win32Exception) {
+            catch (System.ComponentModel.Win32Exception)
+            {
                 MyMessageBox.ShowEasyMessage("Error", "No Program can open this file");
             }
             catch (Exception ex)
             {
-                SystemManager.ExceptionDeal(ex,"Error", "Exception happend when open file");
+                SystemManager.ExceptionDeal(ex, "Error", "Exception happend when open file");
             }
         }
         /// <summary>
@@ -128,7 +129,8 @@ namespace MagicMongoDBTool.Module
                 {
                     RemoteName = strFileName.Replace(Path.DirectorySeparatorChar, Option.DirectorySeparatorChar);
                 }
-                else {
+                else
+                {
                     RemoteName = strFileName;
                 }
             }

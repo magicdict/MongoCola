@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -6,7 +7,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Web;
-using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool.HTTP
 {
@@ -229,7 +229,7 @@ namespace MagicMongoDBTool.HTTP
                     //MainTreeImage00.png -- 从MainTreeImage 里面获得
                     int MainTreeImageIndex = Convert.ToInt32(FileName.Substring("\\MainTreeImage".Length, 2));
                     Image img = GetSystemIcon.MainTreeImage.Images[MainTreeImageIndex];
-                    bFile = GetSystemIcon.imageToByteArray(img,ImageFormat.Png);
+                    bFile = GetSystemIcon.imageToByteArray(img, ImageFormat.Png);
                     IsFound = true;
                 }
             }

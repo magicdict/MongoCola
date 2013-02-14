@@ -170,7 +170,7 @@ namespace MagicMongoDBTool.Module
         public static void DropElement(String ElementPath, BsonElement El)
         {
             BsonDocument BaseDoc = SystemManager.CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath,false);
+            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, false);
             if (t.IsBsonDocument)
             {
                 t.AsBsonDocument.Remove(El.Name);

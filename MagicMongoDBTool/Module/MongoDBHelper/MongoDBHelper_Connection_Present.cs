@@ -279,13 +279,13 @@ namespace MagicMongoDBTool.Module
                     if (!SystemManager.IsUseDefaultLanguage)
                     {
                         ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]";
-                        SystemManager.ExceptionDeal(ex,SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
+                        SystemManager.ExceptionDeal(ex, SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
                                                        SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException_Note));
                     }
                     else
                     {
                         ConnectionNode.Text += "[MongoAuthenticationException]";
-                        SystemManager.ExceptionDeal(ex,"MongoAuthenticationException:", "Please check UserName and Password");
+                        SystemManager.ExceptionDeal(ex, "MongoAuthenticationException:", "Please check UserName and Password");
                     }
                     ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
@@ -299,13 +299,13 @@ namespace MagicMongoDBTool.Module
                     if (!SystemManager.IsUseDefaultLanguage)
                     {
                         ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
-                        SystemManager.ExceptionDeal(ex,SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                        SystemManager.ExceptionDeal(ex, SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
                                                        SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note));
                     }
                     else
                     {
                         ConnectionNode.Text += "[Exception]";
-                        SystemManager.ExceptionDeal(ex,"Not Connected","Mongo Server may not Startup or Auth Mode is not correct");
+                        SystemManager.ExceptionDeal(ex, "Not Connected", "Mongo Server may not Startup or Auth Mode is not correct");
                     }
                     ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
@@ -417,7 +417,7 @@ namespace MagicMongoDBTool.Module
                     }
                     catch (Exception ex)
                     {
-                        SystemManager.ExceptionDeal(ex,strDBName + "Exception", strDBName + "Exception");
+                        SystemManager.ExceptionDeal(ex, strDBName + "Exception", strDBName + "Exception");
                         mongoDBNode = new TreeNode(strDBName + " (Exception)");
                         mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;

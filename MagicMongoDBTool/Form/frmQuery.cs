@@ -1,8 +1,6 @@
 ﻿using MagicMongoDBTool.Module;
-using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace MagicMongoDBTool

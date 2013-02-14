@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
+using System;
 using System.Collections.Generic;
-using MagicMongoDBTool.Module;
-using System.Windows.Forms;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace MagicMongoDBTool
 {
@@ -134,7 +134,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="Info"></param>
         /// <param name="Message"></param>
-        private void Write(String Info,byte Message)
+        private void Write(String Info, byte Message)
         {
             txtInfo.Text += Info + System.Environment.NewLine;
         }
@@ -154,13 +154,13 @@ namespace MagicMongoDBTool
                      if (txtInfo.InvokeRequired)
                      {
                          WriteInfo t = new WriteInfo(Write);
-                         object[] o = new object[2] { y.Info,y.Level };
+                         object[] o = new object[2] { y.Info, y.Level };
                          ((Control)this).Invoke(t, o);
                          return;
                      }
                      else
                      {
-                         Write(y.Info,y.Level);
+                         Write(y.Info, y.Level);
                      }
                  });
             Thread q = new Thread(new ThreadStart(svr.Start));

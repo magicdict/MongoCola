@@ -1,9 +1,8 @@
-﻿using System;
+﻿using MongoDB.Driver.Builders;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
@@ -93,7 +92,8 @@ namespace MagicMongoDBTool.Module
             /// 构造器
             /// </summary>
             /// <param name="mColName"></param>
-            public QueryFieldItem(String mColName) {
+            public QueryFieldItem(String mColName)
+            {
                 ProjectName = string.Empty;
                 ColName = mColName;
                 IsShow = false;

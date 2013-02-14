@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Microsoft.Win32;
-using System.Drawing.Imaging;
 
 namespace MagicMongoDBTool.Module
 {
@@ -31,7 +31,7 @@ namespace MagicMongoDBTool.Module
             DeleteObject(h);
             return icon;
         }
-        public static byte[] imageToByteArray(System.Drawing.Image imageIn,ImageFormat Format)
+        public static byte[] imageToByteArray(System.Drawing.Image imageIn, ImageFormat Format)
         {
             MemoryStream ms = new MemoryStream();
             imageIn.Save(ms, ImageFormat.Png);

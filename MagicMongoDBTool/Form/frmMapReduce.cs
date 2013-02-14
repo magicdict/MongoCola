@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using MagicMongoDBTool.Module;
+﻿using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
 
 namespace MagicMongoDBTool
 {

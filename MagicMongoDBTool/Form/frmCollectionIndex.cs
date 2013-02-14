@@ -71,7 +71,7 @@ namespace MagicMongoDBTool
             {
                 chkExpireData.Enabled = false;
                 numTTL.Enabled = false;
-            } 
+            }
             RefreshList();
         }
         /// <summary>
@@ -139,7 +139,7 @@ namespace MagicMongoDBTool
                 //http://docs.mongodb.org/manual/tutorial/expire-data/
                 //不能是组合键
                 Boolean CanUseTTL = true;
-                if ((AscendingKey.Count + DescendingKey.Count + (String.IsNullOrEmpty(GeoSpatialKey)?0:1)) != 1 )
+                if ((AscendingKey.Count + DescendingKey.Count + (String.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1)) != 1)
                 {
                     MyMessageBox.ShowMessage("Can't Set TTL", "the TTL index may not be compound (may not have multiple fields).");
                     CanUseTTL = false;
@@ -178,7 +178,7 @@ namespace MagicMongoDBTool
                 }
                 catch (Exception ex)
                 {
-                    SystemManager.ExceptionDeal(ex,"Index Add Failed!", "IndexName:" + txtIndexName.Text);
+                    SystemManager.ExceptionDeal(ex, "Index Add Failed!", "IndexName:" + txtIndexName.Text);
                 }
                 RefreshList();
             }

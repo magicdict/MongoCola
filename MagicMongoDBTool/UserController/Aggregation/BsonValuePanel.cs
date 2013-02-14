@@ -6,10 +6,6 @@ namespace MagicMongoDBTool
 {
     public partial class BsonValuePanel : UserControl
     {
-        public BsonValuePanel()
-        {
-            InitializeComponent();
-        }
         /// <summary>
         /// GroupItem数量
         /// </summary>
@@ -18,6 +14,22 @@ namespace MagicMongoDBTool
         /// GroupItem位置
         /// </summary>
         private Point _conditionPos = new Point(10, 0);
+        /// <summary>
+        /// 构造器
+        /// </summary>
+        public BsonValuePanel()
+        {
+            InitializeComponent();
+        }
+        /// <summary>
+        /// 加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BsonValuePanel_Load(object sender, System.EventArgs e)
+        {
+            AddBsonValueItem();
+        }
         /// <summary>
         /// 增加BsonValueItem
         /// </summary>
@@ -56,11 +68,6 @@ namespace MagicMongoDBTool
             Controls.Clear();
             _conditionCount = 0;
             _conditionPos = new Point(10, 0);
-            AddBsonValueItem();
-        }
-
-        private void BsonValuePanel_Load(object sender, System.EventArgs e)
-        {
             AddBsonValueItem();
         }
     }

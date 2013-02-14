@@ -51,7 +51,8 @@ namespace MagicMongoDBTool
                 {
                     String ErrMessage;
                     SystemManager.GetCurrentDataBase().IsCollectionNameValid(txtCollectionName.Text, out ErrMessage);
-                    if (ErrMessage  != null) {
+                    if (ErrMessage != null)
+                    {
                         MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", ErrMessage, true);
                         return;
                     }
@@ -73,7 +74,7 @@ namespace MagicMongoDBTool
                 }
                 catch (ArgumentException ex)
                 {
-                    SystemManager.ExceptionDeal(ex,"Create MongoDatabase", "Argument Exception");
+                    SystemManager.ExceptionDeal(ex, "Create MongoDatabase", "Argument Exception");
                     Result = false;
                 }
             }

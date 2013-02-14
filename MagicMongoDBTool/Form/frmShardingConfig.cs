@@ -266,7 +266,7 @@ namespace MagicMongoDBTool
             List<CommandResult> Resultlst = new List<CommandResult>();
             GetIndexesResult Result = _prmSvr.GetDatabase(cmbDataBase.Text).GetCollection(cmbCollection.Text).GetIndexes();
             BsonDocument IndexDoc = Result[cmbIndexList.SelectedIndex].Key;
-            Resultlst.Add(MongoDBHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text,IndexDoc));
+            Resultlst.Add(MongoDBHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, IndexDoc));
             MyMessageBox.ShowMessage("EnableSharding", "Result", MongoDBHelper.ConvertCommandResultlstToString(Resultlst));
         }
         /// <summary>

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-using MagicMongoDBTool.Module;
+﻿using MagicMongoDBTool.Module;
+using MagicMongoDBTool.UnitTest;
 using MagicMongoDBTool.UserController;
 using MongoDB.Driver;
-using MagicMongoDBTool.UnitTest;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace MagicMongoDBTool
 {
@@ -1233,8 +1233,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void InitReplsetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String ReplSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :", 
-                SystemManager.IsUseDefaultLanguage?"ReplSetName":SystemManager.mStringResource.GetText(StringResource.TextType.Replset_InitReplset));
+            String ReplSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :",
+                SystemManager.IsUseDefaultLanguage ? "ReplSetName" : SystemManager.mStringResource.GetText(StringResource.TextType.Replset_InitReplset));
             if (ReplSetName != String.Empty)
             {
                 CommandResult Result = MongoDBHelper.InitReplicaSet(ReplSetName, SystemManager.GetCurrentServerConfig().ConnectionName);
@@ -1370,7 +1370,7 @@ namespace MagicMongoDBTool
                 }
                 catch (ArgumentException ex)
                 {
-                    SystemManager.ExceptionDeal(ex,"Create MongoDatabase", "Argument Exception");
+                    SystemManager.ExceptionDeal(ex, "Create MongoDatabase", "Argument Exception");
                 }
             }
             else
@@ -2131,7 +2131,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-             
+
             MyMessageBox.ShowMessage("About", "MagicCola",
                                      MagicMongoDBTool.Module.GetResource.GetImage(MagicMongoDBTool.Module.ImageType.Smile),
                                      new System.IO.StreamReader("Release Note.txt").ReadToEnd());
@@ -2173,6 +2173,6 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmSinaWeiBo(), true, true);
         }
         #endregion
-       
+
     }
 }

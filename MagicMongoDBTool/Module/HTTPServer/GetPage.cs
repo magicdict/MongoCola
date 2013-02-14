@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using MagicMongoDBTool.Module;
+﻿using MagicMongoDBTool.Module;
 using MongoDB.Bson;
-using MongoDB.Driver;
-using System.Windows.Forms;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace MagicMongoDBTool.HTTP
 {
@@ -76,7 +72,7 @@ namespace MagicMongoDBTool.HTTP
             SystemManager.SelectObjectTag = DBTag;
             BsonDocument cr = new BsonDocument();
             cr = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
-            return MongoDBHelper.ConvertBsonTozTreeJson("Connection Status",cr,true);
+            return MongoDBHelper.ConvertBsonTozTreeJson("Connection Status", cr, true);
         }
         /// <summary>
         /// 
@@ -88,7 +84,7 @@ namespace MagicMongoDBTool.HTTP
             SystemManager.SelectObjectTag = DBTag;
             BsonDocument cr = new BsonDocument();
             cr = SystemManager.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
-            return MongoDBHelper.ConvertBsonTozTreeJson("DataBase Status", cr,true);
+            return MongoDBHelper.ConvertBsonTozTreeJson("DataBase Status", cr, true);
         }
         /// <summary>
         /// 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;  
+using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool
 {
     public partial class frmGenerateConfigIni : Form

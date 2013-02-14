@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
 
 namespace MagicMongoDBTool.Module
 {
@@ -281,17 +281,19 @@ namespace MagicMongoDBTool.Module
         /// 错误日志
         /// </summary>
         /// <param name="ExceptionString">异常文字</param>
-        internal static void ExceptionLog(String ExceptionString) {
-            StreamWriter exLog = new StreamWriter("Exception.log",true);
+        internal static void ExceptionLog(String ExceptionString)
+        {
+            StreamWriter exLog = new StreamWriter("Exception.log", true);
             exLog.WriteLine("DateTime:" + DateTime.Now.ToString());
             exLog.WriteLine(ExceptionString);
             exLog.Close();
-        }   
+        }
         /// <summary>
         /// 错误日志
         /// </summary>
         /// <param name="ex">异常对象</param>
-        internal static void ExceptionLog(Exception ex) {
+        internal static void ExceptionLog(Exception ex)
+        {
             String ExceptionString;
             ExceptionString = "MongoDB.Driver.DLL:" + MongoDBDriverVersion + System.Environment.NewLine;
             ExceptionString += "MongoDB.Bson.DLL:" + MongoDBBsonVersion + System.Environment.NewLine;

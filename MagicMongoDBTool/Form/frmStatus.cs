@@ -1,7 +1,6 @@
 ﻿using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -193,7 +192,7 @@ namespace MagicMongoDBTool
                     }
                     catch (Exception ex)
                     {
-                        SystemManager.ExceptionDeal(ex);                        
+                        SystemManager.ExceptionDeal(ex);
                     }
                     break;
             }

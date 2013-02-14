@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Windows.Forms;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
@@ -190,8 +190,9 @@ namespace MagicMongoDBTool.Module
                     {
                         //不支持UTF....,执行会失败，但是Collection已经添加了
                         String ErrMsg;
-                        mongoDB.IsCollectionNameValid(strTableName,out ErrMsg);
-                        if (ErrMsg != null) {
+                        mongoDB.IsCollectionNameValid(strTableName, out ErrMsg);
+                        if (ErrMsg != null)
+                        {
                             strCreateTableInfo = strTableName + " Create Error " + System.Environment.NewLine + strCreateTableInfo;
                             OnActionDone(new ActionDoneEventArgs(strTableName + " IsCollectionNameValid Error "));
                             err++;

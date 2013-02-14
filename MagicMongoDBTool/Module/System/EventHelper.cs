@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading;
-using MagicMongoDBTool.Module;
+﻿using MagicMongoDBTool.Module;
 using MongoDB.Driver;
+using System;
+using System.Threading;
 
 namespace MagicMongoDBTool
 {

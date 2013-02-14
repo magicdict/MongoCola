@@ -30,7 +30,8 @@ namespace MagicMongoDBTool
             if (this.radRenameIt.Checked) { option = MongoDBHelper.enumGFSAlready.RenameIt; }
             if (this.radSkipIt.Checked) { option = MongoDBHelper.enumGFSAlready.SkipIt; }
             if (this.radStopIt.Checked) { option = MongoDBHelper.enumGFSAlready.Stop; }
-            if (this.txtSeperateChar.Text != String.Empty){
+            if (this.txtSeperateChar.Text != String.Empty)
+            {
                 DirectorySeparatorChar = this.txtSeperateChar.Text.ToCharArray()[0];
             }
             ignoreSubFolder = chkIgnore.Checked;

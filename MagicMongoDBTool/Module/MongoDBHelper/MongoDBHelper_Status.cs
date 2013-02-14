@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using MongoDB.Bson;
-using MongoDB.Driver;
 using TreeViewColumnsProject;
 
 namespace MagicMongoDBTool.Module
@@ -38,7 +38,7 @@ namespace MagicMongoDBTool.Module
                     SystemManager.ExceptionDeal(ex);
                 }
             }
-            FillDataToTreeView("Server Status", trvSvrStatus, SrvDocList,0);
+            FillDataToTreeView("Server Status", trvSvrStatus, SrvDocList, 0);
             //打开第一层
             foreach (TreeNode item in trvSvrStatus.DatatreeView.Nodes)
             {

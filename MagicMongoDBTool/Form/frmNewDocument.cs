@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-using MagicMongoDBTool.Module;
+﻿using MagicMongoDBTool.Module;
 using MongoDB.Bson;
-using MongoDB.Driver;
+using System;
+using System.Windows.Forms;
 
 namespace MagicMongoDBTool
 {
@@ -31,7 +30,7 @@ namespace MagicMongoDBTool
                 }
                 catch (Exception ex)
                 {
-                    SystemManager.ExceptionDeal(ex,"Error", "Format Error");
+                    SystemManager.ExceptionDeal(ex, "Error", "Format Error");
                 }
             }
             else
@@ -43,7 +42,7 @@ namespace MagicMongoDBTool
                 }
                 catch (Exception ex)
                 {
-                    SystemManager.ExceptionDeal(ex,"Error", "InsertEmptyDocument Error");
+                    SystemManager.ExceptionDeal(ex, "Error", "InsertEmptyDocument Error");
                 }
             }
         }
