@@ -235,7 +235,7 @@ namespace MagicMongoDBTool.Module
             MongoDatabase mongodb = mongoServer.GetDatabase("mongodb");
             MongoCollection<AggregationObject> mongoCol = mongodb.GetCollection<AggregationObject>("Aggregation");
             mongoCol.RemoveAll();
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 mongoCol.Insert(CreateAggregationObject(i.ToString()));
             }

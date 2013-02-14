@@ -33,8 +33,9 @@ namespace MagicMongoDBTool
                     trvResult.DatatreeView.ExpandAll();
                     trvResult.DatatreeView.EndUpdate();
                 }
-                else {
-                    MyMessageBox.ShowMessage("Aggregate Result",mCommandResult.ErrorMessage);
+                else
+                {
+                    MyMessageBox.ShowMessage("Aggregate Result", mCommandResult.ErrorMessage);
                 }
 
             }
@@ -133,7 +134,10 @@ namespace MagicMongoDBTool
         {
             frmAggregationCondition frmAggregationBuilder = new frmAggregationCondition();
             SystemManager.OpenForm(frmAggregationBuilder, false, true);
-            _AggrArray= frmAggregationBuilder.Aggregation;
+            foreach (var item in frmAggregationBuilder.Aggregation)
+            {
+                _AggrArray.Add(item);
+            }
             FillAggreationTreeview();
         }
     }

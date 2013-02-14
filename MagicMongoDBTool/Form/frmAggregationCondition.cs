@@ -51,8 +51,9 @@ namespace MagicMongoDBTool
                 Aggregation.Add(project);
             }
             //match
-            BsonDocument match =  MatchListPanel.GetMatch();
-            if (match.ElementCount > 0){
+            BsonDocument match = MatchListPanel.GetMatchDocument();
+            if (match != null)
+            {
                 Aggregation.Add(match);
             }
             //Skip
@@ -78,7 +79,7 @@ namespace MagicMongoDBTool
             }
             this.Close();
         }
-        
+
         #region"Group"
         /// <summary>
         /// 添加一个Group项目

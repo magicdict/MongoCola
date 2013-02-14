@@ -34,6 +34,9 @@ namespace MagicMongoDBTool
             /// 字段加Project
             /// </summary>
             FieldProject,
+            /// <summary>
+            /// 完整模式
+            /// </summary>
             Full
         }
         private FieldMode mMode;
@@ -60,7 +63,6 @@ namespace MagicMongoDBTool
                         radSortAcs.Visible = true;
                         radSortDes.Visible = true;
                         txtProject.Visible = false;
-
                         break;
                     case FieldMode.FieldProject:
                         chkIsShow.Visible = true;
@@ -109,7 +111,8 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 投影名称
         /// </summary>
-        public string ProjectName {
+        public string ProjectName
+        {
             get { return txtProject.Text; }
             set { txtProject.Text = value; }
         }

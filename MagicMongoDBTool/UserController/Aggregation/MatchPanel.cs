@@ -10,6 +10,7 @@ namespace MagicMongoDBTool
         public MatchPanel()
         {
             InitializeComponent();
+            AddMatchItem();
         }
         /// <summary>
         /// MatchItem数量
@@ -19,7 +20,6 @@ namespace MagicMongoDBTool
         /// MatchItem位置
         /// </summary>
         private Point _conditionPos = new Point(10, 0);
-
         /// <summary>
         /// 增加MatchItem
         /// </summary>
@@ -36,14 +36,33 @@ namespace MagicMongoDBTool
         /// 获取Match
         /// </summary>
         /// <returns></returns>
-        public BsonDocument GetMatch()
+        public BsonDocument GetMatchDocument()
         {
             BsonDocument Matchlist = new BsonDocument();
             foreach (ctlMatchItem item in this.Controls)
             {
-                Matchlist.Add("$match",item.getMatchItem());
+                BsonDocument match = item.getMatchItem();
+                if (match != null)
+                {
+                    string MatchName = match.GetElement(0).Name;
+                    if (Matchlist.Contains(MatchName))
+                    {
+                        BsonDocument AddMatch = match.GetElement(0).Value.AsBsonDocument;
+                        Matchlist.GetElement(MatchName).Value.AsBsonDocument.Add(AddMatch);
+                    }
+                    else {
+                        Matchlist.Add(match);
+                    }
+                }
             }
-            return Matchlist;
+            if (Matchlist.ElementCount > 0)
+            {
+                return new BsonDocument("$match", Matchlist);
+            }
+            else
+            {
+                return null;
+            }
         }
         /// <summary>
         /// 清除所有MatchItem

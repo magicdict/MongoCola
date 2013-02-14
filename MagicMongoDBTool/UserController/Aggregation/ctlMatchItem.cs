@@ -15,8 +15,15 @@ namespace MagicMongoDBTool
         /// 获取MatchItem
         /// </summary>
         /// <returns></returns>
-        public BsonDocument getMatchItem(){
-            return new BsonDocument(cmbField.Text,new BsonDocument(cmbComparisonfunction.Text,MatchValue.getValue()));
+        public BsonDocument getMatchItem()
+        {
+            if (!string.IsNullOrEmpty(cmbField.Text))
+            {
+                return new BsonDocument(cmbField.Text, new BsonDocument(cmbComparisonfunction.Text, MatchValue.getValue()));
+            }
+            else {
+                return null;
+            }
         }
         private void ctlMatchItem_Load(object sender, EventArgs e)
         {
