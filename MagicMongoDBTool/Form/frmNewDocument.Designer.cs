@@ -32,7 +32,7 @@
             this.txtDocument = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
-            this.treeViewColumns1 = new TreeViewColumnsProject.TreeViewColumns();
+            this.trvNewDocument = new TreeViewColumnsProject.TreeViewColumns();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdPreview = new System.Windows.Forms.Button();
             this.cmdSaveAggregate = new System.Windows.Forms.Button();
@@ -69,13 +69,13 @@
             // 
             // treeViewColumns1
             // 
-            this.treeViewColumns1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
-            this.treeViewColumns1.Location = new System.Drawing.Point(444, 13);
-            this.treeViewColumns1.Margin = new System.Windows.Forms.Padding(4);
-            this.treeViewColumns1.Name = "treeViewColumns1";
-            this.treeViewColumns1.Padding = new System.Windows.Forms.Padding(1);
-            this.treeViewColumns1.Size = new System.Drawing.Size(360, 237);
-            this.treeViewColumns1.TabIndex = 3;
+            this.trvNewDocument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this.trvNewDocument.Location = new System.Drawing.Point(444, 13);
+            this.trvNewDocument.Margin = new System.Windows.Forms.Padding(4);
+            this.trvNewDocument.Name = "treeViewColumns1";
+            this.trvNewDocument.Padding = new System.Windows.Forms.Padding(1);
+            this.trvNewDocument.Size = new System.Drawing.Size(360, 237);
+            this.trvNewDocument.TabIndex = 3;
             // 
             // label1
             // 
@@ -116,7 +116,7 @@
             this.Controls.Add(this.cmdSaveAggregate);
             this.Controls.Add(this.cmdPreview);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.treeViewColumns1);
+            this.Controls.Add(this.trvNewDocument);
             this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.txtDocument);
@@ -134,7 +134,7 @@
         private System.Windows.Forms.TextBox txtDocument;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.Button cmdClose;
-        private TreeViewColumnsProject.TreeViewColumns treeViewColumns1;
+        private TreeViewColumnsProject.TreeViewColumns trvNewDocument;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button cmdPreview;
         private System.Windows.Forms.Button cmdSaveAggregate;

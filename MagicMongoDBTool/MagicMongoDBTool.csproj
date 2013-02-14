@@ -96,6 +96,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserController\Aggregation\BsonValuePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\Aggregation\BsonValuePanel.Designer.cs">
+      <DependentUpon>BsonValuePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmArrayCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmArrayCreator.Designer.cs">
+      <DependentUpon>frmArrayCreator.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\Aggregation\MatchPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -448,6 +460,12 @@
     <Compile Include="UserController\TreeViewColumns.Designer.cs">
       <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form\frmArrayCreator.resx">
+      <DependentUpon>frmArrayCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserController\Aggregation\BsonValuePanel.resx">
+      <DependentUpon>BsonValuePanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\Aggregation\ctlMatchItem.resx">
       <DependentUpon>ctlMatchItem.cs</DependentUpon>
     </EmbeddedResource>

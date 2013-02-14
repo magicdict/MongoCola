@@ -67,8 +67,9 @@ namespace MagicMongoDBTool
             {
                 BsonDocument newdoc;
                 newdoc = BsonDocument.Parse(txtDocument.Text);
-                MongoDBHelper.FillDataToTreeView("InsertDocument", this.treeViewColumns1, newdoc);
-                this.treeViewColumns1.TreeView.ExpandAll();
+                MongoDBHelper.FillDataToTreeView("InsertDocument", this.trvNewDocument, newdoc);
+                this.trvNewDocument.TreeView.ExpandAll();
+                txtDocument.Text = newdoc.ToJson(SystemManager.JsonWriterSettings);
             }
             catch (Exception ex)
             {

@@ -351,7 +351,7 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
-        /// 
+        /// 将BsonArray放入树形控件
         /// </summary>
         /// <param name="newItem"></param>
         /// <param name="item"></param>

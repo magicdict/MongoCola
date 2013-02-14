@@ -8,13 +8,14 @@ namespace MagicMongoDBTool
     public partial class ctlBsonValue : UserControl
     {
         BsonDocument mBsonDocument = new BsonDocument();
+        BsonArray mBsonArray = new BsonArray();
         /// <summary>
         /// 使用属性会发生一些MONO上的移植问题
         /// </summary>
         /// <returns></returns>
         public BsonValue getValue()
         {
-            BsonValue mValue = new BsonString(String.Empty);
+            BsonValue mValue = null;
             switch (cmbDataType.SelectedIndex)
             {
                 case 0:
@@ -37,7 +38,7 @@ namespace MagicMongoDBTool
                     }
                     break;
                 case 4:
-                    mValue = new BsonArray();
+                    mValue = mBsonArray;
                     break;
                 case 5:
                     mValue = mBsonDocument;
@@ -93,17 +94,29 @@ namespace MagicMongoDBTool
             }
             if (value.IsBsonArray)
             {
-                cmbDataType.SelectedIndex = 4;
+                frmArrayCreator frmInsertArray = new frmArrayCreator();
+                SystemManager.OpenForm(frmInsertArray, false, true);
+                if (frmInsertArray.mBsonArray != null)
+                {
+                    mBsonArray = frmInsertArray.mBsonArray;
+                    txtBsonValue.Visible = true;
+                    txtBsonValue.Text = mBsonArray.ToString();
+                    txtBsonValue.ReadOnly = true;
+                    cmbDataType.SelectedIndex = 4;
+                }
             }
             if (value.IsBsonDocument)
             {
                 frmNewDocument frmInsertDoc = new frmNewDocument();
                 SystemManager.OpenForm(frmInsertDoc, false, true);
-                mBsonDocument = frmInsertDoc.mBsonDocument;
-                txtBsonValue.Visible = true;
-                txtBsonValue.Text = mBsonDocument.ToString();
-                txtBsonValue.ReadOnly = true;
-                cmbDataType.SelectedIndex = 5;
+                if (frmInsertDoc.mBsonDocument != null)
+                {
+                    mBsonDocument = frmInsertDoc.mBsonDocument;
+                    txtBsonValue.Visible = true;
+                    txtBsonValue.Text = mBsonDocument.ToString();
+                    txtBsonValue.ReadOnly = true;
+                    cmbDataType.SelectedIndex = 5;
+                }
             }
         }
 
