@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Desktop
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicMongoDBTool", "MagicMongoDBTool\MagicMongoDBTool.csproj", "{08ED1E3B-366B-42EF-B795-0FF1BDAA0B7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiBoApp", "WeiBoApp\WeiBoApp.csproj", "{CFA4E5FE-2B9D-4992-8DAE-37297F0B02B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,16 @@ Global
 		{08ED1E3B-366B-42EF-B795-0FF1BDAA0B7A}.Release|Mixed Platforms.Build.0 = Release|x86
 		{08ED1E3B-366B-42EF-B795-0FF1BDAA0B7A}.Release|x86.ActiveCfg = Release|x86
 		{08ED1E3B-366B-42EF-B795-0FF1BDAA0B7A}.Release|x86.Build.0 = Release|x86
+		{CFA4E5FE-2B9D-4992-8DAE-37297F0B02B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFA4E5FE-2B9D-4992-8DAE-37297F0B02B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFA4E5FE-2B9D-4992-8DAE-37297F0B02B7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CFA4E5FE-2B9D-4992-8DAE-37297F0B02B7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CFA4E5FE-2B9D-4992-8DAE-37297F0B02B7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CFA4E5FE-2B9D-4992-8DAE-37297F0B02B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFA4E5FE-2B9D-4992-8DAE-37297F0B02B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFA4E5FE-2B9D-4992-8DAE-37297F0B02B7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CFA4E5FE-2B9D-4992-8DAE-37297F0B02B7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CFA4E5FE-2B9D-4992-8DAE-37297F0B02B7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

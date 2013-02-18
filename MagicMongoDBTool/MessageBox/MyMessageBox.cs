@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using MagicMongoDBTool.Module;
+using System.Windows.Forms;
 
 namespace MagicMongoDBTool
 {
@@ -41,6 +42,7 @@ namespace MagicMongoDBTool
         {
             _frmInputBox.Text = Title;
             _frmInputBox.SetMessage(Message, DefaultValue);
+            _frmInputBox.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmInputBox.Visible == false)
             {
                 _frmInputBox.ShowDialog();
@@ -54,6 +56,7 @@ namespace MagicMongoDBTool
         {
             _frmConfirm.Text = Title;
             _frmConfirm.SetMessage(Message);
+            _frmConfirm.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmConfirm.Visible == false)
             {
                 _frmConfirm.ShowDialog();
@@ -72,6 +75,7 @@ namespace MagicMongoDBTool
         {
             _frmMessage.Text = Title;
             _frmMessage.SetMessage(Message, Details, false);
+            _frmMessage.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmMessage.Visible == false)
             {
                 _frmMessage.ShowDialog();
@@ -86,6 +90,7 @@ namespace MagicMongoDBTool
         {
             _frmMessage.Text = Title;
             _frmMessage.SetMessage(Message, Details, IsShowDetail);
+            _frmMessage.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmMessage.Visible == false)
             {
                 _frmMessage.ShowDialog();
@@ -100,6 +105,7 @@ namespace MagicMongoDBTool
         {
             _frmMessage.Text = Title;
             _frmMessage.SetMessage(Message, img, Details);
+            _frmMessage.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmMessage.Visible == false)
             {
                 _frmMessage.ShowDialog();
@@ -114,6 +120,7 @@ namespace MagicMongoDBTool
         {
             _frmEasyMessage.Text = Title;
             _frmEasyMessage.SetMessage(Message);
+            _frmEasyMessage.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmMessage.Visible == false)
             {
                 _frmEasyMessage.ShowDialog();

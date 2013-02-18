@@ -2170,7 +2170,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void forMySelfToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmSinaWeiBo(), true, true);
+            SystemManager.OpenForm(new frmUnitTest(), true, true);
         }
         #endregion
 

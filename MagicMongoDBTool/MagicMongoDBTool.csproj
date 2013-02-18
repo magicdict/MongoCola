@@ -74,10 +74,11 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="MongoDB.Bson, Version=1.7.0.4714, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL" />
-    <Reference Include="MongoDB.Driver, Version=1.7.0.4714, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL" />
-    <Reference Include="NetDimension.Weibo">
-      <HintPath>DLL\NetDimension.Weibo.dll</HintPath>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\DLL\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\DLL\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -90,9 +91,7 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -158,11 +157,11 @@
     <Compile Include="Form\frmAggregationCondition.Designer.cs">
       <DependentUpon>frmAggregationCondition.cs</DependentUpon>
     </Compile>
-    <Compile Include="UnitTest\frmSinaWeiBo.cs">
+    <Compile Include="UnitTest\frmUnitTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UnitTest\frmSinaWeiBo.Designer.cs">
-      <DependentUpon>frmSinaWeiBo.cs</DependentUpon>
+    <Compile Include="UnitTest\frmUnitTest.Designer.cs">
+      <DependentUpon>frmUnitTest.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\ctlDocumentView.cs">
       <SubType>UserControl</SubType>
@@ -484,8 +483,8 @@
     <EmbeddedResource Include="Form\frmAggregationCondition.resx">
       <DependentUpon>frmAggregationCondition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UnitTest\frmSinaWeiBo.resx">
-      <DependentUpon>frmSinaWeiBo.cs</DependentUpon>
+    <EmbeddedResource Include="UnitTest\frmUnitTest.resx">
+      <DependentUpon>frmUnitTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlDocumentView.resx">
       <DependentUpon>ctlDocumentView.cs</DependentUpon>
@@ -683,9 +682,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="clody.ico" />
-    <Content Include="DLL\MongoDB.Bson.dll" />
-    <Content Include="DLL\MongoDB.Driver.dll" />
-    <Content Include="DLL\System.Windows.Forms.DataVisualization.dll" />
     <Content Include="HTML\Connection.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

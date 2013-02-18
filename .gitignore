@@ -13,6 +13,7 @@
 *.mdb
 *.pdb
 *.doc
+/WeiBoApp
 /UnitTest
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
