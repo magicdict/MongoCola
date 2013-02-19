@@ -79,5 +79,19 @@ namespace MagicMongoDBTool.UnitTest
                 MessageBox.Show("Please select a server");
             }
         }
+
+        private void btnFillDataForMapReduce_Click(object sender, EventArgs e)
+        {
+            if (SystemManager.GetCurrentServer() != null)
+            {
+                InitTestData.FillDateForMapReduce(SystemManager.GetCurrentServer());
+                MessageBox.Show("Complete");
+            }
+            else
+            {
+                MessageBox.Show("Please select a server");
+            }
+
+        }
     }
 }

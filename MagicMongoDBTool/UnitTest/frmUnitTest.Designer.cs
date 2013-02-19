@@ -33,6 +33,7 @@
             this.btnFillDataForUser = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnFillDataForAggregation = new System.Windows.Forms.Button();
+            this.btnFillDataForMapReduce = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,6 +69,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnFillDataForMapReduce);
             this.groupBox1.Controls.Add(this.btnFillDataForAggregation);
             this.groupBox1.Controls.Add(this.btnFillDataForUser);
             this.groupBox1.Controls.Add(this.btnFillDataForGeoObject);
@@ -81,7 +83,7 @@
             // 
             // btnFillDataForAggregation
             // 
-            this.btnFillDataForAggregation.Location = new System.Drawing.Point(22, 106);
+            this.btnFillDataForAggregation.Location = new System.Drawing.Point(22, 104);
             this.btnFillDataForAggregation.Name = "btnFillDataForAggregation";
             this.btnFillDataForAggregation.Size = new System.Drawing.Size(174, 23);
             this.btnFillDataForAggregation.TabIndex = 8;
@@ -89,13 +91,23 @@
             this.btnFillDataForAggregation.UseVisualStyleBackColor = true;
             this.btnFillDataForAggregation.Click += new System.EventHandler(this.btnFillDataForAggregation_Click);
             // 
-            // frmSinaWeiBo
+            // btnFillDataForMapReduce
+            // 
+            this.btnFillDataForMapReduce.Location = new System.Drawing.Point(22, 128);
+            this.btnFillDataForMapReduce.Name = "btnFillDataForMapReduce";
+            this.btnFillDataForMapReduce.Size = new System.Drawing.Size(174, 23);
+            this.btnFillDataForMapReduce.TabIndex = 9;
+            this.btnFillDataForMapReduce.Text = "FillDataForMapReduce";
+            this.btnFillDataForMapReduce.UseVisualStyleBackColor = true;
+            this.btnFillDataForMapReduce.Click += new System.EventHandler(this.btnFillDataForMapReduce_Click);
+            // 
+            // frmUnitTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(256, 187);
             this.Controls.Add(this.groupBox1);
-            this.Name = "frmSinaWeiBo";
+            this.Name = "frmUnitTest";
             this.Text = "UnitTest";
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -109,5 +121,6 @@
         private System.Windows.Forms.Button btnFillDataForUser;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnFillDataForAggregation;
+        private System.Windows.Forms.Button btnFillDataForMapReduce;
     }
 }

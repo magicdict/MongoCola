@@ -65,6 +65,11 @@ namespace MagicMongoDBTool.Module
             public byte Age;
             public Int16 Money;
         }
+        internal class Book
+        {
+            public String UserID;
+            public String BookID;
+        }
         /// <summary>
         /// 建立一个随机的聚合对象
         /// </summary>
@@ -238,6 +243,15 @@ namespace MagicMongoDBTool.Module
             for (int i = 0; i < 100000; i++)
             {
                 mongoCol.Insert(CreateAggregationObject(i.ToString()));
+            }
+        }
+        internal static void FillDateForMapReduce(MongoServer mongoServer) {
+            MongoDatabase mongodb = mongoServer.GetDatabase("mongodb");
+            MongoCollection<Book> mongoCol = mongodb.GetCollection<Book>("Book");
+            mongoCol.RemoveAll();
+            for (int i = 0; i < 1000; i++)
+            {
+                mongoCol.Insert(new Book() {  BookID = i.ToString(),UserID = i.ToString()});
             }
         }
     }
