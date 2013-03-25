@@ -367,7 +367,7 @@ namespace MagicMongoDBTool.Module
                 }
                 else
                 {
-                    mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mServerInstace.Server, mongoConnKey + "/" + mServerInstace.Address.ToString());
+                    mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, MongoServer.Create(mServerInstace.Settings), mongoConnKey + "/" + mServerInstace.Address.ToString());
                 }
                 mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + ConnSvrKey + "/" + config.DataBaseName;
                 mongoSingleDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;

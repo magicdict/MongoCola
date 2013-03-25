@@ -85,7 +85,7 @@ namespace MagicMongoDBTool.Module
                 if (!(String.IsNullOrEmpty(config.UserName) || String.IsNullOrEmpty(config.Password)))
                 {
                     //认证的设定:注意，这里的密码是明文
-                    mongoSvrSetting.DefaultCredentials = new MongoCredentials(config.UserName, config.Password, config.LoginAsAdmin);
+                    //
                 }
                 if (config.ReplSetName != String.Empty)
                 {
@@ -236,11 +236,11 @@ namespace MagicMongoDBTool.Module
             {
                 MongoUrl mongourl = MongoUrl.Create(connectionString);
                 config.DataBaseName = mongourl.DatabaseName;
-                if (mongourl.DefaultCredentials != null)
+                if (mongourl.Username != null)
                 {
-                    config.UserName = mongourl.DefaultCredentials.Username;
-                    config.Password = mongourl.DefaultCredentials.Password;
-                    config.LoginAsAdmin = mongourl.DefaultCredentials.Admin;
+                    config.UserName = mongourl.Username;
+                    config.Password = mongourl.Password;
+                    //config.LoginAsAdmin = mongourl.Admin;
                 }
                 config.Host = mongourl.Server.Host;
                 config.Port = mongourl.Server.Port;

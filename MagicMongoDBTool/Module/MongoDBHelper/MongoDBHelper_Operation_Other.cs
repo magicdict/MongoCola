@@ -238,10 +238,10 @@ namespace MagicMongoDBTool.Module
             MongoServer mongoSvr = SystemManager.GetCurrentServer();
             //必须使用MongoCredentials来添加用户不然的话，Password将使用明文登入到数据库中！
             //这样的话，在使用MongoCredentials登入的时候，会发生密码错误引发的认证失败
-            MongoCredentials newUser = new MongoCredentials(strUser, password, true);
+            MongoUser newUser = new MongoUser(strUser, password, true);
             if (mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).FindUser(strUser) == null)
             {
-                mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).AddUser(newUser, isReadOnly);
+                mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).AddUser(newUser);
             }
         }
         /// <summary>
@@ -265,10 +265,10 @@ namespace MagicMongoDBTool.Module
         public static void AddUserToDB(String strUser, String password, Boolean isReadOnly)
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
-            MongoCredentials newUser = new MongoCredentials(strUser, password, false);
+            MongoUser newUser = new MongoUser(strUser, password, false);
             if (mongoDB.FindUser(strUser) == null)
             {
-                mongoDB.AddUser(newUser, isReadOnly);
+                mongoDB.AddUser(newUser);
             }
         }
 

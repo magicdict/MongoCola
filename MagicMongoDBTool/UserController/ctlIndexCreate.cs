@@ -13,6 +13,7 @@ namespace MagicMongoDBTool
                 if (this.radAscendingKey.Checked) { return MongoDBHelper.IndexType.Ascending; }
                 if (this.radDescendingKey.Checked) { return MongoDBHelper.IndexType.Descending; }
                 if (this.radGeoSpatial.Checked) { return MongoDBHelper.IndexType.GeoSpatial; }
+                if (this.radText.Checked) { return MongoDBHelper.IndexType.Text; }
                 return MongoDBHelper.IndexType.Ascending;
             }
         }
@@ -23,6 +24,9 @@ namespace MagicMongoDBTool
         {
             get { return cmbKeyName.Text; }
         }
+        /// <summary>
+        /// 构造器
+        /// </summary>
         public ctlIndexCreate()
         {
             InitializeComponent();

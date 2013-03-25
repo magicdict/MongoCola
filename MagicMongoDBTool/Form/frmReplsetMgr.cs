@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmReplsetMgr : Form
+    public partial class frmReplsetMgr : System.Windows.Forms.Form
     {
         ConfigHelper.MongoConnectionConfig _config;
         public frmReplsetMgr(ref ConfigHelper.MongoConnectionConfig config)

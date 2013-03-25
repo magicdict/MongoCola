@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmProfilling : Form
+    public partial class frmProfilling : System.Windows.Forms.Form
     {
         /// <summary>
         /// 

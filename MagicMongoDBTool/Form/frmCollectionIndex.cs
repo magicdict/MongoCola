@@ -106,6 +106,7 @@ namespace MagicMongoDBTool
             List<String> DescendingKey = new List<String>();
             String GeoSpatialKey = string.Empty;
             String FirstKey = string.Empty;
+            String TextKey = String.Empty;
             for (int i = 0; i < 5; i++)
             {
                 ctlIndexCreate ctl = (ctlIndexCreate)Controls.Find("ctlIndexCreate" + (i + 1).ToString(), true)[0];
@@ -122,6 +123,9 @@ namespace MagicMongoDBTool
                             break;
                         case MongoDBHelper.IndexType.GeoSpatial:
                             GeoSpatialKey = ctl.KeyName.Trim();
+                            break;
+                        case MongoDBHelper.IndexType.Text:
+                            TextKey = ctl.KeyName.Trim();
                             break;
                         default:
                             break;
@@ -168,12 +172,23 @@ namespace MagicMongoDBTool
             }
             if (txtIndexName.Text != String.Empty &&
                 !SystemManager.GetCurrentCollection().IndexExists(txtIndexName.Text) &&
-                (AscendingKey.Count + DescendingKey.Count + (String.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1)) != 0)
+                (AscendingKey.Count + DescendingKey.Count + 
+                    (String.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1) + 
+                    (String.IsNullOrEmpty(TextKey) ? 0 : 1)) != 0)
             {
                 option.SetName(txtIndexName.Text);
                 try
                 {
-                    MongoDBHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), GeoSpatialKey, option);
+                    //暂时要求只能一个TextKey
+                    if (!string.IsNullOrEmpty(TextKey))
+                    {
+                        IndexKeysDocument TextKeysDoc = new IndexKeysDocument();
+                        TextKeysDoc.Add(TextKey, "text");
+                        SystemManager.GetCurrentCollection().EnsureIndex(TextKeysDoc,option);
+                    }
+                    else {
+                        MongoDBHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), GeoSpatialKey, option);
+                    }
                     MyMessageBox.ShowMessage("Index Add Completed!", "IndexName:" + txtIndexName.Text + " is add to collection.");
                 }
                 catch (Exception ex)

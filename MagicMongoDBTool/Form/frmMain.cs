@@ -2058,6 +2058,15 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmAggregation(), true, true);
         }
+        /// <summary>
+        /// TextSearch
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textSearchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmTextSearch(), true, true);
+        }
         #endregion
 
         #region"工具"
@@ -2173,6 +2182,8 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmUnitTest(), true, true);
         }
         #endregion
+
+
 
     }
 }

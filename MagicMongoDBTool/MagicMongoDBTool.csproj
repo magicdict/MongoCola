@@ -74,13 +74,13 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="MongoDB.Bson, Version=1.7.1.4791, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Bson, Version=1.8.0.124, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\mongocsharpdriver.1.7.1\lib\net35\MongoDB.Bson.dll</HintPath>
+      <HintPath>..\packages\mongocsharpdriver.1.8.0\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=1.7.1.4791, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Driver, Version=1.8.0.124, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\mongocsharpdriver.1.7.1\lib\net35\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\packages\mongocsharpdriver.1.8.0\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -97,6 +97,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form\frmTextSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmTextSearch.Designer.cs">
+      <DependentUpon>frmTextSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\Aggregation\BsonValuePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -463,6 +469,9 @@
     </Compile>
     <EmbeddedResource Include="Form\frmArrayCreator.resx">
       <DependentUpon>frmArrayCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmTextSearch.resx">
+      <DependentUpon>frmTextSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\Aggregation\BsonValuePanel.resx">
       <DependentUpon>BsonValuePanel.cs</DependentUpon>

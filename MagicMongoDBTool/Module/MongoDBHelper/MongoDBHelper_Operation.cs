@@ -258,7 +258,7 @@ namespace MagicMongoDBTool.Module
                     strInstKey = strPath[(int)PathLv.ConnectionLV] + "/" + strPath[(int)PathLv.ServerLV];
                     if (_mongoInstanceLst.ContainsKey(strInstKey))
                     {
-                        return _mongoInstanceLst[strInstKey].Server;
+                        return MongoServer.Create(_mongoInstanceLst[strInstKey].Settings);
                     }
                 }
             }

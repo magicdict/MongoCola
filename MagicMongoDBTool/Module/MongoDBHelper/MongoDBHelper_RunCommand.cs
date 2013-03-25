@@ -227,7 +227,14 @@ namespace MagicMongoDBTool.Module
                 switch (mMongoCommand.RunLevel)
                 {
                     case PathLv.CollectionLV:
-                        mCommandResult = ExecuteMongoColCommand(mMongoCommand.CommandString, SystemManager.GetCurrentCollection());
+                        if (!String.IsNullOrEmpty(mMongoCommand.CommandString))
+                        {
+                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.CommandString, SystemManager.GetCurrentCollection());
+                        }
+                        else
+                        {
+                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.cmdDocument, SystemManager.GetCurrentCollection());
+                        }
                         break;
                     case PathLv.DatabaseLV:
                         mCommandResult = ExecuteMongoDBCommand(mMongoCommand.cmdDocument, SystemManager.GetCurrentDataBase());
@@ -280,7 +287,24 @@ namespace MagicMongoDBTool.Module
             OnCommandRunComplete(e);
             return mCommandResult;
         }
-
+        public static CommandResult ExecuteMongoColCommand(CommandDocument CmdDoc, MongoCollection mongoCol)
+        {
+            CommandResult mCommandResult;
+            try
+            {
+                mCommandResult = mongoCol.Database.RunCommand(CmdDoc);
+            }
+            catch (MongoCommandException ex)
+            {
+                mCommandResult = ex.CommandResult;
+            }
+            RunCommandEventArgs e = new RunCommandEventArgs();
+            e.CommandString = CmdDoc.GetElement(0).Value.ToString();
+            e.RunLevel = PathLv.DatabaseLV;
+            e.Result = mCommandResult;
+            OnCommandRunComplete(e);
+            return mCommandResult;
+        }
         /// <summary>
         /// 执行数据库命令
         /// </summary>

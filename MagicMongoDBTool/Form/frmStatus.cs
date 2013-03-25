@@ -6,7 +6,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmStatus : Form
+    public partial class frmStatus : System.Windows.Forms.Form
     {
         public frmStatus()
         {

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmQuery : Form
+    public partial class frmQuery : System.Windows.Forms.Form
     {
         /// <summary>
         /// 当前DataViewInfo

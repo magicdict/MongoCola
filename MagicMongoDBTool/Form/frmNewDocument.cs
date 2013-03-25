@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmNewDocument : Form
+    public partial class frmNewDocument : System.Windows.Forms.Form
     {
         public BsonDocument mBsonDocument;
         public frmNewDocument()

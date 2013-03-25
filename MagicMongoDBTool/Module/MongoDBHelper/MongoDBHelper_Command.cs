@@ -14,7 +14,6 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <see cref="http://www.mongodb.org/display/DOCS/Compact+Command"/>
         public static MongoCommand Compact_Command = new MongoCommand("compact", PathLv.CollectionLV);
-
         #endregion
 
         #region"DataBase Command"
