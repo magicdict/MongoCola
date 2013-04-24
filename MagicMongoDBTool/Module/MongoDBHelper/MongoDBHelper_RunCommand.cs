@@ -36,7 +36,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static CommandResult AddToReplsetServer(MongoServer mongoSvr, String HostPort, int priority, Boolean IsArb)
         {
-            CommandResult mCommandResult = new CommandResult();
+            CommandResult mCommandResult = new CommandResult(new BsonDocument());
             try
             {
                 if (!IsArb)
@@ -68,7 +68,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static CommandResult RemoveFromReplsetServer(MongoServer mongoSvr, String HostPort)
         {
-            CommandResult mCommandResult = new CommandResult();
+            CommandResult mCommandResult = new CommandResult(new BsonDocument());
             try
             {
                 ExecuteJsShell("rs.remove('" + HostPort + "');", mongoSvr);
@@ -92,7 +92,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static CommandResult ReconfigReplsetServer(MongoServer PrimarySvr, BsonDocument config)
         {
-            CommandResult cmdRtn = new CommandResult();
+            CommandResult cmdRtn = new CommandResult(new BsonDocument());
             try
             {
                 return ExecuteJsShell("rs.reconfig(" + config.ToString() + ",{force : true})", PrimarySvr);
@@ -118,7 +118,7 @@ namespace MagicMongoDBTool.Module
             catch (Exception ex)
             {
                 SystemManager.ExceptionDeal(ex);
-                return new CommandResult();
+                return new CommandResult(new BsonDocument());
             }
         }
         /// <summary>
@@ -221,7 +221,7 @@ namespace MagicMongoDBTool.Module
         {
             List<CommandResult> ResultCommandList = new List<CommandResult>();
 
-            CommandResult mCommandResult = new CommandResult();
+            CommandResult mCommandResult = new CommandResult(new BsonDocument());
             try
             {
                 switch (mMongoCommand.RunLevel)
