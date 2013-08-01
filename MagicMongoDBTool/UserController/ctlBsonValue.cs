@@ -72,10 +72,10 @@ namespace MagicMongoDBTool
                 NumberPick.Visible = true;
                 NumberPick.Value = value.AsInt32;
             }
-            if (value.IsDateTime)
+            if (value.IsValidDateTime)
             {
                 dateTimePicker.Visible = true;
-                dateTimePicker.Value = value.AsDateTime;
+                dateTimePicker.Value = value.ToUniversalTime();
                 cmbDataType.SelectedIndex = 2;
             }
             if (value.IsBoolean)

@@ -17,13 +17,9 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            var textSearchCommand = new CommandDocument
-                {
-                    { "text", SystemManager.GetCurrentCollection().Name },
-                    { "search", txtKey.Text }
-                };
-            CommandResult SearchResult = SystemManager.GetCurrentCollection().Database.RunCommand(textSearchCommand);
-            MongoDBHelper.FillDataToTreeView("MapReduce Result", trvResult, SearchResult.Response);
+            CommandResult SearchResult = MongoDBHelper.ExecuteMongoColCommand("text", SystemManager.GetCurrentCollection(),
+                new MongoDB.Bson.BsonDocument().Add(new MongoDB.Bson.BsonElement("search", txtKey.Text)));
+            MongoDBHelper.FillDataToTreeView("Text Search Result", trvResult, SearchResult.Response);
         }
     }
 }

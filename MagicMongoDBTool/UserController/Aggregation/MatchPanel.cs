@@ -48,10 +48,10 @@ namespace MagicMongoDBTool
                     if (Matchlist.Contains(MatchName))
                     {
                         BsonDocument AddMatch = match.GetElement(0).Value.AsBsonDocument;
-                        Matchlist.GetElement(MatchName).Value.AsBsonDocument.Add(AddMatch);
+                        Matchlist.GetElement(MatchName).Value.AsBsonDocument.AddRange(AddMatch);
                     }
                     else {
-                        Matchlist.Add(match);
+                        Matchlist.AddRange(match);
                     }
                 }
             }

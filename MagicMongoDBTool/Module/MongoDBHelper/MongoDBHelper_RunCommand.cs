@@ -129,11 +129,11 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static CommandResult ExecuteJsShell(String JsShell, MongoServer mongoSvr)
         {
-            BsonDocument cmd = new BsonDocument();
-            cmd.Add("$eval", new BsonJavaScript(JsShell));
+            BsonDocument ShellCmd = new BsonDocument();
+            ShellCmd.Add("$eval", new BsonJavaScript(JsShell));
             //必须nolock
-            cmd.Add("nolock", true);
-            CommandDocument mongoCmd = new CommandDocument() { cmd };
+            ShellCmd.Add("nolock", true);
+            CommandDocument mongoCmd = new CommandDocument() { ShellCmd };
             return ExecuteMongoSvrCommand(mongoCmd, mongoSvr);
         }
         /// <summary>
@@ -227,13 +227,13 @@ namespace MagicMongoDBTool.Module
                 switch (mMongoCommand.RunLevel)
                 {
                     case PathLv.CollectionLV:
-                        if (!String.IsNullOrEmpty(mMongoCommand.CommandString))
+                        if (String.IsNullOrEmpty(mMongoCommand.CommandString))
                         {
-                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.CommandString, SystemManager.GetCurrentCollection());
+                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.cmdDocument, SystemManager.GetCurrentCollection());
                         }
                         else
                         {
-                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.cmdDocument, SystemManager.GetCurrentCollection());
+                            mCommandResult = ExecuteMongoColCommand(mMongoCommand.CommandString, SystemManager.GetCurrentCollection());
                         }
                         break;
                     case PathLv.DatabaseLV:
@@ -287,6 +287,31 @@ namespace MagicMongoDBTool.Module
             OnCommandRunComplete(e);
             return mCommandResult;
         }
+        /// <summary>
+        /// 数据集命令
+        /// </summary>
+        /// <param name="Command">命令关键字</param>
+        /// <param name="mongoCol">数据集</param>
+        /// <param name="ExtendInfo">命令参数</param>
+        /// <returns></returns>
+        public static CommandResult ExecuteMongoColCommand(String Command, MongoCollection mongoCol, BsonDocument ExtendInfo)
+        {
+            var textSearchCommand = new CommandDocument
+                {
+                    { Command, mongoCol.Name },
+                };
+            foreach (var item in ExtendInfo.Elements)
+            {
+                textSearchCommand.Add(item);
+            }
+            return mongoCol.Database.RunCommand(textSearchCommand);
+        }
+        /// <summary>
+        /// 执行数据集命令
+        /// </summary>
+        /// <param name="CmdDoc"></param>
+        /// <param name="mongoCol"></param>
+        /// <returns></returns>
         public static CommandResult ExecuteMongoColCommand(CommandDocument CmdDoc, MongoCollection mongoCol)
         {
             CommandResult mCommandResult;

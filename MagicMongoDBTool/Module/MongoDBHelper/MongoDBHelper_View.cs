@@ -221,7 +221,7 @@ namespace MagicMongoDBTool.Module
             //时间
             if (bsonValue.IsBsonDateTime)
             {
-                DateTime bsonData = bsonValue.AsDateTime;
+                DateTime bsonData = bsonValue.ToUniversalTime();
                 //@flydreamer提出的本地化时间要求
                 return bsonData.ToLocalTime().ToString();
             }

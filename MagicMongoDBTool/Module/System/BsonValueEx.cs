@@ -70,10 +70,10 @@ namespace MagicMongoDBTool.Module
                 mBsonType = "BsonInt32";
                 mBsonInt32 = value.AsInt32;
             }
-            if (value.IsDateTime)
+            if (value.IsValidDateTime)
             {
                 mBsonType = "BsonDateTime";
-                mBsonDateTime = value.AsDateTime;
+                mBsonDateTime = value.ToUniversalTime();
             }
             if (value.IsBoolean)
             {
