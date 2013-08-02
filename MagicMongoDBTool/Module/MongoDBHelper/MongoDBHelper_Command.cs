@@ -194,16 +194,16 @@ namespace MagicMongoDBTool.Module
         public static CommandResult InitReplicaSet(String replicaSetName, String HostList)
         {
             //第一台服务器作为Primary服务器
-            MongoServerSettings PrimarySetting = new MongoServerSettings();
+            MongoClientSettings PrimarySetting = new MongoClientSettings();
             PrimarySetting.Server = new MongoServerAddress(SystemManager.ConfigHelperInstance.ConnectionList[HostList].Host,
                                                            SystemManager.ConfigHelperInstance.ConnectionList[HostList].Port);
             //如果不设置的话，会有错误：不是Primary服务器，SlaveOK 是 False
             PrimarySetting.ReadPreference = ReadPreference.PrimaryPreferred;
 
-            MongoServer PrimarySvr = new MongoServer(PrimarySetting);
+            MongoServer PrimarySvr = new MongoClient(PrimarySetting).GetServer();
             BsonDocument config = new BsonDocument();
             BsonArray hosts = new BsonArray();
-            BsonDocument cmd = new BsonDocument();
+            BsonDocument replSetInitiateCmd = new BsonDocument();
             BsonDocument host = new BsonDocument();
             //生成命令
             host = new BsonDocument();
@@ -212,9 +212,10 @@ namespace MagicMongoDBTool.Module
             hosts.Add(host);
             config.Add(KEY_ID, replicaSetName);
             config.Add("members", hosts);
-            cmd.Add("replSetInitiate", config);
+            replSetInitiateCmd.Add("replSetInitiate", config);
 
-            CommandDocument mongoCmd = new CommandDocument() { cmd };
+            CommandDocument mongoCmd = new CommandDocument();
+            mongoCmd.AddRange(replSetInitiateCmd);
             return ExecuteMongoSvrCommand(mongoCmd, PrimarySvr);
         }
         #endregion

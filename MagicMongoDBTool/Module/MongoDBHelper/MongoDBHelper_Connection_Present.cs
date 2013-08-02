@@ -135,7 +135,7 @@ namespace MagicMongoDBTool.Module
             trvMongoDB.Nodes.Clear();
             foreach (String mongoConnKey in _mongoConnSvrLst.Keys)
             {
-                MongoServer mongoConn = _mongoConnSvrLst[mongoConnKey];
+                MongoServer mongoSrv = _mongoConnSvrLst[mongoConnKey];
                 TreeNode ConnectionNode = new TreeNode();
                 try
                 {
@@ -145,26 +145,26 @@ namespace MagicMongoDBTool.Module
                     ConnectionNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
                     //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
                     //不过现在改为全部显示的打开连接
-                    mongoConn.Connect();
+                    mongoSrv.Connect();
                     ///mongoSvr.ReplicaSetName只有在连接后才有效，但是也可以使用Config.ReplsetName
                     ConnectionNode.Text = mongoConnKey;
-                    ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, null, mongoConn));
-                    if (mongoConn.ReplicaSetName != null)
+                    ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, null, mongoSrv));
+                    if (mongoSrv.ReplicaSetName != null)
                     {
                         ConnectionNode.Tag = CONNECTION_REPLSET_TAG + ":" + config.ConnectionName;
                         TreeNode ServerListNode = new TreeNode("Servers");
                         ServerListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
                         ServerListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
-                        foreach (MongoServerInstance ServerInstace in mongoConn.Instances)
+                        foreach (MongoServerInstance ServerInstace in mongoSrv.Instances)
                         {
-                            ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, ServerInstace, null));
+                            ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, ServerInstace, null));
                         }
                         ConnectionNode.Nodes.Add(ServerListNode);
                         config.ServerRole = ConfigHelper.SvrRoleType.ReplsetSvr;
                     }
                     else
                     {
-                        BsonDocument ServerStatusDoc = ExecuteMongoSvrCommand(serverStatus_Command, mongoConn).Response;
+                        BsonDocument ServerStatusDoc = ExecuteMongoSvrCommand(serverStatus_Command, mongoSrv).Response;
                         if (ServerStatusDoc.GetElement("process").Value == ServerStatus_PROCESS_MONGOS)
                         {
                             //Shard的时候，必须将所有服务器的ReadPreferred设成可读
@@ -173,7 +173,7 @@ namespace MagicMongoDBTool.Module
                             TreeNode ShardListNode = new TreeNode("Shards");
                             ShardListNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
                             ShardListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
-                            foreach (var lst in GetShardInfo(mongoConn, "host"))
+                            foreach (var lst in GetShardInfo(mongoSrv, "host"))
                             {
                                 TreeNode ShardNode = new TreeNode();
                                 ShardNode.Text = lst.Key;
@@ -212,7 +212,7 @@ namespace MagicMongoDBTool.Module
                                     tinySetting.Server = tinyAddr;
                                     //MongoServer tiny = MongoServer.Create(tinySetting);
                                     MongoServer tiny = new MongoClient(tinySetting).GetServer();
-                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoConn, tiny.Instance, null));
+                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, tiny.Instance, null));
                                 }
                                 ShardListNode.Nodes.Add(ShardNode);
                             }
@@ -246,9 +246,9 @@ namespace MagicMongoDBTool.Module
                     //设定是否可用
                     config.Health = true;
                     //设定版本
-                    if (mongoConn.BuildInfo != null)
+                    if (mongoSrv.BuildInfo != null)
                     {
-                        config.MongoDBVersion = mongoConn.BuildInfo.Version;
+                        config.MongoDBVersion = mongoSrv.BuildInfo.Version;
                     }
                     SystemManager.ConfigHelperInstance.ConnectionList[mongoConnKey] = config;
                     switch (config.ServerRole)
@@ -313,42 +313,42 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
-        /// 
+        /// 获取实例节点
         /// </summary>
         /// <param name="mongoConnKey"></param>
         /// <param name="config"></param>
         /// <param name="mongoConn"></param>
-        /// <param name="mServerInstace"></param>
+        /// <param name="mMasterServerInstace"></param>
         /// <param name="mServer"></param>
         /// <returns></returns>
         private static TreeNode GetInstanceNode(String mongoConnKey, ConfigHelper.MongoConnectionConfig config,
-                                                MongoServer mongoConn, MongoServerInstance mServerInstace, MongoServer mServer)
+                                                MongoServer mongoConn, MongoServerInstance mMasterServerInstace, MongoServer mServer)
         {
-            Boolean isServer = false;
+            Boolean isReplsetMasterServer = false;
             //无论如何，都改为主要服务器读优先
-            if (mServerInstace == null)
+            if (mMasterServerInstace == null)
             {
-                isServer = true;
+                isReplsetMasterServer = true;
             }
             TreeNode SvrInstanceNode = new TreeNode();
             String ConnSvrKey;
-            if (isServer)
+            if (isReplsetMasterServer)
             {
                 ConnSvrKey = mongoConnKey + "/" + mongoConnKey;
             }
             else
             {
-                ConnSvrKey = mongoConnKey + "/" + mServerInstace.Address.ToString().Replace(":", "@");
+                ConnSvrKey = mongoConnKey + "/" + mMasterServerInstace.Address.ToString().Replace(":", "@");
             }
             SvrInstanceNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
             SvrInstanceNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
-            if (isServer)
+            if (isReplsetMasterServer)
             {
                 SvrInstanceNode.Text = "Connection";
             }
             else
             {
-                SvrInstanceNode.Text = "Server[" + mServerInstace.Address.ToString() + "]";
+                SvrInstanceNode.Text = "Server[" + mMasterServerInstace.Address.ToString() + "]";
             }
             if ((!String.IsNullOrEmpty(config.UserName)) & (!String.IsNullOrEmpty(config.Password)))
             {
@@ -361,13 +361,13 @@ namespace MagicMongoDBTool.Module
             {
                 //单数据库模式
                 TreeNode mongoSingleDBNode;
-                if (isServer)
+                if (isReplsetMasterServer)
                 {
                     mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mServer, mongoConnKey + "/" + mongoConnKey);
                 }
                 else
                 {
-                    mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, MongoServer.Create(mServerInstace.Settings), mongoConnKey + "/" + mServerInstace.Address.ToString());
+                    mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mServer, mongoConnKey + "/" + mMasterServerInstace.Address.ToString());
                 }
                 mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + ConnSvrKey + "/" + config.DataBaseName;
                 mongoSingleDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
@@ -382,20 +382,20 @@ namespace MagicMongoDBTool.Module
             else
             {
                 MongoServer InstantSrv;
-                if (isServer)
+                if (isReplsetMasterServer)
                 {
                     InstantSrv = mServer;
                     databaseNameList = mServer.GetDatabaseNames().ToList<String>();
                 }
                 else
                 {
-                    MongoServerSettings setting = mongoConn.Settings.Clone();
+                    MongoClientSettings setting = CreateMongoClientSettingsByConfig(ref config);
                     setting.ConnectionMode = ConnectionMode.Direct;
                     //When Replset Case,Application need to read admin DB information
                     //if Primary,there will be exception
                     setting.ReadPreference = ReadPreference.PrimaryPreferred;
-                    setting.Server = mServerInstace.Address;
-                    InstantSrv = new MongoServer(setting);
+                    setting.Server = mMasterServerInstace.Address;
+                    InstantSrv = new MongoClient(setting).GetServer();
                     databaseNameList = InstantSrv.GetDatabaseNames().ToList<String>();
                 }
                 foreach (String strDBName in databaseNameList)
@@ -424,7 +424,7 @@ namespace MagicMongoDBTool.Module
                         SvrInstanceNode.Nodes.Add(mongoDBNode);
                     }
                 }
-                if (isServer)
+                if (isReplsetMasterServer)
                 {
                     SvrInstanceNode.Tag = SERVER_TAG + ":" + mongoConnKey + "/" + mongoConnKey;
                 }
@@ -432,7 +432,7 @@ namespace MagicMongoDBTool.Module
                 {
                     if (mongoConn.ReplicaSetName != null)
                     {
-                        SvrInstanceNode.Tag = SERVER_REPLSET_MEMBER_TAG + ":" + mongoConnKey + "/" + mServerInstace.Address.ToString().Replace(":", "@");
+                        SvrInstanceNode.Tag = SERVER_REPLSET_MEMBER_TAG + ":" + mongoConnKey + "/" + mMasterServerInstace.Address.ToString().Replace(":", "@");
                     }
                 }
             }
@@ -440,9 +440,9 @@ namespace MagicMongoDBTool.Module
             {
                 _mongoInstanceLst.Remove(ConnSvrKey);
             }
-            if (!isServer)
+            if (!isReplsetMasterServer)
             {
-                _mongoInstanceLst.Add(ConnSvrKey, mServerInstace);
+                _mongoInstanceLst.Add(ConnSvrKey, mMasterServerInstace);
             }
             return SvrInstanceNode;
         }

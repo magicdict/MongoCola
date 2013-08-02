@@ -133,7 +133,8 @@ namespace MagicMongoDBTool.Module
             ShellCmd.Add("$eval", new BsonJavaScript(JsShell));
             //必须nolock
             ShellCmd.Add("nolock", true);
-            CommandDocument mongoCmd = new CommandDocument() { ShellCmd };
+            CommandDocument mongoCmd = new CommandDocument();
+            mongoCmd.AddRange(ShellCmd);
             return ExecuteMongoSvrCommand(mongoCmd, mongoSvr);
         }
         /// <summary>
@@ -269,9 +270,10 @@ namespace MagicMongoDBTool.Module
         public static CommandResult ExecuteMongoColCommand(String CommandString, MongoCollection mongoCol)
         {
             CommandResult mCommandResult;
-            BsonDocument cmd = new BsonDocument();
-            cmd.Add(CommandString, mongoCol.Name);
-            CommandDocument mongoCmd = new CommandDocument() { cmd };
+            BsonDocument BaseCommand = new BsonDocument();
+            BaseCommand.Add(CommandString, mongoCol.Name);
+            CommandDocument mongoCmd = new CommandDocument();
+            mongoCmd.AddRange(BaseCommand);
             try
             {
                 mCommandResult = mongoCol.Database.RunCommand(mongoCmd);

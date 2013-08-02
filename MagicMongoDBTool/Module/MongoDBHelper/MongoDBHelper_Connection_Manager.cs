@@ -12,9 +12,13 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public static Dictionary<String, MongoServer> _mongoConnSvrLst = new Dictionary<String, MongoServer>();
         /// <summary>
-        /// 
+        /// 管理中服务器实例列表
         /// </summary>
         public static Dictionary<String, MongoServerInstance> _mongoInstanceLst = new Dictionary<String, MongoServerInstance>();
+        //将ServerSettings的东西全部转化为ClientSetting！
+        //MongoServerSettings
+        //While this class has not yet been deprecated, it eventually will be. We recommend you always use MongoClientSettings instead.
+        //The new settings added to MongoClientSettings have also been added to MongoServerSettings.
 
         /// <summary>
         /// 增加管理服务器
@@ -42,21 +46,26 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
+        public static MongoServer CreateMongoServer(ref ConfigHelper.MongoConnectionConfig config)
+        {
+            MongoClient masterMongoClient = new MongoClient(CreateMongoClientSettingsByConfig(ref config));
+            return masterMongoClient.GetServer();
+        }
         /// <summary>
-        /// 根据config获得Server,同时更新一些运行时变量
+        /// 根据config获得MongoClientSettings,同时更新一些运行时变量
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static MongoServer CreateMongoServer(ref ConfigHelper.MongoConnectionConfig config)
+        public static MongoClientSettings CreateMongoClientSettingsByConfig(ref ConfigHelper.MongoConnectionConfig config)
         {
-
-            MongoServerSettings mongoSvrSetting = new MongoServerSettings();
+            //修改获得数据实例的方法
+            MongoClientSettings mongoClientSetting = new MongoClientSettings();
             if (String.IsNullOrEmpty(config.ConnectionString))
             {
-                mongoSvrSetting.ConnectionMode = ConnectionMode.Direct;
-                SetReadPreferenceWriteConcern(mongoSvrSetting, config);
+                mongoClientSetting.ConnectionMode = ConnectionMode.Direct;
+                SetReadPreferenceWriteConcern(mongoClientSetting, config);
                 //Replset时候可以不用设置吗？                    
-                mongoSvrSetting.Server = new MongoServerAddress(config.Host, config.Port);
+                mongoClientSetting.Server = new MongoServerAddress(config.Host, config.Port);
                 //MapReduce的时候将消耗大量时间。不过这里需要平衡一下，太长容易造成并发问题
                 //From Driver 1.4 Pay attention to this comment
                 //The default value for SocketTimeout has been changed from 30 seconds to 0, 
@@ -66,19 +75,19 @@ namespace MagicMongoDBTool.Module
                 //including for individual operations.
                 if (config.socketTimeoutMS != 0)
                 {
-                    mongoSvrSetting.SocketTimeout = new TimeSpan(0, 0, (int)(config.socketTimeoutMS / 1000));
+                    mongoClientSetting.SocketTimeout = new TimeSpan(0, 0, (int)(config.socketTimeoutMS / 1000));
                 }
                 if (config.connectTimeoutMS != 0)
                 {
-                    mongoSvrSetting.ConnectTimeout = new TimeSpan(0, 0, (int)(config.connectTimeoutMS / 1000));
+                    mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int)(config.connectTimeoutMS / 1000));
                 }
                 if (config.wtimeoutMS != 0)
                 {
-                    mongoSvrSetting.WaitQueueTimeout = new TimeSpan(0, 0, (int)(config.wtimeoutMS / 1000));
+                    mongoClientSetting.WaitQueueTimeout = new TimeSpan(0, 0, (int)(config.wtimeoutMS / 1000));
                 }
                 if (config.WaitQueueSize != 0)
                 {
-                    mongoSvrSetting.WaitQueueSize = config.WaitQueueSize;
+                    mongoClientSetting.WaitQueueSize = config.WaitQueueSize;
                 }
                 //运行时LoginAsAdmin的设定
                 config.LoginAsAdmin = (config.DataBaseName == String.Empty);
@@ -89,7 +98,7 @@ namespace MagicMongoDBTool.Module
                 }
                 if (config.ReplSetName != String.Empty)
                 {
-                    mongoSvrSetting.ReplicaSetName = config.ReplSetName;
+                    mongoClientSetting.ReplicaSetName = config.ReplSetName;
                     config.ServerRole = ConfigHelper.SvrRoleType.ReplsetSvr;
                 }
                 else
@@ -99,7 +108,7 @@ namespace MagicMongoDBTool.Module
                 if (config.ServerRole == ConfigHelper.SvrRoleType.ReplsetSvr)
                 {
                     //ReplsetName不是固有属性,可以设置，不过必须保持与配置文件的一致
-                    mongoSvrSetting.ConnectionMode = ConnectionMode.ReplicaSet;
+                    mongoClientSetting.ConnectionMode = ConnectionMode.ReplicaSet;
                     //添加Replset服务器，注意，这里可能需要事先初始化副本
                     List<MongoServerAddress> ReplsetSvrList = new List<MongoServerAddress>();
                     foreach (String item in config.ReplsetList)
@@ -118,32 +127,31 @@ namespace MagicMongoDBTool.Module
                         }
                         ReplsetSvrList.Add(ReplSrv);
                     }
-                    mongoSvrSetting.Servers = ReplsetSvrList;
+                    mongoClientSetting.Servers = ReplsetSvrList;
                 }
             }
             else
             {
                 //使用MongoConnectionString建立连接
-                mongoSvrSetting = MongoServerSettings.FromUrl(MongoUrl.Create(config.ConnectionString));
+                mongoClientSetting = MongoClientSettings.FromUrl(MongoUrl.Create(config.ConnectionString));
             }
             //为了避免出现无法读取数据库结构的问题，将读权限都设置为Preferred
-            if (mongoSvrSetting.ReadPreference == ReadPreference.Primary)
+            if (mongoClientSetting.ReadPreference == ReadPreference.Primary)
             {
-                mongoSvrSetting.ReadPreference = ReadPreference.PrimaryPreferred;
+                mongoClientSetting.ReadPreference = ReadPreference.PrimaryPreferred;
             }
-            if (mongoSvrSetting.ReadPreference == ReadPreference.Secondary)
+            if (mongoClientSetting.ReadPreference == ReadPreference.Secondary)
             {
-                mongoSvrSetting.ReadPreference = ReadPreference.SecondaryPreferred;
+                mongoClientSetting.ReadPreference = ReadPreference.SecondaryPreferred;
             }
-            MongoServer masterMongoSvr = new MongoServer(mongoSvrSetting);
-            return masterMongoSvr;
+            return mongoClientSetting;
         }
         /// <summary>
         /// Set ReadPreference And WriteConcern 
         /// </summary>
         /// <param name="mongoSvrSetting"></param>
         /// <param name="config"></param>
-        private static void SetReadPreferenceWriteConcern(MongoServerSettings mongoSvrSetting, ConfigHelper.MongoConnectionConfig config)
+        private static void SetReadPreferenceWriteConcern(MongoClientSettings mongoSvrSetting, ConfigHelper.MongoConnectionConfig config)
         {
             //----------------------------------------------
             //            New MongoClient class and default WriteConcern
