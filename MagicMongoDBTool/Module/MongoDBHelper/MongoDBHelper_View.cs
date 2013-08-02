@@ -473,6 +473,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="lstData"></param>
         private static void SetUserListToListView(List<BsonDocument> dataList, ListView lstData)
         {
+            //2.4以后的用户，可能没有ReadOnly属性，取而代之的是roles属性
             lstData.Clear();
             if (!SystemManager.IsUseDefaultLanguage)
             {
@@ -488,15 +489,34 @@ namespace MagicMongoDBTool.Module
                 lstData.Columns.Add("readonly");
                 lstData.Columns.Add("password");
             }
+            //20130802 roles列表示。ReadOnly可能不存在！
+            lstData.Columns.Add("roles");
             foreach (BsonDocument docFile in dataList)
             {
                 ListViewItem lstItem = new ListViewItem();
                 lstItem.Text = docFile.GetValue(KEY_ID).ToString();
                 lstItem.SubItems.Add(docFile.GetValue("user").ToString());
-                lstItem.SubItems.Add(docFile.GetValue("readOnly").ToString());
+                BsonValue strReadOnly;
+                docFile.TryGetValue("readOnly",out strReadOnly);
+                if (strReadOnly == null){
+                    lstItem.SubItems.Add("N/A");
+                }else{
+                    lstItem.SubItems.Add(strReadOnly.ToString());
+                }
                 //密码是密文表示的，这里没有安全隐患
                 lstItem.SubItems.Add(docFile.GetValue("pwd").ToString());
                 lstData.Items.Add(lstItem);
+
+                BsonValue strRoles;
+                docFile.TryGetValue("roles", out strRoles);
+                if (strRoles == null)
+                {
+                    lstItem.SubItems.Add("N/A");
+                }
+                else
+                {
+                    lstItem.SubItems.Add(strRoles.ToString());
+                }
             }
         }
         /// <summary>
