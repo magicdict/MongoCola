@@ -32,19 +32,19 @@ namespace MagicMongoDBTool.Module
         /// 服务器状态
         /// http://www.mongodb.org/display/DOCS/serverStatus+Command
         /// </summary>
-        public static MongoCommand serverStatus_Command = new MongoCommand("serverStatus", PathLv.ServerLV);
+        public static MongoCommand serverStatus_Command = new MongoCommand("serverStatus", PathLv.InstanceLV);
 
         /// <summary>
         /// 副本状态
         //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
         /// </summary>
-        public static MongoCommand replSetGetStatus_Command = new MongoCommand("replSetGetStatus", PathLv.ServerLV);
+        public static MongoCommand replSetGetStatus_Command = new MongoCommand("replSetGetStatus", PathLv.InstanceLV);
 
         /// <summary>
         /// Slave强制同步
         //http://www.mongodb.org/display/DOCS/Master+Slave
         /// </summary>
-        public static MongoCommand resync_Command = new MongoCommand("resync", PathLv.ServerLV);
+        public static MongoCommand resync_Command = new MongoCommand("resync", PathLv.InstanceLV);
 
         /// <summary>
         /// 增加数据分片

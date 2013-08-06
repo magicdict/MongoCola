@@ -4,20 +4,7 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
-        /// <summary>
-        /// ActionDone
-        /// </summary>
-        public static EventHandler<ActionDoneEventArgs> ActionDone;
-        /// <summary>
-        /// OnActionDone
-        /// </summary>
-        /// <param name="e"></param>
-        public static void OnActionDone(ActionDoneEventArgs e)
-        {
-            e.Raise(null, ref ActionDone);
-        }
         //各种节点的Tag前缀
-
         /// <summary>
         /// 普通连接
         /// </summary>
@@ -98,55 +85,6 @@ namespace MagicMongoDBTool.Module
         /// 索引
         /// </summary>
         public const String INDEX_TAG = "MongoIndex";
-
-        /// <summary>
-        /// 路径阶层[考虑到以后可能阶层会变换]
-        /// </summary>
-        public enum PathLv : int
-        {
-            /// <summary>
-            /// 连接
-            /// </summary>
-            ConnectionLV = 0,
-            /// <summary>
-            /// 服务器
-            /// </summary>
-            ServerLV = 1,
-            /// <summary>
-            /// 数据库
-            /// </summary>
-            DatabaseLV = 2,
-            /// <summary>
-            /// 数据集
-            /// </summary>
-            CollectionLV = 3,
-            /// <summary>
-            /// 数据文档
-            /// </summary>
-            DocumentLV = 4
-        }
-        /// <summary>
-        /// 索引类型
-        /// </summary>
-        public enum IndexType
-        {
-            /// <summary>
-            /// 升序
-            /// </summary>
-            Ascending,
-            /// <summary>
-            /// 降序
-            /// </summary>
-            Descending,
-            /// <summary>
-            /// Geo
-            /// </summary>
-            GeoSpatial,
-            /// <summary>
-            /// 拉丁语的全文检索(Since mongodb 2.2.4)
-            /// </summary>
-            Text
-        }
         //The process field identifies which kind of MongoDB instance is running. Possible values are:mongos,mongod
         /// <summary>
         /// MongoS

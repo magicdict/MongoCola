@@ -10,6 +10,18 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
+        /// <summary>
+        /// ActionDone
+        /// </summary>
+        public static EventHandler<ActionDoneEventArgs> ActionDone;
+        /// <summary>
+        /// OnActionDone
+        /// </summary>
+        /// <param name="e"></param>
+        public static void OnActionDone(ActionDoneEventArgs e)
+        {
+            e.Raise(null, ref ActionDone);
+        }
         //GetOleDbSchemaTable Is Not Supported In MONO
         /// <summary>
         /// 数据连接字符串
@@ -300,7 +312,7 @@ namespace MagicMongoDBTool.Module
                 }
                 String strSvrPath = SystemManager.GetTagData(parm.strSvrPathWithTag);
                 String strKey = strSvrPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.ConnectionLV] + "/" +
-                                strSvrPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.ServerLV];
+                                strSvrPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.InstanceLV];
                 parm.currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, strKey));
                 MyMessageBox.ShowMessage("Import Message", (tblTableList.Rows.Count - err).ToString() + "Created   " + err + "failed", strCreateTableInfo, true);
             }

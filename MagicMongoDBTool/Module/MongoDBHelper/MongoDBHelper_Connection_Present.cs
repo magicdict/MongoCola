@@ -200,19 +200,18 @@ namespace MagicMongoDBTool.Module
                                     //防止无法读取Sharding状态。Sharding可能是一个Slaver
                                     tinySetting.ReadPreference = ReadPreference.PrimaryPreferred;
                                     tinySetting.ReplicaSetName = strAddress[0];
-                                    MongoServerAddress tinyAddr;
+                                    MongoServerAddress SecondaryAddr;
                                     if (item.Split(":".ToCharArray()).Length == 2)
                                     {
-                                        tinyAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0], Convert.ToInt32(item.Split(":".ToCharArray())[1]));
+                                        SecondaryAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0], Convert.ToInt32(item.Split(":".ToCharArray())[1]));
                                     }
                                     else
                                     {
-                                        tinyAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0]);
+                                        SecondaryAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0]);
                                     }
-                                    tinySetting.Server = tinyAddr;
-                                    //MongoServer tiny = MongoServer.Create(tinySetting);
-                                    MongoServer tiny = new MongoClient(tinySetting).GetServer();
-                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, tiny.Instance, null));
+                                    tinySetting.Server = SecondaryAddr;
+                                    MongoServer ReplsetMember = new MongoClient(tinySetting).GetServer();
+                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, ReplsetMember.Instance, null));
                                 }
                                 ShardListNode.Nodes.Add(ShardNode);
                             }

@@ -240,7 +240,7 @@ namespace MagicMongoDBTool.Module
                     case PathLv.DatabaseLV:
                         mCommandResult = ExecuteMongoDBCommand(mMongoCommand.cmdDocument, SystemManager.GetCurrentDataBase());
                         break;
-                    case PathLv.ServerLV:
+                    case PathLv.InstanceLV:
                         mCommandResult = ExecuteMongoSvrCommand(mMongoCommand.cmdDocument, SystemManager.GetCurrentServer());
                         break;
                     default:
@@ -299,9 +299,9 @@ namespace MagicMongoDBTool.Module
         public static CommandResult ExecuteMongoColCommand(String Command, MongoCollection mongoCol, BsonDocument ExtendInfo)
         {
             var textSearchCommand = new CommandDocument
-                {
-                    { Command, mongoCol.Name },
-                };
+            {
+                { Command, mongoCol.Name },
+            };
             foreach (var item in ExtendInfo.Elements)
             {
                 textSearchCommand.Add(item);
@@ -414,7 +414,7 @@ namespace MagicMongoDBTool.Module
             }
             RunCommandEventArgs e = new RunCommandEventArgs();
             e.CommandString = mongoCmd;
-            e.RunLevel = PathLv.ServerLV;
+            e.RunLevel = PathLv.InstanceLV;
             e.Result = mCommandResult;
             OnCommandRunComplete(e);
             return mCommandResult;
@@ -438,7 +438,7 @@ namespace MagicMongoDBTool.Module
             }
             RunCommandEventArgs e = new RunCommandEventArgs();
             e.CommandString = mCommandDocument.ToString();
-            e.RunLevel = PathLv.ServerLV;
+            e.RunLevel = PathLv.InstanceLV;
             e.Result = mCommandResult;
             OnCommandRunComplete(e);
             return mCommandResult;

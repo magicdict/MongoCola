@@ -128,7 +128,7 @@ namespace MagicMongoDBTool.Module
             Boolean rtnResult = false;
             MongoServer mongoSvr = GetMongoServerBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
-            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ServerLV];
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.InstanceLV];
             if (mongoSvr != null)
             {
                 switch (func)
@@ -176,7 +176,7 @@ namespace MagicMongoDBTool.Module
             Boolean rtnResult = false;
             MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
-            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ServerLV];
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.InstanceLV];
             String ConKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ConnectionLV];
             if (mongoDB != null)
             {
@@ -207,7 +207,7 @@ namespace MagicMongoDBTool.Module
             Boolean rtnResult = false;
             MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
-            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ServerLV];
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.InstanceLV];
             String ConKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ConnectionLV];
             if (mongoDB != null)
             {
@@ -255,7 +255,7 @@ namespace MagicMongoDBTool.Module
                 {
                     //[Tag:Connection/Host@Port/DBName/Collection]
                     String strInstKey = String.Empty;
-                    strInstKey = strPath[(int)PathLv.ConnectionLV] + "/" + strPath[(int)PathLv.ServerLV];
+                    strInstKey = strPath[(int)PathLv.ConnectionLV] + "/" + strPath[(int)PathLv.InstanceLV];
                     if (_mongoInstanceLst.ContainsKey(strInstKey))
                     {
                         var config = SystemManager.ConfigHelperInstance.ConnectionList[strInstKey];

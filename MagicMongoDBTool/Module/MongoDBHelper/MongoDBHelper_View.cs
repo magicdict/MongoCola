@@ -491,6 +491,8 @@ namespace MagicMongoDBTool.Module
             }
             //20130802 roles列表示。ReadOnly可能不存在！
             lstData.Columns.Add("roles");
+            lstData.Columns.Add("otherDBRoles");
+
             foreach (BsonDocument docFile in dataList)
             {
                 ListViewItem lstItem = new ListViewItem();
@@ -517,6 +519,18 @@ namespace MagicMongoDBTool.Module
                 {
                     lstItem.SubItems.Add(strRoles.ToString());
                 }
+
+                BsonValue strOtherDBRoles;
+                docFile.TryGetValue("otherDBRoles", out strOtherDBRoles);
+                if (strOtherDBRoles == null)
+                {
+                    lstItem.SubItems.Add("N/A");
+                }
+                else
+                {
+                    lstItem.SubItems.Add(strOtherDBRoles.ToString());
+                }
+
             }
         }
         /// <summary>

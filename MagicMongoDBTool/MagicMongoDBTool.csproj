@@ -103,6 +103,7 @@
     <Compile Include="Form\frmTextSearch.Designer.cs">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Enum.cs" />
     <Compile Include="UserController\Aggregation\BsonValuePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
