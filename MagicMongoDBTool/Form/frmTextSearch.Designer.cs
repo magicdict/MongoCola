@@ -37,6 +37,7 @@
             this.lblLimit = new System.Windows.Forms.Label();
             this.NUDLimit = new System.Windows.Forms.NumericUpDown();
             this.trvResult = new TreeViewColumnsProject.TreeViewColumns();
+            this.lnkRef = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.NUDLimit)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,8 +133,19 @@
             this.trvResult.Location = new System.Drawing.Point(12, 96);
             this.trvResult.Name = "trvResult";
             this.trvResult.Padding = new System.Windows.Forms.Padding(1);
-            this.trvResult.Size = new System.Drawing.Size(710, 390);
+            this.trvResult.Size = new System.Drawing.Size(710, 349);
             this.trvResult.TabIndex = 19;
+            // 
+            // lnkRef
+            // 
+            this.lnkRef.AutoSize = true;
+            this.lnkRef.Location = new System.Drawing.Point(14, 462);
+            this.lnkRef.Name = "lnkRef";
+            this.lnkRef.Size = new System.Drawing.Size(404, 13);
+            this.lnkRef.TabIndex = 27;
+            this.lnkRef.TabStop = true;
+            this.lnkRef.Text = "http://docs.mongodb.org/manual/reference/command/text/#text-search-languages";
+            this.lnkRef.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkRef_LinkClicked);
             // 
             // frmTextSearch
             // 
@@ -141,6 +153,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(734, 498);
+            this.Controls.Add(this.lnkRef);
             this.Controls.Add(this.NUDLimit);
             this.Controls.Add(this.lblLimit);
             this.Controls.Add(this.lblLanguage);
@@ -169,5 +182,6 @@
         private System.Windows.Forms.Label lblLanguage;
         private System.Windows.Forms.Label lblLimit;
         private System.Windows.Forms.NumericUpDown NUDLimit;
+        private System.Windows.Forms.LinkLabel lnkRef;
     }
 }

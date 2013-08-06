@@ -38,5 +38,14 @@ namespace MagicMongoDBTool
             CommandResult SearchResult = MongoDBHelper.ExecuteMongoColCommand("text", SystemManager.GetCurrentCollection(),TextSearchOption);
             MongoDBHelper.FillDataToTreeView("Text Search Result", trvResult, SearchResult.Response);
         }
+        /// <summary>
+        /// 增加链接
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lnkRef_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/command/text/#text-search-languages");
+        }
     }
 }

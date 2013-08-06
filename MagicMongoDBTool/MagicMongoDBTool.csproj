@@ -730,6 +730,9 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="UserGuide\Aggregation.htm" />
+    <Content Include="UserGuide\ReleaseNote.htm" />
+    <Content Include="UserGuide\User.htm" />
     <None Include="HTML\ConnectionList.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
