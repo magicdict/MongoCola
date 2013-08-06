@@ -118,6 +118,10 @@ namespace MagicMongoDBTool.UserController
 
             RefreshStripButton.Visible = true;
             RefreshStripButton.Enabled = true;
+
+            HelpStripButton.Visible = true;
+            HelpStripButton.Enabled = true;
+
             CloseStripButton.Visible = true;
             CloseStripButton.Enabled = true;
         }
@@ -155,6 +159,7 @@ namespace MagicMongoDBTool.UserController
             this.QueryStripButton.Enabled = true;
 
             GotoStripButton.Enabled = true;
+            HelpStripButton.Enabled = true;
             RefreshStripButton.Enabled = true;
             CloseStripButton.Enabled = true;
         }
@@ -403,5 +408,33 @@ namespace MagicMongoDBTool.UserController
             RefreshGUI();
         }
         #endregion
+
+        /// <summary>
+        /// 帮助
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HelpStripButton_Click(object sender, EventArgs e)
+        {
+            String strType = this.GetType().ToString();
+            strType = strType.Split(".".ToCharArray())[1];
+            String strUrl = @"UserGuide\index.htm";
+            switch (strType)
+            {
+                case "ctlDataView":
+                    strUrl = @"UserGuide\index.htm";
+                    break;
+                case "ctlDocumentView":
+                    strUrl = @"UserGuide\index.htm";
+                    break;
+                case "ctlGFSView":
+                    strUrl = @"UserGuide\GFS.htm";
+                    break;
+                case "ctlUserView":
+                    strUrl = @"UserGuide\index.htm";
+                    break;
+            }
+            System.Diagnostics.Process.Start(strUrl);
+        }
     }
 }

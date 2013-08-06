@@ -172,10 +172,10 @@
     <Compile Include="UnitTest\frmUnitTest.Designer.cs">
       <DependentUpon>frmUnitTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlDocumentView.cs">
+    <Compile Include="UserController\Views\ctlDocumentView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlDocumentView.Designer.cs">
+    <Compile Include="UserController\Views\ctlDocumentView.Designer.cs">
       <DependentUpon>ctlDocumentView.cs</DependentUpon>
     </Compile>
     <Compile Include="UnitTest\InitTestData.cs" />
@@ -185,16 +185,16 @@
     <Compile Include="UserController\ctlGeoNear.Designer.cs">
       <DependentUpon>ctlGeoNear.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlUserView.cs">
+    <Compile Include="UserController\Views\ctlUserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlUserView.Designer.cs">
+    <Compile Include="UserController\Views\ctlUserView.Designer.cs">
       <DependentUpon>ctlUserView.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlGFSView.cs">
+    <Compile Include="UserController\Views\ctlGFSView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlGFSView.Designer.cs">
+    <Compile Include="UserController\Views\ctlGFSView.Designer.cs">
       <DependentUpon>ctlGFSView.cs</DependentUpon>
     </Compile>
     <Compile Include="MessageBox\frmConfirm.cs">
@@ -341,10 +341,10 @@
       <DependentUpon>frmGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\System\DataFilter.cs" />
-    <Compile Include="UserController\ctlDataView.cs">
+    <Compile Include="UserController\Views\ctlDataView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlDataView.Designer.cs">
+    <Compile Include="UserController\Views\ctlDataView.Designer.cs">
       <DependentUpon>ctlDataView.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\ctlIndexCreate.cs">
@@ -498,13 +498,13 @@
     <EmbeddedResource Include="UnitTest\frmUnitTest.resx">
       <DependentUpon>frmUnitTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlDocumentView.resx">
+    <EmbeddedResource Include="UserController\Views\ctlDocumentView.resx">
       <DependentUpon>ctlDocumentView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlGeoNear.resx">
       <DependentUpon>ctlGeoNear.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlUserView.resx">
+    <EmbeddedResource Include="UserController\Views\ctlUserView.resx">
       <DependentUpon>ctlUserView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MessageBox\frmConfirm.resx">
@@ -549,7 +549,7 @@
     <EmbeddedResource Include="Form\frmGenerateConfigIni.resx">
       <DependentUpon>frmGenerateConfigIni.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlGFSView.resx">
+    <EmbeddedResource Include="UserController\Views\ctlGFSView.resx">
       <DependentUpon>ctlGFSView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlJsEditor.resx">
@@ -573,7 +573,7 @@
     <EmbeddedResource Include="Form\frmGroup.resx">
       <DependentUpon>frmGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlDataView.resx">
+    <EmbeddedResource Include="UserController\Views\ctlDataView.resx">
       <DependentUpon>ctlDataView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -730,9 +730,21 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="UserGuide\Aggregation.htm" />
-    <Content Include="UserGuide\ReleaseNote.htm" />
-    <Content Include="UserGuide\User.htm" />
+    <Content Include="UserGuide\Aggregation.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\FirstStep.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\GFS.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\ReleaseNote.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\User.htm">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="HTML\ConnectionList.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1047,7 +1059,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="UserGuide\index.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Release Note.txt">
