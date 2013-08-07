@@ -2169,7 +2169,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String strUrl = @"UserGuide\index.htm";
+            String strUrl = @"UserGuide\index.html";
             System.Diagnostics.Process.Start(strUrl);
         }
         /// <summary>

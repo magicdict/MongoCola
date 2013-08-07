@@ -189,16 +189,16 @@ namespace MagicMongoDBTool.UserController
             switch (strType)
             {
                 case "ctlDataView":
-                    strUrl = @"UserGuide\index.htm";
+                    strUrl = @"UserGuide\index.html";
                     break;
                 case "ctlDocumentView":
-                    strUrl = @"UserGuide\DataView.htm";
+                    strUrl = @"UserGuide\DataView.html";
                     break;
                 case "ctlGFSView":
-                    strUrl = @"UserGuide\GFS.htm";
+                    strUrl = @"UserGuide\GFS.html";
                     break;
                 case "ctlUserView":
-                    strUrl = @"UserGuide\User.htm";
+                    strUrl = @"UserGuide\User.html";
                     break;
             }
             System.Diagnostics.Process.Start(strUrl);

@@ -730,22 +730,19 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="UserGuide\Aggregation.htm">
+    <Content Include="UserGuide\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="UserGuide\DataView.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="UserGuide\FirstStep.htm">
+    <Content Include="UserGuide\mongodb.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="UserGuide\GFS.htm">
+    <Content Include="UserGuide\ReleaseNote.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="UserGuide\ReleaseNote.htm">
+    <Content Include="UserGuide\TopMenu.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="UserGuide\User.htm">
+    <Content Include="UserGuide\User.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="HTML\ConnectionList.htm">
@@ -812,6 +809,21 @@
     <Content Include="Resources\Open.ico" />
     <Content Include="Resources\paste.ico" />
     <Content Include="Resources\save.ico" />
+    <Content Include="UserGuide\Aggregation.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\DataView.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\FirstStep.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\GFS.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\Home.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="UserGuide\images\Access.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1060,10 +1072,6 @@
     </Content>
     <Content Include="UserGuide\images\Winform.PNG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="UserGuide\index.htm">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="Release Note.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
