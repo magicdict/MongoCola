@@ -736,7 +736,7 @@
     <Content Include="UserGuide\DataView.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="UserGuide\FirstStep.html">
+    <Content Include="UserGuide\FirstStep.htm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="UserGuide\GFS.htm">
