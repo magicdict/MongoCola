@@ -176,6 +176,34 @@ namespace MagicMongoDBTool.UserController
             }
         }
 
+        /// <summary>
+        /// 帮助
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HelpStripButton_Click(object sender, EventArgs e)
+        {
+            String strType = this.GetType().ToString();
+            strType = strType.Split(".".ToCharArray())[1];
+            String strUrl = @"UserGuide\index.htm";
+            switch (strType)
+            {
+                case "ctlDataView":
+                    strUrl = @"UserGuide\index.htm";
+                    break;
+                case "ctlDocumentView":
+                    strUrl = @"UserGuide\DataView.htm";
+                    break;
+                case "ctlGFSView":
+                    strUrl = @"UserGuide\GFS.htm";
+                    break;
+                case "ctlUserView":
+                    strUrl = @"UserGuide\User.htm";
+                    break;
+            }
+            System.Diagnostics.Process.Start(strUrl);
+        }
+
         #endregion
 
         #region"数据导航"
@@ -409,32 +437,6 @@ namespace MagicMongoDBTool.UserController
         }
         #endregion
 
-        /// <summary>
-        /// 帮助
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void HelpStripButton_Click(object sender, EventArgs e)
-        {
-            String strType = this.GetType().ToString();
-            strType = strType.Split(".".ToCharArray())[1];
-            String strUrl = @"UserGuide\index.htm";
-            switch (strType)
-            {
-                case "ctlDataView":
-                    strUrl = @"UserGuide\index.htm";
-                    break;
-                case "ctlDocumentView":
-                    strUrl = @"UserGuide\index.htm";
-                    break;
-                case "ctlGFSView":
-                    strUrl = @"UserGuide\GFS.htm";
-                    break;
-                case "ctlUserView":
-                    strUrl = @"UserGuide\index.htm";
-                    break;
-            }
-            System.Diagnostics.Process.Start(strUrl);
-        }
+
     }
 }
