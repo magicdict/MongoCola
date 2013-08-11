@@ -2,8 +2,8 @@
 MongoCola Release Note
 ========================================================================
 MongoCola is developed by Microsoft .NET (C#)
-You need install .NET framework 4.0 to run it.
-The C# Mongo driver is mongo offical C# driver 1.8.1.
+You need install .NET framework 4.5 to run it.
+The C# Mongo driver is mongo offical C# driver 2.0.0.
 Test Based on MongoDB 2.4.5
 MongoCola is free and open source.
 
@@ -13,6 +13,7 @@ Release History
 Ver 1.30 2013/08/31
 1.Show "roles" column at user list view
 2.Add "Language","Limit" Option to Text Search
+3.New User Guide
 
 ========================================================================
 Ver 1.28 2013/03/25

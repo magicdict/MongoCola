@@ -289,7 +289,7 @@ namespace MagicMongoDBTool.Module
                     ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
                 }
-                catch (Exception ex)
+                catch (MongoConnectionException ex)
                 {
                     //暂时不处理任何异常，简单跳过
                     //无法连接的理由：
@@ -305,6 +305,21 @@ namespace MagicMongoDBTool.Module
                     {
                         ConnectionNode.Text += "[Exception]";
                         SystemManager.ExceptionDeal(ex, "Not Connected", "Mongo Server may not Startup or Auth Mode is not correct");
+                    }
+                    ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
+                    trvMongoDB.Nodes.Add(ConnectionNode);
+                }
+                catch (Exception ex) {
+                    if (!SystemManager.IsUseDefaultLanguage)
+                    {
+                        ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
+                        SystemManager.ExceptionDeal(ex, SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                                                        "Unknown Exception");
+                    }
+                    else
+                    {
+                        ConnectionNode.Text += "[Exception]";
+                        SystemManager.ExceptionDeal(ex, "Not Connected", "Unknown Exception");
                     }
                     ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
