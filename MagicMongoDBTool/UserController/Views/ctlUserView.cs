@@ -88,13 +88,13 @@ namespace MagicMongoDBTool
                     //lstData
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                        MongoDBHelper.RemoveUserFromSvr(item.SubItems[1].Text);
+                        MongoDBHelper.RemoveUserFromSystem(item.SubItems[1].Text,true);
                     }
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
-                    MongoDBHelper.RemoveUserFromSvr(trvData.DatatreeView.SelectedNode.Tag.ToString());
+                    MongoDBHelper.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(),true);
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
                 RefreshGUI();
@@ -121,13 +121,13 @@ namespace MagicMongoDBTool
                     //lstData
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                        MongoDBHelper.RemoveUserFromDB(item.SubItems[1].Text);
+                        MongoDBHelper.RemoveUserFromSystem(item.SubItems[1].Text,false);
                     }
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
-                    MongoDBHelper.RemoveUserFromDB(trvData.DatatreeView.SelectedNode.Tag.ToString());
+                    MongoDBHelper.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), false);
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
                 RemoveUserToolStripMenuItem.Enabled = false;

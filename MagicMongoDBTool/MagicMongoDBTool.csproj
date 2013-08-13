@@ -177,6 +177,12 @@
     <Compile Include="UnitTest\frmUnitTest.Designer.cs">
       <DependentUpon>frmUnitTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserController\UserRolesPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\UserRolesPanel.Designer.cs">
+      <DependentUpon>UserRolesPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\Views\ctlDocumentView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -502,6 +508,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UnitTest\frmUnitTest.resx">
       <DependentUpon>frmUnitTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserController\UserRolesPanel.resx">
+      <DependentUpon>UserRolesPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\Views\ctlDocumentView.resx">
       <DependentUpon>ctlDocumentView.cs</DependentUpon>

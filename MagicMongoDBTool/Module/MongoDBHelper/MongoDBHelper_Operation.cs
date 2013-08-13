@@ -173,6 +173,9 @@ namespace MagicMongoDBTool.Module
         public static Boolean CreateCollectionWithOptions(String strObjTag, TreeNode treeNode, String collectionName,
                                                           CollectionOptionsBuilder option)
         {
+            //不支持中文 JIRA ticket is created : SERVER-4412
+            //SERVER-4412已经在2013/03解决了
+            //collection names are limited to 121 bytes after converting to UTF-8. 
             Boolean rtnResult = false;
             MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
@@ -204,6 +207,9 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Boolean CreateCollection(String strObjTag, TreeNode treeNode, String collectionName)
         {
+            //不支持中文 JIRA ticket is created : SERVER-4412
+            //SERVER-4412已经在2013/03解决了
+            //collection names are limited to 121 bytes after converting to UTF-8. 
             Boolean rtnResult = false;
             MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
@@ -258,8 +264,8 @@ namespace MagicMongoDBTool.Module
                     strInstKey = strPath[(int)PathLv.ConnectionLV] + "/" + strPath[(int)PathLv.InstanceLV];
                     if (_mongoInstanceLst.ContainsKey(strInstKey))
                     {
-                        var config = SystemManager.ConfigHelperInstance.ConnectionList[strInstKey];
-                        return CreateMongoServer(ref config);
+                        var mongoInstance = MongoDBHelper._mongoInstanceLst[strInstKey];
+                        return MongoServer.Create(mongoInstance.Settings);
                     }
                 }
             }
@@ -450,8 +456,6 @@ namespace MagicMongoDBTool.Module
         /// <returns>插入记录的ID</returns>
         public static BsonValue InsertEmptyDocument(MongoCollection mongoCol, Boolean safeMode)
         {
-            //不支持中文 JIRA ticket is created : SERVER-4412 
-            //collection names are limited to 121 bytes after converting to UTF-8. 
             BsonDocument document = new BsonDocument();
             if (safeMode)
             {

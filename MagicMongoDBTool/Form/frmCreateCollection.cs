@@ -45,6 +45,9 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
+            //不支持中文 JIRA ticket is created : SERVER-4412
+            //SERVER-4412已经在2013/03解决了
+            //collection names are limited to 121 bytes after converting to UTF-8. 
             if (txtCollectionName.Text != String.Empty)
             {
                 try

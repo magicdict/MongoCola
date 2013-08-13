@@ -473,42 +473,38 @@ namespace MagicMongoDBTool.Module
         /// <param name="lstData"></param>
         private static void SetUserListToListView(List<BsonDocument> dataList, ListView lstData)
         {
-            //2.4以后的用户，可能没有ReadOnly属性，取而代之的是roles属性
+            //2.4以后的用户，没有ReadOnly属性，取而代之的是roles属性
+            //这里为了向前兼容暂时保持ReadOnle属性
+            //Ref:http://docs.mongodb.org/manual/reference/method/db.addUser/
             lstData.Clear();
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 lstData.Columns.Add("ID");
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_ReadOnly));
+                lstData.Columns.Add("roles");
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_Password));
+                lstData.Columns.Add("userSource");
+                lstData.Columns.Add("otherDBRoles");
+                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_ReadOnly));
             }
             else
             {
                 lstData.Columns.Add("ID");
                 lstData.Columns.Add("user");
-                lstData.Columns.Add("readonly");
+                lstData.Columns.Add("roles");
                 lstData.Columns.Add("password");
+                lstData.Columns.Add("userSource");
+                lstData.Columns.Add("otherDBRoles");
+                lstData.Columns.Add("readonly");
             }
-            //20130802 roles列表示。ReadOnly可能不存在！
-            lstData.Columns.Add("roles");
-            lstData.Columns.Add("otherDBRoles");
-
             foreach (BsonDocument docFile in dataList)
             {
                 ListViewItem lstItem = new ListViewItem();
+                //ID
                 lstItem.Text = docFile.GetValue(KEY_ID).ToString();
+                //User
                 lstItem.SubItems.Add(docFile.GetValue("user").ToString());
-                BsonValue strReadOnly;
-                docFile.TryGetValue("readOnly",out strReadOnly);
-                if (strReadOnly == null){
-                    lstItem.SubItems.Add("N/A");
-                }else{
-                    lstItem.SubItems.Add(strReadOnly.ToString());
-                }
-                //密码是密文表示的，这里没有安全隐患
-                lstItem.SubItems.Add(docFile.GetValue("pwd").ToString());
-                lstData.Items.Add(lstItem);
-
+                //roles
                 BsonValue strRoles;
                 docFile.TryGetValue("roles", out strRoles);
                 if (strRoles == null)
@@ -519,7 +515,21 @@ namespace MagicMongoDBTool.Module
                 {
                     lstItem.SubItems.Add(strRoles.ToString());
                 }
-
+                //密码是Hash表示的，这里没有安全隐患
+                lstItem.SubItems.Add(docFile.GetValue("pwd").ToString());
+                lstData.Items.Add(lstItem);
+                //userSource
+                BsonValue strUserSource;
+                docFile.TryGetValue("userSource", out strUserSource);
+                if (strUserSource == null)
+                {
+                    lstItem.SubItems.Add("N/A");
+                }
+                else
+                {
+                    lstItem.SubItems.Add(strUserSource.ToString());
+                }
+                //OtherDBRoles
                 BsonValue strOtherDBRoles;
                 docFile.TryGetValue("otherDBRoles", out strOtherDBRoles);
                 if (strOtherDBRoles == null)
@@ -530,7 +540,18 @@ namespace MagicMongoDBTool.Module
                 {
                     lstItem.SubItems.Add(strOtherDBRoles.ToString());
                 }
-
+                //ReadOnly
+                //20130802 roles列表示。ReadOnly可能不存在！
+                BsonValue strReadOnly;
+                docFile.TryGetValue("readOnly", out strReadOnly);
+                if (strReadOnly == null)
+                {
+                    lstItem.SubItems.Add("N/A");
+                }
+                else
+                {
+                    lstItem.SubItems.Add(strReadOnly.ToString());
+                }
             }
         }
         /// <summary>

@@ -1,8 +1,7 @@
-﻿using MongoDB.Driver;
-using System;
-using MagicMongoDBTool.Module;
-using MagicMongoDBTool;
+﻿using MagicMongoDBTool.Module;
 using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 namespace MagicMongoDBTool
 {
     public partial class frmTextSearch : System.Windows.Forms.Form
@@ -30,12 +29,13 @@ namespace MagicMongoDBTool
             ///检索关键字
             var TextSearchOption = new BsonDocument().Add(new BsonElement("search", txtKey.Text));
             ///语言
-            if (cmbLanguage.SelectedIndex != 0){
+            if (cmbLanguage.SelectedIndex != 0)
+            {
                 TextSearchOption.Add(new BsonElement("language", cmbLanguage.Text));
             }
             ///返回数限制
             TextSearchOption.Add(new BsonElement("limit", (BsonValue)NUDLimit.Value));
-            CommandResult SearchResult = MongoDBHelper.ExecuteMongoColCommand("text", SystemManager.GetCurrentCollection(),TextSearchOption);
+            CommandResult SearchResult = MongoDBHelper.ExecuteMongoColCommand("text", SystemManager.GetCurrentCollection(), TextSearchOption);
             MongoDBHelper.FillDataToTreeView("Text Search Result", trvResult, SearchResult.Response);
         }
         /// <summary>
