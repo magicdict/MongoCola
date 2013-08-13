@@ -97,9 +97,16 @@ namespace MagicMongoDBTool.Module
 
         #region"系统数据集名称常量"
         /// <summary>
-        /// Default Port
+        /// Default Port(Mongod)
         /// </summary>
-        public const int DEFAULT_PORT = 27017;
+        public const int MONGOD_DEFAULT_PORT = 27017;
+
+        public const int WEB_MONGOD_DEFAULT_PORT = 28017;
+
+        public const int SHARD_DEFAULT_PORT = 27018;
+
+        public const int CONFIG_DEFAULT_PORT = 27019;
+
         /// <summary>
         /// 主键
         /// </summary>
@@ -188,9 +195,9 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public const String MdbFilter = "*.mdb(Access File)|*.mdb";
         /// <summary>
-        /// INI文件选择过滤器
+        /// Conf文件选择过滤器
         /// </summary>
-        public const String IniFilter = "*.ini(Config File)|*.ini";
+        public const String ConfFilter = "*.conf(Config File)|*.conf";
         /// <summary>
         /// TempFileFolder
         /// </summary>

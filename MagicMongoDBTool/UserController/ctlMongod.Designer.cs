@@ -40,6 +40,7 @@ namespace MagicMongoDBTool
             this.radMaster = new System.Windows.Forms.RadioButton();
             this.radSlave = new System.Windows.Forms.RadioButton();
             this.lblWarning = new System.Windows.Forms.Label();
+            this.chkSmallfiles = new System.Windows.Forms.CheckBox();
             this.ctlFilePickerDBPath = new MagicMongoDBTool.ctlFilePicker();
             this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
             this.ctlFilePickerLogPath = new MagicMongoDBTool.ctlFilePicker();
@@ -49,6 +50,7 @@ namespace MagicMongoDBTool
             // 
             // grpLog
             // 
+            this.grpLog.Controls.Add(this.chkSmallfiles);
             this.grpLog.Controls.Add(this.ctllogLvT);
             this.grpLog.Controls.Add(this.chkIsAppend);
             this.grpLog.Controls.Add(this.ctlFilePickerLogPath);
@@ -58,6 +60,7 @@ namespace MagicMongoDBTool
             this.grpLog.TabIndex = 0;
             this.grpLog.TabStop = false;
             this.grpLog.Text = "Log";
+            this.grpLog.Enter += new System.EventHandler(this.grpLog_Enter);
             // 
             // chkIsAppend
             // 
@@ -169,13 +172,23 @@ namespace MagicMongoDBTool
             // lblWarning
             // 
             this.lblWarning.ForeColor = System.Drawing.Color.Red;
-            this.lblWarning.Location = new System.Drawing.Point(19, 176);
+            this.lblWarning.Location = new System.Drawing.Point(16, 173);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(709, 32);
+            this.lblWarning.Size = new System.Drawing.Size(748, 32);
             this.lblWarning.TabIndex = 22;
             this.lblWarning.Text = "Deprecated since version 1.6: Replica sets replace master-slave replication. Use " +
     "replica sets rather than master-slave replication for all new production deploym" +
     "ents.";
+            // 
+            // chkSmallfiles
+            // 
+            this.chkSmallfiles.AutoSize = true;
+            this.chkSmallfiles.Location = new System.Drawing.Point(163, 62);
+            this.chkSmallfiles.Name = "chkSmallfiles";
+            this.chkSmallfiles.Size = new System.Drawing.Size(69, 17);
+            this.chkSmallfiles.TabIndex = 23;
+            this.chkSmallfiles.Text = "Smallfiles";
+            this.chkSmallfiles.UseVisualStyleBackColor = true;
             // 
             // ctlFilePickerDBPath
             // 
@@ -192,9 +205,9 @@ namespace MagicMongoDBTool
             // ctllogLvT
             // 
             this.ctllogLvT.BackColor = System.Drawing.Color.Transparent;
-            this.ctllogLvT.Location = new System.Drawing.Point(337, 55);
+            this.ctllogLvT.Location = new System.Drawing.Point(258, 60);
             this.ctllogLvT.Name = "ctllogLvT";
-            this.ctllogLvT.Size = new System.Drawing.Size(199, 37);
+            this.ctllogLvT.Size = new System.Drawing.Size(199, 19);
             this.ctllogLvT.TabIndex = 14;
             // 
             // ctlFilePickerLogPath
@@ -226,7 +239,7 @@ namespace MagicMongoDBTool
             this.Controls.Add(this.lblPort);
             this.Controls.Add(this.grpLog);
             this.Name = "ctlMongod";
-            this.Size = new System.Drawing.Size(767, 219);
+            this.Size = new System.Drawing.Size(767, 209);
             this.Load += new System.EventHandler(this.ctlMongod_Load);
             this.grpLog.ResumeLayout(false);
             this.grpLog.PerformLayout();
@@ -254,5 +267,6 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.RadioButton radMaster;
         private System.Windows.Forms.RadioButton radSlave;
         private Label lblWarning;
+        private CheckBox chkSmallfiles;
     }
 }

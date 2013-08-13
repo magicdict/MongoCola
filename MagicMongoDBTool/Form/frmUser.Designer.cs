@@ -46,9 +46,9 @@ namespace MagicMongoDBTool
             this.cmbDB = new System.Windows.Forms.ComboBox();
             this.cmdAddRole = new System.Windows.Forms.Button();
             this.lstOtherRoles = new System.Windows.Forms.ListView();
-            this.userRoles = new MagicMongoDBTool.UserController.UserRolesPanel();
             this.colDataBase = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colRoles = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.userRoles = new MagicMongoDBTool.UserController.UserRolesPanel();
             this.cmdDelRole = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -168,6 +168,7 @@ namespace MagicMongoDBTool
             this.cmdAddRole.TabIndex = 14;
             this.cmdAddRole.Text = "Add Role";
             this.cmdAddRole.UseVisualStyleBackColor = true;
+            this.cmdAddRole.Click += new System.EventHandler(this.cmdAddRole_Click);
             // 
             // lstOtherRoles
             // 
@@ -186,13 +187,6 @@ namespace MagicMongoDBTool
             this.lstOtherRoles.UseCompatibleStateImageBehavior = false;
             this.lstOtherRoles.View = System.Windows.Forms.View.Details;
             // 
-            // userRoles
-            // 
-            this.userRoles.Location = new System.Drawing.Point(12, 96);
-            this.userRoles.Name = "userRoles";
-            this.userRoles.Size = new System.Drawing.Size(418, 217);
-            this.userRoles.TabIndex = 9;
-            // 
             // colDataBase
             // 
             this.colDataBase.Text = "DataBase";
@@ -202,6 +196,13 @@ namespace MagicMongoDBTool
             // 
             this.colRoles.Text = "Roles";
             this.colRoles.Width = 229;
+            // 
+            // userRoles
+            // 
+            this.userRoles.Location = new System.Drawing.Point(12, 96);
+            this.userRoles.Name = "userRoles";
+            this.userRoles.Size = new System.Drawing.Size(418, 217);
+            this.userRoles.TabIndex = 9;
             // 
             // cmdDelRole
             // 

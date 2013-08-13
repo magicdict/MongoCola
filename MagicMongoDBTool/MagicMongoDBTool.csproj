@@ -108,7 +108,14 @@
     <Compile Include="Form\frmTextSearch.Designer.cs">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageBox\frmUserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageBox\frmUserRole.Designer.cs">
+      <DependentUpon>frmUserRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Enum.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_GFS.cs" />
     <Compile Include="UserController\Aggregation\BsonValuePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -427,7 +434,7 @@
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </Compile>
     <Compile Include="Module\System\CloneMeunToolItem.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Operation_Other.cs" />
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_User.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Query.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_RunCommand.cs" />
     <Compile Include="UserController\ctlMongoImportExport.cs">
@@ -484,6 +491,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmTextSearch.resx">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MessageBox\frmUserRole.resx">
+      <DependentUpon>frmUserRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\Aggregation\BsonValuePanel.resx">
       <DependentUpon>BsonValuePanel.cs</DependentUpon>

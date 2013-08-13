@@ -29,32 +29,20 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// Mongod使用结构体
         /// </summary>
-        public class StruMongod
+        public class MongodConfig
         {
             /// <summary>
-            /// 数据库路径，必须
+            /// # 指定数据库路径
             /// </summary>
             public String DBPath = String.Empty;
             /// <summary>
-            /// IP
+            /// # 绑定服务IP，若绑定127.0.0.1，则只能本机访问，不指定默认本地所有IP
             /// </summary>
             public String bind_ip = String.Empty;
             /// <summary>
-            /// 端口号
+            /// # 指定服务端口号，默认端口27017
             /// </summary>
-            public int Port = MongoDBHelper.DEFAULT_PORT;
-            /// <summary>
-            /// 是否为Master
-            /// </summary>
-            public bool IsMaster = false;
-            /// <summary>
-            /// 是否为Master
-            /// </summary>
-            public bool IsSlave = false;
-            /// <summary>
-            /// 
-            /// </summary>
-            public String Source = String.Empty;
+            public int Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
             /// <summary>
             /// 日志文件
             /// </summary>
@@ -75,14 +63,71 @@ namespace MagicMongoDBTool.Module
             /// 是否采用认证模式
             /// </summary>
             public bool IsAuth = false;
+
+            ///主/从参数
+            /// <summary>
+            /// # 主库模式
+            /// </summary>
+            public bool master = false;
+            /// <summary>
+            ///# 从库模式
+            /// </summary>
+            public bool slave = false;
+            /// <summary>
+            /// # 从库 端口号
+            /// </summary>
+            public String source = String.Empty;
+            /// <summary>
+            /// # 指定单一的数据库复制
+            /// </summary>
+            public String only = String.Empty;
+            /// <summary>
+            /// # 设置从库同步主库的延迟时间
+            /// </summary>
+            public int slavedelay = 0;
+
+            ///Replicaton 参数
+            /// <summary>
+            /// # 从一个dbpath里启用从库复制服务，该dbpath的数据库是主库的快照，可用于快速启用同步
+            /// </summary>
+            public bool fastsync = false;
+            /// <summary>
+            /// # 如果从库与主库同步数据差得多，自动重新同步，
+            /// </summary>
+            public bool autoresync = false;
+            /// <summary>
+            /// # 设置oplog的大小(MB)
+            /// </summary>
+            public int oplogSize = 0;
+
+            ///  Replica set(副本集)选项
+            /// <summary>
+            /// # 设置副本集名称
+            /// </summary>
+            public String replSet = string.Empty;
+
+            /// <summary>
+            /// # 声明这是一个集群的config服务,默认端口27019，默认目录/data/configdb
+            /// </summary>
+            public String configsvr = string.Empty;
+            /// <summary>
+            /// # 声明这是一个集群的分片,默认端口27018
+            /// </summary>
+            public String shardsvr = string.Empty;
+            /// <summary>
+            /// # 关闭偏执为moveChunk数据保存??
+            /// </summary>
+            public bool moveParanoia = false; 
         }
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public static String GenerateIniFile(StruMongod mongod)
+        public static String GenerateIniFile(MongodConfig mongod)
         {
-            //http://www.mongodb.org/display/DOCS/File+Based+Configuration
+            //http://www.mongodb.org/display/DOCS/File+Based+Configuration(无法阅览，自动跳到下面这个链接)
+            //http://docs.mongodb.org/manual/reference/configuration-options/
+            //http://www.cnblogs.com/think-first/archive/2013/03/22/2976553.html
             //Location of the database files 
             string strIni = String.Empty;
 
@@ -161,7 +206,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// 部署
         /// </summary>
-        public static String GetMongodCommandLine(StruMongod mongod)
+        public static String GetMongodCommandLine(MongodConfig mongod)
         {
             //mongo.exe 客户端程序
             String dosCommand = @"mongod --dbpath @dbpath --port @port ";
@@ -203,16 +248,16 @@ namespace MagicMongoDBTool.Module
                 }
             }
             //是否为Master
-            if (mongod.IsMaster)
+            if (mongod.master)
             {
                 dosCommand += " --master";
             }
-            if (mongod.IsSlave)
+            if (mongod.slave)
             {
                 dosCommand += " --slave";
-                if (mongod.Source != String.Empty)
+                if (mongod.source != String.Empty)
                 {
-                    dosCommand += " --source " + mongod.Source;
+                    dosCommand += " --source " + mongod.source;
                 }
             }
             //是否作为Windows服务
@@ -240,7 +285,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 主机端口
             /// </summary>
-            public Int32 Port = MongoDBHelper.DEFAULT_PORT;
+            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
             /// <summary>
             /// 数据库名称
             /// </summary>
@@ -295,7 +340,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 主机端口
             /// </summary>
-            public Int32 Port = MongoDBHelper.DEFAULT_PORT;
+            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
             /// <summary>
             /// 备份数据库路径
             /// </summary>
@@ -340,7 +385,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             /// 主机端口
             /// </summary>
-            public Int32 Port = MongoDBHelper.DEFAULT_PORT;
+            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
             /// <summary>
             /// 数据库名称
             /// </summary>

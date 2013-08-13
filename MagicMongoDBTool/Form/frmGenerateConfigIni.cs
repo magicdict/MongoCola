@@ -30,7 +30,7 @@ namespace MagicMongoDBTool
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             SaveFileDialog savefile = new SaveFileDialog();
-            savefile.Filter = MongoDBHelper.IniFilter;
+            savefile.Filter = MongoDBHelper.ConfFilter;
             if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 StreamWriter save = new StreamWriter(savefile.FileName);
@@ -38,6 +38,11 @@ namespace MagicMongoDBTool
                 save.Close();
                 System.Diagnostics.Process.Start(savefile.FileName);
             }
+        }
+
+        private void lnkRef_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(lnkRef.Text);
         }
     }
 }

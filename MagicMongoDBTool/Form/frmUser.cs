@@ -1,5 +1,8 @@
 ﻿using System;
+using MongoDB.Bson;
 using MagicMongoDBTool.Module;
+using MagicMongoDBTool;
+
 namespace MagicMongoDBTool
 {
     public partial class frmUser : System.Windows.Forms.Form
@@ -120,8 +123,16 @@ namespace MagicMongoDBTool
                 cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);
 
             }
-
-
+        }
+        
+        private void cmdAddRole_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(cmbDB.Text)) {
+                MyMessageBox.ShowEasyMessage("Error", "Please Select A Database");
+            }
+            frmUserRole mUserRole = new frmUserRole(new BsonArray());
+            mUserRole.ShowDialog();
+            BsonElement otherRole = new BsonElement(cmbDB.Text, mUserRole.Result);
         }
     }
 }

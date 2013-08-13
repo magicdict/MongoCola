@@ -7,7 +7,7 @@ namespace MagicMongoDBTool
     {
 
         public EventHandler<TextChangeEventArgs> CommandChanged;
-        public MongodbDosCommand.StruMongod MongodCommand = new MongodbDosCommand.StruMongod();
+        public MongodbDosCommand.MongodConfig MongodCommand = new MongodbDosCommand.MongodConfig();
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -88,8 +88,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void MongodType_CheckedChanged(object sender, EventArgs e)
         {
-            MongodCommand.IsMaster = radMaster.Checked;
-            MongodCommand.IsSlave = radSlave.Checked;
+            MongodCommand.master = radMaster.Checked;
+            MongodCommand.slave = radSlave.Checked;
             OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
         /// <summary>
@@ -117,11 +117,16 @@ namespace MagicMongoDBTool
         /// </summary>
         void txtSource_TextChanged(object sender, System.EventArgs e)
         {
-            MongodCommand.Source = txtSource.Text;
+            MongodCommand.source = txtSource.Text;
             if (MongodCommand != null)
             {
                 OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
             }
+        }
+
+        private void grpLog_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
