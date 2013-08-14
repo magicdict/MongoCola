@@ -25,6 +25,15 @@ namespace MagicMongoDBTool
         public ctlJsEditor()
         {
             InitializeComponent();
+
+            if (!SystemManager.IsUseDefaultLanguage)
+            {
+                this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_Title);
+                this.SaveStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
+                this.EditDocStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Edit);
+                this.CloseStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+            }
+
             SaveStripButton.Image = MagicMongoDBTool.Properties.Resources.save.ToBitmap();
         }
 

@@ -105,7 +105,7 @@ namespace MagicMongoDBTool.UserController
                 this.tabCurrentOprInfo.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.ServiceStatus_CurrentOperationInfo);
                 this.RefreshStripButton.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Refresh);
                 this.btnSwitch.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Collection_Stop_AutoRefresh);
-
+                this.CloseStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
             }
             refreshTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer * 1000;
             refreshTimer.Tick += new EventHandler(

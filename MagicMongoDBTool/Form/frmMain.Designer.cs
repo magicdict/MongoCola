@@ -237,7 +237,7 @@ namespace MagicMongoDBTool
             this.ExpandAllConnectionToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Collpse;
             this.ExpandAllConnectionToolStripMenuItem.Name = "ExpandAllConnectionToolStripMenuItem";
             this.ExpandAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.ExpandAllConnectionToolStripMenuItem.Text = "Collapse";
+            this.ExpandAllConnectionToolStripMenuItem.Text = "Expansion";
             this.ExpandAllConnectionToolStripMenuItem.Click += new System.EventHandler(this.ExpandAllToolStripMenuItem_Click);
             // 
             // CollapseAllConnectionToolStripMenuItem
@@ -245,7 +245,7 @@ namespace MagicMongoDBTool
             this.CollapseAllConnectionToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Expand;
             this.CollapseAllConnectionToolStripMenuItem.Name = "CollapseAllConnectionToolStripMenuItem";
             this.CollapseAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.CollapseAllConnectionToolStripMenuItem.Text = "Expansion";
+            this.CollapseAllConnectionToolStripMenuItem.Text = "Collapse";
             this.CollapseAllConnectionToolStripMenuItem.Click += new System.EventHandler(this.CollapseAllToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1

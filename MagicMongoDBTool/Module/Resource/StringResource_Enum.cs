@@ -321,6 +321,7 @@ namespace MagicMongoDBTool.Module
             Common_Yes,
             Common_No,
             Common_Detail,
+            Common_Edit,
             Common_Save,
             Common_Modify,
             Common_Add,

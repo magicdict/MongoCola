@@ -284,7 +284,7 @@ namespace MagicMongoDBTool.Module
             }
             RunCommandEventArgs e = new RunCommandEventArgs();
             e.CommandString = CommandString;
-            e.RunLevel = PathLv.DatabaseLV;
+            e.RunLevel = PathLv.CollectionLV;
             e.Result = mCommandResult;
             OnCommandRunComplete(e);
             return mCommandResult;
@@ -306,7 +306,13 @@ namespace MagicMongoDBTool.Module
             {
                 textSearchCommand.Add(item);
             }
-            return mongoCol.Database.RunCommand(textSearchCommand);
+            var mCommandResult = mongoCol.Database.RunCommand(textSearchCommand);
+            RunCommandEventArgs e = new RunCommandEventArgs();
+            e.CommandString = textSearchCommand.ToString();
+            e.RunLevel = PathLv.CollectionLV;
+            e.Result = mCommandResult;
+            OnCommandRunComplete(e);
+            return mCommandResult;
         }
         /// <summary>
         /// 执行数据集命令
@@ -349,6 +355,11 @@ namespace MagicMongoDBTool.Module
             {
                 mCommandResult = ex.CommandResult;
             }
+            RunCommandEventArgs e = new RunCommandEventArgs();
+            e.CommandString = mongoCmd;
+            e.RunLevel = PathLv.DatabaseLV;
+            e.Result = mCommandResult;
+            OnCommandRunComplete(e);
             return mCommandResult;
         }
         /// <summary>

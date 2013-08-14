@@ -1154,6 +1154,7 @@ namespace MagicMongoDBTool
             this.creatJavaScriptToolStripMenuItem.Enabled = false;
             this.dropJavascriptToolStripMenuItem.Enabled = false;
             this.CollectionStatusToolStripMenuItem.Enabled = false;
+            this.validateToolStripMenuItem.Enabled = false;
             this.ProfillingLevelToolStripMenuItem.Enabled = false;
 
             //管理-备份和恢复
@@ -1318,7 +1319,9 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ExpandAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.trvsrvlst.CollapseAll();
+            this.trvsrvlst.BeginUpdate();
+            this.trvsrvlst.ExpandAll();
+            this.trvsrvlst.EndUpdate();
         }
         /// <summary>
         /// Collapse All
@@ -1327,9 +1330,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CollapseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.trvsrvlst.BeginUpdate();
-            this.trvsrvlst.ExpandAll();
-            this.trvsrvlst.EndUpdate();
+            this.trvsrvlst.CollapseAll();
         }
         /// <summary>
         /// Exit Application
