@@ -77,13 +77,27 @@ namespace MagicMongoDBTool
                 }
                 //2013/08/13 用户结构发生大的变化
                 //取消了ReadOnly字段，添加了Roles等字段
-                MongoDBHelper.AddUserToSystem(user, _IsAdmin);
+                try
+                {
+                    MongoDBHelper.AddUserToSystem(user, _IsAdmin);
+                }
+                catch (Exception ex)
+                {
+                    SystemManager.ExceptionDeal(ex);
+                }
             }
             else
             {
-                //Change Password
-                MongoDBHelper.RemoveUserFromSystem(_ModifyName, _IsAdmin);
-                MongoDBHelper.AddUserToSystem(user, _IsAdmin);
+                //更改用户配置
+                try
+                {
+                    MongoDBHelper.RemoveUserFromSystem(_ModifyName, _IsAdmin);
+                    MongoDBHelper.AddUserToSystem(user, _IsAdmin);
+                }
+                catch (Exception ex)
+                {
+                    SystemManager.ExceptionDeal(ex);
+                }
             }
             this.Close();
         }
@@ -122,7 +136,7 @@ namespace MagicMongoDBTool
                 else
                 {
                     this.Icon = GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.DBkey);
-                    //this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Main_Menu_Operation_Database_ChangePassword);
+                    this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_ChangePassword);
                 }
                 lblUserName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Username);
                 lblPassword.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Password);

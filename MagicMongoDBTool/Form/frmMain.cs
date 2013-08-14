@@ -630,6 +630,7 @@ namespace MagicMongoDBTool
                         this.AggregationToolStripMenuItem.Enabled = true;
                         this.viewDataToolStripMenuItem.Enabled = true;
                         this.CollectionStatusToolStripMenuItem.Enabled = true;
+                        this.validateToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -726,6 +727,7 @@ namespace MagicMongoDBTool
                                 this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
                                 this.contextMenuStripMain.Items.Add(this.CollectionStatusToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.validateToolStripMenuItem.Clone());
                             }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -1806,13 +1808,22 @@ namespace MagicMongoDBTool
             commandShellToolStripMenuItem.Checked = !commandShellToolStripMenuItem.Checked;
         }
         /// <summary>
-        /// 
+        /// CollectionStatus
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CollectionStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SystemManager.OpenForm(new frmStatus(), true, true);
+        }
+        /// <summary>
+        /// validate
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void validateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmValidate(), true, true);
         }
         #endregion
 
@@ -2182,6 +2193,8 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmUnitTest(), true, true);
         }
         #endregion
+
+
 
 
 

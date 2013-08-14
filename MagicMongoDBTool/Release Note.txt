@@ -14,6 +14,7 @@ Ver 1.30 2013/08/31
 1.Show "roles" column at user list view
 2.Add "Language","Limit" Option to Text Search
 3.New User Guide
+4.Add validate function for collection
 
 ========================================================================
 Ver 1.28 2013/03/25

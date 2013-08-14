@@ -108,6 +108,12 @@
     <Compile Include="Form\frmTextSearch.Designer.cs">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmValidate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmValidate.Designer.cs">
+      <DependentUpon>frmValidate.cs</DependentUpon>
+    </Compile>
     <Compile Include="MessageBox\frmUserRole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -491,6 +497,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmTextSearch.resx">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmValidate.resx">
+      <DependentUpon>frmValidate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MessageBox\frmUserRole.resx">
       <DependentUpon>frmUserRole.cs</DependentUpon>
