@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
 using MongoDB.Bson;
-using MagicMongoDBTool.Module;
-using MagicMongoDBTool;
+using System;
+using System.Collections.Generic;
 
 namespace MagicMongoDBTool
 {
@@ -12,6 +12,7 @@ namespace MagicMongoDBTool
         /// </summary>
         private Boolean _IsAdmin = false;
         private String _ModifyName = String.Empty;
+        private Dictionary<String, BsonElement> OtherDBRolesDict = new Dictionary<string, BsonElement>();
         /// <summary>
         /// frmUser
         /// </summary>
@@ -53,10 +54,18 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Error", "Password and Confirm Password not match!");
                 return;
             }
+            //MongoUser不能同时具备Password和userSource字段！
             MongoDBHelper.MongoUserEx user = new MongoDBHelper.MongoUserEx();
             user.Username = txtUserName.Text;
             user.Password = txtUserName.Text;
             user.roles = userRoles.getRoles();
+            BsonDocument otherDBRoles = new BsonDocument();
+            foreach (var item in OtherDBRolesDict.Values)
+            {
+                otherDBRoles.Add(item);
+            }
+            user.otherDBRoles = otherDBRoles;
+            user.userSource = txtuserSource.Text;
             if (_ModifyName == String.Empty)
             {
                 //New User
@@ -124,15 +133,64 @@ namespace MagicMongoDBTool
 
             }
         }
-        
+
+        private void RefreshOtherDBRoles()
+        {
+            lstOtherRoles.Items.Clear();
+            foreach (var item in OtherDBRolesDict.Keys)
+            {
+                lstOtherRoles.Items.Add(new System.Windows.Forms.ListViewItem(new string[] { item, OtherDBRolesDict[item].Value.ToString() }));
+            }
+        }
+
         private void cmdAddRole_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(cmbDB.Text)) {
-                MyMessageBox.ShowEasyMessage("Error", "Please Select A Database");
+            if (String.IsNullOrEmpty(cmbDB.Text))
+            {
+                MyMessageBox.ShowMessage("Error", "Please Select A Database");
             }
             frmUserRole mUserRole = new frmUserRole(new BsonArray());
             mUserRole.ShowDialog();
             BsonElement otherRole = new BsonElement(cmbDB.Text, mUserRole.Result);
+            if (OtherDBRolesDict.ContainsKey(cmbDB.Text))
+            {
+                OtherDBRolesDict[cmbDB.Text] = otherRole;
+            }
+            else
+            {
+                OtherDBRolesDict.Add(cmbDB.Text, otherRole);
+            }
+            RefreshOtherDBRoles();
+        }
+
+        private void cmdDelRole_Click(object sender, EventArgs e)
+        {
+            if (lstOtherRoles.SelectedItems.Count == 0)
+            {
+                MyMessageBox.ShowMessage("Error", "Please Select A Database");
+            }
+            else
+            {
+                OtherDBRolesDict.Remove(lstOtherRoles.SelectedItems[0].Text);
+                RefreshOtherDBRoles();
+            }
+        }
+
+        private void cmdModifyRole_Click(object sender, EventArgs e)
+        {
+            if (lstOtherRoles.SelectedItems.Count == 0)
+            {
+                MyMessageBox.ShowMessage("Error", "Please Select A Database");
+            }
+            else
+            {
+                String DBName = lstOtherRoles.SelectedItems[0].Text;
+                frmUserRole mUserRole = new frmUserRole(OtherDBRolesDict[DBName].Value.AsBsonArray);
+                mUserRole.ShowDialog();
+                BsonElement otherRole = new BsonElement(cmbDB.Text, mUserRole.Result);
+                OtherDBRolesDict[DBName] = otherRole;
+                RefreshOtherDBRoles();
+            }
         }
     }
 }

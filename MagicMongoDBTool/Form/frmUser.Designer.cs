@@ -50,6 +50,7 @@ namespace MagicMongoDBTool
             this.colRoles = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.userRoles = new MagicMongoDBTool.UserController.UserRolesPanel();
             this.cmdDelRole = new System.Windows.Forms.Button();
+            this.cmdModifyRole = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmdOK
@@ -206,12 +207,23 @@ namespace MagicMongoDBTool
             // 
             // cmdDelRole
             // 
-            this.cmdDelRole.Location = new System.Drawing.Point(726, 64);
+            this.cmdDelRole.Location = new System.Drawing.Point(611, 339);
             this.cmdDelRole.Name = "cmdDelRole";
             this.cmdDelRole.Size = new System.Drawing.Size(92, 24);
             this.cmdDelRole.TabIndex = 14;
             this.cmdDelRole.Text = "Delete Role";
             this.cmdDelRole.UseVisualStyleBackColor = true;
+            this.cmdDelRole.Click += new System.EventHandler(this.cmdDelRole_Click);
+            // 
+            // cmdModifyRole
+            // 
+            this.cmdModifyRole.Location = new System.Drawing.Point(709, 340);
+            this.cmdModifyRole.Name = "cmdModifyRole";
+            this.cmdModifyRole.Size = new System.Drawing.Size(109, 23);
+            this.cmdModifyRole.TabIndex = 16;
+            this.cmdModifyRole.Text = "Modify Role";
+            this.cmdModifyRole.UseVisualStyleBackColor = true;
+            this.cmdModifyRole.Click += new System.EventHandler(this.cmdModifyRole_Click);
             // 
             // frmUser
             // 
@@ -219,6 +231,7 @@ namespace MagicMongoDBTool
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(874, 405);
+            this.Controls.Add(this.cmdModifyRole);
             this.Controls.Add(this.lstOtherRoles);
             this.Controls.Add(this.cmdDelRole);
             this.Controls.Add(this.cmdAddRole);
@@ -269,5 +282,6 @@ namespace MagicMongoDBTool
         private ColumnHeader colDataBase;
         private ColumnHeader colRoles;
         private Button cmdDelRole;
+        private Button cmdModifyRole;
     }
 }

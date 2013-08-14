@@ -60,21 +60,27 @@ namespace MagicMongoDBTool.Module
             document["roles"] = user.roles;
             document["pwd"] = user.Password;
             //OtherRole 必须放在Admin.system.users里面
-            document["otherRoles"] = user.otherDBRoles;
-            document["userSource"] = user.userSource;
+            document["otherDBRoles"] = user.otherDBRoles;
+            if (string.IsNullOrEmpty(user.Password))
+            {
+                document["userSource"] = user.userSource;
+            }
             Col.Save(document);
         }
         /// <summary>
         /// Remove A User From Admin database
         /// </summary>
         /// <param name="strUser">UserName</param>
-        public static void RemoveUserFromSystem(String strUser,Boolean IsAdmin)
+        public static void RemoveUserFromSystem(String strUser, Boolean IsAdmin)
         {
             MongoServer mongoSvr = SystemManager.GetCurrentServer();
             MongoDatabase users;
-            if (IsAdmin) { 
-                users= mongoSvr.GetDatabase(DATABASE_NAME_ADMIN);
-            }else{
+            if (IsAdmin)
+            {
+                users = mongoSvr.GetDatabase(DATABASE_NAME_ADMIN);
+            }
+            else
+            {
                 users = SystemManager.GetCurrentDataBase();
             }
             if (users.FindUser(strUser) != null)
