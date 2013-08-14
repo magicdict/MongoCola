@@ -6,9 +6,15 @@ namespace MagicMongoDBTool
 {
     public partial class frmTextSearch : System.Windows.Forms.Form
     {
+        BsonDocument Result;
         public frmTextSearch()
         {
             InitializeComponent();
+            if (!SystemManager.IsUseDefaultLanguage)
+            {
+                this.cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
+                this.cmdClose.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Close);
+            }
             //加载语言列表
             cmbLanguage.Items.Clear();
             cmbLanguage.Items.Add("None");
@@ -17,6 +23,7 @@ namespace MagicMongoDBTool
                 cmbLanguage.Items.Add(item.ToString());
             }
             cmbLanguage.SelectedIndex = 0;
+            this.cmdSave.Enabled = false;
         }
         /// <summary>
         /// 全文检索功能
@@ -35,8 +42,17 @@ namespace MagicMongoDBTool
             }
             ///返回数限制
             TextSearchOption.Add(new BsonElement("limit", (BsonValue)NUDLimit.Value));
-            CommandResult SearchResult = MongoDBHelper.ExecuteMongoColCommand("text", SystemManager.GetCurrentCollection(), TextSearchOption);
-            MongoDBHelper.FillDataToTreeView("Text Search Result", trvResult, SearchResult.Response);
+            try
+            {
+                CommandResult SearchResult = MongoDBHelper.ExecuteMongoColCommand("text", SystemManager.GetCurrentCollection(), TextSearchOption);
+                Result = SearchResult.Response;
+                MongoDBHelper.FillDataToTreeView("Text Search Result", trvResult, Result);
+                cmdSave.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                SystemManager.ExceptionDeal(ex); 
+            }
         }
         /// <summary>
         /// 增加链接
@@ -46,6 +62,24 @@ namespace MagicMongoDBTool
         private void lnkRef_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/command/text/#text-search-languages");
+        }
+        /// <summary>
+        /// 关闭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdSave_Click(object sender, EventArgs e)
+        {
+            SystemManager.SaveResultToJSonFile(Result);
         }
     }
 }

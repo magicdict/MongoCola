@@ -15,6 +15,7 @@ Ver 1.30 2013/08/31
 2.Add "Language","Limit" Option to Text Search
 3.New User Guide
 4.Add validate function for collection
+5.Add SaveToFile function for some command result as a json format 
 
 ========================================================================
 Ver 1.28 2013/03/25

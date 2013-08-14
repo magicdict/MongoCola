@@ -217,6 +217,21 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
+        /// 保存文件
+        /// </summary>
+        /// <param name="Result"></param>
+        public static void SaveResultToJSonFile(BsonDocument Result)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = MongoDBHelper.TxtFilter;
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                StreamWriter writer = new StreamWriter(dialog.FileName, false);
+                writer.Write(Result.ToJson(JsonWriterSettings));
+                writer.Close();
+            }
+        }
+        /// <summary>
         /// 获得JS名称列表
         /// </summary>
         /// <returns></returns>
@@ -245,6 +260,7 @@ namespace MagicMongoDBTool.Module
                         String.IsNullOrEmpty(ConfigHelperInstance.LanguageFileName));
             }
         }
+        #region"异常处理"
         /// <summary>
         /// 异常处理
         /// </summary>
@@ -300,6 +316,8 @@ namespace MagicMongoDBTool.Module
             ExceptionString += ex.ToString();
             ExceptionLog(ExceptionString);
         }
+
+        #endregion
         /// <summary>
         /// JsonWriterSettings
         /// </summary>

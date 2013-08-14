@@ -38,6 +38,8 @@
             this.NUDLimit = new System.Windows.Forms.NumericUpDown();
             this.trvResult = new TreeViewColumnsProject.TreeViewColumns();
             this.lnkRef = new System.Windows.Forms.LinkLabel();
+            this.cmdSave = new System.Windows.Forms.Button();
+            this.cmdClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NUDLimit)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,13 +135,13 @@
             this.trvResult.Location = new System.Drawing.Point(12, 96);
             this.trvResult.Name = "trvResult";
             this.trvResult.Padding = new System.Windows.Forms.Padding(1);
-            this.trvResult.Size = new System.Drawing.Size(710, 349);
+            this.trvResult.Size = new System.Drawing.Size(710, 325);
             this.trvResult.TabIndex = 19;
             // 
             // lnkRef
             // 
             this.lnkRef.AutoSize = true;
-            this.lnkRef.Location = new System.Drawing.Point(14, 462);
+            this.lnkRef.Location = new System.Drawing.Point(14, 435);
             this.lnkRef.Name = "lnkRef";
             this.lnkRef.Size = new System.Drawing.Size(404, 13);
             this.lnkRef.TabIndex = 27;
@@ -147,12 +149,34 @@
             this.lnkRef.Text = "http://docs.mongodb.org/manual/reference/command/text/#text-search-languages";
             this.lnkRef.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkRef_LinkClicked);
             // 
+            // cmdSave
+            // 
+            this.cmdSave.Location = new System.Drawing.Point(488, 449);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(105, 27);
+            this.cmdSave.TabIndex = 29;
+            this.cmdSave.Text = "Save";
+            this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
+            // 
+            // cmdClose
+            // 
+            this.cmdClose.Location = new System.Drawing.Point(608, 449);
+            this.cmdClose.Name = "cmdClose";
+            this.cmdClose.Size = new System.Drawing.Size(114, 27);
+            this.cmdClose.TabIndex = 28;
+            this.cmdClose.Text = "Close";
+            this.cmdClose.UseVisualStyleBackColor = true;
+            this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
+            // 
             // frmTextSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(734, 498);
+            this.Controls.Add(this.cmdSave);
+            this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.lnkRef);
             this.Controls.Add(this.NUDLimit);
             this.Controls.Add(this.lblLimit);
@@ -183,5 +207,7 @@
         private System.Windows.Forms.Label lblLimit;
         private System.Windows.Forms.NumericUpDown NUDLimit;
         private System.Windows.Forms.LinkLabel lnkRef;
+        private System.Windows.Forms.Button cmdSave;
+        private System.Windows.Forms.Button cmdClose;
     }
 }

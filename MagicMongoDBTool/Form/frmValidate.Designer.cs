@@ -32,6 +32,7 @@
             this.cmdClose = new System.Windows.Forms.Button();
             this.cmdValidate = new System.Windows.Forms.Button();
             this.chkFull = new System.Windows.Forms.CheckBox();
+            this.cmdSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // trvResult
@@ -45,9 +46,9 @@
             // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(175, 361);
+            this.cmdClose.Location = new System.Drawing.Point(350, 358);
             this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(145, 27);
+            this.cmdClose.Size = new System.Drawing.Size(114, 27);
             this.cmdClose.TabIndex = 1;
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
@@ -73,18 +74,29 @@
             this.chkFull.Text = "Full";
             this.chkFull.UseVisualStyleBackColor = true;
             // 
+            // cmdSave
+            // 
+            this.cmdSave.Location = new System.Drawing.Point(230, 358);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(105, 27);
+            this.cmdSave.TabIndex = 4;
+            this.cmdSave.Text = "Save";
+            this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
+            // 
             // frmValidate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(508, 412);
+            this.Controls.Add(this.cmdSave);
             this.Controls.Add(this.chkFull);
             this.Controls.Add(this.cmdValidate);
             this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.trvResult);
             this.Name = "frmValidate";
-            this.Text = "frmValidate";
+            this.Text = "Validate";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,5 +108,6 @@
         private System.Windows.Forms.Button cmdClose;
         private System.Windows.Forms.Button cmdValidate;
         private System.Windows.Forms.CheckBox chkFull;
+        private System.Windows.Forms.Button cmdSave;
     }
 }
