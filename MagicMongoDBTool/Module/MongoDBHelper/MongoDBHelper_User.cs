@@ -44,7 +44,7 @@ namespace MagicMongoDBTool.Module
             //         2.这个其实不用检查，有的话修改，没有的话，新建
             //if (users.Database.FindUser(newUserEx.Username) == null)
             //{
-            //    AddUserEx(users, newUserEx);
+            AddUserEx(users, newUserEx);
             //}
         }
         // public methods
@@ -60,9 +60,17 @@ namespace MagicMongoDBTool.Module
                 document = new BsonDocument("user", user.Username);
             }
             document["roles"] = user.roles;
-            document["pwd"] = user.Password;
+            if (document.Contains("readOnly"))
+            {
+                document.Remove("readOnly");
+            }
+            //必须要Hash一下Password
+            document["pwd"] = MongoUser.HashPassword(user.userSource, user.Password);
             //OtherRole 必须放在Admin.system.users里面
-            document["otherDBRoles"] = user.otherDBRoles;
+            if (Col.Name == MongoDBHelper.DATABASE_NAME_ADMIN)
+            {
+                document["otherDBRoles"] = user.otherDBRoles;
+            }
             if (string.IsNullOrEmpty(user.Password))
             {
                 document["userSource"] = user.userSource;

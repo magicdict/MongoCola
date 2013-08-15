@@ -25,6 +25,10 @@ namespace MagicMongoDBTool
             {
                 cmbDB.Items.Add(item);
             }
+            if (!IsAdmin) {
+                //Admin以外的不能有otherDBRoles
+                this.Width = this.Width / 2;
+            }
         }
         /// <summary>
         /// frmUser
@@ -40,6 +44,11 @@ namespace MagicMongoDBTool
             foreach (var item in SystemManager.GetCurrentServer().GetDatabaseNames())
             {
                 cmbDB.Items.Add(item);
+            }
+            if (!IsAdmin)
+            {
+                //Admin以外的不能有otherDBRoles
+                this.Width = this.Width / 2;
             }
         }
         /// <summary>

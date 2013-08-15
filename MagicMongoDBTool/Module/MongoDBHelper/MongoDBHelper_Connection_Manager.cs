@@ -94,7 +94,9 @@ namespace MagicMongoDBTool.Module
                 if (!(String.IsNullOrEmpty(config.UserName) || String.IsNullOrEmpty(config.Password)))
                 {
                     //认证的设定:注意，这里的密码是明文
-                    //
+                    mongoClientSetting.Credentials = new MongoCredential[]{
+                        MongoCredential.CreateMongoCRCredential("admin", config.UserName, config.Password)
+                    };
                 }
                 if (config.ReplSetName != String.Empty)
                 {
