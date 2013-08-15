@@ -40,10 +40,12 @@ namespace MagicMongoDBTool.Module
             {
                 users = SystemManager.GetCurrentDataBase().GetCollection("system.users");
             }
-            if (users.Database.FindUser(newUserEx.Username) == null)
-            {
-                AddUserEx(users, newUserEx);
-            }
+            //以下代码 1.Ver2.4以前的有ReadOnly,FindUser需要寻找ReadOnly字段
+            //         2.这个其实不用检查，有的话修改，没有的话，新建
+            //if (users.Database.FindUser(newUserEx.Username) == null)
+            //{
+            //    AddUserEx(users, newUserEx);
+            //}
         }
         // public methods
         /// <summary>

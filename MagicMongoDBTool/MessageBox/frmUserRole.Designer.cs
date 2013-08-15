@@ -71,7 +71,7 @@
             this.Controls.Add(this.userRolesPanel1);
             this.Name = "frmUserRole";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmUserRole";
+            this.Text = "UserRole";
             this.ResumeLayout(false);
 
         }

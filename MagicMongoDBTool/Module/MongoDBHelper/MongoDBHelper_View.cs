@@ -516,8 +516,17 @@ namespace MagicMongoDBTool.Module
                     lstItem.SubItems.Add(strRoles.ToString());
                 }
                 //密码是Hash表示的，这里没有安全隐患
-                lstItem.SubItems.Add(docFile.GetValue("pwd").ToString());
-                lstData.Items.Add(lstItem);
+                //Password和userSource不能同时设置，所以password也可能不存在
+                BsonValue strPassword;
+                docFile.TryGetValue("pwd", out strPassword);
+                if (strPassword == null)
+                {
+                    lstItem.SubItems.Add("N/A");
+                }
+                else
+                {
+                    lstItem.SubItems.Add(strPassword.ToString());
+                }
                 //userSource
                 BsonValue strUserSource;
                 docFile.TryGetValue("userSource", out strUserSource);
@@ -552,6 +561,7 @@ namespace MagicMongoDBTool.Module
                 {
                     lstItem.SubItems.Add(strReadOnly.ToString());
                 }
+                lstData.Items.Add(lstItem);
             }
         }
         /// <summary>

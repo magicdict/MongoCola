@@ -66,38 +66,21 @@ namespace MagicMongoDBTool
             }
             user.otherDBRoles = otherDBRoles;
             user.userSource = txtuserSource.Text;
-            if (_ModifyName == String.Empty)
+            if (txtUserName.Text == String.Empty)
             {
-                //New User
-
-                if (txtUserName.Text == String.Empty)
-                {
-                    MyMessageBox.ShowMessage("Error", "Please fill username!");
-                    return;
-                }
-                //2013/08/13 用户结构发生大的变化
-                //取消了ReadOnly字段，添加了Roles等字段
-                try
-                {
-                    MongoDBHelper.AddUserToSystem(user, _IsAdmin);
-                }
-                catch (Exception ex)
-                {
-                    SystemManager.ExceptionDeal(ex);
-                }
+                MyMessageBox.ShowMessage("Error", "Please fill username!");
+                return;
             }
-            else
+            //2013/08/13 用户结构发生大的变化
+            //取消了ReadOnly字段，添加了Roles等字段
+            //简化逻辑，不论新建还是修改，AddUser都可以
+            try
             {
-                //更改用户配置
-                try
-                {
-                    MongoDBHelper.RemoveUserFromSystem(_ModifyName, _IsAdmin);
-                    MongoDBHelper.AddUserToSystem(user, _IsAdmin);
-                }
-                catch (Exception ex)
-                {
-                    SystemManager.ExceptionDeal(ex);
-                }
+                MongoDBHelper.AddUserToSystem(user, _IsAdmin);
+            }
+            catch (Exception ex)
+            {
+                SystemManager.ExceptionDeal(ex);
             }
             this.Close();
         }
@@ -115,9 +98,18 @@ namespace MagicMongoDBTool
 
             if (_ModifyName != String.Empty)
             {
-                this.Text = "Change Password";
+                this.Text = "Change User Config";
                 txtUserName.Enabled = false;
                 txtUserName.Text = _ModifyName;
+                var userInfo = SystemManager.GetCurrentDataBase().GetCollection(MongoDBHelper.COLLECTION_NAME_USER)
+                    .FindOneAs<BsonDocument>(MongoDB.Driver.Builders.Query.EQ("user", _ModifyName));
+                this.userRoles.setRoles(userInfo["roles"].AsBsonArray);
+                OtherDBRolesDict.Clear();
+                foreach (var item in userInfo["otherDBRoles"].AsBsonDocument)
+                {
+                    OtherDBRolesDict.Add(item.Name, item);
+                }
+                RefreshOtherDBRoles();
             }
             if (!SystemManager.IsUseDefaultLanguage)
             {

@@ -289,6 +289,38 @@ namespace MagicMongoDBTool.Module
                     ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
                 }
+                catch (MongoCommandException ex) {
+                    //listDatabase命令错误，本质是用户名称错误
+                    if (ex.CommandResult.Response["errmsg"] == "unauthorized")
+                    {
+                        if (!SystemManager.IsUseDefaultLanguage)
+                        {
+                            ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException) + "]";
+                            SystemManager.ExceptionDeal(ex, SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
+                                                           SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException_Note));
+                        }
+                        else
+                        {
+                            ConnectionNode.Text += "[MongoAuthenticationException]";
+                            SystemManager.ExceptionDeal(ex, "MongoAuthenticationException:", "Please check UserName and Password");
+                        }
+                    }
+                    else {
+                        if (!SystemManager.IsUseDefaultLanguage)
+                        {
+                            ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
+                            SystemManager.ExceptionDeal(ex, SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                                                            "Unknown Exception");
+                        }
+                        else
+                        {
+                            ConnectionNode.Text += "[Exception]";
+                            SystemManager.ExceptionDeal(ex, "Not Connected", "Unknown Exception");
+                        }
+                    }
+                    ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
+                    trvMongoDB.Nodes.Add(ConnectionNode);
+                }
                 catch (MongoConnectionException ex)
                 {
                     //暂时不处理任何异常，简单跳过
@@ -309,7 +341,8 @@ namespace MagicMongoDBTool.Module
                     ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                     if (!SystemManager.IsUseDefaultLanguage)
                     {
                         ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
@@ -425,7 +458,8 @@ namespace MagicMongoDBTool.Module
                         {
                             if (config.AuthMode)
                             {
-                                config.IsReadOnly = mongoConn.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
+                                //2.4之后的User没有IsReadOnly属性了
+                                //config.IsReadOnly = mongoConn.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
                             }
                         }
                     }
