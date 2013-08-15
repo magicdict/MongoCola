@@ -72,12 +72,12 @@
             this.txtShardName = new System.Windows.Forms.TextBox();
             this.lblTagShard = new System.Windows.Forms.Label();
             this.lblShardName = new System.Windows.Forms.Label();
+            this.ctlBsonValueShardKeyTo = new MagicMongoDBTool.ctlBsonValue();
+            this.ctlBsonValueShardKeyFrom = new MagicMongoDBTool.ctlBsonValue();
             this.tabRemoveSharding = new System.Windows.Forms.TabPage();
             this.lstSharding = new System.Windows.Forms.ListBox();
             this.cmdRemoveSharding = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
-            this.ctlBsonValueShardKeyTo = new MagicMongoDBTool.ctlBsonValue();
-            this.ctlBsonValueShardKeyFrom = new MagicMongoDBTool.ctlBsonValue();
             this.tabSharding.SuspendLayout();
             this.tabAddSharding.SuspendLayout();
             this.grpAdvanced.SuspendLayout();
@@ -218,7 +218,7 @@
             // chkAdvance
             // 
             this.chkAdvance.AutoSize = true;
-            this.chkAdvance.Location = new System.Drawing.Point(36, 115);
+            this.chkAdvance.Location = new System.Drawing.Point(36, 159);
             this.chkAdvance.Name = "chkAdvance";
             this.chkAdvance.Size = new System.Drawing.Size(118, 19);
             this.chkAdvance.TabIndex = 9;
@@ -233,7 +233,7 @@
             this.grpAdvanced.Controls.Add(this.lblShardingName);
             this.grpAdvanced.Controls.Add(this.lblMaxSize);
             this.grpAdvanced.Enabled = false;
-            this.grpAdvanced.Location = new System.Drawing.Point(27, 119);
+            this.grpAdvanced.Location = new System.Drawing.Point(27, 163);
             this.grpAdvanced.Name = "grpAdvanced";
             this.grpAdvanced.Size = new System.Drawing.Size(222, 73);
             this.grpAdvanced.TabIndex = 10;
@@ -556,6 +556,20 @@
             this.lblShardName.TabIndex = 0;
             this.lblShardName.Text = "Shard Name";
             // 
+            // ctlBsonValueShardKeyTo
+            // 
+            this.ctlBsonValueShardKeyTo.Location = new System.Drawing.Point(135, 191);
+            this.ctlBsonValueShardKeyTo.Name = "ctlBsonValueShardKeyTo";
+            this.ctlBsonValueShardKeyTo.Size = new System.Drawing.Size(295, 32);
+            this.ctlBsonValueShardKeyTo.TabIndex = 20;
+            // 
+            // ctlBsonValueShardKeyFrom
+            // 
+            this.ctlBsonValueShardKeyFrom.Location = new System.Drawing.Point(135, 155);
+            this.ctlBsonValueShardKeyFrom.Name = "ctlBsonValueShardKeyFrom";
+            this.ctlBsonValueShardKeyFrom.Size = new System.Drawing.Size(295, 32);
+            this.ctlBsonValueShardKeyFrom.TabIndex = 19;
+            // 
             // tabRemoveSharding
             // 
             this.tabRemoveSharding.Controls.Add(this.lstSharding);
@@ -596,20 +610,6 @@
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
-            // 
-            // ctlBsonValueShardKeyTo
-            // 
-            this.ctlBsonValueShardKeyTo.Location = new System.Drawing.Point(135, 191);
-            this.ctlBsonValueShardKeyTo.Name = "ctlBsonValueShardKeyTo";
-            this.ctlBsonValueShardKeyTo.Size = new System.Drawing.Size(295, 32);
-            this.ctlBsonValueShardKeyTo.TabIndex = 20;
-            // 
-            // ctlBsonValueShardKeyFrom
-            // 
-            this.ctlBsonValueShardKeyFrom.Location = new System.Drawing.Point(135, 155);
-            this.ctlBsonValueShardKeyFrom.Name = "ctlBsonValueShardKeyFrom";
-            this.ctlBsonValueShardKeyFrom.Size = new System.Drawing.Size(295, 32);
-            this.ctlBsonValueShardKeyFrom.TabIndex = 19;
             // 
             // frmShardingConfig
             // 

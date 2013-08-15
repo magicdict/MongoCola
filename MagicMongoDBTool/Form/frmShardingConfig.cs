@@ -151,6 +151,7 @@ namespace MagicMongoDBTool
             {
                 lstSharding.Items.Add(lst.Value);
             }
+            lstHost.Items.Clear();
         }
         /// <summary>
         /// 数据库切换

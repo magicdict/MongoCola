@@ -20,6 +20,7 @@ namespace MagicMongoDBTool
             BsonDocument DocStatus = new BsonDocument();
             cmbChartField.Visible = false;
             chartResult.Visible = false;
+            btnOpCnt.Visible = false;
             switch (strType)
             {
                 case MongoDBHelper.SERVER_TAG:
@@ -28,6 +29,10 @@ namespace MagicMongoDBTool
                     {
                         DocStatus = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
                         this.trvStatus.Height = this.trvStatus.Height * 2;
+                    }
+                    if (strType == MongoDBHelper.SERVER_TAG)
+                    {
+                        btnOpCnt.Visible = true;
                     }
                     break;
                 case MongoDBHelper.DATABASE_TAG:
@@ -104,6 +109,11 @@ namespace MagicMongoDBTool
             MongoDBHelper.FillDataToTreeView(strType, this.trvStatus, DocStatus);
             this.trvStatus.DatatreeView.Nodes[0].Expand();
 
+        }
+
+        void btnOpCnt_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmServerMonitor(), true, true);
         }
 
         private void RefreshDBStatusChart(String strField)

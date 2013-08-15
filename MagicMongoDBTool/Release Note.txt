@@ -16,6 +16,7 @@ Ver 1.30 2013/08/31
 3.New User Guide
 4.Add validate function for collection
 5.Add SaveToFile function for some command result as a json format 
+6.Operation Count Monitor
 
 ========================================================================
 Ver 1.28 2013/03/25

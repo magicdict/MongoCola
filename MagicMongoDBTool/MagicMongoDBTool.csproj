@@ -122,6 +122,12 @@
     </Compile>
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Enum.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_GFS.cs" />
+    <Compile Include="Form\frmServerMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmServerMonitor.Designer.cs">
+      <DependentUpon>frmServerMonitor.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\Aggregation\BsonValuePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -504,6 +510,9 @@
     <EmbeddedResource Include="MessageBox\frmUserRole.resx">
       <DependentUpon>frmUserRole.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmServerMonitor.resx">
+      <DependentUpon>frmServerMonitor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\Aggregation\BsonValuePanel.resx">
       <DependentUpon>BsonValuePanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -762,6 +771,12 @@
     <Content Include="Language\Japanse.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\images\Monitor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UserGuide\images\TextSearch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="UserGuide\index.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

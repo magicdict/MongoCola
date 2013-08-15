@@ -197,6 +197,7 @@ namespace MagicMongoDBTool.Module
             MongoDatabase mongodb = mongosvr.GetDatabase("mongodb");
 
             MongoCollection<BsonDocument> mongoJsCol = mongodb.GetCollection<BsonDocument>("system.js");
+            mongoJsCol.RemoveAll();
             mongoJsCol.Insert<BsonDocument>(
                           new BsonDocument().Add("_id", "sum")
                                             .Add("value", "function (x, y) { return x + y; }"));

@@ -41,7 +41,7 @@ namespace MagicMongoDBTool
             SystemManager.DEBUG_MODE = true;
             SystemManager.MONO_MODE = Type.GetType("Mono.Runtime") != null;
             Application.Run(new frmMain());
-
+            //Application.Run(new frmServerMonitor());  
             //delete tempfile directory when exit
             if (Directory.Exists(MongoDBHelper.TempFileFolder))
             {

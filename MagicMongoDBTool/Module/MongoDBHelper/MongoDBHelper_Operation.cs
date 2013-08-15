@@ -264,7 +264,7 @@ namespace MagicMongoDBTool.Module
                     strInstKey = strPath[(int)PathLv.ConnectionLV] + "/" + strPath[(int)PathLv.InstanceLV];
                     if (_mongoInstanceLst.ContainsKey(strInstKey))
                     {
-                        var mongoInstance = MongoDBHelper._mongoInstanceLst[strInstKey];
+                        MongoServerInstance mongoInstance = MongoDBHelper._mongoInstanceLst[strInstKey];
                         return MongoServer.Create(mongoInstance.Settings);
                     }
                 }
@@ -345,7 +345,7 @@ namespace MagicMongoDBTool.Module
             }
             indexkeys.Ascending(AscendingKey);
             indexkeys.Descending(DescendingKey);
-            mongoCol.CreateIndex(indexkeys, option);
+            mongoCol.EnsureIndex(indexkeys, option);
             return true;
         }
         /// <summary>
