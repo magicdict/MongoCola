@@ -115,7 +115,8 @@ namespace MagicMongoDBTool.UserController
                     this.RefreshStatus(true);
                 }
             );
-            ShortTimer.Interval = 5000;
+            //
+            ShortTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer * 1000; ;
             ShortTimer.Tick += new EventHandler(
                 (x, y) =>
                 {

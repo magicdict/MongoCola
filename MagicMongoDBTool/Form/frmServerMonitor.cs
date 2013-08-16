@@ -1,12 +1,5 @@
 ﻿using MagicMongoDBTool.Module;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 namespace MagicMongoDBTool
@@ -35,8 +28,10 @@ namespace MagicMongoDBTool
             InsertSeries.XValueType = ChartValueType.String;
             InsertSeries.YValueType = ChartValueType.Int32;
             MonitorGrap.Series.Add(InsertSeries);
-
-
+            this.FormClosing += (x,y) =>
+            {
+                M.Stop();
+            };
             M.Start();
         }
         void M_Tick(object sender, EventArgs e)
@@ -50,7 +45,6 @@ namespace MagicMongoDBTool
                 DataPoint insertPoint = new DataPoint();
                 insertPoint.SetValueXY(DateTime.Now.ToString(), DocStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("insert").Value);
                 MonitorGrap.Series[1].Points.Add(insertPoint);
-
         }
         private void btnClose_Click(object sender, EventArgs e)
         {

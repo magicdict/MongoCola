@@ -137,6 +137,7 @@ namespace MagicMongoDBTool.Module
             {
                 MongoServer mongoSrv = _mongoConnSvrLst[mongoConnKey];
                 TreeNode ConnectionNode = new TreeNode();
+                EachDatabaseUser UserList = new EachDatabaseUser();
                 try
                 {
                     //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
@@ -148,7 +149,7 @@ namespace MagicMongoDBTool.Module
                     mongoSrv.Connect();
                     ///mongoSvr.ReplicaSetName只有在连接后才有效，但是也可以使用Config.ReplsetName
                     ConnectionNode.Text = mongoConnKey;
-                    ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, null, mongoSrv));
+                    ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, null, mongoSrv, UserList));
                     if (mongoSrv.ReplicaSetName != null)
                     {
                         ConnectionNode.Tag = CONNECTION_REPLSET_TAG + ":" + config.ConnectionName;
@@ -157,7 +158,7 @@ namespace MagicMongoDBTool.Module
                         ServerListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
                         foreach (MongoServerInstance ServerInstace in mongoSrv.Instances)
                         {
-                            ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, ServerInstace, null));
+                            ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, ServerInstace, null, UserList));
                         }
                         ConnectionNode.Nodes.Add(ServerListNode);
                         config.ServerRole = ConfigHelper.SvrRoleType.ReplsetSvr;
@@ -165,7 +166,8 @@ namespace MagicMongoDBTool.Module
                     else
                     {
                         BsonDocument ServerStatusDoc = ExecuteMongoSvrCommand(serverStatus_Command, mongoSrv).Response;
-                        if (ServerStatusDoc.GetElement("process").Value == ServerStatus_PROCESS_MONGOS)
+                        //ServerStatus可能没有权限打开
+                        if (ServerStatusDoc.Contains("process") && ServerStatusDoc.GetElement("process").Value == ServerStatus_PROCESS_MONGOS)
                         {
                             //Shard的时候，必须将所有服务器的ReadPreferred设成可读
                             config.ServerRole = ConfigHelper.SvrRoleType.ShardSvr;
@@ -211,7 +213,7 @@ namespace MagicMongoDBTool.Module
                                     }
                                     tinySetting.Server = SecondaryAddr;
                                     MongoServer ReplsetMember = new MongoClient(tinySetting).GetServer();
-                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, ReplsetMember.Instance, null));
+                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, ReplsetMember.Instance, null, UserList));
                                 }
                                 ShardListNode.Nodes.Add(ShardNode);
                             }
@@ -271,6 +273,14 @@ namespace MagicMongoDBTool.Module
                             break;
                     }
                     trvMongoDB.Nodes.Add(ConnectionNode);
+                    if (_mongoUserLst.ContainsKey(mongoConnKey))
+                    {
+                        _mongoUserLst[mongoConnKey] = UserList;
+                    }
+                    else
+                    {
+                        _mongoUserLst.Add(mongoConnKey, UserList);
+                    }
                 }
                 catch (MongoAuthenticationException ex)
                 {
@@ -289,7 +299,8 @@ namespace MagicMongoDBTool.Module
                     ConnectionNode.Tag = CONNECTION_EXCEPTION_TAG + ":" + mongoConnKey;
                     trvMongoDB.Nodes.Add(ConnectionNode);
                 }
-                catch (MongoCommandException ex) {
+                catch (MongoCommandException ex)
+                {
                     //listDatabase命令错误，本质是用户名称错误
                     if (ex.CommandResult.Response["errmsg"] == "unauthorized")
                     {
@@ -305,7 +316,8 @@ namespace MagicMongoDBTool.Module
                             SystemManager.ExceptionDeal(ex, "MongoAuthenticationException:", "Please check UserName and Password");
                         }
                     }
-                    else {
+                    else
+                    {
                         if (!SystemManager.IsUseDefaultLanguage)
                         {
                             ConnectionNode.Text += "[" + SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected) + "]";
@@ -368,8 +380,12 @@ namespace MagicMongoDBTool.Module
         /// <param name="mMasterServerInstace"></param>
         /// <param name="mServer"></param>
         /// <returns></returns>
-        private static TreeNode GetInstanceNode(String mongoConnKey, ConfigHelper.MongoConnectionConfig config,
-                                                MongoServer mongoConn, MongoServerInstance mMasterServerInstace, MongoServer mServer)
+        private static TreeNode GetInstanceNode(String mongoConnKey,
+                                                ConfigHelper.MongoConnectionConfig config,
+                                                MongoServer mongoConn,
+                                                MongoServerInstance mMasterServerInstace,
+                                                MongoServer mServer,
+                                                EachDatabaseUser UserList)
         {
             Boolean isReplsetMasterServer = false;
             //无论如何，都改为主要服务器读优先
@@ -421,9 +437,18 @@ namespace MagicMongoDBTool.Module
                 mongoSingleDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                 SvrInstanceNode.Nodes.Add(mongoSingleDBNode);
                 SvrInstanceNode.Tag = SINGLE_DB_SERVER_TAG + ":" + ConnSvrKey;
+                ///获取User信息
                 if (config.AuthMode)
                 {
-                    config.IsReadOnly = mongoConn.GetDatabase(config.DataBaseName).FindUser(config.UserName).IsReadOnly;
+                    try
+                    {
+                        ///尝试添加用户信息
+                        UserList.AddUser(mongoConn.GetDatabase(config.DataBaseName), config.UserName);
+                    }
+                    catch (Exception)
+                    {
+                        //可能出现没有权限的问题，这里就认为无法取得权限
+                    }
                 }
             }
             else
@@ -454,12 +479,16 @@ namespace MagicMongoDBTool.Module
                         mongoDBNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         mongoDBNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         SvrInstanceNode.Nodes.Add(mongoDBNode);
-                        if (strDBName == MongoDBHelper.DATABASE_NAME_ADMIN)
+                        if (config.AuthMode)
                         {
-                            if (config.AuthMode)
+                            try
                             {
-                                //2.4之后的User没有IsReadOnly属性了
-                                //config.IsReadOnly = mongoConn.GetDatabase(strDBName).FindUser(config.UserName).IsReadOnly;
+                                ///尝试添加用户信息
+                                UserList.AddUser(mongoConn.GetDatabase(strDBName), config.UserName);
+                            }
+                            catch (Exception)
+                            {
+                                //可能出现没有权限的问题，这里就认为无法取得权限
                             }
                         }
                     }

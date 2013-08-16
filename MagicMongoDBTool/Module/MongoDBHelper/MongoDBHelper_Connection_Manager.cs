@@ -19,7 +19,7 @@ namespace MagicMongoDBTool.Module
         //MongoServerSettings
         //While this class has not yet been deprecated, it eventually will be. We recommend you always use MongoClientSettings instead.
         //The new settings added to MongoClientSettings have also been added to MongoServerSettings.
-
+        public static Dictionary<String, EachDatabaseUser> _mongoUserLst = new Dictionary<String, EachDatabaseUser>();
         /// <summary>
         /// 增加管理服务器
         /// </summary>
@@ -94,9 +94,17 @@ namespace MagicMongoDBTool.Module
                 if (!(String.IsNullOrEmpty(config.UserName) || String.IsNullOrEmpty(config.Password)))
                 {
                     //认证的设定:注意，这里的密码是明文
-                    mongoClientSetting.Credentials = new MongoCredential[]{
-                        MongoCredential.CreateMongoCRCredential("admin", config.UserName, config.Password)
-                    };
+                    if (string.IsNullOrEmpty(config.DataBaseName))
+                    {
+                        mongoClientSetting.Credentials = new MongoCredential[]{
+                          MongoCredential.CreateMongoCRCredential("admin", config.UserName, config.Password)
+                        };
+                    }
+                    else {
+                        mongoClientSetting.Credentials = new MongoCredential[]{
+                          MongoCredential.CreateMongoCRCredential(config.DataBaseName, config.UserName, config.Password)
+                        };
+                    }
                 }
                 if (config.ReplSetName != String.Empty)
                 {

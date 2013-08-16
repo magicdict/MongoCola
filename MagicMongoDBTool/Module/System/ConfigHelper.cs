@@ -140,14 +140,14 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public List<String> ReplsetList;
             /// <summary>
-            /// 只读[这个属性是运行时决定的]
+            /// 作为Admin登陆[这个属性是运行时决定的]
             /// </summary>
             [XmlIgnore()]
             public bool LoginAsAdmin;
             /// <summary>
             /// 只读[这个属性是运行时决定的]
             /// </summary>
-            [XmlIgnore()]
+            ///[XmlIgnore()]
             public Boolean IsReadOnly;
             /// <summary>
             /// 认证模式[这个属性是运行时决定的]
