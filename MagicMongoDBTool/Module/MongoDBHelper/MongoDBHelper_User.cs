@@ -47,7 +47,6 @@ namespace MagicMongoDBTool.Module
             AddUserEx(users, newUserEx);
             //}
         }
-        // public methods
         /// <summary>
         /// Adds a user to this database.
         /// </summary>
@@ -65,7 +64,7 @@ namespace MagicMongoDBTool.Module
                 document.Remove("readOnly");
             }
             //必须要Hash一下Password
-            document["pwd"] = MongoUser.HashPassword(user.userSource, user.Password);
+            document["pwd"] = MongoUser.HashPassword(user.Username, user.Password);
             //OtherRole 必须放在Admin.system.users里面
             if (Col.Name == MongoDBHelper.DATABASE_NAME_ADMIN)
             {
@@ -84,19 +83,16 @@ namespace MagicMongoDBTool.Module
         public static void RemoveUserFromSystem(String strUser, Boolean IsAdmin)
         {
             MongoServer mongoSvr = SystemManager.GetCurrentServer();
-            MongoDatabase users;
+            MongoCollection users;
             if (IsAdmin)
             {
-                users = mongoSvr.GetDatabase(DATABASE_NAME_ADMIN);
+                users = mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).GetCollection("system.users");
             }
             else
             {
-                users = SystemManager.GetCurrentDataBase();
+                users = SystemManager.GetCurrentDataBase().GetCollection("system.users");
             }
-            if (users.FindUser(strUser) != null)
-            {
-                users.RemoveUser(strUser);
-            }
+            users.Remove(MongoDB.Driver.Builders.Query.EQ("user", strUser));
         }
         #endregion
     }
