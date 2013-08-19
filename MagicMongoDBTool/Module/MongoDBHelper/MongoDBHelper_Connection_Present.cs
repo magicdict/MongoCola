@@ -825,6 +825,14 @@ namespace MagicMongoDBTool.Module
                         mongoIndex.Nodes.Add(String.Empty, "Expire Data(sec):" + indexDoc.TimeToLive.TotalSeconds.ToString(), (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
                     }
                 }
+                if (indexDoc.RawDocument.Contains("default_language"))
+                { 
+                    //TextIndex
+                    mongoIndex.Nodes.Add(String.Empty, "weights:" + indexDoc.RawDocument["weights"], (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, "default_language:" + indexDoc.RawDocument["default_language"], (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, "language_override:" + indexDoc.RawDocument["language_override"], (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                    mongoIndex.Nodes.Add(String.Empty, "textIndexVersion:" + indexDoc.RawDocument["textIndexVersion"], (int)GetSystemIcon.MainTreeImageType.KeyInfo, (int)GetSystemIcon.MainTreeImageType.KeyInfo);
+                }
                 mongoIndex.ImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
                 mongoIndex.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.DBKey;
                 mongoIndex.Tag = INDEX_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName + "/" + indexDoc.Name;

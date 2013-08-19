@@ -123,12 +123,13 @@ namespace MagicMongoDBTool.Module
         /// <param name="func"></param>
         /// <param name="tr"></param>
         /// <returns></returns>
-        public static Boolean DataBaseOpration(String strObjTag, String dbName, Oprcode func, TreeNode tr)
+        public static String DataBaseOpration(String strObjTag, String dbName, Oprcode func, TreeNode tr)
         {
-            Boolean rtnResult = false;
+            String rtnResult = String.Empty;
             MongoServer mongoSvr = GetMongoServerBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
             String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.InstanceLV];
+            CommandResult result = new CommandResult(new BsonDocument());
             if (mongoSvr != null)
             {
                 switch (func)
@@ -136,24 +137,43 @@ namespace MagicMongoDBTool.Module
                     case Oprcode.Create:
                         if (!mongoSvr.DatabaseExists(dbName))
                         {
-                            mongoSvr.GetDatabase(dbName);
-                            tr.Nodes.Add(FillDataBaseInfoToTreeNode(dbName, mongoSvr, svrKey + "/" + svrKey));
-                            rtnResult = true;
+                            //从权限上看，clusterAdmin是必须的
+                            //但是能够建立数据库，不表示能够看到里面的内容！
+                            //dbAdmin可以访问数据库。
+                            //clusterAdmin能创建数据库但是不能访问数据库。
+                            try
+                            {
+                                mongoSvr.GetDatabase(dbName);
+                                tr.Nodes.Add(FillDataBaseInfoToTreeNode(dbName, mongoSvr, svrKey + "/" + svrKey));
+                            }
+                            catch (Exception ex)
+                            {
+                                //如果使用没有dbAdmin权限的clusterAdmin。。。。
+                                SystemManager.ExceptionDeal(ex);
+                            }
                         }
                         break;
                     case Oprcode.Drop:
                         if (mongoSvr.DatabaseExists(dbName))
                         {
-                            mongoSvr.DropDatabase(dbName);
+                            result =  mongoSvr.DropDatabase(dbName);
                             if (tr != null)
                             {
                                 tr.TreeView.Nodes.Remove(tr);
                             }
-                            rtnResult = true;
+                            if (!result.Response.Contains("err"))
+                            {
+                                return String.Empty;
+                            }
+                            else
+                            {
+                                return result.Response["err"].ToString();
+                            }
                         }
                         break;
                     case Oprcode.Repair:
-                        //How To Compress?Run Command？？    
+                        ///其实Repair的入口不在这个方法里面
+                        MongoDBHelper.ExecuteMongoDBCommand(MongoDBHelper.repairDatabase_Command, SystemManager.GetCurrentDataBase());
                         break;
                     default:
                         break;
@@ -368,16 +388,31 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="jsName"></param>
         /// <param name="jsCode"></param>
-        public static Boolean CreateNewJavascript(String jsName, String jsCode)
+        public static String CreateNewJavascript(String jsName, String jsCode)
         {
             //标准的JS库格式未知
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (!IsExistByKey(jsCol, jsName))
             {
-                jsCol.Insert<BsonDocument>(new BsonDocument().Add(KEY_ID, jsName).Add("value", jsCode));
-                return true;
+                CommandResult result = new CommandResult(new BsonDocument());
+                try
+                {
+                    result = jsCol.Insert<BsonDocument>(new BsonDocument().Add(KEY_ID, jsName).Add("value", jsCode));
+                }
+                catch (MongoCommandException ex)
+                {
+                    result = ex.CommandResult;
+                }
+                if (result.Response["err"] == BsonNull.Value)
+                {
+                    return String.Empty;
+                }
+                else
+                {
+                    return result.Response["err"].ToString();
+                }
             }
-            return false;
+            return String.Empty;
         }
         /// <summary>
         /// Save Edited Javascript
@@ -385,19 +420,39 @@ namespace MagicMongoDBTool.Module
         /// <param name="jsName"></param>
         /// <param name="jsCode"></param>
         /// <returns></returns>
-        public static Boolean SaveEditorJavascript(String jsName, String jsCode)
+        public static String SaveEditorJavascript(String jsName, String jsCode)
         {
             //标准的JS库格式未知
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (IsExistByKey(jsCol, jsName))
             {
-                if (DropDocument(jsCol, (BsonString)jsName) == String.Empty)
+                String result = DropDocument(jsCol, (BsonString)jsName);
+                if (String.IsNullOrEmpty(result))
                 {
-                    jsCol.Insert<BsonDocument>(new BsonDocument().Add(KEY_ID, jsName).Add("value", jsCode));
-                    return true;
+                    CommandResult resultCommand = new CommandResult(new BsonDocument());
+                    try
+                    {
+                        resultCommand = jsCol.Insert<BsonDocument>(new BsonDocument().Add(KEY_ID, jsName).Add("value", jsCode));
+                    }
+                    catch (MongoCommandException ex)
+                    {
+                        resultCommand = ex.CommandResult;
+                    }
+                    if (resultCommand.Response["err"] == BsonNull.Value)
+                    {
+                        return String.Empty;
+                    }
+                    else
+                    {
+                        return resultCommand.Response["err"].ToString();
+                    }
+                }
+                else
+                {
+                    return result;
                 }
             }
-            return false;
+            return String.Empty;
         }
         /// <summary>
         /// Delete Javascript Collection Document
@@ -436,7 +491,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static String DropDocument(MongoCollection mongoCol, object strKey)
         {
-            CommandResult result = new CommandResult(new BsonDocument())  ;
+            CommandResult result = new CommandResult(new BsonDocument());
             if (IsExistByKey(mongoCol, (BsonValue)strKey))
             {
                 try
@@ -452,7 +507,8 @@ namespace MagicMongoDBTool.Module
             {
                 return String.Empty;
             }
-            else {
+            else
+            {
                 return result.Response["err"].ToString();
             }
         }

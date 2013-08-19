@@ -1376,8 +1376,14 @@ namespace MagicMongoDBTool
             {
                 try
                 {
-                    Boolean rtn = MongoDBHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelper.Oprcode.Create, trvsrvlst.SelectedNode);
-                    if (rtn) { DisableAllOpr(); }
+                    String strRusult = MongoDBHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelper.Oprcode.Create, trvsrvlst.SelectedNode);
+                    if (String.IsNullOrEmpty(strRusult))
+                    {
+                        DisableAllOpr();
+                    }
+                    else {
+                        MyMessageBox.ShowMessage("Error", "Create MongoDatabase", strRusult, true);
+                    }
                 }
                 catch (ArgumentException ex)
                 {
@@ -1461,7 +1467,8 @@ namespace MagicMongoDBTool
                 {
                     trvsrvlst.SelectedNode = null;
                 }
-                if (MongoDBHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelper.Oprcode.Drop, trvsrvlst.SelectedNode))
+                String rtnResult = MongoDBHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName, MongoDBHelper.Oprcode.Drop, trvsrvlst.SelectedNode);
+                if (String.IsNullOrEmpty(rtnResult))
                 {
                     DisableAllOpr();
                     //关闭所有的相关视图
@@ -1499,6 +1506,9 @@ namespace MagicMongoDBTool
                         }
                     }
                     tempTable = null;
+                }
+                else {
+                    MyMessageBox.ShowMessage("Error", "Error", rtnResult, true);
                 }
             }
         }
@@ -1595,7 +1605,8 @@ namespace MagicMongoDBTool
                 }
                 else
                 {
-                    if (MongoDBHelper.CreateNewJavascript(strJsName, String.Empty))
+                    String Result = MongoDBHelper.CreateNewJavascript(strJsName, String.Empty);
+                    if (string.IsNullOrEmpty(Result))
                     {
                         TreeNode jsNode = new TreeNode(strJsName);
                         jsNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc;
@@ -1606,6 +1617,9 @@ namespace MagicMongoDBTool
                         trvsrvlst.SelectedNode = jsNode;
                         SystemManager.SelectObjectTag = jsNode.Tag.ToString();
                         ViewJavascript();
+                    }
+                    else {
+                        MyMessageBox.ShowMessage("Error", "Create Javascript Error", Result, true);
                     }
                 }
             }
