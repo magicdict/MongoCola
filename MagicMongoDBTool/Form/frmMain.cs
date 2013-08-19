@@ -1153,6 +1153,7 @@ namespace MagicMongoDBTool
 
             //管理-数据库
             this.CreateMongoCollectionToolStripMenuItem.Enabled = false;
+            this.CopyDatabasetoolStripMenuItem.Enabled = false;
             this.DelMongoDBToolStripMenuItem.Enabled = false;
             this.AddUserToolStripMenuItem.Enabled = false;
             this.evalJSToolStripMenuItem.Enabled = false;
@@ -1403,6 +1404,18 @@ namespace MagicMongoDBTool
             {
                 MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", ErrMessage, true);
             }
+        }
+        /// <summary>
+        /// copyDatabase
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CopyDatabasetoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //SystemManager.GetCurrentServer().CopyDatabase(SystemManager.GetCurrentDataBase().Name, SystemManager.GetCurrentDataBase().Name + "_Backup");
+            //MongoDBHelper.ExecuteMongoDBCommand("copyDatabase", SystemManager.GetCurrentDataBase());
+            //CommandDocument copy = new CommandDocument();
+            //SystemManager.GetCurrentDataBase().RunCommand("copyDatabase");
         }
 
         /// <summary>
@@ -2229,10 +2242,6 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmUnitTest(), true, true);
         }
         #endregion
-
-
-
-
 
     }
 }

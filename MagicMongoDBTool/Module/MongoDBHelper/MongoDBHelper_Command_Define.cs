@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.IO;
 
 namespace MagicMongoDBTool.Module
 {
@@ -14,6 +15,29 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <see cref="http://www.mongodb.org/display/DOCS/Compact+Command"/>
         public static MongoCommand Compact_Command = new MongoCommand("compact", PathLv.CollectionLV);
+        /// <summary>
+        /// 执行聚合
+        /// </summary>
+        /// <param name="AggregateDoc"></param>
+        /// <returns></returns>
+        public static CommandResult Aggregate(BsonArray AggregateDoc)
+        {
+
+            //db.runCommand( { aggregate: "people", pipeline: [<pipeline>] } )
+            try
+            {
+                CommandDocument agg = new CommandDocument();
+                agg.Add(new BsonElement("aggregate", new BsonString(SystemManager.GetCurrentCollection().Name)));
+                agg.Add(new BsonElement("pipeline", AggregateDoc));
+                MongoCommand Aggregate_Command = new MongoCommand(agg, PathLv.DatabaseLV);
+                return ExecuteMongoCommand(Aggregate_Command, false);
+            }
+            catch (Exception ex)
+            {
+                SystemManager.ExceptionDeal(ex);
+                return new CommandResult(new BsonDocument());
+            }
+        }
         #endregion
 
         #region"DataBase Command"
@@ -28,6 +52,20 @@ namespace MagicMongoDBTool.Module
         #endregion
 
         #region"Server Command"
+        //Replica Set Commands
+        //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
+        //rs.help()                       show help
+        //rs.status()                     { replSetGetStatus : 1 }
+        //rs.initiate()                   { replSetInitiate : null } initiate
+        //                                    with default settings
+        //rs.initiate(cfg)                { replSetInitiate : cfg }
+        //rs.add(hostportstr)             add a new member to the set
+        //rs.add(membercfgobj)            add a new member to the set
+        //rs.addArb(hostportstr)          add a new member which is arbiterOnly:true
+        //rs.remove(hostportstr)          remove a member (primary, secondary, or arbiter) from the set
+        //rs.stepDown()                   { replSetStepDown : true }
+        //rs.conf()                       return configuration from local.system.replset
+        //db.isMaster()                   check who is primary
         /// <summary>
         /// 服务器状态
         /// http://www.mongodb.org/display/DOCS/serverStatus+Command
@@ -45,7 +83,82 @@ namespace MagicMongoDBTool.Module
         //http://www.mongodb.org/display/DOCS/Master+Slave
         /// </summary>
         public static MongoCommand resync_Command = new MongoCommand("resync", PathLv.InstanceLV);
+        /// <summary>
+        /// 增加服务器
+        /// </summary>
+        /// <param name="mongoSvr">副本组主服务器</param>
+        /// <param name="HostPort">服务器信息</param>
+        /// <param name="IsArb">是否为仲裁服务器</param>
+        /// <returns></returns>
+        public static CommandResult AddToReplsetServer(MongoServer mongoSvr, String HostPort, int priority, Boolean IsArb)
+        {
+            CommandResult mCommandResult = new CommandResult(new BsonDocument());
+            try
+            {
+                if (!IsArb)
+                {
+                    mCommandResult = ExecuteJsShell("rs.add({_id:" + mongoSvr.Instances.Length + 1 + ",host:'" + HostPort + "',priority:" + priority.ToString() + "});", mongoSvr);
+                }
+                else
+                {
+                    //其实addArb最后也只是调用了add方法
+                    mCommandResult = ExecuteJsShell("rs.addArb('" + HostPort + "');", mongoSvr);
+                }
+            }
+            catch (EndOfStreamException)
+            {
 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return mCommandResult;
+        }
+        /// <summary>
+        /// 删除服务器
+        /// </summary>
+        /// <param name="mongoSvr">副本组主服务器</param>
+        /// <param name="HostPort">服务器信息</param>
+        /// <remarks>这个命令C#无法正确执行</remarks>
+        /// <returns></returns>
+        public static CommandResult RemoveFromReplsetServer(MongoServer mongoSvr, String HostPort)
+        {
+            CommandResult mCommandResult = new CommandResult(new BsonDocument());
+            try
+            {
+                ExecuteJsShell("rs.remove('" + HostPort + "');", mongoSvr);
+            }
+            catch (EndOfStreamException)
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return mCommandResult;
+        }
+        /// <summary>
+        /// 重新启动
+        /// </summary>
+        /// <param name="mongoSvr">副本组主服务器</param>
+        /// <param name="HostPort">服务器信息</param>
+        /// <remarks>这个命令C#无法正确执行</remarks>
+        /// <returns></returns>
+        public static CommandResult ReconfigReplsetServer(MongoServer PrimarySvr, BsonDocument config)
+        {
+            CommandResult cmdRtn = new CommandResult(new BsonDocument());
+            try
+            {
+                return ExecuteJsShell("rs.reconfig(" + config.ToString() + ",{force : true})", PrimarySvr);
+            }
+            catch (EndOfStreamException)
+            {
+
+            }
+            return cmdRtn;
+        }
         /// <summary>
         /// 增加数据分片
         /// </summary>
