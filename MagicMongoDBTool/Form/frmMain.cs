@@ -43,6 +43,7 @@ namespace MagicMongoDBTool
                 this.Text += " MONO";
             }
             //长时间操作时候，实时提示进度在状态栏中
+            lblAction.Text = String.Empty;
             MongoDBHelper.ActionDone += new EventHandler<ActionDoneEventArgs>(
                 (x, y) =>
                 {
@@ -313,7 +314,15 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.CONNECTION_REPLSET_TAG:
                     case MongoDBHelper.CONNECTION_CLUSTER_TAG:
                         //普通连接
-                        statusStripMain.Items[0].Text = "Selected JavaScript:" + SystemManager.SelectTagData;
+                        if (SystemManager.IsUseDefaultLanguage)
+                        {
+                            statusStripMain.Items[0].Text = "Selected Connection:" + SystemManager.SelectTagData;
+                        }
+                        else
+                        {
+                            statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Server) + ":" + SystemManager.SelectTagData;
+                        }
+
                         this.DisconnectToolStripMenuItem.Enabled = true;
                         this.ShutDownToolStripMenuItem.Enabled = true;
                         this.ShutDownToolStripButton.Enabled = true;
@@ -1064,7 +1073,7 @@ namespace MagicMongoDBTool
 
                 DataViewctl.mDataViewInfo = mDataViewInfo;
 
-                TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().Name);
+                TabPage DataTab = new TabPage(SystemManager.GetCurrentCollection().FullName);
                 DataTab.Tag = SystemManager.SelectObjectTag;
                 DataTab.ToolTipText = SystemManager.SelectObjectTag;
 
