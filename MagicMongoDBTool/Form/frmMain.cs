@@ -172,6 +172,14 @@ namespace MagicMongoDBTool
             ServerStatusCtl.SetEnable(true);
             RefreshToolStripMenuItem_Click(sender, e);
 
+            foreach (var item in MongoDBHelper._mongoUserLst.Keys)
+            {
+                String info = MongoDBHelper._mongoUserLst[item].ToString();
+                if (!string.IsNullOrEmpty(info))
+                {
+                    MyMessageBox.ShowMessage("UserInformation", SystemManager.ConfigHelperInstance.ConnectionList[item].UserName, info,true);
+                }
+            }
             this.commandShellToolStripMenuItem.Checked = true;
 
             this.statusToolStripMenuItem.Checked = true;
@@ -1747,7 +1755,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MongoDBHelper.DelJavascript(trvsrvlst.SelectedNode.Text))
+            String Result = MongoDBHelper.DelJavascript(trvsrvlst.SelectedNode.Text);
+            if (String.IsNullOrEmpty(Result))
             {
                 String strNodeData = SystemManager.SelectTagData;
                 if (ViewTabList.ContainsKey(strNodeData))
@@ -1766,6 +1775,9 @@ namespace MagicMongoDBTool
                 }
                 this.trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
                 DisableAllOpr();
+            }
+            else {
+                MyMessageBox.ShowMessage("Delete Error", "A error is happened when delete javascript", Result, true);
             }
         }
         /// <summary>

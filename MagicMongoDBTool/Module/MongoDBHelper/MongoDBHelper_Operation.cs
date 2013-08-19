@@ -109,7 +109,7 @@ namespace MagicMongoDBTool.Module
                 return true;
             }
             //admin数据库,默认为系统
-            if (mongoDB.Name == "admin")
+            if (mongoDB.Name == DATABASE_NAME_ADMIN)
             {
                 return true;
             }
@@ -391,7 +391,7 @@ namespace MagicMongoDBTool.Module
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (IsExistByKey(jsCol, jsName))
             {
-                if (DropDocument(jsCol, (BsonString)jsName))
+                if (DropDocument(jsCol, (BsonString)jsName) == String.Empty)
                 {
                     jsCol.Insert<BsonDocument>(new BsonDocument().Add(KEY_ID, jsName).Add("value", jsCode));
                     return true;
@@ -404,14 +404,14 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="jsName"></param>
         /// <returns></returns>
-        public static Boolean DelJavascript(String jsName)
+        public static String DelJavascript(String jsName)
         {
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (MongoDBHelper.IsExistByKey(jsCol, jsName))
             {
                 return MongoDBHelper.DropDocument(jsCol, (BsonString)jsName);
             }
-            return false;
+            return String.Empty;
         }
         /// <summary>
         /// 获得JS代码
@@ -434,20 +434,27 @@ namespace MagicMongoDBTool.Module
         /// <param name="strKey"></param>
         /// <param name="keyField"></param>
         /// <returns></returns>
-        public static Boolean DropDocument(MongoCollection mongoCol, object strKey)
+        public static String DropDocument(MongoCollection mongoCol, object strKey)
         {
+            CommandResult result = new CommandResult(new BsonDocument())  ;
             if (IsExistByKey(mongoCol, (BsonValue)strKey))
             {
                 try
                 {
-                    mongoCol.Remove(Query.EQ(KEY_ID, (BsonValue)strKey), WriteConcern.W2);
+                    result = mongoCol.Remove(Query.EQ(KEY_ID, (BsonValue)strKey), WriteConcern.Acknowledged);
                 }
-                catch (Exception)
+                catch (MongoCommandException ex)
                 {
-                    return false;
+                    result = ex.CommandResult;
                 }
             }
-            return true;
+            if (result.Response["err"] == BsonNull.Value)
+            {
+                return String.Empty;
+            }
+            else {
+                return result.Response["err"].ToString();
+            }
         }
         /// <summary>
         /// 插入空文档
@@ -461,7 +468,7 @@ namespace MagicMongoDBTool.Module
             {
                 try
                 {
-                    mongoCol.Insert<BsonDocument>(document, WriteConcern.W2);
+                    mongoCol.Insert<BsonDocument>(document, WriteConcern.Acknowledged);
                     return document.GetElement(KEY_ID).Value;
                 }
                 catch (Exception)

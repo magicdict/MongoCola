@@ -37,7 +37,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="db"></param>
         /// <param name="Username"></param>
         public void AddUser(MongoDatabase db,String Username){
-           var userInfo = db.GetCollection("system.users").FindOneAs<BsonDocument>(MongoDB.Driver.Builders.Query.EQ("user", Username));
+           var userInfo = db.GetCollection(MongoDBHelper.COLLECTION_NAME_USER).FindOneAs<BsonDocument>(MongoDB.Driver.Builders.Query.EQ("user", Username));
            if (userInfo != null)
            {
                MongoDBHelper.MongoUserEx user = new MongoDBHelper.MongoUserEx();
@@ -48,6 +48,23 @@ namespace MagicMongoDBTool.Module
                }
                UserList.Add(db.Name, user); 
            }
-        } 
+        }
+        public override string ToString()
+        {
+            String UserInfo = String.Empty;
+            foreach (var item in UserList.Keys)
+            {
+                UserInfo += "DataBase:" + item + System.Environment.NewLine;
+                if (UserList[item].roles != null) {
+                    UserInfo += "Roles:" + UserList[item].roles + System.Environment.NewLine;
+                }
+                if (UserList[item].otherDBRoles != null)
+                {
+                    UserInfo += "otherDBRoles:" + UserList[item].otherDBRoles + System.Environment.NewLine;
+                }
+                UserInfo += System.Environment.NewLine;
+            }
+            return UserInfo;
+        }
     }
 }

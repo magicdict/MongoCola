@@ -539,7 +539,7 @@ namespace MagicMongoDBTool.Module
                 {
                     switch (strDBName)
                     {
-                        case "admin":
+                        case DATABASE_NAME_ADMIN:
                             strShowDBName = "管理员权限(admin)";
                             break;
                         case "local":

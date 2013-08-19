@@ -34,11 +34,11 @@ namespace MagicMongoDBTool.Module
             MongoCollection users;
             if (IsAdmin)
             {
-                users = mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).GetCollection("system.users");
+                users = mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).GetCollection(MongoDBHelper.COLLECTION_NAME_USER);
             }
             else
             {
-                users = SystemManager.GetCurrentDataBase().GetCollection("system.users");
+                users = SystemManager.GetCurrentDataBase().GetCollection(MongoDBHelper.COLLECTION_NAME_USER);
             }
             //以下代码 1.Ver2.4以前的有ReadOnly,FindUser需要寻找ReadOnly字段
             //         2.这个其实不用检查，有的话修改，没有的话，新建
@@ -86,11 +86,11 @@ namespace MagicMongoDBTool.Module
             MongoCollection users;
             if (IsAdmin)
             {
-                users = mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).GetCollection("system.users");
+                users = mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).GetCollection(MongoDBHelper.COLLECTION_NAME_USER);
             }
             else
             {
-                users = SystemManager.GetCurrentDataBase().GetCollection("system.users");
+                users = SystemManager.GetCurrentDataBase().GetCollection(MongoDBHelper.COLLECTION_NAME_USER);
             }
             users.Remove(MongoDB.Driver.Builders.Query.EQ("user", strUser));
         }

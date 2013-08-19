@@ -97,7 +97,7 @@ namespace MagicMongoDBTool.Module
                     if (string.IsNullOrEmpty(config.DataBaseName))
                     {
                         mongoClientSetting.Credentials = new MongoCredential[]{
-                          MongoCredential.CreateMongoCRCredential("admin", config.UserName, config.Password)
+                          MongoCredential.CreateMongoCRCredential(DATABASE_NAME_ADMIN, config.UserName, config.Password)
                         };
                     }
                     else {

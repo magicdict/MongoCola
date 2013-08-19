@@ -447,10 +447,11 @@ namespace MagicMongoDBTool
                     {
                         if (item.Tag != null && ((BsonValue)item.Tag).IsObjectId)
                         {
-                            if (!MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), item.Tag))
+                            String Result = MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), item.Tag);
+                            if (!String.IsNullOrEmpty(Result))
                             {
                                 StrErrormsg = "Delete Error Key is:" + item.Tag.ToString();
-                                MyMessageBox.ShowMessage("Delete Error", StrErrormsg);
+                                MyMessageBox.ShowMessage("Delete Error", StrErrormsg, Result,true);
                                 break;
                             }
                         };
@@ -461,10 +462,11 @@ namespace MagicMongoDBTool
                 {
                     if (trvData.DatatreeView.SelectedNode.Tag != null && ((BsonValue)trvData.DatatreeView.SelectedNode.Tag).IsObjectId)
                     {
-                        if (!MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), trvData.DatatreeView.SelectedNode.Tag))
+                        String Result = MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), trvData.DatatreeView.SelectedNode.Tag);
+                         if (!String.IsNullOrEmpty(Result))
                         {
                             StrErrormsg = "Delete Error Key is:" + trvData.DatatreeView.SelectedNode.Tag.ToString();
-                            MyMessageBox.ShowMessage("Delete Error", StrErrormsg);
+                            MyMessageBox.ShowMessage("Delete Error", StrErrormsg, Result,true);
                         }
                     }
                     trvData.DatatreeView.ContextMenuStrip = null;
