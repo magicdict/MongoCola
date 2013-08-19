@@ -117,4 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblExectablePath.Text" xml:space="preserve">
+    <value>Exectable Path is the path will the system can found mongo toolkit exe file.
+When you download the install package of mongodb at offical site,you can get the toolkit like mongo.exe.
+If you only try to connect to a remote mongo server,you can ignore it,but some function will disable.</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAQAAAAAACoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAgICAAMDAwAAAAP8AAP8AAAD//wD/AAAA/wD/AP//
+        AAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAewAAAG9wAAAHsAAG9wAAAAB7EG9w
+        AAAAAAc29wAAAAAAAG9wAABwAAAG97dwB/cAAG9wd3d3d0d39wB3+IdgeIhwAAj49wBwCHAAB/hwAAAI
+        gAd3dwAAAHcAiIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP8kAAD/JAAA//8AAO/vAADHxwAA448AAPEfAAD4PwAA/H0AAPg4
+        AADxBQAAg4cAAAeXAABnvwAA538AAMw/AAA=
+</value>
+  </data>
 </root>

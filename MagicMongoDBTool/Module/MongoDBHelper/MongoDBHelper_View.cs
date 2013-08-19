@@ -463,6 +463,7 @@ namespace MagicMongoDBTool.Module
                         }
                         lstData.Items.Add(lstItem);
                     }
+                    lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                     break;
             }
         }
@@ -481,7 +482,7 @@ namespace MagicMongoDBTool.Module
             {
                 lstData.Columns.Add("ID");
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username));
-                lstData.Columns.Add("roles");
+                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_Roles));
                 lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_Password));
                 lstData.Columns.Add("userSource");
                 lstData.Columns.Add("otherDBRoles");
@@ -563,6 +564,7 @@ namespace MagicMongoDBTool.Module
                 }
                 lstData.Items.Add(lstItem);
             }
+            lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
         /// <summary>
         /// GFS系统
@@ -618,6 +620,7 @@ namespace MagicMongoDBTool.Module
                 }
                 lstData.Items.Add(lstItem);
             }
+            lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             // 用新的排序方法对ListView排序
             MongoDBHelper.lvwColumnSorter _lvwGFSColumnSorter = new MongoDBHelper.lvwColumnSorter();
             lstData.ListViewItemSorter = _lvwGFSColumnSorter;

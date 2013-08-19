@@ -113,6 +113,7 @@ namespace MagicMongoDBTool.Module
                     SystemManager.ExceptionDeal(ex);
                 }
             }
+            lstSvr.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
         /// <summary>
         /// fill Collection status to ListView
@@ -233,6 +234,7 @@ namespace MagicMongoDBTool.Module
                     SystemManager.ExceptionDeal(ex);
                 }
             }
+            lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
         /// <summary>
         /// 将数据Opr放入ListView
@@ -292,6 +294,7 @@ namespace MagicMongoDBTool.Module
                     SystemManager.ExceptionDeal(ex);
                 }
             }
+            lstSrvOpr.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
         #endregion
 

@@ -143,12 +143,16 @@ namespace MagicMongoDBTool
                 lblPassword.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Password);
                 lblConfirmPsw.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_ConfirmPassword);
                 //chkReadOnly.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_ReadOnly);
+                colRoles.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Roles);
+                colDataBase.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_DataBase);
                 cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
                 cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);
 
             }
         }
-
+        /// <summary>
+        /// 刷新角色
+        /// </summary>
         private void RefreshOtherDBRoles()
         {
             lstOtherRoles.Items.Clear();
@@ -157,12 +161,17 @@ namespace MagicMongoDBTool
                 lstOtherRoles.Items.Add(new System.Windows.Forms.ListViewItem(new string[] { item, OtherDBRolesDict[item].Value.ToString() }));
             }
         }
-
+        /// <summary>
+        /// 增加角色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdAddRole_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(cmbDB.Text))
             {
                 MyMessageBox.ShowMessage("Error", "Please Select A Database");
+                return;
             }
             frmUserRole mUserRole = new frmUserRole(new BsonArray());
             mUserRole.ShowDialog();
@@ -177,7 +186,11 @@ namespace MagicMongoDBTool
             }
             RefreshOtherDBRoles();
         }
-
+        /// <summary>
+        /// 删除角色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdDelRole_Click(object sender, EventArgs e)
         {
             if (lstOtherRoles.SelectedItems.Count == 0)
@@ -190,7 +203,11 @@ namespace MagicMongoDBTool
                 RefreshOtherDBRoles();
             }
         }
-
+        /// <summary>
+        /// 修改角色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdModifyRole_Click(object sender, EventArgs e)
         {
             if (lstOtherRoles.SelectedItems.Count == 0)

@@ -91,7 +91,7 @@ namespace MagicMongoDBTool.UserController
                 this.CloseStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
                 this.ExpandAllStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Expansion);
                 this.CollapseAllStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Collapse);
-
+                this.HelpStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Help);
             }
             InitControlsVisiableAndEvent();
             //加载数据
@@ -323,7 +323,9 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void CollapseAll_Click(object sender, EventArgs e)
         {
+            trvData.DatatreeView.BeginUpdate();
             trvData.DatatreeView.CollapseAll();
+            trvData.DatatreeView.EndUpdate();
         }
         /// <summary>
         /// 清除所有数据

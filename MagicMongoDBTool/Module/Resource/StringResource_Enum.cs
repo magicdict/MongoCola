@@ -27,6 +27,7 @@ namespace MagicMongoDBTool.Module
             Main_Menu_Operation,
             Main_Menu_Operation_Server,
             Main_Menu_Operation_Server_NewDB,
+            Main_Menu_Operation_Server_UserInfo,
             Main_Menu_Operation_Server_AddUserToAdmin,
             Main_Menu_Operation_Server_DelFromAdmin,
             Main_Menu_Operation_Server_SlaveResync,
@@ -340,6 +341,7 @@ namespace MagicMongoDBTool.Module
             Common_Name,
             Common_Value,
             Common_Type,
+            Common_Roles,
 
             //MessageBox
             Create_New_DataBase,

@@ -22,6 +22,7 @@
   <Main_Menu_Operation>操作</Main_Menu_Operation>
   <Main_Menu_Operation_Server>サーバー</Main_Menu_Operation_Server>
   <Main_Menu_Operation_Server_NewDB>データベースの新規</Main_Menu_Operation_Server_NewDB>
+  <Main_Menu_Operation_Server_UserInfo>ユーザー情報</Main_Menu_Operation_Server_UserInfo>
   <Main_Menu_Operation_Server_AddUserToAdmin>Adminユーザーの新規</Main_Menu_Operation_Server_AddUserToAdmin>
   <Main_Menu_Operation_Server_DelFromAdmin>Adminユーザーの削除</Main_Menu_Operation_Server_DelFromAdmin>
   <Main_Menu_Operation_Server_SlaveResync>同期</Main_Menu_Operation_Server_SlaveResync>
@@ -91,7 +92,7 @@
   <Main_Tab_Tree>ツリービュー</Main_Tab_Tree>
   <Main_Tab_Table>テーブルビュー</Main_Tab_Table>
   <Main_Tab_Text>テクストビュー</Main_Tab_Text>
-  <OpenInNativeEditor>TextEditorで開く</OpenInNativeEditor>
+  <Main_Menu_Operation_DataDocument_OpenInNativeEditor>外部TextEditorで開く</Main_Menu_Operation_DataDocument_OpenInNativeEditor>
   <Main_StatusBar_Text_Ready>Ready</Main_StatusBar_Text_Ready>
 
   <!--frmAddConnection-->
@@ -356,6 +357,7 @@
   <Common_Name>名称</Common_Name>
   <Common_Value>値</Common_Value>
   <Common_Type>タイプ</Common_Type>
+  <Common_Roles>角色</Common_Roles>
   <Common_Browse>参照</Common_Browse>
   <Common_Clear>クリア</Common_Clear>
   <Common_Test>テスト</Common_Test>

@@ -17,7 +17,9 @@ Ver 1.30 2013/08/31
 4.Add validate function for collection
 5.Add SaveToFile function for some command result as a json format 
 6.Operation Count Monitor
-
+7.Show the full name of collection at label of tag
+8.Fix the statusbar text when a connection node is selected
+ 
 ========================================================================
 Ver 1.28 2013/03/25
 1.Create Text Index at Index Management

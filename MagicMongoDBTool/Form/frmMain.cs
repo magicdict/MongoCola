@@ -87,6 +87,7 @@ namespace MagicMongoDBTool
 
             this.ServerToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server);
             this.CreateMongoDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_NewDB);
+            this.UserInfoStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_UserInfo);
             this.AddUserToAdminToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
             this.slaveResyncToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_SlaveResync);
             this.ShutDownToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_CloseServer);
@@ -127,8 +128,6 @@ namespace MagicMongoDBTool
             this.DosCommandToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Tool_DOS);
             this.ImportDataFromAccessToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Tool_Access);
             this.OptionsToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Tool_Setting);
-
-
 
             //帮助
             this.HelpToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Help);
@@ -172,15 +171,6 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmConnect(), true, true);
             ServerStatusCtl.SetEnable(true);
             RefreshToolStripMenuItem_Click(sender, e);
-
-            foreach (var item in MongoDBHelper._mongoUserLst.Keys)
-            {
-                String info = MongoDBHelper._mongoUserLst[item].ToString();
-                if (!string.IsNullOrEmpty(info))
-                {
-                    MyMessageBox.ShowMessage("UserInformation", SystemManager.ConfigHelperInstance.ConnectionList[item].UserName, info,true);
-                }
-            }
             this.commandShellToolStripMenuItem.Checked = true;
 
             this.statusToolStripMenuItem.Checked = true;
@@ -427,6 +417,7 @@ namespace MagicMongoDBTool
                                 this.slaveResyncToolStripMenuItem.Enabled = true;
                             }
                         }
+                        this.UserInfoStripMenuItem.Enabled = true;
                         this.ServerStatusToolStripMenuItem.Enabled = true;
                         this.ServePropertyToolStripMenuItem.Enabled = true;
 
@@ -465,6 +456,7 @@ namespace MagicMongoDBTool
                             {
                                 this.contextMenuStripMain.Items.Add(this.CreateMongoDBToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.AddUserToAdminToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.UserInfoStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ImportDataFromAccessToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.RestoreMongoToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.slaveResyncToolStripMenuItem.Clone());
@@ -1155,6 +1147,7 @@ namespace MagicMongoDBTool
             this.CreateMongoCollectionToolStripMenuItem.Enabled = false;
             this.CopyDatabasetoolStripMenuItem.Enabled = false;
             this.DelMongoDBToolStripMenuItem.Enabled = false;
+            this.UserInfoStripMenuItem.Enabled = false;
             this.AddUserToolStripMenuItem.Enabled = false;
             this.evalJSToolStripMenuItem.Enabled = false;
             this.RepairDBToolStripMenuItem.Enabled = false;
@@ -1348,7 +1341,9 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CollapseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.trvsrvlst.BeginUpdate();
             this.trvsrvlst.CollapseAll();
+            this.trvsrvlst.EndUpdate();
         }
         /// <summary>
         /// Exit Application
@@ -1417,7 +1412,24 @@ namespace MagicMongoDBTool
             //CommandDocument copy = new CommandDocument();
             //SystemManager.GetCurrentDataBase().RunCommand("copyDatabase");
         }
-
+        /// <summary>
+        /// 获得用户信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UserInfoStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //foreach (var item in MongoDBHelper._mongoUserLst.Keys)
+            //{
+                String ConnectionName = SystemManager.GetCurrentServerConfig().ConnectionName;
+                String info = MongoDBHelper._mongoUserLst[ConnectionName].ToString();
+                if (!string.IsNullOrEmpty(info))
+                {
+                    MyMessageBox.ShowMessage(SystemManager.IsUseDefaultLanguage?"UserInformation":SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_UserInfo),
+                        "The User Information of：[" + SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName].UserName + "]", info, true);
+                }
+            //}
+        }
         /// <summary>
         /// Create User to Admin Group
         /// </summary>
@@ -2242,6 +2254,8 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmUnitTest(), true, true);
         }
         #endregion
+
+
 
     }
 }

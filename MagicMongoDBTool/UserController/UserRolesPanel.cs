@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using System;
 using System.Windows.Forms;
-
+using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool.UserController
 {
     public partial class UserRolesPanel : UserControl
@@ -9,6 +9,9 @@ namespace MagicMongoDBTool.UserController
         public UserRolesPanel()
         {
             InitializeComponent();
+            if (!SystemManager.IsUseDefaultLanguage) {
+                grpRoles.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Roles);
+            }
         }
         public BsonArray getRoles()
         {

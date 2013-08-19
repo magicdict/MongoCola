@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOption));
             this.numRefreshForStatus = new System.Windows.Forms.NumericUpDown();
             this.lblRefreshIntervalForStatus = new System.Windows.Forms.Label();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
-            this.Icon = Module.GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.Option);
+            this.lblExectablePath = new System.Windows.Forms.Label();
             this.ctlFilePickerMongoBinPath = new MagicMongoDBTool.ctlFilePicker();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // numRefreshForStatus
             // 
-            this.numRefreshForStatus.Location = new System.Drawing.Point(152, 62);
+            this.numRefreshForStatus.Location = new System.Drawing.Point(156, 103);
             this.numRefreshForStatus.Maximum = new decimal(new int[] {
             180,
             0,
@@ -66,7 +67,7 @@
             // 
             this.lblRefreshIntervalForStatus.AutoSize = true;
             this.lblRefreshIntervalForStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(12, 66);
+            this.lblRefreshIntervalForStatus.Location = new System.Drawing.Point(16, 107);
             this.lblRefreshIntervalForStatus.Name = "lblRefreshIntervalForStatus";
             this.lblRefreshIntervalForStatus.Size = new System.Drawing.Size(123, 15);
             this.lblRefreshIntervalForStatus.TabIndex = 15;
@@ -75,7 +76,7 @@
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(331, 104);
+            this.cmdCancel.Location = new System.Drawing.Point(335, 145);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(87, 35);
             this.cmdCancel.TabIndex = 5;
@@ -86,7 +87,7 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(170, 104);
+            this.cmdOK.Location = new System.Drawing.Point(174, 145);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(87, 35);
             this.cmdOK.TabIndex = 4;
@@ -98,7 +99,7 @@
             // 
             this.lblLanguage.AutoSize = true;
             this.lblLanguage.BackColor = System.Drawing.Color.Transparent;
-            this.lblLanguage.Location = new System.Drawing.Point(270, 64);
+            this.lblLanguage.Location = new System.Drawing.Point(274, 105);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(63, 15);
             this.lblLanguage.TabIndex = 16;
@@ -107,10 +108,19 @@
             // cmbLanguage
             // 
             this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Location = new System.Drawing.Point(340, 60);
+            this.cmbLanguage.Location = new System.Drawing.Point(344, 101);
             this.cmbLanguage.Name = "cmbLanguage";
             this.cmbLanguage.Size = new System.Drawing.Size(140, 23);
             this.cmbLanguage.TabIndex = 3;
+            // 
+            // lblExectablePath
+            // 
+            this.lblExectablePath.AutoSize = true;
+            this.lblExectablePath.Location = new System.Drawing.Point(16, 53);
+            this.lblExectablePath.Name = "lblExectablePath";
+            this.lblExectablePath.Size = new System.Drawing.Size(572, 45);
+            this.lblExectablePath.TabIndex = 17;
+            this.lblExectablePath.Text = resources.GetString("lblExectablePath.Text");
             // 
             // ctlFilePickerMongoBinPath
             // 
@@ -129,7 +139,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(686, 144);
+            this.ClientSize = new System.Drawing.Size(686, 181);
+            this.Controls.Add(this.lblExectablePath);
             this.Controls.Add(this.cmbLanguage);
             this.Controls.Add(this.lblLanguage);
             this.Controls.Add(this.numRefreshForStatus);
@@ -139,6 +150,7 @@
             this.Controls.Add(this.cmdOK);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmOption";
@@ -160,6 +172,7 @@
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.ComboBox cmbLanguage;
         private System.Windows.Forms.Label lblLanguage;
+        private System.Windows.Forms.Label lblExectablePath;
 
     }
 }
