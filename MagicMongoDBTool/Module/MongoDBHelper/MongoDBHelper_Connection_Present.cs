@@ -10,121 +10,6 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
-        /// <summary>
-        /// get current Server Information
-        /// </summary>
-        /// <returns></returns>
-        public static String GetCurrentSvrInfo()
-        {
-            String rtnSvrInfo = String.Empty;
-            MongoServer mongosvr = SystemManager.GetCurrentServer();
-            rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter.ToString() + System.Environment.NewLine;
-            rtnSvrInfo += "IsPrimary：" + mongosvr.Instance.IsPrimary.ToString() + System.Environment.NewLine;
-            rtnSvrInfo += "IsSecondary：" + mongosvr.Instance.IsSecondary.ToString() + System.Environment.NewLine;
-            rtnSvrInfo += "Address：" + mongosvr.Instance.Address.ToString() + System.Environment.NewLine;
-            if (mongosvr.Instance.BuildInfo != null)
-            {
-                //Before mongo2.0.2 BuildInfo will be null without auth
-                rtnSvrInfo += "VersionString：" + mongosvr.Instance.BuildInfo.VersionString + System.Environment.NewLine;
-                rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + System.Environment.NewLine;
-            }
-            return rtnSvrInfo;
-        }
-
-        #region"展示数据库结构 WebForm"
-        /// <summary>
-        /// 获取JSON
-        /// </summary>
-        /// <param name="ConnectionName"></param>
-        /// <returns></returns>
-        public static String GetConnectionzTreeJSON()
-        {
-            TreeView tree = new TreeView();
-            FillConnectionToTreeView(tree);
-            return ConvertTreeViewTozTreeJson(tree);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="RootName"></param>
-        /// <param name="doc"></param>
-        /// <param name="IsOpen"></param>
-        /// <returns></returns>
-        public static String ConvertBsonTozTreeJson(String RootName, BsonDocument doc, Boolean IsOpen)
-        {
-            TreeViewColumns trvStatus = new TreeViewColumns();
-            MongoDBHelper.FillDataToTreeView(RootName, trvStatus, doc);
-            if (IsOpen)
-            {
-                trvStatus.TreeView.Nodes[0].Expand();
-            }
-            return ConvertTreeViewTozTreeJson(trvStatus.TreeView);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="tree"></param>
-        /// <returns></returns>
-        public static String ConvertTreeViewTozTreeJson(TreeView tree)
-        {
-            BsonArray array = new BsonArray();
-            foreach (TreeNode item in tree.Nodes)
-            {
-                array.Add(ConvertTreeNodeTozTreeBsonDoc(item));
-            }
-            return array.ToJson(SystemManager.JsonWriterSettings);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="SubNode"></param>
-        /// <returns></returns>
-        private static BsonDocument ConvertTreeNodeTozTreeBsonDoc(TreeNode SubNode)
-        {
-            BsonDocument SingleNode = new BsonDocument();
-            SingleNode.Add("name", SubNode.Text + GetTagText(SubNode));
-            if (SubNode.Nodes.Count == 0)
-            {
-                SingleNode.Add("icon", "MainTreeImage" + String.Format("{0:00}", SubNode.ImageIndex) + ".png");
-            }
-            else
-            {
-                BsonArray ChildrenList = new BsonArray();
-                foreach (TreeNode item in SubNode.Nodes)
-                {
-                    ChildrenList.Add(ConvertTreeNodeTozTreeBsonDoc(item));
-                }
-                SingleNode.Add("children", ChildrenList);
-                SingleNode.Add("icon", "MainTreeImage" + String.Format("{0:00}", SubNode.ImageIndex) + ".png");
-            }
-            if (SubNode.IsExpanded)
-            {
-                SingleNode.Add("open", "true");
-            }
-            if (SubNode.Tag != null)
-            {
-                SingleNode.Add("click", "ShowData('" + SystemManager.GetTagType(SubNode.Tag.ToString()) + "','" + SystemManager.GetTagData(SubNode.Tag.ToString()) + "')");
-            }
-            return SingleNode;
-        }
-        /// <summary>
-        /// 展示数据值和类型
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        private static string GetTagText(TreeNode node)
-        {
-            string strColumnText = String.Empty;
-            BsonElement Element = node.Tag as BsonElement;
-            if (Element != null && !Element.Value.IsBsonDocument && !Element.Value.IsBsonArray)
-            {
-                strColumnText = ":" + Element.Value.ToString();
-                strColumnText += "[" + Element.Value.GetType().Name.Substring(4) + "]";
-            }
-            return strColumnText;
-        }
-        #endregion
-
         #region"展示数据库结构 Winform"
         /// <summary>
         /// 将Mongodb的服务器在树形控件中展示
@@ -877,6 +762,9 @@ namespace MagicMongoDBTool.Module
                         break;
                     case "2d":
                         KeyString += MongoDBHelper.IndexType.GeoSpatial.ToString();
+                        break;
+                    case "text":
+                        KeyString += MongoDBHelper.IndexType.Text.ToString();
                         break;
                     default:
                         break;

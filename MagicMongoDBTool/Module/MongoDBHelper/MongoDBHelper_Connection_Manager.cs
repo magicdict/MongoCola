@@ -241,6 +241,26 @@ namespace MagicMongoDBTool.Module
             //Default WriteConcern is w=0
         }
         /// <summary>
+        /// get current Server Information
+        /// </summary>
+        /// <returns></returns>
+        public static String GetCurrentSvrInfo()
+        {
+            String rtnSvrInfo = String.Empty;
+            MongoServer mongosvr = SystemManager.GetCurrentServer();
+            rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter.ToString() + System.Environment.NewLine;
+            rtnSvrInfo += "IsPrimary：" + mongosvr.Instance.IsPrimary.ToString() + System.Environment.NewLine;
+            rtnSvrInfo += "IsSecondary：" + mongosvr.Instance.IsSecondary.ToString() + System.Environment.NewLine;
+            rtnSvrInfo += "Address：" + mongosvr.Instance.Address.ToString() + System.Environment.NewLine;
+            if (mongosvr.Instance.BuildInfo != null)
+            {
+                //Before mongo2.0.2 BuildInfo will be null without auth
+                rtnSvrInfo += "VersionString：" + mongosvr.Instance.BuildInfo.VersionString + System.Environment.NewLine;
+                rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + System.Environment.NewLine;
+            }
+            return rtnSvrInfo;
+        }
+        /// <summary>
         /// 使用字符串连接来填充
         /// </summary>
         /// <remarks>http://www.mongodb.org/display/DOCS/Connections</remarks>

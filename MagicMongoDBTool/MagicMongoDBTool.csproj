@@ -117,6 +117,7 @@
     <Compile Include="MessageBox\frmUserRole.Designer.cs">
       <DependentUpon>frmUserRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection_Present_WebForm.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Enum.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_GFS.cs" />
     <Compile Include="Form\frmServerMonitor.cs">
