@@ -87,5 +87,19 @@ namespace MagicMongoDBTool
                 SystemManager.SaveTextFile(txtDocument.Text,MongoDBHelper.TxtFilter);
             }
         }
+        /// <summary>
+        /// 载入
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmNewDocument_Load(object sender, EventArgs e)
+        {
+            if (!SystemManager.IsUseDefaultLanguage) {
+                cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                cmdSaveAggregate.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
+                cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+                //cmdPreview.Text = SystemManager.mStringResource.GetText();
+            }
+        }
     }
 }

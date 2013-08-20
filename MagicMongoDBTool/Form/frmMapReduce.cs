@@ -7,6 +7,9 @@ namespace MagicMongoDBTool
 {
     public partial class frmMapReduce : System.Windows.Forms.Form
     {
+        /// <summary>
+        /// 初始化
+        /// </summary>
         public frmMapReduce()
         {
             InitializeComponent();
@@ -16,7 +19,7 @@ namespace MagicMongoDBTool
         /// </summary>
         private MongoCollection _mongocol = SystemManager.GetCurrentCollection();
         /// <summary>
-        /// 
+        /// 载入
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -28,6 +31,7 @@ namespace MagicMongoDBTool
                 ctlReduceFunction.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_ReduceFunction);
                 lblResult.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_Result);
                 cmdRun.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_Run);
+                cmdClose.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Close);
             }
             ctlMapFunction.Context = 
 @"function Map(){
@@ -59,6 +63,15 @@ namespace MagicMongoDBTool
             trvResult.DatatreeView.BeginUpdate();
             trvResult.DatatreeView.ExpandAll();
             trvResult.DatatreeView.EndUpdate();
+        }
+        /// <summary>
+        /// 关闭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -33,11 +33,12 @@
             this.cmdSave = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtContext = new System.Windows.Forms.TextBox();
+            this.cmdLoadLocal = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmdSaveLocal
             // 
-            this.cmdSaveLocal.Location = new System.Drawing.Point(219, 30);
+            this.cmdSaveLocal.Location = new System.Drawing.Point(129, 30);
             this.cmdSaveLocal.Name = "cmdSaveLocal";
             this.cmdSaveLocal.Size = new System.Drawing.Size(117, 27);
             this.cmdSaveLocal.TabIndex = 23;
@@ -48,15 +49,15 @@
             // cmbJsList
             // 
             this.cmbJsList.FormattingEnabled = true;
-            this.cmbJsList.Location = new System.Drawing.Point(98, 2);
+            this.cmbJsList.Location = new System.Drawing.Point(129, 2);
             this.cmbJsList.Name = "cmbJsList";
-            this.cmbJsList.Size = new System.Drawing.Size(238, 23);
+            this.cmbJsList.Size = new System.Drawing.Size(233, 23);
             this.cmbJsList.TabIndex = 19;
             // 
             // cmdSave
             // 
             this.cmdSave.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSave.Location = new System.Drawing.Point(98, 30);
+            this.cmdSave.Location = new System.Drawing.Point(9, 30);
             this.cmdSave.Name = "cmdSave";
             this.cmdSave.Size = new System.Drawing.Size(114, 29);
             this.cmdSave.TabIndex = 20;
@@ -68,7 +69,7 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Location = new System.Drawing.Point(6, 6);
+            this.lblTitle.Location = new System.Drawing.Point(15, 5);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(30, 15);
             this.lblTitle.TabIndex = 22;
@@ -88,10 +89,21 @@
             this.txtContext.Size = new System.Drawing.Size(392, 198);
             this.txtContext.TabIndex = 21;
             // 
+            // cmdLoadLocal
+            // 
+            this.cmdLoadLocal.Location = new System.Drawing.Point(252, 33);
+            this.cmdLoadLocal.Name = "cmdLoadLocal";
+            this.cmdLoadLocal.Size = new System.Drawing.Size(110, 23);
+            this.cmdLoadLocal.TabIndex = 24;
+            this.cmdLoadLocal.Text = "Load[Local]";
+            this.cmdLoadLocal.UseVisualStyleBackColor = true;
+            this.cmdLoadLocal.Click += new System.EventHandler(this.cmdLoadLocal_Click);
+            // 
             // ctlTextMgr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmdLoadLocal);
             this.Controls.Add(this.cmdSaveLocal);
             this.Controls.Add(this.cmbJsList);
             this.Controls.Add(this.cmdSave);
@@ -112,5 +124,6 @@
         private System.Windows.Forms.Button cmdSave;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.TextBox txtContext;
+        private System.Windows.Forms.Button cmdLoadLocal;
     }
 }

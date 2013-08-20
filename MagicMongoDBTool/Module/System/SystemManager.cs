@@ -246,6 +246,23 @@ namespace MagicMongoDBTool.Module
                 writer.Close();
             }
         }
+        public static String LoadFile() {
+            OpenFileDialog dialog = new OpenFileDialog();
+            String Context = String.Empty;
+            if (dialog.ShowDialog() == DialogResult.OK) {
+                try
+                {
+                    StreamReader reader = new StreamReader(dialog.FileName);
+                    Context = reader.ReadToEnd();
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    SystemManager.ExceptionDeal(ex);    
+                }
+            }
+            return Context;
+        }
         /// <summary>
         /// Javascript文件的保存
         /// </summary>

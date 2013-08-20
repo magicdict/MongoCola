@@ -67,12 +67,12 @@
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
-            // treeViewColumns1
+            // trvNewDocument
             // 
             this.trvNewDocument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
             this.trvNewDocument.Location = new System.Drawing.Point(444, 13);
             this.trvNewDocument.Margin = new System.Windows.Forms.Padding(4);
-            this.trvNewDocument.Name = "treeViewColumns1";
+            this.trvNewDocument.Name = "trvNewDocument";
             this.trvNewDocument.Padding = new System.Windows.Forms.Padding(1);
             this.trvNewDocument.Size = new System.Drawing.Size(360, 237);
             this.trvNewDocument.TabIndex = 3;
@@ -124,6 +124,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmNewDocument";
             this.Text = "New Document";
+            this.Load += new System.EventHandler(this.frmNewDocument_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

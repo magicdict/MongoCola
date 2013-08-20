@@ -33,13 +33,14 @@
             this.ctlMapFunction = new MagicMongoDBTool.ctlTextMgr();
             this.trvResult = new TreeViewColumnsProject.TreeViewColumns();
             this.ctlReduceFunction = new MagicMongoDBTool.ctlTextMgr();
+            this.cmdClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblResult
             // 
             this.lblResult.AutoSize = true;
             this.lblResult.BackColor = System.Drawing.Color.Transparent;
-            this.lblResult.Location = new System.Drawing.Point(381, 24);
+            this.lblResult.Location = new System.Drawing.Point(413, 18);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(42, 15);
             this.lblResult.TabIndex = 15;
@@ -48,9 +49,9 @@
             // cmdRun
             // 
             this.cmdRun.BackColor = System.Drawing.Color.Transparent;
-            this.cmdRun.Location = new System.Drawing.Point(693, 494);
+            this.cmdRun.Location = new System.Drawing.Point(607, 492);
             this.cmdRun.Name = "cmdRun";
-            this.cmdRun.Size = new System.Drawing.Size(103, 39);
+            this.cmdRun.Size = new System.Drawing.Size(103, 30);
             this.cmdRun.TabIndex = 7;
             this.cmdRun.Text = "Run";
             this.cmdRun.UseVisualStyleBackColor = false;
@@ -62,7 +63,7 @@
             this.ctlMapFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctlMapFunction.Location = new System.Drawing.Point(12, 12);
             this.ctlMapFunction.Name = "ctlMapFunction";
-            this.ctlMapFunction.Size = new System.Drawing.Size(352, 214);
+            this.ctlMapFunction.Size = new System.Drawing.Size(369, 214);
             this.ctlMapFunction.TabIndex = 20;
             this.ctlMapFunction.Title = "Title";
             // 
@@ -70,7 +71,7 @@
             // 
             this.trvResult.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
             this.trvResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.trvResult.Location = new System.Drawing.Point(378, 53);
+            this.trvResult.Location = new System.Drawing.Point(410, 47);
             this.trvResult.Name = "trvResult";
             this.trvResult.Padding = new System.Windows.Forms.Padding(1);
             this.trvResult.Size = new System.Drawing.Size(417, 432);
@@ -82,16 +83,27 @@
             this.ctlReduceFunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctlReduceFunction.Location = new System.Drawing.Point(12, 232);
             this.ctlReduceFunction.Name = "ctlReduceFunction";
-            this.ctlReduceFunction.Size = new System.Drawing.Size(352, 263);
+            this.ctlReduceFunction.Size = new System.Drawing.Size(369, 263);
             this.ctlReduceFunction.TabIndex = 21;
             this.ctlReduceFunction.Title = "Title";
+            // 
+            // cmdClose
+            // 
+            this.cmdClose.Location = new System.Drawing.Point(716, 492);
+            this.cmdClose.Name = "cmdClose";
+            this.cmdClose.Size = new System.Drawing.Size(111, 30);
+            this.cmdClose.TabIndex = 22;
+            this.cmdClose.Text = "Close";
+            this.cmdClose.UseVisualStyleBackColor = true;
+            this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
             // frmMapReduce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(807, 543);
+            this.ClientSize = new System.Drawing.Size(839, 543);
+            this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.ctlReduceFunction);
             this.Controls.Add(this.ctlMapFunction);
             this.Controls.Add(this.trvResult);
@@ -117,5 +129,6 @@
         private TreeViewColumnsProject.TreeViewColumns trvResult;
         private ctlTextMgr ctlMapFunction;
         private ctlTextMgr ctlReduceFunction;
+        private System.Windows.Forms.Button cmdClose;
     }
 }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
+﻿using MagicMongoDBTool.Module;
+using System;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
@@ -32,6 +26,7 @@ namespace MagicMongoDBTool
                 {
                     cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
                     cmdSaveLocal.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save_Local);
+                    cmdLoadLocal.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Action_Load);
                 }
             }
         }
@@ -73,10 +68,23 @@ namespace MagicMongoDBTool
             }
 
         }
-
+        /// <summary>
+        /// 保存到本地
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdSaveLocal_Click(object sender, EventArgs e)
         {
             SystemManager.SaveJavascriptFile(txtContext.Text);
+        }
+        /// <summary>
+        /// 读取本地文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmdLoadLocal_Click(object sender, EventArgs e)
+        {
+            txtContext.Text = SystemManager.LoadFile();
         }
     }
 }
