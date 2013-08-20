@@ -31,15 +31,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.cmbForReduce = new System.Windows.Forms.ComboBox();
-            this.cmdSaveReduceJs = new System.Windows.Forms.Button();
-            this.lblReduceFunction = new System.Windows.Forms.Label();
-            this.txtReduceJs = new System.Windows.Forms.TextBox();
             this.cmdRun = new System.Windows.Forms.Button();
-            this.txtfinalizeJs = new System.Windows.Forms.TextBox();
-            this.lblfinalizeFunction = new System.Windows.Forms.Label();
-            this.cmdSavefinalizeJs = new System.Windows.Forms.Button();
-            this.cmbForfinalize = new System.Windows.Forms.ComboBox();
             this.lblSelectGroupField = new System.Windows.Forms.Label();
             this.panColumn = new System.Windows.Forms.Panel();
             this.txtResult = new System.Windows.Forms.TextBox();
@@ -55,6 +47,8 @@
             this.tabResult = new System.Windows.Forms.TabPage();
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmdQuery = new System.Windows.Forms.Button();
+            this.ctlReduce = new MagicMongoDBTool.ctlTextMgr();
+            this.ctlFinalize = new MagicMongoDBTool.ctlTextMgr();
             this.tabGroup.SuspendLayout();
             this.tabReduce.SuspendLayout();
             this.tabFinalize.SuspendLayout();
@@ -63,46 +57,6 @@
             this.tabResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             this.SuspendLayout();
-            // 
-            // cmbForReduce
-            // 
-            this.cmbForReduce.FormattingEnabled = true;
-            this.cmbForReduce.Location = new System.Drawing.Point(95, 32);
-            this.cmbForReduce.Name = "cmbForReduce";
-            this.cmbForReduce.Size = new System.Drawing.Size(175, 23);
-            this.cmbForReduce.TabIndex = 0;
-            // 
-            // cmdSaveReduceJs
-            // 
-            this.cmdSaveReduceJs.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSaveReduceJs.Location = new System.Drawing.Point(290, 28);
-            this.cmdSaveReduceJs.Name = "cmdSaveReduceJs";
-            this.cmdSaveReduceJs.Size = new System.Drawing.Size(82, 28);
-            this.cmdSaveReduceJs.TabIndex = 1;
-            this.cmdSaveReduceJs.Text = "Save";
-            this.cmdSaveReduceJs.UseVisualStyleBackColor = false;
-            this.cmdSaveReduceJs.Click += new System.EventHandler(this.cmdSaveReduceJs_Click);
-            // 
-            // lblReduceFunction
-            // 
-            this.lblReduceFunction.AutoSize = true;
-            this.lblReduceFunction.BackColor = System.Drawing.Color.Transparent;
-            this.lblReduceFunction.Location = new System.Drawing.Point(24, 35);
-            this.lblReduceFunction.Name = "lblReduceFunction";
-            this.lblReduceFunction.Size = new System.Drawing.Size(65, 15);
-            this.lblReduceFunction.TabIndex = 20;
-            this.lblReduceFunction.Text = "Reduce Js";
-            // 
-            // txtReduceJs
-            // 
-            this.txtReduceJs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtReduceJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReduceJs.Location = new System.Drawing.Point(12, 69);
-            this.txtReduceJs.Multiline = true;
-            this.txtReduceJs.Name = "txtReduceJs";
-            this.txtReduceJs.Size = new System.Drawing.Size(487, 454);
-            this.txtReduceJs.TabIndex = 2;
-            this.txtReduceJs.Text = "function(obj,prev){ prev.count++;}";
             // 
             // cmdRun
             // 
@@ -114,45 +68,6 @@
             this.cmdRun.Text = "Run";
             this.cmdRun.UseVisualStyleBackColor = false;
             this.cmdRun.Click += new System.EventHandler(this.cmdOK_Click);
-            // 
-            // txtfinalizeJs
-            // 
-            this.txtfinalizeJs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtfinalizeJs.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtfinalizeJs.Location = new System.Drawing.Point(16, 61);
-            this.txtfinalizeJs.Multiline = true;
-            this.txtfinalizeJs.Name = "txtfinalizeJs";
-            this.txtfinalizeJs.Size = new System.Drawing.Size(479, 463);
-            this.txtfinalizeJs.TabIndex = 19;
-            // 
-            // lblfinalizeFunction
-            // 
-            this.lblfinalizeFunction.AutoSize = true;
-            this.lblfinalizeFunction.BackColor = System.Drawing.Color.Transparent;
-            this.lblfinalizeFunction.Location = new System.Drawing.Point(24, 33);
-            this.lblfinalizeFunction.Name = "lblfinalizeFunction";
-            this.lblfinalizeFunction.Size = new System.Drawing.Size(61, 15);
-            this.lblfinalizeFunction.TabIndex = 20;
-            this.lblfinalizeFunction.Text = "finalize Js";
-            // 
-            // cmdSavefinalizeJs
-            // 
-            this.cmdSavefinalizeJs.BackColor = System.Drawing.Color.Transparent;
-            this.cmdSavefinalizeJs.Location = new System.Drawing.Point(287, 27);
-            this.cmdSavefinalizeJs.Name = "cmdSavefinalizeJs";
-            this.cmdSavefinalizeJs.Size = new System.Drawing.Size(82, 28);
-            this.cmdSavefinalizeJs.TabIndex = 21;
-            this.cmdSavefinalizeJs.Text = "Save";
-            this.cmdSavefinalizeJs.UseVisualStyleBackColor = false;
-            this.cmdSavefinalizeJs.Click += new System.EventHandler(this.cmdForSavefinalize_Click);
-            // 
-            // cmbForfinalize
-            // 
-            this.cmbForfinalize.FormattingEnabled = true;
-            this.cmbForfinalize.Location = new System.Drawing.Point(104, 30);
-            this.cmbForfinalize.Name = "cmbForfinalize";
-            this.cmbForfinalize.Size = new System.Drawing.Size(175, 23);
-            this.cmbForfinalize.TabIndex = 18;
             // 
             // lblSelectGroupField
             // 
@@ -240,10 +155,7 @@
             // 
             // tabReduce
             // 
-            this.tabReduce.Controls.Add(this.lblReduceFunction);
-            this.tabReduce.Controls.Add(this.txtReduceJs);
-            this.tabReduce.Controls.Add(this.cmdSaveReduceJs);
-            this.tabReduce.Controls.Add(this.cmbForReduce);
+            this.tabReduce.Controls.Add(this.ctlReduce);
             this.tabReduce.Location = new System.Drawing.Point(4, 24);
             this.tabReduce.Name = "tabReduce";
             this.tabReduce.Padding = new System.Windows.Forms.Padding(3);
@@ -254,10 +166,7 @@
             // 
             // tabFinalize
             // 
-            this.tabFinalize.Controls.Add(this.lblfinalizeFunction);
-            this.tabFinalize.Controls.Add(this.txtfinalizeJs);
-            this.tabFinalize.Controls.Add(this.cmdSavefinalizeJs);
-            this.tabFinalize.Controls.Add(this.cmbForfinalize);
+            this.tabFinalize.Controls.Add(this.ctlFinalize);
             this.tabFinalize.Location = new System.Drawing.Point(4, 24);
             this.tabFinalize.Name = "tabFinalize";
             this.tabFinalize.Padding = new System.Windows.Forms.Padding(3);
@@ -331,6 +240,26 @@
             this.cmdQuery.UseVisualStyleBackColor = false;
             this.cmdQuery.Click += new System.EventHandler(this.cmdQuery_Click);
             // 
+            // ctlReduce
+            // 
+            this.ctlReduce.Context = "function(obj,prev){ prev.count++;}";
+            this.ctlReduce.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctlReduce.Location = new System.Drawing.Point(6, 24);
+            this.ctlReduce.Name = "ctlReduce";
+            this.ctlReduce.Size = new System.Drawing.Size(498, 506);
+            this.ctlReduce.TabIndex = 0;
+            this.ctlReduce.Title = "Reduce Js";
+            // 
+            // ctlFinalize
+            // 
+            this.ctlFinalize.Context = "";
+            this.ctlFinalize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctlFinalize.Location = new System.Drawing.Point(16, 6);
+            this.ctlFinalize.Name = "ctlFinalize";
+            this.ctlFinalize.Size = new System.Drawing.Size(488, 524);
+            this.ctlFinalize.TabIndex = 0;
+            this.ctlFinalize.Title = "Title";
+            // 
             // frmGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -348,9 +277,7 @@
             this.Load += new System.EventHandler(this.frmGroup_Load);
             this.tabGroup.ResumeLayout(false);
             this.tabReduce.ResumeLayout(false);
-            this.tabReduce.PerformLayout();
             this.tabFinalize.ResumeLayout(false);
-            this.tabFinalize.PerformLayout();
             this.tabGroupField.ResumeLayout(false);
             this.tabGroupField.PerformLayout();
             this.tabInitialize.ResumeLayout(false);
@@ -365,14 +292,6 @@
         #endregion
 
         private System.Windows.Forms.Button cmdRun;
-        private System.Windows.Forms.ComboBox cmbForReduce;
-        private System.Windows.Forms.Button cmdSaveReduceJs;
-        private System.Windows.Forms.Label lblReduceFunction;
-        private System.Windows.Forms.TextBox txtReduceJs;
-        private System.Windows.Forms.ComboBox cmbForfinalize;
-        private System.Windows.Forms.Button cmdSavefinalizeJs;
-        private System.Windows.Forms.Label lblfinalizeFunction;
-        private System.Windows.Forms.TextBox txtfinalizeJs;
         private System.Windows.Forms.Label lblSelectGroupField;
         private System.Windows.Forms.Panel panColumn;
         private System.Windows.Forms.TextBox txtResult;
@@ -388,5 +307,7 @@
         private System.Windows.Forms.TabPage tabResult;
         private System.Windows.Forms.Button cmdQuery;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartResult;
+        private ctlTextMgr ctlReduce;
+        private ctlTextMgr ctlFinalize;
     }
 }

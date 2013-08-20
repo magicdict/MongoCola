@@ -22,29 +22,26 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
-            cmbForMap.SelectedIndexChanged += new EventHandler(
-                (x, y) => { txtMapJs.Text = MongoDBHelper.LoadJavascript(cmbForMap.Text); }
-            );
-            cmbForReduce.SelectedIndexChanged += new EventHandler(
-                (x, y) => { txtReduceJs.Text = MongoDBHelper.LoadJavascript(cmbForReduce.Text); }
-            );
-
-            foreach (String item in SystemManager.GetJsNameList())
-            {
-                cmbForMap.Items.Add(item);
-                cmbForReduce.Items.Add(item);
-            }
-
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                lblMapFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_MapFunction);
-                lblReduceFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_ReduceFunction);
+                ctlMapFunction.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_MapFunction);
+                ctlReduceFunction.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_ReduceFunction);
                 lblResult.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_Result);
                 cmdRun.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.MapReduce_Run);
-                cmdSaveMapJs.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
-                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
             }
-
+            ctlMapFunction.Context = 
+@"function Map(){
+    emit(this.Age,1);
+}";
+            ctlReduceFunction.Context =
+@"function Reduce(key, arr_values) {
+     var total = 0;
+     for(var i in arr_values){
+         temp = arr_values[i];
+         total += temp;
+     }
+     return total;
+}";
         }
         /// <summary>
         /// 运行
@@ -53,8 +50,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdRun_Click(object sender, EventArgs e)
         {
-            BsonJavaScript map = new BsonJavaScript(txtMapJs.Text);
-            BsonJavaScript reduce = new BsonJavaScript(txtReduceJs.Text);
+            BsonJavaScript map = new BsonJavaScript(ctlMapFunction.Context);
+            BsonJavaScript reduce = new BsonJavaScript(ctlReduceFunction.Context);
             //TODO:这里可能会超时，失去响应
             //需要设置SocketTimeOut
             MapReduceResult mMapReduceResult = _mongocol.MapReduce(map, reduce);
@@ -62,32 +59,6 @@ namespace MagicMongoDBTool
             trvResult.DatatreeView.BeginUpdate();
             trvResult.DatatreeView.ExpandAll();
             trvResult.DatatreeView.EndUpdate();
-        }
-        /// <summary>
-        /// 保存MapJs
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdSaveMapJs_Click(object sender, EventArgs e)
-        {
-            if (txtMapJs.Text != String.Empty)
-            {
-                String strJsName = MyMessageBox.ShowInput("pls Input Javascript Name：", "Save Javascript");
-                MongoDBHelper.CreateNewJavascript(strJsName, txtMapJs.Text);
-            }
-        }
-        /// <summary>
-        /// 保存ReduceJs
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdSaveReduceJs_Click(object sender, EventArgs e)
-        {
-            if (this.txtReduceJs.Text != String.Empty)
-            {
-                String strJsName = MyMessageBox.ShowInput("pls Input Javascript Name", "Save Javascript");
-                MongoDBHelper.CreateNewJavascript(strJsName, txtReduceJs.Text);
-            }
         }
     }
 }

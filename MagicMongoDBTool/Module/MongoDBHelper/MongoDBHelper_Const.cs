@@ -187,6 +187,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public const String TxtFilter = "*.txt(Plan File)|*.txt";
         /// <summary>
+        /// js文件选择过滤器
+        /// </summary>
+        public const String JsFilter = "*.js(javascript File)|*.js";
+        /// <summary>
         /// LOG文件选择过滤器
         /// </summary>
         public const String LogFilter = "*.log(Log File)|*.log";

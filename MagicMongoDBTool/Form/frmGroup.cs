@@ -57,8 +57,8 @@ namespace MagicMongoDBTool
                 }
             }
 
-            BsonJavaScript reduce = new BsonJavaScript(txtReduceJs.Text);
-            BsonJavaScript finalize = new BsonJavaScript(txtfinalizeJs.Text);
+            BsonJavaScript reduce = new BsonJavaScript(ctlReduce.Context);
+            BsonJavaScript finalize = new BsonJavaScript(ctlFinalize.Context);
             List<BsonDocument> resultlst = new List<BsonDocument>();
 
             try
@@ -112,18 +112,6 @@ namespace MagicMongoDBTool
 
         private void frmGroup_Load(object sender, EventArgs e)
         {
-            this.cmbForfinalize.SelectedIndexChanged += new EventHandler(
-                 (x, y) => { this.txtfinalizeJs.Text = MongoDBHelper.LoadJavascript(cmbForfinalize.Text); }
-            );
-            cmbForReduce.SelectedIndexChanged += new EventHandler(
-                (x, y) => { txtReduceJs.Text = MongoDBHelper.LoadJavascript(cmbForReduce.Text); }
-            );
-            foreach (var item in SystemManager.GetJsNameList())
-            {
-                cmbForfinalize.Items.Add(item);
-                cmbForReduce.Items.Add(item);
-            }
-
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             List<String> MongoColumn = MongoDBHelper.GetCollectionSchame(mongoCol);
             Point _conditionPos = new Point(50, 20);
@@ -148,10 +136,8 @@ namespace MagicMongoDBTool
 
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                lblReduceFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_Reduce);
-                cmdSaveReduceJs.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
-                lblfinalizeFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_Finalize);
-                cmdSavefinalizeJs.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
+                ctlReduce.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_Reduce);
+                ctlFinalize.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_Finalize);
                 lblSelectGroupField.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_Group_Notes);
                 lblAddInitField.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_InitColumn_Note);
                 cmdAddInitField.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Group_Tab_InitColumn);
@@ -161,33 +147,6 @@ namespace MagicMongoDBTool
             }
 
         }
-        /// <summary>
-        /// 保存Reduce
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdSaveReduceJs_Click(object sender, EventArgs e)
-        {
-            if (this.txtReduceJs.Text != String.Empty)
-            {
-                String strJsName = MyMessageBox.ShowInput("Input Javascript Name：", "Save Javascript");
-                MongoDBHelper.CreateNewJavascript(strJsName, txtReduceJs.Text);
-            }
-        }
-        /// <summary>
-        /// 保存finalize
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdForSavefinalize_Click(object sender, EventArgs e)
-        {
-            if (this.txtfinalizeJs.Text != String.Empty)
-            {
-                String strJsName = MyMessageBox.ShowInput("Input Javascript Name：", "Save Javascript");
-                MongoDBHelper.CreateNewJavascript(strJsName, txtfinalizeJs.Text);
-            }
-        }
-
         /// <summary>
         /// 添加初始化字段
         /// </summary>

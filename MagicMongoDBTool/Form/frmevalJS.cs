@@ -22,27 +22,16 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Title);
-                lblFunction.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Method);
+                ctlEval.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Method);
                 lblParm.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Parameter);
                 cmdEval.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Run);
-                cmdSaveJs.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
             }
-            cmbFuncLst.SelectedIndexChanged += new EventHandler(
-             (x, y) => { txtevalJs.Text = MongoDBHelper.LoadJavascript(cmbFuncLst.Text); }
-            );
-        }
-        /// <summary>
-        /// save map js
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cmdSaveMapJs_Click(object sender, EventArgs e)
-        {
-            if (txtevalJs.Text != String.Empty)
-            {
-                String strJsName = MyMessageBox.ShowInput("Input Javascript Name：", "Save Javascript");
-                MongoDBHelper.CreateNewJavascript(strJsName, txtevalJs.Text);
-            }
+            ctlEval.Context =
+@"function eval(){
+var i = 0;
+i++;
+return i;
+}";
         }
         /// <summary>
         /// eval Javascript
@@ -52,7 +41,7 @@ namespace MagicMongoDBTool
         private void cmdEval_Click(object sender, EventArgs e)
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
-            BsonJavaScript js = new BsonJavaScript(txtevalJs.Text);
+            BsonJavaScript js = new BsonJavaScript(ctlEval.Context);
             List<Object> Params = new List<Object>();
             if (txtParm.Text != String.Empty)
             {

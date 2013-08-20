@@ -12,7 +12,7 @@
     <AssemblyName>Mongo-Cola</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <PublishUrl>C:\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -99,6 +99,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserController\ctlTextMgr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ctlTextMgr.Designer.cs">
+      <DependentUpon>ctlTextMgr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\frmTextSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -497,6 +503,9 @@
     <Compile Include="UserController\TreeViewColumns.Designer.cs">
       <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserController\ctlTextMgr.resx">
+      <DependentUpon>ctlTextMgr.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmArrayCreator.resx">
       <DependentUpon>frmArrayCreator.cs</DependentUpon>
     </EmbeddedResource>

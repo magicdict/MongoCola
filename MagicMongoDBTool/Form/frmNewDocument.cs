@@ -75,13 +75,16 @@ namespace MagicMongoDBTool
                 SystemManager.ExceptionDeal(ex);
             }
         }
-
+        /// <summary>
+        /// 保存文档
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdSaveDocument_Click(object sender, EventArgs e)
         {
             if (txtDocument.Text != string.Empty)
             {
-                String strJsName = MyMessageBox.ShowInput("pls Input Aggregate Name：", "Save Aggregate");
-                MongoDBHelper.CreateNewJavascript(strJsName, txtDocument.Text);
+                SystemManager.SaveTextFile(txtDocument.Text,MongoDBHelper.TxtFilter);
             }
         }
     }

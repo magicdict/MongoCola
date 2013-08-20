@@ -232,6 +232,36 @@ namespace MagicMongoDBTool.Module
             }
         }
         /// <summary>
+        /// Javascript文件的保存
+        /// </summary>
+        /// <param name="Result"></param>
+        public static void SaveJavascriptFile(String Result)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = MongoDBHelper.JsFilter;
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                StreamWriter writer = new StreamWriter(dialog.FileName, false);
+                writer.Write(Result);
+                writer.Close();
+            }
+        }
+        /// <summary>
+        /// Javascript文件的保存
+        /// </summary>
+        /// <param name="Result"></param>
+        public static void SaveTextFile(String Result,String Filter)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = Filter;
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                StreamWriter writer = new StreamWriter(dialog.FileName, false);
+                writer.Write(Result);
+                writer.Close();
+            }
+        }
+        /// <summary>
         /// 获得JS名称列表
         /// </summary>
         /// <returns></returns>
