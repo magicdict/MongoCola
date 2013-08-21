@@ -359,6 +359,8 @@
   <Common_Value>値</Common_Value>
   <Common_Type>タイプ</Common_Type>
   <Common_Roles>角色</Common_Roles>
+  <Common_Validate>立証</Common_Validate>
+
   <Common_Browse>参照</Common_Browse>
   <Common_Clear>クリア</Common_Clear>
   <Common_Test>テスト</Common_Test>

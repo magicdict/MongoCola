@@ -66,7 +66,7 @@
             // 
             this.cmdOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(408, 9);
+            this.cmdOK.Location = new System.Drawing.Point(408, 0);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(117, 37);
             this.cmdOK.TabIndex = 7;
@@ -78,7 +78,7 @@
             // 
             this.cmdDetails.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.cmdDetails.BackColor = System.Drawing.Color.Transparent;
-            this.cmdDetails.Location = new System.Drawing.Point(36, 9);
+            this.cmdDetails.Location = new System.Drawing.Point(36, 0);
             this.cmdDetails.Name = "cmdDetails";
             this.cmdDetails.Size = new System.Drawing.Size(117, 37);
             this.cmdDetails.TabIndex = 8;
@@ -91,9 +91,9 @@
             this.panForBgcolor.Controls.Add(this.cmdOK);
             this.panForBgcolor.Controls.Add(this.cmdDetails);
             this.panForBgcolor.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panForBgcolor.Location = new System.Drawing.Point(0, 229);
+            this.panForBgcolor.Location = new System.Drawing.Point(0, 241);
             this.panForBgcolor.Name = "panForBgcolor";
-            this.panForBgcolor.Size = new System.Drawing.Size(556, 50);
+            this.panForBgcolor.Size = new System.Drawing.Size(556, 38);
             this.panForBgcolor.TabIndex = 9;
             // 
             // picImage

@@ -59,6 +59,7 @@ namespace MagicMongoDBTool
             if (_ShowDetails)
             {
                 this.Height = 130;
+                this.panForBgcolor.BringToFront();
             }
             else
             {

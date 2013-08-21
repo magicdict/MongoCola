@@ -31,7 +31,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.cmdClose = new System.Windows.Forms.Button();
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbChartField = new System.Windows.Forms.ComboBox();
             this.btnOpCnt = new System.Windows.Forms.Button();
@@ -41,13 +41,13 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(358, 498);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(125, 28);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.cmdClose.Location = new System.Drawing.Point(358, 498);
+            this.cmdClose.Name = "btnClose";
+            this.cmdClose.Size = new System.Drawing.Size(125, 28);
+            this.cmdClose.TabIndex = 1;
+            this.cmdClose.Text = "Close";
+            this.cmdClose.UseVisualStyleBackColor = true;
+            this.cmdClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // chartResult
             // 
@@ -104,7 +104,7 @@
             this.Controls.Add(this.cmbChartField);
             this.Controls.Add(this.chartResult);
             this.Controls.Add(this.trvStatus);
-            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.cmdClose);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmStatus";
             this.Text = "Status";
@@ -116,7 +116,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button cmdClose;
         private TreeViewColumnsProject.TreeViewColumns trvStatus;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartResult;
         private System.Windows.Forms.ComboBox cmbChartField;

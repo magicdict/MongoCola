@@ -17,6 +17,8 @@ namespace MagicMongoDBTool
             {
                 this.cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
                 this.cmdClose.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Close);
+                this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Validate);
+                this.cmdValidate.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Validate);
             }
             cmdSave.Enabled = false;
         }

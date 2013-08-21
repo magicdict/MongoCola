@@ -343,6 +343,7 @@ namespace MagicMongoDBTool.Module
             Common_Value,
             Common_Type,
             Common_Roles,
+            Common_Validate,
 
             //MessageBox
             Create_New_DataBase,

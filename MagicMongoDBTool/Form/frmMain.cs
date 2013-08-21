@@ -112,6 +112,8 @@ namespace MagicMongoDBTool
             this.InitGFSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_InitGFS);
             this.ProfillingLevelToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
             this.AggregationToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Aggregation);
+            this.validateToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Validate);
+
 
             this.DumpAndRestoreToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore);
             this.RestoreMongoToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Restore);
@@ -914,11 +916,18 @@ namespace MagicMongoDBTool
         /// </summary>
         private void InitToolBar()
         {
+
+            ExpandAllConnectionToolStripButton = this.ExpandAllConnectionToolStripMenuItem.CloneFromMenuItem();
+            CollapseAllConnectionToolStripButton = this.CollapseAllConnectionToolStripMenuItem.CloneFromMenuItem();
             RefreshToolStripButton = this.RefreshToolStripMenuItem.CloneFromMenuItem();
+            ExitToolStripButton = this.ExitToolStripMenuItem.CloneFromMenuItem();
+
             ImportDataFromAccessToolStripButton = this.ImportDataFromAccessToolStripMenuItem.CloneFromMenuItem();
             ShutDownToolStripButton = this.ShutDownToolStripMenuItem.CloneFromMenuItem();
+
             OptionToolStripButton = this.OptionsToolStripMenuItem.CloneFromMenuItem();
             UserGuideToolStripButton = this.UserGuideToolStripMenuItem.CloneFromMenuItem();
+            //暂时不对应MONO
             if (SystemManager.MONO_MODE)
             {
                 RefreshToolStripButton.Click += new System.EventHandler(RefreshToolStripMenuItem_Click);
@@ -926,13 +935,19 @@ namespace MagicMongoDBTool
                 OptionToolStripButton.Click += new System.EventHandler(OptionToolStripMenuItem_Click);
                 UserGuideToolStripButton.Click += new System.EventHandler(userGuideToolStripMenuItem_Click);
             }
-            else
-            {
-                this.toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
-            }
             //Main ToolTip
+            this.toolStripMain.Items.Add(ExpandAllConnectionToolStripButton);
+            this.toolStripMain.Items.Add(CollapseAllConnectionToolStripButton);
             this.toolStripMain.Items.Add(RefreshToolStripButton);
+            this.toolStripMain.Items.Add(ExitToolStripButton);
+
+            this.toolStripMain.Items.Add(new ToolStripSeparator());
+ 
+            this.toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
             this.toolStripMain.Items.Add(ShutDownToolStripButton);
+
+            this.toolStripMain.Items.Add(new ToolStripSeparator());
+
             this.toolStripMain.Items.Add(OptionToolStripButton);
             this.toolStripMain.Items.Add(UserGuideToolStripButton);
 

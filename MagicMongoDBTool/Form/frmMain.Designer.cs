@@ -1012,11 +1012,19 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.ToolStripMenuItem ExpandAllConnectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CollapseAllConnectionToolStripMenuItem;
 
-        private ToolStripButton ImportDataFromAccessToolStripButton;
+
+        private ToolStripButton ExpandAllConnectionToolStripButton;
+        private ToolStripButton CollapseAllConnectionToolStripButton;
         private ToolStripButton RefreshToolStripButton;
+        private ToolStripButton ExitToolStripButton;
+        
+        private ToolStripButton ImportDataFromAccessToolStripButton;
         private ToolStripButton OptionToolStripButton;
+
         private ToolStripButton UserGuideToolStripButton;
         private ToolStripButton ShutDownToolStripButton;
+
+
 
         private ToolStripMenuItem DumpAndRestoreToolStripMenuItem;
         private ToolStripMenuItem RestoreMongoToolStripMenuItem;

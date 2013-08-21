@@ -105,6 +105,7 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+                this.cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
             }
             MongoDBHelper.FillDataToTreeView(strType, this.trvStatus, DocStatus);
             this.trvStatus.DatatreeView.Nodes[0].Expand();
