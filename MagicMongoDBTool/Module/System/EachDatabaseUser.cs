@@ -18,16 +18,30 @@ namespace MagicMongoDBTool.Module
             if (UserList.ContainsKey(DatabaseName)) {
                 roles = UserList[DatabaseName].roles;
             }
+            ///Admin和当前数据库角色合并
+            BsonArray adminRoles = GetOtherDBRoles(DatabaseName);
+            foreach (String item in adminRoles)
+            {
+                if (!roles.Contains(item)) {
+                    roles.Add(item);
+                }
+            }
             return roles;
         }
         /// <summary>
         /// 获得Admin的otherDBRoles
         /// </summary>
         /// <returns></returns>
-        public BsonDocument GetOtherDBRoles() {
-            BsonDocument roles = new BsonDocument();
+        public BsonArray GetOtherDBRoles(String DataBaseName)
+        {
+            BsonArray roles = new BsonArray();
+            BsonDocument OtherDBRoles = new BsonDocument();
             if (UserList.ContainsKey(MongoDBHelper.DATABASE_NAME_ADMIN)) {
-                roles = UserList[MongoDBHelper.DATABASE_NAME_ADMIN].otherDBRoles;
+                OtherDBRoles = UserList[MongoDBHelper.DATABASE_NAME_ADMIN].otherDBRoles;
+                if (OtherDBRoles!=null && OtherDBRoles.Contains(DataBaseName))
+                {
+                    roles = OtherDBRoles[DataBaseName].AsBsonArray;
+                }
             }
             return roles;
         }
@@ -49,6 +63,10 @@ namespace MagicMongoDBTool.Module
                UserList.Add(db.Name, user); 
            }
         }
+        /// <summary>
+        /// 重载ToString方法
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             String UserInfo = String.Empty;

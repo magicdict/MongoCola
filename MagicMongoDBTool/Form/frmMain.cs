@@ -498,6 +498,7 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.DATABASE_TAG:
                     case MongoDBHelper.SINGLE_DATABASE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
+                        MongoDBHelper.GetCurrentDBRoles();
                         if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected DataBase:" + SystemManager.SelectTagData;

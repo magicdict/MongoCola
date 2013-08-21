@@ -66,7 +66,7 @@ namespace MagicMongoDBTool.Module
             //必须要Hash一下Password
             document["pwd"] = MongoUser.HashPassword(user.Username, user.Password);
             //OtherRole 必须放在Admin.system.users里面
-            if (Col.Name == MongoDBHelper.DATABASE_NAME_ADMIN)
+            if (Col.Database.Name == MongoDBHelper.DATABASE_NAME_ADMIN)
             {
                 document["otherDBRoles"] = user.otherDBRoles;
             }
@@ -94,6 +94,18 @@ namespace MagicMongoDBTool.Module
             }
             users.Remove(MongoDB.Driver.Builders.Query.EQ("user", strUser));
         }
+        /// <summary>
+        /// 获得用户当前角色
+        /// </summary>
+        /// <returns></returns>
+        public static BsonArray GetCurrentDBRoles() {
+            BsonArray Roles = new BsonArray();
+            String ConnectionName = SystemManager.GetCurrentServerConfig().ConnectionName;
+            String DBName = SystemManager.GetCurrentDataBase().Name;
+            Roles =_mongoUserLst[ConnectionName].GetRolesByDBName(DBName);
+            return Roles;
+        }
+
         #endregion
     }
 }
