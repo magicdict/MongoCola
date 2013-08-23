@@ -2,6 +2,7 @@
 using MagicMongoDBTool.UnitTest;
 using MagicMongoDBTool.UserController;
 using MongoDB.Driver;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -498,7 +499,7 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.DATABASE_TAG:
                     case MongoDBHelper.SINGLE_DATABASE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        MongoDBHelper.GetCurrentDBRoles();
+                        BsonArray roles = MongoDBHelper.GetCurrentDBRoles();
                         if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected DataBase:" + SystemManager.SelectTagData;
@@ -507,11 +508,11 @@ namespace MagicMongoDBTool
                         {
                             statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_DataBase) + ":" + SystemManager.SelectTagData;
                         }
-                        //解禁 删除数据库 创建数据集
+                        //系统库不允许修改
                         if (!MongoDBHelper.IsSystemDataBase(SystemManager.GetCurrentDataBase()))
                         {
-                            //系统库不允许修改
-                            if (!config.IsReadOnly)
+                            //根据Roles确定删除数据库/创建数据集等的权限
+                            if (roles.Contains(MongoDBHelper.UserRole_dbAdmin))
                             {
                                 this.DelMongoDBToolStripMenuItem.Enabled = true;
                                 this.CreateMongoCollectionToolStripMenuItem.Enabled = true;

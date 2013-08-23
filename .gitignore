@@ -19,6 +19,7 @@
 /MagicMongoDBTool/obj
 /MagicMongoDBTool/_UpgradeReport_Files
 /MagicMongoDBTool/Backup
+/MagicMongoDBTool/packages
 /CNBLOGS
 !readme.txt
 !app.config
