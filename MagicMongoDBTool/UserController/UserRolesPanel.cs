@@ -9,8 +9,28 @@ namespace MagicMongoDBTool.UserController
         public UserRolesPanel()
         {
             InitializeComponent();
-            if (!SystemManager.IsUseDefaultLanguage) {
+            if (!SystemManager.IsUseDefaultLanguage)
+            {
                 grpRoles.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Roles);
+            }
+        }
+        public Boolean IsAdmin
+        {
+            set
+            {
+                if (!value)
+                {
+                    //Note:Any Database Roles
+                    //You must specify the following “any” database roles on the admin databases. 
+                    //These roles apply to all databases in a mongod instance and are roughly equivalent to their single-database equivalents.
+                    //If you add any of these roles to a user privilege document outside of the admin database,
+                    //the privilege will have no effect. However, only the specification of the roles must occur in the admin database, 
+                    //with delegated authentication credentials, users can gain these privileges by authenticating to another database.
+                    chkdbAdminAnyDatabase.Enabled = false;
+                    chkreadAnyDatabase.Enabled = false;
+                    chkreadWriteAnyDatabase.Enabled = false;
+                    chkuserAdminAnyDatabase.Enabled = false;
+                }
             }
         }
         public BsonArray getRoles()

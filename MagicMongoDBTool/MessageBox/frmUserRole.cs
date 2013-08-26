@@ -13,7 +13,8 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
             Result = orgRoles;
-            userRolesPanel1.setRoles(Result);
+            otherDBRolesPanel.setRoles(Result);
+            otherDBRolesPanel.IsAdmin = false;
             if (!SystemManager.IsUseDefaultLanguage) {
                 cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
                 cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);
@@ -22,7 +23,7 @@ namespace MagicMongoDBTool
 
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            Result = userRolesPanel1.getRoles();
+            Result = otherDBRolesPanel.getRoles();
             this.Close();
         }
 

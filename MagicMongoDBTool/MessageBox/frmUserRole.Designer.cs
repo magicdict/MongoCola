@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.userRolesPanel1 = new MagicMongoDBTool.UserController.UserRolesPanel();
+            this.otherDBRolesPanel = new MagicMongoDBTool.UserController.UserRolesPanel();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // userRolesPanel1
             // 
-            this.userRolesPanel1.Location = new System.Drawing.Point(12, 12);
-            this.userRolesPanel1.Name = "userRolesPanel1";
-            this.userRolesPanel1.Size = new System.Drawing.Size(359, 183);
-            this.userRolesPanel1.TabIndex = 0;
+            this.otherDBRolesPanel.Location = new System.Drawing.Point(12, 12);
+            this.otherDBRolesPanel.Name = "userRolesPanel1";
+            this.otherDBRolesPanel.Size = new System.Drawing.Size(359, 183);
+            this.otherDBRolesPanel.TabIndex = 0;
             // 
             // cmdOK
             // 
@@ -68,7 +68,7 @@
             this.ClientSize = new System.Drawing.Size(377, 238);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
-            this.Controls.Add(this.userRolesPanel1);
+            this.Controls.Add(this.otherDBRolesPanel);
             this.Name = "frmUserRole";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "UserRole";
@@ -78,7 +78,7 @@
 
         #endregion
 
-        private UserController.UserRolesPanel userRolesPanel1;
+        private UserController.UserRolesPanel otherDBRolesPanel;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.Button cmdCancel;
     }

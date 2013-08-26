@@ -512,16 +512,38 @@ namespace MagicMongoDBTool
                         if (!MongoDBHelper.IsSystemDataBase(SystemManager.GetCurrentDataBase()))
                         {
                             //根据Roles确定删除数据库/创建数据集等的权限
-                            if (roles.Contains(MongoDBHelper.UserRole_dbAdmin))
+                            if (roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
                             {
                                 this.DelMongoDBToolStripMenuItem.Enabled = true;
+                            }
+                            if (roles.Contains(MongoDBHelper.UserRole_readWrite) ||
+                                roles.Contains(MongoDBHelper.UserRole_readWriteAnyDatabase) ||
+                                roles.Contains(MongoDBHelper.UserRole_dbAdmin))
+                            {
                                 this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
-                                this.AddUserToolStripMenuItem.Enabled = true;
                                 this.InitGFSToolStripMenuItem.Enabled = true;
+                            }
+                            if (roles.Contains(MongoDBHelper.UserRole_userAdmin) ||
+                                roles.Contains(MongoDBHelper.UserRole_userAdminAnyDatabase))
+                            {
+                                this.AddUserToolStripMenuItem.Enabled = true;
+                            }
+                            if (roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
+                            {
                                 ///If a Slave server can repair database @ Master-Slave is not sure ??
                                 this.RepairDBToolStripMenuItem.Enabled = true;
                             }
-                            this.evalJSToolStripMenuItem.Enabled = true;
+
+                            //http://docs.mongodb.org/manual/reference/user-privileges/
+                            //Combined Access
+                            //Requires readWriteAnyDatabase, userAdminAnyDatabase, dbAdminAnyDatabase and clusterAdmin (on the admin database.)
+                            if (roles.Contains(MongoDBHelper.UserRole_readWriteAnyDatabase) &&
+                                roles.Contains(MongoDBHelper.UserRole_userAdminAnyDatabase) &&
+                                roles.Contains(MongoDBHelper.UserRole_dbAdminAnyDatabase) &&
+                                roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
+                            {
+                                this.evalJSToolStripMenuItem.Enabled = true;
+                            }
                         }
                         //备份数据库
                         this.DumpDatabaseToolStripMenuItem.Enabled = true;
@@ -944,7 +966,7 @@ namespace MagicMongoDBTool
             this.toolStripMain.Items.Add(ExitToolStripButton);
 
             this.toolStripMain.Items.Add(new ToolStripSeparator());
- 
+
             this.toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
             this.toolStripMain.Items.Add(ShutDownToolStripButton);
 
@@ -1403,7 +1425,8 @@ namespace MagicMongoDBTool
                     {
                         DisableAllOpr();
                     }
-                    else {
+                    else
+                    {
                         MyMessageBox.ShowMessage("Error", "Create MongoDatabase", strRusult, true);
                     }
                 }
@@ -1438,13 +1461,13 @@ namespace MagicMongoDBTool
         {
             //foreach (var item in MongoDBHelper._mongoUserLst.Keys)
             //{
-                String ConnectionName = SystemManager.GetCurrentServerConfig().ConnectionName;
-                String info = MongoDBHelper._mongoUserLst[ConnectionName].ToString();
-                if (!string.IsNullOrEmpty(info))
-                {
-                    MyMessageBox.ShowMessage(SystemManager.IsUseDefaultLanguage?"UserInformation":SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_UserInfo),
-                        "The User Information of：[" + SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName].UserName + "]", info, true);
-                }
+            String ConnectionName = SystemManager.GetCurrentServerConfig().ConnectionName;
+            String info = MongoDBHelper._mongoUserLst[ConnectionName].ToString();
+            if (!string.IsNullOrEmpty(info))
+            {
+                MyMessageBox.ShowMessage(SystemManager.IsUseDefaultLanguage ? "UserInformation" : SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_UserInfo),
+                    "The User Information of：[" + SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName].UserName + "]", info, true);
+            }
             //}
         }
         /// <summary>
@@ -1558,7 +1581,8 @@ namespace MagicMongoDBTool
                     }
                     tempTable = null;
                 }
-                else {
+                else
+                {
                     MyMessageBox.ShowMessage("Error", "Error", rtnResult, true);
                 }
             }
@@ -1669,7 +1693,8 @@ namespace MagicMongoDBTool
                         SystemManager.SelectObjectTag = jsNode.Tag.ToString();
                         ViewJavascript();
                     }
-                    else {
+                    else
+                    {
                         MyMessageBox.ShowMessage("Error", "Create Javascript Error", Result, true);
                     }
                 }
@@ -1841,7 +1866,8 @@ namespace MagicMongoDBTool
                 this.trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
                 DisableAllOpr();
             }
-            else {
+            else
+            {
                 MyMessageBox.ShowMessage("Delete Error", "A error is happened when delete javascript", Result, true);
             }
         }

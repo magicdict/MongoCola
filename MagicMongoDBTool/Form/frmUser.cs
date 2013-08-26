@@ -29,6 +29,7 @@ namespace MagicMongoDBTool
                 //Admin以外的不能有otherDBRoles
                 this.Width = this.Width / 2;
             }
+            userRoles.IsAdmin = IsAdmin;
         }
         /// <summary>
         /// frmUser

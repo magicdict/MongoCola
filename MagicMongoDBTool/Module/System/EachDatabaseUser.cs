@@ -15,15 +15,34 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public BsonArray GetRolesByDBName(String DatabaseName) {
             BsonArray roles = new BsonArray();
+            //当前DB的System.user的角色
             if (UserList.ContainsKey(DatabaseName)) {
                 roles = UserList[DatabaseName].roles;
             }
-            ///Admin和当前数据库角色合并
+            ///Admin的OtherDBRoles和当前数据库角色合并
             BsonArray adminRoles = GetOtherDBRoles(DatabaseName);
             foreach (String item in adminRoles)
             {
                 if (!roles.Contains(item)) {
                     roles.Add(item);
+                }
+            }
+            ///ADMIN的ANY系角色的追加
+            if (UserList.ContainsKey(MongoDBHelper.DATABASE_NAME_ADMIN)) { 
+                if (UserList[MongoDBHelper.DATABASE_NAME_ADMIN].roles.Contains(MongoDBHelper.UserRole_dbAdminAnyDatabase)){
+                    roles.Add(MongoDBHelper.UserRole_dbAdminAnyDatabase);
+                }
+                if (UserList[MongoDBHelper.DATABASE_NAME_ADMIN].roles.Contains(MongoDBHelper.UserRole_readAnyDatabase))
+                {
+                    roles.Add(MongoDBHelper.UserRole_readAnyDatabase);
+                }
+                if (UserList[MongoDBHelper.DATABASE_NAME_ADMIN].roles.Contains(MongoDBHelper.UserRole_readWriteAnyDatabase))
+                {
+                    roles.Add(MongoDBHelper.UserRole_readWriteAnyDatabase);
+                }
+                if (UserList[MongoDBHelper.DATABASE_NAME_ADMIN].roles.Contains(MongoDBHelper.UserRole_userAdminAnyDatabase))
+                {
+                    roles.Add(MongoDBHelper.UserRole_userAdminAnyDatabase);
                 }
             }
             return roles;
