@@ -1,7 +1,7 @@
-﻿using MongoDB.Bson;
+﻿using MagicMongoDBTool.Module;
+using MongoDB.Bson;
 using System;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {

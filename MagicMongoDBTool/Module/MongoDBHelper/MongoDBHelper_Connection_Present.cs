@@ -34,7 +34,7 @@ namespace MagicMongoDBTool.Module
                     mongoSrv.Connect();
                     ///mongoSvr.ReplicaSetName只有在连接后才有效，但是也可以使用Config.ReplsetName
                     ConnectionNode.Text = mongoConnKey;
-                    ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, null, mongoSrv, UserList));
+                    ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, ref config, mongoSrv, null, mongoSrv, UserList));
                     if (mongoSrv.ReplicaSetName != null)
                     {
                         ConnectionNode.Tag = CONNECTION_REPLSET_TAG + ":" + config.ConnectionName;
@@ -43,7 +43,7 @@ namespace MagicMongoDBTool.Module
                         ServerListNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers;
                         foreach (MongoServerInstance ServerInstace in mongoSrv.Instances)
                         {
-                            ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, ServerInstace, null, UserList));
+                            ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, ref config, mongoSrv, ServerInstace, null, UserList));
                         }
                         ConnectionNode.Nodes.Add(ServerListNode);
                         config.ServerRole = ConfigHelper.SvrRoleType.ReplsetSvr;
@@ -98,7 +98,7 @@ namespace MagicMongoDBTool.Module
                                     }
                                     tinySetting.Server = SecondaryAddr;
                                     MongoServer ReplsetMember = new MongoClient(tinySetting).GetServer();
-                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, config, mongoSrv, ReplsetMember.Instance, null, UserList));
+                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, ref config, mongoSrv, ReplsetMember.Instance, null, UserList));
                                 }
                                 ShardListNode.Nodes.Add(ShardNode);
                             }
@@ -260,13 +260,14 @@ namespace MagicMongoDBTool.Module
         /// 获取实例节点
         /// </summary>
         /// <param name="mongoConnKey"></param>
-        /// <param name="config"></param>
+        /// <param name="config">由于是结构体，必须ref</param>
         /// <param name="mongoConn"></param>
         /// <param name="mMasterServerInstace"></param>
         /// <param name="mServer"></param>
+        /// <param name="UserList"></param>
         /// <returns></returns>
         private static TreeNode GetInstanceNode(String mongoConnKey,
-                                                ConfigHelper.MongoConnectionConfig config,
+                                                ref ConfigHelper.MongoConnectionConfig config,
                                                 MongoServer mongoConn,
                                                 MongoServerInstance mMasterServerInstace,
                                                 MongoServer mServer,
@@ -300,6 +301,7 @@ namespace MagicMongoDBTool.Module
             }
             if ((!String.IsNullOrEmpty(config.UserName)) & (!String.IsNullOrEmpty(config.Password)))
             {
+                //是否是认证模式，应该取决于服务器！
                 config.AuthMode = true;
             }
             //获取ReadOnly

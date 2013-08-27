@@ -511,26 +511,36 @@ namespace MagicMongoDBTool
                         //系统库不允许修改
                         if (!MongoDBHelper.IsSystemDataBase(SystemManager.GetCurrentDataBase()))
                         {
-                            //根据Roles确定删除数据库/创建数据集等的权限
-                            if (roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
+                            if (config.AuthMode)
                             {
-                                this.DelMongoDBToolStripMenuItem.Enabled = true;
+                                //根据Roles确定删除数据库/创建数据集等的权限
+                                if (roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
+                                {
+                                    this.DelMongoDBToolStripMenuItem.Enabled = true;
+                                }
+                                if (roles.Contains(MongoDBHelper.UserRole_readWrite) ||
+                                    roles.Contains(MongoDBHelper.UserRole_readWriteAnyDatabase) ||
+                                    roles.Contains(MongoDBHelper.UserRole_dbAdmin))
+                                {
+                                    this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
+                                    this.InitGFSToolStripMenuItem.Enabled = true;
+                                }
+                                if (roles.Contains(MongoDBHelper.UserRole_userAdmin) ||
+                                    roles.Contains(MongoDBHelper.UserRole_userAdminAnyDatabase))
+                                {
+                                    this.AddUserToolStripMenuItem.Enabled = true;
+                                }
+                                if (roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
+                                {
+                                    ///If a Slave server can repair database @ Master-Slave is not sure ??
+                                    this.RepairDBToolStripMenuItem.Enabled = true;
+                                }
                             }
-                            if (roles.Contains(MongoDBHelper.UserRole_readWrite) ||
-                                roles.Contains(MongoDBHelper.UserRole_readWriteAnyDatabase) ||
-                                roles.Contains(MongoDBHelper.UserRole_dbAdmin))
-                            {
+                            else {
+                                this.DelMongoDBToolStripMenuItem.Enabled = true;
                                 this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                                 this.InitGFSToolStripMenuItem.Enabled = true;
-                            }
-                            if (roles.Contains(MongoDBHelper.UserRole_userAdmin) ||
-                                roles.Contains(MongoDBHelper.UserRole_userAdminAnyDatabase))
-                            {
                                 this.AddUserToolStripMenuItem.Enabled = true;
-                            }
-                            if (roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
-                            {
-                                ///If a Slave server can repair database @ Master-Slave is not sure ??
                                 this.RepairDBToolStripMenuItem.Enabled = true;
                             }
 

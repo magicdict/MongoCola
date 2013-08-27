@@ -4,7 +4,7 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
-        //各种节点的Tag前缀
+        #region"各种节点的Tag前缀"
         /// <summary>
         /// 普通连接
         /// </summary>
@@ -95,6 +95,8 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public const String ServerStatus_PROCESS_MONGOD = "mongod";
 
+        #endregion
+
         #region"系统数据集名称常量"
         /// <summary>
         /// Default Port(Mongod)
@@ -160,8 +162,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public const String COLLECTION_NAME_JAVASCRIPT = "system.js";
         #endregion
-
-
+        
         #region"用户角色"
         public const String UserRole_read = "read";
         public const String UserRole_readWrite = "readWrite";
@@ -178,6 +179,9 @@ namespace MagicMongoDBTool.Module
 
         
         #endregion
+
+        #region"其他"
+
         /// <summary>
         /// 查询条件构成控件用常量
         /// </summary>
@@ -223,5 +227,7 @@ namespace MagicMongoDBTool.Module
         /// TempFileFolder
         /// </summary>
         public const String TempFileFolder = "TempFile";
+        #endregion
+
     }
 }

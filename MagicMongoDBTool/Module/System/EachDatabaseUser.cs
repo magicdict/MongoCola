@@ -2,7 +2,6 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using MagicMongoDBTool.Module;
 namespace MagicMongoDBTool.Module
 {
     public class EachDatabaseUser
