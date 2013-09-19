@@ -12,7 +12,7 @@ namespace MagicMongoDBTool
         }
         private void frmOption_Load(object sender, EventArgs e)
         {
-            this.ctlFilePickerMongoBinPath.SelectedPath = SystemManager.ConfigHelperInstance.MongoBinPath;
+            this.ctlFilePickerMongoBinPath.SelectedPathOrFileName = SystemManager.ConfigHelperInstance.MongoBinPath;
             //this.numLimitCnt.Value = SystemManager.ConfigHelperInstance.LimitCnt;
             this.numRefreshForStatus.Value = SystemManager.ConfigHelperInstance.RefreshStatusTimer;
             this.cmbLanguage.Items.Add("English");
@@ -53,7 +53,7 @@ namespace MagicMongoDBTool
         }
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            SystemManager.ConfigHelperInstance.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPath;
+            SystemManager.ConfigHelperInstance.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPathOrFileName;
             SystemManager.ConfigHelperInstance.RefreshStatusTimer = (int)this.numRefreshForStatus.Value;
             SystemManager.ConfigHelperInstance.LanguageFileName = this.cmbLanguage.Text;
             SystemManager.ConfigHelperInstance.SaveToConfigFile();

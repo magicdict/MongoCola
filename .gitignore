@@ -14,7 +14,7 @@
 *.pdb
 *.doc
 /WeiBoApp
-/Daruma
+/DarumaTool
 /UnitTest
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj

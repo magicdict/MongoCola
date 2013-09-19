@@ -1939,6 +1939,21 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmValidate(), true, true);
         }
+        /// <summary>
+        /// 导出到Excel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataFilter Query = new DataFilter();
+            String ColPath = SystemManager.SelectTagData;
+            Boolean IsUseFilter = false;
+            if (ViewInfoList.ContainsKey(ColPath))
+            {
+                SystemManager.OpenForm(new frmExport(ViewInfoList[ColPath]), true, true);
+            }
+        }
         #endregion
 
         #region"管理：备份和恢复"
@@ -2307,6 +2322,8 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmUnitTest(), true, true);
         }
         #endregion
+
+
 
 
 

@@ -26,8 +26,8 @@ namespace MagicMongoDBTool
             set
             {
                 lblTitle.Text = value;
-                txtLogPath.Left = lblTitle.Right + 4;
-                txtLogPath.Width = cmdBrowse.Left - lblTitle.Right - 8;
+                txtPathName.Left = lblTitle.Right + 4;
+                txtPathName.Width = cmdBrowse.Left - lblTitle.Right - 8;
             }
         }
 
@@ -52,10 +52,10 @@ namespace MagicMongoDBTool
         /// <summary>
         /// 选中路径
         /// </summary>
-        public String SelectedPath
+        public String SelectedPathOrFileName
         {
-            get { return txtLogPath.Text; }
-            set { txtLogPath.Text = value; }
+            get { return txtPathName.Text; }
+            set { txtPathName.Text = value; }
         }
         public ctlFilePicker()
         {
@@ -78,7 +78,7 @@ namespace MagicMongoDBTool
                     }
                     if (Openfd.ShowDialog() == DialogResult.OK)
                     {
-                        txtLogPath.Text = Openfd.FileName;
+                        txtPathName.Text = Openfd.FileName;
                     }
                     break;
                 case DialogType.SaveFile:
@@ -89,14 +89,14 @@ namespace MagicMongoDBTool
                     }
                     if (Savefd.ShowDialog() == DialogResult.OK)
                     {
-                        txtLogPath.Text = Savefd.FileName;
+                        txtPathName.Text = Savefd.FileName;
                     }
                     break;
                 case DialogType.Directory:
                     FolderBrowserDialog fd = new FolderBrowserDialog();
                     if (fd.ShowDialog() == DialogResult.OK)
                     {
-                        this.txtLogPath.Text = fd.SelectedPath;
+                        this.txtPathName.Text = fd.SelectedPath;
                     }
                     break;
                 default:
@@ -104,7 +104,7 @@ namespace MagicMongoDBTool
             }
             if (PathChanged != null)
             {
-                PathChanged(txtLogPath.Text);
+                PathChanged(txtPathName.Text);
             }
         }
 
@@ -115,10 +115,10 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdClearPath_Click(object sender, EventArgs e)
         {
-            txtLogPath.Text = String.Empty;
+            txtPathName.Text = String.Empty;
             if (PathChanged != null)
             {
-                PathChanged(txtLogPath.Text);
+                PathChanged(txtPathName.Text);
             }
         }
         /// <summary>

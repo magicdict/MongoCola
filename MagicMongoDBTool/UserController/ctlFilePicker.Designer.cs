@@ -30,7 +30,7 @@
         {
             this.cmdClearPath = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.txtLogPath = new System.Windows.Forms.TextBox();
+            this.txtPathName = new System.Windows.Forms.TextBox();
             this.cmdBrowse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -58,13 +58,13 @@
             // 
             // txtLogPath
             // 
-            this.txtLogPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLogPath.BackColor = System.Drawing.Color.White;
-            this.txtLogPath.Location = new System.Drawing.Point(36, 5);
-            this.txtLogPath.Name = "txtLogPath";
-            this.txtLogPath.ReadOnly = true;
-            this.txtLogPath.Size = new System.Drawing.Size(523, 20);
-            this.txtLogPath.TabIndex = 8;
+            this.txtPathName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPathName.BackColor = System.Drawing.Color.White;
+            this.txtPathName.Location = new System.Drawing.Point(36, 5);
+            this.txtPathName.Name = "txtLogPath";
+            this.txtPathName.ReadOnly = true;
+            this.txtPathName.Size = new System.Drawing.Size(523, 20);
+            this.txtPathName.TabIndex = 8;
             // 
             // cmdBrowse
             // 
@@ -85,7 +85,7 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.cmdClearPath);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.txtLogPath);
+            this.Controls.Add(this.txtPathName);
             this.Controls.Add(this.cmdBrowse);
             this.Name = "ctlFilePicker";
             this.Size = new System.Drawing.Size(739, 33);
@@ -99,7 +99,7 @@
 
         private System.Windows.Forms.Button cmdClearPath;
         private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.TextBox txtLogPath;
+        private System.Windows.Forms.TextBox txtPathName;
         private System.Windows.Forms.Button cmdBrowse;
     }
 }

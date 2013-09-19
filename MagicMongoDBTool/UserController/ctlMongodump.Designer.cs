@@ -56,7 +56,7 @@
             this.ctlFilePickerOutput.Location = new System.Drawing.Point(33, 98);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
             this.ctlFilePickerOutput.PickerType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
-            this.ctlFilePickerOutput.SelectedPath = "";
+            this.ctlFilePickerOutput.SelectedPathOrFileName = "";
             this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 41);
             this.ctlFilePickerOutput.TabIndex = 1;
             this.ctlFilePickerOutput.Title = "BackUpPath";
