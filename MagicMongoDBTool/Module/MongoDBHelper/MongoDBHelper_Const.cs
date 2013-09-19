@@ -200,6 +200,10 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public const String Document_Mark = "[DOCUMENT]";
         /// <summary>
+        /// Excel文件选择过滤器
+        /// </summary>
+        public const String ExcelFilter = "*.Excel(Excel File)|*.xls";
+        /// <summary>
         /// XML文件选择过滤器
         /// </summary>
         public const String XmlFilter = "*.xml(Xml File)|*.xml";

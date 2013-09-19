@@ -11,7 +11,7 @@ namespace MagicMongoDBTool.Module
     public static partial class MongoDBHelper
     {
         /// <summary>
-        /// ActionDone
+        /// 通用的ActionDone事件
         /// </summary>
         public static EventHandler<ActionDoneEventArgs> ActionDone;
         /// <summary>

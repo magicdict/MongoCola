@@ -9,13 +9,20 @@ namespace MagicMongoDBTool.Module
     {
         public static void ExportToExcel(DataViewInfo CurrentDataViewInfo, String ExcelFileName)
         {
-            String collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
-            String[] cp = collectionPath.Split("/".ToCharArray());
-            MongoServer mServer = SystemManager.GetCurrentServer();
-            MongoCollection mongoCol = mServer.GetDatabase(cp[(int)PathLv.DatabaseLV]).GetCollection(cp[(int)PathLv.CollectionLV]);
+            MongoCollection mongoCol;
+            if (CurrentDataViewInfo == null)
+            {
+                mongoCol = SystemManager.GetCurrentCollection();
+            }
+            else {
+                String collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
+                String[] cp = collectionPath.Split("/".ToCharArray());
+                MongoServer mServer = SystemManager.GetCurrentServer();
+                mongoCol = mServer.GetDatabase(cp[(int)PathLv.DatabaseLV]).GetCollection(cp[(int)PathLv.CollectionLV]);
+            }
             MongoCursor<BsonDocument> cursor;
             //Query condition:
-            if (CurrentDataViewInfo.IsUseFilter)
+            if (CurrentDataViewInfo != null && CurrentDataViewInfo.IsUseFilter)
             {
                 cursor = mongoCol.FindAs<BsonDocument>(GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
                                    .SetFields(GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
@@ -28,6 +35,7 @@ namespace MagicMongoDBTool.Module
             List<BsonDocument> dataList = cursor.ToList();
             ExportToExcel(dataList, ExcelFileName);
             GC.Collect();
+            OnActionDone(new ActionDoneEventArgs(" Completeed "));
         }
 
         static void ExportToExcel(List<BsonDocument> dataList, String filename)
@@ -55,6 +63,7 @@ namespace MagicMongoDBTool.Module
             foreach (var item in Schame)
             {
                 worksheet.Cells(rowCount, colCount).Value = item;
+                colCount++;
             }
             rowCount++;
             foreach (BsonDocument docItem in dataList)

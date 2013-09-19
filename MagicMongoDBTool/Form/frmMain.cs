@@ -113,7 +113,7 @@ namespace MagicMongoDBTool
             this.InitGFSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_InitGFS);
             this.ProfillingLevelToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
             this.AggregationToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Aggregation);
-            this.validateToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Validate);
+            this.ValidateToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Validate);
 
 
             this.DumpAndRestoreToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore);
@@ -123,7 +123,7 @@ namespace MagicMongoDBTool
             this.ImportCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Import);
             this.ExportCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Export);
             this.creatJavaScriptToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_CreateJavaScript);
-            this.viewDataToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_View);
+            this.ViewDataToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_View);
             this.dropJavascriptToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DropJavaScript);
 
             //Tool
@@ -164,7 +164,7 @@ namespace MagicMongoDBTool
         {
             this.trvsrvlst.NodeMouseClick += new TreeNodeMouseClickEventHandler(trvsrvlst_NodeMouseClick);
             this.trvsrvlst.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler((x, y) => { this.ViewDataObj(); });
-            this.viewDataToolStripMenuItem.Click += new System.EventHandler((x, y) => { this.ViewDataObj(); });
+            this.ViewDataToolStripMenuItem.Click += new System.EventHandler((x, y) => { this.ViewDataObj(); });
             this.trvsrvlst.KeyDown += new KeyEventHandler(trvsrvlst_KeyDown);
             DisableAllOpr();
             //Set Tool bar button enable 
@@ -673,9 +673,10 @@ namespace MagicMongoDBTool
                         this.DumpCollectionToolStripMenuItem.Enabled = true;
                         this.ExportCollectionToolStripMenuItem.Enabled = true;
                         this.AggregationToolStripMenuItem.Enabled = true;
-                        this.viewDataToolStripMenuItem.Enabled = true;
+                        this.ViewDataToolStripMenuItem.Enabled = true;
                         this.CollectionStatusToolStripMenuItem.Enabled = true;
-                        this.validateToolStripMenuItem.Enabled = true;
+                        this.ValidateToolStripMenuItem.Enabled = true;
+                        this.ExportToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
@@ -712,7 +713,7 @@ namespace MagicMongoDBTool
 
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
 
-                                ToolStripMenuItem t8 = this.viewDataToolStripMenuItem.Clone();
+                                ToolStripMenuItem t8 = this.ViewDataToolStripMenuItem.Clone();
                                 t8.Click += new EventHandler(
                                     (x, y) => { ViewDataObj(); }
                                  );
@@ -765,14 +766,15 @@ namespace MagicMongoDBTool
                                 this.contextMenuStripMain.Items.Add(this.ExportCollectionToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.CompactToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
-                                this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ViewDataToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.AggregationToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
                                 this.contextMenuStripMain.Items.Add(this.IndexManageToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.ReIndexToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(new ToolStripSeparator());
                                 this.contextMenuStripMain.Items.Add(this.CollectionStatusToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.validateToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ValidateToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ExportToolStripMenuItem.Clone());
                             }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -807,13 +809,13 @@ namespace MagicMongoDBTool
                         {
                             statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_UserList) + ":" + SystemManager.SelectTagData;
                         }
-                        this.viewDataToolStripMenuItem.Enabled = true;
+                        this.ViewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
                             if (SystemManager.MONO_MODE)
                             {
-                                ToolStripMenuItem t8 = this.viewDataToolStripMenuItem.Clone();
+                                ToolStripMenuItem t8 = this.ViewDataToolStripMenuItem.Clone();
                                 t8.Click += new EventHandler(
                                     (x, y) => { ViewDataObj(); }
                                  );
@@ -821,7 +823,7 @@ namespace MagicMongoDBTool
                             }
                             else
                             {
-                                this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ViewDataToolStripMenuItem.Clone());
                             }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -839,13 +841,13 @@ namespace MagicMongoDBTool
                             statusStripMain.Items[0].Text = SystemManager.mStringResource.GetText(StringResource.TextType.Selected_GFS) + ":" + SystemManager.SelectTagData;
                         }
 
-                        this.viewDataToolStripMenuItem.Enabled = true;
+                        this.ViewDataToolStripMenuItem.Enabled = true;
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
                             this.contextMenuStripMain = new ContextMenuStrip();
                             if (SystemManager.MONO_MODE)
                             {
-                                ToolStripMenuItem t8 = this.viewDataToolStripMenuItem.Clone();
+                                ToolStripMenuItem t8 = this.ViewDataToolStripMenuItem.Clone();
                                 t8.Click += new EventHandler(
                                     (x, y) => { ViewDataObj(); }
                                  );
@@ -853,7 +855,7 @@ namespace MagicMongoDBTool
                             }
                             else
                             {
-                                this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ViewDataToolStripMenuItem.Clone());
                             }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
@@ -861,7 +863,7 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelper.JAVASCRIPT_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        this.viewDataToolStripMenuItem.Enabled = true;
+                        this.ViewDataToolStripMenuItem.Enabled = true;
                         if (!config.IsReadOnly)
                         {
                             creatJavaScriptToolStripMenuItem.Enabled = true;
@@ -886,7 +888,7 @@ namespace MagicMongoDBTool
                         break;
                     case MongoDBHelper.JAVASCRIPT_DOC_TAG:
                         statusStripMain.Items[0].Text = "Selected JavaScript:" + SystemManager.SelectTagData;
-                        this.viewDataToolStripMenuItem.Enabled = true;
+                        this.ViewDataToolStripMenuItem.Enabled = true;
                         this.dropJavascriptToolStripMenuItem.Enabled = true;
 
                         if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -894,7 +896,7 @@ namespace MagicMongoDBTool
                             this.contextMenuStripMain = new ContextMenuStrip();
                             if (SystemManager.MONO_MODE)
                             {
-                                ToolStripMenuItem t1 = this.viewDataToolStripMenuItem.Clone();
+                                ToolStripMenuItem t1 = this.ViewDataToolStripMenuItem.Clone();
                                 t1.Click += new EventHandler(
                                     (x, y) => { ViewDataObj(); }
                                  );
@@ -905,7 +907,7 @@ namespace MagicMongoDBTool
                             }
                             else
                             {
-                                this.contextMenuStripMain.Items.Add(this.viewDataToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.ViewDataToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.dropJavascriptToolStripMenuItem.Clone());
                             }
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
@@ -1209,12 +1211,13 @@ namespace MagicMongoDBTool
             this.RenameCollectionToolStripMenuItem.Enabled = false;
             this.DelMongoCollectionToolStripMenuItem.Enabled = false;
             this.CompactToolStripMenuItem.Enabled = false;
-            this.viewDataToolStripMenuItem.Enabled = false;
+            this.ViewDataToolStripMenuItem.Enabled = false;
             this.AggregationToolStripMenuItem.Enabled = false;
             this.creatJavaScriptToolStripMenuItem.Enabled = false;
             this.dropJavascriptToolStripMenuItem.Enabled = false;
             this.CollectionStatusToolStripMenuItem.Enabled = false;
-            this.validateToolStripMenuItem.Enabled = false;
+            this.ValidateToolStripMenuItem.Enabled = false;
+            this.ExportToolStripMenuItem.Enabled = false;
             this.ProfillingLevelToolStripMenuItem.Enabled = false;
 
             //管理-备份和恢复
@@ -1948,10 +1951,14 @@ namespace MagicMongoDBTool
         {
             DataFilter Query = new DataFilter();
             String ColPath = SystemManager.SelectTagData;
-            Boolean IsUseFilter = false;
             if (ViewInfoList.ContainsKey(ColPath))
             {
+                //
                 SystemManager.OpenForm(new frmExport(ViewInfoList[ColPath]), true, true);
+            }
+            else {
+                //从菜单中选择，直接导出所有的数据
+                SystemManager.OpenForm(new frmExport(), true, true);
             }
         }
         #endregion

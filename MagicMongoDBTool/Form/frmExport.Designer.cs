@@ -63,6 +63,7 @@
             this.Controls.Add(this.ctlExcelFilePicker);
             this.Name = "frmExport";
             this.Text = "frmExport";
+            this.Load += new System.EventHandler(this.frmExport_Load);
             this.ResumeLayout(false);
 
         }

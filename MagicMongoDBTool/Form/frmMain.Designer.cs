@@ -98,10 +98,11 @@ namespace MagicMongoDBTool
             this.mapReduceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aggregateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ViewDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dropJavascriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CollectionStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.validateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ValidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DumpAndRestoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RestoreMongoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DumpDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -132,7 +133,6 @@ namespace MagicMongoDBTool
             this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.ctlShellCommandEditor = new MagicMongoDBTool.ctlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -575,11 +575,11 @@ namespace MagicMongoDBTool
             this.CompactToolStripMenuItem,
             this.toolStripMenuItem8,
             this.AggregationToolStripMenuItem,
-            this.viewDataToolStripMenuItem,
+            this.ViewDataToolStripMenuItem,
             this.dropJavascriptToolStripMenuItem,
             this.CollectionStatusToolStripMenuItem,
-            this.validateToolStripMenuItem,
-            this.exportToolStripMenuItem});
+            this.ValidateToolStripMenuItem,
+            this.ExportToolStripMenuItem});
             this.DataCollectionToolStripMenuItem.Name = "DataCollectionToolStripMenuItem";
             this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.DataCollectionToolStripMenuItem.Text = "Collection";
@@ -682,10 +682,10 @@ namespace MagicMongoDBTool
             // 
             // viewDataToolStripMenuItem
             // 
-            this.viewDataToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.View;
-            this.viewDataToolStripMenuItem.Name = "viewDataToolStripMenuItem";
-            this.viewDataToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.viewDataToolStripMenuItem.Text = "ViewData";
+            this.ViewDataToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.View;
+            this.ViewDataToolStripMenuItem.Name = "viewDataToolStripMenuItem";
+            this.ViewDataToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.ViewDataToolStripMenuItem.Text = "ViewData";
             // 
             // dropJavascriptToolStripMenuItem
             // 
@@ -704,10 +704,17 @@ namespace MagicMongoDBTool
             // 
             // validateToolStripMenuItem
             // 
-            this.validateToolStripMenuItem.Name = "validateToolStripMenuItem";
-            this.validateToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.validateToolStripMenuItem.Text = "Validate";
-            this.validateToolStripMenuItem.Click += new System.EventHandler(this.validateToolStripMenuItem_Click);
+            this.ValidateToolStripMenuItem.Name = "validateToolStripMenuItem";
+            this.ValidateToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.ValidateToolStripMenuItem.Text = "Validate";
+            this.ValidateToolStripMenuItem.Click += new System.EventHandler(this.validateToolStripMenuItem_Click);
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.ExportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.ExportToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.ExportToolStripMenuItem.Text = "Export To File";
+            this.ExportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // DumpAndRestoreToolStripMenuItem
             // 
@@ -955,13 +962,6 @@ namespace MagicMongoDBTool
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
-            // exportToolStripMenuItem
-            // 
-            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.exportToolStripMenuItem.Text = "Export";
-            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1075,7 +1075,7 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem distinctToolStripMenuItem;
         private ToolStripMenuItem groupToolStripMenuItem;
         private ToolStripMenuItem mapReduceToolStripMenuItem;
-        private ToolStripMenuItem viewDataToolStripMenuItem;
+        private ToolStripMenuItem ViewDataToolStripMenuItem;
         private ToolStripMenuItem ProfillingLevelToolStripMenuItem;
         private ToolStripMenuItem creatJavaScriptToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator1;
@@ -1104,9 +1104,9 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem ForMySelfToolStripMenuItem;
         private ToolStripMenuItem aggregateToolStripMenuItem;
         private ToolStripMenuItem textSearchToolStripMenuItem;
-        private ToolStripMenuItem validateToolStripMenuItem;
+        private ToolStripMenuItem ValidateToolStripMenuItem;
         private ToolStripMenuItem CopyDatabasetoolStripMenuItem;
         private ToolStripMenuItem UserInfoStripMenuItem;
-        private ToolStripMenuItem exportToolStripMenuItem;
+        private ToolStripMenuItem ExportToolStripMenuItem;
     }
 }
