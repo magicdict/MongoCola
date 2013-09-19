@@ -1636,7 +1636,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void evalJSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmevalJS(), true, true);
+            SystemManager.OpenForm(new frmEvalJS(), true, true);
         }
         /// <summary>
         /// Repair DataBase
@@ -2078,7 +2078,8 @@ namespace MagicMongoDBTool
             MongoImportExport.Port = Mongosrv.Address.Port;
             MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
             MongoImportExport.CollectionName = SystemManager.GetCurrentCollection().Name;
-            OpenFileDialog dumpFile = new OpenFileDialog();
+            SaveFileDialog dumpFile = new SaveFileDialog();
+            dumpFile.Filter = MongoDBHelper.TxtFilter;
             //if the file not exist,the server will create a new one
             dumpFile.CheckFileExists = false;
             if (dumpFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)

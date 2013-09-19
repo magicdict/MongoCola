@@ -1,6 +1,6 @@
 ﻿namespace MagicMongoDBTool
 {
-    partial class frmevalJS
+    partial class frmEvalJS
     {
         /// <summary>
         /// Required designer variable.

@@ -56,6 +56,15 @@ namespace MagicMongoDBTool.Module
             Text
         }
         /// <summary>
+        /// 导出类型
+        /// </summary>
+        public enum ExportType
+        {
+            Excel,
+            Text,
+            XML
+        }
+        /// <summary>
         /// Text Search 时候能指定的语言枚举
         /// </summary>
         public enum TextSearchLanguage

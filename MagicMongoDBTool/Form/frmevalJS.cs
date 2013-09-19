@@ -6,9 +6,9 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmevalJS : System.Windows.Forms.Form
+    public partial class frmEvalJS : System.Windows.Forms.Form
     {
-        public frmevalJS()
+        public frmEvalJS()
         {
             InitializeComponent();
         }

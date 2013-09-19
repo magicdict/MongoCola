@@ -3,18 +3,20 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
-        public static void ExportToExcel(DataViewInfo CurrentDataViewInfo, String ExcelFileName)
+        public static void ExportToFile(DataViewInfo CurrentDataViewInfo, String ExcelFileName, ExportType exportType)
         {
             MongoCollection mongoCol;
             if (CurrentDataViewInfo == null)
             {
                 mongoCol = SystemManager.GetCurrentCollection();
             }
-            else {
+            else
+            {
                 String collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
                 String[] cp = collectionPath.Split("/".ToCharArray());
                 MongoServer mServer = SystemManager.GetCurrentServer();
@@ -33,11 +35,37 @@ namespace MagicMongoDBTool.Module
                 cursor = mongoCol.FindAllAs<BsonDocument>();
             }
             List<BsonDocument> dataList = cursor.ToList();
-            ExportToExcel(dataList, ExcelFileName);
-            GC.Collect();
+            switch (exportType)
+            {
+                case ExportType.Excel:
+                    ExportToExcel(dataList, ExcelFileName);
+                    GC.Collect();
+                    break;
+                case ExportType.Text:
+                    ExportToJson(dataList, ExcelFileName);
+                    break;
+                case ExportType.XML:
+                    break;
+                default:
+                    break;
+            }
             OnActionDone(new ActionDoneEventArgs(" Completeed "));
         }
-
+        /// <summary>
+        /// 导出到TEXT
+        /// </summary>
+        /// <param name="dataList"></param>
+        /// <param name="filename"></param>
+        static void ExportToJson(List<BsonDocument> dataList, String filename) {
+            StreamWriter sw = new StreamWriter(filename, false);
+            sw.Write(dataList.ToJson(SystemManager.JsonWriterSettings));
+            sw.Close();
+        }
+        /// <summary>
+        /// 导出到Excel
+        /// </summary>
+        /// <param name="dataList"></param>
+        /// <param name="filename"></param>
         static void ExportToExcel(List<BsonDocument> dataList, String filename)
         {
             List<String> Schame = GetCollectionSchame(SystemManager.GetCurrentCollection());
@@ -51,7 +79,8 @@ namespace MagicMongoDBTool.Module
                 workbook = excelObj.Workbooks.Open(filename);
                 worksheet = workbook.Sheets(1);
             }
-            else {
+            else
+            {
                 IsNew = true;
                 workbook = excelObj.WorkBooks.Add();
                 worksheet = workbook.Sheets(1);
@@ -104,9 +133,12 @@ namespace MagicMongoDBTool.Module
                 }
                 rowCount++;
             }
-            if (IsNew) {
+            if (IsNew)
+            {
                 workbook.SaveAs(filename);
-            }else{
+            }
+            else
+            {
                 workbook.Save();
             }
             //workbook.Close();

@@ -9,6 +9,7 @@ namespace MagicMongoDBTool
         public delegate void PathChangedHandler(String FilePath);
         public event PathChangedHandler PathChanged;
         private String _FileFilter = String.Empty;
+        private String _FileName = String.Empty;
         /// <summary>
         /// 文件过滤
         /// </summary>
@@ -16,6 +17,14 @@ namespace MagicMongoDBTool
         {
             get { return _FileFilter; }
             set { _FileFilter = value; }
+        }
+        /// <summary>
+        /// 文件过滤
+        /// </summary>
+        public String FileName
+        {
+            get { return _FileName; }
+            set { _FileName = value; }
         }
         /// <summary>
         /// 标题
@@ -71,32 +80,34 @@ namespace MagicMongoDBTool
             switch (_dialogType)
             {
                 case DialogType.OpenFile:
-                    OpenFileDialog Openfd = new OpenFileDialog();
+                    OpenFileDialog openFile = new OpenFileDialog();
+                    openFile.FileName = _FileName;
                     if (_FileFilter != String.Empty)
                     {
-                        Openfd.Filter = _FileFilter;
+                        openFile.Filter = _FileFilter;
                     }
-                    if (Openfd.ShowDialog() == DialogResult.OK)
+                    if (openFile.ShowDialog() == DialogResult.OK)
                     {
-                        txtPathName.Text = Openfd.FileName;
+                        txtPathName.Text = openFile.FileName;
                     }
                     break;
                 case DialogType.SaveFile:
-                    SaveFileDialog Savefd = new SaveFileDialog();
+                    SaveFileDialog saveFile = new SaveFileDialog();
+                    saveFile.FileName = _FileName;
                     if (_FileFilter != String.Empty)
                     {
-                        Savefd.Filter = _FileFilter;
+                        saveFile.Filter = _FileFilter;
                     }
-                    if (Savefd.ShowDialog() == DialogResult.OK)
+                    if (saveFile.ShowDialog() == DialogResult.OK)
                     {
-                        txtPathName.Text = Savefd.FileName;
+                        txtPathName.Text = saveFile.FileName;
                     }
                     break;
                 case DialogType.Directory:
-                    FolderBrowserDialog fd = new FolderBrowserDialog();
-                    if (fd.ShowDialog() == DialogResult.OK)
+                    FolderBrowserDialog folder = new FolderBrowserDialog();
+                    if (folder.ShowDialog() == DialogResult.OK)
                     {
-                        this.txtPathName.Text = fd.SelectedPath;
+                        this.txtPathName.Text = folder.SelectedPath;
                     }
                     break;
                 default:
