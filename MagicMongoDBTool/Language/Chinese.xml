@@ -49,6 +49,7 @@
   <Main_Menu_Operation_DataCollection_CreateJavaScript>新建Javascript</Main_Menu_Operation_DataCollection_CreateJavaScript>
   <Main_Menu_Operation_DataCollection_DropJavaScript>删除Javascript</Main_Menu_Operation_DataCollection_DropJavaScript>
   <Main_Menu_Operation_DataCollection_View>查看数据</Main_Menu_Operation_DataCollection_View>
+  <Main_Menu_Operation_DataCollection_ExportToFile>导出到文件</Main_Menu_Operation_DataCollection_ExportToFile>
 
 
   <Main_Menu_Operation_DataDocument>文档</Main_Menu_Operation_DataDocument>
@@ -360,6 +361,7 @@
   <Common_Type>类型</Common_Type>
   <Common_Roles>角色</Common_Roles>
   <Common_Validate>验证</Common_Validate>
+  <Common_Search>检索</Common_Search>
   
   <Common_Browse>浏览</Common_Browse>
   <Common_Clear>清除</Common_Clear>

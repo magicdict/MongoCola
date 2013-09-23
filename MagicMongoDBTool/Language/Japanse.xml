@@ -49,7 +49,7 @@
   <Main_Menu_Operation_DataCollection_CreateJavaScript>Javascriptの新規</Main_Menu_Operation_DataCollection_CreateJavaScript>
   <Main_Menu_Operation_DataCollection_DropJavaScript>Javascriptの削除</Main_Menu_Operation_DataCollection_DropJavaScript>
   <Main_Menu_Operation_DataCollection_View>ビュー</Main_Menu_Operation_DataCollection_View>
-
+  <Main_Menu_Operation_DataCollection_ExportToFile>导出到文件</Main_Menu_Operation_DataCollection_ExportToFile>
 
   <Main_Menu_Operation_DataDocument>ドキュメント</Main_Menu_Operation_DataDocument>
   <Main_Menu_Operation_DataDocument_AddElement>エレメントの追加</Main_Menu_Operation_DataDocument_AddElement>
@@ -360,6 +360,7 @@
   <Common_Type>タイプ</Common_Type>
   <Common_Roles>角色</Common_Roles>
   <Common_Validate>立証</Common_Validate>
+  <Common_Search>检索</Common_Search>
 
   <Common_Browse>参照</Common_Browse>
   <Common_Clear>クリア</Common_Clear>

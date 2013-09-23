@@ -12,8 +12,9 @@ namespace MagicMongoDBTool
             InitializeComponent();
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                this.cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
-                this.cmdClose.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Close);
+                this.btnSearch.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Search);
+                this.cmdSave.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
+                this.cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
             }
             //加载语言列表
             cmbLanguage.Items.Clear();

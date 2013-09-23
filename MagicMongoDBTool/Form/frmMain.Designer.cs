@@ -102,7 +102,7 @@ namespace MagicMongoDBTool
             this.dropJavascriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CollectionStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ValidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DumpAndRestoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RestoreMongoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DumpDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -579,7 +579,7 @@ namespace MagicMongoDBTool
             this.dropJavascriptToolStripMenuItem,
             this.CollectionStatusToolStripMenuItem,
             this.ValidateToolStripMenuItem,
-            this.ExportToolStripMenuItem});
+            this.ExportToFileToolStripMenuItem});
             this.DataCollectionToolStripMenuItem.Name = "DataCollectionToolStripMenuItem";
             this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.DataCollectionToolStripMenuItem.Text = "Collection";
@@ -711,10 +711,10 @@ namespace MagicMongoDBTool
             // 
             // exportToolStripMenuItem
             // 
-            this.ExportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.ExportToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.ExportToolStripMenuItem.Text = "Export To File";
-            this.ExportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
+            this.ExportToFileToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.ExportToFileToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.ExportToFileToolStripMenuItem.Text = "Export To File";
+            this.ExportToFileToolStripMenuItem.Click += new System.EventHandler(this.ExportToFileToolStripMenuItem_Click);
             // 
             // DumpAndRestoreToolStripMenuItem
             // 
@@ -1107,6 +1107,6 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem ValidateToolStripMenuItem;
         private ToolStripMenuItem CopyDatabasetoolStripMenuItem;
         private ToolStripMenuItem UserInfoStripMenuItem;
-        private ToolStripMenuItem ExportToolStripMenuItem;
+        private ToolStripMenuItem ExportToFileToolStripMenuItem;
     }
 }

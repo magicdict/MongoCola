@@ -52,7 +52,7 @@ namespace MagicMongoDBTool.Module
             Main_Menu_Operation_DataCollection_CreateJavaScript,
             Main_Menu_Operation_DataCollection_DropJavaScript,
             Main_Menu_Operation_DataCollection_View,
-
+            Main_Menu_Operation_DataCollection_ExportToFile,
             Main_Menu_Operation_DataDocument,
             Main_Menu_Operation_DataDocument_AddElement,
             Main_Menu_Operation_DataDocument_DropElement,
@@ -344,6 +344,7 @@ namespace MagicMongoDBTool.Module
             Common_Type,
             Common_Roles,
             Common_Validate,
+            Common_Search,
 
             //MessageBox
             Create_New_DataBase,

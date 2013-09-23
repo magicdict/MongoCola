@@ -27,6 +27,7 @@ namespace MagicMongoDBTool
             optXML.CheckedChanged += optExportType_CheckedChanged;
             if (!SystemManager.IsUseDefaultLanguage) {
                 btnSave.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
+                this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_ExportToFile);
             }
         }
         /// <summary>
