@@ -536,7 +536,8 @@ namespace MagicMongoDBTool
                                     this.RepairDBToolStripMenuItem.Enabled = true;
                                 }
                             }
-                            else {
+                            else
+                            {
                                 this.DelMongoDBToolStripMenuItem.Enabled = true;
                                 this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
                                 this.InitGFSToolStripMenuItem.Enabled = true;
@@ -1258,6 +1259,34 @@ namespace MagicMongoDBTool
         {
             if (SystemManager.SelectTagType != MongoDBHelper.CONNECTION_EXCEPTION_TAG)
             {
+                //关闭相关的Tab
+                List<String> CloseList = new List<string>();
+                foreach (var item in ViewTabList.Keys)
+                {
+                    if (item.StartsWith(config.ConnectionName + "/"))
+                    {
+                        CloseList.Add(item);
+                    }
+                }
+                foreach (String CloseTabKey in CloseList)
+                {
+                    tabView.Controls.Remove(ViewTabList[CloseTabKey]);
+                    ViewTabList[CloseTabKey] = null;
+                    ViewTabList.Remove(CloseTabKey);
+                    ViewInfoList.Remove(CloseTabKey);
+                    String MenuKey = String.Empty;
+                    ToolStripMenuItem CloseMenuItem = null;
+                    foreach (ToolStripMenuItem menuitem in collectionToolStripMenuItem.DropDownItems)
+                    {
+                        MenuKey = menuitem.Tag.ToString();
+                        MenuKey = MenuKey.Substring(MenuKey.IndexOf(":") + 1);
+                        if (CloseTabKey == MenuKey) { CloseMenuItem = menuitem; }
+                    }
+                    if (CloseMenuItem != null)
+                    {
+                        collectionToolStripMenuItem.DropDownItems.Remove(CloseMenuItem);
+                    }
+                }
                 SystemManager.GetCurrentServer().Disconnect();
             }
             MongoDBHelper._mongoConnSvrLst.Remove(config.ConnectionName);
@@ -1956,7 +1985,8 @@ namespace MagicMongoDBTool
                 //
                 SystemManager.OpenForm(new frmExport(ViewInfoList[ColPath]), true, true);
             }
-            else {
+            else
+            {
                 //从菜单中选择，直接导出所有的数据
                 SystemManager.OpenForm(new frmExport(), true, true);
             }
