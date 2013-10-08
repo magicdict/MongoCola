@@ -52,14 +52,14 @@ namespace DarumaTool
                                 LineNo = IfSet.SyntaxList[0].LineNo,
                                 NestLv = IfSet.SyntaxList[0].NestLv,
                                 ExtendInfo = "上記以外",
-                                Result = "処理なし"
+                                Result = "次の処理を行う。"
                             });
                         }
                         else
                         {
                             Syntax elseSyntax = new Syntax();
                             elseSyntax = IfSet.SyntaxList[1];
-                            elseSyntax.ExtendInfo = String.Empty;
+                            elseSyntax.ExtendInfo = "上記以外";
                             IfSet.SyntaxList[1] = elseSyntax;
                         }
                         foreach (Section Section in SectionList)
@@ -133,7 +133,8 @@ namespace DarumaTool
                                 SyntaxType = SyntaxList[i].SyntaxType + "-NOT",
                                 LineNo = RepeatSet.SyntaxList[0].LineNo,
                                 NestLv = RepeatSet.SyntaxList[0].NestLv,
-                                ExtendInfo = String.Empty //GetOpsiteCondition(RepeatSet.SyntaxList[0].ExtendInfo)
+                                ExtendInfo = "上記以外",
+                                Result = "次の処理を行う。"
                             });
                         }
                         else
@@ -143,6 +144,8 @@ namespace DarumaTool
                                 SyntaxType = "END-GET",
                                 LineNo = RepeatSet.SyntaxList[0].LineNo,
                                 NestLv = RepeatSet.SyntaxList[0].NestLv,
+                                ExtendInfo = "上記以外",
+                                Result = "次の処理を行う。"
                             });
                         }
                         foreach (Section Section in SectionList)
@@ -204,7 +207,8 @@ namespace DarumaTool
                                 SyntaxType = "WHEN",
                                 LineNo = CaseSet.SyntaxList[0].LineNo,
                                 NestLv = CaseSet.SyntaxList[0].NestLv,
-                                ExtendInfo = "OTHER"
+                                ExtendInfo = "OTHER",
+                                Result = "処理なし"
                             });
                         }
                         ///放入指定的Section中
@@ -243,6 +247,7 @@ namespace DarumaTool
                         }
                         break;
                     case "CALL":
+                    case "MACRO":
                     case "ZGISTDOPN":
                     case "ZGISTDGET":
                     case "ZGISTDPUT":
@@ -286,41 +291,65 @@ namespace DarumaTool
             {
                 //如果下一个是CALL，阶层是IF的下一层，则Call/PERFROM作为IF的期待结果
                 newSyntax = SyntaxList[i];
-                if (newSyntax.NestLv == SyntaxList[i + 1].NestLv - 1)
+                for (int t = i; t < SyntaxList.Count - 1; t++)
                 {
-                    switch (SyntaxList[i + 1].SyntaxType)
+                    if (newSyntax.NestLv == SyntaxList[t + 1].NestLv - 1)
                     {
-                        case "ABORT":
-                            newSyntax.Result = "共通マクロ@ZGIAPABRTで、プログラムを中止させます";
-                            break;
-                        case "CALL":
-                            newSyntax.Result = "[%" + SyntaxList[i + 1].ExtendInfo.Trim() + "%]を呼出す";
-                            break;
-                        case "PERFORM":
-                            newSyntax.Result = "[ " + SyntaxList[i + 1].ExtendInfo.Trim() + " ]へ遷移します";
-                            break;
-                        case "ERROR":
-                            newSyntax.Result = "[ " + SyntaxList[i + 1].ExtendInfo.Trim() + " ]へ遷移し、エラー処理を実行します";
-                            break;
-                        case "IF":
-                            //最后通过LineNo，替换出BranchNo
-                            newSyntax.Result = "%" + SyntaxList[i + 1].LineNo + "% の分岐の判定の処理に移る";
-                            break;
-                        case "CASE":
-                            //最后通过LineNo，替换出BranchNo
-                            newSyntax.Result = "%" + SyntaxList[i + 1].LineNo + "% の多分岐の判定の処理に移る";
-                            break;
-                        case "FOR":
-                        case "LOOP":
-                        case "WHILE":
-                        case "REPEAT":
-                            //最后通过LineNo，替换出BranchNo
-                            newSyntax.Result = "%" + SyntaxList[i + 1].LineNo + "% のループの処理に移る";
-                            break;
-                        default:
-                            break;
+                        newSyntax = GetResultAfter(SyntaxList, t, newSyntax);
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
+            }
+            return newSyntax;
+        }
+
+        private static Syntax GetResultAfter(List<Syntax> SyntaxList, int t, Syntax newSyntax)
+        {
+            if (!String.IsNullOrEmpty(newSyntax.Result))
+            {
+                newSyntax.Result += "&";
+            }
+            switch (SyntaxList[t + 1].SyntaxType)
+            {
+                case "ABORT":
+                    newSyntax.Result += "共通マクロ@ZGIAPABRTで、プログラムを中止させます";
+                    break;
+                case "CALL":
+                    newSyntax.Result += "[%" + SyntaxList[t + 1].ExtendInfo.Trim() + "%]を呼出す";
+                    break;
+                case "MACRO":
+                    newSyntax.Result += "[#" + SyntaxList[t + 1].ExtendInfo.Trim() + "#]を呼出す";
+                    break;
+                case "PERFORM":
+                    newSyntax.Result += "[ " + SyntaxList[t + 1].ExtendInfo.Trim() + " ]へ遷移します";
+                    break;
+                case "ERROR":
+                    newSyntax.Result += "[ " + SyntaxList[t + 1].ExtendInfo.Trim() + " ]へ遷移し、エラー処理を実行します";
+                    break;
+                case "IF":
+                    //最后通过LineNo，替换出BranchNo
+                    newSyntax.Result += "%" + SyntaxList[t + 1].LineNo + "% の分岐の判定の処理に移る";
+                    break;
+                case "CASE":
+                    //最后通过LineNo，替换出BranchNo
+                    newSyntax.Result += "%" + SyntaxList[t + 1].LineNo + "% の多分岐の判定の処理に移る";
+                    break;
+                case "FOR":
+                case "LOOP":
+                case "WHILE":
+                case "REPEAT":
+                    //最后通过LineNo，替换出BranchNo
+                    newSyntax.Result += "%" + SyntaxList[t + 1].LineNo + "% のループの処理に移る";
+                    break;
+                default:
+                    if (!String.IsNullOrEmpty(newSyntax.Result))
+                    {
+                        newSyntax.Result = newSyntax.Result.TrimEnd("&".ToCharArray());
+                    }
+                    break;
             }
             return newSyntax;
         }
@@ -368,6 +397,10 @@ namespace DarumaTool
                     case "CALL":
                         //CALL MODULE
                         CurrentSyntaxSet.ExtendInfo = "CALL:" + PreSyntax.SyntaxList[0].ExtendInfo;
+                        break;
+                    case "MACRO":
+                        //CALL MODULE
+                        CurrentSyntaxSet.ExtendInfo = "MACRO:" + PreSyntax.SyntaxList[0].ExtendInfo;
                         break;
                     case "ZGISTDOPN":
                     case "ZGISTDCLS":

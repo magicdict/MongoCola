@@ -119,10 +119,9 @@ namespace DarumaTool
                 {
                     if (i + MathsOpt.Length <= ConditionString.Length && ConditionString.Substring(i, MathsOpt.Length) == MathsOpt)
                     {
-                        int t;
-                        if (int.TryParse(TestItem, out t))
+                        if (IsConst(TestItem))
                         {
-                            //如果大小比较的左侧是数字，则获得右边的东西 10 = A
+                            //如果大小比较的左侧是常数，则获得右边的东西 10 = A
                             PickerStatus = true;
                         }
                         else

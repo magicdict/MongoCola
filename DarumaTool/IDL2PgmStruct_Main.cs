@@ -47,6 +47,9 @@ namespace DarumaTool
             /// </summary>
             public String Result;
         }
+        /// <summary>
+        /// SyntaxSet
+        /// </summary>
         public struct SyntaxSet
         {
             public String SyntaxSetType;
@@ -67,6 +70,9 @@ namespace DarumaTool
             /// </summary>
             public String ExtendInfo;
         }
+        /// <summary>
+        /// Section
+        /// </summary>
         public struct Section
         {
             public String SectionName;
@@ -88,9 +94,10 @@ namespace DarumaTool
                 source = FormatSource(source);
                 IsSection(filename, ref source, NestLV, ref sectionName);
                 NestLV = IsSyntax(SyntaxList, source, NestLV, LineNo, sectionName);
+                //IsCall 的文件操作，Master操作Macro需要被后面的操作覆盖，所以，这里需要注意调用的顺序
+                IsCall(SyntaxList, source, NestLV, LineNo, sectionName);
                 IsFileOpr(SyntaxList, source, NestLV, LineNo, sectionName);
                 IsMasterOpr(SyntaxList, source, NestLV, LineNo, sectionName);
-                IsCall(SyntaxList, source, NestLV, LineNo, sectionName);
 
                 LineNo++;
             }
@@ -137,10 +144,22 @@ namespace DarumaTool
                         Syntax newSyntax = new Syntax();
                         newSyntax = syntax;
                         int CurrentLineNo = 0;
-                        if (newSyntax.Result != null && newSyntax.Result.StartsWith("%"))
+                        if (newSyntax.Result != null)
                         {
-                            CurrentLineNo = int.Parse((newSyntax.Result.Substring(0, newSyntax.Result.LastIndexOf("%")).Trim("%".ToCharArray())));
-                            newSyntax.Result = LineNoVsBranch[CurrentLineNo] + newSyntax.Result.Substring(newSyntax.Result.LastIndexOf("%") + 1);
+                            String[] lstResult = newSyntax.Result.Split("&".ToCharArray());
+                            newSyntax.Result = String.Empty;
+                            foreach (var subResult in lstResult)
+                            {
+                                if (subResult.StartsWith("%"))
+                                {
+                                    CurrentLineNo = int.Parse((subResult.Substring(0, subResult.LastIndexOf("%")).Trim("%".ToCharArray())));
+                                    newSyntax.Result += LineNoVsBranch[CurrentLineNo] + subResult.Substring(subResult.LastIndexOf("%") + 1) + System.Environment.NewLine;
+                                }
+                                else {
+                                    newSyntax.Result += subResult + System.Environment.NewLine;
+                                }
+                            }
+                            newSyntax.Result = newSyntax.Result.TrimEnd(System.Environment.NewLine.ToCharArray());
                         }
                         newSyntaxSet.SyntaxList.Add(newSyntax);
                     }
@@ -161,21 +180,37 @@ namespace DarumaTool
         private static void IsCall(List<Syntax> SyntaxList, String source, byte NestLV, int LineNo, String sectionName)
         {
             //共通部品
-            if (source == "@ZGIAPABRT")
+            if (source.StartsWith("@"))
             {
-                SyntaxList.Add(new Syntax()
+                if (source == "@ZGIAPABRT")
                 {
-                    SyntaxType = "ABORT",
-                    LineNo = LineNo,
-                    NestLv = NestLV,
-                    ExtendInfo = "@ZGIAPABRT",
-                    SectionName = sectionName
-                });
+                    SyntaxList.Add(new Syntax()
+                    {
+                        SyntaxType = "ABORT",
+                        LineNo = LineNo,
+                        NestLv = NestLV,
+                        ExtendInfo = "@ZGIAPABRT",
+                        SectionName = sectionName
+                    });
+                }
+                else
+                {
+                    SyntaxList.Add(new Syntax()
+                    {
+                        SyntaxType = "MACRO",
+                        LineNo = LineNo,
+                        NestLv = NestLV,
+                        ExtendInfo = source.Contains("(") ?
+                                     source.Substring(1, source.IndexOf("(") - 1) :
+                                     source.Substring(1).Trim(".".ToCharArray()),
+                        SectionName = sectionName
+                    });
+                }
             }
-
-            if (source.StartsWith("CALL "))
+            //新增了DERIVE 2013/10/07
+            if (source.StartsWith("CALL ") || source.StartsWith("DERIVE "))
             {
-                char t = source.Substring(5, 1).ToCharArray()[0];
+                char t = source.Substring(source.IndexOf(" ") + 1, 1).ToCharArray()[0];
                 if (t >= "A".ToCharArray()[0] && t <= "Z".ToCharArray()[0])
                 {
                     SyntaxList.Add(new Syntax()
@@ -183,13 +218,15 @@ namespace DarumaTool
                         SyntaxType = "CALL",
                         LineNo = LineNo,
                         NestLv = NestLV,
-                        ExtendInfo = source.Contains("(") ? source.Substring("CALL ".Length, source.Length - "CALL ".Length - source.IndexOf("(") - 2) : source.Substring("CALL ".Length).Trim(".".ToCharArray()),
+                        ExtendInfo = source.Contains("(") ?
+                                     source.Substring(source.IndexOf(" ") + 1, source.Length - source.IndexOf(" ") - 1 - source.IndexOf("(") - 2) :
+                                     source.Substring(source.IndexOf(" ") + 1).Trim(".".ToCharArray()),
                         SectionName = sectionName
                     });
                 }
                 else
                 {
-                    String PerformSectionName = source.Substring("CALL ".Length).Trim(".".ToCharArray());
+                    String PerformSectionName = source.Substring(source.IndexOf(" ") + 1).Trim(".".ToCharArray());
                     switch (PerformSectionName)
                     {
                         //错误处理
@@ -483,9 +520,10 @@ namespace DarumaTool
                 || (source.Contains(" -> CASE") && source.EndsWith(");")) || (source.Contains(" <- CASE") && source.EndsWith(");")))
             {
                 String CaseCondition = String.Empty;
-                if (source.Contains(" CASE(")){
-                    CaseCondition = source.Substring(source.IndexOf(" CASE(") + 6, 
-                                                     source.Length - source.IndexOf(" CASE(") - 6- 2);
+                if (source.Contains(" CASE("))
+                {
+                    CaseCondition = source.Substring(source.IndexOf(" CASE(") + 6,
+                                                     source.Length - source.IndexOf(" CASE(") - 6 - 2);
                 }
                 SyntaxList.Add(new Syntax()
                 {
@@ -496,7 +534,7 @@ namespace DarumaTool
                     //条件分歧的填写用
                     ExtendInfo = CaseCondition,
                     //测试项目
-                    Cond = (String.IsNullOrEmpty(CaseCondition))?null:new clsCondition(CaseCondition)
+                    Cond = (String.IsNullOrEmpty(CaseCondition)) ? null : new clsCondition(CaseCondition)
                 });
                 //保持 CASE->WHEN->END-CASE同级别
                 NestLV++;
