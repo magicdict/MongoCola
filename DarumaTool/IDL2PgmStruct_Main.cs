@@ -79,6 +79,19 @@ namespace DarumaTool
             public List<SyntaxSet> SyntaxSetList;
 
         }
+        /// <summary>
+        /// 在IF后面，获取至少一个Assign文
+        /// </summary>
+        private static Boolean IsNeedAssign;
+        /// <summary>
+        /// XXX <- CASE;
+        /// </summary>
+        private static Boolean IsNeedValue;
+
+        /// <summary>
+        /// 分析
+        /// </summary>
+        /// <param name="filename"></param>
         public void Analyze(String filename)
         {
             List<Syntax> SyntaxList = new List<Syntax>();
@@ -88,22 +101,39 @@ namespace DarumaTool
             byte NestLV = 1;
             int LineNo = 1;
             String sectionName = String.Empty;
+            IsNeedAssign = false;
             while (!sr.EndOfStream)
             {
                 source = sr.ReadLine();
                 source = FormatSource(source);
+                ///必须放在WHEN之前
+                if (IsNeedValue)
+                {
+                    Syntax t = SyntaxList[SyntaxList.Count - 1];
+                    t.Result = "「 " + t.Result.Substring("INPUT:".Length) + " 」に 「 " + source.TrimEnd(".".ToCharArray()) + " 」を設定します";
+                    SyntaxList.RemoveAt(SyntaxList.Count - 1);
+                    SyntaxList.Add(t);
+                    IsNeedValue = false;
+                }
                 IsSection(filename, ref source, NestLV, ref sectionName);
                 NestLV = IsSyntax(SyntaxList, source, NestLV, LineNo, sectionName);
                 //IsCall 的文件操作，Master操作Macro需要被后面的操作覆盖，所以，这里需要注意调用的顺序
                 IsCall(SyntaxList, source, NestLV, LineNo, sectionName);
                 IsFileOpr(SyntaxList, source, NestLV, LineNo, sectionName);
                 IsMasterOpr(SyntaxList, source, NestLV, LineNo, sectionName);
-
+                if (IsNeedAssign) IsAssignOpr(SyntaxList, source, NestLV, LineNo, sectionName);
                 LineNo++;
             }
             sr.Close();
-
             ReSyntax(SyntaxList);
+            ReplaceLineNo();
+        }
+
+        /// <summary>
+        /// 替换行号为分支号
+        /// </summary>
+        private void ReplaceLineNo()
+        {
             List<Section> newSectionList = new List<Section>();
             foreach (var section in SectionList)
             {
@@ -155,7 +185,8 @@ namespace DarumaTool
                                     CurrentLineNo = int.Parse((subResult.Substring(0, subResult.LastIndexOf("%")).Trim("%".ToCharArray())));
                                     newSyntax.Result += LineNoVsBranch[CurrentLineNo] + subResult.Substring(subResult.LastIndexOf("%") + 1) + System.Environment.NewLine;
                                 }
-                                else {
+                                else
+                                {
                                     newSyntax.Result += subResult + System.Environment.NewLine;
                                 }
                             }
@@ -168,6 +199,31 @@ namespace DarumaTool
                 newSectionList.Add(newSection);
             }
             SectionList = newSectionList;
+        }
+        /// <summary>
+        /// 是否为赋值
+        /// </summary>
+        /// <param name="SyntaxList"></param>
+        /// <param name="source"></param>
+        /// <param name="NestLV"></param>
+        /// <param name="LineNo"></param>
+        /// <param name="sectionName"></param>
+        private void IsAssignOpr(List<Syntax> SyntaxList, string source, byte NestLV, int LineNo, string sectionName)
+        {
+            //Assign
+            if (source.Contains(" := "))
+            {
+                SyntaxList.Add(new Syntax()
+                {
+                    SyntaxType = "ASSIGN",
+                    LineNo = LineNo,
+                    NestLv = NestLV,
+                    //条件分歧的填写用
+                    ExtendInfo = "「"　 + source.Substring(0,source.IndexOf(" := ")) + "」に「" + source.Substring(source.IndexOf(" := ") + 4).TrimEnd(".".ToCharArray()) + "」を設定します" ,
+                    SectionName = sectionName
+                });
+                IsNeedAssign = false;
+            }
         }
         /// <summary>
         /// 是否为呼出子程序或者调用子过程
@@ -208,7 +264,8 @@ namespace DarumaTool
                 }
             }
             //新增了DERIVE 2013/10/07
-            if (source.StartsWith("CALL ") || source.StartsWith("DERIVE "))
+            //新增了PROC   2013/10/08
+            if (source.StartsWith("CALL ") || source.StartsWith("DERIVE ") || source.StartsWith("PROC "))
             {
                 char t = source.Substring(source.IndexOf(" ") + 1, 1).ToCharArray()[0];
                 if (t >= "A".ToCharArray()[0] && t <= "Z".ToCharArray()[0])
@@ -341,6 +398,7 @@ namespace DarumaTool
                     SectionName = sectionName
                 });
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("ELSE"))
             {
@@ -352,6 +410,7 @@ namespace DarumaTool
                     NestLv = NestLV
                 });
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("END-IF.") || (source == "END-IF"))
             {
@@ -373,6 +432,7 @@ namespace DarumaTool
                     NestLv = NestLV
                 });
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("#IFNOT "))
             {
@@ -383,6 +443,7 @@ namespace DarumaTool
                     NestLv = NestLV
                 });
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("#ELSE"))
             {
@@ -394,6 +455,7 @@ namespace DarumaTool
                     NestLv = NestLV
                 });
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("#END-IF"))
             {
@@ -416,6 +478,7 @@ namespace DarumaTool
                     SectionName = sectionName
                 });
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("END-GET."))
             {
@@ -442,6 +505,7 @@ namespace DarumaTool
                     SectionName = sectionName
                 });
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("END-WHILE."))
             {
@@ -465,6 +529,7 @@ namespace DarumaTool
                     SectionName = sectionName,
                 });
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("UNTIL "))
             {
@@ -513,17 +578,25 @@ namespace DarumaTool
                 });
                 //保持 CASE->WHEN->END-CASE同级别
                 NestLV++;
+                IsNeedAssign = true;
             }
             // <- CASE ;
-            //同時入力証書記号番号(2) -> CASE(受入データ請求件数 OF ＲＫＩＯＪ０８２－０３) ;
             if (source.EndsWith(" <- CASE;") || source.EndsWith(" -> CASE;")
                 || (source.Contains(" -> CASE") && source.EndsWith(");")) || (source.Contains(" <- CASE") && source.EndsWith(");")))
             {
                 String CaseCondition = String.Empty;
+                String InputItem = String.Empty;
+                //同時入力証書記号番号(2) -> CASE(受入データ請求件数 OF ＲＫＩＯＪ０８２－０３) ;
                 if (source.Contains(" CASE("))
                 {
                     CaseCondition = source.Substring(source.IndexOf(" CASE(") + 6,
                                                      source.Length - source.IndexOf(" CASE(") - 6 - 2);
+
+                }
+                if (source.EndsWith(" <- CASE;"))
+                {
+                    //郵政局コード <- CASE ;
+                    InputItem = source.Substring(0, source.IndexOf(" <- CASE;")).Trim();
                 }
                 SyntaxList.Add(new Syntax()
                 {
@@ -534,10 +607,13 @@ namespace DarumaTool
                     //条件分歧的填写用
                     ExtendInfo = CaseCondition,
                     //测试项目
-                    Cond = (String.IsNullOrEmpty(CaseCondition)) ? null : new clsCondition(CaseCondition)
+                    Cond = (String.IsNullOrEmpty(CaseCondition)) ? null : new clsCondition(CaseCondition),
+                    //Input
+                    Result = (String.IsNullOrEmpty(InputItem)) ? null : "INPUT:" + InputItem
                 });
                 //保持 CASE->WHEN->END-CASE同级别
                 NestLV++;
+                IsNeedAssign = true;
             }
 
             if (source.StartsWith("CASE;"))
@@ -551,18 +627,37 @@ namespace DarumaTool
                 });
                 //保持 CASE->WHEN->END-CASE同级别
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("(") && (source.EndsWith("):")))
             {
+                String HasInput = String.Empty;
+                for (int i = SyntaxList.Count - 1; i >= 0; i--)
+                {
+                    if (SyntaxList[i].SyntaxType == "CASE")
+                    {
+                        HasInput = SyntaxList[i].Result;
+                        break;
+                    }
+                }
+                if (!String.IsNullOrEmpty(HasInput))
+                {
+                    if (HasInput.StartsWith("INPUT:"))
+                    {
+                        IsNeedValue = true;
+                    }
+                }
                 NestLV--;
                 SyntaxList.Add(new Syntax()
                 {
                     SyntaxType = "WHEN",
                     LineNo = LineNo,
                     NestLv = NestLV,
-                    ExtendInfo = source.Substring(1, source.Length - 3)
+                    ExtendInfo = source.Substring(1, source.Length - 3),
+                    Result = HasInput
                 });
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("END-CASE."))
             {
@@ -591,6 +686,7 @@ namespace DarumaTool
                     Cond = new clsCondition(source.Substring(source.IndexOf(" ") + 1, source.LastIndexOf(":") - source.IndexOf(" ") - 1).Trim())
                 });
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("END-FOR."))
             {
@@ -613,6 +709,7 @@ namespace DarumaTool
                     SectionName = sectionName,
                 });
                 NestLV++;
+                IsNeedAssign = true;
             }
             if (source.StartsWith("END-LOOP."))
             {

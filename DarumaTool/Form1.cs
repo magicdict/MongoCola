@@ -11,8 +11,8 @@ namespace DarumaTool
         //TODO:可配置
         private const string idwFolder = @"C:\Daruma\WorkShop\idw";
         private const string idl2MacroFolder = @"C:\Daruma\WorkShop\id@";
-        private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース";
-        //private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース_0";
+        //private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース";
+        private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース_0";
         private const String ExcelList = @"C:\Daruma\Tools\H2504_PGM別STEP数(20130617).xls";
         private const String MacroCallPatten = @"C:\Daruma\Tools\パラメータ有_部品呼出し一覧_20130724.txt";
         internal class IDL2Program
@@ -65,13 +65,10 @@ namespace DarumaTool
             DarumaDB = DarumaDBServer.GetDatabase("Daruma");
             btnClose.Click += (x, y) => { this.Close(); };
         }
-
         private void btnSystemConfig_Click(object sender, EventArgs e)
         {
 
         }
-
-
         Dictionary<String, HashSet<String>> PgmCopy = new Dictionary<string, HashSet<string>>();
         private void btnIDW_Click(object sender, EventArgs e)
         {
@@ -113,7 +110,6 @@ namespace DarumaTool
             }
             return i;
         }
-
         private void btnIDL2Source_Click(object sender, EventArgs e)
         {
             if (DarumaDB.CollectionExists("Pgmlst"))
@@ -221,8 +217,6 @@ namespace DarumaTool
                 }
             }
         }
-
-
         private String GetArrayString(List<string> list)
         {
             String ArrayString = String.Empty;
@@ -236,7 +230,6 @@ namespace DarumaTool
             }
             return ArrayString;
         }
-
         private void btnModuleCall_Click(object sender, EventArgs e)
         {
             if (DarumaDB.CollectionExists("ModuleCall"))
@@ -282,22 +275,36 @@ namespace DarumaTool
             {
                 source = sr.ReadLine();
                 source = source.Trim();
-                if (source.StartsWith("CALL"))
+                if (source.StartsWith("CALL ") || source.StartsWith("PROC "))
                 {
                     //CALL AAA  是程序
                     //CALL 日本语  不是程序
                     source = source.Substring(4).Trim();
-                    char t = source.Substring(0, 1).ToCharArray()[0];
-                    if (t >= "A".ToCharArray()[0] && t <= "Z".ToCharArray()[0])
+                    IsModuleName(lstModule, source);
+                }
+                else
+                {
+                    //END-OUTPUT : PROC KHXJYUUP(ＫＨＸＪＹＵＵＰ入出力域) .
+                    if (source.Contains(" : PROC "))
                     {
-                        if (!lstModule.Contains(source.Substring(0, 8)))
-                        {
-                            lstModule.Add(source.Substring(0, 8));
-                        }
+                        source = source.Substring(source.IndexOf(" : PROC ") + 8).Trim();
+                        IsModuleName(lstModule, source);
                     }
                 }
             }
             return lstModule;
+        }
+
+        private static void IsModuleName(List<String> lstModule, String source)
+        {
+            char t = source.Substring(0, 1).ToCharArray()[0];
+            if (t >= "A".ToCharArray()[0] && t <= "Z".ToCharArray()[0])
+            {
+                if (!lstModule.Contains(source.Substring(0, 8)))
+                {
+                    lstModule.Add(source.Substring(0, 8));
+                }
+            }
         }
         private List<String> getCallMacro(String filename)
         {
@@ -332,7 +339,6 @@ namespace DarumaTool
         {
             DarumaDBServer.Disconnect();
         }
-
         private void btnGetBranch_Click(object sender, EventArgs e)
         {
             if (DarumaDB.CollectionExists("PmgStructure"))
@@ -359,15 +365,14 @@ namespace DarumaTool
                     DarumaCol.Insert<IDL2PgmStruct>(pgm);
                     worksheet.Cells(rowcount, 1).Value = pgm.PgmID;
                     rowcount++;
-                    rowcount = NewMethod(worksheet, rowcount, pgm);
+                    rowcount = FillSyntaxToExcel(worksheet, rowcount, pgm);
                     pgmcount++;
                     if (pgmcount % 100 == 0) { workbook.Save(); }
                 }
             }
             MessageBox.Show("Complete!!PgmCount:" + pgmcount);
         }
-
-        private static int NewMethod(dynamic worksheet, int rowcount, IDL2PgmStruct pgm)
+        private static int FillSyntaxToExcel(dynamic worksheet, int rowcount, IDL2PgmStruct pgm)
         {
             foreach (var section in pgm.SectionList)
             {

@@ -27,11 +27,11 @@ namespace DarumaTool
                         IfSet.SyntaxList.Add(newIf);
                         IfSet.SectionName = SyntaxList[i].SectionName;
                         IfSet.BranchNo = branchNo;
-                        //寻找同层的直到 END-IF
                         for (int ifcount = i; ifcount < SyntaxList.Count; ifcount++)
                         {
                             if ((SyntaxList[ifcount].NestLv == currentNestLv))
                             {
+                                //寻找同层的直到 ELSE/END-IF
                                 if (SyntaxList[ifcount].SyntaxType == "ELSE")
                                 {
                                     Syntax newElse = GetResult(SyntaxList, ifcount);
@@ -40,6 +40,20 @@ namespace DarumaTool
                                 if (SyntaxList[ifcount].SyntaxType == "END-IF")
                                 {
                                     break;
+                                }
+                            }
+                            if ((SyntaxList[ifcount].NestLv == currentNestLv +1))
+                            {
+                                ///获得下层的ASSIGN备用
+                                if (SyntaxList[ifcount].SyntaxType == "ASSIGN")
+                                {
+                                    if (String.IsNullOrEmpty(IfSet.SyntaxList[IfSet.SyntaxList.Count - 1].Result))
+                                    {
+                                        Syntax newsyntax = IfSet.SyntaxList[IfSet.SyntaxList.Count - 1];
+                                        newsyntax.Result = SyntaxList[ifcount].ExtendInfo;
+                                        IfSet.SyntaxList.RemoveAt(IfSet.SyntaxList.Count - 1);
+                                        IfSet.SyntaxList.Add(newsyntax);
+                                    }
                                 }
                             }
                         }
@@ -391,7 +405,7 @@ namespace DarumaTool
         {
             if (CurrentSyntaxSet.SyntaxList[0].NestLv == PreSyntax.SyntaxList[0].NestLv)
             {
-                //如果是用层次的CALL语句或者是FILE操作语句
+                //如果是同层次的CALL语句或者是FILE操作语句
                 switch (PreSyntax.SyntaxSetType)
                 {
                     case "CALL":
