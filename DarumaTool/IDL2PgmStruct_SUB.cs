@@ -14,8 +14,14 @@ namespace DarumaTool
             //1.找到所有的IF，WHILE，CASE。然后，读到对应的结束的地方。
             byte currentNestLv;
             int branchNo = 1;
+            String SectionName = String.Empty;
             for (int i = 0; i < SyntaxList.Count; i++)
             {
+                if (!(String.IsNullOrEmpty(SyntaxList[i].SectionName) || SectionName == SyntaxList[i].SectionName))
+                {
+                    branchNo = 1;
+                    SectionName = SyntaxList[i].SectionName;
+                }
                 switch (SyntaxList[i].SyntaxType)
                 {
                     case "IF":
@@ -42,7 +48,7 @@ namespace DarumaTool
                                     break;
                                 }
                             }
-                            if ((SyntaxList[ifcount].NestLv == currentNestLv +1))
+                            if ((SyntaxList[ifcount].NestLv == currentNestLv + 1))
                             {
                                 ///获得下层的ASSIGN备用
                                 if (SyntaxList[ifcount].SyntaxType == "ASSIGN")

@@ -294,7 +294,6 @@ namespace DarumaTool
             }
             return lstModule;
         }
-
         private static void IsModuleName(List<String> lstModule, String source)
         {
             char t = source.Substring(0, 1).ToCharArray()[0];
@@ -472,7 +471,6 @@ namespace DarumaTool
             public List<String> Para;
             public String PatternKey;
         }
-
         private void GetCopy(String IDWFile, String PgmID, Boolean HasLineNo, HashSet<String> CopyHash)
         {
             String strREC = string.Empty;
@@ -699,12 +697,10 @@ namespace DarumaTool
             }));
             return MaxLength;
         }
-
         private void btnStartUpMongoDB_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(@"C:\MagicMongoDBTool\MagicMongoDBTool\ServerLoader\Daruma.bat");
         }
-
         private void btnLinkage_Click(object sender, EventArgs e)
         {
             if (DarumaDB.CollectionExists("Linkage"))
