@@ -593,24 +593,41 @@ namespace DarumaTool
                                                      source.Length - source.IndexOf(" CASE(") - 6 - 2);
 
                 }
+                else {
+                    CaseCondition = "#TRUE#";
+                }
                 if (source.EndsWith(" <- CASE;"))
                 {
                     //郵政局コード <- CASE ;
                     InputItem = source.Substring(0, source.IndexOf(" <- CASE;")).Trim();
                 }
-                SyntaxList.Add(new Syntax()
+                if (CaseCondition == "#TRUE#") {
+                    SyntaxList.Add(new Syntax()
+                    {
+                        SyntaxType = "CASE",
+                        LineNo = LineNo,
+                        NestLv = NestLV,
+                        SectionName = sectionName,
+                        ExtendInfo = "#TRUE#",
+                        Result = (String.IsNullOrEmpty(InputItem)) ? null : "INPUT:" + InputItem
+                    });
+                }
+                else
                 {
-                    SyntaxType = "CASE",
-                    LineNo = LineNo,
-                    NestLv = NestLV,
-                    SectionName = sectionName,
-                    //条件分歧的填写用
-                    ExtendInfo = CaseCondition,
-                    //测试项目
-                    Cond = (String.IsNullOrEmpty(CaseCondition)) ? null : new clsCondition(CaseCondition),
-                    //Input
-                    Result = (String.IsNullOrEmpty(InputItem)) ? null : "INPUT:" + InputItem
-                });
+                    SyntaxList.Add(new Syntax()
+                    {
+                        SyntaxType = "CASE",
+                        LineNo = LineNo,
+                        NestLv = NestLV,
+                        SectionName = sectionName,
+                        //条件分歧的填写用
+                        ExtendInfo = CaseCondition,
+                        //测试项目
+                        Cond = (String.IsNullOrEmpty(CaseCondition)) ? null : new clsCondition(CaseCondition),
+                        //Input
+                        Result = (String.IsNullOrEmpty(InputItem)) ? null : "INPUT:" + InputItem
+                    });
+                }
                 //保持 CASE->WHEN->END-CASE同级别
                 NestLV++;
                 IsNeedAssign = true;
@@ -624,6 +641,7 @@ namespace DarumaTool
                     LineNo = LineNo,
                     NestLv = NestLV,
                     SectionName = sectionName,
+                    ExtendInfo = "#TRUE#"
                 });
                 //保持 CASE->WHEN->END-CASE同级别
                 NestLV++;

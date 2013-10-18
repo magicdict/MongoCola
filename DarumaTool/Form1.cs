@@ -11,8 +11,8 @@ namespace DarumaTool
         //TODO:可配置
         private const string idwFolder = @"C:\Daruma\WorkShop\idw";
         private const string idl2MacroFolder = @"C:\Daruma\WorkShop\id@";
-        //private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース";
-        private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース_0";
+        private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース";
+        //private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース_0";
         private const String ExcelList = @"C:\Daruma\Tools\H2504_PGM別STEP数(20130617).xls";
         private const String MacroCallPatten = @"C:\Daruma\Tools\パラメータ有_部品呼出し一覧_20130724.txt";
         internal class IDL2Program
@@ -411,7 +411,33 @@ namespace DarumaTool
                                 colcount++;
                             }
                         }
-                        if (TestItem.Count > 0)
+                        //实验项目
+                        Boolean IsSpec = false;
+                        if (syntaxset.SyntaxSetType == "CASE" && syntaxset.SyntaxList[0].ExtendInfo.Equals("#TRUE#"))
+                        {
+                            worksheet.Cells(rowcount, 4).Value = "CASEの子条件分岐";
+                            IsSpec = true;
+                        }
+                        if (TestItem.Count == 0)
+                        {
+                            switch (syntaxset.SyntaxSetType)
+                            {
+                                case "FOR":
+                                case "LOOP":
+                                case "WHILE":
+                                case "REPEAT":
+                                    worksheet.Cells(rowcount, 4).Value = "無限ループ";
+                                    IsSpec = true;
+                                    break;
+                                case "GET":
+                                    worksheet.Cells(rowcount, 4).Value = "ファイルの読み込む終了";
+                                    IsSpec = true;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        if (!IsSpec)
                         {
                             String strTestItem = String.Empty;
                             foreach (var item in TestItem)
@@ -437,13 +463,6 @@ namespace DarumaTool
                                     break;
                             }
                             worksheet.Cells(rowcount, 4).Value = strTestItem;
-                        }
-                        else
-                        {
-                            if (syntaxset.SyntaxSetType == "CASE")
-                            {
-                                worksheet.Cells(rowcount, 4).Value = "[試験条件不明]";
-                            }
                         }
                         rowcount++;
                     }

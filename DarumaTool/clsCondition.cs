@@ -190,7 +190,13 @@ namespace DarumaTool
             {
                 R = true;
             }
+            //引号
             if (TestString.StartsWith("\"") || TestString.StartsWith("\"")) {
+                R = true;
+            }
+            //NC汉字
+            if (TestString.StartsWith("NC\"") || TestString.StartsWith("\""))
+            {
                 R = true;
             }
             return R;
