@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DarumaTool
 {
-    partial class IDL2PgmStruct
+    public partial class IDL2PgmStruct
     {
         #region"废止"
         /// <summary>

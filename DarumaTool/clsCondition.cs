@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DarumaTool
 {
-    class clsCondition
+    public class clsCondition
     {
         const String CAnd = " AND ";
         const String COr = " OR ";

@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.IO;
 namespace DarumaTool
 {
-    partial class IDL2PgmStruct
+    public partial class IDL2PgmStruct
     {
         [BsonId]
         public string PgmID = String.Empty;
