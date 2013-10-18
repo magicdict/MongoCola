@@ -11,8 +11,8 @@ namespace DarumaTool
         //TODO:可配置
         private const string idwFolder = @"C:\Daruma\WorkShop\idw";
         private const string idl2MacroFolder = @"C:\Daruma\WorkShop\id@";
-        private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース";
-        //private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース_0";
+        //private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース";
+        private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース_0";
         private const String ExcelList = @"C:\Daruma\Tools\H2504_PGM別STEP数(20130617).xls";
         private const String MacroCallPatten = @"C:\Daruma\Tools\パラメータ有_部品呼出し一覧_20130724.txt";
         internal class IDL2Program
@@ -65,11 +65,24 @@ namespace DarumaTool
             DarumaDB = DarumaDBServer.GetDatabase("Daruma");
             btnClose.Click += (x, y) => { this.Close(); };
         }
+        /// <summary>
+        /// 系统设定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSystemConfig_Click(object sender, EventArgs e)
         {
 
         }
+        /// <summary>
+        /// 程序ID-COPY句
+        /// </summary>
         Dictionary<String, HashSet<String>> PgmCopy = new Dictionary<string, HashSet<string>>();
+        /// <summary>
+        /// COPY句一览
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnIDW_Click(object sender, EventArgs e)
         {
             PgmCopy.Clear();
@@ -100,6 +113,11 @@ namespace DarumaTool
                        new CopyBook() { Copy = item.Value, PgmID = item.Key });
             }
         }
+        /// <summary>
+        /// 获得文本文件的行数
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         private int getLines(string filename)
         {
             StreamReader sr = new StreamReader(filename, System.Text.Encoding.Default);
@@ -110,6 +128,11 @@ namespace DarumaTool
             }
             return i;
         }
+        /// <summary>
+        /// IDL2代码分析
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnIDL2Source_Click(object sender, EventArgs e)
         {
             if (DarumaDB.CollectionExists("Pgmlst"))
@@ -356,11 +379,12 @@ namespace DarumaTool
             int pgmcount = 0;
             if (Directory.Exists(idl2MainFolder))
             {
+                //IDL2PgmStruct.NestInfo = new Dictionary<int, int>();
                 foreach (String filename in Directory.GetFiles(idl2MainFolder))
                 {
                     IDL2PgmStruct pgm = new IDL2PgmStruct();
-                    pgm.Analyze(filename);
                     pgm.PgmID = new FileInfo(filename).Name.TrimEnd(".TXT".ToCharArray());
+                    pgm.Analyze(filename);
                     DarumaCol.Insert<IDL2PgmStruct>(pgm);
                     worksheet.Cells(rowcount, 1).Value = pgm.PgmID;
                     rowcount++;
@@ -368,12 +392,60 @@ namespace DarumaTool
                     pgmcount++;
                     if (pgmcount % 100 == 0) { workbook.Save(); }
                 }
+                //IDL2PgmStruct.ShowNestInfo();
             }
             MessageBox.Show("Complete!!PgmCount:" + pgmcount);
         }
+        /// <summary>
+        /// 语法树放入Excel
+        /// </summary>
+        /// <param name="worksheet"></param>
+        /// <param name="rowcount"></param>
+        /// <param name="pgm"></param>
+        /// <returns></returns>
         private static int FillSyntaxToExcel(dynamic worksheet, int rowcount, IDL2PgmStruct pgm)
         {
             foreach (var section in pgm.SectionList)
+            {
+                if (section.SyntaxList.Count != 0)
+                {
+                    foreach (var SyntaxLst in section.SyntaxList)
+                    {
+                        int colcount = 3;
+                        worksheet.Cells(rowcount, 1).Value = pgm.PgmID;
+                        worksheet.Cells(rowcount, 2).Value = section.SectionName;
+                        foreach (var syntax in SyntaxLst)
+                        {
+                            //第一个CASE不需要出现在列表中
+                            worksheet.Cells(rowcount, colcount).Value = syntax.SyntaxType;
+                            colcount++;
+                            worksheet.Cells(rowcount, colcount).Value = syntax.LineNo;
+                            colcount++;
+                            worksheet.Cells(rowcount, colcount).Value = syntax.NestLv;
+                            colcount++;
+                        }
+                        rowcount++;
+                    }
+                }
+                else {
+                    worksheet.Cells(rowcount, 1).Value = pgm.PgmID;
+                    worksheet.Cells(rowcount, 2).Value = section.SectionName;
+                    rowcount++;
+                }
+            }
+            return rowcount;
+        }
+
+        /// <summary>
+        /// 语法树放入Excel
+        /// </summary>
+        /// <param name="worksheet"></param>
+        /// <param name="rowcount"></param>
+        /// <param name="pgm"></param>
+        /// <returns></returns>
+        private static int FillSyntaxToExcel_OLD(dynamic worksheet, int rowcount, IDL2PgmStruct pgm)
+        {
+            foreach (var section in pgm.SectionList_OLD)
             {
                 if (section.SyntaxSetList.Count != 0)
                 {
@@ -404,6 +476,11 @@ namespace DarumaTool
                                 worksheet.Cells(rowcount, colcount).Value = syntax.SyntaxType;
                                 colcount++;
                                 worksheet.Cells(rowcount, colcount).Value = syntax.LineNo;
+                                colcount++;
+                                worksheet.Cells(rowcount, colcount).Value = syntax.NestLv;
+                                //if (syntax.NestLv > 7) {
+                                //    System.Diagnostics.Debug.WriteLine(syntax.NestLv);
+                                //}
                                 colcount++;
                                 worksheet.Cells(rowcount, colcount).Value = String.IsNullOrEmpty(syntax.ExtendInfo) ? "" : syntax.ExtendInfo.Trim();
                                 colcount++;
@@ -476,6 +553,7 @@ namespace DarumaTool
             }
             return rowcount;
         }
+
         internal class MarcoPatter
         {
             [BsonId]

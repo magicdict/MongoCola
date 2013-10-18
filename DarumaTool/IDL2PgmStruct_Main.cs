@@ -8,11 +8,19 @@ namespace DarumaTool
     partial class IDL2PgmStruct
     {
         [BsonId]
-        public string PgmID;
+        public string PgmID = String.Empty;
         /// <summary>
         /// Section列表
         /// </summary>
         public List<Section> SectionList = new List<Section>();
+        /// <summary>
+        /// Section
+        /// </summary>
+        public struct Section
+        {
+            public String SectionName;
+            public List<List<Syntax>> SyntaxList;
+        }
         /// <summary>
         /// 语法点
         /// </summary>
@@ -71,13 +79,17 @@ namespace DarumaTool
             public String ExtendInfo;
         }
         /// <summary>
+        /// Section列表
+        /// </summary>
+        [BsonIgnore]
+        public List<Section_OLD> SectionList_OLD = new List<Section_OLD>();
+        /// <summary>
         /// Section
         /// </summary>
-        public struct Section
+        public struct Section_OLD
         {
             public String SectionName;
             public List<SyntaxSet> SyntaxSetList;
-
         }
         /// <summary>
         /// 在IF后面，获取至少一个Assign文
@@ -125,26 +137,70 @@ namespace DarumaTool
                 LineNo++;
             }
             sr.Close();
+            //GetNestInfo(SyntaxList);
             ReSyntax(SyntaxList);
-            ReplaceLineNo();
+            Debug.WriteLine(PgmID + ":" + TopSyntax.Count);
+            //ReplaceLineNo();
         }
 
+        #region"统计"
+        public static Dictionary<int, int> NestInfo = new Dictionary<int, int>();
+        private static void GetNestInfo(List<Syntax> SyntaxList)
+        {
+            int MaxNest = 1;
+            foreach (var syntax in SyntaxList)
+            {
+                if (syntax.NestLv == 1 && isEndSyntax(syntax))
+                {
+                    if (NestInfo.ContainsKey(MaxNest))
+                    {
+                        NestInfo[MaxNest] += 1;
+                    }
+                    else
+                    {
+                        NestInfo.Add(MaxNest, 1);
+                    }
+                    MaxNest = 1;
+                }
+                else
+                {
+                    if (isStartSyntax(syntax) && syntax.NestLv > MaxNest)
+                    {
+                        MaxNest = syntax.NestLv;
+                    }
+                }
+                //Debug.WriteLine(syntax.SyntaxType + ":" + syntax.NestLv);
+            }
+        }
+        public static void ShowNestInfo()
+        {
+            int total = 0;
+            foreach (var item in NestInfo.Values)
+            {
+                total = total + item;
+            }
+            foreach (var item in NestInfo.Keys)
+            {
+                Debug.WriteLine(item + ":" + NestInfo[item] + "(" + (NestInfo[item] * 100) / total + "%)");
+            }
+        }
+        #endregion
         /// <summary>
         /// 替换行号为分支号
         /// </summary>
         private void ReplaceLineNo()
         {
-            List<Section> newSectionList = new List<Section>();
-            foreach (var section in SectionList)
+            List<Section_OLD> newSectionList = new List<Section_OLD>();
+            foreach (var section in SectionList_OLD)
             {
-                Section newsec = section;
+                Section_OLD newsec = section;
                 ReSyntaxSet(ref newsec);
                 newSectionList.Add(newsec);
             }
-            SectionList = newSectionList;
+            SectionList_OLD = newSectionList;
 
             Dictionary<int, int> LineNoVsBranch = new Dictionary<int, int>();
-            foreach (var section in SectionList)
+            foreach (var section in SectionList_OLD)
             {
                 foreach (var syntaxSet in section.SyntaxSetList)
                 {
@@ -157,11 +213,11 @@ namespace DarumaTool
                     }
                 }
             }
-            newSectionList = new List<Section>();
+            newSectionList = new List<Section_OLD>();
             //替换Result%line%
-            foreach (var section in SectionList)
+            foreach (var section in SectionList_OLD)
             {
-                Section newSection = new Section();
+                Section_OLD newSection = new Section_OLD();
                 newSection = section;
                 newSection.SyntaxSetList = new List<SyntaxSet>();
                 foreach (var syntaxSet in section.SyntaxSetList)
@@ -198,7 +254,7 @@ namespace DarumaTool
                 }
                 newSectionList.Add(newSection);
             }
-            SectionList = newSectionList;
+            SectionList_OLD = newSectionList;
         }
         /// <summary>
         /// 是否为赋值
@@ -219,7 +275,9 @@ namespace DarumaTool
                     LineNo = LineNo,
                     NestLv = NestLV,
                     //条件分歧的填写用
-                    ExtendInfo = "「"　 + source.Substring(0,source.IndexOf(" := ")) + "」に「" + source.Substring(source.IndexOf(" := ") + 4).TrimEnd(".".ToCharArray()) + "」を設定します" ,
+                    Result = "「" + source.Substring(0, source.IndexOf(" := ")) + "」に「" + 
+                                    source.Substring(source.IndexOf(" := ") + 4).TrimEnd(".".ToCharArray()) + "」を設定します",
+                    ExtendInfo = source.Substring(0, source.IndexOf(" := ")).Trim(),
                     SectionName = sectionName
                 });
                 IsNeedAssign = false;
@@ -351,25 +409,25 @@ namespace DarumaTool
             if (source.Equals("MAIN PROC."))
             {
                 sectionName = "MAIN";
-                SectionList.Add(new Section() { SectionName = sectionName, SyntaxSetList = new List<SyntaxSet>() });
+                SectionList.Add(new Section() { SectionName = sectionName,  SyntaxList = new List<List<Syntax>>()});
                 if (NestLV != 1) Debug.WriteLine(filename + ":" + sectionName + " NestLV" + NestLV);
             }
             if (source.StartsWith("SUB PROC "))
             {
                 sectionName = source.Substring("SUB PROC ".Length).TrimEnd(".".ToCharArray());
-                SectionList.Add(new Section() { SectionName = sectionName, SyntaxSetList = new List<SyntaxSet>() });
+                SectionList.Add(new Section() { SectionName = sectionName, SyntaxList = new List<List<Syntax>>() });
                 if (NestLV != 1) Debug.WriteLine(filename + ":" + sectionName + " NestLV" + NestLV);
             }
             if (source.StartsWith("OUTPUT "))
             {
                 sectionName = source.Substring("OUTPUT ".Length).TrimEnd(".".ToCharArray());
-                SectionList.Add(new Section() { SectionName = sectionName, SyntaxSetList = new List<SyntaxSet>() });
+                SectionList.Add(new Section() { SectionName = sectionName, SyntaxList = new List<List<Syntax>>() });
                 if (NestLV != 1) Debug.WriteLine(filename + ":" + sectionName + " NestLV" + NestLV);
             }
             if (source.StartsWith("INPUT "))
             {
                 sectionName = source.Substring("INPUT ".Length).TrimEnd(".".ToCharArray());
-                SectionList.Add(new Section() { SectionName = sectionName, SyntaxSetList = new List<SyntaxSet>() });
+                SectionList.Add(new Section() { SectionName = sectionName, SyntaxList = new List<List<Syntax>>() });
                 if (NestLV != 1) Debug.WriteLine(filename + ":" + sectionName + " NestLV" + NestLV);
             }
         }
@@ -593,7 +651,8 @@ namespace DarumaTool
                                                      source.Length - source.IndexOf(" CASE(") - 6 - 2);
 
                 }
-                else {
+                else
+                {
                     CaseCondition = "#TRUE#";
                 }
                 if (source.EndsWith(" <- CASE;"))
@@ -601,7 +660,8 @@ namespace DarumaTool
                     //郵政局コード <- CASE ;
                     InputItem = source.Substring(0, source.IndexOf(" <- CASE;")).Trim();
                 }
-                if (CaseCondition == "#TRUE#") {
+                if (CaseCondition == "#TRUE#")
+                {
                     SyntaxList.Add(new Syntax()
                     {
                         SyntaxType = "CASE",

@@ -105,10 +105,10 @@ namespace DarumaTool
             }
             if (TestItemLst.Count == 0)
             {
-                TestItemLst.Add(OrgCondition);
+                TestItemLst.Add(OrgCondition.Trim());
             }
         }
-        public void GetTestItem(String ConditionString)
+        private void GetTestItem(String ConditionString)
         {
             Boolean PickerStatus = true;
             String TestItem = String.Empty;
@@ -128,7 +128,7 @@ namespace DarumaTool
                         {
                             //正常的关系式 A = 10
                             PickerStatus = false;
-                            TestItemLst.Add(TestItem);
+                            TestItemLst.Add(TestItem.Trim());
                         }
                         TestItem = String.Empty;
                         i += MathsOpt.Length - 1;
@@ -144,7 +144,10 @@ namespace DarumaTool
                         {
                             // 遇见了OR的时候
                             // And|Or 前面如果是 10 = A 的补偿，则需要补偿
-                            if (!IsConst(TestItem)) TestItemLst.Add(TestItem);
+                            if (!IsConst(TestItem))
+                            {
+                                TestItemLst.Add(TestItem.Trim());
+                            }
                             TestItem = String.Empty;
                         }
                         PickerStatus = true;
@@ -153,14 +156,17 @@ namespace DarumaTool
                 }
                 if (PickerStatus)
                 {
-                    if ( ConditionString.Substring(i, 1) != " ")
+                    if (ConditionString.Substring(i, 1) != " ")
                     {
                         if (!(ConditionString.Substring(i, 1) == "(" && TestItem.Length == 0))
                         {
                             TestItem = TestItem + ConditionString.Substring(i, 1);
                         }
-                    }else{
-                        if (i + " OF ".Length <= ConditionString.Length && ConditionString.Substring(i, 4) == " OF "){
+                    }
+                    else
+                    {
+                        if (i + " OF ".Length <= ConditionString.Length && ConditionString.Substring(i, 4) == " OF ")
+                        {
                             TestItem = TestItem + " OF ";
                             i += " OF ".Length - 1;
                         }
@@ -171,7 +177,7 @@ namespace DarumaTool
             if (PickerStatus == true)
             {
                 // 10 = A 的补偿
-                if (!IsConst(TestItem)) TestItemLst.Add(TestItem);
+                if (!IsConst(TestItem)) TestItemLst.Add(TestItem.Trim());
                 TestItem = String.Empty;
             }
 
@@ -191,7 +197,8 @@ namespace DarumaTool
                 R = true;
             }
             //引号
-            if (TestString.StartsWith("\"") || TestString.StartsWith("\"")) {
+            if (TestString.StartsWith("\"") || TestString.StartsWith("\""))
+            {
                 R = true;
             }
             //NC汉字
