@@ -176,6 +176,11 @@ namespace DarumaTool
             //关闭Excel
             excelObj = null;
         }
+       /// <summary>
+       /// 每本程序使用的Module和Macro的输出Excel方法
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
         private void btnWriteToExcel_Click(object sender, EventArgs e)
         {
             dynamic excelObj = Microsoft.VisualBasic.Interaction.CreateObject("Excel.Application");

@@ -20,7 +20,7 @@ namespace MagicMongoDBTool
             {
                 foreach (String FileName in Directory.GetFiles("Language"))
                 {
-                    this.cmbLanguage.Items.Add(new FileInfo(FileName).Name);
+                    this.cmbLanguage.Items.Add(new FileInfo(FileName).Name.Substring(0, new FileInfo(FileName).Name.Length - 4));
                 }
             }
 
@@ -28,7 +28,7 @@ namespace MagicMongoDBTool
             {
                 if (File.Exists("Language" + System.IO.Path.DirectorySeparatorChar + SystemManager.ConfigHelperInstance.LanguageFileName))
                 {
-                    this.cmbLanguage.Text = SystemManager.ConfigHelperInstance.LanguageFileName;
+                    this.cmbLanguage.Text = SystemManager.ConfigHelperInstance.LanguageFileName.Substring(0, SystemManager.ConfigHelperInstance.LanguageFileName.Length - 4);
                 }
                 else
                 {
@@ -51,14 +51,24 @@ namespace MagicMongoDBTool
                 this.lblRefreshIntervalForStatus.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Option_RefreshInterval);
             }
         }
+        /// <summary>
+        /// OK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
             SystemManager.ConfigHelperInstance.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPathOrFileName;
             SystemManager.ConfigHelperInstance.RefreshStatusTimer = (int)this.numRefreshForStatus.Value;
-            SystemManager.ConfigHelperInstance.LanguageFileName = this.cmbLanguage.Text;
+            SystemManager.ConfigHelperInstance.LanguageFileName = this.cmbLanguage.Text + ".xml";
             SystemManager.ConfigHelperInstance.SaveToConfigFile();
             this.Close();
         }
+        /// <summary>
+        /// Cancel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             this.Close();
