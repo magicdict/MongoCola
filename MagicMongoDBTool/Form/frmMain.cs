@@ -99,7 +99,7 @@ namespace MagicMongoDBTool
             this.DelMongoDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelDB);
             this.CreateMongoCollectionToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddDC);
             this.AddUserToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
-            this.evalJSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_EvalJs);
+            this.EvalJSToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_EvalJs);
             this.RepairDBToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_RepairDatabase);
             this.DBStatusToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
 
@@ -514,27 +514,12 @@ namespace MagicMongoDBTool
                             if (config.AuthMode)
                             {
                                 //根据Roles确定删除数据库/创建数据集等的权限
-                                if (roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
-                                {
-                                    this.DelMongoDBToolStripMenuItem.Enabled = true;
-                                }
-                                if (roles.Contains(MongoDBHelper.UserRole_readWrite) ||
-                                    roles.Contains(MongoDBHelper.UserRole_readWriteAnyDatabase) ||
-                                    roles.Contains(MongoDBHelper.UserRole_dbAdmin))
-                                {
-                                    this.CreateMongoCollectionToolStripMenuItem.Enabled = true;
-                                    this.InitGFSToolStripMenuItem.Enabled = true;
-                                }
-                                if (roles.Contains(MongoDBHelper.UserRole_userAdmin) ||
-                                    roles.Contains(MongoDBHelper.UserRole_userAdminAnyDatabase))
-                                {
-                                    this.AddUserToolStripMenuItem.Enabled = true;
-                                }
-                                if (roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
-                                {
-                                    ///If a Slave server can repair database @ Master-Slave is not sure ??
-                                    this.RepairDBToolStripMenuItem.Enabled = true;
-                                }
+                                this.DelMongoDBToolStripMenuItem.Enabled = MongoDBHelper.JudgeRightByRole(roles, MongoDBHelper.MongoOperate.DelMongoDB);
+                                this.CreateMongoCollectionToolStripMenuItem.Enabled = MongoDBHelper.JudgeRightByRole(roles, MongoDBHelper.MongoOperate.CreateMongoCollection);
+                                this.InitGFSToolStripMenuItem.Enabled = MongoDBHelper.JudgeRightByRole(roles, MongoDBHelper.MongoOperate.InitGFS);
+                                this.AddUserToolStripMenuItem.Enabled = MongoDBHelper.JudgeRightByRole(roles, MongoDBHelper.MongoOperate.AddUser);
+                                ///If a Slave server can repair database @ Master-Slave is not sure ??
+                                this.RepairDBToolStripMenuItem.Enabled = MongoDBHelper.JudgeRightByRole(roles, MongoDBHelper.MongoOperate.RepairDB);
                             }
                             else
                             {
@@ -544,17 +529,7 @@ namespace MagicMongoDBTool
                                 this.AddUserToolStripMenuItem.Enabled = true;
                                 this.RepairDBToolStripMenuItem.Enabled = true;
                             }
-
-                            //http://docs.mongodb.org/manual/reference/user-privileges/
-                            //Combined Access
-                            //Requires readWriteAnyDatabase, userAdminAnyDatabase, dbAdminAnyDatabase and clusterAdmin (on the admin database.)
-                            if (roles.Contains(MongoDBHelper.UserRole_readWriteAnyDatabase) &&
-                                roles.Contains(MongoDBHelper.UserRole_userAdminAnyDatabase) &&
-                                roles.Contains(MongoDBHelper.UserRole_dbAdminAnyDatabase) &&
-                                roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
-                            {
-                                this.evalJSToolStripMenuItem.Enabled = true;
-                            }
+                            this.EvalJSToolStripMenuItem.Enabled = MongoDBHelper.JudgeRightByRole(roles, MongoDBHelper.MongoOperate.EvalJS);
                         }
                         //备份数据库
                         this.DumpDatabaseToolStripMenuItem.Enabled = true;
@@ -582,7 +557,7 @@ namespace MagicMongoDBTool
                                 t3.Click += new EventHandler(AddUserToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t3);
 
-                                ToolStripMenuItem t4 = this.evalJSToolStripMenuItem.Clone();
+                                ToolStripMenuItem t4 = this.EvalJSToolStripMenuItem.Clone();
                                 t4.Click += new EventHandler(evalJSToolStripMenuItem_Click);
                                 this.contextMenuStripMain.Items.Add(t4);
 
@@ -620,7 +595,7 @@ namespace MagicMongoDBTool
                                 this.contextMenuStripMain.Items.Add(this.DelMongoDBToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.CreateMongoCollectionToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.AddUserToolStripMenuItem.Clone());
-                                this.contextMenuStripMain.Items.Add(this.evalJSToolStripMenuItem.Clone());
+                                this.contextMenuStripMain.Items.Add(this.EvalJSToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.RepairDBToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.InitGFSToolStripMenuItem.Clone());
                                 this.contextMenuStripMain.Items.Add(this.DumpDatabaseToolStripMenuItem.Clone());
@@ -1201,7 +1176,7 @@ namespace MagicMongoDBTool
             this.DelMongoDBToolStripMenuItem.Enabled = false;
             this.UserInfoStripMenuItem.Enabled = false;
             this.AddUserToolStripMenuItem.Enabled = false;
-            this.evalJSToolStripMenuItem.Enabled = false;
+            this.EvalJSToolStripMenuItem.Enabled = false;
             this.RepairDBToolStripMenuItem.Enabled = false;
             this.InitGFSToolStripMenuItem.Enabled = false;
             this.DBStatusToolStripMenuItem.Enabled = false;

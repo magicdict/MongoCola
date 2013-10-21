@@ -77,7 +77,7 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
-            this.evalJSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EvalJSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creatJavaScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.RepairDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -465,7 +465,7 @@ namespace MagicMongoDBTool
             this.toolStripMenuItem5,
             this.AddUserToolStripMenuItem,
             this.toolStripMenuItem11,
-            this.evalJSToolStripMenuItem,
+            this.EvalJSToolStripMenuItem,
             this.creatJavaScriptToolStripMenuItem,
             this.toolStripSeparator1,
             this.RepairDBToolStripMenuItem,
@@ -518,11 +518,11 @@ namespace MagicMongoDBTool
             // 
             // evalJSToolStripMenuItem
             // 
-            this.evalJSToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.JavaScriptList;
-            this.evalJSToolStripMenuItem.Name = "evalJSToolStripMenuItem";
-            this.evalJSToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.evalJSToolStripMenuItem.Text = "Eval Javascript";
-            this.evalJSToolStripMenuItem.Click += new System.EventHandler(this.evalJSToolStripMenuItem_Click);
+            this.EvalJSToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.JavaScriptList;
+            this.EvalJSToolStripMenuItem.Name = "evalJSToolStripMenuItem";
+            this.EvalJSToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.EvalJSToolStripMenuItem.Text = "Eval Javascript";
+            this.EvalJSToolStripMenuItem.Click += new System.EventHandler(this.evalJSToolStripMenuItem_Click);
             // 
             // creatJavaScriptToolStripMenuItem
             // 
@@ -1049,7 +1049,7 @@ namespace MagicMongoDBTool
         private ToolStripSeparator toolStripMenuItem7;
         private ToolStripMenuItem ReIndexToolStripMenuItem;
         private ToolStripSeparator toolStripMenuItem11;
-        private ToolStripMenuItem evalJSToolStripMenuItem;
+        private ToolStripMenuItem EvalJSToolStripMenuItem;
         private ToolStripStatusLabel lblUserInfo;
         private TreeView trvsrvlst;
         private ToolStripMenuItem RepairDBToolStripMenuItem;

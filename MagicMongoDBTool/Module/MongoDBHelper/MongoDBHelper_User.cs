@@ -98,14 +98,76 @@ namespace MagicMongoDBTool.Module
         /// 获得用户当前角色
         /// </summary>
         /// <returns></returns>
-        public static BsonArray GetCurrentDBRoles() {
+        public static BsonArray GetCurrentDBRoles()
+        {
             BsonArray Roles = new BsonArray();
             String ConnectionName = SystemManager.GetCurrentServerConfig().ConnectionName;
             String DBName = SystemManager.GetCurrentDataBase().Name;
-            Roles =_mongoUserLst[ConnectionName].GetRolesByDBName(DBName);
+            Roles = _mongoUserLst[ConnectionName].GetRolesByDBName(DBName);
             return Roles;
         }
-
+        /// <summary>
+        /// Mongo操作
+        /// </summary>
+        public enum MongoOperate
+        {
+            DelMongoDB,
+            CreateMongoCollection,
+            InitGFS,
+            AddUser,
+            RepairDB,
+            EvalJS
+        }
+        /// <summary>
+        /// 根据角色判断能否执行操作
+        /// </summary>
+        /// <param name="roles"></param>
+        /// <returns></returns>
+        public static Boolean JudgeRightByRole(BsonArray roles, MongoOperate opt)
+        {
+            Boolean CanDoIt = false;
+            switch (opt)
+            {
+                case MongoOperate.DelMongoDB:
+                case MongoOperate.RepairDB:
+                    if (roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
+                    {
+                        CanDoIt = true;
+                    }
+                    break;
+                case MongoOperate.EvalJS:
+                    //http://docs.mongodb.org/manual/reference/user-privileges/
+                    //Combined Access
+                    //Requires readWriteAnyDatabase, userAdminAnyDatabase, dbAdminAnyDatabase and clusterAdmin (on the admin database.)
+                    if (roles.Contains(MongoDBHelper.UserRole_readWriteAnyDatabase) &&
+                        roles.Contains(MongoDBHelper.UserRole_userAdminAnyDatabase) &&
+                        roles.Contains(MongoDBHelper.UserRole_dbAdminAnyDatabase) &&
+                        roles.Contains(MongoDBHelper.UserRole_clusterAdmin))
+                    {
+                        CanDoIt = true;
+                    }
+                    break;
+                case MongoOperate.CreateMongoCollection:
+                case MongoOperate.InitGFS:
+                    if (roles.Contains(MongoDBHelper.UserRole_readWrite) ||
+                        roles.Contains(MongoDBHelper.UserRole_readWriteAnyDatabase) ||
+                        roles.Contains(MongoDBHelper.UserRole_dbAdmin))
+                    {
+                        CanDoIt = true;
+                    }
+                    break;
+                case MongoOperate.AddUser:
+                    if (roles.Contains(MongoDBHelper.UserRole_userAdmin) ||
+                        roles.Contains(MongoDBHelper.UserRole_userAdminAnyDatabase))
+                    {
+                        CanDoIt = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return CanDoIt;
+        }
         #endregion
     }
 }
