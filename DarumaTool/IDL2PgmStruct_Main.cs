@@ -99,7 +99,10 @@ namespace DarumaTool
         /// XXX <- CASE;
         /// </summary>
         private static Boolean IsNeedValue;
-
+        /// <summary>
+        /// TRUE
+        /// </summary>
+        public const string TrueFlg = "#TRUE#";
         /// <summary>
         /// 分析
         /// </summary>
@@ -185,6 +188,7 @@ namespace DarumaTool
             }
         }
         #endregion
+
         /// <summary>
         /// 替换行号为分支号
         /// </summary>
@@ -653,14 +657,14 @@ namespace DarumaTool
                 }
                 else
                 {
-                    CaseCondition = "#TRUE#";
+                    CaseCondition = TrueFlg;
                 }
                 if (source.EndsWith(" <- CASE;"))
                 {
                     //郵政局コード <- CASE ;
                     InputItem = source.Substring(0, source.IndexOf(" <- CASE;")).Trim();
                 }
-                if (CaseCondition == "#TRUE#")
+                if (CaseCondition == TrueFlg)
                 {
                     SyntaxList.Add(new Syntax()
                     {
@@ -668,7 +672,7 @@ namespace DarumaTool
                         LineNo = LineNo,
                         NestLv = NestLV,
                         SectionName = sectionName,
-                        ExtendInfo = "#TRUE#",
+                        ExtendInfo = TrueFlg,
                         Result = (String.IsNullOrEmpty(InputItem)) ? null : "INPUT:" + InputItem
                     });
                 }
@@ -701,7 +705,7 @@ namespace DarumaTool
                     LineNo = LineNo,
                     NestLv = NestLV,
                     SectionName = sectionName,
-                    ExtendInfo = "#TRUE#"
+                    ExtendInfo = TrueFlg
                 });
                 //保持 CASE->WHEN->END-CASE同级别
                 NestLV++;

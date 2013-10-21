@@ -66,15 +66,6 @@ namespace DarumaTool
             btnClose.Click += (x, y) => { this.Close(); };
         }
         /// <summary>
-        /// 系统设定
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnSystemConfig_Click(object sender, EventArgs e)
-        {
-
-        }
-        /// <summary>
         /// 程序ID-COPY句
         /// </summary>
         Dictionary<String, HashSet<String>> PgmCopy = new Dictionary<string, HashSet<string>>();
@@ -97,7 +88,7 @@ namespace DarumaTool
                 {
                     FileInfo pgm = new FileInfo(filename);
                     HashSet<String> CopyHash = new HashSet<string>();
-                    GetCopy(filename, pgm.Name.Replace(".idw", string.Empty), false, CopyHash);
+                    Utilty.GetCopy(PgmCopy, filename, pgm.Name.Replace(".idw", string.Empty), false, CopyHash);
                     DarumaCol.Insert<CopyBook>(
                         new CopyBook() { Copy = CopyHash, PgmID = pgm.Name.Replace(".idw", string.Empty) });
                 }
@@ -113,21 +104,7 @@ namespace DarumaTool
                        new CopyBook() { Copy = item.Value, PgmID = item.Key });
             }
         }
-        /// <summary>
-        /// 获得文本文件的行数
-        /// </summary>
-        /// <param name="filename"></param>
-        /// <returns></returns>
-        private int getLines(string filename)
-        {
-            StreamReader sr = new StreamReader(filename, System.Text.Encoding.Default);
-            int i = 0;
-            while (sr.ReadLine() != null)
-            {
-                i++;
-            }
-            return i;
-        }
+
         /// <summary>
         /// IDL2代码分析
         /// </summary>
@@ -150,7 +127,7 @@ namespace DarumaTool
                     {
                         PgmID = pgm.Name.Replace(".id@", string.Empty),
                         IsMacro = true,
-                        line = getLines(filename)
+                        line = Utilty.getLines(filename)
                     });
                 }
             }
@@ -164,7 +141,7 @@ namespace DarumaTool
                     {
                         PgmID = pgm.Name.Replace(".id@", string.Empty),
                         IsMacro = false,
-                        line = getLines(filename)
+                        line = Utilty.getLines(filename)
                     });
                 }
             }
@@ -196,7 +173,8 @@ namespace DarumaTool
                 });
                 rowcount++;
             }
-            //TODO:关闭Excel
+            //关闭Excel
+            excelObj = null;
         }
         private void btnWriteToExcel_Click(object sender, EventArgs e)
         {
@@ -239,20 +217,9 @@ namespace DarumaTool
                     }
                 }
             }
+            excelObj = null;
         }
-        private String GetArrayString(List<string> list)
-        {
-            String ArrayString = String.Empty;
-            foreach (var item in list)
-            {
-                ArrayString += item + "|";
-            }
-            if (ArrayString != String.Empty)
-            {
-                ArrayString.TrimEnd("|".ToCharArray());
-            }
-            return ArrayString;
-        }
+
         private void btnModuleCall_Click(object sender, EventArgs e)
         {
             if (DarumaDB.CollectionExists("ModuleCall"))
@@ -269,8 +236,8 @@ namespace DarumaTool
                     DarumaCol.Insert<ModuleCall>(new ModuleCall()
                     {
                         PgmID = pgm.Name.Replace(".TXT", string.Empty),
-                        CalledModuleIDList = getCallModule(filename),
-                        CalledMacroList = getCallMacro(filename)
+                        CalledModuleIDList = Utilty.getCallModule(filename),
+                        CalledMacroList = Utilty.getCallMacro(filename)
                     });
                 }
             }
@@ -282,84 +249,12 @@ namespace DarumaTool
                     DarumaCol.Insert<ModuleCall>(new ModuleCall()
                     {
                         PgmID = pgm.Name.Replace(".id@", string.Empty),
-                        CalledModuleIDList = getCallModule(filename)
+                        CalledModuleIDList = Utilty.getCallModule(filename)
                         //不需要Macro信息
                     });
                 }
             }
             MessageBox.Show("Completed!");
-        }
-        private List<String> getCallModule(String filename)
-        {
-            List<String> lstModule = new List<string>();
-            StreamReader sr = new StreamReader(filename, System.Text.Encoding.Default);
-            String source;
-            while (!sr.EndOfStream)
-            {
-                source = sr.ReadLine();
-                source = source.Trim();
-                if (source.StartsWith("CALL ") || source.StartsWith("PROC "))
-                {
-                    //CALL AAA  是程序
-                    //CALL 日本语  不是程序
-                    source = source.Substring(4).Trim();
-                    IsModuleName(lstModule, source);
-                }
-                else
-                {
-                    //END-OUTPUT : PROC KHXJYUUP(ＫＨＸＪＹＵＵＰ入出力域) .
-                    if (source.Contains(" : PROC "))
-                    {
-                        source = source.Substring(source.IndexOf(" : PROC ") + 8).Trim();
-                        IsModuleName(lstModule, source);
-                    }
-                }
-            }
-            return lstModule;
-        }
-        private static void IsModuleName(List<String> lstModule, String source)
-        {
-            char t = source.Substring(0, 1).ToCharArray()[0];
-            if (t >= "A".ToCharArray()[0] && t <= "Z".ToCharArray()[0])
-            {
-                if (!lstModule.Contains(source.Substring(0, 8)))
-                {
-                    lstModule.Add(source.Substring(0, 8));
-                }
-            }
-        }
-        private List<String> getCallMacro(String filename)
-        {
-            List<String> lstMacro = new List<string>();
-            StreamReader sr = new StreamReader(filename, System.Text.Encoding.Default);
-            String source;
-            while (!sr.EndOfStream)
-            {
-                source = sr.ReadLine();
-                source = source.Trim();
-                if (source.StartsWith("@"))
-                {
-                    if (source.Contains("("))
-                    {
-                        if (!lstMacro.Contains(source.Substring(0, source.IndexOf("("))))
-                        {
-                            lstMacro.Add(source.Substring(0, source.IndexOf("(")));
-                        }
-                    }
-                    else
-                    {
-                        if (!lstMacro.Contains(source))
-                        {
-                            lstMacro.Add(source);
-                        }
-                    }
-                }
-            }
-            return lstMacro;
-        }
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            DarumaDBServer.Disconnect();
         }
         private void btnGetBranch_Click(object sender, EventArgs e)
         {
@@ -395,6 +290,7 @@ namespace DarumaTool
                 //IDL2PgmStruct.ShowNestInfo();
             }
             MessageBox.Show("Complete!!PgmCount:" + pgmcount);
+            excelObj = null;
         }
         /// <summary>
         /// 语法树放入Excel
@@ -427,7 +323,8 @@ namespace DarumaTool
                         rowcount++;
                     }
                 }
-                else {
+                else
+                {
                     worksheet.Cells(rowcount, 1).Value = pgm.PgmID;
                     worksheet.Cells(rowcount, 2).Value = section.SectionName;
                     rowcount++;
@@ -435,7 +332,183 @@ namespace DarumaTool
             }
             return rowcount;
         }
+        private void btnWriteToExcelPatternList_Click(object sender, EventArgs e)
+        {
+            dynamic excelObj = Microsoft.VisualBasic.Interaction.CreateObject("Excel.Application");
+            excelObj.Visible = true;
+            dynamic workbook = excelObj.Workbooks.Open(@"C:\Daruma\Tools\PgmList.xlsx");
+            dynamic worksheet = workbook.Sheets(2);
+            worksheet.Select();
+            worksheet.Name = "PatternList";
+            int rowcount = 1;
+            if (DarumaDB.CollectionExists("MacroPattenList"))
+            {
+                MongoCollection DarumaCol = DarumaDB.GetCollection("MacroPattenList");
+                //数据库数据导入Excel
+                foreach (Utilty.MarcoPatter item in DarumaCol.FindAllAs<Utilty.MarcoPatter>())
+                {
+                    //if (item.MacroPatterDetailList.Count < 2000)
+                    //{
+                    //    continue;
+                    //}
+                    worksheet.Cells(rowcount, 1).Value = item.MacroName;
+                    worksheet.Cells(rowcount, 2).Value = item.MaxParaCount;
+                    rowcount++;
+                    if (rowcount % 10000 == 0) { workbook.Save(); }
+                    foreach (var pattern in item.MacroPatterDetailList)
+                    {
+                        worksheet.Cells(rowcount, 1).Value = item.MacroName;
+                        worksheet.Cells(rowcount, 2).Value = pattern.PatternKey;
+                        worksheet.Cells(rowcount, 3).Value = pattern.Pattern;
+                        for (int i = 0; i < pattern.Para.Count; i++)
+                        {
+                            if (!String.IsNullOrEmpty(pattern.Para[i]))
+                            {
+                                worksheet.Cells(rowcount, i + 4).Value = pattern.Para[i];
+                            }
+                        }
+                        rowcount++;
+                        if (rowcount % 10000 == 0) { workbook.Save(); }
+                    }
+                }
+            }
+            workbook.Save();
+            MessageBox.Show("OK");
+        }
+        private void btnMarcoPatten_Click(object sender, EventArgs e)
+        {
+            if (DarumaDB.CollectionExists("MacroPattenList"))
+            {
+                DarumaDB.DropCollection("MacroPattenList");
+            }
+            MongoCollection DarumaCol = DarumaDB.GetCollection("MacroPattenList");
+            StreamReader sr = new StreamReader(MacroCallPatten, System.Text.Encoding.Default);
+            String source;
+            String LastMarcoName = String.Empty;
+            String CurrentMarcoName = String.Empty;
+            Utilty.MarcoPatter t = new Utilty.MarcoPatter();
+            while (!sr.EndOfStream)
+            {
+                source = sr.ReadLine();
+                CurrentMarcoName = source.Substring(0, source.IndexOf("("));
+                if (CurrentMarcoName != LastMarcoName)
+                {
+                    if (!String.IsNullOrEmpty(LastMarcoName))
+                    {
+                        t.count = t.MacroPatterDetailList.Count;
+                        t.MaxParaCount = Utilty.SortParm(t.MacroPatterDetailList);
+                        DarumaCol.Insert<DarumaTool.Utilty.MarcoPatter>(t);
+                    }
+                    t.MacroName = CurrentMarcoName;
+                    t.MacroPatterDetailList = new List<DarumaTool.Utilty.MacroPatterDetail>();
+                    LastMarcoName = CurrentMarcoName;
+                }
+                List<String> paralst = new List<string>();
+                String SortKey = String.Empty;
+                source = source.Trim();
+                source = source.Replace("( )", "()");
+                String[] Para = source.Substring(source.IndexOf("(") + 1)
+                                                               .TrimEnd(")".ToCharArray())
+                                                               .Split(",".ToCharArray());
+                foreach (String para in Para)
+                {
+                    if (String.IsNullOrWhiteSpace(para))
+                    {
+                        paralst.Add(String.Empty);
+                        SortKey = SortKey + "0";
+                    }
+                    else
+                    {
+                        paralst.Add(para);
+                        SortKey = SortKey + "1";
+                    }
+                }
 
+                t.MacroPatterDetailList.Add(new DarumaTool.Utilty.MacroPatterDetail()
+                {
+                    Pattern = source,
+                    Para = paralst,
+                    PatternKey = SortKey
+                });
+            }
+            t.count = t.MacroPatterDetailList.Count;
+            t.MaxParaCount = Utilty.SortParm(t.MacroPatterDetailList);
+            DarumaCol.Insert<DarumaTool.Utilty.MarcoPatter>(t);
+            sr.Close();
+        }
+        private void btnLinkage_Click(object sender, EventArgs e)
+        {
+            if (DarumaDB.CollectionExists("Linkage"))
+            {
+                DarumaDB.DropCollection("Linkage");
+            }
+            MongoCollection DarumaCol = DarumaDB.GetCollection("Linkage");
+
+            dynamic excelObj = Microsoft.VisualBasic.Interaction.CreateObject("Excel.Application");
+            excelObj.Visible = true;
+            dynamic workbook = excelObj.Workbooks.Open(@"C:\Daruma\Tools\PgmList.xlsx");
+            dynamic worksheet = workbook.Sheets(4);
+            worksheet.Select();
+            worksheet.Name = "Linkage";
+            int rowcount = 1;
+            int colcount = 1;
+
+            ///获得部品的信息
+            if (Directory.Exists(idwFolder))
+            {
+                foreach (String filename in Directory.GetFiles(idwFolder))
+                {
+                    FileInfo pgm = new FileInfo(filename);
+                    IDL2ProgramLinkage t = new IDL2ProgramLinkage()
+                    {
+                        PgmID = pgm.Name.Replace(".idw", string.Empty),
+                        Linkage = Utilty.getLinkage(filename)
+                    };
+                    if (t.Linkage.Count != 0)
+                    {
+                        colcount = 1;
+                        DarumaCol.Insert<IDL2ProgramLinkage>(t);
+                        worksheet.Cells(rowcount, colcount).Value = t.PgmID;
+                        foreach (var item in t.Linkage)
+                        {
+                            colcount++;
+                            worksheet.Cells(rowcount, colcount).Value = item;
+                        }
+                        rowcount++;
+                    }
+                }
+            }
+            excelObj = null;
+        }
+        /// <summary>
+        /// 系统设定
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSystemConfig_Click(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// 启动MongoDB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnStartUpMongoDB_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"C:\MagicMongoDBTool\MagicMongoDBTool\ServerLoader\Daruma.bat");
+        }
+        /// <summary>
+        /// 关闭
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            GC.Collect();
+            DarumaDBServer.Disconnect();
+        }
+        #region"废止"
         /// <summary>
         /// 语法树放入Excel
         /// </summary>
@@ -490,7 +563,7 @@ namespace DarumaTool
                         }
                         //实验项目
                         Boolean IsSpec = false;
-                        if (syntaxset.SyntaxSetType == "CASE" && syntaxset.SyntaxList[0].ExtendInfo.Equals("#TRUE#"))
+                        if (syntaxset.SyntaxSetType == "CASE" && syntaxset.SyntaxList[0].ExtendInfo.Equals(IDL2PgmStruct.TrueFlg))
                         {
                             worksheet.Cells(rowcount, 4).Value = "CASEの子条件分岐";
                             IsSpec = true;
@@ -553,328 +626,6 @@ namespace DarumaTool
             }
             return rowcount;
         }
-
-        internal class MarcoPatter
-        {
-            [BsonId]
-            public String MacroName;
-            public List<MacroPatterDetail> MacroPatterDetailList;
-            public int count;
-            public int MaxParaCount;
-        }
-        internal class MacroPatterDetail
-        {
-            public string Pattern;
-            public List<String> Para;
-            public String PatternKey;
-        }
-        private void GetCopy(String IDWFile, String PgmID, Boolean HasLineNo, HashSet<String> CopyHash)
-        {
-            String strREC = string.Empty;
-            String MacroName = string.Empty;
-            String CopyName = string.Empty;
-            Stack<String> CallModuleStack = new Stack<string>();
-            const String CopyMark = "*--C STA-COPY";
-            const String MacroStartMark = "*--M STA-MAC";
-            const String MacroEndMark = "*--M END-MAC";
-            const String SubMacroStartMark = "*--M #";
-            const String SubMacroEndMark = "*--M**IPO-MACRO-END----------------------------------- ";
-            const String MacroStartMark_Data = "*==M DATA STA-MAC  ";
-            const String MacroEndMark_Data = "*==M DATA END-MAC  ";
-            const String MacroStartMark_WorkData = "*==  WORK DATA FROM MAC=";
-            const String MacroEndMark_WorkData = "*==  WORK DATA END";
-            CallModuleStack.Push(PgmID);
-            StreamReader sr = new StreamReader(IDWFile, System.Text.Encoding.Default);
-            while (!sr.EndOfStream)
-            {
-                //READ
-                strREC = sr.ReadLine();
-                if (HasLineNo)
-                {
-                    strREC = strREC.Substring(8);
-                }
-                //*--C STA-COPY MC_RK_IDN_FIX
-                if (strREC.StartsWith(CopyMark))
-                {
-                    CopyName = strREC.Substring(CopyMark.Length + 1);
-                    if (CopyName.Contains(" "))
-                    {
-                        //*--C STA-COPY MC_RK_TAN_FIX option= PREFIX(ＺＧ)
-                        CopyName = CopyName.Substring(0, CopyName.IndexOf(" "));
-                    }
-                    MacroName = CallModuleStack.Peek();
-                    if (!CopyHash.Contains(MacroName + ":" + CopyName))
-                    {
-                        if (PgmCopy.ContainsKey(MacroName))
-                        {
-                            if (!PgmCopy[MacroName].Contains(CopyName))
-                            {
-                                PgmCopy[MacroName].Add(CopyName);
-                            }
-                        }
-                        else
-                        {
-                            PgmCopy.Add(MacroName, new HashSet<string>());
-                            PgmCopy[MacroName].Add(CopyName);
-                        }
-                        CopyHash.Add(MacroName + ":" + CopyName);
-                    }
-                }
-                //*--M STA-MAC      @ZGPPTINF(ZGPTCSR1,R000)
-                if (strREC.StartsWith(MacroStartMark))
-                {
-                    if (strREC.Contains("@"))
-                    {
-                        MacroName = strREC.Substring(strREC.IndexOf("@"));
-                    }
-                    else
-                    {
-                        MacroName = strREC.Substring(strREC.IndexOf("#"));
-                    }
-                    if (MacroName.Contains("("))
-                    {
-                        MacroName = MacroName.Substring(0, MacroName.IndexOf("("));
-                    }
-                    CallModuleStack.Push(MacroName);
-                }
-                if (strREC.StartsWith(MacroStartMark_Data) || strREC.StartsWith(SubMacroStartMark))
-                {
-                    MacroName = strREC.Substring(strREC.IndexOf("#") + 1);
-                    if (MacroName.Contains("("))
-                    {
-                        MacroName = MacroName.Substring(0, MacroName.IndexOf("("));
-                    }
-                    CallModuleStack.Push(MacroName);
-                }
-                if (strREC.StartsWith(MacroStartMark_WorkData))
-                {
-                    MacroName = strREC.Substring(MacroStartMark_WorkData.Length);
-                    CallModuleStack.Push(MacroName);
-                }
-                //'*--M #ZGPPTINF(ZGPTCSR1,R000)
-                if (strREC.StartsWith(MacroEndMark) || strREC.StartsWith(MacroEndMark_Data) || strREC.StartsWith(SubMacroEndMark) || strREC.StartsWith(MacroEndMark_WorkData))
-                {
-                    CallModuleStack.Pop();
-                }
-            }
-            sr.Close();
-        }
-        private void btnWriteToExcelPatternList_Click(object sender, EventArgs e)
-        {
-            dynamic excelObj = Microsoft.VisualBasic.Interaction.CreateObject("Excel.Application");
-            excelObj.Visible = true;
-            dynamic workbook = excelObj.Workbooks.Open(@"C:\Daruma\Tools\PgmList.xlsx");
-            dynamic worksheet = workbook.Sheets(2);
-            worksheet.Select();
-            worksheet.Name = "PatternList";
-            int rowcount = 1;
-            if (DarumaDB.CollectionExists("MacroPattenList"))
-            {
-                MongoCollection DarumaCol = DarumaDB.GetCollection("MacroPattenList");
-                //数据库数据导入Excel
-                foreach (MarcoPatter item in DarumaCol.FindAllAs<MarcoPatter>())
-                {
-                    //if (item.MacroPatterDetailList.Count < 2000)
-                    //{
-                    //    continue;
-                    //}
-                    worksheet.Cells(rowcount, 1).Value = item.MacroName;
-                    worksheet.Cells(rowcount, 2).Value = item.MaxParaCount;
-                    rowcount++;
-                    if (rowcount % 10000 == 0) { workbook.Save(); }
-                    foreach (var pattern in item.MacroPatterDetailList)
-                    {
-                        worksheet.Cells(rowcount, 1).Value = item.MacroName;
-                        worksheet.Cells(rowcount, 2).Value = pattern.PatternKey;
-                        worksheet.Cells(rowcount, 3).Value = pattern.Pattern;
-                        for (int i = 0; i < pattern.Para.Count; i++)
-                        {
-                            if (!String.IsNullOrEmpty(pattern.Para[i]))
-                            {
-                                worksheet.Cells(rowcount, i + 4).Value = pattern.Para[i];
-                            }
-                        }
-                        rowcount++;
-                        if (rowcount % 10000 == 0) { workbook.Save(); }
-                    }
-                }
-            }
-            workbook.Save();
-            MessageBox.Show("OK");
-        }
-        private void btnMarcoPatten_Click(object sender, EventArgs e)
-        {
-            if (DarumaDB.CollectionExists("MacroPattenList"))
-            {
-                DarumaDB.DropCollection("MacroPattenList");
-            }
-            MongoCollection DarumaCol = DarumaDB.GetCollection("MacroPattenList");
-            StreamReader sr = new StreamReader(MacroCallPatten, System.Text.Encoding.Default);
-            String source;
-            String LastMarcoName = String.Empty;
-            String CurrentMarcoName = String.Empty;
-            MarcoPatter t = new MarcoPatter();
-            while (!sr.EndOfStream)
-            {
-                source = sr.ReadLine();
-                CurrentMarcoName = source.Substring(0, source.IndexOf("("));
-                if (CurrentMarcoName != LastMarcoName)
-                {
-                    if (!String.IsNullOrEmpty(LastMarcoName))
-                    {
-                        t.count = t.MacroPatterDetailList.Count;
-                        t.MaxParaCount = SortParm(t.MacroPatterDetailList);
-                        DarumaCol.Insert<MarcoPatter>(t);
-                    }
-                    t.MacroName = CurrentMarcoName;
-                    t.MacroPatterDetailList = new List<MacroPatterDetail>();
-                    LastMarcoName = CurrentMarcoName;
-                }
-                List<String> paralst = new List<string>();
-                String SortKey = String.Empty;
-                source = source.Trim();
-                source = source.Replace("( )", "()");
-                String[] Para = source.Substring(source.IndexOf("(") + 1)
-                                                               .TrimEnd(")".ToCharArray())
-                                                               .Split(",".ToCharArray());
-                foreach (String para in Para)
-                {
-                    if (String.IsNullOrWhiteSpace(para))
-                    {
-                        paralst.Add(String.Empty);
-                        SortKey = SortKey + "0";
-                    }
-                    else
-                    {
-                        paralst.Add(para);
-                        SortKey = SortKey + "1";
-                    }
-                }
-
-                t.MacroPatterDetailList.Add(new MacroPatterDetail()
-                {
-                    Pattern = source,
-                    Para = paralst,
-                    PatternKey = SortKey
-                });
-            }
-            t.count = t.MacroPatterDetailList.Count;
-            t.MaxParaCount = SortParm(t.MacroPatterDetailList);
-            DarumaCol.Insert<MarcoPatter>(t);
-            sr.Close();
-        }
-        private int SortParm(List<MacroPatterDetail> Patternlst)
-        {
-            //Found the MaxLength
-            int MaxLength = 0;
-            foreach (var item in Patternlst)
-            {
-                if (item.PatternKey.Length > MaxLength)
-                {
-                    if (item.PatternKey != "0")
-                    {
-                        MaxLength = item.PatternKey.Length;
-                    }
-                }
-            }
-            foreach (var item in Patternlst)
-            {
-                item.PatternKey = (item.PatternKey + "0000000000000000000000").Substring(0, MaxLength);
-            }
-            Patternlst.Sort(new Comparison<MacroPatterDetail>((x, y) =>
-            {
-                if (x != y)
-                {
-                    return x.PatternKey.CompareTo(y.PatternKey);
-                }
-                else
-                {
-                    return x.Pattern.CompareTo(y.Pattern);
-                }
-            }));
-            return MaxLength;
-        }
-        private void btnStartUpMongoDB_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(@"C:\MagicMongoDBTool\MagicMongoDBTool\ServerLoader\Daruma.bat");
-        }
-        private void btnLinkage_Click(object sender, EventArgs e)
-        {
-            if (DarumaDB.CollectionExists("Linkage"))
-            {
-                DarumaDB.DropCollection("Linkage");
-            }
-            MongoCollection DarumaCol = DarumaDB.GetCollection("Linkage");
-
-            dynamic excelObj = Microsoft.VisualBasic.Interaction.CreateObject("Excel.Application");
-            excelObj.Visible = true;
-            dynamic workbook = excelObj.Workbooks.Open(@"C:\Daruma\Tools\PgmList.xlsx");
-            dynamic worksheet = workbook.Sheets(4);
-            worksheet.Select();
-            worksheet.Name = "Linkage";
-            int rowcount = 1;
-            int colcount = 1;
-
-            ///获得部品的信息
-            if (Directory.Exists(idwFolder))
-            {
-                foreach (String filename in Directory.GetFiles(idwFolder))
-                {
-                    FileInfo pgm = new FileInfo(filename);
-                    IDL2ProgramLinkage t = new IDL2ProgramLinkage()
-                    {
-                        PgmID = pgm.Name.Replace(".idw", string.Empty),
-                        Linkage = getLinkage(filename)
-                    };
-                    if (t.Linkage.Count != 0)
-                    {
-                        colcount = 1;
-                        DarumaCol.Insert<IDL2ProgramLinkage>(t);
-                        worksheet.Cells(rowcount, colcount).Value = t.PgmID;
-                        foreach (var item in t.Linkage)
-                        {
-                            colcount++;
-                            worksheet.Cells(rowcount, colcount).Value = item;
-                        }
-                        rowcount++;
-                    }
-                }
-            }
-        }
-        private List<string> getLinkage(string filename)
-        {
-            StreamReader sr = new StreamReader(filename, System.Text.Encoding.Default);
-            String SourceLine = String.Empty;
-            List<string> linkage = new List<string>();
-            Boolean InLink = false;
-            while (!sr.EndOfStream)
-            {
-                if (SourceLine == " LINKAGE. ")
-                {
-                    InLink = true;
-                }
-                if (SourceLine == " WORK. ")
-                {
-                    break;
-                }
-                if (InLink)
-                {
-                    SourceLine = SourceLine.Trim();
-                    //01  バッチジョブ制御共通情報.
-                    if (SourceLine.StartsWith("01 "))
-                    {
-                        SourceLine = SourceLine.Substring(4, SourceLine.Length - 5);
-                        if (SourceLine.Contains(" "))
-                        {
-                            SourceLine = SourceLine.Substring(0, SourceLine.IndexOf(" "));
-                        }
-                        linkage.Add(SourceLine);
-                    }
-                }
-                SourceLine = sr.ReadLine();
-            }
-            sr.Close();
-            return linkage;
-        }
+        #endregion
     }
 }
