@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace DarumaTool
 {
@@ -58,7 +56,11 @@ namespace DarumaTool
             }
             return i;
         }
-
+        /// <summary>
+        /// 获得Module一览列表
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public static List<String> getCallModule(String filename)
         {
             List<String> lstModule = new List<string>();
@@ -87,6 +89,11 @@ namespace DarumaTool
             }
             return lstModule;
         }
+        /// <summary>
+        /// 获得Macro一览列表
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public static List<String> getCallMacro(String filename)
         {
             List<String> lstMacro = new List<string>();
@@ -130,6 +137,11 @@ namespace DarumaTool
             public List<String> Para;
             public String PatternKey;
         }
+        /// <summary>
+        /// 参数排序
+        /// </summary>
+        /// <param name="Patternlst"></param>
+        /// <returns></returns>
         public static int SortParm(List<MacroPatterDetail> Patternlst)
         {
             //Found the MaxLength
@@ -161,6 +173,11 @@ namespace DarumaTool
             }));
             return MaxLength;
         }
+        /// <summary>
+        /// Linkage获得
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public static List<string> getLinkage(string filename)
         {
             StreamReader sr = new StreamReader(filename, System.Text.Encoding.Default);
@@ -196,6 +213,14 @@ namespace DarumaTool
             sr.Close();
             return linkage;
         }
+        /// <summary>
+        /// Copy句的获得
+        /// </summary>
+        /// <param name="PgmCopy"></param>
+        /// <param name="IDWFile"></param>
+        /// <param name="PgmID"></param>
+        /// <param name="HasLineNo"></param>
+        /// <param name="CopyHash"></param>
         public static void GetCopy(Dictionary<String, HashSet<String>> PgmCopy, String IDWFile, String PgmID, Boolean HasLineNo, HashSet<String> CopyHash)
         {
             String strREC = string.Empty;

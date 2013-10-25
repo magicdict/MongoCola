@@ -104,6 +104,10 @@ namespace DarumaTool
         /// </summary>
         public const string TrueFlg = "#TRUE#";
         /// <summary>
+        /// 最大嵌套数
+        /// </summary>
+        public int MaxNestLv = 0;
+        /// <summary>
         /// 分析
         /// </summary>
         /// <param name="filename"></param>
@@ -138,6 +142,7 @@ namespace DarumaTool
                 IsMasterOpr(SyntaxList, source, NestLV, LineNo, sectionName);
                 if (IsNeedAssign) IsAssignOpr(SyntaxList, source, NestLV, LineNo, sectionName);
                 LineNo++;
+                if (NestLV > MaxNestLv) { MaxNestLv = NestLV; }
             }
             sr.Close();
             //GetNestInfo(SyntaxList);

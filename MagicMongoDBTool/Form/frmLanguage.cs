@@ -19,13 +19,13 @@ namespace MagicMongoDBTool
             {
                 foreach (String FileName in Directory.GetFiles("Language"))
                 {
-                    this.cmbLanguage.Items.Add(new FileInfo(FileName).Name);
+                    this.cmbLanguage.Items.Add(new FileInfo(FileName).Name.Substring(0, new FileInfo(FileName).Name.Length - 4));
                 }
             }
         }
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            SystemManager.ConfigHelperInstance.LanguageFileName = this.cmbLanguage.Text;
+            SystemManager.ConfigHelperInstance.LanguageFileName = this.cmbLanguage.Text + ".xml";
             SystemManager.ConfigHelperInstance.SaveToConfigFile();
             this.Close();
         }

@@ -176,11 +176,11 @@ namespace DarumaTool
             //关闭Excel
             excelObj = null;
         }
-       /// <summary>
-       /// 每本程序使用的Module和Macro的输出Excel方法
-       /// </summary>
-       /// <param name="sender"></param>
-       /// <param name="e"></param>
+        /// <summary>
+        /// 每本程序使用的Module和Macro的输出Excel方法
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnWriteToExcel_Click(object sender, EventArgs e)
         {
             dynamic excelObj = Microsoft.VisualBasic.Interaction.CreateObject("Excel.Application");
@@ -287,6 +287,7 @@ namespace DarumaTool
                     pgm.Analyze(filename);
                     DarumaCol.Insert<IDL2PgmStruct>(pgm);
                     worksheet.Cells(rowcount, 1).Value = pgm.PgmID;
+                    worksheet.Cells(rowcount, 2).Value = pgm.MaxNestLv;
                     rowcount++;
                     rowcount = FillSyntaxToExcel(worksheet, rowcount, pgm);
                     pgmcount++;
@@ -308,30 +309,27 @@ namespace DarumaTool
         {
             foreach (var section in pgm.SectionList)
             {
-                if (section.SyntaxList.Count != 0)
-                {
-                    foreach (var SyntaxLst in section.SyntaxList)
-                    {
-                        int colcount = 3;
-                        worksheet.Cells(rowcount, 1).Value = pgm.PgmID;
-                        worksheet.Cells(rowcount, 2).Value = section.SectionName;
-                        foreach (var syntax in SyntaxLst)
-                        {
-                            //第一个CASE不需要出现在列表中
-                            worksheet.Cells(rowcount, colcount).Value = syntax.SyntaxType;
-                            colcount++;
-                            worksheet.Cells(rowcount, colcount).Value = syntax.LineNo;
-                            colcount++;
-                            worksheet.Cells(rowcount, colcount).Value = syntax.NestLv;
-                            colcount++;
-                        }
-                        rowcount++;
-                    }
-                }
-                else
+                //为了便于填写，每个Section都有独立标示行
+                worksheet.Cells(rowcount, 1).Value = pgm.PgmID;
+                worksheet.Cells(rowcount, 2).Value = section.SectionName;
+                rowcount++;
+                foreach (var SyntaxLst in section.SyntaxList)
                 {
                     worksheet.Cells(rowcount, 1).Value = pgm.PgmID;
                     worksheet.Cells(rowcount, 2).Value = section.SectionName;
+                    int colcount = 3;
+                    foreach (var syntax in SyntaxLst)
+                    {
+                        //第一个CASE不需要出现在列表中
+                        worksheet.Cells(rowcount, colcount).Value = syntax.SyntaxType;
+                        colcount++;
+                        worksheet.Cells(rowcount, colcount).Value = syntax.LineNo;
+                        colcount++;
+                        worksheet.Cells(rowcount, colcount).Value = syntax.NestLv;
+                        colcount++;
+                        worksheet.Cells(rowcount, colcount).Value = syntax.ExtendInfo;
+                        colcount++;
+                    }
                     rowcount++;
                 }
             }
