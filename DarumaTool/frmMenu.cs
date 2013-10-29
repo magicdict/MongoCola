@@ -11,8 +11,8 @@ namespace DarumaTool
         //TODO:可配置
         private const string idwFolder = @"C:\Daruma\WorkShop\idw";
         private const string idl2MacroFolder = @"C:\Daruma\WorkShop\id@";
-        private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース";
-        //private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース_0";
+        //private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース";
+        private const string idl2MainFolder = @"C:\Daruma\WorkShop\01.IDLIIソース_0";
         private const String ExcelList = @"C:\Daruma\Tools\H2504_PGM別STEP数(20130617).xls";
         private const String MacroCallPatten = @"C:\Daruma\Tools\パラメータ有_部品呼出し一覧_20130724.txt";
         internal class IDL2Program
@@ -560,7 +560,7 @@ namespace DarumaTool
                                 colcount++;
                                 worksheet.Cells(rowcount, colcount).Value = String.IsNullOrEmpty(syntax.ExtendInfo) ? "" : syntax.ExtendInfo.Trim();
                                 colcount++;
-                                worksheet.Cells(rowcount, colcount).Value = String.IsNullOrEmpty(syntax.Result) ? "" : syntax.Result.Trim();
+                                worksheet.Cells(rowcount, colcount).Value = String.IsNullOrEmpty(syntax.JumpInfo) ? "" : syntax.JumpInfo.Trim();
                                 colcount++;
                             }
                         }

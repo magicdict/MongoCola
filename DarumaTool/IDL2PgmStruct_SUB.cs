@@ -54,10 +54,10 @@ namespace DarumaTool
                                 ///获得下层的ASSIGN备用
                                 if (SyntaxList[ifcount].SyntaxType == "ASSIGN")
                                 {
-                                    if (String.IsNullOrEmpty(IfSet.SyntaxList[IfSet.SyntaxList.Count - 1].Result))
+                                    if (String.IsNullOrEmpty(IfSet.SyntaxList[IfSet.SyntaxList.Count - 1].JumpInfo))
                                     {
                                         Syntax newsyntax = IfSet.SyntaxList[IfSet.SyntaxList.Count - 1];
-                                        newsyntax.Result = SyntaxList[ifcount].ExtendInfo;
+                                        newsyntax.JumpInfo = SyntaxList[ifcount].ExtendInfo;
                                         IfSet.SyntaxList.RemoveAt(IfSet.SyntaxList.Count - 1);
                                         IfSet.SyntaxList.Add(newsyntax);
                                     }
@@ -73,7 +73,7 @@ namespace DarumaTool
                                 LineNo = IfSet.SyntaxList[0].LineNo,
                                 NestLv = IfSet.SyntaxList[0].NestLv,
                                 ExtendInfo = "上記以外",
-                                Result = "次の処理を行う。"
+                                JumpInfo = "次の処理を行う。"
                             });
                         }
                         else
@@ -155,7 +155,7 @@ namespace DarumaTool
                                 LineNo = RepeatSet.SyntaxList[0].LineNo,
                                 NestLv = RepeatSet.SyntaxList[0].NestLv,
                                 ExtendInfo = "上記以外",
-                                Result = "次の処理を行う。"
+                                JumpInfo = "次の処理を行う。"
                             });
                         }
                         else
@@ -166,7 +166,7 @@ namespace DarumaTool
                                 LineNo = RepeatSet.SyntaxList[0].LineNo,
                                 NestLv = RepeatSet.SyntaxList[0].NestLv,
                                 ExtendInfo = "上記以外",
-                                Result = "次の処理を行う。"
+                                JumpInfo = "次の処理を行う。"
                             });
                         }
                         foreach (Section_OLD Section in SectionList_OLD)
@@ -229,7 +229,7 @@ namespace DarumaTool
                                 LineNo = CaseSet.SyntaxList[0].LineNo,
                                 NestLv = CaseSet.SyntaxList[0].NestLv,
                                 ExtendInfo = "OTHER",
-                                Result = "処理なし"
+                                JumpInfo = "処理なし"
                             });
                         }
                         ///放入指定的Section中
@@ -257,7 +257,7 @@ namespace DarumaTool
                         Syntax NOTExist = SyntaxList[i];
                         NOTExist = SyntaxList[i];
                         NOTExist.ExtendInfo = "上記以外";
-                        NOTExist.Result = "処理なし";
+                        NOTExist.JumpInfo = "処理なし";
                         CheckSet.SyntaxList.Add(NOTExist);
                         foreach (Section_OLD Section in SectionList_OLD)
                         {
@@ -335,46 +335,46 @@ namespace DarumaTool
         /// <returns></returns>
         private static Syntax GetResultAfter(List<Syntax> SyntaxList, int t, Syntax newSyntax)
         {
-            if (!String.IsNullOrEmpty(newSyntax.Result))
+            if (!String.IsNullOrEmpty(newSyntax.JumpInfo))
             {
-                newSyntax.Result += "&";
+                newSyntax.JumpInfo += "&";
             }
             switch (SyntaxList[t + 1].SyntaxType)
             {
                 case "ABORT":
-                    newSyntax.Result += "共通マクロ@ZGIAPABRTで、プログラムを中止させます";
+                    newSyntax.JumpInfo += "共通マクロ@ZGIAPABRTで、プログラムを中止させます";
                     break;
                 case "CALL":
-                    newSyntax.Result += "[%" + SyntaxList[t + 1].ExtendInfo.Trim() + "%]を呼出す";
+                    newSyntax.JumpInfo += "[%" + SyntaxList[t + 1].ExtendInfo.Trim() + "%]を呼出す";
                     break;
                 case "MACRO":
-                    newSyntax.Result += "[#" + SyntaxList[t + 1].ExtendInfo.Trim() + "#]を呼出す";
+                    newSyntax.JumpInfo += "[#" + SyntaxList[t + 1].ExtendInfo.Trim() + "#]を呼出す";
                     break;
                 case "PERFORM":
-                    newSyntax.Result += "[ " + SyntaxList[t + 1].ExtendInfo.Trim() + " ]へ遷移します";
+                    newSyntax.JumpInfo += "[ " + SyntaxList[t + 1].ExtendInfo.Trim() + " ]へ遷移します";
                     break;
                 case "ERROR":
-                    newSyntax.Result += "[ " + SyntaxList[t + 1].ExtendInfo.Trim() + " ]へ遷移し、エラー処理を実行します";
+                    newSyntax.JumpInfo += "[ " + SyntaxList[t + 1].ExtendInfo.Trim() + " ]へ遷移し、エラー処理を実行します";
                     break;
                 case "IF":
                     //最后通过LineNo，替换出BranchNo
-                    newSyntax.Result += "%" + SyntaxList[t + 1].LineNo + "% の分岐の判定の処理に移る";
+                    newSyntax.JumpInfo += "%" + SyntaxList[t + 1].LineNo + "% の分岐の判定の処理に移る";
                     break;
                 case "CASE":
                     //最后通过LineNo，替换出BranchNo
-                    newSyntax.Result += "%" + SyntaxList[t + 1].LineNo + "% の多分岐の判定の処理に移る";
+                    newSyntax.JumpInfo += "%" + SyntaxList[t + 1].LineNo + "% の多分岐の判定の処理に移る";
                     break;
                 case "FOR":
                 case "LOOP":
                 case "WHILE":
                 case "REPEAT":
                     //最后通过LineNo，替换出BranchNo
-                    newSyntax.Result += "%" + SyntaxList[t + 1].LineNo + "% のループの処理に移る";
+                    newSyntax.JumpInfo += "%" + SyntaxList[t + 1].LineNo + "% のループの処理に移る";
                     break;
                 default:
-                    if (!String.IsNullOrEmpty(newSyntax.Result))
+                    if (!String.IsNullOrEmpty(newSyntax.JumpInfo))
                     {
-                        newSyntax.Result = newSyntax.Result.TrimEnd("&".ToCharArray());
+                        newSyntax.JumpInfo = newSyntax.JumpInfo.TrimEnd("&".ToCharArray());
                     }
                     break;
             }
@@ -476,14 +476,13 @@ namespace DarumaTool
                 //第一层为基准的整理
                 if (syntax.NestLv == 1)
                 {
-                    if (isStartSyntax(syntax))
+                    if (isStartSyntax(syntax) || isMidSyntax(syntax))
                     {
                         //LV = 1 
                         OneSyntax.Add(syntax);
                     }
                     if (isEndSyntax(syntax))
                     {
-                        //LV = 1 
                         TopSyntax.Add(OneSyntax);
                         OneSyntax = new List<Syntax>();
                     }
@@ -494,7 +493,7 @@ namespace DarumaTool
                     //然后在接下来的步骤里面吸收到分歧/内容,迁移等等
                     if (!isEndSyntax(syntax))
                     {
-                        OneSyntax.Add(syntax);
+                        if (syntax.SyntaxType != "CASE") OneSyntax.Add(syntax);
                     }
                 }
                 //控制变量的收集
@@ -510,10 +509,10 @@ namespace DarumaTool
                 }
             }
             List<List<Syntax>> ReTopSyntax = new List<List<Syntax>>();
-            //迁移处理
+            //迁移情报
             foreach (List<Syntax> Syntaxlst in TopSyntax)
             {
-                ReTopSyntax.Add(GetResult(Syntaxlst));
+                ReTopSyntax.Add(GetJumpInfo(Syntaxlst));
             }
             TopSyntax = ReTopSyntax;
             foreach (var item in TopSyntax)
@@ -528,12 +527,13 @@ namespace DarumaTool
             }
         }
         /// <summary>
-        /// 迁移处理的整理
+        /// 迁移情报的整理
         /// </summary>
         /// <param name="Syntaxlst"></param>
         /// <returns></returns>
-        private List<Syntax> GetResult(List<Syntax> Syntaxlst)
+        private List<Syntax> GetJumpInfo(List<Syntax> Syntaxlst)
         {
+            ///关键的和迁移有关的变量，PERFORM记载在迁移情报之中，其他不用记载
             List<Syntax> ReSyntaxlst = new List<Syntax>();
             foreach (var syntax in Syntaxlst)
             {
@@ -541,6 +541,10 @@ namespace DarumaTool
                 {
                     case "ASSIGN":
                         if (ControlVar.Contains(syntax.ExtendInfo)) ReSyntaxlst.Add(syntax);
+                        break;
+                    case "PERFORM":
+                    case "ERROR":
+                        ReSyntaxlst.Add(syntax);
                         break;
                     default:
                         if (!isEndSyntax(syntax))
@@ -554,11 +558,20 @@ namespace DarumaTool
             return ReSyntaxlst;
         }
         /// <summary>
+        /// 是否为语法
+        /// </summary>
+        /// <param name="syntax"></param>
+        /// <returns></returns>
+        public static bool isSyntax(Syntax syntax)
+        {
+            return (isStartSyntax(syntax) || isEndSyntax(syntax) || isMidSyntax(syntax));        
+        }
+        /// <summary>
         /// 是否为开始语法
         /// </summary>
         /// <param name="syntax"></param>
         /// <returns></returns>
-        private static bool isStartSyntax(Syntax syntax)
+        public static bool isStartSyntax(Syntax syntax)
         {
             switch (syntax.SyntaxType)
             {
@@ -579,12 +592,13 @@ namespace DarumaTool
         /// </summary>
         /// <param name="syntax"></param>
         /// <returns></returns>
-        private static bool isMidSyntax(Syntax syntax)
+        public static bool isMidSyntax(Syntax syntax)
         {
             switch (syntax.SyntaxType)
             {
                 case "ELSE":
                 case "WHEN":
+                //case "OTHER":
                     return true;
                 default:
                     return false;
@@ -595,7 +609,7 @@ namespace DarumaTool
         /// </summary>
         /// <param name="syntax"></param>
         /// <returns></returns>
-        private static bool isEndSyntax(Syntax syntax)
+        public static bool isEndSyntax(Syntax syntax)
         {
             switch (syntax.SyntaxType)
             {

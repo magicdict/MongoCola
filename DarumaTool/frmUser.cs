@@ -11,7 +11,8 @@ namespace DarumaTool
             InitializeComponent();
         }
         private string idlFilename = string.Empty;
-        dynamic excelObj = Microsoft.VisualBasic.Interaction.CreateObject("Excel.Application");
+        private string UTFilename = string.Empty;
+
         private void btnSourcePick_Click(object sender, EventArgs e)
         {
             OpenFileDialog of = new OpenFileDialog();
@@ -24,19 +25,12 @@ namespace DarumaTool
         }
         private void btnAnlyze_Click(object sender, EventArgs e)
         {
-            excelObj.Visible = true;
-            dynamic workbook = excelObj.Workbooks.Add();
-            dynamic worksheet = workbook.Sheets(3);
-            worksheet.Select();
-            worksheet.Name = "SyntaxSet";
-            int rowcount = 1;
+            idlFilename = @"C:\Daruma\WorkShop\01.IDLIIソース_0\KHQT1CH1.TXT";
+            UTFilename = @"C:\Daruma\Tools\XXXXXXXXX_UT試験仕様書(本体＆部品).xls";
             IDL2PgmStruct pgm = new IDL2PgmStruct();
             pgm.PgmID = new FileInfo(idlFilename).Name.TrimEnd(".TXT".ToCharArray());
             pgm.Analyze(idlFilename);
-            worksheet.Cells(rowcount, 1).Value = pgm.PgmID;
-            rowcount++;
-            rowcount = frmMenu.FillSyntaxToExcel(worksheet, rowcount, pgm);
-            excelObj = null;
+            GenerateUTSheet.GenerateUT(pgm,UTFilename);
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
