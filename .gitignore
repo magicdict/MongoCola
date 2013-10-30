@@ -17,6 +17,8 @@
 /UnitTest
 /DarumaTool/bin
 /DarumaTool/obj
+/DarumaUTGenerator/bin
+/DarumaUTGenerator/obj
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
 /MagicMongoDBTool/_UpgradeReport_Files

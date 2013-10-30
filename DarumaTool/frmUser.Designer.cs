@@ -123,7 +123,7 @@
             this.Controls.Add(this.btnSourcePick);
             this.Name = "frmUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "分岐点解析";
+            this.Text = "分岐点解析（廃止）";
             this.ResumeLayout(false);
             this.PerformLayout();
 

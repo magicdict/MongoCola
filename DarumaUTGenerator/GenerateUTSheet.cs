@@ -19,12 +19,19 @@ namespace DarumaUTGenerator
         const int xlInsideVertical = 11;
         const int xlInsideHorizontal = 12;
         static int MaxLv;
+        static Dictionary<String, String> MoudleNameList = new Dictionary<string, string>();
+        static Dictionary<String, String> MacroNameList = new Dictionary<string, string>();
+
         public static void GenerateUT(IDL2PgmStruct pgm, String UTFilename)
         {
+            MoudleNameList.Clear();
+            MacroNameList.Clear();
+
             dynamic excelObj = Microsoft.VisualBasic.Interaction.CreateObject("Excel.Application");
             int RowCount;
             excelObj.Visible = true;
             dynamic workbook = excelObj.Workbooks.Open(UTFilename);
+            //GetJpNameList(workbook);
             dynamic ActiveSheet = workbook.Sheets(3);
             ActiveSheet.Select();
             ///L1实际上是用来标明分歧号的，所以必须多加一列
@@ -104,7 +111,14 @@ namespace DarumaUTGenerator
                             {
                                 case "IF":
                                     TestString += "の分岐判定処理";
-                                    ActiveSheet.Cells(RowCount, MaxLv + 4).Value = TestString;
+                                    if (String.IsNullOrEmpty(SyntaxItem.ExtendInfo))
+                                    {
+                                        ActiveSheet.Cells(RowCount, MaxLv + 4).Value = TestString;
+                                    }
+                                    else
+                                    {
+                                        ActiveSheet.Cells(RowCount, MaxLv + 4).Value = GetTestContext(SyntaxItem.ExtendInfo);
+                                    }
                                     break;
                                 case "ELSE":
                                     ActiveSheet.Cells(RowCount, MaxLv + 5).Value = "上記以外";
@@ -124,9 +138,27 @@ namespace DarumaUTGenerator
                                         ActiveSheet.Cells(RowCount, MaxLv + 4).Value = "判定" + WhenNo;
                                         ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.ExtendInfo;
                                     }
-                                    else {
-                                        if (WhenNo == 1) {
-                                            ActiveSheet.Cells(RowCount, MaxLv + 4).Value = CaseSyntax.ExtendInfo;
+                                    else
+                                    {
+                                        if (WhenNo == 1)
+                                        {
+                                            if (String.IsNullOrEmpty(CaseSyntax.ExtendInfo))
+                                            {
+                                                if (CaseSyntax.Cond != null)
+                                                {
+                                                    foreach (var item in CaseSyntax.Cond.TestItemLst)
+                                                    {
+                                                        TestString += "「" + item + "」、";
+                                                    }
+                                                }
+                                                TestString = TestString.TrimEnd("、".ToCharArray());
+                                                TestString += "の多分岐判定処理";
+                                                ActiveSheet.Cells(RowCount, MaxLv + 4).Value = TestString;
+                                            }
+                                            else
+                                            {
+                                                ActiveSheet.Cells(RowCount, MaxLv + 4).Value = GetTestContext(CaseSyntax.ExtendInfo);
+                                            }
                                         }
                                         ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.ExtendInfo;
                                     }
@@ -155,6 +187,10 @@ namespace DarumaUTGenerator
                                 case "ELSE":
                                 case "WHEN":
                                     ActiveSheet.Cells(RowCount, MaxLv + 3).Value = KeyWord;
+                                    break;
+                                case "BLOCK":
+                                    ActiveSheet.Cells(RowCount, MaxLv + 2).Value = KeyWord;
+                                    ActiveSheet.Cells(RowCount, MaxLv + 3).Value = SyntaxItem.ExtendInfo;
                                     break;
                                 default:
                                     ActiveSheet.Cells(RowCount, MaxLv + 2).Value = KeyWord;
@@ -202,10 +238,91 @@ namespace DarumaUTGenerator
             ActiveSheet.PageSetup.PrintArea = "$A$1:$R$" + RowCount;
         }
 
+        private static int GetJpNameList(dynamic workbook)
+        {
+            int RowCount;
+            dynamic JpNameSheet = workbook.Sheets(4);
+            RowCount = 3;
+            while (JpNameSheet.Cells(RowCount, 1).Text != "")
+            {
+                if (!MoudleNameList.ContainsKey(JpNameSheet.Cells(RowCount, 1).Text))
+                {
+                    MoudleNameList.Add(JpNameSheet.Cells(RowCount, 1).Text, JpNameSheet.Cells(RowCount, 2).Text);
+                }
+                RowCount++;
+            }
+            RowCount = 3;
+            while (JpNameSheet.Cells(RowCount, 3).Text != "")
+            {
+                if (!MacroNameList.ContainsKey(JpNameSheet.Cells(RowCount, 3).Text))
+                {
+                    MacroNameList.Add(JpNameSheet.Cells(RowCount, 3).Text, JpNameSheet.Cells(RowCount, 4).Text);
+                }
+                RowCount++;
+            }
+            return RowCount;
+        }
+
+        private static String GetTestContext(string ExtendInfo)
+        {
+            String TestString = String.Empty;
+            if (ExtendInfo.StartsWith("CALL:"))
+            {
+                String ModuleName = ExtendInfo.Substring("CALL:".Length);
+                if (MoudleNameList.ContainsKey(ModuleName))
+                {
+                    TestString = ModuleName + "(" + MoudleNameList[ModuleName] + ")の戻り値の判定処理";
+                }
+                else
+                {
+                    TestString = "「" + ModuleName + "」の戻り値の判定処理";
+                }
+            }
+            if (ExtendInfo.StartsWith("MACRO:"))
+            {
+                String MacroName = ExtendInfo.Substring("MACRO:".Length);
+                if (MacroName.IndexOf("(") > 0)
+                {
+                    MacroName = MacroName.Substring(0, MacroName.IndexOf("("));
+                }
+                switch (MacroName)
+                {
+                    case "ZGISTDOPN":
+                        TestString = "ファイルオープン処理(" + ExtendInfo.Substring("MACRO:ZGISTDOPN(".Length, 8) + ")分岐の判定";
+                        break;
+                    case "ZGISTDCLS":
+                        TestString = "ファイルクローズ処理(" + ExtendInfo.Substring("MACRO:ZGISTDCLS(".Length, 8) + ")分岐の判定";
+                        break;
+                    case "ZGISTDGET":
+                        TestString = "入力ファイル読込処理(" + ExtendInfo.Substring("MACRO:ZGISTDGET(".Length, 8) + ")分岐の判定";
+                        break;
+                    case "ZGISTDPUT":
+                        TestString = "出力ファイル書込処理(" + ExtendInfo.Substring("MACRO:ZGISTDPUT(".Length, 8) + ")分岐の判定";
+                        break;
+                    case "ZGIVSAOPN":
+                        TestString = "マスターオープン処理(" + ExtendInfo.Substring("MACRO:ZGIVSAOPN(".Length, 8) + ")分岐の判定";
+                        break;
+                    case "ZGIVSACLS":
+                        TestString = "マスタークローズ処理(" + ExtendInfo.Substring("MACRO:ZGIVSACLS(".Length, 8) + ")分岐の判定";
+                        break;
+                    case "ZGIVSAGET":
+                        TestString = "マスター読込処理(" + ExtendInfo.Substring("MACRO:ZGIVSAGET(".Length, 8) + ")分岐の判定";
+                        break;
+                    case "ZGIVSAPUT":
+                        TestString = "マスター書込処理(" + ExtendInfo.Substring("MACRO:ZGIVSAPUT(".Length, 8) + ")分岐の判定";
+                        break;
+                    default:
+                        TestString = MacroName + "の戻り値の判定処理";
+                        break;
+                }
+            }
+            return TestString;
+        }
+
         private static dynamic GetJump(List<IDL2PgmStruct.Syntax> list)
         {
             String strJumpInfo = String.Empty;
-            if (list.Count == 0)
+            if (list == null || list.Count == 0)
             {
                 strJumpInfo = "次の処理へ";
             }
@@ -213,13 +330,24 @@ namespace DarumaUTGenerator
             {
                 foreach (var JumpItem in list)
                 {
-                    if (JumpItem.SyntaxType == "ASSIGN")
+                    switch (JumpItem.SyntaxType)
                     {
-                        strJumpInfo += JumpItem.ExtendInfo + "#";
-                    }
-                    else
-                    {
-                        strJumpInfo += "「" + JumpItem.ExtendInfo + "」に移る#";
+                        case "ASSIGN":
+                            strJumpInfo += JumpItem.ExtendInfo + "#";
+                            break;
+                        case "BREAK":
+                            if (string.IsNullOrEmpty(JumpItem.ExtendInfo))
+                            {
+                                strJumpInfo += "ブロックから抜ける#";
+                            }
+                            else
+                            {
+                                strJumpInfo += JumpItem.ExtendInfo + " で指定されたブロックから抜ける#";
+                            }
+                            break;
+                        default:
+                            strJumpInfo += "「" + JumpItem.ExtendInfo + "」に移る#";
+                            break;
                     }
                 }
                 strJumpInfo = strJumpInfo.TrimEnd("#".ToCharArray()).Replace("#", System.Environment.NewLine);

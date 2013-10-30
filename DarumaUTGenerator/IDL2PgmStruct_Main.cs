@@ -77,14 +77,6 @@ namespace DarumaUTGenerator
             public String ExtendInfo;
         }
         /// <summary>
-        /// 在IF后面，获取至少一个Assign文
-        /// </summary>
-        private static Boolean IsNeedAssign;
-        /// <summary>
-        /// XXX <- CASE;
-        /// </summary>
-        private static Boolean IsNeedValue;
-        /// <summary>
         /// TRUE
         /// </summary>
         public const string TrueFlg = "#TRUE#";
@@ -92,6 +84,10 @@ namespace DarumaUTGenerator
         /// 最大嵌套数
         /// </summary>
         public int MaxNestLv = 0;
+        /// <summary>
+        /// 上一个句子
+        /// </summary>
+        static String PreSource = String.Empty;
         /// <summary>
         /// 分析
         /// </summary>
@@ -105,27 +101,13 @@ namespace DarumaUTGenerator
             byte NestLV = 1;
             int LineNo = 1;
             String sectionName = String.Empty;
-            IsNeedAssign = false;
             while (!sr.EndOfStream)
             {
                 source = sr.ReadLine();
                 source = FormatSource(source);
-                ///必须放在WHEN之前，XXX <- CASE;的补充
-                if (IsNeedValue)
-                {
-                    Syntax t = SyntaxList[SyntaxList.Count - 1];
-                    //t.JumpInfo = "「 " + t.JumpInfo.Substring("INPUT:".Length) + " 」に 「 " + source.TrimEnd(".".ToCharArray()) + " 」を設定します";
-                    SyntaxList.RemoveAt(SyntaxList.Count - 1);
-                    SyntaxList.Add(t);
-                    IsNeedValue = false;
-                }
                 IsSection(filename, ref source, NestLV, ref sectionName);
                 NestLV = IsSyntax(SyntaxList, source, NestLV, LineNo, sectionName);
-                //IsCall 的文件操作，Master操作Macro需要被后面的操作覆盖，所以，这里需要注意调用的顺序
-                IsCall(SyntaxList, source, NestLV, LineNo, sectionName);
-                IsFileOpr(SyntaxList, source, NestLV, LineNo, sectionName);
-                IsMasterOpr(SyntaxList, source, NestLV, LineNo, sectionName);
-                if (IsNeedAssign) IsAssignOpr(SyntaxList, source, NestLV, LineNo, sectionName);
+                IsCommonOpr(SyntaxList, source, NestLV, LineNo, sectionName);
                 LineNo++;
                 if (SyntaxList.Count > 0 && isStartSyntax(SyntaxList[SyntaxList.Count - 1]))
                 {
@@ -135,6 +117,7 @@ namespace DarumaUTGenerator
                         MaxNestLv = NestLV - 1;
                     }
                 }
+                PreSource = source;
             }
             sr.Close();
             //GetNestInfo(SyntaxList);
@@ -188,14 +171,14 @@ namespace DarumaUTGenerator
         #endregion
 
         /// <summary>
-        /// 是否为赋值
+        /// 执行语句
         /// </summary>
         /// <param name="SyntaxList"></param>
         /// <param name="source"></param>
         /// <param name="NestLV"></param>
         /// <param name="LineNo"></param>
         /// <param name="sectionName"></param>
-        private void IsAssignOpr(List<Syntax> SyntaxList, string source, byte NestLV, int LineNo, string sectionName)
+        private void IsCommonOpr(List<Syntax> SyntaxList, string source, byte NestLV, int LineNo, string sectionName)
         {
             //Assign
             if (source.Contains(" := "))
@@ -211,52 +194,49 @@ namespace DarumaUTGenerator
                     //ExtendInfo = source.Substring(0, source.IndexOf(" := ")).Trim(),
                     SectionName = sectionName
                 });
-                IsNeedAssign = false;
             }
-        }
-        /// <summary>
-        /// 是否为呼出子程序或者调用子过程
-        /// </summary>
-        /// <param name="SyntaxList"></param>
-        /// <param name="source"></param>
-        /// <param name="NestLV"></param>
-        /// <param name="LineNo"></param>
-        /// <param name="sectionName"></param>
-        private static void IsCall(List<Syntax> SyntaxList, String source, byte NestLV, int LineNo, String sectionName)
-        {
+            //BREAK
+            if (source.Equals("BREAK."))
+            {
+                SyntaxList.Add(new Syntax()
+                {
+                    SyntaxType = "BREAK",
+                    LineNo = LineNo,
+                    NestLv = NestLV,
+                    SectionName = sectionName
+                });
+            }
+            if (source.StartsWith("BREAK "))
+            {
+                String Label = source.Substring("BREAK ".Length);
+                Label = Label.TrimEnd(".".ToCharArray()).Trim();
+                SyntaxList.Add(new Syntax()
+                {
+                    SyntaxType = "BREAK",
+                    LineNo = LineNo,
+                    NestLv = NestLV,
+                    ExtendInfo = Label,
+                    SectionName = sectionName
+                });
+            }
             //共通部品
             if (source.StartsWith("@"))
             {
-                if (source == "@ZGIAPABRT")
-                {
-                    SyntaxList.Add(new Syntax()
-                    {
-                        SyntaxType = "ABORT",
-                        LineNo = LineNo,
-                        NestLv = NestLV,
-                        ExtendInfo = "@ZGIAPABRT",
-                        SectionName = sectionName
-                    });
-                }
-                else
-                {
                     SyntaxList.Add(new Syntax()
                     {
                         SyntaxType = "MACRO",
                         LineNo = LineNo,
                         NestLv = NestLV,
-                        ExtendInfo = source.Contains("(") ?
-                                     source.Substring(1, source.IndexOf("(") - 1) :
-                                     source.Substring(1).Trim(".".ToCharArray()),
+                        ExtendInfo = source.Substring(1),
                         SectionName = sectionName
                     });
-                }
             }
             //新增了DERIVE 2013/10/07
             //新增了PROC   2013/10/08
             if (source.StartsWith("CALL ") || source.StartsWith("DERIVE ") || source.StartsWith("PROC "))
             {
-                char t = source.Substring(source.IndexOf(" ") + 1, 1).ToCharArray()[0];
+                String CallObj = source.Substring(source.IndexOf(" ") + 1).Trim().Trim(".".ToCharArray());
+                char t = CallObj.ToCharArray()[0];
                 if (t >= "A".ToCharArray()[0] && t <= "Z".ToCharArray()[0])
                 {
                     SyntaxList.Add(new Syntax()
@@ -264,40 +244,20 @@ namespace DarumaUTGenerator
                         SyntaxType = "CALL",
                         LineNo = LineNo,
                         NestLv = NestLV,
-                        ExtendInfo = source.Contains("(") ?
-                                     source.Substring(source.IndexOf(" ") + 1, source.Length - source.IndexOf(" ") - 1 - source.IndexOf("(") - 2) :
-                                     source.Substring(source.IndexOf(" ") + 1).Trim(".".ToCharArray()),
+                        ExtendInfo = CallObj.Contains("(") ? CallObj.Substring(0, CallObj.IndexOf("(")) : CallObj,
                         SectionName = sectionName
                     });
                 }
                 else
                 {
-                    String PerformSectionName = source.Substring(source.IndexOf(" ") + 1).Trim(".".ToCharArray());
-                    switch (PerformSectionName)
-                    {
-                        //错误处理
-                        case "エラー処理":
-                        case "異常終了処理":
-                            SyntaxList.Add(new Syntax()
-                            {
-                                SyntaxType = "ERROR",
-                                LineNo = LineNo,
-                                NestLv = NestLV,
-                                ExtendInfo = PerformSectionName,
-                                SectionName = sectionName
-                            });
-                            break;
-                        default:
-                            SyntaxList.Add(new Syntax()
-                            {
-                                SyntaxType = "PERFORM",
-                                LineNo = LineNo,
-                                NestLv = NestLV,
-                                ExtendInfo = PerformSectionName,
-                                SectionName = sectionName
-                            });
-                            break;
-                    }
+                        SyntaxList.Add(new Syntax()
+                        {
+                            SyntaxType = "PERFORM",
+                            LineNo = LineNo,
+                            NestLv = NestLV,
+                            ExtendInfo = CallObj.Contains("(") ? CallObj.Substring(0, CallObj.IndexOf("(")) : CallObj,
+                            SectionName = sectionName
+                        });
                 }
             }
         }
@@ -373,6 +333,30 @@ namespace DarumaUTGenerator
         /// <returns></returns>
         private static byte IsSyntax(List<Syntax> SyntaxList, String source, byte NestLV, int LineNo, String sectionName)
         {
+            //0.BLOCK
+            if (source.Equals("BLOCK")) {
+                SyntaxList.Add(new Syntax()
+                {
+                    SyntaxType = "BLOCK",
+                    LineNo = LineNo,
+                    NestLv = NestLV,
+                    ExtendInfo = PreSource.Trim(".".ToCharArray()),
+                    SectionName = sectionName,
+                    JumpInfo = new List<Syntax>()
+                });
+                NestLV++;
+            }
+            if (source.Equals("END-BLOCK."))
+            {
+                NestLV--;
+                SyntaxList.Add(new Syntax()
+                {
+                    SyntaxType = "END-BLOCK",
+                    LineNo = LineNo,
+                    NestLv = NestLV
+                });
+            }
+
             //2.IF & MACRO
             if (source.StartsWith("IF "))
             {
@@ -382,13 +366,12 @@ namespace DarumaUTGenerator
                     LineNo = LineNo,
                     NestLv = NestLV,
                     //条件分歧的填写用
-                    ExtendInfo = source.Substring("IF ".Length),
+                    //ExtendInfo = source.Substring("IF ".Length),
                     Cond = new clsCondition(source.Substring("IF ".Length)),
                     SectionName = sectionName,
                     JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("ELSE"))
             {
@@ -403,7 +386,6 @@ namespace DarumaUTGenerator
 
                 });
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("END-IF.") || (source == "END-IF"))
             {
@@ -425,7 +407,6 @@ namespace DarumaUTGenerator
                     NestLv = NestLV
                 });
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("#IFNOT "))
             {
@@ -436,7 +417,6 @@ namespace DarumaUTGenerator
                     NestLv = NestLV
                 });
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("#ELSE"))
             {
@@ -448,7 +428,6 @@ namespace DarumaUTGenerator
                     NestLv = NestLV
                 });
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("#END-IF"))
             {
@@ -472,7 +451,6 @@ namespace DarumaUTGenerator
                     JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("END-GET."))
             {
@@ -494,13 +472,12 @@ namespace DarumaUTGenerator
                     LineNo = LineNo,
                     NestLv = NestLV,
                     //条件分歧的填写用
-                    ExtendInfo = source.Substring("WHILE ".Length),
+                    //ExtendInfo = source.Substring("WHILE ".Length),
                     Cond = new clsCondition(source.Substring("WHILE ".Length)),
                     SectionName = sectionName,
                     JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("END-WHILE."))
             {
@@ -525,7 +502,6 @@ namespace DarumaUTGenerator
                     JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("UNTIL "))
             {
@@ -568,15 +544,12 @@ namespace DarumaUTGenerator
                     LineNo = LineNo,
                     NestLv = NestLV,
                     SectionName = sectionName,
-                    //条件分歧的填写用
-                    ExtendInfo = source.Substring(source.IndexOf("(") + 1, source.LastIndexOf(")") - source.IndexOf("(") - 1),
                     //测试项目
                     Cond = new clsCondition(source.Substring(source.IndexOf("(") + 1, source.LastIndexOf(")") - source.IndexOf("(") - 1)),
                     JumpInfo = new List<Syntax>()
                 });
                 //保持 CASE->WHEN->END-CASE同级别
                 NestLV++;
-                IsNeedAssign = true;
             }
             // <- CASE ;
             if (source.EndsWith(" <- CASE;") || source.EndsWith(" -> CASE;")
@@ -620,8 +593,6 @@ namespace DarumaUTGenerator
                         LineNo = LineNo,
                         NestLv = NestLV,
                         SectionName = sectionName,
-                        //条件分歧的填写用
-                        ExtendInfo = CaseCondition,
                         //测试项目
                         Cond = (String.IsNullOrEmpty(CaseCondition)) ? null : new clsCondition(CaseCondition),
                         //Input
@@ -630,7 +601,6 @@ namespace DarumaUTGenerator
                 }
                 //保持 CASE->WHEN->END-CASE同级别
                 NestLV++;
-                IsNeedAssign = true;
             }
 
             if (source.StartsWith("CASE;"))
@@ -645,26 +615,9 @@ namespace DarumaUTGenerator
                 });
                 //保持 CASE->WHEN->END-CASE同级别
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("(") && (source.EndsWith("):")))
             {
-                String HasInput = String.Empty;
-                for (int i = SyntaxList.Count - 1; i >= 0; i--)
-                {
-                    if (SyntaxList[i].SyntaxType == "CASE")
-                    {
-                        //HasInput = SyntaxList[i].JumpInfo;
-                        break;
-                    }
-                }
-                if (!String.IsNullOrEmpty(HasInput))
-                {
-                    if (HasInput.StartsWith("INPUT:"))
-                    {
-                        IsNeedValue = true;
-                    }
-                }
                 NestLV--;
                 SyntaxList.Add(new Syntax()
                 {
@@ -676,7 +629,6 @@ namespace DarumaUTGenerator
                     SectionName = sectionName,
                 });
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("END-CASE."))
             {
@@ -707,7 +659,6 @@ namespace DarumaUTGenerator
                     JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("END-FOR."))
             {
@@ -732,7 +683,6 @@ namespace DarumaUTGenerator
                     JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
-                IsNeedAssign = true;
             }
             if (source.StartsWith("END-LOOP."))
             {
@@ -746,126 +696,6 @@ namespace DarumaUTGenerator
                 });
             }
             return NestLV;
-        }
-        /// <summary>
-        /// 是否为Master操作
-        /// </summary>
-        /// <param name="SyntaxList"></param>
-        /// <param name="source"></param>
-        /// <param name="NestLV"></param>
-        /// <param name="LineNo"></param>
-        /// <param name="sectionName"></param>
-        private static void IsMasterOpr(List<Syntax> SyntaxList, String source, byte NestLV, int LineNo, String sectionName)
-        {
-            //@ZGIVSAPUT(CKOITIM0,キー部 OF 新地公体一次登録７３,削除)
-            //Master操作
-            //OPEN
-            if (source.StartsWith("@ZGIVSAOPN("))
-            {
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "ZGIVSAOPN",
-                    LineNo = LineNo,
-                    NestLv = NestLV,
-                    ExtendInfo = source.Substring("@ZGIVSAOPN(".Length, 8),
-                    SectionName = sectionName
-                });
-            }
-            //GET
-            if (source.StartsWith("@ZGIVSAGET("))
-            {
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "ZGIVSAGET",
-                    LineNo = LineNo,
-                    NestLv = NestLV,
-                    ExtendInfo = source.Substring("@ZGIVSAGET(".Length, 8),
-                    SectionName = sectionName
-                });
-            }
-            if (source.StartsWith("@ZGIVSAPUT("))
-            {
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "ZGIVSAPUT",
-                    LineNo = LineNo,
-                    NestLv = NestLV,
-                    ExtendInfo = source.Substring("@ZGIVSAPUT(".Length, 8),
-                    SectionName = sectionName
-                });
-            }
-            //CLOSE
-            if (source.StartsWith("@ZGIVSACLS("))
-            {
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "ZGIVSACLS",
-                    LineNo = LineNo,
-                    NestLv = NestLV,
-                    ExtendInfo = source.Substring("@ZGIVSACLS(".Length, 8),
-                    SectionName = sectionName
-                });
-            }
-        }
-        /// <summary>
-        /// 是否为文件操作命令
-        /// </summary>
-        /// <param name="SyntaxList"></param>
-        /// <param name="source"></param>
-        /// <param name="NestLV"></param>
-        /// <param name="LineNo"></param>
-        /// <param name="sectionName"></param>
-        private static void IsFileOpr(List<Syntax> SyntaxList, String source, byte NestLV, int LineNo, String sectionName)
-        {
-            //@ZGISTDOPN(FILENAME) -FILENAME = 8Byte
-            //文件操作
-            //OPEN
-            if (source.StartsWith("@ZGISTDOPN("))
-            {
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "ZGISTDOPN",
-                    LineNo = LineNo,
-                    NestLv = NestLV,
-                    ExtendInfo = source.Substring("@ZGISTDOPN(".Length, 8),
-                    SectionName = sectionName
-                });
-            }
-            //GET
-            if (source.StartsWith("@ZGISTDGET("))
-            {
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "ZGISTDGET",
-                    LineNo = LineNo,
-                    NestLv = NestLV,
-                    ExtendInfo = source.Substring("@ZGISTDGET(".Length, 8),
-                    SectionName = sectionName
-                });
-            }
-            if (source.StartsWith("@ZGISTDPUT("))
-            {
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "ZGISTDPUT",
-                    LineNo = LineNo,
-                    NestLv = NestLV,
-                    ExtendInfo = source.Substring("@ZGISTDPUT(".Length, 8),
-                    SectionName = sectionName
-                });
-            }
-            //CLOSE
-            if (source.StartsWith("@ZGISTDCLS("))
-            {
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "ZGISTDCLS",
-                    LineNo = LineNo,
-                    NestLv = NestLV,
-                    ExtendInfo = source.Substring("@ZGISTDCLS(".Length, 8),
-                    SectionName = sectionName
-                });
-            }
         }
     }
 }

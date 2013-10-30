@@ -26,18 +26,12 @@ namespace DarumaUTGenerator
         private void btnAnlyze_Click(object sender, EventArgs e)
         {
             //idlFilename = @"C:\Daruma\WorkShop\01.IDLIIソース_0\AHQM1SH6.TXT";
-            //UTFilename = @"C:\Daruma\Tools\XXXXXXXXX_UT試験仕様書(本体＆部品).xls";
+            UTFilename = @"C:\Daruma\Tools\XXXXXXXXX_UT試験仕様書(本体＆部品).xls";
             IDL2PgmStruct pgm = new IDL2PgmStruct();
             pgm.PgmID = new FileInfo(idlFilename).Name.TrimEnd(".TXT".ToCharArray());
             pgm.Analyze(idlFilename);
             GenerateUTSheet.GenerateUT(pgm,UTFilename);
         }
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            System.GC.Collect();
-            this.Close();
-        }
-
         private void btnUTPick_Click(object sender, EventArgs e)
         {
             OpenFileDialog of = new OpenFileDialog();
@@ -49,7 +43,10 @@ namespace DarumaUTGenerator
             }
 
         }
-
-
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            System.GC.Collect();
+            this.Close();
+        }
     }
 }
