@@ -31,8 +31,10 @@
             this.btnSourcePick = new System.Windows.Forms.Button();
             this.btnAnlyze = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblIDL2File = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnUTPick = new System.Windows.Forms.Button();
+            this.lblUTFile = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSourcePick
@@ -47,7 +49,7 @@
             // 
             // btnAnlyze
             // 
-            this.btnAnlyze.Location = new System.Drawing.Point(12, 41);
+            this.btnAnlyze.Location = new System.Drawing.Point(12, 79);
             this.btnAnlyze.Name = "btnAnlyze";
             this.btnAnlyze.Size = new System.Drawing.Size(82, 23);
             this.btnAnlyze.TabIndex = 1;
@@ -57,7 +59,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(100, 41);
+            this.btnClose.Location = new System.Drawing.Point(100, 79);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(82, 23);
             this.btnClose.TabIndex = 2;
@@ -65,35 +67,57 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // lblTitle
+            // lblIDL2File
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(197, 17);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(107, 13);
-            this.lblTitle.TabIndex = 3;
-            this.lblTitle.Text = "ＩＤＬソース：未選択";
+            this.lblIDL2File.AutoSize = true;
+            this.lblIDL2File.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIDL2File.Location = new System.Drawing.Point(197, 17);
+            this.lblIDL2File.Name = "lblIDL2File";
+            this.lblIDL2File.Size = new System.Drawing.Size(107, 13);
+            this.lblIDL2File.TabIndex = 3;
+            this.lblIDL2File.Text = "ＩＤＬソース：未選択";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(12, 77);
+            this.label1.Location = new System.Drawing.Point(12, 115);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(510, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "必ず「閉じる」ボタンをクリックし、プログラムを中止させてください！（EXCELのプロセスをKILLのため）";
+            // 
+            // btnUTPick
+            // 
+            this.btnUTPick.Location = new System.Drawing.Point(12, 41);
+            this.btnUTPick.Name = "btnUTPick";
+            this.btnUTPick.Size = new System.Drawing.Size(170, 23);
+            this.btnUTPick.TabIndex = 5;
+            this.btnUTPick.Text = "仕様書を選ぶ";
+            this.btnUTPick.UseVisualStyleBackColor = true;
+            this.btnUTPick.Click += new System.EventHandler(this.btnUTPick_Click);
+            // 
+            // lblUTFile
+            // 
+            this.lblUTFile.AutoSize = true;
+            this.lblUTFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUTFile.Location = new System.Drawing.Point(197, 46);
+            this.lblUTFile.Name = "lblUTFile";
+            this.lblUTFile.Size = new System.Drawing.Size(110, 13);
+            this.lblUTFile.TabIndex = 6;
+            this.lblUTFile.Text = "ＵＴ仕様書：未選択";
             // 
             // frmUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(542, 99);
+            this.ClientSize = new System.Drawing.Size(542, 145);
+            this.Controls.Add(this.lblUTFile);
+            this.Controls.Add(this.btnUTPick);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.lblIDL2File);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAnlyze);
             this.Controls.Add(this.btnSourcePick);
@@ -110,7 +134,9 @@
         private System.Windows.Forms.Button btnSourcePick;
         private System.Windows.Forms.Button btnAnlyze;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblIDL2File;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnUTPick;
+        private System.Windows.Forms.Label lblUTFile;
     }
 }

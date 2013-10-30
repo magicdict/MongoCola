@@ -62,18 +62,85 @@ namespace DarumaTool
                     ActiveSheet.Cells(RowCount, 1).Value = BranchNo;
                     int StartRow = RowCount;
                     int EndRow;
+                    IDL2PgmStruct.Syntax CaseSyntax = new IDL2PgmStruct.Syntax();
                     String KeyWord;
-                    foreach (var SyntaxItem in Syntax)
+                    int WhenNo = 0;
+                    for (int i = 0; i < Syntax.Count; i++)
                     {
+                        var SyntaxItem = Syntax[i];
                         KeyWord = SyntaxItem.SyntaxType;
+                        if (SyntaxItem.SyntaxType == "WHEN")
+                        {
+                            WhenNo = 1;
+                            //寻找最近的父CASE语句
+                            for (int j = i - 1; j >= 0; j--)
+                            {
+                                if (Syntax[j].SyntaxType == "CASE")
+                                {
+                                    CaseSyntax = Syntax[j];
+                                    break;
+                                }
+                                if (Syntax[j].SyntaxType == "WHEN")
+                                {
+                                    WhenNo++;
+                                }
+                            }
+                        }
                         if (IDL2PgmStruct.isStartSyntax(SyntaxItem) || IDL2PgmStruct.isMidSyntax(SyntaxItem))
                         {
                             //LineNo
                             ActiveSheet.Cells(RowCount, MaxLv + 1).Value = SyntaxItem.LineNo;
+                            //测试内容
+                            String TestString = String.Empty;
+                            if (SyntaxItem.Cond != null)
+                            {
+                                foreach (var item in SyntaxItem.Cond.TestItemLst)
+                                {
+                                    TestString += "「" + item + "」、";
+                                }
+                            }
+                            TestString = TestString.TrimEnd("、".ToCharArray());
+                            switch (SyntaxItem.SyntaxType)
+                            {
+                                case "IF":
+                                    TestString += "の分岐判定処理";
+                                    ActiveSheet.Cells(RowCount, MaxLv + 4).Value = TestString;
+                                    break;
+                                case "ELSE":
+                                    ActiveSheet.Cells(RowCount, MaxLv + 5).Value = "上記以外";
+                                    break;
+                                case "WHILE":
+                                case "REPEAT":
+                                case "FOR":
+                                    TestString += "終了条件まで繰り返す";
+                                    ActiveSheet.Cells(RowCount, MaxLv + 4).Value = TestString;
+                                    break;
+                                case "LOOP":
+                                    ActiveSheet.Cells(RowCount, MaxLv + 4).Value = "ループをBREAKまで繰り返す";
+                                    break;
+                                case "WHEN":
+                                    if (CaseSyntax.ExtendInfo == IDL2PgmStruct.TrueFlg)
+                                    {
+                                        ActiveSheet.Cells(RowCount, MaxLv + 4).Value = "判定" + WhenNo;
+                                        ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.ExtendInfo;
+                                    }
+                                    else {
+                                        if (WhenNo == 1) {
+                                            ActiveSheet.Cells(RowCount, MaxLv + 4).Value = CaseSyntax.ExtendInfo;
+                                        }
+                                        ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.ExtendInfo;
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
                             //分歧条件
-                            if (SyntaxItem.Cond != null) { 
+                            if (SyntaxItem.Cond != null)
+                            {
                                 ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.Cond.OrgCondition;
                             }
+                            //迁移情报
+                            ActiveSheet.Cells(RowCount, MaxLv + 6).Value = GetJump(SyntaxItem.JumpInfo);
                             //KeyWord
                             switch (KeyWord)
                             {
@@ -100,7 +167,14 @@ namespace DarumaTool
                             }
                             else
                             {
-                                ActiveSheet.Cells(RowCount, SyntaxItem.NestLv + 1).Value = "1";
+                                if (KeyWord == "WHEN")
+                                {
+                                    ActiveSheet.Cells(RowCount, SyntaxItem.NestLv + 1).Value = WhenNo;
+                                }
+                                else
+                                {
+                                    ActiveSheet.Cells(RowCount, SyntaxItem.NestLv + 1).Value = "1";
+                                }
                             }
                             RowCount = RowCount + 1;
                         }
@@ -127,6 +201,31 @@ namespace DarumaTool
             RowCount--;
             ActiveSheet.PageSetup.PrintArea = "$A$1:$R$" + RowCount;
         }
+
+        private static dynamic GetJump(List<IDL2PgmStruct.Syntax> list)
+        {
+            String strJumpInfo = String.Empty;
+            if (list.Count == 0)
+            {
+                strJumpInfo = "次の処理へ";
+            }
+            else
+            {
+                foreach (var JumpItem in list)
+                {
+                    if (JumpItem.SyntaxType == "ASSIGN")
+                    {
+                        strJumpInfo += JumpItem.ExtendInfo + "#";
+                    }
+                    else
+                    {
+                        strJumpInfo += "「" + JumpItem.ExtendInfo + "」に移る#";
+                    }
+                }
+                strJumpInfo = strJumpInfo.TrimEnd("#".ToCharArray()).Replace("#", System.Environment.NewLine);
+            }
+            return strJumpInfo;
+        }
         /// <summary>
         /// 画Nest构造
         /// </summary>
@@ -138,7 +237,7 @@ namespace DarumaTool
         {
             for (int i = StartRow; i < EndRow + 1; i++)
             {
-                for (int j = 2; j < MaxLv; j++)
+                for (int j = 2; j < MaxLv + 1; j++)
                 {
                     if (ActiveSheet.Cells(i, j).Text != "")
                     {
@@ -153,7 +252,7 @@ namespace DarumaTool
             }
             for (int i = StartRow; i < EndRow + 1; i++)
             {
-                for (int j = 2; j < MaxLv; j++)
+                for (int j = 2; j < MaxLv + 1; j++)
                 {
                     if (ActiveSheet.Cells(i, j).Text != "")
                     {

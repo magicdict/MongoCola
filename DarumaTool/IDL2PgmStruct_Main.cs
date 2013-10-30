@@ -53,7 +53,7 @@ namespace DarumaTool
             /// <summary>
             /// 迁移情报
             /// </summary>
-            public String JumpInfo;
+            public List<Syntax> JumpInfo;
         }
         /// <summary>
         /// SyntaxSet
@@ -77,19 +77,6 @@ namespace DarumaTool
             /// 附加情报
             /// </summary>
             public String ExtendInfo;
-        }
-        /// <summary>
-        /// Section列表
-        /// </summary>
-        [BsonIgnore]
-        public List<Section_OLD> SectionList_OLD = new List<Section_OLD>();
-        /// <summary>
-        /// Section
-        /// </summary>
-        public struct Section_OLD
-        {
-            public String SectionName;
-            public List<SyntaxSet> SyntaxSetList;
         }
         /// <summary>
         /// 在IF后面，获取至少一个Assign文
@@ -129,7 +116,7 @@ namespace DarumaTool
                 if (IsNeedValue)
                 {
                     Syntax t = SyntaxList[SyntaxList.Count - 1];
-                    t.JumpInfo = "「 " + t.JumpInfo.Substring("INPUT:".Length) + " 」に 「 " + source.TrimEnd(".".ToCharArray()) + " 」を設定します";
+                    //t.JumpInfo = "「 " + t.JumpInfo.Substring("INPUT:".Length) + " 」に 「 " + source.TrimEnd(".".ToCharArray()) + " 」を設定します";
                     SyntaxList.RemoveAt(SyntaxList.Count - 1);
                     SyntaxList.Add(t);
                     IsNeedValue = false;
@@ -142,7 +129,7 @@ namespace DarumaTool
                 IsMasterOpr(SyntaxList, source, NestLV, LineNo, sectionName);
                 if (IsNeedAssign) IsAssignOpr(SyntaxList, source, NestLV, LineNo, sectionName);
                 LineNo++;
-                if (SyntaxList.Count > 0 && isStartSyntax(SyntaxList[SyntaxList.Count - 1]) )
+                if (SyntaxList.Count > 0 && isStartSyntax(SyntaxList[SyntaxList.Count - 1]))
                 {
                     //开始文法作为统计对象，开始文法的时候，层号已经为下级的层号，所以需要 -1
                     if (NestLV - 1 > MaxNestLv)
@@ -154,9 +141,10 @@ namespace DarumaTool
             sr.Close();
             //GetNestInfo(SyntaxList);
             ReSyntax(SyntaxList);
-            Debug.WriteLine(PgmID + ":" + TopSyntax.Count);
+            //Debug.WriteLine(PgmID + ":" + TopSyntax.Count);
             //ReplaceLineNo();
         }
+
 
         #region"统计"
         public static Dictionary<int, int> NestInfo = new Dictionary<int, int>();
@@ -202,77 +190,6 @@ namespace DarumaTool
         #endregion
 
         /// <summary>
-        /// 替换行号为分支号
-        /// </summary>
-        private void ReplaceLineNo()
-        {
-            List<Section_OLD> newSectionList = new List<Section_OLD>();
-            foreach (var section in SectionList_OLD)
-            {
-                Section_OLD newsec = section;
-                ReSyntaxSet(ref newsec);
-                newSectionList.Add(newsec);
-            }
-            SectionList_OLD = newSectionList;
-
-            Dictionary<int, int> LineNoVsBranch = new Dictionary<int, int>();
-            foreach (var section in SectionList_OLD)
-            {
-                foreach (var syntaxSet in section.SyntaxSetList)
-                {
-                    foreach (var syntax in syntaxSet.SyntaxList)
-                    {
-                        if (!LineNoVsBranch.ContainsKey(syntax.LineNo))
-                        {
-                            LineNoVsBranch.Add(syntax.LineNo, syntaxSet.BranchNo);
-                        }
-                    }
-                }
-            }
-            newSectionList = new List<Section_OLD>();
-            //替换Result%line%
-            foreach (var section in SectionList_OLD)
-            {
-                Section_OLD newSection = new Section_OLD();
-                newSection = section;
-                newSection.SyntaxSetList = new List<SyntaxSet>();
-                foreach (var syntaxSet in section.SyntaxSetList)
-                {
-                    SyntaxSet newSyntaxSet = new SyntaxSet();
-                    newSyntaxSet = syntaxSet;
-                    newSyntaxSet.SyntaxList = new List<Syntax>();
-                    foreach (var syntax in syntaxSet.SyntaxList)
-                    {
-                        Syntax newSyntax = new Syntax();
-                        newSyntax = syntax;
-                        int CurrentLineNo = 0;
-                        if (newSyntax.JumpInfo != null)
-                        {
-                            String[] lstResult = newSyntax.JumpInfo.Split("&".ToCharArray());
-                            newSyntax.JumpInfo = String.Empty;
-                            foreach (var subResult in lstResult)
-                            {
-                                if (subResult.StartsWith("%"))
-                                {
-                                    CurrentLineNo = int.Parse((subResult.Substring(0, subResult.LastIndexOf("%")).Trim("%".ToCharArray())));
-                                    newSyntax.JumpInfo += LineNoVsBranch[CurrentLineNo] + subResult.Substring(subResult.LastIndexOf("%") + 1) + System.Environment.NewLine;
-                                }
-                                else
-                                {
-                                    newSyntax.JumpInfo += subResult + System.Environment.NewLine;
-                                }
-                            }
-                            newSyntax.JumpInfo = newSyntax.JumpInfo.TrimEnd(System.Environment.NewLine.ToCharArray());
-                        }
-                        newSyntaxSet.SyntaxList.Add(newSyntax);
-                    }
-                    newSection.SyntaxSetList.Add(newSyntaxSet);
-                }
-                newSectionList.Add(newSection);
-            }
-            SectionList_OLD = newSectionList;
-        }
-        /// <summary>
         /// 是否为赋值
         /// </summary>
         /// <param name="SyntaxList"></param>
@@ -291,9 +208,9 @@ namespace DarumaTool
                     LineNo = LineNo,
                     NestLv = NestLV,
                     //条件分歧的填写用
-                    JumpInfo = "「" + source.Substring(0, source.IndexOf(" := ")) + "」に「" +
-                                    source.Substring(source.IndexOf(" := ") + 4).TrimEnd(".".ToCharArray()) + "」を設定します",
-                    ExtendInfo = source.Substring(0, source.IndexOf(" := ")).Trim(),
+                    ExtendInfo = "「" + source.Substring(0, source.IndexOf(" := ")) + "」へ「" +
+                                        source.Substring(source.IndexOf(" := ") + 4).TrimEnd(".".ToCharArray()) + "」を設定する",
+                    //ExtendInfo = source.Substring(0, source.IndexOf(" := ")).Trim(),
                     SectionName = sectionName
                 });
                 IsNeedAssign = false;
@@ -469,7 +386,8 @@ namespace DarumaTool
                     //条件分歧的填写用
                     ExtendInfo = source.Substring("IF ".Length),
                     Cond = new clsCondition(source.Substring("IF ".Length)),
-                    SectionName = sectionName
+                    SectionName = sectionName,
+                    JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
                 IsNeedAssign = true;
@@ -481,7 +399,10 @@ namespace DarumaTool
                 {
                     SyntaxType = "ELSE",
                     LineNo = LineNo,
-                    NestLv = NestLV
+                    NestLv = NestLV,
+                    SectionName = sectionName,
+                    JumpInfo = new List<Syntax>()
+
                 });
                 NestLV++;
                 IsNeedAssign = true;
@@ -549,7 +470,8 @@ namespace DarumaTool
                     SyntaxType = "GET",
                     LineNo = LineNo,
                     NestLv = NestLV,
-                    SectionName = sectionName
+                    SectionName = sectionName,
+                    JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
                 IsNeedAssign = true;
@@ -576,7 +498,8 @@ namespace DarumaTool
                     //条件分歧的填写用
                     ExtendInfo = source.Substring("WHILE ".Length),
                     Cond = new clsCondition(source.Substring("WHILE ".Length)),
-                    SectionName = sectionName
+                    SectionName = sectionName,
+                    JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
                 IsNeedAssign = true;
@@ -601,6 +524,7 @@ namespace DarumaTool
                     LineNo = LineNo,
                     NestLv = NestLV,
                     SectionName = sectionName,
+                    JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
                 IsNeedAssign = true;
@@ -613,7 +537,8 @@ namespace DarumaTool
                     SyntaxType = "END-REPEAT",
                     LineNo = LineNo,
                     NestLv = NestLV,
-                    SectionName = sectionName
+                    SectionName = sectionName,
+                    JumpInfo = new List<Syntax>()
                 });
             }
             //20.CHECK
@@ -631,7 +556,7 @@ namespace DarumaTool
                     ExtendInfo = source.Substring(source.IndexOf("(") + 1, source.IndexOf(")") - source.IndexOf("(")) + ((source.Contains("TRUE(SET")) ? ":TRUE" : ":FALSE"),
                     //测试项目
                     Cond = new clsCondition((source.IndexOf("-> CHECK(") > 0) ? source.Substring(0, source.IndexOf("-> CHECK(")) : "判断子不明"),
-                    JumpInfo = source.Substring(source.IndexOf("SET"), source.LastIndexOf(")") - source.IndexOf("SET"))
+                    JumpInfo = new List<Syntax>()
                 });
                 //单条语句，不存在嵌套！
                 //NestLV++;
@@ -648,7 +573,8 @@ namespace DarumaTool
                     //条件分歧的填写用
                     ExtendInfo = source.Substring(source.IndexOf("(") + 1, source.LastIndexOf(")") - source.IndexOf("(") - 1),
                     //测试项目
-                    Cond = new clsCondition(source.Substring(source.IndexOf("(") + 1, source.LastIndexOf(")") - source.IndexOf("(") - 1))
+                    Cond = new clsCondition(source.Substring(source.IndexOf("(") + 1, source.LastIndexOf(")") - source.IndexOf("(") - 1)),
+                    JumpInfo = new List<Syntax>()
                 });
                 //保持 CASE->WHEN->END-CASE同级别
                 NestLV++;
@@ -685,7 +611,7 @@ namespace DarumaTool
                         NestLv = NestLV,
                         SectionName = sectionName,
                         ExtendInfo = TrueFlg,
-                        JumpInfo = (String.IsNullOrEmpty(InputItem)) ? null : "INPUT:" + InputItem
+                        JumpInfo = new List<Syntax>()
                     });
                 }
                 else
@@ -701,7 +627,7 @@ namespace DarumaTool
                         //测试项目
                         Cond = (String.IsNullOrEmpty(CaseCondition)) ? null : new clsCondition(CaseCondition),
                         //Input
-                        JumpInfo = (String.IsNullOrEmpty(InputItem)) ? null : "INPUT:" + InputItem
+                        JumpInfo = new List<Syntax>()
                     });
                 }
                 //保持 CASE->WHEN->END-CASE同级别
@@ -730,7 +656,7 @@ namespace DarumaTool
                 {
                     if (SyntaxList[i].SyntaxType == "CASE")
                     {
-                        HasInput = SyntaxList[i].JumpInfo;
+                        //HasInput = SyntaxList[i].JumpInfo;
                         break;
                     }
                 }
@@ -748,7 +674,7 @@ namespace DarumaTool
                     LineNo = LineNo,
                     NestLv = NestLV,
                     ExtendInfo = source.Substring(1, source.Length - 3),
-                    JumpInfo = HasInput,
+                    JumpInfo = new List<Syntax>(),
                     SectionName = sectionName,
                 });
                 NestLV++;
@@ -779,7 +705,8 @@ namespace DarumaTool
                     //条件分歧的填写用
                     ExtendInfo = source.Substring("FOR ".Length),
                     //测试项目
-                    Cond = new clsCondition(source.Substring(source.IndexOf(" ") + 1, source.LastIndexOf(":") - source.IndexOf(" ") - 1).Trim())
+                    Cond = new clsCondition(source.Substring(source.IndexOf(" ") + 1, source.LastIndexOf(":") - source.IndexOf(" ") - 1).Trim()),
+                    JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
                 IsNeedAssign = true;
@@ -804,6 +731,7 @@ namespace DarumaTool
                     LineNo = LineNo,
                     NestLv = NestLV,
                     SectionName = sectionName,
+                    JumpInfo = new List<Syntax>()
                 });
                 NestLV++;
                 IsNeedAssign = true;

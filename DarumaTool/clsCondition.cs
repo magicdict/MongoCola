@@ -182,8 +182,14 @@ namespace DarumaTool
             }
 
         }
+        /// <summary>
+        /// 是否为常数
+        /// </summary>
+        /// <param name="TestString"></param>
+        /// <returns></returns>
         private bool IsConst(String TestString)
         {
+            TestString = TestString.Trim();
             Boolean R;
             R = false;
             int t;
@@ -196,13 +202,21 @@ namespace DarumaTool
             {
                 R = true;
             }
+            if (TestString.StartsWith("LOW-VALUE") || TestString.StartsWith("HIGH-VALUE"))
+            {
+                R = true;
+            }
+            if (TestString.Equals("SPACE") || TestString.Equals("ZERO"))
+            {
+                R = true;
+            }
             //引号
-            if (TestString.StartsWith("\"") || TestString.StartsWith("\""))
+            if (TestString.StartsWith("\"") && TestString.EndsWith("\""))
             {
                 R = true;
             }
             //NC汉字
-            if (TestString.StartsWith("NC\"") || TestString.StartsWith("\""))
+            if (TestString.StartsWith("NC\"") && TestString.EndsWith("\""))
             {
                 R = true;
             }

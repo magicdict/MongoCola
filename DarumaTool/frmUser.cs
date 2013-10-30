@@ -20,13 +20,13 @@ namespace DarumaTool
             if (of.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 idlFilename = of.FileName;
-                lblTitle.Text = "ＩＤＬソース：" + idlFilename;
+                lblIDL2File.Text = "ＩＤＬソース：" + idlFilename;
             }
         }
         private void btnAnlyze_Click(object sender, EventArgs e)
         {
-            idlFilename = @"C:\Daruma\WorkShop\01.IDLIIソース_0\KHQT1CH1.TXT";
-            UTFilename = @"C:\Daruma\Tools\XXXXXXXXX_UT試験仕様書(本体＆部品).xls";
+            //idlFilename = @"C:\Daruma\WorkShop\01.IDLIIソース_0\AHQM1SH6.TXT";
+            //UTFilename = @"C:\Daruma\Tools\XXXXXXXXX_UT試験仕様書(本体＆部品).xls";
             IDL2PgmStruct pgm = new IDL2PgmStruct();
             pgm.PgmID = new FileInfo(idlFilename).Name.TrimEnd(".TXT".ToCharArray());
             pgm.Analyze(idlFilename);
@@ -37,5 +37,19 @@ namespace DarumaTool
             System.GC.Collect();
             this.Close();
         }
+
+        private void btnUTPick_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog of = new OpenFileDialog();
+            of.Filter = "ＵＴ仕様書(*.xls)|*.XLS";
+            if (of.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                UTFilename = of.FileName;
+                lblUTFile.Text = "ＵＴ仕様書：" + UTFilename;
+            }
+
+        }
+
+
     }
 }
