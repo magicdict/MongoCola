@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace DarumaUTGenerator
@@ -31,7 +33,7 @@ namespace DarumaUTGenerator
             int RowCount;
             excelObj.Visible = true;
             dynamic workbook = excelObj.Workbooks.Open(UTFilename);
-            //GetJpNameList(workbook);
+            GetJpNameList(workbook);
             dynamic ActiveSheet = workbook.Sheets(3);
             ActiveSheet.Select();
             ///L1实际上是用来标明分歧号的，所以必须多加一列
@@ -110,9 +112,17 @@ namespace DarumaUTGenerator
                             switch (SyntaxItem.SyntaxType)
                             {
                                 case "IF":
-                                    TestString += "の分岐判定処理";
                                     if (String.IsNullOrEmpty(SyntaxItem.ExtendInfo))
                                     {
+                                        if (SyntaxItem.Cond.OrgCondition.IndexOf(">") > 0 || SyntaxItem.Cond.OrgCondition.IndexOf("<") > 0)
+                                        {
+                                            TestString += "の臨界値チェック";
+                                            PolishRow(RowCount, excelObj, ActiveSheet);
+                                        }
+                                        else
+                                        {
+                                            TestString += "の分岐判定処理";
+                                        }
                                         ActiveSheet.Cells(RowCount, MaxLv + 4).Value = TestString;
                                     }
                                     else
@@ -163,13 +173,17 @@ namespace DarumaUTGenerator
                                         ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.ExtendInfo;
                                     }
                                     break;
+                                case "GET":
+                                    ActiveSheet.Cells(RowCount, MaxLv + 4).Value = "入力ファイル読込処理（" + SyntaxItem.ExtendInfo + "）の終了判定";
+                                    PolishRow(RowCount, excelObj, ActiveSheet);
+                                    break;
                                 default:
                                     break;
                             }
                             //分歧条件
                             if (SyntaxItem.Cond != null)
                             {
-                                ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.Cond.OrgCondition;
+                                ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.Cond.OrgCondition.Replace("^=","≠");
                             }
                             //迁移情报
                             ActiveSheet.Cells(RowCount, MaxLv + 6).Value = GetJump(SyntaxItem.JumpInfo);
@@ -182,7 +196,6 @@ namespace DarumaUTGenerator
                                     break;
                                 case "CASE":
                                     ActiveSheet.Cells(RowCount, MaxLv + 2).Value = KeyWord;
-                                    RowCount--;
                                     break;
                                 case "ELSE":
                                 case "WHEN":
@@ -212,7 +225,7 @@ namespace DarumaUTGenerator
                                     ActiveSheet.Cells(RowCount, SyntaxItem.NestLv + 1).Value = "1";
                                 }
                             }
-                            RowCount = RowCount + 1;
+                            if (SyntaxItem.SyntaxType != "CASE") RowCount = RowCount + 1;
                         }
                     }
                     EndRow = RowCount - 1;
@@ -238,29 +251,41 @@ namespace DarumaUTGenerator
             ActiveSheet.PageSetup.PrintArea = "$A$1:$R$" + RowCount;
         }
 
-        private static int GetJpNameList(dynamic workbook)
+        private static void GetJpNameList(dynamic workbook)
         {
-            int RowCount;
-            dynamic JpNameSheet = workbook.Sheets(4);
-            RowCount = 3;
-            while (JpNameSheet.Cells(RowCount, 1).Text != "")
-            {
-                if (!MoudleNameList.ContainsKey(JpNameSheet.Cells(RowCount, 1).Text))
+            Assembly asm = Assembly.GetExecutingAssembly();//读取嵌入式资源
+            String Rec = String.Empty;
+            String Key = string.Empty;
+            String Value = String.Empty;
+
+            System.IO.StreamReader txtStream = new System.IO.StreamReader(asm.GetManifestResourceStream("DarumaUTGenerator.Module.txt"), Encoding.Unicode);
+            Rec = txtStream.ReadLine();
+            while (!txtStream.EndOfStream) {
+                Key = Rec.Substring(0, Rec.IndexOf("|"));
+                Value = Rec.Substring(Rec.IndexOf("|") + 1);
+                if (!MoudleNameList.ContainsKey(Key))
                 {
-                    MoudleNameList.Add(JpNameSheet.Cells(RowCount, 1).Text, JpNameSheet.Cells(RowCount, 2).Text);
+                    MoudleNameList.Add(Key, Value);
                 }
-                RowCount++;
+                Rec = txtStream.ReadLine();
             }
-            RowCount = 3;
-            while (JpNameSheet.Cells(RowCount, 3).Text != "")
+            txtStream.Close();
+
+
+            txtStream = new System.IO.StreamReader(asm.GetManifestResourceStream("DarumaUTGenerator.Macro.txt"), Encoding.Unicode);
+            Rec = txtStream.ReadLine();
+            while (!txtStream.EndOfStream)
             {
-                if (!MacroNameList.ContainsKey(JpNameSheet.Cells(RowCount, 3).Text))
+                Key = Rec.Substring(0, Rec.IndexOf("|"));
+                Value = Rec.Substring(Rec.IndexOf("|") + 1);
+                if (!MacroNameList.ContainsKey(Key))
                 {
-                    MacroNameList.Add(JpNameSheet.Cells(RowCount, 3).Text, JpNameSheet.Cells(RowCount, 4).Text);
+                    MacroNameList.Add(Key, Value);
                 }
-                RowCount++;
+                Rec = txtStream.ReadLine();
             }
-            return RowCount;
+            txtStream.Close();
+
         }
 
         private static String GetTestContext(string ExtendInfo)
@@ -391,6 +416,11 @@ namespace DarumaUTGenerator
 
                 }
             }
+        }
+        private static void PolishRow(int RowCount, dynamic excelObj, dynamic ActiveSheet)
+        {
+            ActiveSheet.Range(ActiveSheet.Cells(RowCount, MaxLv + 1), ActiveSheet.Cells(RowCount, MaxLv + 6)).Select();
+            excelObj.Selection.Interior.Color = 49407;
         }
         /// <summary>
         /// 画Section块

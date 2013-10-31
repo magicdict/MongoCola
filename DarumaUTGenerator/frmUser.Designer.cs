@@ -38,7 +38,7 @@
             // 
             // btnSourcePick
             // 
-            this.btnSourcePick.Location = new System.Drawing.Point(584, 7);
+            this.btnSourcePick.Location = new System.Drawing.Point(15, 7);
             this.btnSourcePick.Name = "btnSourcePick";
             this.btnSourcePick.Size = new System.Drawing.Size(119, 23);
             this.btnSourcePick.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             // btnAnlyze
             // 
-            this.btnAnlyze.Location = new System.Drawing.Point(584, 65);
+            this.btnAnlyze.Location = new System.Drawing.Point(459, 122);
             this.btnAnlyze.Name = "btnAnlyze";
             this.btnAnlyze.Size = new System.Drawing.Size(119, 23);
             this.btnAnlyze.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(584, 94);
+            this.btnClose.Location = new System.Drawing.Point(584, 122);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(119, 23);
             this.btnClose.TabIndex = 2;
@@ -70,7 +70,7 @@
             // 
             this.lblIDL2File.AutoSize = true;
             this.lblIDL2File.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIDL2File.Location = new System.Drawing.Point(12, 17);
+            this.lblIDL2File.Location = new System.Drawing.Point(24, 33);
             this.lblIDL2File.Name = "lblIDL2File";
             this.lblIDL2File.Size = new System.Drawing.Size(107, 13);
             this.lblIDL2File.TabIndex = 3;
@@ -78,7 +78,7 @@
             // 
             // btnUTPick
             // 
-            this.btnUTPick.Location = new System.Drawing.Point(584, 36);
+            this.btnUTPick.Location = new System.Drawing.Point(15, 49);
             this.btnUTPick.Name = "btnUTPick";
             this.btnUTPick.Size = new System.Drawing.Size(119, 23);
             this.btnUTPick.TabIndex = 5;
@@ -90,7 +90,7 @@
             // 
             this.lblUTFile.AutoSize = true;
             this.lblUTFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUTFile.Location = new System.Drawing.Point(12, 46);
+            this.lblUTFile.Location = new System.Drawing.Point(24, 75);
             this.lblUTFile.Name = "lblUTFile";
             this.lblUTFile.Size = new System.Drawing.Size(110, 13);
             this.lblUTFile.TabIndex = 6;
@@ -101,7 +101,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(718, 126);
+            this.ClientSize = new System.Drawing.Size(718, 157);
             this.Controls.Add(this.lblUTFile);
             this.Controls.Add(this.btnUTPick);
             this.Controls.Add(this.lblIDL2File);

@@ -96,7 +96,7 @@ namespace DarumaUTGenerator
         {
             List<Syntax> SyntaxList = new List<Syntax>();
             SyntaxList = new List<Syntax>();
-            StreamReader sr = new StreamReader(filename, System.Text.Encoding.Default);
+            StreamReader sr = new StreamReader(filename, System.Text.Encoding.GetEncoding(932));
             String source;
             byte NestLV = 1;
             int LineNo = 1;
@@ -311,16 +311,25 @@ namespace DarumaUTGenerator
             }
             if (source.StartsWith("OUTPUT "))
             {
-                sectionName = source.Substring("OUTPUT ".Length).TrimEnd(".".ToCharArray());
+                sectionName = source.Split(" ".ToCharArray())[1];
                 SectionList.Add(new Section() { SectionName = sectionName, SyntaxList = new List<List<Syntax>>() });
                 if (NestLV != 1) Debug.WriteLine(filename + ":" + sectionName + " NestLV" + NestLV);
             }
             if (source.StartsWith("INPUT "))
             {
-                sectionName = source.Substring("INPUT ".Length).TrimEnd(".".ToCharArray());
+                sectionName = source.Split(" ".ToCharArray())[1];
                 SectionList.Add(new Section() { SectionName = sectionName, SyntaxList = new List<List<Syntax>>() });
                 if (NestLV != 1) Debug.WriteLine(filename + ":" + sectionName + " NestLV" + NestLV);
             }
+            if (source.StartsWith("ERROR PROC FOR FILE"))
+            {
+                sectionName = "作業ファイルエラー処理";
+                SectionList.Add(new Section() { SectionName = sectionName, SyntaxList = new List<List<Syntax>>() });
+                if (NestLV != 1) Debug.WriteLine(filename + ":" + sectionName + " NestLV" + NestLV);
+            }
+
+            
+
         }
         /// <summary>
         /// 是否为Syntax
@@ -447,6 +456,7 @@ namespace DarumaUTGenerator
                     SyntaxType = "GET",
                     LineNo = LineNo,
                     NestLv = NestLV,
+                    ExtendInfo = source.Substring("GET ".Length),
                     SectionName = sectionName,
                     JumpInfo = new List<Syntax>()
                 });

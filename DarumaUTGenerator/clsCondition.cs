@@ -180,7 +180,17 @@ namespace DarumaUTGenerator
                 if (!IsConst(TestItem)) TestItemLst.Add(TestItem.Trim());
                 TestItem = String.Empty;
             }
-
+            //去重复
+            HashSet<String> hashTestItem = new HashSet<string>();
+            foreach (var item in TestItemLst)
+            {
+                if (!hashTestItem.Contains(item))  hashTestItem.Add(item);
+            }
+            TestItemLst.Clear();
+            foreach (var item in hashTestItem)
+            {
+                TestItemLst.Add(item); 
+            }
         }
         /// <summary>
         /// 是否为常数
