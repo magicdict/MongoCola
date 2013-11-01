@@ -105,7 +105,9 @@ namespace DarumaUTGenerator
                         newSyntax = syntax;
                         if (isStartSyntax(syntax) && (!string.IsNullOrEmpty(PreCommand)))
                         {
-                            newSyntax.ExtendInfo = PreCommand;
+                            if (String.IsNullOrEmpty(newSyntax.ExtendInfo)) { 
+                                newSyntax.ExtendInfo = PreCommand;
+                            }
                         }
                         ReSyntaxlst.Add(newSyntax);
                         PreCommand = String.Empty;
@@ -184,6 +186,7 @@ namespace DarumaUTGenerator
             switch (syntax.SyntaxType)
             {
                 case "IF":
+                case "CHECK":
                 case "#IF":
                 case "#IFNOT":
                 case "BLOCK":

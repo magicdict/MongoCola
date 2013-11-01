@@ -12,6 +12,7 @@ namespace DarumaUTGenerator
         const int xlToRight = -4161;
         const int xlFormatFromLeftOrAbove = 0;
         const int xlLeft = -4131;
+        const int xlTop = -4160;
         const int xlNone = -4142;
         const int xlContinuous = 1;
         const int xlEdgeLeft = 7;
@@ -36,7 +37,7 @@ namespace DarumaUTGenerator
                 }
             }
 
-            
+
             MoudleNameList.Clear();
             MacroNameList.Clear();
 
@@ -61,6 +62,7 @@ namespace DarumaUTGenerator
                     excelObj.Selection.Insert(Shift: xlToRight, CopyOrigin: xlFormatFromLeftOrAbove);
                 }
                 excelObj.Range(ActiveSheet.Cells(4, 1), ActiveSheet.Cells(4, MaxLv)).Select();
+                excelObj.Selection.ColumnWidth = 4.5;
                 excelObj.Selection.Merge();
                 for (int i = 1; i < MaxLv + 1; i++)
                 {
@@ -74,7 +76,8 @@ namespace DarumaUTGenerator
             RowCount = 6;
 
             int BranchNo;
-            if (pgm.SectionList.Count == 0) {
+            if (pgm.SectionList.Count == 0)
+            {
                 IDL2PgmStruct.Section section = new IDL2PgmStruct.Section();
                 section.SectionName = pgm.PgmID;
                 section.SyntaxList = new List<List<IDL2PgmStruct.Syntax>>();
@@ -92,6 +95,7 @@ namespace DarumaUTGenerator
                 foreach (var Syntax in section.SyntaxList)
                 {
                     ActiveSheet.Cells(RowCount, 1).Value = BranchNo;
+                    ActiveSheet.Cells(RowCount, 1).VerticalAlignment = xlTop; ;
                     int StartRow = RowCount;
                     int EndRow;
                     IDL2PgmStruct.Syntax CaseSyntax = new IDL2PgmStruct.Syntax();
@@ -201,6 +205,7 @@ namespace DarumaUTGenerator
                                     PolishRow(RowCount, excelObj, ActiveSheet);
                                     break;
                                 case "CHECK":
+                                    ActiveSheet.Cells(RowCount, MaxLv + 4).Value = "範囲チェック";
                                     PolishRow(RowCount, excelObj, ActiveSheet);
                                     break;
                                 default:
@@ -209,7 +214,21 @@ namespace DarumaUTGenerator
                             //分歧条件
                             if (SyntaxItem.Cond != null)
                             {
-                                ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.Cond.OrgCondition.Replace("^=","≠");
+                                switch (SyntaxItem.SyntaxType)
+                                {
+                                    case "CHECK":
+                                        if (!String.IsNullOrEmpty(SyntaxItem.ExtendInfo))
+                                        {
+                                            ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.ExtendInfo.Substring(0, SyntaxItem.ExtendInfo.IndexOf(":"));
+                                        }
+                                        else {
+                                            ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.Cond.OrgCondition.Replace("^=", "≠");
+                                        }
+                                        break;
+                                    default:
+                                        ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.Cond.OrgCondition.Replace("^=", "≠");
+                                        break;
+                                }
                             }
                             //迁移情报
                             ActiveSheet.Cells(RowCount, MaxLv + 6).Value = GetJump(SyntaxItem.JumpInfo);
@@ -231,10 +250,18 @@ namespace DarumaUTGenerator
                                     ActiveSheet.Cells(RowCount, MaxLv + 2).Value = KeyWord;
                                     ActiveSheet.Cells(RowCount, MaxLv + 3).Value = SyntaxItem.ExtendInfo;
                                     break;
+                                case "CHECK":
+                                    ActiveSheet.Cells(RowCount, MaxLv + 2).Value = KeyWord;
+                                    ActiveSheet.Cells(RowCount, MaxLv + 3).Value = SyntaxItem.ExtendInfo.Substring(SyntaxItem.ExtendInfo.IndexOf(":") + 1);
+                                    break;
                                 default:
                                     ActiveSheet.Cells(RowCount, MaxLv + 2).Value = KeyWord;
                                     break;
                             }
+                            ActiveSheet.Cells(RowCount, MaxLv + 1).VerticalAlignment = xlTop; ;
+                            ActiveSheet.Cells(RowCount, MaxLv + 2).VerticalAlignment = xlTop; ;
+                            ActiveSheet.Cells(RowCount, MaxLv + 3).VerticalAlignment = xlTop; ;
+
                             //Nest Lv
                             if (KeyWord == "ELSE")
                             {
@@ -276,7 +303,10 @@ namespace DarumaUTGenerator
             RowCount--;
             ActiveSheet.PageSetup.PrintArea = "$A$1:$R$" + RowCount;
         }
-
+        /// <summary>
+        /// 日本语名称获得
+        /// </summary>
+        /// <param name="workbook"></param>
         private static void GetJpNameList(dynamic workbook)
         {
             Assembly asm = Assembly.GetExecutingAssembly();//读取嵌入式资源
@@ -286,7 +316,8 @@ namespace DarumaUTGenerator
 
             System.IO.StreamReader txtStream = new System.IO.StreamReader(asm.GetManifestResourceStream("DarumaUTGenerator.Module.txt"), Encoding.Unicode);
             Rec = txtStream.ReadLine();
-            while (!txtStream.EndOfStream) {
+            while (!txtStream.EndOfStream)
+            {
                 Key = Rec.Substring(0, Rec.IndexOf("|"));
                 Value = Rec.Substring(Rec.IndexOf("|") + 1);
                 if (!MoudleNameList.ContainsKey(Key))
@@ -296,7 +327,6 @@ namespace DarumaUTGenerator
                 Rec = txtStream.ReadLine();
             }
             txtStream.Close();
-
 
             txtStream = new System.IO.StreamReader(asm.GetManifestResourceStream("DarumaUTGenerator.Macro.txt"), Encoding.Unicode);
             Rec = txtStream.ReadLine();
@@ -313,7 +343,11 @@ namespace DarumaUTGenerator
             txtStream.Close();
 
         }
-
+        /// <summary>
+        /// 内容
+        /// </summary>
+        /// <param name="ExtendInfo"></param>
+        /// <returns></returns>
         private static String GetTestContext(string ExtendInfo)
         {
             String TestString = String.Empty;
@@ -322,7 +356,7 @@ namespace DarumaUTGenerator
                 String ModuleName = ExtendInfo.Substring("CALL:".Length);
                 if (MoudleNameList.ContainsKey(ModuleName))
                 {
-                    TestString = ModuleName + "(" + MoudleNameList[ModuleName] + ")の戻り値の判定処理";
+                    TestString = "「" + ModuleName + "(" + MoudleNameList[ModuleName] + ")」の戻り値の判定処理";
                 }
                 else
                 {
@@ -338,6 +372,7 @@ namespace DarumaUTGenerator
                 }
                 switch (MacroName)
                 {
+                    //ZGISTD
                     case "ZGISTDOPN":
                         TestString = "ファイルオープン処理(" + ExtendInfo.Substring("MACRO:ZGISTDOPN(".Length, 8) + ")分岐の判定";
                         break;
@@ -350,6 +385,7 @@ namespace DarumaUTGenerator
                     case "ZGISTDPUT":
                         TestString = "出力ファイル書込処理(" + ExtendInfo.Substring("MACRO:ZGISTDPUT(".Length, 8) + ")分岐の判定";
                         break;
+                    //ZGIVSA
                     case "ZGIVSAOPN":
                         TestString = "マスターオープン処理(" + ExtendInfo.Substring("MACRO:ZGIVSAOPN(".Length, 8) + ")分岐の判定";
                         break;
@@ -362,14 +398,35 @@ namespace DarumaUTGenerator
                     case "ZGIVSAPUT":
                         TestString = "マスター書込処理(" + ExtendInfo.Substring("MACRO:ZGIVSAPUT(".Length, 8) + ")分岐の判定";
                         break;
+                    //ZGITAN
+                    case "ZGITANOPN":
+                        TestString = "ファイルオープン処理分岐の判定";
+                        break;
+                    case "ZGITANFIL":
+                        TestString = "ファイル(" + ExtendInfo.Substring("MACRO:ZGITANFIL(".Length, 6).TrimEnd(")".ToCharArray()) + ")処理分岐の判定";
+                        break;
+                    case "ZGITANCLS":
+                        TestString = "ファイルクローズ処理分岐の判定";
+                        break;
                     default:
-                        TestString = MacroName + "の戻り値の判定処理";
+                        if (MacroNameList.ContainsKey(MacroName))
+                        {
+                            TestString = "「" + MacroName + "(" + MacroNameList[MacroName] + ")」の戻り値の判定処理";
+                        }
+                        else
+                        {
+                            TestString = "「" + MacroName + "」の戻り値の判定処理";
+                        }
                         break;
                 }
             }
             return TestString;
         }
-
+        /// <summary>
+        /// 迁移情报的获得
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         private static dynamic GetJump(List<IDL2PgmStruct.Syntax> list)
         {
             String strJumpInfo = String.Empty;
@@ -420,8 +477,10 @@ namespace DarumaUTGenerator
                 {
                     if (ActiveSheet.Cells(i, j).Text != "")
                     {
+                        //阶层号Top
                         //向左和向下的线
                         ActiveSheet.Range(ActiveSheet.Cells(i, j), ActiveSheet.Cells(EndRow, MaxLv)).Select();
+                        ActiveSheet.Cells(i, j).VerticalAlignment = xlTop;;
                         excelObj.Selection.Borders(xlEdgeLeft).LineStyle = xlContinuous;
                         excelObj.Selection.Borders(xlEdgeTop).LineStyle = xlContinuous;
                         excelObj.Selection.Borders(xlEdgeRight).LineStyle = xlContinuous;
@@ -443,6 +502,12 @@ namespace DarumaUTGenerator
                 }
             }
         }
+        /// <summary>
+        /// 上色
+        /// </summary>
+        /// <param name="RowCount"></param>
+        /// <param name="excelObj"></param>
+        /// <param name="ActiveSheet"></param>
         private static void PolishRow(int RowCount, dynamic excelObj, dynamic ActiveSheet)
         {
             ActiveSheet.Range(ActiveSheet.Cells(RowCount, MaxLv + 1), ActiveSheet.Cells(RowCount, MaxLv + 6)).Select();
@@ -459,6 +524,7 @@ namespace DarumaUTGenerator
             excelObj.Selection.Merge();
             excelObj.Selection.HorizontalAlignment = xlLeft;
             excelObj.Selection.Interior.Color = xlLightYellow;
+            excelObj.Selection.Font.Bold = true;
             excelObj.Selection.Borders(xlEdgeLeft).LineStyle = xlContinuous;
             excelObj.Selection.Borders(xlEdgeTop).LineStyle = xlContinuous;
             excelObj.Selection.Borders(xlEdgeRight).LineStyle = xlContinuous;

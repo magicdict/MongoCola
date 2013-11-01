@@ -233,7 +233,10 @@ namespace DarumaUTGenerator
             }
             //新增了DERIVE 2013/10/07
             //新增了PROC   2013/10/08
-            if (source.StartsWith("CALL ") || source.StartsWith("DERIVE ") || source.StartsWith("PROC "))
+            if (source.StartsWith("CALL ") || 
+                source.StartsWith("DERIVE ") ||
+                source.StartsWith("PROC ") ||
+                source.StartsWith("CHECK "))
             {
                 String CallObj = source.Substring(source.IndexOf(" ") + 1).Trim().Trim(".".ToCharArray());
                 char t = CallObj.ToCharArray()[0];
