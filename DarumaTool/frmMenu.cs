@@ -271,7 +271,7 @@ namespace DarumaTool
 
             dynamic excelObj = Microsoft.VisualBasic.Interaction.CreateObject("Excel.Application");
             excelObj.Visible = true;
-            dynamic workbook = excelObj.Workbooks.Open(@"C:\Daruma\Tools\PgmList.xlsx");
+            dynamic workbook = excelObj.Workbooks.Open(@"C:\Daruma\Tools\Garb2\PgmList.xlsx");
             dynamic worksheet = workbook.Sheets(3);
             worksheet.Select();
             worksheet.Name = "SyntaxSet";

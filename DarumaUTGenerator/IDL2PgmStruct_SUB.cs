@@ -184,6 +184,8 @@ namespace DarumaUTGenerator
             switch (syntax.SyntaxType)
             {
                 case "IF":
+                case "#IF":
+                case "#IFNOT":
                 case "BLOCK":
                 case "GET":
                 case "WHILE":
@@ -206,6 +208,7 @@ namespace DarumaUTGenerator
             switch (syntax.SyntaxType)
             {
                 case "ELSE":
+                case "#ELSE":
                 case "WHEN":
                     //case "OTHER":
                     return true;
@@ -223,6 +226,25 @@ namespace DarumaUTGenerator
             switch (syntax.SyntaxType)
             {
                 case "END-IF":
+                case "#END-IF":
+                case "END-BLOCK":
+                case "END-GET":
+                case "END-WHILE":
+                case "END-REPEAT":
+                case "END-CASE":
+                case "END-FOR":
+                case "END-LOOP":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        public static bool isEndSyntax(String syntax)
+        {
+            switch (syntax)
+            {
+                case "END-IF":
+                case "#END-IF":
                 case "END-BLOCK":
                 case "END-GET":
                 case "END-WHILE":

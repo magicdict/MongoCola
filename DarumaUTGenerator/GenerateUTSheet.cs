@@ -20,12 +20,23 @@ namespace DarumaUTGenerator
         const int xlEdgeRight = 10;
         const int xlInsideVertical = 11;
         const int xlInsideHorizontal = 12;
+        const int xlLightYellow = 6750207;
+        const int xlOrange = 49407;
         static int MaxLv;
         static Dictionary<String, String> MoudleNameList = new Dictionary<string, string>();
         static Dictionary<String, String> MacroNameList = new Dictionary<string, string>();
 
         public static void GenerateUT(IDL2PgmStruct pgm, String UTFilename)
         {
+            foreach (var item in pgm.TopSyntax)
+            {
+                foreach (var item2 in item)
+                {
+                    System.Diagnostics.Debug.WriteLine("NestLv" + item2.NestLv + " LineNo" + item2.LineNo);
+                }
+            }
+
+            
             MoudleNameList.Clear();
             MacroNameList.Clear();
 
@@ -38,6 +49,8 @@ namespace DarumaUTGenerator
             ActiveSheet.Select();
             ///L1实际上是用来标明分歧号的，所以必须多加一列
             MaxLv = pgm.MaxNestLv + 1;
+
+
             if (MaxLv > 5)
             {
                 ActiveSheet.Cells(4, 1).Select();
@@ -61,6 +74,16 @@ namespace DarumaUTGenerator
             RowCount = 6;
 
             int BranchNo;
+            if (pgm.SectionList.Count == 0) {
+                IDL2PgmStruct.Section section = new IDL2PgmStruct.Section();
+                section.SectionName = pgm.PgmID;
+                section.SyntaxList = new List<List<IDL2PgmStruct.Syntax>>();
+                foreach (var item in pgm.TopSyntax)
+                {
+                    section.SyntaxList.Add(item);
+                }
+                pgm.SectionList.Add(section);
+            }
             foreach (var section in pgm.SectionList)
             {
                 CreateSectionHeader(RowCount, section.SectionName, excelObj, ActiveSheet);
@@ -175,6 +198,9 @@ namespace DarumaUTGenerator
                                     break;
                                 case "GET":
                                     ActiveSheet.Cells(RowCount, MaxLv + 4).Value = "入力ファイル読込処理（" + SyntaxItem.ExtendInfo + "）の終了判定";
+                                    PolishRow(RowCount, excelObj, ActiveSheet);
+                                    break;
+                                case "CHECK":
                                     PolishRow(RowCount, excelObj, ActiveSheet);
                                     break;
                                 default:
@@ -420,7 +446,7 @@ namespace DarumaUTGenerator
         private static void PolishRow(int RowCount, dynamic excelObj, dynamic ActiveSheet)
         {
             ActiveSheet.Range(ActiveSheet.Cells(RowCount, MaxLv + 1), ActiveSheet.Cells(RowCount, MaxLv + 6)).Select();
-            excelObj.Selection.Interior.Color = 49407;
+            excelObj.Selection.Interior.Color = xlOrange;
         }
         /// <summary>
         /// 画Section块
@@ -432,7 +458,7 @@ namespace DarumaUTGenerator
             ActiveSheet.Range(ActiveSheet.Cells(RowCount, 1), ActiveSheet.Cells(RowCount, MaxLv + 6)).Select();
             excelObj.Selection.Merge();
             excelObj.Selection.HorizontalAlignment = xlLeft;
-            excelObj.Selection.Interior.Color = 6750207;
+            excelObj.Selection.Interior.Color = xlLightYellow;
             excelObj.Selection.Borders(xlEdgeLeft).LineStyle = xlContinuous;
             excelObj.Selection.Borders(xlEdgeTop).LineStyle = xlContinuous;
             excelObj.Selection.Borders(xlEdgeRight).LineStyle = xlContinuous;

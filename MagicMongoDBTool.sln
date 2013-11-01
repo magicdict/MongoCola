@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiBoApp", "WeiBoApp\WeiBoA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarumaTool", "DarumaTool\DarumaTool.csproj", "{89B7C31C-5B5A-4361-88A2-7557802499A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarumaUTGenerator", "DarumaUTGenerator\DarumaUTGenerator.csproj", "{FF65B433-F905-4767-B5BF-408CA25B11CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,16 @@ Global
 		{89B7C31C-5B5A-4361-88A2-7557802499A1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{89B7C31C-5B5A-4361-88A2-7557802499A1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{89B7C31C-5B5A-4361-88A2-7557802499A1}.Release|x86.ActiveCfg = Release|Any CPU
+		{FF65B433-F905-4767-B5BF-408CA25B11CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF65B433-F905-4767-B5BF-408CA25B11CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF65B433-F905-4767-B5BF-408CA25B11CE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FF65B433-F905-4767-B5BF-408CA25B11CE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FF65B433-F905-4767-B5BF-408CA25B11CE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FF65B433-F905-4767-B5BF-408CA25B11CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF65B433-F905-4767-B5BF-408CA25B11CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF65B433-F905-4767-B5BF-408CA25B11CE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FF65B433-F905-4767-B5BF-408CA25B11CE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FF65B433-F905-4767-B5BF-408CA25B11CE}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

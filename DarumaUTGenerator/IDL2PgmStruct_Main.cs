@@ -343,13 +343,14 @@ namespace DarumaUTGenerator
         private static byte IsSyntax(List<Syntax> SyntaxList, String source, byte NestLV, int LineNo, String sectionName)
         {
             //0.BLOCK
-            if (source.Equals("BLOCK")) {
+            if (source.Equals("BLOCK") || source.StartsWith("BLOCK "))
+            {
                 SyntaxList.Add(new Syntax()
                 {
                     SyntaxType = "BLOCK",
                     LineNo = LineNo,
                     NestLv = NestLV,
-                    ExtendInfo = PreSource.Trim(".".ToCharArray()),
+                    ExtendInfo = isEndSyntax(PreSource.Trim(".".ToCharArray()))?String.Empty:PreSource.Trim(".".ToCharArray()),
                     SectionName = sectionName,
                     JumpInfo = new List<Syntax>()
                 });
@@ -421,7 +422,7 @@ namespace DarumaUTGenerator
             {
                 SyntaxList.Add(new Syntax()
                 {
-                    SyntaxType = "#IF",
+                    SyntaxType = "#IFNOT",
                     LineNo = LineNo,
                     NestLv = NestLV
                 });
