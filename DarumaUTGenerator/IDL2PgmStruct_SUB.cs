@@ -20,7 +20,6 @@ namespace DarumaUTGenerator
         /// <param name="SyntaxList"></param>
         private void ReSyntax(List<Syntax> SyntaxList)
         {
-
             List<Syntax> ReSyntaxList = new List<Syntax>();
             //测试内容预整理 CALL,MACRO 的删除.同时将顶层的CALL，MACRO这些放入IF中
             ReSyntaxList = AnalyzeTestInfo(SyntaxList);
@@ -86,12 +85,19 @@ namespace DarumaUTGenerator
                 }
             }
         }
+        /// <summary>
+        /// 测试内容
+        /// </summary>
+        /// <param name="Syntaxlst"></param>
+        /// <returns></returns>
         private List<Syntax> AnalyzeTestInfo(List<Syntax> Syntaxlst)
         {
             List<Syntax> ReSyntaxlst = new List<Syntax>();
             String PreCommand = String.Empty;
+            String PerSection = String.Empty;
             foreach (var syntax in Syntaxlst)
             {
+                PerSection = syntax.SectionName;
                 switch (syntax.SyntaxType)
                 {
                     case "CALL":
@@ -105,7 +111,9 @@ namespace DarumaUTGenerator
                         newSyntax = syntax;
                         if (isStartSyntax(syntax) && (!string.IsNullOrEmpty(PreCommand)))
                         {
-                            if (String.IsNullOrEmpty(newSyntax.ExtendInfo)) { 
+                            ///必须是同一个Section
+                            if (PerSection == newSyntax.SectionName && String.IsNullOrEmpty(newSyntax.ExtendInfo))
+                            { 
                                 newSyntax.ExtendInfo = PreCommand;
                             }
                         }

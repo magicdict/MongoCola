@@ -144,7 +144,7 @@ namespace DarumaUTGenerator
                                         if (SyntaxItem.Cond.OrgCondition.IndexOf(">") > 0 || SyntaxItem.Cond.OrgCondition.IndexOf("<") > 0)
                                         {
                                             TestString += "の臨界値チェック";
-                                            PolishRow(RowCount, excelObj, ActiveSheet);
+                                            PolishRow(RowCount, excelObj, ActiveSheet, xlOrange);
                                         }
                                         else
                                         {
@@ -202,11 +202,11 @@ namespace DarumaUTGenerator
                                     break;
                                 case "GET":
                                     ActiveSheet.Cells(RowCount, MaxLv + 4).Value = "入力ファイル読込処理（" + SyntaxItem.ExtendInfo + "）の終了判定";
-                                    PolishRow(RowCount, excelObj, ActiveSheet);
+                                    PolishRow(RowCount, excelObj, ActiveSheet, xlOrange);
                                     break;
                                 case "CHECK":
                                     ActiveSheet.Cells(RowCount, MaxLv + 4).Value = "範囲チェック";
-                                    PolishRow(RowCount, excelObj, ActiveSheet);
+                                    PolishRow(RowCount, excelObj, ActiveSheet, xlOrange);
                                     break;
                                 default:
                                     break;
@@ -221,7 +221,8 @@ namespace DarumaUTGenerator
                                         {
                                             ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.ExtendInfo.Substring(0, SyntaxItem.ExtendInfo.IndexOf(":"));
                                         }
-                                        else {
+                                        else
+                                        {
                                             ActiveSheet.Cells(RowCount, MaxLv + 5).Value = SyntaxItem.Cond.OrgCondition.Replace("^=", "≠");
                                         }
                                         break;
@@ -258,9 +259,11 @@ namespace DarumaUTGenerator
                                     ActiveSheet.Cells(RowCount, MaxLv + 2).Value = KeyWord;
                                     break;
                             }
-                            ActiveSheet.Cells(RowCount, MaxLv + 1).VerticalAlignment = xlTop; ;
-                            ActiveSheet.Cells(RowCount, MaxLv + 2).VerticalAlignment = xlTop; ;
-                            ActiveSheet.Cells(RowCount, MaxLv + 3).VerticalAlignment = xlTop; ;
+                            ActiveSheet.Cells(RowCount, MaxLv + 1).VerticalAlignment = xlTop; 
+                            ActiveSheet.Cells(RowCount, MaxLv + 2).VerticalAlignment = xlTop; 
+                            ActiveSheet.Cells(RowCount, MaxLv + 3).VerticalAlignment = xlTop; 
+                            ActiveSheet.Cells(RowCount, MaxLv + 4).VerticalAlignment = xlTop; 
+                            ActiveSheet.Cells(RowCount, MaxLv + 5).VerticalAlignment = xlTop; 
 
                             //Nest Lv
                             if (KeyWord == "ELSE")
@@ -480,7 +483,7 @@ namespace DarumaUTGenerator
                         //阶层号Top
                         //向左和向下的线
                         ActiveSheet.Range(ActiveSheet.Cells(i, j), ActiveSheet.Cells(EndRow, MaxLv)).Select();
-                        ActiveSheet.Cells(i, j).VerticalAlignment = xlTop;;
+                        ActiveSheet.Cells(i, j).VerticalAlignment = xlTop; ;
                         excelObj.Selection.Borders(xlEdgeLeft).LineStyle = xlContinuous;
                         excelObj.Selection.Borders(xlEdgeTop).LineStyle = xlContinuous;
                         excelObj.Selection.Borders(xlEdgeRight).LineStyle = xlContinuous;
@@ -508,10 +511,10 @@ namespace DarumaUTGenerator
         /// <param name="RowCount"></param>
         /// <param name="excelObj"></param>
         /// <param name="ActiveSheet"></param>
-        private static void PolishRow(int RowCount, dynamic excelObj, dynamic ActiveSheet)
+        private static void PolishRow(int RowCount, dynamic excelObj, dynamic ActiveSheet, int Color)
         {
             ActiveSheet.Range(ActiveSheet.Cells(RowCount, MaxLv + 1), ActiveSheet.Cells(RowCount, MaxLv + 6)).Select();
-            excelObj.Selection.Interior.Color = xlOrange;
+            excelObj.Selection.Interior.Color = Color;
         }
         /// <summary>
         /// 画Section块

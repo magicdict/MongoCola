@@ -56,10 +56,19 @@
     <Compile Include="GenerateUTSheet.cs" />
     <Compile Include="IDL2PgmStruct_Main.cs" />
     <Compile Include="IDL2PgmStruct_SUB.cs" />
+    <Compile Include="MacroAnalyze.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MacroAnalyze.Designer.cs">
+      <DependentUpon>MacroAnalyze.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MacroAnalyze.resx">
+      <DependentUpon>MacroAnalyze.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

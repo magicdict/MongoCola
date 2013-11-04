@@ -170,6 +170,51 @@ namespace DarumaUTGenerator
         }
         #endregion
 
+        private void IsMacroControl(List<Syntax> SyntaxList, string source, byte NestLV, int LineNo, string sectionName)
+        {
+            //Macro控制文
+            if (source.StartsWith("#IF "))
+            {
+                SyntaxList.Add(new Syntax()
+                {
+                    SyntaxType = "#IF",
+                    LineNo = LineNo,
+                    NestLv = NestLV
+                });
+                NestLV++;
+            }
+            if (source.StartsWith("#IFNOT "))
+            {
+                SyntaxList.Add(new Syntax()
+                {
+                    SyntaxType = "#IFNOT",
+                    LineNo = LineNo,
+                    NestLv = NestLV
+                });
+                NestLV++;
+            }
+            if (source.StartsWith("#ELSE"))
+            {
+                NestLV--;
+                SyntaxList.Add(new Syntax()
+                {
+                    SyntaxType = "#ELSE",
+                    LineNo = LineNo,
+                    NestLv = NestLV
+                });
+                NestLV++;
+            }
+            if (source.StartsWith("#END-IF"))
+            {
+                NestLV--;
+                SyntaxList.Add(new Syntax()
+                {
+                    SyntaxType = "#END-IF",
+                    LineNo = LineNo,
+                    NestLv = NestLV
+                });
+            }
+        }
         /// <summary>
         /// 执行语句
         /// </summary>
@@ -406,48 +451,6 @@ namespace DarumaUTGenerator
                 SyntaxList.Add(new Syntax()
                 {
                     SyntaxType = "END-IF",
-                    LineNo = LineNo,
-                    NestLv = NestLV
-                });
-            }
-            //Macro控制文
-            if (source.StartsWith("#IF "))
-            {
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "#IF",
-                    LineNo = LineNo,
-                    NestLv = NestLV
-                });
-                NestLV++;
-            }
-            if (source.StartsWith("#IFNOT "))
-            {
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "#IFNOT",
-                    LineNo = LineNo,
-                    NestLv = NestLV
-                });
-                NestLV++;
-            }
-            if (source.StartsWith("#ELSE"))
-            {
-                NestLV--;
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "#ELSE",
-                    LineNo = LineNo,
-                    NestLv = NestLV
-                });
-                NestLV++;
-            }
-            if (source.StartsWith("#END-IF"))
-            {
-                NestLV--;
-                SyntaxList.Add(new Syntax()
-                {
-                    SyntaxType = "#END-IF",
                     LineNo = LineNo,
                     NestLv = NestLV
                 });
