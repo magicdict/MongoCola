@@ -92,7 +92,7 @@ namespace DarumaUTGenerator
         /// 分析
         /// </summary>
         /// <param name="filename"></param>
-        public void Analyze(String filename)
+        public void Analyze(String filename,Boolean IsMacro = false)
         {
             List<Syntax> SyntaxList = new List<Syntax>();
             SyntaxList = new List<Syntax>();
@@ -106,7 +106,13 @@ namespace DarumaUTGenerator
                 source = sr.ReadLine();
                 source = FormatSource(source);
                 IsSection(filename, ref source, NestLV, ref sectionName);
-                NestLV = IsSyntax(SyntaxList, source, NestLV, LineNo, sectionName);
+                if (IsMacro) {
+                    NestLV = IsMacroControl(SyntaxList, source, NestLV, LineNo, sectionName);
+                }
+                else
+                {
+                    NestLV = IsSyntax(SyntaxList, source, NestLV, LineNo, sectionName);
+                }
                 IsCommonOpr(SyntaxList, source, NestLV, LineNo, sectionName);
                 LineNo++;
                 if (SyntaxList.Count > 0 && isStartSyntax(SyntaxList[SyntaxList.Count - 1]))
@@ -169,8 +175,8 @@ namespace DarumaUTGenerator
             }
         }
         #endregion
-
-        private void IsMacroControl(List<Syntax> SyntaxList, string source, byte NestLV, int LineNo, string sectionName)
+        
+        private byte IsMacroControl(List<Syntax> SyntaxList, string source, byte NestLV, int LineNo, string sectionName)
         {
             //Macro控制文
             if (source.StartsWith("#IF "))
@@ -179,7 +185,8 @@ namespace DarumaUTGenerator
                 {
                     SyntaxType = "#IF",
                     LineNo = LineNo,
-                    NestLv = NestLV
+                    NestLv = NestLV,
+                    Cond = new clsCondition(source.Substring("#IF ".Length)),
                 });
                 NestLV++;
             }
@@ -189,7 +196,8 @@ namespace DarumaUTGenerator
                 {
                     SyntaxType = "#IFNOT",
                     LineNo = LineNo,
-                    NestLv = NestLV
+                    NestLv = NestLV,
+                    Cond = new clsCondition(source.Substring("#IFNOT ".Length)),
                 });
                 NestLV++;
             }
@@ -214,6 +222,7 @@ namespace DarumaUTGenerator
                     NestLv = NestLV
                 });
             }
+            return NestLV;
         }
         /// <summary>
         /// 执行语句

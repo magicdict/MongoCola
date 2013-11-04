@@ -54,6 +54,7 @@
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
     <Compile Include="GenerateUTSheet.cs" />
+    <Compile Include="IDL2MacroStruct.cs" />
     <Compile Include="IDL2PgmStruct_Main.cs" />
     <Compile Include="IDL2PgmStruct_SUB.cs" />
     <Compile Include="MacroAnalyze.cs">

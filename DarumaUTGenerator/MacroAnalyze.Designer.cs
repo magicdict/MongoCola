@@ -31,13 +31,24 @@
             this.lblIDL2File = new System.Windows.Forms.Label();
             this.btnSourcePick = new System.Windows.Forms.Button();
             this.btnRun = new System.Windows.Forms.Button();
+            this.lstParm = new System.Windows.Forms.ListView();
+            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colDefault = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lstBranch = new System.Windows.Forms.ListView();
+            this.colSyntax = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colNestLv = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colLineNo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblIDL2File
             // 
             this.lblIDL2File.AutoSize = true;
             this.lblIDL2File.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIDL2File.Location = new System.Drawing.Point(146, 17);
+            this.lblIDL2File.Location = new System.Drawing.Point(296, 22);
             this.lblIDL2File.Name = "lblIDL2File";
             this.lblIDL2File.Size = new System.Drawing.Size(107, 13);
             this.lblIDL2File.TabIndex = 5;
@@ -45,9 +56,9 @@
             // 
             // btnSourcePick
             // 
-            this.btnSourcePick.Location = new System.Drawing.Point(12, 12);
+            this.btnSourcePick.Location = new System.Drawing.Point(12, 17);
             this.btnSourcePick.Name = "btnSourcePick";
-            this.btnSourcePick.Size = new System.Drawing.Size(119, 23);
+            this.btnSourcePick.Size = new System.Drawing.Size(241, 23);
             this.btnSourcePick.TabIndex = 4;
             this.btnSourcePick.Text = "ソースを選ぶ…";
             this.btnSourcePick.UseVisualStyleBackColor = true;
@@ -55,24 +66,108 @@
             // 
             // btnRun
             // 
-            this.btnRun.Location = new System.Drawing.Point(656, 48);
+            this.btnRun.Location = new System.Drawing.Point(12, 46);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(75, 23);
+            this.btnRun.Size = new System.Drawing.Size(241, 23);
             this.btnRun.TabIndex = 6;
-            this.btnRun.Text = "分析";
+            this.btnRun.Text = "パラメータ分析";
             this.btnRun.UseVisualStyleBackColor = true;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
+            // 
+            // lstParm
+            // 
+            this.lstParm.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colName,
+            this.colType,
+            this.colDefault});
+            this.lstParm.FullRowSelect = true;
+            this.lstParm.GridLines = true;
+            this.lstParm.Location = new System.Drawing.Point(12, 89);
+            this.lstParm.Name = "lstParm";
+            this.lstParm.Size = new System.Drawing.Size(241, 194);
+            this.lstParm.TabIndex = 7;
+            this.lstParm.UseCompatibleStateImageBehavior = false;
+            this.lstParm.View = System.Windows.Forms.View.Details;
+            // 
+            // colName
+            // 
+            this.colName.Text = "名称";
+            // 
+            // colType
+            // 
+            this.colType.Text = "種類";
+            // 
+            // colDefault
+            // 
+            this.colDefault.Text = "暗黙値";
+            // 
+            // lstBranch
+            // 
+            this.lstBranch.CheckBoxes = true;
+            this.lstBranch.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colSyntax,
+            this.colNestLv,
+            this.colLineNo,
+            this.colCondition});
+            this.lstBranch.FullRowSelect = true;
+            this.lstBranch.GridLines = true;
+            this.lstBranch.Location = new System.Drawing.Point(299, 89);
+            this.lstBranch.Name = "lstBranch";
+            this.lstBranch.Size = new System.Drawing.Size(492, 194);
+            this.lstBranch.TabIndex = 8;
+            this.lstBranch.UseCompatibleStateImageBehavior = false;
+            this.lstBranch.View = System.Windows.Forms.View.Details;
+            // 
+            // colSyntax
+            // 
+            this.colSyntax.Text = "種類";
+            // 
+            // colNestLv
+            // 
+            this.colNestLv.Text = "ネスト";
+            // 
+            // colLineNo
+            // 
+            this.colLineNo.Text = "行番号";
+            // 
+            // colCondition
+            // 
+            this.colCondition.Text = "条件";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(296, 73);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "テスト対象外の制御分岐をチェックしてください";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 299);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(241, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "パターン分析";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // MacroAnalyze
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(743, 73);
+            this.ClientSize = new System.Drawing.Size(803, 521);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lstBranch);
+            this.Controls.Add(this.lstParm);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.lblIDL2File);
             this.Controls.Add(this.btnSourcePick);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MacroAnalyze";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MacroAnalyze";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -84,5 +179,16 @@
         private System.Windows.Forms.Label lblIDL2File;
         private System.Windows.Forms.Button btnSourcePick;
         private System.Windows.Forms.Button btnRun;
+        private System.Windows.Forms.ListView lstParm;
+        private System.Windows.Forms.ColumnHeader colName;
+        private System.Windows.Forms.ColumnHeader colType;
+        private System.Windows.Forms.ColumnHeader colDefault;
+        private System.Windows.Forms.ListView lstBranch;
+        private System.Windows.Forms.ColumnHeader colSyntax;
+        private System.Windows.Forms.ColumnHeader colNestLv;
+        private System.Windows.Forms.ColumnHeader colLineNo;
+        private System.Windows.Forms.ColumnHeader colCondition;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }
