@@ -2006,8 +2006,8 @@ namespace MagicMongoDBTool
             String strMessage = "Are you sure to Restore?";
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
+                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Restore);
+                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Restore_Connection_Confirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {

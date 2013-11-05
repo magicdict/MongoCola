@@ -24,13 +24,15 @@ namespace DarumaUTGenerator
             lstBranch.Columns.Add("行番号");
             lstBranch.Columns.Add("条件");
 
+            lstKeySet.Columns.Add("№");
             foreach (var item in pgm.Parmlst)
             {
                 ListViewItem parm = new ListViewItem(item.Name);
                 parm.SubItems.Add(item.Type);
-                parm.SubItems.Add(item.Default);
+                parm.SubItems.Add(item.Speics);
                 lstParm.Items.Add(parm);
                 lstBranch.Columns.Add(item.Name);
+                lstKeySet.Columns.Add(item.Name);
             }
             pgm.Analyze(idlFilename, true);
             foreach (var TopSyntaxItem in pgm.TopSyntax)
@@ -66,6 +68,23 @@ namespace DarumaUTGenerator
                 }
             }
             lstBranch.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            pgm.Pattern();
+            int No = 1;
+            foreach (var Keys in pgm.PattenList)
+            {
+                ListViewItem parmViewItem = new ListViewItem(No.ToString());
+                String Value = String.Empty;
+                foreach (var parm in pgm.Parmlst)
+                {
+                    foreach (var item in Keys)
+                    {
+                        if (parm.Name == item.Key) Value = item.Value;
+                    }
+                    parmViewItem.SubItems.Add(Value);
+                }
+                lstKeySet.Items.Add(parmViewItem);
+                No++;
+            }
             //GenerateUTSheet.GenerateUT(pgm, @"C:\Daruma\Tools\模板\UT試験仕様書(条件分岐確認).xls");
         }
 

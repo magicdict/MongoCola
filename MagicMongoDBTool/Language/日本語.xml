@@ -385,6 +385,7 @@
 
   <Drop_Data>データの削除</Drop_Data>
   <Drop_Data_Confirm>データを削除します?</Drop_Data_Confirm>
+  <Restore_Connection_Confirm>确定是否要恢复数据库?</Restore_Connection_Confirm>
 
   <SYSTEMC_COLNAME_chunks>チャンク</SYSTEMC_COLNAME_chunks>
   <SYSTEMC_COLNAME_collections>コレクション</SYSTEMC_COLNAME_collections>

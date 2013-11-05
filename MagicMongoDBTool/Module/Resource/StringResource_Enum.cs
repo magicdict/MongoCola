@@ -360,6 +360,7 @@ namespace MagicMongoDBTool.Module
             Drop_User_Confirm,
             Drop_Data,
             Drop_Data_Confirm,
+            Restore_Connection_Confirm,
 
             SYSTEMC_COLNAME_chunks,
             SYSTEMC_COLNAME_collections,

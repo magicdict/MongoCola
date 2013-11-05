@@ -373,12 +373,13 @@
   <Create_New_DataBase_Input>請輸入數據庫名稱:</Create_New_DataBase_Input>
   <Drop_DataBase>刪除數據庫</Drop_DataBase>
   <Drop_DataBase_Confirm>確定是否要刪除數據庫?</Drop_DataBase_Confirm>
-
+  <Restore_Connection_Confirm>确定是否要恢复数据库?</Restore_Connection_Confirm>
   <Create_New_Collection>新建數據集</Create_New_Collection>
 
 
   <Drop_Collection>刪除數據集</Drop_Collection>
   <Drop_Collection_Confirm>確定是否要刪除數據集?</Drop_Collection_Confirm>
+  
   <Rename_Collection>重命名數據集</Rename_Collection>
   <Rename_Collection_Input>請輸入新數據集名稱:</Rename_Collection_Input>
 

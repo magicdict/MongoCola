@@ -373,7 +373,7 @@
   <Create_New_DataBase_Input>请输入数据库名称:</Create_New_DataBase_Input>
   <Drop_DataBase>删除数据库</Drop_DataBase>
   <Drop_DataBase_Confirm>确定是否要删除数据库?</Drop_DataBase_Confirm>
-
+  <Restore_Connection_Confirm>确定是否要恢复数据库?</Restore_Connection_Confirm>
   <Create_New_Collection>新建数据集</Create_New_Collection>
 
 

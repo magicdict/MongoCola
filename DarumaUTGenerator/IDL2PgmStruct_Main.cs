@@ -294,7 +294,8 @@ namespace DarumaUTGenerator
             {
                 String CallObj = source.Substring(source.IndexOf(" ") + 1).Trim().Trim(".".ToCharArray());
                 char t = CallObj.ToCharArray()[0];
-                if (t >= "A".ToCharArray()[0] && t <= "Z".ToCharArray()[0])
+                //静态调用 (CallObj.StartsWith("\"") && CallObj.EndsWith("\"")
+                if ((t >= "A".ToCharArray()[0] && t <= "Z".ToCharArray()[0]))
                 {
                     SyntaxList.Add(new Syntax()
                     {
