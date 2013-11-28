@@ -11,6 +11,11 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmLanguage_Load(object sender, System.EventArgs e)
         {
             this.cmbLanguage.Text = "English";
@@ -23,6 +28,11 @@ namespace MagicMongoDBTool
                 }
             }
         }
+        /// <summary>
+        /// OK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
             SystemManager.ConfigHelperInstance.LanguageFileName = this.cmbLanguage.Text + ".xml";

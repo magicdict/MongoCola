@@ -58,12 +58,16 @@ namespace MagicMongoDBTool
                 return txtContext.Text;
             }
         }
-
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
             if (txtContext.Text != String.Empty)
             {
-                String strJsName = MyMessageBox.ShowInput("pls Input Javascript Name：[Save at system.js]", "Save Javascript");
+                String strJsName = MyMessageBox.ShowInput("please Input Javascript Name：[Save at system.js]", "Save Javascript");
                 MongoDBHelper.CreateNewJavascript(strJsName, txtContext.Text);
             }
 

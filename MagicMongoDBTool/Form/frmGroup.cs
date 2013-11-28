@@ -109,7 +109,11 @@ namespace MagicMongoDBTool
         /// 条件输入器位置
         /// </summary>
         private Point _conditionPos = new Point(50, 20);
-
+        /// <summary>
+        /// 加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmGroup_Load(object sender, EventArgs e)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();

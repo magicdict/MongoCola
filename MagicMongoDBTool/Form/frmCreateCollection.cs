@@ -92,7 +92,7 @@ namespace MagicMongoDBTool
             this.Close();
         }
         /// <summary>
-        /// 
+        /// 高级选项
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -100,8 +100,12 @@ namespace MagicMongoDBTool
         {
             grpAdvanced.Enabled = chkAdvance.Checked;
         }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        /// <summary>
+        /// CappedCollections官方说明
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lnkCappedCollections_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/core/capped-collections/");
         }

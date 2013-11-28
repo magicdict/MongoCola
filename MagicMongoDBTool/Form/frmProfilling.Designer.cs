@@ -40,7 +40,7 @@
             // cmbProfillingLv
             // 
             this.cmbProfillingLv.FormattingEnabled = true;
-            this.cmbProfillingLv.Location = new System.Drawing.Point(131, 23);
+            this.cmbProfillingLv.Location = new System.Drawing.Point(96, 3);
             this.cmbProfillingLv.Name = "cmbProfillingLv";
             this.cmbProfillingLv.Size = new System.Drawing.Size(121, 21);
             this.cmbProfillingLv.TabIndex = 0;
@@ -49,7 +49,7 @@
             // lblProfilingLevel
             // 
             this.lblProfilingLevel.AutoSize = true;
-            this.lblProfilingLevel.Location = new System.Drawing.Point(56, 29);
+            this.lblProfilingLevel.Location = new System.Drawing.Point(21, 9);
             this.lblProfilingLevel.Name = "lblProfilingLevel";
             this.lblProfilingLevel.Size = new System.Drawing.Size(65, 13);
             this.lblProfilingLevel.TabIndex = 1;
@@ -58,7 +58,7 @@
             // lblSlow
             // 
             this.lblSlow.AutoSize = true;
-            this.lblSlow.Location = new System.Drawing.Point(56, 61);
+            this.lblSlow.Location = new System.Drawing.Point(21, 41);
             this.lblSlow.Name = "lblSlow";
             this.lblSlow.Size = new System.Drawing.Size(61, 13);
             this.lblSlow.TabIndex = 2;
@@ -66,7 +66,7 @@
             // 
             // NumTime
             // 
-            this.NumTime.Location = new System.Drawing.Point(132, 54);
+            this.NumTime.Location = new System.Drawing.Point(97, 34);
             this.NumTime.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -84,7 +84,7 @@
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(59, 90);
+            this.cmdOK.Location = new System.Drawing.Point(24, 70);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(75, 23);
             this.cmdOK.TabIndex = 4;
@@ -94,7 +94,7 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(177, 90);
+            this.cmdCancel.Location = new System.Drawing.Point(142, 70);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(75, 23);
             this.cmdCancel.TabIndex = 5;
@@ -107,7 +107,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(324, 125);
+            this.ClientSize = new System.Drawing.Size(245, 102);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.NumTime);

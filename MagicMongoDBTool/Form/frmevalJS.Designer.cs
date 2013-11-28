@@ -66,13 +66,13 @@
             // 
             this.ctlEval.Context = "";
             this.ctlEval.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctlEval.Location = new System.Drawing.Point(9, 0);
+            this.ctlEval.Location = new System.Drawing.Point(6, 0);
             this.ctlEval.Name = "ctlEval";
             this.ctlEval.Size = new System.Drawing.Size(467, 236);
             this.ctlEval.TabIndex = 24;
             this.ctlEval.Title = "Eval Js";
             // 
-            // frmevalJS
+            // frmEvalJS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -84,7 +84,7 @@
             this.Controls.Add(this.txtParm);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "frmevalJS";
+            this.Name = "frmEvalJS";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Eval Javascript";
             this.Load += new System.EventHandler(this.frmevalJS_Load);

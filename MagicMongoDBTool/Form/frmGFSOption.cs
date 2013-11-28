@@ -14,7 +14,11 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// OK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
             if (radFilename.Checked)
@@ -37,7 +41,11 @@ namespace MagicMongoDBTool
             ignoreSubFolder = chkIgnore.Checked;
             this.Close();
         }
-
+        /// <summary>
+        /// 加载
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmGFSOption_Load(object sender, EventArgs e)
         {
             if (!SystemManager.IsUseDefaultLanguage)

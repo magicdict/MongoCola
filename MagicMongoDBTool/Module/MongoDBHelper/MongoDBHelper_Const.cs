@@ -202,31 +202,31 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         /// Excel文件选择过滤器
         /// </summary>
-        public const String ExcelFilter = "*.Excel(Excel File)|*.xls";
+        public const String ExcelFilter = "Excel File(*.xls)|*.xls|*.*(All Files)|*.*";
         /// <summary>
         /// XML文件选择过滤器
         /// </summary>
-        public const String XmlFilter = "*.xml(Xml File)|*.xml";
+        public const String XmlFilter = "Xml File(*.xml)|*.xml|*.*(All Files)|*.*";
         /// <summary>
         /// Txt文件选择过滤器
         /// </summary>
-        public const String TxtFilter = "*.txt(Plan File)|*.txt";
+        public const String TxtFilter = "Plan Text File(*.txt)|*.txt|*.*(All Files)|*.*";
         /// <summary>
         /// js文件选择过滤器
         /// </summary>
-        public const String JsFilter = "*.js(javascript File)|*.js";
+        public const String JsFilter = "javascript File(*.js)|*.js|*.*(All Files)|*.*";
         /// <summary>
         /// LOG文件选择过滤器
         /// </summary>
-        public const String LogFilter = "*.log(Log File)|*.log";
+        public const String LogFilter = "Log File(*.log)|*.log|*.*(All Files)|*.*";
         /// <summary>
         /// MDB文件选择过滤器
         /// </summary>
-        public const String MdbFilter = "*.mdb(Access File)|*.mdb";
+        public const String MdbFilter = "Access File(*.mdb)|*.mdb|*.*(All Files)|*.*";
         /// <summary>
         /// Conf文件选择过滤器
         /// </summary>
-        public const String ConfFilter = "*.conf(Config File)|*.conf";
+        public const String ConfFilter = "Config File(*.conf)|*.conf|*.*(All Files)|*.*";
         /// <summary>
         /// TempFileFolder
         /// </summary>

@@ -15,10 +15,6 @@ namespace MagicMongoDBTool
             InitializeComponent();
         }
         /// <summary>
-        /// 数据集
-        /// </summary>
-        private MongoCollection _mongocol = SystemManager.GetCurrentCollection();
-        /// <summary>
         /// 载入
         /// </summary>
         /// <param name="sender"></param>
@@ -58,7 +54,7 @@ namespace MagicMongoDBTool
             BsonJavaScript reduce = new BsonJavaScript(ctlReduceFunction.Context);
             //TODO:这里可能会超时，失去响应
             //需要设置SocketTimeOut
-            MapReduceResult mMapReduceResult = _mongocol.MapReduce(map, reduce);
+            MapReduceResult mMapReduceResult = SystemManager.GetCurrentCollection().MapReduce(map, reduce);
             MongoDBHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
             trvResult.DatatreeView.BeginUpdate();
             trvResult.DatatreeView.ExpandAll();

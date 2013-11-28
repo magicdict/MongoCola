@@ -39,7 +39,7 @@
             this.lblMaxSize = new System.Windows.Forms.Label();
             this.lblMaxDocument = new System.Windows.Forms.Label();
             this.grpAdvanced = new System.Windows.Forms.GroupBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.lnkCappedCollections = new System.Windows.Forms.LinkLabel();
             this.chkAdvance = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMaxDocument)).BeginInit();
@@ -152,7 +152,7 @@
             // 
             // grpAdvanced
             // 
-            this.grpAdvanced.Controls.Add(this.linkLabel1);
+            this.grpAdvanced.Controls.Add(this.lnkCappedCollections);
             this.grpAdvanced.Controls.Add(this.chkIsAutoIndexId);
             this.grpAdvanced.Controls.Add(this.lblMaxDocument);
             this.grpAdvanced.Controls.Add(this.chkIsCapped);
@@ -166,16 +166,16 @@
             this.grpAdvanced.TabStop = false;
             this.grpAdvanced.Text = "Advanced";
             // 
-            // linkLabel1
+            // lnkCappedCollections
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(22, 111);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(141, 15);
-            this.linkLabel1.TabIndex = 6;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "About Capped Collection";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.lnkCappedCollections.AutoSize = true;
+            this.lnkCappedCollections.Location = new System.Drawing.Point(21, 111);
+            this.lnkCappedCollections.Name = "lnkCappedCollections";
+            this.lnkCappedCollections.Size = new System.Drawing.Size(141, 15);
+            this.lnkCappedCollections.TabIndex = 6;
+            this.lnkCappedCollections.TabStop = true;
+            this.lnkCappedCollections.Text = "About Capped Collection";
+            this.lnkCappedCollections.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkCappedCollections_LinkClicked);
             // 
             // chkAdvance
             // 
@@ -228,6 +228,6 @@
         private System.Windows.Forms.Label lblMaxDocument;
         private System.Windows.Forms.GroupBox grpAdvanced;
         private System.Windows.Forms.CheckBox chkAdvance;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel lnkCappedCollections;
     }
 }

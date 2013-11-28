@@ -5,7 +5,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmProfilling : System.Windows.Forms.Form
+    public partial class frmProfilling : Form
     {
         /// <summary>
         /// 
@@ -15,7 +15,7 @@ namespace MagicMongoDBTool
             InitializeComponent();
         }
         /// <summary>
-        /// 
+        /// 加载
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -45,7 +45,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 
+        /// OK
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -78,7 +78,7 @@ namespace MagicMongoDBTool
             this.Close();
         }
         /// <summary>
-        /// 
+        /// Cancel
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -87,7 +87,7 @@ namespace MagicMongoDBTool
             this.Close();
         }
         /// <summary>
-        /// 
+        /// 调整级别
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

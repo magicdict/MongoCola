@@ -16,7 +16,7 @@ namespace MagicMongoDBTool
         /// </summary>
         public ConfigHelper.MongoConnectionConfig ModifyConn = new ConfigHelper.MongoConnectionConfig();
         /// <summary>
-        /// 
+        /// 修改模式中，原来的连接
         /// </summary>
         public String OldConnectionName = String.Empty;
         /// <summary>
@@ -27,6 +27,9 @@ namespace MagicMongoDBTool
             InitializeComponent();
             OnLoad();
         }
+        /// <summary>
+        /// 加载
+        /// </summary>
         private void OnLoad()
         {
             cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
@@ -343,12 +346,20 @@ namespace MagicMongoDBTool
         {
             lstHost.Items.Remove(lstHost.SelectedItem);
         }
-
+        /// <summary>
+        /// 读策略的官方文档
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lnkReadPreference_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#read-preference-options");
         }
-
+        /// <summary>
+        /// 写策略的官方文档
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lnkWriteConcern_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options");

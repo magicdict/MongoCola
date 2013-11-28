@@ -9,7 +9,7 @@ namespace MagicMongoDBTool
     public partial class frmAggregation : System.Windows.Forms.Form
     {
         /// <summary>
-        /// 
+        /// 聚合数组
         /// </summary>
         private BsonArray _AggrArray = new BsonArray();
         public frmAggregation()
@@ -41,7 +41,7 @@ namespace MagicMongoDBTool
             }
         }
         /// <summary>
-        /// 
+        /// 加载
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -107,6 +107,10 @@
     <Compile Include="Form\frmExport.Designer.cs">
       <DependentUpon>frmExport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmMain_MenuItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection_Present_Sub.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_ExportData.cs" />
     <Compile Include="UserController\ctlTextMgr.cs">
       <SubType>UserControl</SubType>
