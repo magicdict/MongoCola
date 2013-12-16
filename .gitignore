@@ -13,22 +13,15 @@
 *.mdb
 *.pdb
 *.doc
-/WeiBoApp
-/UnitTest
-/DarumaTool/bin
-/DarumaTool/obj
-/DarumaUTGenerator/bin
-/DarumaUTGenerator/obj
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
-/MagicMongoDBTool/_UpgradeReport_Files
-/MagicMongoDBTool/Backup
 /MagicMongoDBTool/packages
-/CNBLOGS
-/packages
+/DesignDocument
+/ServerLoader
 !readme.txt
 !app.config
 !Release Note.txt
 !Bug.txt
 !DesignDocument/Design.xls
+!MagicMongoDBTool/packages.config
 Thumbs.db
