@@ -15,7 +15,6 @@
 *.doc
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
-/MagicMongoDBTool/packages
 /DesignDocument
 /ServerLoader
 !readme.txt
