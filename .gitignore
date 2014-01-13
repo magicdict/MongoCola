@@ -13,6 +13,10 @@
 *.mdb
 *.pdb
 *.doc
+/Common/bin
+/Common/obj
+/ExportToExcel/bin
+/ExportToExcel/obj
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
 /DesignDocument

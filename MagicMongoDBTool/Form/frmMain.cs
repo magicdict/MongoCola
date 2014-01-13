@@ -1,12 +1,9 @@
 ﻿using MagicMongoDBTool.Module;
-using MagicMongoDBTool.UnitTest;
 using MagicMongoDBTool.UserController;
 using MongoDB.Bson;
-using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace MagicMongoDBTool
@@ -39,6 +36,21 @@ namespace MagicMongoDBTool
             this.trvsrvlst.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler((x, y) => { this.ViewDataObj(); });
             this.ViewDataToolStripMenuItem.Click += new System.EventHandler((x, y) => { this.ViewDataObj(); });
             this.trvsrvlst.KeyDown += new KeyEventHandler(trvsrvlst_KeyDown);
+
+            PlugIn.LoadPlugIn();
+            foreach (var item in PlugIn.PlugInList)
+            {
+                ToolStripItem menu = new ToolStripMenuItem(item.Key);
+                menu.Tag = item.Key;
+                menu.Click += new EventHandler(
+                (x, y) =>
+                    {
+                        RunPlugIn(item.Key);
+                    }
+                );
+                this.plugInToolStripMenuItem.DropDownItems.Add(menu);
+            }
+
             DisableAllOpr();
             //Set Tool bar button enable 
             SetToolBarEnabled();
@@ -66,7 +78,31 @@ namespace MagicMongoDBTool
             );
             this.tabView.SelectedIndexChanged += new EventHandler(tabView_SelectedIndexChanged);
             MongoDBHelper.RunCommandComplete += new EventHandler<RunCommandEventArgs>(CommandLog);
-
+        }
+        private void RunPlugIn(string p)
+        {
+            System.Reflection.Assembly mAssem = Assembly.LoadFile(Application.StartupPath + @"\PlugIn\" + p + ".dll");
+            String TypeName = p;
+            Type mType = mAssem.GetType(TypeName + "." + TypeName);
+            ConstructorInfo ConstructorInfo = mType.GetConstructor(new System.Type[] { });
+            dynamic mPlug = ConstructorInfo.Invoke(new object[] { });
+            switch (PlugIn.PlugInList[p])
+            {
+                case MagicMongoDBTool.Common.PlugBase.PathLv.ConnectionLV:
+                    break;
+                case MagicMongoDBTool.Common.PlugBase.PathLv.InstanceLV:
+                    break;
+                case MagicMongoDBTool.Common.PlugBase.PathLv.DatabaseLV:
+                    break;
+                case MagicMongoDBTool.Common.PlugBase.PathLv.CollectionLV:
+                    mPlug.PlugObj = SystemManager.GetCurrentCollection();
+                    break;
+                case MagicMongoDBTool.Common.PlugBase.PathLv.DocumentLV:
+                    break;
+                default:
+                    break;
+            }
+            mPlug.Run();
         }
         /// <summary>
         /// 切换Tab的时候，必须切换当前对象
@@ -759,6 +795,14 @@ namespace MagicMongoDBTool
                             e.Node.ContextMenuStrip = this.contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
                         }
+                        //PlugIn
+                        foreach (ToolStripMenuItem item in plugInToolStripMenuItem.DropDownItems)
+                        {
+                            if (PlugIn.PlugInList[item.Tag.ToString()] == Common.PlugBase.PathLv.CollectionLV)
+                            { 
+                                item.Enabled = true;
+                            }
+                        }
                         break;
                     case MongoDBHelper.INDEX_TAG:
                         if (SystemManager.IsUseDefaultLanguage)
@@ -987,7 +1031,6 @@ namespace MagicMongoDBTool
         /// </summary>
         private void DisableAllOpr()
         {
-
             //管理-服务器
             this.CreateMongoDBToolStripMenuItem.Enabled = false;
             this.AddUserToAdminToolStripMenuItem.Enabled = false;
@@ -1041,7 +1084,11 @@ namespace MagicMongoDBTool
                 this.ImportDataFromAccessToolStripMenuItem.Enabled = false;
                 this.ImportDataFromAccessToolStripButton.Enabled = false;
             }
-
+            ///
+            foreach (ToolStripItem item in plugInToolStripMenuItem.DropDownItems)
+            {
+                if (item.Tag != null) item.Enabled = false;
+            }
         }
         #endregion
 

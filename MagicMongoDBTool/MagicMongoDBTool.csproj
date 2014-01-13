@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection_Present_Sub.cs" />
     <Compile Include="Module\MongoDBHelper\MongoDBHelper_ExportData.cs" />
+    <Compile Include="Module\System\PlugIn.cs" />
     <Compile Include="UserController\ctlTextMgr.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1158,7 +1159,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{56d74944-4b20-4941-bc67-72a8e57e5a02}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
