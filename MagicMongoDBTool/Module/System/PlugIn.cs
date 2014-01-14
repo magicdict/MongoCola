@@ -1,13 +1,13 @@
-﻿using System;
+﻿using MagicMongoDBTool.Common;
+using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using MagicMongoDBTool.Common;
 namespace MagicMongoDBTool.Module
 {
     public class PlugIn
     {
-        public static Dictionary<String, PlugBase.PathLv> PlugInList = new Dictionary<string, PlugBase.PathLv>();
+        public static Dictionary<String, PlugBase> PlugInList = new Dictionary<string, PlugBase>();
         /// <summary>
         /// 加载到菜单项目
         /// </summary>
@@ -25,9 +25,8 @@ namespace MagicMongoDBTool.Module
                     String TypeName = FileName.Substring(0, FileName.Length - 4);
                     Type mType = mAssem.GetType(TypeName + "." + TypeName);
                     ConstructorInfo ConstructorInfo = mType.GetConstructor(new System.Type[] {});
-                    dynamic mPlug = ConstructorInfo.Invoke(new object[] { });
-                    PlugBase.PathLv ProcessPathLv = mPlug.RunLv;
-                    PlugInList.Add(TypeName, ProcessPathLv);
+                    PlugBase mPlug = (PlugBase)ConstructorInfo.Invoke(new object[] { });
+                    PlugInList.Add(TypeName, mPlug);
                 }
                 catch (Exception ex)
                 {

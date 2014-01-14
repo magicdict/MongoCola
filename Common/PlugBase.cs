@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MagicMongoDBTool.Common
 {
@@ -31,9 +28,20 @@ namespace MagicMongoDBTool.Common
             /// <summary>
             /// 数据文档
             /// </summary>
-            DocumentLV = 4
+            DocumentLV = 4,
+            /// <summary>
+            /// 杂项
+            /// </summary>
+            Misc = 9
         }
+        /// <summary>
+        /// 插件菜单表示名称
+        /// </summary>
         public string PlugName = String.Empty;
+        /// <summary>
+        /// 插件功能简述
+        /// </summary>
+        public string PlugFunction = String.Empty;
         /// <summary>
         /// 处理对象
         /// </summary>

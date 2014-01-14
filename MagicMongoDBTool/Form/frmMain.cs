@@ -1,4 +1,5 @@
-﻿using MagicMongoDBTool.Module;
+﻿using MagicMongoDBTool.Common;
+using MagicMongoDBTool.Module;
 using MagicMongoDBTool.UserController;
 using MongoDB.Bson;
 using System;
@@ -38,14 +39,15 @@ namespace MagicMongoDBTool
             this.trvsrvlst.KeyDown += new KeyEventHandler(trvsrvlst_KeyDown);
 
             PlugIn.LoadPlugIn();
-            foreach (var item in PlugIn.PlugInList)
+            foreach (var plugin in PlugIn.PlugInList)
             {
-                ToolStripItem menu = new ToolStripMenuItem(item.Key);
-                menu.Tag = item.Key;
+                ToolStripItem menu = new ToolStripMenuItem(plugin.Value.PlugName);
+                menu.ToolTipText = plugin.Value.PlugFunction;
+                menu.Tag = plugin.Key;
                 menu.Click += new EventHandler(
                 (x, y) =>
                     {
-                        RunPlugIn(item.Key);
+                        RunPlugIn(plugin.Key);
                     }
                 );
                 this.plugInToolStripMenuItem.DropDownItems.Add(menu);
@@ -79,20 +81,27 @@ namespace MagicMongoDBTool
             this.tabView.SelectedIndexChanged += new EventHandler(tabView_SelectedIndexChanged);
             MongoDBHelper.RunCommandComplete += new EventHandler<RunCommandEventArgs>(CommandLog);
         }
-        private void RunPlugIn(string p)
+        /// <summary>
+        /// 运行插件
+        /// </summary>
+        /// <param name="PlugInKeyCode"></param>
+        private void RunPlugIn(string PlugInKeyCode)
         {
-            System.Reflection.Assembly mAssem = Assembly.LoadFile(Application.StartupPath + @"\PlugIn\" + p + ".dll");
-            String TypeName = p;
+            System.Reflection.Assembly mAssem = Assembly.LoadFile(Application.StartupPath + @"\PlugIn\" + PlugInKeyCode + ".dll");
+            String TypeName = PlugInKeyCode;
             Type mType = mAssem.GetType(TypeName + "." + TypeName);
             ConstructorInfo ConstructorInfo = mType.GetConstructor(new System.Type[] { });
-            dynamic mPlug = ConstructorInfo.Invoke(new object[] { });
-            switch (PlugIn.PlugInList[p])
+            PlugBase mPlug = (PlugBase)ConstructorInfo.Invoke(new object[] { });
+            switch (PlugIn.PlugInList[PlugInKeyCode].RunLv)
             {
                 case MagicMongoDBTool.Common.PlugBase.PathLv.ConnectionLV:
+                    mPlug.PlugObj = SystemManager.GetCurrentServer();
                     break;
                 case MagicMongoDBTool.Common.PlugBase.PathLv.InstanceLV:
+                    mPlug.PlugObj = SystemManager.GetCurrentServer();
                     break;
                 case MagicMongoDBTool.Common.PlugBase.PathLv.DatabaseLV:
+                    mPlug.PlugObj = SystemManager.GetCurrentDataBase();
                     break;
                 case MagicMongoDBTool.Common.PlugBase.PathLv.CollectionLV:
                     mPlug.PlugObj = SystemManager.GetCurrentCollection();
@@ -798,7 +807,7 @@ namespace MagicMongoDBTool
                         //PlugIn
                         foreach (ToolStripMenuItem item in plugInToolStripMenuItem.DropDownItems)
                         {
-                            if (PlugIn.PlugInList[item.Tag.ToString()] == Common.PlugBase.PathLv.CollectionLV)
+                            if (PlugIn.PlugInList[item.Tag.ToString()].RunLv == Common.PlugBase.PathLv.CollectionLV)
                             { 
                                 item.Enabled = true;
                             }
