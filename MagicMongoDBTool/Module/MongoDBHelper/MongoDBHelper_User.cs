@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.Collections.Generic;
 
 namespace MagicMongoDBTool.Module
 {
@@ -98,12 +99,15 @@ namespace MagicMongoDBTool.Module
         /// 获得用户当前角色
         /// </summary>
         /// <returns></returns>
-        public static BsonArray GetCurrentDBRoles()
+        public static List<String> GetCurrentDBRoles()
         {
-            BsonArray Roles = new BsonArray();
+            List<String> Roles = new List<String>();
             String ConnectionName = SystemManager.GetCurrentServerConfig().ConnectionName;
             String DBName = SystemManager.GetCurrentDataBase().Name;
-            Roles = _mongoUserLst[ConnectionName].GetRolesByDBName(DBName);
+            foreach (var item in _mongoUserLst[ConnectionName].GetRolesByDBName(DBName))
+            {
+                Roles.Add(item.ToString());
+            }
             return Roles;
         }
         /// <summary>
@@ -123,7 +127,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="roles"></param>
         /// <returns></returns>
-        public static Boolean JudgeRightByRole(BsonArray roles, MongoOperate opt)
+        public static Boolean JudgeRightByRole(List<String> roles, MongoOperate opt)
         {
             Boolean CanDoIt = false;
             switch (opt)

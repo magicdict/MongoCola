@@ -1,10 +1,8 @@
 ﻿using MagicMongoDBTool.Common;
 using MagicMongoDBTool.Module;
 using MagicMongoDBTool.UserController;
-using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace MagicMongoDBTool
@@ -37,17 +35,41 @@ namespace MagicMongoDBTool
             this.trvsrvlst.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler((x, y) => { this.ViewDataObj(); });
             this.ViewDataToolStripMenuItem.Click += new System.EventHandler((x, y) => { this.ViewDataObj(); });
             this.trvsrvlst.KeyDown += new KeyEventHandler(trvsrvlst_KeyDown);
-
+            ///加载插件信息
             PlugIn.LoadPlugIn();
             foreach (var plugin in PlugIn.PlugInList)
             {
-                ToolStripItem menu = new ToolStripMenuItem(plugin.Value.PlugName);
+                String PlugInType = String.Empty;
+                switch (plugin.Value.RunLv)
+                {
+                    case PlugBase.PathLv.ConnectionLV:
+                        PlugInType = "[Connection]";
+                        break;
+                    case PlugBase.PathLv.InstanceLV:
+                        PlugInType = "[Instance]";
+                        break;
+                    case PlugBase.PathLv.DatabaseLV:
+                        PlugInType = "[Database]";
+                        break;
+                    case PlugBase.PathLv.CollectionLV:
+                        PlugInType = "[Collection]";
+                        break;
+                    case PlugBase.PathLv.DocumentLV:
+                        PlugInType = "[Document]";
+                        break;
+                    case PlugBase.PathLv.Misc:
+                        PlugInType = "[Misc]";
+                        break;
+                    default:
+                        break;
+                }
+                ToolStripItem menu = new ToolStripMenuItem(plugin.Value.PlugName + PlugInType);
                 menu.ToolTipText = plugin.Value.PlugFunction;
                 menu.Tag = plugin.Key;
                 menu.Click += new EventHandler(
                 (x, y) =>
                     {
-                        RunPlugIn(plugin.Key);
+                        PlugIn.RunPlugIn(plugin.Key);
                     }
                 );
                 this.plugInToolStripMenuItem.DropDownItems.Add(menu);
@@ -81,38 +103,7 @@ namespace MagicMongoDBTool
             this.tabView.SelectedIndexChanged += new EventHandler(tabView_SelectedIndexChanged);
             MongoDBHelper.RunCommandComplete += new EventHandler<RunCommandEventArgs>(CommandLog);
         }
-        /// <summary>
-        /// 运行插件
-        /// </summary>
-        /// <param name="PlugInKeyCode"></param>
-        private void RunPlugIn(string PlugInKeyCode)
-        {
-            System.Reflection.Assembly mAssem = Assembly.LoadFile(Application.StartupPath + @"\PlugIn\" + PlugInKeyCode + ".dll");
-            String TypeName = PlugInKeyCode;
-            Type mType = mAssem.GetType(TypeName + "." + TypeName);
-            ConstructorInfo ConstructorInfo = mType.GetConstructor(new System.Type[] { });
-            PlugBase mPlug = (PlugBase)ConstructorInfo.Invoke(new object[] { });
-            switch (PlugIn.PlugInList[PlugInKeyCode].RunLv)
-            {
-                case MagicMongoDBTool.Common.PlugBase.PathLv.ConnectionLV:
-                    mPlug.PlugObj = SystemManager.GetCurrentServer();
-                    break;
-                case MagicMongoDBTool.Common.PlugBase.PathLv.InstanceLV:
-                    mPlug.PlugObj = SystemManager.GetCurrentServer();
-                    break;
-                case MagicMongoDBTool.Common.PlugBase.PathLv.DatabaseLV:
-                    mPlug.PlugObj = SystemManager.GetCurrentDataBase();
-                    break;
-                case MagicMongoDBTool.Common.PlugBase.PathLv.CollectionLV:
-                    mPlug.PlugObj = SystemManager.GetCurrentCollection();
-                    break;
-                case MagicMongoDBTool.Common.PlugBase.PathLv.DocumentLV:
-                    break;
-                default:
-                    break;
-            }
-            mPlug.Run();
-        }
+
         /// <summary>
         /// 切换Tab的时候，必须切换当前对象
         /// </summary>
@@ -548,7 +539,7 @@ namespace MagicMongoDBTool
                     case MongoDBHelper.DATABASE_TAG:
                     case MongoDBHelper.SINGLE_DATABASE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        BsonArray roles = MongoDBHelper.GetCurrentDBRoles();
+                        List<String> roles = MongoDBHelper.GetCurrentDBRoles();
                         if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected DataBase:" + SystemManager.SelectTagData;
