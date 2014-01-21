@@ -6,16 +6,19 @@ namespace MagicMongoDBTool.Module
     public partial class ctllogLv : UserControl
     {
         public delegate void LogLvChangedHandler(MongodbDosCommand.MongologLevel logLV);
-        public event LogLvChangedHandler LoglvChanged;
+
         public ctllogLv()
         {
             InitializeComponent();
         }
+
+        public event LogLvChangedHandler LoglvChanged;
+
         private void ctllogLv_Load(object sender, EventArgs e)
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                lblLogLv.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_LogLevel);
+                lblLogLv.Text = SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_LogLevel);
             }
             cmbLogLevel.Items.Add("Quiet");
             cmbLogLevel.Items.Add("V");
@@ -24,9 +27,10 @@ namespace MagicMongoDBTool.Module
             cmbLogLevel.Items.Add("VVVV");
             cmbLogLevel.Items.Add("VVVVV");
         }
+
         private void cmbLogLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoglvChanged((MongodbDosCommand.MongologLevel)cmbLogLevel.SelectedIndex);
+            LoglvChanged((MongodbDosCommand.MongologLevel) cmbLogLevel.SelectedIndex);
         }
     }
 }

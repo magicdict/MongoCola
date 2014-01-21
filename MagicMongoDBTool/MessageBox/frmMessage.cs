@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MagicMongoDBTool
@@ -6,20 +7,28 @@ namespace MagicMongoDBTool
     public partial class frmMesssage : Form
     {
         /// <summary>
-        /// Is Show Details
+        ///     Is Show Details
         /// </summary>
-        private Boolean _ShowDetails = false;
+        private Boolean _ShowDetails;
+
+        internal frmMesssage()
+        {
+            InitializeComponent();
+            //系统图标
+            Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+        }
+
         /// <summary>
-        /// Show Info
+        ///     Show Info
         /// </summary>
         /// <param name="Message">Message</param>
         /// <param name="Details">Details</param>
         /// <param name="IsShowDetails">Is Show Details</param>
         internal void SetMessage(String Message, String Details, Boolean IsShowDetails)
         {
-            this.lblMessage.Text = Message;
-            this.txtException.Text = Details;
-            this.txtException.Select(0, 0);
+            lblMessage.Text = Message;
+            txtException.Text = Details;
+            txtException.Select(0, 0);
             if (Details == String.Empty)
             {
                 IsShowDetails = false;
@@ -27,30 +36,26 @@ namespace MagicMongoDBTool
             _ShowDetails = IsShowDetails;
             if (_ShowDetails)
             {
-                this.Height = 350;
+                Height = 350;
             }
             else
             {
-                this.Height = 130;
+                Height = 130;
             }
         }
-        internal frmMesssage()
-        {
-            InitializeComponent();
-            //系统图标
-            this.Icon = System.Drawing.Icon.ExtractAssociatedIcon(Application.ExecutablePath);
-        }
+
         /// <summary>
-        /// OK
+        ///     OK
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
+
         /// <summary>
-        /// Swith details mode
+        ///     Swith details mode
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -58,28 +63,30 @@ namespace MagicMongoDBTool
         {
             if (_ShowDetails)
             {
-                this.Height = 130;
-                this.panForBgcolor.BringToFront();
+                Height = 130;
+                panForBgcolor.BringToFront();
             }
             else
             {
-                this.Height = 350;
+                Height = 350;
             }
             _ShowDetails = !_ShowDetails;
         }
+
         /// <summary>
-        /// Set Message for display
+        ///     Set Message for display
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="img"></param>
         /// <param name="Details"></param>
-        internal void SetMessage(String Message, System.Drawing.Image img, String Details)
+        internal void SetMessage(String Message, Image img, String Details)
         {
-            this.picImage.Image = img;
-            SetMessage(Message, Details,true);
+            picImage.Image = img;
+            SetMessage(Message, Details, true);
         }
+
         /// <summary>
-        /// Set Text
+        ///     Set Text
         /// </summary>
         /// <param name="Yes"></param>
         /// <param name="No"></param>

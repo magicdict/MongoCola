@@ -9,6 +9,7 @@ namespace MagicMongoDBTool
     public partial class frmDosCommand : Form
     {
         public String StrSaveText = String.Empty;
+
         public frmDosCommand()
         {
             InitializeComponent();
@@ -17,63 +18,54 @@ namespace MagicMongoDBTool
         private void frmDosCommand_Load(object sender, EventArgs e)
         {
             //命令参数变化
-            this.ctlMongodPanel.CommandChanged += new EventHandler<TextChangeEventArgs>(
-                (x, y) => { CommandChanged(y.NewString); }
-            );
-            this.ctlMongodumpPanel.CommandChanged += new EventHandler<TextChangeEventArgs>(
-                (x, y) => { CommandChanged(y.NewString); }
-            );
-            this.ctlMongoImportExportPanel.CommandChanged += new EventHandler<TextChangeEventArgs>(
-                (x, y) => { CommandChanged(y.NewString); }
-            );
-            if (!SystemManager.IsUseDefaultLanguage)
-            {
-                cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
-                cmdRunDos.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Run);
-                tabMongod.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Deploy);
-                tabMongoDump.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_Backup);
-                tabMongoImportExport.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.DosCommand_Tab_ExIn);
-            }
+            ctlMongodPanel.CommandChanged += (x, y) => { CommandChanged(y.NewString); };
+            ctlMongodumpPanel.CommandChanged += (x, y) => { CommandChanged(y.NewString); };
+            ctlMongoImportExportPanel.CommandChanged += (x, y) => { CommandChanged(y.NewString); };
+            if (SystemManager.IsUseDefaultLanguage) return;
+            cmdSave.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
+            cmdRunDos.Text = SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Run);
+            tabMongod.Text = SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy);
+            tabMongoDump.Text = SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup);
+            tabMongoImportExport.Text =
+                SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn);
         }
+
         /// <summary>
-        /// //命令参数变化
+        ///     //命令参数变化
         /// </summary>
         /// <param name="strCommandLine"></param>
-        void CommandChanged(String strCommandLine)
+        private void CommandChanged(String strCommandLine)
         {
-            this.txtDosCommand.Text = strCommandLine;
+            txtDosCommand.Text = strCommandLine;
             StrSaveText = strCommandLine;
         }
+
         /// <summary>
-        /// 运行
+        ///     运行
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdRunDos_Click(object sender, EventArgs e)
         {
-            StringBuilder sb = new StringBuilder();
-            if (this.txtDosCommand.Text != String.Empty)
-            {
-                MongodbDosCommand.RunDosCommand(txtDosCommand.Text, sb);
-                this.txtDosCommand.Text += System.Environment.NewLine;
-                this.txtDosCommand.Text += sb.ToString();
-            }
+            var sb = new StringBuilder();
+            if (txtDosCommand.Text == String.Empty) return;
+            MongodbDosCommand.RunDosCommand(txtDosCommand.Text, sb);
+            txtDosCommand.Text += Environment.NewLine;
+            txtDosCommand.Text += sb.ToString();
         }
+
         /// <summary>
-        /// 保存配置文件内容
+        ///     保存配置文件内容
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            SaveFileDialog savefile = new SaveFileDialog();
-            savefile.Filter = MongoDBHelper.ConfFilter;
-            if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                StreamWriter save = new StreamWriter(savefile.FileName);
-                save.Write(StrSaveText);
-                save.Close();
-            }
+            var savefile = new SaveFileDialog {Filter = MongoDBHelper.ConfFilter};
+            if (savefile.ShowDialog() != DialogResult.OK) return;
+            var save = new StreamWriter(savefile.FileName);
+            save.Write(StrSaveText);
+            save.Close();
         }
     }
 }

@@ -1,51 +1,55 @@
-﻿using MagicMongoDBTool.Module;
+﻿using System;
+using System.Windows.Forms;
+using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using System;
-using System.IO;
-using System.Windows.Forms;
 
 namespace MagicMongoDBTool
 {
     public partial class frmValidate : Form
     {
-        BsonDocument Result;
+        private BsonDocument Result;
+
         public frmValidate()
         {
             InitializeComponent();
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                this.cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
-                this.cmdClose.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Close);
-                this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Validate);
-                this.cmdValidate.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Validate);
+                cmdSave.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
+                cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Validate);
+                cmdValidate.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Validate);
             }
             cmdSave.Enabled = false;
         }
+
         /// <summary>
-        /// Run Validate
+        ///     Run Validate
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdValidate_Click(object sender, EventArgs e)
         {
-            var TextSearchOption = new BsonDocument().Add(new BsonElement("full", chkFull.Checked.ToString()));
-            CommandResult SearchResult = MongoDBHelper.ExecuteMongoColCommand("validate", SystemManager.GetCurrentCollection(), TextSearchOption);
+            BsonDocument TextSearchOption = new BsonDocument().Add(new BsonElement("full", chkFull.Checked.ToString()));
+            CommandResult SearchResult = MongoDBHelper.ExecuteMongoColCommand("validate",
+                SystemManager.GetCurrentCollection(), TextSearchOption);
             Result = SearchResult.Response;
             MongoDBHelper.FillDataToTreeView("Validate Result", trvResult, Result);
             cmdSave.Enabled = true;
         }
+
         /// <summary>
-        /// Close
+        ///     Close
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
+
         /// <summary>
-        /// Save
+        ///     Save
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -53,6 +57,5 @@ namespace MagicMongoDBTool
         {
             SystemManager.SaveResultToJSonFile(Result);
         }
-
     }
 }

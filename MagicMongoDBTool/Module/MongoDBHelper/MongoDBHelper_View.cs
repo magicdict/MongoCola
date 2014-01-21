@@ -1,24 +1,25 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using TreeViewColumnsProject;
+
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
-
         #region"展示数据集内容[WebForm]"
+
         /// <summary>
-        /// 唯一的网页展示数据的数据信息
+        ///     唯一的网页展示数据的数据信息
         /// </summary>
         public static DataViewInfo WebDataViewInfo;
+
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         public static String GetCollectionzTreeJSON()
@@ -26,23 +27,26 @@ namespace MagicMongoDBTool.Module
             //获得数据
             WebDataViewInfo.LimitCnt = 100;
             List<BsonDocument> dataList = GetDataList(ref WebDataViewInfo);
-            String collectionName = SystemManager.GetTagData(WebDataViewInfo.strDBTag).Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.CollectionLV];
+            String collectionName =
+                SystemManager.GetTagData(WebDataViewInfo.strDBTag).Split("/".ToCharArray())[(int) PathLv.CollectionLV];
             int SkipCnt = WebDataViewInfo.SkipCnt;
-            TreeViewColumns tree = new TreeViewColumns();
+            var tree = new TreeViewColumns();
             FillDataToTreeView(collectionName, tree, dataList, WebDataViewInfo.SkipCnt);
-            BsonArray array = new BsonArray();
+            var array = new BsonArray();
             foreach (TreeNode item in tree.TreeView.Nodes)
             {
                 array.Add(ConvertTreeNodeTozTreeBsonDoc(item));
             }
-            return array.ToJson(SystemManager.JsonWriterSettings); ;
+            return array.ToJson(SystemManager.JsonWriterSettings);
+            ;
         }
+
         #endregion
 
         #region"展示数据集内容"
 
         /// <summary>
-        /// 通过读取N条记录来确定数据集结构
+        ///     通过读取N条记录来确定数据集结构
         /// </summary>
         /// <param name="mongoCol">数据集</param>
         /// <param name="CheckRecordCnt">使用数据量，省略时为全部，海量数据时相当消耗性能</param>
@@ -50,14 +54,14 @@ namespace MagicMongoDBTool.Module
         public static List<String> GetCollectionSchame(MongoCollection mongoCol)
         {
             int CheckRecordCnt = 100;
-            List<String> _ColumnList = new List<String>();
-            List<BsonDocument> _dataList = new List<BsonDocument>();
+            var _ColumnList = new List<String>();
+            var _dataList = new List<BsonDocument>();
             _dataList = mongoCol.FindAllAs<BsonDocument>()
-                                 .SetLimit(CheckRecordCnt)
-                                 .ToList<BsonDocument>();
+                .SetLimit(CheckRecordCnt)
+                .ToList();
             foreach (BsonDocument doc in _dataList)
             {
-                foreach (var item in getBsonNameList(String.Empty, doc))
+                foreach (string item in getBsonNameList(String.Empty, doc))
                 {
                     if (!_ColumnList.Contains(item))
                     {
@@ -67,22 +71,23 @@ namespace MagicMongoDBTool.Module
             }
             return _ColumnList;
         }
+
         /// <summary>
-        /// 取得名称列表[递归获得嵌套]
+        ///     取得名称列表[递归获得嵌套]
         /// </summary>
         /// <param name="docName"></param>
         /// <param name="doc"></param>
         /// <returns></returns>
         public static List<String> getBsonNameList(String docName, BsonDocument doc)
         {
-            List<String> _ColumnList = new List<String>();
+            var _ColumnList = new List<String>();
             foreach (String strName in doc.Names)
             {
                 if (doc.GetValue(strName).IsBsonDocument)
                 {
                     //包含子文档的时候
                     _ColumnList.Add(strName);
-                    foreach (var item in getBsonNameList(strName, doc.GetValue(strName).AsBsonDocument))
+                    foreach (string item in getBsonNameList(strName, doc.GetValue(strName).AsBsonDocument))
                     {
                         _ColumnList.Add(item);
                     }
@@ -94,8 +99,9 @@ namespace MagicMongoDBTool.Module
             }
             return _ColumnList;
         }
+
         /// <summary>
-        /// 获得展示数据
+        ///     获得展示数据
         /// </summary>
         /// <param name="CurrentDataViewInfo"></param>
         public static List<BsonDocument> GetDataList(ref DataViewInfo CurrentDataViewInfo)
@@ -103,7 +109,8 @@ namespace MagicMongoDBTool.Module
             String collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
             String[] cp = collectionPath.Split("/".ToCharArray());
             MongoServer mServer = SystemManager.GetCurrentServer();
-            MongoCollection mongoCol = mServer.GetDatabase(cp[(int)PathLv.DatabaseLV]).GetCollection(cp[(int)PathLv.CollectionLV]);
+            MongoCollection mongoCol =
+                mServer.GetDatabase(cp[(int) PathLv.DatabaseLV]).GetCollection(cp[(int) PathLv.CollectionLV]);
 
 
             MongoCursor<BsonDocument> cursor;
@@ -111,17 +118,16 @@ namespace MagicMongoDBTool.Module
             if (CurrentDataViewInfo.IsUseFilter)
             {
                 cursor = mongoCol.FindAs<BsonDocument>(GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
-                                   .SetSkip(CurrentDataViewInfo.SkipCnt)
-                                   .SetFields(GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
-                                   .SetSortOrder(GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList))
-                                   .SetLimit(CurrentDataViewInfo.LimitCnt);
+                    .SetSkip(CurrentDataViewInfo.SkipCnt)
+                    .SetFields(GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
+                    .SetSortOrder(GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList))
+                    .SetLimit(CurrentDataViewInfo.LimitCnt);
             }
             else
             {
                 cursor = mongoCol.FindAllAs<BsonDocument>()
-                                   .SetSkip(CurrentDataViewInfo.SkipCnt)
-                                   .SetLimit(CurrentDataViewInfo.LimitCnt);
-
+                    .SetSkip(CurrentDataViewInfo.SkipCnt)
+                    .SetLimit(CurrentDataViewInfo.LimitCnt);
             }
             if (cursor.Query != null)
             {
@@ -138,43 +144,48 @@ namespace MagicMongoDBTool.Module
                 if (CurrentDataViewInfo.IsUseFilter)
                 {
                     //感谢cnblogs.com 网友Shadower
-                    CurrentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count(GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList));
+                    CurrentDataViewInfo.CurrentCollectionTotalCnt =
+                        (int) mongoCol.Count(GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList));
                 }
                 else
                 {
-                    CurrentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count();
+                    CurrentDataViewInfo.CurrentCollectionTotalCnt = (int) mongoCol.Count();
                 }
             }
             SetPageEnable(ref CurrentDataViewInfo);
             return dataList;
-
         }
+
         /// <summary>
-        /// 展示数据
+        ///     展示数据
         /// </summary>
         /// <param name="dataList"></param>
         /// <param name="controls"></param>
         /// <param name="CurrentDataViewInfo"></param>
-        public static void FillDataToControl(List<BsonDocument> dataList, List<Control> controls, DataViewInfo CurrentDataViewInfo)
+        public static void FillDataToControl(List<BsonDocument> dataList, List<Control> controls,
+            DataViewInfo CurrentDataViewInfo)
         {
             String collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
             String[] cp = collectionPath.Split("/".ToCharArray());
-            foreach (var control in controls)
+            foreach (Control control in controls)
             {
                 switch (control.GetType().ToString())
                 {
                     case "System.Windows.Forms.ListView":
-                        if (!(dataList.Count == 0 && CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[0] == COLLECTION_TAG))
+                        if (
+                            !(dataList.Count == 0 &&
+                              CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[0] == COLLECTION_TAG))
                         {
-                            ///只有在纯数据集的时候才退出，不然的话，至少需要将字段结构在ListView中显示出来。
-                            FillDataToListView(cp[(int)PathLv.CollectionLV], (ListView)control, dataList);
+                            //只有在纯数据集的时候才退出，不然的话，至少需要将字段结构在ListView中显示出来。
+                            FillDataToListView(cp[(int) PathLv.CollectionLV], (ListView) control, dataList);
                         }
                         break;
                     case "System.Windows.Forms.TextBox":
-                        FillJSONDataToTextBox((TextBox)control, dataList, CurrentDataViewInfo.SkipCnt);
+                        FillJSONDataToTextBox((TextBox) control, dataList, CurrentDataViewInfo.SkipCnt);
                         break;
                     case "TreeViewColumnsProject.TreeViewColumns":
-                        FillDataToTreeView(cp[(int)PathLv.CollectionLV], (TreeViewColumns)control, dataList, CurrentDataViewInfo.SkipCnt);
+                        FillDataToTreeView(cp[(int) PathLv.CollectionLV], (TreeViewColumns) control, dataList,
+                            CurrentDataViewInfo.SkipCnt);
                         break;
                     default:
                         break;
@@ -183,7 +194,7 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// 字符转Bsonvalue
+        ///     字符转Bsonvalue
         /// </summary>
         /// <param name="strData"></param>
         /// <returns></returns>
@@ -196,8 +207,9 @@ namespace MagicMongoDBTool.Module
             }
             return new BsonString("");
         }
+
         /// <summary>
-        /// BsonValue转展示用字符
+        ///     BsonValue转展示用字符
         /// </summary>
         /// <param name="bsonValue"></param>
         /// <returns></returns>
@@ -216,7 +228,7 @@ namespace MagicMongoDBTool.Module
             //文档
             if (bsonValue.IsBsonDocument)
             {
-                return bsonValue.ToString() + "[Contains" + bsonValue.ToBsonDocument().ElementCount + "Documents]";
+                return bsonValue + "[Contains" + bsonValue.ToBsonDocument().ElementCount + "Documents]";
             }
             //时间
             if (bsonValue.IsBsonDateTime)
@@ -230,14 +242,14 @@ namespace MagicMongoDBTool.Module
             if (bsonValue.IsString)
             {
                 //只有在字符的时候加上""
-                return "\"" + bsonValue.ToString() + "\"";
+                return "\"" + bsonValue + "\"";
             }
 
             //其他
             return bsonValue.ToString();
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="txtData"></param>
         /// <param name="dataList"></param>
@@ -245,36 +257,38 @@ namespace MagicMongoDBTool.Module
         {
             txtData.Clear();
             int Count = 1;
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             foreach (BsonDocument BsonDoc in dataList)
             {
-                sb.AppendLine("/* " + (SkipCnt + Count).ToString() + " */");
+                sb.AppendLine("/* " + (SkipCnt + Count) + " */");
 
                 sb.AppendLine(BsonDoc.ToJson(SystemManager.JsonWriterSettings));
                 Count++;
             }
             txtData.Text = sb.ToString();
         }
+
         /// <summary>
-        /// 将数据放入TreeView里进行展示
+        ///     将数据放入TreeView里进行展示
         /// </summary>
         /// <param name="collectionName"></param>
         /// <param name="trvData"></param>
         /// <param name="dataList"></param>
         public static void FillDataToTreeView(String collectionName, TreeViewColumns trvData, BsonDocument dataList)
         {
-            List<BsonDocument> DocList = new List<BsonDocument>();
+            var DocList = new List<BsonDocument>();
             DocList.Add(dataList);
             FillDataToTreeView(collectionName, trvData, DocList, 0);
         }
 
         /// <summary>
-        /// 将数据放入TreeView里进行展示
+        ///     将数据放入TreeView里进行展示
         /// </summary>
         /// <param name="collectionName"></param>
         /// <param name="trvData"></param>
         /// <param name="dataList"></param>
-        public static void FillDataToTreeView(String collectionName, TreeViewColumns trvData, List<BsonDocument> dataList, int mSkip)
+        public static void FillDataToTreeView(String collectionName, TreeViewColumns trvData,
+            List<BsonDocument> dataList, int mSkip)
         {
             trvData.DatatreeView.BeginUpdate();
             trvData.DatatreeView.Nodes.Clear();
@@ -282,7 +296,7 @@ namespace MagicMongoDBTool.Module
             int Count = 1;
             foreach (BsonDocument item in dataList)
             {
-                TreeNode dataNode = new TreeNode(collectionName + "[" + (SkipCnt + Count).ToString() + "]");
+                var dataNode = new TreeNode(collectionName + "[" + (SkipCnt + Count) + "]");
                 //这里保存真实的主Key数据，删除的时候使用
                 switch (collectionName)
                 {
@@ -314,18 +328,19 @@ namespace MagicMongoDBTool.Module
             }
             trvData.DatatreeView.EndUpdate();
         }
+
         /// <summary>
-        /// 将数据放入TreeNode里进行展示
+        ///     将数据放入TreeNode里进行展示
         /// </summary>
         /// <param name="treeNode"></param>
         /// <param name="doc"></param>
         public static void AddBsonDocToTreeNode(TreeNode treeNode, BsonDocument doc)
         {
-            foreach (var item in doc.Elements)
+            foreach (BsonElement item in doc.Elements)
             {
                 if (item.Value.IsBsonDocument)
                 {
-                    TreeNode newItem = new TreeNode(item.Name);
+                    var newItem = new TreeNode(item.Name);
                     AddBsonDocToTreeNode(newItem, item.Value.ToBsonDocument());
                     newItem.Tag = item;
                     treeNode.Nodes.Add(newItem);
@@ -336,22 +351,23 @@ namespace MagicMongoDBTool.Module
                     {
                         //虽然TreeNode的Text属性带有Array_Mark，表示的时候则会屏蔽掉，
                         //必须要加上，不然FullPath会出现错误
-                        TreeNode newItem = new TreeNode(item.Name + Array_Mark);
+                        var newItem = new TreeNode(item.Name + Array_Mark);
                         AddBsonArrayToTreeNode(item.Name, newItem, item.Value.AsBsonArray);
                         newItem.Tag = item;
                         treeNode.Nodes.Add(newItem);
                     }
                     else
                     {
-                        TreeNode ElementNode = new TreeNode(item.Name);
+                        var ElementNode = new TreeNode(item.Name);
                         ElementNode.Tag = item;
                         treeNode.Nodes.Add(ElementNode);
                     }
                 }
             }
         }
+
         /// <summary>
-        /// 将BsonArray放入树形控件
+        ///     将BsonArray放入树形控件
         /// </summary>
         /// <param name="newItem"></param>
         /// <param name="item"></param>
@@ -362,7 +378,7 @@ namespace MagicMongoDBTool.Module
             {
                 if (SubItem.IsBsonDocument)
                 {
-                    TreeNode newSubItem = new TreeNode(ArrayName + "[" + Count + "]");
+                    var newSubItem = new TreeNode(ArrayName + "[" + Count + "]");
                     AddBsonDocToTreeNode(newSubItem, SubItem.ToBsonDocument());
                     newSubItem.Tag = SubItem;
                     newItem.Nodes.Add(newSubItem);
@@ -371,14 +387,14 @@ namespace MagicMongoDBTool.Module
                 {
                     if (SubItem.IsBsonArray)
                     {
-                        TreeNode newSubItem = new TreeNode(Array_Mark);
+                        var newSubItem = new TreeNode(Array_Mark);
                         AddBsonArrayToTreeNode(ArrayName, newSubItem, SubItem.AsBsonArray);
                         newSubItem.Tag = SubItem;
                         newItem.Nodes.Add(newSubItem);
                     }
                     else
                     {
-                        TreeNode newSubItem = new TreeNode(ArrayName + "[" + Count + "]");
+                        var newSubItem = new TreeNode(ArrayName + "[" + Count + "]");
                         newSubItem.Tag = SubItem;
                         newItem.Nodes.Add(newSubItem);
                     }
@@ -386,8 +402,9 @@ namespace MagicMongoDBTool.Module
                 Count++;
             }
         }
+
         /// <summary>
-        /// 将数据放入ListView中进行展示
+        ///     将数据放入ListView中进行展示
         /// </summary>
         /// <param name="collectionName"></param>
         /// <param name="lstData"></param>
@@ -405,7 +422,7 @@ namespace MagicMongoDBTool.Module
                     SetUserListToListView(dataList, lstData);
                     break;
                 default:
-                    List<String> _columnlist = new List<String>();
+                    var _columnlist = new List<String>();
                     //可以让_id 不在第一位，昏过去了,很多逻辑需要调整
                     bool isSystem = IsSystemCollection(SystemManager.GetCurrentCollection());
                     if (!isSystem)
@@ -415,7 +432,7 @@ namespace MagicMongoDBTool.Module
                     }
                     foreach (BsonDocument docItem in dataList)
                     {
-                        ListViewItem lstItem = new ListViewItem();
+                        var lstItem = new ListViewItem();
                         foreach (String item in docItem.Names)
                         {
                             if (!_columnlist.Contains(item))
@@ -444,14 +461,17 @@ namespace MagicMongoDBTool.Module
                         }
                         else
                         {
-                            lstItem.Text = docItem.GetValue(_columnlist[0].ToString()).ToString();
+                            lstItem.Text = docItem.GetValue(_columnlist[0]).ToString();
                         }
                         //OtherItems
                         for (int i = isSystem ? 1 : 0; i < _columnlist.Count; i++)
                         {
-                            if (_columnlist[i].ToString() == KEY_ID) { continue; }
+                            if (_columnlist[i] == KEY_ID)
+                            {
+                                continue;
+                            }
                             BsonValue val;
-                            docItem.TryGetValue(_columnlist[i].ToString(), out val);
+                            docItem.TryGetValue(_columnlist[i], out val);
                             if (val == null)
                             {
                                 lstItem.SubItems.Add("");
@@ -467,8 +487,9 @@ namespace MagicMongoDBTool.Module
                     break;
             }
         }
+
         /// <summary>
-        /// 用户列表
+        ///     用户列表
         /// </summary>
         /// <param name="dataList"></param>
         /// <param name="lstData"></param>
@@ -500,7 +521,7 @@ namespace MagicMongoDBTool.Module
             }
             foreach (BsonDocument docFile in dataList)
             {
-                ListViewItem lstItem = new ListViewItem();
+                var lstItem = new ListViewItem();
                 //ID
                 lstItem.Text = docFile.GetValue(KEY_ID).ToString();
                 //User
@@ -566,8 +587,9 @@ namespace MagicMongoDBTool.Module
             }
             lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
+
         /// <summary>
-        /// GFS系统
+        ///     GFS系统
         /// </summary>
         /// <param name="dataList"></param>
         /// <param name="lstData"></param>
@@ -605,7 +627,7 @@ namespace MagicMongoDBTool.Module
             foreach (BsonDocument docFile in dataList)
             {
                 String Filename = docFile.GetValue("filename").ToString();
-                ListViewItem lstItem = new ListViewItem();
+                var lstItem = new ListViewItem();
                 lstItem.ImageIndex = GetSystemIcon.GetIconIndexByFileName(Filename, false);
                 lstItem.Text = Filename;
                 lstItem.ToolTipText = Filename;
@@ -622,164 +644,81 @@ namespace MagicMongoDBTool.Module
             }
             lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             // 用新的排序方法对ListView排序
-            MongoDBHelper.lvwColumnSorter _lvwGFSColumnSorter = new MongoDBHelper.lvwColumnSorter();
+            var _lvwGFSColumnSorter = new lvwColumnSorter();
             lstData.ListViewItemSorter = _lvwGFSColumnSorter;
-            lstData.ColumnClick += new ColumnClickEventHandler(
-                (sender, e) =>
+            lstData.ColumnClick += (sender, e) =>
+            {
+                switch (e.Column)
                 {
-                    switch (e.Column)
+                    case 1:
+                    case 2:
+                        _lvwGFSColumnSorter.CompareMethod = lvwColumnSorter.SortMethod.SizeCompare;
+                        break;
+                    default:
+                        _lvwGFSColumnSorter.CompareMethod = lvwColumnSorter.SortMethod.StringCompare;
+                        break;
+                }
+                // 检查点击的列是不是现在的排序列.
+                if (e.Column == _lvwGFSColumnSorter.SortColumn)
+                {
+                    // 重新设置此列的排序方法.
+                    if (_lvwGFSColumnSorter.Order == SortOrder.Ascending)
                     {
-                        case 1:
-                        case 2:
-                            _lvwGFSColumnSorter.CompareMethod = MongoDBHelper.lvwColumnSorter.SortMethod.SizeCompare;
-                            break;
-                        default:
-                            _lvwGFSColumnSorter.CompareMethod = MongoDBHelper.lvwColumnSorter.SortMethod.StringCompare;
-                            break;
-                    }
-                    // 检查点击的列是不是现在的排序列.
-                    if (e.Column == _lvwGFSColumnSorter.SortColumn)
-                    {
-                        // 重新设置此列的排序方法.
-                        if (_lvwGFSColumnSorter.Order == SortOrder.Ascending)
-                        {
-                            _lvwGFSColumnSorter.Order = SortOrder.Descending;
-                        }
-                        else
-                        {
-                            _lvwGFSColumnSorter.Order = SortOrder.Ascending;
-                        }
+                        _lvwGFSColumnSorter.Order = SortOrder.Descending;
                     }
                     else
                     {
-                        // 设置排序列，默认为正向排序
-                        _lvwGFSColumnSorter.SortColumn = e.Column;
                         _lvwGFSColumnSorter.Order = SortOrder.Ascending;
                     }
-                    lstData.Sort();
-
                 }
-                );
-
+                else
+                {
+                    // 设置排序列，默认为正向排序
+                    _lvwGFSColumnSorter.SortColumn = e.Column;
+                    _lvwGFSColumnSorter.Order = SortOrder.Ascending;
+                }
+                lstData.Sort();
+            };
         }
 
         #endregion
 
         #region"数据导航"
-        /// <summary>
-        /// 多数据集视图中，每个数据集保留一个DataViewInfo
-        /// </summary>
-        public class DataViewInfo
-        {
-            public String strDBTag;
-            /// <summary>
-            /// 是否使用过滤器
-            /// </summary>
-            public bool IsUseFilter;
-            /// <summary>
-            /// 数据过滤器
-            /// </summary>
-            public DataFilter mDataFilter;
-            /// <summary>
-            /// 数据集总记录数
-            /// </summary>
-            public int CurrentCollectionTotalCnt;
-            /// <summary>
-            /// Skip记录数
-            /// </summary>
-            public int SkipCnt;
-            /// <summary>
-            /// 是否存在下一页
-            /// </summary>
-            public bool HasNextPage;
-            /// <summary>
-            /// 是否存在上一页
-            /// </summary>
-            public bool HasPrePage;
-            /// <summary>
-            /// 是否为SafeMode
-            /// </summary>
-            public bool IsSafeMode;
-            /// <summary>
-            /// 是否为只读
-            /// </summary>
-            public bool IsReadOnly;
-            /// <summary>
-            /// 每页显示数
-            /// </summary>
-            public int LimitCnt;
-            /// <summary>
-            /// 查询
-            /// </summary>
-            public String Query;
-            /// <summary>
-            /// 解释
-            /// </summary>
-            public String Explain;
-            /// <summary>
-            /// 是否为Admin数据库
-            /// </summary>
-            public Boolean IsAdminDB
-            {
-                get
-                {
-                    String strNodeData = strDBTag.Split(":".ToCharArray())[1];
-                    String[] DataList = strNodeData.Split("/".ToCharArray());
-                    if (DataList[(int)MongoDBHelper.PathLv.DatabaseLV] == MongoDBHelper.DATABASE_NAME_ADMIN)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-            /// <summary>
-            /// 是否为系统数据集
-            /// </summary>
-            public Boolean IsSystemCollection
-            {
-                get
-                {
-                    String strNodeData = strDBTag.Split(":".ToCharArray())[1];
-                    String[] DataList = strNodeData.Split("/".ToCharArray());
-                    return MongoDBHelper.IsSystemCollection(DataList[(int)MongoDBHelper.PathLv.DatabaseLV],
-                                                            DataList[(int)MongoDBHelper.PathLv.CollectionLV]);
 
-                }
-            }
-        }
         /// <summary>
-        /// 数据导航
+        ///     数据导航
         /// </summary>
         public enum PageChangeOpr
         {
             /// <summary>
-            /// 第一页
+            ///     第一页
             /// </summary>
             FirstPage,
+
             /// <summary>
-            /// 最后一页
+            ///     最后一页
             /// </summary>
             LastPage,
+
             /// <summary>
-            /// 上一页
+            ///     上一页
             /// </summary>
             PrePage,
+
             /// <summary>
-            /// 下一页
+            ///     下一页
             /// </summary>
             NextPage
         }
 
         /// <summary>
-        /// 换页操作
+        ///     换页操作
         /// </summary>
         /// <param name="IsNext"></param>
         /// <param name="strTag"></param>
         /// <param name="dataShower"></param>
-        public static void PageChanged(PageChangeOpr pageChangeMode, ref DataViewInfo mDataViewInfo, List<Control> dataShower)
+        public static void PageChanged(PageChangeOpr pageChangeMode, ref DataViewInfo mDataViewInfo,
+            List<Control> dataShower)
         {
             switch (pageChangeMode)
             {
@@ -787,7 +726,7 @@ namespace MagicMongoDBTool.Module
                     mDataViewInfo.SkipCnt = 0;
                     break;
                 case PageChangeOpr.LastPage:
-                    if (mDataViewInfo.CurrentCollectionTotalCnt % mDataViewInfo.LimitCnt == 0)
+                    if (mDataViewInfo.CurrentCollectionTotalCnt%mDataViewInfo.LimitCnt == 0)
                     {
                         //没有余数的时候，600 % 100 == 0  => Skip = 600-100 = 500
                         mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - mDataViewInfo.LimitCnt;
@@ -795,7 +734,8 @@ namespace MagicMongoDBTool.Module
                     else
                     {
                         // 630 % 100 == 30  => Skip = 630-30 = 600  
-                        mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt - mDataViewInfo.CurrentCollectionTotalCnt % mDataViewInfo.LimitCnt;
+                        mDataViewInfo.SkipCnt = mDataViewInfo.CurrentCollectionTotalCnt -
+                                                mDataViewInfo.CurrentCollectionTotalCnt%mDataViewInfo.LimitCnt;
                     }
                     break;
                 case PageChangeOpr.NextPage:
@@ -815,11 +755,12 @@ namespace MagicMongoDBTool.Module
                 default:
                     break;
             }
-            List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);
-            MongoDBHelper.FillDataToControl(datalist, dataShower, mDataViewInfo);
+            List<BsonDocument> datalist = GetDataList(ref mDataViewInfo);
+            FillDataToControl(datalist, dataShower, mDataViewInfo);
         }
+
         /// <summary>
-        /// 设置导航状态
+        ///     设置导航状态
         /// </summary>
         /// <param name="mDataViewInfo">Data View Information(Structure,Must By Ref)</param>
         public static void SetPageEnable(ref DataViewInfo mDataViewInfo)
@@ -842,7 +783,100 @@ namespace MagicMongoDBTool.Module
             }
         }
 
-        #endregion
+        /// <summary>
+        ///     多数据集视图中，每个数据集保留一个DataViewInfo
+        /// </summary>
+        public class DataViewInfo
+        {
+            /// <summary>
+            ///     数据集总记录数
+            /// </summary>
+            public int CurrentCollectionTotalCnt;
 
+            /// <summary>
+            ///     解释
+            /// </summary>
+            public String Explain;
+
+            /// <summary>
+            ///     是否存在下一页
+            /// </summary>
+            public bool HasNextPage;
+
+            /// <summary>
+            ///     是否存在上一页
+            /// </summary>
+            public bool HasPrePage;
+
+            /// <summary>
+            ///     是否为只读
+            /// </summary>
+            public bool IsReadOnly;
+
+            /// <summary>
+            ///     是否为SafeMode
+            /// </summary>
+            public bool IsSafeMode;
+
+            /// <summary>
+            ///     是否使用过滤器
+            /// </summary>
+            public bool IsUseFilter;
+
+            /// <summary>
+            ///     每页显示数
+            /// </summary>
+            public int LimitCnt;
+
+            /// <summary>
+            ///     查询
+            /// </summary>
+            public String Query;
+
+            /// <summary>
+            ///     Skip记录数
+            /// </summary>
+            public int SkipCnt;
+
+            /// <summary>
+            ///     数据过滤器
+            /// </summary>
+            public DataFilter mDataFilter;
+
+            public String strDBTag;
+
+            /// <summary>
+            ///     是否为Admin数据库
+            /// </summary>
+            public Boolean IsAdminDB
+            {
+                get
+                {
+                    String strNodeData = strDBTag.Split(":".ToCharArray())[1];
+                    String[] DataList = strNodeData.Split("/".ToCharArray());
+                    if (DataList[(int) PathLv.DatabaseLV] == DATABASE_NAME_ADMIN)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+
+            /// <summary>
+            ///     是否为系统数据集
+            /// </summary>
+            public Boolean IsSystemCollection
+            {
+                get
+                {
+                    String strNodeData = strDBTag.Split(":".ToCharArray())[1];
+                    String[] DataList = strNodeData.Split("/".ToCharArray());
+                    return IsSystemCollection(DataList[(int) PathLv.DatabaseLV],
+                        DataList[(int) PathLv.CollectionLV]);
+                }
+            }
+        }
+
+        #endregion
     }
 }

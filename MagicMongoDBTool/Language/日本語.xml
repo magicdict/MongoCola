@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!--frmMain-->
 <Language Type="Japanese">
   <Main_Menu_Mangt>コネクション(&amp;M)</Main_Menu_Mangt>
@@ -37,7 +38,7 @@
   <Main_Menu_Operation_Database_EvalJs>JavaScript実行</Main_Menu_Operation_Database_EvalJs>
   <Main_Menu_Operation_Database_RepairDatabase>復元</Main_Menu_Operation_Database_RepairDatabase>
   <Main_Menu_Operation_ProfillingLevel>ログレベル</Main_Menu_Operation_ProfillingLevel>
-  
+
   <Main_Menu_Operation_DataCollection>コレクション</Main_Menu_Operation_DataCollection>
   <Main_Menu_Operation_DataCollection_DelDC>削除</Main_Menu_Operation_DataCollection_DelDC>
   <Main_Menu_Operation_DataCollection_ReIndex>再索引</Main_Menu_Operation_DataCollection_ReIndex>
@@ -88,7 +89,7 @@
   <Main_Menu_Help_About>MongoColaについて</Main_Menu_Help_About>
   <Main_Menu_Help_Thanks>感謝</Main_Menu_Help_Thanks>
   <Main_Menu_Help_UserGuide>ユーザーガイド</Main_Menu_Help_UserGuide>
-  
+
   <Main_Tab_Tree>ツリービュー</Main_Tab_Tree>
   <Main_Tab_Table>テーブルビュー</Main_Tab_Table>
   <Main_Tab_Text>テクストビュー</Main_Tab_Text>
@@ -108,7 +109,7 @@
   <AddConnection_Priority>優先度</AddConnection_Priority>
   <AddConnection_SocketTimeOut>Socketタイムアウト(ms)</AddConnection_SocketTimeOut>
   <AddConnection_ConnectionTimeOut>Connectionタイムアウト(ms)</AddConnection_ConnectionTimeOut>
-  
+
   <AddConnection_MasterSlave>SlaveOK</AddConnection_MasterSlave>
   <AddConnection_SafeMode>Safe Mode</AddConnection_SafeMode>
   <AddConnection_ShardingSvrType>ロール</AddConnection_ShardingSvrType>
@@ -317,7 +318,7 @@
   <Exception_NotConnected_Note>サーバーは停止状態　または　認証モードが間違います</Exception_NotConnected_Note>
   <Exception_AuthenticationException>認証エラー</Exception_AuthenticationException>
   <Exception_AuthenticationException_Note>ユーザー名　と　パスワード　を確認してください</Exception_AuthenticationException_Note>
-  
+
   <!--StatusBar-->
   <Selected_Server>選らんたサーバーr</Selected_Server>
   <Selected_DataBase>選らんたデータベース</Selected_DataBase>

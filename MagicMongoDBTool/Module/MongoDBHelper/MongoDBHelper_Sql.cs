@@ -1,25 +1,24 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
-
         //http://www.mongodb.org/display/DOCS/SQL+to+Mongo+Mapping+Chart(旧网址)
         //http://docs.mongodb.org/manual/reference/sql-comparison/
 
         /// <summary>
-        /// Convert Query Sql To DataFilter
+        ///     Convert Query Sql To DataFilter
         /// </summary>
         /// <param name="Sql"></param>
         /// <returns></returns>
         public static DataFilter ConvertQuerySql(String Sql)
         {
-            DataFilter rtnQuery = new DataFilter();
+            var rtnQuery = new DataFilter();
             Sql = Sql.Trim();
             //引号中的空格用&nbsp;代替，引号以外的东西小写
             Sql = Regular(Sql);
@@ -63,7 +62,7 @@ namespace MagicMongoDBTool.Module
                 }
             }
 
-            String[] KeyWords = new String[] { "select", "from", "where", "group", "order" };
+            String[] KeyWords = {"select", "from", "where", "group", "order"};
 
             //From - > CollectionName
             String strFrom = GetKeyContent(FromStartIndex, SqlToken, KeyWords);
@@ -86,13 +85,13 @@ namespace MagicMongoDBTool.Module
             {
                 return null;
             }
-            List<String> ColumnNameLst = MongoDBHelper.GetCollectionSchame(mongoCol);
+            List<String> ColumnNameLst = GetCollectionSchame(mongoCol);
             if (strSelect == "*")
             {
                 //Select * 
                 foreach (String item in ColumnNameLst)
                 {
-                    DataFilter.QueryFieldItem field = new DataFilter.QueryFieldItem();
+                    var field = new DataFilter.QueryFieldItem();
                     field.ColName = item;
                     field.IsShow = true;
                     field.sortType = DataFilter.SortType.NoSort;
@@ -104,7 +103,7 @@ namespace MagicMongoDBTool.Module
                 //Select A,B,C 
                 foreach (String item in strSelect.Split(",".ToCharArray()))
                 {
-                    DataFilter.QueryFieldItem field = new DataFilter.QueryFieldItem();
+                    var field = new DataFilter.QueryFieldItem();
                     field.ColName = item;
                     field.IsShow = true;
                     field.sortType = DataFilter.SortType.NoSort;
@@ -136,8 +135,9 @@ namespace MagicMongoDBTool.Module
 
             return rtnQuery;
         }
+
         /// <summary>
-        /// Group
+        ///     Group
         /// </summary>
         /// <param name="KeyWordStartIndex"></param>
         /// <param name="SqlToken"></param>
@@ -154,17 +154,15 @@ namespace MagicMongoDBTool.Module
                     {
                         break;
                     }
-                    else
-                    {
-                        strSelect += SqlToken[i] + " ";
-                    }
+                    strSelect += SqlToken[i] + " ";
                 }
                 strSelect = strSelect.Trim();
             }
             return strSelect;
         }
+
         /// <summary>
-        /// 引号中的空格用&nbsp;代替，引号以外的东西小写
+        ///     引号中的空格用&nbsp;代替，引号以外的东西小写
         /// </summary>
         /// <param name="SqlContent"></param>
         /// <returns></returns>
@@ -201,8 +199,9 @@ namespace MagicMongoDBTool.Module
             }
             return LowerSql;
         }
+
         /// <summary>
-        /// Order 的设置
+        ///     Order 的设置
         /// </summary>
         /// <param name="CurrentDataFilter"></param>
         /// <param name="SqlContent"></param>
@@ -246,18 +245,20 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
+
         /// <summary>
-        /// 通过Sql文的Where条件和列名称来获取Query条件
+        ///     通过Sql文的Where条件和列名称来获取Query条件
         /// </summary>
         /// <param name="SqlContent">Where条件</param>
         /// <param name="ColumnNameLst">列名称</param>
         /// <returns></returns>
-        private static List<DataFilter.QueryConditionInputItem> SetQueryCondition(String SqlContent, List<String> ColumnNameLst)
+        private static List<DataFilter.QueryConditionInputItem> SetQueryCondition(String SqlContent,
+            List<String> ColumnNameLst)
         {
-            List<DataFilter.QueryConditionInputItem> Conditionlst = new List<DataFilter.QueryConditionInputItem>();
+            var Conditionlst = new List<DataFilter.QueryConditionInputItem>();
             // (a=1 or b="A") AND c="3" => ( a = 1 or b = "A" ) and c = "3"  
             //1. 除了引号里面的文字，全部小写
-            String[] KeyWord = new String[] { "(", ")", "=", "or", "and", ">", ">=", "<", "<=", "<>" };
+            String[] KeyWord = {"(", ")", "=", "or", "and", ">", ">=", "<", "<=", "<>"};
             foreach (String Keyitem in KeyWord)
             {
                 SqlContent = SqlContent.Replace(Keyitem, " " + Keyitem + " ");
@@ -271,7 +272,7 @@ namespace MagicMongoDBTool.Module
             //           b = "A" ) and 
             //           c = "3"  
             String[] Token = SqlContent.Split(" ".ToCharArray());
-            DataFilter.QueryConditionInputItem mQueryConditionInputItem = new DataFilter.QueryConditionInputItem();
+            var mQueryConditionInputItem = new DataFilter.QueryConditionInputItem();
             mQueryConditionInputItem.StartMark = String.Empty;
             mQueryConditionInputItem.EndMark = String.Empty;
 
@@ -365,11 +366,13 @@ namespace MagicMongoDBTool.Module
                             //类型设置
                             if (strToken.StartsWith("\"") & strToken.EndsWith("\""))
                             {
-                                mQueryConditionInputItem.Value = new BsonValueEx(new BsonString(strToken.Replace("\"", "")));
+                                mQueryConditionInputItem.Value =
+                                    new BsonValueEx(new BsonString(strToken.Replace("\"", "")));
                             }
                             else
                             {
-                                mQueryConditionInputItem.Value = new BsonValueEx(new BsonInt32(Convert.ToInt16(strToken)));
+                                mQueryConditionInputItem.Value =
+                                    new BsonValueEx(new BsonInt32(Convert.ToInt16(strToken)));
                             }
                         }
                         break;
@@ -381,7 +384,5 @@ namespace MagicMongoDBTool.Module
             }
             return Conditionlst;
         }
-
-
     }
 }

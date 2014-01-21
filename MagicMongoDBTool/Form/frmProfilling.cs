@@ -8,14 +8,14 @@ namespace MagicMongoDBTool
     public partial class frmProfilling : Form
     {
         /// <summary>
-        /// 
         /// </summary>
         public frmProfilling()
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// 加载
+        ///     加载
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -25,27 +25,30 @@ namespace MagicMongoDBTool
             {
                 cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
                 cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
-                lblProfilingLevel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
+                lblProfilingLevel.Text =
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
             }
 
             cmbProfillingLv.Items.Add("0-No Logging");
             cmbProfillingLv.Items.Add("1-Log Slow Operations");
             cmbProfillingLv.Items.Add("2-Log All Operations");
 
-            cmbProfillingLv.SelectedIndex = (int)SystemManager.GetCurrentDataBase().GetProfilingLevel().Level;
+            cmbProfillingLv.SelectedIndex = (int) SystemManager.GetCurrentDataBase().GetProfilingLevel().Level;
             switch (cmbProfillingLv.SelectedIndex)
             {
                 case 1:
                     NumTime.Enabled = true;
-                    this.NumTime.Value = (decimal)SystemManager.GetCurrentDataBase().GetProfilingLevel().Slow.TotalSeconds * 1000;
+                    NumTime.Value = (decimal) SystemManager.GetCurrentDataBase().GetProfilingLevel().Slow.TotalSeconds*
+                                    1000;
                     break;
                 default:
                     NumTime.Enabled = false;
                     break;
             }
         }
+
         /// <summary>
-        /// OK
+        ///     OK
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -69,25 +72,28 @@ namespace MagicMongoDBTool
             }
             if (mProfillingLv == ProfilingLevel.Slow)
             {
-                SystemManager.GetCurrentDataBase().SetProfilingLevel(mProfillingLv, new TimeSpan(0, 0, 0, 0, (int)NumTime.Value));
+                SystemManager.GetCurrentDataBase()
+                    .SetProfilingLevel(mProfillingLv, new TimeSpan(0, 0, 0, 0, (int) NumTime.Value));
             }
             else
             {
                 SystemManager.GetCurrentDataBase().SetProfilingLevel(mProfillingLv);
             }
-            this.Close();
+            Close();
         }
+
         /// <summary>
-        /// Cancel
+        ///     Cancel
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
+
         /// <summary>
-        /// 调整级别
+        ///     调整级别
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

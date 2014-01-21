@@ -7,21 +7,26 @@ namespace MagicMongoDBTool.Module
     public static partial class MongoDBHelper
     {
         #region"服务器管理"
+
         /// <summary>
-        /// 管理中服务器列表
+        ///     管理中服务器列表
         /// </summary>
         public static Dictionary<String, MongoServer> _mongoConnSvrLst = new Dictionary<String, MongoServer>();
+
         /// <summary>
-        /// 管理中服务器实例列表
+        ///     管理中服务器实例列表
         /// </summary>
-        public static Dictionary<String, MongoServerInstance> _mongoInstanceLst = new Dictionary<String, MongoServerInstance>();
+        public static Dictionary<String, MongoServerInstance> _mongoInstanceLst =
+            new Dictionary<String, MongoServerInstance>();
+
         //将ServerSettings的东西全部转化为ClientSetting！
         //MongoServerSettings
         //While this class has not yet been deprecated, it eventually will be. We recommend you always use MongoClientSettings instead.
         //The new settings added to MongoClientSettings have also been added to MongoServerSettings.
         public static Dictionary<String, EachDatabaseUser> _mongoUserLst = new Dictionary<String, EachDatabaseUser>();
+
         /// <summary>
-        /// 增加管理服务器
+        ///     增加管理服务器
         /// </summary>
         /// <param name="configLst"></param>
         /// <returns></returns>
@@ -37,7 +42,7 @@ namespace MagicMongoDBTool.Module
                         _mongoConnSvrLst.Remove(config.ConnectionName);
                     }
                     _mongoConnSvrLst.Add(config.ConnectionName, CreateMongoServer(ref config));
-                    ///更新一些运行时的变量
+                    //更新一些运行时的变量
                     SystemManager.ConfigHelperInstance.ConnectionList[config.ConnectionName] = config;
                 }
                 catch (Exception ex)
@@ -46,20 +51,23 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
+
         public static MongoServer CreateMongoServer(ref ConfigHelper.MongoConnectionConfig config)
         {
-            MongoClient masterMongoClient = new MongoClient(CreateMongoClientSettingsByConfig(ref config));
+            var masterMongoClient = new MongoClient(CreateMongoClientSettingsByConfig(ref config));
             return masterMongoClient.GetServer();
         }
+
         /// <summary>
-        /// 根据config获得MongoClientSettings,同时更新一些运行时变量
+        ///     根据config获得MongoClientSettings,同时更新一些运行时变量
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static MongoClientSettings CreateMongoClientSettingsByConfig(ref ConfigHelper.MongoConnectionConfig config)
+        public static MongoClientSettings CreateMongoClientSettingsByConfig(
+            ref ConfigHelper.MongoConnectionConfig config)
         {
             //修改获得数据实例的方法
-            MongoClientSettings mongoClientSetting = new MongoClientSettings();
+            var mongoClientSetting = new MongoClientSettings();
             if (String.IsNullOrEmpty(config.ConnectionString))
             {
                 mongoClientSetting.ConnectionMode = ConnectionMode.Direct;
@@ -75,15 +83,15 @@ namespace MagicMongoDBTool.Module
                 //including for individual operations.
                 if (config.socketTimeoutMS != 0)
                 {
-                    mongoClientSetting.SocketTimeout = new TimeSpan(0, 0, (int)(config.socketTimeoutMS / 1000));
+                    mongoClientSetting.SocketTimeout = new TimeSpan(0, 0, (int) (config.socketTimeoutMS/1000));
                 }
                 if (config.connectTimeoutMS != 0)
                 {
-                    mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int)(config.connectTimeoutMS / 1000));
+                    mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int) (config.connectTimeoutMS/1000));
                 }
                 if (config.wtimeoutMS != 0)
                 {
-                    mongoClientSetting.WaitQueueTimeout = new TimeSpan(0, 0, (int)(config.wtimeoutMS / 1000));
+                    mongoClientSetting.WaitQueueTimeout = new TimeSpan(0, 0, (int) (config.wtimeoutMS/1000));
                 }
                 if (config.WaitQueueSize != 0)
                 {
@@ -96,13 +104,18 @@ namespace MagicMongoDBTool.Module
                     //认证的设定:注意，这里的密码是明文
                     if (string.IsNullOrEmpty(config.DataBaseName))
                     {
-                        mongoClientSetting.Credentials = new MongoCredential[]{
-                          MongoCredential.CreateMongoCRCredential(DATABASE_NAME_ADMIN, config.UserName, config.Password)
+                        mongoClientSetting.Credentials = new[]
+                        {
+                            MongoCredential.CreateMongoCRCredential(DATABASE_NAME_ADMIN, config.UserName,
+                                config.Password)
                         };
                     }
-                    else {
-                        mongoClientSetting.Credentials = new MongoCredential[]{
-                          MongoCredential.CreateMongoCRCredential(config.DataBaseName, config.UserName, config.Password)
+                    else
+                    {
+                        mongoClientSetting.Credentials = new[]
+                        {
+                            MongoCredential.CreateMongoCRCredential(config.DataBaseName, config.UserName,
+                                config.Password)
                         };
                     }
                 }
@@ -120,7 +133,7 @@ namespace MagicMongoDBTool.Module
                     //ReplsetName不是固有属性,可以设置，不过必须保持与配置文件的一致
                     mongoClientSetting.ConnectionMode = ConnectionMode.ReplicaSet;
                     //添加Replset服务器，注意，这里可能需要事先初始化副本
-                    List<MongoServerAddress> ReplsetSvrList = new List<MongoServerAddress>();
+                    var ReplsetSvrList = new List<MongoServerAddress>();
                     foreach (String item in config.ReplsetList)
                     {
                         //如果这里的服务器在启动的时候没有--Replset参数，将会出错，当然作为单体的服务器，启动是没有任何问题的
@@ -128,8 +141,8 @@ namespace MagicMongoDBTool.Module
                         if (item.Split(":".ToCharArray()).Length == 2)
                         {
                             ReplSrv = new MongoServerAddress(
-                                            item.Split(":".ToCharArray())[0],
-                                            Convert.ToInt16(item.Split(":".ToCharArray())[1]));
+                                item.Split(":".ToCharArray())[0],
+                                Convert.ToInt16(item.Split(":".ToCharArray())[1]));
                         }
                         else
                         {
@@ -156,12 +169,14 @@ namespace MagicMongoDBTool.Module
             }
             return mongoClientSetting;
         }
+
         /// <summary>
-        /// Set ReadPreference And WriteConcern 
+        ///     Set ReadPreference And WriteConcern
         /// </summary>
         /// <param name="mongoSvrSetting"></param>
         /// <param name="config"></param>
-        private static void SetReadPreferenceWriteConcern(MongoClientSettings mongoSvrSetting, ConfigHelper.MongoConnectionConfig config)
+        private static void SetReadPreferenceWriteConcern(MongoClientSettings mongoSvrSetting,
+            ConfigHelper.MongoConnectionConfig config)
         {
             //----------------------------------------------
             //            New MongoClient class and default WriteConcern
@@ -240,28 +255,30 @@ namespace MagicMongoDBTool.Module
             }
             //Default WriteConcern is w=0
         }
+
         /// <summary>
-        /// get current Server Information
+        ///     get current Server Information
         /// </summary>
         /// <returns></returns>
         public static String GetCurrentSvrInfo()
         {
             String rtnSvrInfo = String.Empty;
             MongoServer mongosvr = SystemManager.GetCurrentServer();
-            rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter.ToString() + System.Environment.NewLine;
-            rtnSvrInfo += "IsPrimary：" + mongosvr.Instance.IsPrimary.ToString() + System.Environment.NewLine;
-            rtnSvrInfo += "IsSecondary：" + mongosvr.Instance.IsSecondary.ToString() + System.Environment.NewLine;
-            rtnSvrInfo += "Address：" + mongosvr.Instance.Address.ToString() + System.Environment.NewLine;
+            rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter + Environment.NewLine;
+            rtnSvrInfo += "IsPrimary：" + mongosvr.Instance.IsPrimary + Environment.NewLine;
+            rtnSvrInfo += "IsSecondary：" + mongosvr.Instance.IsSecondary + Environment.NewLine;
+            rtnSvrInfo += "Address：" + mongosvr.Instance.Address + Environment.NewLine;
             if (mongosvr.Instance.BuildInfo != null)
             {
                 //Before mongo2.0.2 BuildInfo will be null without auth
-                rtnSvrInfo += "VersionString：" + mongosvr.Instance.BuildInfo.VersionString + System.Environment.NewLine;
-                rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + System.Environment.NewLine;
+                rtnSvrInfo += "VersionString：" + mongosvr.Instance.BuildInfo.VersionString + Environment.NewLine;
+                rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + Environment.NewLine;
             }
             return rtnSvrInfo;
         }
+
         /// <summary>
-        /// 使用字符串连接来填充
+        ///     使用字符串连接来填充
         /// </summary>
         /// <remarks>http://www.mongodb.org/display/DOCS/Connections</remarks>
         /// <param name="connectionString"></param>
@@ -286,14 +303,14 @@ namespace MagicMongoDBTool.Module
                 //config.ReadPreference = ReadPreference.PrimaryPreferred.ToString();
                 //TODO: Is this OK??
                 config.WriteConcern = mongourl.GetWriteConcern(true).ToString();
-                config.socketTimeoutMS = (int)mongourl.SocketTimeout.TotalMilliseconds;
-                config.connectTimeoutMS = (int)mongourl.ConnectTimeout.TotalMilliseconds;
-                config.wtimeoutMS = (int)mongourl.WaitQueueTimeout.TotalMilliseconds;
-                config.WaitQueueSize = (int)mongourl.WaitQueueSize;
+                config.socketTimeoutMS = (int) mongourl.SocketTimeout.TotalMilliseconds;
+                config.connectTimeoutMS = (int) mongourl.ConnectTimeout.TotalMilliseconds;
+                config.wtimeoutMS = (int) mongourl.WaitQueueTimeout.TotalMilliseconds;
+                config.WaitQueueSize = mongourl.WaitQueueSize;
                 config.ReplSetName = mongourl.ReplicaSetName;
-                foreach (var item in mongourl.Servers)
+                foreach (MongoServerAddress item in mongourl.Servers)
                 {
-                    config.ReplsetList.Add(item.Host + (item.Port == 0 ? String.Empty : ":" + item.Port.ToString()));
+                    config.ReplsetList.Add(item.Host + (item.Port == 0 ? String.Empty : ":" + item.Port));
                 }
                 return String.Empty;
             }
@@ -306,6 +323,7 @@ namespace MagicMongoDBTool.Module
                 return ex.ToString();
             }
         }
+
         #endregion
     }
 }

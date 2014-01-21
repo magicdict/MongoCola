@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using MongoDB.Bson;
-using MongoDB.Driver;
-
-namespace MagicMongoDBTool.Module
+﻿namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
         /// <summary>
-        /// group aggregation function
+        ///     group aggregation function
         /// </summary>
         /// <returns></returns>
-        static public string[] getGroupfunction()
+        public static string[] getGroupfunction()
         {
-            return new string[]{
+            return new[]
+            {
                 "$addToSet",
                 "$first",
                 "$last",
@@ -26,12 +22,13 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// group aggregation function
+        ///     group aggregation function
         /// </summary>
         /// <returns></returns>
-        static public string[] getComparisonfunction()
+        public static string[] getComparisonfunction()
         {
-            return new string[]{
+            return new[]
+            {
                 "$all",
                 "$gt",
                 "$gte",

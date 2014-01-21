@@ -1,16 +1,11 @@
-﻿
-a {
-    color: Blue;
-}
+﻿a { color: Blue; }
 
 table {
     background-image: url('images/background.JPG');
     width: 100%;
 }
 
-td {
-    color: Black;
-}
+td { color: Black; }
 
 span {
     background: url('images/background.JPG');
@@ -22,27 +17,25 @@ span {
     font-weight: bolder;
 }
 
-    #menu li {
-        list-style-image: none;
-        list-style-type: none;
-        background-color: #999999;
-        border-right-width: 1px;
-        border-right-style: solid;
-        border-right-color: #000000;
-        float: left;
-    }
+#menu li {
+    background-color: #999999;
+    border-right-color: #000000;
+    border-right-style: solid;
+    border-right-width: 1px;
+    float: left;
+    list-style-image: none;
+    list-style-type: none;
+}
 
-        #menu li a {
-            color: #FFFFFF;
-            text-decoration: none;
-            margin: 0px;
-            padding-top: 8px;
-            display: block; /* 作为一个块 */
-            padding-right: 50px; /* 设置块的属性 */
-            padding-bottom: 8px;
-            padding-left: 50px;
-        }
+#menu li a {
+    color: #FFFFFF;
+    display: block; /* 作为一个块 */
+    margin: 0px;
+    padding-bottom: 8px;
+    padding-left: 50px;
+    padding-right: 50px; /* 设置块的属性 */
+    padding-top: 8px;
+    text-decoration: none;
+}
 
-            #menu li a:hover {
-                background-color: #0099CC;
-            }
+#menu li a:hover { background-color: #0099CC; }

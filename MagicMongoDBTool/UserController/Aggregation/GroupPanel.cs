@@ -1,40 +1,44 @@
-﻿using MongoDB.Bson;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using MongoDB.Bson;
 
 namespace MagicMongoDBTool
 {
     public partial class GroupPanel : UserControl
     {
         /// <summary>
-        /// GroupItem数量
+        ///     GroupItem数量
         /// </summary>
-        private byte _conditionCount = 0;
+        private byte _conditionCount;
+
         /// <summary>
-        /// GroupItem位置
+        ///     GroupItem位置
         /// </summary>
         private Point _conditionPos = new Point(10, 0);
+
         /// <summary>
-        /// 构造器
+        ///     构造器
         /// </summary>
         public GroupPanel()
         {
             InitializeComponent();
             AddGroupItem();
         }
+
         /// <summary>
-        /// 增加GroupItem
+        ///     增加GroupItem
         /// </summary>
         public void AddGroupItem()
         {
             _conditionCount++;
-            GroupItem newGroupItem = new GroupItem();
+            var newGroupItem = new GroupItem();
             newGroupItem.Location = _conditionPos;
-            newGroupItem.Name = "GroupItem" + _conditionCount.ToString();
+            newGroupItem.Name = "GroupItem" + _conditionCount;
             Controls.Add(newGroupItem);
             _conditionPos.Y += newGroupItem.Height;
         }
+
         public List<BsonElement> GetGroup()
         {
             //db.article.aggregate(
@@ -44,15 +48,16 @@ namespace MagicMongoDBTool
             //        viewsPerAuthor : { $sum : "$pageViews" }
             //    }}
             //);
-            List<BsonElement> grouplist = new List<BsonElement>();
-            foreach (GroupItem item in this.Controls)
+            var grouplist = new List<BsonElement>();
+            foreach (GroupItem item in Controls)
             {
                 grouplist.Add(item.getGroupItem());
             }
             return grouplist;
         }
+
         /// <summary>
-        /// 清除所有GroupItem
+        ///     清除所有GroupItem
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

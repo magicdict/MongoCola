@@ -5,31 +5,33 @@ using System.Xml;
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
-    /// String Resource
+    ///     String Resource
     /// </summary>
-    ///<remarks>
-    ///这个功能的负责人是MoLing。
-    ///有任何翻译上的问题，或者您想共享某个语种的翻译文件，请在Github上给MoLing留言
-    ///</remarks>
+    /// <remarks>
+    ///     这个功能的负责人是MoLing。
+    ///     有任何翻译上的问题，或者您想共享某个语种的翻译文件，请在Github上给MoLing留言
+    /// </remarks>
     public partial class StringResource
     {
         /// <summary>
-        /// 国际化文字字典
+        ///     国际化文字字典
         /// </summary>
-        Dictionary<String, String> _stringDic = new Dictionary<String, String>();
+        private readonly Dictionary<String, String> _stringDic = new Dictionary<String, String>();
+
         /// <summary>
-        /// 语种
+        ///     语种
         /// </summary>
         public String LanguageType = String.Empty;
+
         /// <summary>
-        /// 字符资源
+        ///     字符资源
         /// </summary>
         /// <param name="LanguageFileName">当前语言文件</param>
         public void InitLanguage(String LanguageFileName)
         {
             String tag = String.Empty;
             String text = String.Empty;
-            XmlTextReader reader = new XmlTextReader(LanguageFileName);
+            var reader = new XmlTextReader(LanguageFileName);
             _stringDic.Clear();
             while (reader.Read())
             {
@@ -54,8 +56,9 @@ namespace MagicMongoDBTool.Module
                 }
             }
         }
+
         /// <summary>
-        /// Get Global String
+        ///     Get Global String
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>

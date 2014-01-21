@@ -1,47 +1,50 @@
-﻿using MagicMongoDBTool.Module;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.Windows.Forms;
+using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmAggregation : System.Windows.Forms.Form
+    public partial class frmAggregation : Form
     {
         /// <summary>
-        /// 聚合数组
+        ///     聚合数组
         /// </summary>
         private BsonArray _AggrArray = new BsonArray();
+
         public frmAggregation()
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// Run Aggregate
+        ///     Run Aggregate
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdRun_Click(object sender, EventArgs e)
         {
-            if (_AggrArray.Count > 0)
+            if (_AggrArray.Count <= 0) return;
+            CommandResult mCommandResult = MongoDBHelper.Aggregate(_AggrArray);
+            if (mCommandResult.Ok)
             {
-                CommandResult mCommandResult = MongoDBHelper.Aggregate(_AggrArray);
-                if (mCommandResult.Ok)
-                {
-                    MongoDBHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
-                    trvResult.DatatreeView.BeginUpdate();
-                    trvResult.DatatreeView.ExpandAll();
-                    trvResult.DatatreeView.EndUpdate();
-                }
-                else
-                {
-                    MyMessageBox.ShowMessage("Aggregate Result", mCommandResult.ErrorMessage);
-                }
-
+                MongoDBHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
+                trvResult.DatatreeView.BeginUpdate();
+                trvResult.DatatreeView.ExpandAll();
+                trvResult.DatatreeView.EndUpdate();
+            }
+            else
+            {
+                MyMessageBox.ShowMessage("Aggregate Result", mCommandResult.ErrorMessage);
             }
         }
+
         /// <summary>
-        /// 加载
+        ///     加载
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -51,16 +54,17 @@ namespace MagicMongoDBTool
             {
                 cmbForAggregatePipeline.Items.Add(item);
             }
-            cmbForAggregatePipeline.SelectedIndexChanged += new EventHandler(
-                (x, y) =>
-                {
-                    _AggrArray = (BsonArray)BsonDocument.Parse(MongoDBHelper.LoadJavascript(cmbForAggregatePipeline.Text)).GetValue(0);
-                    FillAggreationTreeview();
-                }
-            );
+            cmbForAggregatePipeline.SelectedIndexChanged += (x, y) =>
+            {
+                _AggrArray =
+                    (BsonArray)
+                        BsonDocument.Parse(MongoDBHelper.LoadJavascript(cmbForAggregatePipeline.Text)).GetValue(0);
+                FillAggreationTreeview();
+            };
         }
+
         /// <summary>
-        /// 增加条件
+        ///     增加条件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -68,7 +72,7 @@ namespace MagicMongoDBTool
         {
             try
             {
-                frmNewDocument frmInsertDoc = new frmNewDocument();
+                var frmInsertDoc = new frmNewDocument();
                 SystemManager.OpenForm(frmInsertDoc, false, true);
                 _AggrArray.Add(frmInsertDoc.mBsonDocument);
                 FillAggreationTreeview();
@@ -78,12 +82,13 @@ namespace MagicMongoDBTool
                 SystemManager.ExceptionDeal(ex);
             }
         }
+
         /// <summary>
-        /// 将聚合条件放入可视化控件
+        ///     将聚合条件放入可视化控件
         /// </summary>
         private void FillAggreationTreeview()
         {
-            List<BsonDocument> ConditionList = new List<BsonDocument>();
+            var ConditionList = new List<BsonDocument>();
             foreach (BsonDocument item in _AggrArray)
             {
                 ConditionList.Add(item);
@@ -93,8 +98,9 @@ namespace MagicMongoDBTool
             trvCondition.DatatreeView.ExpandAll();
             trvCondition.DatatreeView.EndUpdate();
         }
+
         /// <summary>
-        /// 清除条件啊
+        ///     清除条件啊
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -103,38 +109,40 @@ namespace MagicMongoDBTool
             _AggrArray.Clear();
             trvCondition.TreeView.Nodes.Clear();
         }
+
         /// <summary>
-        /// 转到链接
+        ///     转到链接
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void lnkReference_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+        private void lnkReference_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/aggregation/");
+            Process.Start("http://docs.mongodb.org/manual/reference/aggregation/");
         }
+
         /// <summary>
-        /// Save Aggregate Pipeline
+        ///     Save Aggregate Pipeline
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdSaveAggregatePipeline_Click(object sender, EventArgs e)
         {
-            if (this._AggrArray.Count != 0)
-            {
-                String strJsName = MyMessageBox.ShowInput("pls Input Aggregate Pipeline Name ：", "Save Aggregate Pipeline");
-                MongoDBHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _AggrArray).ToString());
-            }
+            if (_AggrArray.Count == 0) return;
+            String strJsName = MyMessageBox.ShowInput("pls Input Aggregate Pipeline Name ：",
+                "Save Aggregate Pipeline");
+            MongoDBHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _AggrArray).ToString());
         }
+
         /// <summary>
-        /// Aggregation Builder
+        ///     Aggregation Builder
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnAggrBuilder_Click(object sender, EventArgs e)
         {
-            frmAggregationCondition frmAggregationBuilder = new frmAggregationCondition();
+            var frmAggregationBuilder = new frmAggregationCondition();
             SystemManager.OpenForm(frmAggregationBuilder, false, true);
-            foreach (var item in frmAggregationBuilder.Aggregation)
+            foreach (BsonValue item in frmAggregationBuilder.Aggregation)
             {
                 _AggrArray.Add(item);
             }

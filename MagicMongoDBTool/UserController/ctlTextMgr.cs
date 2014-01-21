@@ -1,6 +1,6 @@
-﻿using MagicMongoDBTool.Module;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
@@ -9,57 +9,48 @@ namespace MagicMongoDBTool
         public ctlTextMgr()
         {
             InitializeComponent();
-            this.Load += (x, y) => init();
+            Load += (x, y) => init();
         }
+
+        /// <summary>
+        ///     标题
+        /// </summary>
+        public String Title
+        {
+            set { lblTitle.Text = value; }
+            get { return lblTitle.Text; }
+        }
+
+        /// <summary>
+        ///     内容
+        /// </summary>
+        public String Context
+        {
+            set { txtContext.Text = value; }
+            get { return txtContext.Text; }
+        }
+
         public void init()
         {
-            if (!this.DesignMode)
+            if (!DesignMode)
             {
                 foreach (String item in SystemManager.GetJsNameList())
                 {
                     cmbJsList.Items.Add(item);
                 }
-                cmbJsList.SelectedIndexChanged += new EventHandler(
-                    (x, y) => { txtContext.Text = MongoDBHelper.LoadJavascript(cmbJsList.Text); }
-                );
+                cmbJsList.SelectedIndexChanged +=
+                    (x, y) => { txtContext.Text = MongoDBHelper.LoadJavascript(cmbJsList.Text); };
                 if (!SystemManager.IsUseDefaultLanguage)
                 {
-                    cmdSave.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save);
-                    cmdSaveLocal.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Save_Local);
-                    cmdLoadLocal.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Query_Action_Load);
+                    cmdSave.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
+                    cmdSaveLocal.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save_Local);
+                    cmdLoadLocal.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Query_Action_Load);
                 }
             }
         }
+
         /// <summary>
-        /// 标题
-        /// </summary>
-        public String Title
-        {
-            set
-            {
-                lblTitle.Text = value;
-            }
-            get
-            {
-                return lblTitle.Text;
-            }
-        }
-        /// <summary>
-        /// 内容
-        /// </summary>
-        public String Context
-        {
-            set
-            {
-                txtContext.Text = value;
-            }
-            get
-            {
-                return txtContext.Text;
-            }
-        }
-        /// <summary>
-        /// 保存
+        ///     保存
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -67,13 +58,14 @@ namespace MagicMongoDBTool
         {
             if (txtContext.Text != String.Empty)
             {
-                String strJsName = MyMessageBox.ShowInput("please Input Javascript Name：[Save at system.js]", "Save Javascript");
+                String strJsName = MyMessageBox.ShowInput("please Input Javascript Name：[Save at system.js]",
+                    "Save Javascript");
                 MongoDBHelper.CreateNewJavascript(strJsName, txtContext.Text);
             }
-
         }
+
         /// <summary>
-        /// 保存到本地
+        ///     保存到本地
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -81,8 +73,9 @@ namespace MagicMongoDBTool
         {
             SystemManager.SaveJavascriptFile(txtContext.Text);
         }
+
         /// <summary>
-        /// 读取本地文件
+        ///     读取本地文件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

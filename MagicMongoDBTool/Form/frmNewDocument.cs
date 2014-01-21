@@ -1,19 +1,21 @@
-﻿using MagicMongoDBTool.Module;
-using MongoDB.Bson;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using MagicMongoDBTool.Module;
+using MongoDB.Bson;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmNewDocument : System.Windows.Forms.Form
+    public partial class frmNewDocument : Form
     {
         public BsonDocument mBsonDocument;
+
         public frmNewDocument()
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// 插入文档
+        ///     插入文档
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -26,7 +28,7 @@ namespace MagicMongoDBTool
                 {
                     newBsonDocument = BsonDocument.Parse(txtDocument.Text);
                     mBsonDocument = newBsonDocument;
-                    this.Close();
+                    Close();
                 }
                 catch (Exception ex)
                 {
@@ -38,7 +40,7 @@ namespace MagicMongoDBTool
                 try
                 {
                     MongoDBHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), true);
-                    this.Close();
+                    Close();
                 }
                 catch (Exception ex)
                 {
@@ -46,17 +48,19 @@ namespace MagicMongoDBTool
                 }
             }
         }
+
         /// <summary>
-        /// 关闭
+        ///     关闭
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
+
         /// <summary>
-        /// 预览
+        ///     预览
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -66,8 +70,8 @@ namespace MagicMongoDBTool
             {
                 BsonDocument newdoc;
                 newdoc = BsonDocument.Parse(txtDocument.Text);
-                MongoDBHelper.FillDataToTreeView("InsertDocument", this.trvNewDocument, newdoc);
-                this.trvNewDocument.TreeView.ExpandAll();
+                MongoDBHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
+                trvNewDocument.TreeView.ExpandAll();
                 txtDocument.Text = newdoc.ToJson(SystemManager.JsonWriterSettings);
             }
             catch (Exception ex)
@@ -75,8 +79,9 @@ namespace MagicMongoDBTool
                 SystemManager.ExceptionDeal(ex);
             }
         }
+
         /// <summary>
-        /// 保存文档
+        ///     保存文档
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -84,22 +89,22 @@ namespace MagicMongoDBTool
         {
             if (txtDocument.Text != string.Empty)
             {
-                SystemManager.SaveTextFile(txtDocument.Text,MongoDBHelper.TxtFilter);
+                SystemManager.SaveTextFile(txtDocument.Text, MongoDBHelper.TxtFilter);
             }
         }
+
         /// <summary>
-        /// 载入
+        ///     载入
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage) {
-                cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
-                cmdSaveAggregate.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
-                cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
-                //cmdPreview.Text = SystemManager.mStringResource.GetText();
-            }
+            if (SystemManager.IsUseDefaultLanguage) return;
+            cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+            cmdSaveAggregate.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
+            cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+            //cmdPreview.Text = SystemManager.mStringResource.GetText();
         }
     }
 }

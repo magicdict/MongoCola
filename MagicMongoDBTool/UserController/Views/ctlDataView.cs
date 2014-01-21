@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
@@ -9,26 +10,48 @@ namespace MagicMongoDBTool.UserController
 {
     public partial class ctlDataView : UserControl
     {
-
         #region"Main"
 
         /// <summary>
-        ///初始化
+        ///     Is Need Refresh after the element is modify
+        /// </summary>
+        public Boolean IsNeedRefresh = false;
+
+        /// <summary>
+        ///     是否是一个数据容器
+        /// </summary>
+        private Boolean _IsDataView = true;
+
+        /// <summary>
+        ///     Control for show Data
+        /// </summary>
+        public List<Control> _dataShower = new List<Control>();
+
+        /// <summary>
+        ///     DataView信息
+        /// </summary>
+        public MongoDBHelper.DataViewInfo mDataViewInfo;
+
+        /// <summary>
+        ///     初始化
         /// </summary>
         public ctlDataView()
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// Is Need Refresh after the element is modify
+        ///     初始化
         /// </summary>
-        public Boolean IsNeedRefresh = false;
+        /// <param name="_DataViewInfo"></param>
+        public ctlDataView(MongoDBHelper.DataViewInfo _DataViewInfo)
+        {
+            InitializeComponent();
+            mDataViewInfo = _DataViewInfo;
+        }
+
         /// <summary>
-        /// 是否是一个数据容器
-        /// </summary>
-        private Boolean _IsDataView = true;
-        /// <summary>
-        /// 是否是一个数据容器
+        ///     是否是一个数据容器
         /// </summary>
         [Description("Is used for display a data collection")]
         public Boolean IsDocumentView
@@ -39,59 +62,52 @@ namespace MagicMongoDBTool.UserController
                 CollapseAllStripButton.Visible = _IsDataView;
                 ExpandAllStripButton.Visible = _IsDataView;
             }
-            get
-            {
-                return _IsDataView;
-            }
+            get { return _IsDataView; }
         }
+
         /// <summary>
-        /// 初始化
-        /// </summary>
-        /// <param name="_DataViewInfo"></param>
-        public ctlDataView(MongoDBHelper.DataViewInfo _DataViewInfo)
-        {
-            InitializeComponent();
-            mDataViewInfo = _DataViewInfo;
-        }
-        /// <summary>
-        /// Control for show Data
-        /// </summary>
-        public List<Control> _dataShower = new List<Control>();
-        /// <summary>
-        /// DataView信息
-        /// </summary>
-        public MongoDBHelper.DataViewInfo mDataViewInfo;
-        /// <summary>
-        /// 关闭Tab事件(主界面操作这个文档的时候用的事件)
+        ///     关闭Tab事件(主界面操作这个文档的时候用的事件)
         /// </summary>
         public event EventHandler CloseTab;
+
         /// <summary>
-        /// 加载数据集控件
+        ///     加载数据集控件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ctlDataView_Load(object sender, EventArgs e)
         {
-            if (mDataViewInfo == null) { return; }
-            this.cmbRecPerPage.SelectedIndex = 1;
+            if (mDataViewInfo == null)
+            {
+                return;
+            }
+            cmbRecPerPage.SelectedIndex = 1;
             mDataViewInfo.LimitCnt = 100;
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 //数据显示区
-                this.tabTreeView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Tree);
-                this.tabTableView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Table);
-                this.tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
-                this.PrePageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
-                this.NextPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
-                this.FirstPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_First);
-                this.LastPageStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Last);
-                this.QueryStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Query);
-                this.FilterStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_DataFilter);
-                this.RefreshStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Refresh);
-                this.CloseStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
-                this.ExpandAllStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Expansion);
-                this.CollapseAllStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Collapse);
-                this.HelpStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Help);
+                tabTreeView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Tree);
+                tabTableView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Table);
+                tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
+                PrePageStripButton.Text =
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
+                NextPageStripButton.Text =
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
+                FirstPageStripButton.Text =
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_First);
+                LastPageStripButton.Text =
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Last);
+                QueryStripButton.Text =
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Query);
+                FilterStripButton.Text =
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_DataFilter);
+                RefreshStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Refresh);
+                CloseStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                ExpandAllStripButton.Text =
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Common_Expansion);
+                CollapseAllStripButton.Text =
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Common_Collapse);
+                HelpStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Help);
             }
             InitControlsVisiableAndEvent();
             //加载数据
@@ -101,18 +117,18 @@ namespace MagicMongoDBTool.UserController
             //数据导航
             RefreshGUI();
         }
+
         /// <summary>
-        /// 将部分的按钮和右键菜单有效化
+        ///     将部分的按钮和右键菜单有效化
         /// </summary>
         private void InitControlsVisiableAndEvent()
         {
-
             FirstPageStripButton.Visible = true;
             PrePageStripButton.Visible = true;
             NextPageStripButton.Visible = true;
             LastPageStripButton.Visible = true;
-            this.FilterStripButton.Visible = true;
-            this.QueryStripButton.Visible = true;
+            FilterStripButton.Visible = true;
+            QueryStripButton.Visible = true;
 
             GotoStripButton.Visible = true;
 
@@ -125,23 +141,24 @@ namespace MagicMongoDBTool.UserController
             CloseStripButton.Visible = true;
             CloseStripButton.Enabled = true;
         }
+
         /// <summary>
-        /// 初始化控件状态
+        ///     初始化控件状态
         /// </summary>
         private void InitControlsEnable()
         {
-            foreach (var item in this.contextMenuStripMain.Items)
+            foreach (object item in contextMenuStripMain.Items)
             {
                 if (item is ToolStripMenuItem)
                 {
-                    ((ToolStripMenuItem)item).Enabled = false;
+                    ((ToolStripMenuItem) item).Enabled = false;
                 }
             }
-            foreach (var item in ViewtoolStrip.Items)
+            foreach (object item in ViewtoolStrip.Items)
             {
                 if (item is ToolStripButton)
                 {
-                    ((ToolStripButton)item).Enabled = false;
+                    ((ToolStripButton) item).Enabled = false;
                 }
             }
 
@@ -154,17 +171,18 @@ namespace MagicMongoDBTool.UserController
             FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
             LastPageStripButton.Enabled = mDataViewInfo.HasNextPage;
 
-            this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
-            this.FilterStripButton.Enabled = true;
-            this.QueryStripButton.Enabled = true;
+            FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            FilterStripButton.Enabled = true;
+            QueryStripButton.Enabled = true;
 
             GotoStripButton.Enabled = true;
             HelpStripButton.Enabled = true;
             RefreshStripButton.Enabled = true;
             CloseStripButton.Enabled = true;
         }
+
         /// <summary>
-        /// 关闭本Tab
+        ///     关闭本Tab
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -177,13 +195,13 @@ namespace MagicMongoDBTool.UserController
         }
 
         /// <summary>
-        /// 帮助
+        ///     帮助
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void HelpStripButton_Click(object sender, EventArgs e)
         {
-            String strType = this.GetType().ToString();
+            String strType = GetType().ToString();
             strType = strType.Split(".".ToCharArray())[1];
             String strUrl = @"UserGuide\index.htm";
             switch (strType)
@@ -201,18 +219,19 @@ namespace MagicMongoDBTool.UserController
                     strUrl = @"UserGuide\User.html";
                     break;
             }
-            System.Diagnostics.Process.Start(strUrl);
+            Process.Start(strUrl);
         }
 
         #endregion
 
         #region"数据导航"
+
         /// <summary>
-        /// 换页操作
+        ///     换页操作
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void cmbRecPerPage_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void cmbRecPerPage_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (cmbRecPerPage.SelectedIndex)
             {
@@ -231,8 +250,9 @@ namespace MagicMongoDBTool.UserController
             }
             ReloadData();
         }
+
         /// <summary>
-        /// 指定起始位置
+        ///     指定起始位置
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -265,8 +285,9 @@ namespace MagicMongoDBTool.UserController
                 txtSkip.Text = string.Empty;
             }
         }
+
         /// <summary>
-        /// 第一页
+        ///     第一页
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -275,8 +296,9 @@ namespace MagicMongoDBTool.UserController
             MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.FirstPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
+
         /// <summary>
-        /// 前一页
+        ///     前一页
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -285,8 +307,9 @@ namespace MagicMongoDBTool.UserController
             MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.PrePage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
+
         /// <summary>
-        /// 下一页
+        ///     下一页
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -295,8 +318,9 @@ namespace MagicMongoDBTool.UserController
             MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.NextPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
+
         /// <summary>
-        /// 最后页
+        ///     最后页
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -305,8 +329,9 @@ namespace MagicMongoDBTool.UserController
             MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.LastPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
+
         /// <summary>
-        /// 展开所有
+        ///     展开所有
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -316,8 +341,9 @@ namespace MagicMongoDBTool.UserController
             trvData.DatatreeView.ExpandAll();
             trvData.DatatreeView.EndUpdate();
         }
+
         /// <summary>
-        /// 折叠所有
+        ///     折叠所有
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -327,8 +353,9 @@ namespace MagicMongoDBTool.UserController
             trvData.DatatreeView.CollapseAll();
             trvData.DatatreeView.EndUpdate();
         }
+
         /// <summary>
-        /// 清除所有数据
+        ///     清除所有数据
         /// </summary>
         private void clear()
         {
@@ -340,7 +367,7 @@ namespace MagicMongoDBTool.UserController
         }
 
         /// <summary>
-        /// 设置导航可用性
+        ///     设置导航可用性
         /// </summary>
         private void SetDataNav()
         {
@@ -348,8 +375,8 @@ namespace MagicMongoDBTool.UserController
             NextPageStripButton.Enabled = mDataViewInfo.HasNextPage;
             FirstPageStripButton.Enabled = mDataViewInfo.HasPrePage;
             LastPageStripButton.Enabled = mDataViewInfo.HasNextPage;
-            this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
-            this.QueryStripButton.Enabled = true;
+            FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            QueryStripButton.Enabled = true;
             String strTitle = "Records";
             if (!SystemManager.IsUseDefaultLanguage)
             {
@@ -357,20 +384,22 @@ namespace MagicMongoDBTool.UserController
             }
             if (mDataViewInfo.CurrentCollectionTotalCnt == 0)
             {
-                this.DataNaviToolStripLabel.Text = strTitle + "：0/0";
+                DataNaviToolStripLabel.Text = strTitle + "：0/0";
             }
             else
             {
-                this.DataNaviToolStripLabel.Text = strTitle + "：" + (mDataViewInfo.SkipCnt + 1).ToString() + "/" + mDataViewInfo.CurrentCollectionTotalCnt.ToString();
+                DataNaviToolStripLabel.Text = strTitle + "：" + (mDataViewInfo.SkipCnt + 1) + "/" +
+                                              mDataViewInfo.CurrentCollectionTotalCnt;
             }
             txtSkip.Text = (mDataViewInfo.SkipCnt + 1).ToString();
         }
+
         /// <summary>
-        /// Refresh Data
+        ///     Refresh Data
         /// </summary>
         public void RefreshGUI()
         {
-            this.clear();
+            clear();
             mDataViewInfo.SkipCnt = 0;
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
             List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);
@@ -394,51 +423,57 @@ namespace MagicMongoDBTool.UserController
             }
             IsNeedRefresh = false;
         }
+
         /// <summary>
-        /// 重新加载数据
+        ///     重新加载数据
         /// </summary>
         private void ReloadData()
         {
-            if (mDataViewInfo == null) { return; }
-            this.clear();
+            if (mDataViewInfo == null)
+            {
+                return;
+            }
+            clear();
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
             List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);
             MongoDBHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             SetDataNav();
             IsNeedRefresh = false;
         }
+
         /// <summary>
-        /// 查询
+        ///     查询
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void QueryStripButton_Click(object sender, EventArgs e)
         {
             SystemManager.OpenForm(new frmQuery(mDataViewInfo), true, false);
-            this.FilterStripButton.Enabled = mDataViewInfo.IsUseFilter;
-            this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            FilterStripButton.Enabled = mDataViewInfo.IsUseFilter;
+            FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
             //重新展示数据
             RefreshGUI();
         }
+
         /// <summary>
-        /// 过滤器
+        ///     过滤器
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FilterStripButton_Click(object sender, EventArgs e)
         {
             mDataViewInfo.IsUseFilter = !mDataViewInfo.IsUseFilter;
-            this.FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
+            FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
             //过滤变更后，重新刷新
             RefreshGUI();
         }
+
         //刷新
         private void RefreshStripButton_Click(object sender, EventArgs e)
         {
             RefreshGUI();
         }
+
         #endregion
-
-
     }
 }

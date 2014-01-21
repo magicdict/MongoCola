@@ -1,10 +1,10 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using TreeViewColumnsProject;
 
 namespace MagicMongoDBTool.Module
@@ -12,19 +12,23 @@ namespace MagicMongoDBTool.Module
     public static partial class MongoDBHelper
     {
         #region"展示状态"
+
         /// <summary>
-        /// Fill Server Status to treeview
+        ///     Fill Server Status to treeview
         /// </summary>
         /// <param name="trvSvrStatus"></param>
         public static void FillSrvStatusToList(TreeViewColumns trvSvrStatus)
         {
-            List<BsonDocument> SrvDocList = new List<BsonDocument>();
+            var SrvDocList = new List<BsonDocument>();
             foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
             {
                 try
                 {
                     MongoServer mongoSvr = _mongoConnSvrLst[mongoSvrKey];
-                    if (!SystemManager.GetCurrentServerConfig(mongoSvrKey).Health) { continue; }
+                    if (!SystemManager.GetCurrentServerConfig(mongoSvrKey).Health)
+                    {
+                        continue;
+                    }
                     //flydreamer提供的代码
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
                     if (SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin)
@@ -47,7 +51,7 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// Fill Database status to ListView
+        ///     Fill Database status to ListView
         /// </summary>
         /// <param name="lstSvr"></param>
         public static void FillDataBaseStatusToList(ListView lstSvr)
@@ -66,15 +70,22 @@ namespace MagicMongoDBTool.Module
             }
             else
             {
-                lstSvr.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_DataBaseName));
-                lstSvr.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_CollectionCount));
-                lstSvr.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_DataSize));
-                lstSvr.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_FileSize));
-                lstSvr.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_IndexCount));
-                lstSvr.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_IndexSize));
-                lstSvr.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_ObjectCount));
-                lstSvr.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_StorageSize));
-
+                lstSvr.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_DataBaseName));
+                lstSvr.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_CollectionCount));
+                lstSvr.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_DataSize));
+                lstSvr.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_FileSize));
+                lstSvr.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_IndexCount));
+                lstSvr.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_IndexSize));
+                lstSvr.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_ObjectCount));
+                lstSvr.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_StorageSize));
             }
             foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
             {
@@ -83,13 +94,16 @@ namespace MagicMongoDBTool.Module
                     MongoServer mongoSvr = _mongoConnSvrLst[mongoSvrKey];
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
                     if (!SystemManager.GetCurrentServerConfig(mongoSvrKey).Health ||
-                        !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin) { continue; }
-                    List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
+                        !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin)
+                    {
+                        continue;
+                    }
+                    List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList();
                     foreach (String strDBName in databaseNameList)
                     {
                         MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
                         DatabaseStatsResult dbStatus = mongoDB.GetStats();
-                        ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
+                        var lst = new ListViewItem(mongoSvrKey + "." + strDBName);
                         try
                         {
                             lst.SubItems.Add(dbStatus.CollectionCount.ToString());
@@ -106,7 +120,6 @@ namespace MagicMongoDBTool.Module
                         lst.SubItems.Add(GetSize(dbStatus.StorageSize));
                         lstSvr.Items.Add(lst);
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -115,8 +128,9 @@ namespace MagicMongoDBTool.Module
             }
             lstSvr.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
+
         /// <summary>
-        /// fill Collection status to ListView
+        ///     fill Collection status to ListView
         /// </summary>
         /// <param name="lstData"></param>
         public static void FillCollectionStatusToList(ListView lstData)
@@ -141,20 +155,30 @@ namespace MagicMongoDBTool.Module
             }
             else
             {
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_ObjectCount));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_DataSize));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_LastExtentSize));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_StorageSize));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_TotalIndexSize));
+                lstData.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName));
+                lstData.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_ObjectCount));
+                lstData.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_DataSize));
+                lstData.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_LastExtentSize));
+                lstData.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_StorageSize));
+                lstData.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_TotalIndexSize));
 
                 //2012-3-6
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments));
+                lstData.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped));
+                lstData.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments));
 
 
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_AverageObjectSize));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_PaddingFactor));
+                lstData.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_AverageObjectSize));
+                lstData.Columns.Add(
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_PaddingFactor));
             }
             foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
             {
@@ -163,19 +187,22 @@ namespace MagicMongoDBTool.Module
                     MongoServer mongoSvr = _mongoConnSvrLst[mongoSvrKey];
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
                     if (!SystemManager.GetCurrentServerConfig(mongoSvrKey).Health ||
-                         !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin) { continue; }
-                    List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
+                        !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin)
+                    {
+                        continue;
+                    }
+                    List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList();
                     foreach (String strDBName in databaseNameList)
                     {
                         MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
 
-                        List<String> colNameList = mongoDB.GetCollectionNames().ToList<String>();
+                        List<String> colNameList = mongoDB.GetCollectionNames().ToList();
                         foreach (String strColName in colNameList)
                         {
                             try
                             {
                                 CollectionStatsResult CollectionStatus = mongoDB.GetCollection(strColName).GetStats();
-                                ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName + "." + strColName);
+                                var lst = new ListViewItem(mongoSvrKey + "." + strDBName + "." + strColName);
                                 lst.SubItems.Add(CollectionStatus.ObjectCount.ToString());
                                 lst.SubItems.Add(GetSize(CollectionStatus.DataSize));
                                 lst.SubItems.Add(GetSize(CollectionStatus.LastExtentSize));
@@ -201,7 +228,7 @@ namespace MagicMongoDBTool.Module
                                 {
                                     //在某些条件下，这个值会抛出异常，IndexKeyNotFound
                                     //同时发现,这个时候Count = 0,TryCatch可能会消耗时间，所以改为条件判断
-                                    lst.SubItems.Add(GetSize((long)CollectionStatus.AverageObjectSize));
+                                    lst.SubItems.Add(GetSize((long) CollectionStatus.AverageObjectSize));
                                 }
                                 else
                                 {
@@ -236,8 +263,9 @@ namespace MagicMongoDBTool.Module
             }
             lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
+
         /// <summary>
-        /// 将数据Opr放入ListView
+        ///     将数据Opr放入ListView
         /// </summary>
         /// <param name="lstSrvOpr"></param>
         public static void FillCurrentOprToList(ListView lstSrvOpr)
@@ -264,8 +292,11 @@ namespace MagicMongoDBTool.Module
                     MongoServer mongoSvr = _mongoConnSvrLst[mongoSvrKey];
                     //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
                     if (!SystemManager.GetCurrentServerConfig(mongoSvrKey).Health ||
-                        !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin) { continue; }
-                    List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList<String>();
+                        !SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin)
+                    {
+                        continue;
+                    }
+                    List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList();
                     foreach (String strDBName in databaseNameList)
                     {
                         try
@@ -275,7 +306,7 @@ namespace MagicMongoDBTool.Module
                             BsonArray doc = dbStatus.GetValue("inprog").AsBsonArray;
                             foreach (BsonDocument item in doc)
                             {
-                                ListViewItem lst = new ListViewItem(mongoSvrKey + "." + strDBName);
+                                var lst = new ListViewItem(mongoSvrKey + "." + strDBName);
                                 foreach (String itemName in item.Names)
                                 {
                                     lst.SubItems.Add(item.GetValue(itemName).ToString());
@@ -296,14 +327,103 @@ namespace MagicMongoDBTool.Module
             }
             lstSrvOpr.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
+
         #endregion
 
         #region "辅助方法和排序器"
 
-        internal class lvwColumnSorter : System.Collections.IComparer
+        /// <summary>
+        ///     将执行结果转化为细节报告文字列
+        /// </summary>
+        /// <param name="Resultlst"></param>
+        /// <returns></returns>
+        public static String ConvertCommandResultlstToString(List<CommandResult> Resultlst)
+        {
+            String Details = String.Empty;
+            foreach (CommandResult item in Resultlst)
+            {
+                Details += item.Response + Environment.NewLine;
+            }
+            return Details;
+        }
+
+        /// <summary>
+        ///     Size的文字表达
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        private static String GetSize(BsonValue size)
+        {
+            if (size.IsInt32)
+            {
+                return GetSize((Int32) size);
+            }
+            return GetSize((Int64) size);
+        }
+
+        /// <summary>
+        ///     Size的文字表达
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        private static String GetSize(long size)
+        {
+            String[] Unit =
+            {
+                "Byte", "KB", "MB", "GB", "TB"
+            };
+            if (size == 0)
+            {
+                return "0 Byte";
+            }
+            byte unitOrder = 2;
+            double tempSize = size/Math.Pow(2, 20);
+            while (!(tempSize > 0.1 & tempSize < 1000))
+            {
+                if (tempSize < 0.1)
+                {
+                    tempSize = tempSize*1024;
+                    unitOrder--;
+                }
+                else
+                {
+                    tempSize = tempSize/1024;
+                    unitOrder++;
+                }
+            }
+            return String.Format("{0:F2}", tempSize) + " " + Unit[unitOrder];
+        }
+
+        /// <summary>
+        ///     将表示的尺寸还原为实际尺寸以对应排序的要求
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        public static long ReconvSize(String size)
+        {
+            String[] Unit =
+            {
+                "Byte", "KB", "MB", "GB", "TB"
+            };
+            if (size == "0 Byte")
+            {
+                return 0;
+            }
+            for (int i = 0; i < Unit.Length; i++)
+            {
+                if (size.EndsWith(Unit[i]))
+                {
+                    size = size.Replace(Unit[i], String.Empty).Trim();
+                    return (long) (Convert.ToDouble(size)*Math.Pow(2, (i*10)));
+                }
+            }
+            return 0;
+        }
+
+        internal class lvwColumnSorter : IComparer
         {
             /// <summary>
-            /// 比较方式
+            ///     比较方式
             /// </summary>
             public enum SortMethod
             {
@@ -313,62 +433,90 @@ namespace MagicMongoDBTool.Module
             }
 
             /// <summary>
-            /// 指定按照哪个列排序  
+            ///     声明CaseInsensitiveComparer类对象
             /// </summary>
-            private int ColumnToSort;
-            /// <summary>
-            /// 指定排序的方式  
-            /// </summary>
-            private SortOrder OrderOfSort;
-            /// <summary>
-            /// 声明CaseInsensitiveComparer类对象 
-            /// </summary>
-            private CaseInsensitiveComparer ObjectCompare;
+            private readonly CaseInsensitiveComparer ObjectCompare;
 
             /// <summary>
-            /// 比较方式 
+            ///     指定按照哪个列排序
+            /// </summary>
+            private int ColumnToSort;
+
+            /// <summary>
+            ///     指定排序的方式
+            /// </summary>
+            private SortOrder OrderOfSort;
+
+            /// <summary>
+            ///     比较方式
             /// </summary>
             private SortMethod mCompareMethod;
 
             /// <summary>
-            /// 构造函数
+            ///     构造函数
             /// </summary>
             public lvwColumnSorter()
             {
-                ColumnToSort = 0;// 默认按第一列排序            
-                OrderOfSort = SortOrder.None;// 排序方式为不排序            
-                ObjectCompare = new CaseInsensitiveComparer();// 初始化CaseInsensitiveComparer类对象
+                ColumnToSort = 0; // 默认按第一列排序            
+                OrderOfSort = SortOrder.None; // 排序方式为不排序            
+                ObjectCompare = new CaseInsensitiveComparer(); // 初始化CaseInsensitiveComparer类对象
                 mCompareMethod = SortMethod.StringCompare; //是否使用Size比较
             }
 
+            public SortMethod CompareMethod
+            {
+                set { mCompareMethod = value; }
+                get { return mCompareMethod; }
+            }
+
+            /// 获取或设置按照哪一列排序.
+            public int SortColumn
+            {
+                set { ColumnToSort = value; }
+                get { return ColumnToSort; }
+            }
+
+            /// 获取或设置排序方式.
+            public SortOrder Order
+            {
+                set { OrderOfSort = value; }
+                get { return OrderOfSort; }
+            }
+
             /// <summary>
-            /// 比较
+            ///     比较
             /// </summary>
             /// <param name="x"></param>
             /// <param name="y"></param>
             /// <returns></returns>
             public int Compare(Object x, Object y)
             {
-                ListViewItem lstX = (ListViewItem)x;
-                ListViewItem lstY = (ListViewItem)y;
+                var lstX = (ListViewItem) x;
+                var lstY = (ListViewItem) y;
                 int rtnCompare = 0;
                 switch (mCompareMethod)
                 {
                     case SortMethod.StringCompare:
-                        rtnCompare = ObjectCompare.Compare(lstX.SubItems[ColumnToSort].Text, lstY.SubItems[ColumnToSort].Text);
+                        rtnCompare = ObjectCompare.Compare(lstX.SubItems[ColumnToSort].Text,
+                            lstY.SubItems[ColumnToSort].Text);
                         break;
                     case SortMethod.SizeCompare:
-                        rtnCompare = (int)(ReconvSize(lstX.SubItems[ColumnToSort].Text) - ReconvSize(lstY.SubItems[ColumnToSort].Text));
+                        rtnCompare =
+                            (int)
+                                (ReconvSize(lstX.SubItems[ColumnToSort].Text) -
+                                 ReconvSize(lstY.SubItems[ColumnToSort].Text));
                         break;
                     case SortMethod.NumberCompare:
                         //当两个数字相减小于1时，(int)的强制转换会将结果变成0，所以不能使用减法来获得Ret。。。
-                        if (Convert.ToDouble(lstX.SubItems[ColumnToSort].Text) > Convert.ToDouble(lstY.SubItems[ColumnToSort].Text))
+                        if (Convert.ToDouble(lstX.SubItems[ColumnToSort].Text) >
+                            Convert.ToDouble(lstY.SubItems[ColumnToSort].Text))
                         {
                             rtnCompare = 1;
                         }
                         else
                         {
-                            if (Convert.ToDouble(lstX.SubItems[ColumnToSort].Text) == Convert.ToDouble(lstY.SubItems[ColumnToSort].Text))
+                            if (Convert.ToDouble(lstX.SubItems[ColumnToSort].Text) ==
+                                Convert.ToDouble(lstY.SubItems[ColumnToSort].Text))
                             {
                                 rtnCompare = 0;
                             }
@@ -381,132 +529,10 @@ namespace MagicMongoDBTool.Module
                 }
                 if (OrderOfSort == SortOrder.Descending)
                 {
-                    rtnCompare = rtnCompare * -1;
+                    rtnCompare = rtnCompare*-1;
                 }
                 return rtnCompare;
             }
-            public SortMethod CompareMethod
-            {
-                set
-                {
-                    mCompareMethod = value;
-                }
-                get
-                {
-                    return mCompareMethod;
-                }
-            }
-
-            /// 获取或设置按照哪一列排序.        
-            public int SortColumn
-            {
-                set
-                {
-                    ColumnToSort = value;
-                }
-                get
-                {
-                    return ColumnToSort;
-                }
-            }
-            /// 获取或设置排序方式.    
-            public SortOrder Order
-            {
-                set
-                {
-                    OrderOfSort = value;
-                }
-                get
-                {
-                    return OrderOfSort;
-                }
-            }
-        }
-        /// <summary>
-        /// 将执行结果转化为细节报告文字列
-        /// </summary>
-        /// <param name="Resultlst"></param>
-        /// <returns></returns>
-        public static String ConvertCommandResultlstToString(List<CommandResult> Resultlst)
-        {
-            String Details = String.Empty;
-            foreach (CommandResult item in Resultlst)
-            {
-                Details += item.Response.ToString() + System.Environment.NewLine;
-            }
-            return Details;
-        }
-        /// <summary>
-        /// Size的文字表达
-        /// </summary>
-        /// <param name="size"></param>
-        /// <returns></returns>
-        private static String GetSize(BsonValue size)
-        {
-            if (size.IsInt32)
-            {
-                return GetSize((Int32)size);
-            }
-            else
-            {
-                return GetSize((Int64)size);
-            }
-        }
-
-        /// <summary>
-        /// Size的文字表达
-        /// </summary>
-        /// <param name="size"></param>
-        /// <returns></returns>
-        private static String GetSize(long size)
-        {
-            String[] Unit = new String[]{
-                "Byte","KB","MB","GB","TB"
-            };
-            if (size == 0)
-            {
-                return "0 Byte";
-            }
-            byte unitOrder = 2;
-            double tempSize = size / Math.Pow(2, 20);
-            while (!(tempSize > 0.1 & tempSize < 1000))
-            {
-                if (tempSize < 0.1)
-                {
-                    tempSize = tempSize * 1024;
-                    unitOrder--;
-                }
-                else
-                {
-                    tempSize = tempSize / 1024;
-                    unitOrder++;
-                }
-            }
-            return String.Format("{0:F2}", tempSize) + " " + Unit[unitOrder];
-        }
-        /// <summary>
-        /// 将表示的尺寸还原为实际尺寸以对应排序的要求
-        /// </summary>
-        /// <param name="size"></param>
-        /// <returns></returns>
-        public static long ReconvSize(String size)
-        {
-            String[] Unit = new String[]{
-                "Byte","KB","MB","GB","TB"
-            };
-            if (size == "0 Byte")
-            {
-                return 0;
-            }
-            for (int i = 0; i < Unit.Length; i++)
-            {
-                if (size.EndsWith(Unit[i].ToString()))
-                {
-                    size = size.Replace(Unit[i].ToString(), String.Empty).Trim();
-                    return (long)(Convert.ToDouble(size) * Math.Pow(2, (i * 10)));
-                }
-            }
-            return 0;
         }
 
         #endregion

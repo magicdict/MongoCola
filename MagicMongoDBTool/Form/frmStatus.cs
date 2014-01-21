@@ -1,12 +1,13 @@
-﻿using MagicMongoDBTool.Module;
-using MongoDB.Bson;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using MagicMongoDBTool.Module;
+using MagicMongoDBTool.Properties;
+using MongoDB.Bson;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmStatus : System.Windows.Forms.Form
+    public partial class frmStatus : Form
     {
         public frmStatus()
         {
@@ -15,9 +16,9 @@ namespace MagicMongoDBTool
 
         private void frmStatus_Load(object sender, EventArgs e)
         {
-            this.Icon = GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.KeyInfo);
+            Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
             String strType = SystemManager.SelectTagType;
-            BsonDocument DocStatus = new BsonDocument();
+            var DocStatus = new BsonDocument();
             cmbChartField.Visible = false;
             chartResult.Visible = false;
             btnOpCnt.Visible = false;
@@ -27,8 +28,10 @@ namespace MagicMongoDBTool
                 case MongoDBHelper.SINGLE_DB_SERVER_TAG:
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
-                        DocStatus = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
-                        this.trvStatus.Height = this.trvStatus.Height * 2;
+                        DocStatus =
+                            MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command,
+                                SystemManager.GetCurrentServer()).Response;
+                        trvStatus.Height = trvStatus.Height*2;
                     }
                     if (strType == MongoDBHelper.SERVER_TAG)
                     {
@@ -68,25 +71,32 @@ namespace MagicMongoDBTool
 
                     chartResult.Series.Clear();
                     chartResult.Titles.Clear();
-                    Series SeriesResult = new Series("Usage");
-                    DataPoint dpDataSize = new DataPoint(0, SystemManager.GetCurrentCollection().GetStats().DataSize);
-                    dpDataSize.LegendText = "DataSize";
-                    dpDataSize.LegendToolTip = "DataSize";
-                    dpDataSize.ToolTip = "DataSize";
+                    var SeriesResult = new Series("Usage");
+                    var dpDataSize = new DataPoint(0, SystemManager.GetCurrentCollection().GetStats().DataSize)
+                    {
+                        LegendText = "DataSize",
+                        LegendToolTip = "DataSize",
+                        ToolTip = "DataSize"
+                    };
                     SeriesResult.Points.Add(dpDataSize);
 
-                    DataPoint dpTotalIndexSize = new DataPoint(0, SystemManager.GetCurrentCollection().GetStats().TotalIndexSize);
-                    dpTotalIndexSize.LegendText = "TotalIndexSize";
-                    dpTotalIndexSize.LegendToolTip = "TotalIndexSize";
-                    dpTotalIndexSize.ToolTip = "TotalIndexSize";
+                    var dpTotalIndexSize = new DataPoint(0,
+                        SystemManager.GetCurrentCollection().GetStats().TotalIndexSize)
+                    {
+                        LegendText = "TotalIndexSize",
+                        LegendToolTip = "TotalIndexSize",
+                        ToolTip = "TotalIndexSize"
+                    };
                     SeriesResult.Points.Add(dpTotalIndexSize);
 
-                    DataPoint dpFreeSize = new DataPoint(0, SystemManager.GetCurrentCollection().GetStats().StorageSize -
-                                                               SystemManager.GetCurrentCollection().GetStats().TotalIndexSize -
-                                                               SystemManager.GetCurrentCollection().GetStats().DataSize);
-                    dpFreeSize.LegendText = "FreeSize";
-                    dpFreeSize.LegendToolTip = "FreeSize";
-                    dpFreeSize.ToolTip = "FreeSize";
+                    var dpFreeSize = new DataPoint(0, SystemManager.GetCurrentCollection().GetStats().StorageSize -
+                                                      SystemManager.GetCurrentCollection().GetStats().TotalIndexSize -
+                                                      SystemManager.GetCurrentCollection().GetStats().DataSize)
+                    {
+                        LegendText = "FreeSize",
+                        LegendToolTip = "FreeSize",
+                        ToolTip = "FreeSize"
+                    };
                     SeriesResult.Points.Add(dpFreeSize);
 
                     SeriesResult.ChartType = SeriesChartType.Pie;
@@ -97,22 +107,23 @@ namespace MagicMongoDBTool
                 default:
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
-                        DocStatus = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
-                        this.trvStatus.Height = this.trvStatus.Height * 2;
+                        DocStatus =
+                            MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command,
+                                SystemManager.GetCurrentServer()).Response;
+                        trvStatus.Height = trvStatus.Height*2;
                     }
                     break;
             }
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
-                this.cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+                cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
             }
-            MongoDBHelper.FillDataToTreeView(strType, this.trvStatus, DocStatus);
-            this.trvStatus.DatatreeView.Nodes[0].Expand();
-
+            MongoDBHelper.FillDataToTreeView(strType, trvStatus, DocStatus);
+            trvStatus.DatatreeView.Nodes[0].Expand();
         }
 
-        void btnOpCnt_Click(object sender, EventArgs e)
+        private void btnOpCnt_Click(object sender, EventArgs e)
         {
             SystemManager.OpenForm(new frmServerMonitor(), true, true);
         }
@@ -122,7 +133,7 @@ namespace MagicMongoDBTool
             //图形化初始化
             chartResult.Series.Clear();
             chartResult.Titles.Clear();
-            Series SeriesResult = new Series(strField);
+            var SeriesResult = new Series(strField);
             foreach (String colName in SystemManager.GetCurrentDataBase().GetCollectionNames())
             {
                 DataPoint ColPoint;
@@ -132,7 +143,8 @@ namespace MagicMongoDBTool
                         try
                         {
                             //如果没有任何对象的时候，平均值无法取得
-                            ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().AverageObjectSize);
+                            ColPoint = new DataPoint(0,
+                                SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().AverageObjectSize);
                         }
                         catch (Exception ex)
                         {
@@ -141,35 +153,43 @@ namespace MagicMongoDBTool
                         }
                         break;
                     case "DataSize":
-                        ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().DataSize);
+                        ColPoint = new DataPoint(0,
+                            SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().DataSize);
                         break;
                     case "ExtentCount":
-                        ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().ExtentCount);
+                        ColPoint = new DataPoint(0,
+                            SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().ExtentCount);
                         break;
-                    //case "Flags":
-                    //    ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().Flags);
-                    //    break;
+                        //case "Flags":
+                        //    ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().Flags);
+                        //    break;
                     case "IndexCount":
-                        ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().IndexCount);
+                        ColPoint = new DataPoint(0,
+                            SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().IndexCount);
                         break;
                     case "LastExtentSize":
-                        ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().LastExtentSize);
+                        ColPoint = new DataPoint(0,
+                            SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().LastExtentSize);
                         break;
-                    //case "MaxDocuments":
-                    //    仅在CappedCollection时候有效 
-                    //    ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().MaxDocuments);
-                    //    break;
+                        //case "MaxDocuments":
+                        //    仅在CappedCollection时候有效 
+                        //    ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().MaxDocuments);
+                        //    break;
                     case "ObjectCount":
-                        ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().ObjectCount);
+                        ColPoint = new DataPoint(0,
+                            SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().ObjectCount);
                         break;
                     case "PaddingFactor":
-                        ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().PaddingFactor);
+                        ColPoint = new DataPoint(0,
+                            SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().PaddingFactor);
                         break;
                     case "StorageSize":
-                        ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
+                        ColPoint = new DataPoint(0,
+                            SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
                         break;
                     default:
-                        ColPoint = new DataPoint(0, SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
+                        ColPoint = new DataPoint(0,
+                            SystemManager.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
                         break;
                 }
 
@@ -187,7 +207,7 @@ namespace MagicMongoDBTool
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void cmbChartField_SelectedIndexChanged(object sender, EventArgs e)

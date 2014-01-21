@@ -1,8 +1,7 @@
-﻿using MagicMongoDBTool.Module;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using MagicMongoDBTool.Module;
+
 namespace MagicMongoDBTool.UnitTest
 {
     public partial class frmUnitTest : Form
@@ -11,8 +10,9 @@ namespace MagicMongoDBTool.UnitTest
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// User类的测试数据
+        ///     User类的测试数据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -28,8 +28,9 @@ namespace MagicMongoDBTool.UnitTest
                 MessageBox.Show("Please select a server");
             }
         }
+
         /// <summary>
-        /// TTL的测试数据
+        ///     TTL的测试数据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -45,8 +46,9 @@ namespace MagicMongoDBTool.UnitTest
                 MessageBox.Show("Please select a server");
             }
         }
+
         /// <summary>
-        /// Geo测试数据
+        ///     Geo测试数据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -62,8 +64,9 @@ namespace MagicMongoDBTool.UnitTest
                 MessageBox.Show("Please select a server");
             }
         }
+
         /// <summary>
-        /// 聚合测试数据
+        ///     聚合测试数据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -91,7 +94,6 @@ namespace MagicMongoDBTool.UnitTest
             {
                 MessageBox.Show("Please select a server");
             }
-
         }
     }
 }

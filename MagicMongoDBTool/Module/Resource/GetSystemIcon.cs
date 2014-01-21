@@ -1,85 +1,24 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using MagicMongoDBTool.Properties;
+using Microsoft.Win32;
 
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
-    /// 提供从操作系统读取图标的方法
+    ///     提供从操作系统读取图标的方法
     /// </summary>
     public static class GetSystemIcon
     {
-
-        [DllImport("gdi32.dll")]
-        public static extern Boolean DeleteObject(IntPtr hObject);
         /// <summary>
-        /// Image转换为Icon
+        ///     主树形控件图标类型
         /// </summary>
-        /// <param name="orgImg"></param>
-        /// <returns></returns>
-        public static Icon ConvertImgToIcon(Image orgImg)
-        {
-            Bitmap bmp = new Bitmap(orgImg);
-            IntPtr h = bmp.GetHicon();
-            Icon icon = System.Drawing.Icon.FromHandle(h);
-            // 释放IntPtr
-            DeleteObject(h);
-            return icon;
-        }
-        public static byte[] imageToByteArray(System.Drawing.Image imageIn, ImageFormat Format)
-        {
-            MemoryStream ms = new MemoryStream();
-            imageIn.Save(ms, ImageFormat.Png);
-            return ms.ToArray();
-        }
-        public static Image byteArrayToImage(byte[] byteArrayIn)
-        {
-            MemoryStream ms = new MemoryStream(byteArrayIn);
-            Image returnImage = Image.FromStream(ms);
-            return returnImage;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        public static string GetContentType(string fileName)
-        {
-            string contentType = "application/octetstream";
-            try
-            {
-                string ext = System.IO.Path.GetExtension(fileName).ToLower();
-                Microsoft.Win32.RegistryKey registryKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
-                if (registryKey != null && registryKey.GetValue("Content Type") != null)
-                    contentType = registryKey.GetValue("Content Type").ToString();
-            }
-            catch (Exception)
-            {
-
-            }
-            return contentType;
-        }
-        /// <summary>
-        /// 扩展名和图片下标关联
-        /// </summary>
-        public static Dictionary<String, Int32> IconList = new Dictionary<String, Int32>();
-        /// <summary>
-        /// 图片数组
-        /// </summary>
-        public static ImageList IconImagelist = new ImageList();
-        /// <summary>
-        /// 主树形控件图标数组
-        /// </summary>
-        public static ImageList MainTreeImage = new ImageList();
-        /// <summary>
-        /// 主树形控件图标类型
-        /// </summary>
-        public enum MainTreeImageType : int
+        public enum MainTreeImageType
         {
             Blank = 0,
             WebServer = 1,
@@ -99,8 +38,81 @@ namespace MagicMongoDBTool.Module
             Connection = 15,
             Servers
         }
+
         /// <summary>
-        /// 主树形控件图标数组初始化
+        ///     扩展名和图片下标关联
+        /// </summary>
+        public static Dictionary<String, Int32> IconList = new Dictionary<String, Int32>();
+
+        /// <summary>
+        ///     图片数组
+        /// </summary>
+        public static ImageList IconImagelist = new ImageList();
+
+        /// <summary>
+        ///     主树形控件图标数组
+        /// </summary>
+        public static ImageList MainTreeImage = new ImageList();
+
+        /// <summary>
+        ///     主树形控件图标数组
+        /// </summary>
+        public static ImageList TabViewImage = new ImageList();
+
+        [DllImport("gdi32.dll")]
+        public static extern Boolean DeleteObject(IntPtr hObject);
+
+        /// <summary>
+        ///     Image转换为Icon
+        /// </summary>
+        /// <param name="orgImg"></param>
+        /// <returns></returns>
+        public static Icon ConvertImgToIcon(Image orgImg)
+        {
+            var bmp = new Bitmap(orgImg);
+            IntPtr h = bmp.GetHicon();
+            Icon icon = Icon.FromHandle(h);
+            // 释放IntPtr
+            DeleteObject(h);
+            return icon;
+        }
+
+        public static byte[] imageToByteArray(Image imageIn, ImageFormat Format)
+        {
+            var ms = new MemoryStream();
+            imageIn.Save(ms, ImageFormat.Png);
+            return ms.ToArray();
+        }
+
+        public static Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            var ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static string GetContentType(string fileName)
+        {
+            string contentType = "application/octetstream";
+            try
+            {
+                string ext = Path.GetExtension(fileName).ToLower();
+                RegistryKey registryKey = Registry.ClassesRoot.OpenSubKey(ext);
+                if (registryKey != null && registryKey.GetValue("Content Type") != null)
+                    contentType = registryKey.GetValue("Content Type").ToString();
+            }
+            catch (Exception)
+            {
+            }
+            return contentType;
+        }
+
+        /// <summary>
+        ///     主树形控件图标数组初始化
         /// </summary>
         public static void InitMainTreeImage()
         {
@@ -114,37 +126,32 @@ namespace MagicMongoDBTool.Module
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.KeyInfo));
             MainTreeImage.Images.Add(GetResource.GetImage(ImageType.User));
 
-            MainTreeImage.Images.Add(MagicMongoDBTool.Properties.Resources.CollectionList);
-            MainTreeImage.Images.Add(MagicMongoDBTool.Properties.Resources.JavaScriptList);
-            MainTreeImage.Images.Add(MagicMongoDBTool.Properties.Resources.GFS);
-            MainTreeImage.Images.Add(MagicMongoDBTool.Properties.Resources.Edit);
-            MainTreeImage.Images.Add(MagicMongoDBTool.Properties.Resources.SystemCollection);
+            MainTreeImage.Images.Add(Resources.CollectionList);
+            MainTreeImage.Images.Add(Resources.JavaScriptList);
+            MainTreeImage.Images.Add(Resources.GFS);
+            MainTreeImage.Images.Add(Resources.Edit);
+            MainTreeImage.Images.Add(Resources.SystemCollection);
 
             MainTreeImage.Images.Add(GetResource.GetIcon(IconType.No));
-            MainTreeImage.Images.Add(MagicMongoDBTool.Properties.Resources.Connection);
-            MainTreeImage.Images.Add(MagicMongoDBTool.Properties.Resources.Servers);
+            MainTreeImage.Images.Add(Resources.Connection);
+            MainTreeImage.Images.Add(Resources.Servers);
         }
 
         /// <summary>
-        /// 主树形控件图标数组
-        /// </summary>
-        public static ImageList TabViewImage = new ImageList();
-        /// <summary>
-        /// 
         /// </summary>
         public static void InitTabViewImage()
         {
-            TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.Monitor);
-            TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.JavaScriptList);
-            TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.Collection);
-            TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.User);
-            TabViewImage.Images.Add(MagicMongoDBTool.Properties.Resources.GFS);
+            TabViewImage.Images.Add(Resources.Monitor);
+            TabViewImage.Images.Add(Resources.JavaScriptList);
+            TabViewImage.Images.Add(Resources.Collection);
+            TabViewImage.Images.Add(Resources.User);
+            TabViewImage.Images.Add(Resources.GFS);
 
-            IconImagelist.Images.Add(MagicMongoDBTool.Properties.Resources.NewDocument);
+            IconImagelist.Images.Add(Resources.NewDocument);
         }
 
         /// <summary>
-        /// 根据文件名获得图片数组下标
+        ///     根据文件名获得图片数组下标
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="isLarge"></param>
@@ -156,25 +163,19 @@ namespace MagicMongoDBTool.Module
             {
                 return IconList[GetIcon];
             }
-            else
+            Icon mIcon = GetIconByFileType(GetIcon, isLarge);
+            if (mIcon != null)
             {
-                Icon mIcon = GetIconByFileType(GetIcon, isLarge);
-                if (mIcon != null)
-                {
-                    IconImagelist.Images.Add(mIcon);
-                    IconList.Add(GetIcon, IconImagelist.Images.Count - 1);
-                    return IconImagelist.Images.Count - 1;
-                }
-                else
-                {
-                    IconList.Add(GetIcon, 0);
-                    return 0;
-                }
+                IconImagelist.Images.Add(mIcon);
+                IconList.Add(GetIcon, IconImagelist.Images.Count - 1);
+                return IconImagelist.Images.Count - 1;
             }
+            IconList.Add(GetIcon, 0);
+            return 0;
         }
 
         /// <summary>
-        /// 依据文件名读取图标，若指定文件不存在，则返回空值。
+        ///     依据文件名读取图标，若指定文件不存在，则返回空值。
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
@@ -189,17 +190,18 @@ namespace MagicMongoDBTool.Module
                 return null;
             }
 
-            SHFILEINFO shInfo = new SHFILEINFO();
+            var shInfo = new SHFILEINFO();
             //Use this to get the small Icon
-            Win32.SHGetFileInfo(fileName, 0, ref shInfo, (uint)Marshal.SizeOf(shInfo), Win32.SHGFI_ICON | Win32.SHGFI_SMALLICON);
+            Win32.SHGetFileInfo(fileName, 0, ref shInfo, (uint) Marshal.SizeOf(shInfo),
+                Win32.SHGFI_ICON | Win32.SHGFI_SMALLICON);
             //The icon is returned in the hIcon member of the shinfo struct
-            System.Drawing.Icon myIcon = System.Drawing.Icon.FromHandle(shInfo.hIcon);
+            Icon myIcon = Icon.FromHandle(shInfo.hIcon);
             return myIcon;
         }
 
         /// <summary>
-        /// 给出文件扩展名（.*），返回相应图标
-        /// 若不以"."开头则返回文件夹的图标。
+        ///     给出文件扩展名（.*），返回相应图标
+        ///     若不以"."开头则返回文件夹的图标。
         /// </summary>
         /// <param name="fileType"></param>
         /// <param name="isLarge"></param>
@@ -242,20 +244,20 @@ namespace MagicMongoDBTool.Module
                 //直接指定为文件夹图标
                 regIconString = systemDirectory + "shell32.dll,3";
             }
-            String[] fileIcon = regIconString.Split(new char[] { ',' });
+            String[] fileIcon = regIconString.Split(new[] {','});
             if (fileIcon.Length != 2)
             {
                 //系统注册表中注册的标图不能直接提取，则返回可执行文件的通用图标
-                fileIcon = new String[] { systemDirectory + "shell32.dll", "2" };
+                fileIcon = new[] {systemDirectory + "shell32.dll", "2"};
             }
             Icon resultIcon = null;
             try
             {
                 //调用API方法读取图标
-                int[] phiconLarge = new int[1];
-                int[] phiconSmall = new int[1];
+                var phiconLarge = new int[1];
+                var phiconSmall = new int[1];
                 Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
-                IntPtr IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
+                var IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
                 resultIcon = Icon.FromHandle(IconHnd);
             }
             catch
@@ -269,20 +271,21 @@ namespace MagicMongoDBTool.Module
                 {
                     //默认方案
                     regIconString = systemDirectory + "shell32.dll,0";
-                    fileIcon = regIconString.Split(new char[] { ',' });
+                    fileIcon = regIconString.Split(new[] {','});
                     resultIcon = null;
                     //调用API方法读取图标
-                    int[] phiconLarge = new int[1];
-                    int[] phiconSmall = new int[1];
+                    var phiconLarge = new int[1];
+                    var phiconSmall = new int[1];
                     Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
-                    IntPtr IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
+                    var IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
                     resultIcon = Icon.FromHandle(IconHnd);
                 }
             }
             return resultIcon;
         }
+
         /// <summary>
-        /// 根据扩展名获得图标
+        ///     根据扩展名获得图标
         /// </summary>
         /// <param name="sFileExt"></param>
         /// <returns></returns>
@@ -290,13 +293,19 @@ namespace MagicMongoDBTool.Module
         {
             {
                 String sProg;
-                var tmp = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(sFileExt).GetValue(String.Empty);
+                object tmp = Registry.ClassesRoot.OpenSubKey(sFileExt).GetValue(String.Empty);
                 //Get the program that will open files with this extension
-                sProg = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(tmp.ToString()).OpenSubKey("shell").OpenSubKey("open").OpenSubKey("command").GetValue(String.Empty).ToString();
+                sProg =
+                    Registry.ClassesRoot.OpenSubKey(tmp.ToString())
+                        .OpenSubKey("shell")
+                        .OpenSubKey("open")
+                        .OpenSubKey("command")
+                        .GetValue(String.Empty)
+                        .ToString();
                 //strip the filename
-                if (sProg.Substring(0, 1) == System.Convert.ToChar(34).ToString())
+                if (sProg.Substring(0, 1) == Convert.ToChar(34).ToString())
                 {
-                    sProg = sProg.Substring(1, sProg.IndexOf(System.Convert.ToChar(34), 2) - 1);
+                    sProg = sProg.Substring(1, sProg.IndexOf(Convert.ToChar(34), 2) - 1);
                 }
                 else
                 {
@@ -304,12 +313,12 @@ namespace MagicMongoDBTool.Module
                 }
                 sProg = sProg.Replace("%1", String.Empty);
                 // Extract the icon from the program
-                Icon oIcon = System.Drawing.Icon.ExtractAssociatedIcon(sProg);
+                Icon oIcon = Icon.ExtractAssociatedIcon(sProg);
                 return oIcon;
             }
         }
+
         /// <summary>
-        /// 
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct SHFILEINFO
@@ -317,27 +326,24 @@ namespace MagicMongoDBTool.Module
             public IntPtr hIcon;
             public IntPtr iIcon;
             public uint dwAttributes;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
-            public String szDisplayName;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
-            public String szTypeName;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)] public String szDisplayName;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)] public String szTypeName;
         };
 
-        ///
         /// 定义调用的API方法
-        ///
-        static class Win32
+        private static class Win32
         {
             public const uint SHGFI_ICON = 0x100;
             public const uint SHGFI_LARGEICON = 0x0; // 'Large icon
             public const uint SHGFI_SMALLICON = 0x1; // 'Small icon
 
             [DllImport("shell32.dll")]
-            public static extern IntPtr SHGetFileInfo(String pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
+            public static extern IntPtr SHGetFileInfo(String pszPath, uint dwFileAttributes, ref SHFILEINFO psfi,
+                uint cbSizeFileInfo, uint uFlags);
+
             [DllImport("shell32.dll")]
-            public static extern uint ExtractIconEx(String lpszFile, int nIconIndex, int[] phiconLarge, int[] phiconSmall, uint nIcons);
+            public static extern uint ExtractIconEx(String lpszFile, int nIconIndex, int[] phiconLarge,
+                int[] phiconSmall, uint nIcons);
         }
     }
-
-
 }

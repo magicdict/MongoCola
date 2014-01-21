@@ -1,21 +1,23 @@
-﻿using MongoDB.Bson;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using MongoDB.Bson;
 
 namespace MagicMongoDBTool
 {
     public partial class frmArrayCreator : Form
     {
         /// <summary>
-        /// BsonArray
+        ///     BsonArray
         /// </summary>
         public BsonArray mBsonArray;
+
         public frmArrayCreator()
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// 新增
+        ///     新增
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -23,8 +25,9 @@ namespace MagicMongoDBTool
         {
             ArrayPanel.AddBsonValueItem();
         }
+
         /// <summary>
-        /// 清除
+        ///     清除
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -32,15 +35,16 @@ namespace MagicMongoDBTool
         {
             ArrayPanel.Clear();
         }
+
         /// <summary>
-        /// 确定
+        ///     确定
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
             mBsonArray = ArrayPanel.GetBsonArray();
-            this.Close();
+            Close();
         }
     }
 }

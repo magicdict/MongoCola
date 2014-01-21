@@ -1,95 +1,26 @@
-﻿using MongoDB.Driver;
-using MongoDB.Driver.GridFS;
-using System;
+﻿using System;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using MongoDB.Driver;
+using MongoDB.Driver.GridFS;
 
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
         #region"GFS操作"
-        /// <summary>
-        /// Save And Open String As File
-        /// </summary>
-        /// <param name="strJson"></param>
-        public static void SaveAndOpenStringAsFile(String strJson)
-        {
-            if (!Directory.Exists(TempFileFolder))
-            {
-                Directory.CreateDirectory(TempFileFolder);
-            }
-            String LocalFileName = TempFileFolder + System.IO.Path.DirectorySeparatorChar + "JsonData.txt";
-            StreamWriter t = new StreamWriter(LocalFileName, false);
-            t.Write(strJson);
-            t.Close();
-            System.Diagnostics.Process.Start(LocalFileName);
-        }
-
-
-        ///在使用GirdFileSystem的时候，请注意：
-        ///1.Windows 系统的文件名不区分大小写，不过，filename一定是区分大小写的，如果大小写不匹配的话，会发生无法找到文件的问题
-        ///2.Download的时候，不能使用SlaveOk选项！
 
         /// <summary>
-        /// 打开文件
         /// </summary>
-        /// <param name="strFileName"></param>
-        public static void OpenFile(String strRemoteFileName)
+        public enum UploadResult
         {
-            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
-            MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
+            Complete,
+            Skip,
+            Exception
+        }
 
-            String[] strLocalFileName = strRemoteFileName.Split(System.IO.Path.DirectorySeparatorChar);
-
-            try
-            {
-                if (!Directory.Exists(TempFileFolder))
-                {
-                    Directory.CreateDirectory(TempFileFolder);
-                }
-                String LocalFileName = TempFileFolder + System.IO.Path.DirectorySeparatorChar + strLocalFileName[strLocalFileName.Length - 1];
-                gfs.Download(LocalFileName, strRemoteFileName);
-                System.Diagnostics.Process.Start(LocalFileName);
-            }
-            catch (System.ComponentModel.Win32Exception)
-            {
-                MyMessageBox.ShowEasyMessage("Error", "No Program can open this file");
-            }
-            catch (Exception ex)
-            {
-                SystemManager.ExceptionDeal(ex, "Error", "Exception happend when open file");
-            }
-        }
         /// <summary>
-        /// 下载文件
-        /// </summary>
-        /// <param name="strFileName"></param>
-        public static void DownloadFile(String strLocalFileName, String strRemoteFileName)
-        {
-            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
-            MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
-            gfs.Download(strLocalFileName, strRemoteFileName);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public struct UpLoadFileOption
-        {
-            public enumGFSFileName FileNameOpt;
-            public enumGFSAlready AlreadyOpt;
-            public Boolean IgnoreSubFolder;
-            public Char DirectorySeparatorChar;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public enum enumGFSFileName
-        {
-            filename,
-            path
-        }
-        /// <summary>
-        /// 
         /// </summary>
         public enum enumGFSAlready
         {
@@ -99,17 +30,81 @@ namespace MagicMongoDBTool.Module
             OverwriteIt,
             Stop
         }
+
         /// <summary>
-        /// 
         /// </summary>
-        public enum UploadResult
+        public enum enumGFSFileName
         {
-            Complete,
-            Skip,
-            Exception
+            filename,
+            path
         }
+
         /// <summary>
-        /// 上传文件
+        ///     Save And Open String As File
+        /// </summary>
+        /// <param name="strJson"></param>
+        public static void SaveAndOpenStringAsFile(String strJson)
+        {
+            if (!Directory.Exists(TempFileFolder))
+            {
+                Directory.CreateDirectory(TempFileFolder);
+            }
+            String LocalFileName = TempFileFolder + Path.DirectorySeparatorChar + "JsonData.txt";
+            var t = new StreamWriter(LocalFileName, false);
+            t.Write(strJson);
+            t.Close();
+            Process.Start(LocalFileName);
+        }
+
+
+        /// 在使用GirdFileSystem的时候，请注意：
+        /// 1.Windows 系统的文件名不区分大小写，不过，filename一定是区分大小写的，如果大小写不匹配的话，会发生无法找到文件的问题
+        /// 2.Download的时候，不能使用SlaveOk选项！
+        /// <summary>
+        ///     打开文件
+        /// </summary>
+        /// <param name="strFileName"></param>
+        public static void OpenFile(String strRemoteFileName)
+        {
+            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
+            MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
+
+            String[] strLocalFileName = strRemoteFileName.Split(Path.DirectorySeparatorChar);
+
+            try
+            {
+                if (!Directory.Exists(TempFileFolder))
+                {
+                    Directory.CreateDirectory(TempFileFolder);
+                }
+                String LocalFileName = TempFileFolder + Path.DirectorySeparatorChar +
+                                       strLocalFileName[strLocalFileName.Length - 1];
+                gfs.Download(LocalFileName, strRemoteFileName);
+                Process.Start(LocalFileName);
+            }
+            catch (Win32Exception)
+            {
+                MyMessageBox.ShowEasyMessage("Error", "No Program can open this file");
+            }
+            catch (Exception ex)
+            {
+                SystemManager.ExceptionDeal(ex, "Error", "Exception happend when open file");
+            }
+        }
+
+        /// <summary>
+        ///     下载文件
+        /// </summary>
+        /// <param name="strFileName"></param>
+        public static void DownloadFile(String strLocalFileName, String strRemoteFileName)
+        {
+            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
+            MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
+            gfs.Download(strLocalFileName, strRemoteFileName);
+        }
+
+        /// <summary>
+        ///     上传文件
         /// </summary>
         /// <remarks>Mongo允许同名文件，因为id才是主键</remarks>
         /// <param name="strFileName"></param>
@@ -176,8 +171,9 @@ namespace MagicMongoDBTool.Module
                 return UploadResult.Exception;
             }
         }
+
         /// <summary>
-        /// 删除文件
+        ///     删除文件
         /// </summary>
         /// <param name="strFileName"></param>
         public static void DelFile(String strFileName)
@@ -186,8 +182,9 @@ namespace MagicMongoDBTool.Module
             MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
             gfs.Delete(strFileName);
         }
+
         /// <summary>
-        /// GFS初始化
+        ///     GFS初始化
         /// </summary>
         public static void InitGFS()
         {
@@ -197,8 +194,9 @@ namespace MagicMongoDBTool.Module
                 mongoDB.CreateCollection(COLLECTION_NAME_GFS_FILES);
             }
         }
+
         /// <summary>
-        /// 数据库User初始化
+        ///     数据库User初始化
         /// </summary>
         public static void InitDBUser()
         {
@@ -208,8 +206,9 @@ namespace MagicMongoDBTool.Module
                 mongoDB.CreateCollection(COLLECTION_NAME_USER);
             }
         }
+
         /// <summary>
-        /// Js数据集初始化
+        ///     Js数据集初始化
         /// </summary>
         public static void InitJavascript()
         {
@@ -219,6 +218,17 @@ namespace MagicMongoDBTool.Module
                 mongoDB.CreateCollection(COLLECTION_NAME_JAVASCRIPT);
             }
         }
+
+        /// <summary>
+        /// </summary>
+        public struct UpLoadFileOption
+        {
+            public enumGFSAlready AlreadyOpt;
+            public Char DirectorySeparatorChar;
+            public enumGFSFileName FileNameOpt;
+            public Boolean IgnoreSubFolder;
+        }
+
         #endregion
     }
 }

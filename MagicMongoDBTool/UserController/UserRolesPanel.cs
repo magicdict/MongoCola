@@ -1,7 +1,8 @@
-﻿using MagicMongoDBTool.Module;
-using MongoDB.Bson;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using MagicMongoDBTool.Module;
+using MongoDB.Bson;
+
 namespace MagicMongoDBTool.UserController
 {
     public partial class UserRolesPanel : UserControl
@@ -14,6 +15,7 @@ namespace MagicMongoDBTool.UserController
                 grpRoles.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Roles);
             }
         }
+
         public Boolean IsAdmin
         {
             set
@@ -33,14 +35,15 @@ namespace MagicMongoDBTool.UserController
                 }
             }
         }
+
         public BsonArray getRoles()
         {
-            BsonArray roles = new BsonArray();
-            foreach (Control item in this.grpRoles.Controls)
+            var roles = new BsonArray();
+            foreach (Control item in grpRoles.Controls)
             {
                 if (item.Name.StartsWith("chk"))
                 {
-                    if (((CheckBox)item).Checked)
+                    if (((CheckBox) item).Checked)
                     {
                         roles.Add(item.Name.Substring(3));
                     }
@@ -48,12 +51,13 @@ namespace MagicMongoDBTool.UserController
             }
             return roles;
         }
+
         public void setRoles(BsonArray value)
         {
             {
                 foreach (String item in value)
                 {
-                    ((CheckBox)(grpRoles.Controls.Find("chk" + item, true)[0])).Checked = true;
+                    ((CheckBox) (grpRoles.Controls.Find("chk" + item, true)[0])).Checked = true;
                 }
             }
         }

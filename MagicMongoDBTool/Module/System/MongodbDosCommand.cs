@@ -6,10 +6,10 @@ using System.Text;
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
-    /// DOS方式操作Mongodb的类
+    ///     DOS方式操作Mongodb的类
     /// </summary>
     /// <remarks>
-    /// http://www.cnblogs.com/tommyli/archive/2011/07/22/2114045.html
+    ///     http://www.cnblogs.com/tommyli/archive/2011/07/22/2114045.html
     /// </remarks>
     public class MongodbDosCommand
     {
@@ -26,101 +26,56 @@ namespace MagicMongoDBTool.Module
         //mongotop.exe (2.0.3) 
         //*Utilities Changed by Mongo Version
 
-        /// <summary>
-        /// Mongod使用结构体
-        /// </summary>
-        public class MongodConfig
+        public enum ImprotExport
         {
             /// <summary>
-            /// # 指定数据库路径
+            ///     导入
             /// </summary>
-            public String DBPath = String.Empty;
-            /// <summary>
-            /// # 绑定服务IP，若绑定127.0.0.1，则只能本机访问，不指定默认本地所有IP
-            /// </summary>
-            public String bind_ip = String.Empty;
-            /// <summary>
-            /// # 指定服务端口号，默认端口27017
-            /// </summary>
-            public int Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
-            /// <summary>
-            /// 日志文件
-            /// </summary>
-            public String LogPath = String.Empty;
-            /// <summary>
-            /// 日志是否为添加模式
-            /// </summary>
-            public bool Islogappend = false;
-            /// <summary>
-            /// 日志等级
-            /// </summary>
-            public MongologLevel LogLV = MongologLevel.Quiet;
-            /// <summary>
-            /// 是否作为Windows服务
-            /// </summary>
-            public bool IsInstall = false;
-            /// <summary>
-            /// 是否采用认证模式
-            /// </summary>
-            public bool IsAuth = false;
-
-            ///主/从参数
-            /// <summary>
-            /// # 主库模式
-            /// </summary>
-            public bool master = false;
-            /// <summary>
-            ///# 从库模式
-            /// </summary>
-            public bool slave = false;
-            /// <summary>
-            /// # 从库 端口号
-            /// </summary>
-            public String source = String.Empty;
-            /// <summary>
-            /// # 指定单一的数据库复制
-            /// </summary>
-            public String only = String.Empty;
-            /// <summary>
-            /// # 设置从库同步主库的延迟时间
-            /// </summary>
-            public int slavedelay = 0;
-
-            ///Replicaton 参数
-            /// <summary>
-            /// # 从一个dbpath里启用从库复制服务，该dbpath的数据库是主库的快照，可用于快速启用同步
-            /// </summary>
-            public bool fastsync = false;
-            /// <summary>
-            /// # 如果从库与主库同步数据差得多，自动重新同步，
-            /// </summary>
-            public bool autoresync = false;
-            /// <summary>
-            /// # 设置oplog的大小(MB)
-            /// </summary>
-            public int oplogSize = 0;
-
-            ///  Replica set(副本集)选项
-            /// <summary>
-            /// # 设置副本集名称
-            /// </summary>
-            public String replSet = string.Empty;
+            Import,
 
             /// <summary>
-            /// # 声明这是一个集群的config服务,默认端口27019，默认目录/data/configdb
+            ///     导出
             /// </summary>
-            public String configsvr = string.Empty;
-            /// <summary>
-            /// # 声明这是一个集群的分片,默认端口27018
-            /// </summary>
-            public String shardsvr = string.Empty;
-            /// <summary>
-            /// # 关闭偏执为moveChunk数据保存??
-            /// </summary>
-            public bool moveParanoia = false; 
+            Export
         }
+
         /// <summary>
-        /// 
+        ///     日志等级
+        /// </summary>
+        public enum MongologLevel
+        {
+            /// <summary>
+            ///     最少
+            /// </summary>
+            Quiet = 0,
+
+            /// <summary>
+            ///     Verb * 1
+            /// </summary>
+            V,
+
+            /// <summary>
+            ///     Verb * 2
+            /// </summary>
+            VV,
+
+            /// <summary>
+            ///     Verb * 3
+            /// </summary>
+            VVV,
+
+            /// <summary>
+            ///     Verb * 4
+            /// </summary>
+            VVVV,
+
+            /// <summary>
+            ///     Verb * 5
+            /// </summary>
+            VVVVV
+        };
+
+        /// <summary>
         /// </summary>
         /// <returns></returns>
         public static String GenerateIniFile(MongodConfig mongod)
@@ -131,80 +86,51 @@ namespace MagicMongoDBTool.Module
             //Location of the database files 
             string strIni = String.Empty;
 
-            strIni = "#Basic database configuration" + System.Environment.NewLine;
+            strIni = "#Basic database configuration" + Environment.NewLine;
 
             if (mongod.DBPath != String.Empty)
             {
-                strIni += "#Location of the database files   " + System.Environment.NewLine;
-                strIni += "dbpath = " + mongod.DBPath + System.Environment.NewLine;
+                strIni += "#Location of the database files   " + Environment.NewLine;
+                strIni += "dbpath = " + mongod.DBPath + Environment.NewLine;
             }
 
             if (mongod.Port != 0)
             {
-                strIni += "#Port the mongod will listen on  " + System.Environment.NewLine;
-                strIni += "port = " + mongod.Port.ToString() + System.Environment.NewLine;
+                strIni += "#Port the mongod will listen on  " + Environment.NewLine;
+                strIni += "port = " + mongod.Port + Environment.NewLine;
             }
 
-            strIni += "#Specific IP address that mongod will listen on  " + System.Environment.NewLine;
+            strIni += "#Specific IP address that mongod will listen on  " + Environment.NewLine;
             if (mongod.bind_ip != String.Empty)
             {
-                strIni += "bind_ip  = " + mongod.bind_ip + System.Environment.NewLine;
+                strIni += "bind_ip  = " + mongod.bind_ip + Environment.NewLine;
             }
             else
             {
-                strIni += "bind_ip = 127.0.0.1" + System.Environment.NewLine;
+                strIni += "bind_ip = 127.0.0.1" + Environment.NewLine;
             }
 
             if (mongod.LogPath != String.Empty)
             {
-                strIni += "#Full filename path to where log messages will be written  " + System.Environment.NewLine;
-                strIni += "logpath = " + mongod.LogPath + System.Environment.NewLine;
+                strIni += "#Full filename path to where log messages will be written  " + Environment.NewLine;
+                strIni += "logpath = " + mongod.LogPath + Environment.NewLine;
             }
 
-            strIni += "#Full filename path to where log messages will be written  " + System.Environment.NewLine;
+            strIni += "#Full filename path to where log messages will be written  " + Environment.NewLine;
             if (mongod.Islogappend)
             {
-                strIni += "logappend = true" + System.Environment.NewLine;
+                strIni += "logappend = true" + Environment.NewLine;
             }
             else
             {
-                strIni += "logappend = false " + mongod.LogPath + System.Environment.NewLine;
+                strIni += "logappend = false " + mongod.LogPath + Environment.NewLine;
             }
 
             return strIni;
         }
+
         /// <summary>
-        /// 日志等级
-        /// </summary>
-        public enum MongologLevel : int
-        {
-            /// <summary>
-            /// 最少
-            /// </summary>
-            Quiet = 0,
-            /// <summary>
-            /// Verb * 1
-            /// </summary>
-            V,
-            /// <summary>
-            /// Verb * 2
-            /// </summary>
-            VV,
-            /// <summary>
-            /// Verb * 3
-            /// </summary>
-            VVV,
-            /// <summary>
-            /// Verb * 4
-            /// </summary>
-            VVVV,
-            /// <summary>
-            /// Verb * 5
-            /// </summary>
-            VVVVV
-        };
-        /// <summary>
-        /// 部署
+        ///     部署
         /// </summary>
         public static String GetMongodCommandLine(MongodConfig mongod)
         {
@@ -274,42 +200,11 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// Mongodump使用的结构
-        /// </summary>
-        public class StruMongoDump
-        {
-            /// <summary>
-            /// 主机地址
-            /// </summary>
-            public String HostAddr = String.Empty;
-            /// <summary>
-            /// 主机端口
-            /// </summary>
-            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
-            /// <summary>
-            /// 数据库名称
-            /// </summary>
-            public String DBName = String.Empty;
-            /// <summary>
-            /// 数据集名称
-            /// </summary>
-            public String CollectionName = String.Empty;
-            /// <summary>
-            /// 输出路径
-            /// </summary>
-            public String OutPutPath = String.Empty;
-            /// <summary>
-            /// 日志等级
-            /// </summary>
-            public MongologLevel LogLV = MongologLevel.Quiet;
-        }
-
-        /// <summary>
-        /// 获得备份的配置
+        ///     获得备份的配置
         /// </summary>
         /// <param name="mongoDump"></param>
         /// <returns></returns>
-        static public String GetMongodumpCommandLine(StruMongoDump mongoDump)
+        public static String GetMongodumpCommandLine(StruMongoDump mongoDump)
         {
             //mongodump.exe 备份程序
             String dosCommand = @"mongodump -h @hostaddr:@port -d @dbname";
@@ -328,32 +223,15 @@ namespace MagicMongoDBTool.Module
             }
             return dosCommand;
         }
+
         /// <summary>
-        /// MongoRestore使用的结构
-        /// </summary>
-        public class StruMongoRestore
-        {
-            /// <summary>
-            /// 主机地址
-            /// </summary>
-            public String HostAddr = String.Empty;
-            /// <summary>
-            /// 主机端口
-            /// </summary>
-            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
-            /// <summary>
-            /// 备份数据库路径
-            /// </summary>
-            public String DirectoryPerDB = String.Empty;
-        }
-        /// <summary>
-        /// 获得恢复的配置
-        /// 和恢复数据库是相同的操作，只是根据目录结构不同进行不同恢复操作
-        /// 目录名称表示数据库名称，BSON文件表示数据集
+        ///     获得恢复的配置
+        ///     和恢复数据库是相同的操作，只是根据目录结构不同进行不同恢复操作
+        ///     目录名称表示数据库名称，BSON文件表示数据集
         /// </summary>
         /// <param name="mongoDump"></param>
         /// <returns></returns>
-        static public String GetMongoRestoreCommandLine(StruMongoRestore MongoRestore)
+        public static String GetMongoRestoreCommandLine(StruMongoRestore MongoRestore)
         {
             //mongorestore.exe 恢复程序
             String dosCommand = @"mongorestore -h @hostaddr:@port --directoryperdb @dbname";
@@ -362,57 +240,9 @@ namespace MagicMongoDBTool.Module
             dosCommand = dosCommand.Replace("@dbname", MongoRestore.DirectoryPerDB);
             return dosCommand;
         }
-        public enum ImprotExport
-        {
-            /// <summary>
-            /// 导入
-            /// </summary>
-            Import,
-            /// <summary>
-            /// 导出
-            /// </summary>
-            Export
-        }
+
         /// <summary>
-        /// ImportExport使用的结构
-        /// </summary>
-        public class StruImportExport
-        {
-            /// <summary>
-            /// 主机地址
-            /// </summary>
-            public String HostAddr = String.Empty;
-            /// <summary>
-            /// 主机端口
-            /// </summary>
-            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
-            /// <summary>
-            /// 数据库名称
-            /// </summary>
-            public String DBName = String.Empty;
-            /// <summary>
-            /// 数据集名称
-            /// </summary>
-            public String CollectionName = String.Empty;
-            /// <summary>
-            /// 字段列表
-            /// </summary>
-            public String FieldList = String.Empty;
-            /// <summary>
-            /// 文件名称
-            /// </summary>
-            public String FileName = String.Empty;
-            /// <summary>
-            /// 日志等级
-            /// </summary>
-            public MongologLevel LogLV = MongologLevel.Quiet;
-            /// <summary>
-            /// 导入导出标志
-            /// </summary>
-            public ImprotExport Direct = ImprotExport.Import;
-        }
-        /// <summary>
-        /// 获得MongoImportExport命令[必须指定数据集名称！！]
+        ///     获得MongoImportExport命令[必须指定数据集名称！！]
         /// </summary>
         /// <param name="mongoImprotExport"></param>
         /// <returns></returns>
@@ -450,16 +280,18 @@ namespace MagicMongoDBTool.Module
             }
             return dosCommand;
         }
+
         /// <summary>
-        /// Mongo可执行文件目录的检查
+        ///     Mongo可执行文件目录的检查
         /// </summary>
         /// <returns></returns>
         public static Boolean IsMongoPathExist()
         {
             return Directory.Exists(SystemManager.ConfigHelperInstance.MongoBinPath);
         }
+
         /// <summary>
-        /// 执行Dos下的命令
+        ///     执行Dos下的命令
         /// </summary>
         /// <remarks>Only For Windows Platform</remarks>
         /// <param name="DosCommand"></param>
@@ -468,7 +300,7 @@ namespace MagicMongoDBTool.Module
         {
             if (!SystemManager.MONO_MODE)
             {
-                Process myProcess = new Process();
+                var myProcess = new Process();
                 myProcess.StartInfo.FileName = "cmd";
                 myProcess.StartInfo.UseShellExecute = false;
                 myProcess.StartInfo.CreateNoWindow = true;
@@ -484,10 +316,10 @@ namespace MagicMongoDBTool.Module
                 //标准错误流
                 StreamReader streamReaderError = myProcess.StandardError;
                 //DOS控制平台上的命令
-                stringWriter.Write(@"cd " + SystemManager.ConfigHelperInstance.MongoBinPath + System.Environment.NewLine);
+                stringWriter.Write(@"cd " + SystemManager.ConfigHelperInstance.MongoBinPath + Environment.NewLine);
                 //DOS控制平台上的命令
-                stringWriter.Write(DosCommand + System.Environment.NewLine);
-                stringWriter.Write("exit" + System.Environment.NewLine);
+                stringWriter.Write(DosCommand + Environment.NewLine);
+                stringWriter.Write("exit" + Environment.NewLine);
                 //读取执行DOS命令后输出信息
                 String s = stringReader.ReadToEnd();
                 //读取执行DOS命令后错误信息
@@ -507,6 +339,218 @@ namespace MagicMongoDBTool.Module
             {
                 sb.AppendLine("This method is not implement in Linux");
             }
+        }
+
+        /// <summary>
+        ///     Mongod使用结构体
+        /// </summary>
+        public class MongodConfig
+        {
+            /// <summary>
+            ///     # 指定数据库路径
+            /// </summary>
+            public String DBPath = String.Empty;
+
+            /// <summary>
+            ///     是否采用认证模式
+            /// </summary>
+            public bool IsAuth = false;
+
+            /// <summary>
+            ///     是否作为Windows服务
+            /// </summary>
+            public bool IsInstall = false;
+
+            /// <summary>
+            ///     日志是否为添加模式
+            /// </summary>
+            public bool Islogappend = false;
+
+            /// <summary>
+            ///     日志等级
+            /// </summary>
+            public MongologLevel LogLV = MongologLevel.Quiet;
+
+            /// <summary>
+            ///     日志文件
+            /// </summary>
+            public String LogPath = String.Empty;
+
+            /// <summary>
+            ///     # 指定服务端口号，默认端口27017
+            /// </summary>
+            public int Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
+
+            /// <summary>
+            ///     # 如果从库与主库同步数据差得多，自动重新同步，
+            /// </summary>
+            public bool autoresync = false;
+
+            /// <summary>
+            ///     # 绑定服务IP，若绑定127.0.0.1，则只能本机访问，不指定默认本地所有IP
+            /// </summary>
+            public String bind_ip = String.Empty;
+
+            /// <summary>
+            ///     # 声明这是一个集群的config服务,默认端口27019，默认目录/data/configdb
+            /// </summary>
+            public String configsvr = string.Empty;
+
+            /// Replicaton 参数
+            /// <summary>
+            ///     # 从一个dbpath里启用从库复制服务，该dbpath的数据库是主库的快照，可用于快速启用同步
+            /// </summary>
+            public bool fastsync = false;
+
+            /// 主/从参数
+            /// <summary>
+            ///     # 主库模式
+            /// </summary>
+            public bool master = false;
+
+            /// <summary>
+            ///     # 关闭偏执为moveChunk数据保存??
+            /// </summary>
+            public bool moveParanoia = false;
+
+            /// <summary>
+            ///     # 指定单一的数据库复制
+            /// </summary>
+            public String only = String.Empty;
+
+            /// <summary>
+            ///     # 设置oplog的大小(MB)
+            /// </summary>
+            public int oplogSize = 0;
+
+            /// Replica set(副本集)选项
+            /// <summary>
+            ///     # 设置副本集名称
+            /// </summary>
+            public String replSet = string.Empty;
+
+            /// <summary>
+            ///     # 声明这是一个集群的分片,默认端口27018
+            /// </summary>
+            public String shardsvr = string.Empty;
+
+            /// <summary>
+            ///     # 从库模式
+            /// </summary>
+            public bool slave = false;
+
+            /// <summary>
+            ///     # 设置从库同步主库的延迟时间
+            /// </summary>
+            public int slavedelay = 0;
+
+            /// <summary>
+            ///     # 从库 端口号
+            /// </summary>
+            public String source = String.Empty;
+        }
+
+        /// <summary>
+        ///     ImportExport使用的结构
+        /// </summary>
+        public class StruImportExport
+        {
+            /// <summary>
+            ///     数据集名称
+            /// </summary>
+            public String CollectionName = String.Empty;
+
+            /// <summary>
+            ///     数据库名称
+            /// </summary>
+            public String DBName = String.Empty;
+
+            /// <summary>
+            ///     导入导出标志
+            /// </summary>
+            public ImprotExport Direct = ImprotExport.Import;
+
+            /// <summary>
+            ///     字段列表
+            /// </summary>
+            public String FieldList = String.Empty;
+
+            /// <summary>
+            ///     文件名称
+            /// </summary>
+            public String FileName = String.Empty;
+
+            /// <summary>
+            ///     主机地址
+            /// </summary>
+            public String HostAddr = String.Empty;
+
+            /// <summary>
+            ///     日志等级
+            /// </summary>
+            public MongologLevel LogLV = MongologLevel.Quiet;
+
+            /// <summary>
+            ///     主机端口
+            /// </summary>
+            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
+        }
+
+        /// <summary>
+        ///     Mongodump使用的结构
+        /// </summary>
+        public class StruMongoDump
+        {
+            /// <summary>
+            ///     数据集名称
+            /// </summary>
+            public String CollectionName = String.Empty;
+
+            /// <summary>
+            ///     数据库名称
+            /// </summary>
+            public String DBName = String.Empty;
+
+            /// <summary>
+            ///     主机地址
+            /// </summary>
+            public String HostAddr = String.Empty;
+
+            /// <summary>
+            ///     日志等级
+            /// </summary>
+            public MongologLevel LogLV = MongologLevel.Quiet;
+
+            /// <summary>
+            ///     输出路径
+            /// </summary>
+            public String OutPutPath = String.Empty;
+
+            /// <summary>
+            ///     主机端口
+            /// </summary>
+            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
+        }
+
+        /// <summary>
+        ///     MongoRestore使用的结构
+        /// </summary>
+        public class StruMongoRestore
+        {
+            /// <summary>
+            ///     备份数据库路径
+            /// </summary>
+            public String DirectoryPerDB = String.Empty;
+
+            /// <summary>
+            ///     主机地址
+            /// </summary>
+            public String HostAddr = String.Empty;
+
+            /// <summary>
+            ///     主机端口
+            /// </summary>
+            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
         }
     }
 }

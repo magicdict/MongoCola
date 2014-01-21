@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!--frmMain-->
 <Language Type="Chinese">
   <Main_Menu_Mangt>管理(&amp;M)</Main_Menu_Mangt>
@@ -37,7 +38,7 @@
   <Main_Menu_Operation_Database_EvalJs>实行JavaScript</Main_Menu_Operation_Database_EvalJs>
   <Main_Menu_Operation_Database_RepairDatabase>修复数据库</Main_Menu_Operation_Database_RepairDatabase>
   <Main_Menu_Operation_ProfillingLevel>日志等级</Main_Menu_Operation_ProfillingLevel>
-  
+
   <Main_Menu_Operation_DataCollection>数据集</Main_Menu_Operation_DataCollection>
   <Main_Menu_Operation_DataCollection_DelDC>删除数据集</Main_Menu_Operation_DataCollection_DelDC>
   <Main_Menu_Operation_DataCollection_ReIndex>重新索引</Main_Menu_Operation_DataCollection_ReIndex>
@@ -89,7 +90,7 @@
   <Main_Menu_Help_About>关于</Main_Menu_Help_About>
   <Main_Menu_Help_Thanks>感谢</Main_Menu_Help_Thanks>
   <Main_Menu_Help_UserGuide>用户手册</Main_Menu_Help_UserGuide>
-  
+
   <Main_Tab_Tree>树形视图</Main_Tab_Tree>
   <Main_Tab_Table>表格视图</Main_Tab_Table>
   <Main_Tab_Text>文本视图</Main_Tab_Text>
@@ -113,7 +114,7 @@
   <AddConnection_MasterSlave>SlaveOK</AddConnection_MasterSlave>
   <AddConnection_SafeMode>Safe Mode</AddConnection_SafeMode>
   <AddConnection_ShardingSvrType>服务器角色</AddConnection_ShardingSvrType>
-  
+
   <AddConnection_ServerType_Data>数据</AddConnection_ServerType_Data>
   <AddConnection_ServerType_Configuration>配置(Config)</AddConnection_ServerType_Configuration>
   <AddConnection_ServerType_Route>路由(Route)</AddConnection_ServerType_Route>
@@ -129,7 +130,7 @@
   <AddConnection_ConnectionString>直接使用ConnectionString</AddConnection_ConnectionString>
   <AddConnection_Attention_Description>优先度为0的服务器不可能成为Master服务器</AddConnection_Attention_Description>
   <AddConnection_Password_Description>密码将于明文形式保存在Config文件中</AddConnection_Password_Description>
- 
+
   <!--frmCollectionIndex-->
   <CollectionIndex_Title>索引管理器</CollectionIndex_Title>
   <CollectionIndex_Tab_Current>当前索引</CollectionIndex_Tab_Current>
@@ -140,7 +141,7 @@
   <!--frmConnect-->
   <Connect_Title>连接</Connect_Title>
   <Connect_Action_Del>删除</Connect_Action_Del>
-  
+
   <!--ConvertSql-->
   <ConvertSql_Title>Sql文转换</ConvertSql_Title>
 
@@ -199,7 +200,7 @@
   <Group_Tab_InitColumn_Note>请添加初始化变量</Group_Tab_InitColumn_Note>
   <Group_Tab_Result>结果</Group_Tab_Result>
   <Group_LoadQuery>加载查询</Group_LoadQuery>
-  
+
   <!--frmOption-->
   <Option_Title>设定</Option_Title>
   <Option_BinPath>Bin Path</Option_BinPath>
@@ -252,7 +253,7 @@
   <ctlIndexCreate_Description>Please input the column name here</ctlIndexCreate_Description>
   <!--ctlFieldInfo-->
   <ctlFieldInfo_Show>显示</ctlFieldInfo_Show>
-  
+
   <!--DataBase_Status-->
   <DataBase_Status_DataBaseName>数据库名称</DataBase_Status_DataBaseName>
   <DataBase_Status_CollectionCount>数据集计数</DataBase_Status_CollectionCount>
@@ -279,7 +280,7 @@
 
   <Collection_Resume_AutoRefresh>启用自动刷新</Collection_Resume_AutoRefresh>
   <Collection_Stop_AutoRefresh>禁止自动刷新</Collection_Stop_AutoRefresh>
-  
+
   <!--GFS-->
   <GFS_filename>文件名</GFS_filename>
   <GFS_length>文件大小</GFS_length>
@@ -298,7 +299,7 @@
   <GFS_Insert_Option_Stop>停止上传</GFS_Insert_Option_Stop>
   <GFS_Insert_Option_IngoreSubFolder>忽略子文件夹</GFS_Insert_Option_IngoreSubFolder>
   <GFS_Insert_Option_DirectorySeparatorChar>路径分割符号</GFS_Insert_Option_DirectorySeparatorChar>
-  
+
   <!--Index-->
   <Index_Background>背景</Index_Background>
   <Index_RepeatDel>删除重复</Index_RepeatDel>
@@ -318,7 +319,7 @@
   <Exception_NotConnected_Note>服务器没有启动 或者 认证模式不正确</Exception_NotConnected_Note>
   <Exception_AuthenticationException>认证错误</Exception_AuthenticationException>
   <Exception_AuthenticationException_Note>请检查用户名和密码</Exception_AuthenticationException_Note>
-  
+
   <!--StatusBar-->
   <Selected_Server>选中服务器</Selected_Server>
   <Selected_DataBase>选中数据库</Selected_DataBase>
@@ -346,7 +347,7 @@
   <Common_Edit>编辑</Common_Edit>
   <Common_Modify>修改</Common_Modify>
   <Common_Add>添加</Common_Add>
-  
+
   <Common_Server>服务器</Common_Server>
   <Common_DataBase>数据库</Common_DataBase>
   <Common_Connect>连接</Common_Connect>
@@ -362,12 +363,12 @@
   <Common_Roles>角色</Common_Roles>
   <Common_Validate>验证</Common_Validate>
   <Common_Search>检索</Common_Search>
-  
+
   <Common_Browse>浏览</Common_Browse>
   <Common_Clear>清除</Common_Clear>
   <Common_Test>测试</Common_Test>
   <Common_Advance_Option>高级选项</Common_Advance_Option>
-  
+
   <!--Create New DataBase-->
   <Create_New_DataBase>新建数据库</Create_New_DataBase>
   <Create_New_DataBase_Input>请输入数据库名称:</Create_New_DataBase_Input>
@@ -381,7 +382,7 @@
   <Drop_Collection_Confirm>确定是否要删除数据集?</Drop_Collection_Confirm>
   <Rename_Collection>重命名数据集</Rename_Collection>
   <Rename_Collection_Input>请输入新数据集名称:</Rename_Collection_Input>
-  
+
   <Drop_User>删除用户</Drop_User>
   <Drop_User_Confirm>确定是否要删除用户?</Drop_User_Confirm>
 

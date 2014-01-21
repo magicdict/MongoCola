@@ -5,57 +5,47 @@ using MongoDB.Bson;
 namespace MagicMongoDBTool.Module
 {
     /// <summary>
-    /// 用于BsonValue的序列化
+    ///     用于BsonValue的序列化
     /// </summary>
-    [Serializable()]
+    [Serializable]
     public class BsonValueEx
     {
         // TODO:Check the new driver if the function is ready.
 
         /// <summary>
-        /// 类型
-        /// </summary>
-        public String mBsonType;
-        /// <summary>
-        /// 文字值
-        /// </summary>
-        public String mBsonString;
-        /// <summary>
-        /// Int32
-        /// </summary>
-        public Int32 mBsonInt32;
-        /// <summary>
-        /// DateTime
-        /// </summary>
-        public DateTime mBsonDateTime;
-        /// <summary>
-        /// Boolean
+        ///     Boolean
         /// </summary>
         public Boolean mBsonBoolean;
+
         /// <summary>
-        /// 
+        ///     DateTime
         /// </summary>
-        /// <returns></returns>
-        public static List<String> GetBasicTypeList()
-        {
-            List<String> typelst = new List<String>();
-            typelst.Add("BsonString");
-            typelst.Add("BsonInt32");
-            typelst.Add("BsonDateTime");
-            typelst.Add("BsonBoolean");
-            typelst.Add("BsonArray");
-            typelst.Add("BsonDocument");
-            return typelst;
-        }
+        public DateTime mBsonDateTime;
+
         /// <summary>
-        /// 为了序列化，必须要写这个方法
+        ///     Int32
+        /// </summary>
+        public Int32 mBsonInt32;
+
+        /// <summary>
+        ///     文字值
+        /// </summary>
+        public String mBsonString;
+
+        /// <summary>
+        ///     类型
+        /// </summary>
+        public String mBsonType;
+
+        /// <summary>
+        ///     为了序列化，必须要写这个方法
         /// </summary>
         public BsonValueEx()
         {
-
         }
+
         /// <summary>
-        /// 初始化
+        ///     初始化
         /// </summary>
         /// <param name="value"></param>
         public BsonValueEx(BsonValue value)
@@ -81,8 +71,24 @@ namespace MagicMongoDBTool.Module
                 mBsonBoolean = value.AsBoolean;
             }
         }
+
         /// <summary>
-        /// 还原BsonValue
+        /// </summary>
+        /// <returns></returns>
+        public static List<String> GetBasicTypeList()
+        {
+            var typelst = new List<String>();
+            typelst.Add("BsonString");
+            typelst.Add("BsonInt32");
+            typelst.Add("BsonDateTime");
+            typelst.Add("BsonBoolean");
+            typelst.Add("BsonArray");
+            typelst.Add("BsonDocument");
+            return typelst;
+        }
+
+        /// <summary>
+        ///     还原BsonValue
         /// </summary>
         /// <returns></returns>
         public BsonValue GetBsonValue()

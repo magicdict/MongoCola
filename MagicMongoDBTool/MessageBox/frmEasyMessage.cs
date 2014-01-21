@@ -9,8 +9,9 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// Set Text
+        ///     Set Text
         /// </summary>
         /// <param name="Yes"></param>
         /// <param name="No"></param>
@@ -18,17 +19,19 @@ namespace MagicMongoDBTool
         {
             cmdOK.Text = OK;
         }
+
         /// <summary>
-        /// SetMessage
+        ///     SetMessage
         /// </summary>
         /// <param name="Message"></param>
         internal void SetMessage(string Message)
         {
-            this.lblMessage.Text = Message;
+            lblMessage.Text = Message;
         }
+
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

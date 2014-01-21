@@ -1,77 +1,85 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmOption : System.Windows.Forms.Form
+    public partial class frmOption : Form
     {
         public frmOption()
         {
             InitializeComponent();
         }
+
         private void frmOption_Load(object sender, EventArgs e)
         {
-            this.ctlFilePickerMongoBinPath.SelectedPathOrFileName = SystemManager.ConfigHelperInstance.MongoBinPath;
+            ctlFilePickerMongoBinPath.SelectedPathOrFileName = SystemManager.ConfigHelperInstance.MongoBinPath;
             //this.numLimitCnt.Value = SystemManager.ConfigHelperInstance.LimitCnt;
-            this.numRefreshForStatus.Value = SystemManager.ConfigHelperInstance.RefreshStatusTimer;
-            this.cmbLanguage.Items.Add("English");
+            numRefreshForStatus.Value = SystemManager.ConfigHelperInstance.RefreshStatusTimer;
+            cmbLanguage.Items.Add("English");
             if (Directory.Exists("Language"))
             {
                 foreach (String FileName in Directory.GetFiles("Language"))
                 {
-                    this.cmbLanguage.Items.Add(new FileInfo(FileName).Name.Substring(0, new FileInfo(FileName).Name.Length - 4));
+                    cmbLanguage.Items.Add(new FileInfo(FileName).Name.Substring(0,
+                        new FileInfo(FileName).Name.Length - 4));
                 }
             }
 
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                if (File.Exists("Language" + System.IO.Path.DirectorySeparatorChar + SystemManager.ConfigHelperInstance.LanguageFileName))
+                if (
+                    File.Exists("Language" + Path.DirectorySeparatorChar +
+                                SystemManager.ConfigHelperInstance.LanguageFileName))
                 {
-                    this.cmbLanguage.Text = SystemManager.ConfigHelperInstance.LanguageFileName.Substring(0, SystemManager.ConfigHelperInstance.LanguageFileName.Length - 4);
+                    cmbLanguage.Text = SystemManager.ConfigHelperInstance.LanguageFileName.Substring(0,
+                        SystemManager.ConfigHelperInstance.LanguageFileName.Length - 4);
                 }
                 else
                 {
-                    this.cmbLanguage.Text = "English";
+                    cmbLanguage.Text = "English";
                 }
             }
             else
             {
-                this.cmbLanguage.Text = "English";
+                cmbLanguage.Text = "English";
             }
 
-            if (!SystemManager.IsUseDefaultLanguage)
-            {
-                //国际化
-                this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Option_Title);
-                cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);
-                this.ctlFilePickerMongoBinPath.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Option_BinPath);
-                this.lblLanguage.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Option_Language);
-                this.lblRefreshIntervalForStatus.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Option_RefreshInterval);
-            }
+            if (SystemManager.IsUseDefaultLanguage) return;
+            //国际化
+            Text = SystemManager.mStringResource.GetText(StringResource.TextType.Option_Title);
+            cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+            cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
+            ctlFilePickerMongoBinPath.Title =
+                SystemManager.mStringResource.GetText(StringResource.TextType.Option_BinPath);
+            lblLanguage.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Option_Language);
+            lblRefreshIntervalForStatus.Text =
+                SystemManager.mStringResource.GetText(StringResource.TextType.Option_RefreshInterval);
         }
+
         /// <summary>
-        /// OK
+        ///     OK
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
             SystemManager.ConfigHelperInstance.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPathOrFileName;
-            SystemManager.ConfigHelperInstance.RefreshStatusTimer = (int)this.numRefreshForStatus.Value;
-            SystemManager.ConfigHelperInstance.LanguageFileName = this.cmbLanguage.Text + ".xml";
+            SystemManager.ConfigHelperInstance.RefreshStatusTimer = (int) numRefreshForStatus.Value;
+            SystemManager.ConfigHelperInstance.LanguageFileName = cmbLanguage.Text + ".xml";
             SystemManager.ConfigHelperInstance.SaveToConfigFile();
-            this.Close();
+            Close();
         }
+
         /// <summary>
-        /// Cancel
+        ///     Cancel
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

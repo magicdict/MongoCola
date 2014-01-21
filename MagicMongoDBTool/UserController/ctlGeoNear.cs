@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
 using System.Windows.Forms;
+using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver.Builders;
-using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
@@ -22,46 +17,50 @@ namespace MagicMongoDBTool
             NumDistanceMultiplier.KeyPress += MongoDBHelper.NumberText_KeyPress;
             NumMaxDistance.KeyPress += MongoDBHelper.NumberText_KeyPress;
         }
+
         private void lnkGeoNear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/commands/#geoNear");
+            Process.Start("http://docs.mongodb.org/manual/reference/commands/#geoNear");
         }
 
         private void cmdGeoNear_Click(object sender, EventArgs e)
         {
-            GeoNearOptionsBuilder GeoOption = new GeoNearOptionsBuilder();
+            var GeoOption = new GeoNearOptionsBuilder();
             GeoOption.SetDistanceMultiplier(double.Parse(NumDistanceMultiplier.Text));
             GeoOption.SetMaxDistance(double.Parse(NumMaxDistance.Text));
             GeoOption.SetSpherical(chkSpherical.Checked);
             try
             {
                 BsonDocument mGeoNearAs = SystemManager.GetCurrentCollection().GeoNearAs<BsonDocument>
-                    (null, double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text), (int)NumResultCount.Value, GeoOption).Response;
-                MongoDBHelper.FillDataToTreeView("Result", this.trvGeoResult, mGeoNearAs);
-                this.trvGeoResult.DatatreeView.Nodes[0].Expand();
+                    (null, double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text), (int) NumResultCount.Value, GeoOption)
+                    .Response;
+                MongoDBHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
+                trvGeoResult.DatatreeView.Nodes[0].Expand();
             }
             catch (Exception ex)
             {
                 SystemManager.ExceptionDeal(ex);
             }
         }
+
         /// <summary>
-        /// 设置公里
+        ///     设置公里
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnKM_Click(object sender, EventArgs e)
         {
-            NumDistanceMultiplier.Text = (1 / 6378.137).ToString();
+            NumDistanceMultiplier.Text = (1/6378.137).ToString();
         }
+
         /// <summary>
-        /// 设置英里
+        ///     设置英里
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnMile_Click(object sender, EventArgs e)
         {
-            NumDistanceMultiplier.Text = (1 / 3963.192).ToString();
+            NumDistanceMultiplier.Text = (1/3963.192).ToString();
         }
 
         private void btnHelp_Click(object sender, EventArgs e)

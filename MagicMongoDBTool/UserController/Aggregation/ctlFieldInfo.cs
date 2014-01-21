@@ -5,43 +5,54 @@ namespace MagicMongoDBTool
 {
     public partial class ctlFieldInfo : UserControl
     {
+        /// <summary>
+        ///     模式
+        /// </summary>
+        public enum FieldMode
+        {
+            /// <summary>
+            ///     字段
+            /// </summary>
+            Field,
+
+            /// <summary>
+            ///     字段加排序
+            /// </summary>
+            FiledSort,
+
+            /// <summary>
+            ///     字段加Project
+            /// </summary>
+            FieldProject,
+
+            /// <summary>
+            ///     完整模式
+            /// </summary>
+            Full
+        }
+
+        /// <summary>
+        ///     是否是主键保护模式
+        /// </summary>
+        private bool mIDProtectMode;
+
+        private FieldMode mMode;
+
         public ctlFieldInfo()
         {
             InitializeComponent();
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                this.lblFieldName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
-                this.radSortAcs.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Asce);
-                this.radSortDes.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Desc);
-                this.radNoSort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_NoSort);
-                this.chkIsShow.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlFieldInfo_Show);
+                lblFieldName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
+                radSortAcs.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Asce);
+                radSortDes.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Desc);
+                radNoSort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_NoSort);
+                chkIsShow.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlFieldInfo_Show);
             }
         }
+
         /// <summary>
-        /// 模式
-        /// </summary>
-        public enum FieldMode
-        {
-            /// <summary>
-            /// 字段
-            /// </summary>
-            Field,
-            /// <summary>
-            /// 字段加排序
-            /// </summary>
-            FiledSort,
-            /// <summary>
-            /// 字段加Project
-            /// </summary>
-            FieldProject,
-            /// <summary>
-            /// 完整模式
-            /// </summary>
-            Full
-        }
-        private FieldMode mMode;
-        /// <summary>
-        /// 控件模式
+        ///     控件模式
         /// </summary>
         public FieldMode Mode
         {
@@ -85,16 +96,18 @@ namespace MagicMongoDBTool
             }
             get { return mMode; }
         }
+
         /// <summary>
-        /// 是否显示字段重命名
+        ///     是否显示字段重命名
         /// </summary>
         public bool IsProject
         {
             get { return txtProject.Visible; }
             set { txtProject.Visible = value; }
         }
+
         /// <summary>
-        /// 是否表示
+        ///     是否表示
         /// </summary>
         public bool IsShow
         {
@@ -108,28 +121,27 @@ namespace MagicMongoDBTool
                 chkIsShow.Checked = value;
             }
         }
+
         /// <summary>
-        /// 投影名称
+        ///     投影名称
         /// </summary>
         public string ProjectName
         {
             get { return txtProject.Text; }
             set { txtProject.Text = value; }
         }
+
         /// <summary>
-        /// 是否是主键保护模式
-        /// </summary>
-        private bool mIDProtectMode;
-        /// <summary>
-        /// ID的显示属性是否可变
+        ///     ID的显示属性是否可变
         /// </summary>
         public bool IsIDProtect
         {
             set { mIDProtectMode = value; }
             get { return mIDProtectMode; }
         }
+
         /// <summary>
-        /// Query Field Item
+        ///     Query Field Item
         /// </summary>
         public DataFilter.QueryFieldItem QueryFieldItem
         {
@@ -160,25 +172,24 @@ namespace MagicMongoDBTool
             }
             get
             {
-                DataFilter.QueryFieldItem rtnQueryFieldItem = new DataFilter.QueryFieldItem();
+                var rtnQueryFieldItem = new DataFilter.QueryFieldItem();
                 rtnQueryFieldItem.IsShow = chkIsShow.Checked;
                 rtnQueryFieldItem.ColName = lblFieldName.Text;
                 rtnQueryFieldItem.ProjectName = txtProject.Text;
-                if (this.radNoSort.Checked)
+                if (radNoSort.Checked)
                 {
                     rtnQueryFieldItem.sortType = DataFilter.SortType.NoSort;
                 }
-                if (this.radSortAcs.Checked)
+                if (radSortAcs.Checked)
                 {
                     rtnQueryFieldItem.sortType = DataFilter.SortType.Ascending;
                 }
-                if (this.radSortDes.Checked)
+                if (radSortDes.Checked)
                 {
                     rtnQueryFieldItem.sortType = DataFilter.SortType.Descending;
                 }
                 return rtnQueryFieldItem;
             }
-
         }
     }
 }

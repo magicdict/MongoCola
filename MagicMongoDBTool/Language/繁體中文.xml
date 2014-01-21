@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <!--frmMain-->
 <Language Type="Chinese">
   <Main_Menu_Mangt>管理(&amp;M)</Main_Menu_Mangt>
@@ -379,7 +380,7 @@
 
   <Drop_Collection>刪除數據集</Drop_Collection>
   <Drop_Collection_Confirm>確定是否要刪除數據集?</Drop_Collection_Confirm>
-  
+
   <Rename_Collection>重命名數據集</Rename_Collection>
   <Rename_Collection_Input>請輸入新數據集名稱:</Rename_Collection_Input>
 

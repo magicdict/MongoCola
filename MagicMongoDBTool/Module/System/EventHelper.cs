@@ -1,78 +1,108 @@
-﻿using MagicMongoDBTool.Module;
-using MongoDB.Driver;
-using System;
+﻿using System;
 using System.Threading;
+using MagicMongoDBTool.Module;
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
     public class ActionDoneEventArgs : EventArgs
     {
         private readonly String _Message;
+
         public ActionDoneEventArgs(String Message)
         {
             _Message = Message;
         }
-        public string Message { get { return _Message; } }
+
+        public string Message
+        {
+            get { return _Message; }
+        }
     }
 
     /// <summary>
-    /// TextChangeEventArgs
+    ///     TextChangeEventArgs
     /// </summary>
     public class TextChangeEventArgs : EventArgs
     {
-        private readonly String _OldString, _NewString;
+        private readonly String _NewString;
+        private readonly String _OldString;
+
         public TextChangeEventArgs(String OldString, String NewString)
         {
             _OldString = OldString;
             _NewString = NewString;
         }
-        public String OldString { get { return _OldString; } }
-        public String NewString { get { return _NewString; } }
+
+        public String OldString
+        {
+            get { return _OldString; }
+        }
+
+        public String NewString
+        {
+            get { return _NewString; }
+        }
     }
+
     /// <summary>
-    /// SelectedIndexChangeEventArgs
+    ///     SelectedIndexChangeEventArgs
     /// </summary>
     public class SelectedIndexChangeEventArgs : EventArgs
     {
-        private readonly int _OldIndex, _NewIndex;
+        private readonly int _NewIndex;
+        private readonly int _OldIndex;
+
         public SelectedIndexChangeEventArgs(int OldIndex, int NewIndex)
         {
             _OldIndex = OldIndex;
             _NewIndex = NewIndex;
         }
-        public int OldIndex { get { return _OldIndex; } }
-        public int NewIndex { get { return _NewIndex; } }
+
+        public int OldIndex
+        {
+            get { return _OldIndex; }
+        }
+
+        public int NewIndex
+        {
+            get { return _NewIndex; }
+        }
     }
+
     /// <summary>
-    /// RunCommandEventArgs
+    ///     RunCommandEventArgs
     /// </summary>
     public class RunCommandEventArgs : EventArgs
     {
         /// <summary>
-        /// CommandString
+        ///     CommandString
         /// </summary>
         public String CommandString;
+
         /// <summary>
-        /// Path Level
-        /// </summary>
-        public MongoDBHelper.PathLv RunLevel;
-        /// <summary>
-        /// Result
+        ///     Result
         /// </summary>
         public CommandResult Result;
+
+        /// <summary>
+        ///     Path Level
+        /// </summary>
+        public MongoDBHelper.PathLv RunLevel;
     }
+
     /// <summary>
-    /// This Method Copy From CLR via C#
+    ///     This Method Copy From CLR via C#
     /// </summary>
     public static class EventArgExtensions
     {
         public static void Raise<TEventArgs>(this TEventArgs e,
-        Object sender, ref EventHandler<TEventArgs> eventDelegate)
-        where TEventArgs : EventArgs
+            Object sender, ref EventHandler<TEventArgs> eventDelegate)
+            where TEventArgs : EventArgs
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
             EventHandler<TEventArgs> temp =
-            Interlocked.CompareExchange(ref eventDelegate, null, null);
+                Interlocked.CompareExchange(ref eventDelegate, null, null);
             // If any methods registered interest with our event, notify them
             if (temp != null) temp(sender, e);
         }

@@ -1,39 +1,43 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoDB.Driver.Builders;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 
 namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDBHelper
     {
         /// <summary>
-        /// 操作模式
+        ///     操作模式
         /// </summary>
         public enum Oprcode
         {
             /// <summary>
-            /// 新建
+            ///     新建
             /// </summary>
             Create,
+
             /// <summary>
-            /// 删除
+            ///     删除
             /// </summary>
             Drop,
+
             /// <summary>
-            /// 压缩
+            ///     压缩
             /// </summary>
             Repair,
+
             /// <summary>
-            /// 重命名
+            ///     重命名
             /// </summary>
             Rename
         }
+
         /// <summary>
-        /// 是否为系统数据集[无法删除]
+        ///     是否为系统数据集[无法删除]
         /// </summary>
         /// <param name="mongoCol"></param>
         /// <returns></returns>
@@ -62,8 +66,9 @@ namespace MagicMongoDBTool.Module
 
             return false;
         }
+
         /// <summary>
-        /// 是否为系统数据集[无法删除]
+        ///     是否为系统数据集[无法删除]
         /// </summary>
         /// <param name="mongoCol"></param>
         /// <returns></returns>
@@ -91,8 +96,9 @@ namespace MagicMongoDBTool.Module
             }
             return false;
         }
+
         /// <summary>
-        /// 是否为系统数据库[无法删除]
+        ///     是否为系统数据库[无法删除]
         /// </summary>
         /// <param name="mongoDB"></param>
         /// <returns></returns>
@@ -115,8 +121,9 @@ namespace MagicMongoDBTool.Module
             }
             return false;
         }
+
         /// <summary>
-        /// 数据库操作
+        ///     数据库操作
         /// </summary>
         /// <param name="strObjTag"></param>
         /// <param name="dbName"></param>
@@ -128,8 +135,8 @@ namespace MagicMongoDBTool.Module
             String rtnResult = String.Empty;
             MongoServer mongoSvr = GetMongoServerBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
-            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.InstanceLV];
-            CommandResult result = new CommandResult(new BsonDocument());
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLV];
+            var result = new CommandResult(new BsonDocument());
             if (mongoSvr != null)
             {
                 switch (func)
@@ -156,7 +163,7 @@ namespace MagicMongoDBTool.Module
                     case Oprcode.Drop:
                         if (mongoSvr.DatabaseExists(dbName))
                         {
-                            result =  mongoSvr.DropDatabase(dbName);
+                            result = mongoSvr.DropDatabase(dbName);
                             if (tr != null)
                             {
                                 tr.TreeView.Nodes.Remove(tr);
@@ -165,15 +172,12 @@ namespace MagicMongoDBTool.Module
                             {
                                 return String.Empty;
                             }
-                            else
-                            {
-                                return result.Response["err"].ToString();
-                            }
+                            return result.Response["err"].ToString();
                         }
                         break;
                     case Oprcode.Repair:
-                        ///其实Repair的入口不在这个方法里面
-                        MongoDBHelper.ExecuteMongoDBCommand(MongoDBHelper.repairDatabase_Command, SystemManager.GetCurrentDataBase());
+                        //其实Repair的入口不在这个方法里面
+                        ExecuteMongoDBCommand(repairDatabase_Command, SystemManager.GetCurrentDataBase());
                         break;
                     default:
                         break;
@@ -183,7 +187,7 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// 带有参数的CreateOption
+        ///     带有参数的CreateOption
         /// </summary>
         /// <param name="strObjTag"></param>
         /// <param name="treeNode"></param>
@@ -191,7 +195,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="option"></param>
         /// <returns></returns>
         public static Boolean CreateCollectionWithOptions(String strObjTag, TreeNode treeNode, String collectionName,
-                                                          CollectionOptionsBuilder option)
+            CollectionOptionsBuilder option)
         {
             //不支持中文 JIRA ticket is created : SERVER-4412
             //SERVER-4412已经在2013/03解决了
@@ -199,8 +203,8 @@ namespace MagicMongoDBTool.Module
             Boolean rtnResult = false;
             MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
-            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.InstanceLV];
-            String ConKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ConnectionLV];
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLV];
+            String ConKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.ConnectionLV];
             if (mongoDB != null)
             {
                 if (!mongoDB.CollectionExists(collectionName))
@@ -218,8 +222,9 @@ namespace MagicMongoDBTool.Module
             }
             return rtnResult;
         }
+
         /// <summary>
-        /// Create Collection
+        ///     Create Collection
         /// </summary>
         /// <param name="strObjTag"></param>
         /// <param name="treeNode"></param>
@@ -233,8 +238,8 @@ namespace MagicMongoDBTool.Module
             Boolean rtnResult = false;
             MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
-            String svrKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.InstanceLV];
-            String ConKey = strSvrPath.Split("/".ToCharArray())[(int)PathLv.ConnectionLV];
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLV];
+            String ConKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.ConnectionLV];
             if (mongoDB != null)
             {
                 if (!mongoDB.CollectionExists(collectionName))
@@ -254,7 +259,7 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// 根据路径字符获得服务器
+        ///     根据路径字符获得服务器
         /// </summary>
         /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
         /// <returns></returns>
@@ -277,22 +282,20 @@ namespace MagicMongoDBTool.Module
                     //[Tag:Connection/Connection/DBName/Collection]
                     return _mongoConnSvrLst[strPath[0]];
                 }
-                else
+                //[Tag:Connection/Host@Port/DBName/Collection]
+                String strInstKey = String.Empty;
+                strInstKey = strPath[(int) PathLv.ConnectionLV] + "/" + strPath[(int) PathLv.InstanceLV];
+                if (_mongoInstanceLst.ContainsKey(strInstKey))
                 {
-                    //[Tag:Connection/Host@Port/DBName/Collection]
-                    String strInstKey = String.Empty;
-                    strInstKey = strPath[(int)PathLv.ConnectionLV] + "/" + strPath[(int)PathLv.InstanceLV];
-                    if (_mongoInstanceLst.ContainsKey(strInstKey))
-                    {
-                        MongoServerInstance mongoInstance = MongoDBHelper._mongoInstanceLst[strInstKey];
-                        return MongoServer.Create(mongoInstance.Settings);
-                    }
+                    MongoServerInstance mongoInstance = _mongoInstanceLst[strInstKey];
+                    return MongoServer.Create(mongoInstance.Settings);
                 }
             }
             return null;
         }
+
         /// <summary>
-        /// 根据路径字符获得数据库
+        ///     根据路径字符获得数据库
         /// </summary>
         /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
         /// <returns></returns>
@@ -306,13 +309,14 @@ namespace MagicMongoDBTool.Module
                 String[] strPathArray = strSvrPath.Split("/".ToCharArray());
                 if (strPathArray.Length > 1)
                 {
-                    rtnMongoDB = mongoSvr.GetDatabase(strPathArray[(int)PathLv.DatabaseLV]);
+                    rtnMongoDB = mongoSvr.GetDatabase(strPathArray[(int) PathLv.DatabaseLV]);
                 }
             }
             return rtnMongoDB;
         }
+
         /// <summary>
-        /// 通过路径获得数据集
+        ///     通过路径获得数据集
         /// </summary>
         /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
         /// <returns></returns>
@@ -324,23 +328,24 @@ namespace MagicMongoDBTool.Module
             {
                 String strSvrPath = SystemManager.GetTagData(strObjTag);
                 String[] strPathArray = strSvrPath.Split("/".ToCharArray());
-                rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int)PathLv.CollectionLV]);
+                rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int) PathLv.CollectionLV]);
             }
             return rtnMongoCollection;
         }
+
         /// <summary>
-        /// 获得Shard情报
+        ///     获得Shard情报
         /// </summary>
         /// <returns></returns>
         public static Dictionary<String, String> GetShardInfo(MongoServer server, String Key)
         {
-            Dictionary<String, String> ShardInfo = new Dictionary<String, String>();
+            var ShardInfo = new Dictionary<String, String>();
             if (server.DatabaseExists(DATABASE_NAME_CONFIG))
             {
                 MongoDatabase configdb = server.GetDatabase(DATABASE_NAME_CONFIG);
                 if (configdb.CollectionExists("shards"))
                 {
-                    foreach (BsonDocument item in configdb.GetCollection("shards").FindAll().ToList<BsonDocument>())
+                    foreach (BsonDocument item in configdb.GetCollection("shards").FindAll().ToList())
                     {
                         ShardInfo.Add(item.GetElement(KEY_ID).Value.ToString(), item.GetElement(Key).Value.ToString());
                     }
@@ -348,17 +353,19 @@ namespace MagicMongoDBTool.Module
             }
             return ShardInfo;
         }
+
         /// <summary>
-        /// 添加索引
+        ///     添加索引
         /// </summary>
         /// <param name="AscendingKey"></param>
         /// <param name="DescendingKey"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey, String GeoSpatialKey, IndexOptionsBuilder option)
+        public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey, String GeoSpatialKey,
+            IndexOptionsBuilder option)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
-            IndexKeysBuilder indexkeys = new IndexKeysBuilder();
+            var indexkeys = new IndexKeysBuilder();
             if (!String.IsNullOrEmpty(GeoSpatialKey))
             {
                 indexkeys.GeoSpatial(GeoSpatialKey);
@@ -368,14 +375,18 @@ namespace MagicMongoDBTool.Module
             mongoCol.EnsureIndex(indexkeys, option);
             return true;
         }
+
         /// <summary>
-        /// 删除索引[KEY_ID]以外
+        ///     删除索引[KEY_ID]以外
         /// </summary>
         /// <param name="indexName"></param>
         /// <returns></returns>
         public static Boolean DropMongoIndex(String indexName)
         {
-            if (indexName == KEY_ID) { return false; }
+            if (indexName == KEY_ID)
+            {
+                return false;
+            }
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             if (mongoCol.IndexExistsByName(indexName))
             {
@@ -383,8 +394,9 @@ namespace MagicMongoDBTool.Module
             }
             return true;
         }
+
         /// <summary>
-        /// 插入JS到系统JS库
+        ///     插入JS到系统JS库
         /// </summary>
         /// <param name="jsName"></param>
         /// <param name="jsCode"></param>
@@ -394,10 +406,10 @@ namespace MagicMongoDBTool.Module
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (!IsExistByKey(jsCol, jsName))
             {
-                CommandResult result = new CommandResult(new BsonDocument());
+                var result = new CommandResult(new BsonDocument());
                 try
                 {
-                    result = jsCol.Insert<BsonDocument>(new BsonDocument().Add(KEY_ID, jsName).Add("value", jsCode));
+                    result = jsCol.Insert(new BsonDocument().Add(KEY_ID, jsName).Add("value", jsCode));
                 }
                 catch (MongoCommandException ex)
                 {
@@ -407,15 +419,13 @@ namespace MagicMongoDBTool.Module
                 {
                     return String.Empty;
                 }
-                else
-                {
-                    return result.Response["err"].ToString();
-                }
+                return result.Response["err"].ToString();
             }
             return String.Empty;
         }
+
         /// <summary>
-        /// Save Edited Javascript
+        ///     Save Edited Javascript
         /// </summary>
         /// <param name="jsName"></param>
         /// <param name="jsCode"></param>
@@ -426,13 +436,13 @@ namespace MagicMongoDBTool.Module
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
             if (IsExistByKey(jsCol, jsName))
             {
-                String result = DropDocument(jsCol, (BsonString)jsName);
+                String result = DropDocument(jsCol, (BsonString) jsName);
                 if (String.IsNullOrEmpty(result))
                 {
-                    CommandResult resultCommand = new CommandResult(new BsonDocument());
+                    var resultCommand = new CommandResult(new BsonDocument());
                     try
                     {
-                        resultCommand = jsCol.Insert<BsonDocument>(new BsonDocument().Add(KEY_ID, jsName).Add("value", jsCode));
+                        resultCommand = jsCol.Insert(new BsonDocument().Add(KEY_ID, jsName).Add("value", jsCode));
                     }
                     catch (MongoCommandException ex)
                     {
@@ -442,34 +452,30 @@ namespace MagicMongoDBTool.Module
                     {
                         return String.Empty;
                     }
-                    else
-                    {
-                        return resultCommand.Response["err"].ToString();
-                    }
+                    return resultCommand.Response["err"].ToString();
                 }
-                else
-                {
-                    return result;
-                }
+                return result;
             }
             return String.Empty;
         }
+
         /// <summary>
-        /// Delete Javascript Collection Document
+        ///     Delete Javascript Collection Document
         /// </summary>
         /// <param name="jsName"></param>
         /// <returns></returns>
         public static String DelJavascript(String jsName)
         {
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
-            if (MongoDBHelper.IsExistByKey(jsCol, jsName))
+            if (IsExistByKey(jsCol, jsName))
             {
-                return MongoDBHelper.DropDocument(jsCol, (BsonString)jsName);
+                return DropDocument(jsCol, (BsonString) jsName);
             }
             return String.Empty;
         }
+
         /// <summary>
-        /// 获得JS代码
+        ///     获得JS代码
         /// </summary>
         /// <param name="jsName"></param>
         /// <returns></returns>
@@ -482,8 +488,9 @@ namespace MagicMongoDBTool.Module
             }
             return String.Empty;
         }
+
         /// <summary>
-        /// 删除数据
+        ///     删除数据
         /// </summary>
         /// <param name="mongoCol"></param>
         /// <param name="strKey"></param>
@@ -491,12 +498,12 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static String DropDocument(MongoCollection mongoCol, object strKey)
         {
-            CommandResult result = new CommandResult(new BsonDocument());
-            if (IsExistByKey(mongoCol, (BsonValue)strKey))
+            var result = new CommandResult(new BsonDocument());
+            if (IsExistByKey(mongoCol, (BsonValue) strKey))
             {
                 try
                 {
-                    result = mongoCol.Remove(Query.EQ(KEY_ID, (BsonValue)strKey), WriteConcern.Acknowledged);
+                    result = mongoCol.Remove(Query.EQ(KEY_ID, (BsonValue) strKey), WriteConcern.Acknowledged);
                 }
                 catch (MongoCommandException ex)
                 {
@@ -507,24 +514,22 @@ namespace MagicMongoDBTool.Module
             {
                 return String.Empty;
             }
-            else
-            {
-                return result.Response["err"].ToString();
-            }
+            return result.Response["err"].ToString();
         }
+
         /// <summary>
-        /// 插入空文档
+        ///     插入空文档
         /// </summary>
         /// <param name="mongoCol"></param>
         /// <returns>插入记录的ID</returns>
         public static BsonValue InsertEmptyDocument(MongoCollection mongoCol, Boolean safeMode)
         {
-            BsonDocument document = new BsonDocument();
+            var document = new BsonDocument();
             if (safeMode)
             {
                 try
                 {
-                    mongoCol.Insert<BsonDocument>(document, WriteConcern.Acknowledged);
+                    mongoCol.Insert(document, WriteConcern.Acknowledged);
                     return document.GetElement(KEY_ID).Value;
                 }
                 catch (Exception)
@@ -532,11 +537,8 @@ namespace MagicMongoDBTool.Module
                     return BsonNull.Value;
                 }
             }
-            else
-            {
-                mongoCol.Insert<BsonDocument>(document);
-                return document.GetElement(KEY_ID).Value;
-            }
+            mongoCol.Insert(document);
+            return document.GetElement(KEY_ID).Value;
         }
     }
 }

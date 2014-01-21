@@ -2,10 +2,11 @@
 using System.IO;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+using MagicMongoDBTool.UserController;
 
 namespace MagicMongoDBTool
 {
-    public partial class ctlGFSView : UserController.ctlDataView
+    public partial class ctlGFSView : ctlDataView
     {
         public ctlGFSView(MongoDBHelper.DataViewInfo _DataViewInfo)
         {
@@ -14,30 +15,40 @@ namespace MagicMongoDBTool
             mDataViewInfo = _DataViewInfo;
             _dataShower.Add(lstData);
         }
+
         private void ctlGFSView_Load(object sender, EventArgs e)
         {
-            OpenFileToolStripMenuItem.Click += new EventHandler(OpenFileStripButton_Click);
-            DownloadFileToolStripMenuItem.Click += new EventHandler(DownloadFileStripButton_Click);
-            UploadFileToolStripMenuItem.Click += new EventHandler(UploadFileStripButton_Click);
-            UploadFolderToolStripMenuItem.Click += new EventHandler(UpLoadFolderStripButton_Click);
-            DeleteFileToolStripMenuItem.Click += new EventHandler(DeleteFileStripButton_Click);
+            OpenFileToolStripMenuItem.Click += OpenFileStripButton_Click;
+            DownloadFileToolStripMenuItem.Click += DownloadFileStripButton_Click;
+            UploadFileToolStripMenuItem.Click += UploadFileStripButton_Click;
+            UploadFolderToolStripMenuItem.Click += UpLoadFolderStripButton_Click;
+            DeleteFileToolStripMenuItem.Click += DeleteFileStripButton_Click;
 
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                this.DeleteFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
-                this.DeleteFileStripButton.Text = this.DeleteFileToolStripMenuItem.Text;
+                DeleteFileToolStripMenuItem.Text =
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
+                DeleteFileStripButton.Text = DeleteFileToolStripMenuItem.Text;
 
-                this.UploadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFile);
-                this.UploadFileStripButton.Text = this.UploadFileToolStripMenuItem.Text;
+                UploadFileToolStripMenuItem.Text =
+                    SystemManager.mStringResource.GetText(
+                        StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFile);
+                UploadFileStripButton.Text = UploadFileToolStripMenuItem.Text;
 
-                this.UploadFolderToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFolder);
-                this.UpLoadFolderStripButton.Text = this.UploadFolderToolStripMenuItem.Text;
+                UploadFolderToolStripMenuItem.Text =
+                    SystemManager.mStringResource.GetText(
+                        StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFolder);
+                UpLoadFolderStripButton.Text = UploadFolderToolStripMenuItem.Text;
 
-                this.DownloadFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
-                this.DownloadFileStripButton.Text = this.DownloadFileToolStripMenuItem.Text;
+                DownloadFileToolStripMenuItem.Text =
+                    SystemManager.mStringResource.GetText(
+                        StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
+                DownloadFileStripButton.Text = DownloadFileToolStripMenuItem.Text;
 
-                this.OpenFileToolStripMenuItem.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
-                this.OpenFileStripButton.Text = this.OpenFileToolStripMenuItem.Text;
+                OpenFileToolStripMenuItem.Text =
+                    SystemManager.mStringResource.GetText(
+                        StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
+                OpenFileStripButton.Text = OpenFileToolStripMenuItem.Text;
             }
             UploadFileStripButton.Enabled = true;
             UploadFileToolStripMenuItem.Enabled = true;
@@ -46,25 +57,96 @@ namespace MagicMongoDBTool
             UploadFolderToolStripMenuItem.Enabled = true;
 
             cmbListViewStyle.Visible = true;
-            this.cmbListViewStyle.SelectedIndexChanged += new EventHandler(
-                (x, y) =>
-                {
-                    lstData.View = (View)cmbListViewStyle.SelectedIndex;
-                }
-           );
+            cmbListViewStyle.SelectedIndexChanged += (x, y) => { lstData.View = (View) cmbListViewStyle.SelectedIndex; };
         }
+
+        private void lstData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //文件系统
+            UploadFileToolStripMenuItem.Enabled = true;
+            UploadFileStripButton.Enabled = true;
+
+            UpLoadFolderStripButton.Enabled = true;
+            UploadFolderToolStripMenuItem.Enabled = true;
+            switch (lstData.SelectedItems.Count)
+            {
+                case 0:
+                    //禁止所有操作
+                    OpenFileStripButton.Enabled = false;
+                    OpenFileToolStripMenuItem.Enabled = false;
+
+                    DownloadFileToolStripMenuItem.Enabled = false;
+                    DownloadFileStripButton.Enabled = false;
+
+                    DeleteFileStripButton.Enabled = false;
+                    DeleteFileToolStripMenuItem.Enabled = false;
+
+                    lstData.ContextMenuStrip = null;
+                    break;
+                case 1:
+                    //可以进行所有操作
+                    OpenFileStripButton.Enabled = true;
+                    OpenFileToolStripMenuItem.Enabled = true;
+                    DownloadFileToolStripMenuItem.Enabled = true;
+                    DownloadFileStripButton.Enabled = true;
+                    if (!mDataViewInfo.IsReadOnly)
+                    {
+                        DeleteFileStripButton.Enabled = true;
+                        DeleteFileToolStripMenuItem.Enabled = true;
+                    }
+                    break;
+                default:
+                    //可以删除多个文件
+                    OpenFileStripButton.Enabled = false;
+                    OpenFileToolStripMenuItem.Enabled = false;
+
+                    DownloadFileToolStripMenuItem.Enabled = false;
+                    DownloadFileStripButton.Enabled = false;
+                    if (!mDataViewInfo.IsReadOnly)
+                    {
+                        DeleteFileStripButton.Enabled = true;
+                        DeleteFileToolStripMenuItem.Enabled = true;
+                    }
+                    break;
+            }
+        }
+
+        protected void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            OpenFileStripButton_Click(sender, e);
+        }
+
+        protected void lstData_MouseClick(object sender, MouseEventArgs e)
+        {
+            SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
+            if (lstData.SelectedItems.Count > 0)
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    contextMenuStripMain = new ContextMenuStrip();
+                    contextMenuStripMain.Items.Add(OpenFileToolStripMenuItem.Clone());
+                    contextMenuStripMain.Items.Add(UploadFileToolStripMenuItem.Clone());
+                    contextMenuStripMain.Items.Add(UploadFolderToolStripMenuItem.Clone());
+                    contextMenuStripMain.Items.Add(DownloadFileToolStripMenuItem.Clone());
+                    contextMenuStripMain.Items.Add(DeleteFileToolStripMenuItem.Clone());
+                    contextMenuStripMain.Show(lstData.PointToScreen(e.Location));
+                }
+            }
+        }
+
         #region"管理：GFS"
+
         /// <summary>
-        /// Upload File
+        ///     Upload File
         /// </summary>
         private void UploadFileStripButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog upfile = new OpenFileDialog();
-            MongoDBHelper.UpLoadFileOption opt = new MongoDBHelper.UpLoadFileOption();
-            if (upfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            var upfile = new OpenFileDialog();
+            var opt = new MongoDBHelper.UpLoadFileOption();
+            if (upfile.ShowDialog() == DialogResult.OK)
             {
-                frmGFSOption frm = new frmGFSOption();
-                SystemManager.OpenForm(frm, false,true);
+                var frm = new frmGFSOption();
+                SystemManager.OpenForm(frm, false, true);
                 opt.FileNameOpt = frm.filename;
                 opt.AlreadyOpt = frm.option;
                 opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
@@ -73,33 +155,34 @@ namespace MagicMongoDBTool
                 RefreshGUI();
             }
         }
+
         /// <summary>
-        /// 上传文件夹
+        ///     上传文件夹
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void UpLoadFolderStripButton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog upfolder = new FolderBrowserDialog();
-            MongoDBHelper.UpLoadFileOption opt = new MongoDBHelper.UpLoadFileOption();
+            var upfolder = new FolderBrowserDialog();
+            var opt = new MongoDBHelper.UpLoadFileOption();
             if (upfolder.ShowDialog() == DialogResult.OK)
             {
-                frmGFSOption frm = new frmGFSOption();
-                SystemManager.OpenForm(frm, false,true);
+                var frm = new frmGFSOption();
+                SystemManager.OpenForm(frm, false, true);
                 opt.FileNameOpt = frm.filename;
                 opt.AlreadyOpt = frm.option;
                 opt.IgnoreSubFolder = frm.ignoreSubFolder;
                 opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
                 frm.Dispose();
-                DirectoryInfo uploadDir = new DirectoryInfo(upfolder.SelectedPath);
+                var uploadDir = new DirectoryInfo(upfolder.SelectedPath);
                 int count = 0;
                 UploadFolder(uploadDir, ref count, opt);
-                MyMessageBox.ShowMessage("Upload", "Upload Completed! Upload Files Count: " + count.ToString());
+                MyMessageBox.ShowMessage("Upload", "Upload Completed! Upload Files Count: " + count);
                 RefreshGUI();
             }
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="uploadDir"></param>
         /// <param name="fileCount"></param>
@@ -107,7 +190,6 @@ namespace MagicMongoDBTool
         /// <returns>是否继续执行后续的所有操作</returns>
         private Boolean UploadFolder(DirectoryInfo uploadDir, ref int fileCount, MongoDBHelper.UpLoadFileOption opt)
         {
-
             foreach (FileInfo file in uploadDir.GetFiles())
             {
                 MongoDBHelper.UploadResult rtn = MongoDBHelper.UpLoadFile(file.FullName, opt);
@@ -135,28 +217,35 @@ namespace MagicMongoDBTool
                 {
                     ///递归文件夹操作，如果下层有任何停止的意愿，则立刻停止，并且使上层也立刻停止
                     Boolean IsContinue = UploadFolder(dir, ref fileCount, opt);
-                    if (!IsContinue) { return false; }
+                    if (!IsContinue)
+                    {
+                        return false;
+                    }
                 }
             }
             return true;
         }
+
         /// <summary>
-        /// DownLoad File
+        ///     DownLoad File
         /// </summary>
         public void DownloadFileStripButton_Click(object sender, EventArgs e)
         {
-            SaveFileDialog downfile = new SaveFileDialog();
+            var downfile = new SaveFileDialog();
             String strFileName = lstData.SelectedItems[0].Text;
             //For Winodws,Linux user DirectorySeparatorChar Replace with @"\"
-            downfile.FileName = strFileName.Split(System.IO.Path.DirectorySeparatorChar)[strFileName.Split(System.IO.Path.DirectorySeparatorChar).Length - 1];
-            if (downfile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            downfile.FileName =
+                strFileName.Split(Path.DirectorySeparatorChar)[strFileName.Split(Path.DirectorySeparatorChar).Length - 1
+                    ];
+            if (downfile.ShowDialog() == DialogResult.OK)
             {
                 MongoDBHelper.DownloadFile(downfile.FileName, strFileName);
             }
             RefreshGUI();
         }
+
         /// <summary>
-        /// Open File
+        ///     Open File
         /// </summary>
         private void OpenFileStripButton_Click(object sender, EventArgs e)
         {
@@ -166,8 +255,9 @@ namespace MagicMongoDBTool
                 MongoDBHelper.OpenFile(strFileName);
             }
         }
+
         /// <summary>
-        /// Delete File
+        ///     Delete File
         /// </summary>
         public void DeleteFileStripButton_Click(object sender, EventArgs e)
         {
@@ -187,84 +277,7 @@ namespace MagicMongoDBTool
                 RefreshGUI();
             }
         }
+
         #endregion
-
-        private void lstData_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            //文件系统
-            this.UploadFileToolStripMenuItem.Enabled = true;
-            this.UploadFileStripButton.Enabled = true;
-
-            this.UpLoadFolderStripButton.Enabled = true;
-            this.UploadFolderToolStripMenuItem.Enabled = true;
-            switch (lstData.SelectedItems.Count)
-            {
-                case 0:
-                    //禁止所有操作
-                    this.OpenFileStripButton.Enabled = false;
-                    this.OpenFileToolStripMenuItem.Enabled = false;
-
-                    this.DownloadFileToolStripMenuItem.Enabled = false;
-                    this.DownloadFileStripButton.Enabled = false;
-
-                    this.DeleteFileStripButton.Enabled = false;
-                    this.DeleteFileToolStripMenuItem.Enabled = false;
-
-                    lstData.ContextMenuStrip = null;
-                    break;
-                case 1:
-                    //可以进行所有操作
-                    this.OpenFileStripButton.Enabled = true;
-                    this.OpenFileToolStripMenuItem.Enabled = true;
-                    this.DownloadFileToolStripMenuItem.Enabled = true;
-                    this.DownloadFileStripButton.Enabled = true;
-                    if (!mDataViewInfo.IsReadOnly)
-                    {
-                        this.DeleteFileStripButton.Enabled = true;
-                        this.DeleteFileToolStripMenuItem.Enabled = true;
-                    }
-                    break;
-                default:
-                    //可以删除多个文件
-                    this.OpenFileStripButton.Enabled = false;
-                    this.OpenFileToolStripMenuItem.Enabled = false;
-
-                    this.DownloadFileToolStripMenuItem.Enabled = false;
-                    this.DownloadFileStripButton.Enabled = false;
-                    if (!mDataViewInfo.IsReadOnly)
-                    {
-                        this.DeleteFileStripButton.Enabled = true;
-                        this.DeleteFileToolStripMenuItem.Enabled = true;
-                    }
-                    break;
-
-            }
-        }
-
-        protected void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            OpenFileStripButton_Click(sender, e);
-        }
-
-        protected void lstData_MouseClick(object sender, MouseEventArgs e)
-        {
-            SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
-            if (lstData.SelectedItems.Count > 0)
-            {
-                if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                {
-                    this.contextMenuStripMain = new ContextMenuStrip();
-                    this.contextMenuStripMain.Items.Add(this.OpenFileToolStripMenuItem.Clone());
-                    this.contextMenuStripMain.Items.Add(this.UploadFileToolStripMenuItem.Clone());
-                    this.contextMenuStripMain.Items.Add(this.UploadFolderToolStripMenuItem.Clone());
-                    this.contextMenuStripMain.Items.Add(this.DownloadFileToolStripMenuItem.Clone());
-                    this.contextMenuStripMain.Items.Add(this.DeleteFileToolStripMenuItem.Clone());
-                    contextMenuStripMain.Show(lstData.PointToScreen(e.Location));
-                }
-            }
-        }
-
-
     }
 }

@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmEvalJS : System.Windows.Forms.Form
+    public partial class frmEvalJS : Form
     {
         public frmEvalJS()
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// Load
+        ///     Load
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -21,28 +23,29 @@ namespace MagicMongoDBTool
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Title);
-                ctlEval.Title = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Method);
-                lblParm.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Parameter);
-                cmdEval.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.EvalJS_Run);
+                Text = SystemManager.mStringResource.GetText(StringResource.TextType.EvalJS_Title);
+                ctlEval.Title = SystemManager.mStringResource.GetText(StringResource.TextType.EvalJS_Method);
+                lblParm.Text = SystemManager.mStringResource.GetText(StringResource.TextType.EvalJS_Parameter);
+                cmdEval.Text = SystemManager.mStringResource.GetText(StringResource.TextType.EvalJS_Run);
             }
             ctlEval.Context =
-@"function eval(){
+                @"function eval(){
 var i = 0;
 i++;
 return i;
 }";
         }
+
         /// <summary>
-        /// eval Javascript
+        ///     eval Javascript
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdEval_Click(object sender, EventArgs e)
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
-            BsonJavaScript js = new BsonJavaScript(ctlEval.Context);
-            List<Object> Params = new List<Object>();
+            var js = new BsonJavaScript(ctlEval.Context);
+            var Params = new List<Object>();
             if (txtParm.Text != String.Empty)
             {
                 foreach (String parm in txtParm.Text.Split(",".ToCharArray()))
@@ -84,7 +87,6 @@ return i;
             {
                 SystemManager.ExceptionDeal(ex, "Exception", "Result");
             }
-
         }
     }
 }

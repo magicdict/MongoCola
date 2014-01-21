@@ -1,15 +1,17 @@
-﻿using MongoDB.Bson;
+﻿using System;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+using MongoDB.Bson;
 
 namespace MagicMongoDBTool
 {
     public partial class frmAggregationCondition : Form
     {
         /// <summary>
-        /// 聚合数组
+        ///     聚合数组
         /// </summary>
         public BsonArray Aggregation = new BsonArray();
+
         public frmAggregationCondition()
         {
             InitializeComponent();
@@ -18,31 +20,27 @@ namespace MagicMongoDBTool
             txtLimit.KeyPress += MongoDBHelper.NumberTextInt_KeyPress;
             txtSkip.KeyPress += MongoDBHelper.NumberTextInt_KeyPress;
 
-            chkSkip.CheckedChanged += (x, y) =>
-            {
-                txtSkip.Enabled = chkSkip.Checked;
-            };
-            chkLimit.CheckedChanged += (x, y) =>
-            {
-                txtLimit.Enabled = chkLimit.Checked;
-            };
+            chkSkip.CheckedChanged += (x, y) => { txtSkip.Enabled = chkSkip.Checked; };
+            chkLimit.CheckedChanged += (x, y) => { txtLimit.Enabled = chkLimit.Checked; };
         }
+
         /// <summary>
-        /// 加载窗体
+        ///     加载窗体
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void frmAggregationCondition_Load(object sender, System.EventArgs e)
+        private void frmAggregationCondition_Load(object sender, EventArgs e)
         {
             QueryFieldPicker.InitByCurrentCollection(false);
             GroupFieldPicker.InitByCurrentCollection(false);
         }
+
         /// <summary>
-        /// OK
+        ///     OK
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnOK_Click(object sender, System.EventArgs e)
+        private void btnOK_Click(object sender, EventArgs e)
         {
             //Project
             BsonDocument project = QueryFieldPicker.GetAggregation();
@@ -70,56 +68,62 @@ namespace MagicMongoDBTool
             BsonDocument groupDetail = GroupFieldPicker.getGroupID();
             if (groupDetail.GetElement(0).Value.AsBsonDocument.ElementCount != 0)
             {
-                foreach (var item in groupPanelCreator.GetGroup())
+                foreach (BsonElement item in groupPanelCreator.GetGroup())
                 {
                     groupDetail.Add(item);
                 }
-                BsonDocument group = new BsonDocument("$group", groupDetail);
+                var group = new BsonDocument("$group", groupDetail);
                 Aggregation.Add(group);
             }
-            this.Close();
+            Close();
         }
 
         #region"Group"
+
         /// <summary>
-        /// 添加一个Group项目
+        ///     添加一个Group项目
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdAddGroupItem_Click(object sender, System.EventArgs e)
+        private void cmdAddGroupItem_Click(object sender, EventArgs e)
         {
             groupPanelCreator.AddGroupItem();
         }
+
         /// <summary>
-        /// 清除所有Group项目
+        ///     清除所有Group项目
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnClear_Click(object sender, System.EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
             groupPanelCreator.Clear();
         }
+
         #endregion
 
         #region"Match"
+
         /// <summary>
-        /// 新增MatchItem
+        ///     新增MatchItem
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddMatch_Click(object sender, System.EventArgs e)
+        private void btnAddMatch_Click(object sender, EventArgs e)
         {
             MatchListPanel.AddMatchItem();
         }
+
         /// <summary>
-        /// 清除MatchItem
+        ///     清除MatchItem
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnClearMatch_Click(object sender, System.EventArgs e)
+        private void btnClearMatch_Click(object sender, EventArgs e)
         {
             MatchListPanel.Clear();
         }
+
         #endregion
     }
 }

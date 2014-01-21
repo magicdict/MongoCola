@@ -7,10 +7,38 @@ namespace MagicMongoDBTool
 {
     public partial class ctlBsonValue : UserControl
     {
-        BsonDocument mBsonDocument = new BsonDocument();
-        BsonArray mBsonArray = new BsonArray();
+        private BsonArray mBsonArray = new BsonArray();
+        private BsonDocument mBsonDocument = new BsonDocument();
+
+        public ctlBsonValue()
+        {
+            InitializeComponent();
+            dateTimePicker.Location = txtBsonValue.Location;
+            dateTimePicker.Size = txtBsonValue.Size;
+
+            radTrue.Location = txtBsonValue.Location;
+            radFalse.Top = txtBsonValue.Top;
+            NumberPick.Location = txtBsonValue.Location;
+            NumberPick.Size = txtBsonValue.Size;
+            NumberPick.Minimum = Int32.MinValue;
+            NumberPick.Maximum = Int32.MaxValue;
+
+            txtBsonValue.Visible = true;
+            txtBsonValue.Text = String.Empty;
+            radTrue.Visible = false;
+            radFalse.Visible = false;
+            radFalse.Checked = true;
+            dateTimePicker.Visible = false;
+            NumberPick.Visible = false;
+
+            foreach (String item in BsonValueEx.GetBasicTypeList())
+            {
+                cmbDataType.Items.Add(item);
+            }
+        }
+
         /// <summary>
-        /// 使用属性会发生一些MONO上的移植问题
+        ///     使用属性会发生一些MONO上的移植问题
         /// </summary>
         /// <returns></returns>
         public BsonValue getValue()
@@ -46,8 +74,9 @@ namespace MagicMongoDBTool
             }
             return mValue;
         }
+
         /// <summary>
-        /// 使用属性会发生一些MONO上的移植问题
+        ///     使用属性会发生一些MONO上的移植问题
         /// </summary>
         /// <returns></returns>
         public void setValue(BsonValue value)
@@ -94,7 +123,7 @@ namespace MagicMongoDBTool
             }
             if (value.IsBsonArray)
             {
-                frmArrayCreator frmInsertArray = new frmArrayCreator();
+                var frmInsertArray = new frmArrayCreator();
                 SystemManager.OpenForm(frmInsertArray, false, true);
                 if (frmInsertArray.mBsonArray != null)
                 {
@@ -107,7 +136,7 @@ namespace MagicMongoDBTool
             }
             if (value.IsBsonDocument)
             {
-                frmNewDocument frmInsertDoc = new frmNewDocument();
+                var frmInsertDoc = new frmNewDocument();
                 SystemManager.OpenForm(frmInsertDoc, false, true);
                 if (frmInsertDoc.mBsonDocument != null)
                 {
@@ -120,34 +149,7 @@ namespace MagicMongoDBTool
             }
         }
 
-        public ctlBsonValue()
-        {
-            InitializeComponent();
-            dateTimePicker.Location = txtBsonValue.Location;
-            dateTimePicker.Size = txtBsonValue.Size;
-
-            radTrue.Location = txtBsonValue.Location;
-            radFalse.Top = txtBsonValue.Top;
-            NumberPick.Location = txtBsonValue.Location;
-            NumberPick.Size = txtBsonValue.Size;
-            NumberPick.Minimum = Int32.MinValue;
-            NumberPick.Maximum = Int32.MaxValue;
-
-            txtBsonValue.Visible = true;
-            txtBsonValue.Text = String.Empty;
-            radTrue.Visible = false;
-            radFalse.Visible = false;
-            radFalse.Checked = true;
-            dateTimePicker.Visible = false;
-            NumberPick.Visible = false;
-
-            foreach (String item in BsonValueEx.GetBasicTypeList())
-            {
-                cmbDataType.Items.Add(item);
-            }
-        }
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -1,8 +1,9 @@
 ﻿using System.Drawing;
+using MagicMongoDBTool.Properties;
 
 namespace MagicMongoDBTool.Module
 {
-    public partial class GetResource
+    public class GetResource
     {
         public static Icon GetIcon(IconType theIcon)
         {
@@ -11,85 +12,86 @@ namespace MagicMongoDBTool.Module
             switch (theIcon)
             {
                 case IconType.Yes:
-                    micon = MagicMongoDBTool.Properties.Resources.ok;
+                    micon = Resources.ok;
                     break;
                 case IconType.No:
-                    micon = MagicMongoDBTool.Properties.Resources.DELETE;
+                    micon = Resources.DELETE;
                     break;
                 case IconType.UserGuide:
-                    micon = MagicMongoDBTool.Properties.Resources.books;
+                    micon = Resources.books;
                     break;
             }
             return micon;
         }
+
         public static Image GetImage(ImageType theImage)
         {
             Image micon = null;
             switch (theImage)
             {
                 case ImageType.Blank:
-                    micon = MagicMongoDBTool.Properties.Resources.Blank;
+                    micon = Resources.Blank;
                     break;
                 case ImageType.AccessDB:
-                    micon = MagicMongoDBTool.Properties.Resources.AccessDB;
+                    micon = Resources.AccessDB;
                     break;
                 case ImageType.ShutDown:
-                    micon = MagicMongoDBTool.Properties.Resources.ShutDown;
+                    micon = Resources.ShutDown;
                     break;
                 case ImageType.Option:
-                    micon = MagicMongoDBTool.Properties.Resources.Option;
+                    micon = Resources.Option;
                     break;
                 case ImageType.Refresh:
-                    micon = MagicMongoDBTool.Properties.Resources.Refresh;
+                    micon = Resources.Refresh;
                     break;
                 case ImageType.NextPage:
-                    micon = MagicMongoDBTool.Properties.Resources.NextPage;
+                    micon = Resources.NextPage;
                     break;
                 case ImageType.PrePage:
                     //水平翻转
-                    micon = MagicMongoDBTool.Properties.Resources.NextPage;
+                    micon = Resources.NextPage;
                     micon.RotateFlip(RotateFlipType.Rotate180FlipY);
                     break;
                 case ImageType.LastPage:
-                    micon = MagicMongoDBTool.Properties.Resources.LastPage;
+                    micon = Resources.LastPage;
                     break;
                 case ImageType.FirstPage:
                     //水平翻转
-                    micon = MagicMongoDBTool.Properties.Resources.LastPage;
+                    micon = Resources.LastPage;
                     micon.RotateFlip(RotateFlipType.Rotate180FlipY);
                     break;
                 case ImageType.Query:
-                    micon = MagicMongoDBTool.Properties.Resources.Query;
+                    micon = Resources.Query;
                     break;
                 case ImageType.Filter:
-                    micon = MagicMongoDBTool.Properties.Resources.Filter;
+                    micon = Resources.Filter;
                     break;
                 case ImageType.WebServer:
-                    micon = MagicMongoDBTool.Properties.Resources.WebServer;
+                    micon = Resources.WebServer;
                     break;
                 case ImageType.Database:
-                    micon = MagicMongoDBTool.Properties.Resources.Database;
+                    micon = Resources.Database;
                     break;
                 case ImageType.Collection:
-                    micon = MagicMongoDBTool.Properties.Resources.Collection;
+                    micon = Resources.Collection;
                     break;
                 case ImageType.Keys:
-                    micon = MagicMongoDBTool.Properties.Resources.Keys;
+                    micon = Resources.Keys;
                     break;
                 case ImageType.KeyInfo:
-                    micon = MagicMongoDBTool.Properties.Resources.KeyInfo;
+                    micon = Resources.KeyInfo;
                     break;
                 case ImageType.DBKey:
-                    micon = MagicMongoDBTool.Properties.Resources.DBkey;
+                    micon = Resources.DBkey;
                     break;
                 case ImageType.Document:
-                    micon = MagicMongoDBTool.Properties.Resources.Document;
+                    micon = Resources.Document;
                     break;
                 case ImageType.Smile:
-                    micon = MagicMongoDBTool.Properties.Resources.Smile;
+                    micon = Resources.Smile;
                     break;
                 case ImageType.User:
-                    micon = MagicMongoDBTool.Properties.Resources.User;
+                    micon = Resources.User;
                     break;
                 default:
                     break;
@@ -97,17 +99,20 @@ namespace MagicMongoDBTool.Module
             return micon;
         }
     }
+
     public enum IconType
     {
         Yes,
         No,
         UserGuide
     }
+
     public enum ImageType
     {
         Blank,
+
         /// <summary>
-        /// Access数据库
+        ///     Access数据库
         /// </summary>
         AccessDB,
         ShutDown,
@@ -117,12 +122,14 @@ namespace MagicMongoDBTool.Module
         LastPage,
         Query,
         Filter,
+
         /// <summary>
-        /// 选项
+        ///     选项
         /// </summary>
         Option,
+
         /// <summary>
-        /// 刷新
+        ///     刷新
         /// </summary>
         Refresh,
 
@@ -136,6 +143,5 @@ namespace MagicMongoDBTool.Module
         Document,
         User,
         Smile
-
     }
 }

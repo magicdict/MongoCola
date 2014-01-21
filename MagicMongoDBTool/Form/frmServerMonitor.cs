@@ -1,55 +1,67 @@
-﻿using MagicMongoDBTool.Module;
-using System;
+﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using MagicMongoDBTool.Module;
+using MagicMongoDBTool.Properties;
+using MongoDB.Bson;
+
 namespace MagicMongoDBTool
 {
     public partial class frmServerMonitor : Form
     {
+        private Timer M;
+
         public frmServerMonitor()
         {
             InitializeComponent();
         }
-        Timer M;
+
         private void frmServerMonitor_Load(object sender, EventArgs e)
         {
-            this.Icon = GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.KeyInfo);
-            M = new Timer();
-            M.Interval = 3000;
+            Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
+            M = new Timer {Interval = 3000};
             M.Tick += M_Tick;
-            Series QuerySeries = new Series("Query");
-            QuerySeries.ChartType = SeriesChartType.Line;
-            QuerySeries.XValueType = ChartValueType.String;
-            QuerySeries.YValueType = ChartValueType.Int32;
+            var QuerySeries = new Series("Query")
+            {
+                ChartType = SeriesChartType.Line,
+                XValueType = ChartValueType.String,
+                YValueType = ChartValueType.Int32
+            };
             MonitorGrap.Series.Add(QuerySeries);
 
-            Series InsertSeries = new Series("Insert");
-            InsertSeries.ChartType = SeriesChartType.Line;
-            InsertSeries.XValueType = ChartValueType.String;
-            InsertSeries.YValueType = ChartValueType.Int32;
-            MonitorGrap.Series.Add(InsertSeries);
-            this.FormClosing += (x,y) =>
+            var InsertSeries = new Series("Insert")
             {
-                M.Stop();
+                ChartType = SeriesChartType.Line,
+                XValueType = ChartValueType.String,
+                YValueType = ChartValueType.Int32
             };
+            MonitorGrap.Series.Add(InsertSeries);
+            FormClosing += (x, y) => { M.Stop(); };
             M.Start();
         }
-        void M_Tick(object sender, EventArgs e)
+
+        private void M_Tick(object sender, EventArgs e)
         {
-                var DocStatus = MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command, SystemManager.GetCurrentServer()).Response;
+            BsonDocument DocStatus =
+                MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command,
+                    SystemManager.GetCurrentServer()).Response;
 
-                DataPoint queryPoint = new DataPoint();
-                queryPoint.SetValueXY(DateTime.Now.ToString(), DocStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("query").Value);
-                MonitorGrap.Series[0].Points.Add(queryPoint);
+            var queryPoint = new DataPoint();
+            queryPoint.SetValueXY(DateTime.Now.ToString(CultureInfo.InvariantCulture),
+                DocStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("query").Value);
+            MonitorGrap.Series[0].Points.Add(queryPoint);
 
-                DataPoint insertPoint = new DataPoint();
-                insertPoint.SetValueXY(DateTime.Now.ToString(), DocStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("insert").Value);
-                MonitorGrap.Series[1].Points.Add(insertPoint);
+            var insertPoint = new DataPoint();
+            insertPoint.SetValueXY(DateTime.Now.ToString(CultureInfo.InvariantCulture),
+                DocStatus.GetElement("opcounters").Value.AsBsonDocument.GetElement("insert").Value);
+            MonitorGrap.Series[1].Points.Add(insertPoint);
         }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             M.Stop();
-            this.Close();
+            Close();
         }
     }
 }

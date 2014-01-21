@@ -7,22 +7,23 @@ namespace MagicMongoDBTool.Module
     public static partial class MongoDBHelper
     {
         /// <summary>
-        /// 
         /// </summary>
         public static Object _ClipElement = null;
+
         /// <summary>
-        /// 
         /// </summary>
         public static Boolean _IsElementClip = true;
+
         /// <summary>
-        /// Can Paste As Value
+        ///     Can Paste As Value
         /// </summary>
         public static Boolean CanPasteAsValue
         {
             get { return (_ClipElement != null && !_IsElementClip); }
         }
+
         /// <summary>
-        /// Can Paste As Element
+        ///     Can Paste As Element
         /// </summary>
         public static Boolean CanPasteAsElement
         {
@@ -37,7 +38,7 @@ namespace MagicMongoDBTool.Module
         //Capped collection are not shard-able.
 
         /// <summary>
-        /// Paste
+        ///     Paste
         /// </summary>
         /// <param name="ElementPath"></param>
         public static String PasteElement(String ElementPath)
@@ -48,7 +49,7 @@ namespace MagicMongoDBTool.Module
             {
                 try
                 {
-                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, (BsonElement)_ClipElement);
+                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, (BsonElement) _ClipElement);
                 }
                 catch (InvalidOperationException ex)
                 {
@@ -61,8 +62,8 @@ namespace MagicMongoDBTool.Module
             }
             return String.Empty;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="ElementPath"></param>
         public static void PasteValue(String ElementPath)
@@ -71,15 +72,16 @@ namespace MagicMongoDBTool.Module
             BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonArray)
             {
-                t.AsBsonArray.Insert(t.AsBsonArray.Count, (BsonValue)_ClipElement);
+                t.AsBsonArray.Insert(t.AsBsonArray.Count, (BsonValue) _ClipElement);
             }
             if (!SystemManager.GetCurrentCollection().IsCapped())
             {
                 SystemManager.GetCurrentCollection().Save(BaseDoc);
             }
         }
+
         /// <summary>
-        /// Cut Element
+        ///     Cut Element
         /// </summary>
         /// <param name="ElementPath"></param>
         public static void CopyElement(BsonElement El)
@@ -87,8 +89,9 @@ namespace MagicMongoDBTool.Module
             _ClipElement = El;
             _IsElementClip = true;
         }
+
         /// <summary>
-        /// Cut Array Value
+        ///     Cut Array Value
         /// </summary>
         /// <param name="ElementPath"></param>
         public static void CopyValue(BsonValue Val)
@@ -96,8 +99,9 @@ namespace MagicMongoDBTool.Module
             _ClipElement = Val;
             _IsElementClip = false;
         }
+
         /// <summary>
-        /// Cut Element
+        ///     Cut Element
         /// </summary>
         /// <param name="ElementPath"></param>
         public static void CutElement(String ElementPath, BsonElement El)
@@ -106,8 +110,9 @@ namespace MagicMongoDBTool.Module
             _IsElementClip = true;
             DropElement(ElementPath, El);
         }
+
         /// <summary>
-        /// Cut Array Value
+        ///     Cut Array Value
         /// </summary>
         /// <param name="ElementPath"></param>
         public static void CutValue(String ElementPath, int ValueIndex, BsonValue Val)
@@ -116,8 +121,9 @@ namespace MagicMongoDBTool.Module
             _IsElementClip = false;
             DropArrayValue(ElementPath, ValueIndex);
         }
+
         /// <summary>
-        /// Add Element
+        ///     Add Element
         /// </summary>
         /// <param name="BaseDoc"></param>
         /// <param name="AddElement"></param>
@@ -143,8 +149,9 @@ namespace MagicMongoDBTool.Module
             }
             return String.Empty;
         }
+
         /// <summary>
-        /// Add Value
+        ///     Add Value
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="AddValue"></param>
@@ -163,7 +170,7 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// Drop Element
+        ///     Drop Element
         /// </summary>
         /// <param name="BaseDoc"></param>
         /// <param name="ElementPath"></param>
@@ -177,8 +184,9 @@ namespace MagicMongoDBTool.Module
             }
             SystemManager.GetCurrentCollection().Save(BaseDoc);
         }
+
         /// <summary>
-        /// Drop A Value of Array
+        ///     Drop A Value of Array
         /// </summary>
         /// <param name="BaseDoc"></param>
         /// <param name="ElementPath"></param>
@@ -195,8 +203,9 @@ namespace MagicMongoDBTool.Module
                 SystemManager.GetCurrentCollection().Save(BaseDoc);
             }
         }
+
         /// <summary>
-        /// Modify Element
+        ///     Modify Element
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="NewValue"></param>
@@ -215,8 +224,9 @@ namespace MagicMongoDBTool.Module
                 SystemManager.GetCurrentCollection().Save(BaseDoc);
             }
         }
+
         /// <summary>
-        /// Modify A Value of Array
+        ///     Modify A Value of Array
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="NewValue"></param>
@@ -238,7 +248,7 @@ namespace MagicMongoDBTool.Module
 
 
         /// <summary>
-        /// Locate the Operation Place
+        ///     Locate the Operation Place
         /// </summary>
         /// <param name="BaseDoc"></param>
         /// <param name="ElementPath"></param>
@@ -282,7 +292,7 @@ namespace MagicMongoDBTool.Module
                     {
                         //Array里面的Array,所以没有元素名称。
                         //TODO：正确做法是将元素的Index传入，这里暂时认为第一个数组就是目标数组
-                        foreach (var item in Current.AsBsonArray)
+                        foreach (BsonValue item in Current.AsBsonArray)
                         {
                             if (item.IsBsonArray)
                             {
@@ -300,7 +310,9 @@ namespace MagicMongoDBTool.Module
                     if (Current.IsBsonArray)
                     {
                         //当前的如果是数组，获得当前下标。
-                        int Index = Convert.ToInt16(strTag.Substring(strTag.IndexOf("[".ToString()) + 1, strTag.Length - strTag.IndexOf("[".ToString()) - 2));
+                        int Index =
+                            Convert.ToInt16(strTag.Substring(strTag.IndexOf("[") + 1,
+                                strTag.Length - strTag.IndexOf("[") - 2));
                         Current = Current.AsBsonArray[Index - 1];
                     }
                     else
@@ -320,6 +332,5 @@ namespace MagicMongoDBTool.Module
             }
             return Current;
         }
-
     }
 }

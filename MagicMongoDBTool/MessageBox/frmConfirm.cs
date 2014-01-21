@@ -6,47 +6,52 @@ namespace MagicMongoDBTool
     public partial class frmConfirm : Form
     {
         /// <summary>
-        /// Return Result
+        ///     Return Result
         /// </summary>
         internal Boolean Result = false;
+
         /// <summary>
-        /// Init Form
+        ///     Init Form
         /// </summary>
         public frmConfirm()
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// Yes is clicked
+        ///     Yes is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdYes_Click(object sender, EventArgs e)
         {
             Result = true;
-            this.Close();
+            Close();
         }
+
         /// <summary>
-        /// No is clicked
+        ///     No is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdNo_Click(object sender, EventArgs e)
         {
             Result = false;
-            this.Close();
+            Close();
         }
+
         /// <summary>
-        /// set the message 
+        ///     set the message
         /// </summary>
         /// <param name="strMessage"></param>
         internal void SetMessage(String strMessage)
         {
             Result = false;
-            this.lblMessage.Text = strMessage;
+            lblMessage.Text = strMessage;
         }
+
         /// <summary>
-        /// set the text of yes no button
+        ///     set the text of yes no button
         /// </summary>
         /// <param name="Yes"></param>
         /// <param name="No"></param>

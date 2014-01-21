@@ -1,38 +1,46 @@
-﻿using MagicMongoDBTool.Module;
-using MongoDB.Bson;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
+using MagicMongoDBTool.Module;
+using MagicMongoDBTool.Properties;
+using MongoDB.Bson;
+using MongoDB.Driver.Builders;
 
 namespace MagicMongoDBTool
 {
-    public partial class frmUser : System.Windows.Forms.Form
+    public partial class frmUser : Form
     {
+        private readonly Dictionary<String, BsonElement> OtherDBRolesDict = new Dictionary<string, BsonElement>();
+
         /// <summary>
-        /// 是否作为Admin
+        ///     是否作为Admin
         /// </summary>
-        private Boolean _IsAdmin = false;
-        private String _ModifyName = String.Empty;
-        private Dictionary<String, BsonElement> OtherDBRolesDict = new Dictionary<string, BsonElement>();
+        private readonly Boolean _IsAdmin;
+
+        private readonly String _ModifyName = String.Empty;
+
         /// <summary>
-        /// frmUser
+        ///     frmUser
         /// </summary>
         /// <param name="IsAdmin"></param>
         public frmUser(Boolean IsAdmin)
         {
             InitializeComponent();
             _IsAdmin = IsAdmin;
-            foreach (var item in SystemManager.GetCurrentServer().GetDatabaseNames())
+            foreach (string item in SystemManager.GetCurrentServer().GetDatabaseNames())
             {
                 cmbDB.Items.Add(item);
             }
-            if (!IsAdmin) {
+            if (!IsAdmin)
+            {
                 //Admin以外的不能有otherDBRoles
-                this.Width = this.Width / 2;
+                Width = Width/2;
             }
             userRoles.IsAdmin = IsAdmin;
         }
+
         /// <summary>
-        /// frmUser
+        ///     frmUser
         /// </summary>
         /// <param name="IsAdmin"></param>
         /// <param name="UserName"></param>
@@ -42,18 +50,19 @@ namespace MagicMongoDBTool
             _IsAdmin = IsAdmin;
             _ModifyName = UserName;
             cmbDB.Items.Clear();
-            foreach (var item in SystemManager.GetCurrentServer().GetDatabaseNames())
+            foreach (string item in SystemManager.GetCurrentServer().GetDatabaseNames())
             {
                 cmbDB.Items.Add(item);
             }
             if (!IsAdmin)
             {
                 //Admin以外的不能有otherDBRoles
-                this.Width = this.Width / 2;
+                Width = Width/2;
             }
         }
+
         /// <summary>
-        /// 确定
+        ///     确定
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -65,12 +74,14 @@ namespace MagicMongoDBTool
                 return;
             }
             //MongoUser不能同时具备Password和userSource字段！
-            MongoDBHelper.MongoUserEx user = new MongoDBHelper.MongoUserEx();
-            user.Username = txtUserName.Text;
-            user.Password = txtUserName.Text;
-            user.roles = userRoles.getRoles();
-            BsonDocument otherDBRoles = new BsonDocument();
-            foreach (var item in OtherDBRolesDict.Values)
+            var user = new MongoDBHelper.MongoUserEx
+            {
+                Username = txtUserName.Text,
+                Password = txtUserName.Text,
+                roles = userRoles.getRoles()
+            };
+            var otherDBRoles = new BsonDocument();
+            foreach (BsonElement item in OtherDBRolesDict.Values)
             {
                 otherDBRoles.Add(item);
             }
@@ -92,30 +103,31 @@ namespace MagicMongoDBTool
             {
                 SystemManager.ExceptionDeal(ex);
             }
-            this.Close();
+            Close();
         }
+
         /// <summary>
-        /// 关闭
+        ///     关闭
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
+
         private void frmUser_Load(object sender, EventArgs e)
         {
-
             if (_ModifyName != String.Empty)
             {
-                this.Text = "Change User Config";
+                Text = "Change User Config";
                 txtUserName.Enabled = false;
                 txtUserName.Text = _ModifyName;
                 var userInfo = SystemManager.GetCurrentDataBase().GetCollection(MongoDBHelper.COLLECTION_NAME_USER)
-                    .FindOneAs<BsonDocument>(MongoDB.Driver.Builders.Query.EQ("user", _ModifyName));
-                this.userRoles.setRoles(userInfo["roles"].AsBsonArray);
+                    .FindOneAs<BsonDocument>(Query.EQ("user", _ModifyName));
+                userRoles.setRoles(userInfo["roles"].AsBsonArray);
                 OtherDBRolesDict.Clear();
-                foreach (var item in userInfo["otherDBRoles"].AsBsonDocument)
+                foreach (BsonElement item in userInfo["otherDBRoles"].AsBsonDocument)
                 {
                     OtherDBRolesDict.Add(item.Name, item);
                 }
@@ -127,43 +139,49 @@ namespace MagicMongoDBTool
                 {
                     if (_IsAdmin)
                     {
-                        this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
+                        Text =
+                            SystemManager.mStringResource.GetText(
+                                StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
                     }
                     else
                     {
-                        this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                        Text =
+                            SystemManager.mStringResource.GetText(
+                                StringResource.TextType.Main_Menu_Operation_Database_AddUser);
                     }
-                    this.Icon = GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.AddUserToDB);
+                    Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
                 }
                 else
                 {
-                    this.Icon = GetSystemIcon.ConvertImgToIcon(MagicMongoDBTool.Properties.Resources.DBkey);
-                    this.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_ChangePassword);
+                    Icon = GetSystemIcon.ConvertImgToIcon(Resources.DBkey);
+                    Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_ChangePassword);
                 }
-                lblUserName.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Username);
-                lblPassword.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Password);
-                lblConfirmPsw.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_ConfirmPassword);
+                lblUserName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username);
+                lblPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Password);
+                lblConfirmPsw.Text =
+                    SystemManager.mStringResource.GetText(StringResource.TextType.Common_ConfirmPassword);
                 //chkReadOnly.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_ReadOnly);
                 colRoles.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Roles);
                 colDataBase.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_DataBase);
-                cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);
-
+                cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
             }
         }
+
         /// <summary>
-        /// 刷新角色
+        ///     刷新角色
         /// </summary>
         private void RefreshOtherDBRoles()
         {
             lstOtherRoles.Items.Clear();
-            foreach (var item in OtherDBRolesDict.Keys)
+            foreach (string item in OtherDBRolesDict.Keys)
             {
-                lstOtherRoles.Items.Add(new System.Windows.Forms.ListViewItem(new string[] { item, OtherDBRolesDict[item].Value.ToString() }));
+                lstOtherRoles.Items.Add(new ListViewItem(new[] {item, OtherDBRolesDict[item].Value.ToString()}));
             }
         }
+
         /// <summary>
-        /// 增加角色
+        ///     增加角色
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -174,9 +192,9 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Error", "Please Select A Database");
                 return;
             }
-            frmUserRole mUserRole = new frmUserRole(new BsonArray());
+            var mUserRole = new frmUserRole(new BsonArray());
             mUserRole.ShowDialog();
-            BsonElement otherRole = new BsonElement(cmbDB.Text, mUserRole.Result);
+            var otherRole = new BsonElement(cmbDB.Text, mUserRole.Result);
             if (OtherDBRolesDict.ContainsKey(cmbDB.Text))
             {
                 OtherDBRolesDict[cmbDB.Text] = otherRole;
@@ -187,8 +205,9 @@ namespace MagicMongoDBTool
             }
             RefreshOtherDBRoles();
         }
+
         /// <summary>
-        /// 删除角色
+        ///     删除角色
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -204,8 +223,9 @@ namespace MagicMongoDBTool
                 RefreshOtherDBRoles();
             }
         }
+
         /// <summary>
-        /// 修改角色
+        ///     修改角色
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -218,9 +238,9 @@ namespace MagicMongoDBTool
             else
             {
                 String DBName = lstOtherRoles.SelectedItems[0].Text;
-                frmUserRole mUserRole = new frmUserRole(OtherDBRolesDict[DBName].Value.AsBsonArray);
+                var mUserRole = new frmUserRole(OtherDBRolesDict[DBName].Value.AsBsonArray);
                 mUserRole.ShowDialog();
-                BsonElement otherRole = new BsonElement(cmbDB.Text, mUserRole.Result);
+                var otherRole = new BsonElement(cmbDB.Text, mUserRole.Result);
                 OtherDBRolesDict[DBName] = otherRole;
                 RefreshOtherDBRoles();
             }

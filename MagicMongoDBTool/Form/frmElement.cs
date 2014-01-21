@@ -1,6 +1,6 @@
 ﻿using System;
-using MagicMongoDBTool.Module;
 using System.Windows.Forms;
+using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 
 namespace MagicMongoDBTool
@@ -8,23 +8,24 @@ namespace MagicMongoDBTool
     public partial class frmElement : Form
     {
         /// <summary>
-        /// 是否为更新模式
+        ///     路径
         /// </summary>
-        private Boolean _IsUpdateMode = false;
+        private readonly String _FullPath = String.Empty;
+
         /// <summary>
-        /// 
         /// </summary>
-        private Boolean _IsElement = true;
+        private readonly Boolean _IsElement = true;
+
         /// <summary>
-        /// 路径
+        ///     是否为更新模式
         /// </summary>
-        private String _FullPath = String.Empty;
+        private readonly Boolean _IsUpdateMode;
+
         /// <summary>
-        /// 
         /// </summary>
-        private TreeNode _SelectNode;
+        private readonly TreeNode _SelectNode;
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="IsUpdateMode"></param>
         /// <param name="FullPath"></param>
@@ -37,8 +38,8 @@ namespace MagicMongoDBTool
             _SelectNode = SelectNode;
             _IsElement = IsElement;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -51,8 +52,8 @@ namespace MagicMongoDBTool
             }
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                cmdOK.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_Cancel);
+                cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
             }
             if (!_IsElement)
             {
@@ -60,8 +61,9 @@ namespace MagicMongoDBTool
                 AddBsonElement.switchToValueMode();
             }
         }
+
         /// <summary>
-        /// 确定
+        ///     确定
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -71,7 +73,8 @@ namespace MagicMongoDBTool
             {
                 if (_IsElement)
                 {
-                    MongoDBHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value, (BsonElement)_SelectNode.Tag);
+                    MongoDBHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value,
+                        (BsonElement) _SelectNode.Tag);
                 }
                 else
                 {
@@ -122,16 +125,17 @@ namespace MagicMongoDBTool
                 }
                 _SelectNode.Nodes.Add(NewNode);
             }
-            this.Close();
+            Close();
         }
+
         /// <summary>
-        /// 取消
+        ///     取消
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

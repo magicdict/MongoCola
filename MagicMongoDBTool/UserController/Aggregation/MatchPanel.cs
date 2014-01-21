@@ -1,45 +1,48 @@
-﻿using MongoDB.Bson;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
+using MongoDB.Bson;
 
 namespace MagicMongoDBTool
 {
     public partial class MatchPanel : UserControl
     {
+        /// <summary>
+        ///     MatchItem数量
+        /// </summary>
+        private byte _conditionCount;
+
+        /// <summary>
+        ///     MatchItem位置
+        /// </summary>
+        private Point _conditionPos = new Point(10, 0);
+
         public MatchPanel()
         {
             InitializeComponent();
             AddMatchItem();
         }
+
         /// <summary>
-        /// MatchItem数量
-        /// </summary>
-        private byte _conditionCount = 0;
-        /// <summary>
-        /// MatchItem位置
-        /// </summary>
-        private Point _conditionPos = new Point(10, 0);
-        /// <summary>
-        /// 增加MatchItem
+        ///     增加MatchItem
         /// </summary>
         public void AddMatchItem()
         {
             _conditionCount++;
-            ctlMatchItem newMatchItem = new ctlMatchItem();
+            var newMatchItem = new ctlMatchItem();
             newMatchItem.Location = _conditionPos;
-            newMatchItem.Name = "MatchItem" + _conditionCount.ToString();
+            newMatchItem.Name = "MatchItem" + _conditionCount;
             Controls.Add(newMatchItem);
             _conditionPos.Y += newMatchItem.Height;
         }
+
         /// <summary>
-        /// 获取Match
+        ///     获取Match
         /// </summary>
         /// <returns></returns>
         public BsonDocument GetMatchDocument()
         {
-            BsonDocument Matchlist = new BsonDocument();
-            foreach (ctlMatchItem item in this.Controls)
+            var Matchlist = new BsonDocument();
+            foreach (ctlMatchItem item in Controls)
             {
                 BsonDocument match = item.getMatchItem();
                 if (match != null)
@@ -50,7 +53,8 @@ namespace MagicMongoDBTool
                         BsonDocument AddMatch = match.GetElement(0).Value.AsBsonDocument;
                         Matchlist.GetElement(MatchName).Value.AsBsonDocument.AddRange(AddMatch);
                     }
-                    else {
+                    else
+                    {
                         Matchlist.AddRange(match);
                     }
                 }
@@ -59,13 +63,11 @@ namespace MagicMongoDBTool
             {
                 return new BsonDocument("$match", Matchlist);
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
+
         /// <summary>
-        /// 清除所有MatchItem
+        ///     清除所有MatchItem
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

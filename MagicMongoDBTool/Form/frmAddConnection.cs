@@ -1,62 +1,95 @@
-﻿using MagicMongoDBTool.Module;
-using MongoDB.Driver;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.Windows.Forms;
+using MagicMongoDBTool.Module;
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
-
     public partial class frmAddConnection : Form
     {
         //http://www.mongodb.org/display/DOCS/Connections
 
         /// <summary>
-        /// 连接配置
+        ///     连接配置
         /// </summary>
         public ConfigHelper.MongoConnectionConfig ModifyConn = new ConfigHelper.MongoConnectionConfig();
+
         /// <summary>
-        /// 修改模式中，原来的连接
+        ///     修改模式中，原来的连接
         /// </summary>
         public String OldConnectionName = String.Empty;
+
         /// <summary>
-        /// 初始化（新建）
+        ///     初始化（新建）
         /// </summary>
         public frmAddConnection()
         {
             InitializeComponent();
             OnLoad();
         }
+
         /// <summary>
-        /// 加载
+        ///     初始化（修改）
+        /// </summary>
+        /// <param name="ConnectionName"></param>
+        public frmAddConnection(String ConnectionName)
+        {
+            InitializeComponent();
+            OldConnectionName = ConnectionName;
+            //Modify Mode
+            ModifyConn = SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName];
+            OnLoad();
+
+            txtConnectionName.Text = ModifyConn.ConnectionName;
+
+            txtHost.Text = ModifyConn.Host;
+            numPort.Text = ModifyConn.Port.ToString(CultureInfo.InvariantCulture);
+            txtUsername.Text = ModifyConn.UserName;
+            txtPassword.Text = ModifyConn.Password;
+            txtDataBaseName.Text = ModifyConn.DataBaseName;
+            if (ModifyConn.ReadPreference != string.Empty)
+            {
+                cmbReadPreference.Text = ModifyConn.ReadPreference;
+            }
+            if (ModifyConn.WriteConcern != string.Empty)
+            {
+                cmbWriteConcern.Text = ModifyConn.WriteConcern;
+            }
+            chkFsync.Checked = ModifyConn.fsync;
+            chkJournal.Checked = ModifyConn.journal;
+
+            NumWTimeoutMS.Value = (decimal) ModifyConn.wtimeoutMS;
+            NumSocketTimeOut.Value = (decimal) ModifyConn.socketTimeoutMS;
+            NumConnectTimeOut.Value = (decimal) ModifyConn.connectTimeoutMS;
+            NumWaitQueueSize.Value = ModifyConn.WaitQueueSize;
+
+            txtReplsetName.Text = ModifyConn.ReplSetName;
+
+            txtConnectionString.Text = ModifyConn.ConnectionString;
+
+            foreach (string item in ModifyConn.ReplsetList)
+            {
+                lstHost.Items.Add(item);
+            }
+
+            cmdAdd.Text = SystemManager.IsUseDefaultLanguage ? "Modify" : SystemManager.mStringResource.GetText(StringResource.TextType.Common_Modify);
+        }
+
+        /// <summary>
+        ///     加载
         /// </summary>
         private void OnLoad()
         {
-            cmdCancel.Click += new EventHandler((x, y) => { this.Close(); });
-            numPort.GotFocus += new EventHandler((x, y) =>
-            {
-                numPort.Select(0, 5);
-            });
-            NumReplPort.GotFocus += new EventHandler((x, y) =>
-            {
-                this.NumReplPort.Select(0, 5);
-            });
-            NumSocketTimeOut.GotFocus += new EventHandler((x, y) =>
-            {
-                this.NumSocketTimeOut.Select(0, 5);
-            });
-            NumConnectTimeOut.GotFocus += new EventHandler((x, y) =>
-            {
-                this.NumConnectTimeOut.Select(0, 5);
-            });
-            NumWTimeoutMS.GotFocus += new EventHandler((x, y) =>
-            {
-                this.NumWTimeoutMS.Select(0, 5);
-            });
-            NumWaitQueueSize.GotFocus += new EventHandler((x, y) =>
-            {
-                this.NumWaitQueueSize.Select(0, 5);
-            });
+            cmdCancel.Click += (x, y) => { Close(); };
+            numPort.GotFocus += (x, y) => { numPort.Select(0, 5); };
+            NumReplPort.GotFocus += (x, y) => { NumReplPort.Select(0, 5); };
+            NumSocketTimeOut.GotFocus += (x, y) => { NumSocketTimeOut.Select(0, 5); };
+            NumConnectTimeOut.GotFocus += (x, y) => { NumConnectTimeOut.Select(0, 5); };
+            NumWTimeoutMS.GotFocus += (x, y) => { NumWTimeoutMS.Select(0, 5); };
+            NumWaitQueueSize.GotFocus += (x, y) => { NumWaitQueueSize.Select(0, 5); };
 
             //读策略
             //http://docs.mongodb.org/manual/reference/connection-string/#read-preference-options
@@ -80,89 +113,44 @@ namespace MagicMongoDBTool
             cmbWriteConcern.Items.Add(WriteConcern.WMajority.ToString());
 
 
-            if (!SystemManager.IsUseDefaultLanguage)
-            {
-                this.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Title);
-                lblConnectionName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionName);
-                lblHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Host);
-                lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
-                lblUsername.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username);
-                lblPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Password);
-                lblDataBaseName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_DBName);
-                lblConnectionString.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionString);
-                lblAttentionPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
+            if (SystemManager.IsUseDefaultLanguage) return;
+            Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Title);
+            lblConnectionName.Text =
+                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionName);
+            lblHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Host);
+            lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
+            lblUsername.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username);
+            lblPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Password);
+            lblDataBaseName.Text =
+                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_DBName);
+            lblConnectionString.Text =
+                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionString);
+            lblAttentionPassword.Text =
+                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
 
 
-                lblsocketTimeout.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SocketTimeOut);
-                lblConnectTimeout.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionTimeOut);
+            lblsocketTimeout.Text =
+                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SocketTimeOut);
+            lblConnectTimeout.Text =
+                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionTimeOut);
 
 
-                lblMainReplsetName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName);
-                lblReplHost.Text = lblHost.Text;
-                lblReplPort.Text = lblPort.Text;
-                cmdAddHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
-                cmdRemoveHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+            lblMainReplsetName.Text =
+                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName);
+            lblReplHost.Text = lblHost.Text;
+            lblReplPort.Text = lblPort.Text;
+            cmdAddHost.Text =
+                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+            cmdRemoveHost.Text =
+                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
 
-                cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
-                cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
-                cmdTest.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Test);
-            }
+            cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
+            cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
+            cmdTest.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Test);
         }
+
         /// <summary>
-        /// 初始化（修改）
-        /// </summary>
-        /// <param name="ConnectionName"></param>
-        public frmAddConnection(String ConnectionName)
-        {
-            InitializeComponent();
-            OldConnectionName = ConnectionName;
-            //Modify Mode
-            ModifyConn = SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName];
-            OnLoad();
-
-            txtConnectionName.Text = ModifyConn.ConnectionName;
-
-            txtHost.Text = ModifyConn.Host;
-            numPort.Text = ModifyConn.Port.ToString();
-            txtUsername.Text = ModifyConn.UserName;
-            txtPassword.Text = ModifyConn.Password;
-            txtDataBaseName.Text = ModifyConn.DataBaseName;
-            if (ModifyConn.ReadPreference != string.Empty)
-            {
-                cmbReadPreference.Text = ModifyConn.ReadPreference;
-            }
-            if (ModifyConn.WriteConcern != string.Empty)
-            {
-                cmbWriteConcern.Text = ModifyConn.WriteConcern;
-            }
-            chkFsync.Checked = ModifyConn.fsync;
-            chkJournal.Checked = ModifyConn.journal;
-
-            NumWTimeoutMS.Value = (decimal)ModifyConn.wtimeoutMS;
-            NumSocketTimeOut.Value = (decimal)ModifyConn.socketTimeoutMS;
-            NumConnectTimeOut.Value = (decimal)ModifyConn.connectTimeoutMS;
-            NumWaitQueueSize.Value = ModifyConn.WaitQueueSize;
-
-            txtReplsetName.Text = ModifyConn.ReplSetName;
-
-            txtConnectionString.Text = ModifyConn.ConnectionString;
-
-            foreach (string item in ModifyConn.ReplsetList)
-            {
-                lstHost.Items.Add(item);
-            }
-
-            if (SystemManager.IsUseDefaultLanguage)
-            {
-                cmdAdd.Text = "Modify";
-            }
-            else
-            {
-                cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Modify);
-            }
-        }
-        /// <summary>
-        /// 新建或者修改
+        ///     新建或者修改
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -182,11 +170,8 @@ namespace MagicMongoDBTool
                         MyMessageBox.ShowMessage("Connection", "Connection Name Already Exist!");
                         return;
                     }
-                    else
-                    {
-                        //不存在则删除旧的记录
-                        SystemManager.ConfigHelperInstance.ConnectionList.Remove(OldConnectionName);
-                    }
+                    //不存在则删除旧的记录
+                    SystemManager.ConfigHelperInstance.ConnectionList.Remove(OldConnectionName);
                 }
             }
             //保存配置
@@ -198,10 +183,11 @@ namespace MagicMongoDBTool
             {
                 SystemManager.ConfigHelperInstance.ConnectionList.Add(NewCollectionName, ModifyConn);
             }
-            this.Close();
+            Close();
         }
+
         /// <summary>
-        /// 测试连接
+        ///     测试连接
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -220,12 +206,15 @@ namespace MagicMongoDBTool
                 //需要验证的数据服务器，没有Admin权限无法获得数据库列表
                 if (!SystemManager.IsUseDefaultLanguage)
                 {
-                    MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
-                                             SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
+                    MyMessageBox.ShowMessage(
+                        SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
+                        SystemManager.mStringResource.GetText(
+                            StringResource.TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
                 }
                 else
                 {
-                    MyMessageBox.ShowMessage("MongoAuthenticationException:", "Please check UserName and Password", ex.ToString(), true);
+                    MyMessageBox.ShowMessage("MongoAuthenticationException:", "Please check UserName and Password",
+                        ex.ToString(), true);
                 }
             }
             catch (Exception ex)
@@ -236,22 +225,26 @@ namespace MagicMongoDBTool
                 //2.认证模式不正确
                 if (!SystemManager.IsUseDefaultLanguage)
                 {
-                    MyMessageBox.ShowMessage(SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
-                                             SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note), ex.ToString(), true);
+                    MyMessageBox.ShowMessage(
+                        SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                        SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note),
+                        ex.ToString(), true);
                 }
                 else
                 {
-                    MyMessageBox.ShowMessage("Exception", "Mongo Server may not Startup or Auth Mode is not correct", ex.ToString(), true);
+                    MyMessageBox.ShowMessage("Exception", "Mongo Server may not Startup or Auth Mode is not correct",
+                        ex.ToString(), true);
                 }
             }
         }
+
         /// <summary>
-        /// 新建连接
+        ///     新建连接
         /// </summary>
         private void CreateConnection()
         {
             ModifyConn.ConnectionName = txtConnectionName.Text;
-            ///感谢 呆呆 的Bug 报告，不论txtConnectionString.Text是否存在都进行赋值，防止删除字符后，值还是保留的BUG
+            //感谢 呆呆 的Bug 报告，不论txtConnectionString.Text是否存在都进行赋值，防止删除字符后，值还是保留的BUG
             ModifyConn.ConnectionString = txtConnectionString.Text;
             if (txtConnectionString.Text != String.Empty)
             {
@@ -259,20 +252,12 @@ namespace MagicMongoDBTool
                 if (strException != String.Empty)
                 {
                     MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it", strException);
-                    return;
-                };
+                }
             }
             else
             {
                 ModifyConn.Host = txtHost.Text;
-                if (numPort.Text != String.Empty)
-                {
-                    ModifyConn.Port = Convert.ToInt32(numPort.Text);
-                }
-                else
-                {
-                    ModifyConn.Port = 0;
-                }
+                ModifyConn.Port = numPort.Text != String.Empty ? Convert.ToInt32(numPort.Text) : 0;
                 ModifyConn.UserName = txtUsername.Text;
                 ModifyConn.Password = txtPassword.Text;
                 ModifyConn.DataBaseName = txtDataBaseName.Text;
@@ -299,10 +284,10 @@ namespace MagicMongoDBTool
                     }
                 }
 
-                ModifyConn.socketTimeoutMS = (double)NumSocketTimeOut.Value;
-                ModifyConn.connectTimeoutMS = (double)NumConnectTimeOut.Value;
-                ModifyConn.wtimeoutMS = (double)NumWTimeoutMS.Value;
-                ModifyConn.WaitQueueSize = (int)NumWaitQueueSize.Value;
+                ModifyConn.socketTimeoutMS = (double) NumSocketTimeOut.Value;
+                ModifyConn.connectTimeoutMS = (double) NumConnectTimeOut.Value;
+                ModifyConn.wtimeoutMS = (double) NumWTimeoutMS.Value;
+                ModifyConn.WaitQueueSize = (int) NumWaitQueueSize.Value;
 
                 ModifyConn.journal = chkJournal.Checked;
                 ModifyConn.fsync = chkFsync.Checked;
@@ -315,30 +300,26 @@ namespace MagicMongoDBTool
                 {
                     ModifyConn.ReplsetList.Add(item);
                 }
-
             }
         }
+
         /// <summary>
-        /// 添加HostList
+        ///     添加HostList
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdAddHost_Click(object sender, EventArgs e)
         {
             String strHost = String.Empty;
-            if (!string.IsNullOrEmpty(strHost))
-            {
-                strHost = txtReplHost.Text;
-                if (NumReplPort.Value != 0)
-                {
-                    strHost += ":" + NumReplPort.Value.ToString();
-                    lstHost.Items.Add(strHost);
-                }
-
-            }
+            if (string.IsNullOrEmpty(strHost)) return;
+            strHost = txtReplHost.Text;
+            if (NumReplPort.Value == 0) return;
+            strHost += ":" + NumReplPort.Value;
+            lstHost.Items.Add(strHost);
         }
+
         /// <summary>
-        /// 移除HostList
+        ///     移除HostList
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -346,24 +327,25 @@ namespace MagicMongoDBTool
         {
             lstHost.Items.Remove(lstHost.SelectedItem);
         }
+
         /// <summary>
-        /// 读策略的官方文档
+        ///     读策略的官方文档
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void lnkReadPreference_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#read-preference-options");
+            Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#read-preference-options");
         }
+
         /// <summary>
-        /// 写策略的官方文档
+        ///     写策略的官方文档
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void lnkWriteConcern_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options");
+            Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options");
         }
-
     }
 }

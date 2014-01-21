@@ -1,27 +1,28 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
-using System.Diagnostics;
+
 namespace MagicMongoDBTool
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        ///     The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.SetCompatibleTextRenderingDefault(false);
             ///这句话如果写到后面去的话，在没有Config文件的时候，服务器树形列表显示不正确
             Application.EnableVisualStyles();
 
             FileVersionInfo info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Driver.dll");
-            SystemManager.MongoDBDriverVersion = info.ProductVersion.ToString();
+            SystemManager.MongoDBDriverVersion = info.ProductVersion;
 
             info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Bson.dll");
-            SystemManager.MongoDBBsonVersion = info.ProductVersion.ToString();
+            SystemManager.MongoDBBsonVersion = info.ProductVersion;
 
             if (File.Exists(ConfigHelper._configFilename))
             {
@@ -31,10 +32,10 @@ namespace MagicMongoDBTool
             else
             {
                 SystemManager.ConfigHelperInstance = new ConfigHelper();
-                frmLanguage _frmLanguage = new frmLanguage();
+                var _frmLanguage = new frmLanguage();
                 _frmLanguage.ShowDialog();
                 SystemManager.InitLanguage();
-                frmOption _frmOption = new frmOption();
+                var _frmOption = new frmOption();
                 _frmOption.ShowDialog();
                 SystemManager.ConfigHelperInstance.SaveToConfigFile(ConfigHelper._configFilename);
             }

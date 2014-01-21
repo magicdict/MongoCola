@@ -1,10 +1,9 @@
-﻿
-namespace MagicMongoDBTool.Module
+﻿namespace MagicMongoDBTool.Module
 {
     public partial class StringResource
     {
         /// <summary>
-        /// 字符枚举
+        ///     字符枚举
         /// </summary>
         public enum TextType
         {

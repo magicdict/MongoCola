@@ -1,61 +1,56 @@
-﻿using MagicMongoDBTool.Module;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using MagicMongoDBTool.Module;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
     public partial class frmDistinct : Form
     {
+        /// <summary>
+        ///     Distinct条件
+        /// </summary>
+        public List<DataFilter.QueryConditionInputItem> DistinctConditionList =
+            new List<DataFilter.QueryConditionInputItem>();
+
         public frmDistinct(DataFilter mDataFilter, Boolean IsUseFilter)
         {
             InitializeComponent();
-            if (mDataFilter.QueryConditionList.Count > 0 && IsUseFilter)
+            if (mDataFilter.QueryConditionList.Count <= 0 || !IsUseFilter) return;
+            Text += "[With DataView Filter]";
+            //直接使用 DistinctConditionList = mDataFilter.QueryConditionList
+            //DistinctConditionList是引用类型，在LoadQuery的时候，会改变mDataFilter.QueryConditionList的值
+            //进而改变DataViewInfo在TabView上的值
+            foreach (DataFilter.QueryConditionInputItem item in mDataFilter.QueryConditionList)
             {
-                this.Text += "[With DataView Filter]";
-                //直接使用 DistinctConditionList = mDataFilter.QueryConditionList
-                //DistinctConditionList是引用类型，在LoadQuery的时候，会改变mDataFilter.QueryConditionList的值
-                //进而改变DataViewInfo在TabView上的值
-                foreach (var item in mDataFilter.QueryConditionList)
-                {
-                    DistinctConditionList.Add(item);
-                }
+                DistinctConditionList.Add(item);
             }
         }
-
-        /// <summary>
-        /// Distinct条件
-        /// </summary>
-        public List<DataFilter.QueryConditionInputItem> DistinctConditionList = new List<DataFilter.QueryConditionInputItem>();
 
         private void frmSelectKey_Load(object sender, EventArgs e)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
             List<String> MongoColumn = MongoDBHelper.GetCollectionSchame(mongoCol);
-            Point _conditionPos = new Point(20, 20);
+            var _conditionPos = new Point(20, 20);
             foreach (String item in MongoColumn)
             {
                 //动态加载控件
-                RadioButton ctrItem = new RadioButton();
-                ctrItem.Name = item;
-                ctrItem.Location = _conditionPos;
-                ctrItem.Text = item;
-                this.panColumn.Controls.Add(ctrItem);
+                var ctrItem = new RadioButton {Name = item, Location = _conditionPos, Text = item};
+                panColumn.Controls.Add(ctrItem);
                 //纵向位置的累加
                 _conditionPos.Y += ctrItem.Height;
             }
-            if (!SystemManager.IsUseDefaultLanguage)
-            {
-                cmdQuery.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Distinct_Action_LoadQuery);
-                cmdRun.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_OK);
-                lblSelectField.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Distinct_SelectField);
-            }
+            if (SystemManager.IsUseDefaultLanguage) return;
+            cmdQuery.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Distinct_Action_LoadQuery);
+            cmdRun.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+            lblSelectField.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Distinct_SelectField);
         }
+
         /// <summary>
-        /// 运行
+        ///     运行
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -75,8 +70,10 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Distinct", "Pick the field");
                 return;
             }
-            BsonArray ResultArray = (BsonArray)SystemManager.GetCurrentCollection().Distinct(strKey, MongoDBHelper.GetQuery(DistinctConditionList));
-            List<BsonValue> ResultList = new List<BsonValue>();
+            var ResultArray =
+                (BsonArray)
+                    SystemManager.GetCurrentCollection().Distinct(strKey, MongoDBHelper.GetQuery(DistinctConditionList));
+            var ResultList = new List<BsonValue>();
             foreach (BsonValue item in ResultArray)
             {
                 ResultList.Add(item);
@@ -89,26 +86,23 @@ namespace MagicMongoDBTool
             {
                 if (Count == 1000)
                 {
-                    strResult = "Too many result,Display first 1000 records" + System.Environment.NewLine + strResult;
+                    strResult = "Too many result,Display first 1000 records" + Environment.NewLine + strResult;
                     break;
                 }
-                strResult += item.ToJson(SystemManager.JsonWriterSettings) + System.Environment.NewLine;
+                strResult += item.ToJson(SystemManager.JsonWriterSettings) + Environment.NewLine;
                 Count++;
             }
-            strResult = "Distinct Count: " + ResultList.Count + System.Environment.NewLine + System.Environment.NewLine + strResult;
+            strResult = "Distinct Count: " + ResultList.Count + Environment.NewLine + Environment.NewLine + strResult;
             MyMessageBox.ShowMessage("Distinct", "Distinct:" + strKey, strResult, true);
-
         }
 
         private void cmdQuery_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFile = new OpenFileDialog();
-            if (openFile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
-                DistinctConditionList.Clear();
-                DistinctConditionList = NewDataFilter.QueryConditionList;
-            }
+            var openFile = new OpenFileDialog();
+            if (openFile.ShowDialog() != DialogResult.OK) return;
+            DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
+            DistinctConditionList.Clear();
+            DistinctConditionList = NewDataFilter.QueryConditionList;
         }
     }
 }
