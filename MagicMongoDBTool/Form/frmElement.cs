@@ -14,29 +14,31 @@ namespace MagicMongoDBTool
 
         /// <summary>
         /// </summary>
-        private readonly Boolean _IsElement = true;
+        private readonly Boolean _isElement = true;
 
         /// <summary>
         ///     是否为更新模式
         /// </summary>
-        private readonly Boolean _IsUpdateMode;
+        private readonly Boolean _isUpdateMode;
 
         /// <summary>
         /// </summary>
-        private readonly TreeNode _SelectNode;
+        private readonly TreeNode _selectNode;
 
         /// <summary>
+        /// 
         /// </summary>
         /// <param name="IsUpdateMode"></param>
-        /// <param name="FullPath"></param>
+        /// <param name="SelectNode"></param>
+        /// <param name="IsElement"></param>
         public frmElement(Boolean IsUpdateMode, TreeNode SelectNode, Boolean IsElement)
         {
             InitializeComponent();
-            _IsUpdateMode = IsUpdateMode;
+            _isUpdateMode = IsUpdateMode;
             //TODO:
             _FullPath = SelectNode.FullPath;
-            _SelectNode = SelectNode;
-            _IsElement = IsElement;
+            _selectNode = SelectNode;
+            _isElement = IsElement;
         }
 
         /// <summary>
@@ -45,17 +47,17 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void frmElement_Load(object sender, EventArgs e)
         {
-            if (_IsUpdateMode)
+            if (_isUpdateMode)
             {
                 AddBsonElement.switchToUpdateMode();
-                AddBsonElement.setElement(_SelectNode.Tag);
+                AddBsonElement.setElement(_selectNode.Tag);
             }
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
+                cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Cancel);
             }
-            if (!_IsElement)
+            if (!_isElement)
             {
                 //TODO:在这个模式，数组里面暂时不能添加数组或者文档
                 AddBsonElement.switchToValueMode();
@@ -69,36 +71,29 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            if (_IsUpdateMode)
+            if (_isUpdateMode)
             {
-                if (_IsElement)
+                if (_isElement)
                 {
-                    MongoDBHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value,
-                        (BsonElement) _SelectNode.Tag);
+                    MongoDbHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value,
+                        (BsonElement) _selectNode.Tag);
                 }
                 else
                 {
-                    MongoDBHelper.ModifyArrayValue(_FullPath, AddBsonElement.getElement().Value, _SelectNode.Index);
+                    MongoDbHelper.ModifyArrayValue(_FullPath, AddBsonElement.getElement().Value, _selectNode.Index);
                 }
-                if (String.IsNullOrEmpty(AddBsonElement.getElement().Name))
-                {
-                    _SelectNode.Text = String.Empty;
-                }
-                else
-                {
-                    _SelectNode.Text = AddBsonElement.getElement().Name;
-                }
+                _selectNode.Text = String.IsNullOrEmpty(AddBsonElement.getElement().Name) ? String.Empty : AddBsonElement.getElement().Name;
             }
             else
             {
                 String AddMessage = String.Empty;
-                if (_IsElement)
+                if (_isElement)
                 {
-                    AddMessage = MongoDBHelper.AddElement(_FullPath, AddBsonElement.getElement());
+                    AddMessage = MongoDbHelper.AddElement(_FullPath, AddBsonElement.getElement());
                 }
                 else
                 {
-                    MongoDBHelper.AddArrayValue(_FullPath, AddBsonElement.getElement().Value);
+                    MongoDbHelper.AddArrayValue(_FullPath, AddBsonElement.getElement().Value);
                 }
                 if (!String.IsNullOrEmpty(AddMessage))
                 {
@@ -106,16 +101,8 @@ namespace MagicMongoDBTool
                     return;
                 }
                 TreeNode NewNode;
-                if (String.IsNullOrEmpty(AddBsonElement.getElement().Name))
-                {
-                    //Array Or Document
-                    NewNode = new TreeNode();
-                }
-                else
-                {
-                    NewNode = new TreeNode(AddBsonElement.getElement().Name);
-                }
-                if (_IsElement)
+                NewNode = String.IsNullOrEmpty(AddBsonElement.getElement().Name) ? new TreeNode() : new TreeNode(AddBsonElement.getElement().Name);
+                if (_isElement)
                 {
                     NewNode.Tag = AddBsonElement.getElement();
                 }
@@ -123,7 +110,7 @@ namespace MagicMongoDBTool
                 {
                     NewNode.Tag = AddBsonElement.getElement().Value;
                 }
-                _SelectNode.Nodes.Add(NewNode);
+                _selectNode.Nodes.Add(NewNode);
             }
             Close();
         }

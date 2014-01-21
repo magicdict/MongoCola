@@ -39,12 +39,12 @@ namespace MagicMongoDBTool
                     cmbJsList.Items.Add(item);
                 }
                 cmbJsList.SelectedIndexChanged +=
-                    (x, y) => { txtContext.Text = MongoDBHelper.LoadJavascript(cmbJsList.Text); };
+                    (x, y) => { txtContext.Text = MongoDbHelper.LoadJavascript(cmbJsList.Text); };
                 if (!SystemManager.IsUseDefaultLanguage)
                 {
-                    cmdSave.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
-                    cmdSaveLocal.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save_Local);
-                    cmdLoadLocal.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Query_Action_Load);
+                    cmdSave.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save);
+                    cmdSaveLocal.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save_Local);
+                    cmdLoadLocal.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Query_Action_Load);
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace MagicMongoDBTool
             {
                 String strJsName = MyMessageBox.ShowInput("please Input Javascript Name：[Save at system.js]",
                     "Save Javascript");
-                MongoDBHelper.CreateNewJavascript(strJsName, txtContext.Text);
+                MongoDbHelper.CreateNewJavascript(strJsName, txtContext.Text);
             }
         }
 

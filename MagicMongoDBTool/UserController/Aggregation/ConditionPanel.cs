@@ -28,15 +28,13 @@ namespace MagicMongoDBTool
             InitializeComponent();
             if (SystemManager.GetCurrentCollection() != null)
             {
-                ColumnList = MongoDBHelper.GetCollectionSchame(SystemManager.GetCurrentCollection());
+                ColumnList = MongoDbHelper.GetCollectionSchame(SystemManager.GetCurrentCollection());
             }
         }
 
         /// <summary>
         ///     新增条件
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         public void AddCondition()
         {
             _conditionCount++;
@@ -51,7 +49,7 @@ namespace MagicMongoDBTool
         /// <summary>
         ///     设置DataFilter
         /// </summary>
-        public void SetCurrDataFilter(MongoDBHelper.DataViewInfo CurrentDataViewInfo)
+        public void SetCurrDataFilter(MongoDbHelper.DataViewInfo CurrentDataViewInfo)
         {
             //过滤条件
             for (int i = 0; i < _conditionCount; i++)

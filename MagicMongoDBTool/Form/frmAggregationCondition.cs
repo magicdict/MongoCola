@@ -17,8 +17,8 @@ namespace MagicMongoDBTool
             InitializeComponent();
             txtLimit.Enabled = chkLimit.Checked;
             txtSkip.Enabled = chkSkip.Checked;
-            txtLimit.KeyPress += MongoDBHelper.NumberTextInt_KeyPress;
-            txtSkip.KeyPress += MongoDBHelper.NumberTextInt_KeyPress;
+            txtLimit.KeyPress += MongoDbHelper.NumberTextInt_KeyPress;
+            txtSkip.KeyPress += MongoDbHelper.NumberTextInt_KeyPress;
 
             chkSkip.CheckedChanged += (x, y) => { txtSkip.Enabled = chkSkip.Checked; };
             chkLimit.CheckedChanged += (x, y) => { txtLimit.Enabled = chkLimit.Checked; };

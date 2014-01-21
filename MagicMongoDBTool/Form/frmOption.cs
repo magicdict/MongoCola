@@ -48,14 +48,14 @@ namespace MagicMongoDBTool
 
             if (SystemManager.IsUseDefaultLanguage) return;
             //国际化
-            Text = SystemManager.mStringResource.GetText(StringResource.TextType.Option_Title);
-            cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
-            cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
+            Text = SystemManager.MStringResource.GetText(StringResource.TextType.Option_Title);
+            cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
+            cmdCancel.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Cancel);
             ctlFilePickerMongoBinPath.Title =
-                SystemManager.mStringResource.GetText(StringResource.TextType.Option_BinPath);
-            lblLanguage.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Option_Language);
+                SystemManager.MStringResource.GetText(StringResource.TextType.Option_BinPath);
+            lblLanguage.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Option_Language);
             lblRefreshIntervalForStatus.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.Option_RefreshInterval);
+                SystemManager.MStringResource.GetText(StringResource.TextType.Option_RefreshInterval);
         }
 
         /// <summary>

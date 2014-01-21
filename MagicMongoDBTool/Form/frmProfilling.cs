@@ -23,10 +23,10 @@ namespace MagicMongoDBTool
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
-                cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
                 lblProfilingLevel.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
             }
 
             cmbProfillingLv.Items.Add("0-No Logging");

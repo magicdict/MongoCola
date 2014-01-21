@@ -15,25 +15,25 @@ namespace MagicMongoDBTool
         public ctlMongod()
         {
             InitializeComponent();
-            ctlFilePickerLogPath.FileFilter = MongoDBHelper.LogFilter;
+            ctlFilePickerLogPath.FileFilter = MongoDbHelper.LogFilter;
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
+                lblPort.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Port);
                 lblSource.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_SlaveSource);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_SlaveSource);
                 chkAuth.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_Authentication);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_Authentication);
                 chkIsAppend.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_AppendMode);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_AppendMode);
                 ctlFilePickerDBPath.Title =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_DBPath);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_DBPath);
                 ctlFilePickerLogPath.Title =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_LogPath);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_LogPath);
                 radMaster.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_Master);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_Master);
                 radSlave.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_Slave);
-                grpLog.Text = SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_Log);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_Slave);
+                grpLog.Text = SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_Log);
             }
         }
 

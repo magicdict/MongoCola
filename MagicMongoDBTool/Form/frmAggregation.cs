@@ -29,10 +29,10 @@ namespace MagicMongoDBTool
         private void cmdRun_Click(object sender, EventArgs e)
         {
             if (_AggrArray.Count <= 0) return;
-            CommandResult mCommandResult = MongoDBHelper.Aggregate(_AggrArray);
+            CommandResult mCommandResult = MongoDbHelper.Aggregate(_AggrArray);
             if (mCommandResult.Ok)
             {
-                MongoDBHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
+                MongoDbHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);
                 trvResult.DatatreeView.BeginUpdate();
                 trvResult.DatatreeView.ExpandAll();
                 trvResult.DatatreeView.EndUpdate();
@@ -58,7 +58,7 @@ namespace MagicMongoDBTool
             {
                 _AggrArray =
                     (BsonArray)
-                        BsonDocument.Parse(MongoDBHelper.LoadJavascript(cmbForAggregatePipeline.Text)).GetValue(0);
+                        BsonDocument.Parse(MongoDbHelper.LoadJavascript(cmbForAggregatePipeline.Text)).GetValue(0);
                 FillAggreationTreeview();
             };
         }
@@ -93,7 +93,7 @@ namespace MagicMongoDBTool
             {
                 ConditionList.Add(item);
             }
-            MongoDBHelper.FillDataToTreeView("Aggregation", trvCondition, ConditionList, 0);
+            MongoDbHelper.FillDataToTreeView("Aggregation", trvCondition, ConditionList, 0);
             trvCondition.DatatreeView.BeginUpdate();
             trvCondition.DatatreeView.ExpandAll();
             trvCondition.DatatreeView.EndUpdate();
@@ -130,7 +130,7 @@ namespace MagicMongoDBTool
             if (_AggrArray.Count == 0) return;
             String strJsName = MyMessageBox.ShowInput("pls Input Aggregate Pipeline Name ：",
                 "Save Aggregate Pipeline");
-            MongoDBHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _AggrArray).ToString());
+            MongoDbHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _AggrArray).ToString());
         }
 
         /// <summary>

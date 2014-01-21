@@ -16,14 +16,14 @@ namespace MagicMongoDBTool
             InitializeComponent();
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                btnSearch.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Search);
-                cmdSave.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
-                cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                btnSearch.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Search);
+                cmdSave.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save);
+                cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
             //加载语言列表
             cmbLanguage.Items.Clear();
             cmbLanguage.Items.Add("None");
-            foreach (object item in Enum.GetValues(typeof (MongoDBHelper.TextSearchLanguage)))
+            foreach (object item in Enum.GetValues(typeof (MongoDbHelper.TextSearchLanguage)))
             {
                 cmbLanguage.Items.Add(item.ToString());
             }
@@ -50,10 +50,10 @@ namespace MagicMongoDBTool
             TextSearchOption.Add(new BsonElement("limit", (BsonValue) NUDLimit.Value));
             try
             {
-                CommandResult SearchResult = MongoDBHelper.ExecuteMongoColCommand("text",
+                CommandResult SearchResult = MongoDbHelper.ExecuteMongoColCommand("text",
                     SystemManager.GetCurrentCollection(), TextSearchOption);
                 Result = SearchResult.Response;
-                MongoDBHelper.FillDataToTreeView("Text Search Result", trvResult, Result);
+                MongoDbHelper.FillDataToTreeView("Text Search Result", trvResult, Result);
                 cmdSave.Enabled = true;
             }
             catch (Exception ex)

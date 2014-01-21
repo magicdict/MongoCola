@@ -9,7 +9,7 @@ using TreeViewColumnsProject;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         #region"展示状态"
 
@@ -71,21 +71,21 @@ namespace MagicMongoDBTool.Module
             else
             {
                 lstSvr.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_DataBaseName));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DataBase_Status_DataBaseName));
                 lstSvr.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_CollectionCount));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DataBase_Status_CollectionCount));
                 lstSvr.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_DataSize));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DataBase_Status_DataSize));
                 lstSvr.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_FileSize));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DataBase_Status_FileSize));
                 lstSvr.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_IndexCount));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DataBase_Status_IndexCount));
                 lstSvr.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_IndexSize));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DataBase_Status_IndexSize));
                 lstSvr.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_ObjectCount));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DataBase_Status_ObjectCount));
                 lstSvr.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DataBase_Status_StorageSize));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DataBase_Status_StorageSize));
             }
             foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
             {
@@ -156,29 +156,29 @@ namespace MagicMongoDBTool.Module
             else
             {
                 lstData.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName));
                 lstData.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_ObjectCount));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_ObjectCount));
                 lstData.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_DataSize));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_DataSize));
                 lstData.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_LastExtentSize));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_LastExtentSize));
                 lstData.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_StorageSize));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_StorageSize));
                 lstData.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_TotalIndexSize));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_TotalIndexSize));
 
                 //2012-3-6
                 lstData.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped));
                 lstData.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments));
 
 
                 lstData.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_AverageObjectSize));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_AverageObjectSize));
                 lstData.Columns.Add(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_PaddingFactor));
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_PaddingFactor));
             }
             foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
             {
@@ -224,16 +224,9 @@ namespace MagicMongoDBTool.Module
                                     SystemManager.ExceptionLog(ex);
                                 }
 
-                                if (CollectionStatus.ObjectCount != 0)
-                                {
-                                    //在某些条件下，这个值会抛出异常，IndexKeyNotFound
-                                    //同时发现,这个时候Count = 0,TryCatch可能会消耗时间，所以改为条件判断
-                                    lst.SubItems.Add(GetSize((long) CollectionStatus.AverageObjectSize));
-                                }
-                                else
-                                {
-                                    lst.SubItems.Add("0");
-                                }
+                                lst.SubItems.Add(CollectionStatus.ObjectCount != 0
+                                    ? GetSize((long) CollectionStatus.AverageObjectSize)
+                                    : "0");
 
                                 try
                                 {

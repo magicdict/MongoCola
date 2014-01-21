@@ -28,13 +28,13 @@ namespace MagicMongoDBTool
 
         private void ctlMatchItem_Load(object sender, EventArgs e)
         {
-            foreach (string item in MongoDBHelper.getComparisonfunction())
+            foreach (string item in MongoDbHelper.GetComparisonfunction())
             {
                 cmbComparisonfunction.Items.Add(item);
             }
             if (SystemManager.GetCurrentCollection() != null)
             {
-                foreach (string item in MongoDBHelper.GetCollectionSchame(SystemManager.GetCurrentCollection()))
+                foreach (string item in MongoDbHelper.GetCollectionSchame(SystemManager.GetCurrentCollection()))
                 {
                     cmbField.Items.Add(item);
                 }

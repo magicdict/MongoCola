@@ -12,10 +12,10 @@ namespace MagicMongoDBTool
         public ctlGeoNear()
         {
             InitializeComponent();
-            NumGeoX.KeyPress += MongoDBHelper.NumberText_KeyPress;
-            NumGeoY.KeyPress += MongoDBHelper.NumberText_KeyPress;
-            NumDistanceMultiplier.KeyPress += MongoDBHelper.NumberText_KeyPress;
-            NumMaxDistance.KeyPress += MongoDBHelper.NumberText_KeyPress;
+            NumGeoX.KeyPress += MongoDbHelper.NumberText_KeyPress;
+            NumGeoY.KeyPress += MongoDbHelper.NumberText_KeyPress;
+            NumDistanceMultiplier.KeyPress += MongoDbHelper.NumberText_KeyPress;
+            NumMaxDistance.KeyPress += MongoDbHelper.NumberText_KeyPress;
         }
 
         private void lnkGeoNear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -34,7 +34,7 @@ namespace MagicMongoDBTool
                 BsonDocument mGeoNearAs = SystemManager.GetCurrentCollection().GeoNearAs<BsonDocument>
                     (null, double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text), (int) NumResultCount.Value, GeoOption)
                     .Response;
-                MongoDBHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
+                MongoDbHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
                 trvGeoResult.DatatreeView.Nodes[0].Expand();
             }
             catch (Exception ex)

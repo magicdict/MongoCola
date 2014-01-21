@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         #region"Collection Command"
 
@@ -14,7 +14,7 @@ namespace MagicMongoDBTool.Module
         ///     Compact
         /// </summary>
         /// <see cref="http://www.mongodb.org/display/DOCS/Compact+Command" />
-        public static MongoCommand Compact_Command = new MongoCommand("compact", PathLv.CollectionLV);
+        public static MongoCommand Compact_Command = new MongoCommand("compact", PathLv.CollectionLv);
 
         /// <summary>
         ///     执行聚合
@@ -31,7 +31,7 @@ namespace MagicMongoDBTool.Module
                     new BsonElement("aggregate", new BsonString(SystemManager.GetCurrentCollection().Name)),
                     new BsonElement("pipeline", AggregateDoc)
                 };
-                var Aggregate_Command = new MongoCommand(agg, PathLv.DatabaseLV);
+                var Aggregate_Command = new MongoCommand(agg, PathLv.DatabaseLv);
                 return ExecuteMongoCommand(Aggregate_Command, false);
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace MagicMongoDBTool.Module
         ///     修复数据库
         ///     http://www.mongodb.org/display/DOCS/Durability+and+Repair
         /// </summary>
-        public static MongoCommand repairDatabase_Command = new MongoCommand("repairDatabase", PathLv.DatabaseLV);
+        public static MongoCommand repairDatabase_Command = new MongoCommand("repairDatabase", PathLv.DatabaseLv);
 
         #endregion
 
@@ -74,19 +74,19 @@ namespace MagicMongoDBTool.Module
         ///     服务器状态
         ///     http://www.mongodb.org/display/DOCS/serverStatus+Command
         /// </summary>
-        public static MongoCommand serverStatus_Command = new MongoCommand("serverStatus", PathLv.InstanceLV);
+        public static MongoCommand serverStatus_Command = new MongoCommand("serverStatus", PathLv.InstanceLv);
 
         //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
         /// <summary>
         ///     副本状态
         /// </summary>
-        public static MongoCommand replSetGetStatus_Command = new MongoCommand("replSetGetStatus", PathLv.InstanceLV);
+        public static MongoCommand replSetGetStatus_Command = new MongoCommand("replSetGetStatus", PathLv.InstanceLv);
 
         //http://www.mongodb.org/display/DOCS/Master+Slave
         /// <summary>
         ///     Slave强制同步
         /// </summary>
-        public static MongoCommand resync_Command = new MongoCommand("resync", PathLv.InstanceLV);
+        public static MongoCommand resync_Command = new MongoCommand("resync", PathLv.InstanceLv);
 
         /// <summary>
         ///     增加服务器
@@ -151,8 +151,8 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     重新启动
         /// </summary>
-        /// <param name="mongoSvr">副本组主服务器</param>
-        /// <param name="HostPort">服务器信息</param>
+        /// <param name="PrimarySvr">副本组主服务器</param>
+        /// <param name="config">服务器信息</param>
         /// <remarks>这个命令C#无法正确执行</remarks>
         /// <returns></returns>
         public static CommandResult ReconfigReplsetServer(MongoServer PrimarySvr, BsonDocument config)
@@ -217,7 +217,6 @@ namespace MagicMongoDBTool.Module
             //    config.shards.update({_id:shard}, {$addToSet:{tags:tag}});
             //    sh._checkLastError(config);
             //}
-            var mongoCmd = new CommandDocument();
             return ExecuteJsShell("sh.addShardTag('" + ShardName + "', '" + TagName + "')", routeSvr);
         }
 
@@ -249,28 +248,27 @@ namespace MagicMongoDBTool.Module
             //                       );
             //    sh._checkLastError(config);
             //}
-            var mongoCmd = new CommandDocument();
-            String MaxValue = String.Empty;
-            String MinValue = String.Empty;
+            String maxValue = String.Empty;
+            String minValue = String.Empty;
             if (Min.IsString)
             {
-                MinValue = "'" + Min + "'";
+                minValue = "'" + Min + "'";
             }
             if (Max.IsString)
             {
-                MaxValue = "'" + Max + "'";
+                maxValue = "'" + Max + "'";
             }
 
             if (Min.IsNumeric)
             {
-                MinValue = Min.ToString();
+                minValue = Min.ToString();
             }
             if (Max.IsNumeric)
             {
-                MaxValue = Max.ToString();
+                maxValue = Max.ToString();
             }
             return ExecuteJsShell(
-                "sh.addTagRange('" + NameSpace + "'," + MinValue + "," + MaxValue + ",'" + Tag + "')", routeSvr);
+                "sh.addTagRange('" + NameSpace + "'," + minValue + "," + maxValue + ",'" + Tag + "')", routeSvr);
         }
 
         /// <summary>
@@ -315,16 +313,15 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     初始化副本
         /// </summary>
-        /// <param name="mongoSvr">副本组主服务器</param>
         /// <param name="replicaSetName">副本名称</param>
-        /// <param name="HostList">从属服务器列表</param>
-        public static CommandResult InitReplicaSet(String replicaSetName, String HostList)
+        /// <param name="hostList">从属服务器列表</param>
+        public static CommandResult InitReplicaSet(String replicaSetName, String hostList)
         {
             //第一台服务器作为Primary服务器
             var PrimarySetting = new MongoClientSettings
             {
-                Server = new MongoServerAddress(SystemManager.ConfigHelperInstance.ConnectionList[HostList].Host,
-                    SystemManager.ConfigHelperInstance.ConnectionList[HostList].Port),
+                Server = new MongoServerAddress(SystemManager.ConfigHelperInstance.ConnectionList[hostList].Host,
+                    SystemManager.ConfigHelperInstance.ConnectionList[hostList].Port),
                 ReadPreference = ReadPreference.PrimaryPreferred
             };
             //如果不设置的话，会有错误：不是Primary服务器，SlaveOK 是 False
@@ -339,8 +336,8 @@ namespace MagicMongoDBTool.Module
             {
                 {KEY_ID, 1},
                 {
-                    "host", SystemManager.ConfigHelperInstance.ConnectionList[HostList].Host + ":" +
-                            SystemManager.ConfigHelperInstance.ConnectionList[HostList].Port
+                    "host", SystemManager.ConfigHelperInstance.ConnectionList[hostList].Host + ":" +
+                            SystemManager.ConfigHelperInstance.ConnectionList[hostList].Port
                 }
             };
             hosts.Add(host);

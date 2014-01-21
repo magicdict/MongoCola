@@ -7,7 +7,7 @@ using MongoDB.Driver.GridFS;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         #region"GFS操作"
 
@@ -35,8 +35,8 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public enum enumGFSFileName
         {
-            filename,
-            path
+            Filename,
+            Path
         }
 
         /// <summary>
@@ -49,11 +49,11 @@ namespace MagicMongoDBTool.Module
             {
                 Directory.CreateDirectory(TempFileFolder);
             }
-            String LocalFileName = TempFileFolder + Path.DirectorySeparatorChar + "JsonData.txt";
-            var t = new StreamWriter(LocalFileName, false);
+            String localFileName = TempFileFolder + Path.DirectorySeparatorChar + "JsonData.txt";
+            var t = new StreamWriter(localFileName, false);
             t.Write(strJson);
             t.Close();
-            Process.Start(LocalFileName);
+            Process.Start(localFileName);
         }
 
 
@@ -63,7 +63,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     打开文件
         /// </summary>
-        /// <param name="strFileName"></param>
+        /// <param name="strRemoteFileName"></param>
         public static void OpenFile(String strRemoteFileName)
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
@@ -93,9 +93,10 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        ///     下载文件
+        /// 下载文件
         /// </summary>
-        /// <param name="strFileName"></param>
+        /// <param name="strLocalFileName"></param>
+        /// <param name="strRemoteFileName"></param>
         public static void DownloadFile(String strLocalFileName, String strRemoteFileName)
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
@@ -113,20 +114,13 @@ namespace MagicMongoDBTool.Module
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
             MongoGridFS gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
             String RemoteName = String.Empty;
-            if (Option.FileNameOpt == enumGFSFileName.filename)
+            if (Option.FileNameOpt == enumGFSFileName.Filename)
             {
                 RemoteName = new FileInfo(strFileName).Name;
             }
             else
             {
-                if (Option.DirectorySeparatorChar != Path.DirectorySeparatorChar)
-                {
-                    RemoteName = strFileName.Replace(Path.DirectorySeparatorChar, Option.DirectorySeparatorChar);
-                }
-                else
-                {
-                    RemoteName = strFileName;
-                }
+                RemoteName = Option.DirectorySeparatorChar != Path.DirectorySeparatorChar ? strFileName.Replace(Path.DirectorySeparatorChar, Option.DirectorySeparatorChar) : strFileName;
             }
             try
             {

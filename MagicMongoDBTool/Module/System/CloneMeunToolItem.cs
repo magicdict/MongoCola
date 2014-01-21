@@ -37,14 +37,14 @@ namespace MagicMongoDBTool.Module
             //感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
             //坑爹啊。。。。。。。。
             Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof (ToolStripItem));
-            if (!SystemManager.MONO_MODE)
+            if (!SystemManager.MonoMode)
             {
                 //悲催MONO不支持
                 if (_List != null && _List[0] != null)
                 {
                     try
                     {
-                        cloneMenuItem.Click += (x, y) => { _List[0].DynamicInvoke(x, y); };
+                        cloneMenuItem.Click += (x, y) => _List[0].DynamicInvoke(x, y);
                     }
                     catch (Exception ex)
                     {
@@ -76,7 +76,7 @@ namespace MagicMongoDBTool.Module
             //感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
             //坑爹啊。。。。。。。。
             Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof (ToolStripItem));
-            if (!SystemManager.MONO_MODE)
+            if (!SystemManager.MonoMode)
             {
                 //悲催MONO不支持
                 if (_List != null && _List[0] != null)
@@ -102,7 +102,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     获取控件事件  zgke@sina.com qq:116149
         /// </summary>
-        /// <param name="p_Control">对象</param>
+        /// <param name="obj">对象</param>
         /// <param name="eventName">事件名 EventClick EventDoubleClick  这个需要看control.事件 是哪个类的名字是什么</param>
         /// <param name="eventType">如果是WINFROM控件  使用typeof(Control)</param>
         /// <returns>委托列</returns>

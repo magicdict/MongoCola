@@ -43,11 +43,11 @@ namespace MagicMongoDBTool
             InitializeComponent();
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                lblFieldName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
-                radSortAcs.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Asce);
-                radSortDes.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Desc);
-                radNoSort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_NoSort);
-                chkIsShow.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlFieldInfo_Show);
+                lblFieldName.Text = SystemManager.MStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
+                radSortAcs.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Index_Asce);
+                radSortDes.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Index_Desc);
+                radNoSort.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Index_NoSort);
+                chkIsShow.Text = SystemManager.MStringResource.GetText(StringResource.TextType.ctlFieldInfo_Show);
             }
         }
 
@@ -114,7 +114,7 @@ namespace MagicMongoDBTool
             get { return chkIsShow.Checked; }
             set
             {
-                if ((lblFieldName.Text == MongoDBHelper.KEY_ID) && mIDProtectMode)
+                if ((lblFieldName.Text == MongoDbHelper.KEY_ID) && mIDProtectMode)
                 {
                     return;
                 }
@@ -150,7 +150,7 @@ namespace MagicMongoDBTool
                 lblFieldName.Text = value.ColName;
                 chkIsShow.Checked = value.IsShow;
                 txtProject.Text = value.ProjectName;
-                if (value.ColName == MongoDBHelper.KEY_ID)
+                if (value.ColName == MongoDbHelper.KEY_ID)
                 {
                     chkIsShow.Checked = true;
                     chkIsShow.Enabled = !(mIDProtectMode);

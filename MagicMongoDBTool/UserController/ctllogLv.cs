@@ -18,7 +18,7 @@ namespace MagicMongoDBTool.Module
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                lblLogLv.Text = SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_LogLevel);
+                lblLogLv.Text = SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_LogLevel);
             }
             cmbLogLevel.Items.Add("Quiet");
             cmbLogLevel.Items.Add("V");

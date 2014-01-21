@@ -52,11 +52,11 @@ namespace MagicMongoDBTool
             cmbStartMark.SelectedIndex = 0;
 
             cmbEndMark.Items.Add(" ");
-            cmbEndMark.Items.Add(MongoDBHelper.EndMark_AND);
-            cmbEndMark.Items.Add(MongoDBHelper.EndMark_OR);
-            cmbEndMark.Items.Add(MongoDBHelper.EndMark_AND_T);
-            cmbEndMark.Items.Add(MongoDBHelper.EndMark_OR_T);
-            cmbEndMark.Items.Add(MongoDBHelper.EndMark_T);
+            cmbEndMark.Items.Add(MongoDbHelper.EndMark_AND);
+            cmbEndMark.Items.Add(MongoDbHelper.EndMark_OR);
+            cmbEndMark.Items.Add(MongoDbHelper.EndMark_AND_T);
+            cmbEndMark.Items.Add(MongoDbHelper.EndMark_OR_T);
+            cmbEndMark.Items.Add(MongoDbHelper.EndMark_T);
             cmbEndMark.SelectedIndex = 0;
 
             //字段表的载入

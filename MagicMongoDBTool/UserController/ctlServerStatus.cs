@@ -12,10 +12,10 @@ namespace MagicMongoDBTool.UserController
         /// </summary>
         private readonly Timer ShortTimer = new Timer();
 
-        private readonly MongoDBHelper.lvwColumnSorter _lvwCollectionStatusColumnSorter =
-            new MongoDBHelper.lvwColumnSorter();
+        private readonly MongoDbHelper.lvwColumnSorter _lvwCollectionStatusColumnSorter =
+            new MongoDbHelper.lvwColumnSorter();
 
-        private readonly MongoDBHelper.lvwColumnSorter _lvwDBStatusColumnSorter = new MongoDBHelper.lvwColumnSorter();
+        private readonly MongoDbHelper.lvwColumnSorter _lvwDBStatusColumnSorter = new MongoDbHelper.lvwColumnSorter();
 
         /// <summary>
         ///     常规刷新
@@ -47,24 +47,16 @@ namespace MagicMongoDBTool.UserController
             {
                 if (!IsAuto)
                 {
-                    MongoDBHelper.FillSrvStatusToList(trvSvrStatus);
+                    MongoDbHelper.FillSrvStatusToList(trvSvrStatus);
                 }
-                MongoDBHelper.FillDataBaseStatusToList(lstDBStatus);
-                MongoDBHelper.FillCollectionStatusToList(lstCollectionStatus);
+                MongoDbHelper.FillDataBaseStatusToList(lstDBStatus);
+                MongoDbHelper.FillCollectionStatusToList(lstCollectionStatus);
             }
             catch (Exception ex)
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
-                if (!SystemManager.IsUseDefaultLanguage)
-                {
-                    btnSwitch.Text =
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh);
-                }
-                else
-                {
-                    btnSwitch.Text = "Resume Auto Refresh";
-                }
+                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh) : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
                 btnSwitch.Enabled = false;
                 RefreshStripButton.Enabled = false;
@@ -80,21 +72,13 @@ namespace MagicMongoDBTool.UserController
         {
             try
             {
-                MongoDBHelper.FillCurrentOprToList(lstSrvOpr);
+                MongoDbHelper.FillCurrentOprToList(lstSrvOpr);
             }
             catch (Exception ex)
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
-                if (!SystemManager.IsUseDefaultLanguage)
-                {
-                    btnSwitch.Text =
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh);
-                }
-                else
-                {
-                    btnSwitch.Text = "Resume Auto Refresh";
-                }
+                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh) : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
                 btnSwitch.Enabled = false;
                 RefreshStripButton.Enabled = false;
@@ -112,34 +96,26 @@ namespace MagicMongoDBTool.UserController
             RefreshStatus(false);
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                Text = SystemManager.mStringResource.GetText(StringResource.TextType.ServiceStatus_Title);
+                Text = SystemManager.MStringResource.GetText(StringResource.TextType.ServiceStatus_Title);
                 tabSvrBasicInfo.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.ServiceStatus_ServerInfo);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.ServiceStatus_ServerInfo);
                 tabDBBasicInfo.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.ServiceStatus_DataBaseInfo);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.ServiceStatus_DataBaseInfo);
                 tabCollectionInfo.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.ServiceStatus_CollectionInfo);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.ServiceStatus_CollectionInfo);
                 tabCurrentOprInfo.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.ServiceStatus_CurrentOperationInfo);
-                RefreshStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Refresh);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.ServiceStatus_CurrentOperationInfo);
+                RefreshStripButton.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Refresh);
                 btnSwitch.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Stop_AutoRefresh);
-                CloseStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Stop_AutoRefresh);
+                CloseStripButton.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
             refreshTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer*1000;
-            refreshTimer.Tick += (x, y) =>
-            {
-                //防止在查看树形状态的时候被打扰
-                RefreshStatus(true);
-            };
+            refreshTimer.Tick += (x, y) => RefreshStatus(true);
             //
             ShortTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer*1000;
             ;
-            ShortTimer.Tick += (x, y) =>
-            {
-                //防止在查看树形状态的时候被打扰
-                RefreshCurrentOpr();
-            };
+            ShortTimer.Tick += (x, y) => RefreshCurrentOpr();
 
             refreshTimer.Enabled = false;
             ShortTimer.Enabled = false;
@@ -166,7 +142,7 @@ namespace MagicMongoDBTool.UserController
                 case 0:
                 case 6:
                     _lvwCollectionStatusColumnSorter.CompareMethod =
-                        MongoDBHelper.lvwColumnSorter.SortMethod.StringCompare;
+                        MongoDbHelper.lvwColumnSorter.SortMethod.StringCompare;
                     break;
                 case 2:
                 case 3:
@@ -174,25 +150,18 @@ namespace MagicMongoDBTool.UserController
                 case 5:
                 case 8:
                     _lvwCollectionStatusColumnSorter.CompareMethod =
-                        MongoDBHelper.lvwColumnSorter.SortMethod.SizeCompare;
+                        MongoDbHelper.lvwColumnSorter.SortMethod.SizeCompare;
                     break;
                 default:
                     _lvwCollectionStatusColumnSorter.CompareMethod =
-                        MongoDBHelper.lvwColumnSorter.SortMethod.NumberCompare;
+                        MongoDbHelper.lvwColumnSorter.SortMethod.NumberCompare;
                     break;
             }
             // 检查点击的列是不是现在的排序列.
             if (e.Column == _lvwCollectionStatusColumnSorter.SortColumn)
             {
                 // 重新设置此列的排序方法.
-                if (_lvwCollectionStatusColumnSorter.Order == SortOrder.Ascending)
-                {
-                    _lvwCollectionStatusColumnSorter.Order = SortOrder.Descending;
-                }
-                else
-                {
-                    _lvwCollectionStatusColumnSorter.Order = SortOrder.Ascending;
-                }
+                _lvwCollectionStatusColumnSorter.Order = _lvwCollectionStatusColumnSorter.Order == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
             }
             else
             {
@@ -210,16 +179,16 @@ namespace MagicMongoDBTool.UserController
             switch (e.Column)
             {
                 case 0:
-                    _lvwDBStatusColumnSorter.CompareMethod = MongoDBHelper.lvwColumnSorter.SortMethod.StringCompare;
+                    _lvwDBStatusColumnSorter.CompareMethod = MongoDbHelper.lvwColumnSorter.SortMethod.StringCompare;
                     break;
                 case 2:
                 case 3:
                 case 5:
                 case 7:
-                    _lvwDBStatusColumnSorter.CompareMethod = MongoDBHelper.lvwColumnSorter.SortMethod.SizeCompare;
+                    _lvwDBStatusColumnSorter.CompareMethod = MongoDbHelper.lvwColumnSorter.SortMethod.SizeCompare;
                     break;
                 default:
-                    _lvwDBStatusColumnSorter.CompareMethod = MongoDBHelper.lvwColumnSorter.SortMethod.NumberCompare;
+                    _lvwDBStatusColumnSorter.CompareMethod = MongoDbHelper.lvwColumnSorter.SortMethod.NumberCompare;
                     break;
             }
 
@@ -227,14 +196,7 @@ namespace MagicMongoDBTool.UserController
             if (e.Column == _lvwDBStatusColumnSorter.SortColumn)
             {
                 // 重新设置此列的排序方法.
-                if (_lvwDBStatusColumnSorter.Order == SortOrder.Ascending)
-                {
-                    _lvwDBStatusColumnSorter.Order = SortOrder.Descending;
-                }
-                else
-                {
-                    _lvwDBStatusColumnSorter.Order = SortOrder.Ascending;
-                }
+                _lvwDBStatusColumnSorter.Order = _lvwDBStatusColumnSorter.Order == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
             }
             else
             {
@@ -268,30 +230,14 @@ namespace MagicMongoDBTool.UserController
             {
                 refreshTimer.Start();
                 ShortTimer.Start();
-                if (!SystemManager.IsUseDefaultLanguage)
-                {
-                    btnSwitch.Text =
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Stop_AutoRefresh);
-                }
-                else
-                {
-                    btnSwitch.Text = "Stop Auto Refresh";
-                }
+                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Stop_AutoRefresh) : "Stop Auto Refresh";
                 btnSwitch.Image = Resources.Pause;
             }
             else
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
-                if (!SystemManager.IsUseDefaultLanguage)
-                {
-                    btnSwitch.Text =
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh);
-                }
-                else
-                {
-                    btnSwitch.Text = "Resume Auto Refresh";
-                }
+                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh) : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
             }
         }

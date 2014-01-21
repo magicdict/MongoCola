@@ -30,7 +30,7 @@ namespace MagicMongoDBTool.UserController
         /// <summary>
         ///     DataView信息
         /// </summary>
-        public MongoDBHelper.DataViewInfo mDataViewInfo;
+        public MongoDbHelper.DataViewInfo mDataViewInfo;
 
         /// <summary>
         ///     初始化
@@ -44,7 +44,7 @@ namespace MagicMongoDBTool.UserController
         ///     初始化
         /// </summary>
         /// <param name="_DataViewInfo"></param>
-        public ctlDataView(MongoDBHelper.DataViewInfo _DataViewInfo)
+        public ctlDataView(MongoDbHelper.DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
             mDataViewInfo = _DataViewInfo;
@@ -86,28 +86,28 @@ namespace MagicMongoDBTool.UserController
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 //数据显示区
-                tabTreeView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Tree);
-                tabTableView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Table);
-                tabTextView.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Tab_Text);
+                tabTreeView.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Main_Tab_Tree);
+                tabTableView.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Main_Tab_Table);
+                tabTextView.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Main_Tab_Text);
                 PrePageStripButton.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
                 NextPageStripButton.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
                 FirstPageStripButton.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_First);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_First);
                 LastPageStripButton.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Last);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Last);
                 QueryStripButton.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Query);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Query);
                 FilterStripButton.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView_DataFilter);
-                RefreshStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Refresh);
-                CloseStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_DataFilter);
+                RefreshStripButton.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Refresh);
+                CloseStripButton.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
                 ExpandAllStripButton.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Common_Expansion);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Common_Expansion);
                 CollapseAllStripButton.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Common_Collapse);
-                HelpStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Help);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Common_Collapse);
+                HelpStripButton.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Help);
             }
             InitControlsVisiableAndEvent();
             //加载数据
@@ -293,7 +293,7 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void FirstPage_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.FirstPage, ref mDataViewInfo, _dataShower);
+            MongoDbHelper.PageChanged(MongoDbHelper.PageChangeOpr.FirstPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
 
@@ -304,7 +304,7 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void PrePage_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.PrePage, ref mDataViewInfo, _dataShower);
+            MongoDbHelper.PageChanged(MongoDbHelper.PageChangeOpr.PrePage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
 
@@ -315,7 +315,7 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void NextPage_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.NextPage, ref mDataViewInfo, _dataShower);
+            MongoDbHelper.PageChanged(MongoDbHelper.PageChangeOpr.NextPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
 
@@ -326,7 +326,7 @@ namespace MagicMongoDBTool.UserController
         /// <param name="e"></param>
         private void LastPage_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.PageChanged(MongoDBHelper.PageChangeOpr.LastPage, ref mDataViewInfo, _dataShower);
+            MongoDbHelper.PageChanged(MongoDbHelper.PageChangeOpr.LastPage, ref mDataViewInfo, _dataShower);
             SetDataNav();
         }
 
@@ -380,7 +380,7 @@ namespace MagicMongoDBTool.UserController
             String strTitle = "Records";
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
+                strTitle = SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
             }
             if (mDataViewInfo.CurrentCollectionTotalCnt == 0)
             {
@@ -402,8 +402,8 @@ namespace MagicMongoDBTool.UserController
             clear();
             mDataViewInfo.SkipCnt = 0;
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
-            List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);
-            MongoDBHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
+            List<BsonDocument> datalist = MongoDbHelper.GetDataList(ref mDataViewInfo);
+            MongoDbHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             InitControlsEnable();
             SetDataNav();
             if (mDataViewInfo.Query != String.Empty)
@@ -435,8 +435,8 @@ namespace MagicMongoDBTool.UserController
             }
             clear();
             SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
-            List<BsonDocument> datalist = MongoDBHelper.GetDataList(ref mDataViewInfo);
-            MongoDBHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
+            List<BsonDocument> datalist = MongoDbHelper.GetDataList(ref mDataViewInfo);
+            MongoDbHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             SetDataNav();
             IsNeedRefresh = false;
         }

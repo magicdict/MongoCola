@@ -31,33 +31,33 @@ namespace MagicMongoDBTool
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                Text = SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Title);
+                Text = SystemManager.MStringResource.GetText(StringResource.TextType.CollectionIndex_Title);
                 tabCurrentIndex.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current);
                 cmdDelIndex.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current_Del);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current_Del);
                 tabIndexManager.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Manager);
-                cmdAddIndex.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Manager);
+                cmdAddIndex.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Add);
 
-                chkIsDroppedDups.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel);
-                chkIsBackground.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Background);
-                chkIsSparse.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse);
-                chkIsUnique.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify);
+                chkIsDroppedDups.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Index_RepeatDel);
+                chkIsBackground.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Index_Background);
+                chkIsSparse.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Index_Sparse);
+                chkIsUnique.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Index_Unify);
 
-                lblIndexName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name);
-                chkExpireData.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_ExpireData);
+                lblIndexName.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Index_Name);
+                chkExpireData.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Index_ExpireData);
 
-                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name));
-                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Version));
-                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Keys));
-                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_NameSpace));
+                lstIndex.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Index_Name));
+                lstIndex.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Index_Version));
+                lstIndex.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Index_Keys));
+                lstIndex.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Index_NameSpace));
 
-                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Background));
-                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse));
-                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify));
-                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel));
-                lstIndex.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Index_ExpireData));
+                lstIndex.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Index_Background));
+                lstIndex.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Index_Sparse));
+                lstIndex.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Index_Unify));
+                lstIndex.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Index_RepeatDel));
+                lstIndex.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Index_ExpireData));
             }
             else
             {
@@ -95,7 +95,7 @@ namespace MagicMongoDBTool
             }
             foreach (ListViewItem item in lstIndex.CheckedItems)
             {
-                MongoDBHelper.DropMongoIndex(item.SubItems[0].Text);
+                MongoDbHelper.DropMongoIndex(item.SubItems[0].Text);
             }
             RefreshList();
         }
@@ -119,16 +119,16 @@ namespace MagicMongoDBTool
                 FirstKey = ctl.KeyName.Trim();
                 switch (ctl.IndexKeyType)
                 {
-                    case MongoDBHelper.IndexType.Ascending:
+                    case MongoDbHelper.IndexType.Ascending:
                         AscendingKey.Add(ctl.KeyName.Trim());
                         break;
-                    case MongoDBHelper.IndexType.Descending:
+                    case MongoDbHelper.IndexType.Descending:
                         DescendingKey.Add(ctl.KeyName.Trim());
                         break;
-                    case MongoDBHelper.IndexType.GeoSpatial:
+                    case MongoDbHelper.IndexType.GeoSpatial:
                         GeoSpatialKey = ctl.KeyName.Trim();
                         break;
-                    case MongoDBHelper.IndexType.Text:
+                    case MongoDbHelper.IndexType.Text:
                         TextKey = ctl.KeyName.Trim();
                         break;
                     default:
@@ -155,7 +155,7 @@ namespace MagicMongoDBTool
                 else
                 {
                     //不能是_id
-                    if (FirstKey == MongoDBHelper.KEY_ID)
+                    if (FirstKey == MongoDbHelper.KEY_ID)
                     {
                         MyMessageBox.ShowMessage("Can't Set TTL",
                             "you cannot create this index on the _id field, or a field that already has an index.");
@@ -195,7 +195,7 @@ namespace MagicMongoDBTool
                     }
                     else
                     {
-                        MongoDBHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), GeoSpatialKey,
+                        MongoDbHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), GeoSpatialKey,
                             option);
                     }
                     MyMessageBox.ShowMessage("Index Add Completed!",
@@ -223,20 +223,15 @@ namespace MagicMongoDBTool
             {
                 var ListItem = new ListViewItem(item.Name);
                 ListItem.SubItems.Add(item.Version.ToString(CultureInfo.InvariantCulture));
-                ListItem.SubItems.Add(MongoDBHelper.GetKeyString(item.Key));
+                ListItem.SubItems.Add(MongoDbHelper.GetKeyString(item.Key));
                 ListItem.SubItems.Add(item.Namespace);
                 ListItem.SubItems.Add(item.IsBackground.ToString());
                 ListItem.SubItems.Add(item.IsSparse.ToString());
                 ListItem.SubItems.Add(item.IsUnique.ToString());
                 ListItem.SubItems.Add(item.DroppedDups.ToString());
-                if (item.TimeToLive != TimeSpan.MaxValue)
-                {
-                    ListItem.SubItems.Add(item.TimeToLive.TotalSeconds.ToString(CultureInfo.InvariantCulture));
-                }
-                else
-                {
-                    ListItem.SubItems.Add("Not Set");
-                }
+                ListItem.SubItems.Add(item.TimeToLive != TimeSpan.MaxValue
+                    ? item.TimeToLive.TotalSeconds.ToString(CultureInfo.InvariantCulture)
+                    : "Not Set");
                 lstIndex.Items.Add(ListItem);
             }
         }

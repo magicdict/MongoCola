@@ -18,16 +18,16 @@ namespace MagicMongoDBTool
         private void frmDosCommand_Load(object sender, EventArgs e)
         {
             //命令参数变化
-            ctlMongodPanel.CommandChanged += (x, y) => { CommandChanged(y.NewString); };
-            ctlMongodumpPanel.CommandChanged += (x, y) => { CommandChanged(y.NewString); };
-            ctlMongoImportExportPanel.CommandChanged += (x, y) => { CommandChanged(y.NewString); };
+            ctlMongodPanel.CommandChanged += (x, y) => CommandChanged(y.NewString);
+            ctlMongodumpPanel.CommandChanged += (x, y) => CommandChanged(y.NewString);
+            ctlMongoImportExportPanel.CommandChanged += (x, y) => CommandChanged(y.NewString);
             if (SystemManager.IsUseDefaultLanguage) return;
-            cmdSave.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
-            cmdRunDos.Text = SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Run);
-            tabMongod.Text = SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy);
-            tabMongoDump.Text = SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup);
+            cmdSave.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save);
+            cmdRunDos.Text = SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Run);
+            tabMongod.Text = SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy);
+            tabMongoDump.Text = SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup);
             tabMongoImportExport.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn);
+                SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            var savefile = new SaveFileDialog {Filter = MongoDBHelper.ConfFilter};
+            var savefile = new SaveFileDialog {Filter = MongoDbHelper.ConfFilter};
             if (savefile.ShowDialog() != DialogResult.OK) return;
             var save = new StreamWriter(savefile.FileName);
             save.Write(StrSaveText);

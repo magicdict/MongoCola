@@ -7,7 +7,7 @@ using MongoDB.Driver.Builders;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         /// <summary>
         ///     获得输出字段名称
@@ -91,28 +91,12 @@ namespace MagicMongoDBTool.Module
                 String joinMark = conditiongrpList[i][conditiongrpList[i].Count() - 1].EndMark;
                 if (joinMark == EndMark_AND_T)
                 {
-                    if (i == 0)
-                    {
-                        rtnQuery =
-                            Query.And(new[] {GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1])});
-                    }
-                    else
-                    {
-                        rtnQuery = Query.And(new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
-                    }
+                    rtnQuery = Query.And(i == 0 ? new[] {GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1])} : new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
                 }
 
                 if (joinMark == EndMark_OR_T)
                 {
-                    if (i == 0)
-                    {
-                        rtnQuery =
-                            Query.Or(new[] {GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1])});
-                    }
-                    else
-                    {
-                        rtnQuery = Query.Or(new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
-                    }
+                    rtnQuery = Query.Or(i == 0 ? new[] {GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1])} : new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
                 }
             }
             return rtnQuery;
@@ -143,8 +127,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     将And和Or组里面的最基本条件转化为一个IMongoQuery
         /// </summary>
-        /// <param name="oprGrp"></param>
-        /// <param name="strOPR"></param>
+        /// <param name="item"></param>
         /// <returns></returns>
         private static IMongoQuery GetQuery(DataFilter.QueryConditionInputItem item)
         {
@@ -182,7 +165,6 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="mongoCol">Collection</param>
         /// <param name="KeyValue">KeyValue</param>
-        /// <param name="Field">KeyField</param>
         /// <returns></returns>
         public static Boolean IsExistByKey(MongoCollection mongoCol, BsonValue KeyValue)
         {

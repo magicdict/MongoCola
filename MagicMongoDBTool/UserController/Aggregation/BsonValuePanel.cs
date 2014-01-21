@@ -68,8 +68,6 @@ namespace MagicMongoDBTool
         /// <summary>
         ///     清除所有数组
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         public void Clear()
         {
             Controls.Clear();

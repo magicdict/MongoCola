@@ -14,33 +14,32 @@ namespace MagicMongoDBTool.HTTP
 
         /// <summary>
         /// </summary>
-        /// <param name="FileName"></param>
         /// <returns></returns>
         internal static string ConnectionList()
         {
-            String FileName = FilePath + "\\ConnectionList.htm";
-            String content = String.Empty;
-            var stream = new StreamReader(FileName);
+            String fileName = FilePath + "\\ConnectionList.htm";
+            String content;
+            var stream = new StreamReader(fileName);
             content = stream.ReadToEnd();
-            String ConnectionList = String.Empty;
+            String connectionList = String.Empty;
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values
                 )
             {
                 if (item.ReplSetName == String.Empty)
                 {
-                    ConnectionList += "<li><a href = 'Connection?" + item.ConnectionName + "'>" + item.ConnectionName +
+                    connectionList += "<li><a href = 'Connection?" + item.ConnectionName + "'>" + item.ConnectionName +
                                       "@" + (item.Host == String.Empty ? "localhost" : item.Host)
                                       + (item.Port == 0 ? String.Empty : ":" + item.Port) + "</a></li>" +
                                       Environment.NewLine;
                 }
                 else
                 {
-                    ConnectionList += "<li><a href = 'Connection?" + item.ConnectionName + "'>" + item.ConnectionName +
+                    connectionList += "<li><a href = 'Connection?" + item.ConnectionName + "'>" + item.ConnectionName +
                                       "</a></li>" + Environment.NewLine;
                 }
             }
 
-            content = content.Replace("<%=ConnectionList%>", ConnectionList);
+            content = content.Replace("<%=ConnectionList%>", connectionList);
             return content;
         }
 
@@ -59,12 +58,12 @@ namespace MagicMongoDBTool.HTTP
             {
                 SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName]
             };
-            MongoDBHelper.AddServer(connLst);
-            content = content.Replace("<%=NodeJSon%>", MongoDBHelper.GetConnectionzTreeJSON());
+            MongoDbHelper.AddServer(connLst);
+            content = content.Replace("<%=NodeJSon%>", MongoDbHelper.GetConnectionzTreeJson());
             content = content.Replace("<%=ConnectionName%>", ConnectionName);
-            content = content.Replace("<%=ConnectionTag%>", MongoDBHelper.CONNECTION_TAG);
-            content = content.Replace("<%=DataBaseTag%>", MongoDBHelper.DATABASE_TAG);
-            content = content.Replace("<%=CollectionTag%>", MongoDBHelper.COLLECTION_TAG);
+            content = content.Replace("<%=ConnectionTag%>", MongoDbHelper.CONNECTION_TAG);
+            content = content.Replace("<%=DataBaseTag%>", MongoDbHelper.DATABASE_TAG);
+            content = content.Replace("<%=CollectionTag%>", MongoDbHelper.COLLECTION_TAG);
             return content;
         }
 
@@ -77,9 +76,9 @@ namespace MagicMongoDBTool.HTTP
             SystemManager.SelectObjectTag = DBTag;
             var cr = new BsonDocument();
             cr =
-                MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command,
+                MongoDbHelper.ExecuteMongoSvrCommand(MongoDbHelper.serverStatus_Command,
                     SystemManager.GetCurrentServer()).Response;
-            return MongoDBHelper.ConvertBsonTozTreeJson("Connection Status", cr, true);
+            return MongoDbHelper.ConvertBsonTozTreeJson("Connection Status", cr, true);
         }
 
         /// <summary>
@@ -91,7 +90,7 @@ namespace MagicMongoDBTool.HTTP
             SystemManager.SelectObjectTag = DBTag;
             var cr = new BsonDocument();
             cr = SystemManager.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
-            return MongoDBHelper.ConvertBsonTozTreeJson("DataBase Status", cr, true);
+            return MongoDbHelper.ConvertBsonTozTreeJson("DataBase Status", cr, true);
         }
 
         /// <summary>
@@ -100,9 +99,9 @@ namespace MagicMongoDBTool.HTTP
         /// <returns></returns>
         public static string GetCollection(String DBTag)
         {
-            MongoDBHelper.WebDataViewInfo = new MongoDBHelper.DataViewInfo {strDBTag = DBTag};
+            MongoDbHelper.WebDataViewInfo = new MongoDbHelper.DataViewInfo {strDBTag = DBTag};
             SystemManager.SelectObjectTag = DBTag;
-            return MongoDBHelper.GetCollectionzTreeJSON();
+            return MongoDbHelper.GetCollectionzTreeJSON();
         }
     }
 }

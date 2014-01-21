@@ -8,7 +8,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         /// <summary>
         ///     数据连接字符串
@@ -131,7 +131,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     导入数据
         /// </summary>
-        /// <param name="parm"></param>
+        /// <param name="obj"></param>
         /// <returns></returns>
         public static void ImportAccessDataBase(Object obj)
         {
@@ -267,8 +267,8 @@ namespace MagicMongoDBTool.Module
                     }
                 }
                 String strSvrPath = SystemManager.GetTagData(parm.strSvrPathWithTag);
-                String strKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.ConnectionLV] + "/" +
-                                strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLV];
+                String strKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.ConnectionLv] + "/" +
+                                strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLv];
                 parm.currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, strKey));
                 MyMessageBox.ShowMessage("Import Message",
                     (tblTableList.Rows.Count - err) + "Created   " + err + "failed", strCreateTableInfo, true);

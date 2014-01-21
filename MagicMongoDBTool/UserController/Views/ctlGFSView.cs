@@ -8,7 +8,7 @@ namespace MagicMongoDBTool
 {
     public partial class ctlGFSView : ctlDataView
     {
-        public ctlGFSView(MongoDBHelper.DataViewInfo _DataViewInfo)
+        public ctlGFSView(MongoDbHelper.DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
             InitTool();
@@ -27,26 +27,26 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 DeleteFileToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_DelFile);
                 DeleteFileStripButton.Text = DeleteFileToolStripMenuItem.Text;
 
                 UploadFileToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFile);
                 UploadFileStripButton.Text = UploadFileToolStripMenuItem.Text;
 
                 UploadFolderToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_FileSystem_UploadFolder);
                 UpLoadFolderStripButton.Text = UploadFolderToolStripMenuItem.Text;
 
                 DownloadFileToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_FileSystem_Download);
                 DownloadFileStripButton.Text = DownloadFileToolStripMenuItem.Text;
 
                 OpenFileToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_FileSystem_OpenFile);
                 OpenFileStripButton.Text = OpenFileToolStripMenuItem.Text;
             }
@@ -142,7 +142,7 @@ namespace MagicMongoDBTool
         private void UploadFileStripButton_Click(object sender, EventArgs e)
         {
             var upfile = new OpenFileDialog();
-            var opt = new MongoDBHelper.UpLoadFileOption();
+            var opt = new MongoDbHelper.UpLoadFileOption();
             if (upfile.ShowDialog() == DialogResult.OK)
             {
                 var frm = new frmGFSOption();
@@ -151,7 +151,7 @@ namespace MagicMongoDBTool
                 opt.AlreadyOpt = frm.option;
                 opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
                 frm.Dispose();
-                MongoDBHelper.UpLoadFile(upfile.FileName, opt);
+                MongoDbHelper.UpLoadFile(upfile.FileName, opt);
                 RefreshGUI();
             }
         }
@@ -164,7 +164,7 @@ namespace MagicMongoDBTool
         private void UpLoadFolderStripButton_Click(object sender, EventArgs e)
         {
             var upfolder = new FolderBrowserDialog();
-            var opt = new MongoDBHelper.UpLoadFileOption();
+            var opt = new MongoDbHelper.UpLoadFileOption();
             if (upfolder.ShowDialog() == DialogResult.OK)
             {
                 var frm = new frmGFSOption();
@@ -188,24 +188,24 @@ namespace MagicMongoDBTool
         /// <param name="fileCount"></param>
         /// <param name="opt"></param>
         /// <returns>是否继续执行后续的所有操作</returns>
-        private Boolean UploadFolder(DirectoryInfo uploadDir, ref int fileCount, MongoDBHelper.UpLoadFileOption opt)
+        private Boolean UploadFolder(DirectoryInfo uploadDir, ref int fileCount, MongoDbHelper.UpLoadFileOption opt)
         {
             foreach (FileInfo file in uploadDir.GetFiles())
             {
-                MongoDBHelper.UploadResult rtn = MongoDBHelper.UpLoadFile(file.FullName, opt);
+                MongoDbHelper.UploadResult rtn = MongoDbHelper.UpLoadFile(file.FullName, opt);
                 switch (rtn)
                 {
-                    case MongoDBHelper.UploadResult.Complete:
+                    case MongoDbHelper.UploadResult.Complete:
                         fileCount++;
                         break;
-                    case MongoDBHelper.UploadResult.Skip:
-                        if (opt.AlreadyOpt == MongoDBHelper.enumGFSAlready.Stop)
+                    case MongoDbHelper.UploadResult.Skip:
+                        if (opt.AlreadyOpt == MongoDbHelper.enumGFSAlready.Stop)
                         {
                             ///这个操作返回为False，停止包括父亲过程在内的所有操作
                             return false;
                         }
                         break;
-                    case MongoDBHelper.UploadResult.Exception:
+                    case MongoDbHelper.UploadResult.Exception:
                         return MyMessageBox.ShowConfirm("Upload Exception", "Is Continue?");
                     default:
                         break;
@@ -239,7 +239,7 @@ namespace MagicMongoDBTool
                     ];
             if (downfile.ShowDialog() == DialogResult.OK)
             {
-                MongoDBHelper.DownloadFile(downfile.FileName, strFileName);
+                MongoDbHelper.DownloadFile(downfile.FileName, strFileName);
             }
             RefreshGUI();
         }
@@ -252,7 +252,7 @@ namespace MagicMongoDBTool
             if (lstData.SelectedItems.Count == 1)
             {
                 String strFileName = lstData.SelectedItems[0].Text;
-                MongoDBHelper.OpenFile(strFileName);
+                MongoDbHelper.OpenFile(strFileName);
             }
         }
 
@@ -265,14 +265,14 @@ namespace MagicMongoDBTool
             String strMessage = "Are you sure to delete selected File(s)?";
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
+                strTitle = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_Data);
+                strMessage = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
                 foreach (ListViewItem item in lstData.SelectedItems)
                 {
-                    MongoDBHelper.DelFile(item.Text);
+                    MongoDbHelper.DelFile(item.Text);
                 }
                 RefreshGUI();
             }

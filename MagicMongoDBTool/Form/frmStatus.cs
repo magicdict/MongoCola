@@ -24,22 +24,22 @@ namespace MagicMongoDBTool
             btnOpCnt.Visible = false;
             switch (strType)
             {
-                case MongoDBHelper.SERVER_TAG:
-                case MongoDBHelper.SINGLE_DB_SERVER_TAG:
+                case MongoDbHelper.SERVER_TAG:
+                case MongoDbHelper.SINGLE_DB_SERVER_TAG:
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         DocStatus =
-                            MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command,
+                            MongoDbHelper.ExecuteMongoSvrCommand(MongoDbHelper.serverStatus_Command,
                                 SystemManager.GetCurrentServer()).Response;
                         trvStatus.Height = trvStatus.Height*2;
                     }
-                    if (strType == MongoDBHelper.SERVER_TAG)
+                    if (strType == MongoDbHelper.SERVER_TAG)
                     {
                         btnOpCnt.Visible = true;
                     }
                     break;
-                case MongoDBHelper.DATABASE_TAG:
-                case MongoDBHelper.SINGLE_DATABASE_TAG:
+                case MongoDbHelper.DATABASE_TAG:
+                case MongoDbHelper.SINGLE_DATABASE_TAG:
                     DocStatus = SystemManager.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
                     cmbChartField.Visible = true;
                     chartResult.Visible = true;
@@ -64,7 +64,7 @@ namespace MagicMongoDBTool
                         SystemManager.ExceptionDeal(ex);
                     }
                     break;
-                case MongoDBHelper.COLLECTION_TAG:
+                case MongoDbHelper.COLLECTION_TAG:
                     DocStatus = SystemManager.GetCurrentCollection().GetStats().Response.ToBsonDocument();
                     //图形化初始化
                     chartResult.Visible = true;
@@ -108,7 +108,7 @@ namespace MagicMongoDBTool
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         DocStatus =
-                            MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command,
+                            MongoDbHelper.ExecuteMongoSvrCommand(MongoDbHelper.serverStatus_Command,
                                 SystemManager.GetCurrentServer()).Response;
                         trvStatus.Height = trvStatus.Height*2;
                     }
@@ -116,10 +116,10 @@ namespace MagicMongoDBTool
             }
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
-                cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                Text = SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+                cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
-            MongoDBHelper.FillDataToTreeView(strType, trvStatus, DocStatus);
+            MongoDbHelper.FillDataToTreeView(strType, trvStatus, DocStatus);
             trvStatus.DatatreeView.Nodes[0].Expand();
         }
 
@@ -215,8 +215,8 @@ namespace MagicMongoDBTool
             String strType = SystemManager.SelectTagType;
             switch (strType)
             {
-                case MongoDBHelper.DATABASE_TAG:
-                case MongoDBHelper.SINGLE_DATABASE_TAG:
+                case MongoDbHelper.DATABASE_TAG:
+                case MongoDbHelper.SINGLE_DATABASE_TAG:
                     try
                     {
                         RefreshDBStatusChart(cmbChartField.Text);

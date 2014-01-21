@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
@@ -142,7 +143,7 @@ namespace MagicMongoDBTool.Module
             mongoJsCol.Insert<BsonDocument>(
                 new BsonDocument().Add("_id", "sum")
                     .Add("value", "function (x, y) { return x + y; }"));
-            MongoGridFS mongofs = mongodb.GetGridFS(new MongoGridFSSettings());
+            mongodb.GetGridFS(new MongoGridFSSettings());
             MongoCollection<User> mongoCol = mongodb.GetCollection<User>("User");
             mongoCol.RemoveAll();
             var Ro = new Random();
@@ -151,7 +152,7 @@ namespace MagicMongoDBTool.Module
             {
                 mongoCol.Insert(new User
                 {
-                    ID = i.ToString(),
+                    ID = i.ToString(CultureInfo.InvariantCulture),
                     Name = "Tom",
                     Age = (byte) Ro.Next(100),
                     Age2 = (byte) Ro.Next(100),

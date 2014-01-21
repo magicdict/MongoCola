@@ -5,16 +5,15 @@ using TreeViewColumnsProject;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         #region"展示数据库结构 WebForm"
 
         /// <summary>
         ///     获取JSON
         /// </summary>
-        /// <param name="ConnectionName"></param>
         /// <returns></returns>
-        public static String GetConnectionzTreeJSON()
+        public static String GetConnectionzTreeJson()
         {
             var tree = new TreeView();
             FillConnectionToTreeView(tree);

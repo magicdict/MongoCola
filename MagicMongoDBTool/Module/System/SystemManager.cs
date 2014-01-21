@@ -15,12 +15,12 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     测试模式
         /// </summary>
-        public static Boolean DEBUG_MODE = false;
+        public static Boolean DebugMode = false;
 
         /// <summary>
         ///     是否为MONO
         /// </summary>
-        public static Boolean MONO_MODE = false;
+        public static Boolean MonoMode = false;
 
         /// <summary>
         ///     版本号
@@ -40,17 +40,17 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     驱动版本 MongoDB.Driver.DLL
         /// </summary>
-        public static String MongoDBDriverVersion;
+        public static String MongoDbDriverVersion;
 
         /// <summary>
         ///     驱动版本 MongoDB.Bson.DLL
         /// </summary>
-        public static String MongoDBBsonVersion;
+        public static String MongoDbBsonVersion;
 
         /// <summary>
         ///     文字资源
         /// </summary>
-        public static StringResource mStringResource = new StringResource();
+        public static StringResource MStringResource = new StringResource();
 
         /// <summary>
         ///     Current selected document
@@ -115,10 +115,10 @@ namespace MagicMongoDBTool.Module
         ///     异常处理
         /// </summary>
         /// <param name="ex">异常</param>
-        /// <param name="Message">消息</param>
-        internal static void ExceptionDeal(Exception ex, String Message)
+        /// <param name="message">消息</param>
+        internal static void ExceptionDeal(Exception ex, String message)
         {
-            ExceptionDeal(ex, "Exception", Message);
+            ExceptionDeal(ex, "Exception", message);
         }
 
         /// <summary>
@@ -130,8 +130,8 @@ namespace MagicMongoDBTool.Module
         internal static void ExceptionDeal(Exception ex, String Title, String Message)
         {
             String ExceptionString;
-            ExceptionString = "MongoDB.Driver.DLL:" + MongoDBDriverVersion + Environment.NewLine;
-            ExceptionString += "MongoDB.Bson.DLL:" + MongoDBBsonVersion + Environment.NewLine;
+            ExceptionString = "MongoDB.Driver.DLL:" + MongoDbDriverVersion + Environment.NewLine;
+            ExceptionString += "MongoDB.Bson.DLL:" + MongoDbBsonVersion + Environment.NewLine;
             ExceptionString += ex.ToString();
             MyMessageBox.ShowMessage(Title, Message, ExceptionString, true);
             ExceptionLog(ExceptionString);
@@ -156,8 +156,8 @@ namespace MagicMongoDBTool.Module
         internal static void ExceptionLog(Exception ex)
         {
             String ExceptionString;
-            ExceptionString = "MongoDB.Driver.DLL:" + MongoDBDriverVersion + Environment.NewLine;
-            ExceptionString += "MongoDB.Bson.DLL:" + MongoDBBsonVersion + Environment.NewLine;
+            ExceptionString = "MongoDB.Driver.DLL:" + MongoDbDriverVersion + Environment.NewLine;
+            ExceptionString += "MongoDB.Bson.DLL:" + MongoDbBsonVersion + Environment.NewLine;
             ExceptionString += ex.ToString();
             ExceptionLog(ExceptionString);
         }
@@ -168,28 +168,28 @@ namespace MagicMongoDBTool.Module
         ///     获得对象的种类
         /// </summary>
         /// <returns></returns>
-        public static String GetTagType(String ObjectTag)
+        public static String GetTagType(String objectTag)
         {
-            if (ObjectTag == String.Empty)
+            if (objectTag == String.Empty)
             {
                 return string.Empty;
             }
-            return ObjectTag.Split(":".ToCharArray())[0];
+            return objectTag.Split(":".ToCharArray())[0];
         }
 
         /// <summary>
         ///     获得对象的路径
         /// </summary>
         /// <returns></returns>
-        public static String GetTagData(String ObjectTag)
+        public static String GetTagData(String objectTag)
         {
-            if (ObjectTag == String.Empty)
+            if (objectTag == String.Empty)
             {
                 return string.Empty;
             }
-            if (ObjectTag.Split(":".ToCharArray()).Length == 2)
+            if (objectTag.Split(":".ToCharArray()).Length == 2)
             {
-                return ObjectTag.Split(":".ToCharArray())[1];
+                return objectTag.Split(":".ToCharArray())[1];
             }
             return string.Empty;
         }
@@ -221,12 +221,11 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     获得当前服务器配置
         /// </summary>
-        /// <param name="SrvName"></param>
         /// <returns></returns>
         public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfig()
         {
             String ServerName = SelectObjectTag.Split(":".ToCharArray())[1];
-            ServerName = ServerName.Split("/".ToCharArray())[(int) MongoDBHelper.PathLv.ConnectionLV];
+            ServerName = ServerName.Split("/".ToCharArray())[(int) MongoDbHelper.PathLv.ConnectionLv];
             var rtnMongoConnectionConfig = new ConfigHelper.MongoConnectionConfig();
             if (ConfigHelperInstance.ConnectionList.ContainsKey(ServerName))
             {
@@ -256,7 +255,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoServer GetCurrentServer()
         {
-            return MongoDBHelper.GetMongoServerBySvrPath(SelectObjectTag);
+            return MongoDbHelper.GetMongoServerBySvrPath(SelectObjectTag);
         }
 
         /// <summary>
@@ -265,7 +264,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoDatabase GetCurrentDataBase()
         {
-            return MongoDBHelper.GetMongoDBBySvrPath(SelectObjectTag);
+            return MongoDbHelper.GetMongoDBBySvrPath(SelectObjectTag);
         }
 
         /// <summary>
@@ -274,7 +273,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static MongoCollection GetCurrentCollection()
         {
-            return MongoDBHelper.GetMongoCollectionBySvrPath(SelectObjectTag);
+            return MongoDbHelper.GetMongoCollectionBySvrPath(SelectObjectTag);
         }
 
         /// <summary>
@@ -284,20 +283,20 @@ namespace MagicMongoDBTool.Module
         public static MongoCollection GetCurrentJsCollection()
         {
             MongoDatabase mongoDB = GetCurrentDataBase();
-            MongoCollection mongoJsCol = mongoDB.GetCollection(MongoDBHelper.COLLECTION_NAME_JAVASCRIPT);
+            MongoCollection mongoJsCol = mongoDB.GetCollection(MongoDbHelper.COLLECTION_NAME_JAVASCRIPT);
             return mongoJsCol;
         }
 
         /// <summary>
         ///     Set Current Document
         /// </summary>
-        /// <param name="SelectDocId"></param>
-        public static void SetCurrentDocument(TreeNode CurrentNode)
+        /// <param name="currentNode"></param>
+        public static void SetCurrentDocument(TreeNode currentNode)
         {
-            TreeNode rootNode = FindRootNode(CurrentNode);
-            var SelectDocId = (BsonValue) rootNode.Tag;
+            TreeNode rootNode = FindRootNode(currentNode);
+            var selectDocId = (BsonValue) rootNode.Tag;
             MongoCollection mongoCol = GetCurrentCollection();
-            var doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ(MongoDBHelper.KEY_ID, SelectDocId));
+            var doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ(MongoDbHelper.KEY_ID, selectDocId));
             CurrentDocument = doc;
         }
 
@@ -308,25 +307,22 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         private static TreeNode FindRootNode(TreeNode node)
         {
-            if (node.Parent == null)
-            {
-                return node;
-            }
-            return FindRootNode(node.Parent);
+            if (node.Parent != null) return FindRootNode(node.Parent);
+            return node;
         }
 
         /// <summary>
         ///     保存文件
         /// </summary>
-        /// <param name="Result"></param>
-        public static void SaveResultToJSonFile(BsonDocument Result)
+        /// <param name="result"></param>
+        public static void SaveResultToJSonFile(BsonDocument result)
         {
             var dialog = new SaveFileDialog();
-            dialog.Filter = MongoDBHelper.TxtFilter;
+            dialog.Filter = MongoDbHelper.TxtFilter;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var writer = new StreamWriter(dialog.FileName, false);
-                writer.Write(Result.ToJson(JsonWriterSettings));
+                writer.Write(result.ToJson(JsonWriterSettings));
                 writer.Close();
             }
         }
@@ -334,15 +330,15 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     Javascript文件的保存
         /// </summary>
-        /// <param name="Result"></param>
-        public static void SaveJavascriptFile(String Result)
+        /// <param name="result"></param>
+        public static void SaveJavascriptFile(String result)
         {
             var dialog = new SaveFileDialog();
-            dialog.Filter = MongoDBHelper.JsFilter;
+            dialog.Filter = MongoDbHelper.JsFilter;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var writer = new StreamWriter(dialog.FileName, false);
-                writer.Write(Result);
+                writer.Write(result);
                 writer.Close();
             }
         }
@@ -392,7 +388,7 @@ namespace MagicMongoDBTool.Module
             var jsNamelst = new List<String>();
             foreach (BsonDocument item in GetCurrentJsCollection().FindAllAs<BsonDocument>())
             {
-                jsNamelst.Add(item.GetValue(MongoDBHelper.KEY_ID).ToString());
+                jsNamelst.Add(item.GetValue(MongoDbHelper.KEY_ID).ToString());
             }
             return jsNamelst;
         }
@@ -408,8 +404,8 @@ namespace MagicMongoDBTool.Module
                 String LanguageFile = "Language" + Path.DirectorySeparatorChar + ConfigHelperInstance.LanguageFileName;
                 if (File.Exists(LanguageFile))
                 {
-                    mStringResource.InitLanguage(LanguageFile);
-                    MyMessageBox.SwitchLanguage(mStringResource);
+                    MStringResource.InitLanguage(LanguageFile);
+                    MyMessageBox.SwitchLanguage(MStringResource);
                 }
             }
         }

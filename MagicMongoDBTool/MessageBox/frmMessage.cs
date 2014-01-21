@@ -34,14 +34,7 @@ namespace MagicMongoDBTool
                 IsShowDetails = false;
             }
             _ShowDetails = IsShowDetails;
-            if (_ShowDetails)
-            {
-                Height = 350;
-            }
-            else
-            {
-                Height = 130;
-            }
+            Height = _ShowDetails ? 350 : 130;
         }
 
         /// <summary>
@@ -86,10 +79,10 @@ namespace MagicMongoDBTool
         }
 
         /// <summary>
-        ///     Set Text
+        /// SetText
         /// </summary>
-        /// <param name="Yes"></param>
-        /// <param name="No"></param>
+        /// <param name="Detail"></param>
+        /// <param name="OK"></param>
         internal void SetText(String Detail, String OK)
         {
             cmdDetails.Text = Detail;

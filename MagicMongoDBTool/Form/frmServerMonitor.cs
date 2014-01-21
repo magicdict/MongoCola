@@ -37,14 +37,14 @@ namespace MagicMongoDBTool
                 YValueType = ChartValueType.Int32
             };
             MonitorGrap.Series.Add(InsertSeries);
-            FormClosing += (x, y) => { M.Stop(); };
+            FormClosing += (x, y) => M.Stop();
             M.Start();
         }
 
         private void M_Tick(object sender, EventArgs e)
         {
             BsonDocument DocStatus =
-                MongoDBHelper.ExecuteMongoSvrCommand(MongoDBHelper.serverStatus_Command,
+                MongoDbHelper.ExecuteMongoSvrCommand(MongoDbHelper.serverStatus_Command,
                     SystemManager.GetCurrentServer()).Response;
 
             var queryPoint = new DataPoint();

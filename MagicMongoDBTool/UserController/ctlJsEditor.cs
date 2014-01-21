@@ -20,10 +20,10 @@ namespace MagicMongoDBTool
 
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                Text = SystemManager.mStringResource.GetText(StringResource.TextType.ServiceStatus_Title);
-                SaveStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
-                EditDocStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Edit);
-                CloseStripButton.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                Text = SystemManager.MStringResource.GetText(StringResource.TextType.ServiceStatus_Title);
+                SaveStripButton.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save);
+                EditDocStripButton.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Edit);
+                CloseStripButton.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
 
             SaveStripButton.Image = Resources.save.ToBitmap();
@@ -43,7 +43,7 @@ namespace MagicMongoDBTool
         {
             if (JsName != null && JsName != String.Empty)
             {
-                txtJavaScript.Text = MongoDBHelper.LoadJavascript(JsName);
+                txtJavaScript.Text = MongoDbHelper.LoadJavascript(JsName);
                 txtJavaScript.Select(0, 0);
             }
             txtJavaScript.GotFocus += (x, y) => { SystemManager.SelectObjectTag = strDBtag; };
@@ -80,7 +80,7 @@ namespace MagicMongoDBTool
         {
             if (JsName != null && JsName != String.Empty)
             {
-                MongoDBHelper.SaveEditorJavascript(JsName, txtJavaScript.Text);
+                MongoDbHelper.SaveEditorJavascript(JsName, txtJavaScript.Text);
             }
             else
             {
@@ -101,7 +101,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void EditDocStripButton_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.SaveAndOpenStringAsFile(txtJavaScript.Text);
+            MongoDbHelper.SaveAndOpenStringAsFile(txtJavaScript.Text);
         }
     }
 }

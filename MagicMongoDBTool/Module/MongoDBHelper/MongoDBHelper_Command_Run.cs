@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         /// <summary>
         ///     Command Complete Event
@@ -80,7 +80,7 @@ namespace MagicMongoDBTool.Module
             {
                 switch (mMongoCommand.RunLevel)
                 {
-                    case PathLv.CollectionLV:
+                    case PathLv.CollectionLv:
                         if (String.IsNullOrEmpty(mMongoCommand.CommandString))
                         {
                             mCommandResult = ExecuteMongoColCommand(mMongoCommand.cmdDocument,
@@ -92,11 +92,11 @@ namespace MagicMongoDBTool.Module
                                 SystemManager.GetCurrentCollection());
                         }
                         break;
-                    case PathLv.DatabaseLV:
+                    case PathLv.DatabaseLv:
                         mCommandResult = ExecuteMongoDBCommand(mMongoCommand.cmdDocument,
                             SystemManager.GetCurrentDataBase());
                         break;
-                    case PathLv.InstanceLV:
+                    case PathLv.InstanceLv:
                         mCommandResult = ExecuteMongoSvrCommand(mMongoCommand.cmdDocument,
                             SystemManager.GetCurrentServer());
                         break;
@@ -144,7 +144,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = CommandString,
-                RunLevel = PathLv.CollectionLV,
+                RunLevel = PathLv.CollectionLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -173,7 +173,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = textSearchCommand.ToString(),
-                RunLevel = PathLv.CollectionLV,
+                RunLevel = PathLv.CollectionLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -200,7 +200,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = CmdDoc.GetElement(0).Value.ToString(),
-                RunLevel = PathLv.DatabaseLV,
+                RunLevel = PathLv.DatabaseLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -227,7 +227,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = mongoCmd,
-                RunLevel = PathLv.DatabaseLV,
+                RunLevel = PathLv.DatabaseLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -254,7 +254,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = mongoCmd.ToString(),
-                RunLevel = PathLv.DatabaseLV,
+                RunLevel = PathLv.DatabaseLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -270,7 +270,7 @@ namespace MagicMongoDBTool.Module
         public static CommandResult ExecuteMongoDBCommand(MongoCommand mMongoCommand, MongoDatabase mongoDB)
         {
             var Command = new CommandDocument {{mMongoCommand.CommandString, 1}};
-            if (mMongoCommand.RunLevel == PathLv.DatabaseLV)
+            if (mMongoCommand.RunLevel == PathLv.DatabaseLv)
             {
                 return ExecuteMongoDBCommand(Command, mongoDB);
             }
@@ -298,7 +298,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = mongoCmd,
-                RunLevel = PathLv.InstanceLV,
+                RunLevel = PathLv.InstanceLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -325,7 +325,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = mCommandDocument.ToString(),
-                RunLevel = PathLv.InstanceLV,
+                RunLevel = PathLv.InstanceLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -341,7 +341,7 @@ namespace MagicMongoDBTool.Module
         public static CommandResult ExecuteMongoSvrCommand(MongoCommand mMongoCommand, MongoServer mongosrv)
         {
             var Command = new CommandDocument {{mMongoCommand.CommandString, 1}};
-            if (mMongoCommand.RunLevel == PathLv.DatabaseLV)
+            if (mMongoCommand.RunLevel == PathLv.DatabaseLv)
             {
                 throw new Exception();
             }

@@ -88,7 +88,7 @@ namespace MagicMongoDBTool
         /// <summary>
         ///     Path Level
         /// </summary>
-        public MongoDBHelper.PathLv RunLevel;
+        public MongoDbHelper.PathLv RunLevel;
     }
 
     /// <summary>

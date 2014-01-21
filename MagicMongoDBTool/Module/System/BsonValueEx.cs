@@ -106,14 +106,7 @@ namespace MagicMongoDBTool.Module
                     Value = new BsonDateTime(mBsonDateTime);
                     break;
                 case "BsonBoolean":
-                    if (mBsonBoolean)
-                    {
-                        Value = BsonBoolean.True;
-                    }
-                    else
-                    {
-                        Value = BsonBoolean.False;
-                    }
+                    Value = mBsonBoolean ? BsonBoolean.True : BsonBoolean.False;
                     break;
                 default:
                     break;

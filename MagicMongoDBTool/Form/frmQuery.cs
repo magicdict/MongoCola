@@ -10,13 +10,13 @@ namespace MagicMongoDBTool
         /// <summary>
         ///     当前DataViewInfo
         /// </summary>
-        private readonly MongoDBHelper.DataViewInfo CurrentDataViewInfo;
+        private readonly MongoDbHelper.DataViewInfo CurrentDataViewInfo;
 
         /// <summary>
         ///     初始化
         /// </summary>
         /// <param name="mDataViewInfo">Filter也是DataViewInfo的一个属性，所以这里加上参数</param>
-        public frmQuery(MongoDBHelper.DataViewInfo mDataViewInfo)
+        public frmQuery(MongoDbHelper.DataViewInfo mDataViewInfo)
         {
             InitializeComponent();
             CurrentDataViewInfo = mDataViewInfo;
@@ -48,16 +48,16 @@ namespace MagicMongoDBTool
                 QueryFieldPicker.InitByCurrentCollection(true);
             }
             if (SystemManager.IsUseDefaultLanguage) return;
-            Text = SystemManager.mStringResource.GetText(StringResource.TextType.Query_Title);
-            tabFieldInfo.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Query_FieldInfo);
-            tabCondition.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Query_Filter);
-            tabSql.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ConvertSql_Title);
+            Text = SystemManager.MStringResource.GetText(StringResource.TextType.Query_Title);
+            tabFieldInfo.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Query_FieldInfo);
+            tabCondition.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Query_Filter);
+            tabSql.Text = SystemManager.MStringResource.GetText(StringResource.TextType.ConvertSql_Title);
             cmdAddCondition.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.Query_Filter_AddCondition);
-            cmdLoad.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Query_Action_Load);
-            cmdSave.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
-            cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
-            cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
+                SystemManager.MStringResource.GetText(StringResource.TextType.Query_Filter_AddCondition);
+            cmdLoad.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Query_Action_Load);
+            cmdSave.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save);
+            cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
+            cmdCancel.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Cancel);
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace MagicMongoDBTool
             }
             else
             {
-                CurrentDataViewInfo.mDataFilter = MongoDBHelper.ConvertQuerySql(txtSql.Text);
+                CurrentDataViewInfo.mDataFilter = MongoDbHelper.ConvertQuerySql(txtSql.Text);
             }
             //按下OK，不论是否做更改都认为True
             CurrentDataViewInfo.IsUseFilter = true;
@@ -118,7 +118,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            var savefile = new SaveFileDialog {Filter = MongoDBHelper.XmlFilter};
+            var savefile = new SaveFileDialog {Filter = MongoDbHelper.XmlFilter};
             if (savefile.ShowDialog() != DialogResult.OK) return;
             // 设置DataFilter
             if (string.IsNullOrEmpty(txtSql.Text))
@@ -128,7 +128,7 @@ namespace MagicMongoDBTool
             }
             else
             {
-                CurrentDataViewInfo.mDataFilter = MongoDBHelper.ConvertQuerySql(txtSql.Text);
+                CurrentDataViewInfo.mDataFilter = MongoDbHelper.ConvertQuerySql(txtSql.Text);
             }
             CurrentDataViewInfo.mDataFilter.SaveFilter(savefile.FileName);
         }
@@ -153,7 +153,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdLoad_Click(object sender, EventArgs e)
         {
-            var openFile = new OpenFileDialog {Filter = MongoDBHelper.XmlFilter};
+            var openFile = new OpenFileDialog {Filter = MongoDbHelper.XmlFilter};
             if (openFile.ShowDialog() != DialogResult.OK) return;
             DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
             CurrentDataViewInfo.mDataFilter = NewDataFilter;

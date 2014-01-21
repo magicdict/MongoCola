@@ -19,10 +19,10 @@ namespace MagicMongoDBTool
             Application.EnableVisualStyles();
 
             FileVersionInfo info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Driver.dll");
-            SystemManager.MongoDBDriverVersion = info.ProductVersion;
+            SystemManager.MongoDbDriverVersion = info.ProductVersion;
 
             info = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\MongoDB.Bson.dll");
-            SystemManager.MongoDBBsonVersion = info.ProductVersion;
+            SystemManager.MongoDbBsonVersion = info.ProductVersion;
 
             if (File.Exists(ConfigHelper._configFilename))
             {
@@ -40,14 +40,14 @@ namespace MagicMongoDBTool
                 SystemManager.ConfigHelperInstance.SaveToConfigFile(ConfigHelper._configFilename);
             }
             //SystemManager.DEBUG_MODE = true;
-            SystemManager.DEBUG_MODE = false;
-            SystemManager.MONO_MODE = Type.GetType("Mono.Runtime") != null;
+            SystemManager.DebugMode = false;
+            SystemManager.MonoMode = Type.GetType("Mono.Runtime") != null;
             Application.Run(new frmMain());
             //Application.Run(new frmServerMonitor());  
             //delete tempfile directory when exit
-            if (Directory.Exists(MongoDBHelper.TempFileFolder))
+            if (Directory.Exists(MongoDbHelper.TempFileFolder))
             {
-                Directory.Delete(MongoDBHelper.TempFileFolder, true);
+                Directory.Delete(MongoDbHelper.TempFileFolder, true);
             }
         }
     }

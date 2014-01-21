@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         //http://www.mongodb.org/display/DOCS/SQL+to+Mongo+Mapping+Chart(旧网址)
         //http://docs.mongodb.org/manual/reference/sql-comparison/
@@ -65,7 +65,7 @@ namespace MagicMongoDBTool.Module
             String[] KeyWords = {"select", "from", "where", "group", "order"};
 
             //From - > CollectionName
-            String strFrom = GetKeyContent(FromStartIndex, SqlToken, KeyWords);
+            GetKeyContent(FromStartIndex, SqlToken, KeyWords);
             MongoCollection mongoCol;
             //if ((strFrom != String.Empty) & SystemManager.GetCurrentDataBase().CollectionExists(strFrom))
             //{
@@ -230,14 +230,7 @@ namespace MagicMongoDBTool.Module
                         }
                         else
                         {
-                            if (Sortfld[1].ToLower().StartsWith("d"))
-                            {
-                                queryfld.sortType = DataFilter.SortType.Descending;
-                            }
-                            else
-                            {
-                                queryfld.sortType = DataFilter.SortType.Ascending;
-                            }
+                            queryfld.sortType = Sortfld[1].ToLower().StartsWith("d") ? DataFilter.SortType.Descending : DataFilter.SortType.Ascending;
                         }
                         CurrentDataFilter.QueryFieldList[i] = queryfld;
                         break;

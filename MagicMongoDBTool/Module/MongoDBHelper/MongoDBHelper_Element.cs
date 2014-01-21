@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         /// <summary>
         /// </summary>
@@ -83,7 +83,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     Cut Element
         /// </summary>
-        /// <param name="ElementPath"></param>
+        /// <param name="El"></param>
         public static void CopyElement(BsonElement El)
         {
             _ClipElement = El;
@@ -93,7 +93,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     Cut Array Value
         /// </summary>
-        /// <param name="ElementPath"></param>
+        /// <param name="Val"></param>
         public static void CopyValue(BsonValue Val)
         {
             _ClipElement = Val;
@@ -125,7 +125,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     Add Element
         /// </summary>
-        /// <param name="BaseDoc"></param>
+        /// <param name="ElementPath"></param>
         /// <param name="AddElement"></param>
         public static String AddElement(String ElementPath, BsonElement AddElement)
         {
@@ -172,8 +172,8 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     Drop Element
         /// </summary>
-        /// <param name="BaseDoc"></param>
         /// <param name="ElementPath"></param>
+        /// <param name="El"></param>
         public static void DropElement(String ElementPath, BsonElement El)
         {
             BsonDocument BaseDoc = SystemManager.CurrentDocument;
@@ -188,8 +188,8 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     Drop A Value of Array
         /// </summary>
-        /// <param name="BaseDoc"></param>
         /// <param name="ElementPath"></param>
+        /// <param name="ValueIndex"></param>
         public static void DropArrayValue(String ElementPath, int ValueIndex)
         {
             BsonDocument BaseDoc = SystemManager.CurrentDocument;
@@ -209,7 +209,6 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="NewValue"></param>
-        /// <param name="ValueIndex"></param>
         /// <param name="El"></param>
         public static void ModifyElement(String ElementPath, BsonValue NewValue, BsonElement El)
         {
@@ -231,7 +230,6 @@ namespace MagicMongoDBTool.Module
         /// <param name="ElementPath"></param>
         /// <param name="NewValue"></param>
         /// <param name="ValueIndex"></param>
-        /// <param name="El"></param>
         public static void ModifyArrayValue(String ElementPath, BsonValue NewValue, int ValueIndex)
         {
             BsonDocument BaseDoc = SystemManager.CurrentDocument;

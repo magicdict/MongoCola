@@ -18,9 +18,9 @@ namespace TreeViewColumnsProject
             Padding = new Padding(1);
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                colName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Name);
-                colValue.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Value);
-                colType.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Type);
+                colName.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Name);
+                colValue.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Value);
+                colType.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Type);
             }
         }
 
@@ -72,14 +72,8 @@ namespace TreeViewColumnsProject
             }
             if ((e.State & TreeNodeStates.Selected) != 0)
             {
-                if ((e.State & TreeNodeStates.Focused) != 0)
-                {
-                    e.Graphics.FillRectangle(SystemBrushes.Highlight, rect);
-                }
-                else
-                {
-                    e.Graphics.FillRectangle(SystemBrushes.Control, rect);
-                }
+                e.Graphics.FillRectangle(
+                    (e.State & TreeNodeStates.Focused) != 0 ? SystemBrushes.Highlight : SystemBrushes.Control, rect);
             }
             else
             {
@@ -91,15 +85,15 @@ namespace TreeViewColumnsProject
                 e.Bounds.Height);
 
             String TreeNameString = e.Node.Text;
-            if (TreeNameString.EndsWith(MongoDBHelper.Array_Mark))
+            if (TreeNameString.EndsWith(MongoDbHelper.Array_Mark))
             {
                 //Array_Mark 在计算路径的时候使用，不过，在表示的时候，则不能表示
-                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - MongoDBHelper.Array_Mark.Length);
+                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - MongoDbHelper.Array_Mark.Length);
             }
-            if (TreeNameString.EndsWith(MongoDBHelper.Document_Mark))
+            if (TreeNameString.EndsWith(MongoDbHelper.Document_Mark))
             {
                 //Document_Mark 在计算路径的时候使用，不过，在表示的时候，则不能表示
-                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - MongoDBHelper.Document_Mark.Length);
+                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - MongoDbHelper.Document_Mark.Length);
             }
             //感谢cyrus的建议，选中节点的文字表示，底色变更
             if ((e.State & TreeNodeStates.Selected) != 0 && (e.State & TreeNodeStates.Focused) != 0)
@@ -186,14 +180,7 @@ namespace TreeViewColumnsProject
                     }
                     else
                     {
-                        if (mElement != null)
-                        {
-                            strColumnText = mElement.Value.GetType().Name.Substring(4);
-                        }
-                        else
-                        {
-                            strColumnText = mValue.GetType().Name.Substring(4);
-                        }
+                        strColumnText = mElement != null ? mElement.Value.GetType().Name.Substring(4) : mValue.GetType().Name.Substring(4);
                     }
 
                     var flags = TextFormatFlags.EndEllipsis;

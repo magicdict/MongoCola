@@ -46,7 +46,7 @@ namespace MagicMongoDBTool
         private void cmdOK_Click(object sender, EventArgs e)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
-            IMongoQuery query = MongoDBHelper.GetQuery(GroupConditionList);
+            IMongoQuery query = MongoDbHelper.GetQuery(GroupConditionList);
             var groupdoc = new GroupByDocument();
             String ChartTite = string.Empty;
             foreach (CheckBox item in panColumn.Controls)
@@ -93,7 +93,7 @@ namespace MagicMongoDBTool
                     SeriesResult.Points.Add(dPoint);
                     Count++;
                 }
-                MongoDBHelper.FillJSONDataToTextBox(txtResult, resultlst, 0);
+                MongoDbHelper.FillJSONDataToTextBox(txtResult, resultlst, 0);
                 if (Count == 1001)
                 {
                     txtResult.Text = "Too many result,Display first 1000 records" + Environment.NewLine + txtResult.Text;
@@ -118,7 +118,7 @@ namespace MagicMongoDBTool
         private void frmGroup_Load(object sender, EventArgs e)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
-            List<String> MongoColumn = MongoDBHelper.GetCollectionSchame(mongoCol);
+            List<String> MongoColumn = MongoDbHelper.GetCollectionSchame(mongoCol);
             var _conditionPos = new Point(50, 20);
             foreach (String item in MongoColumn)
             {
@@ -135,17 +135,17 @@ namespace MagicMongoDBTool
             panBsonEl.Controls.Add(firstAddBsonElCtl);
 
             if (SystemManager.IsUseDefaultLanguage) return;
-            ctlReduce.Title = SystemManager.mStringResource.GetText(StringResource.TextType.Group_Tab_Reduce);
-            ctlFinalize.Title = SystemManager.mStringResource.GetText(StringResource.TextType.Group_Tab_Finalize);
+            ctlReduce.Title = SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_Reduce);
+            ctlFinalize.Title = SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_Finalize);
             lblSelectGroupField.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.Group_Tab_Group_Notes);
+                SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_Group_Notes);
             lblAddInitField.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn_Note);
+                SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn_Note);
             cmdAddInitField.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn);
-            lblResult.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Group_Tab_Result);
-            cmdQuery.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Group_LoadQuery);
-            cmdRun.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+                SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn);
+            lblResult.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_Result);
+            cmdQuery.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Group_LoadQuery);
+            cmdRun.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
         }
 
         /// <summary>

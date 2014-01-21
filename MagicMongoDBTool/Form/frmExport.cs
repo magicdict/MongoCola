@@ -6,13 +6,13 @@ namespace MagicMongoDBTool
 {
     public partial class frmExport : Form
     {
-        private readonly MongoDBHelper.DataViewInfo viewinfo;
-        private MongoDBHelper.ExportType exportType;
+        private readonly MongoDbHelper.DataViewInfo _viewinfo;
+        private MongoDbHelper.ExportType _exportType;
 
-        public frmExport(MongoDBHelper.DataViewInfo info)
+        public frmExport(MongoDbHelper.DataViewInfo info)
         {
             InitializeComponent();
-            viewinfo = info;
+            _viewinfo = info;
         }
 
         public frmExport()
@@ -23,16 +23,16 @@ namespace MagicMongoDBTool
         private void frmExport_Load(object sender, EventArgs e)
         {
             //Excel文件过滤器
-            ctlExportFilePicker.FileFilter = MongoDBHelper.ExcelFilter;
-            exportType = MongoDBHelper.ExportType.Excel;
+            ctlExportFilePicker.FileFilter = MongoDbHelper.ExcelFilter;
+            _exportType = MongoDbHelper.ExportType.Excel;
             ctlExportFilePicker.FileName = SystemManager.GetCurrentCollection().Name;
             optExcel.CheckedChanged += optExportType_CheckedChanged;
             optText.CheckedChanged += optExportType_CheckedChanged;
             optXML.CheckedChanged += optExportType_CheckedChanged;
             if (SystemManager.IsUseDefaultLanguage) return;
-            btnSave.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
+            btnSave.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save);
             Text =
-                SystemManager.mStringResource.GetText(
+                SystemManager.MStringResource.GetText(
                     StringResource.TextType.Main_Menu_Operation_DataCollection_ExportToFile);
         }
 
@@ -45,17 +45,17 @@ namespace MagicMongoDBTool
         {
             if (optExcel.Checked)
             {
-                ctlExportFilePicker.FileFilter = MongoDBHelper.ExcelFilter;
-                exportType = MongoDBHelper.ExportType.Excel;
+                ctlExportFilePicker.FileFilter = MongoDbHelper.ExcelFilter;
+                _exportType = MongoDbHelper.ExportType.Excel;
             }
             if (optText.Checked)
             {
-                ctlExportFilePicker.FileFilter = MongoDBHelper.TxtFilter;
-                exportType = MongoDBHelper.ExportType.Text;
+                ctlExportFilePicker.FileFilter = MongoDbHelper.TxtFilter;
+                _exportType = MongoDbHelper.ExportType.Text;
             }
             if (!optXML.Checked) return;
-            ctlExportFilePicker.FileFilter = MongoDBHelper.XmlFilter;
-            exportType = MongoDBHelper.ExportType.XML;
+            ctlExportFilePicker.FileFilter = MongoDbHelper.XmlFilter;
+            _exportType = MongoDbHelper.ExportType.Xml;
         }
 
         /// <summary>
@@ -65,8 +65,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.ActionDone += (x, y) => { MyMessageBox.ShowMessage("Export", y.Message); };
-            MongoDBHelper.ExportToFile(viewinfo, ctlExportFilePicker.SelectedPathOrFileName, exportType);
+            MongoDbHelper.ActionDone += (x, y) => MyMessageBox.ShowMessage("Export", y.Message);
+            MongoDbHelper.ExportToFile(_viewinfo, ctlExportFilePicker.SelectedPathOrFileName, _exportType);
         }
     }
 }

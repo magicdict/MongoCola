@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         #region"服务器管理"
 
@@ -281,7 +281,6 @@ namespace MagicMongoDBTool.Module
         ///     使用字符串连接来填充
         /// </summary>
         /// <remarks>http://www.mongodb.org/display/DOCS/Connections</remarks>
-        /// <param name="connectionString"></param>
         /// <param name="config"></param>
         public static String FillConfigWithConnectionString(ref ConfigHelper.MongoConnectionConfig config)
         {

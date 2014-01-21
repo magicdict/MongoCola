@@ -151,8 +151,8 @@ namespace MagicMongoDBTool
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                cmdBrowse.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Browse);
-                cmdClearPath.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Clear);
+                cmdBrowse.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Browse);
+                cmdClearPath.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Clear);
             }
         }
     }

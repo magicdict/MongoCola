@@ -2,7 +2,7 @@
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         public static void NumberText_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -10,26 +10,21 @@ namespace MagicMongoDBTool.Module
             {
                 e.Handled = true;
             }
-            if (e.KeyChar == 46) //小数点
+            if (e.KeyChar != 46) return;
+            if (((TextBox) sender).Text.Length > 0)
             {
-                if (((TextBox) sender).Text.Length <= 0)
-                    e.Handled = true; //小数点不能在第一位
-                else
+                float f;
+                float oldf;
+                bool b1 = false, b2 = false;
+                b1 = float.TryParse(((TextBox) sender).Text, out oldf);
+                b2 = float.TryParse(((TextBox) sender).Text + e.KeyChar, out f);
+                if (b2 == false)
                 {
-                    float f;
-                    float oldf;
-                    bool b1 = false, b2 = false;
-                    b1 = float.TryParse(((TextBox) sender).Text, out oldf);
-                    b2 = float.TryParse(((TextBox) sender).Text + e.KeyChar, out f);
-                    if (b2 == false)
-                    {
-                        if (b1)
-                            e.Handled = true;
-                        else
-                            e.Handled = false;
-                    }
+                    e.Handled = b1;
                 }
             }
+            else
+                e.Handled = true; //小数点不能在第一位
         }
 
         public static void NumberTextInt_KeyPress(object sender, KeyPressEventArgs e)

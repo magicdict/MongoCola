@@ -10,7 +10,7 @@ using TreeViewColumnsProject;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         #region"展示数据集内容[WebForm]"
 
@@ -28,8 +28,7 @@ namespace MagicMongoDBTool.Module
             WebDataViewInfo.LimitCnt = 100;
             List<BsonDocument> dataList = GetDataList(ref WebDataViewInfo);
             String collectionName =
-                SystemManager.GetTagData(WebDataViewInfo.strDBTag).Split("/".ToCharArray())[(int) PathLv.CollectionLV];
-            int SkipCnt = WebDataViewInfo.SkipCnt;
+                SystemManager.GetTagData(WebDataViewInfo.strDBTag).Split("/".ToCharArray())[(int) PathLv.CollectionLv];
             var tree = new TreeViewColumns();
             FillDataToTreeView(collectionName, tree, dataList, WebDataViewInfo.SkipCnt);
             var array = new BsonArray();
@@ -49,7 +48,6 @@ namespace MagicMongoDBTool.Module
         ///     通过读取N条记录来确定数据集结构
         /// </summary>
         /// <param name="mongoCol">数据集</param>
-        /// <param name="CheckRecordCnt">使用数据量，省略时为全部，海量数据时相当消耗性能</param>
         /// <returns></returns>
         public static List<String> GetCollectionSchame(MongoCollection mongoCol)
         {
@@ -110,7 +108,7 @@ namespace MagicMongoDBTool.Module
             String[] cp = collectionPath.Split("/".ToCharArray());
             MongoServer mServer = SystemManager.GetCurrentServer();
             MongoCollection mongoCol =
-                mServer.GetDatabase(cp[(int) PathLv.DatabaseLV]).GetCollection(cp[(int) PathLv.CollectionLV]);
+                mServer.GetDatabase(cp[(int) PathLv.DatabaseLv]).GetCollection(cp[(int) PathLv.CollectionLv]);
 
 
             MongoCursor<BsonDocument> cursor;
@@ -129,14 +127,7 @@ namespace MagicMongoDBTool.Module
                     .SetSkip(CurrentDataViewInfo.SkipCnt)
                     .SetLimit(CurrentDataViewInfo.LimitCnt);
             }
-            if (cursor.Query != null)
-            {
-                CurrentDataViewInfo.Query = cursor.Query.ToJson(SystemManager.JsonWriterSettings);
-            }
-            else
-            {
-                CurrentDataViewInfo.Query = String.Empty;
-            }
+            CurrentDataViewInfo.Query = cursor.Query != null ? cursor.Query.ToJson(SystemManager.JsonWriterSettings) : String.Empty;
             CurrentDataViewInfo.Explain = cursor.Explain().ToJson(SystemManager.JsonWriterSettings);
             List<BsonDocument> dataList = cursor.ToList();
             if (CurrentDataViewInfo.SkipCnt == 0)
@@ -177,14 +168,14 @@ namespace MagicMongoDBTool.Module
                               CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[0] == COLLECTION_TAG))
                         {
                             //只有在纯数据集的时候才退出，不然的话，至少需要将字段结构在ListView中显示出来。
-                            FillDataToListView(cp[(int) PathLv.CollectionLV], (ListView) control, dataList);
+                            FillDataToListView(cp[(int) PathLv.CollectionLv], (ListView) control, dataList);
                         }
                         break;
                     case "System.Windows.Forms.TextBox":
                         FillJSONDataToTextBox((TextBox) control, dataList, CurrentDataViewInfo.SkipCnt);
                         break;
                     case "TreeViewColumnsProject.TreeViewColumns":
-                        FillDataToTreeView(cp[(int) PathLv.CollectionLV], (TreeViewColumns) control, dataList,
+                        FillDataToTreeView(cp[(int) PathLv.CollectionLv], (TreeViewColumns) control, dataList,
                             CurrentDataViewInfo.SkipCnt);
                         break;
                     default:
@@ -312,14 +303,7 @@ namespace MagicMongoDBTool.Module
                         //这里是为了操作顶层节点的删除，修改用的，所以必须要放item.GetElement(0).Value;
                         BsonElement id;
                         item.TryGetElement(KEY_ID, out id);
-                        if (id != null)
-                        {
-                            dataNode.Tag = id.Value;
-                        }
-                        else
-                        {
-                            dataNode.Tag = item.GetElement(0).Value;
-                        }
+                        dataNode.Tag = id != null ? id.Value : item.GetElement(0).Value;
                         break;
                 }
                 AddBsonDocToTreeNode(dataNode, item);
@@ -472,14 +456,7 @@ namespace MagicMongoDBTool.Module
                             }
                             BsonValue val;
                             docItem.TryGetValue(_columnlist[i], out val);
-                            if (val == null)
-                            {
-                                lstItem.SubItems.Add("");
-                            }
-                            else
-                            {
-                                lstItem.SubItems.Add(ConvertToString(val));
-                            }
+                            lstItem.SubItems.Add(val == null ? "" : ConvertToString(val));
                         }
                         lstData.Items.Add(lstItem);
                     }
@@ -502,12 +479,12 @@ namespace MagicMongoDBTool.Module
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 lstData.Columns.Add("ID");
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_Roles));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_Password));
+                lstData.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Common_Username));
+                lstData.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Common_Roles));
+                lstData.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Common_Password));
                 lstData.Columns.Add("userSource");
                 lstData.Columns.Add("otherDBRoles");
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.Common_ReadOnly));
+                lstData.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.Common_ReadOnly));
             }
             else
             {
@@ -529,60 +506,25 @@ namespace MagicMongoDBTool.Module
                 //roles
                 BsonValue strRoles;
                 docFile.TryGetValue("roles", out strRoles);
-                if (strRoles == null)
-                {
-                    lstItem.SubItems.Add("N/A");
-                }
-                else
-                {
-                    lstItem.SubItems.Add(strRoles.ToString());
-                }
+                lstItem.SubItems.Add(strRoles == null ? "N/A" : strRoles.ToString());
                 //密码是Hash表示的，这里没有安全隐患
                 //Password和userSource不能同时设置，所以password也可能不存在
                 BsonValue strPassword;
                 docFile.TryGetValue("pwd", out strPassword);
-                if (strPassword == null)
-                {
-                    lstItem.SubItems.Add("N/A");
-                }
-                else
-                {
-                    lstItem.SubItems.Add(strPassword.ToString());
-                }
+                lstItem.SubItems.Add(strPassword == null ? "N/A" : strPassword.ToString());
                 //userSource
                 BsonValue strUserSource;
                 docFile.TryGetValue("userSource", out strUserSource);
-                if (strUserSource == null)
-                {
-                    lstItem.SubItems.Add("N/A");
-                }
-                else
-                {
-                    lstItem.SubItems.Add(strUserSource.ToString());
-                }
+                lstItem.SubItems.Add(strUserSource == null ? "N/A" : strUserSource.ToString());
                 //OtherDBRoles
                 BsonValue strOtherDBRoles;
                 docFile.TryGetValue("otherDBRoles", out strOtherDBRoles);
-                if (strOtherDBRoles == null)
-                {
-                    lstItem.SubItems.Add("N/A");
-                }
-                else
-                {
-                    lstItem.SubItems.Add(strOtherDBRoles.ToString());
-                }
+                lstItem.SubItems.Add(strOtherDBRoles == null ? "N/A" : strOtherDBRoles.ToString());
                 //ReadOnly
                 //20130802 roles列表示。ReadOnly可能不存在！
                 BsonValue strReadOnly;
                 docFile.TryGetValue("readOnly", out strReadOnly);
-                if (strReadOnly == null)
-                {
-                    lstItem.SubItems.Add("N/A");
-                }
-                else
-                {
-                    lstItem.SubItems.Add(strReadOnly.ToString());
-                }
+                lstItem.SubItems.Add(strReadOnly == null ? "N/A" : strReadOnly.ToString());
                 lstData.Items.Add(lstItem);
             }
             lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -598,12 +540,12 @@ namespace MagicMongoDBTool.Module
             lstData.Clear();
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.GFS_filename));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.GFS_length));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.GFS_chunkSize));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.GFS_uploadDate));
-                lstData.Columns.Add(SystemManager.mStringResource.GetText(StringResource.TextType.GFS_md5));
-                if (!SystemManager.MONO_MODE)
+                lstData.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.GFS_filename));
+                lstData.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.GFS_length));
+                lstData.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.GFS_chunkSize));
+                lstData.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.GFS_uploadDate));
+                lstData.Columns.Add(SystemManager.MStringResource.GetText(StringResource.TextType.GFS_md5));
+                if (!SystemManager.MonoMode)
                 {
                     lstData.Columns.Add("ContentType");
                 }
@@ -615,7 +557,7 @@ namespace MagicMongoDBTool.Module
                 lstData.Columns.Add("chunkSize");
                 lstData.Columns.Add("uploadDate");
                 lstData.Columns.Add("MD5");
-                if (!SystemManager.MONO_MODE)
+                if (!SystemManager.MonoMode)
                 {
                     lstData.Columns.Add("ContentType");
                 }
@@ -636,7 +578,7 @@ namespace MagicMongoDBTool.Module
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("uploadDate")));
                 lstItem.SubItems.Add(ConvertToString(docFile.GetValue("md5")));
 
-                if (!SystemManager.MONO_MODE)
+                if (!SystemManager.MonoMode)
                 {
                     lstItem.SubItems.Add(GetSystemIcon.GetContentType(Filename));
                 }
@@ -662,14 +604,7 @@ namespace MagicMongoDBTool.Module
                 if (e.Column == _lvwGFSColumnSorter.SortColumn)
                 {
                     // 重新设置此列的排序方法.
-                    if (_lvwGFSColumnSorter.Order == SortOrder.Ascending)
-                    {
-                        _lvwGFSColumnSorter.Order = SortOrder.Descending;
-                    }
-                    else
-                    {
-                        _lvwGFSColumnSorter.Order = SortOrder.Ascending;
-                    }
+                    _lvwGFSColumnSorter.Order = _lvwGFSColumnSorter.Order == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
                 }
                 else
                 {
@@ -714,8 +649,8 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     换页操作
         /// </summary>
-        /// <param name="IsNext"></param>
-        /// <param name="strTag"></param>
+        /// <param name="pageChangeMode"></param>
+        /// <param name="mDataViewInfo"></param>
         /// <param name="dataShower"></param>
         public static void PageChanged(PageChangeOpr pageChangeMode, ref DataViewInfo mDataViewInfo,
             List<Control> dataShower)
@@ -765,22 +700,8 @@ namespace MagicMongoDBTool.Module
         /// <param name="mDataViewInfo">Data View Information(Structure,Must By Ref)</param>
         public static void SetPageEnable(ref DataViewInfo mDataViewInfo)
         {
-            if (mDataViewInfo.SkipCnt == 0)
-            {
-                mDataViewInfo.HasPrePage = false;
-            }
-            else
-            {
-                mDataViewInfo.HasPrePage = true;
-            }
-            if ((mDataViewInfo.SkipCnt + mDataViewInfo.LimitCnt) >= mDataViewInfo.CurrentCollectionTotalCnt)
-            {
-                mDataViewInfo.HasNextPage = false;
-            }
-            else
-            {
-                mDataViewInfo.HasNextPage = true;
-            }
+            mDataViewInfo.HasPrePage = mDataViewInfo.SkipCnt != 0;
+            mDataViewInfo.HasNextPage = (mDataViewInfo.SkipCnt + mDataViewInfo.LimitCnt) < mDataViewInfo.CurrentCollectionTotalCnt;
         }
 
         /// <summary>
@@ -854,7 +775,7 @@ namespace MagicMongoDBTool.Module
                 {
                     String strNodeData = strDBTag.Split(":".ToCharArray())[1];
                     String[] DataList = strNodeData.Split("/".ToCharArray());
-                    if (DataList[(int) PathLv.DatabaseLV] == DATABASE_NAME_ADMIN)
+                    if (DataList[(int) PathLv.DatabaseLv] == DATABASE_NAME_ADMIN)
                     {
                         return true;
                     }
@@ -871,8 +792,8 @@ namespace MagicMongoDBTool.Module
                 {
                     String strNodeData = strDBTag.Split(":".ToCharArray())[1];
                     String[] DataList = strNodeData.Split("/".ToCharArray());
-                    return IsSystemCollection(DataList[(int) PathLv.DatabaseLV],
-                        DataList[(int) PathLv.CollectionLV]);
+                    return IsSystemCollection(DataList[(int) PathLv.DatabaseLv],
+                        DataList[(int) PathLv.CollectionLv]);
                 }
             }
         }

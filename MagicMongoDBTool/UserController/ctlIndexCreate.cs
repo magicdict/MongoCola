@@ -14,40 +14,40 @@ namespace MagicMongoDBTool
             InitializeComponent();
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                lblKeyName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
-                radAscendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Asce);
-                radDescendingKey.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Index_Desc);
+                lblKeyName.Text = SystemManager.MStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
+                radAscendingKey.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Index_Asce);
+                radDescendingKey.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Index_Desc);
             }
             if (SystemManager.GetCurrentCollection() != null)
             {
-                foreach (String FieldName in MongoDBHelper.GetCollectionSchame(SystemManager.GetCurrentCollection()))
+                foreach (String FieldName in MongoDbHelper.GetCollectionSchame(SystemManager.GetCurrentCollection()))
                 {
                     cmbKeyName.Items.Add(FieldName);
                 }
             }
         }
 
-        public MongoDBHelper.IndexType IndexKeyType
+        public MongoDbHelper.IndexType IndexKeyType
         {
             get
             {
                 if (radAscendingKey.Checked)
                 {
-                    return MongoDBHelper.IndexType.Ascending;
+                    return MongoDbHelper.IndexType.Ascending;
                 }
                 if (radDescendingKey.Checked)
                 {
-                    return MongoDBHelper.IndexType.Descending;
+                    return MongoDbHelper.IndexType.Descending;
                 }
                 if (radGeoSpatial.Checked)
                 {
-                    return MongoDBHelper.IndexType.GeoSpatial;
+                    return MongoDbHelper.IndexType.GeoSpatial;
                 }
                 if (radText.Checked)
                 {
-                    return MongoDBHelper.IndexType.Text;
+                    return MongoDbHelper.IndexType.Text;
                 }
-                return MongoDBHelper.IndexType.Ascending;
+                return MongoDbHelper.IndexType.Ascending;
             }
         }
 

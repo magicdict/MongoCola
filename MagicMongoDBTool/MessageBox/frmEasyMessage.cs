@@ -13,8 +13,6 @@ namespace MagicMongoDBTool
         /// <summary>
         ///     Set Text
         /// </summary>
-        /// <param name="Yes"></param>
-        /// <param name="No"></param>
         internal void SetText(String OK)
         {
             cmdOK.Text = OK;

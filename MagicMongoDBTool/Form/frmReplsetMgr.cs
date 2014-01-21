@@ -26,9 +26,9 @@ namespace MagicMongoDBTool
         {
             try
             {
-                CommandResult Result = MongoDBHelper.AddToReplsetServer(SystemManager.GetCurrentServer(),
+                CommandResult Result = MongoDbHelper.AddToReplsetServer(SystemManager.GetCurrentServer(),
                     txtReplHost.Text + ":" + NumReplPort.Value, (int) NumPriority.Value, chkArbiterOnly.Checked);
-                if (MongoDBHelper.IsShellOK(Result))
+                if (MongoDbHelper.IsShellOK(Result))
                 {
                     _config.ReplsetList.Add(txtReplHost.Text + ":" + NumReplPort.Value);
                     MyMessageBox.ShowMessage("Add Memeber", "Result:OK");
@@ -53,7 +53,7 @@ namespace MagicMongoDBTool
         {
             //使用修改系统数据集和repleSetReconfig
             MongoCollection replsetCol = SystemManager.GetCurrentServer().
-                GetDatabase(MongoDBHelper.DATABASE_NAME_LOCAL).GetCollection("system.replset");
+                GetDatabase(MongoDbHelper.DATABASE_NAME_LOCAL).GetCollection("system.replset");
             var ReplsetDoc = replsetCol.FindOneAs<BsonDocument>();
             BsonArray memberlist = ReplsetDoc.GetElement("members").Value.AsBsonArray;
             String strHost = lstHost.SelectedItem.ToString();
@@ -65,7 +65,7 @@ namespace MagicMongoDBTool
             }
             try
             {
-                MongoDBHelper.ReconfigReplsetServer(SystemManager.GetCurrentServer(), ReplsetDoc);
+                MongoDbHelper.ReconfigReplsetServer(SystemManager.GetCurrentServer(), ReplsetDoc);
                 //由于这个命令会触发异常，所以没有Result可以获得
                 _config.ReplsetList.Remove(strHost);
                 lstHost.Items.Remove(lstHost.SelectedItem);
@@ -81,19 +81,19 @@ namespace MagicMongoDBTool
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                Text = SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ReplicaSet);
+                Text = SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ReplicaSet);
                 grpAddHost.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
                 grpRemoveHost.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
-                cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+                cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
                 cmdAddHost.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
                 cmdRemoveHost.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
-                lblpriority.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Priority);
-                lblReplHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Host);
-                lblReplPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+                lblpriority.Text = SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Priority);
+                lblReplHost.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Host);
+                lblReplPort.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Port);
             }
 
             MongoServer server = SystemManager.GetCurrentServer();

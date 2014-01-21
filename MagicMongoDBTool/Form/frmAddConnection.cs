@@ -75,7 +75,9 @@ namespace MagicMongoDBTool
                 lstHost.Items.Add(item);
             }
 
-            cmdAdd.Text = SystemManager.IsUseDefaultLanguage ? "Modify" : SystemManager.mStringResource.GetText(StringResource.TextType.Common_Modify);
+            cmdAdd.Text = SystemManager.IsUseDefaultLanguage
+                ? "Modify"
+                : SystemManager.MStringResource.GetText(StringResource.TextType.Common_Modify);
         }
 
         /// <summary>
@@ -83,13 +85,13 @@ namespace MagicMongoDBTool
         /// </summary>
         private void OnLoad()
         {
-            cmdCancel.Click += (x, y) => { Close(); };
-            numPort.GotFocus += (x, y) => { numPort.Select(0, 5); };
-            NumReplPort.GotFocus += (x, y) => { NumReplPort.Select(0, 5); };
-            NumSocketTimeOut.GotFocus += (x, y) => { NumSocketTimeOut.Select(0, 5); };
-            NumConnectTimeOut.GotFocus += (x, y) => { NumConnectTimeOut.Select(0, 5); };
-            NumWTimeoutMS.GotFocus += (x, y) => { NumWTimeoutMS.Select(0, 5); };
-            NumWaitQueueSize.GotFocus += (x, y) => { NumWaitQueueSize.Select(0, 5); };
+            cmdCancel.Click += (x, y) => Close();
+            numPort.GotFocus += (x, y) => numPort.Select(0, 5);
+            NumReplPort.GotFocus += (x, y) => NumReplPort.Select(0, 5);
+            NumSocketTimeOut.GotFocus += (x, y) => NumSocketTimeOut.Select(0, 5);
+            NumConnectTimeOut.GotFocus += (x, y) => NumConnectTimeOut.Select(0, 5);
+            NumWTimeoutMS.GotFocus += (x, y) => NumWTimeoutMS.Select(0, 5);
+            NumWaitQueueSize.GotFocus += (x, y) => NumWaitQueueSize.Select(0, 5);
 
             //读策略
             //http://docs.mongodb.org/manual/reference/connection-string/#read-preference-options
@@ -114,39 +116,39 @@ namespace MagicMongoDBTool
 
 
             if (SystemManager.IsUseDefaultLanguage) return;
-            Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Title);
+            Text = SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Title);
             lblConnectionName.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionName);
-            lblHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Host);
-            lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
-            lblUsername.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username);
-            lblPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Password);
+                SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionName);
+            lblHost.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Host);
+            lblPort.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Port);
+            lblUsername.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Username);
+            lblPassword.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Password);
             lblDataBaseName.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_DBName);
+                SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_DBName);
             lblConnectionString.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionString);
+                SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionString);
             lblAttentionPassword.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
+                SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
 
 
             lblsocketTimeout.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_SocketTimeOut);
+                SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_SocketTimeOut);
             lblConnectTimeout.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_ConnectionTimeOut);
+                SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionTimeOut);
 
 
             lblMainReplsetName.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName);
+                SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName);
             lblReplHost.Text = lblHost.Text;
             lblReplPort.Text = lblPort.Text;
             cmdAddHost.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
             cmdRemoveHost.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+                SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
 
-            cmdAdd.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
-            cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
-            cmdTest.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Test);
+            cmdAdd.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Add);
+            cmdCancel.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+            cmdTest.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Test);
         }
 
         /// <summary>
@@ -196,7 +198,7 @@ namespace MagicMongoDBTool
             CreateConnection();
             try
             {
-                MongoServer srv = MongoDBHelper.CreateMongoServer(ref ModifyConn);
+                MongoServer srv = MongoDbHelper.CreateMongoServer(ref ModifyConn);
                 srv.Connect();
                 srv.Disconnect();
                 MyMessageBox.ShowMessage("Connect Test", "Connected OK.");
@@ -207,8 +209,8 @@ namespace MagicMongoDBTool
                 if (!SystemManager.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
-                        SystemManager.mStringResource.GetText(
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
+                        SystemManager.MStringResource.GetText(
                             StringResource.TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
                 }
                 else
@@ -226,8 +228,8 @@ namespace MagicMongoDBTool
                 if (!SystemManager.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note),
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note),
                         ex.ToString(), true);
                 }
                 else
@@ -248,7 +250,7 @@ namespace MagicMongoDBTool
             ModifyConn.ConnectionString = txtConnectionString.Text;
             if (txtConnectionString.Text != String.Empty)
             {
-                String strException = MongoDBHelper.FillConfigWithConnectionString(ref ModifyConn);
+                String strException = MongoDbHelper.FillConfigWithConnectionString(ref ModifyConn);
                 if (strException != String.Empty)
                 {
                     MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it", strException);

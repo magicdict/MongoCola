@@ -7,14 +7,14 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         private static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongoSvr, String mongoSvrKey)
         {
             String strShowDBName = strDBName;
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                if (SystemManager.mStringResource.LanguageType == "Chinese")
+                if (SystemManager.MStringResource.LanguageType == "Chinese")
                 {
                     switch (strDBName)
                     {
@@ -123,7 +123,7 @@ namespace MagicMongoDBTool.Module
 
         /// <summary>
         /// </summary>
-        /// <param name="strShowColName"></param>
+        /// <param name="strColName"></param>
         /// <param name="mongoDB"></param>
         /// <param name="mongoConnSvrKey"></param>
         /// <returns></returns>
@@ -139,7 +139,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_chunks) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_chunks) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -147,7 +147,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(
+                                SystemManager.MStringResource.GetText(
                                     StringResource.TextType.SYSTEMC_COLNAME_collections) + "(" + strShowColName + ")";
                         }
                         break;
@@ -155,7 +155,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_changelog) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_changelog) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -163,7 +163,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_databases) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_databases) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -171,7 +171,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_lockpings) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_lockpings) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -179,7 +179,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_locks) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_locks) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -187,7 +187,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_mongos) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_mongos) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -195,7 +195,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_settings) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_settings) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -203,7 +203,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_shards) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_shards) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -212,7 +212,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_tags) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_tags) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -220,7 +220,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_version) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_version) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -228,7 +228,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "local")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_me) + "(" +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_me) + "(" +
                                 strShowColName + ")";
                         }
                         break;
@@ -236,7 +236,7 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "local")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_sources) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_sources) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -244,53 +244,53 @@ namespace MagicMongoDBTool.Module
                         if (mongoDB.Name == "local")
                         {
                             strShowColName =
-                                SystemManager.mStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_slaves) +
+                                SystemManager.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_slaves) +
                                 "(" + strShowColName + ")";
                         }
                         break;
                     case COLLECTION_NAME_GFS_CHUNKS:
                         strShowColName =
-                            SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_GFS_CHUNKS) +
+                            SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_GFS_CHUNKS) +
                             "(" + strShowColName + ")";
                         break;
                     case COLLECTION_NAME_GFS_FILES:
                         strShowColName =
-                            SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_GFS_FILES) +
+                            SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_GFS_FILES) +
                             "(" + strShowColName + ")";
                         break;
                     case COLLECTION_NAME_OPERATION_LOG:
                         strShowColName =
-                            SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_OPERATION_LOG) +
+                            SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_OPERATION_LOG) +
                             "(" + strShowColName + ")";
                         break;
                     case COLLECTION_NAME_SYSTEM_INDEXES:
                         strShowColName =
-                            SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_INDEXES) +
+                            SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_INDEXES) +
                             "(" + strShowColName + ")";
                         break;
                     case COLLECTION_NAME_JAVASCRIPT:
                         strShowColName =
-                            SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_JAVASCRIPT) +
+                            SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_JAVASCRIPT) +
                             "(" + strShowColName + ")";
                         break;
                     case COLLECTION_NAME_SYSTEM_REPLSET:
                         strShowColName =
-                            SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_REPLSET) +
+                            SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_REPLSET) +
                             "(" + strShowColName + ")";
                         break;
                     case COLLECTION_NAME_REPLSET_MINVALID:
                         strShowColName =
-                            SystemManager.mStringResource.GetText(
+                            SystemManager.MStringResource.GetText(
                                 StringResource.TextType.COLLECTION_NAME_REPLSET_MINVALID) + "(" + strShowColName + ")";
                         break;
                     case COLLECTION_NAME_USER:
                         strShowColName =
-                            SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_USER) + "(" +
+                            SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_USER) + "(" +
                             strShowColName + ")";
                         break;
                     case COLLECTION_NAME_SYSTEM_PROFILE:
                         strShowColName =
-                            SystemManager.mStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_PROFILE) +
+                            SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_PROFILE) +
                             "(" + strShowColName + ")";
                         break;
                     default:
@@ -323,46 +323,46 @@ namespace MagicMongoDBTool.Module
                 var mongoIndex = new TreeNode();
                 if (!SystemManager.IsUseDefaultLanguage)
                 {
-                    mongoIndex.Text = (SystemManager.mStringResource.GetText(StringResource.TextType.Index_Name) + ":" +
+                    mongoIndex.Text = (SystemManager.MStringResource.GetText(StringResource.TextType.Index_Name) + ":" +
                                        indexDoc.Name);
                     mongoIndex.Nodes.Add(String.Empty,
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Index_Keys) + ":" +
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Index_Keys) + ":" +
                         GetKeyString(indexDoc.Key), (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty,
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Index_RepeatDel) + ":" +
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Index_RepeatDel) + ":" +
                         indexDoc.DroppedDups, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty,
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Index_Background) + ":" +
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Index_Background) + ":" +
                         indexDoc.IsBackground, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty,
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Index_Sparse) + ":" +
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Index_Sparse) + ":" +
                         indexDoc.IsSparse, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty,
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Index_Unify) + ":" +
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Index_Unify) + ":" +
                         indexDoc.IsUnique, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty,
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Index_NameSpace) + ":" +
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Index_NameSpace) + ":" +
                         indexDoc.Namespace, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     mongoIndex.Nodes.Add(String.Empty,
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Index_Version) + ":" +
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Index_Version) + ":" +
                         indexDoc.Version, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     if (indexDoc.TimeToLive == TimeSpan.MaxValue)
                     {
                         mongoIndex.Nodes.Add(String.Empty,
-                            SystemManager.mStringResource.GetText(StringResource.TextType.Index_ExpireData) + ":Not Set",
+                            SystemManager.MStringResource.GetText(StringResource.TextType.Index_ExpireData) + ":Not Set",
                             (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     }
                     else
                     {
                         mongoIndex.Nodes.Add(String.Empty,
-                            SystemManager.mStringResource.GetText(StringResource.TextType.Index_ExpireData) + ":" +
+                            SystemManager.MStringResource.GetText(StringResource.TextType.Index_ExpireData) + ":" +
                             indexDoc.TimeToLive.TotalSeconds, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                             (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     }

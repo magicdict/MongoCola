@@ -39,7 +39,7 @@ namespace MagicMongoDBTool
             {
                 try
                 {
-                    MongoDBHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), true);
+                    MongoDbHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), true);
                     Close();
                 }
                 catch (Exception ex)
@@ -70,7 +70,7 @@ namespace MagicMongoDBTool
             {
                 BsonDocument newdoc;
                 newdoc = BsonDocument.Parse(txtDocument.Text);
-                MongoDBHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
+                MongoDbHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
                 trvNewDocument.TreeView.ExpandAll();
                 txtDocument.Text = newdoc.ToJson(SystemManager.JsonWriterSettings);
             }
@@ -89,7 +89,7 @@ namespace MagicMongoDBTool
         {
             if (txtDocument.Text != string.Empty)
             {
-                SystemManager.SaveTextFile(txtDocument.Text, MongoDBHelper.TxtFilter);
+                SystemManager.SaveTextFile(txtDocument.Text, MongoDbHelper.TxtFilter);
             }
         }
 
@@ -101,9 +101,9 @@ namespace MagicMongoDBTool
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
             if (SystemManager.IsUseDefaultLanguage) return;
-            cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
-            cmdSaveAggregate.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
-            cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+            cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
+            cmdSaveAggregate.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save);
+            cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
             //cmdPreview.Text = SystemManager.mStringResource.GetText();
         }
     }

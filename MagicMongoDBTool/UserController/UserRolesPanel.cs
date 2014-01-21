@@ -12,7 +12,7 @@ namespace MagicMongoDBTool.UserController
             InitializeComponent();
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                grpRoles.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Roles);
+                grpRoles.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Roles);
             }
         }
 

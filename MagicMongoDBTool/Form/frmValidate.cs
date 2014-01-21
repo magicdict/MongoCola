@@ -15,10 +15,10 @@ namespace MagicMongoDBTool
             InitializeComponent();
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                cmdSave.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Save);
-                cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
-                Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Validate);
-                cmdValidate.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Validate);
+                cmdSave.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save);
+                cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
+                Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Validate);
+                cmdValidate.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Validate);
             }
             cmdSave.Enabled = false;
         }
@@ -31,10 +31,10 @@ namespace MagicMongoDBTool
         private void cmdValidate_Click(object sender, EventArgs e)
         {
             BsonDocument TextSearchOption = new BsonDocument().Add(new BsonElement("full", chkFull.Checked.ToString()));
-            CommandResult SearchResult = MongoDBHelper.ExecuteMongoColCommand("validate",
+            CommandResult SearchResult = MongoDbHelper.ExecuteMongoColCommand("validate",
                 SystemManager.GetCurrentCollection(), TextSearchOption);
             Result = SearchResult.Response;
-            MongoDBHelper.FillDataToTreeView("Validate Result", trvResult, Result);
+            MongoDbHelper.FillDataToTreeView("Validate Result", trvResult, Result);
             cmdSave.Enabled = true;
         }
 

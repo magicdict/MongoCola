@@ -23,10 +23,10 @@ namespace MagicMongoDBTool
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                Text = SystemManager.mStringResource.GetText(StringResource.TextType.EvalJS_Title);
-                ctlEval.Title = SystemManager.mStringResource.GetText(StringResource.TextType.EvalJS_Method);
-                lblParm.Text = SystemManager.mStringResource.GetText(StringResource.TextType.EvalJS_Parameter);
-                cmdEval.Text = SystemManager.mStringResource.GetText(StringResource.TextType.EvalJS_Run);
+                Text = SystemManager.MStringResource.GetText(StringResource.TextType.EvalJS_Title);
+                ctlEval.Title = SystemManager.MStringResource.GetText(StringResource.TextType.EvalJS_Method);
+                lblParm.Text = SystemManager.MStringResource.GetText(StringResource.TextType.EvalJS_Parameter);
+                cmdEval.Text = SystemManager.MStringResource.GetText(StringResource.TextType.EvalJS_Run);
             }
             ctlEval.Context =
                 @"function eval(){

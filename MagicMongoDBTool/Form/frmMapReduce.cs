@@ -26,12 +26,12 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 ctlMapFunction.Title =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.MapReduce_MapFunction);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.MapReduce_MapFunction);
                 ctlReduceFunction.Title =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.MapReduce_ReduceFunction);
-                lblResult.Text = SystemManager.mStringResource.GetText(StringResource.TextType.MapReduce_Result);
-                cmdRun.Text = SystemManager.mStringResource.GetText(StringResource.TextType.MapReduce_Run);
-                cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.MapReduce_ReduceFunction);
+                lblResult.Text = SystemManager.MStringResource.GetText(StringResource.TextType.MapReduce_Result);
+                cmdRun.Text = SystemManager.MStringResource.GetText(StringResource.TextType.MapReduce_Run);
+                cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
             ctlMapFunction.Context =
                 @"function Map(){
@@ -60,7 +60,7 @@ namespace MagicMongoDBTool
             //TODO:这里可能会超时，失去响应
             //需要设置SocketTimeOut
             MapReduceResult mMapReduceResult = SystemManager.GetCurrentCollection().MapReduce(map, reduce);
-            MongoDBHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
+            MongoDbHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
             trvResult.DatatreeView.BeginUpdate();
             trvResult.DatatreeView.ExpandAll();
             trvResult.DatatreeView.EndUpdate();

@@ -1,12 +1,12 @@
 ﻿namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         /// <summary>
         ///     group aggregation function
         /// </summary>
         /// <returns></returns>
-        public static string[] getGroupfunction()
+        public static string[] GetGroupfunction()
         {
             return new[]
             {
@@ -25,7 +25,7 @@
         ///     group aggregation function
         /// </summary>
         /// <returns></returns>
-        public static string[] getComparisonfunction()
+        public static string[] GetComparisonfunction()
         {
             return new[]
             {

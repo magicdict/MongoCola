@@ -22,20 +22,20 @@ namespace MagicMongoDBTool.Module
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 lblCollectionName.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
-                lblDBName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.AddConnection_DBName);
-                lblHost.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Host);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
+                lblDBName.Text = SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_DBName);
+                lblHost.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Host);
                 lblFieldList.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_ColumnList);
-                lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Port);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_ColumnList);
+                lblPort.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Port);
                 grpDirect.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Operation);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Operation);
                 radImport.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Import);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Import);
                 radExport.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Export);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Export);
                 ctlFilePickerOutput.Title =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Workfile);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Workfile);
             }
         }
 
@@ -95,28 +95,14 @@ namespace MagicMongoDBTool.Module
 
         private void radExport_CheckedChanged(object sender, EventArgs e)
         {
-            if (radExport.Checked)
-            {
-                MongoImportExportCommand.Direct = MongodbDosCommand.ImprotExport.Export;
-            }
-            else
-            {
-                MongoImportExportCommand.Direct = MongodbDosCommand.ImprotExport.Import;
-            }
+            MongoImportExportCommand.Direct = radExport.Checked ? MongodbDosCommand.ImprotExport.Export : MongodbDosCommand.ImprotExport.Import;
             OnCommandChange(new TextChangeEventArgs(String.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void radImport_CheckedChanged(object sender, EventArgs e)
         {
-            if (radExport.Checked)
-            {
-                MongoImportExportCommand.Direct = MongodbDosCommand.ImprotExport.Export;
-            }
-            else
-            {
-                MongoImportExportCommand.Direct = MongodbDosCommand.ImprotExport.Import;
-            }
+            MongoImportExportCommand.Direct = radExport.Checked ? MongodbDosCommand.ImprotExport.Export : MongodbDosCommand.ImprotExport.Import;
             OnCommandChange(new TextChangeEventArgs(String.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }

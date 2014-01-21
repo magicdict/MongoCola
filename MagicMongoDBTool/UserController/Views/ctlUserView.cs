@@ -7,7 +7,7 @@ namespace MagicMongoDBTool
 {
     public partial class ctlUserView : ctlDataView
     {
-        public ctlUserView(MongoDBHelper.DataViewInfo _DataViewInfo)
+        public ctlUserView(MongoDbHelper.DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
             InitToolAndMenu();
@@ -20,13 +20,13 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 AddUserStripButton.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
                 AddUserToolStripMenuItem.Text = AddUserStripButton.Text;
                 ChangePasswordStripButton.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Common_ChangePassword);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Common_ChangePassword);
                 ChangePasswordToolStripMenuItem.Text = ChangePasswordStripButton.Text;
                 RemoveUserStripButton.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
                 RemoveUserToolStripMenuItem.Text = RemoveUserStripButton.Text;
             }
             AddUserStripButton.Enabled = true;
@@ -81,14 +81,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void AddUserStripButton_Click(object sender, EventArgs e)
         {
-            if (mDataViewInfo.IsAdminDB)
-            {
-                SystemManager.OpenForm(new frmUser(true), true, true);
-            }
-            else
-            {
-                SystemManager.OpenForm(new frmUser(false), true, true);
-            }
+            SystemManager.OpenForm(mDataViewInfo.IsAdminDB ? new frmUser(true) : new frmUser(false), true, true);
             RefreshGUI();
         }
 
@@ -112,16 +105,14 @@ namespace MagicMongoDBTool
         /// <summary>
         ///     Drop User from Admin Group
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void RemoveUserFromAdmin()
         {
             String strTitle = "Drop User";
             String strMessage = "Are you sure to delete user(s) from Admin Group?";
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
+                strTitle = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_User);
+                strMessage = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
             }
 
             //这里也可以使用普通的删除数据的方法来删除用户。
@@ -132,13 +123,13 @@ namespace MagicMongoDBTool
                     //lstData
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                        MongoDBHelper.RemoveUserFromSystem(item.SubItems[1].Text, true);
+                        MongoDbHelper.RemoveUserFromSystem(item.SubItems[1].Text, true);
                     }
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
-                    MongoDBHelper.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), true);
+                    MongoDbHelper.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), true);
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
                 RefreshGUI();
@@ -148,16 +139,14 @@ namespace MagicMongoDBTool
         /// <summary>
         ///     Delete User
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void RemoveUser()
         {
             String strTitle = "Drop User";
             String strMessage = "Are you sure to delete user(s) from this database";
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
+                strTitle = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_User);
+                strMessage = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
@@ -166,13 +155,13 @@ namespace MagicMongoDBTool
                     //lstData
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                        MongoDBHelper.RemoveUserFromSystem(item.SubItems[1].Text, false);
+                        MongoDbHelper.RemoveUserFromSystem(item.SubItems[1].Text, false);
                     }
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
-                    MongoDBHelper.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), false);
+                    MongoDbHelper.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), false);
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
                 RemoveUserToolStripMenuItem.Enabled = false;
@@ -187,16 +176,10 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ChangePasswordStripButton_Click(object sender, EventArgs e)
         {
-            if (
-                mDataViewInfo.strDBTag.EndsWith(MongoDBHelper.DATABASE_NAME_ADMIN + "/" +
-                                                MongoDBHelper.COLLECTION_NAME_USER))
-            {
-                SystemManager.OpenForm(new frmUser(true, lstData.SelectedItems[0].SubItems[1].Text), true, true);
-            }
-            else
-            {
-                SystemManager.OpenForm(new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text), true, true);
-            }
+            SystemManager.OpenForm(mDataViewInfo.strDBTag.EndsWith(MongoDbHelper.DATABASE_NAME_ADMIN + "/" +
+                                                                   MongoDbHelper.COLLECTION_NAME_USER)
+                ? new frmUser(true, lstData.SelectedItems[0].SubItems[1].Text)
+                : new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text), true, true);
             RefreshGUI();
         }
 

@@ -2,7 +2,7 @@
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         #region"各种节点的Tag前缀"
 

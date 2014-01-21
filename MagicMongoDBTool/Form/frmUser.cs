@@ -74,7 +74,7 @@ namespace MagicMongoDBTool
                 return;
             }
             //MongoUser不能同时具备Password和userSource字段！
-            var user = new MongoDBHelper.MongoUserEx
+            var user = new MongoDbHelper.MongoUserEx
             {
                 Username = txtUserName.Text,
                 Password = txtUserName.Text,
@@ -97,7 +97,7 @@ namespace MagicMongoDBTool
             //简化逻辑，不论新建还是修改，AddUser都可以
             try
             {
-                MongoDBHelper.AddUserToSystem(user, _IsAdmin);
+                MongoDbHelper.AddUserToSystem(user, _IsAdmin);
             }
             catch (Exception ex)
             {
@@ -123,7 +123,7 @@ namespace MagicMongoDBTool
                 Text = "Change User Config";
                 txtUserName.Enabled = false;
                 txtUserName.Text = _ModifyName;
-                var userInfo = SystemManager.GetCurrentDataBase().GetCollection(MongoDBHelper.COLLECTION_NAME_USER)
+                var userInfo = SystemManager.GetCurrentDataBase().GetCollection(MongoDbHelper.COLLECTION_NAME_USER)
                     .FindOneAs<BsonDocument>(Query.EQ("user", _ModifyName));
                 userRoles.setRoles(userInfo["roles"].AsBsonArray);
                 OtherDBRolesDict.Clear();
@@ -137,34 +137,23 @@ namespace MagicMongoDBTool
             {
                 if (_ModifyName == String.Empty)
                 {
-                    if (_IsAdmin)
-                    {
-                        Text =
-                            SystemManager.mStringResource.GetText(
-                                StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
-                    }
-                    else
-                    {
-                        Text =
-                            SystemManager.mStringResource.GetText(
-                                StringResource.TextType.Main_Menu_Operation_Database_AddUser);
-                    }
+                    Text = SystemManager.MStringResource.GetText(_IsAdmin ? StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin : StringResource.TextType.Main_Menu_Operation_Database_AddUser);
                     Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
                 }
                 else
                 {
                     Icon = GetSystemIcon.ConvertImgToIcon(Resources.DBkey);
-                    Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_ChangePassword);
+                    Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_ChangePassword);
                 }
-                lblUserName.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Username);
-                lblPassword.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Password);
+                lblUserName.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Username);
+                lblPassword.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Password);
                 lblConfirmPsw.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Common_ConfirmPassword);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Common_ConfirmPassword);
                 //chkReadOnly.Text = SystemManager.mStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_ReadOnly);
-                colRoles.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Roles);
-                colDataBase.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_DataBase);
-                cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
+                colRoles.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Roles);
+                colDataBase.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_DataBase);
+                cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Cancel);
             }
         }
 

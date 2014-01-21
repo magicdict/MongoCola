@@ -20,14 +20,14 @@ namespace MagicMongoDBTool.Module
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 lblCollectionName.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_DCName);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_DCName);
                 lblDBName.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_DBName);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_DBName);
                 lblHostAddr.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_Server);
-                lblPort.Text = SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_Port);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_Server);
+                lblPort.Text = SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_Port);
                 ctlFilePickerOutput.Title =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_Path);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_Path);
             }
         }
 

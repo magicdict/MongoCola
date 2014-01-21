@@ -33,7 +33,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void DisconnectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SystemManager.SelectTagType != MongoDBHelper.CONNECTION_EXCEPTION_TAG)
+            if (SystemManager.SelectTagType != MongoDbHelper.CONNECTION_EXCEPTION_TAG)
             {
                 //关闭相关的Tab
                 var CloseList = new List<string>();
@@ -68,7 +68,7 @@ namespace MagicMongoDBTool
                 }
                 SystemManager.GetCurrentServer().Disconnect();
             }
-            MongoDBHelper._mongoConnSvrLst.Remove(_config.ConnectionName);
+            MongoDbHelper._mongoConnSvrLst.Remove(_config.ConnectionName);
             trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
             RefreshToolStripMenuItem_Click(sender, e);
         }
@@ -85,7 +85,7 @@ namespace MagicMongoDBTool
             try
             {
                 //the server will be  shutdown with exception
-                MongoDBHelper._mongoConnSvrLst.Remove(SystemManager.SelectTagData);
+                MongoDbHelper._mongoConnSvrLst.Remove(SystemManager.SelectTagData);
                 mongoSvr.Shutdown();
             }
             catch (IOException)
@@ -110,9 +110,9 @@ namespace MagicMongoDBTool
             String ReplSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :",
                 SystemManager.IsUseDefaultLanguage
                     ? "ReplSetName"
-                    : SystemManager.mStringResource.GetText(StringResource.TextType.Replset_InitReplset));
+                    : SystemManager.MStringResource.GetText(StringResource.TextType.Replset_InitReplset));
             if (ReplSetName == String.Empty) return;
-            CommandResult Result = MongoDBHelper.InitReplicaSet(ReplSetName,
+            CommandResult Result = MongoDbHelper.InitReplicaSet(ReplSetName,
                 SystemManager.GetCurrentServerConfig().ConnectionName);
             if (Result.Ok)
             {
@@ -126,9 +126,9 @@ namespace MagicMongoDBTool
                 };
                 SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
                 SystemManager.ConfigHelperInstance.SaveToConfigFile();
-                MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
-                MongoDBHelper._mongoConnSvrLst.Add(_config.ConnectionName,
-                    MongoDBHelper.CreateMongoServer(ref newConfig));
+                MongoDbHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
+                MongoDbHelper._mongoConnSvrLst.Add(_config.ConnectionName,
+                    MongoDbHelper.CreateMongoServer(ref newConfig));
                 ServerStatusCtl.SetEnable(false);
                 MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
                 ServerStatusCtl.SetEnable(true);
@@ -150,8 +150,8 @@ namespace MagicMongoDBTool
             SystemManager.OpenForm(new frmReplsetMgr(ref newConfig), true, true);
             SystemManager.ConfigHelperInstance.ConnectionList[newConfig.ConnectionName] = newConfig;
             SystemManager.ConfigHelperInstance.SaveToConfigFile();
-            MongoDBHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
-            MongoDBHelper._mongoConnSvrLst.Add(_config.ConnectionName, MongoDBHelper.CreateMongoServer(ref newConfig));
+            MongoDbHelper._mongoConnSvrLst.Remove(newConfig.ConnectionName);
+            MongoDbHelper._mongoConnSvrLst.Add(_config.ConnectionName, MongoDbHelper.CreateMongoServer(ref newConfig));
             ServerStatusCtl.SetEnable(false);
             MyMessageBox.ShowMessage("ReplSetName", "Please refresh connection after one minute.");
             ServerStatusCtl.SetEnable(true);
@@ -174,20 +174,12 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.FillConnectionToTreeView(trvsrvlst);
+            MongoDbHelper.FillConnectionToTreeView(trvsrvlst);
             ServerStatusCtl.ResetCtl();
             ServerStatusCtl.RefreshStatus(false);
             ServerStatusCtl.RefreshCurrentOpr();
 
-            if (!SystemManager.IsUseDefaultLanguage)
-            {
-                statusStripMain.Items[0].Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
-            }
-            else
-            {
-                statusStripMain.Items[0].Text = "Ready";
-            }
+            statusStripMain.Items[0].Text = !SystemManager.IsUseDefaultLanguage ? SystemManager.MStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready) : "Ready";
             DisableAllOpr();
         }
 
@@ -245,8 +237,8 @@ namespace MagicMongoDBTool
             {
                 strDBName =
                     MyMessageBox.ShowInput(
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_DataBase_Input),
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_DataBase));
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Create_New_DataBase_Input),
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Create_New_DataBase));
             }
             String ErrMessage;
             SystemManager.GetCurrentServer().IsDatabaseNameValid(strDBName, out ErrMessage);
@@ -254,8 +246,8 @@ namespace MagicMongoDBTool
             {
                 try
                 {
-                    String strRusult = MongoDBHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName,
-                        MongoDBHelper.Oprcode.Create, trvsrvlst.SelectedNode);
+                    String strRusult = MongoDbHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName,
+                        MongoDbHelper.Oprcode.Create, trvsrvlst.SelectedNode);
                     if (String.IsNullOrEmpty(strRusult))
                     {
                         DisableAllOpr();
@@ -299,13 +291,13 @@ namespace MagicMongoDBTool
             //foreach (var item in MongoDBHelper._mongoUserLst.Keys)
             //{
             String ConnectionName = SystemManager.GetCurrentServerConfig().ConnectionName;
-            String info = MongoDBHelper._mongoUserLst[ConnectionName].ToString();
+            String info = MongoDbHelper._mongoUserLst[ConnectionName].ToString();
             if (!string.IsNullOrEmpty(info))
             {
                 MyMessageBox.ShowMessage(
                     SystemManager.IsUseDefaultLanguage
                         ? "UserInformation"
-                        : SystemManager.mStringResource.GetText(
+                        : SystemManager.MStringResource.GetText(
                             StringResource.TextType.Main_Menu_Operation_Server_UserInfo),
                     "The User Information of：[" +
                     SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName].UserName + "]", info, true);
@@ -330,7 +322,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void slaveResyncToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.ExecuteMongoCommand(MongoDBHelper.resync_Command);
+            MongoDbHelper.ExecuteMongoCommand(MongoDbHelper.resync_Command);
         }
 
         /// <summary>
@@ -342,14 +334,14 @@ namespace MagicMongoDBTool
         {
             if (SystemManager.IsUseDefaultLanguage)
             {
-                MyMessageBox.ShowMessage("Server Property", "Server Property", MongoDBHelper.GetCurrentSvrInfo(), true);
+                MyMessageBox.ShowMessage("Server Property", "Server Property", MongoDbHelper.GetCurrentSvrInfo(), true);
             }
             else
             {
                 MyMessageBox.ShowMessage(
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties),
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties),
-                    MongoDBHelper.GetCurrentSvrInfo(), true);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties),
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties),
+                    MongoDbHelper.GetCurrentSvrInfo(), true);
             }
         }
 
@@ -378,18 +370,18 @@ namespace MagicMongoDBTool
             String strMessage = "Are you really want to Drop current Database?";
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_DataBase);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_DataBase_Confirm);
+                strTitle = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_DataBase);
+                strMessage = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_DataBase_Confirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
             String strPath = SystemManager.SelectTagData;
-            String strDBName = strPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.DatabaseLV];
+            String strDBName = strPath.Split("/".ToCharArray())[(int) MongoDbHelper.PathLv.DatabaseLv];
             if (trvsrvlst.SelectedNode == null)
             {
                 trvsrvlst.SelectedNode = null;
             }
-            String rtnResult = MongoDBHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName,
-                MongoDBHelper.Oprcode.Drop, trvsrvlst.SelectedNode);
+            String rtnResult = MongoDbHelper.DataBaseOpration(SystemManager.SelectObjectTag, strDBName,
+                MongoDbHelper.Oprcode.Drop, trvsrvlst.SelectedNode);
             if (String.IsNullOrEmpty(rtnResult))
             {
                 DisableAllOpr();
@@ -483,7 +475,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RepairDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.ExecuteMongoCommand(MongoDBHelper.repairDatabase_Command);
+            MongoDbHelper.ExecuteMongoCommand(MongoDbHelper.repairDatabase_Command);
         }
 
         /// <summary>
@@ -493,9 +485,9 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void InitGFSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.InitGFS();
+            MongoDbHelper.InitGFS();
             DisableAllOpr();
-            MongoDBHelper.FillConnectionToTreeView(trvsrvlst);
+            MongoDbHelper.FillConnectionToTreeView(trvsrvlst);
         }
 
         /// <summary>
@@ -527,13 +519,13 @@ namespace MagicMongoDBTool
             String strJsName = MyMessageBox.ShowInput("pls Input Javascript Name", "Save Javascript");
             if (strJsName == String.Empty) return;
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
-            if (MongoDBHelper.IsExistByKey(jsCol, strJsName))
+            if (MongoDbHelper.IsExistByKey(jsCol, strJsName))
             {
                 MyMessageBox.ShowMessage("Error", "javascript is already exist");
             }
             else
             {
-                String Result = MongoDBHelper.CreateNewJavascript(strJsName, String.Empty);
+                String Result = MongoDbHelper.CreateNewJavascript(strJsName, String.Empty);
                 if (string.IsNullOrEmpty(Result))
                 {
                     var jsNode = new TreeNode(strJsName)
@@ -542,7 +534,7 @@ namespace MagicMongoDBTool
                         SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc
                     };
                     String jsTag = SystemManager.SelectTagData;
-                    jsNode.Tag = MongoDBHelper.JAVASCRIPT_DOC_TAG + ":" + jsTag + "/" + strJsName;
+                    jsNode.Tag = MongoDbHelper.JAVASCRIPT_DOC_TAG + ":" + jsTag + "/" + strJsName;
                     trvsrvlst.SelectedNode.Nodes.Add(jsNode);
                     trvsrvlst.SelectedNode = jsNode;
                     SystemManager.SelectObjectTag = jsNode.Tag.ToString();
@@ -570,11 +562,10 @@ namespace MagicMongoDBTool
             String strMessage = "Are you sure to drop this Collection?";
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Collection);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Collection_Confirm);
+                strTitle = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_Collection);
+                strMessage = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_Collection_Confirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
-            String strPath = SystemManager.SelectTagData;
             if (!SystemManager.GetCurrentDataBase().DropCollection(trvsrvlst.SelectedNode.Text).Ok) return;
             String strNodeData = SystemManager.SelectTagData;
             if (_viewTabList.ContainsKey(strNodeData))
@@ -603,7 +594,7 @@ namespace MagicMongoDBTool
         private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strPath = SystemManager.SelectTagData;
-            String strCollection = strPath.Split("/".ToCharArray())[(int)MongoDBHelper.PathLv.CollectionLV];
+            String strCollection = strPath.Split("/".ToCharArray())[(int) MongoDbHelper.PathLv.CollectionLv];
             String strNewCollectionName = String.Empty;
             if (SystemManager.IsUseDefaultLanguage)
             {
@@ -614,8 +605,8 @@ namespace MagicMongoDBTool
             {
                 strNewCollectionName =
                     MyMessageBox.ShowInput(
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
-                        SystemManager.mStringResource.GetText(StringResource.TextType.Rename_Collection));
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
+                        SystemManager.MStringResource.GetText(StringResource.TextType.Rename_Collection));
             }
             if (String.IsNullOrEmpty(strNewCollectionName) || !SystemManager.GetCurrentDataBase()
                 .RenameCollection(trvsrvlst.SelectedNode.Text, strNewCollectionName)
@@ -662,7 +653,7 @@ namespace MagicMongoDBTool
             else
             {
                 statusStripMain.Items[0].Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Selected_Collection) +
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Selected_Collection) +
                     ":" + SystemManager.SelectTagData;
             }
         }
@@ -694,7 +685,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CompactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.ExecuteMongoCommand(MongoDBHelper.Compact_Command);
+            MongoDbHelper.ExecuteMongoCommand(MongoDbHelper.Compact_Command);
         }
 
         /// <summary>
@@ -704,7 +695,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String Result = MongoDBHelper.DelJavascript(trvsrvlst.SelectedNode.Text);
+            String Result = MongoDbHelper.DelJavascript(trvsrvlst.SelectedNode.Text);
             if (String.IsNullOrEmpty(Result))
             {
                 String strNodeData = SystemManager.SelectTagData;
@@ -798,7 +789,8 @@ namespace MagicMongoDBTool
         {
             String ColPath = SystemManager.SelectTagData;
             SystemManager.OpenForm(
-                !_viewInfoList.ContainsKey(ColPath) ? new frmExport() : new frmExport(_viewInfoList[ColPath]), true,true);
+                !_viewInfoList.ContainsKey(ColPath) ? new frmExport() : new frmExport(_viewInfoList[ColPath]), true,
+                true);
         }
 
         #endregion
@@ -842,9 +834,9 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 strTitle =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Restore);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Restore_Connection_Confirm);
+                strMessage = SystemManager.MStringResource.GetText(StringResource.TextType.Restore_Connection_Confirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
             if (!MongoPathCheck())
@@ -933,7 +925,7 @@ namespace MagicMongoDBTool
             MongoImportExport.Port = Mongosrv.Address.Port;
             MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
             MongoImportExport.CollectionName = SystemManager.GetCurrentCollection().Name;
-            var dumpFile = new SaveFileDialog {Filter = MongoDBHelper.TxtFilter, CheckFileExists = false};
+            var dumpFile = new SaveFileDialog {Filter = MongoDbHelper.TxtFilter, CheckFileExists = false};
             //if the file not exist,the server will create a new one
             if (dumpFile.ShowDialog() == DialogResult.OK)
             {
@@ -955,8 +947,8 @@ namespace MagicMongoDBTool
             String strMessage = "Are you sure to Import Collection?";
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
+                strTitle = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_Data);
+                strMessage = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
             if (!MongoPathCheck())
@@ -1005,7 +997,7 @@ namespace MagicMongoDBTool
             }
             else
             {
-                IMongoQuery mQuery = MongoDBHelper.GetQuery(Query.QueryConditionList);
+                IMongoQuery mQuery = MongoDbHelper.GetQuery(Query.QueryConditionList);
                 MyMessageBox.ShowMessage("Count",
                     "Count[With DataView Filter]:" + SystemManager.GetCurrentCollection().Count(mQuery),
                     mQuery.ToString(), true);
@@ -1108,17 +1100,17 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (SystemManager.MONO_MODE) return;
+            if (SystemManager.MonoMode) return;
             //MONO not support this function
-            var AccessFile = new OpenFileDialog {Filter = MongoDBHelper.MdbFilter};
+            var AccessFile = new OpenFileDialog {Filter = MongoDbHelper.MdbFilter};
             if (AccessFile.ShowDialog() != DialogResult.OK) return;
-            var parm = new MongoDBHelper.ImportAccessPara
+            var parm = new MongoDbHelper.ImportAccessPara
             {
                 accessFileName = AccessFile.FileName,
                 currentTreeNode = trvsrvlst.SelectedNode,
                 strSvrPathWithTag = SystemManager.SelectObjectTag
             };
-            ParameterizedThreadStart Parmthread = MongoDBHelper.ImportAccessDataBase;
+            ParameterizedThreadStart Parmthread = MongoDbHelper.ImportAccessDataBase;
             Parmthread.Invoke(parm);
         }
 

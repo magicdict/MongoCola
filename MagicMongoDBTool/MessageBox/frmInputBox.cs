@@ -21,21 +21,21 @@ namespace MagicMongoDBTool
         /// <summary>
         ///     Set Text of OK,Cancel Button
         /// </summary>
-        /// <param name="Cancel"></param>
+        /// <param name="cancel"></param>
         /// <param name="OK"></param>
-        internal void SetText(String Cancel, String OK)
+        internal void SetText(String cancel, String OK)
         {
-            cmdCancel.Text = Cancel;
+            cmdCancel.Text = cancel;
             cmdOK.Text = OK;
         }
 
         /// <summary>
         ///     Set Message
         /// </summary>
-        /// <param name="Message"></param>
-        internal void SetMessage(String Message, String DefaultValue)
+        /// <param name="message"></param>
+        internal void SetMessage(String message, String DefaultValue)
         {
-            lblMessage.Text = Message;
+            lblMessage.Text = message;
             txtResult.Text = DefaultValue;
         }
 

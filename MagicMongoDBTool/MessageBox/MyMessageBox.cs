@@ -128,8 +128,8 @@ namespace MagicMongoDBTool
         /// <summary>
         ///     消息表示
         /// </summary>
+        /// <param name="Title"></param>
         /// <param name="Message"></param>
-        /// <param name="Details"></param>
         public static void ShowEasyMessage(String Title, String Message)
         {
             _frmEasyMessage.Text = Title;

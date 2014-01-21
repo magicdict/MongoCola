@@ -229,7 +229,7 @@ namespace MagicMongoDBTool.Module
         ///     和恢复数据库是相同的操作，只是根据目录结构不同进行不同恢复操作
         ///     目录名称表示数据库名称，BSON文件表示数据集
         /// </summary>
-        /// <param name="mongoDump"></param>
+        /// <param name="MongoRestore"></param>
         /// <returns></returns>
         public static String GetMongoRestoreCommandLine(StruMongoRestore MongoRestore)
         {
@@ -298,7 +298,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="sb"></param>
         public static void RunDosCommand(String DosCommand, StringBuilder sb)
         {
-            if (!SystemManager.MONO_MODE)
+            if (!SystemManager.MonoMode)
             {
                 var myProcess = new Process();
                 myProcess.StartInfo.FileName = "cmd";
@@ -379,7 +379,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             ///     # 指定服务端口号，默认端口27017
             /// </summary>
-            public int Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
+            public int Port = MongoDbHelper.MONGOD_DEFAULT_PORT;
 
             /// <summary>
             ///     # 如果从库与主库同步数据差得多，自动重新同步，
@@ -493,7 +493,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             ///     主机端口
             /// </summary>
-            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
+            public Int32 Port = MongoDbHelper.MONGOD_DEFAULT_PORT;
         }
 
         /// <summary>
@@ -529,7 +529,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             ///     主机端口
             /// </summary>
-            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
+            public Int32 Port = MongoDbHelper.MONGOD_DEFAULT_PORT;
         }
 
         /// <summary>
@@ -550,7 +550,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             ///     主机端口
             /// </summary>
-            public Int32 Port = MongoDBHelper.MONGOD_DEFAULT_PORT;
+            public Int32 Port = MongoDbHelper.MONGOD_DEFAULT_PORT;
         }
     }
 }

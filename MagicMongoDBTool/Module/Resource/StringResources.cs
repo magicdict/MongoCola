@@ -66,14 +66,7 @@ namespace MagicMongoDBTool.Module
         {
             String strText = String.Empty;
             _stringDic.TryGetValue(tag.ToString(), out strText);
-            if (String.IsNullOrEmpty(strText))
-            {
-                strText = tag.ToString();
-            }
-            else
-            {
-                strText = strText.Replace("&amp;", "&");
-            }
+            strText = String.IsNullOrEmpty(strText) ? tag.ToString() : strText.Replace("&amp;", "&");
             return strText;
         }
     }

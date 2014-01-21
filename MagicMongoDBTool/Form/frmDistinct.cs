@@ -33,7 +33,7 @@ namespace MagicMongoDBTool
         private void frmSelectKey_Load(object sender, EventArgs e)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
-            List<String> MongoColumn = MongoDBHelper.GetCollectionSchame(mongoCol);
+            List<String> MongoColumn = MongoDbHelper.GetCollectionSchame(mongoCol);
             var _conditionPos = new Point(20, 20);
             foreach (String item in MongoColumn)
             {
@@ -44,9 +44,9 @@ namespace MagicMongoDBTool
                 _conditionPos.Y += ctrItem.Height;
             }
             if (SystemManager.IsUseDefaultLanguage) return;
-            cmdQuery.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Distinct_Action_LoadQuery);
-            cmdRun.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
-            lblSelectField.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Distinct_SelectField);
+            cmdQuery.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Distinct_Action_LoadQuery);
+            cmdRun.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
+            lblSelectField.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Distinct_SelectField);
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace MagicMongoDBTool
             }
             var ResultArray =
                 (BsonArray)
-                    SystemManager.GetCurrentCollection().Distinct(strKey, MongoDBHelper.GetQuery(DistinctConditionList));
+                    SystemManager.GetCurrentCollection().Distinct(strKey, MongoDbHelper.GetQuery(DistinctConditionList));
             var ResultList = new List<BsonValue>();
             foreach (BsonValue item in ResultArray)
             {

@@ -8,7 +8,7 @@ namespace MagicMongoDBTool
 {
     public partial class ctlDocumentView : ctlDataView
     {
-        public ctlDocumentView(MongoDBHelper.DataViewInfo _DataViewInfo)
+        public ctlDocumentView(MongoDbHelper.DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
             InitToolAndMenu();
@@ -23,37 +23,37 @@ namespace MagicMongoDBTool
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 NewDocumentToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
                 DelSelectRecordToolToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
 
                 AddElementToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
                 DropElementToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_DataDocument_DropElement);
                 ModifyElementToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_DataDocument_ModifyElement);
 
                 NewDocumentStripButton.Text = NewDocumentToolStripMenuItem.Text;
                 OpenDocInEditorStripButton.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_DataDocument_OpenInNativeEditor);
                 DelSelectRecordToolStripButton.Text = DelSelectRecordToolToolStripMenuItem.Text;
                 CopyElementToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_DataDocument_CopyElement);
                 CopyElementStripButton.Text = CopyElementToolStripMenuItem.Text;
                 CutElementToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_DataDocument_CutElement);
                 CutElementStripButton.Text = CutElementToolStripMenuItem.Text;
                 PasteElementToolStripMenuItem.Text =
-                    SystemManager.mStringResource.GetText(
+                    SystemManager.MStringResource.GetText(
                         StringResource.TextType.Main_Menu_Operation_DataDocument_PasteElement);
                 PasteElementStripButton.Text = PasteElementToolStripMenuItem.Text;
             }
@@ -98,7 +98,7 @@ namespace MagicMongoDBTool
         private void trvData_AfterSelect_NotTop(object sender, TreeViewEventArgs e)
         {
             //非顶层可以删除的节点
-            if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) &&
+            if (!MongoDbHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) &&
                 !mDataViewInfo.IsReadOnly &&
                 !SystemManager.GetCurrentCollection().IsCapped())
             {
@@ -113,10 +113,10 @@ namespace MagicMongoDBTool
                     //父节点
                     //1. 以Array_Mark结尾的数组
                     //2. Document
-                    if (trvData.DatatreeView.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
+                    if (trvData.DatatreeView.SelectedNode.FullPath.EndsWith(MongoDbHelper.Array_Mark))
                     {
                         //列表的父节点
-                        if (MongoDBHelper.CanPasteAsValue)
+                        if (MongoDbHelper.CanPasteAsValue)
                         {
                             PasteElementToolStripMenuItem.Enabled = true;
                             PasteElementStripButton.Enabled = true;
@@ -125,7 +125,7 @@ namespace MagicMongoDBTool
                     else
                     {
                         //文档的父节点
-                        if (MongoDBHelper.CanPasteAsElement)
+                        if (MongoDbHelper.CanPasteAsElement)
                         {
                             PasteElementToolStripMenuItem.Enabled = true;
                             PasteElementStripButton.Enabled = true;
@@ -155,7 +155,7 @@ namespace MagicMongoDBTool
                             if (t.IsBsonDocument)
                             {
                                 //3.空的文档
-                                if (MongoDBHelper.CanPasteAsElement)
+                                if (MongoDbHelper.CanPasteAsElement)
                                 {
                                     PasteElementToolStripMenuItem.Enabled = true;
                                     PasteElementStripButton.Enabled = true;
@@ -164,7 +164,7 @@ namespace MagicMongoDBTool
                             if (t.IsBsonArray)
                             {
                                 //3.Array
-                                if (MongoDBHelper.CanPasteAsValue)
+                                if (MongoDbHelper.CanPasteAsValue)
                                 {
                                     PasteElementToolStripMenuItem.Enabled = true;
                                     PasteElementStripButton.Enabled = true;
@@ -212,7 +212,7 @@ namespace MagicMongoDBTool
                 //顶层可以删除的节点
                 if (!mDataViewInfo.IsReadOnly)
                 {
-                    if (!MongoDBHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) &&
+                    if (!MongoDbHelper.IsSystemCollection(SystemManager.GetCurrentCollection()) &&
                         !SystemManager.GetCurrentCollection().IsCapped())
                     {
                         //普通数据
@@ -220,7 +220,7 @@ namespace MagicMongoDBTool
                         DelSelectRecordToolToolStripMenuItem.Enabled = true;
                         DelSelectRecordToolStripButton.Enabled = true;
                         AddElementToolStripMenuItem.Enabled = true;
-                        if (MongoDBHelper.CanPasteAsElement)
+                        if (MongoDbHelper.CanPasteAsElement)
                         {
                             PasteElementToolStripMenuItem.Enabled = true;
                             PasteElementStripButton.Enabled = true;
@@ -320,7 +320,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void OpenDocInEditorDocStripButton_Click(object sender, EventArgs e)
         {
-            MongoDBHelper.SaveAndOpenStringAsFile(txtData.Text);
+            MongoDbHelper.SaveAndOpenStringAsFile(txtData.Text);
         }
 
         /// <summary>
@@ -332,8 +332,8 @@ namespace MagicMongoDBTool
             String strMessage = "Are you sure to delete selected document(s)?";
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                strTitle = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data);
-                strMessage = SystemManager.mStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
+                strTitle = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_Data);
+                strMessage = SystemManager.MStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
@@ -345,7 +345,7 @@ namespace MagicMongoDBTool
                     {
                         if (item.Tag != null && ((BsonValue) item.Tag).IsObjectId)
                         {
-                            String Result = MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(), item.Tag);
+                            String Result = MongoDbHelper.DropDocument(SystemManager.GetCurrentCollection(), item.Tag);
                             if (!String.IsNullOrEmpty(Result))
                             {
                                 StrErrormsg = "Delete Error Key is:" + item.Tag;
@@ -362,7 +362,7 @@ namespace MagicMongoDBTool
                     if (trvData.DatatreeView.SelectedNode.Tag != null &&
                         ((BsonValue) trvData.DatatreeView.SelectedNode.Tag).IsObjectId)
                     {
-                        String Result = MongoDBHelper.DropDocument(SystemManager.GetCurrentCollection(),
+                        String Result = MongoDbHelper.DropDocument(SystemManager.GetCurrentCollection(),
                             trvData.DatatreeView.SelectedNode.Tag);
                         if (!String.IsNullOrEmpty(Result))
                         {
@@ -414,14 +414,14 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Error", "_id Can't be delete");
                 return;
             }
-            if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
+            if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(MongoDbHelper.Array_Mark))
             {
-                MongoDBHelper.DropArrayValue(trvData.DatatreeView.SelectedNode.FullPath,
+                MongoDbHelper.DropArrayValue(trvData.DatatreeView.SelectedNode.FullPath,
                     trvData.DatatreeView.SelectedNode.Index);
             }
             else
             {
-                MongoDBHelper.DropElement(trvData.DatatreeView.SelectedNode.FullPath,
+                MongoDbHelper.DropElement(trvData.DatatreeView.SelectedNode.FullPath,
                     (BsonElement) trvData.DatatreeView.SelectedNode.Tag);
             }
             trvData.DatatreeView.Nodes.Remove(trvData.DatatreeView.SelectedNode);
@@ -440,14 +440,10 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Error", "_id can't be modify");
                 return;
             }
-            if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
-            {
-                SystemManager.OpenForm(new frmElement(true, trvData.DatatreeView.SelectedNode, false), true, true);
-            }
-            else
-            {
-                SystemManager.OpenForm(new frmElement(true, trvData.DatatreeView.SelectedNode, true), true, true);
-            }
+            SystemManager.OpenForm(
+                trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(MongoDbHelper.Array_Mark)
+                    ? new frmElement(true, trvData.DatatreeView.SelectedNode, false)
+                    : new frmElement(true, trvData.DatatreeView.SelectedNode, true), true, true);
             IsNeedRefresh = true;
         }
 
@@ -458,14 +454,14 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CopyElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDBHelper._ClipElement = trvData.DatatreeView.SelectedNode.Tag;
-            if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
+            MongoDbHelper._ClipElement = trvData.DatatreeView.SelectedNode.Tag;
+            if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(MongoDbHelper.Array_Mark))
             {
-                MongoDBHelper.CopyValue((BsonValue) trvData.DatatreeView.SelectedNode.Tag);
+                MongoDbHelper.CopyValue((BsonValue) trvData.DatatreeView.SelectedNode.Tag);
             }
             else
             {
-                MongoDBHelper.CopyElement((BsonElement) trvData.DatatreeView.SelectedNode.Tag);
+                MongoDbHelper.CopyElement((BsonElement) trvData.DatatreeView.SelectedNode.Tag);
             }
         }
 
@@ -476,21 +472,21 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void PasteElementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (trvData.DatatreeView.SelectedNode.FullPath.EndsWith(MongoDBHelper.Array_Mark))
+            if (trvData.DatatreeView.SelectedNode.FullPath.EndsWith(MongoDbHelper.Array_Mark))
             {
-                MongoDBHelper.PasteValue(trvData.DatatreeView.SelectedNode.FullPath);
-                var NewValue = new TreeNode(MongoDBHelper.ConvertToString((BsonValue) MongoDBHelper._ClipElement));
-                NewValue.Tag = MongoDBHelper._ClipElement;
+                MongoDbHelper.PasteValue(trvData.DatatreeView.SelectedNode.FullPath);
+                var NewValue = new TreeNode(MongoDbHelper.ConvertToString((BsonValue) MongoDbHelper._ClipElement));
+                NewValue.Tag = MongoDbHelper._ClipElement;
                 trvData.DatatreeView.SelectedNode.Nodes.Add(NewValue);
             }
             else
             {
-                String PasteMessage = MongoDBHelper.PasteElement(trvData.DatatreeView.SelectedNode.FullPath);
+                String PasteMessage = MongoDbHelper.PasteElement(trvData.DatatreeView.SelectedNode.FullPath);
                 if (String.IsNullOrEmpty(PasteMessage))
                 {
                     //GetCurrentDocument()的第一个元素是ID
-                    MongoDBHelper.AddBsonDocToTreeNode(trvData.DatatreeView.SelectedNode,
-                        new BsonDocument().Add((BsonElement) MongoDBHelper._ClipElement));
+                    MongoDbHelper.AddBsonDocToTreeNode(trvData.DatatreeView.SelectedNode,
+                        new BsonDocument().Add((BsonElement) MongoDbHelper._ClipElement));
                 }
                 else
                 {
@@ -512,14 +508,14 @@ namespace MagicMongoDBTool
                 MyMessageBox.ShowMessage("Error", "_id can't be cut");
                 return;
             }
-            if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(MongoDBHelper.Array_Mark))
+            if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(MongoDbHelper.Array_Mark))
             {
-                MongoDBHelper.CutValue(trvData.DatatreeView.SelectedNode.FullPath,
+                MongoDbHelper.CutValue(trvData.DatatreeView.SelectedNode.FullPath,
                     trvData.DatatreeView.SelectedNode.Index, (BsonValue) trvData.DatatreeView.SelectedNode.Tag);
             }
             else
             {
-                MongoDBHelper.CutElement(trvData.DatatreeView.SelectedNode.FullPath,
+                MongoDbHelper.CutElement(trvData.DatatreeView.SelectedNode.FullPath,
                     (BsonElement) trvData.DatatreeView.SelectedNode.Tag);
             }
             trvData.DatatreeView.Nodes.Remove(trvData.DatatreeView.SelectedNode);

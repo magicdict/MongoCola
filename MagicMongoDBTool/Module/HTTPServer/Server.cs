@@ -159,7 +159,7 @@ namespace MagicMongoDBTool.HTTP
         /// <summary>
         /// </summary>
         /// <param name="stream"></param>
-        /// <param name="FileName"></param>
+        /// <param name="PageContent"></param>
         private void GETPage(NetworkStream stream, String PageContent)
         {
             byte[] msg = null;

@@ -65,7 +65,7 @@ namespace MagicMongoDBTool
         /// <param name="mIsShow"></param>
         public void InitByCurrentCollection(bool mIsShow)
         {
-            List<String> ColumnList = MongoDBHelper.GetCollectionSchame(SystemManager.GetCurrentCollection());
+            List<String> ColumnList = MongoDbHelper.GetCollectionSchame(SystemManager.GetCurrentCollection());
             var FieldList = new List<DataFilter.QueryFieldItem>();
             foreach (String item in ColumnList)
             {
@@ -74,7 +74,7 @@ namespace MagicMongoDBTool
                 queryFieldItem.ColName = item;
                 queryFieldItem.IsShow = mIsShow;
                 queryFieldItem.sortType = DataFilter.SortType.NoSort;
-                if (queryFieldItem.ColName == MongoDBHelper.KEY_ID)
+                if (queryFieldItem.ColName == MongoDbHelper.KEY_ID)
                 {
                     queryFieldItem.IsShow = true;
                 }
@@ -96,25 +96,20 @@ namespace MagicMongoDBTool
             foreach (DataFilter.QueryFieldItem item in mQueryFieldList)
             {
                 DataFilter.QueryFieldItem ctl = ((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).QueryFieldItem;
-                if (ctl.ColName == MongoDBHelper.KEY_ID)
+                if (ctl.ColName == MongoDbHelper.KEY_ID)
                 {
                     if (!ctl.IsShow)
                     {
-                        project.Add(new BsonElement(MongoDBHelper.KEY_ID, 0));
+                        project.Add(new BsonElement(MongoDbHelper.KEY_ID, 0));
                     }
                 }
                 else
                 {
                     if (ctl.IsShow)
                     {
-                        if (string.IsNullOrEmpty(ctl.ProjectName))
-                        {
-                            project.Add(new BsonElement(ctl.ColName, 1));
-                        }
-                        else
-                        {
-                            project.Add(new BsonElement(ctl.ProjectName, "$" + ctl.ColName));
-                        }
+                        project.Add(string.IsNullOrEmpty(ctl.ProjectName)
+                            ? new BsonElement(ctl.ColName, 1)
+                            : new BsonElement(ctl.ProjectName, "$" + ctl.ColName));
                     }
                 }
                 switch (ctl.sortType)
@@ -154,14 +149,9 @@ namespace MagicMongoDBTool
                 DataFilter.QueryFieldItem ctl = ((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).QueryFieldItem;
                 if (ctl.IsShow)
                 {
-                    if (string.IsNullOrEmpty(ctl.ProjectName))
-                    {
-                        project.Add(new BsonElement(ctl.ColName, ctl.ColName));
-                    }
-                    else
-                    {
-                        project.Add(new BsonElement(ctl.ProjectName, "$" + ctl.ColName));
-                    }
+                    project.Add(string.IsNullOrEmpty(ctl.ProjectName)
+                        ? new BsonElement(ctl.ColName, ctl.ColName)
+                        : new BsonElement(ctl.ProjectName, "$" + ctl.ColName));
                 }
             }
             Aggregation.Add("_id", project);
@@ -234,14 +224,9 @@ namespace MagicMongoDBTool
                 DataFilter.QueryFieldItem ctl = ((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).QueryFieldItem;
                 if (ctl.IsShow && ctl.ColName != "_id")
                 {
-                    if (string.IsNullOrEmpty(ctl.ProjectName))
-                    {
-                        member.Add(new BsonElement(ctl.ColName, "$" + ctl.ColName));
-                    }
-                    else
-                    {
-                        member.Add(new BsonElement(ctl.ProjectName, "$" + ctl.ColName));
-                    }
+                    member.Add(string.IsNullOrEmpty(ctl.ProjectName)
+                        ? new BsonElement(ctl.ColName, "$" + ctl.ColName)
+                        : new BsonElement(ctl.ProjectName, "$" + ctl.ColName));
                 }
             }
             id.Add("_id", member);

@@ -23,14 +23,14 @@ namespace MagicMongoDBTool
 
         private void GroupItem_Load(object sender, EventArgs e)
         {
-            foreach (string item in MongoDBHelper.getGroupfunction())
+            foreach (string item in MongoDbHelper.GetGroupfunction())
             {
                 cmbGroupFunction.Items.Add(item);
             }
             if (SystemManager.GetCurrentCollection() != null)
             {
                 cmbGroupValue.Items.Add("1");
-                foreach (string item in MongoDBHelper.GetCollectionSchame(SystemManager.GetCurrentCollection()))
+                foreach (string item in MongoDbHelper.GetCollectionSchame(SystemManager.GetCurrentCollection()))
                 {
                     cmbGroupFunction.Items.Add("$" + item);
                     cmbGroupValue.Items.Add("$" + item);

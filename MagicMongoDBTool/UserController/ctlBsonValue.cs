@@ -56,14 +56,7 @@ namespace MagicMongoDBTool
                     mValue = new BsonDateTime(dateTimePicker.Value);
                     break;
                 case 3:
-                    if (radTrue.Checked)
-                    {
-                        mValue = BsonBoolean.True;
-                    }
-                    else
-                    {
-                        mValue = BsonBoolean.False;
-                    }
+                    mValue = radTrue.Checked ? BsonBoolean.True : BsonBoolean.False;
                     break;
                 case 4:
                     mValue = mBsonArray;

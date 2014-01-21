@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         #region"展示数据库结构 Winform"
 
@@ -130,15 +130,7 @@ namespace MagicMongoDBTool.Module
                             }
                             else
                             {
-                                if (replElement.Value.AsBsonDocument.GetElement("ismaster").Value == BsonBoolean.True)
-                                {
-                                    config.ServerRole = ConfigHelper.SvrRoleType.MasterSvr;
-                                }
-                                else
-                                {
-                                    //ismaster 的值不一定是True和False...
-                                    config.ServerRole = ConfigHelper.SvrRoleType.SlaveSvr;
-                                }
+                                config.ServerRole = replElement.Value.AsBsonDocument.GetElement("ismaster").Value == BsonBoolean.True ? ConfigHelper.SvrRoleType.MasterSvr : ConfigHelper.SvrRoleType.SlaveSvr;
                             }
                             ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName;
                         }
@@ -187,12 +179,12 @@ namespace MagicMongoDBTool.Module
                     if (!SystemManager.IsUseDefaultLanguage)
                     {
                         ConnectionNode.Text += "[" +
-                                               SystemManager.mStringResource.GetText(
+                                               SystemManager.MStringResource.GetText(
                                                    StringResource.TextType.Exception_AuthenticationException) + "]";
                         SystemManager.ExceptionDeal(ex,
-                            SystemManager.mStringResource.GetText(
+                            SystemManager.MStringResource.GetText(
                                 StringResource.TextType.Exception_AuthenticationException),
-                            SystemManager.mStringResource.GetText(
+                            SystemManager.MStringResource.GetText(
                                 StringResource.TextType.Exception_AuthenticationException_Note));
                     }
                     else
@@ -212,12 +204,12 @@ namespace MagicMongoDBTool.Module
                         if (!SystemManager.IsUseDefaultLanguage)
                         {
                             ConnectionNode.Text += "[" +
-                                                   SystemManager.mStringResource.GetText(
+                                                   SystemManager.MStringResource.GetText(
                                                        StringResource.TextType.Exception_AuthenticationException) + "]";
                             SystemManager.ExceptionDeal(ex,
-                                SystemManager.mStringResource.GetText(
+                                SystemManager.MStringResource.GetText(
                                     StringResource.TextType.Exception_AuthenticationException),
-                                SystemManager.mStringResource.GetText(
+                                SystemManager.MStringResource.GetText(
                                     StringResource.TextType.Exception_AuthenticationException_Note));
                         }
                         else
@@ -232,10 +224,10 @@ namespace MagicMongoDBTool.Module
                         if (!SystemManager.IsUseDefaultLanguage)
                         {
                             ConnectionNode.Text += "[" +
-                                                   SystemManager.mStringResource.GetText(
+                                                   SystemManager.MStringResource.GetText(
                                                        StringResource.TextType.Exception_NotConnected) + "]";
                             SystemManager.ExceptionDeal(ex,
-                                SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                                SystemManager.MStringResource.GetText(StringResource.TextType.Exception_NotConnected),
                                 "Unknown Exception");
                         }
                         else
@@ -256,11 +248,11 @@ namespace MagicMongoDBTool.Module
                     if (!SystemManager.IsUseDefaultLanguage)
                     {
                         ConnectionNode.Text += "[" +
-                                               SystemManager.mStringResource.GetText(
+                                               SystemManager.MStringResource.GetText(
                                                    StringResource.TextType.Exception_NotConnected) + "]";
                         SystemManager.ExceptionDeal(ex,
-                            SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
-                            SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note));
+                            SystemManager.MStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                            SystemManager.MStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note));
                     }
                     else
                     {
@@ -276,10 +268,10 @@ namespace MagicMongoDBTool.Module
                     if (!SystemManager.IsUseDefaultLanguage)
                     {
                         ConnectionNode.Text += "[" +
-                                               SystemManager.mStringResource.GetText(
+                                               SystemManager.MStringResource.GetText(
                                                    StringResource.TextType.Exception_NotConnected) + "]";
                         SystemManager.ExceptionDeal(ex,
-                            SystemManager.mStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                            SystemManager.MStringResource.GetText(StringResource.TextType.Exception_NotConnected),
                             "Unknown Exception");
                     }
                     else
@@ -310,59 +302,38 @@ namespace MagicMongoDBTool.Module
             MongoServer mServer,
             EachDatabaseUser UserList)
         {
-            Boolean isReplsetMasterServer = false;
+            bool isReplsetMasterServer = mMasterServerInstace == null;
             //无论如何，都改为主要服务器读优先
-            if (mMasterServerInstace == null)
-            {
-                isReplsetMasterServer = true;
-            }
-            var SvrInstanceNode = new TreeNode();
-            String ConnSvrKey;
-            if (isReplsetMasterServer)
-            {
-                ConnSvrKey = mongoConnKey + "/" + mongoConnKey;
-            }
-            else
-            {
-                ConnSvrKey = mongoConnKey + "/" + mMasterServerInstace.Address.ToString().Replace(":", "@");
-            }
-            SvrInstanceNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
-            SvrInstanceNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
-            if (isReplsetMasterServer)
-            {
-                SvrInstanceNode.Text = "Connection";
-            }
-            else
-            {
-                SvrInstanceNode.Text = "Server[" + mMasterServerInstace.Address + "]";
-            }
-            if ((!String.IsNullOrEmpty(config.UserName)) & (!String.IsNullOrEmpty(config.Password)))
+            var svrInstanceNode = new TreeNode();
+            String connSvrKey;
+            connSvrKey = isReplsetMasterServer
+                ? mongoConnKey + "/" + mongoConnKey
+                : mongoConnKey + "/" + mMasterServerInstace.Address.ToString().Replace(":", "@");
+            svrInstanceNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
+            svrInstanceNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
+            svrInstanceNode.Text = isReplsetMasterServer ? "Connection" : "Server[" + mMasterServerInstace.Address + "]";
+            if (!String.IsNullOrEmpty(config.UserName) & (!String.IsNullOrEmpty(config.Password)))
             {
                 //是否是认证模式，应该取决于服务器！
                 config.AuthMode = true;
             }
             //获取ReadOnly
             config.IsReadOnly = false;
-            var databaseNameList = new List<String>();
+            List<string> databaseNameList;
             if (!String.IsNullOrEmpty(config.DataBaseName))
             {
                 //单数据库模式
-                TreeNode mongoSingleDBNode;
-                if (isReplsetMasterServer)
-                {
-                    mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mServer,
-                        mongoConnKey + "/" + mongoConnKey);
-                }
-                else
-                {
-                    mongoSingleDBNode = FillDataBaseInfoToTreeNode(config.DataBaseName, mServer,
+                TreeNode mongoSingleDbNode;
+                mongoSingleDbNode = isReplsetMasterServer
+                    ? FillDataBaseInfoToTreeNode(config.DataBaseName, mServer,
+                        mongoConnKey + "/" + mongoConnKey)
+                    : FillDataBaseInfoToTreeNode(config.DataBaseName, mServer,
                         mongoConnKey + "/" + mMasterServerInstace.Address);
-                }
-                mongoSingleDBNode.Tag = SINGLE_DATABASE_TAG + ":" + ConnSvrKey + "/" + config.DataBaseName;
-                mongoSingleDBNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
-                mongoSingleDBNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
-                SvrInstanceNode.Nodes.Add(mongoSingleDBNode);
-                SvrInstanceNode.Tag = SINGLE_DB_SERVER_TAG + ":" + ConnSvrKey;
+                mongoSingleDbNode.Tag = SINGLE_DATABASE_TAG + ":" + connSvrKey + "/" + config.DataBaseName;
+                mongoSingleDbNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
+                mongoSingleDbNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
+                svrInstanceNode.Nodes.Add(mongoSingleDbNode);
+                svrInstanceNode.Tag = SINGLE_DB_SERVER_TAG + ":" + connSvrKey;
                 //获取User信息
                 if (config.AuthMode)
                 {
@@ -371,7 +342,7 @@ namespace MagicMongoDBTool.Module
                         //尝试添加用户信息
                         UserList.AddUser(mongoConn.GetDatabase(config.DataBaseName), config.UserName);
                     }
-                    catch (Exception)
+                    catch
                     {
                         //可能出现没有权限的问题，这里就认为无法取得权限
                     }
@@ -379,10 +350,10 @@ namespace MagicMongoDBTool.Module
             }
             else
             {
-                MongoServer InstantSrv;
+                MongoServer instantSrv;
                 if (isReplsetMasterServer)
                 {
-                    InstantSrv = mServer;
+                    instantSrv = mServer;
                     databaseNameList = mServer.GetDatabaseNames().ToList();
                 }
                 else
@@ -393,26 +364,26 @@ namespace MagicMongoDBTool.Module
                     //if Primary,there will be exception
                     setting.ReadPreference = ReadPreference.PrimaryPreferred;
                     setting.Server = mMasterServerInstace.Address;
-                    InstantSrv = new MongoClient(setting).GetServer();
-                    databaseNameList = InstantSrv.GetDatabaseNames().ToList();
+                    instantSrv = new MongoClient(setting).GetServer();
+                    databaseNameList = instantSrv.GetDatabaseNames().ToList();
                 }
-                foreach (String strDBName in databaseNameList)
+                foreach (String strDbName in databaseNameList)
                 {
-                    TreeNode mongoDBNode;
+                    TreeNode mongoDbNode;
                     try
                     {
-                        mongoDBNode = FillDataBaseInfoToTreeNode(strDBName, InstantSrv, ConnSvrKey);
-                        mongoDBNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
-                        mongoDBNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
-                        SvrInstanceNode.Nodes.Add(mongoDBNode);
+                        mongoDbNode = FillDataBaseInfoToTreeNode(strDbName, instantSrv, connSvrKey);
+                        mongoDbNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
+                        mongoDbNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
+                        svrInstanceNode.Nodes.Add(mongoDbNode);
                         if (config.AuthMode)
                         {
                             try
                             {
                                 //尝试添加用户信息
-                                UserList.AddUser(mongoConn.GetDatabase(strDBName), config.UserName);
+                                UserList.AddUser(mongoConn.GetDatabase(strDbName), config.UserName);
                             }
-                            catch (Exception)
+                            catch
                             {
                                 //可能出现没有权限的问题，这里就认为无法取得权限
                             }
@@ -420,38 +391,39 @@ namespace MagicMongoDBTool.Module
                     }
                     catch (Exception ex)
                     {
-                        SystemManager.ExceptionDeal(ex, strDBName + "Exception", strDBName + "Exception");
-                        mongoDBNode = new TreeNode(strDBName + " (Exception)")
+                        SystemManager.ExceptionDeal(ex, strDbName + "Exception", strDbName + "Exception");
+                        mongoDbNode = new TreeNode(strDbName + " (Exception)")
                         {
                             ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database,
                             SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database
                         };
-                        SvrInstanceNode.Nodes.Add(mongoDBNode);
+                        svrInstanceNode.Nodes.Add(mongoDbNode);
                     }
                 }
                 if (isReplsetMasterServer)
                 {
-                    SvrInstanceNode.Tag = SERVER_TAG + ":" + mongoConnKey + "/" + mongoConnKey;
+                    svrInstanceNode.Tag = SERVER_TAG + ":" + mongoConnKey + "/" + mongoConnKey;
                 }
                 else
                 {
                     if (mongoConn.ReplicaSetName != null)
                     {
-                        SvrInstanceNode.Tag = SERVER_REPLSET_MEMBER_TAG + ":" + mongoConnKey + "/" +
+                        svrInstanceNode.Tag = SERVER_REPLSET_MEMBER_TAG + ":" + mongoConnKey + "/" +
                                               mMasterServerInstace.Address.ToString().Replace(":", "@");
                     }
                 }
             }
-            if (_mongoInstanceLst.ContainsKey(ConnSvrKey))
+            if (_mongoInstanceLst.ContainsKey(connSvrKey))
             {
-                _mongoInstanceLst.Remove(ConnSvrKey);
+                _mongoInstanceLst.Remove(connSvrKey);
             }
             if (!isReplsetMasterServer)
             {
-                _mongoInstanceLst.Add(ConnSvrKey, mMasterServerInstace);
+                _mongoInstanceLst.Add(connSvrKey, mMasterServerInstace);
             }
-            return SvrInstanceNode;
+            return svrInstanceNode;
         }
+
         #endregion
     }
 }

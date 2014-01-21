@@ -303,14 +303,7 @@ namespace MagicMongoDBTool.Module
                         .GetValue(String.Empty)
                         .ToString();
                 //strip the filename
-                if (sProg.Substring(0, 1) == Convert.ToChar(34).ToString())
-                {
-                    sProg = sProg.Substring(1, sProg.IndexOf(Convert.ToChar(34), 2) - 1);
-                }
-                else
-                {
-                    sProg = sProg.Substring(0, sProg.IndexOf(" ", 2));
-                }
+                sProg = sProg.Substring(0, 1) == Convert.ToChar(34).ToString() ? sProg.Substring(1, sProg.IndexOf(Convert.ToChar(34), 2) - 1) : sProg.Substring(0, sProg.IndexOf(" ", 2));
                 sProg = sProg.Replace("%1", String.Empty);
                 // Extract the icon from the program
                 Icon oIcon = Icon.ExtractAssociatedIcon(sProg);

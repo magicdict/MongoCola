@@ -19,12 +19,12 @@ namespace MagicMongoDBTool
         {
             RefreshConnection();
             if (SystemManager.IsUseDefaultLanguage) return;
-            cmdAddCon.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Add);
-            cmdDelCon.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Connect_Action_Del);
-            cmdModifyCon.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Modify);
-            cmdClose.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Close);
-            cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
-            Text = SystemManager.mStringResource.GetText(StringResource.TextType.Connect_Title);
+            cmdAddCon.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Add);
+            cmdDelCon.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Connect_Action_Del);
+            cmdModifyCon.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Modify);
+            cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
+            cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
+            Text = SystemManager.MStringResource.GetText(StringResource.TextType.Connect_Title);
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace MagicMongoDBTool
                 {
                     connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item.Split("@".ToCharArray())[0]]);
                 }
-                MongoDBHelper.AddServer(connLst);
+                MongoDbHelper.AddServer(connLst);
             }
             Close();
         }

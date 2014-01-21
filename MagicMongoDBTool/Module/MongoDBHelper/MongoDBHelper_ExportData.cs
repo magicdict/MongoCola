@@ -8,7 +8,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         public static void ExportToFile(DataViewInfo CurrentDataViewInfo, String ExcelFileName, ExportType exportType)
         {
@@ -22,7 +22,7 @@ namespace MagicMongoDBTool.Module
                 String collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
                 String[] cp = collectionPath.Split("/".ToCharArray());
                 MongoServer mServer = SystemManager.GetCurrentServer();
-                mongoCol = mServer.GetDatabase(cp[(int) PathLv.DatabaseLV]).GetCollection(cp[(int) PathLv.CollectionLV]);
+                mongoCol = mServer.GetDatabase(cp[(int) PathLv.DatabaseLv]).GetCollection(cp[(int) PathLv.CollectionLv]);
             }
             MongoCursor<BsonDocument> cursor;
             //Query condition:
@@ -46,7 +46,7 @@ namespace MagicMongoDBTool.Module
                 case ExportType.Text:
                     ExportToJson(dataList, ExcelFileName);
                     break;
-                case ExportType.XML:
+                case ExportType.Xml:
                     break;
                 default:
                     break;
@@ -108,14 +108,7 @@ namespace MagicMongoDBTool.Module
                 {
                     BsonElement id;
                     docItem.TryGetElement(KEY_ID, out id);
-                    if (id != null)
-                    {
-                        worksheet.Cells(rowCount, colCount).Value = docItem.GetValue(KEY_ID).ToString();
-                    }
-                    else
-                    {
-                        worksheet.Cells(rowCount, colCount).Value = "[Empty]";
-                    }
+                    worksheet.Cells(rowCount, colCount).Value = id != null ? docItem.GetValue(KEY_ID).ToString() : "[Empty]";
                 }
                 else
                 {
@@ -130,14 +123,7 @@ namespace MagicMongoDBTool.Module
                     }
                     BsonValue val;
                     docItem.TryGetValue(Schame[i], out val);
-                    if (val == null)
-                    {
-                        worksheet.Cells(rowCount, i + 1).Value = "";
-                    }
-                    else
-                    {
-                        worksheet.Cells(rowCount, i + 1).Value = ConvertToString(val);
-                    }
+                    worksheet.Cells(rowCount, i + 1).Value = val == null ? "" : ConvertToString(val);
                 }
                 rowCount++;
             }

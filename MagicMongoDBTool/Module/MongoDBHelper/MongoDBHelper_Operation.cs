@@ -8,7 +8,7 @@ using MongoDB.Driver.Builders;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDBHelper
+    public static partial class MongoDbHelper
     {
         /// <summary>
         ///     操作模式
@@ -68,33 +68,22 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        ///     是否为系统数据集[无法删除]
+        /// 是否为系统数据集[无法删除]
         /// </summary>
-        /// <param name="mongoCol"></param>
+        /// <param name="mongoDBName"></param>
+        /// <param name="mongoColName"></param>
         /// <returns></returns>
         public static Boolean IsSystemCollection(String mongoDBName, String mongoColName)
         {
             //系统
-            if (mongoColName.StartsWith("system."))
-            {
-                return true;
-            }
-            //文件
-            if (mongoColName.StartsWith("fs."))
-            {
-                return true;
-            }
-            //local数据库,默认为系统
-            if (mongoDBName == "local")
-            {
-                return true;
-            }
+            if (mongoColName.StartsWith("system.")) return true;
+            if (mongoColName.StartsWith("fs.")) return true;
+            if (mongoDBName == "local") return true;
+            if (mongoDBName != "config") return false;
+            return true;
             //config数据库,默认为系统
-            if (mongoDBName == "config")
-            {
-                return true;
-            }
-            return false;
+            //local数据库,默认为系统
+            //文件
         }
 
         /// <summary>
@@ -135,7 +124,7 @@ namespace MagicMongoDBTool.Module
             String rtnResult = String.Empty;
             MongoServer mongoSvr = GetMongoServerBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
-            String svrKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLV];
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLv];
             var result = new CommandResult(new BsonDocument());
             if (mongoSvr != null)
             {
@@ -203,8 +192,8 @@ namespace MagicMongoDBTool.Module
             Boolean rtnResult = false;
             MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
-            String svrKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLV];
-            String ConKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.ConnectionLV];
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLv];
+            String ConKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.ConnectionLv];
             if (mongoDB != null)
             {
                 if (!mongoDB.CollectionExists(collectionName))
@@ -238,8 +227,8 @@ namespace MagicMongoDBTool.Module
             Boolean rtnResult = false;
             MongoDatabase mongoDB = GetMongoDBBySvrPath(strObjTag);
             String strSvrPath = SystemManager.GetTagData(strObjTag);
-            String svrKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLV];
-            String ConKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.ConnectionLV];
+            String svrKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLv];
+            String ConKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.ConnectionLv];
             if (mongoDB != null)
             {
                 if (!mongoDB.CollectionExists(collectionName))
@@ -284,7 +273,7 @@ namespace MagicMongoDBTool.Module
                 }
                 //[Tag:Connection/Host@Port/DBName/Collection]
                 String strInstKey = String.Empty;
-                strInstKey = strPath[(int) PathLv.ConnectionLV] + "/" + strPath[(int) PathLv.InstanceLV];
+                strInstKey = strPath[(int) PathLv.ConnectionLv] + "/" + strPath[(int) PathLv.InstanceLv];
                 if (_mongoInstanceLst.ContainsKey(strInstKey))
                 {
                     MongoServerInstance mongoInstance = _mongoInstanceLst[strInstKey];
@@ -309,7 +298,7 @@ namespace MagicMongoDBTool.Module
                 String[] strPathArray = strSvrPath.Split("/".ToCharArray());
                 if (strPathArray.Length > 1)
                 {
-                    rtnMongoDB = mongoSvr.GetDatabase(strPathArray[(int) PathLv.DatabaseLV]);
+                    rtnMongoDB = mongoSvr.GetDatabase(strPathArray[(int) PathLv.DatabaseLv]);
                 }
             }
             return rtnMongoDB;
@@ -328,7 +317,7 @@ namespace MagicMongoDBTool.Module
             {
                 String strSvrPath = SystemManager.GetTagData(strObjTag);
                 String[] strPathArray = strSvrPath.Split("/".ToCharArray());
-                rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int) PathLv.CollectionLV]);
+                rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int) PathLv.CollectionLv]);
             }
             return rtnMongoCollection;
         }
@@ -494,7 +483,6 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="mongoCol"></param>
         /// <param name="strKey"></param>
-        /// <param name="keyField"></param>
         /// <returns></returns>
         public static String DropDocument(MongoCollection mongoCol, object strKey)
         {

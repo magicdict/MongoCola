@@ -8,9 +8,9 @@ namespace MagicMongoDBTool
     public partial class frmGFSOption : Form
     {
         public Char DirectorySeparatorChar = Path.PathSeparator;
-        public MongoDBHelper.enumGFSFileName filename;
+        public MongoDbHelper.enumGFSFileName filename;
         public Boolean ignoreSubFolder;
-        public MongoDBHelper.enumGFSAlready option;
+        public MongoDbHelper.enumGFSAlready option;
 
         public frmGFSOption()
         {
@@ -24,33 +24,26 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            if (radFilename.Checked)
-            {
-                filename = MongoDBHelper.enumGFSFileName.filename;
-            }
-            else
-            {
-                filename = MongoDBHelper.enumGFSFileName.path;
-            }
+            filename = radFilename.Checked ? MongoDbHelper.enumGFSFileName.Filename : MongoDbHelper.enumGFSFileName.Path;
             if (radAddIt.Checked)
             {
-                option = MongoDBHelper.enumGFSAlready.JustAddIt;
+                option = MongoDbHelper.enumGFSAlready.JustAddIt;
             }
             if (radOverwrite.Checked)
             {
-                option = MongoDBHelper.enumGFSAlready.OverwriteIt;
+                option = MongoDbHelper.enumGFSAlready.OverwriteIt;
             }
             if (radRenameIt.Checked)
             {
-                option = MongoDBHelper.enumGFSAlready.RenameIt;
+                option = MongoDbHelper.enumGFSAlready.RenameIt;
             }
             if (radSkipIt.Checked)
             {
-                option = MongoDBHelper.enumGFSAlready.SkipIt;
+                option = MongoDbHelper.enumGFSAlready.SkipIt;
             }
             if (radStopIt.Checked)
             {
-                option = MongoDBHelper.enumGFSAlready.Stop;
+                option = MongoDbHelper.enumGFSAlready.Stop;
             }
             if (txtSeperateChar.Text != String.Empty)
             {
@@ -69,27 +62,27 @@ namespace MagicMongoDBTool
         {
             if (SystemManager.IsUseDefaultLanguage) return;
             grpFilename.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_RemoteFileName);
+                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_RemoteFileName);
             radFilename.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_OnlyFilename);
+                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_OnlyFilename);
             radFullPath.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FullPath);
+                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FullPath);
             grpFileAlreadyExist.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FileAlreadyExist);
+                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FileAlreadyExist);
             radAddIt.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_JustAddIt);
+                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_JustAddIt);
             radOverwrite.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Overwrite);
+                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Overwrite);
             radRenameIt.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Rename);
-            radSkipIt.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_SkipIt);
-            radStopIt.Text = SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Stop);
+                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Rename);
+            radSkipIt.Text = SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_SkipIt);
+            radStopIt.Text = SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Stop);
             chkIgnore.Text =
-                SystemManager.mStringResource.GetText(StringResource.TextType.GFS_Insert_Option_IngoreSubFolder);
+                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_IngoreSubFolder);
             lblSeperateChar.Text =
-                SystemManager.mStringResource.GetText(
+                SystemManager.MStringResource.GetText(
                     StringResource.TextType.GFS_Insert_Option_DirectorySeparatorChar);
-            cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
+            cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
         }
     }
 }

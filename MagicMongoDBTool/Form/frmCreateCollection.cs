@@ -22,20 +22,20 @@ namespace MagicMongoDBTool
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                Text = SystemManager.mStringResource.GetText(StringResource.TextType.Create_New_Collection);
+                Text = SystemManager.MStringResource.GetText(StringResource.TextType.Create_New_Collection);
                 lblCollectionName.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
-                chkAdvance.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Advance_Option);
-                cmdOK.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.mStringResource.GetText(StringResource.TextType.Common_Cancel);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
+                chkAdvance.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Advance_Option);
+                cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Cancel);
                 chkIsCapped.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped);
                 lblMaxDocument.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments);
                 lblMaxSize.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_MaxSize);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_MaxSize);
                 chkIsAutoIndexId.Text =
-                    SystemManager.mStringResource.GetText(StringResource.TextType.Collection_Status_IsAutoIndexId);
+                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_IsAutoIndexId);
             }
 
             //Difference between with long and decimal.....
@@ -75,12 +75,12 @@ namespace MagicMongoDBTool
                     option.SetMaxDocuments((long) numMaxDocument.Value);
                     //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
                     option.SetAutoIndexId(chkIsAutoIndexId.Checked);
-                    Result = MongoDBHelper.CreateCollectionWithOptions(strSvrPathWithTag, treeNode,
+                    Result = MongoDbHelper.CreateCollectionWithOptions(strSvrPathWithTag, treeNode,
                         txtCollectionName.Text, option);
                 }
                 else
                 {
-                    Result = MongoDBHelper.CreateCollection(strSvrPathWithTag, treeNode, txtCollectionName.Text);
+                    Result = MongoDbHelper.CreateCollection(strSvrPathWithTag, treeNode, txtCollectionName.Text);
                 }
                 Close();
             }
