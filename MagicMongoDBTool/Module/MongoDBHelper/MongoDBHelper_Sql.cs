@@ -230,7 +230,9 @@ namespace MagicMongoDBTool.Module
                         }
                         else
                         {
-                            queryfld.sortType = Sortfld[1].ToLower().StartsWith("d") ? DataFilter.SortType.Descending : DataFilter.SortType.Ascending;
+                            queryfld.sortType = Sortfld[1].ToLower().StartsWith("d")
+                                ? DataFilter.SortType.Descending
+                                : DataFilter.SortType.Ascending;
                         }
                         CurrentDataFilter.QueryFieldList[i] = queryfld;
                         break;

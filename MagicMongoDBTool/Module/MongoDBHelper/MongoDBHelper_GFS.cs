@@ -93,7 +93,7 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// 下载文件
+        ///     下载文件
         /// </summary>
         /// <param name="strLocalFileName"></param>
         /// <param name="strRemoteFileName"></param>
@@ -120,7 +120,9 @@ namespace MagicMongoDBTool.Module
             }
             else
             {
-                RemoteName = Option.DirectorySeparatorChar != Path.DirectorySeparatorChar ? strFileName.Replace(Path.DirectorySeparatorChar, Option.DirectorySeparatorChar) : strFileName;
+                RemoteName = Option.DirectorySeparatorChar != Path.DirectorySeparatorChar
+                    ? strFileName.Replace(Path.DirectorySeparatorChar, Option.DirectorySeparatorChar)
+                    : strFileName;
             }
             try
             {

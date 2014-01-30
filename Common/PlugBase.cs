@@ -44,17 +44,14 @@ namespace MagicMongoDBTool.Common
         /// 插件菜单表示名称
         /// </summary>
         public string PlugName = String.Empty;
-
         /// <summary>
         /// 插件功能简述
         /// </summary>
         public string PlugFunction = String.Empty;
-
         /// <summary>
         /// 处理对象
         /// </summary>
-        public dynamic PlugObj;
-
+        public Object PlugObj;
         /// <summary>
         /// 对象层次
         /// </summary>

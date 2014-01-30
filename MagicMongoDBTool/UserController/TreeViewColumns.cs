@@ -180,7 +180,9 @@ namespace TreeViewColumnsProject
                     }
                     else
                     {
-                        strColumnText = mElement != null ? mElement.Value.GetType().Name.Substring(4) : mValue.GetType().Name.Substring(4);
+                        strColumnText = mElement != null
+                            ? mElement.Value.GetType().Name.Substring(4)
+                            : mValue.GetType().Name.Substring(4);
                     }
 
                     var flags = TextFormatFlags.EndEllipsis;

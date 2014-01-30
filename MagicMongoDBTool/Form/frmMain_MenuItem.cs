@@ -55,7 +55,7 @@ namespace MagicMongoDBTool
                     foreach (ToolStripMenuItem menuitem in collectionToolStripMenuItem.DropDownItems)
                     {
                         MenuKey = menuitem.Tag.ToString();
-                        MenuKey = MenuKey.Substring(MenuKey.IndexOf(":", System.StringComparison.Ordinal) + 1);
+                        MenuKey = MenuKey.Substring(MenuKey.IndexOf(":", StringComparison.Ordinal) + 1);
                         if (CloseTabKey == MenuKey)
                         {
                             CloseMenuItem = menuitem;
@@ -179,7 +179,9 @@ namespace MagicMongoDBTool
             ServerStatusCtl.RefreshStatus(false);
             ServerStatusCtl.RefreshCurrentOpr();
 
-            statusStripMain.Items[0].Text = !SystemManager.IsUseDefaultLanguage ? SystemManager.MStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready) : "Ready";
+            statusStripMain.Items[0].Text = !SystemManager.IsUseDefaultLanguage
+                ? SystemManager.MStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready)
+                : "Ready";
             DisableAllOpr();
         }
 

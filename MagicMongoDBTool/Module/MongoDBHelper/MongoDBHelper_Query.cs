@@ -91,12 +91,18 @@ namespace MagicMongoDBTool.Module
                 String joinMark = conditiongrpList[i][conditiongrpList[i].Count() - 1].EndMark;
                 if (joinMark == EndMark_AND_T)
                 {
-                    rtnQuery = Query.And(i == 0 ? new[] {GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1])} : new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
+                    rtnQuery =
+                        Query.And(i == 0
+                            ? new[] {GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1])}
+                            : new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
                 }
 
                 if (joinMark == EndMark_OR_T)
                 {
-                    rtnQuery = Query.Or(i == 0 ? new[] {GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1])} : new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
+                    rtnQuery =
+                        Query.Or(i == 0
+                            ? new[] {GetGroupQuery(conditiongrpList[i]), GetGroupQuery(conditiongrpList[i + 1])}
+                            : new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
                 }
             }
             return rtnQuery;

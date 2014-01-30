@@ -60,7 +60,7 @@ namespace MagicMongoDBTool.Module
         public static ImageList TabViewImage = new ImageList();
 
         [DllImport("gdi32.dll")]
-        public static extern Boolean DeleteObject(IntPtr hObject);
+        private static extern Boolean DeleteObject(IntPtr hObject);
 
         /// <summary>
         ///     Image转换为Icon
@@ -181,15 +181,8 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Icon GetIconByFileName(String fileName)
         {
-            if (String.IsNullOrEmpty(fileName))
-            {
-                return null;
-            }
-            if (!File.Exists(fileName))
-            {
-                return null;
-            }
-
+            if (String.IsNullOrEmpty(fileName)) return null;
+            if (!File.Exists(fileName)) return null;
             var shInfo = new SHFILEINFO();
             //Use this to get the small Icon
             Win32.SHGetFileInfo(fileName, 0, ref shInfo, (uint) Marshal.SizeOf(shInfo),
@@ -208,71 +201,48 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Icon GetIconByFileType(String fileType, bool isLarge)
         {
-            if (String.IsNullOrEmpty(fileType))
+            if (!String.IsNullOrEmpty(fileType))
             {
-                return null;
-            }
+                RegistryKey regVersion = null;
+                String regFileType = null;
+                String regIconString = null;
+                String systemDirectory = Environment.SystemDirectory + "\\";
 
-            RegistryKey regVersion = null;
-            String regFileType = null;
-            String regIconString = null;
-            String systemDirectory = Environment.SystemDirectory + "\\";
-
-            if (fileType[0] == '.')
-            {
-                //读系统注册表中文件类型信息
-                regVersion = Registry.ClassesRoot.OpenSubKey(fileType, true);
-                if (regVersion != null)
+                if (fileType[0] != '.')
                 {
-                    regFileType = regVersion.GetValue(String.Empty) as String;
-                    regVersion.Close();
-                    regVersion = Registry.ClassesRoot.OpenSubKey(regFileType + @"\DefaultIcon", true);
+                    //直接指定为文件夹图标
+                    regIconString = systemDirectory + "shell32.dll,3";
+                }
+                else
+                {
+                    //读系统注册表中文件类型信息
+                    regVersion = Registry.ClassesRoot.OpenSubKey(fileType, true);
                     if (regVersion != null)
                     {
-                        regIconString = regVersion.GetValue(String.Empty) as String;
+                        regFileType = regVersion.GetValue(String.Empty) as String;
                         regVersion.Close();
+                        regVersion = Registry.ClassesRoot.OpenSubKey(regFileType + @"\DefaultIcon", true);
+                        if (regVersion != null)
+                        {
+                            regIconString = regVersion.GetValue(String.Empty) as String;
+                            regVersion.Close();
+                        }
+                    }
+                    if (regIconString == null)
+                    {
+                        //没有读取到文件类型注册信息，指定为未知文件类型的图标
+                        regIconString = systemDirectory + "shell32.dll,0";
                     }
                 }
-                if (regIconString == null)
+                String[] fileIcon = regIconString.Split(new[] {','});
+                if (fileIcon.Length != 2)
                 {
-                    //没有读取到文件类型注册信息，指定为未知文件类型的图标
-                    regIconString = systemDirectory + "shell32.dll,0";
+                    //系统注册表中注册的标图不能直接提取，则返回可执行文件的通用图标
+                    fileIcon = new[] {systemDirectory + "shell32.dll", "2"};
                 }
-            }
-            else
-            {
-                //直接指定为文件夹图标
-                regIconString = systemDirectory + "shell32.dll,3";
-            }
-            String[] fileIcon = regIconString.Split(new[] {','});
-            if (fileIcon.Length != 2)
-            {
-                //系统注册表中注册的标图不能直接提取，则返回可执行文件的通用图标
-                fileIcon = new[] {systemDirectory + "shell32.dll", "2"};
-            }
-            Icon resultIcon = null;
-            try
-            {
-                //调用API方法读取图标
-                var phiconLarge = new int[1];
-                var phiconSmall = new int[1];
-                Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
-                var IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
-                resultIcon = Icon.FromHandle(IconHnd);
-            }
-            catch
-            {
+                Icon resultIcon = null;
                 try
                 {
-                    //第二方案
-                    resultIcon = GetIconByFileType(fileType);
-                }
-                catch
-                {
-                    //默认方案
-                    regIconString = systemDirectory + "shell32.dll,0";
-                    fileIcon = regIconString.Split(new[] {','});
-                    resultIcon = null;
                     //调用API方法读取图标
                     var phiconLarge = new int[1];
                     var phiconSmall = new int[1];
@@ -280,8 +250,31 @@ namespace MagicMongoDBTool.Module
                     var IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
                     resultIcon = Icon.FromHandle(IconHnd);
                 }
+                catch
+                {
+                    try
+                    {
+                        //第二方案
+                        resultIcon = GetIconByFileType(fileType);
+                    }
+                    catch
+                    {
+                        //默认方案
+                        regIconString = systemDirectory + "shell32.dll,0";
+                        fileIcon = regIconString.Split(new[] {','});
+                        resultIcon = null;
+                        //调用API方法读取图标
+                        var phiconLarge = new int[1];
+                        var phiconSmall = new int[1];
+                        Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
+                        var IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
+                        resultIcon = Icon.FromHandle(IconHnd);
+                    }
+                }
+                return resultIcon;
             }
-            return resultIcon;
+
+            return null;
         }
 
         /// <summary>
@@ -303,7 +296,9 @@ namespace MagicMongoDBTool.Module
                         .GetValue(String.Empty)
                         .ToString();
                 //strip the filename
-                sProg = sProg.Substring(0, 1) == Convert.ToChar(34).ToString() ? sProg.Substring(1, sProg.IndexOf(Convert.ToChar(34), 2) - 1) : sProg.Substring(0, sProg.IndexOf(" ", 2));
+                sProg = sProg.Substring(0, 1) == Convert.ToChar(34).ToString()
+                    ? sProg.Substring(1, sProg.IndexOf(Convert.ToChar(34), 2) - 1)
+                    : sProg.Substring(0, sProg.IndexOf(" ", 2));
                 sProg = sProg.Replace("%1", String.Empty);
                 // Extract the icon from the program
                 Icon oIcon = Icon.ExtractAssociatedIcon(sProg);
@@ -317,7 +312,7 @@ namespace MagicMongoDBTool.Module
         public struct SHFILEINFO
         {
             public IntPtr hIcon;
-            public IntPtr iIcon;
+            private readonly IntPtr iIcon;
             public uint dwAttributes;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)] public String szDisplayName;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)] public String szTypeName;

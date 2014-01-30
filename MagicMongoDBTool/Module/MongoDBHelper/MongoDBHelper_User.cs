@@ -37,7 +37,9 @@ namespace MagicMongoDBTool.Module
             //必须使用MongoCredentials来添加用户,不然的话，Password将使用明文登入到数据库中！
             //这样的话，在使用MongoCredentials登入的时候，会发生密码错误引发的认证失败
             MongoCollection users;
-            users = IsAdmin ? mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).GetCollection(COLLECTION_NAME_USER) : SystemManager.GetCurrentDataBase().GetCollection(COLLECTION_NAME_USER);
+            users = IsAdmin
+                ? mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).GetCollection(COLLECTION_NAME_USER)
+                : SystemManager.GetCurrentDataBase().GetCollection(COLLECTION_NAME_USER);
             //以下代码 1.Ver2.4以前的有ReadOnly,FindUser需要寻找ReadOnly字段
             //         2.这个其实不用检查，有的话修改，没有的话，新建
             //if (users.Database.FindUser(newUserEx.Username) == null)
@@ -84,7 +86,9 @@ namespace MagicMongoDBTool.Module
         {
             MongoServer mongoSvr = SystemManager.GetCurrentServer();
             MongoCollection users;
-            users = IsAdmin ? mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).GetCollection(COLLECTION_NAME_USER) : SystemManager.GetCurrentDataBase().GetCollection(COLLECTION_NAME_USER);
+            users = IsAdmin
+                ? mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).GetCollection(COLLECTION_NAME_USER)
+                : SystemManager.GetCurrentDataBase().GetCollection(COLLECTION_NAME_USER);
             users.Remove(Query.EQ("user", strUser));
         }
 

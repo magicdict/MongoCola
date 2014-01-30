@@ -127,7 +127,9 @@ namespace MagicMongoDBTool.Module
                     .SetSkip(CurrentDataViewInfo.SkipCnt)
                     .SetLimit(CurrentDataViewInfo.LimitCnt);
             }
-            CurrentDataViewInfo.Query = cursor.Query != null ? cursor.Query.ToJson(SystemManager.JsonWriterSettings) : String.Empty;
+            CurrentDataViewInfo.Query = cursor.Query != null
+                ? cursor.Query.ToJson(SystemManager.JsonWriterSettings)
+                : String.Empty;
             CurrentDataViewInfo.Explain = cursor.Explain().ToJson(SystemManager.JsonWriterSettings);
             List<BsonDocument> dataList = cursor.ToList();
             if (CurrentDataViewInfo.SkipCnt == 0)
@@ -604,7 +606,9 @@ namespace MagicMongoDBTool.Module
                 if (e.Column == _lvwGFSColumnSorter.SortColumn)
                 {
                     // 重新设置此列的排序方法.
-                    _lvwGFSColumnSorter.Order = _lvwGFSColumnSorter.Order == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+                    _lvwGFSColumnSorter.Order = _lvwGFSColumnSorter.Order == SortOrder.Ascending
+                        ? SortOrder.Descending
+                        : SortOrder.Ascending;
                 }
                 else
                 {
@@ -701,7 +705,8 @@ namespace MagicMongoDBTool.Module
         public static void SetPageEnable(ref DataViewInfo mDataViewInfo)
         {
             mDataViewInfo.HasPrePage = mDataViewInfo.SkipCnt != 0;
-            mDataViewInfo.HasNextPage = (mDataViewInfo.SkipCnt + mDataViewInfo.LimitCnt) < mDataViewInfo.CurrentCollectionTotalCnt;
+            mDataViewInfo.HasNextPage = (mDataViewInfo.SkipCnt + mDataViewInfo.LimitCnt) <
+                                        mDataViewInfo.CurrentCollectionTotalCnt;
         }
 
         /// <summary>

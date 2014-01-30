@@ -137,7 +137,10 @@ namespace MagicMongoDBTool
             {
                 if (_ModifyName == String.Empty)
                 {
-                    Text = SystemManager.MStringResource.GetText(_IsAdmin ? StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin : StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                    Text =
+                        SystemManager.MStringResource.GetText(_IsAdmin
+                            ? StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin
+                            : StringResource.TextType.Main_Menu_Operation_Database_AddUser);
                     Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
                 }
                 else

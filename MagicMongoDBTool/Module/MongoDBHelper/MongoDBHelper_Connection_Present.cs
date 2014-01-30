@@ -130,7 +130,10 @@ namespace MagicMongoDBTool.Module
                             }
                             else
                             {
-                                config.ServerRole = replElement.Value.AsBsonDocument.GetElement("ismaster").Value == BsonBoolean.True ? ConfigHelper.SvrRoleType.MasterSvr : ConfigHelper.SvrRoleType.SlaveSvr;
+                                config.ServerRole = replElement.Value.AsBsonDocument.GetElement("ismaster").Value ==
+                                                    BsonBoolean.True
+                                    ? ConfigHelper.SvrRoleType.MasterSvr
+                                    : ConfigHelper.SvrRoleType.SlaveSvr;
                             }
                             ConnectionNode.Tag = CONNECTION_TAG + ":" + config.ConnectionName;
                         }

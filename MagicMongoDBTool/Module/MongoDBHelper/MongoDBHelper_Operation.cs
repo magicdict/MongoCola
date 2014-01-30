@@ -68,7 +68,7 @@ namespace MagicMongoDBTool.Module
         }
 
         /// <summary>
-        /// 是否为系统数据集[无法删除]
+        ///     是否为系统数据集[无法删除]
         /// </summary>
         /// <param name="mongoDBName"></param>
         /// <param name="mongoColName"></param>

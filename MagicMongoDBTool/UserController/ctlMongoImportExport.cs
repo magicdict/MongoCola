@@ -95,14 +95,18 @@ namespace MagicMongoDBTool.Module
 
         private void radExport_CheckedChanged(object sender, EventArgs e)
         {
-            MongoImportExportCommand.Direct = radExport.Checked ? MongodbDosCommand.ImprotExport.Export : MongodbDosCommand.ImprotExport.Import;
+            MongoImportExportCommand.Direct = radExport.Checked
+                ? MongodbDosCommand.ImprotExport.Export
+                : MongodbDosCommand.ImprotExport.Import;
             OnCommandChange(new TextChangeEventArgs(String.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void radImport_CheckedChanged(object sender, EventArgs e)
         {
-            MongoImportExportCommand.Direct = radExport.Checked ? MongodbDosCommand.ImprotExport.Export : MongodbDosCommand.ImprotExport.Import;
+            MongoImportExportCommand.Direct = radExport.Checked
+                ? MongodbDosCommand.ImprotExport.Export
+                : MongodbDosCommand.ImprotExport.Import;
             OnCommandChange(new TextChangeEventArgs(String.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }

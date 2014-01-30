@@ -26,7 +26,6 @@ namespace MagicMongoDBTool
         private readonly TreeNode _selectNode;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="IsUpdateMode"></param>
         /// <param name="SelectNode"></param>
@@ -82,7 +81,9 @@ namespace MagicMongoDBTool
                 {
                     MongoDbHelper.ModifyArrayValue(_FullPath, AddBsonElement.getElement().Value, _selectNode.Index);
                 }
-                _selectNode.Text = String.IsNullOrEmpty(AddBsonElement.getElement().Name) ? String.Empty : AddBsonElement.getElement().Name;
+                _selectNode.Text = String.IsNullOrEmpty(AddBsonElement.getElement().Name)
+                    ? String.Empty
+                    : AddBsonElement.getElement().Name;
             }
             else
             {
@@ -101,7 +102,9 @@ namespace MagicMongoDBTool
                     return;
                 }
                 TreeNode NewNode;
-                NewNode = String.IsNullOrEmpty(AddBsonElement.getElement().Name) ? new TreeNode() : new TreeNode(AddBsonElement.getElement().Name);
+                NewNode = String.IsNullOrEmpty(AddBsonElement.getElement().Name)
+                    ? new TreeNode()
+                    : new TreeNode(AddBsonElement.getElement().Name);
                 if (_isElement)
                 {
                     NewNode.Tag = AddBsonElement.getElement();

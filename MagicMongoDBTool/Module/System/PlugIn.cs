@@ -50,8 +50,8 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         public static void LoadPlugIn()
         {
-            ///注意
-            ///必须将Common.DLL放在Bin下面！
+            if (!Directory.Exists(Application.StartupPath + @"\PlugIn\")) return;
+            ///注意:必须将Common.DLL放在Bin下面！
             foreach (string mFile in Directory.GetFiles(Application.StartupPath + @"\PlugIn\", "*.dll"))
             {
                 try

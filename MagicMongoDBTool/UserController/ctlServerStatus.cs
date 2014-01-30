@@ -56,7 +56,9 @@ namespace MagicMongoDBTool.UserController
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
-                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh) : "Resume Auto Refresh";
+                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage
+                    ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh)
+                    : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
                 btnSwitch.Enabled = false;
                 RefreshStripButton.Enabled = false;
@@ -78,7 +80,9 @@ namespace MagicMongoDBTool.UserController
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
-                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh) : "Resume Auto Refresh";
+                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage
+                    ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh)
+                    : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
                 btnSwitch.Enabled = false;
                 RefreshStripButton.Enabled = false;
@@ -161,7 +165,9 @@ namespace MagicMongoDBTool.UserController
             if (e.Column == _lvwCollectionStatusColumnSorter.SortColumn)
             {
                 // 重新设置此列的排序方法.
-                _lvwCollectionStatusColumnSorter.Order = _lvwCollectionStatusColumnSorter.Order == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+                _lvwCollectionStatusColumnSorter.Order = _lvwCollectionStatusColumnSorter.Order == SortOrder.Ascending
+                    ? SortOrder.Descending
+                    : SortOrder.Ascending;
             }
             else
             {
@@ -196,7 +202,9 @@ namespace MagicMongoDBTool.UserController
             if (e.Column == _lvwDBStatusColumnSorter.SortColumn)
             {
                 // 重新设置此列的排序方法.
-                _lvwDBStatusColumnSorter.Order = _lvwDBStatusColumnSorter.Order == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+                _lvwDBStatusColumnSorter.Order = _lvwDBStatusColumnSorter.Order == SortOrder.Ascending
+                    ? SortOrder.Descending
+                    : SortOrder.Ascending;
             }
             else
             {
@@ -230,14 +238,18 @@ namespace MagicMongoDBTool.UserController
             {
                 refreshTimer.Start();
                 ShortTimer.Start();
-                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Stop_AutoRefresh) : "Stop Auto Refresh";
+                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage
+                    ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Stop_AutoRefresh)
+                    : "Stop Auto Refresh";
                 btnSwitch.Image = Resources.Pause;
             }
             else
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
-                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh) : "Resume Auto Refresh";
+                btnSwitch.Text = !SystemManager.IsUseDefaultLanguage
+                    ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh)
+                    : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
             }
         }

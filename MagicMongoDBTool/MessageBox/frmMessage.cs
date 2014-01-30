@@ -79,7 +79,7 @@ namespace MagicMongoDBTool
         }
 
         /// <summary>
-        /// SetText
+        ///     SetText
         /// </summary>
         /// <param name="Detail"></param>
         /// <param name="OK"></param>
