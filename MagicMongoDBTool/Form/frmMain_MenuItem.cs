@@ -1,13 +1,13 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
+using MagicMongoDBTool.UnitTest;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;
-using MagicMongoDBTool.UnitTest;
-using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
@@ -316,7 +316,15 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmUser(true), true, true);
         }
-
+        /// <summary>
+        ///  Create A Role
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddCustomeRoleStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmAddRole(), true, true);
+        }
         /// <summary>
         ///     SlaveResync
         /// </summary>

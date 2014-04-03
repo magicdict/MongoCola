@@ -190,6 +190,7 @@ namespace MagicMongoDBTool.Module
         ///     用户数据集名称
         /// </summary>
         public const String COLLECTION_NAME_USER = "system.users";
+
         /// <summary>
         ///     角色数据集名称
         /// </summary>

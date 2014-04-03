@@ -168,7 +168,6 @@ namespace MagicMongoDBTool
                 RefreshGUI();
             }
         }
-
         /// <summary>
         ///     密码变更
         /// </summary>

@@ -172,5 +172,11 @@ namespace MagicMongoDBTool.Module
         }
 
         #endregion
+
+        #region"角色操作"
+            public static void AddRole(){
+
+            }
+        #endregion
     }
 }

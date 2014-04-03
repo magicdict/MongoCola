@@ -50,6 +50,11 @@ namespace MagicMongoDBTool
             txtUsername.Text = ModifyConn.UserName;
             txtPassword.Text = ModifyConn.Password;
             txtDataBaseName.Text = ModifyConn.DataBaseName;
+            chkFsync.Checked = ModifyConn.fsync;
+            chkJournal.Checked = ModifyConn.journal;
+
+            //ReadPreference和WriteConern不是Connection的属性,
+            //而是读写策略
             if (ModifyConn.ReadPreference != string.Empty)
             {
                 cmbReadPreference.Text = ModifyConn.ReadPreference;
@@ -58,16 +63,12 @@ namespace MagicMongoDBTool
             {
                 cmbWriteConcern.Text = ModifyConn.WriteConcern;
             }
-            chkFsync.Checked = ModifyConn.fsync;
-            chkJournal.Checked = ModifyConn.journal;
-
             NumWTimeoutMS.Value = (decimal) ModifyConn.wtimeoutMS;
             NumSocketTimeOut.Value = (decimal) ModifyConn.socketTimeoutMS;
             NumConnectTimeOut.Value = (decimal) ModifyConn.connectTimeoutMS;
             NumWaitQueueSize.Value = ModifyConn.WaitQueueSize;
 
             txtReplsetName.Text = ModifyConn.ReplSetName;
-
             txtConnectionString.Text = ModifyConn.ConnectionString;
 
             foreach (string item in ModifyConn.ReplsetList)

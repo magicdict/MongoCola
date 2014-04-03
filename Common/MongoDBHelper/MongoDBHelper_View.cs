@@ -299,6 +299,9 @@ namespace MagicMongoDBTool.Module
                     case COLLECTION_NAME_USER:
                         dataNode.Tag = item.GetElement(1).Value;
                         break;
+                    //case COLLECTION_NAME_ROLE:
+                    //    dataNode.Tag = item.GetElement(1).Value;
+                    //    break;
                     default:
                         //SelectDocId属性的设置,
                         //2012/03/19 不一定id是在第一位
@@ -407,6 +410,9 @@ namespace MagicMongoDBTool.Module
                 case COLLECTION_NAME_USER:
                     SetUserListToListView(dataList, lstData);
                     break;
+                //case COLLECTION_NAME_ROLE:
+                    //SetRoleListToListView(dataList, lstData);
+                    //break;
                 default:
                     var _columnlist = new List<String>();
                     //可以让_id 不在第一位，昏过去了,很多逻辑需要调整

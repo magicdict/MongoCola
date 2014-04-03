@@ -114,8 +114,6 @@ namespace MagicMongoDBTool.Module
                 }
             }
             mongoDBNode.Nodes.Add(mongoColListNode);
-
-
             mongoDBNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
             mongoDBNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
             return mongoDBNode;
@@ -288,6 +286,12 @@ namespace MagicMongoDBTool.Module
                             SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_USER) + "(" +
                             strShowColName + ")";
                         break;
+                    case COLLECTION_NAME_ROLE:
+                        //New From 2.6 
+                        strShowColName =
+                            SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_ROLE) + "(" +
+                            strShowColName + ")";
+                        break;
                     case COLLECTION_NAME_SYSTEM_PROFILE:
                         strShowColName =
                             SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_PROFILE) +
@@ -308,6 +312,9 @@ namespace MagicMongoDBTool.Module
                 case COLLECTION_NAME_USER:
                     mongoColNode.Tag = USER_LIST_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
                     break;
+                //case COLLECTION_NAME_ROLE:
+                //    mongoColNode.Tag = USER_LIST_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                //    break;
                 default:
                     mongoColNode.Tag = COLLECTION_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
                     break;

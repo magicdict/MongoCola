@@ -47,10 +47,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resource\GetResource_Icon.cs" />
-    <Compile Include="Resource\GetSystemIcon.cs" />
-    <Compile Include="Resource\StringResources.cs" />
-    <Compile Include="Resource\StringResource_Enum.cs" />
+    <Compile Include="Class\GetResource_Icon.cs" />
+    <Compile Include="Class\GetSystemIcon.cs" />
+    <Compile Include="Class\StringResources.cs" />
+    <Compile Include="Class\StringResource_Enum.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -60,6 +60,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Language\日本語.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language\简体中文.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Language\繁體中文.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\%2800,21%29.png" />
     <Content Include="Resources\%2800,27%29.png" />
     <Content Include="Resources\%2800,41%29.png" />
