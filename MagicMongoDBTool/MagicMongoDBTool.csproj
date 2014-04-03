@@ -302,8 +302,6 @@
     <Compile Include="Form\frmGenerateConfigIni.Designer.cs">
       <DependentUpon>frmGenerateConfigIni.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\HTTPServer\GetPage.cs" />
-    <Compile Include="Module\HTTPServer\Server.cs" />
     <Compile Include="UserController\ctlJsEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -679,33 +677,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="clody.ico" />
-    <Content Include="HTML\Connection.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HTML\css\demo.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HTML\css\zTreeStyle\img\line_conn.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HTML\css\zTreeStyle\img\loading.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HTML\css\zTreeStyle\img\zTreeStandard.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HTML\css\zTreeStyle\img\zTreeStandard.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HTML\css\zTreeStyle\zTreeStyle.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HTML\js\jquery-1.4.4.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HTML\js\jquery.ztree.core-3.1.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="UserGuide\images\Monitor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -734,9 +705,6 @@
     <Content Include="UserGuide\Utils.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="HTML\ConnectionList.htm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <Content Include="UserGuide\Aggregation.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1015,11 +983,16 @@
       <Project>{8e604d46-99a8-47a0-a533-d83b2b6a83b9}</Project>
       <Name>GUI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HTTPServer\HTTPServer.csproj">
+      <Project>{fe7f970b-a096-4ef5-97f9-0ed064993eeb}</Project>
+      <Name>HTTPServer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
       <Project>{5ac3b529-8e37-4d99-99e9-729603e3bb5e}</Project>
       <Name>ResourceLib</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

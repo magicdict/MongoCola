@@ -23,6 +23,8 @@
 /ExportToExcel/obj
 /MagicMongoDBTool/bin
 /MagicMongoDBTool/obj
+/HTTPServer/bin
+/HTTPServer/obj
 /DesignDocument
 /ServerLoader
 !readme.txt

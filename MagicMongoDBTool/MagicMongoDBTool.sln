@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "..\GUI\GUI.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceLib", "..\ResourceLib\ResourceLib.csproj", "{5AC3B529-8E37-4D99-99E9-729603E3BB5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTPServer", "..\HTTPServer\HTTPServer.csproj", "{FE7F970B-A096-4EF5-97F9-0ED064993EEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,16 @@ Global
 		{5AC3B529-8E37-4D99-99E9-729603E3BB5E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5AC3B529-8E37-4D99-99E9-729603E3BB5E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5AC3B529-8E37-4D99-99E9-729603E3BB5E}.Release|x86.ActiveCfg = Release|Any CPU
+		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

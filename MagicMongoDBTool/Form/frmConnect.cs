@@ -14,7 +14,11 @@ namespace MagicMongoDBTool
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmConnect_Load(object sender, EventArgs e)
         {
             RefreshConnection();
@@ -25,6 +29,7 @@ namespace MagicMongoDBTool
             cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
             cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
             Text = SystemManager.MStringResource.GetText(StringResource.TextType.Connect_Title);
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         /// <summary>
@@ -125,7 +130,7 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cmdClosel_Click(object sender, EventArgs e)
+        private void cmdClose_Click(object sender, EventArgs e)
         {
             Close();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
@@ -8,7 +9,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Web;
-using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool.HTTP
 {

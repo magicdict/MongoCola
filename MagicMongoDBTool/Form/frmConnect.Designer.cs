@@ -80,7 +80,7 @@
             this.cmdClose.TabIndex = 7;
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = false;
-            this.cmdClose.Click += new System.EventHandler(this.cmdClosel_Click);
+            this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
             // 
             // cmdOK
             // 
