@@ -19,7 +19,7 @@ namespace MagicMongoDBTool
 
         private void frmServerMonitor_Load(object sender, EventArgs e)
         {
-            Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
+            Icon = GetSystemIcon.ConvertImgToIcon(ResourceLib.Properties.Resources.KeyInfo);
             M = new Timer {Interval = 3000};
             M.Tick += M_Tick;
             var QuerySeries = new Series("Query")

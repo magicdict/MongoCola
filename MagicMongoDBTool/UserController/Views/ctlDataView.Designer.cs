@@ -292,7 +292,7 @@ namespace MagicMongoDBTool.UserController
             // GotoStripButton
             // 
             this.GotoStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.GotoStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Run;
+            this.GotoStripButton.Image = global::ResourceLib.Properties.Resources.Run;
             this.GotoStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GotoStripButton.Name = "GotoStripButton";
             this.GotoStripButton.Size = new System.Drawing.Size(23, 22);
@@ -366,7 +366,7 @@ namespace MagicMongoDBTool.UserController
             // HelpStripButton
             // 
             this.HelpStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.HelpStripButton.Image = global::MagicMongoDBTool.Properties.Resources.QuestionMark;
+            this.HelpStripButton.Image = global::ResourceLib.Properties.Resources.QuestionMark;
             this.HelpStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.HelpStripButton.Name = "HelpStripButton";
             this.HelpStripButton.Size = new System.Drawing.Size(23, 22);

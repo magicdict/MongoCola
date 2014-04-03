@@ -224,7 +224,7 @@ namespace MagicMongoDBTool
             // 
             // RefreshToolStripMenuItem
             // 
-            this.RefreshToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Refresh;
+            this.RefreshToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.Refresh;
             this.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem";
             this.RefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.RefreshToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
@@ -238,7 +238,7 @@ namespace MagicMongoDBTool
             // 
             // ExpandAllConnectionToolStripMenuItem
             // 
-            this.ExpandAllConnectionToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Expand;
+            this.ExpandAllConnectionToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.Expand;
             this.ExpandAllConnectionToolStripMenuItem.Name = "ExpandAllConnectionToolStripMenuItem";
             this.ExpandAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.ExpandAllConnectionToolStripMenuItem.Text = "Expansion";
@@ -246,7 +246,7 @@ namespace MagicMongoDBTool
             // 
             // CollapseAllConnectionToolStripMenuItem
             // 
-            this.CollapseAllConnectionToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Collpse;
+            this.CollapseAllConnectionToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.Collpse;
             this.CollapseAllConnectionToolStripMenuItem.Name = "CollapseAllConnectionToolStripMenuItem";
             this.CollapseAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.CollapseAllConnectionToolStripMenuItem.Text = "Collapse";
@@ -280,7 +280,7 @@ namespace MagicMongoDBTool
             // 
             // statusToolStripMenuItem
             // 
-            this.statusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Monitor;
+            this.statusToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.Monitor;
             this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
             this.statusToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.statusToolStripMenuItem.Text = "Server Status";
@@ -295,14 +295,14 @@ namespace MagicMongoDBTool
             // 
             // collectionToolStripMenuItem
             // 
-            this.collectionToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.CollectionList;
+            this.collectionToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.CollectionList;
             this.collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
             this.collectionToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.collectionToolStripMenuItem.Text = "Collection Data";
             // 
             // JavaScriptStripMenuItem
             // 
-            this.JavaScriptStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.JavaScriptList;
+            this.JavaScriptStripMenuItem.Image = global::ResourceLib.Properties.Resources.JavaScriptList;
             this.JavaScriptStripMenuItem.Name = "JavaScriptStripMenuItem";
             this.JavaScriptStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.JavaScriptStripMenuItem.Text = "JavaScript";
@@ -314,7 +314,7 @@ namespace MagicMongoDBTool
             // 
             // ViewRefreshToolStripMenuItem
             // 
-            this.ViewRefreshToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Refresh;
+            this.ViewRefreshToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.Refresh;
             this.ViewRefreshToolStripMenuItem.Name = "ViewRefreshToolStripMenuItem";
             this.ViewRefreshToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F5)));
             this.ViewRefreshToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
@@ -374,7 +374,7 @@ namespace MagicMongoDBTool
             // 
             // ShutDownToolStripMenuItem
             // 
-            this.ShutDownToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.ShutDown;
+            this.ShutDownToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.ShutDown;
             this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
             this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.ShutDownToolStripMenuItem.Text = "ShutDown Server";
@@ -416,7 +416,7 @@ namespace MagicMongoDBTool
             // 
             // AddUserToAdminToolStripMenuItem
             // 
-            this.AddUserToAdminToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddUserToDB;
+            this.AddUserToAdminToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.AddUserToDB;
             this.AddUserToAdminToolStripMenuItem.Name = "AddUserToAdminToolStripMenuItem";
             this.AddUserToAdminToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.AddUserToAdminToolStripMenuItem.Text = "Add User To Admin Group";
@@ -436,7 +436,7 @@ namespace MagicMongoDBTool
             // 
             // slaveResyncToolStripMenuItem
             // 
-            this.slaveResyncToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.sync;
+            this.slaveResyncToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.sync;
             this.slaveResyncToolStripMenuItem.Name = "slaveResyncToolStripMenuItem";
             this.slaveResyncToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.slaveResyncToolStripMenuItem.Text = "Slave Resync";
@@ -451,7 +451,7 @@ namespace MagicMongoDBTool
             // 
             // ServerStatusToolStripMenuItem
             // 
-            this.ServerStatusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.KeyInfo;
+            this.ServerStatusToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.KeyInfo;
             this.ServerStatusToolStripMenuItem.Name = "ServerStatusToolStripMenuItem";
             this.ServerStatusToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.ServerStatusToolStripMenuItem.Text = "Status";
@@ -479,7 +479,7 @@ namespace MagicMongoDBTool
             // 
             // CreateMongoCollectionToolStripMenuItem
             // 
-            this.CreateMongoCollectionToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddCollection;
+            this.CreateMongoCollectionToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.AddCollection;
             this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
             this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.CreateMongoCollectionToolStripMenuItem.Text = "New Collection";
@@ -506,7 +506,7 @@ namespace MagicMongoDBTool
             // 
             // AddUserToolStripMenuItem
             // 
-            this.AddUserToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddUserToDB;
+            this.AddUserToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.AddUserToDB;
             this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
             this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.AddUserToolStripMenuItem.Text = "Add User";
@@ -519,7 +519,7 @@ namespace MagicMongoDBTool
             // 
             // EvalJSToolStripMenuItem
             // 
-            this.EvalJSToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.JavaScriptList;
+            this.EvalJSToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.JavaScriptList;
             this.EvalJSToolStripMenuItem.Name = "EvalJSToolStripMenuItem";
             this.EvalJSToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.EvalJSToolStripMenuItem.Text = "Eval Javascript";
@@ -546,7 +546,7 @@ namespace MagicMongoDBTool
             // 
             // InitGFSToolStripMenuItem
             // 
-            this.InitGFSToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.GFS;
+            this.InitGFSToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.GFS;
             this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
             this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.InitGFSToolStripMenuItem.Text = "Init GFS";
@@ -560,7 +560,7 @@ namespace MagicMongoDBTool
             // 
             // DBStatusToolStripMenuItem
             // 
-            this.DBStatusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.KeyInfo;
+            this.DBStatusToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.KeyInfo;
             this.DBStatusToolStripMenuItem.Name = "DBStatusToolStripMenuItem";
             this.DBStatusToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.DBStatusToolStripMenuItem.Text = "Status";
@@ -615,7 +615,7 @@ namespace MagicMongoDBTool
             // 
             // CompactToolStripMenuItem
             // 
-            this.CompactToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.compress;
+            this.CompactToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.compress;
             this.CompactToolStripMenuItem.Name = "CompactToolStripMenuItem";
             this.CompactToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.CompactToolStripMenuItem.Text = "Compact";
@@ -683,7 +683,7 @@ namespace MagicMongoDBTool
             // 
             // ViewDataToolStripMenuItem
             // 
-            this.ViewDataToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.View;
+            this.ViewDataToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.View;
             this.ViewDataToolStripMenuItem.Name = "ViewDataToolStripMenuItem";
             this.ViewDataToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.ViewDataToolStripMenuItem.Text = "ViewData";
@@ -697,7 +697,7 @@ namespace MagicMongoDBTool
             // 
             // CollectionStatusToolStripMenuItem
             // 
-            this.CollectionStatusToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.KeyInfo;
+            this.CollectionStatusToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.KeyInfo;
             this.CollectionStatusToolStripMenuItem.Name = "CollectionStatusToolStripMenuItem";
             this.CollectionStatusToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.CollectionStatusToolStripMenuItem.Text = "Status";

@@ -104,7 +104,7 @@ namespace MagicMongoDBTool
             // DelSelectRecordToolStripButton
             // 
             this.DelSelectRecordToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DelSelectRecordToolStripButton.Image = global::MagicMongoDBTool.Properties.Resources.DeleteDoc;
+            this.DelSelectRecordToolStripButton.Image = global::ResourceLib.Properties.Resources.DeleteDoc;
             this.DelSelectRecordToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DelSelectRecordToolStripButton.Name = "DelSelectRecordToolStripButton";
             this.DelSelectRecordToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -150,7 +150,7 @@ namespace MagicMongoDBTool
             // 
             // NewDocumentToolStripMenuItem
             // 
-            this.NewDocumentToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.NewDocument;
+            this.NewDocumentToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.NewDocument;
             this.NewDocumentToolStripMenuItem.Name = "NewDocumentToolStripMenuItem";
             this.NewDocumentToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.NewDocumentToolStripMenuItem.Text = "Add Document";
@@ -158,7 +158,7 @@ namespace MagicMongoDBTool
             // 
             // OpenDocInEditorToolStripMenuItem
             // 
-            this.OpenDocInEditorToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.Edit;
+            this.OpenDocInEditorToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.Edit;
             this.OpenDocInEditorToolStripMenuItem.Name = "OpenDocInEditorToolStripMenuItem";
             this.OpenDocInEditorToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.OpenDocInEditorToolStripMenuItem.Text = "Open Doc In Editor";

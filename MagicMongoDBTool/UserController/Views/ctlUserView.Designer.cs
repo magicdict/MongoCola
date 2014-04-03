@@ -83,7 +83,7 @@ namespace MagicMongoDBTool
             // 
             // AddUserToolStripMenuItem
             // 
-            this.AddUserToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.AddUserToDB;
+            this.AddUserToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.AddUserToDB;
             this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
             this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.AddUserToolStripMenuItem.Text = "Create User";
@@ -91,7 +91,7 @@ namespace MagicMongoDBTool
             // 
             // ChangePasswordToolStripMenuItem
             // 
-            this.ChangePasswordToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.UserPassword;
+            this.ChangePasswordToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.UserPassword;
             this.ChangePasswordToolStripMenuItem.Name = "ChangePasswordToolStripMenuItem";
             this.ChangePasswordToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.ChangePasswordToolStripMenuItem.Text = "Change Password";
@@ -99,7 +99,7 @@ namespace MagicMongoDBTool
             // 
             // RemoveUserToolStripMenuItem
             // 
-            this.RemoveUserToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.DelUser;
+            this.RemoveUserToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.DelUser;
             this.RemoveUserToolStripMenuItem.Name = "RemoveUserToolStripMenuItem";
             this.RemoveUserToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.RemoveUserToolStripMenuItem.Text = "Remove User";
@@ -108,7 +108,7 @@ namespace MagicMongoDBTool
             // AddUserStripButton
             // 
             this.AddUserStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.AddUserStripButton.Image = global::MagicMongoDBTool.Properties.Resources.AddUserToDB;
+            this.AddUserStripButton.Image = global::ResourceLib.Properties.Resources.AddUserToDB;
             this.AddUserStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AddUserStripButton.Name = "AddUserStripButton";
             this.AddUserStripButton.Size = new System.Drawing.Size(23, 22);
@@ -118,7 +118,7 @@ namespace MagicMongoDBTool
             // ChangePasswordStripButton
             // 
             this.ChangePasswordStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ChangePasswordStripButton.Image = global::MagicMongoDBTool.Properties.Resources.UserPassword;
+            this.ChangePasswordStripButton.Image = global::ResourceLib.Properties.Resources.UserPassword;
             this.ChangePasswordStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ChangePasswordStripButton.Name = "ChangePasswordStripButton";
             this.ChangePasswordStripButton.Size = new System.Drawing.Size(23, 22);
@@ -128,7 +128,7 @@ namespace MagicMongoDBTool
             // RemoveUserStripButton
             // 
             this.RemoveUserStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.RemoveUserStripButton.Image = global::MagicMongoDBTool.Properties.Resources.DelUser;
+            this.RemoveUserStripButton.Image = global::ResourceLib.Properties.Resources.DelUser;
             this.RemoveUserStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RemoveUserStripButton.Name = "RemoveUserStripButton";
             this.RemoveUserStripButton.Size = new System.Drawing.Size(23, 22);

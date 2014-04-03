@@ -1030,7 +1030,7 @@ namespace MagicMongoDBTool
         /// </summary>
         private void SetMenuImage()
         {
-            ExitToolStripMenuItem.Image = Resources.exit.ToBitmap();
+            ExitToolStripMenuItem.Image = ResourceLib.Properties.Resources.exit.ToBitmap();
 
             ShutDownToolStripMenuItem.Image = GetResource.GetImage(ImageType.ShutDown);
 

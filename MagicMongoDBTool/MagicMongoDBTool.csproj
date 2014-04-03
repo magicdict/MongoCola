@@ -77,13 +77,13 @@
   <PropertyGroup />
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="MongoDB.Bson, Version=1.8.3.9, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Bson, Version=1.9.0.190, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Bson.dll</HintPath>
+      <HintPath>packages\mongocsharpdriver.1.9.0-rc1\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
-    <Reference Include="MongoDB.Driver, Version=1.8.3.9, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+    <Reference Include="MongoDB.Driver, Version=1.9.0.190, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll</HintPath>
+      <HintPath>packages\mongocsharpdriver.1.9.0-rc1\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -109,9 +109,12 @@
     <Compile Include="Form\frmMain_MenuItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection_Present_Sub.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_ExportData.cs" />
-    <Compile Include="Module\System\PlugIn.cs" />
+    <Compile Include="Form\frmUserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmUserRole.Designer.cs">
+      <DependentUpon>frmUserRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserController\ctlTextMgr.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -130,22 +133,12 @@
     <Compile Include="Form\frmValidate.Designer.cs">
       <DependentUpon>frmValidate.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageBox\frmUserRole.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MessageBox\frmUserRole.Designer.cs">
-      <DependentUpon>frmUserRole.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection_Present_WebForm.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Enum.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_GFS.cs" />
     <Compile Include="Form\frmServerMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\frmServerMonitor.Designer.cs">
       <DependentUpon>frmServerMonitor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\System\EachDatabaseUser.cs" />
     <Compile Include="UserController\Aggregation\BsonValuePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -188,8 +181,6 @@
     <Compile Include="UserController\Aggregation\ConditionPanel.Designer.cs">
       <DependentUpon>ConditionPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Aggregation.cs" />
-    <Compile Include="Module\System\NumberTextBox.cs" />
     <Compile Include="UserController\Aggregation\FieldPicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -245,24 +236,6 @@
     <Compile Include="UserController\Views\ctlGFSView.Designer.cs">
       <DependentUpon>ctlGFSView.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageBox\frmConfirm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MessageBox\frmConfirm.Designer.cs">
-      <DependentUpon>frmConfirm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MessageBox\frmInputBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MessageBox\frmInputBox.Designer.cs">
-      <DependentUpon>frmInputBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MessageBox\frmMessage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MessageBox\frmMessage.Designer.cs">
-      <DependentUpon>frmMessage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\frmElement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -317,12 +290,6 @@
     <Compile Include="Form\frmReplsetMgr.Designer.cs">
       <DependentUpon>frmReplsetMgr.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageBox\frmEasyMessage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MessageBox\frmEasyMessage.Designer.cs">
-      <DependentUpon>frmEasyMessage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\frmGenerateConfigIni.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -337,19 +304,6 @@
     <Compile Include="UserController\ctlJsEditor.Designer.cs">
       <DependentUpon>ctlJsEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection_Present.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Status.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Module\Resource\GetResource_Icon.cs" />
-    <Compile Include="Module\System\BsonValueEx.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Connection_Manager.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_ImportData.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command_Define.cs" />
-    <Compile Include="MessageBox\MyMessageBox.cs" />
-    <Compile Include="Module\Resource\StringResources.cs" />
-    <Compile Include="Module\Resource\StringResource_Enum.cs" />
-    <Compile Include="Module\System\EventHelper.cs" />
     <Compile Include="UserController\ctlBsonValue.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -368,8 +322,6 @@
     <Compile Include="Form\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Element.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Sql.cs" />
     <Compile Include="UserController\ctlAddBsonEl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -388,7 +340,6 @@
     <Compile Include="Form\frmGroup.Designer.cs">
       <DependentUpon>frmGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\System\DataFilter.cs" />
     <Compile Include="UserController\Views\ctlDataView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -449,8 +400,6 @@
     <Compile Include="Form\frmQuery.Designer.cs">
       <DependentUpon>frmQuery.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\Resource\GetSystemIcon.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Const.cs" />
     <Compile Include="UserController\Aggregation\ctlFieldInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -463,10 +412,6 @@
     <Compile Include="UserController\ctlQueryCondition.Designer.cs">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\System\CloneMeunToolItem.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_User.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Query.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Command_Run.cs" />
     <Compile Include="UserController\ctlMongoImportExport.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -485,7 +430,6 @@
     <Compile Include="UserController\ctlMongod.Designer.cs">
       <DependentUpon>ctlMongod.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\System\ConfigHelper.cs" />
     <Compile Include="UserController\ctllogLv.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -498,10 +442,6 @@
     <Compile Include="UserController\ctlMongodump.Designer.cs">
       <DependentUpon>ctlMongodump.cs</DependentUpon>
     </Compile>
-    <Compile Include="Module\System\MongodbDosCommand.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_Operation.cs" />
-    <Compile Include="Module\MongoDBHelper\MongoDBHelper_View.cs" />
-    <Compile Include="Module\System\SystemManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserController\ctlServerStatus.cs">
@@ -510,14 +450,11 @@
     <Compile Include="UserController\ctlServerStatus.Designer.cs">
       <DependentUpon>ctlServerStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\TreeViewColumns.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\TreeViewColumns.Designer.cs">
-      <DependentUpon>TreeViewColumns.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form\frmExport.resx">
       <DependentUpon>frmExport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmUserRole.resx">
+      <DependentUpon>frmUserRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlTextMgr.resx">
       <DependentUpon>ctlTextMgr.cs</DependentUpon>
@@ -530,9 +467,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmValidate.resx">
       <DependentUpon>frmValidate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MessageBox\frmUserRole.resx">
-      <DependentUpon>frmUserRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmServerMonitor.resx">
       <DependentUpon>frmServerMonitor.cs</DependentUpon>
@@ -572,18 +506,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\Views\ctlUserView.resx">
       <DependentUpon>ctlUserView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MessageBox\frmConfirm.resx">
-      <DependentUpon>frmConfirm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MessageBox\frmEasyMessage.resx">
-      <DependentUpon>frmEasyMessage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MessageBox\frmInputBox.resx">
-      <DependentUpon>frmInputBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MessageBox\frmMessage.resx">
-      <DependentUpon>frmMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmCreateCollection.resx">
       <DependentUpon>frmCreateCollection.cs</DependentUpon>
@@ -691,24 +613,11 @@
     <EmbeddedResource Include="UserController\ctlMongodump.resx">
       <DependentUpon>ctlMongodump.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UserController\ctlServerStatus.resx">
       <DependentUpon>ctlServerStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\Aggregation\FieldPicker.resx">
       <DependentUpon>FieldPicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\TreeViewColumns.resx">
-      <DependentUpon>TreeViewColumns.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
@@ -828,67 +737,6 @@
     <None Include="HTML\ConnectionList.htm">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="Resources\%2800,21%29.png" />
-    <Content Include="Resources\%2800,27%29.png" />
-    <None Include="Resources\%2800,33%29.png" />
-    <Content Include="Resources\%2800,41%29.png" />
-    <Content Include="Resources\%2800,47%29.png" />
-    <Content Include="Resources\%2800,48%29.png" />
-    <Content Include="Resources\%2801,18%29.png" />
-    <Content Include="Resources\%2802,36%29.png" />
-    <Content Include="Resources\%2803,05%29.png" />
-    <None Include="Resources\%2804,06%29.png" />
-    <None Include="Resources\%2804,05%29.png" />
-    <None Include="Resources\%2803,10%29.png" />
-    <Content Include="Resources\%2804,18%29.png" />
-    <Content Include="Resources\%2804,23%29.png" />
-    <Content Include="Resources\%2805,06%29.png" />
-    <Content Include="Resources\%2805,07%29.png" />
-    <Content Include="Resources\%2805,08%29.png" />
-    <Content Include="Resources\%2806,06%29.png" />
-    <None Include="Resources\%2806,41%29.png" />
-    <None Include="Resources\%2806,33%29.png" />
-    <Content Include="Resources\%2807,22%29.png" />
-    <Content Include="Resources\%2807,40%29.png" />
-    <Content Include="Resources\%2807,42%29.png" />
-    <Content Include="Resources\%2809,03%29.png" />
-    <Content Include="Resources\%2809,05%29.png" />
-    <Content Include="Resources\%2809,24%29.png" />
-    <None Include="Resources\%2811,10%29.png" />
-    <None Include="Resources\%2810,25%29.png" />
-    <Content Include="Resources\%2811,18%29.png" />
-    <Content Include="Resources\%2812,24%29.png" />
-    <Content Include="Resources\%2813,12%29.png" />
-    <None Include="Resources\%2813,28%29.png" />
-    <Content Include="Resources\%2813,35%29.png" />
-    <None Include="Resources\%2814,20%29.png" />
-    <None Include="Resources\%2814,28%29.png" />
-    <Content Include="Resources\%2815,37%29.png" />
-    <None Include="Resources\%2815,43%29.png" />
-    <Content Include="Resources\%2818,27%29.png" />
-    <Content Include="Resources\%2819,48%29.png" />
-    <Content Include="Resources\%2821,34%29.png" />
-    <None Include="Resources\%2826,29%29.png" />
-    <Content Include="Resources\%2831,20%29.png" />
-    <Content Include="Resources\%2832,01%29.png" />
-    <Content Include="Resources\%2841,49%29.png" />
-    <Content Include="Resources\%2842,48%29.png" />
-    <Content Include="Resources\%2845,07%29.png" />
-    <Content Include="Resources\%2845,12%29.png" />
-    <None Include="Resources\1332159906_document_small_upload.png" />
-    <Content Include="Resources\books.ico" />
-    <None Include="Resources\compress.png" />
-    <Content Include="Resources\copy.ico" />
-    <Content Include="Resources\cut.ico" />
-    <Content Include="Resources\database_key.png" />
-    <Content Include="Resources\DELETE.ICO" />
-    <Content Include="Resources\exit.ico" />
-    <None Include="Resources\icon_delete_file.gif" />
-    <Content Include="Resources\logo-mongoDB.png" />
-    <Content Include="Resources\ok.ico" />
-    <Content Include="Resources\Open.ico" />
-    <Content Include="Resources\paste.ico" />
-    <Content Include="Resources\save.ico" />
     <Content Include="UserGuide\Aggregation.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1162,6 +1010,14 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{56d74944-4b20-4941-bc67-72a8e57e5a02}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GUI\GUI.csproj">
+      <Project>{8e604d46-99a8-47a0-a533-d83b2b6a83b9}</Project>
+      <Name>GUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
+      <Project>{5ac3b529-8e37-4d99-99e9-729603e3bb5e}</Project>
+      <Name>ResourceLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

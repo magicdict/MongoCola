@@ -16,7 +16,7 @@ namespace MagicMongoDBTool
 
         private void frmStatus_Load(object sender, EventArgs e)
         {
-            Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
+            Icon = GetSystemIcon.ConvertImgToIcon(ResourceLib.Properties.Resources.KeyInfo);
             String strType = SystemManager.SelectTagType;
             var DocStatus = new BsonDocument();
             cmbChartField.Visible = false;

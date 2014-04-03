@@ -59,7 +59,7 @@ namespace MagicMongoDBTool.UserController
                 btnSwitch.Text = !SystemManager.IsUseDefaultLanguage
                     ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh)
                     : "Resume Auto Refresh";
-                btnSwitch.Image = Resources.Run;
+                btnSwitch.Image = ResourceLib.Properties.Resources.Run;
                 btnSwitch.Enabled = false;
                 RefreshStripButton.Enabled = false;
 
@@ -83,7 +83,7 @@ namespace MagicMongoDBTool.UserController
                 btnSwitch.Text = !SystemManager.IsUseDefaultLanguage
                     ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh)
                     : "Resume Auto Refresh";
-                btnSwitch.Image = Resources.Run;
+                btnSwitch.Image = ResourceLib.Properties.Resources.Run;
                 btnSwitch.Enabled = false;
                 RefreshStripButton.Enabled = false;
 
@@ -241,7 +241,7 @@ namespace MagicMongoDBTool.UserController
                 btnSwitch.Text = !SystemManager.IsUseDefaultLanguage
                     ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Stop_AutoRefresh)
                     : "Stop Auto Refresh";
-                btnSwitch.Image = Resources.Pause;
+                btnSwitch.Image = ResourceLib.Properties.Resources.Pause;
             }
             else
             {
@@ -250,7 +250,7 @@ namespace MagicMongoDBTool.UserController
                 btnSwitch.Text = !SystemManager.IsUseDefaultLanguage
                     ? SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh)
                     : "Resume Auto Refresh";
-                btnSwitch.Image = Resources.Run;
+                btnSwitch.Image = ResourceLib.Properties.Resources.Run;
             }
         }
 
@@ -260,7 +260,7 @@ namespace MagicMongoDBTool.UserController
             ShortTimer.Enabled = true;
             btnSwitch.Enabled = true;
             RefreshStripButton.Enabled = true;
-            btnSwitch.Image = Resources.Pause;
+            btnSwitch.Image = ResourceLib.Properties.Resources.Pause;
         }
 
         private void CloseStripButton_Click(object sender, EventArgs e)

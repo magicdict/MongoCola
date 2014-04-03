@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5AC3B529-8E37-4D99-99E9-729603E3BB5E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ResourceLib</RootNamespace>
+    <AssemblyName>ResourceLib</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resource\GetResource_Icon.cs" />
+    <Compile Include="Resource\GetSystemIcon.cs" />
+    <Compile Include="Resource\StringResources.cs" />
+    <Compile Include="Resource\StringResource_Enum.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\%2800,21%29.png" />
+    <Content Include="Resources\%2800,27%29.png" />
+    <Content Include="Resources\%2800,41%29.png" />
+    <Content Include="Resources\%2800,47%29.png" />
+    <Content Include="Resources\%2800,48%29.png" />
+    <Content Include="Resources\%2801,18%29.png" />
+    <Content Include="Resources\%2802,36%29.png" />
+    <Content Include="Resources\%2803,05%29.png" />
+    <Content Include="Resources\%2804,18%29.png" />
+    <Content Include="Resources\%2804,23%29.png" />
+    <Content Include="Resources\%2805,06%29.png" />
+    <Content Include="Resources\%2805,07%29.png" />
+    <Content Include="Resources\%2805,08%29.png" />
+    <Content Include="Resources\%2806,06%29.png" />
+    <Content Include="Resources\%2807,22%29.png" />
+    <Content Include="Resources\%2807,40%29.png" />
+    <Content Include="Resources\%2807,42%29.png" />
+    <Content Include="Resources\%2809,03%29.png" />
+    <Content Include="Resources\%2809,05%29.png" />
+    <Content Include="Resources\%2809,24%29.png" />
+    <Content Include="Resources\%2811,18%29.png" />
+    <Content Include="Resources\%2812,24%29.png" />
+    <Content Include="Resources\%2813,12%29.png" />
+    <Content Include="Resources\%2813,35%29.png" />
+    <Content Include="Resources\%2815,37%29.png" />
+    <Content Include="Resources\%2818,27%29.png" />
+    <Content Include="Resources\%2819,48%29.png" />
+    <Content Include="Resources\%2821,34%29.png" />
+    <Content Include="Resources\%2831,20%29.png" />
+    <Content Include="Resources\%2832,01%29.png" />
+    <Content Include="Resources\%2841,49%29.png" />
+    <Content Include="Resources\%2842,48%29.png" />
+    <Content Include="Resources\%2845,07%29.png" />
+    <Content Include="Resources\%2845,12%29.png" />
+    <Content Include="Resources\books.ico" />
+    <Content Include="Resources\copy.ico" />
+    <Content Include="Resources\cut.ico" />
+    <Content Include="Resources\database_key.png" />
+    <Content Include="Resources\DELETE.ICO" />
+    <Content Include="Resources\exit.ico" />
+    <Content Include="Resources\logo-mongoDB.png" />
+    <Content Include="Resources\ok.ico" />
+    <Content Include="Resources\Open.ico" />
+    <Content Include="Resources\paste.ico" />
+    <Content Include="Resources\save.ico" />
+    <None Include="Resources\icon_delete_file.gif" />
+    <None Include="Resources\compress.png" />
+    <None Include="Resources\1332159906_document_small_upload.png" />
+    <None Include="Resources\%2826,29%29.png" />
+    <None Include="Resources\%2815,43%29.png" />
+    <None Include="Resources\%2814,28%29.png" />
+    <None Include="Resources\%2814,20%29.png" />
+    <None Include="Resources\%2813,28%29.png" />
+    <None Include="Resources\%2811,10%29.png" />
+    <None Include="Resources\%2810,25%29.png" />
+    <None Include="Resources\%2806,41%29.png" />
+    <None Include="Resources\%2806,33%29.png" />
+    <None Include="Resources\%2804,06%29.png" />
+    <None Include="Resources\%2804,05%29.png" />
+    <None Include="Resources\%2803,10%29.png" />
+    <None Include="Resources\%2800,33%29.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

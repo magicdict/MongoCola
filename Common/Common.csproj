@@ -31,12 +31,72 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\MagicMongoDBTool\packages\mongocsharpdriver.1.9.0-rc1\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\MagicMongoDBTool\packages\mongocsharpdriver.1.9.0-rc1\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlugBase.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Aggregation.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Command_Define.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Command_Run.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Connection_Manager.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Connection_Present.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Connection_Present_Sub.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Connection_Present_WebForm.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Const.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Element.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Enum.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_ExportData.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_GFS.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_ImportData.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Operation.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Query.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Sql.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_Status.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_User.cs" />
+    <Compile Include="MongoDBHelper\MongoDBHelper_View.cs" />
+    <Compile Include="System\PlugBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\BsonValueEx.cs" />
+    <Compile Include="System\CloneMeunToolItem.cs" />
+    <Compile Include="System\ConfigHelper.cs" />
+    <Compile Include="System\DataFilter.cs" />
+    <Compile Include="System\EachDatabaseUser.cs" />
+    <Compile Include="System\EventHelper.cs" />
+    <Compile Include="System\MongodbDosCommand.cs" />
+    <Compile Include="System\NumberTextBox.cs" />
+    <Compile Include="System\PlugIn.cs" />
+    <Compile Include="System\SystemManager.cs" />
+    <Compile Include="TreeViewColumns.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TreeViewColumns.Designer.cs">
+      <DependentUpon>TreeViewColumns.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GUI\GUI.csproj">
+      <Project>{8e604d46-99a8-47a0-a533-d83b2b6a83b9}</Project>
+      <Name>GUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
+      <Project>{5ac3b529-8e37-4d99-99e9-729603e3bb5e}</Project>
+      <Name>ResourceLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TreeViewColumns.resx">
+      <DependentUpon>TreeViewColumns.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -101,7 +101,7 @@ namespace MagicMongoDBTool
             // 
             // OpenFileToolStripMenuItem
             // 
-            this.OpenFileToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.OpenFile;
+            this.OpenFileToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.OpenFile;
             this.OpenFileToolStripMenuItem.Name = "OpenFileToolStripMenuItem";
             this.OpenFileToolStripMenuItem.Size = new System.Drawing.Size(80, 25);
             this.OpenFileToolStripMenuItem.Text = "Open File";
@@ -109,7 +109,7 @@ namespace MagicMongoDBTool
             // 
             // UploadFileToolStripMenuItem
             // 
-            this.UploadFileToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.UpLoadFile;
+            this.UploadFileToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.UpLoadFile;
             this.UploadFileToolStripMenuItem.Name = "UploadFileToolStripMenuItem";
             this.UploadFileToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.UploadFileToolStripMenuItem.Text = "Upload File";
@@ -117,7 +117,7 @@ namespace MagicMongoDBTool
             // 
             // UploadFolderToolStripMenuItem
             // 
-            this.UploadFolderToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.UploadFolder;
+            this.UploadFolderToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.UploadFolder;
             this.UploadFolderToolStripMenuItem.Name = "UploadFolderToolStripMenuItem";
             this.UploadFolderToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.UploadFolderToolStripMenuItem.Text = "UploadFolder";
@@ -125,7 +125,7 @@ namespace MagicMongoDBTool
             // 
             // DownloadFileToolStripMenuItem
             // 
-            this.DownloadFileToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.DownloadFile;
+            this.DownloadFileToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.DownloadFile;
             this.DownloadFileToolStripMenuItem.Name = "DownloadFileToolStripMenuItem";
             this.DownloadFileToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DownloadFileToolStripMenuItem.Text = "Download File";
@@ -133,7 +133,7 @@ namespace MagicMongoDBTool
             // 
             // DeleteFileToolStripMenuItem
             // 
-            this.DeleteFileToolStripMenuItem.Image = global::MagicMongoDBTool.Properties.Resources.delete_file;
+            this.DeleteFileToolStripMenuItem.Image = global::ResourceLib.Properties.Resources.delete_file;
             this.DeleteFileToolStripMenuItem.Name = "DeleteFileToolStripMenuItem";
             this.DeleteFileToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.DeleteFileToolStripMenuItem.Text = "Delete File";
@@ -142,7 +142,7 @@ namespace MagicMongoDBTool
             // DeleteFileStripButton
             // 
             this.DeleteFileStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DeleteFileStripButton.Image = global::MagicMongoDBTool.Properties.Resources.delete_file;
+            this.DeleteFileStripButton.Image = global::ResourceLib.Properties.Resources.delete_file;
             this.DeleteFileStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteFileStripButton.Name = "DeleteFileStripButton";
             this.DeleteFileStripButton.Size = new System.Drawing.Size(23, 22);
@@ -151,7 +151,7 @@ namespace MagicMongoDBTool
             // DownloadFileStripButton
             // 
             this.DownloadFileStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.DownloadFileStripButton.Image = global::MagicMongoDBTool.Properties.Resources.DownloadFile;
+            this.DownloadFileStripButton.Image = global::ResourceLib.Properties.Resources.DownloadFile;
             this.DownloadFileStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DownloadFileStripButton.Name = "DownloadFileStripButton";
             this.DownloadFileStripButton.Size = new System.Drawing.Size(23, 22);
@@ -160,7 +160,7 @@ namespace MagicMongoDBTool
             // UpLoadFolderStripButton
             // 
             this.UpLoadFolderStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.UpLoadFolderStripButton.Image = global::MagicMongoDBTool.Properties.Resources.UploadFolder;
+            this.UpLoadFolderStripButton.Image = global::ResourceLib.Properties.Resources.UploadFolder;
             this.UpLoadFolderStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.UpLoadFolderStripButton.Name = "UpLoadFolderStripButton";
             this.UpLoadFolderStripButton.Size = new System.Drawing.Size(23, 22);
@@ -170,7 +170,7 @@ namespace MagicMongoDBTool
             // UploadFileStripButton
             // 
             this.UploadFileStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.UploadFileStripButton.Image = global::MagicMongoDBTool.Properties.Resources.UpLoadFile;
+            this.UploadFileStripButton.Image = global::ResourceLib.Properties.Resources.UpLoadFile;
             this.UploadFileStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.UploadFileStripButton.Name = "UploadFileStripButton";
             this.UploadFileStripButton.Size = new System.Drawing.Size(23, 22);
@@ -180,7 +180,7 @@ namespace MagicMongoDBTool
             // OpenFileStripButton
             // 
             this.OpenFileStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.OpenFileStripButton.Image = global::MagicMongoDBTool.Properties.Resources.OpenFile;
+            this.OpenFileStripButton.Image = global::ResourceLib.Properties.Resources.OpenFile;
             this.OpenFileStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OpenFileStripButton.Name = "OpenFileStripButton";
             this.OpenFileStripButton.Size = new System.Drawing.Size(23, 22);

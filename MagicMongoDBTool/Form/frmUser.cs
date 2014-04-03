@@ -141,11 +141,11 @@ namespace MagicMongoDBTool
                         SystemManager.MStringResource.GetText(_IsAdmin
                             ? StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin
                             : StringResource.TextType.Main_Menu_Operation_Database_AddUser);
-                    Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
+                    Icon = GetSystemIcon.ConvertImgToIcon(ResourceLib.Properties.Resources.AddUserToDB);
                 }
                 else
                 {
-                    Icon = GetSystemIcon.ConvertImgToIcon(Resources.DBkey);
+                    Icon = GetSystemIcon.ConvertImgToIcon(ResourceLib.Properties.Resources.DBkey);
                     Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_ChangePassword);
                 }
                 lblUserName.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Username);

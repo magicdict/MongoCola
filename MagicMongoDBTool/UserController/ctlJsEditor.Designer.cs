@@ -52,7 +52,7 @@
             // EditDocStripButton
             // 
             this.EditDocStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EditDocStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Edit;
+            this.EditDocStripButton.Image = global::ResourceLib.Properties.Resources.Edit;
             this.EditDocStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EditDocStripButton.Name = "EditDocStripButton";
             this.EditDocStripButton.Size = new System.Drawing.Size(23, 22);
@@ -72,7 +72,7 @@
             // CloseStripButton
             // 
             this.CloseStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CloseStripButton.Image = global::MagicMongoDBTool.Properties.Resources.ShutDown;
+            this.CloseStripButton.Image = global::ResourceLib.Properties.Resources.ShutDown;
             this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CloseStripButton.Name = "CloseStripButton";
             this.CloseStripButton.Size = new System.Drawing.Size(23, 22);

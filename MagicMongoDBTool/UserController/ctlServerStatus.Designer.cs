@@ -157,7 +157,7 @@
             // RefreshStripButton
             // 
             this.RefreshStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.RefreshStripButton.Image = global::MagicMongoDBTool.Properties.Resources.Refresh;
+            this.RefreshStripButton.Image = global::ResourceLib.Properties.Resources.Refresh;
             this.RefreshStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RefreshStripButton.Name = "RefreshStripButton";
             this.RefreshStripButton.Size = new System.Drawing.Size(23, 22);
@@ -167,7 +167,7 @@
             // btnSwitch
             // 
             this.btnSwitch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSwitch.Image = global::MagicMongoDBTool.Properties.Resources.Pause;
+            this.btnSwitch.Image = global::ResourceLib.Properties.Resources.Pause;
             this.btnSwitch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(23, 22);
@@ -177,7 +177,7 @@
             // CloseStripButton
             // 
             this.CloseStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CloseStripButton.Image = global::MagicMongoDBTool.Properties.Resources.ShutDown;
+            this.CloseStripButton.Image = global::ResourceLib.Properties.Resources.ShutDown;
             this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CloseStripButton.Name = "CloseStripButton";
             this.CloseStripButton.Size = new System.Drawing.Size(23, 22);

@@ -26,7 +26,7 @@ namespace MagicMongoDBTool
                 CloseStripButton.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
 
-            SaveStripButton.Image = Resources.save.ToBitmap();
+            SaveStripButton.Image = ResourceLib.Properties.Resources.save.ToBitmap();
         }
 
         /// <summary>
