@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
+using System;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {

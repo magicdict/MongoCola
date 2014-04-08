@@ -973,18 +973,12 @@
       <Project>{8e604d46-99a8-47a0-a533-d83b2b6a83b9}</Project>
       <Name>GUI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HTTPServer\HTTPServer.csproj">
-      <Project>{fe7f970b-a096-4ef5-97f9-0ed064993eeb}</Project>
-      <Name>HTTPServer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
       <Project>{5ac3b529-8e37-4d99-99e9-729603e3bb5e}</Project>
       <Name>ResourceLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UnitTest\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -63,7 +63,15 @@ namespace MagicMongoDBTool
                 Application.DoEvents();
             };
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmMain_Resize(object sender, EventArgs e)
+        {
 
+        }
         /// <summary>
         ///     Load Form
         /// </summary>
@@ -76,7 +84,14 @@ namespace MagicMongoDBTool
             ViewDataToolStripMenuItem.Click += (x, y) => ViewDataObj();
             trvsrvlst.KeyDown += trvsrvlst_KeyDown;
             //加载插件信息
-            PlugIn.LoadPlugIn();
+            try
+            {
+                PlugIn.LoadPlugIn();
+            }
+            catch (Exception ex)
+            {
+                SystemManager.ExceptionDeal(ex);
+            }
             foreach (var plugin in PlugIn.PlugInList)
             {
                 String PlugInType = String.Empty;
@@ -116,7 +131,14 @@ namespace MagicMongoDBTool
 
             //Open ConnectionManagement Form
             SystemManager.OpenForm(new frmConnect(), true, true);
-            ServerStatusCtl.SetEnable(true);
+            try
+            {
+                ServerStatusCtl.SetEnable(true);
+            }
+            catch (Exception ex)
+            {
+                SystemManager.ExceptionDeal(ex);
+            }
             RefreshToolStripMenuItem_Click(sender, e);
             commandShellToolStripMenuItem.Checked = true;
 
@@ -302,7 +324,7 @@ namespace MagicMongoDBTool
                 SystemManager.SelectObjectTag = tabView.SelectedTab.Tag.ToString();
             }
         }
-
+        
         /// <summary>
         ///     CommandLog
         /// </summary>
@@ -1335,6 +1357,7 @@ namespace MagicMongoDBTool
         }
 
         #endregion
+
 
     }
 }

@@ -131,13 +131,17 @@ namespace MagicMongoDBTool
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabView = new System.Windows.Forms.TabControl();
             this.tabSvrStatus = new System.Windows.Forms.TabPage();
+            this.ServerStatusCtl = new MagicMongoDBTool.UserController.ctlServerStatus();
             this.tabCommandShell = new System.Windows.Forms.TabPage();
+            this.ctlShellCommandEditor = new MagicMongoDBTool.ctlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.statusStripMain.SuspendLayout();
             this.menuStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabView.SuspendLayout();
+            this.tabSvrStatus.SuspendLayout();
+            this.tabCommandShell.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStripMain
@@ -921,6 +925,7 @@ namespace MagicMongoDBTool
             // 
             // tabSvrStatus
             // 
+            this.tabSvrStatus.Controls.Add(this.ServerStatusCtl);
             this.tabSvrStatus.Location = new System.Drawing.Point(4, 25);
             this.tabSvrStatus.Name = "tabSvrStatus";
             this.tabSvrStatus.Padding = new System.Windows.Forms.Padding(3);
@@ -929,8 +934,18 @@ namespace MagicMongoDBTool
             this.tabSvrStatus.Text = "Sever Status";
             this.tabSvrStatus.UseVisualStyleBackColor = true;
             // 
+            // ServerStatusCtl
+            // 
+            this.ServerStatusCtl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ServerStatusCtl.Location = new System.Drawing.Point(3, 3);
+            this.ServerStatusCtl.Margin = new System.Windows.Forms.Padding(5);
+            this.ServerStatusCtl.Name = "ServerStatusCtl";
+            this.ServerStatusCtl.Size = new System.Drawing.Size(872, 596);
+            this.ServerStatusCtl.TabIndex = 2;
+            // 
             // tabCommandShell
             // 
+            this.tabCommandShell.Controls.Add(this.ctlShellCommandEditor);
             this.tabCommandShell.Location = new System.Drawing.Point(4, 25);
             this.tabCommandShell.Name = "tabCommandShell";
             this.tabCommandShell.Padding = new System.Windows.Forms.Padding(3);
@@ -938,6 +953,16 @@ namespace MagicMongoDBTool
             this.tabCommandShell.TabIndex = 1;
             this.tabCommandShell.Text = "Shell Command";
             this.tabCommandShell.UseVisualStyleBackColor = true;
+            // 
+            // ctlShellCommandEditor
+            // 
+            this.ctlShellCommandEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctlShellCommandEditor.JsName = null;
+            this.ctlShellCommandEditor.Location = new System.Drawing.Point(3, 3);
+            this.ctlShellCommandEditor.Margin = new System.Windows.Forms.Padding(4);
+            this.ctlShellCommandEditor.Name = "ctlShellCommandEditor";
+            this.ctlShellCommandEditor.Size = new System.Drawing.Size(872, 596);
+            this.ctlShellCommandEditor.TabIndex = 0;
             // 
             // splitter1
             // 
@@ -962,6 +987,7 @@ namespace MagicMongoDBTool
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mongo-Cola";
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.statusStripMain.ResumeLayout(false);
             this.statusStripMain.PerformLayout();
             this.menuStripMain.ResumeLayout(false);
@@ -969,11 +995,13 @@ namespace MagicMongoDBTool
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tabView.ResumeLayout(false);
+            this.tabSvrStatus.ResumeLayout(false);
+            this.tabCommandShell.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-         #endregion
+        #endregion
 
         private System.Windows.Forms.StatusStrip statusStripMain;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusSelectedObj;
@@ -1009,7 +1037,7 @@ namespace MagicMongoDBTool
         private ToolStripButton CollapseAllConnectionToolStripButton;
         private ToolStripButton RefreshToolStripButton;
         private ToolStripButton ExitToolStripButton;
-        
+
         private ToolStripButton ImportDataFromAccessToolStripButton;
         private ToolStripButton OptionToolStripButton;
 
@@ -1094,3 +1122,4 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem toolStripMenuItem13;
     }
 }
+
