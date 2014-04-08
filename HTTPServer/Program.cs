@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MagicMongoDBTool.Module;
 
 namespace HTTPServer
 {
@@ -11,6 +12,8 @@ namespace HTTPServer
         [STAThread]
         private static void Main()
         {
+            SystemManager.ConfigHelperInstance = ConfigHelper.LoadFromConfigFile(ConfigHelper._configFilename);
+            GetSystemIcon.InitMainTreeImage();
             Application.Run(new Console());
         }
     }
