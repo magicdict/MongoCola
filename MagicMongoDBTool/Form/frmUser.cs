@@ -10,6 +10,7 @@ namespace MagicMongoDBTool
 {
     public partial class frmUser : Form
     {
+
         private readonly Dictionary<String, BsonElement> OtherDBRolesDict = new Dictionary<string, BsonElement>();
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace MagicMongoDBTool
                 return;
             }
             //MongoUser不能同时具备Password和userSource字段！
-            var user = new MongoDbHelper.MongoUserEx
+            var user = new MongoUserHelper.MongoUserEx
             {
                 Username = txtUserName.Text,
                 Password = txtUserName.Text,
@@ -97,7 +98,7 @@ namespace MagicMongoDBTool
             //简化逻辑，不论新建还是修改，AddUser都可以
             try
             {
-                MongoDbHelper.AddUserToSystem(user, _IsAdmin);
+                MongoUserHelper.AddUserToSystem(user, _IsAdmin);
             }
             catch (Exception ex)
             {

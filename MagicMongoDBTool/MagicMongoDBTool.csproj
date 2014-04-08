@@ -205,12 +205,6 @@
     <Compile Include="Form\frmAggregationCondition.Designer.cs">
       <DependentUpon>frmAggregationCondition.cs</DependentUpon>
     </Compile>
-    <Compile Include="UnitTest\frmUnitTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UnitTest\frmUnitTest.Designer.cs">
-      <DependentUpon>frmUnitTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserController\UserRolesPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -223,7 +217,6 @@
     <Compile Include="UserController\Views\ctlDocumentView.Designer.cs">
       <DependentUpon>ctlDocumentView.cs</DependentUpon>
     </Compile>
-    <Compile Include="UnitTest\InitTestData.cs" />
     <Compile Include="UserController\ctlGeoNear.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -498,9 +491,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmAggregationCondition.resx">
       <DependentUpon>frmAggregationCondition.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UnitTest\frmUnitTest.resx">
-      <DependentUpon>frmUnitTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\UserRolesPanel.resx">
       <DependentUpon>UserRolesPanel.cs</DependentUpon>
@@ -992,7 +982,9 @@
       <Name>ResourceLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UnitTest\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

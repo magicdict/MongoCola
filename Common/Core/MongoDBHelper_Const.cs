@@ -203,23 +203,6 @@ namespace MagicMongoDBTool.Module
 
         #endregion
 
-        #region"用户角色"
-
-        public const String UserRole_read = "read";
-        public const String UserRole_readWrite = "readWrite";
-
-        public const String UserRole_dbAdmin = "dbAdmin";
-        public const String UserRole_userAdmin = "userAdmin";
-
-        public const String UserRole_clusterAdmin = "clusterAdmin";
-
-        public const String UserRole_readAnyDatabase = "readAnyDatabase";
-        public const String UserRole_readWriteAnyDatabase = "readWriteAnyDatabase";
-        public const String UserRole_userAdminAnyDatabase = "userAdminAnyDatabase";
-        public const String UserRole_dbAdminAnyDatabase = "dbAdminAnyDatabase";
-
-        #endregion
-
         #region"其他"
 
         /// <summary>

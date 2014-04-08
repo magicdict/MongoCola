@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
+using MongoDB.Bson;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using MagicMongoDBTool.Module;
-using MongoDB.Bson;
 namespace TreeViewColumnsProject
 {
     public partial class TreeViewColumns : UserControl
@@ -12,7 +12,6 @@ namespace TreeViewColumnsProject
         public TreeViewColumns()
         {
             InitializeComponent();
-
             BackColor = VisualStyleInformation.TextControlBorder;
             Padding = new Padding(1);
             if (!SystemManager.IsUseDefaultLanguage)
@@ -34,12 +33,20 @@ namespace TreeViewColumnsProject
         {
             get { return listView.Columns; }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             DatatreeView.Focus();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void treeView_Click(object sender, EventArgs e)
         {
             Point p = DatatreeView.PointToClient(MousePosition);
@@ -47,19 +54,31 @@ namespace TreeViewColumnsProject
             if (mTreeNode != null)
                 DatatreeView.SelectedNode = mTreeNode;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView_ColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
             DatatreeView.Focus();
             DatatreeView.Invalidate();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             DatatreeView.Focus();
             DatatreeView.Invalidate();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void treeView_DrawNode(object sender, DrawTreeNodeEventArgs e)
         {
             e.DrawDefault = false;
@@ -160,6 +179,7 @@ namespace TreeViewColumnsProject
                         {
                             if (mValue != null)
                             {
+                                //Type这里已经有表示Type的标识了，这里就不重复显示了。
                                 if (!mValue.IsBsonDocument && !mValue.IsBsonArray)
                                 {
                                     if (e.Node.Level > 0)
@@ -168,12 +188,6 @@ namespace TreeViewColumnsProject
                                         strColumnText = mValue.ToString();
                                     }
                                 }
-                                //Type这里已经有表示Type的标识了，这里就不重复显示了。
-                                //else
-                                //{
-                                //if (mValue.IsBsonDocument) { strColumnText = MongoDBHelper.Document_Mark; }
-                                //if (mValue.IsBsonArray) { strColumnText = MongoDBHelper.Array_Mark; }
-                                //}
                             }
                         }
                     }
@@ -212,7 +226,11 @@ namespace TreeViewColumnsProject
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Control_SizeChanged(object sender, EventArgs e)
         {
             colName.Width = Convert.ToInt32(Width*0.3);

@@ -1,4 +1,4 @@
-﻿namespace MagicMongoDBTool.UnitTest
+﻿namespace UnitTest
 {
     partial class frmUnitTest
     {

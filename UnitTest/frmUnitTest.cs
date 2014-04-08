@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;
 
-namespace MagicMongoDBTool.UnitTest
+namespace UnitTest
 {
     public partial class frmUnitTest : Form
     {

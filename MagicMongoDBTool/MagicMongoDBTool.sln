@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceLib", "..\ResourceL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTPServer", "..\HTTPServer\HTTPServer.csproj", "{FE7F970B-A096-4EF5-97F9-0ED064993EEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "..\UnitTest\UnitTest.csproj", "{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,16 @@ Global
 		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FE7F970B-A096-4EF5-97F9-0ED064993EEB}.Release|x86.ActiveCfg = Release|Any CPU
+		{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

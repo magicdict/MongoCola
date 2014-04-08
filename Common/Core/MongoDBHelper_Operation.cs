@@ -361,7 +361,7 @@ namespace MagicMongoDBTool.Module
             }
             indexkeys.Ascending(AscendingKey);
             indexkeys.Descending(DescendingKey);
-            mongoCol.EnsureIndex(indexkeys, option);
+            mongoCol.CreateIndex(indexkeys, option);
             return true;
         }
 

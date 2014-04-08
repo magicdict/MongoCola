@@ -47,13 +47,6 @@ namespace MagicMongoDBTool
             }
             //Init ToolBar
             InitToolBar();
-
-            if (!SystemManager.DebugMode)
-            {
-                //非Debug模式的时候,UT菜单不可使用
-                toolStripMenuItem12.Visible = false;
-                ForMySelfToolStripMenuItem.Visible = false;
-            }
             Text += "  " + SystemManager.Version;
             Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (SystemManager.MonoMode)
@@ -605,7 +598,7 @@ namespace MagicMongoDBTool
                     case MongoDbHelper.DATABASE_TAG:
                     case MongoDbHelper.SINGLE_DATABASE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        List<String> roles = MongoDbHelper.GetCurrentDBRoles();
+                        List<String> roles = MongoUserHelper.GetCurrentDBRoles();
                         if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected DataBase:" + SystemManager.SelectTagData;
@@ -622,17 +615,17 @@ namespace MagicMongoDBTool
                             if (_config.AuthMode)
                             {
                                 //根据Roles确定删除数据库/创建数据集等的权限
-                                DelMongoDBToolStripMenuItem.Enabled = MongoDbHelper.JudgeRightByRole(roles,
-                                    MongoDbHelper.MongoOperate.DelMongoDB);
-                                CreateMongoCollectionToolStripMenuItem.Enabled = MongoDbHelper.JudgeRightByRole(roles,
-                                    MongoDbHelper.MongoOperate.CreateMongoCollection);
-                                InitGFSToolStripMenuItem.Enabled = MongoDbHelper.JudgeRightByRole(roles,
-                                    MongoDbHelper.MongoOperate.InitGFS);
-                                AddUserToolStripMenuItem.Enabled = MongoDbHelper.JudgeRightByRole(roles,
-                                    MongoDbHelper.MongoOperate.AddUser);
+                                DelMongoDBToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
+                                    MongoUserHelper.MongoOperate.DelMongoDB);
+                                CreateMongoCollectionToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
+                                    MongoUserHelper.MongoOperate.CreateMongoCollection);
+                                InitGFSToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
+                                    MongoUserHelper.MongoOperate.InitGFS);
+                                AddUserToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
+                                    MongoUserHelper.MongoOperate.AddUser);
                                 //If a Slave server can repair database @ Master-Slave is not sure ??
-                                RepairDBToolStripMenuItem.Enabled = MongoDbHelper.JudgeRightByRole(roles,
-                                    MongoDbHelper.MongoOperate.RepairDB);
+                                RepairDBToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
+                                    MongoUserHelper.MongoOperate.RepairDB);
                             }
                             else
                             {
@@ -642,8 +635,8 @@ namespace MagicMongoDBTool
                                 AddUserToolStripMenuItem.Enabled = true;
                                 RepairDBToolStripMenuItem.Enabled = true;
                             }
-                            EvalJSToolStripMenuItem.Enabled = MongoDbHelper.JudgeRightByRole(roles,
-                                MongoDbHelper.MongoOperate.EvalJS);
+                            EvalJSToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
+                                MongoUserHelper.MongoOperate.EvalJS);
                         }
                         //备份数据库
                         DumpDatabaseToolStripMenuItem.Enabled = true;

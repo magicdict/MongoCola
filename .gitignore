@@ -25,6 +25,8 @@
 /MagicMongoDBTool/obj
 /HTTPServer/bin
 /HTTPServer/obj
+/UnitTest/bin
+/UnitTest/obj
 /DesignDocument
 /ServerLoader
 !readme.txt

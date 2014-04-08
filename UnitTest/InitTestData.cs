@@ -5,7 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
 
-namespace MagicMongoDBTool.Module
+namespace UnitTest
 {
     public static class InitTestData
     {

@@ -1,5 +1,4 @@
 ﻿using MagicMongoDBTool.Module;
-using MagicMongoDBTool.UnitTest;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -1187,17 +1186,6 @@ namespace MagicMongoDBTool
             String strUrl = @"UserGuide\index.html";
             Process.Start(strUrl);
         }
-
-        /// <summary>
-        ///     Unit Test Form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void forMySelfToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SystemManager.OpenForm(new frmUnitTest(), true, true);
-        }
-
         #endregion
     }
 }

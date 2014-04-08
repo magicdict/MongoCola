@@ -1,13 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
+using System;
+using System.Collections.Generic;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDbHelper
+    public static partial class MongoUserHelper
     {
+        #region"用户角色"
+
+        public const String UserRole_read = "read";
+        public const String UserRole_readWrite = "readWrite";
+
+        public const String UserRole_dbAdmin = "dbAdmin";
+        public const String UserRole_userAdmin = "userAdmin";
+
+        public const String UserRole_clusterAdmin = "clusterAdmin";
+
+        public const String UserRole_readAnyDatabase = "readAnyDatabase";
+        public const String UserRole_readWriteAnyDatabase = "readWriteAnyDatabase";
+        public const String UserRole_userAdminAnyDatabase = "userAdminAnyDatabase";
+        public const String UserRole_dbAdminAnyDatabase = "dbAdminAnyDatabase";
+
+        #endregion
+
+
         #region"用户操作"
 
         //这里有个漏洞,对于数据库来说，对于local的验证和对于admin的验证是相同的。
@@ -38,8 +56,8 @@ namespace MagicMongoDBTool.Module
             //这样的话，在使用MongoCredentials登入的时候，会发生密码错误引发的认证失败
             MongoCollection users;
             users = IsAdmin
-                ? mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).GetCollection(COLLECTION_NAME_USER)
-                : SystemManager.GetCurrentDataBase().GetCollection(COLLECTION_NAME_USER);
+                ? mongoSvr.GetDatabase(MongoDbHelper.DATABASE_NAME_ADMIN).GetCollection(MongoDbHelper.COLLECTION_NAME_USER)
+                : SystemManager.GetCurrentDataBase().GetCollection(MongoDbHelper.COLLECTION_NAME_USER);
             //以下代码 1.Ver2.4以前的有ReadOnly,FindUser需要寻找ReadOnly字段
             //         2.这个其实不用检查，有的话修改，没有的话，新建
             //if (users.Database.FindUser(newUserEx.Username) == null)
@@ -67,7 +85,7 @@ namespace MagicMongoDBTool.Module
             //必须要Hash一下Password
             document["pwd"] = MongoUser.HashPassword(user.Username, user.Password);
             //OtherRole 必须放在Admin.system.users里面
-            if (Col.Database.Name == DATABASE_NAME_ADMIN)
+            if (Col.Database.Name == MongoDbHelper.DATABASE_NAME_ADMIN)
             {
                 document["otherDBRoles"] = user.otherDBRoles;
             }
@@ -87,8 +105,8 @@ namespace MagicMongoDBTool.Module
             MongoServer mongoSvr = SystemManager.GetCurrentServer();
             MongoCollection users;
             users = IsAdmin
-                ? mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).GetCollection(COLLECTION_NAME_USER)
-                : SystemManager.GetCurrentDataBase().GetCollection(COLLECTION_NAME_USER);
+                ? mongoSvr.GetDatabase(MongoDbHelper.DATABASE_NAME_ADMIN).GetCollection(MongoDbHelper.COLLECTION_NAME_USER)
+                : SystemManager.GetCurrentDataBase().GetCollection(MongoDbHelper.COLLECTION_NAME_USER);
             users.Remove(Query.EQ("user", strUser));
         }
 
@@ -101,7 +119,7 @@ namespace MagicMongoDBTool.Module
             var Roles = new List<String>();
             String ConnectionName = SystemManager.GetCurrentServerConfig().ConnectionName;
             String DBName = SystemManager.GetCurrentDataBase().Name;
-            foreach (BsonValue item in _mongoUserLst[ConnectionName].GetRolesByDBName(DBName))
+            foreach (BsonValue item in MongoDbHelper._mongoUserLst[ConnectionName].GetRolesByDBName(DBName))
             {
                 Roles.Add(item.ToString());
             }
@@ -174,9 +192,63 @@ namespace MagicMongoDBTool.Module
         #endregion
 
         #region"角色操作"
-            public static void AddRole(){
+        /// <summary>
+        /// 自定义角色
+        /// </summary>
+        public struct CustomRole
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            public String _id;
+            /// <summary>
+            /// 
+            /// </summary>
+            public String role;
+            /// <summary>
+            /// 
+            /// </summary>
+            public privilege[] privileges;
+            /// <summary>
+            /// 
+            /// </summary>
+            public role[] roles;
+        }
+        /// <summary>
+        /// 权限
+        /// </summary>
+        public struct privilege
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            public String resource;
+            /// <summary>
+            /// 
+            /// </summary>
+            public String actions;
 
-            }
+        }
+        /// <summary>
+        /// 角色
+        /// </summary>
+        public  struct role {
+            /// <summary>
+            /// 
+            /// </summary>
+            public String mRole;
+            /// <summary>
+            /// 
+            /// </summary>
+            public String db;
+        }
+        /// <summary>
+        /// 添加一个用户自定义角色
+        /// </summary>
+        public static void AddRole(MongoDatabase mongoDb, CustomRole role)
+        {
+
+        }
         #endregion
     }
 }
