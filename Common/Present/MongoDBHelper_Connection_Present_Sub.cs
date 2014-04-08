@@ -7,9 +7,9 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDbHelper
+    public static partial class UIHelper
     {
-        private static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongoSvr, String mongoSvrKey)
+        public static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongoSvr, String mongoSvrKey)
         {
             String strShowDBName = strDBName;
             if (!SystemManager.IsUseDefaultLanguage)
@@ -18,7 +18,7 @@ namespace MagicMongoDBTool.Module
                 {
                     switch (strDBName)
                     {
-                        case DATABASE_NAME_ADMIN:
+                        case MongoDbHelper.DATABASE_NAME_ADMIN:
                             strShowDBName = "管理员权限(admin)";
                             break;
                         case "local":
@@ -33,50 +33,50 @@ namespace MagicMongoDBTool.Module
                 }
             }
             var mongoDBNode = new TreeNode(strShowDBName);
-            mongoDBNode.Tag = DATABASE_TAG + ":" + mongoSvrKey + "/" + strDBName;
+            mongoDBNode.Tag = MongoDbHelper.DATABASE_TAG + ":" + mongoSvrKey + "/" + strDBName;
             MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
 
             var UserNode = new TreeNode("User", (int) GetSystemIcon.MainTreeImageType.UserIcon,
                 (int) GetSystemIcon.MainTreeImageType.UserIcon);
-            UserNode.Tag = USER_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_USER;
+            UserNode.Tag = MongoDbHelper.USER_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + MongoDbHelper.COLLECTION_NAME_USER;
             mongoDBNode.Nodes.Add(UserNode);
 
             var JsNode = new TreeNode("JavaScript", (int) GetSystemIcon.MainTreeImageType.JavaScriptList,
                 (int) GetSystemIcon.MainTreeImageType.JavaScriptList);
-            JsNode.Tag = JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + COLLECTION_NAME_JAVASCRIPT;
+            JsNode.Tag = MongoDbHelper.JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + MongoDbHelper.COLLECTION_NAME_JAVASCRIPT;
             mongoDBNode.Nodes.Add(JsNode);
 
             var GFSNode = new TreeNode("Grid File System", (int) GetSystemIcon.MainTreeImageType.GFS,
                 (int) GetSystemIcon.MainTreeImageType.GFS);
-            GFSNode.Tag = GRID_FILE_SYSTEM_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" +
-                          COLLECTION_NAME_GFS_FILES;
+            GFSNode.Tag = MongoDbHelper.GRID_FILE_SYSTEM_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" +
+                          MongoDbHelper.COLLECTION_NAME_GFS_FILES;
             mongoDBNode.Nodes.Add(GFSNode);
 
             var mongoSysColListNode = new TreeNode("Collections(System)",
                 (int) GetSystemIcon.MainTreeImageType.SystemCol, (int) GetSystemIcon.MainTreeImageType.SystemCol);
-            mongoSysColListNode.Tag = SYSTEM_COLLECTION_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name;
+            mongoSysColListNode.Tag = MongoDbHelper.SYSTEM_COLLECTION_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name;
             mongoDBNode.Nodes.Add(mongoSysColListNode);
 
             var mongoColListNode = new TreeNode("Collections(General)",
                 (int) GetSystemIcon.MainTreeImageType.CollectionList,
                 (int) GetSystemIcon.MainTreeImageType.CollectionList);
-            mongoColListNode.Tag = COLLECTION_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name;
+            mongoColListNode.Tag = MongoDbHelper.COLLECTION_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name;
             List<String> colNameList = mongoDB.GetCollectionNames().ToList();
             foreach (String strColName in colNameList)
             {
                 switch (strColName)
                 {
-                    case COLLECTION_NAME_USER:
+                    case MongoDbHelper.COLLECTION_NAME_USER:
                         //system.users,fs,system.js这几个系统级别的Collection不需要放入
                         break;
-                    case COLLECTION_NAME_JAVASCRIPT:
-                        foreach (BsonDocument t in mongoDB.GetCollection(COLLECTION_NAME_JAVASCRIPT).FindAll())
+                    case MongoDbHelper.COLLECTION_NAME_JAVASCRIPT:
+                        foreach (BsonDocument t in mongoDB.GetCollection(MongoDbHelper.COLLECTION_NAME_JAVASCRIPT).FindAll())
                         {
-                            var js = new TreeNode(t.GetValue(KEY_ID).ToString());
+                            var js = new TreeNode(t.GetValue(MongoDbHelper.KEY_ID).ToString());
                             js.ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc;
                             js.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc;
-                            js.Tag = JAVASCRIPT_DOC_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" +
-                                     COLLECTION_NAME_JAVASCRIPT + "/" + t.GetValue(KEY_ID);
+                            js.Tag = MongoDbHelper.JAVASCRIPT_DOC_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" +
+                                     MongoDbHelper.COLLECTION_NAME_JAVASCRIPT + "/" + t.GetValue(MongoDbHelper.KEY_ID);
                             JsNode.Nodes.Add(js);
                         }
                         break;
@@ -93,12 +93,12 @@ namespace MagicMongoDBTool.Module
                             mongoColNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Err;
                             SystemManager.ExceptionDeal(ex);
                         }
-                        if (IsSystemCollection(mongoDB.Name, strColName))
+                        if (MongoDbHelper.IsSystemCollection(mongoDB.Name, strColName))
                         {
                             switch (strColName)
                             {
-                                case COLLECTION_NAME_GFS_CHUNKS:
-                                case COLLECTION_NAME_GFS_FILES:
+                                case MongoDbHelper.COLLECTION_NAME_GFS_CHUNKS:
+                                case MongoDbHelper.COLLECTION_NAME_GFS_FILES:
                                     GFSNode.Nodes.Add(mongoColNode);
                                     break;
                                 default:
@@ -125,7 +125,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="mongoDB"></param>
         /// <param name="mongoConnSvrKey"></param>
         /// <returns></returns>
-        private static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase mongoDB,
+        public static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase mongoDB,
             String mongoConnSvrKey)
         {
             String strShowColName = strColName;
@@ -246,53 +246,53 @@ namespace MagicMongoDBTool.Module
                                 "(" + strShowColName + ")";
                         }
                         break;
-                    case COLLECTION_NAME_GFS_CHUNKS:
+                    case MongoDbHelper.COLLECTION_NAME_GFS_CHUNKS:
                         strShowColName =
                             SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_GFS_CHUNKS) +
                             "(" + strShowColName + ")";
                         break;
-                    case COLLECTION_NAME_GFS_FILES:
+                    case MongoDbHelper.COLLECTION_NAME_GFS_FILES:
                         strShowColName =
                             SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_GFS_FILES) +
                             "(" + strShowColName + ")";
                         break;
-                    case COLLECTION_NAME_OPERATION_LOG:
+                    case MongoDbHelper.COLLECTION_NAME_OPERATION_LOG:
                         strShowColName =
                             SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_OPERATION_LOG) +
                             "(" + strShowColName + ")";
                         break;
-                    case COLLECTION_NAME_SYSTEM_INDEXES:
+                    case MongoDbHelper.COLLECTION_NAME_SYSTEM_INDEXES:
                         strShowColName =
                             SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_INDEXES) +
                             "(" + strShowColName + ")";
                         break;
-                    case COLLECTION_NAME_JAVASCRIPT:
+                    case MongoDbHelper.COLLECTION_NAME_JAVASCRIPT:
                         strShowColName =
                             SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_JAVASCRIPT) +
                             "(" + strShowColName + ")";
                         break;
-                    case COLLECTION_NAME_SYSTEM_REPLSET:
+                    case MongoDbHelper.COLLECTION_NAME_SYSTEM_REPLSET:
                         strShowColName =
                             SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_REPLSET) +
                             "(" + strShowColName + ")";
                         break;
-                    case COLLECTION_NAME_REPLSET_MINVALID:
+                    case MongoDbHelper.COLLECTION_NAME_REPLSET_MINVALID:
                         strShowColName =
                             SystemManager.MStringResource.GetText(
                                 StringResource.TextType.COLLECTION_NAME_REPLSET_MINVALID) + "(" + strShowColName + ")";
                         break;
-                    case COLLECTION_NAME_USER:
+                    case MongoDbHelper.COLLECTION_NAME_USER:
                         strShowColName =
                             SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_USER) + "(" +
                             strShowColName + ")";
                         break;
-                    case COLLECTION_NAME_ROLE:
+                    case MongoDbHelper.COLLECTION_NAME_ROLE:
                         //New From 2.6 
                         strShowColName =
                             SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_ROLE) + "(" +
                             strShowColName + ")";
                         break;
-                    case COLLECTION_NAME_SYSTEM_PROFILE:
+                    case MongoDbHelper.COLLECTION_NAME_SYSTEM_PROFILE:
                         strShowColName =
                             SystemManager.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_PROFILE) +
                             "(" + strShowColName + ")";
@@ -305,18 +305,18 @@ namespace MagicMongoDBTool.Module
             mongoColNode = new TreeNode(strShowColName);
             switch (strColName)
             {
-                case COLLECTION_NAME_GFS_FILES:
-                    mongoColNode.Tag = GRID_FILE_SYSTEM_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" +
+                case MongoDbHelper.COLLECTION_NAME_GFS_FILES:
+                    mongoColNode.Tag = MongoDbHelper.GRID_FILE_SYSTEM_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" +
                                        strColName;
                     break;
-                case COLLECTION_NAME_USER:
-                    mongoColNode.Tag = USER_LIST_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                case MongoDbHelper.COLLECTION_NAME_USER:
+                    mongoColNode.Tag = MongoDbHelper.USER_LIST_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
                     break;
                 //case COLLECTION_NAME_ROLE:
                 //    mongoColNode.Tag = USER_LIST_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
                 //    break;
                 default:
-                    mongoColNode.Tag = COLLECTION_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                    mongoColNode.Tag = MongoDbHelper.COLLECTION_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
                     break;
             }
 
@@ -416,20 +416,20 @@ namespace MagicMongoDBTool.Module
                 }
                 mongoIndex.ImageIndex = (int) GetSystemIcon.MainTreeImageType.DBKey;
                 mongoIndex.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.DBKey;
-                mongoIndex.Tag = INDEX_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName + "/" +
+                mongoIndex.Tag = MongoDbHelper.INDEX_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName + "/" +
                                  indexDoc.Name;
                 mongoIndexes.Nodes.Add(mongoIndex);
             }
             mongoIndexes.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Keys;
             mongoIndexes.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Keys;
-            mongoIndexes.Tag = INDEXES_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
+            mongoIndexes.Tag = MongoDbHelper.INDEXES_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
             mongoColNode.Nodes.Add(mongoIndexes);
             //End ListIndex
 
             mongoColNode.ToolTipText = strColName + Environment.NewLine;
             mongoColNode.ToolTipText += "IsCapped:" + mongoCol.GetStats().IsCapped;
 
-            if (strColName == COLLECTION_NAME_USER)
+            if (strColName == MongoDbHelper.COLLECTION_NAME_USER)
             {
                 mongoColNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.UserIcon;
                 mongoColNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.UserIcon;
@@ -457,16 +457,16 @@ namespace MagicMongoDBTool.Module
                 switch (key.Value.ToString())
                 {
                     case "1":
-                        KeyString += IndexType.Ascending.ToString();
+                        KeyString += MongoDbHelper.IndexType.Ascending.ToString();
                         break;
                     case "-1":
-                        KeyString += IndexType.Descending.ToString();
+                        KeyString += MongoDbHelper.IndexType.Descending.ToString();
                         break;
                     case "2d":
-                        KeyString += IndexType.GeoSpatial.ToString();
+                        KeyString += MongoDbHelper.IndexType.GeoSpatial.ToString();
                         break;
                     case "text":
-                        KeyString += IndexType.Text.ToString();
+                        KeyString += MongoDbHelper.IndexType.Text.ToString();
                         break;
                     default:
                         break;

@@ -59,7 +59,7 @@ namespace MagicMongoDBTool
                 SystemManager.ConfigHelperInstance.ConnectionList[ConnectionName]
             };
             MongoDbHelper.AddServer(connLst);
-            content = content.Replace("<%=NodeJSon%>", MongoDbHelper.GetConnectionzTreeJson());
+            content = content.Replace("<%=NodeJSon%>", UIHelper.GetConnectionzTreeJson());
             content = content.Replace("<%=ConnectionName%>", ConnectionName);
             content = content.Replace("<%=ConnectionTag%>", MongoDbHelper.CONNECTION_TAG);
             content = content.Replace("<%=DataBaseTag%>", MongoDbHelper.DATABASE_TAG);
@@ -78,7 +78,7 @@ namespace MagicMongoDBTool
             cr =
                 MongoDbHelper.ExecuteMongoSvrCommand(MongoDbHelper.serverStatus_Command,
                     SystemManager.GetCurrentServer()).Response;
-            return MongoDbHelper.ConvertBsonTozTreeJson("Connection Status", cr, true);
+            return UIHelper.ConvertBsonTozTreeJson("Connection Status", cr, true);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace MagicMongoDBTool
             SystemManager.SelectObjectTag = DBTag;
             var cr = new BsonDocument();
             cr = SystemManager.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
-            return MongoDbHelper.ConvertBsonTozTreeJson("DataBase Status", cr, true);
+            return UIHelper.ConvertBsonTozTreeJson("DataBase Status", cr, true);
         }
 
         /// <summary>

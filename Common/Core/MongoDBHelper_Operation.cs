@@ -140,7 +140,7 @@ namespace MagicMongoDBTool.Module
                             try
                             {
                                 mongoSvr.GetDatabase(dbName);
-                                tr.Nodes.Add(FillDataBaseInfoToTreeNode(dbName, mongoSvr, svrKey + "/" + svrKey));
+                                tr.Nodes.Add(UIHelper.FillDataBaseInfoToTreeNode(dbName, mongoSvr, svrKey + "/" + svrKey));
                             }
                             catch (Exception ex)
                             {
@@ -203,7 +203,7 @@ namespace MagicMongoDBTool.Module
                     {
                         if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
                         {
-                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, ConKey + "/" + svrKey));
+                            item.Nodes.Add(UIHelper.FillCollectionInfoToTreeNode(collectionName, mongoDB, ConKey + "/" + svrKey));
                         }
                     }
                     rtnResult = true;
@@ -238,7 +238,7 @@ namespace MagicMongoDBTool.Module
                     {
                         if (item.Tag.ToString().StartsWith(COLLECTION_LIST_TAG))
                         {
-                            item.Nodes.Add(FillCollectionInfoToTreeNode(collectionName, mongoDB, ConKey + "/" + svrKey));
+                            item.Nodes.Add(UIHelper.FillCollectionInfoToTreeNode(collectionName, mongoDB, ConKey + "/" + svrKey));
                         }
                     }
                     rtnResult = true;

@@ -35,7 +35,7 @@
             // lnkWebFormEntry
             // 
             this.lnkWebFormEntry.AutoSize = true;
-            this.lnkWebFormEntry.Location = new System.Drawing.Point(447, 41);
+            this.lnkWebFormEntry.Location = new System.Drawing.Point(391, 39);
             this.lnkWebFormEntry.Name = "lnkWebFormEntry";
             this.lnkWebFormEntry.Size = new System.Drawing.Size(138, 13);
             this.lnkWebFormEntry.TabIndex = 12;
@@ -55,7 +55,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 262);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(553, 262);
             this.Controls.Add(this.txtInfo);
             this.Controls.Add(this.lnkWebFormEntry);
             this.Name = "Console";

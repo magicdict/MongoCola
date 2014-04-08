@@ -34,7 +34,7 @@ namespace MagicMongoDBTool.Module
             var array = new BsonArray();
             foreach (TreeNode item in tree.TreeView.Nodes)
             {
-                array.Add(ConvertTreeNodeTozTreeBsonDoc(item));
+                array.Add(UIHelper.ConvertTreeNodeTozTreeBsonDoc(item));
             }
             return array.ToJson(SystemManager.JsonWriterSettings);
             ;

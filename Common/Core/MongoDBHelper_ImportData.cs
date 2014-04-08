@@ -269,7 +269,7 @@ namespace MagicMongoDBTool.Module
                 String strSvrPath = SystemManager.GetTagData(parm.strSvrPathWithTag);
                 String strKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.ConnectionLv] + "/" +
                                 strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLv];
-                parm.currentTreeNode.Nodes.Add(FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, strKey));
+                parm.currentTreeNode.Nodes.Add(UIHelper.FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, strKey));
                 MyMessageBox.ShowMessage("Import Message",
                     (tblTableList.Rows.Count - err) + "Created   " + err + "failed", strCreateTableInfo, true);
             }

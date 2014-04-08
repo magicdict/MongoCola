@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
-
 namespace TreeViewColumnsProject
 {
     public partial class TreeViewColumns : UserControl

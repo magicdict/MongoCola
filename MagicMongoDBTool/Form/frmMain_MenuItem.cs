@@ -174,7 +174,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDbHelper.FillConnectionToTreeView(trvsrvlst);
+            UIHelper.FillConnectionToTreeView(trvsrvlst);
             ServerStatusCtl.ResetCtl();
             ServerStatusCtl.RefreshStatus(false);
             ServerStatusCtl.RefreshCurrentOpr();
@@ -497,7 +497,7 @@ namespace MagicMongoDBTool
         {
             MongoDbHelper.InitGFS();
             DisableAllOpr();
-            MongoDbHelper.FillConnectionToTreeView(trvsrvlst);
+            UIHelper.FillConnectionToTreeView(trvsrvlst);
         }
 
         /// <summary>

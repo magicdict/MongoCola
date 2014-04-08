@@ -5,7 +5,7 @@ using TreeViewColumnsProject;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDbHelper
+    public static partial class UIHelper
     {
         #region"展示数据库结构 WebForm"
 
@@ -29,7 +29,7 @@ namespace MagicMongoDBTool.Module
         public static String ConvertBsonTozTreeJson(String RootName, BsonDocument doc, Boolean IsOpen)
         {
             var trvStatus = new TreeViewColumns();
-            FillDataToTreeView(RootName, trvStatus, doc);
+            MongoDbHelper.FillDataToTreeView(RootName, trvStatus, doc);
             if (IsOpen)
             {
                 trvStatus.TreeView.Nodes[0].Expand();
@@ -55,7 +55,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="SubNode"></param>
         /// <returns></returns>
-        private static BsonDocument ConvertTreeNodeTozTreeBsonDoc(TreeNode SubNode)
+        public static BsonDocument ConvertTreeNodeTozTreeBsonDoc(TreeNode SubNode)
         {
             var SingleNode = new BsonDocument();
             SingleNode.Add("name", SubNode.Text + GetTagText(SubNode));

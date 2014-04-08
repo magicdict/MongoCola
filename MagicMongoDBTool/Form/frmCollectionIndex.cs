@@ -191,7 +191,7 @@ namespace MagicMongoDBTool
                     if (!string.IsNullOrEmpty(TextKey))
                     {
                         var TextKeysDoc = new IndexKeysDocument {{TextKey, "text"}};
-                        SystemManager.GetCurrentCollection().EnsureIndex(TextKeysDoc, option);
+                        SystemManager.GetCurrentCollection().CreateIndex(TextKeysDoc, option);
                     }
                     else
                     {
@@ -223,7 +223,7 @@ namespace MagicMongoDBTool
             {
                 var ListItem = new ListViewItem(item.Name);
                 ListItem.SubItems.Add(item.Version.ToString(CultureInfo.InvariantCulture));
-                ListItem.SubItems.Add(MongoDbHelper.GetKeyString(item.Key));
+                ListItem.SubItems.Add(UIHelper.GetKeyString(item.Key));
                 ListItem.SubItems.Add(item.Namespace);
                 ListItem.SubItems.Add(item.IsBackground.ToString());
                 ListItem.SubItems.Add(item.IsSparse.ToString());
