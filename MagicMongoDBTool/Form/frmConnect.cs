@@ -1,11 +1,7 @@
-﻿using System;
+﻿using MagicMongoDBTool.Module;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading;
 using System.Windows.Forms;
-using MagicMongoDBTool.HTTP;
-using MagicMongoDBTool.Module;
-
 namespace MagicMongoDBTool
 {
     public partial class frmConnect : Form
@@ -29,7 +25,6 @@ namespace MagicMongoDBTool
             cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
             cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
             Text = SystemManager.MStringResource.GetText(StringResource.TextType.Connect_Title);
-            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         /// <summary>
@@ -134,45 +129,5 @@ namespace MagicMongoDBTool
         {
             Close();
         }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="Info"></param>
-        /// <param name="Message"></param>
-        private void Write(String Info, byte Message)
-        {
-            txtInfo.Text += Info + Environment.NewLine;
-        }
-
-        /// <summary>
-        ///     Entry Of MongoCola@Browser
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lnkWebFormEntry_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Height = 500;
-            HTTPServer.ServerPath = Application.StartupPath + "\\HTML";
-            var svr = new HTTPServer();
-            svr.LogInfo += (x, y) =>
-            {
-                if (txtInfo.InvokeRequired)
-                {
-                    WriteInfo t = Write;
-                    var o = new object[2] {y.Info, y.Level};
-                    Invoke(t, o);
-                }
-                Write(y.Info, y.Level);
-            };
-            var q = new Thread(svr.Start);
-            q.Start();
-            Process.Start("http://localhost:13000/");
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="Info"></param>
-        /// <param name="Message"></param>
-        private delegate void WriteInfo(String Info, byte Message);
     }
 }

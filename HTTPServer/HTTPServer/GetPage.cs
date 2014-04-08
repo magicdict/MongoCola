@@ -4,7 +4,7 @@ using System.IO;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 
-namespace MagicMongoDBTool.HTTP
+namespace MagicMongoDBTool
 {
     public static class GetPage
     {

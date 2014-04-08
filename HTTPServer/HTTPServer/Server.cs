@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Web;
 
-namespace MagicMongoDBTool.HTTP
+namespace MagicMongoDBTool
 {
     public class HTTPServer
     {
@@ -220,7 +220,6 @@ namespace MagicMongoDBTool.HTTP
                     IsFound = true;
                 }
             }
-
             if (IsFound)
             {
                 // Process the data sent by the client.
