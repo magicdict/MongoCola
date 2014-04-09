@@ -32,8 +32,8 @@
             this.btnFillDataForTTL = new System.Windows.Forms.Button();
             this.btnFillDataForUser = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnFillDataForAggregation = new System.Windows.Forms.Button();
             this.btnFillDataForMapReduce = new System.Windows.Forms.Button();
+            this.btnFillDataForAggregation = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,16 +81,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "UnitTest";
             // 
-            // btnFillDataForAggregation
-            // 
-            this.btnFillDataForAggregation.Location = new System.Drawing.Point(22, 104);
-            this.btnFillDataForAggregation.Name = "btnFillDataForAggregation";
-            this.btnFillDataForAggregation.Size = new System.Drawing.Size(174, 23);
-            this.btnFillDataForAggregation.TabIndex = 8;
-            this.btnFillDataForAggregation.Text = "FillDataForAggregation";
-            this.btnFillDataForAggregation.UseVisualStyleBackColor = true;
-            this.btnFillDataForAggregation.Click += new System.EventHandler(this.btnFillDataForAggregation_Click);
-            // 
             // btnFillDataForMapReduce
             // 
             this.btnFillDataForMapReduce.Location = new System.Drawing.Point(22, 128);
@@ -101,6 +91,16 @@
             this.btnFillDataForMapReduce.UseVisualStyleBackColor = true;
             this.btnFillDataForMapReduce.Click += new System.EventHandler(this.btnFillDataForMapReduce_Click);
             // 
+            // btnFillDataForAggregation
+            // 
+            this.btnFillDataForAggregation.Location = new System.Drawing.Point(22, 104);
+            this.btnFillDataForAggregation.Name = "btnFillDataForAggregation";
+            this.btnFillDataForAggregation.Size = new System.Drawing.Size(174, 23);
+            this.btnFillDataForAggregation.TabIndex = 8;
+            this.btnFillDataForAggregation.Text = "FillDataForAggregation";
+            this.btnFillDataForAggregation.UseVisualStyleBackColor = true;
+            this.btnFillDataForAggregation.Click += new System.EventHandler(this.btnFillDataForAggregation_Click);
+            // 
             // frmUnitTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -108,6 +108,7 @@
             this.ClientSize = new System.Drawing.Size(256, 187);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmUnitTest";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UnitTest";
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

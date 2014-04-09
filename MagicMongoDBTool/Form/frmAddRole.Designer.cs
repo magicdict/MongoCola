@@ -34,6 +34,7 @@
             this.lblPrivilege = new System.Windows.Forms.Label();
             this.lblResource = new System.Windows.Forms.Label();
             this.lblAction = new System.Windows.Forms.Label();
+            this.cmbDatabase = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnAddRole
@@ -73,7 +74,7 @@
             // lblResource
             // 
             this.lblResource.AutoSize = true;
-            this.lblResource.Location = new System.Drawing.Point(134, 100);
+            this.lblResource.Location = new System.Drawing.Point(131, 102);
             this.lblResource.Name = "lblResource";
             this.lblResource.Size = new System.Drawing.Size(53, 13);
             this.lblResource.TabIndex = 4;
@@ -88,12 +89,21 @@
             this.lblAction.TabIndex = 5;
             this.lblAction.Text = "Action";
             // 
+            // cmbDatabase
+            // 
+            this.cmbDatabase.FormattingEnabled = true;
+            this.cmbDatabase.Location = new System.Drawing.Point(201, 99);
+            this.cmbDatabase.Name = "cmbDatabase";
+            this.cmbDatabase.Size = new System.Drawing.Size(121, 21);
+            this.cmbDatabase.TabIndex = 6;
+            // 
             // frmAddRole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(598, 247);
+            this.Controls.Add(this.cmbDatabase);
             this.Controls.Add(this.lblAction);
             this.Controls.Add(this.lblResource);
             this.Controls.Add(this.lblPrivilege);
@@ -102,6 +112,7 @@
             this.Controls.Add(this.btnAddRole);
             this.Name = "frmAddRole";
             this.Text = "Add Custom Role";
+            this.Load += new System.EventHandler(this.frmAddRole_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,5 +126,6 @@
         private System.Windows.Forms.Label lblPrivilege;
         private System.Windows.Forms.Label lblResource;
         private System.Windows.Forms.Label lblAction;
+        private System.Windows.Forms.ComboBox cmbDatabase;
     }
 }

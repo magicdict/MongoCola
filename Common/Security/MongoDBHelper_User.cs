@@ -12,12 +12,9 @@ namespace MagicMongoDBTool.Module
 
         public const String UserRole_read = "read";
         public const String UserRole_readWrite = "readWrite";
-
         public const String UserRole_dbAdmin = "dbAdmin";
         public const String UserRole_userAdmin = "userAdmin";
-
         public const String UserRole_clusterAdmin = "clusterAdmin";
-
         public const String UserRole_readAnyDatabase = "readAnyDatabase";
         public const String UserRole_readWriteAnyDatabase = "readWriteAnyDatabase";
         public const String UserRole_userAdminAnyDatabase = "userAdminAnyDatabase";
@@ -25,12 +22,66 @@ namespace MagicMongoDBTool.Module
 
         #endregion
 
+        #region"Action"
+
+        //http://docs.mongodb.org/master/reference/privilege-actions/#security-user-actions
+
+        /// <summary>
+        /// Queryand Write Actions
+        /// </summary>
+        public enum QueryandWriteActions {
+            find,
+            insert,
+            remove,
+            update
+        }
+        /// <summary>
+        /// Database Management Actions
+        /// </summary>
+        public enum DatabaseManagementActions{
+    
+        }
+        /// <summary>
+        /// Deployment Management Actions
+        /// </summary>
+        public enum DeploymentManagementActions{
+    
+        }
+        /// <summary>
+        /// Replication Actions
+        /// </summary>
+        public enum ReplicationActions { 
+        
+        }
+        /// <summary>
+        /// Sharding Actions
+        /// </summary>
+        public enum ShardingActions { 
+        
+        }
+        /// <summary>
+        /// Server Administration Actions
+        /// </summary>
+        public enum ServerAdministrationActions { 
+        
+        }
+        /// <summary>
+        /// Diagnostic Actions
+        /// </summary>
+        public enum DiagnosticActions { 
+        
+        }
+        /// <summary>
+        /// Internal Actions
+        /// </summary>
+        public enum InternalActions { 
+        
+        }
+        #endregion
 
         #region"用户操作"
-
         //这里有个漏洞,对于数据库来说，对于local的验证和对于admin的验证是相同的。
         //如果是加入用户到服务器中，是加入到local还是admin，需要考虑一下。
-
         /// <summary>
         ///     Mongo操作
         /// </summary>

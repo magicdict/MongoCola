@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\MagicMongoDBTool\packages\mongocsharpdriver.1.9.0\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\MagicMongoDBTool\packages\mongocsharpdriver.1.9.0\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -113,6 +119,7 @@
     <Content Include="Resources\Open.ico" />
     <Content Include="Resources\paste.ico" />
     <Content Include="Resources\save.ico" />
+    <None Include="packages.config" />
     <None Include="Resources\icon_delete_file.gif" />
     <None Include="Resources\compress.png" />
     <None Include="Resources\1332159906_document_small_upload.png" />

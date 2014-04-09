@@ -16,6 +16,7 @@ namespace UnitTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            SystemManager.Init();
             Application.Run(new frmUnitTest());
         }
     }
