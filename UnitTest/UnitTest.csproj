@@ -62,6 +62,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemManager.cs" />
+    <Compile Include="UserRoleTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserRoleTest.Designer.cs">
+      <DependentUpon>UserRoleTest.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmUnitTest.resx">
       <DependentUpon>frmUnitTest.cs</DependentUpon>
     </EmbeddedResource>
@@ -74,6 +80,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserRoleTest.resx">
+      <DependentUpon>UserRoleTest.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -87,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{56d74944-4b20-4941-bc67-72a8e57e5a02}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

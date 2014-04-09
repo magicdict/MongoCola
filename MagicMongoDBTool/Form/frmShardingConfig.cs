@@ -155,12 +155,12 @@ namespace MagicMongoDBTool
             CommandResult Result;
             if (chkAdvance.Checked)
             {
-                Result = MongoDbHelper.AddSharding(_prmSvr, txtReplsetName.Text, lstAddress, txtName.Text,
+                Result = CommandHelper.AddSharding(_prmSvr, txtReplsetName.Text, lstAddress, txtName.Text,
                     NumMaxSize.Value);
             }
             else
             {
-                Result = MongoDbHelper.AddSharding(_prmSvr, txtReplsetName.Text, lstAddress, String.Empty, 0);
+                Result = CommandHelper.AddSharding(_prmSvr, txtReplsetName.Text, lstAddress, String.Empty, 0);
             }
             Resultlst.Add(Result);
             MyMessageBox.ShowMessage("Add Sharding", "Result:" + (Result.Ok ? "OK" : "Fail"),
@@ -276,7 +276,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdEnableSharding_Click(object sender, EventArgs e)
         {
-            var Resultlst = new List<CommandResult> {MongoDbHelper.EnableSharding(_prmSvr, cmbDataBase.Text)};
+            var Resultlst = new List<CommandResult> { CommandHelper.EnableSharding(_prmSvr, cmbDataBase.Text) };
             MyMessageBox.ShowMessage("EnableSharding", "Result",
                 MongoDbHelper.ConvertCommandResultlstToString(Resultlst));
         }
@@ -292,7 +292,7 @@ namespace MagicMongoDBTool
             GetIndexesResult Result =
                 _prmSvr.GetDatabase(cmbDataBase.Text).GetCollection(cmbCollection.Text).GetIndexes();
             BsonDocument IndexDoc = Result[cmbIndexList.SelectedIndex].Key;
-            Resultlst.Add(MongoDbHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, IndexDoc));
+            Resultlst.Add(CommandHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, IndexDoc));
             MyMessageBox.ShowMessage("EnableSharding", "Result",
                 MongoDbHelper.ConvertCommandResultlstToString(Resultlst));
         }
@@ -306,7 +306,7 @@ namespace MagicMongoDBTool
         {
             foreach (String item in lstSharding.SelectedItems)
             {
-                var Resultlst = new List<CommandResult> {MongoDbHelper.RemoveSharding(_prmSvr, item)};
+                var Resultlst = new List<CommandResult> { CommandHelper.RemoveSharding(_prmSvr, item) };
                 MyMessageBox.ShowMessage("Remove Sharding", "Result",
                     MongoDbHelper.ConvertCommandResultlstToString(Resultlst));
             }
@@ -326,7 +326,7 @@ namespace MagicMongoDBTool
         {
             var Resultlst = new List<CommandResult>
             {
-                MongoDbHelper.AddShardTag(_prmSvr, txtShardName.Text, txtTagShard.Text)
+                CommandHelper.AddShardTag(_prmSvr, txtShardName.Text, txtTagShard.Text)
             };
             MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoDbHelper.ConvertCommandResultlstToString(Resultlst));
         }
@@ -340,7 +340,7 @@ namespace MagicMongoDBTool
         {
             var Resultlst = new List<CommandResult>
             {
-                MongoDbHelper.AddTagRange(_prmSvr, cmbShardKeyDB.Text + "." + cmbShardKeyCol.Text,
+                CommandHelper.AddTagRange(_prmSvr, cmbShardKeyDB.Text + "." + cmbShardKeyCol.Text,
                     ctlBsonValueShardKeyFrom.getValue(),
                     ctlBsonValueShardKeyTo.getValue(), cmbTagList.Text.Split(".".ToCharArray())[1])
             };

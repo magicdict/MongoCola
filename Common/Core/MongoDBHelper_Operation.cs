@@ -166,7 +166,7 @@ namespace MagicMongoDBTool.Module
                         break;
                     case Oprcode.Repair:
                         //其实Repair的入口不在这个方法里面
-                        ExecuteMongoDBCommand(repairDatabase_Command, SystemManager.GetCurrentDataBase());
+                        CommandHelper.ExecuteMongoDBCommand(CommandHelper.repairDatabase_Command, SystemManager.GetCurrentDataBase());
                         break;
                     default:
                         break;

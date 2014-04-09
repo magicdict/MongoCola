@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MongoDB.Driver;
+using Common.Security;
 
 namespace MagicMongoDBTool.Module
 {

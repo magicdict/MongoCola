@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MagicMongoDBTool.Common
+namespace Common
 {
     public abstract class PlugBase
     {

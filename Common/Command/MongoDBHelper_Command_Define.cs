@@ -6,7 +6,7 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDbHelper
+    public static partial class CommandHelper
     {
         #region"Collection Command"
 
@@ -14,7 +14,7 @@ namespace MagicMongoDBTool.Module
         ///     Compact
         /// </summary>
         /// <see cref="http://www.mongodb.org/display/DOCS/Compact+Command" />
-        public static MongoCommand Compact_Command = new MongoCommand("compact", PathLv.CollectionLv);
+        public static MongoCommand Compact_Command = new MongoCommand("compact", MongoDbHelper.PathLv.CollectionLv);
 
         /// <summary>
         ///     执行聚合
@@ -31,7 +31,7 @@ namespace MagicMongoDBTool.Module
                     new BsonElement("aggregate", new BsonString(SystemManager.GetCurrentCollection().Name)),
                     new BsonElement("pipeline", AggregateDoc)
                 };
-                var Aggregate_Command = new MongoCommand(agg, PathLv.DatabaseLv);
+                var Aggregate_Command = new MongoCommand(agg, MongoDbHelper.PathLv.DatabaseLv);
                 return ExecuteMongoCommand(Aggregate_Command, false);
             }
             catch (Exception ex)
@@ -50,7 +50,7 @@ namespace MagicMongoDBTool.Module
         ///     修复数据库
         ///     http://www.mongodb.org/display/DOCS/Durability+and+Repair
         /// </summary>
-        public static MongoCommand repairDatabase_Command = new MongoCommand("repairDatabase", PathLv.DatabaseLv);
+        public static MongoCommand repairDatabase_Command = new MongoCommand("repairDatabase", MongoDbHelper.PathLv.DatabaseLv);
 
         #endregion
 
@@ -74,19 +74,19 @@ namespace MagicMongoDBTool.Module
         ///     服务器状态
         ///     http://www.mongodb.org/display/DOCS/serverStatus+Command
         /// </summary>
-        public static MongoCommand serverStatus_Command = new MongoCommand("serverStatus", PathLv.InstanceLv);
+        public static MongoCommand serverStatus_Command = new MongoCommand("serverStatus", MongoDbHelper.PathLv.InstanceLv);
 
         //http://www.mongodb.org/display/DOCS/Replica+Set+Commands
         /// <summary>
         ///     副本状态
         /// </summary>
-        public static MongoCommand replSetGetStatus_Command = new MongoCommand("replSetGetStatus", PathLv.InstanceLv);
+        public static MongoCommand replSetGetStatus_Command = new MongoCommand("replSetGetStatus", MongoDbHelper.PathLv.InstanceLv);
 
         //http://www.mongodb.org/display/DOCS/Master+Slave
         /// <summary>
         ///     Slave强制同步
         /// </summary>
-        public static MongoCommand resync_Command = new MongoCommand("resync", PathLv.InstanceLv);
+        public static MongoCommand resync_Command = new MongoCommand("resync", MongoDbHelper.PathLv.InstanceLv);
 
         /// <summary>
         ///     增加服务器
@@ -334,14 +334,14 @@ namespace MagicMongoDBTool.Module
             //生成命令
             host = new BsonDocument
             {
-                {KEY_ID, 1},
+                {MongoDbHelper.KEY_ID, 1},
                 {
                     "host", SystemManager.ConfigHelperInstance.ConnectionList[hostList].Host + ":" +
                             SystemManager.ConfigHelperInstance.ConnectionList[hostList].Port
                 }
             };
             hosts.Add(host);
-            config.Add(KEY_ID, replicaSetName);
+            config.Add(MongoDbHelper.KEY_ID, replicaSetName);
             config.Add("members", hosts);
             replSetInitiateCmd.Add("replSetInitiate", config);
 

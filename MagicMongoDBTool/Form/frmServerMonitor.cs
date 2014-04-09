@@ -44,7 +44,7 @@ namespace MagicMongoDBTool
         private void M_Tick(object sender, EventArgs e)
         {
             BsonDocument DocStatus =
-                MongoDbHelper.ExecuteMongoSvrCommand(MongoDbHelper.serverStatus_Command,
+                CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
                     SystemManager.GetCurrentServer()).Response;
 
             var queryPoint = new DataPoint();

@@ -24,9 +24,9 @@ namespace MagicMongoDBTool
         {
             try
             {
-                CommandResult Result = MongoDbHelper.AddToReplsetServer(SystemManager.GetCurrentServer(),
+                CommandResult Result = CommandHelper.AddToReplsetServer(SystemManager.GetCurrentServer(),
                     txtReplHost.Text + ":" + NumReplPort.Value, (int) NumPriority.Value, chkArbiterOnly.Checked);
-                if (MongoDbHelper.IsShellOK(Result))
+                if (CommandHelper.IsShellOK(Result))
                 {
                     _config.ReplsetList.Add(txtReplHost.Text + ":" + NumReplPort.Value);
                     MyMessageBox.ShowMessage("Add Memeber", "Result:OK");
@@ -63,7 +63,7 @@ namespace MagicMongoDBTool
             }
             try
             {
-                MongoDbHelper.ReconfigReplsetServer(SystemManager.GetCurrentServer(), ReplsetDoc);
+                CommandHelper.ReconfigReplsetServer(SystemManager.GetCurrentServer(), ReplsetDoc);
                 //由于这个命令会触发异常，所以没有Result可以获得
                 _config.ReplsetList.Remove(strHost);
                 lstHost.Items.Remove(lstHost.SelectedItem);

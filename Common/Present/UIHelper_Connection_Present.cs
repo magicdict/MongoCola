@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MagicMongoDBTool.Module;
+using Common.Security;
 namespace MagicMongoDBTool.Module
 {
     public static partial class UIHelper
@@ -55,7 +56,7 @@ namespace MagicMongoDBTool.Module
                     }
                     else
                     {
-                        BsonDocument ServerStatusDoc = MongoDbHelper.ExecuteMongoSvrCommand(MongoDbHelper.serverStatus_Command, mongoSrv).Response;
+                        BsonDocument ServerStatusDoc = CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command, mongoSrv).Response;
                         //ServerStatus可能没有权限打开
                         if (ServerStatusDoc.Contains("process") &&
                             ServerStatusDoc.GetElement("process").Value == MongoDbHelper.ServerStatus_PROCESS_MONGOS)

@@ -31,7 +31,7 @@ namespace MagicMongoDBTool
         private void cmdValidate_Click(object sender, EventArgs e)
         {
             BsonDocument TextSearchOption = new BsonDocument().Add(new BsonElement("full", chkFull.Checked.ToString()));
-            CommandResult SearchResult = MongoDbHelper.ExecuteMongoColCommand("validate",
+            CommandResult SearchResult = CommandHelper.ExecuteMongoColCommand("validate",
                 SystemManager.GetCurrentCollection(), TextSearchOption);
             Result = SearchResult.Response;
             MongoDbHelper.FillDataToTreeView("Validate Result", trvResult, Result);

@@ -1,4 +1,4 @@
-﻿using MagicMongoDBTool.Common;
+﻿using Common;
 using Microsoft.VisualBasic;
 using MongoDB.Bson;
 using MongoDB.Driver;

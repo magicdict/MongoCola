@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using MagicMongoDBTool.Common;
 using MagicMongoDBTool.Module;
 using MagicMongoDBTool.Properties;
 using MagicMongoDBTool.UserController;
+using Common.Security;
+using Common;
 
 namespace MagicMongoDBTool
 {
@@ -154,7 +155,7 @@ namespace MagicMongoDBTool
                 tabView.Controls.Remove(tabCommandShell);
             };
             tabView.SelectedIndexChanged += tabView_SelectedIndexChanged;
-            MongoDbHelper.RunCommandComplete += CommandLog;
+            CommandHelper.RunCommandComplete += CommandLog;
         }
 
         /// <summary>
@@ -324,7 +325,7 @@ namespace MagicMongoDBTool
                 SystemManager.SelectObjectTag = tabView.SelectedTab.Tag.ToString();
             }
         }
-        
+
         /// <summary>
         ///     CommandLog
         /// </summary>
@@ -620,7 +621,7 @@ namespace MagicMongoDBTool
                     case MongoDbHelper.DATABASE_TAG:
                     case MongoDbHelper.SINGLE_DATABASE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        List<String> roles = MongoUserHelper.GetCurrentDBRoles();
+                        List<String> roles = User.GetCurrentDBRoles();
                         if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected DataBase:" + SystemManager.SelectTagData;
@@ -637,17 +638,17 @@ namespace MagicMongoDBTool
                             if (_config.AuthMode)
                             {
                                 //根据Roles确定删除数据库/创建数据集等的权限
-                                DelMongoDBToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
-                                    MongoUserHelper.MongoOperate.DelMongoDB);
-                                CreateMongoCollectionToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
-                                    MongoUserHelper.MongoOperate.CreateMongoCollection);
-                                InitGFSToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
-                                    MongoUserHelper.MongoOperate.InitGFS);
-                                AddUserToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
-                                    MongoUserHelper.MongoOperate.AddUser);
+                                DelMongoDBToolStripMenuItem.Enabled = Common.Security.Action.JudgeRightByBuildInRole(roles,
+                                    Common.Security.Action.ActionType.ServerAdministrationActions_dropDatabase);
+                                CreateMongoCollectionToolStripMenuItem.Enabled = Common.Security.Action.JudgeRightByBuildInRole(roles,
+                                    Common.Security.Action.ActionType.DatabaseManagementActions_createCollection);
+                                InitGFSToolStripMenuItem.Enabled = Common.Security.Action.JudgeRightByBuildInRole(roles,
+                                    Common.Security.Action.ActionType.Misc_InitGFS);
+                                AddUserToolStripMenuItem.Enabled = Common.Security.Action.JudgeRightByBuildInRole(roles,
+                                    Common.Security.Action.ActionType.DatabaseManagementActions_createUser);
                                 //If a Slave server can repair database @ Master-Slave is not sure ??
-                                RepairDBToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
-                                    MongoUserHelper.MongoOperate.RepairDB);
+                                RepairDBToolStripMenuItem.Enabled = Common.Security.Action.JudgeRightByBuildInRole(roles,
+                                    Common.Security.Action.ActionType.ServerAdministrationActions_repairDatabase);
                             }
                             else
                             {
@@ -657,8 +658,8 @@ namespace MagicMongoDBTool
                                 AddUserToolStripMenuItem.Enabled = true;
                                 RepairDBToolStripMenuItem.Enabled = true;
                             }
-                            EvalJSToolStripMenuItem.Enabled = MongoUserHelper.JudgeRightByRole(roles,
-                                MongoUserHelper.MongoOperate.EvalJS);
+                            EvalJSToolStripMenuItem.Enabled = Common.Security.Action.JudgeRightByBuildInRole(roles,
+                                Common.Security.Action.ActionType.Misc_EvalJS);
                         }
                         //备份数据库
                         DumpDatabaseToolStripMenuItem.Enabled = true;
@@ -1229,9 +1230,9 @@ namespace MagicMongoDBTool
             }
             else
             {
-                String JsName = DataList[(int) MongoDbHelper.PathLv.DocumentLv];
-                var JsEditor = new ctlJsEditor {strDBtag = SystemManager.SelectObjectTag};
-                var DataTab = new TabPage(JsName) {Tag = SystemManager.SelectObjectTag, ImageIndex = 1};
+                String JsName = DataList[(int)MongoDbHelper.PathLv.DocumentLv];
+                var JsEditor = new ctlJsEditor { strDBtag = SystemManager.SelectObjectTag };
+                var DataTab = new TabPage(JsName) { Tag = SystemManager.SelectObjectTag, ImageIndex = 1 };
 
                 JsEditor.JsName = JsName;
                 DataTab.Controls.Add(JsEditor);

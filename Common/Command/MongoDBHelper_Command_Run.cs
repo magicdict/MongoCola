@@ -6,7 +6,14 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
-    public static partial class MongoDbHelper
+
+    ///注意，有些db.XXXX(xxx) 这样的函数需要 mongoDb.Eval方法才能做
+    ///有些RepairDatabase 这样的函数可以简单的执行
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public static partial class CommandHelper
     {
         /// <summary>
         ///     Command Complete Event
@@ -79,7 +86,7 @@ namespace MagicMongoDBTool.Module
             {
                 switch (mMongoCommand.RunLevel)
                 {
-                    case PathLv.CollectionLv:
+                    case MongoDbHelper.PathLv.CollectionLv:
                         if (String.IsNullOrEmpty(mMongoCommand.CommandString))
                         {
                             mCommandResult = ExecuteMongoColCommand(mMongoCommand.cmdDocument,
@@ -91,11 +98,11 @@ namespace MagicMongoDBTool.Module
                                 SystemManager.GetCurrentCollection());
                         }
                         break;
-                    case PathLv.DatabaseLv:
+                    case MongoDbHelper.PathLv.DatabaseLv:
                         mCommandResult = ExecuteMongoDBCommand(mMongoCommand.cmdDocument,
                             SystemManager.GetCurrentDataBase());
                         break;
-                    case PathLv.InstanceLv:
+                    case MongoDbHelper.PathLv.InstanceLv:
                         mCommandResult = ExecuteMongoSvrCommand(mMongoCommand.cmdDocument,
                             SystemManager.GetCurrentServer());
                         break;
@@ -105,7 +112,7 @@ namespace MagicMongoDBTool.Module
                 ResultCommandList.Add(mCommandResult);
                 if (ShowMsgBox)
                     MyMessageBox.ShowMessage(mMongoCommand.CommandString, mMongoCommand.CommandString + " Result",
-                        ConvertCommandResultlstToString(ResultCommandList), true);
+                        MongoDbHelper.ConvertCommandResultlstToString(ResultCommandList), true);
             }
             catch (IOException ex)
             {
@@ -143,7 +150,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = CommandString,
-                RunLevel = PathLv.CollectionLv,
+                RunLevel = MongoDbHelper.PathLv.CollectionLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -160,19 +167,19 @@ namespace MagicMongoDBTool.Module
         public static CommandResult ExecuteMongoColCommand(String Command, MongoCollection mongoCol,
             BsonDocument ExtendInfo)
         {
-            var textSearchCommand = new CommandDocument
+            var ExecuteCommand = new CommandDocument
             {
                 {Command, mongoCol.Name},
             };
             foreach (BsonElement item in ExtendInfo.Elements)
             {
-                textSearchCommand.Add(item);
+                ExecuteCommand.Add(item);
             }
-            CommandResult mCommandResult = mongoCol.Database.RunCommand(textSearchCommand);
+            CommandResult mCommandResult = mongoCol.Database.RunCommand(ExecuteCommand);
             var e = new RunCommandEventArgs
             {
-                CommandString = textSearchCommand.ToString(),
-                RunLevel = PathLv.CollectionLv,
+                CommandString = ExecuteCommand.ToString(),
+                RunLevel = MongoDbHelper.PathLv.CollectionLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -199,7 +206,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = CmdDoc.GetElement(0).Value.ToString(),
-                RunLevel = PathLv.DatabaseLv,
+                RunLevel = MongoDbHelper.PathLv.DatabaseLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -226,7 +233,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = mongoCmd,
-                RunLevel = PathLv.DatabaseLv,
+                RunLevel = MongoDbHelper.PathLv.DatabaseLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -253,7 +260,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = mongoCmd.ToString(),
-                RunLevel = PathLv.DatabaseLv,
+                RunLevel = MongoDbHelper.PathLv.DatabaseLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -269,7 +276,7 @@ namespace MagicMongoDBTool.Module
         public static CommandResult ExecuteMongoDBCommand(MongoCommand mMongoCommand, MongoDatabase mongoDB)
         {
             var Command = new CommandDocument {{mMongoCommand.CommandString, 1}};
-            if (mMongoCommand.RunLevel == PathLv.DatabaseLv)
+            if (mMongoCommand.RunLevel == MongoDbHelper.PathLv.DatabaseLv)
             {
                 return ExecuteMongoDBCommand(Command, mongoDB);
             }
@@ -288,7 +295,7 @@ namespace MagicMongoDBTool.Module
             CommandResult mCommandResult;
             try
             {
-                mCommandResult = mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).RunCommand(mongoCmd);
+                mCommandResult = mongoSvr.GetDatabase(MongoDbHelper.DATABASE_NAME_ADMIN).RunCommand(mongoCmd);
             }
             catch (MongoCommandException ex)
             {
@@ -297,7 +304,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = mongoCmd,
-                RunLevel = PathLv.InstanceLv,
+                RunLevel = MongoDbHelper.PathLv.InstanceLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -315,7 +322,7 @@ namespace MagicMongoDBTool.Module
             CommandResult mCommandResult;
             try
             {
-                mCommandResult = mongoSvr.GetDatabase(DATABASE_NAME_ADMIN).RunCommand(mCommandDocument);
+                mCommandResult = mongoSvr.GetDatabase(MongoDbHelper.DATABASE_NAME_ADMIN).RunCommand(mCommandDocument);
             }
             catch (MongoCommandException ex)
             {
@@ -324,7 +331,7 @@ namespace MagicMongoDBTool.Module
             var e = new RunCommandEventArgs
             {
                 CommandString = mCommandDocument.ToString(),
-                RunLevel = PathLv.InstanceLv,
+                RunLevel = MongoDbHelper.PathLv.InstanceLv,
                 Result = mCommandResult
             };
             OnCommandRunComplete(e);
@@ -340,7 +347,7 @@ namespace MagicMongoDBTool.Module
         public static CommandResult ExecuteMongoSvrCommand(MongoCommand mMongoCommand, MongoServer mongosrv)
         {
             var Command = new CommandDocument {{mMongoCommand.CommandString, 1}};
-            if (mMongoCommand.RunLevel == PathLv.DatabaseLv)
+            if (mMongoCommand.RunLevel == MongoDbHelper.PathLv.DatabaseLv)
             {
                 throw new Exception();
             }
@@ -360,7 +367,7 @@ namespace MagicMongoDBTool.Module
             /// <summary>
             ///     对象等级
             /// </summary>
-            public PathLv RunLevel;
+            public MongoDbHelper.PathLv RunLevel;
 
             /// <summary>
             /// </summary>
@@ -371,7 +378,7 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             /// <param name="_CommandString"></param>
             /// <param name="_RunLevel"></param>
-            public MongoCommand(String _CommandString, PathLv _RunLevel)
+            public MongoCommand(String _CommandString, MongoDbHelper.PathLv _RunLevel)
             {
                 CommandString = _CommandString;
                 RunLevel = _RunLevel;
@@ -383,7 +390,7 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             /// <param name="_CommandDocument"></param>
             /// <param name="_RunLevel"></param>
-            public MongoCommand(CommandDocument _CommandDocument, PathLv _RunLevel)
+            public MongoCommand(CommandDocument _CommandDocument, MongoDbHelper.PathLv _RunLevel)
             {
                 cmdDocument = _CommandDocument;
                 RunLevel = _RunLevel;

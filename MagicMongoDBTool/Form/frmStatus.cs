@@ -29,7 +29,7 @@ namespace MagicMongoDBTool
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         DocStatus =
-                            MongoDbHelper.ExecuteMongoSvrCommand(MongoDbHelper.serverStatus_Command,
+                            CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
                                 SystemManager.GetCurrentServer()).Response;
                         trvStatus.Height = trvStatus.Height*2;
                     }
@@ -108,7 +108,7 @@ namespace MagicMongoDBTool
                     if (SystemManager.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         DocStatus =
-                            MongoDbHelper.ExecuteMongoSvrCommand(MongoDbHelper.serverStatus_Command,
+                            CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
                                 SystemManager.GetCurrentServer()).Response;
                         trvStatus.Height = trvStatus.Height*2;
                     }

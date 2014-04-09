@@ -28,7 +28,7 @@ namespace MagicMongoDBTool
         private void cmdRun_Click(object sender, EventArgs e)
         {
             if (_AggrArray.Count <= 0) return;
-            CommandResult mCommandResult = MongoDbHelper.Aggregate(_AggrArray);
+            CommandResult mCommandResult = CommandHelper.Aggregate(_AggrArray);
             if (mCommandResult.Ok)
             {
                 MongoDbHelper.FillDataToTreeView("Aggregate Result", trvResult, mCommandResult.Response);

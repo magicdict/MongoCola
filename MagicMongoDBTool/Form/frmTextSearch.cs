@@ -50,7 +50,7 @@ namespace MagicMongoDBTool
             TextSearchOption.Add(new BsonElement("limit", (BsonValue) NUDLimit.Value));
             try
             {
-                CommandResult SearchResult = MongoDbHelper.ExecuteMongoColCommand("text",
+                CommandResult SearchResult = CommandHelper.ExecuteMongoColCommand("text",
                     SystemManager.GetCurrentCollection(), TextSearchOption);
                 Result = SearchResult.Response;
                 MongoDbHelper.FillDataToTreeView("Text Search Result", trvResult, Result);

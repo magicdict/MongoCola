@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MagicMongoDBTool.UserController;
+using Common.Security;
 
 namespace MagicMongoDBTool
 {
@@ -123,13 +124,13 @@ namespace MagicMongoDBTool
                     //lstData
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                        MongoUserHelper.RemoveUserFromSystem(item.SubItems[1].Text, true);
+                        User.RemoveUserFromSystem(item.SubItems[1].Text, true);
                     }
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
-                    MongoUserHelper.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), true);
+                    User.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), true);
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
                 RefreshGUI();
@@ -155,13 +156,13 @@ namespace MagicMongoDBTool
                     //lstData
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                        MongoUserHelper.RemoveUserFromSystem(item.SubItems[1].Text, false);
+                        User.RemoveUserFromSystem(item.SubItems[1].Text, false);
                     }
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
-                    MongoUserHelper.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), false);
+                    User.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), false);
                     trvData.DatatreeView.ContextMenuStrip = null;
                 }
                 RemoveUserToolStripMenuItem.Enabled = false;

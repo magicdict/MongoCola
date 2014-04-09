@@ -111,7 +111,7 @@ namespace MagicMongoDBTool
                     ? "ReplSetName"
                     : SystemManager.MStringResource.GetText(StringResource.TextType.Replset_InitReplset));
             if (ReplSetName == String.Empty) return;
-            CommandResult Result = MongoDbHelper.InitReplicaSet(ReplSetName,
+            CommandResult Result = CommandHelper.InitReplicaSet(ReplSetName,
                 SystemManager.GetCurrentServerConfig().ConnectionName);
             if (Result.Ok)
             {
@@ -331,7 +331,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void slaveResyncToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDbHelper.ExecuteMongoCommand(MongoDbHelper.resync_Command);
+            CommandHelper.ExecuteMongoCommand(CommandHelper.resync_Command);
         }
 
         /// <summary>
@@ -484,7 +484,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void RepairDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDbHelper.ExecuteMongoCommand(MongoDbHelper.repairDatabase_Command);
+            CommandHelper.ExecuteMongoCommand(CommandHelper.repairDatabase_Command);
         }
 
         /// <summary>
@@ -694,7 +694,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void CompactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDbHelper.ExecuteMongoCommand(MongoDbHelper.Compact_Command);
+            CommandHelper.ExecuteMongoCommand(CommandHelper.Compact_Command);
         }
 
         /// <summary>

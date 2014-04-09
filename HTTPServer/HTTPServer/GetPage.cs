@@ -76,7 +76,7 @@ namespace MagicMongoDBTool
             SystemManager.SelectObjectTag = DBTag;
             var cr = new BsonDocument();
             cr =
-                MongoDbHelper.ExecuteMongoSvrCommand(MongoDbHelper.serverStatus_Command,
+                CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
                     SystemManager.GetCurrentServer()).Response;
             return UIHelper.ConvertBsonTozTreeJson("Connection Status", cr, true);
         }
@@ -99,7 +99,7 @@ namespace MagicMongoDBTool
         /// <returns></returns>
         public static string GetCollection(String DBTag)
         {
-            MongoDbHelper.WebDataViewInfo = new MongoDbHelper.DataViewInfo {strDBTag = DBTag};
+            MongoDbHelper.WebDataViewInfo = new MongoDbHelper.DataViewInfo { strDBTag = DBTag };
             SystemManager.SelectObjectTag = DBTag;
             return MongoDbHelper.GetCollectionzTreeJSON();
         }

@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
+using MagicMongoDBTool.Module;
 
-namespace MagicMongoDBTool.Module
+namespace Common.Security
 {
     public class EachDatabaseUser
     {
-        public Dictionary<String, MongoUserHelper.MongoUserEx> UserList =
-            new Dictionary<string, MongoUserHelper.MongoUserEx>();
+        public Dictionary<String, User> UserList =
+            new Dictionary<string, User>();
         /// <summary>
         ///     获得数据库角色
         /// </summary>
@@ -35,25 +36,25 @@ namespace MagicMongoDBTool.Module
             //ADMIN的ANY系角色的追加
             if (UserList.ContainsKey(MongoDbHelper.DATABASE_NAME_ADMIN))
             {
-                if (UserList[MongoDbHelper.DATABASE_NAME_ADMIN].roles.Contains(MongoUserHelper.UserRole_dbAdminAnyDatabase))
+                if (UserList[MongoDbHelper.DATABASE_NAME_ADMIN].roles.Contains(Role.UserRole_dbAdminAnyDatabase))
                 {
-                    roles.Add(MongoUserHelper.UserRole_dbAdminAnyDatabase);
+                    roles.Add(Role.UserRole_dbAdminAnyDatabase);
                 }
-                if (UserList[MongoDbHelper.DATABASE_NAME_ADMIN].roles.Contains(MongoUserHelper.UserRole_readAnyDatabase))
+                if (UserList[MongoDbHelper.DATABASE_NAME_ADMIN].roles.Contains(Role.UserRole_readAnyDatabase))
                 {
-                    roles.Add(MongoUserHelper.UserRole_readAnyDatabase);
-                }
-                if (
-                    UserList[MongoDbHelper.DATABASE_NAME_ADMIN].roles.Contains(
-                        MongoUserHelper.UserRole_readWriteAnyDatabase))
-                {
-                    roles.Add(MongoUserHelper.UserRole_readWriteAnyDatabase);
+                    roles.Add(Role.UserRole_readAnyDatabase);
                 }
                 if (
                     UserList[MongoDbHelper.DATABASE_NAME_ADMIN].roles.Contains(
-                        MongoUserHelper.UserRole_userAdminAnyDatabase))
+                        Role.UserRole_readWriteAnyDatabase))
                 {
-                    roles.Add(MongoUserHelper.UserRole_userAdminAnyDatabase);
+                    roles.Add(Role.UserRole_readWriteAnyDatabase);
+                }
+                if (
+                    UserList[MongoDbHelper.DATABASE_NAME_ADMIN].roles.Contains(
+                        Role.UserRole_userAdminAnyDatabase))
+                {
+                    roles.Add(Role.UserRole_userAdminAnyDatabase);
                 }
             }
             return roles;
@@ -88,7 +89,7 @@ namespace MagicMongoDBTool.Module
                 db.GetCollection(MongoDbHelper.COLLECTION_NAME_USER).FindOneAs<BsonDocument>(Query.EQ("user", Username));
             if (userInfo != null)
             {
-                var user = new MongoUserHelper.MongoUserEx();
+                var user = new User();
                 user.roles = userInfo["roles"].AsBsonArray;
                 if (userInfo.Contains("otherDBRoles"))
                 {

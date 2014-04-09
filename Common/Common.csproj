@@ -7,8 +7,8 @@
     <ProjectGuid>{56D74944-4B20-4941-BC67-72A8E57E5A02}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MagicMongoDBTool.Common</RootNamespace>
-    <AssemblyName>MagicMongoDBTool.Common</AssemblyName>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -48,8 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\MongoDBHelper_Aggregation.cs" />
-    <Compile Include="Core\MongoDBHelper_Command_Define.cs" />
-    <Compile Include="Core\MongoDBHelper_Command_Run.cs" />
+    <Compile Include="Command\MongoDBHelper_Command_Define.cs" />
+    <Compile Include="Command\MongoDBHelper_Command_Run.cs" />
     <Compile Include="Core\MongoDBHelper_Connection_Manager.cs" />
     <Compile Include="Present\UIHelper_Connection_Present.cs" />
     <Compile Include="Present\UIHelper_Connection_Present_Sub.cs" />
@@ -64,8 +64,10 @@
     <Compile Include="Core\MongoDBHelper_Query.cs" />
     <Compile Include="Core\MongoDBHelper_Sql.cs" />
     <Compile Include="Present\MongoDBHelper_Status.cs" />
-    <Compile Include="Security\MongoDBHelper_User.cs" />
+    <Compile Include="Security\Action.cs" />
+    <Compile Include="Security\User.cs" />
     <Compile Include="Present\MongoDBHelper_View.cs" />
+    <Compile Include="Security\Role.cs" />
     <Compile Include="System\PlugBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\BsonValueEx.cs" />

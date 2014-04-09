@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using MagicMongoDBTool.Common;
 
 namespace MagicMongoDBTool.Module
 {

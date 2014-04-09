@@ -5,7 +5,7 @@ using MagicMongoDBTool.Module;
 using MagicMongoDBTool.Properties;
 using MongoDB.Bson;
 using MongoDB.Driver.Builders;
-
+using Common.Security;
 namespace MagicMongoDBTool
 {
     public partial class frmUser : Form
@@ -75,7 +75,7 @@ namespace MagicMongoDBTool
                 return;
             }
             //MongoUser不能同时具备Password和userSource字段！
-            var user = new MongoUserHelper.MongoUserEx
+            var user = new User
             {
                 Username = txtUserName.Text,
                 Password = txtUserName.Text,
@@ -98,7 +98,7 @@ namespace MagicMongoDBTool
             //简化逻辑，不论新建还是修改，AddUser都可以
             try
             {
-                MongoUserHelper.AddUserToSystem(user, _IsAdmin);
+                User.AddUserToSystem(user, _IsAdmin);
             }
             catch (Exception ex)
             {

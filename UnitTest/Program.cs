@@ -17,7 +17,8 @@ namespace UnitTest
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             SystemManager.Init();
-            Application.Run(new frmUnitTest());
+            Application.Run(new UserRoleTest());
+            //Application.Run(new frmUnitTest());
         }
     }
 }
