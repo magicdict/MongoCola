@@ -30,6 +30,7 @@
         {
             this.btnGetAllCustomRole = new System.Windows.Forms.Button();
             this.treeViewColumns1 = new TreeViewColumnsProject.TreeViewColumns();
+            this.btnAddRoleToDB = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGetAllCustomRole
@@ -51,15 +52,26 @@
             this.treeViewColumns1.Location = new System.Drawing.Point(53, 54);
             this.treeViewColumns1.Name = "treeViewColumns1";
             this.treeViewColumns1.Padding = new System.Windows.Forms.Padding(1);
-            this.treeViewColumns1.Size = new System.Drawing.Size(586, 184);
+            this.treeViewColumns1.Size = new System.Drawing.Size(603, 290);
             this.treeViewColumns1.TabIndex = 1;
+            // 
+            // btnAddRoleToDB
+            // 
+            this.btnAddRoleToDB.Location = new System.Drawing.Point(265, 25);
+            this.btnAddRoleToDB.Name = "btnAddRoleToDB";
+            this.btnAddRoleToDB.Size = new System.Drawing.Size(182, 23);
+            this.btnAddRoleToDB.TabIndex = 2;
+            this.btnAddRoleToDB.Text = "AddRoleToDB";
+            this.btnAddRoleToDB.UseVisualStyleBackColor = true;
+            this.btnAddRoleToDB.Click += new System.EventHandler(this.btnAddRoleToDB_Click);
             // 
             // UserRoleTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(663, 267);
+            this.ClientSize = new System.Drawing.Size(680, 373);
+            this.Controls.Add(this.btnAddRoleToDB);
             this.Controls.Add(this.treeViewColumns1);
             this.Controls.Add(this.btnGetAllCustomRole);
             this.Name = "UserRoleTest";
@@ -73,5 +85,6 @@
 
         private System.Windows.Forms.Button btnGetAllCustomRole;
         private TreeViewColumnsProject.TreeViewColumns treeViewColumns1;
+        private System.Windows.Forms.Button btnAddRoleToDB;
     }
 }

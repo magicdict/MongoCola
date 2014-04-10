@@ -65,6 +65,7 @@
     <Compile Include="Core\MongoDBHelper_Sql.cs" />
     <Compile Include="Present\MongoDBHelper_Status.cs" />
     <Compile Include="Security\Action.cs" />
+    <Compile Include="Security\Resource.cs" />
     <Compile Include="Security\User.cs" />
     <Compile Include="Present\MongoDBHelper_View.cs" />
     <Compile Include="Security\Role.cs" />

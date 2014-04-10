@@ -8,6 +8,56 @@ namespace Common.Security
     /// </summary>
     public static class Action
     {
+        //http://docs.mongodb.org/master/reference/privilege-actions/#security-user-actions
+        /// <summary>
+        /// Queryand Write Actions
+        /// </summary>
+        public enum ActionType
+        {
+            QueryandWriteActions_find,
+            QueryandWriteActions_insert,
+            QueryandWriteActions_remove,
+            QueryandWriteActions_update,
+
+            DatabaseManagementActions_createCollection,
+            DatabaseManagementActions_createUser,
+            DatabaseManagementActions_dropCollection,
+
+            ServerAdministrationActions_dropDatabase,
+            ServerAdministrationActions_repairDatabase,
+
+            Misc_InitGFS,
+            Misc_EvalJS,
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public enum ActionGroup {
+            Query_and_Write_Actions,
+            Database_Management_Actions,
+            Deployment_Management_Actions,
+            Replication_Actions,
+            Sharding_Actions,
+            Server_Administration_Actions,
+            Diagnostic_Actions,
+            Internal_Actions
+        }
+        /// <summary>
+        /// GetActionListJs
+        /// </summary>
+        /// <param name="ActionList"></param>
+        /// <returns></returns>
+        public static String GetActionListJs(ActionType[] ActionList)
+        {
+            String Result = String.Empty;
+            Result = "actions: [ ";
+            for (int i = 0; i < ActionList.Length; i++)
+            {
+                Result += "'" + ActionList[i].ToString().Substring(ActionList[i].ToString().IndexOf("_") + 1) + "'" + ((i == ActionList.Length - 1) ? "" : ",");
+            }
+            Result += " ]";
+            return Result;
+        }
         /// <summary>
         ///     根据内置角色判断能否执行操作
         /// </summary>
@@ -57,27 +107,6 @@ namespace Common.Security
                     break;
             }
             return CanDoIt;
-        }
-        //http://docs.mongodb.org/master/reference/privilege-actions/#security-user-actions
-        /// <summary>
-        /// Queryand Write Actions
-        /// </summary>
-        public enum ActionType
-        {
-            QueryandWriteActions_find,
-            QueryandWriteActions_insert,
-            QueryandWriteActions_remove,
-            QueryandWriteActions_update,
-
-            DatabaseManagementActions_createCollection,
-            DatabaseManagementActions_createUser,
-            DatabaseManagementActions_dropCollection,
-
-            ServerAdministrationActions_dropDatabase,
-            ServerAdministrationActions_repairDatabase,
-
-            Misc_InitGFS,
-            Misc_EvalJS,
         }
     }
 }
