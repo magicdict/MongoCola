@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Common.Aggregation;
+using MagicMongoDBTool.Module;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;
 
 namespace MagicMongoDBTool
 {
@@ -94,7 +95,7 @@ namespace MagicMongoDBTool
             }
             else
             {
-                CurrentDataViewInfo.mDataFilter = MongoDbHelper.ConvertQuerySql(txtSql.Text);
+                CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text);
             }
             //按下OK，不论是否做更改都认为True
             CurrentDataViewInfo.IsUseFilter = true;
@@ -128,7 +129,7 @@ namespace MagicMongoDBTool
             }
             else
             {
-                CurrentDataViewInfo.mDataFilter = MongoDbHelper.ConvertQuerySql(txtSql.Text);
+                CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text);
             }
             CurrentDataViewInfo.mDataFilter.SaveFilter(savefile.FileName);
         }

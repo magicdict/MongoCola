@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
+using Common.Aggregation;
 
 namespace MagicMongoDBTool
 {
@@ -23,7 +24,7 @@ namespace MagicMongoDBTool
 
         private void GroupItem_Load(object sender, EventArgs e)
         {
-            foreach (string item in MongoDbHelper.GetGroupfunction())
+            foreach (string item in AggregationHelper.GetGroupfunction())
             {
                 cmbGroupFunction.Items.Add(item);
             }

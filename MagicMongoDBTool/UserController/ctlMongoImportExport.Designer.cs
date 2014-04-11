@@ -1,4 +1,5 @@
-﻿namespace MagicMongoDBTool.Module
+﻿using GUI;
+namespace MagicMongoDBTool.Module
 {
     partial class ctlMongoImportExport
     {
@@ -41,7 +42,7 @@
             this.grpDirect = new System.Windows.Forms.GroupBox();
             this.radExport = new System.Windows.Forms.RadioButton();
             this.radImport = new System.Windows.Forms.RadioButton();
-            this.ctlFilePickerOutput = new MagicMongoDBTool.ctlFilePicker();
+            this.ctlFilePickerOutput = new ctlFilePicker();
             this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.grpDirect.SuspendLayout();
@@ -189,7 +190,7 @@
             this.ctlFilePickerOutput.FileFilter = "";
             this.ctlFilePickerOutput.Location = new System.Drawing.Point(34, 107);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
-            this.ctlFilePickerOutput.PickerType = MagicMongoDBTool.ctlFilePicker.DialogType.SaveFile;
+            this.ctlFilePickerOutput.PickerType = ctlFilePicker.DialogType.SaveFile;
             this.ctlFilePickerOutput.SelectedPathOrFileName = "";
             this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 33);
             this.ctlFilePickerOutput.TabIndex = 1;

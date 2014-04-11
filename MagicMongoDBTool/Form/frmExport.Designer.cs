@@ -1,4 +1,5 @@
-﻿namespace MagicMongoDBTool
+﻿using GUI;
+namespace MagicMongoDBTool
 {
     partial class frmExport
     {
@@ -33,7 +34,7 @@
             this.optXML = new System.Windows.Forms.RadioButton();
             this.optText = new System.Windows.Forms.RadioButton();
             this.optExcel = new System.Windows.Forms.RadioButton();
-            this.ctlExportFilePicker = new MagicMongoDBTool.ctlFilePicker();
+            this.ctlExportFilePicker = new ctlFilePicker();
             this.grpExportType.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,7 +102,7 @@
             this.ctlExportFilePicker.FileName = "";
             this.ctlExportFilePicker.Location = new System.Drawing.Point(12, 22);
             this.ctlExportFilePicker.Name = "ctlExportFilePicker";
-            this.ctlExportFilePicker.PickerType = MagicMongoDBTool.ctlFilePicker.DialogType.SaveFile;
+            this.ctlExportFilePicker.PickerType = ctlFilePicker.DialogType.SaveFile;
             this.ctlExportFilePicker.SelectedPathOrFileName = "";
             this.ctlExportFilePicker.Size = new System.Drawing.Size(739, 33);
             this.ctlExportFilePicker.TabIndex = 0;

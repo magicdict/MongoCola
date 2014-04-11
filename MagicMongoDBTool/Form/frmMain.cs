@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Common;
+using Common.GFS;
+using Common.Security;
+using MagicMongoDBTool.Module;
+using MagicMongoDBTool.UserController;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;
-using MagicMongoDBTool.Properties;
-using MagicMongoDBTool.UserController;
-using Common.Security;
-using Common;
 
 namespace MagicMongoDBTool
 {
@@ -1195,15 +1195,15 @@ namespace MagicMongoDBTool
             switch (SystemManager.SelectTagType)
             {
                 case MongoDbHelper.USER_LIST_TAG:
-                    MongoDbHelper.InitDBUser();
+                    GFS.InitDBUser();
                     ViewDataRecord();
                     break;
                 case MongoDbHelper.GRID_FILE_SYSTEM_TAG:
-                    MongoDbHelper.InitGFS();
+                    GFS.InitGFS();
                     ViewDataRecord();
                     break;
                 case MongoDbHelper.JAVASCRIPT_TAG:
-                    MongoDbHelper.InitJavascript();
+                    GFS.InitJavascript();
                     break;
                 case MongoDbHelper.JAVASCRIPT_DOC_TAG:
                     ViewJavascript();

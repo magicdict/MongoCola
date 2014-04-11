@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MagicMongoDBTool.UserController;
 using MongoDB.Bson;
+using Common.GFS;
 
 namespace MagicMongoDBTool
 {
@@ -320,7 +321,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void OpenDocInEditorDocStripButton_Click(object sender, EventArgs e)
         {
-            MongoDbHelper.SaveAndOpenStringAsFile(txtData.Text);
+            GFS.SaveAndOpenStringAsFile(txtData.Text);
         }
 
         /// <summary>

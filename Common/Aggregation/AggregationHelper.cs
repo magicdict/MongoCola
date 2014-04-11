@@ -1,6 +1,6 @@
-﻿namespace MagicMongoDBTool.Module
+﻿namespace Common.Aggregation
 {
-    public static partial class MongoDbHelper
+    public static class AggregationHelper
     {
         /// <summary>
         ///     group aggregation function

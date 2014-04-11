@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Common.Aggregation;
 
 namespace MagicMongoDBTool
 {
@@ -72,7 +73,7 @@ namespace MagicMongoDBTool
             }
             var ResultArray =
                 (BsonArray)
-                    SystemManager.GetCurrentCollection().Distinct(strKey, MongoDbHelper.GetQuery(DistinctConditionList));
+                    SystemManager.GetCurrentCollection().Distinct(strKey, QueryHelper.GetQuery(DistinctConditionList));
             var ResultList = new List<BsonValue>();
             foreach (BsonValue item in ResultArray)
             {

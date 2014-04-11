@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace MagicMongoDBTool
+namespace GUI
 {
     public partial class ctlFilePicker : UserControl
     {

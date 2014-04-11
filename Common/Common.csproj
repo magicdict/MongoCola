@@ -47,7 +47,7 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\MongoDBHelper_Aggregation.cs" />
+    <Compile Include="Aggregation\AggregationHelper.cs" />
     <Compile Include="Command\MongoDBHelper_Command_Define.cs" />
     <Compile Include="Command\MongoDBHelper_Command_Run.cs" />
     <Compile Include="Core\MongoDBHelper_Connection_Manager.cs" />
@@ -58,11 +58,11 @@
     <Compile Include="Core\MongoDBHelper_Element.cs" />
     <Compile Include="Core\MongoDBHelper_Enum.cs" />
     <Compile Include="Core\MongoDBHelper_ExportData.cs" />
-    <Compile Include="Core\MongoDBHelper_GFS.cs" />
+    <Compile Include="GridFileSystem\GFS.cs" />
     <Compile Include="Core\MongoDBHelper_ImportData.cs" />
     <Compile Include="Core\MongoDBHelper_Operation.cs" />
-    <Compile Include="Core\MongoDBHelper_Query.cs" />
-    <Compile Include="Core\MongoDBHelper_Sql.cs" />
+    <Compile Include="Aggregation\Query.cs" />
+    <Compile Include="Aggregation\Sql.cs" />
     <Compile Include="Present\MongoDBHelper_Status.cs" />
     <Compile Include="Security\Action.cs" />
     <Compile Include="Security\Resource.cs" />

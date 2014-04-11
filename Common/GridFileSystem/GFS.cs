@@ -1,13 +1,15 @@
-﻿using System;
+﻿using MagicMongoDBTool;
+using MagicMongoDBTool.Module;
+using MongoDB.Driver;
+using MongoDB.Driver.GridFS;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using MongoDB.Driver;
-using MongoDB.Driver.GridFS;
 
-namespace MagicMongoDBTool.Module
+namespace Common.GFS
 {
-    public static partial class MongoDbHelper
+    public static class GFS
     {
         #region"GFS操作"
 
@@ -45,11 +47,11 @@ namespace MagicMongoDBTool.Module
         /// <param name="strJson"></param>
         public static void SaveAndOpenStringAsFile(String strJson)
         {
-            if (!Directory.Exists(TempFileFolder))
+            if (!Directory.Exists(MongoDbHelper.TempFileFolder))
             {
-                Directory.CreateDirectory(TempFileFolder);
+                Directory.CreateDirectory(MongoDbHelper.TempFileFolder);
             }
-            String localFileName = TempFileFolder + Path.DirectorySeparatorChar + "JsonData.txt";
+            String localFileName = MongoDbHelper.TempFileFolder + Path.DirectorySeparatorChar + "JsonData.txt";
             var t = new StreamWriter(localFileName, false);
             t.Write(strJson);
             t.Close();
@@ -73,11 +75,11 @@ namespace MagicMongoDBTool.Module
 
             try
             {
-                if (!Directory.Exists(TempFileFolder))
+                if (!Directory.Exists(MongoDbHelper.TempFileFolder))
                 {
-                    Directory.CreateDirectory(TempFileFolder);
+                    Directory.CreateDirectory(MongoDbHelper.TempFileFolder);
                 }
-                String LocalFileName = TempFileFolder + Path.DirectorySeparatorChar +
+                String LocalFileName = MongoDbHelper.TempFileFolder + Path.DirectorySeparatorChar +
                                        strLocalFileName[strLocalFileName.Length - 1];
                 gfs.Download(LocalFileName, strRemoteFileName);
                 Process.Start(LocalFileName);
@@ -126,7 +128,7 @@ namespace MagicMongoDBTool.Module
             }
             try
             {
-                OnActionDone(new ActionDoneEventArgs(RemoteName + " Uploading "));
+                MongoDbHelper.OnActionDone(new ActionDoneEventArgs(RemoteName + " Uploading "));
                 if (!gfs.Exists(RemoteName))
                 {
                     gfs.Upload(strFileName, RemoteName);
@@ -185,9 +187,9 @@ namespace MagicMongoDBTool.Module
         public static void InitGFS()
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
-            if (!mongoDB.CollectionExists(COLLECTION_NAME_GFS_FILES))
+            if (!mongoDB.CollectionExists(MongoDbHelper.COLLECTION_NAME_GFS_FILES))
             {
-                mongoDB.CreateCollection(COLLECTION_NAME_GFS_FILES);
+                mongoDB.CreateCollection(MongoDbHelper.COLLECTION_NAME_GFS_FILES);
             }
         }
 
@@ -197,9 +199,9 @@ namespace MagicMongoDBTool.Module
         public static void InitDBUser()
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
-            if (!mongoDB.CollectionExists(COLLECTION_NAME_USER))
+            if (!mongoDB.CollectionExists(MongoDbHelper.COLLECTION_NAME_USER))
             {
-                mongoDB.CreateCollection(COLLECTION_NAME_USER);
+                mongoDB.CreateCollection(MongoDbHelper.COLLECTION_NAME_USER);
             }
         }
 
@@ -209,9 +211,9 @@ namespace MagicMongoDBTool.Module
         public static void InitJavascript()
         {
             MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
-            if (!mongoDB.CollectionExists(COLLECTION_NAME_JAVASCRIPT))
+            if (!mongoDB.CollectionExists(MongoDbHelper.COLLECTION_NAME_JAVASCRIPT))
             {
-                mongoDB.CreateCollection(COLLECTION_NAME_JAVASCRIPT);
+                mongoDB.CreateCollection(MongoDbHelper.COLLECTION_NAME_JAVASCRIPT);
             }
         }
 

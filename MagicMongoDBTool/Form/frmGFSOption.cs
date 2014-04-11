@@ -2,15 +2,16 @@
 using System.IO;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
+using Common.GFS;
 
 namespace MagicMongoDBTool
 {
     public partial class frmGFSOption : Form
     {
         public Char DirectorySeparatorChar = Path.PathSeparator;
-        public MongoDbHelper.enumGFSFileName filename;
+        public GFS.enumGFSFileName filename;
         public Boolean ignoreSubFolder;
-        public MongoDbHelper.enumGFSAlready option;
+        public GFS.enumGFSAlready option;
 
         public frmGFSOption()
         {
@@ -24,26 +25,26 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            filename = radFilename.Checked ? MongoDbHelper.enumGFSFileName.Filename : MongoDbHelper.enumGFSFileName.Path;
+            filename = radFilename.Checked ? GFS.enumGFSFileName.Filename : GFS.enumGFSFileName.Path;
             if (radAddIt.Checked)
             {
-                option = MongoDbHelper.enumGFSAlready.JustAddIt;
+                option = GFS.enumGFSAlready.JustAddIt;
             }
             if (radOverwrite.Checked)
             {
-                option = MongoDbHelper.enumGFSAlready.OverwriteIt;
+                option = GFS.enumGFSAlready.OverwriteIt;
             }
             if (radRenameIt.Checked)
             {
-                option = MongoDbHelper.enumGFSAlready.RenameIt;
+                option = GFS.enumGFSAlready.RenameIt;
             }
             if (radSkipIt.Checked)
             {
-                option = MongoDbHelper.enumGFSAlready.SkipIt;
+                option = GFS.enumGFSAlready.SkipIt;
             }
             if (radStopIt.Checked)
             {
-                option = MongoDbHelper.enumGFSAlready.Stop;
+                option = GFS.enumGFSAlready.Stop;
             }
             if (txtSeperateChar.Text != String.Empty)
             {

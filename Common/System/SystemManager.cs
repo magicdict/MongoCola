@@ -95,7 +95,7 @@ namespace MagicMongoDBTool.Module
                 {
                     return true;
                 }
-                return (ConfigHelperInstance.LanguageFileName == "English" ||
+                return (ConfigHelperInstance.LanguageFileName == "English.xml" ||
                         String.IsNullOrEmpty(ConfigHelperInstance.LanguageFileName));
             }
         }
@@ -405,7 +405,7 @@ namespace MagicMongoDBTool.Module
                 if (File.Exists(LanguageFile))
                 {
                     MStringResource.InitLanguage(LanguageFile);
-                    MyMessageBox.SwitchLanguage(MStringResource);
+                    GUI.SystemManager.SwitchLanguage(MStringResource);
                 }
             }
         }

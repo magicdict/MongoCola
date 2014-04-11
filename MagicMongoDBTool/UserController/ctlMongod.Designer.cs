@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using GUI;
+using System.Windows.Forms;
 namespace MagicMongoDBTool
 {
     partial class ctlMongod
@@ -41,9 +42,9 @@ namespace MagicMongoDBTool
             this.radSlave = new System.Windows.Forms.RadioButton();
             this.lblWarning = new System.Windows.Forms.Label();
             this.chkSmallfiles = new System.Windows.Forms.CheckBox();
-            this.ctlFilePickerDBPath = new MagicMongoDBTool.ctlFilePicker();
+            this.ctlFilePickerDBPath = new ctlFilePicker();
             this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
-            this.ctlFilePickerLogPath = new MagicMongoDBTool.ctlFilePicker();
+            this.ctlFilePickerLogPath = new ctlFilePicker();
             this.grpLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.SuspendLayout();
@@ -196,7 +197,7 @@ namespace MagicMongoDBTool
             this.ctlFilePickerDBPath.FileFilter = "";
             this.ctlFilePickerDBPath.Location = new System.Drawing.Point(26, 41);
             this.ctlFilePickerDBPath.Name = "ctlFilePickerDBPath";
-            this.ctlFilePickerDBPath.PickerType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
+            this.ctlFilePickerDBPath.PickerType = ctlFilePicker.DialogType.Directory;
             this.ctlFilePickerDBPath.SelectedPathOrFileName = "";
             this.ctlFilePickerDBPath.Size = new System.Drawing.Size(739, 35);
             this.ctlFilePickerDBPath.TabIndex = 15;
@@ -216,7 +217,7 @@ namespace MagicMongoDBTool
             this.ctlFilePickerLogPath.FileFilter = "";
             this.ctlFilePickerLogPath.Location = new System.Drawing.Point(9, 25);
             this.ctlFilePickerLogPath.Name = "ctlFilePickerLogPath";
-            this.ctlFilePickerLogPath.PickerType = MagicMongoDBTool.ctlFilePicker.DialogType.SaveFile;
+            this.ctlFilePickerLogPath.PickerType = ctlFilePicker.DialogType.SaveFile;
             this.ctlFilePickerLogPath.SelectedPathOrFileName = "";
             this.ctlFilePickerLogPath.Size = new System.Drawing.Size(739, 37);
             this.ctlFilePickerLogPath.TabIndex = 14;

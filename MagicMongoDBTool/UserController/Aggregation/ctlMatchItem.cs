@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
+using Common.Aggregation;
 
 namespace MagicMongoDBTool
 {
@@ -28,7 +29,7 @@ namespace MagicMongoDBTool
 
         private void ctlMatchItem_Load(object sender, EventArgs e)
         {
-            foreach (string item in MongoDbHelper.GetComparisonfunction())
+            foreach (string item in AggregationHelper.GetComparisonfunction())
             {
                 cmbComparisonfunction.Items.Add(item);
             }

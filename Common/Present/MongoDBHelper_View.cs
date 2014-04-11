@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using TreeViewColumnsProject;
+using Common.Aggregation;
 
 namespace MagicMongoDBTool.Module
 {
@@ -115,10 +116,10 @@ namespace MagicMongoDBTool.Module
             //Query condition:
             if (CurrentDataViewInfo.IsUseFilter)
             {
-                cursor = mongoCol.FindAs<BsonDocument>(GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
+                cursor = mongoCol.FindAs<BsonDocument>(QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
                     .SetSkip(CurrentDataViewInfo.SkipCnt)
-                    .SetFields(GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
-                    .SetSortOrder(GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList))
+                    .SetFields(QueryHelper.GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
+                    .SetSortOrder(QueryHelper.GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList))
                     .SetLimit(CurrentDataViewInfo.LimitCnt);
             }
             else
@@ -138,7 +139,7 @@ namespace MagicMongoDBTool.Module
                 {
                     //感谢cnblogs.com 网友Shadower
                     CurrentDataViewInfo.CurrentCollectionTotalCnt =
-                        (int) mongoCol.Count(GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList));
+                        (int)mongoCol.Count(QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList));
                 }
                 else
                 {

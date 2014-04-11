@@ -415,12 +415,6 @@
     <Compile Include="UserController\ctlMongoImportExport.Designer.cs">
       <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlFilePicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlFilePicker.Designer.cs">
-      <DependentUpon>ctlFilePicker.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserController\ctlMongod.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -597,9 +591,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlMongoImportExport.resx">
       <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlFilePicker.resx">
-      <DependentUpon>ctlFilePicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctllogLv.resx">
       <DependentUpon>ctllogLv.cs</DependentUpon>

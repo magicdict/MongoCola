@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Common.Aggregation;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using System;
@@ -393,7 +394,7 @@ namespace MagicMongoDBTool.Module
         {
             //标准的JS库格式未知
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
-            if (!IsExistByKey(jsCol, jsName))
+            if (!QueryHelper.IsExistByKey(jsCol, jsName))
             {
                 var result = new CommandResult(new BsonDocument());
                 try
@@ -423,7 +424,7 @@ namespace MagicMongoDBTool.Module
         {
             //标准的JS库格式未知
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
-            if (IsExistByKey(jsCol, jsName))
+            if (QueryHelper.IsExistByKey(jsCol, jsName))
             {
                 String result = DropDocument(jsCol, (BsonString) jsName);
                 if (String.IsNullOrEmpty(result))
@@ -456,7 +457,7 @@ namespace MagicMongoDBTool.Module
         public static String DelJavascript(String jsName)
         {
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
-            if (IsExistByKey(jsCol, jsName))
+            if (QueryHelper.IsExistByKey(jsCol, jsName))
             {
                 return DropDocument(jsCol, (BsonString) jsName);
             }
@@ -471,7 +472,7 @@ namespace MagicMongoDBTool.Module
         public static String LoadJavascript(String jsName)
         {
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
-            if (IsExistByKey(jsCol, jsName))
+            if (QueryHelper.IsExistByKey(jsCol, jsName))
             {
                 return jsCol.FindOneAs<BsonDocument>(Query.EQ(KEY_ID, jsName)).GetValue("value").ToString();
             }
@@ -487,7 +488,7 @@ namespace MagicMongoDBTool.Module
         public static String DropDocument(MongoCollection mongoCol, object strKey)
         {
             var result = new CommandResult(new BsonDocument());
-            if (IsExistByKey(mongoCol, (BsonValue) strKey))
+            if (QueryHelper.IsExistByKey(mongoCol, (BsonValue)strKey))
             {
                 try
                 {

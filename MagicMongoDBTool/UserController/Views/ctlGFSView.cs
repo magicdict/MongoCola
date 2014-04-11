@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MagicMongoDBTool.UserController;
+using Common.GFS;
 
 namespace MagicMongoDBTool
 {
@@ -142,7 +143,7 @@ namespace MagicMongoDBTool
         private void UploadFileStripButton_Click(object sender, EventArgs e)
         {
             var upfile = new OpenFileDialog();
-            var opt = new MongoDbHelper.UpLoadFileOption();
+            var opt = new GFS.UpLoadFileOption();
             if (upfile.ShowDialog() == DialogResult.OK)
             {
                 var frm = new frmGFSOption();
@@ -151,7 +152,7 @@ namespace MagicMongoDBTool
                 opt.AlreadyOpt = frm.option;
                 opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
                 frm.Dispose();
-                MongoDbHelper.UpLoadFile(upfile.FileName, opt);
+                GFS.UpLoadFile(upfile.FileName, opt);
                 RefreshGUI();
             }
         }
@@ -164,7 +165,7 @@ namespace MagicMongoDBTool
         private void UpLoadFolderStripButton_Click(object sender, EventArgs e)
         {
             var upfolder = new FolderBrowserDialog();
-            var opt = new MongoDbHelper.UpLoadFileOption();
+            var opt = new GFS.UpLoadFileOption();
             if (upfolder.ShowDialog() == DialogResult.OK)
             {
                 var frm = new frmGFSOption();
@@ -188,24 +189,24 @@ namespace MagicMongoDBTool
         /// <param name="fileCount"></param>
         /// <param name="opt"></param>
         /// <returns>是否继续执行后续的所有操作</returns>
-        private Boolean UploadFolder(DirectoryInfo uploadDir, ref int fileCount, MongoDbHelper.UpLoadFileOption opt)
+        private Boolean UploadFolder(DirectoryInfo uploadDir, ref int fileCount, GFS.UpLoadFileOption opt)
         {
             foreach (FileInfo file in uploadDir.GetFiles())
             {
-                MongoDbHelper.UploadResult rtn = MongoDbHelper.UpLoadFile(file.FullName, opt);
+                GFS.UploadResult rtn = GFS.UpLoadFile(file.FullName, opt);
                 switch (rtn)
                 {
-                    case MongoDbHelper.UploadResult.Complete:
+                    case GFS.UploadResult.Complete:
                         fileCount++;
                         break;
-                    case MongoDbHelper.UploadResult.Skip:
-                        if (opt.AlreadyOpt == MongoDbHelper.enumGFSAlready.Stop)
+                    case GFS.UploadResult.Skip:
+                        if (opt.AlreadyOpt == GFS.enumGFSAlready.Stop)
                         {
                             ///这个操作返回为False，停止包括父亲过程在内的所有操作
                             return false;
                         }
                         break;
-                    case MongoDbHelper.UploadResult.Exception:
+                    case GFS.UploadResult.Exception:
                         return MyMessageBox.ShowConfirm("Upload Exception", "Is Continue?");
                     default:
                         break;
@@ -239,7 +240,7 @@ namespace MagicMongoDBTool
                     ];
             if (downfile.ShowDialog() == DialogResult.OK)
             {
-                MongoDbHelper.DownloadFile(downfile.FileName, strFileName);
+                GFS.DownloadFile(downfile.FileName, strFileName);
             }
             RefreshGUI();
         }
@@ -252,7 +253,7 @@ namespace MagicMongoDBTool
             if (lstData.SelectedItems.Count == 1)
             {
                 String strFileName = lstData.SelectedItems[0].Text;
-                MongoDbHelper.OpenFile(strFileName);
+                GFS.OpenFile(strFileName);
             }
         }
 
@@ -272,7 +273,7 @@ namespace MagicMongoDBTool
             {
                 foreach (ListViewItem item in lstData.SelectedItems)
                 {
-                    MongoDbHelper.DelFile(item.Text);
+                    GFS.DelFile(item.Text);
                 }
                 RefreshGUI();
             }

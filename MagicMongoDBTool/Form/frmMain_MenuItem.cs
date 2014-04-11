@@ -1,4 +1,6 @@
-﻿using MagicMongoDBTool.Module;
+﻿using Common.Aggregation;
+using Common.GFS;
+using MagicMongoDBTool.Module;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -494,7 +496,7 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void InitGFSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MongoDbHelper.InitGFS();
+            GFS.InitGFS();
             DisableAllOpr();
             UIHelper.FillConnectionToTreeView(trvsrvlst);
         }
@@ -528,7 +530,7 @@ namespace MagicMongoDBTool
             String strJsName = MyMessageBox.ShowInput("pls Input Javascript Name", "Save Javascript");
             if (strJsName == String.Empty) return;
             MongoCollection jsCol = SystemManager.GetCurrentJsCollection();
-            if (MongoDbHelper.IsExistByKey(jsCol, strJsName))
+            if (QueryHelper.IsExistByKey(jsCol, strJsName))
             {
                 MyMessageBox.ShowMessage("Error", "javascript is already exist");
             }
@@ -1006,7 +1008,7 @@ namespace MagicMongoDBTool
             }
             else
             {
-                IMongoQuery mQuery = MongoDbHelper.GetQuery(Query.QueryConditionList);
+                IMongoQuery mQuery = QueryHelper.GetQuery(Query.QueryConditionList);
                 MyMessageBox.ShowMessage("Count",
                     "Count[With DataView Filter]:" + SystemManager.GetCurrentCollection().Count(mQuery),
                     mQuery.ToString(), true);

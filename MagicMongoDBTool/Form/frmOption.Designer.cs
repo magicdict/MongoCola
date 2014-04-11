@@ -1,4 +1,5 @@
-﻿namespace MagicMongoDBTool
+﻿using GUI;
+namespace MagicMongoDBTool
 {
     partial class frmOption
     {
@@ -36,7 +37,7 @@
             this.lblLanguage = new System.Windows.Forms.Label();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.lblExectablePath = new System.Windows.Forms.Label();
-            this.ctlFilePickerMongoBinPath = new MagicMongoDBTool.ctlFilePicker();
+            this.ctlFilePickerMongoBinPath = new ctlFilePicker();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,7 +129,7 @@
             this.ctlFilePickerMongoBinPath.FileFilter = "";
             this.ctlFilePickerMongoBinPath.Location = new System.Drawing.Point(13, 17);
             this.ctlFilePickerMongoBinPath.Name = "ctlFilePickerMongoBinPath";
-            this.ctlFilePickerMongoBinPath.PickerType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
+            this.ctlFilePickerMongoBinPath.PickerType = ctlFilePicker.DialogType.Directory;
             this.ctlFilePickerMongoBinPath.SelectedPathOrFileName = "";
             this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(659, 36);
             this.ctlFilePickerMongoBinPath.TabIndex = 0;

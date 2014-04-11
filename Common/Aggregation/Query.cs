@@ -4,10 +4,10 @@ using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
-
-namespace MagicMongoDBTool.Module
+using MagicMongoDBTool.Module;
+namespace Common.Aggregation
 {
-    public static partial class MongoDbHelper
+    public static class QueryHelper
     {
         /// <summary>
         ///     获得输出字段名称
@@ -89,7 +89,7 @@ namespace MagicMongoDBTool.Module
             for (int i = 0; i < conditiongrpList.Count - 1; i++)
             {
                 String joinMark = conditiongrpList[i][conditiongrpList[i].Count() - 1].EndMark;
-                if (joinMark == EndMark_AND_T)
+                if (joinMark == MongoDbHelper.EndMark_AND_T)
                 {
                     rtnQuery =
                         Query.And(i == 0
@@ -97,7 +97,7 @@ namespace MagicMongoDBTool.Module
                             : new[] {rtnQuery, GetGroupQuery(conditiongrpList[i + 1])});
                 }
 
-                if (joinMark == EndMark_OR_T)
+                if (joinMark == MongoDbHelper.EndMark_OR_T)
                 {
                     rtnQuery =
                         Query.Or(i == 0
@@ -118,11 +118,11 @@ namespace MagicMongoDBTool.Module
             IMongoQuery rtnQuery = Query.Or(GetQuery(conditionGroup[0]));
             for (int i = 1; i < conditionGroup.Count; i++)
             {
-                if (conditionGroup[i - 1].EndMark == EndMark_AND)
+                if (conditionGroup[i - 1].EndMark == MongoDbHelper.EndMark_AND)
                 {
                     rtnQuery = Query.And(new[] {rtnQuery, GetQuery(conditionGroup[i])});
                 }
-                if (conditionGroup[i - 1].EndMark == EndMark_OR)
+                if (conditionGroup[i - 1].EndMark == MongoDbHelper.EndMark_OR)
                 {
                     rtnQuery = Query.Or(new[] {rtnQuery, GetQuery(conditionGroup[i])});
                 }
@@ -174,7 +174,7 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Boolean IsExistByKey(MongoCollection mongoCol, BsonValue KeyValue)
         {
-            return mongoCol.FindAs<BsonDocument>(Query.EQ(KEY_ID, KeyValue)).Count() > 0;
+            return mongoCol.FindAs<BsonDocument>(Query.EQ(MongoDbHelper.KEY_ID, KeyValue)).Count() > 0;
         }
     }
 }

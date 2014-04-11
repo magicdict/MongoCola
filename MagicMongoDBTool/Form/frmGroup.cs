@@ -6,6 +6,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Common.Aggregation;
 
 namespace MagicMongoDBTool
 {
@@ -46,7 +47,7 @@ namespace MagicMongoDBTool
         private void cmdOK_Click(object sender, EventArgs e)
         {
             MongoCollection mongoCol = SystemManager.GetCurrentCollection();
-            IMongoQuery query = MongoDbHelper.GetQuery(GroupConditionList);
+            IMongoQuery query = QueryHelper.GetQuery(GroupConditionList);
             var groupdoc = new GroupByDocument();
             String ChartTite = string.Empty;
             foreach (CheckBox item in panColumn.Controls)

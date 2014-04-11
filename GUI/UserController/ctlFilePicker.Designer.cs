@@ -1,4 +1,4 @@
-﻿namespace MagicMongoDBTool
+﻿namespace GUI
 {
     partial class ctlFilePicker
     {

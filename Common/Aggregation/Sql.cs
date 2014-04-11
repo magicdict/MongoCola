@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MagicMongoDBTool.Module;
 
-namespace MagicMongoDBTool.Module
+namespace Common.Aggregation
 {
-    public static partial class MongoDbHelper
+    public static class Sql
     {
         //http://www.mongodb.org/display/DOCS/SQL+to+Mongo+Mapping+Chart(旧网址)
         //http://docs.mongodb.org/manual/reference/sql-comparison/
@@ -85,7 +86,7 @@ namespace MagicMongoDBTool.Module
             {
                 return null;
             }
-            List<String> ColumnNameLst = GetCollectionSchame(mongoCol);
+            List<String> ColumnNameLst = MongoDbHelper.GetCollectionSchame(mongoCol);
             if (strSelect == "*")
             {
                 //Select * 
@@ -298,7 +299,7 @@ namespace MagicMongoDBTool.Module
                         mQueryConditionInputItem.Compare = DataFilter.CompareEnum.NE;
                         break;
                     case "or":
-                        mQueryConditionInputItem.EndMark = EndMark_OR;
+                        mQueryConditionInputItem.EndMark = MongoDbHelper.EndMark_OR;
                         Conditionlst.Add(mQueryConditionInputItem);
                         mQueryConditionInputItem = new DataFilter.QueryConditionInputItem();
                         mQueryConditionInputItem.StartMark = String.Empty;
@@ -306,7 +307,7 @@ namespace MagicMongoDBTool.Module
 
                         break;
                     case "and":
-                        mQueryConditionInputItem.EndMark = EndMark_AND;
+                        mQueryConditionInputItem.EndMark = MongoDbHelper.EndMark_AND;
                         Conditionlst.Add(mQueryConditionInputItem);
                         mQueryConditionInputItem = new DataFilter.QueryConditionInputItem();
                         mQueryConditionInputItem.StartMark = String.Empty;
@@ -318,20 +319,20 @@ namespace MagicMongoDBTool.Module
 
                         if (i == Token.Length - 1)
                         {
-                            mQueryConditionInputItem.EndMark = EndMark_T;
+                            mQueryConditionInputItem.EndMark = MongoDbHelper.EndMark_T;
                         }
                         else
                         {
                             if (Token[i + 1] == "or")
                             {
-                                mQueryConditionInputItem.EndMark = EndMark_OR_T;
+                                mQueryConditionInputItem.EndMark = MongoDbHelper.EndMark_OR_T;
                                 i++;
                             }
                             else
                             {
                                 if (Token[i + 1] == "and")
                                 {
-                                    mQueryConditionInputItem.EndMark = EndMark_AND_T;
+                                    mQueryConditionInputItem.EndMark = MongoDbHelper.EndMark_AND_T;
                                     i++;
                                 }
                             }

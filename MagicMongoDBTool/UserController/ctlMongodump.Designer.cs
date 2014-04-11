@@ -1,4 +1,5 @@
-﻿namespace MagicMongoDBTool.Module
+﻿using GUI;
+namespace MagicMongoDBTool.Module
 {
     partial class ctlMongodump
     {
@@ -29,7 +30,7 @@
         private void InitializeComponent()
         {
             this.ctllogLvT = new MagicMongoDBTool.Module.ctllogLv();
-            this.ctlFilePickerOutput = new MagicMongoDBTool.ctlFilePicker();
+            this.ctlFilePickerOutput = new ctlFilePicker();
             this.lblHostAddr = new System.Windows.Forms.Label();
             this.txtHostAddr = new System.Windows.Forms.TextBox();
             this.lblPort = new System.Windows.Forms.Label();
@@ -55,7 +56,7 @@
             this.ctlFilePickerOutput.FileFilter = "";
             this.ctlFilePickerOutput.Location = new System.Drawing.Point(33, 98);
             this.ctlFilePickerOutput.Name = "ctlFilePickerOutput";
-            this.ctlFilePickerOutput.PickerType = MagicMongoDBTool.ctlFilePicker.DialogType.Directory;
+            this.ctlFilePickerOutput.PickerType = ctlFilePicker.DialogType.Directory;
             this.ctlFilePickerOutput.SelectedPathOrFileName = "";
             this.ctlFilePickerOutput.Size = new System.Drawing.Size(739, 41);
             this.ctlFilePickerOutput.TabIndex = 1;

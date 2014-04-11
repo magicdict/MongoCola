@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualBasic;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Common.Aggregation;
 
 namespace MagicMongoDBTool.Module
 {
@@ -28,9 +29,9 @@ namespace MagicMongoDBTool.Module
             //Query condition:
             if (CurrentDataViewInfo != null && CurrentDataViewInfo.IsUseFilter)
             {
-                cursor = mongoCol.FindAs<BsonDocument>(GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
-                    .SetFields(GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
-                    .SetSortOrder(GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList));
+                cursor = mongoCol.FindAs<BsonDocument>(QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
+                    .SetFields(QueryHelper.GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
+                    .SetSortOrder(QueryHelper.GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList));
             }
             else
             {
