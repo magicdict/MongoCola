@@ -96,10 +96,10 @@
     <Content Include="HTML\css\zTreeStyle\zTreeStyle.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="HTML\js\jquery-1.4.4.min.js">
+    <Content Include="HTML\js\jquery-1.10.1.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="HTML\js\jquery.ztree.core-3.1.min.js">
+    <Content Include="HTML\js\jquery.ztree.core-3.5.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="HTML\ConnectionList.htm">

@@ -58,7 +58,12 @@ namespace MagicMongoDBTool.Module
                 {
                     Assembly mAssem = Assembly.LoadFile(mFile);
                     String FileName = mFile.Replace(Application.StartupPath + @"\PlugIn\", String.Empty);
-                    if (FileName == "MagicMongoDBTool.Common.dll") continue;
+                    //正式版本中，应该不会有这些
+                    if (FileName == "Common.dll") continue;
+                    if (FileName == "GUI.dll") continue;
+                    if (FileName == "MongoDB.Bson.dll") continue;
+                    if (FileName == "MongoDB.Driver.dll") continue;
+                    if (FileName == "ResourceLib.dll") continue;
                     String TypeName = FileName.Substring(0, FileName.Length - 4);
                     Type mType = mAssem.GetType(TypeName + "." + TypeName);
                     ConstructorInfo ConstructorInfo = mType.GetConstructor(new Type[] {});
