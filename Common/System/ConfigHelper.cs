@@ -6,6 +6,9 @@ using MongoDB.Driver;
 
 namespace MagicMongoDBTool.Module
 {
+    /// <summary>
+    /// Config
+    /// </summary>
     [Serializable]
     public class ConfigHelper
     {
@@ -56,20 +59,45 @@ namespace MagicMongoDBTool.Module
         [XmlIgnore] public Dictionary<String, MongoConnectionConfig> ConnectionList =
             new Dictionary<String, MongoConnectionConfig>();
 
-        /// <summary>
-        ///     语言
-        /// </summary>
-        public String LanguageFileName = String.Empty;
 
+        #region"Toolkit"
         /// <summary>
         ///     MongoBin的路径，用于Dos命令
         /// </summary>
         public String MongoBinPath = String.Empty;
+        #endregion
 
+        #region"Gerneric"
+        /// <summary>
+        ///     语言
+        /// </summary>
+        public String LanguageFileName = String.Empty;
         /// <summary>
         ///     状态刷新间隔时间
         /// </summary>
         public int RefreshStatusTimer = 30;
+        #endregion
+
+        #region"Default ReadWrite"
+        /// <summary>
+        ///     ReadPreference
+        /// </summary>
+        public String ReadPreference;
+        /// <summary>
+        ///     WriteConcern
+        /// </summary>
+        public String WriteConcern;
+        /// <summary>
+        ///     WaitQueueSize;
+        /// </summary>
+        /// <remarks></remarks>
+        public int WaitQueueSize;
+        /// <summary>
+        ///     wtimeoutMS
+        /// </summary>
+        /// <remarks>The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true.</remarks>
+        public double wtimeoutMS;
+        #endregion
 
         /// <summary>
         ///     连接配置列表(保存用）
@@ -166,7 +194,6 @@ namespace MagicMongoDBTool.Module
             xs.Serialize(fs, this);
             fs.Close();
         }
-
         /// <summary>
         ///     连接结构体
         /// </summary>
@@ -198,11 +225,6 @@ namespace MagicMongoDBTool.Module
             [XmlIgnore] public Boolean Health;
 
             /// <summary>
-            ///     IP地址
-            /// </summary>
-            public String Host;
-
-            /// <summary>
             ///     只读[这个属性是运行时决定的]
             /// </summary>
             /// [XmlIgnore()]
@@ -217,21 +239,6 @@ namespace MagicMongoDBTool.Module
             ///     当前连接的MongoDB版本[这个属性是运行时决定的]
             /// </summary>
             [XmlIgnore] public Version MongoDBVersion;
-
-            /// <summary>
-            ///     密码
-            /// </summary>
-            public String Password;
-
-            /// <summary>
-            ///     端口号
-            /// </summary>
-            public int Port;
-
-            /// <summary>
-            ///     ReadPreference
-            /// </summary>
-            public String ReadPreference;
 
             /// <summary>
             ///     副本名称
@@ -256,6 +263,17 @@ namespace MagicMongoDBTool.Module
             ///     是否为安全模式
             /// </summary>
             /// public bool IsSafeMode;
+
+            /// <summary>
+            ///     IP地址
+            /// </summary>
+            public String Host;
+
+            /// <summary>
+            ///     端口号
+            /// </summary>
+            public int Port;
+
             /// <summary>
             ///     使用SSL初始化连接
             /// </summary>
@@ -265,6 +283,10 @@ namespace MagicMongoDBTool.Module
             ///     用户名
             /// </summary>
             public String UserName;
+            /// <summary>
+            ///     密码
+            /// </summary>
+            public String Password;
 
             /// <summary>
             ///     VerifySslCertificate
@@ -272,20 +294,14 @@ namespace MagicMongoDBTool.Module
             public Boolean VerifySslCertificate;
 
             /// <summary>
-            ///     WaitQueueSize;
-            /// </summary>
-            /// <remarks></remarks>
-            public int WaitQueueSize;
-
-            /// <summary>
-            ///     WriteConcern
-            /// </summary>
-            public String WriteConcern;
-
-            /// <summary>
             ///     connect TimeOut (Sec)
             /// </summary>
             public double connectTimeoutMS;
+
+            /// <summary>
+            ///     Socket TimeOut (Sec)
+            /// </summary>
+            public double socketTimeoutMS;
 
             /// <summary>
             ///     fsync
@@ -301,16 +317,8 @@ namespace MagicMongoDBTool.Module
             /// </summary>
             public bool journal;
 
-            /// <summary>
-            ///     Socket TimeOut (Sec)
-            /// </summary>
-            public double socketTimeoutMS;
 
-            /// <summary>
-            ///     wtimeoutMS
-            /// </summary>
-            /// <remarks>The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true.</remarks>
-            public double wtimeoutMS;
         }
+
     }
 }

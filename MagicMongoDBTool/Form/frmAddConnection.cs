@@ -53,20 +53,8 @@ namespace MagicMongoDBTool
             chkFsync.Checked = ModifyConn.fsync;
             chkJournal.Checked = ModifyConn.journal;
 
-            //ReadPreference和WriteConern不是Connection的属性,
-            //而是读写策略
-            if (ModifyConn.ReadPreference != string.Empty)
-            {
-                cmbReadPreference.Text = ModifyConn.ReadPreference;
-            }
-            if (ModifyConn.WriteConcern != string.Empty)
-            {
-                cmbWriteConcern.Text = ModifyConn.WriteConcern;
-            }
-            NumWTimeoutMS.Value = (decimal) ModifyConn.wtimeoutMS;
             NumSocketTimeOut.Value = (decimal) ModifyConn.socketTimeoutMS;
             NumConnectTimeOut.Value = (decimal) ModifyConn.connectTimeoutMS;
-            NumWaitQueueSize.Value = ModifyConn.WaitQueueSize;
 
             txtReplsetName.Text = ModifyConn.ReplSetName;
             txtConnectionString.Text = ModifyConn.ConnectionString;
@@ -91,30 +79,6 @@ namespace MagicMongoDBTool
             NumReplPort.GotFocus += (x, y) => NumReplPort.Select(0, 5);
             NumSocketTimeOut.GotFocus += (x, y) => NumSocketTimeOut.Select(0, 5);
             NumConnectTimeOut.GotFocus += (x, y) => NumConnectTimeOut.Select(0, 5);
-            NumWTimeoutMS.GotFocus += (x, y) => NumWTimeoutMS.Select(0, 5);
-            NumWaitQueueSize.GotFocus += (x, y) => NumWaitQueueSize.Select(0, 5);
-
-            //读策略
-            //http://docs.mongodb.org/manual/reference/connection-string/#read-preference-options
-            //https://github.com/mongodb/mongo-csharp-driver/blob/master/MongoDB.Driver/ReadPreference.cs
-            cmbReadPreference.Items.Add(ReadPreference.Primary.ToString());
-            cmbReadPreference.Items.Add(ReadPreference.PrimaryPreferred.ToString());
-            cmbReadPreference.Items.Add(ReadPreference.Secondary.ToString());
-            cmbReadPreference.Items.Add(ReadPreference.SecondaryPreferred.ToString());
-            cmbReadPreference.Items.Add(ReadPreference.Nearest.ToString());
-
-            //写确认
-            //http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options
-            //https://github.com/mongodb/mongo-csharp-driver/blob/master/MongoDB.Driver/WriteConcern.cs
-            //-1 – The driver will not acknowledge write operations and will suppress all network or socket errors.
-            cmbWriteConcern.Items.Add(WriteConcern.Unacknowledged.ToString());
-            //1   -  Provides basic acknowledgment of write operations.
-            cmbWriteConcern.Items.Add(WriteConcern.Acknowledged.ToString());
-            cmbWriteConcern.Items.Add(WriteConcern.W2.ToString());
-            cmbWriteConcern.Items.Add(WriteConcern.W3.ToString());
-            cmbWriteConcern.Items.Add(WriteConcern.W4.ToString());
-            cmbWriteConcern.Items.Add(WriteConcern.WMajority.ToString());
-
 
             if (SystemManager.IsUseDefaultLanguage) return;
             Text = SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Title);
@@ -289,14 +253,9 @@ namespace MagicMongoDBTool
 
                 ModifyConn.socketTimeoutMS = (double) NumSocketTimeOut.Value;
                 ModifyConn.connectTimeoutMS = (double) NumConnectTimeOut.Value;
-                ModifyConn.wtimeoutMS = (double) NumWTimeoutMS.Value;
-                ModifyConn.WaitQueueSize = (int) NumWaitQueueSize.Value;
 
                 ModifyConn.journal = chkJournal.Checked;
                 ModifyConn.fsync = chkFsync.Checked;
-                ModifyConn.WriteConcern = cmbWriteConcern.Text;
-                ModifyConn.ReadPreference = cmbReadPreference.Text;
-
                 ModifyConn.ReplSetName = txtReplsetName.Text;
                 ModifyConn.ReplsetList = new List<string>();
                 foreach (String item in lstHost.Items)

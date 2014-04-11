@@ -90,13 +90,13 @@ namespace MagicMongoDBTool.Module
                 {
                     mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int) (config.connectTimeoutMS/1000));
                 }
-                if (config.wtimeoutMS != 0)
+                if (SystemManager.ConfigHelperInstance.wtimeoutMS != 0)
                 {
-                    mongoClientSetting.WaitQueueTimeout = new TimeSpan(0, 0, (int) (config.wtimeoutMS/1000));
+                    mongoClientSetting.WaitQueueTimeout = new TimeSpan(0, 0, (int)(SystemManager.ConfigHelperInstance.wtimeoutMS / 1000));
                 }
-                if (config.WaitQueueSize != 0)
+                if (SystemManager.ConfigHelperInstance.WaitQueueSize != 0)
                 {
-                    mongoClientSetting.WaitQueueSize = config.WaitQueueSize;
+                    mongoClientSetting.WaitQueueSize = SystemManager.ConfigHelperInstance.WaitQueueSize;
                 }
                 //运行时LoginAsAdmin的设定
                 config.LoginAsAdmin = (config.DataBaseName == String.Empty);
@@ -208,49 +208,49 @@ namespace MagicMongoDBTool.Module
 
             //当一个服务器作为从属服务器，副本组中的备用服务器，这里一定要设置为SlaveOK,默认情况下是不可以读取的
             //SlaveOK 过时,使用ReadPreference
-            if (config.ReadPreference == ReadPreference.Primary.ToString())
+            if (SystemManager.ConfigHelperInstance.ReadPreference == ReadPreference.Primary.ToString())
             {
                 mongoSvrSetting.ReadPreference = ReadPreference.Primary;
             }
-            if (config.ReadPreference == ReadPreference.PrimaryPreferred.ToString())
+            if (SystemManager.ConfigHelperInstance.ReadPreference == ReadPreference.PrimaryPreferred.ToString())
             {
                 mongoSvrSetting.ReadPreference = ReadPreference.PrimaryPreferred;
             }
-            if (config.ReadPreference == ReadPreference.Secondary.ToString())
+            if (SystemManager.ConfigHelperInstance.ReadPreference == ReadPreference.Secondary.ToString())
             {
                 mongoSvrSetting.ReadPreference = ReadPreference.Secondary;
             }
-            if (config.ReadPreference == ReadPreference.SecondaryPreferred.ToString())
+            if (SystemManager.ConfigHelperInstance.ReadPreference == ReadPreference.SecondaryPreferred.ToString())
             {
                 mongoSvrSetting.ReadPreference = ReadPreference.SecondaryPreferred;
             }
-            if (config.ReadPreference == ReadPreference.Nearest.ToString())
+            if (SystemManager.ConfigHelperInstance.ReadPreference == ReadPreference.Nearest.ToString())
             {
                 mongoSvrSetting.ReadPreference = ReadPreference.Nearest;
             }
             //Default ReadPreference is Primary
             //安全模式
-            if (config.WriteConcern == WriteConcern.Unacknowledged.ToString())
+            if (SystemManager.ConfigHelperInstance.WriteConcern == WriteConcern.Unacknowledged.ToString())
             {
                 mongoSvrSetting.WriteConcern = WriteConcern.Unacknowledged;
             }
-            if (config.WriteConcern == WriteConcern.Acknowledged.ToString())
+            if (SystemManager.ConfigHelperInstance.WriteConcern == WriteConcern.Acknowledged.ToString())
             {
                 mongoSvrSetting.WriteConcern = WriteConcern.Acknowledged;
             }
-            if (config.WriteConcern == WriteConcern.W2.ToString())
+            if (SystemManager.ConfigHelperInstance.WriteConcern == WriteConcern.W2.ToString())
             {
                 mongoSvrSetting.WriteConcern = WriteConcern.W2;
             }
-            if (config.WriteConcern == WriteConcern.W3.ToString())
+            if (SystemManager.ConfigHelperInstance.WriteConcern == WriteConcern.W3.ToString())
             {
                 mongoSvrSetting.WriteConcern = WriteConcern.W3;
             }
-            if (config.WriteConcern == WriteConcern.W4.ToString())
+            if (SystemManager.ConfigHelperInstance.WriteConcern == WriteConcern.W4.ToString())
             {
                 mongoSvrSetting.WriteConcern = WriteConcern.W4;
             }
-            if (config.WriteConcern == WriteConcern.WMajority.ToString())
+            if (SystemManager.ConfigHelperInstance.WriteConcern == WriteConcern.WMajority.ToString())
             {
                 mongoSvrSetting.WriteConcern = WriteConcern.WMajority;
             }
@@ -299,14 +299,14 @@ namespace MagicMongoDBTool.Module
                 }
                 config.Host = mongourl.Server.Host;
                 config.Port = mongourl.Server.Port;
-                config.ReadPreference = mongourl.ReadPreference.ToString();
+                SystemManager.ConfigHelperInstance.ReadPreference = mongourl.ReadPreference.ToString();
                 //config.ReadPreference = ReadPreference.PrimaryPreferred.ToString();
                 //TODO: Is this OK??
-                config.WriteConcern = mongourl.GetWriteConcern(true).ToString();
+                SystemManager.ConfigHelperInstance.WriteConcern = mongourl.GetWriteConcern(true).ToString();
                 config.socketTimeoutMS = (int) mongourl.SocketTimeout.TotalMilliseconds;
                 config.connectTimeoutMS = (int) mongourl.ConnectTimeout.TotalMilliseconds;
-                config.wtimeoutMS = (int) mongourl.WaitQueueTimeout.TotalMilliseconds;
-                config.WaitQueueSize = mongourl.WaitQueueSize;
+                SystemManager.ConfigHelperInstance.wtimeoutMS = (int)mongourl.WaitQueueTimeout.TotalMilliseconds;
+                SystemManager.ConfigHelperInstance.WaitQueueSize = mongourl.WaitQueueSize;
                 config.ReplSetName = mongourl.ReplicaSetName;
                 foreach (MongoServerAddress item in mongourl.Servers)
                 {
