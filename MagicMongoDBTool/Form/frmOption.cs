@@ -110,9 +110,12 @@ namespace MagicMongoDBTool
             SystemManager.ConfigHelperInstance.WaitQueueSize = (int)NumWaitQueueSize.Value;
             SystemManager.ConfigHelperInstance.WriteConcern = cmbWriteConcern.Text;
             SystemManager.ConfigHelperInstance.ReadPreference = cmbReadPreference.Text;
+
             SystemManager.ConfigHelperInstance.MongoBinPath = ctlFilePickerMongoBinPath.SelectedPathOrFileName;
+
             SystemManager.ConfigHelperInstance.RefreshStatusTimer = (int) numRefreshForStatus.Value;
             SystemManager.ConfigHelperInstance.LanguageFileName = cmbLanguage.Text + ".xml";
+            
             SystemManager.ConfigHelperInstance.SaveToConfigFile();
             Close();
         }

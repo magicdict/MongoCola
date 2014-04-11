@@ -318,6 +318,30 @@ namespace MagicMongoDBTool.Module
             public bool journal;
 
 
+            #region"Default ReadWrite"
+
+            public Boolean IsUseDefaultSetting;
+            /// <summary>
+            ///     ReadPreference
+            /// </summary>
+            public String ReadPreference;
+            /// <summary>
+            ///     WriteConcern
+            /// </summary>
+            public String WriteConcern;
+            /// <summary>
+            ///     WaitQueueSize;
+            /// </summary>
+            /// <remarks></remarks>
+            public int WaitQueueSize;
+            /// <summary>
+            ///     wtimeoutMS
+            /// </summary>
+            /// <remarks>The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true.</remarks>
+            public double wtimeoutMS;
+            #endregion
+
+
         }
 
     }

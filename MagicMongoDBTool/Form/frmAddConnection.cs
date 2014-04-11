@@ -251,9 +251,21 @@ namespace MagicMongoDBTool
                     }
                 }
 
+                ModifyConn.IsUseDefaultSetting = chkUseDefault.Checked;
+                if (ModifyConn.IsUseDefaultSetting) {
+                    ModifyConn.wtimeoutMS = SystemManager.ConfigHelperInstance.wtimeoutMS;
+                    ModifyConn.WaitQueueSize = SystemManager.ConfigHelperInstance.WaitQueueSize;
+                    ModifyConn.WriteConcern = SystemManager.ConfigHelperInstance.WriteConcern;
+                    ModifyConn.ReadPreference = SystemManager.ConfigHelperInstance.ReadPreference;
+                } else {
+                    ModifyConn.wtimeoutMS = (double)NumWTimeoutMS.Value;
+                    ModifyConn.WaitQueueSize = (int)NumWaitQueueSize.Value;
+                    ModifyConn.WriteConcern = cmbWriteConcern.Text;
+                    ModifyConn.ReadPreference = cmbReadPreference.Text;
+                }
+
                 ModifyConn.socketTimeoutMS = (double) NumSocketTimeOut.Value;
                 ModifyConn.connectTimeoutMS = (double) NumConnectTimeOut.Value;
-
                 ModifyConn.journal = chkJournal.Checked;
                 ModifyConn.fsync = chkFsync.Checked;
                 ModifyConn.ReplSetName = txtReplsetName.Text;
@@ -309,5 +321,6 @@ namespace MagicMongoDBTool
         {
             Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options");
         }
+
     }
 }

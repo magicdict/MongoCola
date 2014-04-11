@@ -70,6 +70,19 @@ namespace MagicMongoDBTool
             this.lblMainReplsetName = new System.Windows.Forms.Label();
             this.txtReplsetName = new System.Windows.Forms.TextBox();
             this.tabConnectionS = new System.Windows.Forms.TabPage();
+            this.tabReadWrite = new System.Windows.Forms.TabPage();
+            this.lnkWriteConcern = new System.Windows.Forms.LinkLabel();
+            this.lnkReadPreference = new System.Windows.Forms.LinkLabel();
+            this.cmbWriteConcern = new System.Windows.Forms.ComboBox();
+            this.lblWriteConcern = new System.Windows.Forms.Label();
+            this.cmbReadPreference = new System.Windows.Forms.ComboBox();
+            this.lblReadPreference = new System.Windows.Forms.Label();
+            this.lblWtimeoutDescript = new System.Windows.Forms.Label();
+            this.NumWTimeoutMS = new System.Windows.Forms.NumericUpDown();
+            this.lblQueueSize = new System.Windows.Forms.Label();
+            this.lblWTimeout = new System.Windows.Forms.Label();
+            this.NumWaitQueueSize = new System.Windows.Forms.NumericUpDown();
+            this.chkUseDefault = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -78,6 +91,9 @@ namespace MagicMongoDBTool
             this.tabreplicaSet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).BeginInit();
             this.tabConnectionS.SuspendLayout();
+            this.tabReadWrite.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumWTimeoutMS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumWaitQueueSize)).BeginInit();
             this.SuspendLayout();
             // 
             // cmdCancel
@@ -253,6 +269,7 @@ namespace MagicMongoDBTool
             this.tabConnection.Controls.Add(this.tabBasic);
             this.tabConnection.Controls.Add(this.tabreplicaSet);
             this.tabConnection.Controls.Add(this.tabConnectionS);
+            this.tabConnection.Controls.Add(this.tabReadWrite);
             this.tabConnection.Location = new System.Drawing.Point(14, 13);
             this.tabConnection.Name = "tabConnection";
             this.tabConnection.SelectedIndex = 0;
@@ -512,6 +529,148 @@ namespace MagicMongoDBTool
             this.tabConnectionS.Text = "Connection String";
             this.tabConnectionS.UseVisualStyleBackColor = true;
             // 
+            // tabReadWrite
+            // 
+            this.tabReadWrite.Controls.Add(this.chkUseDefault);
+            this.tabReadWrite.Controls.Add(this.lnkWriteConcern);
+            this.tabReadWrite.Controls.Add(this.lnkReadPreference);
+            this.tabReadWrite.Controls.Add(this.cmbWriteConcern);
+            this.tabReadWrite.Controls.Add(this.lblWriteConcern);
+            this.tabReadWrite.Controls.Add(this.cmbReadPreference);
+            this.tabReadWrite.Controls.Add(this.lblReadPreference);
+            this.tabReadWrite.Controls.Add(this.lblWtimeoutDescript);
+            this.tabReadWrite.Controls.Add(this.NumWTimeoutMS);
+            this.tabReadWrite.Controls.Add(this.lblQueueSize);
+            this.tabReadWrite.Controls.Add(this.lblWTimeout);
+            this.tabReadWrite.Controls.Add(this.NumWaitQueueSize);
+            this.tabReadWrite.Location = new System.Drawing.Point(4, 25);
+            this.tabReadWrite.Name = "tabReadWrite";
+            this.tabReadWrite.Padding = new System.Windows.Forms.Padding(3);
+            this.tabReadWrite.Size = new System.Drawing.Size(761, 205);
+            this.tabReadWrite.TabIndex = 4;
+            this.tabReadWrite.Text = "Read Write";
+            this.tabReadWrite.UseVisualStyleBackColor = true;
+            // 
+            // lnkWriteConcern
+            // 
+            this.lnkWriteConcern.AutoSize = true;
+            this.lnkWriteConcern.Location = new System.Drawing.Point(360, 163);
+            this.lnkWriteConcern.Name = "lnkWriteConcern";
+            this.lnkWriteConcern.Size = new System.Drawing.Size(127, 16);
+            this.lnkWriteConcern.TabIndex = 63;
+            this.lnkWriteConcern.TabStop = true;
+            this.lnkWriteConcern.Text = "About WriteConcern";
+            // 
+            // lnkReadPreference
+            // 
+            this.lnkReadPreference.AutoSize = true;
+            this.lnkReadPreference.Location = new System.Drawing.Point(361, 139);
+            this.lnkReadPreference.Name = "lnkReadPreference";
+            this.lnkReadPreference.Size = new System.Drawing.Size(146, 16);
+            this.lnkReadPreference.TabIndex = 62;
+            this.lnkReadPreference.TabStop = true;
+            this.lnkReadPreference.Text = "About ReadPreference";
+            // 
+            // cmbWriteConcern
+            // 
+            this.cmbWriteConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbWriteConcern.FormattingEnabled = true;
+            this.cmbWriteConcern.Location = new System.Drawing.Point(164, 163);
+            this.cmbWriteConcern.Name = "cmbWriteConcern";
+            this.cmbWriteConcern.Size = new System.Drawing.Size(170, 24);
+            this.cmbWriteConcern.TabIndex = 61;
+            // 
+            // lblWriteConcern
+            // 
+            this.lblWriteConcern.AutoSize = true;
+            this.lblWriteConcern.Location = new System.Drawing.Point(42, 163);
+            this.lblWriteConcern.Name = "lblWriteConcern";
+            this.lblWriteConcern.Size = new System.Drawing.Size(89, 16);
+            this.lblWriteConcern.TabIndex = 60;
+            this.lblWriteConcern.Text = "WriteConcern";
+            // 
+            // cmbReadPreference
+            // 
+            this.cmbReadPreference.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbReadPreference.FormattingEnabled = true;
+            this.cmbReadPreference.Location = new System.Drawing.Point(164, 136);
+            this.cmbReadPreference.Name = "cmbReadPreference";
+            this.cmbReadPreference.Size = new System.Drawing.Size(170, 24);
+            this.cmbReadPreference.TabIndex = 59;
+            // 
+            // lblReadPreference
+            // 
+            this.lblReadPreference.AutoSize = true;
+            this.lblReadPreference.Location = new System.Drawing.Point(42, 136);
+            this.lblReadPreference.Name = "lblReadPreference";
+            this.lblReadPreference.Size = new System.Drawing.Size(108, 16);
+            this.lblReadPreference.TabIndex = 58;
+            this.lblReadPreference.Text = "ReadPreference";
+            // 
+            // lblWtimeoutDescript
+            // 
+            this.lblWtimeoutDescript.AutoSize = true;
+            this.lblWtimeoutDescript.Location = new System.Drawing.Point(167, 86);
+            this.lblWtimeoutDescript.Name = "lblWtimeoutDescript";
+            this.lblWtimeoutDescript.Size = new System.Drawing.Size(480, 16);
+            this.lblWtimeoutDescript.TabIndex = 57;
+            this.lblWtimeoutDescript.Text = "The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true." +
+    "";
+            // 
+            // NumWTimeoutMS
+            // 
+            this.NumWTimeoutMS.Location = new System.Drawing.Point(164, 56);
+            this.NumWTimeoutMS.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.NumWTimeoutMS.Name = "NumWTimeoutMS";
+            this.NumWTimeoutMS.Size = new System.Drawing.Size(87, 22);
+            this.NumWTimeoutMS.TabIndex = 53;
+            this.NumWTimeoutMS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblQueueSize
+            // 
+            this.lblQueueSize.AutoSize = true;
+            this.lblQueueSize.Location = new System.Drawing.Point(40, 108);
+            this.lblQueueSize.Name = "lblQueueSize";
+            this.lblQueueSize.Size = new System.Drawing.Size(101, 16);
+            this.lblQueueSize.TabIndex = 55;
+            this.lblQueueSize.Text = "WaitQueueSize";
+            // 
+            // lblWTimeout
+            // 
+            this.lblWTimeout.AutoSize = true;
+            this.lblWTimeout.Location = new System.Drawing.Point(42, 59);
+            this.lblWTimeout.Name = "lblWTimeout";
+            this.lblWTimeout.Size = new System.Drawing.Size(88, 16);
+            this.lblWTimeout.TabIndex = 56;
+            this.lblWTimeout.Text = "wtimeout(MS)";
+            // 
+            // NumWaitQueueSize
+            // 
+            this.NumWaitQueueSize.Location = new System.Drawing.Point(164, 106);
+            this.NumWaitQueueSize.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.NumWaitQueueSize.Name = "NumWaitQueueSize";
+            this.NumWaitQueueSize.Size = new System.Drawing.Size(87, 22);
+            this.NumWaitQueueSize.TabIndex = 54;
+            this.NumWaitQueueSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // chkUseDefault
+            // 
+            this.chkUseDefault.AutoSize = true;
+            this.chkUseDefault.Location = new System.Drawing.Point(43, 24);
+            this.chkUseDefault.Name = "chkUseDefault";
+            this.chkUseDefault.Size = new System.Drawing.Size(172, 20);
+            this.chkUseDefault.TabIndex = 64;
+            this.chkUseDefault.Text = "Use Tool Default Setting";
+            this.chkUseDefault.UseVisualStyleBackColor = true;
+            // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -540,6 +699,10 @@ namespace MagicMongoDBTool
             ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).EndInit();
             this.tabConnectionS.ResumeLayout(false);
             this.tabConnectionS.PerformLayout();
+            this.tabReadWrite.ResumeLayout(false);
+            this.tabReadWrite.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumWTimeoutMS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumWaitQueueSize)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -590,5 +753,18 @@ namespace MagicMongoDBTool
         private NumericUpDown NumSocketTimeOut;
         private Label lblConnectTimeout;
         private Label lblsocketTimeout;
+        private TabPage tabReadWrite;
+        private CheckBox chkUseDefault;
+        private LinkLabel lnkWriteConcern;
+        private LinkLabel lnkReadPreference;
+        private ComboBox cmbWriteConcern;
+        private Label lblWriteConcern;
+        private ComboBox cmbReadPreference;
+        private Label lblReadPreference;
+        private Label lblWtimeoutDescript;
+        private NumericUpDown NumWTimeoutMS;
+        private Label lblQueueSize;
+        private Label lblWTimeout;
+        private NumericUpDown NumWaitQueueSize;
     }
 }
