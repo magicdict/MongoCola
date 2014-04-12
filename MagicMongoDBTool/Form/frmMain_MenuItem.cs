@@ -468,7 +468,15 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmUser(false), true, true);
         }
-
+        /// <summary>
+        /// CreateRole
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddDBCustomeRoleStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemManager.OpenForm(new frmAddRole(), true, true);
+        }
         /// <summary>
         ///     Eval JS
         /// </summary>
@@ -519,7 +527,6 @@ namespace MagicMongoDBTool
         {
             SystemManager.OpenForm(new frmStatus(), true, true);
         }
-
         /// <summary>
         ///     Create Js
         /// </summary>

@@ -64,6 +64,7 @@ namespace MagicMongoDBTool
                 Application.DoEvents();
             };
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -73,6 +74,7 @@ namespace MagicMongoDBTool
         {
 
         }
+        
         /// <summary>
         ///     Load Form
         /// </summary>
@@ -580,6 +582,7 @@ namespace MagicMongoDBTool
                             {
                                 contextMenuStripMain.Items.Add(CreateMongoDBToolStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(AddUserToAdminToolStripMenuItem.Clone());
+                                contextMenuStripMain.Items.Add(AddAdminCustomeRoleStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(UserInfoStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(ImportDataFromAccessToolStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(RestoreMongoToolStripMenuItem.Clone());
@@ -724,6 +727,7 @@ namespace MagicMongoDBTool
                                 contextMenuStripMain.Items.Add(DelMongoDBToolStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(CreateMongoCollectionToolStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(AddUserToolStripMenuItem.Clone());
+                                contextMenuStripMain.Items.Add(AddDBCustomeRoleStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(EvalJSToolStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(RepairDBToolStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(InitGFSToolStripMenuItem.Clone());
@@ -1358,7 +1362,6 @@ namespace MagicMongoDBTool
         }
 
         #endregion
-
 
     }
 }

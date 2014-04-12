@@ -49,14 +49,18 @@ namespace MagicMongoDBTool
             return res;
         }
         /// <summary>
-        /// 
+        /// Add A Custom User
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnAddRole_Click(object sender, EventArgs e)
         {
             Role r = new Role();
-            r.database = SystemManager.GetCurrentDataBase().Name;
+            if (SystemManager.GetCurrentDataBase() != null) {
+                r.database = SystemManager.GetCurrentDataBase().Name;
+            } else {
+                r.database = MongoDbHelper.DATABASE_NAME_ADMIN;
+            }
             r.rolename = txtRolename.Text;
             r.privileges = new Role.privilege[PrivilegeList.Count];
             for (int i = 0; i < PrivilegeList.Count; i++)
@@ -68,7 +72,14 @@ namespace MagicMongoDBTool
             {
                 r.roles[i] = RoleList[i];
             }
-            Role.AddRole(SystemManager.GetCurrentDataBase(), r);
+            var result = Role.AddRole(SystemManager.GetCurrentDataBase(), r);
+            if (result.IsBsonDocument) {
+                MyMessageBox.ShowMessage("Error", "Add Role Error",MongoDbHelper.ConvertToString(result));
+            }
+            else
+            {
+                MyMessageBox.ShowEasyMessage("Succeed", "Add Role OK");
+            }
         }
         /// <summary>
         /// 

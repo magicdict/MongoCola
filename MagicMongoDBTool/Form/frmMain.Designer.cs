@@ -66,7 +66,7 @@ namespace MagicMongoDBTool
             this.CreateMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.AddUserToAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AddCustomeRoleStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddAdminCustomeRoleStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UserInfoStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.slaveResyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +78,7 @@ namespace MagicMongoDBTool
             this.DelMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.AddUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddDBCustomeRoleStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
             this.EvalJSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creatJavaScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -394,7 +394,7 @@ namespace MagicMongoDBTool
             this.CreateMongoDBToolStripMenuItem,
             this.toolStripMenuItem4,
             this.AddUserToAdminToolStripMenuItem,
-            this.AddCustomeRoleStripMenuItem,
+            this.AddAdminCustomeRoleStripMenuItem,
             this.UserInfoStripMenuItem,
             this.toolStripMenuItem3,
             this.slaveResyncToolStripMenuItem,
@@ -424,12 +424,12 @@ namespace MagicMongoDBTool
             this.AddUserToAdminToolStripMenuItem.Text = "Add User To Admin Group";
             this.AddUserToAdminToolStripMenuItem.Click += new System.EventHandler(this.AddUserToAdminToolStripMenuItem_Click);
             // 
-            // AddCustomeRoleStripMenuItem
+            // AddAdminCustomeRoleStripMenuItem
             // 
-            this.AddCustomeRoleStripMenuItem.Name = "AddCustomeRoleStripMenuItem";
-            this.AddCustomeRoleStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.AddCustomeRoleStripMenuItem.Text = "Add Custom Role";
-            this.AddCustomeRoleStripMenuItem.Click += new System.EventHandler(this.AddCustomeRoleStripMenuItem_Click);
+            this.AddAdminCustomeRoleStripMenuItem.Name = "AddAdminCustomeRoleStripMenuItem";
+            this.AddAdminCustomeRoleStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.AddAdminCustomeRoleStripMenuItem.Text = "Add Custom Role";
+            this.AddAdminCustomeRoleStripMenuItem.Click += new System.EventHandler(this.AddCustomeRoleStripMenuItem_Click);
             // 
             // UserInfoStripMenuItem
             // 
@@ -474,7 +474,7 @@ namespace MagicMongoDBTool
             this.DelMongoDBToolStripMenuItem,
             this.toolStripMenuItem5,
             this.AddUserToolStripMenuItem,
-            this.toolStripMenuItem13,
+            this.AddDBCustomeRoleStripMenuItem,
             this.toolStripMenuItem11,
             this.EvalJSToolStripMenuItem,
             this.creatJavaScriptToolStripMenuItem,
@@ -522,11 +522,12 @@ namespace MagicMongoDBTool
             this.AddUserToolStripMenuItem.Text = "Add User";
             this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem13
+            // AddDBCustomeRoleStripMenuItem
             // 
-            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(167, 22);
-            this.toolStripMenuItem13.Text = "Add Custom Role";
+            this.AddDBCustomeRoleStripMenuItem.Name = "AddDBCustomeRoleStripMenuItem";
+            this.AddDBCustomeRoleStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.AddDBCustomeRoleStripMenuItem.Text = "Add Custom Role";
+            this.AddDBCustomeRoleStripMenuItem.Click += new System.EventHandler(this.AddDBCustomeRoleStripMenuItem_Click);
             // 
             // toolStripMenuItem11
             // 
@@ -852,7 +853,7 @@ namespace MagicMongoDBTool
             // ThanksToolStripMenuItem
             // 
             this.ThanksToolStripMenuItem.Name = "ThanksToolStripMenuItem";
-            this.ThanksToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ThanksToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.ThanksToolStripMenuItem.Text = "&Thanks";
             this.ThanksToolStripMenuItem.Click += new System.EventHandler(this.ThanksToolStripMenuItem_Click);
             // 
@@ -860,19 +861,19 @@ namespace MagicMongoDBTool
             // 
             this.UserGuideToolStripMenuItem.Name = "UserGuideToolStripMenuItem";
             this.UserGuideToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.UserGuideToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.UserGuideToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.UserGuideToolStripMenuItem.Text = "UserGuide";
             this.UserGuideToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(144, 6);
             // 
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.AboutToolStripMenuItem.Text = "&About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -1118,8 +1119,8 @@ namespace MagicMongoDBTool
         private ToolStripMenuItem UserInfoStripMenuItem;
         private ToolStripMenuItem ExportToFileToolStripMenuItem;
         private ToolStripMenuItem plugInToolStripMenuItem;
-        private ToolStripMenuItem AddCustomeRoleStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem13;
+        private ToolStripMenuItem AddAdminCustomeRoleStripMenuItem;
+        private ToolStripMenuItem AddDBCustomeRoleStripMenuItem;
     }
 }
 

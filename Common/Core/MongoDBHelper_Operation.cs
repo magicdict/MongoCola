@@ -265,7 +265,7 @@ namespace MagicMongoDBTool.Module
                     return _mongoConnSvrLst[strPath[0]];
                 }
             }
-            if (strPath.Length > 1)
+            if (strPath.Length > (int)PathLv.InstanceLv)
             {
                 if (strPath[0] == strPath[1])
                 {
@@ -297,7 +297,7 @@ namespace MagicMongoDBTool.Module
             {
                 String strSvrPath = SystemManager.GetTagData(strObjTag);
                 String[] strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > 1)
+                if (strPathArray.Length > (int)PathLv.DatabaseLv )
                 {
                     rtnMongoDB = mongoSvr.GetDatabase(strPathArray[(int) PathLv.DatabaseLv]);
                 }
@@ -318,7 +318,10 @@ namespace MagicMongoDBTool.Module
             {
                 String strSvrPath = SystemManager.GetTagData(strObjTag);
                 String[] strPathArray = strSvrPath.Split("/".ToCharArray());
-                rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int) PathLv.CollectionLv]);
+                if (strPathArray.Length > (int)PathLv.CollectionLv)
+                {
+                    rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int)PathLv.CollectionLv]);
+                }
             }
             return rtnMongoCollection;
         }
