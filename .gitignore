@@ -13,6 +13,7 @@
 *.mdb
 *.pdb
 *.doc
+/UserGuide
 /ResourceLib/bin
 /ResourceLib/obj
 /GUI/bin
