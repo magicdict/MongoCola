@@ -32,22 +32,24 @@ namespace MagicMongoDBTool
         /// </summary>
         private void RefreshConnection()
         {
-            lstServerce.Items.Clear();
+            lstConnection.Items.Clear();
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values
                 )
             {
                 if (item.ReplSetName == String.Empty)
                 {
-                    lstServerce.Items.Add(item.ConnectionName + "@" +
-                                          (item.Host == String.Empty ? "localhost" : item.Host)
-                                          + (item.Port == 0 ? String.Empty : ":" + item.Port));
+                    ListViewItem t = new ListViewItem(item.ConnectionName);
+                    t.SubItems.Add((item.Host == String.Empty ? "localhost" : item.Host));
+                    t.SubItems.Add((item.Port == 0 ? String.Empty : item.Port.ToString()));
+                    t.SubItems.Add(item.UserName);
+                    lstConnection.Items.Add(t);
                 }
                 else
                 {
-                    lstServerce.Items.Add(item.ConnectionName);
+                    lstConnection.Items.Add(item.ConnectionName);
                 }
             }
-            lstServerce.Sorted = true;
+            lstConnection.Sort();
             SystemManager.ConfigHelperInstance.SaveToConfigFile(ConfigHelper._configFilename);
         }
 
@@ -70,11 +72,11 @@ namespace MagicMongoDBTool
         private void cmdConnect_Click(object sender, EventArgs e)
         {
             var connLst = new List<ConfigHelper.MongoConnectionConfig>();
-            if (lstServerce.SelectedItems.Count > 0)
+            if (lstConnection.CheckedItems.Count > 0)
             {
-                foreach (String item in lstServerce.SelectedItems)
+                foreach (ListViewItem item in lstConnection.CheckedItems)
                 {
-                    connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item.Split("@".ToCharArray())[0]]);
+                    connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item.Text]);
                 }
                 MongoDbHelper.AddServer(connLst);
             }
@@ -88,13 +90,9 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdDelCon_Click(object sender, EventArgs e)
         {
-            foreach (String item in lstServerce.SelectedItems)
+            foreach (ListViewItem item in lstConnection.CheckedItems)
             {
-                String ConnectionName = item;
-                if (ConnectionName.Contains("@"))
-                {
-                    ConnectionName = ConnectionName.Split("@".ToCharArray())[0];
-                }
+                String ConnectionName = item.Text;
                 if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ConnectionName))
                 {
                     SystemManager.ConfigHelperInstance.ConnectionList.Remove(ConnectionName);
@@ -110,12 +108,8 @@ namespace MagicMongoDBTool
         /// <param name="e"></param>
         private void cmdModifyCon_Click(object sender, EventArgs e)
         {
-            if (lstServerce.SelectedItems.Count != 1) return;
-            String ConnectionName = lstServerce.SelectedItem.ToString();
-            if (ConnectionName.Contains("@"))
-            {
-                ConnectionName = ConnectionName.Split("@".ToCharArray())[0];
-            }
+            if (lstConnection.CheckedItems.Count != 1) return;
+            String ConnectionName = lstConnection.CheckedItems[0].Text;
             SystemManager.OpenForm(new frmAddConnection(ConnectionName), true, true);
             RefreshConnection();
         }
