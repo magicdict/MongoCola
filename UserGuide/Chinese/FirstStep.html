@@ -45,9 +45,8 @@
             <tr>
                 <td />
                 <td>
-                    <font size="3">The first thing to operate the mongoDB is adding a MongoDB connection.<br />
-                        Please make sure that the mongo server has been startup before adding connection.<br />
-                        You can startup mongoDB by DOS console like this:<br />
+                    <font size="3">接下来我们来启动一个MongoDB数据库:<br />
+                       （这里假设你将可执行文件放在　C:\runmongo\bin）<br />
                         <br />
                         <code>cd C:\runmongo\bin<br />
                             mkdir C:\mongodb\magicdict<br />
@@ -62,39 +61,37 @@
                         [A Mongo connection is not only a single server,but also a replset,a route or config
                         server in sharding system]<br />
                         <br />
-                        Open the Connection Manager form by menu:<br />
-                        Managerment -> Connection Manager:<br />
+                        打开连接管理窗体:<br />
+                        菜单项：管理 -> 添加连接:<br />
                         <br />
-                        <img src="images/ConnectionManager.PNG" alt="" />
+                        <img src="images/ConnectionManager_Empty.PNG" alt="" />
                         <br />
                         <br />
-                        This form will list up all connections that you has registered in the application.<br />
-                        The list is empty when the first time you use this application,.<br />
-                        Click "Add" to register a new connection.<br />
+                        这里将会列出所有已经在软件中添加过的连接<br />
+                        如果是第一次运行软件，这个列表将是空的.<br />
+                        点击“添加”来新建一个连接<br />
                         <br />
                         <img src="images/ServerConnection.PNG" alt="" />
                         <br />
                         <br />
-                        The simplest connection only need to fill 3 fields<br />
+                        你可以只输入三个项目<br />
                         <ul>
-                            <li>Connection(you can name the connection as you like)</li>
-                            <li>Host(the ip or host of server,you can fill ‘localhost’ when the server on you local
-                                machine)</li>
-                            <li>Port(the port of server, --port arg)</li>
+                            <li>连接名称(你可以按照自己的喜好命名)</li>
+                            <li>主机(主机的ＩＰ地址，也可以用‘localhost’表示本地)</li>
+                            <li>段口号</li>
                         </ul>
                         <img src="images/ServerConnection_Magicdict.PNG" alt="" />
                         <br />
                         <br />
-                        Pick the connection you registered right now, then click "OK".Now you can operate
-                        the mongo server.<br />
-                        <font color="red"><b>All Status need to be refreshed manually in Mainform.(In status form,the some status will refresh automaticlly)</b>
+                        选中Magicdict,点击确定按钮<br />
+                        <font color="red"><b>左边的数据库对象需要手动更新，右边的服务器状态默认自动更新</b>
                         </font>
                         <br />
                         <br />
-                        You can collapse or expansion the treeview by MenuItem:
+                        你可以折叠或者收起数据库对象的树型结构:
                         <ul>
-                            <li>Management -> collapse</li>
-                            <li>Management -> expansion</li>
+                            <li>菜单项：管理 -> 展开:</li>
+                            <li>菜单项：管理 -> 收起:</li>
                         </ul>
                         <img alt="" src="images/Main_MagicDict.PNG" />
                         <br />
