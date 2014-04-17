@@ -1,0 +1,41 @@
+﻿a { color: Blue; }
+
+table {
+    background-image: url('images/background.JPG');
+    width: 100%;
+}
+
+td { color: Black; }
+
+span {
+    background: url('images/background.JPG');
+    color: White;
+}
+
+#menu {
+    font-size: 12px;
+    font-weight: bolder;
+}
+
+#menu li {
+    background-color: #999999;
+    border-right-color: #000000;
+    border-right-style: solid;
+    border-right-width: 1px;
+    float: left;
+    list-style-image: none;
+    list-style-type: none;
+}
+
+#menu li a {
+    color: #FFFFFF;
+    display: block; /* 作为一个块 */
+    margin: 0px;
+    padding-bottom: 8px;
+    padding-left: 50px;
+    padding-right: 50px; /* 设置块的属性 */
+    padding-top: 8px;
+    text-decoration: none;
+}
+
+#menu li a:hover { background-color: #0099CC; }
