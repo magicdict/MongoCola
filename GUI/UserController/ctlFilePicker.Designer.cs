@@ -36,9 +36,9 @@
             // 
             // cmdClearPath
             // 
-            this.cmdClearPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdClearPath.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmdClearPath.BackColor = System.Drawing.Color.Transparent;
-            this.cmdClearPath.Location = new System.Drawing.Point(649, 0);
+            this.cmdClearPath.Location = new System.Drawing.Point(375, 3);
             this.cmdClearPath.Name = "cmdClearPath";
             this.cmdClearPath.Size = new System.Drawing.Size(75, 25);
             this.cmdClearPath.TabIndex = 10;
@@ -50,27 +50,27 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Location = new System.Drawing.Point(3, 8);
+            this.lblTitle.Location = new System.Drawing.Point(3, 13);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(27, 13);
             this.lblTitle.TabIndex = 9;
             this.lblTitle.Text = "Title";
             // 
-            // txtLogPath
+            // txtPathName
             // 
-            this.txtPathName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPathName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtPathName.BackColor = System.Drawing.Color.White;
-            this.txtPathName.Location = new System.Drawing.Point(36, 5);
-            this.txtPathName.Name = "txtLogPath";
+            this.txtPathName.Location = new System.Drawing.Point(50, 6);
+            this.txtPathName.Name = "txtPathName";
             this.txtPathName.ReadOnly = true;
-            this.txtPathName.Size = new System.Drawing.Size(523, 20);
+            this.txtPathName.Size = new System.Drawing.Size(238, 20);
             this.txtPathName.TabIndex = 8;
             // 
             // cmdBrowse
             // 
-            this.cmdBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdBrowse.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmdBrowse.BackColor = System.Drawing.Color.Transparent;
-            this.cmdBrowse.Location = new System.Drawing.Point(568, 1);
+            this.cmdBrowse.Location = new System.Drawing.Point(294, 3);
             this.cmdBrowse.Name = "cmdBrowse";
             this.cmdBrowse.Size = new System.Drawing.Size(75, 24);
             this.cmdBrowse.TabIndex = 7;
@@ -88,7 +88,7 @@
             this.Controls.Add(this.txtPathName);
             this.Controls.Add(this.cmdBrowse);
             this.Name = "ctlFilePicker";
-            this.Size = new System.Drawing.Size(739, 33);
+            this.Size = new System.Drawing.Size(463, 31);
             this.Load += new System.EventHandler(this.ctlFilePicker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

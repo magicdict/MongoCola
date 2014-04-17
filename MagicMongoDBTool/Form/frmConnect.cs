@@ -46,8 +46,18 @@ namespace MagicMongoDBTool
                 }
                 else
                 {
-                    lstConnection.Items.Add(item.ConnectionName);
+                    ListViewItem t = new ListViewItem(item.ConnectionName);
+                    t.SubItems.Add((item.Host == String.Empty ? "localhost" : item.Host));
+                    t.SubItems.Add((item.Port == 0 ? String.Empty : item.Port.ToString()));
+                    String ReplArray = String.Empty;
+                    foreach (var Repl in item.ReplsetList)
+                    {
+                        ReplArray += Repl + ";";
+                    }
+                    t.SubItems.Add(ReplArray);
+                    lstConnection.Items.Add(t);
                 }
+                lstConnection.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
             lstConnection.Sort();
             SystemManager.ConfigHelperInstance.SaveToConfigFile(ConfigHelper._configFilename);

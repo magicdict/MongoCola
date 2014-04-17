@@ -34,10 +34,10 @@
             this.cmdClose = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.lstConnection = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // cmdModifyCon
@@ -99,10 +99,10 @@
             // 
             this.lstConnection.CheckBoxes = true;
             this.lstConnection.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
+            this.colName,
+            this.colIP,
+            this.colPort,
+            this.colUser});
             this.lstConnection.FullRowSelect = true;
             this.lstConnection.GridLines = true;
             this.lstConnection.Location = new System.Drawing.Point(12, 12);
@@ -112,25 +112,25 @@
             this.lstConnection.UseCompatibleStateImageBehavior = false;
             this.lstConnection.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader1
+            // colName
             // 
-            this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 79;
+            this.colName.Text = "Name";
+            this.colName.Width = 79;
             // 
-            // columnHeader2
+            // colIP
             // 
-            this.columnHeader2.Text = "IP";
-            this.columnHeader2.Width = 132;
+            this.colIP.Text = "IP";
+            this.colIP.Width = 132;
             // 
-            // columnHeader3
+            // colPort
             // 
-            this.columnHeader3.Text = "Port";
-            this.columnHeader3.Width = 93;
+            this.colPort.Text = "Port";
+            this.colPort.Width = 93;
             // 
-            // columnHeader4
+            // colUser
             // 
-            this.columnHeader4.Text = "User";
-            this.columnHeader4.Width = 92;
+            this.colUser.Text = "User";
+            this.colUser.Width = 92;
             // 
             // frmConnect
             // 
@@ -164,9 +164,9 @@
         private System.Windows.Forms.Button cmdClose;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.ListView lstConnection;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader colName;
+        private System.Windows.Forms.ColumnHeader colIP;
+        private System.Windows.Forms.ColumnHeader colPort;
+        private System.Windows.Forms.ColumnHeader colUser;
     }
 }

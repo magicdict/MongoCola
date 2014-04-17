@@ -39,8 +39,8 @@ namespace MagicMongoDBTool
             this.lblExectablePath = new System.Windows.Forms.Label();
             this.ctlFilePickerMongoBinPath = new GUI.ctlFilePicker();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabTooktip = new System.Windows.Forms.TabPage();
             this.tabGerneric = new System.Windows.Forms.TabPage();
+            this.tabTooktip = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lnkWriteConcern = new System.Windows.Forms.LinkLabel();
             this.lnkReadPreference = new System.Windows.Forms.LinkLabel();
@@ -55,8 +55,8 @@ namespace MagicMongoDBTool
             this.NumWaitQueueSize = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabTooktip.SuspendLayout();
             this.tabGerneric.SuspendLayout();
+            this.tabTooktip.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumWTimeoutMS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumWaitQueueSize)).BeginInit();
@@ -153,7 +153,7 @@ namespace MagicMongoDBTool
             this.ctlFilePickerMongoBinPath.Name = "ctlFilePickerMongoBinPath";
             this.ctlFilePickerMongoBinPath.PickerType = GUI.ctlFilePicker.DialogType.Directory;
             this.ctlFilePickerMongoBinPath.SelectedPathOrFileName = "";
-            this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(584, 36);
+            this.ctlFilePickerMongoBinPath.Size = new System.Drawing.Size(569, 36);
             this.ctlFilePickerMongoBinPath.TabIndex = 0;
             this.ctlFilePickerMongoBinPath.Title = "Exectable Path ";
             // 
@@ -168,18 +168,6 @@ namespace MagicMongoDBTool
             this.tabControl1.Size = new System.Drawing.Size(635, 218);
             this.tabControl1.TabIndex = 18;
             // 
-            // tabTooktip
-            // 
-            this.tabTooktip.Controls.Add(this.ctlFilePickerMongoBinPath);
-            this.tabTooktip.Controls.Add(this.lblExectablePath);
-            this.tabTooktip.Location = new System.Drawing.Point(4, 24);
-            this.tabTooktip.Name = "tabTooktip";
-            this.tabTooktip.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTooktip.Size = new System.Drawing.Size(627, 190);
-            this.tabTooktip.TabIndex = 0;
-            this.tabTooktip.Text = "Toolkit";
-            this.tabTooktip.UseVisualStyleBackColor = true;
-            // 
             // tabGerneric
             // 
             this.tabGerneric.Controls.Add(this.cmbLanguage);
@@ -193,6 +181,18 @@ namespace MagicMongoDBTool
             this.tabGerneric.TabIndex = 1;
             this.tabGerneric.Text = "Gerneric";
             this.tabGerneric.UseVisualStyleBackColor = true;
+            // 
+            // tabTooktip
+            // 
+            this.tabTooktip.Controls.Add(this.ctlFilePickerMongoBinPath);
+            this.tabTooktip.Controls.Add(this.lblExectablePath);
+            this.tabTooktip.Location = new System.Drawing.Point(4, 24);
+            this.tabTooktip.Name = "tabTooktip";
+            this.tabTooktip.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTooktip.Size = new System.Drawing.Size(627, 190);
+            this.tabTooktip.TabIndex = 0;
+            this.tabTooktip.Text = "Toolkit";
+            this.tabTooktip.UseVisualStyleBackColor = true;
             // 
             // tabPage1
             // 
@@ -345,10 +345,10 @@ namespace MagicMongoDBTool
             this.Load += new System.EventHandler(this.frmOption_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshForStatus)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabTooktip.ResumeLayout(false);
-            this.tabTooktip.PerformLayout();
             this.tabGerneric.ResumeLayout(false);
             this.tabGerneric.PerformLayout();
+            this.tabTooktip.ResumeLayout(false);
+            this.tabTooktip.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumWTimeoutMS)).EndInit();

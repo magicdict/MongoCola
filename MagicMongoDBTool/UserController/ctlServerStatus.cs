@@ -262,7 +262,11 @@ namespace MagicMongoDBTool.UserController
             RefreshStripButton.Enabled = true;
             btnSwitch.Image = ResourceLib.Properties.Resources.Pause;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CloseStripButton_Click(object sender, EventArgs e)
         {
             refreshTimer.Stop();
@@ -271,6 +275,24 @@ namespace MagicMongoDBTool.UserController
             {
                 CloseTab(sender, e);
             }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CollapseAllStripButton_Click(object sender, EventArgs e)
+        {
+            trvSvrStatus.DatatreeView.BeginUpdate();
+            trvSvrStatus.DatatreeView.CollapseAll();
+            trvSvrStatus.DatatreeView.EndUpdate();
+        }
+
+        private void ExpandAllStripButton_Click(object sender, EventArgs e)
+        {
+            trvSvrStatus.DatatreeView.BeginUpdate();
+            trvSvrStatus.DatatreeView.ExpandAll();
+            trvSvrStatus.DatatreeView.EndUpdate();
         }
     }
 }

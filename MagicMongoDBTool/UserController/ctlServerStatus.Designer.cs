@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctlServerStatus));
             this.tabSvrStatus = new System.Windows.Forms.TabControl();
             this.tabSvrBasicInfo = new System.Windows.Forms.TabPage();
+            this.trvSvrStatus = new TreeViewColumnsProject.TreeViewColumns();
             this.tabDBBasicInfo = new System.Windows.Forms.TabPage();
             this.lstDBStatus = new System.Windows.Forms.ListView();
             this.tabCollectionInfo = new System.Windows.Forms.TabPage();
@@ -40,7 +42,8 @@
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
             this.btnSwitch = new System.Windows.Forms.ToolStripButton();
             this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
-            this.trvSvrStatus = new TreeViewColumnsProject.TreeViewColumns();
+            this.ExpandAllStripButton = new System.Windows.Forms.ToolStripButton();
+            this.CollapseAllStripButton = new System.Windows.Forms.ToolStripButton();
             this.tabSvrStatus.SuspendLayout();
             this.tabSvrBasicInfo.SuspendLayout();
             this.tabDBBasicInfo.SuspendLayout();
@@ -72,6 +75,16 @@
             this.tabSvrBasicInfo.TabIndex = 3;
             this.tabSvrBasicInfo.Text = "Server Status[manually Refresh]";
             this.tabSvrBasicInfo.UseVisualStyleBackColor = true;
+            // 
+            // trvSvrStatus
+            // 
+            this.trvSvrStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
+            this.trvSvrStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvSvrStatus.Location = new System.Drawing.Point(3, 3);
+            this.trvSvrStatus.Name = "trvSvrStatus";
+            this.trvSvrStatus.Padding = new System.Windows.Forms.Padding(1);
+            this.trvSvrStatus.Size = new System.Drawing.Size(873, 400);
+            this.trvSvrStatus.TabIndex = 0;
             // 
             // tabDBBasicInfo
             // 
@@ -146,6 +159,8 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.RefreshStripButton,
+            this.ExpandAllStripButton,
+            this.CollapseAllStripButton,
             this.btnSwitch,
             this.CloseStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -157,7 +172,7 @@
             // RefreshStripButton
             // 
             this.RefreshStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.RefreshStripButton.Image = global::ResourceLib.Properties.Resources.Refresh;
+            this.RefreshStripButton.Image = ((System.Drawing.Image)(resources.GetObject("RefreshStripButton.Image")));
             this.RefreshStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RefreshStripButton.Name = "RefreshStripButton";
             this.RefreshStripButton.Size = new System.Drawing.Size(23, 22);
@@ -167,32 +182,42 @@
             // btnSwitch
             // 
             this.btnSwitch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSwitch.Image = global::ResourceLib.Properties.Resources.Pause;
+            this.btnSwitch.Image = ((System.Drawing.Image)(resources.GetObject("btnSwitch.Image")));
             this.btnSwitch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSwitch.Name = "btnSwitch";
             this.btnSwitch.Size = new System.Drawing.Size(23, 22);
-            this.btnSwitch.Text = "btnSwitch";
+            this.btnSwitch.Text = "Switch";
             this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
             // 
             // CloseStripButton
             // 
             this.CloseStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CloseStripButton.Image = global::ResourceLib.Properties.Resources.ShutDown;
+            this.CloseStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseStripButton.Image")));
             this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CloseStripButton.Name = "CloseStripButton";
             this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 
-            // trvSvrStatus
+            // ExpandAllStripButton
             // 
-            this.trvSvrStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(172)))), ((int)(((byte)(178)))));
-            this.trvSvrStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trvSvrStatus.Location = new System.Drawing.Point(3, 3);
-            this.trvSvrStatus.Name = "trvSvrStatus";
-            this.trvSvrStatus.Padding = new System.Windows.Forms.Padding(1);
-            this.trvSvrStatus.Size = new System.Drawing.Size(873, 400);
-            this.trvSvrStatus.TabIndex = 0;
+            this.ExpandAllStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ExpandAllStripButton.Image = ((System.Drawing.Image)(resources.GetObject("ExpandAllStripButton.Image")));
+            this.ExpandAllStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExpandAllStripButton.Name = "ExpandAllStripButton";
+            this.ExpandAllStripButton.Size = new System.Drawing.Size(23, 22);
+            this.ExpandAllStripButton.Text = "ExpandAll";
+            this.ExpandAllStripButton.Click += new System.EventHandler(this.ExpandAllStripButton_Click);
+            // 
+            // CollapseAllStripButton
+            // 
+            this.CollapseAllStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CollapseAllStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CollapseAllStripButton.Image")));
+            this.CollapseAllStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CollapseAllStripButton.Name = "CollapseAllStripButton";
+            this.CollapseAllStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CollapseAllStripButton.Text = "CollapseAll";
+            this.CollapseAllStripButton.Click += new System.EventHandler(this.CollapseAllStripButton_Click);
             // 
             // ctlServerStatus
             // 
@@ -230,6 +255,8 @@
         private System.Windows.Forms.ToolStripButton btnSwitch;
         private System.Windows.Forms.ToolStripButton CloseStripButton;
         private TreeViewColumnsProject.TreeViewColumns trvSvrStatus;
+        private System.Windows.Forms.ToolStripButton CollapseAllStripButton;
+        private System.Windows.Forms.ToolStripButton ExpandAllStripButton;
 
     }
 }

@@ -112,12 +112,67 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="RefreshStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIGSURBVDhPvVKtktswGPQT3OkJLoJFsZ6gEQxKBAPNeqgx
+        DLNgWMTqKbFgWAXDzvBYBMNqeNDQbLuSczct79zn2SQz8v59SvEp8/JSitOplOHyNIQg4c8Spx+lvh//
+        O/vuKpqfV9W0cajbiIRE6i8K/WuFNOM0IlwqdF1p7rR5GpL3bYzW93A34i3ATgbVIKG9hbF9FqMExrcI
+        5zQy8fq7FNfrSjTdr9qGADdaRD5+6FHfarpJmHMFZQdUzt2TMF1tUHTdg0uqgb1CUHdo9tTo+YSJnz1/
+        E+bsECPJUyQCjFFJ4FH4NsUacrQZfV6UpXt98bn/SFJ8Nfk7kVkUiy8PLldIIq5VOVYiY6phrWRcujgu
+        7N57Pg8YWbHaKZTloyyahuTj7AB4HiYXzX4COvi/BJhw8h/ial3NC2yahe0vNh8Ot0SUjEf3SkBEDRkc
+        64jsnMgjb+XdYLUqVGGT+xgwDLyuSvGqIpcjGJEC3EPBG0gC9sidHCj8LGDWBN9ZLoux8C3VJ4dUwxwC
+        NMPowwCtBQqvILhgxetSVYDcRcJDGYfFtpO5grWCCWrGNtjsvo66DlAUEEcHYTXUcwWZyQPRQxqPp23n
+        MzlNWRYmLeX9f6DXhKFj7Ui2dCYpOa8psvbJ2RDiTp9n/20huUz3/bAcN7tlXG23brnxMZN0IoZErD5i
+        /78pij91zeEO5+eHBQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="ExpandAllStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC0SURBVDhPxZC9DYMwEEY9CiNQpvQIN4JHuBFcUrqkdEnp
+        kpIRUrLNFx/E4UAWQlFEnvQV/rl7Z5ufEaeAOAaE5OEHxnu7IOtaNqQ4zQlxjuDo9odnaLMU+4nhegcK
+        BPJUGmmrzt4cnwE85gZDbtATLNv10hnavBTn8cVuO4uW2tJAW3WMkQ+TN8vYnPhjluLm0ayXriDWZfSO
+        tLmgrTob8mFfmS9yNJfcR80uuY+aXfJ3jHkBSkSfN1A2YnQAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="CollapseAllStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACdSURBVDhPxZAhDsMwDEV9hB4hsDBwsLAwsDBwMHAwsDCw
+        sHCwR+gRcoQeITf4i62BVMoGkyc9KYpsf8vUCvyQ6Fod2Ogt4svidAanNTiWSZSif3Az3jsQAuDz+2mQ
+        Fo00KxyP4TbAOo9S+eRkbLk5p7Jp1riycVLYx/uAKrw2J4l6kCY2KBK/ZUJ1g1ZwWs3GdL2B0HWD8vKl
+        3SH6ADQzhIhPvJ9cAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnSwitch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACPSURBVDhPYxgFmGDChv//QThv2oMP2PgEAUjxhQf//xtE
+        bPiPjU8QNGz48P/Bi///FQIWgDWg8wmChhUfwDYqeEANQOMTBA0LgBpu/P8v4DABYgAanyAAaThwAajB
+        AmEAMp8gKJjx4P+GE0ANBg1gDeh8ggCkYcGBD/8ZkAxA5hME4PgGKYZqQOcPO8DAAADjQZbdh4ZXJwAA
+        AABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="CloseStripButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFrSURBVDhPnZOhcsMwEET1BZl+QSewyBMYlAkMygQGZQyD
+        OoGFgYWFhYaFhoGCgYKB+oT7g+vunezIbVBuZj2W7X3SreTA0idrNMstan7fSj5uJe1XUHPXlnqVtIFW
+        1ExiEyRfe4fwQrP8fGnuoM+T5nOr+aPotHMd15paaL/QtJlr/xZkCqC5O08BMKYjVcwtzDtqrnE5uwPS
+        YSVmpIpRbomvrHhPkwmzUxHt8F0BNGKzUpVZLp1K3/l9iprWL65/AITlPcOc3Zy/z94vZuXKWAZZOiQi
+        TD5zAJIewmLJpZ8ERgNDZuVFMMg0A24RDEyaVQMyV1ADlsHEreTYAViOJQzT0D9byAUgpQVFC/IQgOXY
+        cm2r7pA6RL26+TEAA+uVkKJ6GzmzVuZEQH2QSBu2xw8Khd6pDfpfu3kEIMjJSeSAD0fIIIwtQBrxfjDH
+        vwD+GB0e9MiiVmz8xxnFbyB+m5CPAYY/8pkKIYRfBcvUSyz4L+AAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>
