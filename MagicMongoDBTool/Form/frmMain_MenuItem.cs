@@ -386,7 +386,7 @@ namespace MagicMongoDBTool
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
             String strPath = SystemManager.SelectTagData;
-            String strDBName = strPath.Split("/".ToCharArray())[(int) MongoDbHelper.PathLv.DatabaseLv];
+            String strDBName = strPath.Split("/".ToCharArray())[(int)MongoDbHelper.PathLv.DatabaseLv];
             if (trvsrvlst.SelectedNode == null)
             {
                 trvsrvlst.SelectedNode = null;
@@ -548,8 +548,8 @@ namespace MagicMongoDBTool
                 {
                     var jsNode = new TreeNode(strJsName)
                     {
-                        ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
-                        SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc
+                        ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
+                        SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc
                     };
                     String jsTag = SystemManager.SelectTagData;
                     jsNode.Tag = MongoDbHelper.JAVASCRIPT_DOC_TAG + ":" + jsTag + "/" + strJsName;
@@ -612,7 +612,7 @@ namespace MagicMongoDBTool
         private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String strPath = SystemManager.SelectTagData;
-            String strCollection = strPath.Split("/".ToCharArray())[(int) MongoDbHelper.PathLv.CollectionLv];
+            String strCollection = strPath.Split("/".ToCharArray())[(int)MongoDbHelper.PathLv.CollectionLv];
             String strNewCollectionName = String.Empty;
             if (SystemManager.IsUseDefaultLanguage)
             {
@@ -943,7 +943,7 @@ namespace MagicMongoDBTool
             MongoImportExport.Port = Mongosrv.Address.Port;
             MongoImportExport.DBName = SystemManager.GetCurrentDataBase().Name;
             MongoImportExport.CollectionName = SystemManager.GetCurrentCollection().Name;
-            var dumpFile = new SaveFileDialog {Filter = MongoDbHelper.TxtFilter, CheckFileExists = false};
+            var dumpFile = new SaveFileDialog { Filter = MongoDbHelper.TxtFilter, CheckFileExists = false };
             //if the file not exist,the server will create a new one
             if (dumpFile.ShowDialog() == DialogResult.OK)
             {
@@ -1116,21 +1116,21 @@ namespace MagicMongoDBTool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (SystemManager.MonoMode) return;
-            //MONO not support this function
-            var AccessFile = new OpenFileDialog {Filter = MongoDbHelper.MdbFilter};
-            if (AccessFile.ShowDialog() != DialogResult.OK) return;
-            var parm = new MongoDbHelper.ImportAccessPara
-            {
-                accessFileName = AccessFile.FileName,
-                currentTreeNode = trvsrvlst.SelectedNode,
-                strSvrPathWithTag = SystemManager.SelectObjectTag
-            };
-            ParameterizedThreadStart Parmthread = MongoDbHelper.ImportAccessDataBase;
-            Parmthread.Invoke(parm);
-        }
+        //private void ImportDataFromAccessToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    //if (SystemManager.MonoMode) return;
+        //    ////MONO not support this function
+        //    //var AccessFile = new OpenFileDialog { Filter = MongoDbHelper.MdbFilter };
+        //    //if (AccessFile.ShowDialog() != DialogResult.OK) return;
+        //    //var parm = new MongoDbHelper.ImportAccessPara
+        //    //{
+        //    //    accessFileName = AccessFile.FileName,
+        //    //    currentTreeNode = trvsrvlst.SelectedNode,
+        //    //    strSvrPathWithTag = SystemManager.SelectObjectTag
+        //    //};
+        //    //ParameterizedThreadStart Parmthread = MongoDbHelper.ImportAccessDataBase;
+        //    //Parmthread.Invoke(parm);
+        //}
 
         /// <summary>
         /// </summary>

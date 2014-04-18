@@ -4,6 +4,21 @@ namespace MagicMongoDBTool.Module
 {
     public static partial class MongoDbHelper
     {
+
+        /// <summary>
+        ///     通用的ActionDone事件
+        /// </summary>
+        public static EventHandler<ActionDoneEventArgs> ActionDone;
+
+        /// <summary>
+        ///     OnActionDone
+        /// </summary>
+        /// <param name="e"></param>
+        public static void OnActionDone(ActionDoneEventArgs e)
+        {
+            e.Raise(null, ref ActionDone);
+        }
+
         #region"各种节点的Tag前缀"
 
         /// <summary>

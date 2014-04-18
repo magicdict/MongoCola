@@ -116,7 +116,6 @@ namespace MagicMongoDBTool
             this.ToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DosCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GernerateConfigtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ImportDataFromAccessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.plugInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
             this.OptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -792,7 +791,6 @@ namespace MagicMongoDBTool
             this.ToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DosCommandToolStripMenuItem,
             this.GernerateConfigtoolStripMenuItem,
-            this.ImportDataFromAccessToolStripMenuItem,
             this.plugInToolStripMenuItem,
             this.toolStripMenuItem7,
             this.OptionsToolStripMenuItem});
@@ -813,13 +811,6 @@ namespace MagicMongoDBTool
             this.GernerateConfigtoolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.GernerateConfigtoolStripMenuItem.Text = "Gernerate Config INI";
             this.GernerateConfigtoolStripMenuItem.Click += new System.EventHandler(this.GernerateConfigtoolStripMenuItem_Click);
-            // 
-            // ImportDataFromAccessToolStripMenuItem
-            // 
-            this.ImportDataFromAccessToolStripMenuItem.Name = "ImportDataFromAccessToolStripMenuItem";
-            this.ImportDataFromAccessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.ImportDataFromAccessToolStripMenuItem.Text = "&Import Access DB";
-            this.ImportDataFromAccessToolStripMenuItem.Click += new System.EventHandler(this.ImportDataFromAccessToolStripMenuItem_Click);
             // 
             // plugInToolStripMenuItem
             // 
@@ -1024,7 +1015,6 @@ namespace MagicMongoDBTool
         private System.Windows.Forms.ToolStripMenuItem RenameCollectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DosCommandToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ImportDataFromAccessToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OptionsToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripMain;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
@@ -1038,10 +1028,7 @@ namespace MagicMongoDBTool
         private ToolStripButton CollapseAllConnectionToolStripButton;
         private ToolStripButton RefreshToolStripButton;
         private ToolStripButton ExitToolStripButton;
-
-        private ToolStripButton ImportDataFromAccessToolStripButton;
         private ToolStripButton OptionToolStripButton;
-
         private ToolStripButton UserGuideToolStripButton;
         private ToolStripButton ShutDownToolStripButton;
 

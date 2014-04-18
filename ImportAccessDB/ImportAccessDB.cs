@@ -1,15 +1,37 @@
-﻿using System;
+﻿using Common;
+using MagicMongoDBTool;
+using MagicMongoDBTool.Module;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Windows.Forms;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
-namespace MagicMongoDBTool.Module
+namespace ImportAccessDB
 {
-    public static partial class MongoDbHelper
+    public class ImportAccessDB : PlugBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public ImportAccessDB()
+        {
+            base.RunLv = PathLv.ConnectionLV;
+            base.PlugName = "从Access导入";
+            base.PlugFunction = "将数据从Access导入";
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override int Run()
+        {
+            new SelectTable().ShowDialog();
+            return 0;
+        }
+
         /// <summary>
         ///     数据连接字符串
         /// </summary>
@@ -59,7 +81,7 @@ namespace MagicMongoDBTool.Module
                         default:
                             return "Long";
                     }
-                    //break;
+                //break;
 
                 case 4:
                     return "Single";
@@ -94,8 +116,8 @@ namespace MagicMongoDBTool.Module
                         return "MEMO";
                     }
                     return "VARCHAR";
-                    //return "VARCHAR(" + ColumnSize + ")";
-                    //break;
+                //return "VARCHAR(" + ColumnSize + ")";
+                //break;
 
                 case 131:
                     //decimal
@@ -112,8 +134,8 @@ namespace MagicMongoDBTool.Module
                         //OLE Object
                     }
                     return "VARCHAR";
-                    //return "VARCHAR(" + ColumnSize + ")";
-                    //break;
+                //return "VARCHAR(" + ColumnSize + ")";
+                //break;
 
                 default:
                     if (columnSize == -1)
@@ -121,37 +143,62 @@ namespace MagicMongoDBTool.Module
                         return "MEMO";
                     }
                     return "VARCHAR";
-                    //return "VARCHAR(" + ColumnSize + ")";
-                    //break;
+                //return "VARCHAR(" + ColumnSize + ")";
+                //break;
             }
             //return null;
         }
 
+        public static List<String> GetTableList(String accessFileName)
+        {
+            var conn = new OleDbConnection(ACCESS_CONNECTION_STRING.Replace("@AccessPath", accessFileName));
+            var TableList = new List<String>();
+            try
+            {
+                conn.Open();
+                DataTable tblTableList = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables,
+                    new object[] { null, null, null, "Table" });
+                String strCreateTableInfo = String.Empty;
+                foreach (DataRow recTable in tblTableList.Rows)
+                {
+                    TableList.Add(recTable[2].ToString());
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return TableList;
+        }
 
         /// <summary>
         ///     导入数据
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static void ImportAccessDataBase(Object obj)
+        public static void ImportAccessDataBase(String accessFileName,List<String>Table)
         {
-            var parm = (ImportAccessPara) obj;
-            MongoServer mongoSvr = GetMongoServerBySvrPath(parm.strSvrPathWithTag);
-            String[] fileName = parm.accessFileName.Split(@"\".ToCharArray());
+            MongoServer mongoSvr = SystemManager.GetCurrentServer();
+            String[] fileName = accessFileName.Split(@"\".ToCharArray());
             String fileMain = fileName[fileName.Length - 1];
             String insertDBName = fileMain.Split(".".ToCharArray())[0];
             MongoDatabase mongoDB = mongoSvr.GetDatabase(insertDBName);
-            var conn = new OleDbConnection(ACCESS_CONNECTION_STRING.Replace("@AccessPath", parm.accessFileName));
+            var conn = new OleDbConnection(ACCESS_CONNECTION_STRING.Replace("@AccessPath", accessFileName));
             try
             {
                 conn.Open();
                 int err = 0;
                 DataTable tblTableList = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables,
-                    new object[] {null, null, null, "Table"});
+                    new object[] { null, null, null, "Table" });
                 String strCreateTableInfo = String.Empty;
                 foreach (DataRow recTable in tblTableList.Rows)
                 {
                     String strTableName = recTable[2].ToString();
+                    if (!Table.Contains(strTableName)) continue;
                     try
                     {
                         //不支持UTF....,执行会失败，但是Collection已经添加了
@@ -182,13 +229,13 @@ namespace MagicMongoDBTool.Module
                     }
                     MongoCollection mongoCollection = mongoDB.GetCollection(strTableName);
                     DataTable tblSchema = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Columns,
-                        new object[] {null, null, strTableName, null});
+                        new object[] { null, null, strTableName, null });
                     var colPro = new Dictionary<String, String>();
                     var colName = new List<String>();
                     foreach (DataRow item in tblSchema.Rows)
                     {
                         long columnWidth;
-                        switch ((long) item["COLUMN_FLAGS"])
+                        switch ((long)item["COLUMN_FLAGS"])
                         {
                             case 122:
                                 columnWidth = -1;
@@ -204,14 +251,14 @@ namespace MagicMongoDBTool.Module
                                 }
                                 else
                                 {
-                                    columnWidth = (long) item["CHARACTER_MAXIMUM_LENGTH"];
+                                    columnWidth = (long)item["CHARACTER_MAXIMUM_LENGTH"];
                                 }
                                 break;
                         }
                         colName.Add(item["COLUMN_NAME"].ToString());
-                        colPro.Add(item["COLUMN_NAME"].ToString(), GetDataType((int) item["DATA_TYPE"], columnWidth,
-                            item["NUMERIC_PRECISION"] is DBNull ? 0 : (int) item["NUMERIC_PRECISION"],
-                            item["NUMERIC_SCALE"] is DBNull ? 0 : (int) item["NUMERIC_SCALE"]));
+                        colPro.Add(item["COLUMN_NAME"].ToString(), GetDataType((int)item["DATA_TYPE"], columnWidth,
+                            item["NUMERIC_PRECISION"] is DBNull ? 0 : (int)item["NUMERIC_PRECISION"],
+                            item["NUMERIC_SCALE"] is DBNull ? 0 : (int)item["NUMERIC_SCALE"]));
                     }
                     var cmd = new OleDbCommand();
                     cmd.Connection = conn;
@@ -236,7 +283,7 @@ namespace MagicMongoDBTool.Module
                                     case "BIT":
                                         //System.Boolean Can't Cast To BSonBoolean....
                                         //O,My LadyGaga
-                                        if ((bool) itemRow[colName[i]])
+                                        if ((bool)itemRow[colName[i]])
                                         {
                                             insertDoc.Add(colName[i], BsonBoolean.True, true);
                                         }
@@ -247,16 +294,16 @@ namespace MagicMongoDBTool.Module
                                         break;
                                     case "DATETIME":
                                         //O,My LadyGaga
-                                        insertDoc.Add(colName[i], new BsonDateTime((DateTime) itemRow[colName[i]]), true);
+                                        insertDoc.Add(colName[i], new BsonDateTime((DateTime)itemRow[colName[i]]), true);
                                         break;
                                     case "Integer":
                                         Int32 i32 = Convert.ToInt32(itemRow[colName[i]]);
-                                        insertDoc.Add(colName[i], (BsonInt32) i32, true);
+                                        insertDoc.Add(colName[i], (BsonInt32)i32, true);
                                         break;
                                     case "Long":
                                         //itemRow[ColName[i]] the default is Int32 without convert
                                         long lng = Convert.ToInt64(itemRow[colName[i]]);
-                                        insertDoc.Add(colName[i], (BsonInt64) lng, true);
+                                        insertDoc.Add(colName[i], (BsonInt64)lng, true);
                                         break;
                                     default:
                                         break;
@@ -266,12 +313,6 @@ namespace MagicMongoDBTool.Module
                         mongoCollection.Insert(insertDoc);
                     }
                 }
-                String strSvrPath = SystemManager.GetTagData(parm.strSvrPathWithTag);
-                String strKey = strSvrPath.Split("/".ToCharArray())[(int) PathLv.ConnectionLv] + "/" +
-                                strSvrPath.Split("/".ToCharArray())[(int) PathLv.InstanceLv];
-                parm.currentTreeNode.Nodes.Add(UIHelper.FillDataBaseInfoToTreeNode(insertDBName, mongoSvr, strKey));
-                MyMessageBox.ShowMessage("Import Message",
-                    (tblTableList.Rows.Count - err) + "Created   " + err + "failed", strCreateTableInfo, true);
             }
             catch (Exception ex)
             {
@@ -316,13 +357,6 @@ namespace MagicMongoDBTool.Module
             DOMAIN_SCHEMA,
             DOMAIN_NAME,
             DESCRIPTION
-        }
-
-        public struct ImportAccessPara
-        {
-            public String accessFileName;
-            public TreeNode currentTreeNode;
-            public String strSvrPathWithTag;
         }
     }
 }

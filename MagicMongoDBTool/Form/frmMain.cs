@@ -296,8 +296,6 @@ namespace MagicMongoDBTool
             ToolsToolStripMenuItem.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Tool);
             DosCommandToolStripMenuItem.Text =
                 SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Tool_DOS);
-            ImportDataFromAccessToolStripMenuItem.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Tool_Access);
             OptionsToolStripMenuItem.Text =
                 SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Tool_Setting);
 
@@ -533,10 +531,6 @@ namespace MagicMongoDBTool
                         {
                             CreateMongoDBToolStripMenuItem.Enabled = true;
                             AddUserToAdminToolStripMenuItem.Enabled = true;
-                            if (!SystemManager.MonoMode)
-                            {
-                                ImportDataFromAccessToolStripMenuItem.Enabled = true;
-                            }
                             if (_config.ServerRole == ConfigHelper.SvrRoleType.MasterSvr ||
                                 _config.ServerRole == ConfigHelper.SvrRoleType.SlaveSvr)
                             {
@@ -584,7 +578,6 @@ namespace MagicMongoDBTool
                                 contextMenuStripMain.Items.Add(AddUserToAdminToolStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(AddAdminCustomeRoleStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(UserInfoStripMenuItem.Clone());
-                                contextMenuStripMain.Items.Add(ImportDataFromAccessToolStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(RestoreMongoToolStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(slaveResyncToolStripMenuItem.Clone());
                                 contextMenuStripMain.Items.Add(ServePropertyToolStripMenuItem.Clone());
@@ -592,6 +585,14 @@ namespace MagicMongoDBTool
                             }
                             e.Node.ContextMenuStrip = contextMenuStripMain;
                             contextMenuStripMain.Show(trvsrvlst.PointToScreen(e.Location));
+                        }
+                        //PlugIn
+                        foreach (ToolStripMenuItem item in plugInToolStripMenuItem.DropDownItems)
+                        {
+                            if (PlugIn.PlugInList[item.Tag.ToString()].RunLv == PlugBase.PathLv.ConnectionLV)
+                            {
+                                item.Enabled = true;
+                            }
                         }
                         break;
                     case MongoDbHelper.SINGLE_DB_SERVER_TAG:
@@ -1057,7 +1058,6 @@ namespace MagicMongoDBTool
             DelMongoCollectionToolStripMenuItem.Image = GetResource.GetIcon(IconType.No).ToBitmap();
             DelMongoDBToolStripMenuItem.Image = GetResource.GetIcon(IconType.No).ToBitmap();
 
-            ImportDataFromAccessToolStripMenuItem.Image = GetResource.GetImage(ImageType.AccessDB);
             RefreshToolStripMenuItem.Image = GetResource.GetImage(ImageType.Refresh);
             OptionsToolStripMenuItem.Image = GetResource.GetImage(ImageType.Option);
 
@@ -1077,7 +1077,6 @@ namespace MagicMongoDBTool
             RefreshToolStripButton = RefreshToolStripMenuItem.CloneFromMenuItem();
             ExitToolStripButton = ExitToolStripMenuItem.CloneFromMenuItem();
 
-            ImportDataFromAccessToolStripButton = ImportDataFromAccessToolStripMenuItem.CloneFromMenuItem();
             ShutDownToolStripButton = ShutDownToolStripMenuItem.CloneFromMenuItem();
 
             OptionToolStripButton = OptionsToolStripMenuItem.CloneFromMenuItem();
@@ -1098,7 +1097,6 @@ namespace MagicMongoDBTool
 
             toolStripMain.Items.Add(new ToolStripSeparator());
 
-            toolStripMain.Items.Add(ImportDataFromAccessToolStripButton);
             toolStripMain.Items.Add(ShutDownToolStripButton);
 
             toolStripMain.Items.Add(new ToolStripSeparator());
@@ -1116,10 +1114,6 @@ namespace MagicMongoDBTool
             RefreshToolStripButton.Enabled = true;
             OptionToolStripButton.Enabled = true;
             ShutDownToolStripButton.Enabled = ShutDownToolStripMenuItem.Enabled;
-            if (!SystemManager.MonoMode)
-            {
-                ImportDataFromAccessToolStripButton.Enabled = ImportDataFromAccessToolStripMenuItem.Enabled;
-            }
         }
 
         /// <summary>
@@ -1172,14 +1166,6 @@ namespace MagicMongoDBTool
             DumpCollectionToolStripMenuItem.Enabled = false;
             ImportCollectionToolStripMenuItem.Enabled = false;
             ExportCollectionToolStripMenuItem.Enabled = false;
-
-
-            //工具
-            if (!SystemManager.MonoMode)
-            {
-                ImportDataFromAccessToolStripMenuItem.Enabled = false;
-                ImportDataFromAccessToolStripButton.Enabled = false;
-            }
 
             foreach (ToolStripItem item in plugInToolStripMenuItem.DropDownItems)
             {
