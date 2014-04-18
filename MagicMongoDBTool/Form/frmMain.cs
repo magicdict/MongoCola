@@ -636,7 +636,7 @@ namespace MagicMongoDBTool
                                 SystemManager.SelectTagData;
                         }
                         //系统库不允许修改
-                        if (!MongoDbHelper.IsSystemDataBase(SystemManager.GetCurrentDataBase()))
+                        if (!MongoDbHelper.IsSystemDataBase(SystemManager.GetCurrentDataBase().Name))
                         {
                             if (_config.AuthMode)
                             {

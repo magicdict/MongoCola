@@ -44,28 +44,8 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Boolean IsSystemCollection(MongoCollection mongoCol)
         {
-            //系统
-            if (mongoCol.Name.StartsWith("system."))
-            {
-                return true;
-            }
-            //文件
-            if (mongoCol.Name.StartsWith("fs."))
-            {
-                return true;
-            }
-            //local数据库,默认为系统
-            if (mongoCol.Database.Name == "local")
-            {
-                return true;
-            }
-            //config数据库,默认为系统
-            if (mongoCol.Database.Name == "config")
-            {
-                return true;
-            }
-
-            return false;
+            //http://docs.mongodb.org/manual/reference/system-collections/
+            return IsSystemCollection(mongoCol.Database.Name, mongoCol.Name);
         }
 
         /// <summary>
@@ -76,15 +56,12 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static Boolean IsSystemCollection(String mongoDBName, String mongoColName)
         {
-            //系统
-            if (mongoColName.StartsWith("system.")) return true;
-            if (mongoColName.StartsWith("fs.")) return true;
-            if (mongoDBName == "local") return true;
-            if (mongoDBName != "config") return false;
-            return true;
             //config数据库,默认为系统
             //local数据库,默认为系统
-            //文件
+            //系统文件
+            if (mongoColName.StartsWith("system.")) return true;
+            if (mongoColName.StartsWith("fs.")) return true;
+            return IsSystemDataBase(mongoDBName);
         }
 
         /// <summary>
@@ -92,20 +69,20 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="mongoDB"></param>
         /// <returns></returns>
-        public static Boolean IsSystemDataBase(MongoDatabase mongoDB)
+        public static Boolean IsSystemDataBase(String DataBaseName)
         {
             //local数据库,默认为系统
-            if (mongoDB.Name == "local")
+            if (DataBaseName == DATABASE_NAME_LOCAL)
             {
                 return true;
             }
             //config数据库,默认为系统
-            if (mongoDB.Name == "config")
+            if (DataBaseName == DATABASE_NAME_CONFIG)
             {
                 return true;
             }
             //admin数据库,默认为系统
-            if (mongoDB.Name == DATABASE_NAME_ADMIN)
+            if (DataBaseName == DATABASE_NAME_ADMIN)
             {
                 return true;
             }
