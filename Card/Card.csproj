@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BattleFieldInfo.cs" />
+    <Compile Include="FollowerCard.cs" />
+    <Compile Include="RoleInfo.cs" />
     <Compile Include="CardBasicInfo.cs" />
     <Compile Include="CardStock.cs" />
     <Compile Include="MagicCard.cs" />
