@@ -36,7 +36,7 @@
             // 
             // cmdClearPath
             // 
-            this.cmdClearPath.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmdClearPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdClearPath.BackColor = System.Drawing.Color.Transparent;
             this.cmdClearPath.Location = new System.Drawing.Point(375, 3);
             this.cmdClearPath.Name = "cmdClearPath";
@@ -58,7 +58,7 @@
             // 
             // txtPathName
             // 
-            this.txtPathName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtPathName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPathName.BackColor = System.Drawing.Color.White;
             this.txtPathName.Location = new System.Drawing.Point(50, 6);
             this.txtPathName.Name = "txtPathName";
@@ -68,7 +68,7 @@
             // 
             // cmdBrowse
             // 
-            this.cmdBrowse.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmdBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdBrowse.BackColor = System.Drawing.Color.Transparent;
             this.cmdBrowse.Location = new System.Drawing.Point(294, 3);
             this.cmdBrowse.Name = "cmdBrowse";

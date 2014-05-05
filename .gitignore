@@ -31,6 +31,8 @@
 /UnitTest/obj
 /Card/bin
 /Card/obj
+/CardHelper/bin
+/CardHelper/obj
 /DesignDocument
 /ServerLoader
 !readme.txt

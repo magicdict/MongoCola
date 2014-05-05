@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UnitTest
+namespace CardHelper
 {
     static class Program
     {
@@ -16,10 +16,7 @@ namespace UnitTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            SystemManager.Init();
-            //Application.Run(new CardUnit());
-            Application.Run(new UserRoleTest());
-            //Application.Run(new frmUnitTest());
+            Application.Run(new frmImport());
         }
     }
 }

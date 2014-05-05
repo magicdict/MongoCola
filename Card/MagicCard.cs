@@ -6,7 +6,7 @@ using System.Text;
 namespace Card
 {
     /// <summary>
-    /// 魔法牌
+    /// 魔法卡牌
     /// </summary>
     public class MagicCard:CardBasicInfo
     {

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Card
 {
     /// <summary>
-    /// 随从
+    /// 随从卡牌
     /// </summary>
     public class FollowerCard : CardBasicInfo
     {

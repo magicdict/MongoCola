@@ -43,6 +43,10 @@ namespace Card
 
         #region "炉石专用"
         /// <summary>
+        /// 职业
+        /// </summary>
+        public byte Occupation;
+        /// <summary>
         /// 标准的使用成本
         /// </summary>
         public int StandardCostPoint;

@@ -17,7 +17,7 @@ namespace Card
         public static void Init()
         {
             //初始化稀有度
-            RareNameDic = new string[] { "白色", "蓝色", "紫色", "橙色" };
+            RareNameDic = new string[] { "白色", "绿色", "蓝色", "紫色", "橙色" };
         }
         /// <summary>
         /// 获得稀有度表示名称
