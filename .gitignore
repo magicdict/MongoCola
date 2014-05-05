@@ -29,6 +29,8 @@
 /HTTPServer/obj
 /UnitTest/bin
 /UnitTest/obj
+/Card/bin
+/Card/obj
 /DesignDocument
 /ServerLoader
 !readme.txt
@@ -36,6 +38,7 @@
 !Release Note.txt
 !Bug.txt
 !DesignDocument/Design.xls
+!DesignDocument/Card.xls
 !MagicMongoDBTool/packages.config
 !MongoCola.zip
 Thumbs.db
