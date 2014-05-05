@@ -16,8 +16,9 @@ namespace UnitTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            SystemManager.Init();
-            Application.Run(new UserRoleTest());
+            //SystemManager.Init();
+            Application.Run(new CardUnit());
+            //Application.Run(new UserRoleTest());
             //Application.Run(new frmUnitTest());
         }
     }

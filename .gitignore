@@ -37,8 +37,8 @@
 !app.config
 !Release Note.txt
 !Bug.txt
-!DesignDocument/Design.xls
 !DesignDocument/Card.xls
+!DesignDocument/Design.xls
 !MagicMongoDBTool/packages.config
 !MongoCola.zip
 Thumbs.db
