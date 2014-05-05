@@ -7,6 +7,7 @@ namespace Card
     /// </summary>
     public class CardBasicInfo
     {
+        #region"基本"
         /// <summary>
         /// 序列号
         /// </summary>
@@ -32,34 +33,36 @@ namespace Card
         /// </remarks>
         public string Description;
         /// <summary>
-        /// 图片
-        /// </summary>
-        /// <remarks>
-        /// 该卡牌的图案。
-        /// 人文方面的图案
-        /// </remarks>
-        public string ImagePath;
-        /// <summary>
         /// 稀有度
         /// </summary>
         ///<remarks>
         /// 该卡牌的稀有度
         /// </remarks>
         public Byte Rare;
+        #endregion
+
+        #region "炉石专用"
         /// <summary>
-        /// 获得稀有度表示名称
+        /// 标准的使用成本
         /// </summary>
-        /// <remarks>
-        /// 通过设置SystemManager.RareNameDic自定义稀有度表示名称
+        public int StandardCostPoint;
+        /// <summary>
+        /// 实际的使用成本
+        /// </summary>
+        ///<remarks>
+        /// 有些技能能减少消耗
         /// </remarks>
+        public int ActualCostPoint;
+        /// <summary>
+        /// 检查是否可以使用
+        /// </summary>
         /// <returns></returns>
-        public String GetRareName() {
-            if (SystemManager.RareNameDic.Length - 1 < Rare) {
-                return "<Err>";
-            }
-            else { 
-               return SystemManager.RareNameDic[Rare];
-            }
+        public Boolean CheckCondition(BattleFieldInfo info)
+        {
+            //剩余的法力是否足够实际召唤的法力
+            return info.RemainPoint >= ActualCostPoint;
         }
+        #endregion
+
     }
 }
