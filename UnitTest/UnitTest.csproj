@@ -78,6 +78,9 @@
     <Compile Include="UserRoleTest.Designer.cs">
       <DependentUpon>UserRoleTest.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CardUnit.resx">
+      <DependentUpon>CardUnit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmUnitTest.resx">
       <DependentUpon>frmUnitTest.cs</DependentUpon>
     </EmbeddedResource>
