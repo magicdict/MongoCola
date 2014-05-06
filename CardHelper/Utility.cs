@@ -7,6 +7,10 @@ namespace CardHelper
 {
     public static class Utility
     {
+        /// <summary>
+        /// 初始化奥术飞弹
+        /// </summary>
+        /// <returns></returns>
         public static Card.MagicCard Get奥术飞弹()
         {
             Card.MagicCard 奥术飞弹 = new Card.MagicCard();
@@ -24,7 +28,10 @@ namespace CardHelper
             奥术飞弹.FirstMagicDefine.MagicTargetSelectMode = Card.CardUtility.TargetSelectModeEnum.随机;
             return 奥术飞弹;
         }
-
+        /// <summary>
+        /// 初始化狼骑兵
+        /// </summary>
+        /// <returns></returns>
         public static Card.FollowerCard Get狼骑兵()
         {
             Card.FollowerCard 狼骑兵 = new Card.FollowerCard();
@@ -45,7 +52,10 @@ namespace CardHelper
             狼骑兵.Standard嘲讽 = false;
             return 狼骑兵;
         }
-
+        /// <summary>
+        /// 初始化角斗士的长弓
+        /// </summary>
+        /// <returns></returns>
         public static Card.WeaponCard Get角斗士的长弓()
         {
             //角斗士的长弓
@@ -60,7 +70,10 @@ namespace CardHelper
 
             return 角斗士的长弓;
         }
-
+        /// <summary>
+        /// 初始化鱼人猎潮者
+        /// </summary>
+        /// <returns></returns>
         public static Card.FollowerCard Get鱼人猎潮者()
         {
             //鱼人猎潮者
@@ -85,7 +98,10 @@ namespace CardHelper
 
             return 鱼人猎潮者;
         }
-
+        /// <summary>
+        /// 初始化鲜血小鬼
+        /// </summary>
+        /// <returns></returns>
         public static Card.FollowerCard Get鲜血小鬼()
         {
             //鲜血小鬼
