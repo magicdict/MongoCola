@@ -24,7 +24,7 @@ namespace CardHelper
         {
             innerServer = MongoServer.Create(@"mongodb://localhost:28030");
             innerServer.Connect();
-            innerDatabase = innerServer.GetDatabase("HeartStone");
+            innerDatabase = innerServer.GetDatabase("HearthStone");
             innerCollection = innerDatabase.GetCollection("Card");
             if (String.IsNullOrEmpty(ExcelPicker.SelectedPathOrFileName)) return;
             Import();

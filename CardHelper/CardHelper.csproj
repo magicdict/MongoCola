@@ -74,6 +74,7 @@
     <Compile Include="RunMagic.Designer.cs">
       <DependentUpon>RunMagic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utility.cs" />
     <EmbeddedResource Include="CardUnit.resx">
       <DependentUpon>CardUnit.cs</DependentUpon>
     </EmbeddedResource>

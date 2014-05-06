@@ -14,6 +14,32 @@ namespace Card
         {
 
         }
+        /// <summary>
+        /// 目标选择模式
+        /// </summary>
+        public enum TargetSelectModeEnum
+        {
+            /// <summary>
+            /// 随机
+            /// </summary>
+            随机,
+            /// <summary>
+            /// 全体
+            /// </summary>
+            全体,
+            /// <summary>
+            /// 指定
+            /// </summary>
+            指定,
+            /// <summary>
+            /// 本方英雄
+            /// </summary>
+            本方英雄,
+            /// <summary>
+            /// 敌方英雄
+            /// </summary>
+            敌方英雄
+        }
          /// <summary>
         /// 获得卡牌的图案（需要外部程序具体实现）
         /// </summary>

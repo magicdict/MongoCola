@@ -9,6 +9,10 @@ namespace Card
     public class RoleInfo
     {
         /// <summary>
+        /// 是否为先手
+        /// </summary>
+        public Boolean IsFirst;
+        /// <summary>
         /// 满值的水晶数
         /// </summary>
         public int FullPoint;

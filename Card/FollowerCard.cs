@@ -72,9 +72,13 @@ namespace Card
             /// <summary>
             /// 战地效果
             /// </summary>
-            BattleEffect
+            BattleEffect,
+            /// <summary>
+            /// 刺激（每次）
+            /// 例如：受到伤害后则增加供给力
+            /// </summary>
+            AfterHurt
         }
-
         #endregion
 
         #region"亡语"

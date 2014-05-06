@@ -1,5 +1,4 @@
-﻿
-namespace Card
+﻿namespace Card
 {
     /// <summary>
     /// 武器卡牌
@@ -17,10 +16,15 @@ namespace Card
         /// <summary>
         /// 耐久（标准）
         /// </summary>
-        public int StandardHealthPoint = -1;
+        public int 标准耐久度 = -1;
         /// <summary>
         /// 耐久（实际）
         /// </summary>
-        public int ActualHealthPoint = -1;
+        public int 实际耐久度 = -1;
+        /// <summary>
+        /// 武器的附加效果
+        /// 真银圣剑：每当你的英雄进攻时，为其恢复2点生命值。
+        /// </summary>
+        public MagicCard.MagicDefine AdditionEffect = new MagicCard.MagicDefine();
     }
 }
