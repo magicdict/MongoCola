@@ -35,10 +35,21 @@ namespace Card
         /// <summary>
         /// 稀有度
         /// </summary>
+        public enum 稀有程度 : byte
+        {
+            白色,
+            绿色,
+            蓝色,
+            紫色,
+            橙色
+        }
+        /// <summary>
+        /// 稀有度
+        /// </summary>
         ///<remarks>
         /// 该卡牌的稀有度
         /// </remarks>
-        public Byte Rare;
+        public 稀有程度 Rare;
         #endregion
 
         #region "炉石专用"

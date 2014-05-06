@@ -17,7 +17,7 @@ namespace CardHelper
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmImport());
-            Application.Run(new CardUnit());
+            Application.Run(new RunMagic());
         }
     }
 }

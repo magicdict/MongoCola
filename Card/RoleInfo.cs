@@ -17,6 +17,14 @@ namespace Card
         /// </summary>
         public int RemainPoint;
         /// <summary>
+        /// 生命力
+        /// </summary>
+        public int HealthPoint =30;
+        /// <summary>
+        /// 武器
+        /// </summary>
+        public Card.WeaponCard Weapon;
+        /// <summary>
         /// 手牌
         /// </summary>
         public List<String> handCards = new List<string>();

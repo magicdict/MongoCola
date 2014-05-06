@@ -43,7 +43,30 @@ namespace CardHelper
             workbook = excelObj.Workbooks.Open(ExcelPicker.SelectedPathOrFileName);
             for (int i = 1; i < 5; i++)
             {
+                Card.CardBasicInfo.稀有程度 Rare;
+                Rare = Card.CardBasicInfo.稀有程度.白色;
                 worksheet = workbook.Sheets(i);
+                switch (i)
+                {
+                    case 1:
+                        Rare = Card.CardBasicInfo.稀有程度.白色;
+                        break;
+                    case 2:
+                        Rare = Card.CardBasicInfo.稀有程度.绿色;
+                        break;
+                    case 3:
+                        Rare = Card.CardBasicInfo.稀有程度.蓝色;
+                        break;
+                    case 4:
+                        Rare = Card.CardBasicInfo.稀有程度.紫色;
+                        break;
+                    case 5:
+                        Rare = Card.CardBasicInfo.稀有程度.橙色;
+                        break;
+                    default:
+                        break;
+                }
+
                 int rowCount = 2;
                 while (!String.IsNullOrEmpty(worksheet.Cells(rowCount, 1).Text))
                 {
@@ -59,7 +82,7 @@ namespace CardHelper
                             follower.StandardAttackPoint = GetInt(worksheet.Cells(rowCount, 6).Text);
                             follower.StandardHealthPoint = GetInt(worksheet.Cells(rowCount, 7).Text);
 
-                            follower.Rare = (byte)(i - 1);
+                            follower.Rare = Rare;
                             innerCollection.Insert<Card.FollowerCard>(follower);
                             break;
                         case "法术":
@@ -68,7 +91,7 @@ namespace CardHelper
                             magic.Description = worksheet.Cells(rowCount, 2).Text;
                             magic.StandardCostPoint = GetInt(worksheet.Cells(rowCount, 5).Text);
 
-                            magic.Rare = (byte)(i - 1);
+                            magic.Rare = Rare;
                             innerCollection.Insert<Card.MagicCard>(magic);
                             break;
                         case "武器":
@@ -77,7 +100,7 @@ namespace CardHelper
                             weapon.Description = worksheet.Cells(rowCount, 2).Text;
                             weapon.StandardCostPoint = GetInt(worksheet.Cells(rowCount, 5).Text);
 
-                            weapon.Rare = (byte)(i - 1);
+                            weapon.Rare = Rare;
                             innerCollection.Insert<Card.WeaponCard>(weapon);
                             break;
                         default:
@@ -95,7 +118,8 @@ namespace CardHelper
         /// </summary>
         /// <param name="before"></param>
         /// <returns></returns>
-        private int GetInt(String before) {
+        private int GetInt(String before)
+        {
             if (String.IsNullOrEmpty(before)) return -1;
             return int.Parse(before);
         }

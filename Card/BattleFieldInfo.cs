@@ -13,7 +13,7 @@ namespace Card
         /// <summary>
         /// 最多7个随从的位置
         /// </summary>
-        public FollowerCard[] BattleFollowers = new FollowerCard[6];
+        public FollowerCard[] BattleFollowers = new FollowerCard[7];
         ///7个位置的注意事项
         ///[0][1][2][3][4][5][6]
         ///有些卡牌涉及到对于左右位置的加成问题，所以，位置是很敏感的

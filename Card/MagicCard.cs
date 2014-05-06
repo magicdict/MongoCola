@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace Card
 {
     /// <summary>
@@ -22,5 +18,27 @@ namespace Card
         /// 攻击回数
         /// </summary>
         public int AttackCount = -1;
+        /// <summary>
+        /// 攻击模式
+        /// </summary>
+        public AttackModeEnum AttackMode = AttackModeEnum.指定;
+        /// <summary>
+        /// 攻击模式
+        /// </summary>
+        public enum AttackModeEnum
+        { 
+            /// <summary>
+            /// 随机攻击敌方对象
+            /// </summary>
+            随机,
+            /// <summary>
+            /// 攻击敌方全体
+            /// </summary>
+            全体,
+            /// <summary>
+            /// 攻击指定目标
+            /// </summary>
+            指定
+        }
     }
 }
