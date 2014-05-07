@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(905, 261);
+            this.ClientSize = new System.Drawing.Size(773, 382);
             this.Name = "BattleField";
             this.Text = "战场";
             this.ResumeLayout(false);
