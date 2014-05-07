@@ -37,31 +37,31 @@ namespace Card
         /// <summary>
         /// 是否初始为潜行状态
         /// </summary>
-        public Boolean Can潜行 = false;
+        public Boolean 潜行特性 = false;
         /// <summary>
         /// 是否初始为圣盾状态
         /// </summary>
-        public Boolean Can圣盾 = false;
+        public Boolean 圣盾特性 = false;
         /// <summary>
         /// 法术免疫
         /// </summary>
-        public Boolean Can法术免疫 = false;
+        public Boolean 法术免疫特性 = false;
         /// <summary>
         /// 英雄技能免疫
         /// </summary>
-        public Boolean Can英雄技能免疫 = false;
+        public Boolean 英雄技能免疫特性 = false;
         /// <summary>
         /// 亡语
         /// </summary>
-        public EffectDefine 亡语;
+        public EffectDefine 亡语效果;
         /// <summary>
         /// 战吼
         /// </summary>
-        public EffectDefine 战吼;
+        public EffectDefine 战吼效果;
         /// <summary>
         /// 激怒
         /// </summary>
-        public EffectDefine 激怒;
+        public EffectDefine 激怒效果;
         /// <summary>
         /// 战地效果
         /// </summary>
@@ -78,18 +78,6 @@ namespace Card
         /// </summary>
         public int ActualHealthPoint = -1;
         /// <summary>
-        /// 是否为潜行状态
-        /// </summary>
-        public Boolean Is潜行Status = false;
-        /// <summary>
-        /// 是否为沉默状态
-        /// </summary>
-        public Boolean Is沉默Status = false;
-        /// <summary>
-        /// 是否为激怒状态
-        /// </summary>
-        public Boolean Is激怒Status = false;
-        /// <summary>
         /// 嘲讽(实际)
         /// </summary>
         public Boolean Actual嘲讽 = false;
@@ -97,6 +85,38 @@ namespace Card
         /// 冲锋(实际)
         /// </summary>
         public Boolean Actual冲锋 = false;
+        /// <summary>
+        /// 连击(实际)
+        /// </summary>
+        public Boolean Actual连击 = false;
+        /// <summary>
+        /// 风怒(实际)
+        /// </summary>
+        public Boolean Actual风怒 = false;
+        /// <summary>
+        /// 是否为潜行状态
+        /// </summary>
+        public Boolean Is潜行Status = false;
+        /// <summary>
+        /// 是否为圣盾状态
+        /// </summary>
+        public Boolean Is圣盾Status = false;
+        /// <summary>
+        /// 是否为法术免疫状态
+        /// </summary>
+        public Boolean Is法术免疫Status = false;
+        /// <summary>
+        /// 是否为英雄技能免疫状态
+        /// </summary>
+        public Boolean Is英雄技能免疫Status = false;
+        /// <summary>
+        /// 是否为激怒状态
+        /// </summary>
+        public Boolean Is激怒Status = false;
+        /// <summary>
+        /// 是否为沉默状态
+        /// </summary>
+        public Boolean Is沉默Status = false;
         /// <summary>
         /// 是否为冰冻状态
         /// </summary>
@@ -122,10 +142,16 @@ namespace Card
             this.ActualHealthPoint = this.StandardHealthPoint;
             this.Actual冲锋 = this.Standard冲锋;
             this.Actual嘲讽 = this.Standard嘲讽;
+            this.Actual连击 = this.Standard连击;
+            this.Actual风怒 = this.Standard风怒;
+            this.Is潜行Status = this.潜行特性;
+            this.Is圣盾Status = this.圣盾特性;
+            this.Is英雄技能免疫Status = this.英雄技能免疫特性;
+            this.Is法术免疫Status = this.法术免疫特性;
             //初始状态
-            this.Is潜行Status = this.Can潜行;
             this.Is冰冻Status = false;
             this.Is沉默Status = false;
+            this.Is激怒Status = false;
         }
 
         #endregion
