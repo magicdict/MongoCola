@@ -85,6 +85,33 @@ namespace Card
             /// </summary>
             全体
         }
+
+        /// <summary>
+        /// 随机打算数组
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <returns></returns>
+        public static T[] RandomSort<T>(T[] array)
+        {
+            int len = array.Length;
+            System.Collections.Generic.List<int> list = new System.Collections.Generic.List<int>();
+            T[] ret = new T[len];
+            Random rand = new Random();
+            int i = 0;
+            while (list.Count < len)
+            {
+                int iter = rand.Next(0, len);
+                if (!list.Contains(iter))
+                {
+                    list.Add(iter);
+                    ret[i] = array[iter];
+                    i++;
+                }
+            }
+            return ret;
+        }
+
         /// <summary>
         /// 获得卡牌的图案（需要外部程序具体实现）
         /// </summary>

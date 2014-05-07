@@ -29,13 +29,8 @@ namespace Card
         /// </summary>
         public void Suffle()
         {
-            //TODO:需要验证正确性
             Random random = new Random();
-            List<String> newList = new List<String>();
-            foreach (String item in CardList)
-            {
-                newList.Insert(random.Next(newList.Count), item);
-            }
+            var newList = CardUtility.RandomSort<String>(CardList.ToArray());
             CardList.Clear();
             foreach (var item in newList)
             {
