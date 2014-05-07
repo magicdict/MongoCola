@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Card
 {
-    public class MagicCrystalEffect
+    public class MagicCrystalEffect : EffectDefine
     {
         /// <summary>
         /// 对法力水晶的法术实施
         /// </summary>
         /// <param name="role"></param>
         /// <param name="magic"></param>
-        public static void ModifyCrystal(RoleInfo role, MagicCard.MagicDefine magic)
+        public static void ModifyCrystal(RoleInfo role, EffectDefine magic)
         {
             string[] Op = magic.AddtionInfo.Split("/".ToCharArray());
             int point = 0;

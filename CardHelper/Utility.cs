@@ -21,7 +21,7 @@ namespace CardHelper
             奥术飞弹.FirstMagicDefine.StandardEffectPoint = 1;
             奥术飞弹.FirstMagicDefine.ActualEffectPoint = 1;
             奥术飞弹.FirstMagicDefine.EffectCount = 3;
-            奥术飞弹.FirstMagicDefine.MagicTargetSelectMode = Card.CardUtility.TargetSelectModeEnum.随机;
+            奥术飞弹.FirstMagicDefine.EffictTargetSelectMode = Card.CardUtility.TargetSelectModeEnum.随机;
             return 奥术飞弹;
         }
         /// <summary>
@@ -90,7 +90,7 @@ namespace CardHelper
             鱼人猎潮者.Standard冲锋 = false;
             鱼人猎潮者.Standard嘲讽 = false;
             //战吼
-            鱼人猎潮者.战吼 = new Card.MagicCard.MagicDefine();
+            鱼人猎潮者.战吼 = new Card.EffectDefine();
 
             return 鱼人猎潮者;
         }
@@ -120,7 +120,7 @@ namespace CardHelper
             鲜血小鬼.Can潜行 = true;
             鲜血小鬼.Is潜行Status = true;
             //战吼
-            鲜血小鬼.战吼 = new Card.MagicCard.MagicDefine();
+            鲜血小鬼.战吼 = new Card.EffectDefine();
             return 鲜血小鬼;
         }
 

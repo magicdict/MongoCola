@@ -25,6 +25,6 @@
         /// 武器的附加效果
         /// 真银圣剑：每当你的英雄进攻时，为其恢复2点生命值。
         /// </summary>
-        public MagicCard.MagicDefine AdditionEffect = new MagicCard.MagicDefine();
+        public EffectDefine AdditionEffect = new EffectDefine();
     }
 }

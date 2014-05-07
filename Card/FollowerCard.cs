@@ -53,19 +53,19 @@ namespace Card
         /// <summary>
         /// 亡语
         /// </summary>
-        public MagicCard.MagicDefine 亡语;
+        public EffectDefine 亡语;
         /// <summary>
         /// 战吼
         /// </summary>
-        public MagicCard.MagicDefine 战吼;
+        public EffectDefine 战吼;
         /// <summary>
         /// 激怒
         /// </summary>
-        public MagicCard.MagicDefine 激怒;
+        public EffectDefine 激怒;
         /// <summary>
         /// 战地效果
         /// </summary>
-        public MagicCard.MagicDefine 战地效果;
+        public EffectDefine 战地效果;
         #endregion
 
         #region"运行时状态"

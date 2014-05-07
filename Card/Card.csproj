@@ -47,7 +47,7 @@
     <Compile Include="FollowerCard.cs" />
     <Compile Include="MagicEffect\MagicCardStockEffect.cs" />
     <Compile Include="MagicEffect\MagicCrystalEffect.cs" />
-    <Compile Include="MagicEffect\MagicUtility.cs" />
+    <Compile Include="MagicEffect\EffectDefinet.cs" />
     <Compile Include="RoleInfo.cs" />
     <Compile Include="CardBasicInfo.cs" />
     <Compile Include="CardStock.cs" />
