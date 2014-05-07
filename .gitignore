@@ -1,4 +1,4 @@
-*.mdproj
+﻿*.mdproj
 *.userprefs
 *.resources
 *.pdf
@@ -13,6 +13,8 @@
 *.mdb
 *.pdb
 *.doc
+/炉边传说/bin
+/炉边传说/obj
 /ImportAccessDB/bin
 /ImportAccessDB/obj
 /ResourceLib/bin

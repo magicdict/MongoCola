@@ -130,7 +130,6 @@ namespace Card
         /// </remarks>
         public int RemainAttactTimes = 1;
         #endregion
-
         /// <summary>
         /// 设置初始状态
         /// </summary>
@@ -152,8 +151,23 @@ namespace Card
             this.Is冰冻Status = false;
             this.Is沉默Status = false;
             this.Is激怒Status = false;
+            //攻击次数
+            if (Actual冲锋)
+            {
+                if (Actual风怒)
+                {
+                    RemainAttactTimes = 2;
+                }
+                else
+                {
+                    RemainAttactTimes = 1;
+                }
+            }
+            else
+            {
+                RemainAttactTimes = 0;
+            }
         }
-
         #endregion
     }
 }

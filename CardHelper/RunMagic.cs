@@ -27,7 +27,9 @@ namespace CardHelper
         {
             for (int i = 0; i < 敌方战场.BattleFollowers.Length; i++)
             {
-                敌方战场.BattleFollowers[i] = Utility.Get狼骑兵();
+                var 狼骑兵= Utility.Get狼骑兵();
+                狼骑兵.Init();
+                敌方战场.BattleFollowers[i] = 狼骑兵;
             }
         }
 
