@@ -25,18 +25,22 @@ namespace Card
             /// </summary>
             Summon,
             /// <summary>
-            /// 抽牌
+            /// 降低成本
             /// </summary>
-            DrawCard,
+            CostDown,
+            /// <summary>
+            /// 抽牌/弃牌
+            /// </summary>
+            卡牌,
             /// <summary>
             /// 变形
             /// 变羊，变青蛙
             /// </summary>
-            Transfer,
+            变形,
             /// <summary>
             /// 获得水晶
             /// </summary>
-            GetCyastal,
+            法力水晶,
             /// <summary>
             /// 奥秘
             /// </summary>
@@ -88,6 +92,14 @@ namespace Card
             /// 法术对象选择模式
             /// </summary>
             public CardUtility.TargetSelectModeEnum MagicTargetSelectMode;
+            /// <summary>
+            /// 法术对象选择角色
+            /// </summary>
+            public CardUtility.TargetSelectRoleEnum MagicTargetSelectRole;
+            /// <summary>
+            /// 法术对象选择方向
+            /// </summary>
+            public CardUtility.TargetSelectDirectEnum MagicTargetSelectDirect;
             /// 攻击的时候：99表示消灭一个单位
             /// 治疗的时候：99表示完全回复一个单位
             /// 抽牌的时候：表示抽牌的数量
@@ -103,15 +115,20 @@ namespace Card
             /// 效果回数
             /// </summary>
             public int EffectCount;
+            /// <summary>
+            /// 附加信息
+            /// </summary>
+            public String AddtionInfo;
         }
         /// <summary>
-        /// 施法
+        /// 使用单个魔法效果
         /// </summary>
         /// <param name="enviroment">整个战场环境</param>
         /// <param name="IsFirst">是先手玩家还是后手玩家</param>
-        public static void Run(BattleEnviroment enviroment, Boolean IsFirst)
+        /// <param name="magic">使用魔法定义</param>
+        /// <remarks>服务器端方法，一张卡牌通常会有选择或者副作用，这是客户端处理的东西</remarks>
+        public void RunMagic(BattleEnviroment enviroment, Boolean IsFirst,MagicDefine magic)
         {
-            //攻击类魔法，如果是先手玩家，则对于环境中的 SecondPlayer 进行攻击，反之亦然
 
         }
     }

@@ -37,5 +37,12 @@ namespace Card
         {
             if (CurrentRemainPoint < MaxPoint) CurrentRemainPoint++;
         }
+        /// <summary>
+        /// 减少一个可用水晶
+        /// </summary>
+        public void ReduceCurrentPoint()
+        {
+            if (CurrentRemainPoint > 0) CurrentRemainPoint--;
+        }
     }
 }

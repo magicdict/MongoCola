@@ -27,7 +27,7 @@ namespace Card
         /// <summary>
         /// 生命力
         /// </summary>
-        public int HealthPoint =30;
+        public int HealthPoint = 30;
         /// <summary>
         /// 
         /// </summary>

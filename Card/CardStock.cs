@@ -8,7 +8,7 @@ namespace Card
         /// <summary>
         /// 最大牌数
         /// </summary>
-        public int MaxCards = 30;
+        public const int MaxCards = 30;
         /// <summary>
         /// 牌堆(存放牌的序列号)
         /// </summary>
@@ -47,7 +47,8 @@ namespace Card
         /// </summary>
         /// <param name="CardCount"></param>
         /// <returns></returns>
-        public static List<String> DrawCard(int CardCount) {
+        public static List<String> DrawCard(int CardCount)
+        {
             List<String> newList = new List<String>();
             for (int i = 0; i < CardCount; i++)
             {

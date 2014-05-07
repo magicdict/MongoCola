@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BattleEnviroment.cs" />
     <Compile Include="BattleFieldInfo.cs" />
+    <Compile Include="Crystal.cs" />
     <Compile Include="FollowerCard.cs" />
     <Compile Include="RoleInfo.cs" />
     <Compile Include="CardBasicInfo.cs" />

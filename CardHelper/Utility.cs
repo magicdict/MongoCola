@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace CardHelper
 {
     public static class Utility
@@ -94,7 +90,7 @@ namespace CardHelper
             鱼人猎潮者.Standard冲锋 = false;
             鱼人猎潮者.Standard嘲讽 = false;
             //战吼
-            鱼人猎潮者.CardSpecial = Card.FollowerCard.SpecialEnum.FightMessage;
+            鱼人猎潮者.战吼 = new Card.MagicCard.MagicDefine();
 
             return 鱼人猎潮者;
         }
@@ -124,7 +120,7 @@ namespace CardHelper
             鲜血小鬼.Can潜行 = true;
             鲜血小鬼.Is潜行Status = true;
             //战吼
-            鲜血小鬼.CardSpecial = Card.FollowerCard.SpecialEnum.FightMessage;
+            鲜血小鬼.战吼 = new Card.MagicCard.MagicDefine();
             return 鲜血小鬼;
         }
 

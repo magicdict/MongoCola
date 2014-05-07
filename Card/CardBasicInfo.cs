@@ -61,7 +61,7 @@ namespace Card
         /// <summary>
         /// 职业
         /// </summary>
-        public byte Occupation;
+        public CardUtility.OccupationEnum Occupation;
         /// <summary>
         /// 标准的使用成本
         /// </summary>
@@ -80,7 +80,7 @@ namespace Card
         public Boolean CheckCondition(RoleInfo info)
         {
             //剩余的法力是否足够实际召唤的法力
-            return info.RemainPoint >= ActualCostPoint;
+            return info.crystal.CurrentRemainPoint >= ActualCostPoint;
         }
         #endregion
 

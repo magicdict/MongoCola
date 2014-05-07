@@ -8,7 +8,7 @@ namespace Card
     public class FollowerCard : CardBasicInfo
     {
         #region"属性"
-        
+
         #region"设计时状态"
         /// <summary>
         /// 攻击力（标准）
@@ -51,37 +51,21 @@ namespace Card
         /// </summary>
         public Boolean Can英雄技能免疫 = false;
         /// <summary>
-        /// 特别效果
+        /// 亡语
         /// </summary>
-        public SpecialEnum CardSpecial = SpecialEnum.None;
+        public MagicCard.MagicDefine 亡语;
         /// <summary>
-        /// 特别效果
+        /// 战吼
         /// </summary>
-        public enum SpecialEnum
-        {
-            /// <summary>
-            /// 没有
-            /// </summary>
-            None,
-            /// <summary>
-            /// 亡语
-            /// </summary>
-            DeathMessage,
-            /// <summary>
-            /// 战吼
-            /// </summary>
-            FightMessage,
-            /// <summary>
-            /// 战地效果
-            /// </summary>
-            BattleEffect,
-            /// <summary>
-            /// 刺激（每次）
-            /// 例如：受到伤害后则增加供给力
-            /// </summary>
-            激怒
-        }
-
+        public MagicCard.MagicDefine 战吼;
+        /// <summary>
+        /// 激怒
+        /// </summary>
+        public MagicCard.MagicDefine 激怒;
+        /// <summary>
+        /// 战地效果
+        /// </summary>
+        public MagicCard.MagicDefine 战地效果;
         #endregion
 
         #region"运行时状态"
@@ -130,7 +114,8 @@ namespace Card
         /// <summary>
         /// 设置初始状态
         /// </summary>
-        public void Init(){
+        public void Init()
+        {
             //将运行时状态设置为设计时状态
             this.ActualAttackPoint = this.StandardAttackPoint;
             this.ActualCostPoint = this.StandardCostPoint;
@@ -143,36 +128,6 @@ namespace Card
             this.Is沉默Status = false;
         }
 
-        #endregion
-
-        #region"亡语"
-        /// <summary>
-        /// 亡语类型
-        /// </summary>
-        enum DeathMessage
-        {
-
-        }
-        #endregion
-
-        #region"战吼"
-        /// <summary>
-        /// 战吼类型
-        /// </summary>
-        enum FightMessage
-        {
-
-        }
-        #endregion
-
-        #region"战场效果"
-        enum BattleEffect
-        {
-            /// <summary>
-            /// 减少魔法成本
-            /// </summary>
-            MagicCostDown
-        }
         #endregion
     }
 }
