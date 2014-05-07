@@ -9,8 +9,8 @@ namespace Card
     {
         ///Role有一个IsFirst属性，通过这个属性，和FirstPlayer，SecondPlayer联系起来
         //先手
-        RoleInfo FirstPlayer = new RoleInfo();
+        public RoleInfo FirstPlayer = new RoleInfo();
         //后手
-        RoleInfo SecondPlayer = new RoleInfo();
+        public RoleInfo SecondPlayer = new RoleInfo();
     }
 }

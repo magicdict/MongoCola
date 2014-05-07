@@ -120,16 +120,5 @@ namespace Card
             /// </summary>
             public String AddtionInfo;
         }
-        /// <summary>
-        /// 使用单个魔法效果
-        /// </summary>
-        /// <param name="enviroment">整个战场环境</param>
-        /// <param name="IsFirst">是先手玩家还是后手玩家</param>
-        /// <param name="magic">使用魔法定义</param>
-        /// <remarks>服务器端方法，一张卡牌通常会有选择或者副作用，这是客户端处理的东西</remarks>
-        public void RunMagic(BattleEnviroment enviroment, Boolean IsFirst,MagicDefine magic)
-        {
-
-        }
     }
 }

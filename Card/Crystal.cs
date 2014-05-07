@@ -44,5 +44,12 @@ namespace Card
         {
             if (CurrentRemainPoint > 0) CurrentRemainPoint--;
         }
+        /// <summary>
+        /// 减少一个空水晶
+        /// </summary>
+        public void ReduceFullPoint()
+        {
+            if (CurrentFullPoint > 0) CurrentFullPoint--;
+        }
     }
 }

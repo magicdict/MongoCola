@@ -12,7 +12,7 @@ namespace Card
         /// <summary>
         /// 牌堆(存放牌的序列号)
         /// </summary>
-        public static Stack<String> CardList = new Stack<string>();
+        public Stack<String> CardList = new Stack<string>();
         /// <summary>
         /// 初始化
         /// </summary>
@@ -27,7 +27,7 @@ namespace Card
         /// <summary>
         /// 洗牌
         /// </summary>
-        public static void Suffle()
+        public void Suffle()
         {
             //TODO:需要验证正确性
             Random random = new Random();
@@ -47,7 +47,7 @@ namespace Card
         /// </summary>
         /// <param name="CardCount"></param>
         /// <returns></returns>
-        public static List<String> DrawCard(int CardCount)
+        public List<String> DrawCard(int CardCount)
         {
             List<String> newList = new List<String>();
             for (int i = 0; i < CardCount; i++)
