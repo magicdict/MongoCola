@@ -126,7 +126,7 @@ namespace Card
         /// <summary>
         /// 获得卡牌的图案（需要外部程序具体实现）
         /// </summary>
-        public static delegateGetImageByString GetCardImage;
+        public static delegateGetImage GetCardImage;
         /// <summary>
         /// 抽牌魔法(服务器方法)
         /// </summary>
@@ -137,12 +137,12 @@ namespace Card
         /// </summary>
         /// <param name="IsFirst">先后手区分</param>
         /// <param name="magic">法术定义</param>
-        public delegate List<CardBasicInfo> delegateDrawCard(Boolean IsFirst, int DrawCount);
+        public delegate List<String> delegateDrawCard(Boolean IsFirst, int DrawCount);
         /// <summary>
         /// 获得图片
         /// </summary>
         /// <returns></returns>
-        public delegate Image delegateGetImageByString(String ImagePath);
+        public delegate Image delegateGetImage(String ImageKey);
         /// <summary>
         /// 获得位置
         /// </summary>

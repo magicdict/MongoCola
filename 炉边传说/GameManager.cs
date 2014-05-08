@@ -19,6 +19,8 @@ namespace 炉边传说
         public static void Init() {
             //抽牌的具体方法
             CardUtility.DrawCard += DrawCardAtServer;
+            //图片请求
+            CardUtility.GetCardImage += GetCardImageAtServer;
         }
         /// <summary>
         /// 本方情报
@@ -32,8 +34,19 @@ namespace 炉边传说
         /// 抽牌（服务器方法）
         /// </summary>
         /// <returns></returns>
-        public static List<Card.CardBasicInfo> DrawCardAtServer(Boolean IsFirst,int Count){
-            return null;
+        public static List<String> DrawCardAtServer(Boolean IsFirst, int Count)
+        {
+            //向服务器提出请求，获得牌
+            return GameStatus.DrawCard(IsFirst,Count);
+        }
+        /// <summary>
+        /// 获得图片（服务器方法）
+        /// </summary>
+        /// <param name="ImageKey"></param>
+        /// <returns></returns>
+        private static System.Drawing.Image GetCardImageAtServer(string ImageKey)
+        {
+            throw new NotImplementedException();
         }
     }
 }
