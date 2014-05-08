@@ -17,20 +17,19 @@ namespace Card
         /// 初始化
         /// </summary>
         /// <param name="mCardList"></param>
-        public void Init(Stack<String> mCardList)
+        public void Init(Stack<String> mCardList,int Seed)
         {
             //设置牌堆
             CardList = mCardList;
             //洗牌
-            Suffle();
+            Suffle(Seed);
         }
         /// <summary>
         /// 洗牌
         /// </summary>
-        public void Suffle()
+        public void Suffle(int Seed)
         {
-            Random random = new Random();
-            var newList = CardUtility.RandomSort<String>(CardList.ToArray());
+            var newList = CardUtility.RandomSort<String>(CardList.ToArray(), Seed);
             CardList.Clear();
             foreach (var item in newList)
             {

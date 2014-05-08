@@ -15,6 +15,10 @@ namespace 炉边传说
         /// </summary>
         public static Boolean IsFirst;
         /// <summary>
+        /// 游戏编号
+        /// </summary>
+        public static int GameId;
+        /// <summary>
         /// 初始化
         /// </summary>
         public static void Init() {
@@ -38,7 +42,7 @@ namespace 炉边传说
         public static List<String> DrawCardAtServer(Boolean IsFirst, int Count)
         {
             //向服务器提出请求，获得牌
-            return GameServer.DrawCard(IsFirst, Count);
+            return GameServer.DrawCard(SelfInfo.role.GameId,IsFirst, Count);
         }
         /// <summary>
         /// 获得图片（服务器方法）

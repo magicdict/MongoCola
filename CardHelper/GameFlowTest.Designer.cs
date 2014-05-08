@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btnInitGame = new System.Windows.Forms.Button();
+            this.btn给先后手抽牌 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnInitGame
@@ -41,12 +42,23 @@
             this.btnInitGame.UseVisualStyleBackColor = true;
             this.btnInitGame.Click += new System.EventHandler(this.btnInitGame_Click);
             // 
+            // btn给先后手抽牌
+            // 
+            this.btn给先后手抽牌.Location = new System.Drawing.Point(25, 80);
+            this.btn给先后手抽牌.Name = "btn给先后手抽牌";
+            this.btn给先后手抽牌.Size = new System.Drawing.Size(229, 23);
+            this.btn给先后手抽牌.TabIndex = 2;
+            this.btn给先后手抽牌.Text = "给先后手抽牌";
+            this.btn给先后手抽牌.UseVisualStyleBackColor = true;
+            this.btn给先后手抽牌.Click += new System.EventHandler(this.btn给先后手抽牌_Click);
+            // 
             // GameFlowTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.btn给先后手抽牌);
             this.Controls.Add(this.btnInitGame);
             this.Name = "GameFlowTest";
             this.Text = "游戏流程测试";
@@ -57,5 +69,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnInitGame;
+        private System.Windows.Forms.Button btn给先后手抽牌;
     }
 }

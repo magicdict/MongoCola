@@ -17,27 +17,72 @@ namespace Card.Server
     public class GameStatusAtServer
     {
         /// <summary>
-        /// 
+        /// 游戏编号
         /// </summary>
-        public int GameId;
+        public int GameId = 1;
+        /// <summary>
+        /// 主机作为先手
+        /// </summary>
+        public Boolean HostAsFirst = false;
         /// <summary>
         /// 先手牌堆
         /// </summary>
         private Card.CardDeck FirstCardDeck = new CardDeck();
         /// <summary>
+        /// 
+        /// </summary>
+        private Stack<String> FirstCardStack; 
+        /// <summary>
         /// 后手牌堆
         /// </summary>
         private Card.CardDeck SecondCardDeck = new CardDeck();
+        /// <summary>
+        /// 
+        /// </summary>
+        private Stack<String> SecondCardStack;
+        /// <summary>
+        /// 建立新游戏
+        /// </summary>
+        /// <param name="newGameId"></param>
+        public GameStatusAtServer(int newGameId)
+        {
+            this.GameId = newGameId;
+            //决定先后手,主机位先手概率为2/1
+            HostAsFirst = (GameId % 2 == 0);
+        }
+        /// <summary>
+        /// 设定牌堆
+        /// </summary>
+        /// <param name="IsHost">主机</param>
+        /// <param name="cards">套牌</param>
+        public int SetCardStack(Boolean IsHost,Stack<String> cards)
+        {
+            if ((IsHost && HostAsFirst) || (!IsHost && !HostAsFirst))
+            {
+                FirstCardStack = cards;
+            }
+            else {
+                SecondCardStack = cards;
+            }
+            //如果非主机的套牌也上传的话，可以初始化了
+            if (!IsHost)
+            {
+                Init();
+            }
+            return 100;
+        }
         /// <summary>
         /// 初始化
         /// </summary>
         /// <param name="FirstCardStack"></param>
         /// <param name="SecondCardStack"></param>
-        public void Init(Stack<String> FirstCardStack, Stack<String> SecondCardStack)
+        private void Init()
         {
-            //1.洗牌处理
-            FirstCardDeck.Init(FirstCardStack);
-            SecondCardDeck.Init(SecondCardStack);
+            //洗牌处理
+            //如果以时间随机，则两者洗牌都一样
+            //前者默认，后者用GameID随机
+            FirstCardDeck.Init(FirstCardStack, 0);
+            SecondCardDeck.Init(SecondCardStack, GameId);
         }
         /// <summary>
         /// 抽牌

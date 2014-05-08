@@ -98,7 +98,11 @@ namespace Card
             /// <summary>
             /// 全体
             /// </summary>
-            全体
+            全体,
+            /// <summary>
+            /// 武器，例如：潜行者，对武器喂毒
+            /// </summary>
+            武器
         }
         /// <summary>
         /// 随机打算数组
@@ -106,12 +110,12 @@ namespace Card
         /// <typeparam name="T"></typeparam>
         /// <param name="array"></param>
         /// <returns></returns>
-        public static T[] RandomSort<T>(T[] array)
+        public static T[] RandomSort<T>(T[] array, int Seed)
         {
             int len = array.Length;
             System.Collections.Generic.List<int> list = new System.Collections.Generic.List<int>();
             T[] ret = new T[len];
-            Random rand = new Random();
+            Random rand = Seed ==0?new Random():new Random(Seed);
             int i = 0;
             while (list.Count < len)
             {

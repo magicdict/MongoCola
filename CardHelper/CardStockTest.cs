@@ -27,7 +27,7 @@ namespace CardHelper
             {
                 cards.Push("C" + (i+1).ToString("D2"));
             }
-            t.Init(cards);
+            t.Init(cards,999);
         }
         /// <summary>
         /// 
@@ -44,7 +44,7 @@ namespace CardHelper
             cards.Push("F000003");
             cards.Push("W000001");
             Card.CardDeck t = new Card.CardDeck();
-            t.Init(cards);
+            t.Init(cards,999);
         }
     }
 }

@@ -9,6 +9,15 @@ namespace Card
     public class RoleBasicInfo
     {
         /// <summary>
+        /// 是否为主机
+        /// </summary>
+        public Boolean IsHost = false;
+        /// <summary>
+        /// 游戏编号
+        /// </summary>
+        public int GameId = 0;
+
+        /// <summary>
         /// 最大生命值
         /// </summary>
         public const int MaxHealthPoint = 30;
@@ -47,7 +56,7 @@ namespace Card
         /// <summary>
         /// 手牌数
         /// </summary>
-        public int RemainHandCardCount = 30;
+        public int HandCardCount = 30;
     }
     /// <summary>
     /// 本方情报
@@ -57,7 +66,7 @@ namespace Card
         /// <summary>
         /// 基本情报
         /// </summary>
-        RoleBasicInfo role = new RoleBasicInfo();
+        public RoleBasicInfo role = new RoleBasicInfo();
         /// <summary>
         /// 手牌
         /// </summary>
