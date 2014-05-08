@@ -12,7 +12,7 @@ namespace CardHelper
 
         Card.MagicCard 奥术飞弹 = new Card.MagicCard();
         Card.BattleFieldInfo 敌方战场 = new Card.BattleFieldInfo();
-        Card.RoleInfo 敌人 = new Card.RoleInfo();
+        Card.RoleBasicInfo 敌人 = new Card.RoleBasicInfo();
 
         private void btnCreate奥术飞弹_Click(object sender, EventArgs e)
         {

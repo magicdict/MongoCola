@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 namespace Card
 {
@@ -30,7 +31,6 @@ namespace Card
             法师,
             战士,
         }
-
         /// <summary>
         /// 目标选择模式
         /// </summary>
@@ -85,7 +85,6 @@ namespace Card
             /// </summary>
             全体
         }
-
         /// <summary>
         /// 随机打算数组
         /// </summary>
@@ -128,9 +127,17 @@ namespace Card
         /// 获得卡牌的图案（需要外部程序具体实现）
         /// </summary>
         public static delegateGetImageByString GetCardImage;
-
+        /// <summary>
+        /// 抽牌魔法(服务器方法)
+        /// </summary>
+        public static delegateDrawCard DrawCard;
         #region"委托"
-
+        /// <summary>
+        /// 抽牌委托
+        /// </summary>
+        /// <param name="IsFirst">先后手区分</param>
+        /// <param name="magic">法术定义</param>
+        public delegate List<CardBasicInfo> delegateDrawCard(Boolean IsFirst, int DrawCount);
         /// <summary>
         /// 获得图片
         /// </summary>

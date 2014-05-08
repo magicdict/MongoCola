@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace Card
 {
     /// <summary>
-    /// 战场
+    /// 共通情报
     /// </summary>
-    public class RoleInfo
+    public class RoleBasicInfo
     {
         /// <summary>
         /// 最大生命值
@@ -29,7 +29,7 @@ namespace Card
         /// </summary>
         public int HealthPoint = 30;
         /// <summary>
-        /// 
+        /// 水晶
         /// </summary>
         public Card.Crystal crystal = new Crystal();
         /// <summary>
@@ -37,16 +37,30 @@ namespace Card
         /// </summary>
         public Card.WeaponCard Weapon;
         /// <summary>
-        /// 手牌
-        /// </summary>
-        public List<String> handCards = new List<string>();
-        /// <summary>
-        /// 牌堆
-        /// </summary>
-        public CardStock cardStock = new CardStock();
-        /// <summary>
         /// 战场信息
         /// </summary>
         public BattleFieldInfo myBattleField = new BattleFieldInfo();
+        /// <summary>
+        /// 剩余牌数
+        /// </summary>
+        public int RemainCardStockCount = 30;
+        /// <summary>
+        /// 手牌数
+        /// </summary>
+        public int RemainHandCardCount = 30;
+    }
+    /// <summary>
+    /// 本方情报
+    /// </summary>
+    public class RoleDetailInfo
+    {
+        /// <summary>
+        /// 基本情报
+        /// </summary>
+        RoleBasicInfo role = new RoleBasicInfo();
+        /// <summary>
+        /// 手牌
+        /// </summary>
+        public List<String> handCards = new List<string>();
     }
 }

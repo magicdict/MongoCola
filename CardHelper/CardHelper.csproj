@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GUI">
+      <HintPath>..\GUI\bin\Debug\GUI.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MongoDB.Bson, Version=1.9.0.200, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -129,10 +132,6 @@
     <ProjectReference Include="..\Card\Card.csproj">
       <Project>{0bdcfdfe-8032-4c1a-839c-afb8801910be}</Project>
       <Name>Card</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GUI\GUI.csproj">
-      <Project>{8e604d46-99a8-47a0-a533-d83b2b6a83b9}</Project>
-      <Name>GUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

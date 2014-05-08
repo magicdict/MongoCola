@@ -12,7 +12,7 @@ namespace Card
         /// </summary>
         /// <param name="role"></param>
         /// <param name="magic"></param>
-        public static void ModifyCrystal(RoleInfo role, EffectDefine magic)
+        public static void ModifyCrystal(RoleBasicInfo role, EffectDefine magic)
         {
             string[] Op = magic.AddtionInfo.Split("/".ToCharArray());
             int point = 0;

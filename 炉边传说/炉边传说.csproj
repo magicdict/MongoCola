@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BattleEnviroment.cs" />
     <Compile Include="BattleField.cs">
       <SubType>Form</SubType>
     </Compile>
