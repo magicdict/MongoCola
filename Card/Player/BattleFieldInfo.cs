@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Card
+namespace Card.Player
 {
     /// <summary>
     /// 战场信息（炉石专用）

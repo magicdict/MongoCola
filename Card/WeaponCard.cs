@@ -1,4 +1,5 @@
-﻿namespace Card
+﻿using Card.Effect;
+namespace Card
 {
     /// <summary>
     /// 武器卡牌

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Card.Effect;
+using System;
 
 namespace Card
 {

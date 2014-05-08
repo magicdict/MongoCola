@@ -73,7 +73,8 @@
             this.Controls.Add(this.btnRunMagic);
             this.Controls.Add(this.button1);
             this.Name = "Menu";
-            this.Text = "Menu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "菜单";
             this.ResumeLayout(false);
 
         }

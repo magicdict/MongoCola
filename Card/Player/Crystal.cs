@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Card
+namespace Card.Player
 {
     public class Crystal
     {

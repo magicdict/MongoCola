@@ -70,7 +70,7 @@ namespace CardHelper
             奥术智慧.JoinType = Card.MagicCard.EffectJoinType.None;
 
             //随机抽两张牌
-            Card.MagicCardDeckEffect CardDeckEffect = new Card.MagicCardDeckEffect();
+            Card.Effect.CardDeckEffect CardDeckEffect = new Card.Effect.CardDeckEffect();
             CardDeckEffect.StandardEffectPoint = 2;
             CardDeckEffect.EffectCount = 1;
             CardDeckEffect.EffectTargetSelectDirect = Card.CardUtility.TargetSelectDirectEnum.本方;
@@ -92,7 +92,7 @@ namespace CardHelper
             变羊术.StandardCostPoint = 4;
             变羊术.JoinType = Card.MagicCard.EffectJoinType.None;
             //变成 1/1 的羊
-            Card.MagicTransformEffect transformEffect = new Card.MagicTransformEffect();
+            Card.Effect.TransformEffect transformEffect = new Card.Effect.TransformEffect();
             transformEffect.EffectCount = 1;
             transformEffect.EffectTargetSelectDirect = Card.CardUtility.TargetSelectDirectEnum.无限制;
             transformEffect.EffectTargetSelectRole = Card.CardUtility.TargetSelectRoleEnum.随从;
@@ -166,7 +166,7 @@ namespace CardHelper
             鱼人猎潮者.Standard冲锋 = false;
             鱼人猎潮者.Standard嘲讽 = false;
             //战吼
-            鱼人猎潮者.战吼效果 = new Card.EffectDefine();
+            鱼人猎潮者.战吼效果 = new Card.Effect.EffectDefine();
 
             return 鱼人猎潮者;
         }
@@ -196,7 +196,7 @@ namespace CardHelper
             鲜血小鬼.潜行特性 = true;
             鲜血小鬼.Is潜行Status = true;
             //战吼
-            鲜血小鬼.战吼效果 = new Card.EffectDefine();
+            鲜血小鬼.战吼效果 = new Card.Effect.EffectDefine();
             return 鲜血小鬼;
         }
         /// <summary>

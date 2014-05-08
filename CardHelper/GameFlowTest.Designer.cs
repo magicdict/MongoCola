@@ -44,6 +44,7 @@
             // 
             // btn给先后手抽牌
             // 
+            this.btn给先后手抽牌.Enabled = false;
             this.btn给先后手抽牌.Location = new System.Drawing.Point(25, 80);
             this.btn给先后手抽牌.Name = "btn给先后手抽牌";
             this.btn给先后手抽牌.Size = new System.Drawing.Size(229, 23);
@@ -61,6 +62,7 @@
             this.Controls.Add(this.btn给先后手抽牌);
             this.Controls.Add(this.btnInitGame);
             this.Name = "GameFlowTest";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "游戏流程测试";
             this.ResumeLayout(false);
 

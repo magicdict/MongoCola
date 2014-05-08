@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Card.Player;
+using System;
 
 namespace Card
 {
@@ -113,7 +114,7 @@ namespace Card
         /// 检查是否可以使用
         /// </summary>
         /// <returns></returns>
-        public Boolean CheckCondition(RoleBasicInfo info)
+        public Boolean CheckCondition(PlayerBasicInfo info)
         {
             //剩余的法力是否足够实际召唤的法力
             return info.crystal.CurrentRemainPoint >= ActualCostPoint;

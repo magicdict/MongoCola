@@ -1,22 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Card
+namespace Card.Player
 {
     /// <summary>
     /// 共通情报
     /// </summary>
-    public class RoleBasicInfo
+    public class PlayerBasicInfo
     {
-        /// <summary>
-        /// 是否为主机
-        /// </summary>
-        public Boolean IsHost = false;
-        /// <summary>
-        /// 游戏编号
-        /// </summary>
-        public int GameId = 0;
-
         /// <summary>
         /// 最大生命值
         /// </summary>
@@ -40,7 +31,7 @@ namespace Card
         /// <summary>
         /// 水晶
         /// </summary>
-        public Card.Crystal crystal = new Crystal();
+        public Crystal crystal = new Crystal();
         /// <summary>
         /// 武器
         /// </summary>
@@ -61,12 +52,12 @@ namespace Card
     /// <summary>
     /// 本方情报
     /// </summary>
-    public class RoleDetailInfo
+    public class PlayerDetailInfo
     {
         /// <summary>
         /// 基本情报
         /// </summary>
-        public RoleBasicInfo role = new RoleBasicInfo();
+        public PlayerBasicInfo role = new PlayerBasicInfo();
         /// <summary>
         /// 手牌
         /// </summary>

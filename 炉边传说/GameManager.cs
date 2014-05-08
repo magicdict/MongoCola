@@ -1,4 +1,5 @@
 ﻿using Card;
+using Card.Player;
 using Card.Server;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,11 @@ namespace 炉边传说
         /// <summary>
         /// 本方情报
         /// </summary>
-        public static RoleDetailInfo SelfInfo = new RoleDetailInfo();
+        public static PlayerDetailInfo SelfInfo = new PlayerDetailInfo();
         /// <summary>
         /// 对方情报
         /// </summary>
-        public static RoleBasicInfo AgainstInfo = new RoleBasicInfo();
+        public static PlayerBasicInfo AgainstInfo = new PlayerBasicInfo();
         /// <summary>
         /// 抽牌（服务器方法）
         /// </summary>
@@ -42,7 +43,7 @@ namespace 炉边传说
         public static List<String> DrawCardAtServer(Boolean IsFirst, int Count)
         {
             //向服务器提出请求，获得牌
-            return GameServer.DrawCard(SelfInfo.role.GameId,IsFirst, Count);
+            return GameServer.DrawCard(GameId, IsFirst, Count);
         }
         /// <summary>
         /// 获得图片（服务器方法）

@@ -23,6 +23,8 @@ namespace CardHelper
             GameId = Card.Server.GameServer.CreateNewGame();
             Card.Server.GameServer.SetCardStack(GameId, true, HelperUtility.GetCardDeck());
             Card.Server.GameServer.SetCardStack(GameId, false, HelperUtility.GetCardDeck());
+            btnInitGame.Enabled = false;
+            btn给先后手抽牌.Enabled = true;
         }
         /// <summary>
         /// 给先后手抽牌
@@ -31,8 +33,11 @@ namespace CardHelper
         /// <param name="e"></param>
         private void btn给先后手抽牌_Click(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine(Card.Server.GameServer.GameContent[1].GameId);
             var HandA = Card.Server.GameServer.DrawCard(GameId, true, 3);
             var HandB = Card.Server.GameServer.DrawCard(GameId, false, 4);
+            System.Diagnostics.Debug.WriteLine(Card.Server.GameServer.GameContent[1].GameId);
+            btn给先后手抽牌.Enabled = false;
         }
     }
 }

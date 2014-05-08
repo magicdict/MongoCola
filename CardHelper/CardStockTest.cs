@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Card.Player;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -21,9 +22,9 @@ namespace CardHelper
         /// <param name="e"></param>
         private void btn洗牌测试_Click(object sender, EventArgs e)
         {
-            Card.CardDeck t = new Card.CardDeck();
+            CardDeck t = new CardDeck();
             Stack<String> cards = new Stack<string>();
-            for (int i = 0; i < Card.CardDeck.MaxCards; i++)
+            for (int i = 0; i < CardDeck.MaxCards; i++)
             {
                 cards.Push("C" + (i+1).ToString("D2"));
             }
@@ -43,7 +44,7 @@ namespace CardHelper
             cards.Push("F000002");
             cards.Push("F000003");
             cards.Push("W000001");
-            Card.CardDeck t = new Card.CardDeck();
+            CardDeck t = new CardDeck();
             t.Init(cards,999);
         }
     }

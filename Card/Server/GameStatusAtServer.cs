@@ -1,6 +1,7 @@
 ﻿using Card;
 using System;
 using System.Collections.Generic;
+using Card.Player;
 
 namespace Card.Server
 {
@@ -27,7 +28,7 @@ namespace Card.Server
         /// <summary>
         /// 先手牌堆
         /// </summary>
-        private Card.CardDeck FirstCardDeck = new CardDeck();
+        private CardDeck FirstCardDeck = new CardDeck();
         /// <summary>
         /// 
         /// </summary>
@@ -35,7 +36,7 @@ namespace Card.Server
         /// <summary>
         /// 后手牌堆
         /// </summary>
-        private Card.CardDeck SecondCardDeck = new CardDeck();
+        private CardDeck SecondCardDeck = new CardDeck();
         /// <summary>
         /// 
         /// </summary>

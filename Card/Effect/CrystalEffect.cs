@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
-namespace Card
+using Card.Player;
+namespace Card.Effect
 {
-    public class MagicCrystalEffect : EffectDefine
+    public class CrystalEffect : EffectDefine
     {
         /// <summary>
         /// 对法力水晶的法术实施
         /// </summary>
         /// <param name="role"></param>
         /// <param name="magic"></param>
-        public static void ModifyCrystal(RoleBasicInfo role, EffectDefine magic)
+        public static void ModifyCrystal(PlayerBasicInfo role, EffectDefine magic)
         {
             string[] Op = magic.AddtionInfo.Split("/".ToCharArray());
             int point = 0;

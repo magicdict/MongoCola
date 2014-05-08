@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Card.Player;
+using System;
 using System.Windows.Forms;
 
 namespace CardHelper
@@ -11,8 +12,8 @@ namespace CardHelper
         }
 
         Card.MagicCard 奥术飞弹 = new Card.MagicCard();
-        Card.BattleFieldInfo 敌方战场 = new Card.BattleFieldInfo();
-        Card.RoleBasicInfo 敌人 = new Card.RoleBasicInfo();
+        BattleFieldInfo 敌方战场 = new BattleFieldInfo();
+        PlayerBasicInfo 敌人 = new PlayerBasicInfo();
 
         private void btnCreate奥术飞弹_Click(object sender, EventArgs e)
         {

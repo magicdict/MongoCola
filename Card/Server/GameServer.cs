@@ -34,7 +34,7 @@ namespace Card.Server
             GameContent[GameId].SetCardStack(IsHost, card);
         }
         /// <summary>
-        /// 
+        /// 抽牌
         /// </summary>
         /// <param name="GameId"></param>
         /// <param name="IsFirst"></param>
@@ -42,7 +42,7 @@ namespace Card.Server
         /// <returns></returns>
         public static List<string> DrawCard(int GameId,bool IsFirst, int Count)
         {
-            throw new NotImplementedException();
+            return GameContent[GameId].DrawCard(IsFirst, Count);
         }
     }
 }
