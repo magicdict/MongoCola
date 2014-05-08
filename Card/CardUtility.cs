@@ -111,7 +111,19 @@ namespace Card
             }
             return ret;
         }
-
+        /// <summary>
+        /// 位置
+        /// </summary>
+        public struct TargetPosition{
+            /// <summary>
+            /// 是否为先手的对象
+            /// </summary>
+            public Boolean IsFirst;
+            /// <summary>
+            /// 0 - 英雄，1-7 随从位置
+            /// </summary>
+            public int Postion;
+        }
         /// <summary>
         /// 获得卡牌的图案（需要外部程序具体实现）
         /// </summary>
@@ -120,11 +132,15 @@ namespace Card
         #region"委托"
 
         /// <summary>
-        /// 委托
+        /// 获得图片
         /// </summary>
         /// <returns></returns>
         public delegate Image delegateGetImageByString(String ImagePath);
-
+        /// <summary>
+        /// 获得位置
+        /// </summary>
+        /// <returns></returns>
+        public delegate TargetPosition deleteGetTargetPosition();
         #endregion
     }
 }

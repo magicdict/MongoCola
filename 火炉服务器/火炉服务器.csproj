@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{822FDF6A-C684-4093-9F63-F0276CB175FB}</ProjectGuid>
+    <ProjectGuid>{38E791CC-16EA-45C5-9F68-BB1F7525E421}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>炉边传说</RootNamespace>
-    <AssemblyName>炉边传说</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <RootNamespace>火炉服务器</RootNamespace>
+    <AssemblyName>火炉服务器</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -37,6 +37,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -45,18 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BattleEnviroment.cs" />
-    <Compile Include="BattleField.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BattleField.Designer.cs">
-      <DependentUpon>BattleField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GameManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BattleField.resx">
-      <DependentUpon>BattleField.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="ServerConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerConfig.Designer.cs">
+      <DependentUpon>ServerConfig.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -67,6 +64,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ServerConfig.resx">
+      <DependentUpon>ServerConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Card", "..\Card\Card.csproj", "{0BDCFDFE-8032-4C1A-839C-AFB8801910BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "炉边传说", "炉边传说.csproj", "{822FDF6A-C684-4093-9F63-F0276CB175FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardHelper", "..\CardHelper\CardHelper.csproj", "{6D391352-7FF1-4238-85C1-06172A967400}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "火炉服务器", "..\火炉服务器\火炉服务器.csproj", "{38E791CC-16EA-45C5-9F68-BB1F7525E421}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BDCFDFE-8032-4C1A-839C-AFB8801910BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BDCFDFE-8032-4C1A-839C-AFB8801910BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BDCFDFE-8032-4C1A-839C-AFB8801910BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BDCFDFE-8032-4C1A-839C-AFB8801910BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{822FDF6A-C684-4093-9F63-F0276CB175FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{822FDF6A-C684-4093-9F63-F0276CB175FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{822FDF6A-C684-4093-9F63-F0276CB175FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{822FDF6A-C684-4093-9F63-F0276CB175FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D391352-7FF1-4238-85C1-06172A967400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D391352-7FF1-4238-85C1-06172A967400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D391352-7FF1-4238-85C1-06172A967400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D391352-7FF1-4238-85C1-06172A967400}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38E791CC-16EA-45C5-9F68-BB1F7525E421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38E791CC-16EA-45C5-9F68-BB1F7525E421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38E791CC-16EA-45C5-9F68-BB1F7525E421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38E791CC-16EA-45C5-9F68-BB1F7525E421}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

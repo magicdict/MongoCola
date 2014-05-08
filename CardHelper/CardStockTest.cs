@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CardHelper
@@ -15,11 +10,15 @@ namespace CardHelper
         {
             InitializeComponent();
         }
-
         private void CardStockTest_Load(object sender, EventArgs e)
         {
-        }
 
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn洗牌测试_Click(object sender, EventArgs e)
         {
             Card.CardStock t = new Card.CardStock();
@@ -28,6 +27,23 @@ namespace CardHelper
             {
                 cards.Push("C" + (i+1).ToString("D2"));
             }
+            t.Init(cards);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn洗牌测试2_Click(object sender, EventArgs e)
+        {
+            Stack<String> cards = new Stack<string>();
+            cards.Push("M000001");
+            cards.Push("M000002");
+            cards.Push("F000001");
+            cards.Push("F000002");
+            cards.Push("F000003");
+            cards.Push("W000001");
+            Card.CardStock t = new Card.CardStock();
             t.Init(cards);
         }
     }

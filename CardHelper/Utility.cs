@@ -18,10 +18,10 @@ namespace CardHelper
             奥术飞弹.ActualCostPoint = 1;
             奥术飞弹.StandardCostPoint = 1;
             //3回1点攻击
-            奥术飞弹.FirstMagicDefine.StandardEffectPoint = 1;
-            奥术飞弹.FirstMagicDefine.ActualEffectPoint = 1;
-            奥术飞弹.FirstMagicDefine.EffectCount = 3;
-            奥术飞弹.FirstMagicDefine.EffictTargetSelectMode = Card.CardUtility.TargetSelectModeEnum.随机;
+            //奥术飞弹.FirstMagicDefine.StandardEffectPoint = 1;
+            //奥术飞弹.FirstMagicDefine.ActualEffectPoint = 1;
+            //奥术飞弹.FirstMagicDefine.EffectCount = 3;
+            //奥术飞弹.FirstMagicDefine.EffictTargetSelectMode = Card.CardUtility.TargetSelectModeEnum.随机;
             return 奥术飞弹;
         }
         /// <summary>
@@ -48,7 +48,29 @@ namespace CardHelper
             奥术智慧.FirstMagicDefine = cardStockEffect;
             return 奥术智慧;
         }
-
+        /// <summary>
+        /// 初始化变羊术
+        /// </summary>
+        /// <returns></returns>
+        public static Card.MagicCard Get变羊术()
+        {
+            Card.MagicCard 变羊术 = new Card.MagicCard();
+            变羊术.SN = "M000003";
+            变羊术.Name = "变羊术";
+            变羊术.Description = "指定一个单位变成 1/1 的羊。";
+            变羊术.Rare = Card.CardBasicInfo.稀有程度.绿色;
+            //使用成本
+            变羊术.StandardCostPoint = 4;
+            变羊术.JoinType = Card.MagicCard.EffectJoinType.None;
+            //变成 1/1 的羊
+            Card.MagicTransformEffect transformEffect = new Card.MagicTransformEffect();
+            transformEffect.EffectCount = 1;
+            transformEffect.EffectTargetSelectDirect = Card.CardUtility.TargetSelectDirectEnum.无限制;
+            transformEffect.EffectTargetSelectRole = Card.CardUtility.TargetSelectRoleEnum.随从;
+            transformEffect.AddtionInfo = "F000004";
+            变羊术.FirstMagicDefine = transformEffect;
+            return 变羊术;
+        }
         /// <summary>
         /// 初始化角斗士的长弓
         /// </summary>
@@ -148,6 +170,23 @@ namespace CardHelper
             鲜血小鬼.战吼效果 = new Card.EffectDefine();
             return 鲜血小鬼;
         }
-
+        /// <summary>
+        /// 初始化羊
+        /// </summary>
+        /// <returns></returns>
+        public static Card.FollowerCard Get羊()
+        {
+            //羊
+            Card.FollowerCard 羊 = new Card.FollowerCard();
+            羊.SN = "F000004";
+            羊.Name = "羊";
+            羊.Description = "1/1的小绵羊。";
+            羊.Rare = Card.CardBasicInfo.稀有程度.白色;
+            //属性
+            羊.StandardAttackPoint = 1;
+            羊.StandardCostPoint = 1;
+            羊.StandardHealthPoint = 1;
+            return 羊;
+        }
     }
 }

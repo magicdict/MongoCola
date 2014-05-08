@@ -43,5 +43,11 @@ namespace CardHelper
         {
             
         }
+
+        private void btnUserMagic变羊术_Click(object sender, EventArgs e)
+        {
+            var 变羊术 = Utility.Get变羊术();
+            
+        }
     }
 }

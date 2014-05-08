@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Card;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Card
+namespace 火炉服务器
 {
     public class BattleEnviroment
     {

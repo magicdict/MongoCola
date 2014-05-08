@@ -63,9 +63,13 @@ namespace Card
         /// </summary>
         public EffectDefine 激怒效果;
         /// <summary>
-        /// 战地效果
+        /// 该单位在战地时的效果
         /// </summary>
-        public EffectDefine 战地效果;
+        public EffectDefine 对战地效果;
+        /// <summary>
+        /// 该单位受到战地的效果
+        /// </summary>
+        public EffectDefine 受战地效果;
         #endregion
 
         #region"运行时状态"

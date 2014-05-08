@@ -40,13 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BattleEnviroment.cs" />
     <Compile Include="BattleFieldInfo.cs" />
     <Compile Include="Crystal.cs" />
     <Compile Include="FollowerCard.cs" />
     <Compile Include="MagicEffect\MagicCardStockEffect.cs" />
     <Compile Include="MagicEffect\MagicCrystalEffect.cs" />
     <Compile Include="MagicEffect\EffectDefinet.cs" />
+    <Compile Include="MagicEffect\MagicTransformEffect.cs" />
     <Compile Include="RoleInfo.cs" />
     <Compile Include="CardBasicInfo.cs" />
     <Compile Include="CardStock.cs" />

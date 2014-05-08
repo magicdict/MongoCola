@@ -15,6 +15,8 @@
 *.doc
 /炉边传说/bin
 /炉边传说/obj
+/火炉服务器/bin
+/火炉服务器/obj
 /ImportAccessDB/bin
 /ImportAccessDB/obj
 /ResourceLib/bin
