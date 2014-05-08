@@ -75,6 +75,12 @@
     <Compile Include="frmImport.Designer.cs">
       <DependentUpon>frmImport.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameFlowTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameFlowTest.Designer.cs">
+      <DependentUpon>GameFlowTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,7 +95,7 @@
     <Compile Include="RunMagic.Designer.cs">
       <DependentUpon>RunMagic.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utility.cs" />
+    <Compile Include="HelperUtility.cs" />
     <EmbeddedResource Include="CardStockTest.resx">
       <DependentUpon>CardStockTest.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameFlowTest.resx">
+      <DependentUpon>GameFlowTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

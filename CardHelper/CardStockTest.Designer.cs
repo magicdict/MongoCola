@@ -1,6 +1,6 @@
 ﻿namespace CardHelper
 {
-    partial class CardStockTest
+    partial class CardDeckTest
     {
         /// <summary>
         /// Required designer variable.
@@ -52,7 +52,7 @@
             this.btn洗牌测试2.UseVisualStyleBackColor = true;
             this.btn洗牌测试2.Click += new System.EventHandler(this.btn洗牌测试2_Click);
             // 
-            // CardStockTest
+            // CardDeckTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -60,9 +60,9 @@
             this.ClientSize = new System.Drawing.Size(618, 262);
             this.Controls.Add(this.btn洗牌测试2);
             this.Controls.Add(this.btn洗牌测试);
-            this.Name = "CardStockTest";
-            this.Text = "CardStockTest";
-            this.Load += new System.EventHandler(this.CardStockTest_Load);
+            this.Name = "CardDeckTest";
+            this.Text = "CardDeckTest";
+            this.Load += new System.EventHandler(this.CardDeckTest_Load);
             this.ResumeLayout(false);
 
         }

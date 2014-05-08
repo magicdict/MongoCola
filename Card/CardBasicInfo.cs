@@ -50,10 +50,46 @@ namespace Card
         /// 该卡牌的稀有度
         /// </remarks>
         public 稀有程度 Rare;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public CardTypeEnum CardType {
+            get {
+                switch (SN.Substring(0,1))
+                {
+                    case "M":
+                        return CardTypeEnum.法术;
+                    case "W":
+                        return CardTypeEnum.武器;
+                    case "F":
+                        return CardTypeEnum.随从;
+                    default:
+                        return CardTypeEnum.其他;
+                }
+            }
+        }
         #endregion
 
         #region "炉石专用"
+        public enum CardTypeEnum
+        {
+            /// <summary>
+            /// 随从
+            /// </summary>
+            随从,
+            /// <summary>
+            /// 法术
+            /// </summary>
+            法术,
+            /// <summary>
+            /// 武器
+            /// </summary>
+            武器,
+            /// <summary>
+            /// 其他
+            /// </summary>
+            其他
+        }
         /// <summary>
         /// 过载
         /// </summary>

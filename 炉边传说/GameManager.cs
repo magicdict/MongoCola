@@ -1,4 +1,5 @@
 ﻿using Card;
+using Card.Server;
 using System;
 using System.Collections.Generic;
 
@@ -37,7 +38,7 @@ namespace 炉边传说
         public static List<String> DrawCardAtServer(Boolean IsFirst, int Count)
         {
             //向服务器提出请求，获得牌
-            return GameStatus.DrawCard(IsFirst,Count);
+            return GameServer.DrawCard(IsFirst, Count);
         }
         /// <summary>
         /// 获得图片（服务器方法）

@@ -16,7 +16,7 @@ namespace CardHelper
 
         private void btnCreate奥术飞弹_Click(object sender, EventArgs e)
         {
-            奥术飞弹 = Utility.Get奥术飞弹();
+            奥术飞弹 = HelperUtility.Get奥术飞弹();
         }
         /// <summary>
         /// 重置对手
@@ -27,7 +27,7 @@ namespace CardHelper
         {
             for (int i = 0; i < 敌方战场.BattleFollowers.Length; i++)
             {
-                var 狼骑兵= Utility.Get狼骑兵();
+                var 狼骑兵= HelperUtility.Get狼骑兵();
                 狼骑兵.Init();
                 敌方战场.BattleFollowers[i] = 狼骑兵;
             }
@@ -46,7 +46,7 @@ namespace CardHelper
 
         private void btnUserMagic变羊术_Click(object sender, EventArgs e)
         {
-            var 变羊术 = Utility.Get变羊术();
+            var 变羊术 = HelperUtility.Get变羊术();
             
         }
     }

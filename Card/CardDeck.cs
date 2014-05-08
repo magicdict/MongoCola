@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Card
 {
-    public class CardStock
+    public class CardDeck
     {
         /// <summary>
         /// 最大牌数
@@ -12,7 +12,7 @@ namespace Card
         /// <summary>
         /// 牌堆(存放牌的序列号)
         /// </summary>
-        public Stack<String> CardList = new Stack<string>();
+        private Stack<String> CardList = new Stack<string>();
         /// <summary>
         /// 初始化
         /// </summary>

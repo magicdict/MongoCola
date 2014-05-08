@@ -1,8 +1,37 @@
 ﻿
+using System;
+using System.Collections.Generic;
 namespace CardHelper
 {
-    public static class Utility
+    public static class HelperUtility
     {
+        /// <summary>
+        /// 生成一套牌
+        /// </summary>
+        /// <returns></returns>
+        public static Stack<String> GetCardDeck()
+        {
+            Stack<String> CardList = new Stack<string>();
+            CardList.Push("M000001");
+            CardList.Push("M000002");
+            CardList.Push("M000003");
+            CardList.Push("W000001");
+            CardList.Push("F000001");
+            CardList.Push("F000002");
+            CardList.Push("F000003");
+            CardList.Push("F000004");
+
+            CardList.Push("M000001");
+            CardList.Push("M000002");
+            CardList.Push("M000003");
+            CardList.Push("W000001");
+            CardList.Push("F000001");
+            CardList.Push("F000002");
+            CardList.Push("F000003");
+            CardList.Push("F000004");
+            return CardList;
+        }
+
         /// <summary>
         /// 初始化奥术飞弹
         /// </summary>
@@ -41,11 +70,11 @@ namespace CardHelper
             奥术智慧.JoinType = Card.MagicCard.EffectJoinType.None;
 
             //随机抽两张牌
-            Card.MagicCardStockEffect cardStockEffect = new Card.MagicCardStockEffect();
-            cardStockEffect.StandardEffectPoint = 2;
-            cardStockEffect.EffectCount = 1;
-            cardStockEffect.EffectTargetSelectDirect = Card.CardUtility.TargetSelectDirectEnum.本方;
-            奥术智慧.FirstMagicDefine = cardStockEffect;
+            Card.MagicCardDeckEffect CardDeckEffect = new Card.MagicCardDeckEffect();
+            CardDeckEffect.StandardEffectPoint = 2;
+            CardDeckEffect.EffectCount = 1;
+            CardDeckEffect.EffectTargetSelectDirect = Card.CardUtility.TargetSelectDirectEnum.本方;
+            奥术智慧.FirstMagicDefine = CardDeckEffect;
             return 奥术智慧;
         }
         /// <summary>

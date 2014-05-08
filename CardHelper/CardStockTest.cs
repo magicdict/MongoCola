@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace CardHelper
 {
-    public partial class CardStockTest : Form
+    public partial class CardDeckTest : Form
     {
-        public CardStockTest()
+        public CardDeckTest()
         {
             InitializeComponent();
         }
-        private void CardStockTest_Load(object sender, EventArgs e)
+        private void CardDeckTest_Load(object sender, EventArgs e)
         {
 
         }
@@ -21,9 +21,9 @@ namespace CardHelper
         /// <param name="e"></param>
         private void btn洗牌测试_Click(object sender, EventArgs e)
         {
-            Card.CardStock t = new Card.CardStock();
+            Card.CardDeck t = new Card.CardDeck();
             Stack<String> cards = new Stack<string>();
-            for (int i = 0; i < Card.CardStock.MaxCards; i++)
+            for (int i = 0; i < Card.CardDeck.MaxCards; i++)
             {
                 cards.Push("C" + (i+1).ToString("D2"));
             }
@@ -43,7 +43,7 @@ namespace CardHelper
             cards.Push("F000002");
             cards.Push("F000003");
             cards.Push("W000001");
-            Card.CardStock t = new Card.CardStock();
+            Card.CardDeck t = new Card.CardDeck();
             t.Init(cards);
         }
     }

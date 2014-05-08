@@ -51,7 +51,6 @@
       <DependentUpon>BattleField.cs</DependentUpon>
     </Compile>
     <Compile Include="GameManager.cs" />
-    <Compile Include="GameStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BattleField.resx">

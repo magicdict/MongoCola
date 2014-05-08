@@ -43,7 +43,7 @@ namespace Card
         /// <summary>
         /// 剩余牌数
         /// </summary>
-        public int RemainCardStockCount = 30;
+        public int RemainCardDeckCount = 30;
         /// <summary>
         /// 手牌数
         /// </summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+
 namespace Card
 {
     /// <summary>
@@ -13,8 +14,22 @@ namespace Card
         /// </summary>
         public static void Init()
         {
+            //从配置文件中获得卡牌的SN和名称的联系
 
         }
+        /// <summary>
+        /// 序列号和卡牌名称对应关系表格
+        /// </summary>
+        private static Dictionary<String, String> SnVsName = new Dictionary<string, string>();
+        /// <summary>
+        /// 通过卡牌序列号获得卡牌名称
+        /// </summary>
+        /// <param name="SN"></param>
+        /// <returns></returns>
+        public static String GetCardNameBySN(String SN){
+            if (SnVsName.ContainsKey(SN)) return SnVsName[SN];
+            return "UnKnow";
+        } 
         /// <summary>
         /// 职业
         /// </summary>
