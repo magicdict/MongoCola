@@ -1,11 +1,11 @@
 ﻿using Card.Player;
 using System;
-
 namespace Card
 {
     /// <summary>
     /// 卡牌共通
     /// </summary>
+    [Serializable]
     public class CardBasicInfo
     {
         #region"基本"

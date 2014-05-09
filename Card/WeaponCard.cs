@@ -1,9 +1,11 @@
 ﻿using Card.Effect;
+using System;
 namespace Card
 {
     /// <summary>
     /// 武器卡牌
     /// </summary>
+    [Serializable]
     public class WeaponCard : CardBasicInfo
     {
         /// <summary>

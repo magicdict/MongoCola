@@ -6,6 +6,7 @@ namespace Card
     /// <summary>
     /// 魔法卡牌
     /// </summary>
+    [Serializable]
     public class MagicCard : CardBasicInfo
     {
         /// <summary>

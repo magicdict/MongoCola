@@ -7,10 +7,18 @@ namespace CardHelper
 {
     public partial class CardDeckTest : Form
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public CardDeckTest()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CardDeckTest_Load(object sender, EventArgs e)
         {
 

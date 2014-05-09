@@ -6,6 +6,7 @@ namespace Card
     /// <summary>
     /// 随从卡牌
     /// </summary>
+    [Serializable]
     public class FollowerCard : CardBasicInfo
     {
         #region"属性"
