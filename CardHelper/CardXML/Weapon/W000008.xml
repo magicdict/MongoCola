@@ -13,7 +13,7 @@
   <标准耐久度>-1</标准耐久度>
   <实际耐久度>-1</实际耐久度>
   <AdditionEffect>
-    <MagicEffectType>Attack</MagicEffectType>
+    <AbilityEffectType>Attack</AbilityEffectType>
     <EffictTargetSelectMode>随机</EffictTargetSelectMode>
     <EffectTargetSelectRole>随从</EffectTargetSelectRole>
     <EffectTargetSelectDirect>本方</EffectTargetSelectDirect>

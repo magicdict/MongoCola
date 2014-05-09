@@ -1,6 +1,6 @@
 ﻿namespace CardHelper
 {
-    partial class RunMagic
+    partial class RunAbility
     {
         /// <summary>
         /// Required designer variable.
@@ -30,8 +30,8 @@
         {
             this.btnCreate奥术飞弹 = new System.Windows.Forms.Button();
             this.btnResetEenmey = new System.Windows.Forms.Button();
-            this.btnUserMagic奥术飞弹 = new System.Windows.Forms.Button();
-            this.btnUserMagic变羊术 = new System.Windows.Forms.Button();
+            this.btnUserAbility奥术飞弹 = new System.Windows.Forms.Button();
+            this.btnUserAbility变羊术 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCreate奥术飞弹
@@ -56,40 +56,40 @@
             this.btnResetEenmey.UseVisualStyleBackColor = false;
             this.btnResetEenmey.Click += new System.EventHandler(this.btnResetEenmey_Click);
             // 
-            // btnUserMagic奥术飞弹
+            // btnUserAbility奥术飞弹
             // 
-            this.btnUserMagic奥术飞弹.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnUserMagic奥术飞弹.Location = new System.Drawing.Point(12, 70);
-            this.btnUserMagic奥术飞弹.Name = "btnUserMagic奥术飞弹";
-            this.btnUserMagic奥术飞弹.Size = new System.Drawing.Size(302, 23);
-            this.btnUserMagic奥术飞弹.TabIndex = 3;
-            this.btnUserMagic奥术飞弹.Text = "使用-奥术飞弹（魔法）";
-            this.btnUserMagic奥术飞弹.UseVisualStyleBackColor = false;
-            this.btnUserMagic奥术飞弹.Click += new System.EventHandler(this.btnUserMagic_Click);
+            this.btnUserAbility奥术飞弹.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnUserAbility奥术飞弹.Location = new System.Drawing.Point(12, 70);
+            this.btnUserAbility奥术飞弹.Name = "btnUserAbility奥术飞弹";
+            this.btnUserAbility奥术飞弹.Size = new System.Drawing.Size(302, 23);
+            this.btnUserAbility奥术飞弹.TabIndex = 3;
+            this.btnUserAbility奥术飞弹.Text = "使用-奥术飞弹（魔法）";
+            this.btnUserAbility奥术飞弹.UseVisualStyleBackColor = false;
+            this.btnUserAbility奥术飞弹.Click += new System.EventHandler(this.btnUserAbility_Click);
             // 
-            // btnUserMagic变羊术
+            // btnUserAbility变羊术
             // 
-            this.btnUserMagic变羊术.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnUserMagic变羊术.Location = new System.Drawing.Point(11, 99);
-            this.btnUserMagic变羊术.Name = "btnUserMagic变羊术";
-            this.btnUserMagic变羊术.Size = new System.Drawing.Size(302, 23);
-            this.btnUserMagic变羊术.TabIndex = 4;
-            this.btnUserMagic变羊术.Text = "使用-变羊术（魔法）";
-            this.btnUserMagic变羊术.UseVisualStyleBackColor = false;
-            this.btnUserMagic变羊术.Click += new System.EventHandler(this.btnUserMagic变羊术_Click);
+            this.btnUserAbility变羊术.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnUserAbility变羊术.Location = new System.Drawing.Point(11, 99);
+            this.btnUserAbility变羊术.Name = "btnUserAbility变羊术";
+            this.btnUserAbility变羊术.Size = new System.Drawing.Size(302, 23);
+            this.btnUserAbility变羊术.TabIndex = 4;
+            this.btnUserAbility变羊术.Text = "使用-变羊术（魔法）";
+            this.btnUserAbility变羊术.UseVisualStyleBackColor = false;
+            this.btnUserAbility变羊术.Click += new System.EventHandler(this.btnUserAbility变羊术_Click);
             // 
-            // RunMagic
+            // RunAbility
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(328, 173);
-            this.Controls.Add(this.btnUserMagic变羊术);
-            this.Controls.Add(this.btnUserMagic奥术飞弹);
+            this.Controls.Add(this.btnUserAbility变羊术);
+            this.Controls.Add(this.btnUserAbility奥术飞弹);
             this.Controls.Add(this.btnResetEenmey);
             this.Controls.Add(this.btnCreate奥术飞弹);
-            this.Name = "RunMagic";
-            this.Text = "RunMagic";
+            this.Name = "RunAbility";
+            this.Text = "RunAbility";
             this.ResumeLayout(false);
 
         }
@@ -98,7 +98,7 @@
 
         private System.Windows.Forms.Button btnCreate奥术飞弹;
         private System.Windows.Forms.Button btnResetEenmey;
-        private System.Windows.Forms.Button btnUserMagic奥术飞弹;
-        private System.Windows.Forms.Button btnUserMagic变羊术;
+        private System.Windows.Forms.Button btnUserAbility奥术飞弹;
+        private System.Windows.Forms.Button btnUserAbility变羊术;
     }
 }

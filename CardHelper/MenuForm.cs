@@ -14,9 +14,9 @@ namespace CardHelper
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRunMagic_Click(object sender, EventArgs e)
+        private void btnRunAbility_Click(object sender, EventArgs e)
         {
-            new RunMagic().ShowDialog();
+            new RunAbility().ShowDialog();
         }
         /// <summary>
         /// 牌堆测试

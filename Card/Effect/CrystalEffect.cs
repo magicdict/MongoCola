@@ -11,10 +11,10 @@ namespace Card.Effect
         /// 对法力水晶的法术实施
         /// </summary>
         /// <param name="role"></param>
-        /// <param name="magic"></param>
-        public static void ModifyCrystal(PlayerBasicInfo role, EffectDefine magic)
+        /// <param name="Ability"></param>
+        public static void ModifyCrystal(PlayerBasicInfo role, EffectDefine Ability)
         {
-            string[] Op = magic.AddtionInfo.Split("/".ToCharArray());
+            string[] Op = Ability.AddtionInfo.Split("/".ToCharArray());
             int point = 0;
             //±N/±N	增加减少 可用水晶 / 增加减少 空水晶
             //可用水晶

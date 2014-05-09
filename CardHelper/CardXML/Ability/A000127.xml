@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbilityCard xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SN>A000127</SN>
+  <Name>自然之力</Name>
+  <Description>召唤3个2/2并具有冲锋的树人，在回合结束时，消灭这些树人。</Description>
+  <Rare>紫色</Rare>
+  <Overload>0</Overload>
+  <Occupation>猎人</Occupation>
+  <StandardCostPoint>6</StandardCostPoint>
+  <ActualCostPoint>0</ActualCostPoint>
+  <FirstAbilityDefine>
+    <AbilityEffectType>Attack</AbilityEffectType>
+    <EffictTargetSelectMode>全体</EffictTargetSelectMode>
+    <EffectTargetSelectRole>随从</EffectTargetSelectRole>
+    <EffectTargetSelectDirect>无限制</EffectTargetSelectDirect>
+    <StandardEffectPoint>0</StandardEffectPoint>
+    <ActualEffectPoint>0</ActualEffectPoint>
+    <EffectCount>0</EffectCount>
+    <AddtionInfo />
+  </FirstAbilityDefine>
+  <SecondAbilityDefine>
+    <AbilityEffectType>Attack</AbilityEffectType>
+    <EffictTargetSelectMode>随机</EffictTargetSelectMode>
+    <EffectTargetSelectRole>随从</EffectTargetSelectRole>
+    <EffectTargetSelectDirect>本方</EffectTargetSelectDirect>
+    <StandardEffectPoint>0</StandardEffectPoint>
+    <ActualEffectPoint>0</ActualEffectPoint>
+    <EffectCount>0</EffectCount>
+  </SecondAbilityDefine>
+  <JoinType>None</JoinType>
+</AbilityCard>

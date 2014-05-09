@@ -36,9 +36,9 @@ namespace CardHelper
         /// 初始化奥术飞弹
         /// </summary>
         /// <returns></returns>
-        public static Card.MagicCard Get奥术飞弹()
+        public static Card.AbilityCard Get奥术飞弹()
         {
-            Card.MagicCard 奥术飞弹 = new Card.MagicCard();
+            Card.AbilityCard 奥术飞弹 = new Card.AbilityCard();
             奥术飞弹.SN = "M000001";
             奥术飞弹.Name = "奥术飞弹";
             奥术飞弹.Description = "造成3点伤害，随机分配给敌方角色。";
@@ -47,19 +47,19 @@ namespace CardHelper
             奥术飞弹.ActualCostPoint = 1;
             奥术飞弹.StandardCostPoint = 1;
             //3回1点攻击
-            //奥术飞弹.FirstMagicDefine.StandardEffectPoint = 1;
-            //奥术飞弹.FirstMagicDefine.ActualEffectPoint = 1;
-            //奥术飞弹.FirstMagicDefine.EffectCount = 3;
-            //奥术飞弹.FirstMagicDefine.EffictTargetSelectMode = Card.CardUtility.TargetSelectModeEnum.随机;
+            //奥术飞弹.FirstAbilityDefine.StandardEffectPoint = 1;
+            //奥术飞弹.FirstAbilityDefine.ActualEffectPoint = 1;
+            //奥术飞弹.FirstAbilityDefine.EffectCount = 3;
+            //奥术飞弹.FirstAbilityDefine.EffictTargetSelectMode = Card.CardUtility.TargetSelectModeEnum.随机;
             return 奥术飞弹;
         }
         /// <summary>
         /// 初始化奥术智慧
         /// </summary>
         /// <returns></returns>
-        public static Card.MagicCard Get奥术智慧()
+        public static Card.AbilityCard Get奥术智慧()
         {
-            Card.MagicCard 奥术智慧 = new Card.MagicCard();
+            Card.AbilityCard 奥术智慧 = new Card.AbilityCard();
             奥术智慧.SN = "M000002";
             奥术智慧.Name = "奥术智慧";
             奥术智慧.Description = "随机抽两张牌。";
@@ -67,37 +67,37 @@ namespace CardHelper
             //使用成本
             奥术智慧.ActualCostPoint = 1;
             奥术智慧.StandardCostPoint = 1;
-            奥术智慧.JoinType = Card.MagicCard.EffectJoinType.None;
+            奥术智慧.JoinType = Card.AbilityCard.EffectJoinType.None;
 
             //随机抽两张牌
             Card.Effect.CardDeckEffect CardDeckEffect = new Card.Effect.CardDeckEffect();
             CardDeckEffect.StandardEffectPoint = 2;
             CardDeckEffect.EffectCount = 1;
             CardDeckEffect.EffectTargetSelectDirect = Card.CardUtility.TargetSelectDirectEnum.本方;
-            奥术智慧.FirstMagicDefine = CardDeckEffect;
+            奥术智慧.FirstAbilityDefine = CardDeckEffect;
             return 奥术智慧;
         }
         /// <summary>
         /// 初始化变羊术
         /// </summary>
         /// <returns></returns>
-        public static Card.MagicCard Get变羊术()
+        public static Card.AbilityCard Get变羊术()
         {
-            Card.MagicCard 变羊术 = new Card.MagicCard();
+            Card.AbilityCard 变羊术 = new Card.AbilityCard();
             变羊术.SN = "M000003";
             变羊术.Name = "变羊术";
             变羊术.Description = "指定一个单位变成 1/1 的羊。";
             变羊术.Rare = Card.CardBasicInfo.稀有程度.绿色;
             //使用成本
             变羊术.StandardCostPoint = 4;
-            变羊术.JoinType = Card.MagicCard.EffectJoinType.None;
+            变羊术.JoinType = Card.AbilityCard.EffectJoinType.None;
             //变成 1/1 的羊
             Card.Effect.TransformEffect transformEffect = new Card.Effect.TransformEffect();
             transformEffect.EffectCount = 1;
             transformEffect.EffectTargetSelectDirect = Card.CardUtility.TargetSelectDirectEnum.无限制;
             transformEffect.EffectTargetSelectRole = Card.CardUtility.TargetSelectRoleEnum.随从;
             transformEffect.AddtionInfo = "F000004";
-            变羊术.FirstMagicDefine = transformEffect;
+            变羊术.FirstAbilityDefine = transformEffect;
             return 变羊术;
         }
         /// <summary>
@@ -122,9 +122,9 @@ namespace CardHelper
         /// 初始化狼骑兵
         /// </summary>
         /// <returns></returns>
-        public static Card.FollowerCard Get狼骑兵()
+        public static Card.MinionCard Get狼骑兵()
         {
-            Card.FollowerCard 狼骑兵 = new Card.FollowerCard();
+            Card.MinionCard 狼骑兵 = new Card.MinionCard();
             狼骑兵.SN = "F000001";
             狼骑兵.Name = "狼骑兵";
             狼骑兵.Description = "冲锋";
@@ -146,10 +146,10 @@ namespace CardHelper
         /// 初始化鱼人猎潮者
         /// </summary>
         /// <returns></returns>
-        public static Card.FollowerCard Get鱼人猎潮者()
+        public static Card.MinionCard Get鱼人猎潮者()
         {
             //鱼人猎潮者
-            Card.FollowerCard 鱼人猎潮者 = new Card.FollowerCard();
+            Card.MinionCard 鱼人猎潮者 = new Card.MinionCard();
             鱼人猎潮者.SN = "F000002";
             鱼人猎潮者.Name = "鱼人猎潮者";
             鱼人猎潮者.Description = "战吼: 召唤一个1/1的鱼人斥候。";
@@ -174,10 +174,10 @@ namespace CardHelper
         /// 初始化鲜血小鬼
         /// </summary>
         /// <returns></returns>
-        public static Card.FollowerCard Get鲜血小鬼()
+        public static Card.MinionCard Get鲜血小鬼()
         {
             //鲜血小鬼
-            Card.FollowerCard 鲜血小鬼 = new Card.FollowerCard();
+            Card.MinionCard 鲜血小鬼 = new Card.MinionCard();
             鲜血小鬼.SN = "F000003";
             鲜血小鬼.Name = "鲜血小鬼";
             鲜血小鬼.Description = "战吼: 召唤一个1/1的鱼人斥候。";
@@ -203,10 +203,10 @@ namespace CardHelper
         /// 初始化羊
         /// </summary>
         /// <returns></returns>
-        public static Card.FollowerCard Get羊()
+        public static Card.MinionCard Get羊()
         {
             //羊
-            Card.FollowerCard 羊 = new Card.FollowerCard();
+            Card.MinionCard 羊 = new Card.MinionCard();
             羊.SN = "F000004";
             羊.Name = "羊";
             羊.Description = "1/1的小绵羊。";

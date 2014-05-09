@@ -27,7 +27,7 @@ namespace CardHelper
         /// <param name="e"></param>
         private void btnCreate奥术飞弹_Click(object sender, EventArgs e)
         {
-            innerCollection.Insert<Card.MagicCard>(HelperUtility.Get奥术飞弹());
+            innerCollection.Insert<Card.AbilityCard>(HelperUtility.Get奥术飞弹());
         }
         /// <summary>
         /// 新建卡牌:狼骑兵
@@ -36,7 +36,7 @@ namespace CardHelper
         /// <param name="e"></param>
         private void btnCreate狼骑兵_Click(object sender, EventArgs e)
         {
-            innerCollection.Insert<Card.FollowerCard>(HelperUtility.Get狼骑兵());
+            innerCollection.Insert<Card.MinionCard>(HelperUtility.Get狼骑兵());
         }
         /// <summary>
         /// 新建卡牌:角斗士的长弓
@@ -54,7 +54,7 @@ namespace CardHelper
         /// <param name="e"></param>
         private void btnCreate鱼人猎潮者_Click(object sender, EventArgs e)
         {
-            innerCollection.Insert<Card.FollowerCard>(HelperUtility.Get鱼人猎潮者());
+            innerCollection.Insert<Card.MinionCard>(HelperUtility.Get鱼人猎潮者());
         }
         /// <summary>
         /// 鲜血小鬼
@@ -63,7 +63,7 @@ namespace CardHelper
         /// <param name="e"></param>
         private void btnCreate鲜血小鬼_Click(object sender, EventArgs e)
         {
-            innerCollection.Insert<Card.FollowerCard>(HelperUtility.Get鲜血小鬼());
+            innerCollection.Insert<Card.MinionCard>(HelperUtility.Get鲜血小鬼());
         }
     }
 }

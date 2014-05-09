@@ -51,15 +51,15 @@ namespace Card
         /// </summary>
         public static void GetCardInfoFromXml()
         {
-            foreach (var magicXml in Directory.GetFiles(CardXmlFolder + "\\Magic\\"))
+            foreach (var AbilityXml in Directory.GetFiles(CardXmlFolder + "\\Ability\\"))
             {
-                XmlSerializer xml = new XmlSerializer(typeof(Card.MagicCard));
-                CardCollections.Add((MagicCard)xml.Deserialize(new StreamReader(magicXml)));
+                XmlSerializer xml = new XmlSerializer(typeof(Card.AbilityCard));
+                CardCollections.Add((AbilityCard)xml.Deserialize(new StreamReader(AbilityXml)));
             }
-            foreach (var FollowerXml in Directory.GetFiles(CardXmlFolder + "\\Follower\\"))
+            foreach (var MinionXml in Directory.GetFiles(CardXmlFolder + "\\Minion\\"))
             {
-                XmlSerializer xml = new XmlSerializer(typeof(Card.FollowerCard));
-                CardCollections.Add((FollowerCard)xml.Deserialize(new StreamReader(FollowerXml)));
+                XmlSerializer xml = new XmlSerializer(typeof(Card.MinionCard));
+                CardCollections.Add((MinionCard)xml.Deserialize(new StreamReader(MinionXml)));
             }
             foreach (var WeaponXml in Directory.GetFiles(CardXmlFolder + "\\Weapon\\"))
             {
@@ -167,7 +167,36 @@ namespace Card
             return ret;
         }
         /// <summary>
-        /// 位置
+        /// 获得字符枚举值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="strEnum"></param>
+        /// <returns></returns>
+        public static T GetEnum<T>(String strEnum,T Default)
+        {
+            if (String.IsNullOrEmpty(strEnum)) return Default;
+            try
+            {
+                T EnumValue = (T)Enum.Parse(typeof(T), strEnum);
+                return EnumValue;
+            }
+            catch (Exception)
+            {
+                return Default;
+            }
+        }
+        /// <summary>
+        /// 数字字符转数字，错误则返回0
+        /// </summary>
+        /// <param name="StringInt"></param>
+        /// <returns></returns>
+        public static int GetInt(String StringInt)
+        {
+            if (String.IsNullOrEmpty(StringInt)) return 0;
+            return int.Parse(StringInt);
+        }
+        /// <summary>
+        /// 用户指定位置
         /// </summary>
         public struct TargetPosition{
             /// <summary>
@@ -192,7 +221,7 @@ namespace Card
         /// 抽牌委托
         /// </summary>
         /// <param name="IsFirst">先后手区分</param>
-        /// <param name="magic">法术定义</param>
+        /// <param name="Ability">法术定义</param>
         public delegate List<String> delegateDrawCard(Boolean IsFirst, int DrawCount);
         /// <summary>
         /// 获得图片

@@ -4,6 +4,7 @@ using System;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.IO;
+using Card;
 
 namespace CardHelper
 {
@@ -65,125 +66,94 @@ namespace CardHelper
             dynamic excelObj = Interaction.CreateObject("Excel.Application");
             excelObj.Visible = true;
             dynamic workbook;
-            dynamic worksheet;
             workbook = excelObj.Workbooks.Open(ExcelPicker.SelectedPathOrFileName);
-            worksheet = workbook.Sheets(1);
-            int rowCount = 2;
-            String strRare = String.Empty;
-            String CardType = String.Empty;
-            Card.CardBasicInfo.稀有程度 Rare;
-            Rare = Card.CardBasicInfo.稀有程度.白色;
-            while (!String.IsNullOrEmpty(worksheet.Cells(rowCount, 1).Text))
+            Minion(target, workbook);
+            Ability(target, workbook);
+            workbook.Close();
+            excelObj.Quit();
+            excelObj = null;
+            MessageBox.Show("导出结束");
+        }
+
+        private void Minion(TargetType target, dynamic workbook)
+        {
+            //随从的导入
+            dynamic worksheet = workbook.Sheets(1);
+            int rowCount = 4;
+            while (!String.IsNullOrEmpty(worksheet.Cells(rowCount, 2).Text))
             {
-                //序列号1  名称2	说明3	职业4	种族5	花费资源6	攻击7	生命8	类型9	来源10	稀有程度11
-                strRare = worksheet.Cells(rowCount, 11).Text;
-                CardType = worksheet.Cells(rowCount, 9).Text;
-                switch (strRare)
+                Card.MinionCard Minion = new Card.MinionCard();
+                Minion.SN = worksheet.Cells(rowCount, 2).Text;
+                Minion.Name = worksheet.Cells(rowCount, 3).Text;
+                Minion.Description = worksheet.Cells(rowCount, 4).Text;
+                Minion.StandardCostPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 7).Text);
+                Minion.StandardAttackPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 8).Text);
+                Minion.StandardHealthPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 9).Text);
+                Minion.Rare = CardUtility.GetEnum<Card.CardBasicInfo.稀有程度>(worksheet.Cells(rowCount, 12).Text, CardBasicInfo.稀有程度.白色);
+
+                Minion.Standard嘲讽 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 14).Text);
+                Minion.Standard冲锋 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 15).Text);
+                Minion.Standard连击 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 16).Text);
+                Minion.Standard风怒 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 17).Text);
+                Minion.潜行特性 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 18).Text);
+                Minion.圣盾特性 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 19).Text);
+                Minion.法术免疫特性 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 20).Text);
+                Minion.英雄技能免疫特性 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 21).Text);
+
+                switch (target)
                 {
-                    case "白色":
-                        Rare = Card.CardBasicInfo.稀有程度.白色;
+                    case TargetType.MongoDB:
+                        innerCollection.Insert<Card.MinionCard>(Minion);
                         break;
-                    case "绿色":
-                        Rare = Card.CardBasicInfo.稀有程度.绿色;
-                        break;
-                    case "蓝色":
-                        Rare = Card.CardBasicInfo.稀有程度.蓝色;
-                        break;
-                    case "紫色":
-                        Rare = Card.CardBasicInfo.稀有程度.紫色;
-                        break;
-                    case "橙色":
-                        Rare = Card.CardBasicInfo.稀有程度.橙色;
-                        break;
-                    default:
-                        break;
-                }
-                switch (CardType)
-                {
-                    case "仆从":
-                        Card.FollowerCard follower = new Card.FollowerCard();
-                        follower.SN = worksheet.Cells(rowCount, 1).Text;
-                        follower.Name = worksheet.Cells(rowCount, 2).Text;
-                        follower.Description = worksheet.Cells(rowCount, 3).Text;
-                        follower.StandardCostPoint = GetInt(worksheet.Cells(rowCount, 6).Text);
-                        follower.StandardAttackPoint = GetInt(worksheet.Cells(rowCount, 7).Text);
-                        follower.StandardHealthPoint = GetInt(worksheet.Cells(rowCount, 8).Text);
-                        follower.Rare = Rare;
-                        switch (target)
-                        {
-                            case TargetType.MongoDB:
-                                innerCollection.Insert<Card.FollowerCard>(follower);
-                                break;
-                            case TargetType.Xml:
-                                XmlSerializer xml = new XmlSerializer(typeof(Card.FollowerCard));
-                                String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Follower\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
-                                xml.Serialize(new StreamWriter(XmlFilename), follower);
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case "法术":
-                        Card.MagicCard magic = new Card.MagicCard();
-                        magic.SN = worksheet.Cells(rowCount, 1).Text;
-                        magic.Name = worksheet.Cells(rowCount, 2).Text;
-                        magic.Description = worksheet.Cells(rowCount, 3).Text;
-                        magic.StandardCostPoint = GetInt(worksheet.Cells(rowCount, 6).Text);
-                        magic.Rare = Rare;
-                        switch (target)
-                        {
-                            case TargetType.MongoDB:
-                                innerCollection.Insert<Card.MagicCard>(magic);
-                                break;
-                            case TargetType.Xml:
-                                XmlSerializer xml = new XmlSerializer(typeof(Card.MagicCard));
-                                String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Magic\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
-                                xml.Serialize(new StreamWriter(XmlFilename), magic);
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case "武器":
-                        Card.WeaponCard weapon = new Card.WeaponCard();
-                        weapon.SN = worksheet.Cells(rowCount, 1).Text;
-                        weapon.Name = worksheet.Cells(rowCount, 2).Text;
-                        weapon.Description = worksheet.Cells(rowCount, 3).Text;
-                        weapon.StandardCostPoint = GetInt(worksheet.Cells(rowCount, 6).Text);
-                        weapon.Rare = Rare;
-                        switch (target)
-                        {
-                            case TargetType.MongoDB:
-                                innerCollection.Insert<Card.WeaponCard>(weapon);
-                                break;
-                            case TargetType.Xml:
-                                XmlSerializer xml = new XmlSerializer(typeof(Card.WeaponCard));
-                                String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Weapon\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
-                                xml.Serialize(new StreamWriter(XmlFilename), weapon);
-                                break;
-                            default:
-                                break;
-                        }
+                    case TargetType.Xml:
+                        XmlSerializer xml = new XmlSerializer(typeof(Card.MinionCard));
+                        String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Minion\\" + Minion.SN + ".xml";
+                        xml.Serialize(new StreamWriter(XmlFilename), Minion);
                         break;
                     default:
                         break;
                 }
                 rowCount++;
             }
-            workbook.Close();
-            excelObj.Quit();
-            excelObj = null;
-            MessageBox.Show("导出结束");
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="before"></param>
-        /// <returns></returns>
-        private int GetInt(String before)
+
+        private void Ability(TargetType target, dynamic workbook)
         {
-            if (String.IsNullOrEmpty(before)) return -1;
-            return int.Parse(before);
+            //随从的导入
+            dynamic worksheet = workbook.Sheets(2);
+            int rowCount = 4;
+            while (!String.IsNullOrEmpty(worksheet.Cells(rowCount, 2).Text))
+            {
+                Card.AbilityCard Ability = new Card.AbilityCard();
+                Ability.SN = worksheet.Cells(rowCount, 2).Text;
+                Ability.Name = worksheet.Cells(rowCount, 3).Text;
+                Ability.Description = worksheet.Cells(rowCount, 4).Text;
+                Ability.StandardCostPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 7).Text);
+                Ability.Rare = CardUtility.GetEnum<Card.CardBasicInfo.稀有程度>(worksheet.Cells(rowCount, 12).Text, CardBasicInfo.稀有程度.白色);
+                Card.Effect.EffectDefine effect = new Card.Effect.EffectDefine();
+                effect.AbilityEffectType = CardUtility.GetEnum<Card.Effect.CardDeckEffect.AbilityEffectEnum>(worksheet.Cells(rowCount, 14).Text, Card.Effect.CardDeckEffect.AbilityEffectEnum.Attack);
+                effect.EffectTargetSelectDirect = CardUtility.GetEnum<Card.CardUtility.TargetSelectDirectEnum>(worksheet.Cells(rowCount, 15).Text, CardUtility.TargetSelectDirectEnum.无限制);
+                effect.EffectTargetSelectRole = CardUtility.GetEnum<Card.CardUtility.TargetSelectRoleEnum>(worksheet.Cells(rowCount, 16).Text, CardUtility.TargetSelectRoleEnum.随从);
+                effect.EffictTargetSelectMode = CardUtility.GetEnum<Card.CardUtility.TargetSelectModeEnum>(worksheet.Cells(rowCount, 17).Text, CardUtility.TargetSelectModeEnum.全体);
+                effect.StandardEffectPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 18).Text);
+                effect.EffectCount = CardUtility.GetInt(worksheet.Cells(rowCount, 19).Text);
+                effect.AddtionInfo = worksheet.Cells(rowCount, 20).Text;
+                Ability.FirstAbilityDefine = effect;
+                switch (target)
+                {
+                    case TargetType.MongoDB:
+                        innerCollection.Insert<Card.AbilityCard>(Ability);
+                        break;
+                    case TargetType.Xml:
+                        XmlSerializer xml = new XmlSerializer(typeof(Card.AbilityCard));
+                        String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Ability\\" + Ability.SN + ".xml";
+                        xml.Serialize(new StreamWriter(XmlFilename), Ability);
+                        break;
+                    default:
+                        break;
+                }
+                rowCount++;
+            }
         }
         /// <summary>
         /// 
@@ -194,7 +164,6 @@ namespace CardHelper
         {
             Card.CardUtility.Init();
         }
-
         private void frmExport_Load(object sender, EventArgs e)
         {
             XmlFolderPicker.SelectedPathOrFileName = Card.CardUtility.CardXmlFolder;

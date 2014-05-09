@@ -10,7 +10,7 @@ namespace Card.Effect
         /// <summary>
         /// 魔法效果
         /// </summary>
-        public enum MagicEffectEnum
+        public enum AbilityEffectEnum
         {
             /// <summary>
             /// 攻击类
@@ -49,7 +49,7 @@ namespace Card.Effect
         /// <summary>
         /// 法术类型
         /// </summary>
-        public MagicEffectEnum MagicEffectType;
+        public AbilityEffectEnum AbilityEffectType;
         /// <summary>
         /// 法术对象选择模式
         /// </summary>
