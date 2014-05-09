@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FollowerCard xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SN>F000128</SN>
+  <Name>恶魔卫士</Name>
+  <Description>嘲讽，战吼: 摧毁你的一个法力水晶。</Description>
+  <Rare>蓝色</Rare>
+  <Overload>0</Overload>
+  <Occupation>猎人</Occupation>
+  <StandardCostPoint>3</StandardCostPoint>
+  <ActualCostPoint>0</ActualCostPoint>
+  <StandardAttackPoint>3</StandardAttackPoint>
+  <StandardHealthPoint>5</StandardHealthPoint>
+  <Standard嘲讽>false</Standard嘲讽>
+  <Standard冲锋>false</Standard冲锋>
+  <Standard连击>false</Standard连击>
+  <Standard风怒>false</Standard风怒>
+  <潜行特性>false</潜行特性>
+  <圣盾特性>false</圣盾特性>
+  <法术免疫特性>false</法术免疫特性>
+  <英雄技能免疫特性>false</英雄技能免疫特性>
+  <ActualAttackPoint>-1</ActualAttackPoint>
+  <ActualHealthPoint>-1</ActualHealthPoint>
+  <Actual嘲讽>false</Actual嘲讽>
+  <Actual冲锋>false</Actual冲锋>
+  <Actual连击>false</Actual连击>
+  <Actual风怒>false</Actual风怒>
+  <Is潜行Status>false</Is潜行Status>
+  <Is圣盾Status>false</Is圣盾Status>
+  <Is法术免疫Status>false</Is法术免疫Status>
+  <Is英雄技能免疫Status>false</Is英雄技能免疫Status>
+  <Is激怒Status>false</Is激怒Status>
+  <Is沉默Status>false</Is沉默Status>
+  <Is冰冻Status>false</Is冰冻Status>
+  <RemainAttactTimes>1</RemainAttactTimes>
+</FollowerCard>

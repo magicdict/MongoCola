@@ -32,6 +32,7 @@
             this.btnExportMongoDB = new System.Windows.Forms.Button();
             this.btnExportXml = new System.Windows.Forms.Button();
             this.XmlFolderPicker = new GUI.ctlFilePicker();
+            this.btnImportXML = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ExcelPicker
@@ -59,7 +60,7 @@
             // 
             // btnExportXml
             // 
-            this.btnExportXml.Location = new System.Drawing.Point(488, 125);
+            this.btnExportXml.Location = new System.Drawing.Point(488, 115);
             this.btnExportXml.Name = "btnExportXml";
             this.btnExportXml.Size = new System.Drawing.Size(157, 23);
             this.btnExportXml.TabIndex = 2;
@@ -80,19 +81,31 @@
             this.XmlFolderPicker.TabIndex = 3;
             this.XmlFolderPicker.Title = "XML文件夹";
             // 
+            // btnImportXML
+            // 
+            this.btnImportXML.Location = new System.Drawing.Point(280, 115);
+            this.btnImportXML.Name = "btnImportXML";
+            this.btnImportXML.Size = new System.Drawing.Size(157, 23);
+            this.btnImportXML.TabIndex = 4;
+            this.btnImportXML.Text = "导入XML";
+            this.btnImportXML.UseVisualStyleBackColor = true;
+            this.btnImportXML.Click += new System.EventHandler(this.btnImportXML_Click);
+            // 
             // frmExport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(669, 179);
+            this.Controls.Add(this.btnImportXML);
             this.Controls.Add(this.XmlFolderPicker);
             this.Controls.Add(this.btnExportXml);
             this.Controls.Add(this.btnExportMongoDB);
             this.Controls.Add(this.ExcelPicker);
             this.Name = "frmExport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "资料导入";
+            this.Text = "资料导入导出";
+            this.Load += new System.EventHandler(this.frmExport_Load);
             this.ResumeLayout(false);
 
         }
@@ -103,6 +116,7 @@
         private System.Windows.Forms.Button btnExportMongoDB;
         private System.Windows.Forms.Button btnExportXml;
         private GUI.ctlFilePicker XmlFolderPicker;
+        private System.Windows.Forms.Button btnImportXML;
     }
 }
 

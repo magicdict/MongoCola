@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WeaponCard xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SN>W000007</SN>
+  <Name>鹰角弓</Name>
+  <Description>每当有一张奥秘牌被揭示时，便获得+1耐久度。</Description>
+  <Rare>蓝色</Rare>
+  <Overload>0</Overload>
+  <Occupation>猎人</Occupation>
+  <StandardCostPoint>3</StandardCostPoint>
+  <ActualCostPoint>0</ActualCostPoint>
+  <StandardAttackPoint>-1</StandardAttackPoint>
+  <ActualAttackPoint>-1</ActualAttackPoint>
+  <标准耐久度>-1</标准耐久度>
+  <实际耐久度>-1</实际耐久度>
+  <AdditionEffect>
+    <MagicEffectType>Attack</MagicEffectType>
+    <EffictTargetSelectMode>随机</EffictTargetSelectMode>
+    <EffectTargetSelectRole>随从</EffectTargetSelectRole>
+    <EffectTargetSelectDirect>本方</EffectTargetSelectDirect>
+    <StandardEffectPoint>0</StandardEffectPoint>
+    <ActualEffectPoint>0</ActualEffectPoint>
+    <EffectCount>0</EffectCount>
+  </AdditionEffect>
+</WeaponCard>

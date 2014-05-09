@@ -31,7 +31,7 @@ namespace Card.Server
         {
             //IsHost == false 的时候，初始化已经完成，
             //网络版的时候，要向两个客户端发送开始游戏的下一步指令            
-            GameContent[GameId].SetCardStack(IsHost, card);
+            var result = GameContent[GameId].SetCardStack(IsHost, card);
         }
         /// <summary>
         /// 抽牌

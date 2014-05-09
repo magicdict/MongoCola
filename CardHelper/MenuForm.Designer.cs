@@ -70,7 +70,7 @@
             this.btnExcelImport.Name = "btnExcelImport";
             this.btnExcelImport.Size = new System.Drawing.Size(147, 23);
             this.btnExcelImport.TabIndex = 3;
-            this.btnExcelImport.Text = "Excel 转数据库";
+            this.btnExcelImport.Text = "资料导入导出";
             this.btnExcelImport.UseVisualStyleBackColor = true;
             this.btnExcelImport.Click += new System.EventHandler(this.btnExcelImport_Click);
             // 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Card
 {
@@ -10,12 +12,22 @@ namespace Card
     public static class CardUtility
     {
         /// <summary>
+        /// CardXML文件夹
+        /// </summary>
+        public static String CardXmlFolder = @"C:\MagicMongoDBTool\CardHelper\CardXML"; 
+        /// <summary>
         /// 初始化
         /// </summary>
         public static void Init()
         {
             //从配置文件中获得卡牌的SN和名称的联系
             GetCardInfoFromXml();
+            //序列号 名称
+            SnVsName.Clear();
+            foreach (CardBasicInfo card in CardCollections)
+            {
+                SnVsName.Add(card.SN,card.Name);
+            }
         }
         /// <summary>
         /// 序列号和卡牌名称对应关系表格
@@ -31,11 +43,29 @@ namespace Card
             return "UnKnow";
         }
         /// <summary>
-        /// 
+        /// 卡牌组合
+        /// </summary>
+        public static List<CardBasicInfo> CardCollections = new List<CardBasicInfo>();
+        /// <summary>
+        /// 从XML文件读取
         /// </summary>
         public static void GetCardInfoFromXml()
-        { 
-        
+        {
+            foreach (var magicXml in Directory.GetFiles(CardXmlFolder + "\\Magic\\"))
+            {
+                XmlSerializer xml = new XmlSerializer(typeof(Card.MagicCard));
+                CardCollections.Add((MagicCard)xml.Deserialize(new StreamReader(magicXml)));
+            }
+            foreach (var FollowerXml in Directory.GetFiles(CardXmlFolder + "\\Follower\\"))
+            {
+                XmlSerializer xml = new XmlSerializer(typeof(Card.FollowerCard));
+                CardCollections.Add((FollowerCard)xml.Deserialize(new StreamReader(FollowerXml)));
+            }
+            foreach (var WeaponXml in Directory.GetFiles(CardXmlFolder + "\\Weapon\\"))
+            {
+                XmlSerializer xml = new XmlSerializer(typeof(Card.WeaponCard));
+                CardCollections.Add((WeaponCard)xml.Deserialize(new StreamReader(WeaponXml)));
+            }
         }
         /// <summary>
         /// 职业

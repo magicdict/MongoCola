@@ -56,7 +56,7 @@ namespace Card.Server
         /// </summary>
         /// <param name="IsHost">主机</param>
         /// <param name="cards">套牌</param>
-        public int SetCardStack(Boolean IsHost,Stack<String> cards)
+        public Communication.MessageHeader SetCardStack(Boolean IsHost, Stack<String> cards)
         {
             if ((IsHost && HostAsFirst) || (!IsHost && !HostAsFirst))
             {
@@ -70,7 +70,7 @@ namespace Card.Server
             {
                 Init();
             }
-            return 100;
+            return Communication.MessageHeader.正常;
         }
         /// <summary>
         /// 初始化

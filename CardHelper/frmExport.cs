@@ -67,106 +67,108 @@ namespace CardHelper
             dynamic workbook;
             dynamic worksheet;
             workbook = excelObj.Workbooks.Open(ExcelPicker.SelectedPathOrFileName);
-            for (int i = 1; i < 5; i++)
+            worksheet = workbook.Sheets(1);
+            int rowCount = 2;
+            String strRare = String.Empty;
+            String CardType = String.Empty;
+            Card.CardBasicInfo.稀有程度 Rare;
+            Rare = Card.CardBasicInfo.稀有程度.白色;
+            while (!String.IsNullOrEmpty(worksheet.Cells(rowCount, 1).Text))
             {
-                Card.CardBasicInfo.稀有程度 Rare;
-                Rare = Card.CardBasicInfo.稀有程度.白色;
-                worksheet = workbook.Sheets(i);
-                switch (i)
+                //序列号1  名称2	说明3	职业4	种族5	花费资源6	攻击7	生命8	类型9	来源10	稀有程度11
+                strRare = worksheet.Cells(rowCount, 11).Text;
+                CardType = worksheet.Cells(rowCount, 9).Text;
+                switch (strRare)
                 {
-                    case 1:
+                    case "白色":
                         Rare = Card.CardBasicInfo.稀有程度.白色;
                         break;
-                    case 2:
+                    case "绿色":
                         Rare = Card.CardBasicInfo.稀有程度.绿色;
                         break;
-                    case 3:
+                    case "蓝色":
                         Rare = Card.CardBasicInfo.稀有程度.蓝色;
                         break;
-                    case 4:
+                    case "紫色":
                         Rare = Card.CardBasicInfo.稀有程度.紫色;
                         break;
-                    case 5:
+                    case "橙色":
                         Rare = Card.CardBasicInfo.稀有程度.橙色;
                         break;
                     default:
                         break;
                 }
-
-                int rowCount = 2;
-                while (!String.IsNullOrEmpty(worksheet.Cells(rowCount, 1).Text))
+                switch (CardType)
                 {
-                    //名称	说明	职业	种族	花费资源	攻击	生命	类型	来源	稀有程度
-                    String CardType = worksheet.Cells(rowCount, 8).Text;
-                    switch (CardType)
-                    {
-                        case "仆从":
-                            Card.FollowerCard follower = new Card.FollowerCard();
-                            follower.Name = worksheet.Cells(rowCount, 1).Text;
-                            follower.Description = worksheet.Cells(rowCount, 2).Text;
-                            follower.StandardCostPoint = GetInt(worksheet.Cells(rowCount, 5).Text);
-                            follower.StandardAttackPoint = GetInt(worksheet.Cells(rowCount, 6).Text);
-                            follower.StandardHealthPoint = GetInt(worksheet.Cells(rowCount, 7).Text);
-                            follower.Rare = Rare;
-                            switch (target)
-                            {
-                                case TargetType.MongoDB:
-                                    innerCollection.Insert<Card.FollowerCard>(follower);
-                                    break;
-                                case TargetType.Xml:
-                                    XmlSerializer xml = new XmlSerializer(typeof(Card.FollowerCard));
-                                    String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Follower\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
-                                    xml.Serialize(new StreamWriter(XmlFilename), follower);
-                                    break;
-                                default:
-                                    break;
-                            }
-                            break;
-                        case "法术":
-                            Card.MagicCard magic = new Card.MagicCard();
-                            magic.Name = worksheet.Cells(rowCount, 1).Text;
-                            magic.Description = worksheet.Cells(rowCount, 2).Text;
-                            magic.StandardCostPoint = GetInt(worksheet.Cells(rowCount, 5).Text);
-                            magic.Rare = Rare;
-                            switch (target)
-                            {
-                                case TargetType.MongoDB:
-                                    innerCollection.Insert<Card.MagicCard>(magic);
-                                    break;
-                                case TargetType.Xml:
-                                    XmlSerializer xml = new XmlSerializer(typeof(Card.MagicCard));
-                                    String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Magic\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
-                                    xml.Serialize(new StreamWriter(XmlFilename), magic);
-                                    break;
-                                default:
-                                    break;
-                            }
-                            break;
-                        case "武器":
-                            Card.WeaponCard weapon = new Card.WeaponCard();
-                            weapon.Name = worksheet.Cells(rowCount, 1).Text;
-                            weapon.Description = worksheet.Cells(rowCount, 2).Text;
-                            weapon.StandardCostPoint = GetInt(worksheet.Cells(rowCount, 5).Text);
-                            weapon.Rare = Rare;
-                            switch (target)
-                            {
-                                case TargetType.MongoDB:
-                                    innerCollection.Insert<Card.WeaponCard>(weapon);
-                                    break;
-                                case TargetType.Xml:
-                                    XmlSerializer xml = new XmlSerializer(typeof(Card.WeaponCard));
-                                    String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Weapon\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
-                                    xml.Serialize(new StreamWriter(XmlFilename), weapon);
-                                    break;
-                                default:
-                                    break;
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                    rowCount++;
+                    case "仆从":
+                        Card.FollowerCard follower = new Card.FollowerCard();
+                        follower.SN = worksheet.Cells(rowCount, 1).Text;
+                        follower.Name = worksheet.Cells(rowCount, 2).Text;
+                        follower.Description = worksheet.Cells(rowCount, 3).Text;
+                        follower.StandardCostPoint = GetInt(worksheet.Cells(rowCount, 6).Text);
+                        follower.StandardAttackPoint = GetInt(worksheet.Cells(rowCount, 7).Text);
+                        follower.StandardHealthPoint = GetInt(worksheet.Cells(rowCount, 8).Text);
+                        follower.Rare = Rare;
+                        switch (target)
+                        {
+                            case TargetType.MongoDB:
+                                innerCollection.Insert<Card.FollowerCard>(follower);
+                                break;
+                            case TargetType.Xml:
+                                XmlSerializer xml = new XmlSerializer(typeof(Card.FollowerCard));
+                                String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Follower\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
+                                xml.Serialize(new StreamWriter(XmlFilename), follower);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    case "法术":
+                        Card.MagicCard magic = new Card.MagicCard();
+                        magic.SN = worksheet.Cells(rowCount, 1).Text;
+                        magic.Name = worksheet.Cells(rowCount, 2).Text;
+                        magic.Description = worksheet.Cells(rowCount, 3).Text;
+                        magic.StandardCostPoint = GetInt(worksheet.Cells(rowCount, 6).Text);
+                        magic.Rare = Rare;
+                        switch (target)
+                        {
+                            case TargetType.MongoDB:
+                                innerCollection.Insert<Card.MagicCard>(magic);
+                                break;
+                            case TargetType.Xml:
+                                XmlSerializer xml = new XmlSerializer(typeof(Card.MagicCard));
+                                String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Magic\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
+                                xml.Serialize(new StreamWriter(XmlFilename), magic);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    case "武器":
+                        Card.WeaponCard weapon = new Card.WeaponCard();
+                        weapon.SN = worksheet.Cells(rowCount, 1).Text;
+                        weapon.Name = worksheet.Cells(rowCount, 2).Text;
+                        weapon.Description = worksheet.Cells(rowCount, 3).Text;
+                        weapon.StandardCostPoint = GetInt(worksheet.Cells(rowCount, 6).Text);
+                        weapon.Rare = Rare;
+                        switch (target)
+                        {
+                            case TargetType.MongoDB:
+                                innerCollection.Insert<Card.WeaponCard>(weapon);
+                                break;
+                            case TargetType.Xml:
+                                XmlSerializer xml = new XmlSerializer(typeof(Card.WeaponCard));
+                                String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Weapon\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
+                                xml.Serialize(new StreamWriter(XmlFilename), weapon);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    default:
+                        break;
                 }
+                rowCount++;
             }
             workbook.Close();
             excelObj.Quit();
@@ -183,7 +185,20 @@ namespace CardHelper
             if (String.IsNullOrEmpty(before)) return -1;
             return int.Parse(before);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnImportXML_Click(object sender, EventArgs e)
+        {
+            Card.CardUtility.Init();
+        }
 
-
+        private void frmExport_Load(object sender, EventArgs e)
+        {
+            XmlFolderPicker.SelectedPathOrFileName = Card.CardUtility.CardXmlFolder;
+            ExcelPicker.SelectedPathOrFileName = @"C:\MagicMongoDBTool\DesignDocument\炉石设计\卡牌整理版本.xlsx";
+        }
     }
 }
