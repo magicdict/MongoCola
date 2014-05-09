@@ -4,8 +4,9 @@
   <Name>以眼还眼</Name>
   <Description>奥秘: 每当你的英雄受到伤害时，对敌方英雄造成等量的伤害。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>圣骑士</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

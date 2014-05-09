@@ -4,8 +4,9 @@
   <Name>希尔瓦娜斯·风行者</Name>
   <Description>亡语: 控制一个随机敌方随从。</Description>
   <Rare>橙色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>5</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>5</StandardAttackPoint>

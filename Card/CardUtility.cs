@@ -14,32 +14,33 @@ namespace Card
         /// <summary>
         /// CardXML文件夹
         /// </summary>
-        public static String CardXmlFolder = @"C:\MagicMongoDBTool\CardHelper\CardXML"; 
+        public static String CardXmlFolder = String.Empty;
         /// <summary>
         /// 初始化
         /// </summary>
-        public static void Init()
+        public static void Init(String mCardXmlFolder)
         {
+            CardXmlFolder = mCardXmlFolder;
             //从配置文件中获得卡牌的SN和名称的联系
             GetCardInfoFromXml();
             //序列号 名称
-            SnVsName.Clear();
+            ReadyCardDic.Clear();
             foreach (CardBasicInfo card in CardCollections)
             {
-                SnVsName.Add(card.SN,card.Name);
+                if (card.IsCardReady) ReadyCardDic.Add(card.SN, card.Name);
             }
         }
         /// <summary>
-        /// 序列号和卡牌名称对应关系表格
+        /// 序列号和卡牌名称对应关系表格(可用状态)
         /// </summary>
-        private static Dictionary<String, String> SnVsName = new Dictionary<string, string>();
+        public static Dictionary<String, String> ReadyCardDic = new Dictionary<string, string>();
         /// <summary>
         /// 通过卡牌序列号获得卡牌名称
         /// </summary>
         /// <param name="SN"></param>
         /// <returns></returns>
         public static String GetCardNameBySN(String SN){
-            if (SnVsName.ContainsKey(SN)) return SnVsName[SN];
+            if (ReadyCardDic.ContainsKey(SN)) return ReadyCardDic[SN];
             return "UnKnow";
         }
         /// <summary>
@@ -51,6 +52,7 @@ namespace Card
         /// </summary>
         public static void GetCardInfoFromXml()
         {
+            CardCollections.Clear();
             foreach (var AbilityXml in Directory.GetFiles(CardXmlFolder + "\\Ability\\"))
             {
                 XmlSerializer xml = new XmlSerializer(typeof(Card.AbilityCard));
@@ -67,10 +69,11 @@ namespace Card
                 CardCollections.Add((WeaponCard)xml.Deserialize(new StreamReader(WeaponXml)));
             }
         }
+        #region"枚举值"
         /// <summary>
         /// 职业
         /// </summary>
-        public enum OccupationEnum
+        public enum ClassEnum
         {
             猎人,
             盗贼,
@@ -142,6 +145,27 @@ namespace Card
             武器
         }
         /// <summary>
+        /// 多个效果的连接方式
+        /// </summary>
+        public enum EffectJoinType
+        {
+            /// <summary>
+            /// 两个效果是并且的关系：副作用
+            /// 例如：造成4点伤害，随机弃一张牌。
+            /// </summary>
+            AND,
+            /// <summary>
+            /// 两个效果是或者的关系：抉择
+            /// 例如：抉择: 对一个随从造成3点伤害；或者造成1点伤害并抽一张牌。
+            /// </summary>
+            OR,
+            /// <summary>
+            /// 无需
+            /// </summary>
+            None
+        }
+        #endregion
+        /// <summary>
         /// 随机打算数组
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -186,13 +210,14 @@ namespace Card
             }
         }
         /// <summary>
-        /// 数字字符转数字，错误则返回0
+        /// 数字字符转数字，错误则返回默认值
         /// </summary>
         /// <param name="StringInt"></param>
+        /// <param name="DefaultValue">默认值</param>
         /// <returns></returns>
-        public static int GetInt(String StringInt)
+        public static int GetInt(String StringInt,int DefaultValue = 0)
         {
-            if (String.IsNullOrEmpty(StringInt)) return 0;
+            if (String.IsNullOrEmpty(StringInt)) return DefaultValue;
             return int.Parse(StringInt);
         }
         /// <summary>

@@ -4,8 +4,9 @@
   <Name>船长的鹦鹉</Name>
   <Description>战吼: 随机从你的牌库中将一张海盗牌置入你的手牌。</Description>
   <Rare>紫色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>2</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>1</StandardAttackPoint>

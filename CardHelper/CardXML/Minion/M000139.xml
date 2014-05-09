@@ -4,8 +4,9 @@
   <Name>狂奔科多兽</Name>
   <Description>战吼: 随机消灭一个攻击力小于或等于2的敌方随从。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>5</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>3</StandardAttackPoint>

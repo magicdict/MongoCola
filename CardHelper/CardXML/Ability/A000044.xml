@@ -4,8 +4,9 @@
   <Name>暗影步</Name>
   <Description>使一个友方随从移回你的手牌，它的法力值消耗减少（2）点。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>盗贼</Class>
   <StandardCostPoint>0</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

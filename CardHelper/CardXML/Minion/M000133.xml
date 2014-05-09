@@ -4,8 +4,9 @@
   <Name>奥秘守护者</Name>
   <Description>每当有一张奥秘牌被揭示时，便获得+1/+1。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>1</StandardAttackPoint>

@@ -67,7 +67,7 @@ namespace CardHelper
             //使用成本
             奥术智慧.ActualCostPoint = 1;
             奥术智慧.StandardCostPoint = 1;
-            奥术智慧.JoinType = Card.AbilityCard.EffectJoinType.None;
+            奥术智慧.JoinType = Card.CardUtility.EffectJoinType.None;
 
             //随机抽两张牌
             Card.Effect.CardDeckEffect CardDeckEffect = new Card.Effect.CardDeckEffect();
@@ -90,7 +90,7 @@ namespace CardHelper
             变羊术.Rare = Card.CardBasicInfo.稀有程度.绿色;
             //使用成本
             变羊术.StandardCostPoint = 4;
-            变羊术.JoinType = Card.AbilityCard.EffectJoinType.None;
+            变羊术.JoinType = Card.CardUtility.EffectJoinType.None;
             //变成 1/1 的羊
             Card.Effect.TransformEffect transformEffect = new Card.Effect.TransformEffect();
             transformEffect.EffectCount = 1;

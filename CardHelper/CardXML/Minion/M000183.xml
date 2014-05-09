@@ -4,8 +4,9 @@
   <Name>比斯巨兽</Name>
   <Description>亡语: 为你的对手召唤1个3/3的芬克·恩霍尔。</Description>
   <Rare>橙色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>6</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>9</StandardAttackPoint>

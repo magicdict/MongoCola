@@ -4,8 +4,9 @@
   <Name>致死打击</Name>
   <Description>造成4点伤害；如果你的英雄的生命值小于或等于12点，则改为造成6点伤害。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>战士</Class>
   <StandardCostPoint>4</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

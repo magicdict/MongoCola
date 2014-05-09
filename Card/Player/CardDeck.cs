@@ -17,7 +17,7 @@ namespace Card.Player
         /// 初始化
         /// </summary>
         /// <param name="mCardList"></param>
-        public void Init(Stack<String> mCardList,int Seed)
+        public void Init(Stack<String> mCardList, int Seed)
         {
             //设置牌堆
             CardList = mCardList;
@@ -50,6 +50,24 @@ namespace Card.Player
                 newList.Add(CardList.Pop());
             }
             return newList;
+        }
+        /// <summary>
+        /// 获得一套随机可用卡牌
+        /// </summary>
+        public static Stack<String> GetRandomCardStack(int Seed)
+        {
+            Stack<String> Ramdom = new Stack<string>();
+            var cards = new List<String>();
+            foreach (var item in CardUtility.ReadyCardDic.Keys)
+            {
+                cards.Add(item);
+            }
+            var newList = CardUtility.RandomSort<String>(cards.ToArray(), Seed);
+            for (int i = 0; i < Math.Min(MaxCards,newList.Length); i++)
+            {
+                Ramdom.Push(newList[i]);
+            }
+            return Ramdom;
         }
     }
 }

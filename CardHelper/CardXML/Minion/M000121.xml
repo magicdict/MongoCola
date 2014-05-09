@@ -4,8 +4,9 @@
   <Name>任务达人</Name>
   <Description>每当你使用一张牌时，便获得+1/+1。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>3</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>2</StandardAttackPoint>

@@ -4,8 +4,9 @@
   <Name>年迈的酒仙</Name>
   <Description>战吼: 使一个友方随从从战场上移回你的手牌。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>4</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>5</StandardAttackPoint>

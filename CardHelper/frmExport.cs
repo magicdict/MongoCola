@@ -1,10 +1,10 @@
-﻿using Microsoft.VisualBasic;
+﻿using Card;
+using Microsoft.VisualBasic;
 using MongoDB.Driver;
 using System;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using System.IO;
-using Card;
 
 namespace CardHelper
 {
@@ -69,14 +69,24 @@ namespace CardHelper
             workbook = excelObj.Workbooks.Open(ExcelPicker.SelectedPathOrFileName);
             Minion(target, workbook);
             Ability(target, workbook);
+            Weapon(target, workbook);    
             workbook.Close();
             excelObj.Quit();
             excelObj = null;
             MessageBox.Show("导出结束");
         }
-
+        /// <summary>
+        /// 随从的导入
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="workbook"></param>
         private void Minion(TargetType target, dynamic workbook)
         {
+            if (Directory.Exists(XmlFolderPicker.SelectedPathOrFileName + "\\Minion\\"))
+            {
+                Directory.Delete(XmlFolderPicker.SelectedPathOrFileName + "\\Minion\\", true);
+            }
+            Directory.CreateDirectory(XmlFolderPicker.SelectedPathOrFileName + "\\Minion\\");
             //随从的导入
             dynamic worksheet = workbook.Sheets(1);
             int rowCount = 4;
@@ -86,10 +96,12 @@ namespace CardHelper
                 Minion.SN = worksheet.Cells(rowCount, 2).Text;
                 Minion.Name = worksheet.Cells(rowCount, 3).Text;
                 Minion.Description = worksheet.Cells(rowCount, 4).Text;
+                Minion.Class = CardUtility.GetEnum<Card.CardUtility.ClassEnum>(worksheet.Cells(rowCount, 5).Text, Card.CardUtility.ClassEnum.中立);
                 Minion.StandardCostPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 7).Text);
                 Minion.StandardAttackPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 8).Text);
                 Minion.StandardHealthPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 9).Text);
                 Minion.Rare = CardUtility.GetEnum<Card.CardBasicInfo.稀有程度>(worksheet.Cells(rowCount, 12).Text, CardBasicInfo.稀有程度.白色);
+                Minion.IsCardReady = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 13).Text);
 
                 Minion.Standard嘲讽 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 14).Text);
                 Minion.Standard冲锋 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 15).Text);
@@ -116,10 +128,19 @@ namespace CardHelper
                 rowCount++;
             }
         }
-
+        /// <summary>
+        /// 法术的导入
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="workbook"></param>
         private void Ability(TargetType target, dynamic workbook)
         {
-            //随从的导入
+            if (Directory.Exists(XmlFolderPicker.SelectedPathOrFileName + "\\Ability\\"))
+            {
+                Directory.Delete(XmlFolderPicker.SelectedPathOrFileName + "\\Ability\\", true);
+            }
+            Directory.CreateDirectory(XmlFolderPicker.SelectedPathOrFileName + "\\Ability\\");
+            //法术的导入
             dynamic worksheet = workbook.Sheets(2);
             int rowCount = 4;
             while (!String.IsNullOrEmpty(worksheet.Cells(rowCount, 2).Text))
@@ -128,8 +149,11 @@ namespace CardHelper
                 Ability.SN = worksheet.Cells(rowCount, 2).Text;
                 Ability.Name = worksheet.Cells(rowCount, 3).Text;
                 Ability.Description = worksheet.Cells(rowCount, 4).Text;
+                Ability.Class = CardUtility.GetEnum<Card.CardUtility.ClassEnum>(worksheet.Cells(rowCount, 5).Text, Card.CardUtility.ClassEnum.中立);
                 Ability.StandardCostPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 7).Text);
                 Ability.Rare = CardUtility.GetEnum<Card.CardBasicInfo.稀有程度>(worksheet.Cells(rowCount, 12).Text, CardBasicInfo.稀有程度.白色);
+                Ability.IsCardReady = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 13).Text);
+
                 Card.Effect.EffectDefine effect = new Card.Effect.EffectDefine();
                 effect.AbilityEffectType = CardUtility.GetEnum<Card.Effect.CardDeckEffect.AbilityEffectEnum>(worksheet.Cells(rowCount, 14).Text, Card.Effect.CardDeckEffect.AbilityEffectEnum.Attack);
                 effect.EffectTargetSelectDirect = CardUtility.GetEnum<Card.CardUtility.TargetSelectDirectEnum>(worksheet.Cells(rowCount, 15).Text, CardUtility.TargetSelectDirectEnum.无限制);
@@ -139,6 +163,7 @@ namespace CardHelper
                 effect.EffectCount = CardUtility.GetInt(worksheet.Cells(rowCount, 19).Text);
                 effect.AddtionInfo = worksheet.Cells(rowCount, 20).Text;
                 Ability.FirstAbilityDefine = effect;
+                Ability.JoinType = CardUtility.GetEnum<Card.CardUtility.EffectJoinType>(worksheet.Cells(rowCount, 21).Text, Card.CardUtility.EffectJoinType.None);
                 switch (target)
                 {
                     case TargetType.MongoDB:
@@ -156,18 +181,63 @@ namespace CardHelper
             }
         }
         /// <summary>
+        /// 武器的导入
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="workbook"></param>
+        private void Weapon(TargetType target, dynamic workbook)
+        {
+            if (Directory.Exists(XmlFolderPicker.SelectedPathOrFileName + "\\Weapon\\"))
+            {
+                Directory.Delete(XmlFolderPicker.SelectedPathOrFileName + "\\Weapon\\", true);
+            }
+            Directory.CreateDirectory(XmlFolderPicker.SelectedPathOrFileName + "\\Weapon\\");
+            //武器的导入
+            dynamic worksheet = workbook.Sheets(3);
+            int rowCount = 4;
+            while (!String.IsNullOrEmpty(worksheet.Cells(rowCount, 2).Text))
+            {
+                Card.WeaponCard Weapon = new Card.WeaponCard();
+                Weapon.SN = worksheet.Cells(rowCount, 2).Text;
+                Weapon.Name = worksheet.Cells(rowCount, 3).Text;
+                Weapon.Description = worksheet.Cells(rowCount, 4).Text;
+                Weapon.Class = CardUtility.GetEnum<Card.CardUtility.ClassEnum>(worksheet.Cells(rowCount, 5).Text, Card.CardUtility.ClassEnum.中立);
+                Weapon.StandardCostPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 7).Text);
+                Weapon.StandardAttackPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 8).Text);
+                Weapon.标准耐久度 = CardUtility.GetInt(worksheet.Cells(rowCount, 9).Text);
+                Weapon.Rare = CardUtility.GetEnum<Card.CardBasicInfo.稀有程度>(worksheet.Cells(rowCount, 12).Text, CardBasicInfo.稀有程度.白色);
+                Weapon.IsCardReady = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 13).Text);
+
+                switch (target)
+                {
+                    case TargetType.MongoDB:
+                        innerCollection.Insert<Card.WeaponCard>(Weapon);
+                        break;
+                    case TargetType.Xml:
+                        XmlSerializer xml = new XmlSerializer(typeof(Card.WeaponCard));
+                        String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Weapon\\" + Weapon.SN + ".xml";
+                        xml.Serialize(new StreamWriter(XmlFilename), Weapon);
+                        break;
+                    default:
+                        break;
+                }
+                rowCount++;
+            }
+        }
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnImportXML_Click(object sender, EventArgs e)
         {
-            Card.CardUtility.Init();
+            Card.CardUtility.Init(@"C:\MagicMongoDBTool\CardHelper\CardXML");
         }
         private void frmExport_Load(object sender, EventArgs e)
         {
+            Card.CardUtility.CardXmlFolder = @"C:\MagicMongoDBTool\CardHelper\CardXML";
             XmlFolderPicker.SelectedPathOrFileName = Card.CardUtility.CardXmlFolder;
-            ExcelPicker.SelectedPathOrFileName = @"C:\MagicMongoDBTool\DesignDocument\炉石设计\卡牌整理版本.xlsx";
+            ExcelPicker.SelectedPathOrFileName = @"C:\MagicMongoDBTool\DesignDocument\炉石设计\卡牌整理版本.xls";
         }
     }
 }

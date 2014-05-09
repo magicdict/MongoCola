@@ -4,8 +4,9 @@
   <Name>暗影狂乱</Name>
   <Description>直到回合结束，获得一个攻击力小于或等于3的敌方随从的控制权。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>牧师</Class>
   <StandardCostPoint>4</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

@@ -14,7 +14,7 @@ namespace CardHelper
         private static MongoCollection innerCollection;
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            Card.CardUtility.Init();
+            Card.CardUtility.Init(@"C:\MagicMongoDBTool\CardHelper\CardXML");
             innerServer = MongoServer.Create(@"mongodb://localhost:28030");
             innerServer.Connect();
             innerDatabase = innerServer.GetDatabase("HearthStone");

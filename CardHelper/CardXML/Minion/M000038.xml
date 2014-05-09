@@ -4,8 +4,9 @@
   <Name>烈焰小鬼</Name>
   <Description>战吼: 对你的英雄造成2点伤害。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>术士</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>3</StandardAttackPoint>

@@ -4,8 +4,9 @@
   <Name>盾牌猛击</Name>
   <Description>你每有1点护甲值，便对一个随从造成1点伤害。</Description>
   <Rare>紫色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>战士</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

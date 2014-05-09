@@ -4,8 +4,9 @@
   <Name>奥术飞弹</Name>
   <Description>造成3点伤害，随机分配给敌方角色。</Description>
   <Rare>绿色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>法师</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

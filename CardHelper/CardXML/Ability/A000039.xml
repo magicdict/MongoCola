@@ -4,8 +4,9 @@
   <Name>镜像实体</Name>
   <Description>奥秘: 当一个敌方随从进行攻击时，召唤一个该随从的复制。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>法师</Class>
   <StandardCostPoint>3</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

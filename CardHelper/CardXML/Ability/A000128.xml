@@ -4,8 +4,9 @@
   <Name>极限跳跃 </Name>
   <Description>抽一张卡牌. 连击: 抽两张卡牌.</Description>
   <Rare>紫色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>盗贼</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

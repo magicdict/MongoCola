@@ -4,8 +4,9 @@
   <Name>牺牲契约</Name>
   <Description>牺牲一个恶魔，为你的英雄恢复5点生命值。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>术士</Class>
   <StandardCostPoint>0</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

@@ -4,8 +4,9 @@
   <Name>酸性沼泽软泥怪</Name>
   <Description>战吼: 摧毁你的对手的武器。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>2</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>3</StandardAttackPoint>

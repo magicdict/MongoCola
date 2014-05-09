@@ -4,8 +4,9 @@
   <Name>肯瑞托法师</Name>
   <Description>战吼: 在本回合中，你使用的下一个奥秘的法力值消耗为（0）点。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>法师</Class>
   <StandardCostPoint>3</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>4</StandardAttackPoint>

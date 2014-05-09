@@ -4,8 +4,9 @@
   <Name>复仇之怒</Name>
   <Description>造成8点伤害，随机分配给敌方角色。</Description>
   <Rare>紫色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>圣骑士</Class>
   <StandardCostPoint>6</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

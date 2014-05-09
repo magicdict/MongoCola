@@ -4,8 +4,9 @@
   <Name>紫罗兰教师</Name>
   <Description>每当你施放一个法术时，召唤一个1/1的紫罗兰学徒。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>4</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>3</StandardAttackPoint>

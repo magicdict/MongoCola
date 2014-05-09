@@ -4,13 +4,14 @@
   <Name>圣光的正义</Name>
   <Description />
   <Rare>绿色</Rare>
+  <IsCardReady>true</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>圣骑士</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
-  <StandardAttackPoint>-1</StandardAttackPoint>
+  <StandardAttackPoint>1</StandardAttackPoint>
   <ActualAttackPoint>-1</ActualAttackPoint>
-  <标准耐久度>-1</标准耐久度>
+  <标准耐久度>4</标准耐久度>
   <实际耐久度>-1</实际耐久度>
   <AdditionEffect>
     <AbilityEffectType>Attack</AbilityEffectType>

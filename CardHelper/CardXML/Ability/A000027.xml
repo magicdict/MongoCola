@@ -4,8 +4,9 @@
   <Name>疾跑</Name>
   <Description>抽4张牌。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>true</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>盗贼</Class>
   <StandardCostPoint>7</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

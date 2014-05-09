@@ -4,8 +4,9 @@
   <Name>提里奥·弗丁</Name>
   <Description>圣盾，嘲讽，亡语: 装备一把5/3的灰烬使者。</Description>
   <Rare>橙色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>圣骑士</Class>
   <StandardCostPoint>8</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>6</StandardAttackPoint>

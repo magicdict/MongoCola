@@ -4,8 +4,9 @@
   <Name>野蛮之击</Name>
   <Description>对一个随从造成等同于你的英雄攻击力的伤害。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>德鲁伊</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

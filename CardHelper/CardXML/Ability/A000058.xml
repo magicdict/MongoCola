@@ -4,8 +4,9 @@
   <Name>思维窃取</Name>
   <Description>复制对手的牌库中的2张牌，并将其置入你的手牌。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>牧师</Class>
   <StandardCostPoint>3</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

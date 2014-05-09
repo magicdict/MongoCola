@@ -4,8 +4,9 @@
   <Name>工匠大师欧沃斯巴克</Name>
   <Description>战吼: 使一个随从随机变形成为一个5/5的恐龙或一个1/1的松鼠。</Description>
   <Rare>橙色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>3</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>2</StandardAttackPoint>

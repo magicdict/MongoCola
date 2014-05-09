@@ -4,8 +4,9 @@
   <Name>末日预言者</Name>
   <Description>在你的回合开始时，消灭所有随从。</Description>
   <Rare>紫色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>2</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>0</StandardAttackPoint>

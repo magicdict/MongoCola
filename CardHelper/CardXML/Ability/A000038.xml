@@ -4,8 +4,9 @@
   <Name>冰霜新星</Name>
   <Description>冻结所有敌方随从。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>法师</Class>
   <StandardCostPoint>2</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

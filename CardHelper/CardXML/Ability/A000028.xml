@@ -4,8 +4,9 @@
   <Name>镜像</Name>
   <Description>召唤两个0/2，并具有嘲讽的随从。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>true</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>法师</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>
@@ -15,8 +16,8 @@
     <EffectTargetSelectDirect>无限制</EffectTargetSelectDirect>
     <StandardEffectPoint>0</StandardEffectPoint>
     <ActualEffectPoint>0</ActualEffectPoint>
-    <EffectCount>0</EffectCount>
-    <AddtionInfo />
+    <EffectCount>2</EffectCount>
+    <AddtionInfo>M900003</AddtionInfo>
   </FirstAbilityDefine>
   <SecondAbilityDefine>
     <AbilityEffectType>Attack</AbilityEffectType>

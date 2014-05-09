@@ -4,8 +4,9 @@
   <Name>奥金尼灵魂祭司</Name>
   <Description>你的恢复生命值的牌和技能改为造成等量的伤害。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>牧师</Class>
   <StandardCostPoint>4</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>3</StandardAttackPoint>

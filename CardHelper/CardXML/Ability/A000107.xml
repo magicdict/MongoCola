@@ -4,8 +4,9 @@
   <Name>升级！</Name>
   <Description>如果你有一把武器，使它获得+1/+1。否则，装备一把1/3的武器。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>战士</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

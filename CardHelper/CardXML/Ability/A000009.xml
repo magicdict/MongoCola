@@ -4,8 +4,9 @@
   <Name>神圣之灵</Name>
   <Description>使一个随从的生命值翻倍。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>牧师</Class>
   <StandardCostPoint>2</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

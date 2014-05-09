@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Card.Player;
+using System;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace CardHelper
 {
@@ -20,9 +22,10 @@ namespace CardHelper
         /// <param name="e"></param>
         private void btnInitGame_Click(object sender, EventArgs e)
         {
+            Card.CardUtility.Init(@"C:\MagicMongoDBTool\CardHelper\CardXML");
             GameId = Card.Server.GameServer.CreateNewGame();
-            Card.Server.GameServer.SetCardStack(GameId, true, HelperUtility.GetCardDeck());
-            Card.Server.GameServer.SetCardStack(GameId, false, HelperUtility.GetCardDeck());
+            Card.Server.GameServer.SetCardStack(GameId, true, CardDeck.GetRandomCardStack(0));
+            Card.Server.GameServer.SetCardStack(GameId, false, CardDeck.GetRandomCardStack(1));
             btnInitGame.Enabled = false;
             btn给先后手抽牌.Enabled = true;
         }
@@ -33,10 +36,16 @@ namespace CardHelper
         /// <param name="e"></param>
         private void btn给先后手抽牌_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine(Card.Server.GameServer.GameContent[1].GameId);
             var HandA = Card.Server.GameServer.DrawCard(GameId, true, 3);
             var HandB = Card.Server.GameServer.DrawCard(GameId, false, 4);
-            System.Diagnostics.Debug.WriteLine(Card.Server.GameServer.GameContent[1].GameId);
+            foreach (String item in HandA)
+            {
+                Debug.WriteLine("A的手牌：" + Card.CardUtility.GetCardNameBySN(item));
+            }
+            foreach (String item in HandB)
+            {
+                Debug.WriteLine("B的手牌：" + Card.CardUtility.GetCardNameBySN(item));
+            }
             btn给先后手抽牌.Enabled = false;
         }
     }

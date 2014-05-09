@@ -4,8 +4,9 @@
   <Name>熔核巨人</Name>
   <Description>你的英雄每受到1点伤害，这张牌的法力值消耗便减少（1）点。</Description>
   <Rare>紫色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>20</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>8</StandardAttackPoint>

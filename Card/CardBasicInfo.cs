@@ -69,6 +69,10 @@ namespace Card
                 }
             }
         }
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public Boolean IsCardReady = false;
         #endregion
 
         #region "炉石专用"
@@ -98,7 +102,7 @@ namespace Card
         /// <summary>
         /// 职业
         /// </summary>
-        public CardUtility.OccupationEnum Occupation;
+        public CardUtility.ClassEnum Class;
         /// <summary>
         /// 标准的使用成本
         /// </summary>

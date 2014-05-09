@@ -4,8 +4,9 @@
   <Name>影袭</Name>
   <Description>对敌方英雄造成3点伤害。</Description>
   <Rare>绿色</Rare>
+  <IsCardReady>true</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>盗贼</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>
@@ -13,9 +14,9 @@
     <EffictTargetSelectMode>全体</EffictTargetSelectMode>
     <EffectTargetSelectRole>随从</EffectTargetSelectRole>
     <EffectTargetSelectDirect>无限制</EffectTargetSelectDirect>
-    <StandardEffectPoint>0</StandardEffectPoint>
+    <StandardEffectPoint>3</StandardEffectPoint>
     <ActualEffectPoint>0</ActualEffectPoint>
-    <EffectCount>0</EffectCount>
+    <EffectCount>1</EffectCount>
     <AddtionInfo />
   </FirstAbilityDefine>
   <SecondAbilityDefine>

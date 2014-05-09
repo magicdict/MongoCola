@@ -4,8 +4,9 @@
   <Name>沼泽爬行者</Name>
   <Description>嘲讽</Description>
   <Rare>白色</Rare>
+  <IsCardReady>true</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>5</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>3</StandardAttackPoint>

@@ -4,8 +4,9 @@
   <Name>命令怒吼</Name>
   <Description>在本回合中，你的随从的生命值无法被降到1点以下。抽一张牌。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>战士</Class>
   <StandardCostPoint>2</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

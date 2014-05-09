@@ -4,8 +4,9 @@
   <Name>饥饿的秃鹫</Name>
   <Description>每当你召唤一个野兽，抽一张牌。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>猎人</Class>
   <StandardCostPoint>2</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>2</StandardAttackPoint>

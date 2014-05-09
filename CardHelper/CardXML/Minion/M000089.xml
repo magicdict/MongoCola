@@ -4,8 +4,9 @@
   <Name>战歌指挥官</Name>
   <Description />
   <Rare>绿色</Rare>
+  <IsCardReady>true</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>战士</Class>
   <StandardCostPoint>3</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>2</StandardAttackPoint>

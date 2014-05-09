@@ -4,8 +4,9 @@
   <Name>伺机待发</Name>
   <Description>在本回合中，你所施放的下一个法术的法力值消耗减少（3）点。</Description>
   <Rare>紫色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>盗贼</Class>
   <StandardCostPoint>0</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

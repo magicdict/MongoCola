@@ -4,8 +4,9 @@
   <Name>大法师安东尼达斯</Name>
   <Description>每当你施放一个法术时，将一张“火球术”法术牌置入你的手牌。</Description>
   <Rare>橙色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>法师</Class>
   <StandardCostPoint>7</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>5</StandardAttackPoint>

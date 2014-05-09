@@ -4,8 +4,9 @@
   <Name>叉状闪电</Name>
   <Description>对2个随机敌方随从造成2点伤害，过载: （2）</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>萨满</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

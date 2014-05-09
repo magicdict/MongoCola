@@ -4,8 +4,9 @@
   <Name>猛击</Name>
   <Description>对一个随从造成2点伤害，如果它依然存活，则抽一张牌。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>战士</Class>
   <StandardCostPoint>2</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

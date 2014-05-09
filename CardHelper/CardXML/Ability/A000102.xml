@@ -4,8 +4,9 @@
   <Name>滋养</Name>
   <Description>抉择: 获得2个法力水晶；或者抽3张牌。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>德鲁伊</Class>
   <StandardCostPoint>5</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

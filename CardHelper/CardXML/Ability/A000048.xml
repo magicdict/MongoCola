@@ -4,8 +4,9 @@
   <Name>智慧祝福</Name>
   <Description>选择一个随从，每当它进行攻击时，抽一张牌。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>圣骑士</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

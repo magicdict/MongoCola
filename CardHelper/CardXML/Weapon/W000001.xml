@@ -4,13 +4,14 @@
   <Name>雷铸战斧</Name>
   <Description>过载: （1）</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>萨满</Class>
   <StandardCostPoint>2</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
-  <StandardAttackPoint>-1</StandardAttackPoint>
+  <StandardAttackPoint>2</StandardAttackPoint>
   <ActualAttackPoint>-1</ActualAttackPoint>
-  <标准耐久度>-1</标准耐久度>
+  <标准耐久度>3</标准耐久度>
   <实际耐久度>-1</实际耐久度>
   <AdditionEffect>
     <AbilityEffectType>Attack</AbilityEffectType>

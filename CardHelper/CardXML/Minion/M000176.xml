@@ -4,8 +4,9 @@
   <Name>先知维纶</Name>
   <Description>使你的法术牌和英雄技能的伤害和治疗效果翻倍。</Description>
   <Rare>橙色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>牧师</Class>
   <StandardCostPoint>7</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>7</StandardAttackPoint>

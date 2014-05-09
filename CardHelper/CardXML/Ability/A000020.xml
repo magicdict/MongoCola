@@ -4,8 +4,9 @@
   <Name>野蛮咆哮</Name>
   <Description>在本回合中，使你的所有角色获得+2攻击力。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>德鲁伊</Class>
   <StandardCostPoint>3</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>

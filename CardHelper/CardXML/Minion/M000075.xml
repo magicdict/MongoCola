@@ -4,8 +4,9 @@
   <Name>霜狼督军</Name>
   <Description>战吼: 战场上每有1个其他友方随从，便获得+1/+1。</Description>
   <Rare>白色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>5</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>4</StandardAttackPoint>

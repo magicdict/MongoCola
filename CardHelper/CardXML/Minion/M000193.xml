@@ -4,8 +4,9 @@
   <Name>阿莱克丝塔萨</Name>
   <Description>战吼: 使一个英雄的剩余生命值成为15。</Description>
   <Rare>橙色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>中立</Class>
   <StandardCostPoint>9</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <StandardAttackPoint>8</StandardAttackPoint>

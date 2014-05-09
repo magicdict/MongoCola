@@ -4,8 +4,9 @@
   <Name>照明弹</Name>
   <Description>所有随从失去潜行，消灭所有敌方奥秘，抽一张牌。</Description>
   <Rare>蓝色</Rare>
+  <IsCardReady>false</IsCardReady>
   <Overload>0</Overload>
-  <Occupation>猎人</Occupation>
+  <Class>猎人</Class>
   <StandardCostPoint>1</StandardCostPoint>
   <ActualCostPoint>0</ActualCostPoint>
   <FirstAbilityDefine>
