@@ -50,11 +50,20 @@
     <Compile Include="BattleField.Designer.cs">
       <DependentUpon>BattleField.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmStartGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStartGame.Designer.cs">
+      <DependentUpon>frmStartGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BattleField.resx">
       <DependentUpon>BattleField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmStartGame.resx">
+      <DependentUpon>frmStartGame.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
