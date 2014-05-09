@@ -15,5 +15,14 @@ namespace 火炉服务器
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 启动服务器
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

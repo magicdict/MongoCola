@@ -98,7 +98,6 @@ namespace CardHelper
                 {
                     //名称	说明	职业	种族	花费资源	攻击	生命	类型	来源	稀有程度
                     String CardType = worksheet.Cells(rowCount, 8).Text;
-                    String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
                     switch (CardType)
                     {
                         case "仆从":
@@ -116,6 +115,7 @@ namespace CardHelper
                                     break;
                                 case TargetType.Xml:
                                     XmlSerializer xml = new XmlSerializer(typeof(Card.FollowerCard));
+                                    String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Follower\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
                                     xml.Serialize(new StreamWriter(XmlFilename), follower);
                                     break;
                                 default:
@@ -135,6 +135,7 @@ namespace CardHelper
                                     break;
                                 case TargetType.Xml:
                                     XmlSerializer xml = new XmlSerializer(typeof(Card.MagicCard));
+                                    String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Magic\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
                                     xml.Serialize(new StreamWriter(XmlFilename), magic);
                                     break;
                                 default:
@@ -154,6 +155,7 @@ namespace CardHelper
                                     break;
                                 case TargetType.Xml:
                                     XmlSerializer xml = new XmlSerializer(typeof(Card.WeaponCard));
+                                    String XmlFilename = XmlFolderPicker.SelectedPathOrFileName + "\\Weapon\\" + worksheet.Cells(rowCount, 1).Text + ".xml";
                                     xml.Serialize(new StreamWriter(XmlFilename), weapon);
                                     break;
                                 default:
@@ -169,6 +171,7 @@ namespace CardHelper
             workbook.Close();
             excelObj.Quit();
             excelObj = null;
+            MessageBox.Show("导出结束");
         }
         /// <summary>
         /// 

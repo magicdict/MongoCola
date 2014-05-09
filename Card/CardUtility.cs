@@ -15,7 +15,7 @@ namespace Card
         public static void Init()
         {
             //从配置文件中获得卡牌的SN和名称的联系
-
+            GetCardInfoFromXml();
         }
         /// <summary>
         /// 序列号和卡牌名称对应关系表格
@@ -29,7 +29,14 @@ namespace Card
         public static String GetCardNameBySN(String SN){
             if (SnVsName.ContainsKey(SN)) return SnVsName[SN];
             return "UnKnow";
-        } 
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void GetCardInfoFromXml()
+        { 
+        
+        }
         /// <summary>
         /// 职业
         /// </summary>

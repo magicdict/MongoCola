@@ -91,6 +91,7 @@
             this.Controls.Add(this.btnExportMongoDB);
             this.Controls.Add(this.ExcelPicker);
             this.Name = "frmExport";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "资料导入";
             this.ResumeLayout(false);
 
