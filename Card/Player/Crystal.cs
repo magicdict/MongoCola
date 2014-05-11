@@ -11,11 +11,11 @@ namespace Card.Player
         /// <summary>
         /// 当前满值水晶数
         /// </summary>
-        public int CurrentFullPoint;
+        public int CurrentFullPoint = 1;
         /// <summary>
         /// 当前的水晶数
         /// </summary>
-        public int CurrentRemainPoint;
+        public int CurrentRemainPoint = 1;
         /// <summary>
         /// 新的回合
         /// </summary>

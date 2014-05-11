@@ -58,12 +58,12 @@ namespace Card.Player
         {
             Stack<String> Ramdom = new Stack<string>();
             var cards = new List<String>();
-            foreach (var item in CardUtility.ReadyCardDic.Keys)
+            foreach (var CardSN in CardUtility.ReadyCardDic.Keys)
             {
-                cards.Add(item);
+                if (CardSN.Substring(1, 1) != "9") cards.Add(CardSN);
             }
             var newList = CardUtility.RandomSort<String>(cards.ToArray(), Seed);
-            for (int i = 0; i < Math.Min(MaxCards,newList.Length); i++)
+            for (int i = 0; i < Math.Min(MaxCards, newList.Length); i++)
             {
                 Ramdom.Push(newList[i]);
             }

@@ -110,5 +110,22 @@ namespace Card.Server
             System.Diagnostics.Debug.WriteLine("SetCardStack:" + GameRunding.Count);
             return GameRunding[GameId].DrawCard(IsFirst, Count);
         }
+        /// <summary>
+        /// 写入动作
+        /// </summary>
+        /// <param name="GameId"></param>
+        /// <param name="Action"></param>
+        public static void WriteAction(int GameId, String Action) {
+            GameRunding[GameId].WriteAction(Action);
+        }
+        /// <summary>
+        /// 读取动作
+        /// </summary>
+        /// <param name="GameId"></param>
+        /// <param name="Action"></param>
+        public static String ReadAction(int GameId)
+        {
+            return GameRunding[GameId].ReadAction();
+        }
     }
 }

@@ -87,6 +87,13 @@ namespace Card.Server
                     var Cardlist = GameServer.DrawCard(int.Parse(Request.Substring(3, 5)), Request.Substring(8, 1) == CardUtility.strTrue,int.Parse(Request.Substring(9, 1) ));
                     Response = String.Join("|",Cardlist.ToArray());
                     break;
+                case RequestType.回合结束:
+                case RequestType.写入行动:
+                    GameServer.WriteAction(int.Parse(Request.Substring(3, 5)), Request.Substring(8));
+                    break;
+                case RequestType.读取行动:
+                    Response = GameServer.ReadAction(int.Parse(Request.Substring(3, 5)));
+                    break;
                 default:
                     break;
             }
@@ -156,9 +163,13 @@ namespace Card.Server
             /// </summary>
             回合结束,
             /// <summary>
-            /// 改变战场的行动
+            /// 写入行动
             /// </summary>
-            行动,
+            写入行动,
+            /// <summary>
+            /// 读取行动
+            /// </summary>
+            读取行动
         }
     }
 }

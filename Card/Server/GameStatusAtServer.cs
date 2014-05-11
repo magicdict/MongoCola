@@ -40,7 +40,7 @@ namespace Card.Server
         /// <summary>
         /// 先手套牌
         /// </summary>
-        private Stack<String> FirstCardStack; 
+        private Stack<String> FirstCardStack;
         /// <summary>
         /// 后手牌堆
         /// </summary>
@@ -50,10 +50,14 @@ namespace Card.Server
         /// </summary>
         private Stack<String> SecondCardStack;
         /// <summary>
+        /// 行动集
+        /// </summary>
+        private List<String> ActionInfo = new List<string>();
+        /// <summary>
         /// 建立新游戏
         /// </summary>
         /// <param name="newGameId"></param>
-        public GameStatusAtServer(int newGameId,String hostNickName)
+        public GameStatusAtServer(int newGameId, String hostNickName)
         {
             this.GameId = newGameId;
             this.HostNickName = hostNickName;
@@ -71,7 +75,8 @@ namespace Card.Server
             {
                 FirstCardStack = cards;
             }
-            else {
+            else
+            {
                 SecondCardStack = cards;
             }
             //如果非主机的套牌也上传的话，可以初始化了
@@ -104,6 +109,28 @@ namespace Card.Server
         {
             var targetStock = IsFirst ? FirstCardDeck : SecondCardDeck;
             return targetStock.DrawCard(Count);
+        }
+        /// <summary>
+        /// 追加指令
+        /// </summary>
+        /// <param name="Action"></param>
+        public void WriteAction(String Action)
+        {
+            ActionInfo.Add(Action);
+        }
+        /// <summary>
+        /// 读取指令
+        /// </summary>
+        public String ReadAction()
+        {
+            String lstAction = String.Empty;
+            foreach (var item in ActionInfo)
+            {
+                lstAction = item + System.Environment.NewLine;
+            }
+            if (!String.IsNullOrEmpty(lstAction)) lstAction = lstAction.TrimEnd(System.Environment.NewLine.ToCharArray());
+            ActionInfo.Clear();
+            return lstAction;
         }
     }
 }

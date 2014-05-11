@@ -30,11 +30,27 @@ namespace 炉边传说
         /// <summary>
         /// 初始化
         /// </summary>
-        public static void Init() {
+        public static void Init()
+        {
             //抽牌的具体方法
             CardUtility.DrawCard += DrawCardAtServer;
             //图片请求
             CardUtility.GetCardImage += GetCardImageAtServer;
+            //属性
+            var HandCard = Card.Server.ClientUtlity.DrawCard(GameId.ToString("D5"), GameManager.IsFirst, GameManager.IsFirst ? 3 : 4);
+            if (!IsFirst) HandCard.Add(Card.CardUtility.SN幸运币);
+            SelfInfo.handCards = HandCard;
+            SelfInfo.role.HandCardCount = HandCard.Count;
+            if (IsFirst)
+            {
+                SelfInfo.role.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 3;
+                AgainstInfo.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 4;
+            }
+            else
+            {
+                SelfInfo.role.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 4;
+                AgainstInfo.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 3;
+            }
         }
         /// <summary>
         /// 本方情报

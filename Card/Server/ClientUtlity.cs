@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Card.Server
 {
@@ -55,7 +54,6 @@ namespace Card.Server
             String requestInfo = Card.Server.Communication.RequestType.先后手状态.GetHashCode().ToString("D3") + GameId + (IsHost ? CardUtility.strTrue : CardUtility.strFalse);
             return Card.Server.Communication.Request(requestInfo) == CardUtility.strTrue;
         }
-
         /// <summary>
         /// 抽牌
         /// </summary>
@@ -72,6 +70,32 @@ namespace Card.Server
                 CardList.Add(card);
             }
             return CardList;
+        }
+        /// <summary>
+        /// TurnEnd
+        /// </summary>
+        /// <param name="GameId"></param>
+        public static void TurnEnd(String GameId) {
+            WriteAction(GameId, CardUtility.strEndTurn);
+        }
+        /// <summary>
+        /// 添加指令
+        /// </summary>
+        /// <param name="GameId"></param>
+        public static void WriteAction(String GameId,String Action)
+        {
+            String requestInfo = Card.Server.Communication.RequestType.写入行动.GetHashCode().ToString("D3") + GameId + Action;
+            Card.Server.Communication.Request(requestInfo);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="GameId"></param>
+        /// <returns></returns>
+        public static List<String> ReadAction(String GameId)
+        {
+            String requestInfo = Card.Server.Communication.RequestType.写入行动.GetHashCode().ToString("D3") + GameId;
+            return null;
         }
     }
 }

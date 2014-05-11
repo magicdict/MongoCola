@@ -25,7 +25,7 @@ namespace Card
             GetCardInfoFromXml();
             //序列号 名称
             ReadyCardDic.Clear();
-            foreach (CardBasicInfo card in CardCollections)
+            foreach (CardBasicInfo card in CardCollections.Values)
             {
                 if (card.IsCardReady) ReadyCardDic.Add(card.SN, card.Name);
             }
@@ -47,7 +47,17 @@ namespace Card
         /// <summary>
         /// 卡牌组合
         /// </summary>
-        public static List<CardBasicInfo> CardCollections = new List<CardBasicInfo>();
+        public static Dictionary<String, CardBasicInfo> CardCollections = new Dictionary<String, CardBasicInfo>();
+        /// <summary>
+        /// 通过卡牌序列号获得卡牌名称
+        /// </summary>
+        /// <param name="SN"></param>
+        /// <returns></returns>
+        public static CardBasicInfo GetCardInfoBySN(String SN)
+        {
+            if (CardCollections.ContainsKey(SN)) return CardCollections[SN];
+            return null;
+        }
         /// <summary>
         /// 从XML文件读取
         /// </summary>
@@ -58,17 +68,20 @@ namespace Card
             foreach (var AbilityXml in Directory.GetFiles(CardXmlFolder + "\\Ability\\"))
             {
                 XmlSerializer xml = new XmlSerializer(typeof(Card.AbilityCard));
-                CardCollections.Add((AbilityCard)xml.Deserialize(new StreamReader(AbilityXml)));
+                Card.AbilityCard ability = (AbilityCard)xml.Deserialize(new StreamReader(AbilityXml));
+                CardCollections.Add(ability.SN,ability);
             }
             foreach (var MinionXml in Directory.GetFiles(CardXmlFolder + "\\Minion\\"))
             {
                 XmlSerializer xml = new XmlSerializer(typeof(Card.MinionCard));
-                CardCollections.Add((MinionCard)xml.Deserialize(new StreamReader(MinionXml)));
+                Card.MinionCard Minio = (MinionCard)xml.Deserialize(new StreamReader(MinionXml));
+                CardCollections.Add(Minio.SN, Minio);
             }
             foreach (var WeaponXml in Directory.GetFiles(CardXmlFolder + "\\Weapon\\"))
             {
                 XmlSerializer xml = new XmlSerializer(typeof(Card.WeaponCard));
-                CardCollections.Add((WeaponCard)xml.Deserialize(new StreamReader(WeaponXml)));
+                Card.WeaponCard Weapon = (WeaponCard)xml.Deserialize(new StreamReader(WeaponXml));
+                CardCollections.Add(Weapon.SN, Weapon);
             }
         }
 
@@ -85,6 +98,10 @@ namespace Card
         /// 幸运币
         /// </summary>
         public const String SN幸运币 = "A900001";
+        /// <summary>
+        /// ENDTURN
+        /// </summary>
+        public const String strEndTurn = "ENDTURN";
         #endregion
         #region"枚举值"
         /// <summary>

@@ -27,6 +27,7 @@ namespace 炉边传说
                 Thread.Sleep(3000);
             }
             GameManager.IsFirst = Card.Server.ClientUtlity.IsFirst(GameManager.GameId.ToString("D5"), GameManager.IsHost);
+            GameManager.Init();
             new BattleField().ShowDialog();
         }
         /// <summary>
@@ -57,6 +58,7 @@ namespace 炉边传说
             String GameId = Card.Server.ClientUtlity.JoinGame(int.Parse(strWait.Substring(0, strWait.IndexOf("("))), GameManager.PlayerNickName);
             GameManager.GameId = int.Parse(GameId);
             GameManager.IsFirst = Card.Server.ClientUtlity.IsFirst(GameManager.GameId.ToString("D5"), GameManager.IsHost);
+            GameManager.Init();
             new BattleField().ShowDialog();
         }
 
