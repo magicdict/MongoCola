@@ -17,9 +17,9 @@ namespace Card.Server
         /// 
         /// </summary>
         /// <returns></returns>
-        public static int CreateNewGame() {
+        public static int CreateNewGame(String hostNickName) {
             GameId++;
-            GameContent.Add(GameId, new GameStatusAtServer(GameId));
+            GameContent.Add(GameId, new GameStatusAtServer(GameId, hostNickName));
             return GameId;
         }
         /// <summary>

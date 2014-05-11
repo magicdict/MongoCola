@@ -16,7 +16,8 @@ namespace 炉边传说
         /// <param name="e"></param>
         private void btnCreateGame_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine(Card.Server.Communication.Request("STARTGAME"));
+            GameManager.IsHost = true;
+            String GameId = Card.Server.ClientUtlity.CreateGame(GameManager.PlayerNickName);
         }
     }
 }

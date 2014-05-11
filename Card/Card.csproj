@@ -53,6 +53,7 @@
     <Compile Include="AbilityCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CardUtility.cs" />
+    <Compile Include="Server\ClientUtlity.cs" />
     <Compile Include="Server\Communication.cs" />
     <Compile Include="Server\GameServer.cs" />
     <Compile Include="Server\GameStatusAtServer.cs" />

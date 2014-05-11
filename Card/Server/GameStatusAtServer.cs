@@ -22,6 +22,14 @@ namespace Card.Server
         /// </summary>
         public int GameId = 1;
         /// <summary>
+        /// 主机玩家名称
+        /// </summary>
+        public String HostNickName = String.Empty;
+        /// <summary>
+        /// 非主机玩家名称
+        /// </summary>
+        public String GuestNickName = String.Empty;
+        /// <summary>
         /// 主机作为先手
         /// </summary>
         public Boolean HostAsFirst = false;
@@ -30,7 +38,7 @@ namespace Card.Server
         /// </summary>
         private CardDeck FirstCardDeck = new CardDeck();
         /// <summary>
-        /// 
+        /// 先手套牌
         /// </summary>
         private Stack<String> FirstCardStack; 
         /// <summary>
@@ -38,16 +46,17 @@ namespace Card.Server
         /// </summary>
         private CardDeck SecondCardDeck = new CardDeck();
         /// <summary>
-        /// 
+        /// 后手套牌
         /// </summary>
         private Stack<String> SecondCardStack;
         /// <summary>
         /// 建立新游戏
         /// </summary>
         /// <param name="newGameId"></param>
-        public GameStatusAtServer(int newGameId)
+        public GameStatusAtServer(int newGameId,String hostNickName)
         {
             this.GameId = newGameId;
+            this.HostNickName = hostNickName;
             //决定先后手,主机位先手概率为2/1
             HostAsFirst = (GameId % 2 == 0);
         }
@@ -56,7 +65,7 @@ namespace Card.Server
         /// </summary>
         /// <param name="IsHost">主机</param>
         /// <param name="cards">套牌</param>
-        public Communication.MessageHeader SetCardStack(Boolean IsHost, Stack<String> cards)
+        public CardUtility.CommandResult SetCardStack(Boolean IsHost, Stack<String> cards)
         {
             if ((IsHost && HostAsFirst) || (!IsHost && !HostAsFirst))
             {
@@ -70,7 +79,7 @@ namespace Card.Server
             {
                 Init();
             }
-            return Communication.MessageHeader.正常;
+            return CardUtility.CommandResult.正常;
         }
         /// <summary>
         /// 初始化

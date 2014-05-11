@@ -63,16 +63,33 @@ namespace Card.Server
             {
                 Request = Encoding.ASCII.GetString(bytes, 0, ActualSize);
             }
-            bytes = Encoding.ASCII.GetBytes("Response Of [" + Request + "]");
+            RequestType requestType = (RequestType)Enum.Parse(typeof(RequestType),Request.Substring(0,3));
+            String Response = String.Empty;
+            switch (requestType)
+            {
+                case  RequestType.新建游戏:
+                    //返回GameId
+                    Response = GameServer.CreateNewGame(Request.Substring(3)).ToString();
+                    break;
+                default:
+                    break;
+            }
+            bytes = Encoding.ASCII.GetBytes(Response);
             stream.Write(bytes, 0, bytes.Length);
             client.Close();
         }
-        public static String Request(String Request) {
+        /// <summary>
+        /// 请求
+        /// </summary>
+        /// <param name="requestType"></param>
+        /// <returns></returns>
+        public static String Request(String requestInfo)
+        {
             TcpClient client = new TcpClient();
             client.Connect("localhost", 13000);
             var stream = client.GetStream();
             var bytes = new Byte[512];
-            bytes = Encoding.ASCII.GetBytes(Request);
+            bytes = Encoding.ASCII.GetBytes(requestInfo);
             stream.Write(bytes, 0, bytes.Length);
             String Response = String.Empty;
             using (StreamReader reader = new StreamReader(stream))
@@ -86,34 +103,34 @@ namespace Card.Server
             return Response;
         }
         /// <summary>
-        /// 作为消息的前3位传输
+        /// 消息类型(3位)
         /// </summary>
-        public enum MessageHeader
+        public enum RequestType
         {
             /// <summary>
-            /// 正常
+            /// 新建一个游戏
             /// </summary>
-            正常 = 100,
+            新建游戏,
             /// <summary>
-            /// 异常
+            /// 加入一个游戏
             /// </summary>
-            异常 = 999,
+            加入游戏,
             /// <summary>
-            /// 使用法术
+            /// 认输，退出一个游戏
             /// </summary>
-            使用法术 = 101,
+            认输,
             /// <summary>
-            /// 英雄使用技能
+            /// 抽牌
             /// </summary>
-            英雄使用技能 = 102,
+            抽牌,
             /// <summary>
-            /// 随从攻击
+            /// 回合结束
             /// </summary>
-            随从攻击 = 103,
+            回合结束,
             /// <summary>
-            /// 随从出场
+            /// 改变战场的行动
             /// </summary>
-            随从出场 = 104
+            行动,
         }
     }
 }

@@ -12,6 +12,14 @@ namespace 炉边传说
     public static class GameManager
     {
         /// <summary>
+        /// 游戏玩家名称
+        /// </summary>
+        public static String PlayerNickName = "DARUMA";
+        /// <summary>
+        /// 是否主机
+        /// </summary>
+        public static Boolean IsHost;
+        /// <summary>
         /// 是否为先手
         /// </summary>
         public static Boolean IsFirst;

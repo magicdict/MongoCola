@@ -164,6 +164,20 @@ namespace Card
             /// </summary>
             None
         }
+        /// <summary>
+        /// 返回值
+        /// </summary>
+        public enum CommandResult
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            正常,
+            /// <summary>
+            /// 
+            /// </summary>
+            异常
+        }
         #endregion
         /// <summary>
         /// 随机打算数组
