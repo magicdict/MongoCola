@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Windows.Forms;
 
 namespace 炉边传说
@@ -14,6 +8,16 @@ namespace 炉边传说
         public BattleField()
         {
             InitializeComponent();
+        }
+
+        private void BattleField_Load(object sender, System.EventArgs e)
+        {
+            StringBuilder Status = new StringBuilder();
+            Status.AppendLine("GameId：" + GameManager.GameId);
+            Status.AppendLine("PlayerNickName：" + GameManager.PlayerNickName);
+            Status.AppendLine("IsHost：" + GameManager.IsHost);
+            Status.AppendLine("IsFirst：" + GameManager.IsFirst);
+            lblStatus.Text = Status.ToString();
         }
     }
 }

@@ -63,13 +63,25 @@ namespace Card.Server
             {
                 Request = Encoding.ASCII.GetString(bytes, 0, ActualSize);
             }
-            RequestType requestType = (RequestType)Enum.Parse(typeof(RequestType),Request.Substring(0,3));
+            RequestType requestType = (RequestType)Enum.Parse(typeof(RequestType), Request.Substring(0, 3));
             String Response = String.Empty;
             switch (requestType)
             {
-                case  RequestType.新建游戏:
+                case RequestType.新建游戏:
                     //返回GameId
-                    Response = GameServer.CreateNewGame(Request.Substring(3)).ToString();
+                    Response = GameServer.CreateNewGame(Request.Substring(3)).ToString("D5");
+                    break;
+                case RequestType.等待游戏列表:
+                    Response = GameServer.GetWaitGameList();
+                    break;
+                case RequestType.加入游戏:
+                    Response = GameServer.JoinGame(int.Parse(Request.Substring(3, 5)), Request.Substring(8)).ToString();
+                    break;
+                case RequestType.游戏启动状态:
+                    Response = GameServer.IsGameStart(int.Parse(Request.Substring(3, 5))).ToString();
+                    break;
+                case RequestType.先后手状态:
+                    Response = GameServer.IsFirst(int.Parse(Request.Substring(3, 5)), Request.Substring(8, 1) == CardUtility.strTrue) ? CardUtility.strTrue : CardUtility.strFalse;
                     break;
                 default:
                     break;
@@ -112,9 +124,21 @@ namespace Card.Server
             /// </summary>
             新建游戏,
             /// <summary>
+            /// 获得等待中游戏列表
+            /// </summary>
+            等待游戏列表,
+            /// <summary>
             /// 加入一个游戏
             /// </summary>
             加入游戏,
+            /// <summary>
+            /// 主机询问是否游戏已经启动
+            /// </summary>
+            游戏启动状态,
+            /// <summary>
+            /// 确认先后手状态
+            /// </summary>
+            先后手状态,
             /// <summary>
             /// 认输，退出一个游戏
             /// </summary>

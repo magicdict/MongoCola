@@ -178,6 +178,14 @@ namespace Card
             /// </summary>
             异常
         }
+        /// <summary>
+        /// 真
+        /// </summary>
+        public const String strTrue = "1";
+        /// <summary>
+        /// 假
+        /// </summary>
+        public const String strFalse = "0";
         #endregion
         /// <summary>
         /// 随机打算数组

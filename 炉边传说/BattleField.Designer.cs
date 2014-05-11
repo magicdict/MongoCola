@@ -28,7 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.lblStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(28, 20);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(61, 13);
+            this.lblStatus.TabIndex = 0;
+            this.lblStatus.Text = "战场信息：";
             // 
             // BattleField
             // 
@@ -36,13 +46,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(576, 288);
+            this.Controls.Add(this.lblStatus);
             this.Name = "BattleField";
             this.Text = "战场";
+            this.Load += new System.EventHandler(this.BattleField_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblStatus;
 
     }
 }

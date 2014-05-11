@@ -15,6 +15,7 @@
 *.doc
 /炉边传说/bin
 /炉边传说/obj
+/炉边传说/packages
 /火炉服务器/bin
 /火炉服务器/obj
 /ImportAccessDB/bin

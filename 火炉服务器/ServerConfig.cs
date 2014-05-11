@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Windows.Forms;
-
 namespace 火炉服务器
 {
     public partial class ServerConfig : Form
@@ -15,6 +9,7 @@ namespace 火炉服务器
         {
             InitializeComponent();
         }
+        Thread ServerThread; 
         /// <summary>
         /// 启动服务器
         /// </summary>
@@ -22,7 +17,17 @@ namespace 火炉服务器
         /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Card.Server.Communication.StartServer();
+            ServerThread = new Thread(Card.Server.Communication.StartServer);
+            ServerThread.Start();
+        }
+        /// <summary>
+        /// 终止线程
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            ServerThread.Abort();
         }
     }
 }
