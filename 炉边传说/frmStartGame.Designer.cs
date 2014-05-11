@@ -84,6 +84,7 @@
             this.Controls.Add(this.btnCreateGame);
             this.Name = "frmStartGame";
             this.Text = "开始游戏";
+            this.Load += new System.EventHandler(this.frmStartGame_Load);
             this.ResumeLayout(false);
 
         }

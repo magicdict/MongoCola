@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AbilityCard xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SN>A999999</SN>
+  <SN>A900001</SN>
   <Name>幸运币</Name>
   <Description>获得一个法力水晶</Description>
   <Rare>白色</Rare>

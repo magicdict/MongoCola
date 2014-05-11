@@ -48,24 +48,6 @@ namespace Card.Player
         /// 手牌数
         /// </summary>
         public int HandCardCount = 30;
-
-
-        #region"服务器端通信"
-        /// <summary>
-        /// 
-        /// </summary>
-        public void SendMessage()
-        {
-
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetMessage()
-        {
-
-        }
-        #endregion
     }
     /// <summary>
     /// 本方情报

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Card.Player;
+using System;
 using System.Collections.Generic;
 
 namespace Card.Server
@@ -41,6 +42,9 @@ namespace Card.Server
                 GameWaitGuest[GameId].GuestNickName = GuestNickName;
                 GameRunding.Add(GameId, GameWaitGuest[GameId]);
                 GameWaitGuest.Remove(GameId);
+                //套牌
+                GameRunding[GameId].SetCardStack(true, CardDeck.GetRandomCardStack(0));
+                GameRunding[GameId].SetCardStack(false, CardDeck.GetRandomCardStack(1));
                 return GameId;
             }
             else
@@ -68,6 +72,7 @@ namespace Card.Server
         /// <returns></returns>
         public static String IsGameStart(int GameId)
         {
+            System.Diagnostics.Debug.WriteLine("IsGameStart:" + GameRunding.Count);
             return GameRunding.ContainsKey(GameId) ? CardUtility.strTrue : CardUtility.strFalse;
         }
         /// <summary>
@@ -78,6 +83,7 @@ namespace Card.Server
         /// <returns></returns>
         public static Boolean IsFirst(int GameId, bool IsHost)
         {
+            System.Diagnostics.Debug.WriteLine("IsFirst:" + GameRunding.Count);
             return ((IsHost && GameRunding[GameId].HostAsFirst) || (!IsHost && !GameRunding[GameId].HostAsFirst));
         }
         /// <summary>
@@ -89,6 +95,7 @@ namespace Card.Server
         {
             //IsHost == false 的时候，初始化已经完成，
             //网络版的时候，要向两个客户端发送开始游戏的下一步指令            
+            System.Diagnostics.Debug.WriteLine("SetCardStack:" + GameRunding.Count);
             var result = GameRunding[GameId].SetCardStack(IsHost, card);
         }
         /// <summary>
@@ -100,9 +107,8 @@ namespace Card.Server
         /// <returns></returns>
         public static List<string> DrawCard(int GameId, bool IsFirst, int Count)
         {
+            System.Diagnostics.Debug.WriteLine("SetCardStack:" + GameRunding.Count);
             return GameRunding[GameId].DrawCard(IsFirst, Count);
         }
-
-
     }
 }

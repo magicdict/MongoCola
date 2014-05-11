@@ -83,6 +83,10 @@ namespace Card.Server
                 case RequestType.先后手状态:
                     Response = GameServer.IsFirst(int.Parse(Request.Substring(3, 5)), Request.Substring(8, 1) == CardUtility.strTrue) ? CardUtility.strTrue : CardUtility.strFalse;
                     break;
+                case RequestType.抽牌:
+                    var Cardlist = GameServer.DrawCard(int.Parse(Request.Substring(3, 5)), Request.Substring(8, 1) == CardUtility.strTrue,int.Parse(Request.Substring(9, 1) ));
+                    Response = String.Join("|",Cardlist.ToArray());
+                    break;
                 default:
                     break;
             }

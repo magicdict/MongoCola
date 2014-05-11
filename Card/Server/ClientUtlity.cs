@@ -55,5 +55,23 @@ namespace Card.Server
             String requestInfo = Card.Server.Communication.RequestType.先后手状态.GetHashCode().ToString("D3") + GameId + (IsHost ? CardUtility.strTrue : CardUtility.strFalse);
             return Card.Server.Communication.Request(requestInfo) == CardUtility.strTrue;
         }
+
+        /// <summary>
+        /// 抽牌
+        /// </summary>
+        /// <param name="GameId"></param>
+        /// <param name="IsFirst"></param>
+        /// <param name="CardCount"></param>
+        /// <returns></returns>
+        public static List<String> DrawCard(String GameId, bool IsFirst, int CardCount)
+        {
+            String requestInfo = Card.Server.Communication.RequestType.抽牌.GetHashCode().ToString("D3") + GameId + (IsFirst ? CardUtility.strTrue : CardUtility.strFalse) + CardCount.ToString("D1");
+            List<String> CardList = new List<string>();
+            foreach (var card in Card.Server.Communication.Request(requestInfo).Split("|".ToArray()))
+            {
+                CardList.Add(card);
+            }
+            return CardList;
+        }
     }
 }

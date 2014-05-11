@@ -39,7 +39,8 @@ namespace Card
         /// </summary>
         /// <param name="SN"></param>
         /// <returns></returns>
-        public static String GetCardNameBySN(String SN){
+        public static String GetCardNameBySN(String SN)
+        {
             if (ReadyCardDic.ContainsKey(SN)) return ReadyCardDic[SN];
             return "UnKnow";
         }
@@ -52,6 +53,7 @@ namespace Card
         /// </summary>
         public static void GetCardInfoFromXml()
         {
+            //调用侧的NET版本3.5会引发错误。。。
             CardCollections.Clear();
             foreach (var AbilityXml in Directory.GetFiles(CardXmlFolder + "\\Ability\\"))
             {
@@ -69,6 +71,21 @@ namespace Card
                 CardCollections.Add((WeaponCard)xml.Deserialize(new StreamReader(WeaponXml)));
             }
         }
+
+        #region"常数"
+        /// <summary>
+        /// 真
+        /// </summary>
+        public const String strTrue = "1";
+        /// <summary>
+        /// 假
+        /// </summary>
+        public const String strFalse = "0";
+        /// <summary>
+        /// 幸运币
+        /// </summary>
+        public const String SN幸运币 = "A900001";
+        #endregion
         #region"枚举值"
         /// <summary>
         /// 职业
@@ -178,14 +195,6 @@ namespace Card
             /// </summary>
             异常
         }
-        /// <summary>
-        /// 真
-        /// </summary>
-        public const String strTrue = "1";
-        /// <summary>
-        /// 假
-        /// </summary>
-        public const String strFalse = "0";
         #endregion
         /// <summary>
         /// 随机打算数组
@@ -198,7 +207,7 @@ namespace Card
             int len = array.Length;
             System.Collections.Generic.List<int> list = new System.Collections.Generic.List<int>();
             T[] ret = new T[len];
-            Random rand = Seed ==0?new Random():new Random(Seed);
+            Random rand = Seed == 0 ? new Random() : new Random(Seed);
             int i = 0;
             while (list.Count < len)
             {
@@ -218,7 +227,7 @@ namespace Card
         /// <typeparam name="T"></typeparam>
         /// <param name="strEnum"></param>
         /// <returns></returns>
-        public static T GetEnum<T>(String strEnum,T Default)
+        public static T GetEnum<T>(String strEnum, T Default)
         {
             if (String.IsNullOrEmpty(strEnum)) return Default;
             try
@@ -237,7 +246,7 @@ namespace Card
         /// <param name="StringInt"></param>
         /// <param name="DefaultValue">默认值</param>
         /// <returns></returns>
-        public static int GetInt(String StringInt,int DefaultValue = 0)
+        public static int GetInt(String StringInt, int DefaultValue = 0)
         {
             if (String.IsNullOrEmpty(StringInt)) return DefaultValue;
             return int.Parse(StringInt);
@@ -245,7 +254,8 @@ namespace Card
         /// <summary>
         /// 用户指定位置
         /// </summary>
-        public struct TargetPosition{
+        public struct TargetPosition
+        {
             /// <summary>
             /// 是否为先手的对象
             /// </summary>

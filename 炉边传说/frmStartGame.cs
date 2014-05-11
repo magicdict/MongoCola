@@ -59,5 +59,10 @@ namespace 炉边传说
             GameManager.IsFirst = Card.Server.ClientUtlity.IsFirst(GameManager.GameId.ToString("D5"), GameManager.IsHost);
             new BattleField().ShowDialog();
         }
+
+        private void frmStartGame_Load(object sender, EventArgs e)
+        {
+            Card.CardUtility.Init(@"C:\MagicMongoDBTool\CardHelper\CardXML");
+        }
     }
 }
