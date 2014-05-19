@@ -69,7 +69,7 @@ namespace Card.Server
             {
                 case RequestType.新建游戏:
                     //返回GameId
-                    Response = GameServer.CreateNewGame(Request.Substring(3)).ToString("D5");
+                    Response = GameServer.CreateNewGame(Request.Substring(3)).ToString(GameServer.GameIdFormat);
                     break;
                 case RequestType.等待游戏列表:
                     Response = GameServer.GetWaitGameList();
@@ -100,6 +100,8 @@ namespace Card.Server
             bytes = Encoding.ASCII.GetBytes(Response);
             stream.Write(bytes, 0, bytes.Length);
             client.Close();
+            //logger.Log("Request :[" + requestType.ToString() + "]");
+            //logger.Log("Response:[" + Response.ToString() + "]");
         }
         /// <summary>
         /// 请求

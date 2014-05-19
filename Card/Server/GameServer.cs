@@ -11,6 +11,10 @@ namespace Card.Server
         /// </summary>
         public static int GameId = 0;
         /// <summary>
+        /// GameId Format
+        /// </summary>
+        public static String GameIdFormat = "D5";
+        /// <summary>
         /// 等待玩家游戏
         /// </summary>
         public static Dictionary<int, GameStatusAtServer> GameWaitGuest = new Dictionary<int, GameStatusAtServer>();

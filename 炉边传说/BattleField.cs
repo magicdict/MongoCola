@@ -1,6 +1,9 @@
 ﻿using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.Collections.Generic;
+using System;
+using Card.Server;
 
 namespace 炉边传说
 {
@@ -11,15 +14,26 @@ namespace 炉边传说
             InitializeComponent();
         }
         /// <summary>
-        /// 
+        /// 实例方法
         /// </summary>
-        private Thread WaitForThread = new Thread(WaitFor);
+        private Thread WaitForThread;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BattleField_Load(object sender, System.EventArgs e)
+        {
+            Control.CheckForIllegalCrossThreadCalls = false;
+            System.Diagnostics.Debug.WriteLine("Loading");
+            DisplayMyInfo();
+            GameManager.IsMyTurn = GameManager.IsFirst;
+            StartNewTurn();
+        }
+        /// <summary>
+        /// 显示我方状态
+        /// </summary>
+        private void DisplayMyInfo()
         {
             //抽手牌,先手3张，后手4张，后手还有幸运币，不公平啊
             StringBuilder Status = new StringBuilder();
@@ -41,24 +55,39 @@ namespace 炉边传说
             {
                 lstHandCard.Items.Add(Card.CardUtility.GetCardNameBySN(handCard) + "[" + handCard + "]");
             }
-            btnEndTurn.Enabled = false;
-            if (GameManager.IsFirst)
+        }
+        /// <summary>
+        /// 新的回合
+        /// </summary>
+        private void StartNewTurn() {
+            GameManager.NewTurn();
+            if (GameManager.IsMyTurn)
             {
-                MessageBox.Show("Your Turn");
+                DisplayMyInfo();
                 btnEndTurn.Enabled = true;
+                lblEnemyBattle.Text = "You Turn";
             }
             else {
-               //WaitForThread.Start();
+                btnEndTurn.Enabled = false;
+                lblEnemyBattle.Text = "Enemy Action";
+                WaitForThread = new Thread(new BattleField().WaitFor);
+                WaitForThread.Start();
             }
         }
         /// <summary>
-        /// 
+        /// 读取
         /// </summary>
-        private static void WaitFor() {
-            while (!Card.Server.ClientUtlity.IsGameStart("aaaa"))
+        private void WaitFor()
+        {
+            do
             {
-                Thread.Sleep(3000);
-            }
+                var Actions = Card.Server.ClientUtlity.ReadAction(GameManager.GameId.ToString(GameServer.GameIdFormat));
+                lblAction.Text = "[" + Actions + "]";
+                if (!(String.IsNullOrEmpty(Actions))) {
+                    break; 
+                }
+                Thread.Sleep(5000);
+            } while (true);
         }
         /// <summary>
         /// 
@@ -103,7 +132,17 @@ namespace 炉边传说
         /// <param name="e"></param>
         private void btnEndTurn_Click(object sender, System.EventArgs e)
         {
-            Card.Server.ClientUtlity.TurnEnd(GameManager.GameId.ToString("D3"));
+            Card.Server.ClientUtlity.TurnEnd(GameManager.GameId.ToString(GameServer.GameIdFormat));
+            btnEndTurn.Enabled = false;
+            lblEnemyBattle.Text = "Enemy Action";
+            WaitForThread = new Thread(new BattleField().WaitFor);
+            WaitForThread.Start();
+        }
+
+        private void btnReadAction_Click(object sender, EventArgs e)
+        {
+            var Actions = Card.Server.ClientUtlity.ReadAction(GameManager.GameId.ToString(GameServer.GameIdFormat));
+            MessageBox.Show("[" + Actions + "]");
         }
     }
 }

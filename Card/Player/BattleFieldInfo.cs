@@ -53,5 +53,18 @@ namespace Card.Player
             }
             MinionCount++;
         }
+        /// <summary>
+        /// 从战场移除单位
+        /// </summary>
+        /// <param name="Position">从1开始的位置</param>
+        /// <remarks>不涉及到亡语等计算</remarks>
+        public void GetOutFromBattle(int Position)
+        {
+            for (int i = Position - 1; i < MaxMinionCount - 1; i++)
+            {
+                BattleMinions[i] = BattleMinions[i + 1];
+            }
+            BattleMinions[MaxMinionCount - 1] = null;
+        }
     }
 }

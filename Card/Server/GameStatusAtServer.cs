@@ -34,6 +34,10 @@ namespace Card.Server
         /// </summary>
         public Boolean HostAsFirst = false;
         /// <summary>
+        /// 当前是否为先手正在的回合
+        /// </summary>
+        public Boolean IsFirstNowTurn = false;
+        /// <summary>
         /// 先手牌堆
         /// </summary>
         private CardDeck FirstCardDeck = new CardDeck();
@@ -117,6 +121,8 @@ namespace Card.Server
         public void WriteAction(String Action)
         {
             ActionInfo.Add(Action);
+            //如果是回合结束的指令的时候，翻转是否是先手回合的标志
+            if (Action == CardUtility.strEndTurn) IsFirstNowTurn = !IsFirstNowTurn;
         }
         /// <summary>
         /// 读取指令
@@ -126,9 +132,9 @@ namespace Card.Server
             String lstAction = String.Empty;
             foreach (var item in ActionInfo)
             {
-                lstAction = item + System.Environment.NewLine;
+                lstAction += item + "|";
             }
-            if (!String.IsNullOrEmpty(lstAction)) lstAction = lstAction.TrimEnd(System.Environment.NewLine.ToCharArray());
+            if (!String.IsNullOrEmpty(lstAction)) lstAction = lstAction.TrimEnd("|".ToCharArray());
             ActionInfo.Clear();
             return lstAction;
         }

@@ -28,6 +28,10 @@ namespace 炉边传说
         /// </summary>
         public static int GameId;
         /// <summary>
+        /// 是否为我的回合
+        /// </summary>
+        public static Boolean IsMyTurn;
+        /// <summary>
         /// 初始化
         /// </summary>
         public static void Init()
@@ -37,7 +41,7 @@ namespace 炉边传说
             //图片请求
             CardUtility.GetCardImage += GetCardImageAtServer;
             //属性
-            var HandCard = Card.Server.ClientUtlity.DrawCard(GameId.ToString("D5"), GameManager.IsFirst, GameManager.IsFirst ? 3 : 4);
+            var HandCard = Card.Server.ClientUtlity.DrawCard(GameId.ToString(GameServer.GameIdFormat), GameManager.IsFirst, GameManager.IsFirst ? 3 : 4);
             if (!IsFirst) HandCard.Add(Card.CardUtility.SN幸运币);
             SelfInfo.handCards = HandCard;
             SelfInfo.role.HandCardCount = HandCard.Count;
@@ -60,6 +64,25 @@ namespace 炉边传说
         /// 对方情报
         /// </summary>
         public static PlayerBasicInfo AgainstInfo = new PlayerBasicInfo();
+        /// <summary>
+        /// 新的回合
+        /// </summary>
+        public static void NewTurn(){
+            if (IsMyTurn)
+            {
+                //魔法水晶的增加
+                SelfInfo.role.crystal.NewTurn();
+                //手牌
+                SelfInfo.handCards.AddRange(Card.Server.ClientUtlity.DrawCard(GameId.ToString(GameServer.GameIdFormat), IsFirst, 1));
+                SelfInfo.role.HandCardCount++;
+                SelfInfo.role.RemainCardDeckCount--;
+            }
+            else {
+                AgainstInfo.crystal.NewTurn();
+                AgainstInfo.HandCardCount++;
+                AgainstInfo.RemainCardDeckCount--;
+            }
+        }
         /// <summary>
         /// 抽牌（服务器方法）
         /// </summary>

@@ -23,7 +23,7 @@ namespace Card.Server
         /// <returns></returns>
         public static String JoinGame(int GameId, String NickName)
         {
-            String requestInfo = Card.Server.Communication.RequestType.加入游戏.GetHashCode().ToString("D3") + GameId.ToString("D5") + NickName;
+            String requestInfo = Card.Server.Communication.RequestType.加入游戏.GetHashCode().ToString("D3") + GameId.ToString(GameServer.GameIdFormat) + NickName;
             return Card.Server.Communication.Request(requestInfo);
         }
         /// <summary>
@@ -92,10 +92,10 @@ namespace Card.Server
         /// </summary>
         /// <param name="GameId"></param>
         /// <returns></returns>
-        public static List<String> ReadAction(String GameId)
+        public static String ReadAction(String GameId)
         {
-            String requestInfo = Card.Server.Communication.RequestType.写入行动.GetHashCode().ToString("D3") + GameId;
-            return null;
+            String requestInfo = Card.Server.Communication.RequestType.读取行动.GetHashCode().ToString("D3") + GameId;
+            return Card.Server.Communication.Request(requestInfo);
         }
     }
 }

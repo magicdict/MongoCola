@@ -18,6 +18,8 @@ namespace 火炉服务器
         private void btnStart_Click(object sender, EventArgs e)
         {
             Card.CardUtility.Init(@"C:\MagicMongoDBTool\CardHelper\CardXML");
+            btnStart.Enabled = false;
+            btnStop.Enabled = true;
             ServerThread = new Thread(Card.Server.Communication.StartServer);
             ServerThread.Start();
         }
