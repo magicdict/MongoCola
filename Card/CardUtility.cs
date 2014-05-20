@@ -129,6 +129,10 @@ namespace Card
         public enum TargetSelectModeEnum
         {
             /// <summary>
+            /// 无需选择
+            /// </summary>
+            不用选择,
+            /// <summary>
             /// 随机
             /// </summary>
             随机,
@@ -173,7 +177,7 @@ namespace Card
             /// </summary>
             英雄,
             /// <summary>
-            /// 全体
+            /// 全体（随从+英雄）
             /// </summary>
             全体,
             /// <summary>
@@ -277,9 +281,9 @@ namespace Card
         public struct TargetPosition
         {
             /// <summary>
-            /// 是否为先手的对象
+            /// 本方/对方
             /// </summary>
-            public Boolean IsFirst;
+            public Boolean MyOrAgainst;
             /// <summary>
             /// 0 - 英雄，1-7 随从位置
             /// </summary>

@@ -32,6 +32,10 @@ namespace 炉边传说
         /// </summary>
         public static Boolean IsMyTurn;
         /// <summary>
+        /// 获得目标对象
+        /// </summary>
+        public static Card.CardUtility.deleteGetTargetPosition GetSelectTarget;
+        /// <summary>
         /// 初始化
         /// </summary>
         public static void Init()
@@ -43,23 +47,23 @@ namespace 炉边传说
             //属性
             var HandCard = Card.Server.ClientUtlity.DrawCard(GameId.ToString(GameServer.GameIdFormat), GameManager.IsFirst, GameManager.IsFirst ? 3 : 4);
             if (!IsFirst) HandCard.Add(Card.CardUtility.SN幸运币);
-            SelfInfo.handCards = HandCard;
-            SelfInfo.role.HandCardCount = HandCard.Count;
+            MySelf.handCards = HandCard;
+            MySelf.RoleInfo.HandCardCount = HandCard.Count;
             if (IsFirst)
             {
-                SelfInfo.role.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 3;
+                MySelf.RoleInfo.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 3;
                 AgainstInfo.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 4;
             }
             else
             {
-                SelfInfo.role.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 4;
+                MySelf.RoleInfo.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 4;
                 AgainstInfo.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 3;
             }
         }
         /// <summary>
         /// 本方情报
         /// </summary>
-        public static PlayerDetailInfo SelfInfo = new PlayerDetailInfo();
+        public static PlayerDetailInfo MySelf = new PlayerDetailInfo();
         /// <summary>
         /// 对方情报
         /// </summary>
@@ -71,17 +75,27 @@ namespace 炉边传说
             if (IsMyTurn)
             {
                 //魔法水晶的增加
-                SelfInfo.role.crystal.NewTurn();
+                MySelf.RoleInfo.crystal.NewTurn();
                 //手牌
-                SelfInfo.handCards.AddRange(Card.Server.ClientUtlity.DrawCard(GameId.ToString(GameServer.GameIdFormat), IsFirst, 1));
-                SelfInfo.role.HandCardCount++;
-                SelfInfo.role.RemainCardDeckCount--;
+                MySelf.handCards.AddRange(Card.Server.ClientUtlity.DrawCard(GameId.ToString(GameServer.GameIdFormat), IsFirst, 1));
+                MySelf.RoleInfo.HandCardCount++;
+                MySelf.RoleInfo.RemainCardDeckCount--;
             }
             else {
                 AgainstInfo.crystal.NewTurn();
                 AgainstInfo.HandCardCount++;
                 AgainstInfo.RemainCardDeckCount--;
             }
+        }
+        /// <summary>
+        /// 使用法术
+        /// </summary>
+        /// <param name="CardSn"></param>
+        public static String[] UseAbility(String CardSn)
+        {
+            String[] Ablitiy = new String[] { };
+            Card.AbilityCard.RunAbility(CardSn,GetSelectTarget);
+            return Ablitiy;
         }
         /// <summary>
         /// 抽牌（服务器方法）

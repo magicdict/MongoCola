@@ -27,6 +27,16 @@ namespace Card.Player
         /// <summary>
         /// 卡牌入战场
         /// </summary>
+        /// <param name="Position"></param>
+        /// <param name="CardSn"></param>
+        public void PutToBattle(int Position, String CardSn)
+        {
+            Card.CardBasicInfo card = Card.CardUtility.GetCardInfoBySN(CardSn);
+            PutToBattle(Position, (MinionCard)card);
+        }
+        /// <summary>
+        /// 卡牌入战场
+        /// </summary>
         /// <param name="Position">从1开始的位置</param>
         /// <param name="Minion">随从</param>
         /// <remarks>不涉及到战吼等计算</remarks>

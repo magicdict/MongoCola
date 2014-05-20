@@ -34,8 +34,8 @@
             this.btnEndTurn = new System.Windows.Forms.Button();
             this.lblEnemyBattle = new System.Windows.Forms.Label();
             this.btnUseHandCard = new System.Windows.Forms.Button();
-            this.btnReadAction = new System.Windows.Forms.Button();
             this.lstAction = new System.Windows.Forms.ListBox();
+            this.lstMyMinion = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lblStatus
@@ -50,7 +50,7 @@
             // lstHandCard
             // 
             this.lstHandCard.FormattingEnabled = true;
-            this.lstHandCard.Location = new System.Drawing.Point(15, 304);
+            this.lstHandCard.Location = new System.Drawing.Point(477, 303);
             this.lstHandCard.Name = "lstHandCard";
             this.lstHandCard.Size = new System.Drawing.Size(120, 95);
             this.lstHandCard.TabIndex = 1;
@@ -59,7 +59,7 @@
             // lblSelectedHandCardInfo
             // 
             this.lblSelectedHandCardInfo.AutoSize = true;
-            this.lblSelectedHandCardInfo.Location = new System.Drawing.Point(162, 304);
+            this.lblSelectedHandCardInfo.Location = new System.Drawing.Point(618, 303);
             this.lblSelectedHandCardInfo.Name = "lblSelectedHandCardInfo";
             this.lblSelectedHandCardInfo.Size = new System.Drawing.Size(79, 13);
             this.lblSelectedHandCardInfo.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // btnEndTurn
             // 
-            this.btnEndTurn.Location = new System.Drawing.Point(762, 183);
+            this.btnEndTurn.Location = new System.Drawing.Point(810, 230);
             this.btnEndTurn.Name = "btnEndTurn";
             this.btnEndTurn.Size = new System.Drawing.Size(75, 23);
             this.btnEndTurn.TabIndex = 3;
@@ -78,15 +78,15 @@
             // lblEnemyBattle
             // 
             this.lblEnemyBattle.AutoSize = true;
-            this.lblEnemyBattle.Location = new System.Drawing.Point(162, 9);
+            this.lblEnemyBattle.Location = new System.Drawing.Point(293, 9);
             this.lblEnemyBattle.Name = "lblEnemyBattle";
             this.lblEnemyBattle.Size = new System.Drawing.Size(55, 13);
             this.lblEnemyBattle.TabIndex = 4;
-            this.lblEnemyBattle.Text = "对手动作";
+            this.lblEnemyBattle.Text = "回合指示";
             // 
             // btnUseHandCard
             // 
-            this.btnUseHandCard.Location = new System.Drawing.Point(296, 376);
+            this.btnUseHandCard.Location = new System.Drawing.Point(477, 404);
             this.btnUseHandCard.Name = "btnUseHandCard";
             this.btnUseHandCard.Size = new System.Drawing.Size(75, 23);
             this.btnUseHandCard.TabIndex = 5;
@@ -94,32 +94,30 @@
             this.btnUseHandCard.UseVisualStyleBackColor = true;
             this.btnUseHandCard.Click += new System.EventHandler(this.btnUseHandCard_Click);
             // 
-            // btnReadAction
-            // 
-            this.btnReadAction.Location = new System.Drawing.Point(714, 376);
-            this.btnReadAction.Name = "btnReadAction";
-            this.btnReadAction.Size = new System.Drawing.Size(123, 23);
-            this.btnReadAction.TabIndex = 6;
-            this.btnReadAction.Text = "[TEST]读取对手动作";
-            this.btnReadAction.UseVisualStyleBackColor = true;
-            this.btnReadAction.Click += new System.EventHandler(this.btnReadAction_Click);
-            // 
             // lstAction
             // 
             this.lstAction.FormattingEnabled = true;
-            this.lstAction.Location = new System.Drawing.Point(714, 256);
+            this.lstAction.Location = new System.Drawing.Point(762, 303);
             this.lstAction.Name = "lstAction";
             this.lstAction.Size = new System.Drawing.Size(120, 95);
             this.lstAction.TabIndex = 7;
+            // 
+            // lstMyMinion
+            // 
+            this.lstMyMinion.FormattingEnabled = true;
+            this.lstMyMinion.Location = new System.Drawing.Point(244, 91);
+            this.lstMyMinion.Name = "lstMyMinion";
+            this.lstMyMinion.Size = new System.Drawing.Size(120, 303);
+            this.lstMyMinion.TabIndex = 8;
             // 
             // BattleField
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(849, 411);
+            this.ClientSize = new System.Drawing.Size(971, 502);
+            this.Controls.Add(this.lstMyMinion);
             this.Controls.Add(this.lstAction);
-            this.Controls.Add(this.btnReadAction);
             this.Controls.Add(this.btnUseHandCard);
             this.Controls.Add(this.lblEnemyBattle);
             this.Controls.Add(this.btnEndTurn);
@@ -142,8 +140,8 @@
         private System.Windows.Forms.Button btnEndTurn;
         private System.Windows.Forms.Label lblEnemyBattle;
         private System.Windows.Forms.Button btnUseHandCard;
-        private System.Windows.Forms.Button btnReadAction;
         private System.Windows.Forms.ListBox lstAction;
+        private System.Windows.Forms.ListBox lstMyMinion;
 
     }
 }

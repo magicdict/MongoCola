@@ -162,7 +162,7 @@ namespace CardHelper
                 effect.AbilityEffectType = CardUtility.GetEnum<Card.Effect.CardDeckEffect.AbilityEffectEnum>(worksheet.Cells(rowCount, 14).Text, Card.Effect.CardDeckEffect.AbilityEffectEnum.Attack);
                 effect.EffectTargetSelectDirect = CardUtility.GetEnum<Card.CardUtility.TargetSelectDirectEnum>(worksheet.Cells(rowCount, 15).Text, CardUtility.TargetSelectDirectEnum.无限制);
                 effect.EffectTargetSelectRole = CardUtility.GetEnum<Card.CardUtility.TargetSelectRoleEnum>(worksheet.Cells(rowCount, 16).Text, CardUtility.TargetSelectRoleEnum.随从);
-                effect.EffictTargetSelectMode = CardUtility.GetEnum<Card.CardUtility.TargetSelectModeEnum>(worksheet.Cells(rowCount, 17).Text, CardUtility.TargetSelectModeEnum.全体);
+                effect.EffictTargetSelectMode = CardUtility.GetEnum<Card.CardUtility.TargetSelectModeEnum>(worksheet.Cells(rowCount, 17).Text, CardUtility.TargetSelectModeEnum.不用选择);
                 effect.StandardEffectPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 18).Text);
                 effect.EffectCount = CardUtility.GetInt(worksheet.Cells(rowCount, 19).Text);
                 effect.AddtionInfo = worksheet.Cells(rowCount, 20).Text;

@@ -57,10 +57,14 @@ namespace Card.Player
         /// <summary>
         /// 基本情报
         /// </summary>
-        public PlayerBasicInfo role = new PlayerBasicInfo();
+        public PlayerBasicInfo RoleInfo = new PlayerBasicInfo();
         /// <summary>
         /// 手牌
         /// </summary>
         public List<String> handCards = new List<string>();
+        /// <summary>
+        /// 奥秘
+        /// </summary>
+        public List<Card.Effect.EffectDefine> 奥秘 = new List<Effect.EffectDefine>();
     }
 }

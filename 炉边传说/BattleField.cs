@@ -1,4 +1,5 @@
-﻿using Card.Server;
+﻿using Card;
+using Card.Server;
 using System;
 using System.Text;
 using System.Windows.Forms;
@@ -19,11 +20,22 @@ namespace 炉边传说
         /// <param name="e"></param>
         private void BattleField_Load(object sender, System.EventArgs e)
         {
+            GameManager.GetSelectTarget = SelectPanel;
             WaitTimer.Interval = 3000;
             WaitTimer.Tick += WaitFor;
             DisplayMyInfo();
             GameManager.IsMyTurn = GameManager.IsFirst;
             StartNewTurn();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private CardUtility.TargetPosition SelectPanel()
+        {
+            CardUtility.TargetPosition t = new Card.CardUtility.TargetPosition();
+
+            return t;
         }
         /// <summary>
         /// 显示我方状态
@@ -40,20 +52,36 @@ namespace 炉边传说
             Status.AppendLine("IsFirst：" + GameManager.IsFirst);
             Status.AppendLine("==============");
             Status.AppendLine("Role：");
-            Status.AppendLine("Crystal：" + GameManager.SelfInfo.role.crystal.CurrentRemainPoint + "/" + GameManager.SelfInfo.role.crystal.CurrentFullPoint);
-            Status.AppendLine("HealthPoint：" + GameManager.SelfInfo.role.HealthPoint);
-            Status.AppendLine("RemainCardDeckCount：" + GameManager.SelfInfo.role.RemainCardDeckCount);
+            Status.AppendLine("Crystal：" + GameManager.MySelf.RoleInfo.crystal.CurrentRemainPoint + "/" + GameManager.MySelf.RoleInfo.crystal.CurrentFullPoint);
+            Status.AppendLine("HealthPoint：" + GameManager.MySelf.RoleInfo.HealthPoint);
+            Status.AppendLine("RemainCardDeckCount：" + GameManager.MySelf.RoleInfo.RemainCardDeckCount);
             Status.AppendLine("==============");
             Status.AppendLine("Battle：");
-            for (int i = 0; i < GameManager.SelfInfo.role.myBattleField.BattleMinions.Length; i++)
+            lstMyMinion.Items.Clear();
+            lstMyMinion.Items.Add("本方英雄");
+            for (int i = 0; i < GameManager.MySelf.RoleInfo.myBattleField.BattleMinions.Length; i++)
             {
-                Status.AppendLine("Position" + i.ToString() + "：" +
-                    (GameManager.SelfInfo.role.myBattleField.BattleMinions[i] == null ? "[NULL]" : GameManager.SelfInfo.role.myBattleField.BattleMinions[i].Name));
+                lstMyMinion.Items.Add("本方位置" + i.ToString() + "：" +
+                    (GameManager.MySelf.RoleInfo.myBattleField.BattleMinions[i] == null ? "[NULL]" : GameManager.MySelf.RoleInfo.myBattleField.BattleMinions[i].Name));
+            }
+            Status.AppendLine("==============");
+            Status.AppendLine("Role：");
+            Status.AppendLine("Crystal：" + GameManager.AgainstInfo.crystal.CurrentRemainPoint + "/" + GameManager.AgainstInfo.crystal.CurrentFullPoint);
+            Status.AppendLine("HealthPoint：" + GameManager.AgainstInfo.HealthPoint);
+            Status.AppendLine("RemainCardDeckCount：" + GameManager.AgainstInfo.RemainCardDeckCount);
+            Status.AppendLine("==============");
+            Status.AppendLine("Battle：");
+
+            lstMyMinion.Items.Add("对方英雄");
+            for (int i = 0; i < GameManager.AgainstInfo.myBattleField.BattleMinions.Length; i++)
+            {
+                lstMyMinion.Items.Add("对方位置" + i.ToString() + "：" +
+                    (GameManager.AgainstInfo.myBattleField.BattleMinions[i] == null ? "[NULL]" : GameManager.AgainstInfo.myBattleField.BattleMinions[i].Name));
             }
             Status.AppendLine("==============");
             lblStatus.Text = Status.ToString();
             lstHandCard.Items.Clear();
-            foreach (var handCard in GameManager.SelfInfo.handCards)
+            foreach (var handCard in GameManager.MySelf.handCards)
             {
                 lstHandCard.Items.Add(Card.CardUtility.GetCardNameBySN(handCard) + "[" + handCard + "]");
             }
@@ -90,14 +118,29 @@ namespace 炉边传说
             foreach (var item in ActionList)
             {
                 lstAction.Items.Add("[" + item + "]");
+                switch (Card.Server.ActionCode.GetActionType(item))
+                {
+                    case ActionCode.ActionType.UseWeapon:
+                        break;
+                    case ActionCode.ActionType.UseMinion:
+                        int Pos = int.Parse(item.Substring("MINION".Length + 1 + 7 + 1));
+                        String CardSn = item.Substring("MINION".Length + 1, 7);
+                        GameManager.AgainstInfo.myBattleField.PutToBattle(Pos, CardSn);
+                        break;
+                    case ActionCode.ActionType.UseAbility:
+
+                        break;
+                    case ActionCode.ActionType.EndTurn:
+                        WaitTimer.Stop();
+                        btnEndTurn.Enabled = true;
+                        GameManager.IsMyTurn = true;
+                        StartNewTurn();
+                        break;
+                    case ActionCode.ActionType.UnKnown:
+                        break;
+                }
             }
-            if (ActionList[ActionList.Length - 1] == Card.CardUtility.strEndTurn)
-            {
-                WaitTimer.Stop();
-                btnEndTurn.Enabled = true;
-                GameManager.IsMyTurn = true;
-                StartNewTurn();
-            }
+            DisplayMyInfo();
         }
         /// <summary>
         /// 
@@ -148,16 +191,6 @@ namespace 炉边传说
             WaitTimer.Start();
         }
         /// <summary>
-        /// 读取对方行动
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnReadAction_Click(object sender, EventArgs e)
-        {
-            var Actions = Card.Server.ClientUtlity.ReadAction(GameManager.GameId.ToString(GameServer.GameIdFormat));
-            MessageBox.Show("[" + Actions + "]");
-        }
-        /// <summary>
         /// 使用手牌
         /// </summary>
         /// <param name="sender"></param>
@@ -169,10 +202,10 @@ namespace 炉边传说
             if (Card.CardUtility.GetCardInfoBySN(CardSn) != null)
             {
                 Card.CardBasicInfo card = Card.CardUtility.GetCardInfoBySN(CardSn);
-                if (GameManager.SelfInfo.role.crystal.CurrentRemainPoint >= card.ActualCostPoint)
+                if (GameManager.MySelf.RoleInfo.crystal.CurrentRemainPoint >= card.ActualCostPoint)
                 {
-                    GameManager.SelfInfo.role.crystal.CurrentRemainPoint -= card.ActualCostPoint;
-                    GameManager.SelfInfo.handCards.Remove(CardSn);
+                    GameManager.MySelf.RoleInfo.crystal.CurrentRemainPoint -= card.ActualCostPoint;
+                    GameManager.MySelf.handCards.Remove(CardSn);
                 }
                 else
                 {
@@ -183,16 +216,17 @@ namespace 炉边传说
                 switch (CardSn.Substring(0, 1))
                 {
                     case "A":
-                        strActionCode = ActionCode.UseAbility(CardSn, new string[] { });
+                        var ResultArg = GameManager.UseAbility(CardSn);
+                        strActionCode = ActionCode.UseAbility(CardSn, ResultArg);
                         break;
                     case "M":
-                        int MinionPos = GameManager.SelfInfo.role.myBattleField.MinionCount + 1;
+                        int MinionPos = GameManager.MySelf.RoleInfo.myBattleField.MinionCount + 1;
                         strActionCode = ActionCode.UseMinion(CardSn, MinionPos);
-                        GameManager.SelfInfo.role.myBattleField.PutToBattle(MinionPos, (Card.MinionCard)card);
+                        GameManager.MySelf.RoleInfo.myBattleField.PutToBattle(MinionPos, (Card.MinionCard)card);
                         break;
                     case "W":
                         strActionCode = ActionCode.UseWeapon(CardSn);
-                        GameManager.SelfInfo.role.Weapon = (Card.WeaponCard)card;
+                        GameManager.MySelf.RoleInfo.Weapon = (Card.WeaponCard)card;
                         break;
                     default:
                         break;

@@ -24,8 +24,12 @@ namespace Card
         /// <summary>
         /// 施法
         /// </summary>
-        public void RunAbility() { 
-            
+        /// <param name="CardSn"></param>
+        /// <param name="getTarget"></param>
+        /// <returns>效果</returns>
+        public static String[] RunAbility(String CardSn, Card.CardUtility.deleteGetTargetPosition getTarget)
+        {
+            return new string[] { };
         }
     }
 }
