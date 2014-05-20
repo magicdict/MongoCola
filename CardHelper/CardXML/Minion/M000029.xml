@@ -8,7 +8,7 @@
   <Overload>0</Overload>
   <Class>德鲁伊</Class>
   <StandardCostPoint>5</StandardCostPoint>
-  <ActualCostPoint>0</ActualCostPoint>
+  <ActualCostPoint>5</ActualCostPoint>
   <StandardAttackPoint>4</StandardAttackPoint>
   <StandardHealthPoint>4</StandardHealthPoint>
   <Standard嘲讽>false</Standard嘲讽>

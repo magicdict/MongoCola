@@ -98,6 +98,8 @@ namespace CardHelper
                 Minion.Description = worksheet.Cells(rowCount, 4).Text;
                 Minion.Class = CardUtility.GetEnum<Card.CardUtility.ClassEnum>(worksheet.Cells(rowCount, 5).Text, Card.CardUtility.ClassEnum.中立);
                 Minion.StandardCostPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 7).Text);
+                Minion.ActualCostPoint = Minion.StandardCostPoint;
+
                 Minion.StandardAttackPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 8).Text);
                 Minion.StandardHealthPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 9).Text);
                 Minion.Rare = CardUtility.GetEnum<Card.CardBasicInfo.稀有程度>(worksheet.Cells(rowCount, 12).Text, CardBasicInfo.稀有程度.白色);
@@ -151,6 +153,8 @@ namespace CardHelper
                 Ability.Description = worksheet.Cells(rowCount, 4).Text;
                 Ability.Class = CardUtility.GetEnum<Card.CardUtility.ClassEnum>(worksheet.Cells(rowCount, 5).Text, Card.CardUtility.ClassEnum.中立);
                 Ability.StandardCostPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 7).Text);
+                Ability.ActualCostPoint = Ability.StandardCostPoint;
+
                 Ability.Rare = CardUtility.GetEnum<Card.CardBasicInfo.稀有程度>(worksheet.Cells(rowCount, 12).Text, CardBasicInfo.稀有程度.白色);
                 Ability.IsCardReady = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 13).Text);
 
@@ -203,6 +207,8 @@ namespace CardHelper
                 Weapon.Description = worksheet.Cells(rowCount, 4).Text;
                 Weapon.Class = CardUtility.GetEnum<Card.CardUtility.ClassEnum>(worksheet.Cells(rowCount, 5).Text, Card.CardUtility.ClassEnum.中立);
                 Weapon.StandardCostPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 7).Text);
+                Weapon.ActualCostPoint = Weapon.StandardCostPoint;
+
                 Weapon.StandardAttackPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 8).Text);
                 Weapon.标准耐久度 = CardUtility.GetInt(worksheet.Cells(rowCount, 9).Text);
                 Weapon.Rare = CardUtility.GetEnum<Card.CardBasicInfo.稀有程度>(worksheet.Cells(rowCount, 12).Text, CardBasicInfo.稀有程度.白色);

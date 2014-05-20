@@ -13,7 +13,7 @@ namespace Card.Player
         /// </summary>
         public int CurrentFullPoint = 0;
         /// <summary>
-        /// 当前的水晶数
+        /// 当前可用水晶数
         /// </summary>
         public int CurrentRemainPoint = 0;
         /// <summary>

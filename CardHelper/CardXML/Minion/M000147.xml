@@ -8,7 +8,7 @@
   <Overload>0</Overload>
   <Class>术士</Class>
   <StandardCostPoint>3</StandardCostPoint>
-  <ActualCostPoint>0</ActualCostPoint>
+  <ActualCostPoint>3</ActualCostPoint>
   <StandardAttackPoint>3</StandardAttackPoint>
   <StandardHealthPoint>3</StandardHealthPoint>
   <Standard嘲讽>false</Standard嘲讽>

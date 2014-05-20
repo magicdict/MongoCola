@@ -8,7 +8,7 @@
   <Overload>0</Overload>
   <Class>猎人</Class>
   <StandardCostPoint>7</StandardCostPoint>
-  <ActualCostPoint>0</ActualCostPoint>
+  <ActualCostPoint>7</ActualCostPoint>
   <StandardAttackPoint>5</StandardAttackPoint>
   <ActualAttackPoint>-1</ActualAttackPoint>
   <标准耐久度>2</标准耐久度>

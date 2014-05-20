@@ -8,7 +8,7 @@
   <Overload>0</Overload>
   <Class>德鲁伊</Class>
   <StandardCostPoint>5</StandardCostPoint>
-  <ActualCostPoint>0</ActualCostPoint>
+  <ActualCostPoint>5</ActualCostPoint>
   <FirstAbilityDefine>
     <AbilityEffectType>Attack</AbilityEffectType>
     <EffictTargetSelectMode>全体</EffictTargetSelectMode>

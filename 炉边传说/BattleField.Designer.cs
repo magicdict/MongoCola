@@ -35,7 +35,7 @@
             this.lblEnemyBattle = new System.Windows.Forms.Label();
             this.btnUseHandCard = new System.Windows.Forms.Button();
             this.btnReadAction = new System.Windows.Forms.Button();
-            this.lblAction = new System.Windows.Forms.Label();
+            this.lstAction = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lblStatus
@@ -86,31 +86,31 @@
             // 
             // btnUseHandCard
             // 
-            this.btnUseHandCard.Location = new System.Drawing.Point(312, 376);
+            this.btnUseHandCard.Location = new System.Drawing.Point(296, 376);
             this.btnUseHandCard.Name = "btnUseHandCard";
             this.btnUseHandCard.Size = new System.Drawing.Size(75, 23);
             this.btnUseHandCard.TabIndex = 5;
             this.btnUseHandCard.Text = "使用手牌";
             this.btnUseHandCard.UseVisualStyleBackColor = true;
+            this.btnUseHandCard.Click += new System.EventHandler(this.btnUseHandCard_Click);
             // 
             // btnReadAction
             // 
-            this.btnReadAction.Location = new System.Drawing.Point(762, 241);
+            this.btnReadAction.Location = new System.Drawing.Point(714, 376);
             this.btnReadAction.Name = "btnReadAction";
-            this.btnReadAction.Size = new System.Drawing.Size(75, 23);
+            this.btnReadAction.Size = new System.Drawing.Size(123, 23);
             this.btnReadAction.TabIndex = 6;
-            this.btnReadAction.Text = "读取对手动作";
+            this.btnReadAction.Text = "[TEST]读取对手动作";
             this.btnReadAction.UseVisualStyleBackColor = true;
             this.btnReadAction.Click += new System.EventHandler(this.btnReadAction_Click);
             // 
-            // lblAction
+            // lstAction
             // 
-            this.lblAction.AutoSize = true;
-            this.lblAction.Location = new System.Drawing.Point(759, 280);
-            this.lblAction.Name = "lblAction";
-            this.lblAction.Size = new System.Drawing.Size(35, 13);
-            this.lblAction.TabIndex = 7;
-            this.lblAction.Text = "label1";
+            this.lstAction.FormattingEnabled = true;
+            this.lstAction.Location = new System.Drawing.Point(714, 256);
+            this.lstAction.Name = "lstAction";
+            this.lstAction.Size = new System.Drawing.Size(120, 95);
+            this.lstAction.TabIndex = 7;
             // 
             // BattleField
             // 
@@ -118,7 +118,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(849, 411);
-            this.Controls.Add(this.lblAction);
+            this.Controls.Add(this.lstAction);
             this.Controls.Add(this.btnReadAction);
             this.Controls.Add(this.btnUseHandCard);
             this.Controls.Add(this.lblEnemyBattle);
@@ -143,7 +143,7 @@
         private System.Windows.Forms.Label lblEnemyBattle;
         private System.Windows.Forms.Button btnUseHandCard;
         private System.Windows.Forms.Button btnReadAction;
-        private System.Windows.Forms.Label lblAction;
+        private System.Windows.Forms.ListBox lstAction;
 
     }
 }

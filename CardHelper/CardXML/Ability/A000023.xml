@@ -8,7 +8,7 @@
   <Overload>0</Overload>
   <Class>术士</Class>
   <StandardCostPoint>2</StandardCostPoint>
-  <ActualCostPoint>0</ActualCostPoint>
+  <ActualCostPoint>2</ActualCostPoint>
   <FirstAbilityDefine>
     <AbilityEffectType>Attack</AbilityEffectType>
     <EffictTargetSelectMode>全体</EffictTargetSelectMode>

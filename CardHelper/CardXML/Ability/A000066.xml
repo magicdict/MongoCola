@@ -8,7 +8,7 @@
   <Overload>0</Overload>
   <Class>萨满</Class>
   <StandardCostPoint>3</StandardCostPoint>
-  <ActualCostPoint>0</ActualCostPoint>
+  <ActualCostPoint>3</ActualCostPoint>
   <FirstAbilityDefine>
     <AbilityEffectType>变形</AbilityEffectType>
     <EffictTargetSelectMode>全体</EffictTargetSelectMode>

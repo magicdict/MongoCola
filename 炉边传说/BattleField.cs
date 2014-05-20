@@ -1,8 +1,7 @@
-﻿using System.Text;
-using System.Windows.Forms;
-using System.Collections.Generic;
+﻿using Card.Server;
 using System;
-using Card.Server;
+using System.Text;
+using System.Windows.Forms;
 
 namespace 炉边传说
 {
@@ -45,6 +44,13 @@ namespace 炉边传说
             Status.AppendLine("HealthPoint：" + GameManager.SelfInfo.role.HealthPoint);
             Status.AppendLine("RemainCardDeckCount：" + GameManager.SelfInfo.role.RemainCardDeckCount);
             Status.AppendLine("==============");
+            Status.AppendLine("Battle：");
+            for (int i = 0; i < GameManager.SelfInfo.role.myBattleField.BattleMinions.Length; i++)
+            {
+                Status.AppendLine("Position" + i.ToString() + "：" +
+                    (GameManager.SelfInfo.role.myBattleField.BattleMinions[i] == null ? "[NULL]" : GameManager.SelfInfo.role.myBattleField.BattleMinions[i].Name));
+            }
+            Status.AppendLine("==============");
             lblStatus.Text = Status.ToString();
             lstHandCard.Items.Clear();
             foreach (var handCard in GameManager.SelfInfo.handCards)
@@ -55,17 +61,21 @@ namespace 炉边传说
         /// <summary>
         /// 新的回合
         /// </summary>
-        private void StartNewTurn() {
+        private void StartNewTurn()
+        {
             GameManager.NewTurn();
             if (GameManager.IsMyTurn)
             {
                 DisplayMyInfo();
                 btnEndTurn.Enabled = true;
-                lblEnemyBattle.Text = "You Turn";
+                btnUseHandCard.Enabled = true;
+                lblEnemyBattle.Text = "你的回合";
             }
-            else {
+            else
+            {
                 btnEndTurn.Enabled = false;
-                lblEnemyBattle.Text = "Enemy Action";
+                btnUseHandCard.Enabled = false;
+                lblEnemyBattle.Text = "对手回合";
                 WaitTimer.Start();
             }
         }
@@ -75,8 +85,13 @@ namespace 炉边传说
         private void WaitFor(object sender, System.EventArgs e)
         {
             var Actions = Card.Server.ClientUtlity.ReadAction(GameManager.GameId.ToString(GameServer.GameIdFormat));
-            lblAction.Text = "ReadActions[" + Actions + "]";
-            if (Actions == Card.CardUtility.strEndTurn)
+            if (String.IsNullOrEmpty(Actions)) return;
+            var ActionList = Actions.Split("|".ToCharArray());
+            foreach (var item in ActionList)
+            {
+                lstAction.Items.Add("[" + item + "]");
+            }
+            if (ActionList[ActionList.Length - 1] == Card.CardUtility.strEndTurn)
             {
                 WaitTimer.Stop();
                 btnEndTurn.Enabled = true;
@@ -121,7 +136,7 @@ namespace 炉边传说
             }
         }
         /// <summary>
-        /// 
+        /// 结束回合
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -132,11 +147,59 @@ namespace 炉边传说
             StartNewTurn();
             WaitTimer.Start();
         }
-
+        /// <summary>
+        /// 读取对方行动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReadAction_Click(object sender, EventArgs e)
         {
             var Actions = Card.Server.ClientUtlity.ReadAction(GameManager.GameId.ToString(GameServer.GameIdFormat));
             MessageBox.Show("[" + Actions + "]");
+        }
+        /// <summary>
+        /// 使用手牌
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnUseHandCard_Click(object sender, EventArgs e)
+        {
+            if (lstHandCard.SelectedItems.Count != 1) return;
+            var CardSn = lstHandCard.SelectedItem.ToString().Substring(lstHandCard.SelectedItem.ToString().IndexOf("[") + 1, 7);
+            if (Card.CardUtility.GetCardInfoBySN(CardSn) != null)
+            {
+                Card.CardBasicInfo card = Card.CardUtility.GetCardInfoBySN(CardSn);
+                if (GameManager.SelfInfo.role.crystal.CurrentRemainPoint >= card.ActualCostPoint)
+                {
+                    GameManager.SelfInfo.role.crystal.CurrentRemainPoint -= card.ActualCostPoint;
+                    GameManager.SelfInfo.handCards.Remove(CardSn);
+                }
+                else
+                {
+                    MessageBox.Show("水晶不够");
+                    return;
+                }
+                String strActionCode = String.Empty;
+                switch (CardSn.Substring(0, 1))
+                {
+                    case "A":
+                        strActionCode = ActionCode.UseAbility(CardSn, new string[] { });
+                        break;
+                    case "M":
+                        int MinionPos = GameManager.SelfInfo.role.myBattleField.MinionCount + 1;
+                        strActionCode = ActionCode.UseMinion(CardSn, MinionPos);
+                        GameManager.SelfInfo.role.myBattleField.PutToBattle(MinionPos, (Card.MinionCard)card);
+                        break;
+                    case "W":
+                        strActionCode = ActionCode.UseWeapon(CardSn);
+                        GameManager.SelfInfo.role.Weapon = (Card.WeaponCard)card;
+                        break;
+                    default:
+                        break;
+                }
+                Card.Server.ClientUtlity.WriteAction(GameManager.GameId.ToString(GameServer.GameIdFormat), strActionCode);
+            }
+            DisplayMyInfo();
         }
     }
 }

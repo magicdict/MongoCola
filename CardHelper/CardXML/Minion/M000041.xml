@@ -8,7 +8,7 @@
   <Overload>0</Overload>
   <Class>中立</Class>
   <StandardCostPoint>1</StandardCostPoint>
-  <ActualCostPoint>0</ActualCostPoint>
+  <ActualCostPoint>1</ActualCostPoint>
   <StandardAttackPoint>1</StandardAttackPoint>
   <StandardHealthPoint>2</StandardHealthPoint>
   <Standard嘲讽>true</Standard嘲讽>

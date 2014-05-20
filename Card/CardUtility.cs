@@ -69,18 +69,21 @@ namespace Card
             {
                 XmlSerializer xml = new XmlSerializer(typeof(Card.AbilityCard));
                 Card.AbilityCard ability = (AbilityCard)xml.Deserialize(new StreamReader(AbilityXml));
+                ability.ActualCostPoint = ability.StandardCostPoint;
                 CardCollections.Add(ability.SN,ability);
             }
             foreach (var MinionXml in Directory.GetFiles(CardXmlFolder + "\\Minion\\"))
             {
                 XmlSerializer xml = new XmlSerializer(typeof(Card.MinionCard));
                 Card.MinionCard Minio = (MinionCard)xml.Deserialize(new StreamReader(MinionXml));
+                Minio.ActualCostPoint = Minio.StandardCostPoint;
                 CardCollections.Add(Minio.SN, Minio);
             }
             foreach (var WeaponXml in Directory.GetFiles(CardXmlFolder + "\\Weapon\\"))
             {
                 XmlSerializer xml = new XmlSerializer(typeof(Card.WeaponCard));
                 Card.WeaponCard Weapon = (WeaponCard)xml.Deserialize(new StreamReader(WeaponXml));
+                Weapon.ActualCostPoint = Weapon.StandardCostPoint;
                 CardCollections.Add(Weapon.SN, Weapon);
             }
         }
