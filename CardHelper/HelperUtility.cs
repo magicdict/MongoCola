@@ -166,7 +166,7 @@ namespace CardHelper
             鱼人猎潮者.Standard冲锋 = false;
             鱼人猎潮者.Standard嘲讽 = false;
             //战吼
-            鱼人猎潮者.战吼效果 = new  Card.Ability();
+            鱼人猎潮者.战吼效果 = new  Card.Effect.Ability();
 
             return 鱼人猎潮者;
         }
@@ -196,7 +196,7 @@ namespace CardHelper
             鲜血小鬼.潜行特性 = true;
             鲜血小鬼.Is潜行Status = true;
             //战吼
-            鲜血小鬼.战吼效果 = new Card.Ability();
+            鲜血小鬼.战吼效果 = new Card.Effect.Ability();
             return 鲜血小鬼;
         }
         /// <summary>

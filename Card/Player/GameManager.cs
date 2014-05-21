@@ -106,7 +106,7 @@ namespace 炉边传说
             {
                 IsPickFirstEffect = PickEffect("FirstEffect", "SecondEffect");
             }
-            card.CardAbility.GetEffectList(IsPickFirstEffect);
+            card.CardAbility.GetSingleEffectList(IsPickFirstEffect);
             return Ablitiy;
         }
         /// <summary>

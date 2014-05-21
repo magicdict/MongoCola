@@ -8,6 +8,10 @@ namespace Card.Effect
     public class EffectDefine
     {
         /// <summary>
+        /// 描述
+        /// </summary>
+        public String Description = String.Empty;
+        /// <summary>
         /// 魔法效果
         /// </summary>
         public enum AbilityEffectEnum

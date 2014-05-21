@@ -13,6 +13,7 @@
 *.mdb
 *.pdb
 *.doc
+*.xml
 /炉边传说/bin
 /炉边传说/obj
 /炉边传说/packages

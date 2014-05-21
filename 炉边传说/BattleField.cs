@@ -35,7 +35,9 @@ namespace 炉边传说
         private CardUtility.TargetPosition SelectPanel()
         {
             CardUtility.TargetPosition t = new Card.CardUtility.TargetPosition();
-
+            TargetSelect frm = new TargetSelect();
+            frm.ShowDialog();
+            t = frm.pos;
             return t;
         }
         /// <summary>
@@ -199,8 +201,14 @@ namespace 炉边传说
         /// <returns></returns>
         private Boolean PickEffect(String FirstEffect, String SecondEffect)
         {
-            MessageBox.Show(FirstEffect);
-            return true;
+            Boolean IsFirst = false;
+            EffectSelect t = new EffectSelect();
+            t.FirstEffect = FirstEffect;
+            t.SecondEffect = SecondEffect;
+            t.ShowDialog();
+            IsFirst = t.IsFirstEffect;
+            t = null;
+            return IsFirst;
         }
 
         /// <summary>
