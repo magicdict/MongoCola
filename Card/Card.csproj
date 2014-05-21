@@ -48,6 +48,7 @@
     <Compile Include="Effect\CrystalEffect.cs" />
     <Compile Include="Effect\EffectDefinet.cs" />
     <Compile Include="Effect\TransformEffect.cs" />
+    <Compile Include="Player\GameManager.cs" />
     <Compile Include="Player\PlayerInfo.cs" />
     <Compile Include="CardBasicInfo.cs" />
     <Compile Include="Player\CardDeck.cs" />

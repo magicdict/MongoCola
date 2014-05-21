@@ -299,6 +299,13 @@ namespace Card
         public static delegateDrawCard DrawCard;
         #region"委托"
         /// <summary>
+        /// 抉择
+        /// </summary>
+        /// <param name="First">第一效果</param>
+        /// <param name="Second">第二效果</param>
+        /// <returns>是否为第一效果</returns>
+        public delegate Boolean delegatePickEffect(String First, String Second);
+        /// <summary>
         /// 抽牌委托
         /// </summary>
         /// <param name="IsFirst">先后手区分</param>

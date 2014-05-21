@@ -166,8 +166,8 @@ namespace CardHelper
                 effect.StandardEffectPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 18).Text);
                 effect.EffectCount = CardUtility.GetInt(worksheet.Cells(rowCount, 19).Text);
                 effect.AddtionInfo = worksheet.Cells(rowCount, 20).Text;
-                Ability.FirstAbilityDefine = effect;
-                Ability.JoinType = CardUtility.GetEnum<Card.CardUtility.EffectJoinType>(worksheet.Cells(rowCount, 21).Text, Card.CardUtility.EffectJoinType.None);
+                Ability.CardAbility.FirstAbilityDefine = effect;
+                Ability.CardAbility.JoinType = CardUtility.GetEnum<Card.CardUtility.EffectJoinType>(worksheet.Cells(rowCount, 21).Text, Card.CardUtility.EffectJoinType.None);
                 switch (target)
                 {
                     case TargetType.MongoDB:

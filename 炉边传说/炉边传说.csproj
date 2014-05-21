@@ -56,7 +56,6 @@
     <Compile Include="frmStartGame.Designer.cs">
       <DependentUpon>frmStartGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BattleField.resx">

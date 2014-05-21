@@ -15,7 +15,7 @@
   <实际耐久度>-1</实际耐久度>
   <AdditionEffect>
     <AbilityEffectType>Attack</AbilityEffectType>
-    <EffictTargetSelectMode>随机</EffictTargetSelectMode>
+    <EffictTargetSelectMode>不用选择</EffictTargetSelectMode>
     <EffectTargetSelectRole>随从</EffectTargetSelectRole>
     <EffectTargetSelectDirect>本方</EffectTargetSelectDirect>
     <StandardEffectPoint>0</StandardEffectPoint>

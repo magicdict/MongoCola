@@ -9,24 +9,26 @@
   <Class>法师</Class>
   <StandardCostPoint>4</StandardCostPoint>
   <ActualCostPoint>4</ActualCostPoint>
-  <FirstAbilityDefine>
-    <AbilityEffectType>Attack</AbilityEffectType>
-    <EffictTargetSelectMode>全体</EffictTargetSelectMode>
-    <EffectTargetSelectRole>随从</EffectTargetSelectRole>
-    <EffectTargetSelectDirect>无限制</EffectTargetSelectDirect>
-    <StandardEffectPoint>6</StandardEffectPoint>
-    <ActualEffectPoint>0</ActualEffectPoint>
-    <EffectCount>1</EffectCount>
-    <AddtionInfo />
-  </FirstAbilityDefine>
-  <SecondAbilityDefine>
-    <AbilityEffectType>Attack</AbilityEffectType>
-    <EffictTargetSelectMode>随机</EffictTargetSelectMode>
-    <EffectTargetSelectRole>随从</EffectTargetSelectRole>
-    <EffectTargetSelectDirect>本方</EffectTargetSelectDirect>
-    <StandardEffectPoint>0</StandardEffectPoint>
-    <ActualEffectPoint>0</ActualEffectPoint>
-    <EffectCount>0</EffectCount>
-  </SecondAbilityDefine>
-  <JoinType>None</JoinType>
+  <CardAbility>
+    <FirstAbilityDefine>
+      <AbilityEffectType>Attack</AbilityEffectType>
+      <EffictTargetSelectMode>全体</EffictTargetSelectMode>
+      <EffectTargetSelectRole>随从</EffectTargetSelectRole>
+      <EffectTargetSelectDirect>无限制</EffectTargetSelectDirect>
+      <StandardEffectPoint>6</StandardEffectPoint>
+      <ActualEffectPoint>0</ActualEffectPoint>
+      <EffectCount>1</EffectCount>
+      <AddtionInfo />
+    </FirstAbilityDefine>
+    <SecondAbilityDefine>
+      <AbilityEffectType>Attack</AbilityEffectType>
+      <EffictTargetSelectMode>不用选择</EffictTargetSelectMode>
+      <EffectTargetSelectRole>随从</EffectTargetSelectRole>
+      <EffectTargetSelectDirect>本方</EffectTargetSelectDirect>
+      <StandardEffectPoint>0</StandardEffectPoint>
+      <ActualEffectPoint>0</ActualEffectPoint>
+      <EffectCount>0</EffectCount>
+    </SecondAbilityDefine>
+    <JoinType>None</JoinType>
+  </CardAbility>
 </AbilityCard>

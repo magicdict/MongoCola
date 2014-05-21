@@ -55,23 +55,23 @@ namespace Card
         /// <summary>
         /// 亡语
         /// </summary>
-        public EffectDefine 亡语效果;
+        public Ability 亡语效果;
         /// <summary>
         /// 战吼
         /// </summary>
-        public EffectDefine 战吼效果;
+        public Ability 战吼效果;
         /// <summary>
         /// 激怒
         /// </summary>
-        public EffectDefine 激怒效果;
+        public Ability 激怒效果;
         /// <summary>
         /// 该单位在战地时的效果
         /// </summary>
-        public EffectDefine 对战地效果;
+        public Ability 对战地效果;
         /// <summary>
         /// 该单位受到战地的效果
         /// </summary>
-        public EffectDefine 受战地效果;
+        public Ability 受战地效果;
         #endregion
 
         #region"运行时状态"

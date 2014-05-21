@@ -67,14 +67,14 @@ namespace CardHelper
             //使用成本
             奥术智慧.ActualCostPoint = 1;
             奥术智慧.StandardCostPoint = 1;
-            奥术智慧.JoinType = Card.CardUtility.EffectJoinType.None;
+            奥术智慧.CardAbility.JoinType = Card.CardUtility.EffectJoinType.None;
 
             //随机抽两张牌
             Card.Effect.CardDeckEffect CardDeckEffect = new Card.Effect.CardDeckEffect();
             CardDeckEffect.StandardEffectPoint = 2;
             CardDeckEffect.EffectCount = 1;
             CardDeckEffect.EffectTargetSelectDirect = Card.CardUtility.TargetSelectDirectEnum.本方;
-            奥术智慧.FirstAbilityDefine = CardDeckEffect;
+            奥术智慧.CardAbility.FirstAbilityDefine = CardDeckEffect;
             return 奥术智慧;
         }
         /// <summary>
@@ -90,14 +90,14 @@ namespace CardHelper
             变羊术.Rare = Card.CardBasicInfo.稀有程度.绿色;
             //使用成本
             变羊术.StandardCostPoint = 4;
-            变羊术.JoinType = Card.CardUtility.EffectJoinType.None;
+            变羊术.CardAbility.JoinType = Card.CardUtility.EffectJoinType.None;
             //变成 1/1 的羊
             Card.Effect.TransformEffect transformEffect = new Card.Effect.TransformEffect();
             transformEffect.EffectCount = 1;
             transformEffect.EffectTargetSelectDirect = Card.CardUtility.TargetSelectDirectEnum.无限制;
             transformEffect.EffectTargetSelectRole = Card.CardUtility.TargetSelectRoleEnum.随从;
             transformEffect.AddtionInfo = "F000004";
-            变羊术.FirstAbilityDefine = transformEffect;
+            变羊术.CardAbility.FirstAbilityDefine = transformEffect;
             return 变羊术;
         }
         /// <summary>
@@ -166,7 +166,7 @@ namespace CardHelper
             鱼人猎潮者.Standard冲锋 = false;
             鱼人猎潮者.Standard嘲讽 = false;
             //战吼
-            鱼人猎潮者.战吼效果 = new Card.Effect.EffectDefine();
+            鱼人猎潮者.战吼效果 = new  Card.Ability();
 
             return 鱼人猎潮者;
         }
@@ -196,7 +196,7 @@ namespace CardHelper
             鲜血小鬼.潜行特性 = true;
             鲜血小鬼.Is潜行Status = true;
             //战吼
-            鲜血小鬼.战吼效果 = new Card.Effect.EffectDefine();
+            鲜血小鬼.战吼效果 = new Card.Ability();
             return 鲜血小鬼;
         }
         /// <summary>

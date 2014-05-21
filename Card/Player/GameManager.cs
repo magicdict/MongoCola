@@ -36,6 +36,10 @@ namespace 炉边传说
         /// </summary>
         public static Card.CardUtility.deleteGetTargetPosition GetSelectTarget;
         /// <summary>
+        /// 抉择卡牌
+        /// </summary>
+        public static Card.CardUtility.delegatePickEffect PickEffect;
+        /// <summary>
         /// 初始化
         /// </summary>
         public static void Init()
@@ -71,7 +75,8 @@ namespace 炉边传说
         /// <summary>
         /// 新的回合
         /// </summary>
-        public static void NewTurn(){
+        public static void NewTurn()
+        {
             if (IsMyTurn)
             {
                 //魔法水晶的增加
@@ -81,7 +86,8 @@ namespace 炉边传说
                 MySelf.RoleInfo.HandCardCount++;
                 MySelf.RoleInfo.RemainCardDeckCount--;
             }
-            else {
+            else
+            {
                 AgainstInfo.crystal.NewTurn();
                 AgainstInfo.HandCardCount++;
                 AgainstInfo.RemainCardDeckCount--;
@@ -94,7 +100,13 @@ namespace 炉边传说
         public static String[] UseAbility(String CardSn)
         {
             String[] Ablitiy = new String[] { };
-            Card.AbilityCard.RunAbility(CardSn,GetSelectTarget);
+            Card.AbilityCard card = (Card.AbilityCard)CardUtility.GetCardInfoBySN(CardSn);
+            Boolean IsPickFirstEffect = false;
+            if (card.CardAbility.IsNeedSelect())
+            {
+                IsPickFirstEffect = PickEffect("FirstEffect", "SecondEffect");
+            }
+            card.CardAbility.GetEffectList(IsPickFirstEffect);
             return Ablitiy;
         }
         /// <summary>

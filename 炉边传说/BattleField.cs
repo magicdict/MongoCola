@@ -21,6 +21,7 @@ namespace 炉边传说
         private void BattleField_Load(object sender, System.EventArgs e)
         {
             GameManager.GetSelectTarget = SelectPanel;
+            GameManager.PickEffect = PickEffect;
             WaitTimer.Interval = 3000;
             WaitTimer.Tick += WaitFor;
             DisplayMyInfo();
@@ -190,6 +191,18 @@ namespace 炉边传说
             StartNewTurn();
             WaitTimer.Start();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="FirstEffect"></param>
+        /// <param name="SecondEffect"></param>
+        /// <returns></returns>
+        private Boolean PickEffect(String FirstEffect, String SecondEffect)
+        {
+            MessageBox.Show(FirstEffect);
+            return true;
+        }
+
         /// <summary>
         /// 使用手牌
         /// </summary>
