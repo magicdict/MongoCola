@@ -8,10 +8,6 @@ namespace Card.Server
     public static class ActionCode
     {
         /// <summary>
-        /// 分隔符号
-        /// </summary>
-        public const String ArgumentMark = "#";
-        /// <summary>
         /// 动作类型
         /// </summary>
         public enum ActionType
@@ -40,9 +36,9 @@ namespace Card.Server
         /// </summary>
         public static ActionType GetActionType(String ActionWord){
             ActionType t = ActionType.UnKnown;
-            if (ActionWord.StartsWith("WEAPON" + ArgumentMark)) t = ActionType.UseWeapon;
-            if (ActionWord.StartsWith("MINION" + ArgumentMark)) t = ActionType.UseMinion;
-            if (ActionWord.StartsWith("ABILITY" + ArgumentMark)) t = ActionType.UseAbility;
+            if (ActionWord.StartsWith("WEAPON" + CardUtility.strSplitMark)) t = ActionType.UseWeapon;
+            if (ActionWord.StartsWith("MINION" + CardUtility.strSplitMark)) t = ActionType.UseMinion;
+            if (ActionWord.StartsWith("ABILITY" + CardUtility.strSplitMark)) t = ActionType.UseAbility;
             if (ActionWord.Equals(Card.CardUtility.strEndTurn)) t = ActionType.EndTurn;
             return t;   
         }
@@ -54,7 +50,7 @@ namespace Card.Server
         public static String UseWeapon(String CardSn)
         {
             String ActionCode = String.Empty;
-            ActionCode = "WEAPON" + ArgumentMark + CardSn;
+            ActionCode = "WEAPON" + CardUtility.strSplitMark + CardSn;
             return ActionCode;
         }
         /// <summary>
@@ -66,7 +62,7 @@ namespace Card.Server
         public static String UseMinion(String CardSn, int Position)
         {
             String ActionCode = String.Empty;
-            ActionCode = "MINION" + ArgumentMark + CardSn + ArgumentMark + Position.ToString("D1");
+            ActionCode = "MINION" + CardUtility.strSplitMark + CardSn + CardUtility.strSplitMark + Position.ToString("D1");
             return ActionCode;
         }
         /// <summary>
@@ -78,10 +74,10 @@ namespace Card.Server
         public static String UseAbility(String CardSn, String[] ResultArg)
         {
             String ActionCode = String.Empty;
-            ActionCode = "ABILITY" + ArgumentMark + CardSn;
+            ActionCode = "ABILITY" + CardUtility.strSplitMark + CardSn;
             for (int i = 0; i < ResultArg.Length; i++)
             {
-                ActionCode += ArgumentMark + ResultArg[i];
+                ActionCode += CardUtility.strSplitMark + ResultArg[i];
             }
             return ActionCode;
         }

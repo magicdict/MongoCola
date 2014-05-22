@@ -39,7 +39,7 @@ namespace Card.Player
         /// <summary>
         /// 战场信息
         /// </summary>
-        public BattleFieldInfo myBattleField = new BattleFieldInfo();
+        public BattleFieldInfo BattleField = new BattleFieldInfo();
         /// <summary>
         /// 剩余牌数
         /// </summary>

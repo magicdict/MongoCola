@@ -1,55 +1,54 @@
 ﻿using Card;
-using Card.Player;
 using Card.Server;
 using System;
 using System.Collections.Generic;
 
-namespace 炉边传说
+namespace Card.Player
 {
     /// <summary>
     /// 游戏管理
     /// </summary>
-    public static class GameManager
+    public class GameManager
     {
         /// <summary>
         /// 游戏玩家名称
         /// </summary>
-        public static String PlayerNickName = "DARUMA";
+        public String PlayerNickName = "DARUMA";
         /// <summary>
         /// 是否主机
         /// </summary>
-        public static Boolean IsHost;
+        public Boolean IsHost;
         /// <summary>
         /// 是否为先手
         /// </summary>
-        public static Boolean IsFirst;
+        public Boolean IsFirst;
         /// <summary>
         /// 游戏编号
         /// </summary>
-        public static int GameId;
+        public int GameId;
         /// <summary>
         /// 是否为我的回合
         /// </summary>
-        public static Boolean IsMyTurn;
+        public Boolean IsMyTurn;
         /// <summary>
         /// 获得目标对象
         /// </summary>
-        public static Card.CardUtility.deleteGetTargetPosition GetSelectTarget;
+        public Card.CardUtility.deleteGetTargetPosition GetSelectTarget;
         /// <summary>
         /// 抉择卡牌
         /// </summary>
-        public static Card.CardUtility.delegatePickEffect PickEffect;
+        public Card.CardUtility.delegatePickEffect PickEffect;
         /// <summary>
         /// 初始化
         /// </summary>
-        public static void Init()
+        public void Init()
         {
             //抽牌的具体方法
             CardUtility.DrawCard += DrawCardAtServer;
             //图片请求
             CardUtility.GetCardImage += GetCardImageAtServer;
             //属性
-            var HandCard = Card.Server.ClientUtlity.DrawCard(GameId.ToString(GameServer.GameIdFormat), GameManager.IsFirst, GameManager.IsFirst ? 3 : 4);
+            var HandCard = Card.Server.ClientUtlity.DrawCard(GameId.ToString(GameServer.GameIdFormat), IsFirst, IsFirst ? 3 : 4);
             if (!IsFirst) HandCard.Add(Card.CardUtility.SN幸运币);
             MySelf.handCards = HandCard;
             MySelf.RoleInfo.HandCardCount = HandCard.Count;
@@ -67,15 +66,15 @@ namespace 炉边传说
         /// <summary>
         /// 本方情报
         /// </summary>
-        public static PlayerDetailInfo MySelf = new PlayerDetailInfo();
+        public PlayerDetailInfo MySelf = new PlayerDetailInfo();
         /// <summary>
         /// 对方情报
         /// </summary>
-        public static PlayerBasicInfo AgainstInfo = new PlayerBasicInfo();
+        public PlayerBasicInfo AgainstInfo = new PlayerBasicInfo();
         /// <summary>
         /// 新的回合
         /// </summary>
-        public static void NewTurn()
+        public void NewTurn()
         {
             if (IsMyTurn)
             {
@@ -97,23 +96,23 @@ namespace 炉边传说
         /// 使用法术
         /// </summary>
         /// <param name="CardSn"></param>
-        public static String[] UseAbility(String CardSn)
+        public String[] UseAbility(String CardSn)
         {
             String[] Ablitiy = new String[] { };
             Card.AbilityCard card = (Card.AbilityCard)CardUtility.GetCardInfoBySN(CardSn);
             Boolean IsPickFirstEffect = false;
             if (card.CardAbility.IsNeedSelect())
             {
-                IsPickFirstEffect = PickEffect("FirstEffect", "SecondEffect");
+                IsPickFirstEffect = PickEffect(card.CardAbility.FirstAbilityDefine.Description,card.CardAbility.SecondAbilityDefine.Description);
             }
-            card.CardAbility.GetSingleEffectList(IsPickFirstEffect);
+            var SingleEffect = card.CardAbility.GetSingleEffectList(IsPickFirstEffect);
             return Ablitiy;
         }
         /// <summary>
         /// 抽牌（服务器方法）
         /// </summary>
         /// <returns></returns>
-        public static List<String> DrawCardAtServer(Boolean IsFirst, int Count)
+        public List<String> DrawCardAtServer(Boolean IsFirst, int Count)
         {
             //向服务器提出请求，获得牌
             return GameServer.DrawCard(GameId, IsFirst, Count);

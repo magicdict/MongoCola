@@ -2,10 +2,12 @@
 using System.Windows.Forms;
 using System.Threading;
 using Card.Server;
+using Card.Player;
 namespace 炉边传说
 {
     public partial class frmStartGame : Form
     {
+        GameManager game = new GameManager();
         public frmStartGame()
         {
             InitializeComponent();
@@ -18,17 +20,17 @@ namespace 炉边传说
         private void btnCreateGame_Click(object sender, EventArgs e)
         {
             //新建游戏的时候，已经决定游戏的先后手
-            GameManager.IsHost = true;
-            String GameId = Card.Server.ClientUtlity.CreateGame(GameManager.PlayerNickName);
-            GameManager.GameId = int.Parse(GameId);
+            game.IsHost = true;
+            String GameId = Card.Server.ClientUtlity.CreateGame(game.PlayerNickName);
+            game.GameId = int.Parse(GameId);
             btnJoinGame.Enabled = false;
             btnRefresh.Enabled = false;
             while (!Card.Server.ClientUtlity.IsGameStart(GameId))
             {
                 Thread.Sleep(3000);
             }
-            GameManager.IsFirst = Card.Server.ClientUtlity.IsFirst(GameManager.GameId.ToString(GameServer.GameIdFormat), GameManager.IsHost);
-            GameManager.Init();
+            game.IsFirst = Card.Server.ClientUtlity.IsFirst(game.GameId.ToString(GameServer.GameIdFormat), game.IsHost);
+            game.Init();
             new BattleField().ShowDialog();
         }
         /// <summary>
@@ -53,13 +55,13 @@ namespace 炉边传说
         /// <param name="e"></param>
         private void btnJoinGame_Click(object sender, EventArgs e)
         {
-            GameManager.IsHost = false;
+            game.IsHost = false;
             if (lstWaitGuest.SelectedItems.Count != 1) return;
             var strWait = lstWaitGuest.SelectedItem.ToString();
-            String GameId = Card.Server.ClientUtlity.JoinGame(int.Parse(strWait.Substring(0, strWait.IndexOf("("))), GameManager.PlayerNickName);
-            GameManager.GameId = int.Parse(GameId);
-            GameManager.IsFirst = Card.Server.ClientUtlity.IsFirst(GameManager.GameId.ToString(GameServer.GameIdFormat), GameManager.IsHost);
-            GameManager.Init();
+            String GameId = Card.Server.ClientUtlity.JoinGame(int.Parse(strWait.Substring(0, strWait.IndexOf("("))), game.PlayerNickName);
+            game.GameId = int.Parse(GameId);
+            game.IsFirst = Card.Server.ClientUtlity.IsFirst(game.GameId.ToString(GameServer.GameIdFormat), game.IsHost);
+            game.Init();
             new BattleField().ShowDialog();
         }
 

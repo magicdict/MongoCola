@@ -1,4 +1,5 @@
 ﻿using Card;
+using Card.Player;
 using Card.Server;
 using System;
 using System.Text;
@@ -12,6 +13,10 @@ namespace 炉边传说
         {
             InitializeComponent();
         }
+        GameManager game = new GameManager();
+        /// <summary>
+        /// Timer
+        /// </summary>
         private Timer WaitTimer = new Timer();
         /// <summary>
         /// 
@@ -20,12 +25,12 @@ namespace 炉边传说
         /// <param name="e"></param>
         private void BattleField_Load(object sender, System.EventArgs e)
         {
-            GameManager.GetSelectTarget = SelectPanel;
-            GameManager.PickEffect = PickEffect;
+            game.GetSelectTarget = SelectPanel;
+            game.PickEffect = PickEffect;
             WaitTimer.Interval = 3000;
             WaitTimer.Tick += WaitFor;
             DisplayMyInfo();
-            GameManager.IsMyTurn = GameManager.IsFirst;
+            game.IsMyTurn = game.IsFirst;
             StartNewTurn();
         }
         /// <summary>
@@ -49,42 +54,42 @@ namespace 炉边传说
             StringBuilder Status = new StringBuilder();
             Status.AppendLine("==============");
             Status.AppendLine("System：");
-            Status.AppendLine("GameId：" + GameManager.GameId);
-            Status.AppendLine("PlayerNickName：" + GameManager.PlayerNickName);
-            Status.AppendLine("IsHost：" + GameManager.IsHost);
-            Status.AppendLine("IsFirst：" + GameManager.IsFirst);
+            Status.AppendLine("GameId：" + game.GameId);
+            Status.AppendLine("PlayerNickName：" + game.PlayerNickName);
+            Status.AppendLine("IsHost：" + game.IsHost);
+            Status.AppendLine("IsFirst：" + game.IsFirst);
             Status.AppendLine("==============");
             Status.AppendLine("Role：");
-            Status.AppendLine("Crystal：" + GameManager.MySelf.RoleInfo.crystal.CurrentRemainPoint + "/" + GameManager.MySelf.RoleInfo.crystal.CurrentFullPoint);
-            Status.AppendLine("HealthPoint：" + GameManager.MySelf.RoleInfo.HealthPoint);
-            Status.AppendLine("RemainCardDeckCount：" + GameManager.MySelf.RoleInfo.RemainCardDeckCount);
+            Status.AppendLine("Crystal：" + game.MySelf.RoleInfo.crystal.CurrentRemainPoint + "/" + game.MySelf.RoleInfo.crystal.CurrentFullPoint);
+            Status.AppendLine("HealthPoint：" + game.MySelf.RoleInfo.HealthPoint);
+            Status.AppendLine("RemainCardDeckCount：" + game.MySelf.RoleInfo.RemainCardDeckCount);
             Status.AppendLine("==============");
             Status.AppendLine("Battle：");
             lstMyMinion.Items.Clear();
             lstMyMinion.Items.Add("本方英雄");
-            for (int i = 0; i < GameManager.MySelf.RoleInfo.myBattleField.BattleMinions.Length; i++)
+            for (int i = 0; i < game.MySelf.RoleInfo.BattleField.BattleMinions.Length; i++)
             {
                 lstMyMinion.Items.Add("本方位置" + i.ToString() + "：" +
-                    (GameManager.MySelf.RoleInfo.myBattleField.BattleMinions[i] == null ? "[NULL]" : GameManager.MySelf.RoleInfo.myBattleField.BattleMinions[i].Name));
+                    (game.MySelf.RoleInfo.BattleField.BattleMinions[i] == null ? "[NULL]" : game.MySelf.RoleInfo.BattleField.BattleMinions[i].Name));
             }
             Status.AppendLine("==============");
             Status.AppendLine("Role：");
-            Status.AppendLine("Crystal：" + GameManager.AgainstInfo.crystal.CurrentRemainPoint + "/" + GameManager.AgainstInfo.crystal.CurrentFullPoint);
-            Status.AppendLine("HealthPoint：" + GameManager.AgainstInfo.HealthPoint);
-            Status.AppendLine("RemainCardDeckCount：" + GameManager.AgainstInfo.RemainCardDeckCount);
+            Status.AppendLine("Crystal：" + game.AgainstInfo.crystal.CurrentRemainPoint + "/" + game.AgainstInfo.crystal.CurrentFullPoint);
+            Status.AppendLine("HealthPoint：" + game.AgainstInfo.HealthPoint);
+            Status.AppendLine("RemainCardDeckCount：" + game.AgainstInfo.RemainCardDeckCount);
             Status.AppendLine("==============");
             Status.AppendLine("Battle：");
 
             lstMyMinion.Items.Add("对方英雄");
-            for (int i = 0; i < GameManager.AgainstInfo.myBattleField.BattleMinions.Length; i++)
+            for (int i = 0; i < game.AgainstInfo.BattleField.BattleMinions.Length; i++)
             {
                 lstMyMinion.Items.Add("对方位置" + i.ToString() + "：" +
-                    (GameManager.AgainstInfo.myBattleField.BattleMinions[i] == null ? "[NULL]" : GameManager.AgainstInfo.myBattleField.BattleMinions[i].Name));
+                    (game.AgainstInfo.BattleField.BattleMinions[i] == null ? "[NULL]" : game.AgainstInfo.BattleField.BattleMinions[i].Name));
             }
             Status.AppendLine("==============");
             lblStatus.Text = Status.ToString();
             lstHandCard.Items.Clear();
-            foreach (var handCard in GameManager.MySelf.handCards)
+            foreach (var handCard in game.MySelf.handCards)
             {
                 lstHandCard.Items.Add(Card.CardUtility.GetCardNameBySN(handCard) + "[" + handCard + "]");
             }
@@ -94,8 +99,8 @@ namespace 炉边传说
         /// </summary>
         private void StartNewTurn()
         {
-            GameManager.NewTurn();
-            if (GameManager.IsMyTurn)
+            game.NewTurn();
+            if (game.IsMyTurn)
             {
                 DisplayMyInfo();
                 btnEndTurn.Enabled = true;
@@ -115,7 +120,7 @@ namespace 炉边传说
         /// </summary>
         private void WaitFor(object sender, System.EventArgs e)
         {
-            var Actions = Card.Server.ClientUtlity.ReadAction(GameManager.GameId.ToString(GameServer.GameIdFormat));
+            var Actions = Card.Server.ClientUtlity.ReadAction(game.GameId.ToString(GameServer.GameIdFormat));
             if (String.IsNullOrEmpty(Actions)) return;
             var ActionList = Actions.Split("|".ToCharArray());
             foreach (var item in ActionList)
@@ -128,7 +133,7 @@ namespace 炉边传说
                     case ActionCode.ActionType.UseMinion:
                         int Pos = int.Parse(item.Substring("MINION".Length + 1 + 7 + 1));
                         String CardSn = item.Substring("MINION".Length + 1, 7);
-                        GameManager.AgainstInfo.myBattleField.PutToBattle(Pos, CardSn);
+                        game.AgainstInfo.BattleField.PutToBattle(Pos, CardSn);
                         break;
                     case ActionCode.ActionType.UseAbility:
 
@@ -136,7 +141,7 @@ namespace 炉边传说
                     case ActionCode.ActionType.EndTurn:
                         WaitTimer.Stop();
                         btnEndTurn.Enabled = true;
-                        GameManager.IsMyTurn = true;
+                        game.IsMyTurn = true;
                         StartNewTurn();
                         break;
                     case ActionCode.ActionType.UnKnown:
@@ -188,8 +193,8 @@ namespace 炉边传说
         /// <param name="e"></param>
         private void btnEndTurn_Click(object sender, System.EventArgs e)
         {
-            Card.Server.ClientUtlity.TurnEnd(GameManager.GameId.ToString(GameServer.GameIdFormat));
-            GameManager.IsMyTurn = false;
+            Card.Server.ClientUtlity.TurnEnd(game.GameId.ToString(GameServer.GameIdFormat));
+            game.IsMyTurn = false;
             StartNewTurn();
             WaitTimer.Start();
         }
@@ -223,10 +228,10 @@ namespace 炉边传说
             if (Card.CardUtility.GetCardInfoBySN(CardSn) != null)
             {
                 Card.CardBasicInfo card = Card.CardUtility.GetCardInfoBySN(CardSn);
-                if (GameManager.MySelf.RoleInfo.crystal.CurrentRemainPoint >= card.ActualCostPoint)
+                if (game.MySelf.RoleInfo.crystal.CurrentRemainPoint >= card.ActualCostPoint)
                 {
-                    GameManager.MySelf.RoleInfo.crystal.CurrentRemainPoint -= card.ActualCostPoint;
-                    GameManager.MySelf.handCards.Remove(CardSn);
+                    game.MySelf.RoleInfo.crystal.CurrentRemainPoint -= card.ActualCostPoint;
+                    game.MySelf.handCards.Remove(CardSn);
                 }
                 else
                 {
@@ -237,22 +242,22 @@ namespace 炉边传说
                 switch (CardSn.Substring(0, 1))
                 {
                     case "A":
-                        var ResultArg = GameManager.UseAbility(CardSn);
+                        var ResultArg = game.UseAbility(CardSn);
                         strActionCode = ActionCode.UseAbility(CardSn, ResultArg);
                         break;
                     case "M":
-                        int MinionPos = GameManager.MySelf.RoleInfo.myBattleField.MinionCount + 1;
+                        int MinionPos = game.MySelf.RoleInfo.BattleField.MinionCount + 1;
                         strActionCode = ActionCode.UseMinion(CardSn, MinionPos);
-                        GameManager.MySelf.RoleInfo.myBattleField.PutToBattle(MinionPos, (Card.MinionCard)card);
+                        game.MySelf.RoleInfo.BattleField.PutToBattle(MinionPos, (Card.MinionCard)card);
                         break;
                     case "W":
                         strActionCode = ActionCode.UseWeapon(CardSn);
-                        GameManager.MySelf.RoleInfo.Weapon = (Card.WeaponCard)card;
+                        game.MySelf.RoleInfo.Weapon = (Card.WeaponCard)card;
                         break;
                     default:
                         break;
                 }
-                Card.Server.ClientUtlity.WriteAction(GameManager.GameId.ToString(GameServer.GameIdFormat), strActionCode);
+                Card.Server.ClientUtlity.WriteAction(game.GameId.ToString(GameServer.GameIdFormat), strActionCode);
             }
             DisplayMyInfo();
         }

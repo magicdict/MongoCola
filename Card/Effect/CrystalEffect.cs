@@ -1,8 +1,5 @@
-﻿using System;
+﻿using Card.Player;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Card.Player;
 namespace Card.Effect
 {
     public class CrystalEffect : EffectDefine
@@ -12,9 +9,10 @@ namespace Card.Effect
         /// </summary>
         /// <param name="role"></param>
         /// <param name="Ability"></param>
-        public static void ModifyCrystal(PlayerBasicInfo role, EffectDefine Ability)
+        public static List<string> RunEffect(EffectDefine singleEffect, GameManager game)
         {
-            string[] Op = Ability.AddtionInfo.Split("/".ToCharArray());
+            List<string> Result = new List<string>();
+            string[] Op = singleEffect.AddtionInfo.Split("/".ToCharArray());
             int point = 0;
             //±N/±N	增加减少 可用水晶 / 增加减少 空水晶
             //可用水晶
@@ -25,14 +23,14 @@ namespace Card.Effect
                 {
                     for (int i = 0; i < point; i++)
                     {
-                        role.crystal.AddCurrentPoint();
+                        game.MySelf.RoleInfo.crystal.AddCurrentPoint();
                     }
                 }
                 else
                 {
                     for (int i = 0; i < point; i++)
                     {
-                        role.crystal.ReduceCurrentPoint();
+                        game.MySelf.RoleInfo.crystal.ReduceCurrentPoint();
                     }
                 }
             }
@@ -44,17 +42,20 @@ namespace Card.Effect
                 {
                     for (int i = 0; i < point; i++)
                     {
-                        role.crystal.AddFullPoint();
+                        game.MySelf.RoleInfo.crystal.AddFullPoint();
                     }
                 }
                 else
                 {
                     for (int i = 0; i < point; i++)
                     {
-                        role.crystal.ReduceFullPoint();
+                        game.MySelf.RoleInfo.crystal.ReduceFullPoint();
                     }
                 }
             }
+            Result.Add("CRYSTAL" + CardUtility.strSplitMark + CardUtility.strMySelf + CardUtility.strSplitMark + game.MySelf.RoleInfo.crystal.CurrentRemainPoint + CardUtility.strSplitMark + game.MySelf.RoleInfo.crystal.CurrentFullPoint);
+            Result.Add("CRYSTAL" + CardUtility.strSplitMark + CardUtility.strYou + CardUtility.strSplitMark + game.MySelf.RoleInfo.crystal.CurrentRemainPoint + CardUtility.strSplitMark + game.MySelf.RoleInfo.crystal.CurrentFullPoint);
+            return Result;
         }
     }
 }

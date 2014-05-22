@@ -85,5 +85,42 @@ namespace Card.Effect
         /// 附加信息
         /// </summary>
         public String AddtionInfo;
+
+        /// <summary>
+        /// 实施效果
+        /// </summary>
+        /// <param name="singleEffect">效果</param>
+        /// <param name="Field"></param>
+        /// <param name="Pos">指定对象</param>
+        /// <returns></returns>
+        public static List<String> RunSingleEffect(EffectDefine singleEffect,Card.Player.GameManager game,Card.CardUtility.TargetPosition Pos)
+        {
+            List<String> Result = new List<string>();
+            //切记，这里的EffectCount都是1
+            switch (singleEffect.AbilityEffectType)
+            {
+                case AbilityEffectEnum.Attack:
+                    break;
+                case AbilityEffectEnum.Recover:
+                    break;
+                case AbilityEffectEnum.Summon:
+                    break;
+                case AbilityEffectEnum.CostDown:
+                    break;
+                case AbilityEffectEnum.卡牌:
+                    break;
+                case AbilityEffectEnum.变形:
+                    Result.AddRange(TransformEffect.RunEffect(singleEffect, game,Pos));
+                    break;
+                case AbilityEffectEnum.法力水晶:
+                    Result.AddRange(CrystalEffect.RunEffect(singleEffect, game));
+                    break;
+                case AbilityEffectEnum.奥秘:
+                    break;
+                default:
+                    break;
+            }
+            return Result;
+        }
     }
 }

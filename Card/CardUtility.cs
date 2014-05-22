@@ -105,6 +105,18 @@ namespace Card
         /// ENDTURN
         /// </summary>
         public const String strEndTurn = "ENDTURN";
+        /// <summary>
+        /// 表示本方
+        /// </summary>
+        public const String strMySelf = "ME";
+        /// <summary>
+        /// 表示对方
+        /// </summary>
+        public const String strYou = "YOU";
+        /// <summary>
+        /// 分隔符号
+        /// </summary>
+        public const String strSplitMark = "#";
         #endregion
         #region"枚举值"
         /// <summary>
