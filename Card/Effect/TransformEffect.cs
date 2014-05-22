@@ -19,10 +19,14 @@ namespace Card.Effect
             if (Pos.MyOrAgainst)
             {
                 game.MySelf.RoleInfo.BattleField.BattleMinions[Pos.Postion] = (Card.MinionCard)CardUtility.GetCardInfoBySN(singleEffect.AddtionInfo);
+                Result.Add("TRANSFORM" + Card.CardUtility.strSplitMark + CardUtility.strMySelf +
+                    Card.CardUtility.strSplitMark + Pos.Postion + Card.CardUtility.strSplitMark + singleEffect.AddtionInfo);
             }
             else
             {
                 game.AgainstInfo.BattleField.BattleMinions[Pos.Postion] = (Card.MinionCard)CardUtility.GetCardInfoBySN(singleEffect.AddtionInfo);
+                Result.Add("TRANSFORM" + Card.CardUtility.strSplitMark + CardUtility.strYou +
+                    Card.CardUtility.strSplitMark + Pos.Postion + Card.CardUtility.strSplitMark + singleEffect.AddtionInfo);
             }
             return Result;
         }

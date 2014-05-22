@@ -24,8 +24,14 @@ namespace Card.Server
             /// 使用魔法
             /// </summary>
             UseAbility,
-
+            /// <summary>
+            /// 结束TURN
+            /// </summary>
             EndTurn,
+             /// <summary>
+             /// 
+             /// </summary>
+            TRANSFORM,
             /// <summary>
             /// 未知
             /// </summary>
@@ -40,6 +46,9 @@ namespace Card.Server
             if (ActionWord.StartsWith("MINION" + CardUtility.strSplitMark)) t = ActionType.UseMinion;
             if (ActionWord.StartsWith("ABILITY" + CardUtility.strSplitMark)) t = ActionType.UseAbility;
             if (ActionWord.Equals(Card.CardUtility.strEndTurn)) t = ActionType.EndTurn;
+
+            if (ActionWord.StartsWith("TRANSFORM" + CardUtility.strSplitMark)) t = ActionType.TRANSFORM;
+
             return t;   
         }
         /// <summary>
@@ -71,11 +80,11 @@ namespace Card.Server
         /// <param name="CardSn">卡牌号码</param>
         /// <param name="ResultArg">法术效果</param>
         /// <returns></returns>
-        public static String UseAbility(String CardSn, String[] ResultArg)
+        public static String UseAbility(String CardSn, List<String> ResultArg)
         {
             String ActionCode = String.Empty;
             ActionCode = "ABILITY" + CardUtility.strSplitMark + CardSn;
-            for (int i = 0; i < ResultArg.Length; i++)
+            for (int i = 0; i < ResultArg.Count; i++)
             {
                 ActionCode += CardUtility.strSplitMark + ResultArg[i];
             }

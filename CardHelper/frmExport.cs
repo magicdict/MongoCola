@@ -69,7 +69,7 @@ namespace CardHelper
             workbook = excelObj.Workbooks.Open(ExcelPicker.SelectedPathOrFileName);
             Minion(target, workbook);
             Ability(target, workbook);
-            Weapon(target, workbook);    
+            Weapon(target, workbook);
             workbook.Close();
             excelObj.Quit();
             excelObj = null;
@@ -159,8 +159,8 @@ namespace CardHelper
                 Ability.IsCardReady = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 13).Text);
 
                 Card.Effect.EffectDefine effect = new Card.Effect.EffectDefine();
-                effect.Description = String.IsNullOrEmpty(worksheet.Cells(rowCount, 14).Text)?String.Empty:worksheet.Cells(rowCount, 14).Text;
-                effect.AbilityEffectType = CardUtility.GetEnum<Card.Effect.CardDeckEffect.AbilityEffectEnum>(worksheet.Cells(rowCount, 15).Text, Card.Effect.CardDeckEffect.AbilityEffectEnum.Attack);
+                effect.Description = String.IsNullOrEmpty(worksheet.Cells(rowCount, 14).Text) ? String.Empty : worksheet.Cells(rowCount, 14).Text;
+                effect.AbilityEffectType = CardUtility.GetEnum<Card.Effect.CardDeckEffect.AbilityEffectEnum>(worksheet.Cells(rowCount, 15).Text, Card.Effect.CardDeckEffect.AbilityEffectEnum.未知);
                 effect.EffectTargetSelectDirect = CardUtility.GetEnum<Card.CardUtility.TargetSelectDirectEnum>(worksheet.Cells(rowCount, 16).Text, CardUtility.TargetSelectDirectEnum.无限制);
                 effect.EffectTargetSelectRole = CardUtility.GetEnum<Card.CardUtility.TargetSelectRoleEnum>(worksheet.Cells(rowCount, 17).Text, CardUtility.TargetSelectRoleEnum.随从);
                 effect.EffictTargetSelectMode = CardUtility.GetEnum<Card.CardUtility.TargetSelectModeEnum>(worksheet.Cells(rowCount, 18).Text, CardUtility.TargetSelectModeEnum.不用选择);
@@ -168,21 +168,29 @@ namespace CardHelper
                 effect.EffectCount = CardUtility.GetInt(worksheet.Cells(rowCount, 20).Text);
                 effect.AddtionInfo = worksheet.Cells(rowCount, 21).Text;
                 Ability.CardAbility.FirstAbilityDefine = effect;
-
                 Ability.CardAbility.JoinType = CardUtility.GetEnum<Card.CardUtility.EffectJoinType>(worksheet.Cells(rowCount, 22).Text, Card.CardUtility.EffectJoinType.None);
-
-                Card.Effect.EffectDefine effect2 = new Card.Effect.EffectDefine();
-                effect2.Description = String.IsNullOrEmpty(worksheet.Cells(rowCount, 23).Text) ? String.Empty : worksheet.Cells(rowCount, 23).Text;
-                effect2.AbilityEffectType = CardUtility.GetEnum<Card.Effect.CardDeckEffect.AbilityEffectEnum>(worksheet.Cells(rowCount, 24).Text, Card.Effect.CardDeckEffect.AbilityEffectEnum.Attack);
-                effect2.EffectTargetSelectDirect = CardUtility.GetEnum<Card.CardUtility.TargetSelectDirectEnum>(worksheet.Cells(rowCount, 25).Text, CardUtility.TargetSelectDirectEnum.无限制);
-                effect2.EffectTargetSelectRole = CardUtility.GetEnum<Card.CardUtility.TargetSelectRoleEnum>(worksheet.Cells(rowCount, 26).Text, CardUtility.TargetSelectRoleEnum.随从);
-                effect2.EffictTargetSelectMode = CardUtility.GetEnum<Card.CardUtility.TargetSelectModeEnum>(worksheet.Cells(rowCount, 27).Text, CardUtility.TargetSelectModeEnum.不用选择);
-                effect2.StandardEffectPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 28).Text);
-                effect2.EffectCount = CardUtility.GetInt(worksheet.Cells(rowCount, 29).Text);
-                effect2.AddtionInfo = worksheet.Cells(rowCount, 30).Text;
-                Ability.CardAbility.SecondAbilityDefine = effect2;
-
-                
+                Boolean HasSecond = false;
+                for (int i = 23; i < 31; i++)
+                {
+                    if (!String.IsNullOrEmpty(worksheet.Cells(rowCount, i).Text))
+                    {
+                        HasSecond = true;
+                        break;
+                    }
+                }
+                if (HasSecond)
+                {
+                    Card.Effect.EffectDefine effect2 = new Card.Effect.EffectDefine();
+                    effect2.Description = String.IsNullOrEmpty(worksheet.Cells(rowCount, 23).Text) ? String.Empty : worksheet.Cells(rowCount, 23).Text;
+                    effect2.AbilityEffectType = CardUtility.GetEnum<Card.Effect.CardDeckEffect.AbilityEffectEnum>(worksheet.Cells(rowCount, 24).Text, Card.Effect.CardDeckEffect.AbilityEffectEnum.未知);
+                    effect2.EffectTargetSelectDirect = CardUtility.GetEnum<Card.CardUtility.TargetSelectDirectEnum>(worksheet.Cells(rowCount, 25).Text, CardUtility.TargetSelectDirectEnum.无限制);
+                    effect2.EffectTargetSelectRole = CardUtility.GetEnum<Card.CardUtility.TargetSelectRoleEnum>(worksheet.Cells(rowCount, 26).Text, CardUtility.TargetSelectRoleEnum.随从);
+                    effect2.EffictTargetSelectMode = CardUtility.GetEnum<Card.CardUtility.TargetSelectModeEnum>(worksheet.Cells(rowCount, 27).Text, CardUtility.TargetSelectModeEnum.不用选择);
+                    effect2.StandardEffectPoint = CardUtility.GetInt(worksheet.Cells(rowCount, 28).Text);
+                    effect2.EffectCount = CardUtility.GetInt(worksheet.Cells(rowCount, 29).Text);
+                    effect2.AddtionInfo = worksheet.Cells(rowCount, 30).Text;
+                    Ability.CardAbility.SecondAbilityDefine = effect2;
+                }
                 switch (target)
                 {
                     case TargetType.MongoDB:

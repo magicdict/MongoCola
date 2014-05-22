@@ -25,13 +25,16 @@ namespace 炉边传说
             game.GameId = int.Parse(GameId);
             btnJoinGame.Enabled = false;
             btnRefresh.Enabled = false;
+            btnCreateGame.Enabled = false;
             while (!Card.Server.ClientUtlity.IsGameStart(GameId))
             {
                 Thread.Sleep(3000);
             }
             game.IsFirst = Card.Server.ClientUtlity.IsFirst(game.GameId.ToString(GameServer.GameIdFormat), game.IsHost);
             game.Init();
-            new BattleField().ShowDialog();
+            var t = new BattleField();
+            t.game = game;
+            t.ShowDialog();
         }
         /// <summary>
         /// 
@@ -62,7 +65,9 @@ namespace 炉边传说
             game.GameId = int.Parse(GameId);
             game.IsFirst = Card.Server.ClientUtlity.IsFirst(game.GameId.ToString(GameServer.GameIdFormat), game.IsHost);
             game.Init();
-            new BattleField().ShowDialog();
+            var t = new BattleField();
+            t.game = game;
+            t.ShowDialog();
         }
 
         private void frmStartGame_Load(object sender, EventArgs e)

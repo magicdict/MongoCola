@@ -4,7 +4,7 @@ using Card.Server;
 using System;
 using System.Text;
 using System.Windows.Forms;
-
+using System.Collections.Generic;
 namespace 炉边传说
 {
     public partial class BattleField : Form
@@ -13,7 +13,7 @@ namespace 炉边传说
         {
             InitializeComponent();
         }
-        GameManager game = new GameManager();
+        public GameManager game;
         /// <summary>
         /// Timer
         /// </summary>
@@ -58,29 +58,45 @@ namespace 炉边传说
             Status.AppendLine("PlayerNickName：" + game.PlayerNickName);
             Status.AppendLine("IsHost：" + game.IsHost);
             Status.AppendLine("IsFirst：" + game.IsFirst);
+            
             Status.AppendLine("==============");
             Status.AppendLine("Role：");
+            lstMyMinion.Items.Add("本方英雄");
             Status.AppendLine("Crystal：" + game.MySelf.RoleInfo.crystal.CurrentRemainPoint + "/" + game.MySelf.RoleInfo.crystal.CurrentFullPoint);
             Status.AppendLine("HealthPoint：" + game.MySelf.RoleInfo.HealthPoint);
+            if (game.MySelf.RoleInfo.Weapon != null)
+            {
+                Status.AppendLine("Weapon：" + game.MySelf.RoleInfo.Weapon.StandardAttackPoint);
+            }
+            else {
+                Status.AppendLine("Weapon：Null");
+            }
             Status.AppendLine("RemainCardDeckCount：" + game.MySelf.RoleInfo.RemainCardDeckCount);
             Status.AppendLine("==============");
             Status.AppendLine("Battle：");
             lstMyMinion.Items.Clear();
-            lstMyMinion.Items.Add("本方英雄");
             for (int i = 0; i < game.MySelf.RoleInfo.BattleField.BattleMinions.Length; i++)
             {
                 lstMyMinion.Items.Add("本方位置" + i.ToString() + "：" +
                     (game.MySelf.RoleInfo.BattleField.BattleMinions[i] == null ? "[NULL]" : game.MySelf.RoleInfo.BattleField.BattleMinions[i].Name));
             }
+
             Status.AppendLine("==============");
             Status.AppendLine("Role：");
+            lstMyMinion.Items.Add("对方英雄");
             Status.AppendLine("Crystal：" + game.AgainstInfo.crystal.CurrentRemainPoint + "/" + game.AgainstInfo.crystal.CurrentFullPoint);
             Status.AppendLine("HealthPoint：" + game.AgainstInfo.HealthPoint);
+            if (game.AgainstInfo.Weapon != null)
+            {
+                Status.AppendLine("Weapon：" + game.AgainstInfo.Weapon.StandardAttackPoint);
+            }
+            else
+            {
+                Status.AppendLine("Weapon：Null");
+            }
             Status.AppendLine("RemainCardDeckCount：" + game.AgainstInfo.RemainCardDeckCount);
             Status.AppendLine("==============");
             Status.AppendLine("Battle：");
-
-            lstMyMinion.Items.Add("对方英雄");
             for (int i = 0; i < game.AgainstInfo.BattleField.BattleMinions.Length; i++)
             {
                 lstMyMinion.Items.Add("对方位置" + i.ToString() + "：" +
@@ -143,6 +159,9 @@ namespace 炉边传说
                         btnEndTurn.Enabled = true;
                         game.IsMyTurn = true;
                         StartNewTurn();
+                        break;
+                    case ActionCode.ActionType.TRANSFORM:
+                        game.MySelf.RoleInfo.BattleField.BattleMinions[0] = (Card.MinionCard)Card.CardUtility.GetCardInfoBySN(item.Split("#".ToCharArray())[3]);
                         break;
                     case ActionCode.ActionType.UnKnown:
                         break;
@@ -238,26 +257,30 @@ namespace 炉边传说
                     MessageBox.Show("水晶不够");
                     return;
                 }
-                String strActionCode = String.Empty;
+                List<String> strActionCode = new List<string>();
                 switch (CardSn.Substring(0, 1))
                 {
                     case "A":
                         var ResultArg = game.UseAbility(CardSn);
-                        strActionCode = ActionCode.UseAbility(CardSn, ResultArg);
+                        strActionCode.Add(ActionCode.UseAbility(CardSn, ResultArg));
+                        strActionCode.AddRange(ResultArg);
                         break;
                     case "M":
                         int MinionPos = game.MySelf.RoleInfo.BattleField.MinionCount + 1;
-                        strActionCode = ActionCode.UseMinion(CardSn, MinionPos);
+                        strActionCode.Add(ActionCode.UseMinion(CardSn, MinionPos));
                         game.MySelf.RoleInfo.BattleField.PutToBattle(MinionPos, (Card.MinionCard)card);
                         break;
                     case "W":
-                        strActionCode = ActionCode.UseWeapon(CardSn);
+                        strActionCode.Add(ActionCode.UseWeapon(CardSn));
                         game.MySelf.RoleInfo.Weapon = (Card.WeaponCard)card;
                         break;
                     default:
                         break;
                 }
-                Card.Server.ClientUtlity.WriteAction(game.GameId.ToString(GameServer.GameIdFormat), strActionCode);
+                foreach (var action in strActionCode)
+                {
+                    Card.Server.ClientUtlity.WriteAction(game.GameId.ToString(GameServer.GameIdFormat), action);
+                }
             }
             DisplayMyInfo();
         }

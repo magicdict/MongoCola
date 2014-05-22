@@ -58,11 +58,11 @@ namespace Card
             get {
                 switch (SN.Substring(0,1))
                 {
-                    case "M":
+                    case "A":
                         return CardTypeEnum.法术;
                     case "W":
                         return CardTypeEnum.武器;
-                    case "F":
+                    case "M":
                         return CardTypeEnum.随从;
                     default:
                         return CardTypeEnum.其他;

@@ -1,4 +1,5 @@
 ﻿using Card;
+using Card.Effect;
 using Card.Server;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,10 @@ namespace Card.Player
             CardUtility.GetCardImage += GetCardImageAtServer;
             //属性
             var HandCard = Card.Server.ClientUtlity.DrawCard(GameId.ToString(GameServer.GameIdFormat), IsFirst, IsFirst ? 3 : 4);
+            //DEBUG
+            HandCard.Add("A000075");
+            HandCard.Add("A000066");
+            //DEBUG
             if (!IsFirst) HandCard.Add(Card.CardUtility.SN幸运币);
             MySelf.handCards = HandCard;
             MySelf.RoleInfo.HandCardCount = HandCard.Count;
@@ -96,17 +101,26 @@ namespace Card.Player
         /// 使用法术
         /// </summary>
         /// <param name="CardSn"></param>
-        public String[] UseAbility(String CardSn)
+        public List<String> UseAbility(String CardSn)
         {
-            String[] Ablitiy = new String[] { };
+            List<String> Result = new List<string>();
             Card.AbilityCard card = (Card.AbilityCard)CardUtility.GetCardInfoBySN(CardSn);
             Boolean IsPickFirstEffect = false;
             if (card.CardAbility.IsNeedSelect())
             {
                 IsPickFirstEffect = PickEffect(card.CardAbility.FirstAbilityDefine.Description,card.CardAbility.SecondAbilityDefine.Description);
             }
-            var SingleEffect = card.CardAbility.GetSingleEffectList(IsPickFirstEffect);
-            return Ablitiy;
+            var SingleEffectList = card.CardAbility.GetSingleEffectList(IsPickFirstEffect);
+            foreach (var singleEff in SingleEffectList)
+            {
+                Card.CardUtility.TargetPosition Pos = new CardUtility.TargetPosition();
+                if (singleEff.IsNeedSelectTarget())
+                {
+                    Pos = GetSelectTarget();
+                }
+                Result.AddRange(EffectDefine.RunSingleEffect(singleEff, this,Pos));
+            }
+            return Result;
         }
         /// <summary>
         /// 抽牌（服务器方法）

@@ -48,7 +48,11 @@ namespace Card.Effect
             /// <summary>
             /// 奥秘
             /// </summary>
-            奥秘
+            奥秘,
+            /// <summary>
+            /// 
+            /// </summary>
+            未知
         }
         /// <summary>
         /// 法术类型
@@ -66,6 +70,14 @@ namespace Card.Effect
         /// 法术对象选择方向
         /// </summary>
         public CardUtility.TargetSelectDirectEnum EffectTargetSelectDirect;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public Boolean IsNeedSelectTarget()
+        {
+            return EffictTargetSelectMode != CardUtility.TargetSelectModeEnum.不用选择;
+        }
         /// 攻击的时候：99表示消灭一个单位
         /// 治疗的时候：99表示完全回复一个单位
         /// 抽牌的时候：表示抽牌的数量
