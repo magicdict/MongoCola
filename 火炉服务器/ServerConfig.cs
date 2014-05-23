@@ -31,6 +31,8 @@ namespace 火炉服务器
         private void btnStop_Click(object sender, EventArgs e)
         {
             ServerThread.Abort();
+            ServerThread = null;
+            GC.Collect();
         }
     }
 }

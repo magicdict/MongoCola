@@ -54,7 +54,7 @@ namespace Card.Effect
                                     break;
                             }
                             //ATTACK#ME#POS#AP
-                            Result.Add(ActionCode.strAttack + CardUtility.strSplitMark + CardUtility.strMe + CardUtility.strSplitMark +
+                            Result.Add(ActionCode.strAttack + CardUtility.strSplitMark + CardUtility.strYou + CardUtility.strSplitMark +
                                        Pos.Postion.ToString("D1") + CardUtility.strSplitMark + AttackPoint);
                             break;
                         case CardUtility.TargetSelectDirectEnum.双方:
@@ -181,8 +181,8 @@ namespace Card.Effect
                     }
                     break;
                 case CardUtility.TargetSelectModeEnum.指定:
-                       Result.Add(ActionCode.strAttack + CardUtility.strSplitMark + (Pos.MeOrYou ? CardUtility.strMe : CardUtility.strYou) + CardUtility.strSplitMark +
-                       Pos.Postion.ToString("D1") + CardUtility.strSplitMark + AttackPoint);
+                    Result.Add(ActionCode.strAttack + CardUtility.strSplitMark + (Pos.MeOrYou ? CardUtility.strMe : CardUtility.strYou) + CardUtility.strSplitMark +
+                    Pos.Postion.ToString("D1") + CardUtility.strSplitMark + AttackPoint);
                     break;
             }
             //处理对象
@@ -198,12 +198,21 @@ namespace Card.Effect
                     }
                     else
                     {
-                        game.MySelf.RoleInfo.BattleField.BattleMinions[int.Parse(actField[2])].AfterBeAttack(AttackPoint);
+                        //位置从1开始，数组从0开始
+                        game.MySelf.RoleInfo.BattleField.BattleMinions[int.Parse(actField[2]) - 1].AfterBeAttack(AttackPoint);
                     }
                 }
                 else
                 {
-                    game.AgainstInfo.BattleField.BattleMinions[int.Parse(actField[2])].AfterBeAttack(AttackPoint);
+                    if (actField[2] == "0")
+                    {
+                        game.AgainstInfo.HealthPoint -= AttackPoint;
+                    }
+                    else
+                    {
+                        //位置从1开始，数组从0开始
+                        game.AgainstInfo.BattleField.BattleMinions[int.Parse(actField[2]) - 1].AfterBeAttack(AttackPoint);
+                    }
                 }
             }
             return Result;

@@ -71,5 +71,13 @@ namespace Card.Effect
             }
             return EffectLst;
         }
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        public void Init()
+        {
+            if (FirstAbilityDefine != null) FirstAbilityDefine.Init();
+            if (SecondAbilityDefine != null) SecondAbilityDefine.Init();            
+        }
     }
 }

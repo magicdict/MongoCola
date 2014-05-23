@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Card.Player
 {
@@ -75,6 +76,30 @@ namespace Card.Player
                 BattleMinions[i] = BattleMinions[i + 1];
             }
             BattleMinions[MaxMinionCount - 1] = null;
+        }
+        /// <summary>
+        /// Buff的设置
+        /// </summary>
+        public void ResetBuff()
+        {
+
+        }
+        /// <summary>
+        /// 去除死去随从
+        /// </summary>
+        public void ClearDead()
+        {
+            var CloneMinions = new MinionCard[BattleFieldInfo.MaxMinionCount];
+            int ALive = 0;
+            for (int i = 0; i < BattleFieldInfo.MaxMinionCount; i++)
+            {
+                if (BattleMinions[i] != null && BattleMinions[i].IsLive())
+                {
+                    CloneMinions[ALive] = BattleMinions[i];
+                    ALive++;
+                }
+            }
+            BattleMinions = CloneMinions;
         }
     }
 }

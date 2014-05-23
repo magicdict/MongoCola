@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Card.Effect
 {
@@ -19,19 +17,19 @@ namespace Card.Effect
             /// <summary>
             /// 攻击类
             /// </summary>
-            Attack,
+            攻击,
             /// <summary>
             /// 治疗回复
             /// </summary>
-            Recover,
+            回复,
             /// <summary>
             /// 召唤
             /// </summary>
-            Summon,
+            召唤,
             /// <summary>
             /// 降低成本
             /// </summary>
-            CostDown,
+            增益,
             /// <summary>
             /// 抽牌/弃牌
             /// </summary>
@@ -76,7 +74,7 @@ namespace Card.Effect
         /// <returns></returns>
         public Boolean IsNeedSelectTarget()
         {
-            return EffictTargetSelectMode != CardUtility.TargetSelectModeEnum.不用选择;
+            return EffictTargetSelectMode == CardUtility.TargetSelectModeEnum.指定;
         }
         /// 攻击的时候：99表示消灭一个单位
         /// 治疗的时候：99表示完全回复一个单位
@@ -111,14 +109,14 @@ namespace Card.Effect
             //切记，这里的EffectCount都是1
             switch (singleEffect.AbilityEffectType)
             {
-                case AbilityEffectEnum.Attack:
+                case AbilityEffectEnum.攻击:
                     Result.AddRange(AttackEffect.RunEffect(singleEffect, game, Pos, Seed));
                     break;
-                case AbilityEffectEnum.Recover:
+                case AbilityEffectEnum.回复:
                     break;
-                case AbilityEffectEnum.Summon:
+                case AbilityEffectEnum.召唤:
                     break;
-                case AbilityEffectEnum.CostDown:
+                case AbilityEffectEnum.增益:
                     break;
                 case AbilityEffectEnum.卡牌:
                     break;
@@ -134,6 +132,13 @@ namespace Card.Effect
                     break;
             }
             return Result;
+        }
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        public void Init()
+        {
+            ActualEffectPoint = StandardEffectPoint;
         }
     }
 }

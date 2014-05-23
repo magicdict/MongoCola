@@ -50,16 +50,16 @@
             // lstHandCard
             // 
             this.lstHandCard.FormattingEnabled = true;
-            this.lstHandCard.Location = new System.Drawing.Point(477, 303);
+            this.lstHandCard.Location = new System.Drawing.Point(407, 91);
             this.lstHandCard.Name = "lstHandCard";
-            this.lstHandCard.Size = new System.Drawing.Size(120, 95);
+            this.lstHandCard.Size = new System.Drawing.Size(120, 303);
             this.lstHandCard.TabIndex = 1;
             this.lstHandCard.SelectedIndexChanged += new System.EventHandler(this.lstHandCard_SelectedIndexChanged);
             // 
             // lblSelectedHandCardInfo
             // 
             this.lblSelectedHandCardInfo.AutoSize = true;
-            this.lblSelectedHandCardInfo.Location = new System.Drawing.Point(618, 303);
+            this.lblSelectedHandCardInfo.Location = new System.Drawing.Point(548, 91);
             this.lblSelectedHandCardInfo.Name = "lblSelectedHandCardInfo";
             this.lblSelectedHandCardInfo.Size = new System.Drawing.Size(79, 13);
             this.lblSelectedHandCardInfo.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // btnEndTurn
             // 
-            this.btnEndTurn.Location = new System.Drawing.Point(810, 230);
+            this.btnEndTurn.Location = new System.Drawing.Point(871, 81);
             this.btnEndTurn.Name = "btnEndTurn";
             this.btnEndTurn.Size = new System.Drawing.Size(75, 23);
             this.btnEndTurn.TabIndex = 3;
@@ -86,7 +86,7 @@
             // 
             // btnUseHandCard
             // 
-            this.btnUseHandCard.Location = new System.Drawing.Point(477, 404);
+            this.btnUseHandCard.Location = new System.Drawing.Point(780, 81);
             this.btnUseHandCard.Name = "btnUseHandCard";
             this.btnUseHandCard.Size = new System.Drawing.Size(75, 23);
             this.btnUseHandCard.TabIndex = 5;
@@ -97,9 +97,9 @@
             // lstAction
             // 
             this.lstAction.FormattingEnabled = true;
-            this.lstAction.Location = new System.Drawing.Point(762, 303);
+            this.lstAction.Location = new System.Drawing.Point(551, 182);
             this.lstAction.Name = "lstAction";
-            this.lstAction.Size = new System.Drawing.Size(120, 95);
+            this.lstAction.Size = new System.Drawing.Size(408, 173);
             this.lstAction.TabIndex = 7;
             // 
             // lstMyMinion

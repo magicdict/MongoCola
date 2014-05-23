@@ -53,6 +53,7 @@ namespace Card.Player
             //DEBUG
             HandCard.Add("A000075");
             HandCard.Add("A000066");
+            HandCard.Add("A000065");
             //DEBUG
             if (!IsFirst) HandCard.Add(Card.CardUtility.SN幸运币);
             MySelf.handCards = HandCard;
@@ -101,10 +102,9 @@ namespace Card.Player
         /// 使用法术
         /// </summary>
         /// <param name="CardSn"></param>
-        public List<String> UseAbility(String CardSn)
+        public List<String> UseAbility(Card.AbilityCard card)
         {
             List<String> Result = new List<string>();
-            Card.AbilityCard card = (Card.AbilityCard)CardUtility.GetCardInfoBySN(CardSn);
             Boolean IsPickFirstEffect = false;
             if (card.CardAbility.IsNeedSelect())
             {
@@ -122,7 +122,23 @@ namespace Card.Player
                     Pos = GetSelectTarget();
                 }
                 Result.AddRange(EffectDefine.RunSingleEffect(singleEff, this, Pos,i));
+                //每次原子操作后进行一次清算
+                Settle();
             }
+            return Result;
+        }
+        /// <summary>
+        /// 清算(核心方法)
+        /// </summary>
+        /// <returns></returns>
+        private List<String> Settle() {
+            List<String> Result = new List<string>();
+            //1.检查需要移除的对象
+            MySelf.RoleInfo.BattleField.ClearDead();
+            AgainstInfo.BattleField.ClearDead();
+            //2.重新计算Buff
+            MySelf.RoleInfo.BattleField.ResetBuff();
+            AgainstInfo.BattleField.ResetBuff();
             return Result;
         }
         /// <summary>
