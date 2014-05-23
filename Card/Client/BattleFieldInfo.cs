@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Card.Player
+namespace Card.Client
 {
     /// <summary>
     /// 战场信息（炉石专用）

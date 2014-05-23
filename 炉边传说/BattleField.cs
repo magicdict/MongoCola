@@ -1,5 +1,5 @@
 ﻿using Card;
-using Card.Player;
+using Card.Client;
 using Card.Server;
 using System;
 using System.Text;
@@ -145,7 +145,7 @@ namespace 炉边传说
                 lstAction.Items.Add("[" + item + "]");
                 if (ActionCode.GetActionType(item) != ActionCode.ActionType.EndTurn)
                 {
-                    ActionCode.ProcessAction(item, game);
+                    ProcessAction.Process(item, game);
                 }
                 else
                 {
@@ -247,7 +247,7 @@ namespace 炉边传说
                     MessageBox.Show("水晶不够");
                     return;
                 }
-                var actionlst = ActionCode.StartAction(game, CardSn);
+                var actionlst = RunAction.StartAction(game, CardSn);
                 foreach (var action in actionlst)
                 {
                     Card.Server.ClientUtlity.WriteAction(game.GameId.ToString(GameServer.GameIdFormat), action);

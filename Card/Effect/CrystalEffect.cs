@@ -1,4 +1,4 @@
-﻿using Card.Player;
+﻿using Card.Client;
 using System.Collections.Generic;
 namespace Card.Effect
 {

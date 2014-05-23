@@ -14,7 +14,7 @@ namespace Card.Effect
         /// <param name="singleEffect"></param>
         /// <param name="game"></param>
         /// <returns></returns>
-        public static List<string> RunEffect(EffectDefine singleEffect, Player.GameManager game, CardUtility.TargetPosition Pos)
+        public static List<string> RunEffect(EffectDefine singleEffect, Client.GameManager game, CardUtility.TargetPosition Pos)
         {
             List<string> Result = new List<string>();
             if (Pos.MeOrYou)

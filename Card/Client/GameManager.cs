@@ -4,7 +4,7 @@ using Card.Server;
 using System;
 using System.Collections.Generic;
 
-namespace Card.Player
+namespace Card.Client
 {
     /// <summary>
     /// 游戏管理
@@ -60,13 +60,13 @@ namespace Card.Player
             MySelf.RoleInfo.HandCardCount = HandCard.Count;
             if (IsFirst)
             {
-                MySelf.RoleInfo.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 3;
-                AgainstInfo.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 4;
+                MySelf.RoleInfo.RemainCardDeckCount = Card.Client.CardDeck.MaxCards - 3;
+                AgainstInfo.RemainCardDeckCount = Card.Client.CardDeck.MaxCards - 4;
             }
             else
             {
-                MySelf.RoleInfo.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 4;
-                AgainstInfo.RemainCardDeckCount = Card.Player.CardDeck.MaxCards - 3;
+                MySelf.RoleInfo.RemainCardDeckCount = Card.Client.CardDeck.MaxCards - 4;
+                AgainstInfo.RemainCardDeckCount = Card.Client.CardDeck.MaxCards - 3;
             }
         }
         /// <summary>

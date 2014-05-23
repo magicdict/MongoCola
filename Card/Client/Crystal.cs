@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Card.Player
+namespace Card.Client
 {
     public class Crystal
     {

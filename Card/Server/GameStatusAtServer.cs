@@ -1,7 +1,7 @@
 ﻿using Card;
 using System;
 using System.Collections.Generic;
-using Card.Player;
+using Card.Client;
 
 namespace Card.Server
 {

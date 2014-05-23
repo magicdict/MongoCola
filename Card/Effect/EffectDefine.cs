@@ -103,7 +103,7 @@ namespace Card.Effect
         /// <param name="Field"></param>
         /// <param name="Pos">指定对象</param>
         /// <returns></returns>
-        public static List<String> RunSingleEffect(EffectDefine singleEffect, Card.Player.GameManager game, Card.CardUtility.TargetPosition Pos, int Seed)
+        public static List<String> RunSingleEffect(EffectDefine singleEffect, Card.Client.GameManager game, Card.CardUtility.TargetPosition Pos, int Seed)
         {
             List<String> Result = new List<string>();
             //切记，这里的EffectCount都是1

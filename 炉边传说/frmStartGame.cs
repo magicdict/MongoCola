@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.Threading;
 using Card.Server;
-using Card.Player;
+using Card.Client;
 namespace 炉边传说
 {
     public partial class frmStartGame : Form

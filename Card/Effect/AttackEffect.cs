@@ -14,7 +14,7 @@ namespace Card.Effect
         /// <param name="Pos"></param>
         /// <param name="Seed">随机数种子</param>
         /// <returns></returns>
-        public static List<string> RunEffect(EffectDefine singleEffect, Player.GameManager game, CardUtility.TargetPosition Pos, int Seed)
+        public static List<string> RunEffect(EffectDefine singleEffect, Client.GameManager game, CardUtility.TargetPosition Pos, int Seed)
         {
             //切记，这里的EffectCount都是1
             List<string> Result = new List<string>();
