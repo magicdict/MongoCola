@@ -76,7 +76,7 @@ namespace Card.Server
         /// </summary>
         /// <param name="GameId"></param>
         public static void TurnEnd(String GameId) {
-            WriteAction(GameId, CardUtility.strEndTurn);
+            WriteAction(GameId, ActionCode.strEndTurn);
         }
         /// <summary>
         /// 添加指令

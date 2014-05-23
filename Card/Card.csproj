@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Effect\Ability.cs" />
+    <Compile Include="Effect\AttackEffect.cs" />
     <Compile Include="logger.cs" />
     <Compile Include="Player\BattleFieldInfo.cs" />
     <Compile Include="Player\Crystal.cs" />

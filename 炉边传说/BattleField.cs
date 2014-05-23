@@ -58,7 +58,7 @@ namespace 炉边传说
             Status.AppendLine("PlayerNickName：" + game.PlayerNickName);
             Status.AppendLine("IsHost：" + game.IsHost);
             Status.AppendLine("IsFirst：" + game.IsFirst);
-            
+
             Status.AppendLine("==============");
             Status.AppendLine("Role：");
             lstMyMinion.Items.Add("本方英雄");
@@ -68,7 +68,8 @@ namespace 炉边传说
             {
                 Status.AppendLine("Weapon：" + game.MySelf.RoleInfo.Weapon.StandardAttackPoint);
             }
-            else {
+            else
+            {
                 Status.AppendLine("Weapon：Null");
             }
             Status.AppendLine("RemainCardDeckCount：" + game.MySelf.RoleInfo.RemainCardDeckCount);
@@ -142,33 +143,22 @@ namespace 炉边传说
             foreach (var item in ActionList)
             {
                 lstAction.Items.Add("[" + item + "]");
-                switch (Card.Server.ActionCode.GetActionType(item))
+                if (ActionCode.GetActionType(item) != ActionCode.ActionType.EndTurn)
                 {
-                    case ActionCode.ActionType.UseWeapon:
-                        break;
-                    case ActionCode.ActionType.UseMinion:
-                        int Pos = int.Parse(item.Substring("MINION".Length + 1 + 7 + 1));
-                        String CardSn = item.Substring("MINION".Length + 1, 7);
-                        game.AgainstInfo.BattleField.PutToBattle(Pos, CardSn);
-                        break;
-                    case ActionCode.ActionType.UseAbility:
-
-                        break;
-                    case ActionCode.ActionType.EndTurn:
-                        WaitTimer.Stop();
-                        btnEndTurn.Enabled = true;
-                        game.IsMyTurn = true;
-                        StartNewTurn();
-                        break;
-                    case ActionCode.ActionType.TRANSFORM:
-                        game.MySelf.RoleInfo.BattleField.BattleMinions[0] = (Card.MinionCard)Card.CardUtility.GetCardInfoBySN(item.Split("#".ToCharArray())[3]);
-                        break;
-                    case ActionCode.ActionType.UnKnown:
-                        break;
+                    ActionCode.ProcessAction(item, game);
+                }
+                else
+                {
+                    WaitTimer.Stop();
+                    btnEndTurn.Enabled = true;
+                    game.IsMyTurn = true;
+                    StartNewTurn();
+                    break;
                 }
             }
             DisplayMyInfo();
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -257,27 +247,8 @@ namespace 炉边传说
                     MessageBox.Show("水晶不够");
                     return;
                 }
-                List<String> strActionCode = new List<string>();
-                switch (CardSn.Substring(0, 1))
-                {
-                    case "A":
-                        var ResultArg = game.UseAbility(CardSn);
-                        strActionCode.Add(ActionCode.UseAbility(CardSn, ResultArg));
-                        strActionCode.AddRange(ResultArg);
-                        break;
-                    case "M":
-                        int MinionPos = game.MySelf.RoleInfo.BattleField.MinionCount + 1;
-                        strActionCode.Add(ActionCode.UseMinion(CardSn, MinionPos));
-                        game.MySelf.RoleInfo.BattleField.PutToBattle(MinionPos, (Card.MinionCard)card);
-                        break;
-                    case "W":
-                        strActionCode.Add(ActionCode.UseWeapon(CardSn));
-                        game.MySelf.RoleInfo.Weapon = (Card.WeaponCard)card;
-                        break;
-                    default:
-                        break;
-                }
-                foreach (var action in strActionCode)
+                var actionlst = ActionCode.StartAction(game, CardSn);
+                foreach (var action in actionlst)
                 {
                     Card.Server.ClientUtlity.WriteAction(game.GameId.ToString(GameServer.GameIdFormat), action);
                 }

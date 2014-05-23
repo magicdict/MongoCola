@@ -105,13 +105,14 @@ namespace Card.Effect
         /// <param name="Field"></param>
         /// <param name="Pos">指定对象</param>
         /// <returns></returns>
-        public static List<String> RunSingleEffect(EffectDefine singleEffect,Card.Player.GameManager game,Card.CardUtility.TargetPosition Pos)
+        public static List<String> RunSingleEffect(EffectDefine singleEffect, Card.Player.GameManager game, Card.CardUtility.TargetPosition Pos, int Seed)
         {
             List<String> Result = new List<string>();
             //切记，这里的EffectCount都是1
             switch (singleEffect.AbilityEffectType)
             {
                 case AbilityEffectEnum.Attack:
+                    Result.AddRange(AttackEffect.RunEffect(singleEffect, game, Pos, Seed));
                     break;
                 case AbilityEffectEnum.Recover:
                     break;
@@ -122,7 +123,7 @@ namespace Card.Effect
                 case AbilityEffectEnum.卡牌:
                     break;
                 case AbilityEffectEnum.变形:
-                    Result.AddRange(TransformEffect.RunEffect(singleEffect, game,Pos));
+                    Result.AddRange(TransformEffect.RunEffect(singleEffect, game, Pos));
                     break;
                 case AbilityEffectEnum.法力水晶:
                     Result.AddRange(CrystalEffect.RunEffect(singleEffect, game));

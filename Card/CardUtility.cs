@@ -102,13 +102,9 @@ namespace Card
         /// </summary>
         public const String SN幸运币 = "A900001";
         /// <summary>
-        /// ENDTURN
-        /// </summary>
-        public const String strEndTurn = "ENDTURN";
-        /// <summary>
         /// 表示本方
         /// </summary>
-        public const String strMySelf = "ME";
+        public const String strMe = "ME";
         /// <summary>
         /// 表示对方
         /// </summary>
@@ -173,7 +169,7 @@ namespace Card
             /// <summary>
             /// 无限制
             /// </summary>
-            无限制
+            双方
         }
         /// <summary>
         /// 目标选择角色
@@ -191,7 +187,7 @@ namespace Card
             /// <summary>
             /// 全体（随从+英雄）
             /// </summary>
-            全体,
+            所有角色,
             /// <summary>
             /// 武器，例如：潜行者，对武器喂毒
             /// </summary>
@@ -295,7 +291,7 @@ namespace Card
             /// <summary>
             /// 本方/对方
             /// </summary>
-            public Boolean MyOrAgainst;
+            public Boolean MeOrYou;
             /// <summary>
             /// 0 - 英雄，1-7 随从位置
             /// </summary>

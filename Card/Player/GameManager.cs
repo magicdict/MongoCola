@@ -111,14 +111,17 @@ namespace Card.Player
                 IsPickFirstEffect = PickEffect(card.CardAbility.FirstAbilityDefine.Description,card.CardAbility.SecondAbilityDefine.Description);
             }
             var SingleEffectList = card.CardAbility.GetSingleEffectList(IsPickFirstEffect);
-            foreach (var singleEff in SingleEffectList)
+
+            for (int i = 0; i < SingleEffectList.Count; i++)
             {
                 Card.CardUtility.TargetPosition Pos = new CardUtility.TargetPosition();
+                var singleEff = SingleEffectList[i];
+                singleEff.EffectCount = 1;
                 if (singleEff.IsNeedSelectTarget())
                 {
                     Pos = GetSelectTarget();
                 }
-                Result.AddRange(EffectDefine.RunSingleEffect(singleEff, this,Pos));
+                Result.AddRange(EffectDefine.RunSingleEffect(singleEff, this, Pos,i));
             }
             return Result;
         }

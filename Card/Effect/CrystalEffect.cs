@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace Card.Effect
 {
-    public class CrystalEffect : EffectDefine
+    public static class CrystalEffect
     {
         /// <summary>
         /// 对法力水晶的法术实施
@@ -53,7 +53,7 @@ namespace Card.Effect
                     }
                 }
             }
-            Result.Add("CRYSTAL" + CardUtility.strSplitMark + CardUtility.strMySelf + CardUtility.strSplitMark + game.MySelf.RoleInfo.crystal.CurrentRemainPoint + CardUtility.strSplitMark + game.MySelf.RoleInfo.crystal.CurrentFullPoint);
+            Result.Add("CRYSTAL" + CardUtility.strSplitMark + CardUtility.strMe + CardUtility.strSplitMark + game.MySelf.RoleInfo.crystal.CurrentRemainPoint + CardUtility.strSplitMark + game.MySelf.RoleInfo.crystal.CurrentFullPoint);
             Result.Add("CRYSTAL" + CardUtility.strSplitMark + CardUtility.strYou + CardUtility.strSplitMark + game.MySelf.RoleInfo.crystal.CurrentRemainPoint + CardUtility.strSplitMark + game.MySelf.RoleInfo.crystal.CurrentFullPoint);
             return Result;
         }

@@ -92,12 +92,12 @@ namespace CardHelper
             变羊术.StandardCostPoint = 4;
             变羊术.CardAbility.JoinType = Card.CardUtility.EffectJoinType.None;
             //变成 1/1 的羊
-            Card.Effect.TransformEffect transformEffect = new Card.Effect.TransformEffect();
-            transformEffect.EffectCount = 1;
-            transformEffect.EffectTargetSelectDirect = Card.CardUtility.TargetSelectDirectEnum.无限制;
-            transformEffect.EffectTargetSelectRole = Card.CardUtility.TargetSelectRoleEnum.随从;
-            transformEffect.AddtionInfo = "F000004";
-            变羊术.CardAbility.FirstAbilityDefine = transformEffect;
+            //Card.Effect.TransformEffect transformEffect = new Card.Effect.TransformEffect();
+            //transformEffect.EffectCount = 1;
+            //transformEffect.EffectTargetSelectDirect = Card.CardUtility.TargetSelectDirectEnum.无限制;
+            //transformEffect.EffectTargetSelectRole = Card.CardUtility.TargetSelectRoleEnum.随从;
+            //transformEffect.AddtionInfo = "F000004";
+            //变羊术.CardAbility.FirstAbilityDefine = transformEffect;
             return 变羊术;
         }
         /// <summary>

@@ -122,7 +122,7 @@ namespace Card.Server
         {
             ActionInfo.Add(Action);
             //如果是回合结束的指令的时候，翻转是否是先手回合的标志
-            if (Action == CardUtility.strEndTurn) IsFirstNowTurn = !IsFirstNowTurn;
+            if (Action == ActionCode.strEndTurn) IsFirstNowTurn = !IsFirstNowTurn;
         }
         /// <summary>
         /// 读取指令
