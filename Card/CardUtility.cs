@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Xml.Serialization;
 
 namespace Card
@@ -44,6 +45,41 @@ namespace Card
             if (ReadyCardDic.ContainsKey(SN)) return ReadyCardDic[SN];
             return "UnKnow";
         }
+        /// <summary>
+        /// 获得卡牌信息
+        /// </summary>
+        /// <param name="CardSn"></param>
+        /// <returns></returns>
+        public static String GetCardInfo(String CardSn)
+        {
+            StringBuilder Status = new StringBuilder();
+            if (Card.CardUtility.GetCardInfoBySN(CardSn) != null)
+            {
+                Card.CardBasicInfo info = Card.CardUtility.GetCardInfoBySN(CardSn);
+                Status.AppendLine("==============");
+                Status.AppendLine("Description" + info.Description);
+                Status.AppendLine("StandardCostPoint" + info.StandardCostPoint);
+                Status.AppendLine("Type：" + info.CardType.ToString());
+                switch (CardSn.Substring(0, 1))
+                {
+                    case "A":
+                        break;
+                    case "M":
+                        Status.AppendLine("标准攻击力：" + ((Card.MinionCard)info).StandardAttackPoint.ToString());
+                        Status.AppendLine("标准生命值：" + ((Card.MinionCard)info).StandardHealthPoint.ToString());
+                        break;
+                    case "W":
+                        Status.AppendLine("标准攻击力：" + ((Card.WeaponCard)info).StandardAttackPoint.ToString());
+                        Status.AppendLine("标准耐久度：" + ((Card.WeaponCard)info).标准耐久度.ToString());
+                        break;
+                    default:
+                        break;
+                }
+                Status.AppendLine("==============");
+            }
+            return Status.ToString();
+        }
+
         /// <summary>
         /// 卡牌组合
         /// </summary>

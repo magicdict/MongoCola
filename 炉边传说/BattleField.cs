@@ -2,9 +2,7 @@
 using Card.Client;
 using Card.Server;
 using System;
-using System.Text;
 using System.Windows.Forms;
-using System.Collections.Generic;
 namespace 炉边传说
 {
     public partial class BattleField : Form
@@ -31,6 +29,10 @@ namespace 炉边传说
             WaitTimer.Tick += WaitFor;
             DisplayMyInfo();
             game.IsMyTurn = game.IsFirst;
+            for (int i = 0; i < 10; i++)
+            {
+                Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Click += this.btnUseHandCard_Click;
+            }
             StartNewTurn();
         }
         /// <summary>
@@ -50,65 +52,29 @@ namespace 炉边传说
         /// </summary>
         private void DisplayMyInfo()
         {
-            //抽手牌,先手3张，后手4张，后手还有幸运币，不公平啊
-            StringBuilder Status = new StringBuilder();
-            Status.AppendLine("==============");
-            Status.AppendLine("System：");
-            Status.AppendLine("GameId：" + game.GameId);
-            Status.AppendLine("PlayerNickName：" + game.PlayerNickName);
-            Status.AppendLine("IsHost：" + game.IsHost);
-            Status.AppendLine("IsFirst：" + game.IsFirst);
-
-            Status.AppendLine("==============");
-            Status.AppendLine("Role：");
-            lstMyMinion.Items.Add("本方英雄");
-            Status.AppendLine("Crystal：" + game.MySelf.RoleInfo.crystal.CurrentRemainPoint + "/" + game.MySelf.RoleInfo.crystal.CurrentFullPoint);
-            Status.AppendLine("HealthPoint：" + game.MySelf.RoleInfo.HealthPoint);
-            if (game.MySelf.RoleInfo.Weapon != null)
+            btnMyHero.Text = game.MySelf.RoleInfo.GetInfo();
+            btnYourHero.Text = game.AgainstInfo.GetInfo();
+            for (int i = 0; i < game.MySelf.RoleInfo.BattleField.MinionCount; i++)
             {
-                Status.AppendLine("Weapon：" + game.MySelf.RoleInfo.Weapon.StandardAttackPoint);
+                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Text = game.MySelf.RoleInfo.BattleField.BattleMinions[i].Name;
             }
-            else
+            for (int i = 0; i < game.AgainstInfo.BattleField.MinionCount; i++)
             {
-                Status.AppendLine("Weapon：Null");
+                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Text = game.AgainstInfo.BattleField.BattleMinions[i].Name;
             }
-            Status.AppendLine("RemainCardDeckCount：" + game.MySelf.RoleInfo.RemainCardDeckCount);
-            Status.AppendLine("==============");
-            Status.AppendLine("Battle：");
-            lstMyMinion.Items.Clear();
-            for (int i = 0; i < game.MySelf.RoleInfo.BattleField.BattleMinions.Length; i++)
+            for (int i = 0; i < 10; i++)
             {
-                lstMyMinion.Items.Add("本方位置" + i.ToString() + "：" +
-                    (game.MySelf.RoleInfo.BattleField.BattleMinions[i] == null ? "[NULL]" : game.MySelf.RoleInfo.BattleField.BattleMinions[i].Name));
-            }
-
-            Status.AppendLine("==============");
-            Status.AppendLine("Role：");
-            lstMyMinion.Items.Add("对方英雄");
-            Status.AppendLine("Crystal：" + game.AgainstInfo.crystal.CurrentRemainPoint + "/" + game.AgainstInfo.crystal.CurrentFullPoint);
-            Status.AppendLine("HealthPoint：" + game.AgainstInfo.HealthPoint);
-            if (game.AgainstInfo.Weapon != null)
-            {
-                Status.AppendLine("Weapon：" + game.AgainstInfo.Weapon.StandardAttackPoint);
-            }
-            else
-            {
-                Status.AppendLine("Weapon：Null");
-            }
-            Status.AppendLine("RemainCardDeckCount：" + game.AgainstInfo.RemainCardDeckCount);
-            Status.AppendLine("==============");
-            Status.AppendLine("Battle：");
-            for (int i = 0; i < game.AgainstInfo.BattleField.BattleMinions.Length; i++)
-            {
-                lstMyMinion.Items.Add("对方位置" + i.ToString() + "：" +
-                    (game.AgainstInfo.BattleField.BattleMinions[i] == null ? "[NULL]" : game.AgainstInfo.BattleField.BattleMinions[i].Name));
-            }
-            Status.AppendLine("==============");
-            lblStatus.Text = Status.ToString();
-            lstHandCard.Items.Clear();
-            foreach (var handCard in game.MySelf.handCards)
-            {
-                lstHandCard.Items.Add(Card.CardUtility.GetCardNameBySN(handCard) + "[" + handCard + "]");
+                if (i < game.MySelf.handCards.Count)
+                {
+                    Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Text = Card.CardUtility.GetCardNameBySN(game.MySelf.handCards[i]);
+                    Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Tag = game.MySelf.handCards[i];
+                }
+                else
+                {
+                    Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Text = "[无]";
+                    Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Tag = null;
+                    Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Enabled = false;
+                }
             }
         }
         /// <summary>
@@ -121,14 +87,21 @@ namespace 炉边传说
             {
                 DisplayMyInfo();
                 btnEndTurn.Enabled = true;
-                btnUseHandCard.Enabled = true;
-                lblEnemyBattle.Text = "你的回合";
+                for (int i = 0; i < 10; i++)
+                {
+                    if (Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Tag != null)
+                    {
+                        Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Enabled = true;
+                    }
+                }
             }
             else
             {
                 btnEndTurn.Enabled = false;
-                btnUseHandCard.Enabled = false;
-                lblEnemyBattle.Text = "对手回合";
+                for (int i = 0; i < 10; i++)
+                {
+                    Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Enabled = false;
+                }
                 WaitTimer.Start();
             }
         }
@@ -159,42 +132,6 @@ namespace 炉边传说
             DisplayMyInfo();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lstHandCard_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            if (lstHandCard.SelectedItems.Count != 1) return;
-            var CardSn = lstHandCard.SelectedItem.ToString().Substring(lstHandCard.SelectedItem.ToString().IndexOf("[") + 1, 7);
-            if (Card.CardUtility.GetCardInfoBySN(CardSn) != null)
-            {
-                Card.CardBasicInfo info = Card.CardUtility.GetCardInfoBySN(CardSn);
-                StringBuilder Status = new StringBuilder();
-                Status.AppendLine("==============");
-                Status.AppendLine("Description" + info.Description);
-                Status.AppendLine("StandardCostPoint" + info.StandardCostPoint);
-                Status.AppendLine("Type：" + info.CardType.ToString());
-                switch (CardSn.Substring(0, 1))
-                {
-                    case "A":
-                        break;
-                    case "M":
-                        Status.AppendLine("标准攻击力：" + ((Card.MinionCard)info).StandardAttackPoint.ToString());
-                        Status.AppendLine("标准生命值：" + ((Card.MinionCard)info).StandardHealthPoint.ToString());
-                        break;
-                    case "W":
-                        Status.AppendLine("标准攻击力：" + ((Card.WeaponCard)info).StandardAttackPoint.ToString());
-                        Status.AppendLine("标准耐久度：" + ((Card.WeaponCard)info).标准耐久度.ToString());
-                        break;
-                    default:
-                        break;
-                }
-
-                lblSelectedHandCardInfo.Text = Status.ToString();
-            }
-        }
         /// <summary>
         /// 结束回合
         /// </summary>
@@ -232,8 +169,8 @@ namespace 炉边传说
         /// <param name="e"></param>
         private void btnUseHandCard_Click(object sender, EventArgs e)
         {
-            if (lstHandCard.SelectedItems.Count != 1) return;
-            var CardSn = lstHandCard.SelectedItem.ToString().Substring(lstHandCard.SelectedItem.ToString().IndexOf("[") + 1, 7);
+            if (((Button)sender).Tag == null) return;
+            String CardSn = ((Button)sender).Tag.ToString();
             if (Card.CardUtility.GetCardInfoBySN(CardSn) != null)
             {
                 Card.CardBasicInfo card = Card.CardUtility.GetCardInfoBySN(CardSn);
@@ -241,6 +178,7 @@ namespace 炉边传说
                 {
                     game.MySelf.RoleInfo.crystal.CurrentRemainPoint -= card.ActualCostPoint;
                     game.MySelf.handCards.Remove(CardSn);
+                    game.MySelf.RoleInfo.HandCardCount = game.MySelf.handCards.Count; 
                 }
                 else
                 {
@@ -255,5 +193,6 @@ namespace 炉边传说
             }
             DisplayMyInfo();
         }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Card.Client
 {
@@ -47,7 +48,27 @@ namespace Card.Client
         /// <summary>
         /// 手牌数
         /// </summary>
-        public int HandCardCount = 30;
+        public int HandCardCount = 0;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string GetInfo() {
+            StringBuilder Status = new StringBuilder();
+            Status.AppendLine("Hero Info:");
+            Status.AppendLine("Crystal：" + crystal.CurrentRemainPoint + "/" + crystal.CurrentFullPoint);
+            Status.AppendLine("HealthPoint：" + HealthPoint);
+            if (Weapon != null)
+            {
+                Status.AppendLine("Weapon：" + Weapon.StandardAttackPoint);
+            }
+            else
+            {
+                Status.AppendLine("Weapon：Null");
+            }
+            Status.AppendLine("RemainCardDeckCount：" + RemainCardDeckCount);
+            return Status.ToString();
+        }
     }
     /// <summary>
     /// 本方情报

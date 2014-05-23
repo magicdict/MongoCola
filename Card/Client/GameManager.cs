@@ -3,6 +3,7 @@ using Card.Effect;
 using Card.Server;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Card.Client
 {
@@ -39,6 +40,22 @@ namespace Card.Client
         /// 抉择卡牌
         /// </summary>
         public Card.CardUtility.delegatePickEffect PickEffect;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string GetGameInfo() {
+            StringBuilder Status = new StringBuilder();
+            Status.AppendLine("==============");
+            Status.AppendLine("System：");
+            Status.AppendLine("GameId：" + GameId);
+            Status.AppendLine("PlayerNickName：" + PlayerNickName);
+            Status.AppendLine("IsHost：" + IsHost);
+            Status.AppendLine("IsFirst：" + IsFirst);
+            Status.AppendLine("==============");
+            return Status.ToString();
+        }
+        
         /// <summary>
         /// 初始化
         /// </summary>
