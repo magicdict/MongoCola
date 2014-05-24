@@ -114,6 +114,21 @@ namespace CardHelper
                 Minion.法术免疫特性 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 20).Text);
                 Minion.英雄技能免疫特性 = !String.IsNullOrEmpty(worksheet.Cells(rowCount, 21).Text);
 
+                Boolean HasBuff = false;
+                for (int i = 22; i < 25; i++)
+                {
+                    if (!String.IsNullOrEmpty(worksheet.Cells(rowCount, i).Text))
+                    {
+                        HasBuff = true;
+                        break;
+                    }
+                }
+                if (HasBuff)
+                {
+                    Minion.光环效果.Scope = CardUtility.GetEnum<Card.MinionCard.光环范围>(worksheet.Cells(rowCount, 22).Text, Card.MinionCard.光环范围.随从全体);
+                    Minion.光环效果.EffectType = CardUtility.GetEnum<Card.MinionCard.光环类型>(worksheet.Cells(rowCount, 23).Text, Card.MinionCard.光环类型.增加攻防);
+                    Minion.光环效果.BuffInfo = worksheet.Cells(rowCount, 24).Text;
+                }
                 switch (target)
                 {
                     case TargetType.MongoDB:

@@ -32,6 +32,16 @@
             this.lstAction = new System.Windows.Forms.ListBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnHandCard10 = new System.Windows.Forms.Button();
+            this.btnHandCard9 = new System.Windows.Forms.Button();
+            this.btnHandCard8 = new System.Windows.Forms.Button();
+            this.btnHandCard7 = new System.Windows.Forms.Button();
+            this.btnHandCard6 = new System.Windows.Forms.Button();
+            this.btnHandCard5 = new System.Windows.Forms.Button();
+            this.btnHandCard4 = new System.Windows.Forms.Button();
+            this.btnHandCard3 = new System.Windows.Forms.Button();
+            this.btnHandCard2 = new System.Windows.Forms.Button();
+            this.btnHandCard1 = new System.Windows.Forms.Button();
             this.btnMe7 = new System.Windows.Forms.Button();
             this.btnMe6 = new System.Windows.Forms.Button();
             this.btnMe5 = new System.Windows.Forms.Button();
@@ -48,16 +58,6 @@
             this.btnYou1 = new System.Windows.Forms.Button();
             this.btnMyHero = new System.Windows.Forms.Button();
             this.btnYourHero = new System.Windows.Forms.Button();
-            this.btnHandCard7 = new System.Windows.Forms.Button();
-            this.btnHandCard6 = new System.Windows.Forms.Button();
-            this.btnHandCard5 = new System.Windows.Forms.Button();
-            this.btnHandCard4 = new System.Windows.Forms.Button();
-            this.btnHandCard3 = new System.Windows.Forms.Button();
-            this.btnHandCard2 = new System.Windows.Forms.Button();
-            this.btnHandCard1 = new System.Windows.Forms.Button();
-            this.btnHandCard10 = new System.Windows.Forms.Button();
-            this.btnHandCard9 = new System.Windows.Forms.Button();
-            this.btnHandCard8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -135,149 +135,32 @@
             this.splitContainer1.SplitterDistance = 479;
             this.splitContainer1.TabIndex = 9;
             // 
-            // btnMe7
+            // btnHandCard10
             // 
-            this.btnMe7.Location = new System.Drawing.Point(675, 194);
-            this.btnMe7.Name = "btnMe7";
-            this.btnMe7.Size = new System.Drawing.Size(75, 23);
-            this.btnMe7.TabIndex = 31;
-            this.btnMe7.Text = "本方随从7";
-            this.btnMe7.UseVisualStyleBackColor = true;
+            this.btnHandCard10.Location = new System.Drawing.Point(610, 425);
+            this.btnHandCard10.Name = "btnHandCard10";
+            this.btnHandCard10.Size = new System.Drawing.Size(75, 23);
+            this.btnHandCard10.TabIndex = 41;
+            this.btnHandCard10.Text = "手牌10";
+            this.btnHandCard10.UseVisualStyleBackColor = true;
             // 
-            // btnMe6
+            // btnHandCard9
             // 
-            this.btnMe6.Location = new System.Drawing.Point(593, 194);
-            this.btnMe6.Name = "btnMe6";
-            this.btnMe6.Size = new System.Drawing.Size(75, 23);
-            this.btnMe6.TabIndex = 30;
-            this.btnMe6.Text = "本方随从6";
-            this.btnMe6.UseVisualStyleBackColor = true;
+            this.btnHandCard9.Location = new System.Drawing.Point(528, 425);
+            this.btnHandCard9.Name = "btnHandCard9";
+            this.btnHandCard9.Size = new System.Drawing.Size(75, 23);
+            this.btnHandCard9.TabIndex = 40;
+            this.btnHandCard9.Text = "手牌9";
+            this.btnHandCard9.UseVisualStyleBackColor = true;
             // 
-            // btnMe5
+            // btnHandCard8
             // 
-            this.btnMe5.Location = new System.Drawing.Point(511, 194);
-            this.btnMe5.Name = "btnMe5";
-            this.btnMe5.Size = new System.Drawing.Size(75, 23);
-            this.btnMe5.TabIndex = 29;
-            this.btnMe5.Text = "本方随从5";
-            this.btnMe5.UseVisualStyleBackColor = true;
-            // 
-            // btnMe4
-            // 
-            this.btnMe4.Location = new System.Drawing.Point(429, 194);
-            this.btnMe4.Name = "btnMe4";
-            this.btnMe4.Size = new System.Drawing.Size(75, 23);
-            this.btnMe4.TabIndex = 28;
-            this.btnMe4.Text = "本方随从4";
-            this.btnMe4.UseVisualStyleBackColor = true;
-            // 
-            // btnMe3
-            // 
-            this.btnMe3.Location = new System.Drawing.Point(347, 194);
-            this.btnMe3.Name = "btnMe3";
-            this.btnMe3.Size = new System.Drawing.Size(75, 23);
-            this.btnMe3.TabIndex = 27;
-            this.btnMe3.Text = "本方随从3";
-            this.btnMe3.UseVisualStyleBackColor = true;
-            // 
-            // btnMe2
-            // 
-            this.btnMe2.Location = new System.Drawing.Point(265, 194);
-            this.btnMe2.Name = "btnMe2";
-            this.btnMe2.Size = new System.Drawing.Size(75, 23);
-            this.btnMe2.TabIndex = 26;
-            this.btnMe2.Text = "本方随从2";
-            this.btnMe2.UseVisualStyleBackColor = true;
-            // 
-            // btnMe1
-            // 
-            this.btnMe1.Location = new System.Drawing.Point(183, 194);
-            this.btnMe1.Name = "btnMe1";
-            this.btnMe1.Size = new System.Drawing.Size(75, 23);
-            this.btnMe1.TabIndex = 25;
-            this.btnMe1.Text = "本方随从1";
-            this.btnMe1.UseVisualStyleBackColor = true;
-            // 
-            // btnYou7
-            // 
-            this.btnYou7.Location = new System.Drawing.Point(675, 143);
-            this.btnYou7.Name = "btnYou7";
-            this.btnYou7.Size = new System.Drawing.Size(75, 23);
-            this.btnYou7.TabIndex = 24;
-            this.btnYou7.Text = "对方随从7";
-            this.btnYou7.UseVisualStyleBackColor = true;
-            // 
-            // btnYou6
-            // 
-            this.btnYou6.Location = new System.Drawing.Point(593, 143);
-            this.btnYou6.Name = "btnYou6";
-            this.btnYou6.Size = new System.Drawing.Size(75, 23);
-            this.btnYou6.TabIndex = 23;
-            this.btnYou6.Text = "对方随从6";
-            this.btnYou6.UseVisualStyleBackColor = true;
-            // 
-            // btnYou5
-            // 
-            this.btnYou5.Location = new System.Drawing.Point(511, 143);
-            this.btnYou5.Name = "btnYou5";
-            this.btnYou5.Size = new System.Drawing.Size(75, 23);
-            this.btnYou5.TabIndex = 22;
-            this.btnYou5.Text = "对方随从5";
-            this.btnYou5.UseVisualStyleBackColor = true;
-            // 
-            // btnYou4
-            // 
-            this.btnYou4.Location = new System.Drawing.Point(429, 143);
-            this.btnYou4.Name = "btnYou4";
-            this.btnYou4.Size = new System.Drawing.Size(75, 23);
-            this.btnYou4.TabIndex = 21;
-            this.btnYou4.Text = "对方随从4";
-            this.btnYou4.UseVisualStyleBackColor = true;
-            // 
-            // btnYou3
-            // 
-            this.btnYou3.Location = new System.Drawing.Point(347, 143);
-            this.btnYou3.Name = "btnYou3";
-            this.btnYou3.Size = new System.Drawing.Size(75, 23);
-            this.btnYou3.TabIndex = 20;
-            this.btnYou3.Text = "对方随从3";
-            this.btnYou3.UseVisualStyleBackColor = true;
-            // 
-            // btnYou2
-            // 
-            this.btnYou2.Location = new System.Drawing.Point(265, 143);
-            this.btnYou2.Name = "btnYou2";
-            this.btnYou2.Size = new System.Drawing.Size(75, 23);
-            this.btnYou2.TabIndex = 19;
-            this.btnYou2.Text = "对方随从2";
-            this.btnYou2.UseVisualStyleBackColor = true;
-            // 
-            // btnYou1
-            // 
-            this.btnYou1.Location = new System.Drawing.Point(183, 143);
-            this.btnYou1.Name = "btnYou1";
-            this.btnYou1.Size = new System.Drawing.Size(75, 23);
-            this.btnYou1.TabIndex = 18;
-            this.btnYou1.Text = "对方随从1";
-            this.btnYou1.UseVisualStyleBackColor = true;
-            // 
-            // btnMyHero
-            // 
-            this.btnMyHero.Location = new System.Drawing.Point(347, 255);
-            this.btnMyHero.Name = "btnMyHero";
-            this.btnMyHero.Size = new System.Drawing.Size(239, 93);
-            this.btnMyHero.TabIndex = 17;
-            this.btnMyHero.Text = "本方英雄";
-            this.btnMyHero.UseVisualStyleBackColor = true;
-            // 
-            // btnYourHero
-            // 
-            this.btnYourHero.Location = new System.Drawing.Point(347, 21);
-            this.btnYourHero.Name = "btnYourHero";
-            this.btnYourHero.Size = new System.Drawing.Size(239, 88);
-            this.btnYourHero.TabIndex = 16;
-            this.btnYourHero.Text = "对方英雄";
-            this.btnYourHero.UseVisualStyleBackColor = true;
+            this.btnHandCard8.Location = new System.Drawing.Point(446, 425);
+            this.btnHandCard8.Name = "btnHandCard8";
+            this.btnHandCard8.Size = new System.Drawing.Size(75, 23);
+            this.btnHandCard8.TabIndex = 39;
+            this.btnHandCard8.Text = "手牌8";
+            this.btnHandCard8.UseVisualStyleBackColor = true;
             // 
             // btnHandCard7
             // 
@@ -342,32 +225,149 @@
             this.btnHandCard1.Text = "手牌1";
             this.btnHandCard1.UseVisualStyleBackColor = true;
             // 
-            // btnHandCard10
+            // btnMe7
             // 
-            this.btnHandCard10.Location = new System.Drawing.Point(610, 425);
-            this.btnHandCard10.Name = "btnHandCard10";
-            this.btnHandCard10.Size = new System.Drawing.Size(75, 23);
-            this.btnHandCard10.TabIndex = 41;
-            this.btnHandCard10.Text = "手牌10";
-            this.btnHandCard10.UseVisualStyleBackColor = true;
+            this.btnMe7.Location = new System.Drawing.Point(794, 194);
+            this.btnMe7.Name = "btnMe7";
+            this.btnMe7.Size = new System.Drawing.Size(100, 39);
+            this.btnMe7.TabIndex = 31;
+            this.btnMe7.Text = "本方随从7";
+            this.btnMe7.UseVisualStyleBackColor = true;
             // 
-            // btnHandCard9
+            // btnMe6
             // 
-            this.btnHandCard9.Location = new System.Drawing.Point(528, 425);
-            this.btnHandCard9.Name = "btnHandCard9";
-            this.btnHandCard9.Size = new System.Drawing.Size(75, 23);
-            this.btnHandCard9.TabIndex = 40;
-            this.btnHandCard9.Text = "手牌9";
-            this.btnHandCard9.UseVisualStyleBackColor = true;
+            this.btnMe6.Location = new System.Drawing.Point(688, 194);
+            this.btnMe6.Name = "btnMe6";
+            this.btnMe6.Size = new System.Drawing.Size(100, 39);
+            this.btnMe6.TabIndex = 30;
+            this.btnMe6.Text = "本方随从6";
+            this.btnMe6.UseVisualStyleBackColor = true;
             // 
-            // btnHandCard8
+            // btnMe5
             // 
-            this.btnHandCard8.Location = new System.Drawing.Point(446, 425);
-            this.btnHandCard8.Name = "btnHandCard8";
-            this.btnHandCard8.Size = new System.Drawing.Size(75, 23);
-            this.btnHandCard8.TabIndex = 39;
-            this.btnHandCard8.Text = "手牌8";
-            this.btnHandCard8.UseVisualStyleBackColor = true;
+            this.btnMe5.Location = new System.Drawing.Point(582, 194);
+            this.btnMe5.Name = "btnMe5";
+            this.btnMe5.Size = new System.Drawing.Size(100, 39);
+            this.btnMe5.TabIndex = 29;
+            this.btnMe5.Text = "本方随从5";
+            this.btnMe5.UseVisualStyleBackColor = true;
+            // 
+            // btnMe4
+            // 
+            this.btnMe4.Location = new System.Drawing.Point(476, 194);
+            this.btnMe4.Name = "btnMe4";
+            this.btnMe4.Size = new System.Drawing.Size(100, 39);
+            this.btnMe4.TabIndex = 28;
+            this.btnMe4.Text = "本方随从4";
+            this.btnMe4.UseVisualStyleBackColor = true;
+            // 
+            // btnMe3
+            // 
+            this.btnMe3.Location = new System.Drawing.Point(370, 194);
+            this.btnMe3.Name = "btnMe3";
+            this.btnMe3.Size = new System.Drawing.Size(100, 39);
+            this.btnMe3.TabIndex = 27;
+            this.btnMe3.Text = "本方随从3";
+            this.btnMe3.UseVisualStyleBackColor = true;
+            // 
+            // btnMe2
+            // 
+            this.btnMe2.Location = new System.Drawing.Point(264, 194);
+            this.btnMe2.Name = "btnMe2";
+            this.btnMe2.Size = new System.Drawing.Size(100, 39);
+            this.btnMe2.TabIndex = 26;
+            this.btnMe2.Text = "本方随从2";
+            this.btnMe2.UseVisualStyleBackColor = true;
+            // 
+            // btnMe1
+            // 
+            this.btnMe1.Location = new System.Drawing.Point(158, 194);
+            this.btnMe1.Name = "btnMe1";
+            this.btnMe1.Size = new System.Drawing.Size(100, 39);
+            this.btnMe1.TabIndex = 25;
+            this.btnMe1.Text = "本方随从1";
+            this.btnMe1.UseVisualStyleBackColor = true;
+            // 
+            // btnYou7
+            // 
+            this.btnYou7.Location = new System.Drawing.Point(794, 143);
+            this.btnYou7.Name = "btnYou7";
+            this.btnYou7.Size = new System.Drawing.Size(100, 39);
+            this.btnYou7.TabIndex = 24;
+            this.btnYou7.Text = "对方随从7";
+            this.btnYou7.UseVisualStyleBackColor = true;
+            // 
+            // btnYou6
+            // 
+            this.btnYou6.Location = new System.Drawing.Point(688, 143);
+            this.btnYou6.Name = "btnYou6";
+            this.btnYou6.Size = new System.Drawing.Size(100, 39);
+            this.btnYou6.TabIndex = 23;
+            this.btnYou6.Text = "对方随从6";
+            this.btnYou6.UseVisualStyleBackColor = true;
+            // 
+            // btnYou5
+            // 
+            this.btnYou5.Location = new System.Drawing.Point(582, 143);
+            this.btnYou5.Name = "btnYou5";
+            this.btnYou5.Size = new System.Drawing.Size(100, 39);
+            this.btnYou5.TabIndex = 22;
+            this.btnYou5.Text = "对方随从5";
+            this.btnYou5.UseVisualStyleBackColor = true;
+            // 
+            // btnYou4
+            // 
+            this.btnYou4.Location = new System.Drawing.Point(476, 143);
+            this.btnYou4.Name = "btnYou4";
+            this.btnYou4.Size = new System.Drawing.Size(100, 39);
+            this.btnYou4.TabIndex = 21;
+            this.btnYou4.Text = "对方随从4";
+            this.btnYou4.UseVisualStyleBackColor = true;
+            // 
+            // btnYou3
+            // 
+            this.btnYou3.Location = new System.Drawing.Point(370, 143);
+            this.btnYou3.Name = "btnYou3";
+            this.btnYou3.Size = new System.Drawing.Size(100, 39);
+            this.btnYou3.TabIndex = 20;
+            this.btnYou3.Text = "对方随从3";
+            this.btnYou3.UseVisualStyleBackColor = true;
+            // 
+            // btnYou2
+            // 
+            this.btnYou2.Location = new System.Drawing.Point(264, 143);
+            this.btnYou2.Name = "btnYou2";
+            this.btnYou2.Size = new System.Drawing.Size(100, 39);
+            this.btnYou2.TabIndex = 19;
+            this.btnYou2.Text = "对方随从2";
+            this.btnYou2.UseVisualStyleBackColor = true;
+            // 
+            // btnYou1
+            // 
+            this.btnYou1.Location = new System.Drawing.Point(158, 143);
+            this.btnYou1.Name = "btnYou1";
+            this.btnYou1.Size = new System.Drawing.Size(100, 39);
+            this.btnYou1.TabIndex = 18;
+            this.btnYou1.Text = "对方随从1";
+            this.btnYou1.UseVisualStyleBackColor = true;
+            // 
+            // btnMyHero
+            // 
+            this.btnMyHero.Location = new System.Drawing.Point(443, 259);
+            this.btnMyHero.Name = "btnMyHero";
+            this.btnMyHero.Size = new System.Drawing.Size(239, 93);
+            this.btnMyHero.TabIndex = 17;
+            this.btnMyHero.Text = "本方英雄";
+            this.btnMyHero.UseVisualStyleBackColor = true;
+            // 
+            // btnYourHero
+            // 
+            this.btnYourHero.Location = new System.Drawing.Point(446, 32);
+            this.btnYourHero.Name = "btnYourHero";
+            this.btnYourHero.Size = new System.Drawing.Size(239, 88);
+            this.btnYourHero.TabIndex = 16;
+            this.btnYourHero.Text = "对方英雄";
+            this.btnYourHero.UseVisualStyleBackColor = true;
             // 
             // BattleField
             // 

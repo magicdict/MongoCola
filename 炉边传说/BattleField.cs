@@ -56,11 +56,11 @@ namespace 炉边传说
             btnYourHero.Text = game.AgainstInfo.GetInfo();
             for (int i = 0; i < game.MySelf.RoleInfo.BattleField.MinionCount; i++)
             {
-                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Text = game.MySelf.RoleInfo.BattleField.BattleMinions[i].Name;
+                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Text = game.MySelf.RoleInfo.BattleField.BattleMinions[i].GetInfo();
             }
             for (int i = 0; i < game.AgainstInfo.BattleField.MinionCount; i++)
             {
-                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Text = game.AgainstInfo.BattleField.BattleMinions[i].Name;
+                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Text = game.AgainstInfo.BattleField.BattleMinions[i].GetInfo();
             }
             for (int i = 0; i < 10; i++)
             {

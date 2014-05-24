@@ -1,6 +1,7 @@
 ﻿using Card.Effect;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Xml.Serialization;
 namespace Card
 {
@@ -13,28 +14,46 @@ namespace Card
         /// <summary>
         /// 
         /// </summary>
-        public enum BuffScope
+        public enum 光环范围
         {
-            全体,
-            相邻,
+            /// <summary>
+            /// 随从全体
+            /// </summary>
+            随从全体,
+            /// <summary>
+            /// 相邻随从
+            /// </summary>
+            相邻随从,
+            /// <summary>
+            /// 英雄
+            /// </summary>
             英雄
         }
         /// <summary>
         /// 
         /// </summary>
-        public enum BuffEffect
+        public enum 光环类型
         {
             增加攻防,
             减少施法成本,
             增加法术效果
         }
         /// <summary>
-        /// 
+        /// 效果
         /// </summary>
         public struct Buff
         {
-            public BuffScope Scope;
-            public BuffEffect Effect;
+            /// <summary>
+            /// 范围
+            /// </summary>
+            public 光环范围 Scope;
+            /// <summary>
+            /// 效果
+            /// </summary>
+            public 光环类型 EffectType;
+            /// <summary>
+            /// 信息
+            /// </summary>
             public String BuffInfo;
         }
 
@@ -178,7 +197,7 @@ namespace Card
         /// 该单位受到战地的效果
         /// </summary>
         [XmlIgnore]
-        public List<Buff> 受战地效果;
+        public List<Buff> 受战地效果 = new List<Buff>();
         #endregion
         /// <summary>
         /// 设置初始状态
@@ -224,11 +243,25 @@ namespace Card
         /// <returns>包含了光环效果</returns>
         public int TotalAttack()
         {
+            int BuffAct = 0;
             foreach (var buff in 受战地效果)
             {
-
+                BuffAct += int.Parse(buff.BuffInfo.Split("/".ToCharArray())[0]);
             }
-            return ActualAttackPoint;
+            return ActualAttackPoint + BuffAct;
+        }
+        /// <summary>
+        /// 实际输出效果
+        /// </summary>
+        /// <returns>包含了光环效果</returns>
+        public int TotalHealth()
+        {
+            int BuffAct = 0;
+            foreach (var buff in 受战地效果)
+            {
+                BuffAct += int.Parse(buff.BuffInfo.Split("/".ToCharArray())[1]);
+            }
+            return ActualHealthPoint + BuffAct;
         }
         /// <summary>
         /// 生存状态
@@ -254,6 +287,16 @@ namespace Card
             if (!Is圣盾Status) ActualHealthPoint -= AttackPoint;
             //失去圣盾
             Is圣盾Status = false;
+        }
+        /// <summary>
+        /// 获得信息
+        /// </summary>
+        /// <returns></returns>
+        public String GetInfo() {
+            StringBuilder Status = new StringBuilder();
+            Status.AppendLine(Name);
+            Status.AppendLine("攻：" + TotalAttack().ToString() + " 血：" +  ActualHealthPoint.ToString());
+            return Status.ToString();
         }
         #endregion
     }

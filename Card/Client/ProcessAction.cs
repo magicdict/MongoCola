@@ -21,8 +21,10 @@ namespace Card.Client
                     break;
                 case ActionCode.ActionType.UseMinion:
                     int Pos = int.Parse(actionArray[2]);
-                    String CardSn = actionArray[1];
-                    game.AgainstInfo.BattleField.PutToBattle(Pos, CardSn);
+                    var minion = (Card.MinionCard)Card.CardUtility.GetCardInfoBySN(actionArray[1]);
+                    minion.Init();
+                    game.AgainstInfo.BattleField.PutToBattle(Pos, minion);
+                    game.AgainstInfo.BattleField.ResetBuff();
                     break;
                 case ActionCode.ActionType.UseAbility:
                     break;

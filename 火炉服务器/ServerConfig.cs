@@ -21,6 +21,7 @@ namespace 火炉服务器
             btnStart.Enabled = false;
             btnStop.Enabled = true;
             ServerThread = new Thread(Card.Server.Communication.StartServer);
+            ServerThread.IsBackground = true;
             ServerThread.Start();
         }
         /// <summary>

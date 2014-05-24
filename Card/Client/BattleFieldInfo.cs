@@ -82,7 +82,48 @@ namespace Card.Client
         /// </summary>
         public void ResetBuff()
         {
-
+            //去除所有光环效果
+            for (int i = 0; i < BattleMinions.Length; i++)
+            {
+                if (BattleMinions[i] != null) BattleMinions[i].受战地效果.Clear();
+            }
+            //设置光环效果
+            for (int i = 0; i < BattleMinions.Length; i++)
+            {
+                var minion = BattleMinions[i];
+                if (minion != null)
+                {
+                    if (!String.IsNullOrEmpty(minion.光环效果.BuffInfo))
+                    {
+                        switch (minion.光环效果.EffectType)
+                        {
+                            case MinionCard.光环类型.增加攻防:
+                                switch (minion.光环效果.Scope)
+                                {
+                                    case MinionCard.光环范围.随从全体:
+                                        for (int j = 0; j < BattleMinions.Length; j++)
+                                        {
+                                            if (BattleMinions[j] != null) BattleMinions[j].受战地效果.Add(minion.光环效果);
+                                        }
+                                        break;
+                                    case MinionCard.光环范围.相邻随从:
+                                        break;
+                                    case MinionCard.光环范围.英雄:
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            case MinionCard.光环类型.减少施法成本:
+                                break;
+                            case MinionCard.光环类型.增加法术效果:
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
         }
         /// <summary>
         /// 去除死去随从

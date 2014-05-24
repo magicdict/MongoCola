@@ -69,8 +69,9 @@ namespace Card.Client
             var HandCard = Card.Server.ClientUtlity.DrawCard(GameId.ToString(GameServer.GameIdFormat), IsFirst, IsFirst ? 3 : 4);
             //DEBUG
             HandCard.Add("A000075");
-            HandCard.Add("A000066");
-            HandCard.Add("A000065");
+            HandCard.Add("M000004");
+            MySelf.RoleInfo.crystal.CurrentFullPoint = 10;
+            MySelf.RoleInfo.crystal.CurrentRemainPoint = 10;
             //DEBUG
             if (!IsFirst) HandCard.Add(Card.CardUtility.SN幸运币);
             MySelf.handCards = HandCard;
