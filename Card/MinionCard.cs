@@ -238,6 +238,20 @@ namespace Card
             }
         }
         /// <summary>
+        /// 重置可攻击次数
+        /// </summary>
+        public void ResetAttackTimes()
+        {
+            if (Actual风怒)
+            {
+                RemainAttactTimes = 2;
+            }
+            else
+            {
+                RemainAttactTimes = 1;
+            }
+        }
+        /// <summary>
         /// 实际输出效果
         /// </summary>
         /// <returns>包含了光环效果</returns>
@@ -295,7 +309,8 @@ namespace Card
         public String GetInfo() {
             StringBuilder Status = new StringBuilder();
             Status.AppendLine(Name);
-            Status.AppendLine("攻：" + TotalAttack().ToString() + " 血：" +  ActualHealthPoint.ToString());
+            Status.AppendLine("[实际]攻：" + ActualAttackPoint.ToString() + " 血：" + ActualHealthPoint.ToString());
+            Status.AppendLine("[光环]攻：" + TotalAttack().ToString() + " 血：" + TotalHealth().ToString());
             return Status.ToString();
         }
         #endregion

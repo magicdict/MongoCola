@@ -11,6 +11,9 @@ namespace 炉边传说
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 游戏控制
+        /// </summary>
         public GameManager game;
         /// <summary>
         /// Timer
@@ -33,19 +36,22 @@ namespace 炉边传说
             {
                 Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Click += this.btnUseHandCard_Click;
             }
+            for (int i = 0; i < 7; i++)
+            {
+                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Enabled = false;
+                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = false;
+            }
             StartNewTurn();
         }
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        private CardUtility.TargetPosition SelectPanel()
+        private CardUtility.TargetPosition SelectPanel(Card.CardUtility.TargetSelectDirectEnum direct, Card.CardUtility.TargetSelectRoleEnum role)
         {
-            CardUtility.TargetPosition t = new Card.CardUtility.TargetPosition();
-            TargetSelect frm = new TargetSelect();
+            var frm = new TargetSelect(direct, role, game);
             frm.ShowDialog();
-            t = frm.pos;
-            return t;
+            return new CardUtility.TargetPosition();
         }
         /// <summary>
         /// 显示我方状态
@@ -56,7 +62,9 @@ namespace 炉边传说
             btnYourHero.Text = game.AgainstInfo.GetInfo();
             for (int i = 0; i < game.MySelf.RoleInfo.BattleField.MinionCount; i++)
             {
-                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Text = game.MySelf.RoleInfo.BattleField.BattleMinions[i].GetInfo();
+                var myMinion = game.MySelf.RoleInfo.BattleField.BattleMinions[i];
+                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Text = myMinion.GetInfo();
+                if (myMinion.RemainAttactTimes > 0) Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = true;
             }
             for (int i = 0; i < game.AgainstInfo.BattleField.MinionCount; i++)
             {
@@ -94,6 +102,8 @@ namespace 炉边传说
                         Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Enabled = true;
                     }
                 }
+
+
             }
             else
             {
@@ -178,7 +188,7 @@ namespace 炉边传说
                 {
                     game.MySelf.RoleInfo.crystal.CurrentRemainPoint -= card.ActualCostPoint;
                     game.MySelf.handCards.Remove(CardSn);
-                    game.MySelf.RoleInfo.HandCardCount = game.MySelf.handCards.Count; 
+                    game.MySelf.RoleInfo.HandCardCount = game.MySelf.handCards.Count;
                 }
                 else
                 {

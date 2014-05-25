@@ -1,116 +1,167 @@
-﻿using Card;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
+using Card;
+using Card.Client;
 
 namespace 炉边传说
 {
     public partial class TargetSelect : Form
     {
-
+        Card.CardUtility.TargetSelectDirectEnum direct;
+        Card.CardUtility.TargetSelectRoleEnum role;
+        GameManager game;
         public CardUtility.TargetPosition pos = new CardUtility.TargetPosition();
-        public TargetSelect()
+        public TargetSelect(CardUtility.TargetSelectDirectEnum mDirect, CardUtility.TargetSelectRoleEnum mRole, GameManager mGame)
         {
             InitializeComponent();
+            direct = mDirect;
+            role = mRole;
+            game = mGame;
         }
-        private void TargetSelect_Load(object sender, System.EventArgs e)
+
+        private void TargetSelect_Load(object sender, EventArgs e)
         {
-            //暂时这样写吧，应该用控件数组的。。。
-            this.btnAgainst1.Click += (x,y) => {
-                pos.MeOrYou = false;
-                pos.Postion = 1;
-                this.Close();
-            };
-            this.btnAgainst2.Click += (x, y) =>
+            btnMyHero.Text = game.MySelf.RoleInfo.GetInfo();
+            btnYourHero.Text = game.AgainstInfo.GetInfo();
+            for (int i = 0; i < game.MySelf.RoleInfo.BattleField.MinionCount; i++)
             {
-                pos.MeOrYou = false;
-                pos.Postion = 2;
-                this.Close();
-            };
-            this.btnAgainst3.Click += (x, y) =>
+                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Text = game.MySelf.RoleInfo.BattleField.BattleMinions[i].GetInfo();
+                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Click += (x, y) =>
+                {
+                    pos.MeOrYou = true;
+                    pos.Postion = i + 1;
+                    this.Close();
+                };
+            }
+            for (int i = 0; i < game.AgainstInfo.BattleField.MinionCount; i++)
             {
-                pos.MeOrYou = false;
-                pos.Postion = 3;
-                this.Close();
-            };
-            this.btnAgainst4.Click += (x, y) =>
-            {
-                pos.MeOrYou = false;
-                pos.Postion = 4;
-                this.Close();
-            };
-            this.btnAgainst5.Click += (x, y) =>
-            {
-                pos.MeOrYou = false;
-                pos.Postion = 5;
-                this.Close();
-            };
-            this.btnAgainst6.Click += (x, y) =>
-            {
-                pos.MeOrYou = false;
-                pos.Postion = 6;
-                this.Close();
-            };
-            this.btnAgainst7.Click += (x, y) =>
-            {
-                pos.MeOrYou = false;
-                pos.Postion = 7;
-                this.Close();
-            };
-
-            this.btnMy1.Click += (x, y) =>
-            {
-                pos.MeOrYou = true;
-                pos.Postion = 1;
-                this.Close();
-            };
-            this.btnMy2.Click += (x, y) =>
-            {
-                pos.MeOrYou = true;
-                pos.Postion = 2;
-                this.Close();
-            };
-            this.btnMy3.Click += (x, y) =>
-            {
-                pos.MeOrYou = true;
-                pos.Postion = 3;
-                this.Close();
-            };
-            this.btnMy4.Click += (x, y) =>
-            {
-                pos.MeOrYou = true;
-                pos.Postion = 4;
-                this.Close();
-            };
-            this.btnMy5.Click += (x, y) =>
-            {
-                pos.MeOrYou = true;
-                pos.Postion = 5;
-                this.Close();
-            };
-            this.btnMy6.Click += (x, y) =>
-            {
-                pos.MeOrYou = true;
-                pos.Postion = 6;
-                this.Close();
-            };
-            this.btnMy7.Click += (x, y) =>
-            {
-                pos.MeOrYou = true;
-                pos.Postion = 7;
-                this.Close();
-            };
-
-            this.HostHero.Click += (x, y) =>
+                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Text = game.AgainstInfo.BattleField.BattleMinions[i].GetInfo();
+                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Click += (x, y) =>
+                {
+                    pos.MeOrYou = false;
+                    pos.Postion = i + 1;
+                    this.Close();
+                };
+            }
+            btnMyHero.Enabled = false;
+            btnMyHero.Click += (x, y) =>
             {
                 pos.MeOrYou = true;
                 pos.Postion = 0;
                 this.Close();
             };
-            this.GuestHero.Click += (x, y) =>
+            btnYourHero.Enabled = false;
+            btnYourHero.Click += (x, y) =>
             {
                 pos.MeOrYou = false;
                 pos.Postion = 0;
                 this.Close();
             };
+
+            for (int i = 0; i < 7; i++)
+            {
+                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = false;
+                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Click += (x, y) =>
+                {
+                    pos.MeOrYou = false;
+                    pos.Postion = 0;
+                    this.Close();
+                };
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Enabled = false;
+            }
+            switch (direct)
+            {
+                case CardUtility.TargetSelectDirectEnum.本方:
+                    switch (role)
+                    {
+                        case CardUtility.TargetSelectRoleEnum.随从:
+                            for (int i = 0; i < game.MySelf.RoleInfo.BattleField.MinionCount; i++)
+                            {
+                                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = true;
+                            }
+                            break;
+                        case CardUtility.TargetSelectRoleEnum.英雄:
+                            btnMyHero.Enabled = true;
+                            break;
+                        case CardUtility.TargetSelectRoleEnum.所有角色:
+                            btnMyHero.Enabled = true;
+                            for (int i = 0; i < game.MySelf.RoleInfo.BattleField.MinionCount; i++)
+                            {
+                                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = true;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case CardUtility.TargetSelectDirectEnum.对方:
+                    switch (role)
+                    {
+                        case CardUtility.TargetSelectRoleEnum.随从:
+                            for (int i = 0; i < game.AgainstInfo.BattleField.MinionCount; i++)
+                            {
+                                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Enabled = true;
+                            }
+                            break;
+                        case CardUtility.TargetSelectRoleEnum.英雄:
+                            btnYourHero.Enabled = true;
+                            break;
+                        case CardUtility.TargetSelectRoleEnum.所有角色:
+                            btnYourHero.Enabled = true;
+                            for (int i = 0; i < game.AgainstInfo.BattleField.MinionCount; i++)
+                            {
+                                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Enabled = true;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case CardUtility.TargetSelectDirectEnum.双方:
+                    switch (role)
+                    {
+                        case CardUtility.TargetSelectRoleEnum.随从:
+                            for (int i = 0; i < game.MySelf.RoleInfo.BattleField.MinionCount; i++)
+                            {
+                                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = true;
+                            }
+                            for (int i = 0; i < game.AgainstInfo.BattleField.MinionCount; i++)
+                            {
+                                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Enabled = true;
+                            }
+                            break;
+                        case CardUtility.TargetSelectRoleEnum.英雄:
+                            btnMyHero.Enabled = true;
+                            btnYourHero.Enabled = true;
+                            break;
+                        case CardUtility.TargetSelectRoleEnum.所有角色:
+                            btnMyHero.Enabled = true;
+                            btnYourHero.Enabled = true;
+                            for (int i = 0; i < game.MySelf.RoleInfo.BattleField.MinionCount; i++)
+                            {
+                                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = true;
+                            }
+                            for (int i = 0; i < game.AgainstInfo.BattleField.MinionCount; i++)
+                            {
+                                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Enabled = true;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -364,7 +364,7 @@ namespace Card
         /// 获得位置
         /// </summary>
         /// <returns></returns>
-        public delegate TargetPosition deleteGetTargetPosition();
+        public delegate TargetPosition deleteGetTargetPosition(TargetSelectDirectEnum t1,TargetSelectRoleEnum t2);
         #endregion
     }
 }

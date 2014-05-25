@@ -108,6 +108,11 @@ namespace Card.Client
                 MySelf.handCards.AddRange(Card.Server.ClientUtlity.DrawCard(GameId.ToString(GameServer.GameIdFormat), IsFirst, 1));
                 MySelf.RoleInfo.HandCardCount++;
                 MySelf.RoleInfo.RemainCardDeckCount--;
+                //重置攻击次数
+                foreach (var minion in MySelf.RoleInfo.BattleField.BattleMinions)
+                {
+                    if (minion != null) minion.ResetAttackTimes();
+                }
             }
             else
             {
@@ -137,7 +142,7 @@ namespace Card.Client
                 singleEff.EffectCount = 1;
                 if (singleEff.IsNeedSelectTarget())
                 {
-                    Pos = GetSelectTarget();
+                    Pos = GetSelectTarget(singleEff.EffectTargetSelectDirect,singleEff.EffectTargetSelectRole);
                 }
                 Result.AddRange(EffectDefine.RunSingleEffect(singleEff, this, Pos,i));
                 //每次原子操作后进行一次清算
