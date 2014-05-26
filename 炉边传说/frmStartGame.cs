@@ -35,6 +35,7 @@ namespace 炉边传说
             var t = new BattleField();
             t.game = game;
             t.ShowDialog();
+            this.Close();
         }
         /// <summary>
         /// 
@@ -68,6 +69,7 @@ namespace 炉边传说
             var t = new BattleField();
             t.game = game;
             t.ShowDialog();
+            this.Close();
         }
 
         private void frmStartGame_Load(object sender, EventArgs e)

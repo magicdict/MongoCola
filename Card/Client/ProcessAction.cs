@@ -69,6 +69,10 @@ namespace Card.Client
                         }
                     }
                     break;
+                case ActionCode.ActionType.Fight:
+                    //FIGHT#1#2
+                    game.Fight(int.Parse(actField[2]), int.Parse(actField[1]),true);
+                    break;
                 case ActionCode.ActionType.UnKnown:
                     break;
             }

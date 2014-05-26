@@ -79,7 +79,23 @@ namespace Card.Client
             actionCode = ActionCode.strAbility + CardUtility.strSplitMark + CardSn;
             return actionCode;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="MyPos"></param>
+        /// <param name="YourPos"></param>
+        /// <returns></returns>
+        public static List<String> Fight(GameManager game, int MyPos,int YourPos)
+        {
+            String actionCode = String.Empty;
+            //FIGHT#1#2
+            actionCode = ActionCode.strFight + CardUtility.strSplitMark + MyPos + CardUtility.strSplitMark + YourPos;
+            List<String> ActionCodeLst = new List<string>();
+            ActionCodeLst.Add(actionCode);
+            ActionCodeLst.AddRange(game.Fight(MyPos,YourPos,false));
+            return ActionCodeLst;
+        }
         #endregion
-
     }
 }

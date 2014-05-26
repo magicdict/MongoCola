@@ -2,6 +2,7 @@
 using Card.Client;
 using Card.Server;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 namespace 炉边传说
 {
@@ -40,6 +41,13 @@ namespace 炉边传说
             {
                 Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Enabled = false;
                 Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = false;
+                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Click += (x, y) =>
+                {
+                    //这里千万不能使用 i ,每次 i 都是固定值
+                    //pos.Postion = i + 1;
+                    int AttackPostion = int.Parse(((Button)x).Name.Substring("btnMe".Length));
+                    Fight(AttackPostion);
+                };
             }
             StartNewTurn();
         }
@@ -62,16 +70,39 @@ namespace 炉边传说
         {
             btnMyHero.Text = game.MySelf.RoleInfo.GetInfo();
             btnYourHero.Text = game.AgainstInfo.GetInfo();
-            for (int i = 0; i < game.MySelf.RoleInfo.BattleField.MinionCount; i++)
+            for (int i = 0; i < BattleFieldInfo.MaxMinionCount; i++)
             {
                 var myMinion = game.MySelf.RoleInfo.BattleField.BattleMinions[i];
-                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Text = myMinion.GetInfo();
-                if (myMinion.RemainAttactTimes > 0) Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = true;
+                if (myMinion != null)
+                {
+                    Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Text = myMinion.GetInfo();
+                    if (myMinion.RemainAttactTimes > 0)
+                    {
+                        Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = true;
+                    }
+                    else
+                    {
+                        Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = false;
+                    }
+                }
+                else
+                {
+                    Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Text = "[无]";
+                    Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = false;
+                }
             }
-            for (int i = 0; i < game.AgainstInfo.BattleField.MinionCount; i++)
+            for (int i = 0; i < BattleFieldInfo.MaxMinionCount; i++)
             {
-                Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Text = game.AgainstInfo.BattleField.BattleMinions[i].GetInfo();
+                if (game.AgainstInfo.BattleField.BattleMinions[i] != null)
+                {
+                    Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Text = game.AgainstInfo.BattleField.BattleMinions[i].GetInfo();
+                }
+                else
+                {
+                    Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Text = "[无]";
+                }
             }
+
             for (int i = 0; i < 10; i++)
             {
                 if (i < game.MySelf.handCards.Count)
@@ -104,8 +135,6 @@ namespace 炉边传说
                         Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Enabled = true;
                     }
                 }
-
-
             }
             else
             {
@@ -114,9 +143,14 @@ namespace 炉边传说
                 {
                     Controls.Find("btnHandCard" + (i + 1).ToString(), true)[0].Enabled = false;
                 }
+                for (int i = 0; i < 7; i++)
+                {
+                    Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = false;
+                }
                 WaitTimer.Start();
             }
         }
+
         /// <summary>
         /// 读取
         /// </summary>
@@ -205,6 +239,20 @@ namespace 炉边传说
             }
             DisplayMyInfo();
         }
-
+        /// <summary>
+        /// 攻击
+        /// </summary>
+        /// <param name="MyPos"></param>
+        private void Fight(int MyPos)
+        {
+            var YourPos = SelectPanel(CardUtility.TargetSelectDirectEnum.对方, CardUtility.TargetSelectRoleEnum.所有角色);
+            //暂时不考虑嘲讽
+            List<String> actionlst = RunAction.Fight(game, MyPos, YourPos.Postion);
+            foreach (var action in actionlst)
+            {
+                Card.Server.ClientUtlity.WriteAction(game.GameId.ToString(GameServer.GameIdFormat), action);
+            }
+            DisplayMyInfo();
+        }
     }
 }

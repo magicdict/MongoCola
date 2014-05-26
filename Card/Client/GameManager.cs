@@ -55,7 +55,6 @@ namespace Card.Client
             Status.AppendLine("==============");
             return Status.ToString();
         }
-        
         /// <summary>
         /// 初始化
         /// </summary>
@@ -151,6 +150,28 @@ namespace Card.Client
             return Result;
         }
         /// <summary>
+        /// 战斗
+        /// </summary>
+        /// <param name="MyPos">本方</param>
+        /// <param name="YourPos">对方</param>
+        /// <param name="IsProcessAction">是否是被攻击方的复盘</param>
+        /// <returns></returns>
+        public List<String> Fight(int MyPos, int YourPos,Boolean IsProcessAction = false)
+        {
+            List<String> Result = new List<string>();
+            //攻击次数
+            MySelf.RoleInfo.BattleField.BattleMinions[MyPos - 1].RemainAttactTimes--;
+            //潜行等去除(如果不是被攻击方的处理)
+            if (!IsProcessAction) MySelf.RoleInfo.BattleField.BattleMinions[MyPos - 1].AfterAttack();
+            //伤害计算(本方)
+            MySelf.RoleInfo.BattleField.BattleMinions[MyPos - 1].AfterBeAttack(AgainstInfo.BattleField.BattleMinions[YourPos - 1].TotalAttack());
+            //伤害计算(对方)
+            AgainstInfo.BattleField.BattleMinions[YourPos - 1].AfterBeAttack(MySelf.RoleInfo.BattleField.BattleMinions[MyPos - 1].TotalAttack());
+            //每次操作后进行一次清算
+            Settle();
+            return Result;
+        }
+        /// <summary>
         /// 清算(核心方法)
         /// </summary>
         /// <returns></returns>
@@ -164,6 +185,8 @@ namespace Card.Client
             AgainstInfo.BattleField.ResetBuff();
             return Result;
         }
+
+
         /// <summary>
         /// 抽牌（服务器方法）
         /// </summary>

@@ -141,6 +141,7 @@ namespace Card.Client
                 }
             }
             BattleMinions = CloneMinions;
+            MinionCount = ALive;
         }
     }
 }

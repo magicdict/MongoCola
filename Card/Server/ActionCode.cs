@@ -29,6 +29,10 @@ namespace Card.Server
             /// </summary>
             Attack,
             /// <summary>
+            /// 
+            /// </summary>
+            Fight,
+            /// <summary>
             /// 结束TURN
             /// </summary>
             EndTurn,
@@ -62,6 +66,10 @@ namespace Card.Server
         /// </summary>
         public const string strAbility = "ABILITY";
         /// <summary>
+        /// 
+        /// </summary>
+        public const string strFight = "FIGHT";
+        /// <summary>
         /// ENDTURN
         /// </summary>
         public const String strEndTurn = "ENDTURN";
@@ -76,6 +84,8 @@ namespace Card.Server
             if (ActionWord.StartsWith(strWeapon + CardUtility.strSplitMark)) t = ActionType.UseWeapon;
             if (ActionWord.StartsWith(strMinion + CardUtility.strSplitMark)) t = ActionType.UseMinion;
             if (ActionWord.StartsWith(strAbility + CardUtility.strSplitMark)) t = ActionType.UseAbility;
+
+            if (ActionWord.StartsWith(strFight + CardUtility.strSplitMark)) t = ActionType.Fight;
             if (ActionWord.Equals(strEndTurn)) t = ActionType.EndTurn;
             //效果
             if (ActionWord.StartsWith(strTransform + CardUtility.strSplitMark)) t = ActionType.Transform;
