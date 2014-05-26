@@ -202,7 +202,7 @@ namespace Card
         /// <summary>
         /// 设置初始状态
         /// </summary>
-        public void Init()
+        public new void Init()
         {
             //将运行时状态设置为设计时状态
             this.ActualAttackPoint = this.StandardAttackPoint;

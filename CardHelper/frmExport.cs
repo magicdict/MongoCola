@@ -1,6 +1,6 @@
 ﻿using Card;
 using Microsoft.VisualBasic;
-using MongoDB.Driver;
+//using MongoDB.Driver;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -14,9 +14,9 @@ namespace CardHelper
         {
             InitializeComponent();
         }
-        private static MongoServer innerServer;
-        private static MongoDatabase innerDatabase;
-        private static MongoCollection innerCollection;
+        //private static MongoServer innerServer;
+        //private static MongoDatabase innerDatabase;
+        //private static MongoCollection innerCollection;
         /// <summary>
         /// 导出到MongoDB
         /// </summary>
@@ -24,14 +24,14 @@ namespace CardHelper
         /// <param name="e"></param>
         private void btnExportMongoDB_Click(object sender, EventArgs e)
         {
-            innerServer = MongoServer.Create(@"mongodb://localhost:28030");
-            innerServer.Connect();
-            innerDatabase = innerServer.GetDatabase("HearthStone");
-            innerCollection = innerDatabase.GetCollection("Card");
+            //innerServer = MongoServer.Create(@"mongodb://localhost:28030");
+            //innerServer.Connect();
+            //innerDatabase = innerServer.GetDatabase("HearthStone");
+            //innerCollection = innerDatabase.GetCollection("Card");
             if (String.IsNullOrEmpty(ExcelPicker.SelectedPathOrFileName)) return;
             Export(TargetType.MongoDB);
             GC.Collect();
-            innerServer.Disconnect();
+            //innerServer.Disconnect();
         }
         /// <summary>
         /// 
@@ -132,7 +132,7 @@ namespace CardHelper
                 switch (target)
                 {
                     case TargetType.MongoDB:
-                        innerCollection.Insert<Card.MinionCard>(Minion);
+                        //innerCollection.Insert<Card.MinionCard>(Minion);
                         break;
                     case TargetType.Xml:
                         XmlSerializer xml = new XmlSerializer(typeof(Card.MinionCard));
@@ -209,7 +209,7 @@ namespace CardHelper
                 switch (target)
                 {
                     case TargetType.MongoDB:
-                        innerCollection.Insert<Card.AbilityCard>(Ability);
+                        //innerCollection.Insert<Card.AbilityCard>(Ability);
                         break;
                     case TargetType.Xml:
                         XmlSerializer xml = new XmlSerializer(typeof(Card.AbilityCard));
@@ -255,7 +255,7 @@ namespace CardHelper
                 switch (target)
                 {
                     case TargetType.MongoDB:
-                        innerCollection.Insert<Card.WeaponCard>(Weapon);
+                        //innerCollection.Insert<Card.WeaponCard>(Weapon);
                         break;
                     case TargetType.Xml:
                         XmlSerializer xml = new XmlSerializer(typeof(Card.WeaponCard));

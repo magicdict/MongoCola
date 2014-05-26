@@ -37,12 +37,6 @@
       <HintPath>..\GUI\bin\Debug\GUI.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="MongoDB.Bson">
-      <HintPath>..\MagicMongoDBTool\bin\Debug\MongoDB.Bson.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver">
-      <HintPath>..\MagicMongoDBTool\bin\Debug\MongoDB.Driver.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
