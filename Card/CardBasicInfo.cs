@@ -123,6 +123,13 @@ namespace Card
             //剩余的法力是否足够实际召唤的法力
             return info.crystal.CurrentRemainPoint >= ActualCostPoint;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Init()
+        {
+            ActualCostPoint = StandardCostPoint;
+        }
         #endregion
 
     }

@@ -35,7 +35,9 @@ namespace 炉边传说
                 Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Click += (x, y) =>
                 {
                     pos.MeOrYou = true;
-                    pos.Postion = i + 1;
+                    //这里千万不能使用 i ,每次 i 都是固定值
+                    //pos.Postion = i + 1;
+                    pos.Postion = int.Parse(((Button)x).Name.Substring("btnMe".Length));
                     this.Close();
                 };
             }
@@ -45,7 +47,9 @@ namespace 炉边传说
                 Controls.Find("btnYou" + (i + 1).ToString(), true)[0].Click += (x, y) =>
                 {
                     pos.MeOrYou = false;
-                    pos.Postion = i + 1;
+                    //这里千万不能使用 i ,每次 i 都是固定值
+                    //pos.Postion = i + 1;
+                    pos.Postion = int.Parse(((Button)x).Name.Substring("btnYou".Length));
                     this.Close();
                 };
             }
@@ -67,12 +71,6 @@ namespace 炉边传说
             for (int i = 0; i < 7; i++)
             {
                 Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Enabled = false;
-                Controls.Find("btnMe" + (i + 1).ToString(), true)[0].Click += (x, y) =>
-                {
-                    pos.MeOrYou = false;
-                    pos.Postion = 0;
-                    this.Close();
-                };
             }
             for (int i = 0; i < 7; i++)
             {

@@ -13,15 +13,15 @@ namespace Card.Client
         /// <param name="game"></param>
         public static void Process(string item, GameManager game)
         {
-            var actionArray = item.Split("#".ToCharArray());
+            var actField = item.Split(CardUtility.strSplitMark.ToCharArray());
             switch (Card.Server.ActionCode.GetActionType(item))
             {
                 case ActionCode.ActionType.UseWeapon:
-                    game.AgainstInfo.Weapon = (Card.WeaponCard)Card.CardUtility.GetCardInfoBySN(actionArray[1]);
+                    game.AgainstInfo.Weapon = (Card.WeaponCard)Card.CardUtility.GetCardInfoBySN(actField[1]);
                     break;
                 case ActionCode.ActionType.UseMinion:
-                    int Pos = int.Parse(actionArray[2]);
-                    var minion = (Card.MinionCard)Card.CardUtility.GetCardInfoBySN(actionArray[1]);
+                    int Pos = int.Parse(actField[2]);
+                    var minion = (Card.MinionCard)Card.CardUtility.GetCardInfoBySN(actField[1]);
                     minion.Init();
                     game.AgainstInfo.BattleField.PutToBattle(Pos, minion);
                     game.AgainstInfo.BattleField.ResetBuff();
@@ -29,12 +29,20 @@ namespace Card.Client
                 case ActionCode.ActionType.UseAbility:
                     break;
                 case ActionCode.ActionType.Transform:
-                    game.MySelf.RoleInfo.BattleField.BattleMinions[0] = (Card.MinionCard)Card.CardUtility.GetCardInfoBySN(actionArray[3]);
+                    //TRANSFORM#ME#1#M9000001
+                    //Me代表对方 YOU代表自己，必须反过来
+                    if (actField[1] == CardUtility.strYou)
+                    {
+                        game.MySelf.RoleInfo.BattleField.BattleMinions[int.Parse(actField[2]) - 1] = (Card.MinionCard)Card.CardUtility.GetCardInfoBySN(actField[3]);
+                    }
+                    else
+                    {
+                        game.MySelf.RoleInfo.BattleField.BattleMinions[int.Parse(actField[2]) - 1] = (Card.MinionCard)Card.CardUtility.GetCardInfoBySN(actField[3]);
+                    }
                     break;
                 case ActionCode.ActionType.Attack:
                     //ATTACK#ME#POS#AP
                     //Me代表对方 YOU代表自己，必须反过来
-                    var actField = item.Split(CardUtility.strSplitMark.ToCharArray());
                     int AttackPoint = int.Parse(actField[3]);
                     if (actField[1] == CardUtility.strYou)
                     {

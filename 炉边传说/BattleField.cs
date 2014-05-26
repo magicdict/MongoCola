@@ -16,7 +16,7 @@ namespace 炉边传说
         /// </summary>
         public GameManager game;
         /// <summary>
-        /// Timer
+        /// 等待对方行动Timer
         /// </summary>
         private Timer WaitTimer = new Timer();
         /// <summary>
@@ -44,14 +44,16 @@ namespace 炉边传说
             StartNewTurn();
         }
         /// <summary>
-        /// 
+        /// 选择目标
         /// </summary>
         /// <returns></returns>
         private CardUtility.TargetPosition SelectPanel(Card.CardUtility.TargetSelectDirectEnum direct, Card.CardUtility.TargetSelectRoleEnum role)
         {
+            CardUtility.TargetPosition SelectPos;
             var frm = new TargetSelect(direct, role, game);
             frm.ShowDialog();
-            return new CardUtility.TargetPosition();
+            SelectPos = frm.pos;
+            return SelectPos;
         }
         /// <summary>
         /// 显示我方状态

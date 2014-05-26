@@ -174,7 +174,7 @@
             // 
             // btnMyHero
             // 
-            this.btnMyHero.Location = new System.Drawing.Point(302, 282);
+            this.btnMyHero.Location = new System.Drawing.Point(270, 282);
             this.btnMyHero.Name = "btnMyHero";
             this.btnMyHero.Size = new System.Drawing.Size(239, 93);
             this.btnMyHero.TabIndex = 33;
@@ -183,7 +183,7 @@
             // 
             // btnYourHero
             // 
-            this.btnYourHero.Location = new System.Drawing.Point(305, 7);
+            this.btnYourHero.Location = new System.Drawing.Point(270, 12);
             this.btnYourHero.Name = "btnYourHero";
             this.btnYourHero.Size = new System.Drawing.Size(239, 88);
             this.btnYourHero.TabIndex = 32;

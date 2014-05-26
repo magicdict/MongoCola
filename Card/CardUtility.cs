@@ -91,7 +91,13 @@ namespace Card
         /// <returns></returns>
         public static CardBasicInfo GetCardInfoBySN(String SN)
         {
-            if (CardCollections.ContainsKey(SN)) return CardCollections[SN];
+            if (CardCollections.ContainsKey(SN))
+            {
+                var c = CardCollections[SN];
+                c.Init();
+                if (c.CardType == CardBasicInfo.CardTypeEnum.随从) ((Card.MinionCard)c).Init();
+                return c;
+            }
             return null;
         }
         /// <summary>
