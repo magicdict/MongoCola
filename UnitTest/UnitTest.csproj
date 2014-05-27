@@ -103,10 +103,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Card\Card.csproj">
-      <Project>{0bdcfdfe-8032-4c1a-839c-afb8801910be}</Project>
-      <Name>Card</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{56d74944-4b20-4941-bc67-72a8e57e5a02}</Project>
       <Name>Common</Name>
