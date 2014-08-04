@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using MagicMongoDBTool.Module;
 using MongoDB.Bson;
-using MongoDB.Driver.Builders;
+using MongoDB.Driver;
 
 namespace MagicMongoDBTool
 {
@@ -22,18 +22,17 @@ namespace MagicMongoDBTool
         {
             Process.Start("http://docs.mongodb.org/manual/reference/commands/#geoNear");
         }
-
         private void cmdGeoNear_Click(object sender, EventArgs e)
         {
-            var GeoOption = new GeoNearOptionsBuilder();
-            GeoOption.SetDistanceMultiplier(double.Parse(NumDistanceMultiplier.Text));
-            GeoOption.SetMaxDistance(double.Parse(NumMaxDistance.Text));
-            GeoOption.SetSpherical(chkSpherical.Checked);
+            var GeoOption = new GeoNearArgs();
+            GeoOption.DistanceMultiplier = (double.Parse(NumDistanceMultiplier.Text));
+            GeoOption.MaxDistance = (double.Parse(NumMaxDistance.Text));
+            GeoOption.Spherical = (chkSpherical.Checked);
+            GeoOption.Limit = (int)(NumResultCount.Value);
+            GeoOption.Near = new XYPoint(double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text));
             try
             {
-                BsonDocument mGeoNearAs = SystemManager.GetCurrentCollection().GeoNearAs<BsonDocument>
-                    (null, double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text), (int) NumResultCount.Value, GeoOption)
-                    .Response;
+                BsonDocument mGeoNearAs = SystemManager.GetCurrentCollection().GeoNearAs<BsonDocument>(GeoOption).Response;
                 MongoDbHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
                 trvGeoResult.DatatreeView.Nodes[0].Expand();
             }

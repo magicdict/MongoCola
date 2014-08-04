@@ -59,7 +59,10 @@ namespace MagicMongoDBTool
             var reduce = new BsonJavaScript(ctlReduceFunction.Context);
             //TODO:这里可能会超时，失去响应
             //需要设置SocketTimeOut
-            MapReduceResult mMapReduceResult = SystemManager.GetCurrentCollection().MapReduce(map, reduce);
+            MapReduceArgs args = new MapReduceArgs();
+            args.MapFunction = map;
+            args.ReduceFunction = reduce;
+            MapReduceResult mMapReduceResult = SystemManager.GetCurrentCollection().MapReduce(args);
             MongoDbHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
             trvResult.DatatreeView.BeginUpdate();
             trvResult.DatatreeView.ExpandAll();

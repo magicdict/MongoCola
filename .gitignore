@@ -14,11 +14,7 @@
 *.pdb
 *.doc
 *.xml
-/炉边传说/bin
-/炉边传说/obj
-/炉边传说/packages
-/火炉服务器/bin
-/火炉服务器/obj
+/MagicMongoDBTool/MagicMongoDBTool.sln.ide
 /ImportAccessDB/bin
 /ImportAccessDB/obj
 /ResourceLib/bin
