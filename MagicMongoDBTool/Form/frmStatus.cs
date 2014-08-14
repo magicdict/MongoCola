@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using MagicMongoDBTool.Module;
-using MagicMongoDBTool.Properties;
 using MongoDB.Bson;
 
 namespace MagicMongoDBTool

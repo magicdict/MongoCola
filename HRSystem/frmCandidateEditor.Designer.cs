@@ -1,0 +1,548 @@
+﻿namespace HRSystem
+{
+    partial class frmCandidateEditor
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.cmbFinalStatus = new System.Windows.Forms.ComboBox();
+            this.cmbChannel = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cmbFirstInterviewResult = new System.Windows.Forms.ComboBox();
+            this.cmbSecondInterviewResult = new System.Windows.Forms.ComboBox();
+            this.cmbThirdInterviewResult = new System.Windows.Forms.ComboBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtContact = new System.Windows.Forms.TextBox();
+            this.txtFirstInterviewer = new System.Windows.Forms.TextBox();
+            this.txtSecondInterviewer = new System.Windows.Forms.TextBox();
+            this.txtThirdInterviewer = new System.Windows.Forms.TextBox();
+            this.txtUniversity = new System.Windows.Forms.TextBox();
+            this.txtMajor = new System.Windows.Forms.TextBox();
+            this.txtComments = new System.Windows.Forms.TextBox();
+            this.chkChinese = new System.Windows.Forms.CheckBox();
+            this.chkEnglish = new System.Windows.Forms.CheckBox();
+            this.chkKorea = new System.Windows.Forms.CheckBox();
+            this.chkJapanese = new System.Windows.Forms.CheckBox();
+            this.chkOtherLanguage = new System.Windows.Forms.CheckBox();
+            this.ctlFilePicker1 = new HRSystem.ctlFilePicker();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(34, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Name";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(299, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Contact";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(34, 63);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Language";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(34, 99);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "University";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(303, 95);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(36, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Major ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(34, 156);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Comments";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(34, 185);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(67, 13);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Screen Date";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(34, 214);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(93, 13);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "1st Interview Date";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(303, 214);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(76, 13);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "1st Interviewer";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(537, 214);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(99, 13);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "1st interview Result";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(34, 243);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(97, 13);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "2nd Interview Date";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(303, 244);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(80, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "2nd Interviewer";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(537, 244);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(98, 13);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "2nd interview result";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(34, 272);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(94, 13);
+            this.label16.TabIndex = 15;
+            this.label16.Text = "3rd Interview Date";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(302, 272);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(77, 13);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "3rd Interviewer";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(537, 272);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(96, 13);
+            this.label18.TabIndex = 17;
+            this.label18.Text = "3rd Interview result";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(34, 301);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(62, 13);
+            this.label19.TabIndex = 18;
+            this.label19.Text = "Final Status";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(34, 330);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(46, 13);
+            this.label20.TabIndex = 19;
+            this.label20.Text = "Channel";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(148, 214);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(145, 20);
+            this.dateTimePicker1.TabIndex = 21;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(148, 240);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(145, 20);
+            this.dateTimePicker2.TabIndex = 21;
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Location = new System.Drawing.Point(148, 266);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(145, 20);
+            this.dateTimePicker3.TabIndex = 21;
+            // 
+            // dateTimePicker4
+            // 
+            this.dateTimePicker4.Location = new System.Drawing.Point(148, 185);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.Size = new System.Drawing.Size(145, 20);
+            this.dateTimePicker4.TabIndex = 22;
+            // 
+            // cmbFinalStatus
+            // 
+            this.cmbFinalStatus.FormattingEnabled = true;
+            this.cmbFinalStatus.Location = new System.Drawing.Point(148, 298);
+            this.cmbFinalStatus.Name = "cmbFinalStatus";
+            this.cmbFinalStatus.Size = new System.Drawing.Size(145, 21);
+            this.cmbFinalStatus.TabIndex = 23;
+            // 
+            // cmbChannel
+            // 
+            this.cmbChannel.FormattingEnabled = true;
+            this.cmbChannel.Location = new System.Drawing.Point(148, 330);
+            this.cmbChannel.Name = "cmbChannel";
+            this.cmbChannel.Size = new System.Drawing.Size(145, 21);
+            this.cmbChannel.TabIndex = 24;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(34, 127);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(120, 17);
+            this.checkBox1.TabIndex = 25;
+            this.checkBox1.Text = "Market Background";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(160, 127);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(97, 17);
+            this.checkBox2.TabIndex = 26;
+            this.checkBox2.Text = "IT Background";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // cmbFirstInterviewResult
+            // 
+            this.cmbFirstInterviewResult.FormattingEnabled = true;
+            this.cmbFirstInterviewResult.Location = new System.Drawing.Point(642, 211);
+            this.cmbFirstInterviewResult.Name = "cmbFirstInterviewResult";
+            this.cmbFirstInterviewResult.Size = new System.Drawing.Size(121, 21);
+            this.cmbFirstInterviewResult.TabIndex = 27;
+            // 
+            // cmbSecondInterviewResult
+            // 
+            this.cmbSecondInterviewResult.FormattingEnabled = true;
+            this.cmbSecondInterviewResult.Location = new System.Drawing.Point(642, 238);
+            this.cmbSecondInterviewResult.Name = "cmbSecondInterviewResult";
+            this.cmbSecondInterviewResult.Size = new System.Drawing.Size(121, 21);
+            this.cmbSecondInterviewResult.TabIndex = 28;
+            // 
+            // cmbThirdInterviewResult
+            // 
+            this.cmbThirdInterviewResult.FormattingEnabled = true;
+            this.cmbThirdInterviewResult.Location = new System.Drawing.Point(642, 269);
+            this.cmbThirdInterviewResult.Name = "cmbThirdInterviewResult";
+            this.cmbThirdInterviewResult.Size = new System.Drawing.Size(121, 21);
+            this.cmbThirdInterviewResult.TabIndex = 29;
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(148, 27);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(145, 20);
+            this.txtName.TabIndex = 30;
+            // 
+            // txtContact
+            // 
+            this.txtContact.Location = new System.Drawing.Point(373, 27);
+            this.txtContact.Name = "txtContact";
+            this.txtContact.Size = new System.Drawing.Size(158, 20);
+            this.txtContact.TabIndex = 31;
+            // 
+            // txtFirstInterviewer
+            // 
+            this.txtFirstInterviewer.Location = new System.Drawing.Point(385, 214);
+            this.txtFirstInterviewer.Name = "txtFirstInterviewer";
+            this.txtFirstInterviewer.Size = new System.Drawing.Size(146, 20);
+            this.txtFirstInterviewer.TabIndex = 32;
+            // 
+            // txtSecondInterviewer
+            // 
+            this.txtSecondInterviewer.Location = new System.Drawing.Point(385, 244);
+            this.txtSecondInterviewer.Name = "txtSecondInterviewer";
+            this.txtSecondInterviewer.Size = new System.Drawing.Size(146, 20);
+            this.txtSecondInterviewer.TabIndex = 33;
+            // 
+            // txtThirdInterviewer
+            // 
+            this.txtThirdInterviewer.Location = new System.Drawing.Point(385, 272);
+            this.txtThirdInterviewer.Name = "txtThirdInterviewer";
+            this.txtThirdInterviewer.Size = new System.Drawing.Size(146, 20);
+            this.txtThirdInterviewer.TabIndex = 34;
+            // 
+            // txtUniversity
+            // 
+            this.txtUniversity.Location = new System.Drawing.Point(148, 92);
+            this.txtUniversity.Name = "txtUniversity";
+            this.txtUniversity.Size = new System.Drawing.Size(145, 20);
+            this.txtUniversity.TabIndex = 30;
+            // 
+            // txtMajor
+            // 
+            this.txtMajor.Location = new System.Drawing.Point(373, 92);
+            this.txtMajor.Name = "txtMajor";
+            this.txtMajor.Size = new System.Drawing.Size(158, 20);
+            this.txtMajor.TabIndex = 30;
+            // 
+            // txtComments
+            // 
+            this.txtComments.Location = new System.Drawing.Point(148, 153);
+            this.txtComments.Name = "txtComments";
+            this.txtComments.Size = new System.Drawing.Size(383, 20);
+            this.txtComments.TabIndex = 35;
+            // 
+            // chkChinese
+            // 
+            this.chkChinese.AutoSize = true;
+            this.chkChinese.Location = new System.Drawing.Point(148, 62);
+            this.chkChinese.Name = "chkChinese";
+            this.chkChinese.Size = new System.Drawing.Size(64, 17);
+            this.chkChinese.TabIndex = 36;
+            this.chkChinese.Text = "Chinese";
+            this.chkChinese.UseVisualStyleBackColor = true;
+            // 
+            // chkEnglish
+            // 
+            this.chkEnglish.AutoSize = true;
+            this.chkEnglish.Location = new System.Drawing.Point(218, 62);
+            this.chkEnglish.Name = "chkEnglish";
+            this.chkEnglish.Size = new System.Drawing.Size(60, 17);
+            this.chkEnglish.TabIndex = 37;
+            this.chkEnglish.Text = "English";
+            this.chkEnglish.UseVisualStyleBackColor = true;
+            // 
+            // chkKorea
+            // 
+            this.chkKorea.AutoSize = true;
+            this.chkKorea.Location = new System.Drawing.Point(362, 62);
+            this.chkKorea.Name = "chkKorea";
+            this.chkKorea.Size = new System.Drawing.Size(54, 17);
+            this.chkKorea.TabIndex = 38;
+            this.chkKorea.Text = "Korea";
+            this.chkKorea.UseVisualStyleBackColor = true;
+            // 
+            // chkJapanese
+            // 
+            this.chkJapanese.AutoSize = true;
+            this.chkJapanese.Location = new System.Drawing.Point(284, 62);
+            this.chkJapanese.Name = "chkJapanese";
+            this.chkJapanese.Size = new System.Drawing.Size(72, 17);
+            this.chkJapanese.TabIndex = 39;
+            this.chkJapanese.Text = "Japanese";
+            this.chkJapanese.UseVisualStyleBackColor = true;
+            // 
+            // chkOtherLanguage
+            // 
+            this.chkOtherLanguage.AutoSize = true;
+            this.chkOtherLanguage.Location = new System.Drawing.Point(422, 62);
+            this.chkOtherLanguage.Name = "chkOtherLanguage";
+            this.chkOtherLanguage.Size = new System.Drawing.Size(52, 17);
+            this.chkOtherLanguage.TabIndex = 40;
+            this.chkOtherLanguage.Text = "Other";
+            this.chkOtherLanguage.UseVisualStyleBackColor = true;
+            // 
+            // ctlFilePicker1
+            // 
+            this.ctlFilePicker1.BackColor = System.Drawing.Color.Transparent;
+            this.ctlFilePicker1.FileFilter = "";
+            this.ctlFilePicker1.FileName = "";
+            this.ctlFilePicker1.Location = new System.Drawing.Point(32, 347);
+            this.ctlFilePicker1.Name = "ctlFilePicker1";
+            this.ctlFilePicker1.PickerType = HRSystem.ctlFilePicker.DialogType.Directory;
+            this.ctlFilePicker1.SelectedPathOrFileName = "";
+            this.ctlFilePicker1.Size = new System.Drawing.Size(525, 31);
+            this.ctlFilePicker1.TabIndex = 41;
+            this.ctlFilePicker1.Title = "Resume";
+            // 
+            // frmCandidateEditor
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(791, 390);
+            this.Controls.Add(this.ctlFilePicker1);
+            this.Controls.Add(this.chkOtherLanguage);
+            this.Controls.Add(this.chkJapanese);
+            this.Controls.Add(this.chkKorea);
+            this.Controls.Add(this.chkEnglish);
+            this.Controls.Add(this.chkChinese);
+            this.Controls.Add(this.txtComments);
+            this.Controls.Add(this.txtThirdInterviewer);
+            this.Controls.Add(this.txtSecondInterviewer);
+            this.Controls.Add(this.txtFirstInterviewer);
+            this.Controls.Add(this.txtContact);
+            this.Controls.Add(this.txtMajor);
+            this.Controls.Add(this.txtUniversity);
+            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.cmbThirdInterviewResult);
+            this.Controls.Add(this.cmbSecondInterviewResult);
+            this.Controls.Add(this.cmbFirstInterviewResult);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.cmbChannel);
+            this.Controls.Add(this.cmbFinalStatus);
+            this.Controls.Add(this.dateTimePicker4);
+            this.Controls.Add(this.dateTimePicker3);
+            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Name = "frmCandidateEditor";
+            this.Text = "Candidate Editor";
+            this.Load += new System.EventHandler(this.candidateEditor_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.ComboBox cmbFinalStatus;
+        private System.Windows.Forms.ComboBox cmbChannel;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.ComboBox cmbFirstInterviewResult;
+        private System.Windows.Forms.ComboBox cmbSecondInterviewResult;
+        private System.Windows.Forms.ComboBox cmbThirdInterviewResult;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtContact;
+        private System.Windows.Forms.TextBox txtFirstInterviewer;
+        private System.Windows.Forms.TextBox txtSecondInterviewer;
+        private System.Windows.Forms.TextBox txtThirdInterviewer;
+        private System.Windows.Forms.TextBox txtUniversity;
+        private System.Windows.Forms.TextBox txtMajor;
+        private System.Windows.Forms.TextBox txtComments;
+        private System.Windows.Forms.CheckBox chkChinese;
+        private System.Windows.Forms.CheckBox chkEnglish;
+        private System.Windows.Forms.CheckBox chkKorea;
+        private System.Windows.Forms.CheckBox chkJapanese;
+        private System.Windows.Forms.CheckBox chkOtherLanguage;
+        private ctlFilePicker ctlFilePicker1;
+    }
+}
