@@ -39,8 +39,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web.DataVisualization" />
-    <Reference Include="System.Web.DataVisualization.Design" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
@@ -88,6 +86,12 @@
     <Compile Include="frmPipelineWeekInfo.Designer.cs">
       <DependentUpon>frmPipelineWeekInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReclye.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReclye.Designer.cs">
+      <DependentUpon>frmReclye.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemManager.cs" />
@@ -126,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPipelineWeekInfo.resx">
       <DependentUpon>frmPipelineWeekInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReclye.resx">
+      <DependentUpon>frmReclye.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -53,5 +53,11 @@ namespace HRSystem
             (new frmCandidateEditor(String.Empty)).ShowDialog();
             ctlStatisticInfo1.RefreshData();
         }
+
+        private void recylceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new frmReclye()).ShowDialog();
+            ctlStatisticInfo1.RefreshData();
+        }
     }
 }

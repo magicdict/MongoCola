@@ -37,6 +37,7 @@
             this.viewManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weeklyInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addCandidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +45,7 @@
             this.SystemStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.addCandidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recylceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ctlStatisticInfo1 = new HRSystem.UserController.ctlStatisticInfo();
             this.menuStrip1.SuspendLayout();
             this.AppStatus.SuspendLayout();
@@ -117,7 +118,8 @@
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.weeklyInfoToolStripMenuItem,
-            this.addCandidateToolStripMenuItem});
+            this.addCandidateToolStripMenuItem,
+            this.recylceToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.viewToolStripMenuItem.Text = "Pipeline";
@@ -128,6 +130,13 @@
             this.weeklyInfoToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.weeklyInfoToolStripMenuItem.Text = "Weekly Info";
             this.weeklyInfoToolStripMenuItem.Click += new System.EventHandler(this.weeklyInfoToolStripMenuItem_Click);
+            // 
+            // addCandidateToolStripMenuItem
+            // 
+            this.addCandidateToolStripMenuItem.Name = "addCandidateToolStripMenuItem";
+            this.addCandidateToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.addCandidateToolStripMenuItem.Text = "Add Candidate";
+            this.addCandidateToolStripMenuItem.Click += new System.EventHandler(this.addCandidateToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -190,12 +199,12 @@
             this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 4;
             // 
-            // addCandidateToolStripMenuItem
+            // recylceToolStripMenuItem
             // 
-            this.addCandidateToolStripMenuItem.Name = "addCandidateToolStripMenuItem";
-            this.addCandidateToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.addCandidateToolStripMenuItem.Text = "Add Candidate";
-            this.addCandidateToolStripMenuItem.Click += new System.EventHandler(this.addCandidateToolStripMenuItem_Click);
+            this.recylceToolStripMenuItem.Name = "recylceToolStripMenuItem";
+            this.recylceToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.recylceToolStripMenuItem.Text = "Recylce";
+            this.recylceToolStripMenuItem.Click += new System.EventHandler(this.recylceToolStripMenuItem_Click);
             // 
             // ctlStatisticInfo1
             // 
@@ -253,6 +262,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewManagerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem weeklyInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addCandidateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recylceToolStripMenuItem;
     }
 }
 

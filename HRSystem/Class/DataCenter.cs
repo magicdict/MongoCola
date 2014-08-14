@@ -60,10 +60,10 @@ namespace HRSystem
         /// 没有删除的全部
         /// </summary>
         /// <returns></returns>
-        public static List<HiringTracking> GetHiringTrackingDataSet()
+        public static List<HiringTracking> GetHiringTrackingDataSet(bool isDelete = false)
         {
             var pos = from p in HiringTrackingDataSet
-                      where !p.IsDel
+                      where p.IsDel ==  isDelete
                       select p;
             return pos.ToList();
         }

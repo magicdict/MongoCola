@@ -36,7 +36,7 @@ namespace HRSystem
         }
 
         /// <summary>
-        ///     文件过滤
+        ///     默认文件
         /// </summary>
         public String FileName
         {

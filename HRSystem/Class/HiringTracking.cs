@@ -26,7 +26,7 @@ namespace HRSystem
         /// <summary>
         /// 语言
         /// </summary>
-        public HiringTracking.LanguageEnum Language = 0;
+        public LanguageEnum Language = 0;
         /// <summary>
         /// 大学
         /// </summary>
@@ -115,7 +115,7 @@ namespace HRSystem
         /// 删除标志
         /// </summary>
         public bool IsDel = false;
-        [FlagsAttribute]
+        [Flags]
         public enum LanguageEnum : short
         {
             None = 0,
@@ -154,7 +154,7 @@ namespace HRSystem
             Agency,
             RPO,
             InternalTransfer,
-            CareerProtal,
+            CareerPortal,
             Others
         }
         /// <summary>

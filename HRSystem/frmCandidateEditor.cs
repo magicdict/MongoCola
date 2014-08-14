@@ -16,7 +16,8 @@ namespace HRSystem
             {
                 IsCreate = false;
                 hiring = DataCenter.HiringTrackingDataSet.Find((x) => { return x.No == No; });
-            }else
+            }
+            else
             {
                 IsCreate = true;
             }
@@ -64,6 +65,8 @@ namespace HRSystem
                 cmbThirdInterviewResult.SelectedIndex = hiring.ThirdInterviewResult.GetHashCode();
 
                 cmbPosition.Text = hiring.Position;
+                ListResume();
+
             }
         }
         /// <summary>
@@ -112,6 +115,70 @@ namespace HRSystem
             }
             DataCenter.SaveHiringTrack();
             Close();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnUpload_Click(object sender, System.EventArgs e)
+        {
+            if (IsCreate)
+            {
+                hiring.No = "C" + (DataCenter.HiringTrackingDataSet.Count + 1).ToString("D6");
+            }
+            if (!Directory.Exists(Application.StartupPath + "\\Resume\\" + hiring.No)) Directory.CreateDirectory(Application.StartupPath + "\\Resume\\" + hiring.No);
+
+            FileInfo sourcefile = new FileInfo(ctlResumeFilePicker.SelectedPathOrFileName);
+            string targetFilename = Application.StartupPath + "\\Resume\\" + hiring.No + "\\" + sourcefile.Name;
+            if (File.Exists(targetFilename))
+            {
+                File.Move(targetFilename, targetFilename + "_backup_" + System.DateTime.Now.ToString("yyyyMMddHHmmss"));
+            }
+            File.Copy(sourcefile.FullName, targetFilename);
+            ListResume();
+        }
+
+        private void ListResume()
+        {
+            if (IsCreate)
+            {
+                hiring.No = "C" + (DataCenter.HiringTrackingDataSet.Count + 1).ToString("D6");
+            }
+            lstResume.Items.Clear();
+            if (Directory.Exists(Application.StartupPath + "\\Resume\\" + hiring.No))
+            {
+                foreach (var resumefile in Directory.GetFiles(Application.StartupPath + "\\Resume\\" + hiring.No))
+                {
+                  if (!resumefile.Contains("_backup_"))  lstResume.Items.Add(resumefile);
+                }
+            }
+
+        }
+        /// <summary>
+        /// 打开简历
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lstResume_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lstResume.SelectedItems.Count == 1)
+            {
+                System.Diagnostics.Process.Start(lstResume.SelectedItems[0].ToString());
+            }
+        }
+        /// <summary>
+        /// 删除简历
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDelete_Click(object sender, System.EventArgs e)
+        {
+            if (lstResume.SelectedItems.Count == 1)
+            {
+                File.Move(lstResume.SelectedItems[0].ToString(), lstResume.SelectedItems[0].ToString() + "_backup_" + System.DateTime.Now.ToString("yyyyMMddHHmmss"));
+                ListResume();
+            }
         }
     }
 }

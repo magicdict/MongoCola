@@ -70,10 +70,13 @@
             this.chkKorea = new System.Windows.Forms.CheckBox();
             this.chkJapanese = new System.Windows.Forms.CheckBox();
             this.chkOtherLanguage = new System.Windows.Forms.CheckBox();
-            this.ctlFilePicker1 = new HRSystem.ctlFilePicker();
+            this.ctlResumeFilePicker = new HRSystem.ctlFilePicker();
             this.btnSave = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbPosition = new System.Windows.Forms.ComboBox();
+            this.btnUpload = new System.Windows.Forms.Button();
+            this.lstResume = new System.Windows.Forms.ListBox();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -432,25 +435,25 @@
             this.chkOtherLanguage.Text = "Other";
             this.chkOtherLanguage.UseVisualStyleBackColor = true;
             // 
-            // ctlFilePicker1
+            // ctlResumeFilePicker
             // 
-            this.ctlFilePicker1.BackColor = System.Drawing.Color.Transparent;
-            this.ctlFilePicker1.FileFilter = "";
-            this.ctlFilePicker1.FileName = "";
-            this.ctlFilePicker1.Location = new System.Drawing.Point(32, 347);
-            this.ctlFilePicker1.Name = "ctlFilePicker1";
-            this.ctlFilePicker1.PickerType = HRSystem.ctlFilePicker.DialogType.Directory;
-            this.ctlFilePicker1.SelectedPathOrFileName = "";
-            this.ctlFilePicker1.Size = new System.Drawing.Size(525, 31);
-            this.ctlFilePicker1.TabIndex = 41;
-            this.ctlFilePicker1.Title = "Resume";
+            this.ctlResumeFilePicker.BackColor = System.Drawing.Color.Transparent;
+            this.ctlResumeFilePicker.FileFilter = "";
+            this.ctlResumeFilePicker.FileName = "";
+            this.ctlResumeFilePicker.Location = new System.Drawing.Point(32, 347);
+            this.ctlResumeFilePicker.Name = "ctlResumeFilePicker";
+            this.ctlResumeFilePicker.PickerType = HRSystem.ctlFilePicker.DialogType.OpenFile;
+            this.ctlResumeFilePicker.SelectedPathOrFileName = "";
+            this.ctlResumeFilePicker.Size = new System.Drawing.Size(525, 31);
+            this.ctlResumeFilePicker.TabIndex = 41;
+            this.ctlResumeFilePicker.Title = "Resume";
             // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnSave.Location = new System.Drawing.Point(642, 347);
+            this.btnSave.Location = new System.Drawing.Point(678, 485);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(121, 23);
+            this.btnSave.Size = new System.Drawing.Size(85, 23);
             this.btnSave.TabIndex = 42;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -473,16 +476,50 @@
             this.cmbPosition.Size = new System.Drawing.Size(146, 21);
             this.cmbPosition.TabIndex = 44;
             // 
+            // btnUpload
+            // 
+            this.btnUpload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnUpload.Location = new System.Drawing.Point(563, 352);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(85, 23);
+            this.btnUpload.TabIndex = 45;
+            this.btnUpload.Text = "Upload";
+            this.btnUpload.UseVisualStyleBackColor = false;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // lstResume
+            // 
+            this.lstResume.FormattingEnabled = true;
+            this.lstResume.Location = new System.Drawing.Point(37, 384);
+            this.lstResume.Name = "lstResume";
+            this.lstResume.Size = new System.Drawing.Size(507, 95);
+            this.lstResume.TabIndex = 46;
+            this.lstResume.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstResume_MouseDoubleClick);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnDelete.Location = new System.Drawing.Point(563, 456);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(85, 23);
+            this.btnDelete.TabIndex = 47;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // frmCandidateEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(791, 390);
+            this.ClientSize = new System.Drawing.Size(791, 520);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.lstResume);
+            this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.cmbPosition);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.ctlFilePicker1);
+            this.Controls.Add(this.ctlResumeFilePicker);
             this.Controls.Add(this.chkOtherLanguage);
             this.Controls.Add(this.chkJapanese);
             this.Controls.Add(this.chkKorea);
@@ -581,9 +618,12 @@
         private System.Windows.Forms.CheckBox chkKorea;
         private System.Windows.Forms.CheckBox chkJapanese;
         private System.Windows.Forms.CheckBox chkOtherLanguage;
-        private ctlFilePicker ctlFilePicker1;
+        private ctlFilePicker ctlResumeFilePicker;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbPosition;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.ListBox lstResume;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

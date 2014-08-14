@@ -37,7 +37,7 @@ namespace HRSystem
             ViewControl.ResetPositionField();
             //Folder Check
             if (!Directory.Exists(Application.StartupPath + "\\Data")) Directory.CreateDirectory(Application.StartupPath + "\\Data");
-
+            if (!Directory.Exists(Application.StartupPath + "\\Resume")) Directory.CreateDirectory(Application.StartupPath + "\\Resume");
             if (File.Exists(HiringTrackingXmlFilename))
             {
                 XmlSerializer xml = new XmlSerializer(typeof(List<HiringTracking>));

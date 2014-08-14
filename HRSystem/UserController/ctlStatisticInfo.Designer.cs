@@ -28,23 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lstPosition = new System.Windows.Forms.ListView();
+            this.PhaseChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbPhase = new System.Windows.Forms.ComboBox();
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.PhaseChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PhaseChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -61,6 +63,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel2.Controls.Add(this.label2);
+            this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer1.Panel2.Controls.Add(this.PhaseChart);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.cmbPhase);
@@ -83,6 +87,20 @@
             this.lstPosition.SelectedIndexChanged += new System.EventHandler(this.lstPosition_SelectedIndexChanged);
             this.lstPosition.DoubleClick += new System.EventHandler(this.lstPosition_DoubleClick);
             // 
+            // PhaseChart
+            // 
+            this.PhaseChart.BorderlineColor = System.Drawing.Color.Black;
+            this.PhaseChart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            chartArea3.Name = "ChartArea1";
+            this.PhaseChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.PhaseChart.Legends.Add(legend3);
+            this.PhaseChart.Location = new System.Drawing.Point(461, 83);
+            this.PhaseChart.Name = "PhaseChart";
+            this.PhaseChart.Size = new System.Drawing.Size(407, 241);
+            this.PhaseChart.TabIndex = 33;
+            this.PhaseChart.Text = "chart1";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -103,33 +121,36 @@
             // 
             // chartResult
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartResult.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartResult.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.chartResult.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartResult.Legends.Add(legend4);
             this.chartResult.Location = new System.Drawing.Point(12, 83);
             this.chartResult.Name = "chartResult";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartResult.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartResult.Series.Add(series2);
             this.chartResult.Size = new System.Drawing.Size(407, 241);
             this.chartResult.TabIndex = 30;
             // 
-            // MonitorGrap
+            // label2
             // 
-            this.PhaseChart.BorderlineColor = System.Drawing.Color.Black;
-            this.PhaseChart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            chartArea1.Name = "ChartArea1";
-            this.PhaseChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.PhaseChart.Legends.Add(legend1);
-            this.PhaseChart.Location = new System.Drawing.Point(461, 83);
-            this.PhaseChart.Name = "MonitorGrap";
-            this.PhaseChart.Size = new System.Drawing.Size(407, 241);
-            this.PhaseChart.TabIndex = 33;
-            this.PhaseChart.Text = "chart1";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(458, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "XXXXXXXX:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(529, 42);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(201, 21);
+            this.comboBox1.TabIndex = 34;
             // 
             // ctlStatisticInfo
             // 
@@ -145,8 +166,8 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartResult)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PhaseChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartResult)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -159,5 +180,7 @@
         private System.Windows.Forms.ComboBox cmbPhase;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataVisualization.Charting.Chart PhaseChart;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
