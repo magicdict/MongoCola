@@ -52,7 +52,7 @@
     <Compile Include="frmCandidateEditor.Designer.cs">
       <DependentUpon>frmCandidateEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class\CreatePositionReport.cs" />
+    <Compile Include="Class\DataCenter.cs" />
     <Compile Include="Class\HiringTracking.cs" />
     <Compile Include="Class\PositionBasicInfo.cs" />
     <Compile Include="Class\Utility.cs" />

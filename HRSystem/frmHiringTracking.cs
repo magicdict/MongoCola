@@ -27,7 +27,14 @@ namespace HRSystem
         /// <param name="e"></param>
         private void frmHiringTracking_Load(object sender, EventArgs e)
         {
-            ViewControl.FillHiringTrackingListView(lstHiringTracking, CreatePositionReport.GetHiringTrackByPosition(Position));
+            if (Position != SystemManager.strTotal)
+            {
+                ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByPosition(Position));
+            }
+            else
+            {
+                ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackingDataSet());
+            }
         }
         /// <summary>
         /// cmbFinalStatus Select Index Changed
@@ -38,8 +45,14 @@ namespace HRSystem
         {
             if (cmbFinalStatus.SelectedIndex == 0)
             {
-                ViewControl.FillHiringTrackingListView(lstHiringTracking, CreatePositionReport.GetHiringTrackByPosition(Position));
-
+                if (Position != SystemManager.strTotal)
+                {
+                    ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByPosition(Position));
+                }
+                else
+                {
+                    ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackingDataSet());
+                }
             }
             else
             {
@@ -56,8 +69,46 @@ namespace HRSystem
                         ViewControl.CurrentHiringTrackingFields = ViewStyleSheet.HiringTracking_RejectOfferSytle;
                         break;
                 }
-                ViewControl.FillHiringTrackingListView(lstHiringTracking, CreatePositionReport.GetHiringTrackByPosition(Position, FinalStatus));
+                if (Position != SystemManager.strTotal)
+                {
+                    ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByPosition(Position, FinalStatus));
+                }
+                else
+                {
+                    ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByFinalStatus(FinalStatus));
+                }
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if(lstHiringTracking.SelectedItems.Count == 1)
+            {
+                string No = lstHiringTracking.SelectedItems[0].Text;
+                var hiring = DataCenter.HiringTrackingDataSet.Find((x) => { return x.No == No; });
+                hiring.IsDel = true;
+                DataCenter.SaveHiringTrack();
+                cmbFinalStatus_SelectedIndexChanged(null, null);
+            }
+        }
+        private void lstHiringTracking_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstHiringTracking.SelectedItems.Count == 1)
+            {
+                string No = lstHiringTracking.SelectedItems[0].Text;
+                (new frmCandidateEditor(No)).ShowDialog();
+                cmbFinalStatus_SelectedIndexChanged(null, null);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEditor_Click(object sender, EventArgs e)
+        {
+            string No = lstHiringTracking.SelectedItems[0].Text;
+            (new frmCandidateEditor(No)).ShowDialog();
         }
     }
 }

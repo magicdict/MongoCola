@@ -30,7 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.txtPosition = new System.Windows.Forms.TextBox();
-            this.txtHiringManager = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbHiringType = new System.Windows.Forms.ComboBox();
@@ -45,6 +44,7 @@
             this.cmbHBound = new System.Windows.Forms.ComboBox();
             this.cmbLBound = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.cmbHiringManager = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.NumTarget)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,13 +63,6 @@
             this.txtPosition.Name = "txtPosition";
             this.txtPosition.Size = new System.Drawing.Size(212, 20);
             this.txtPosition.TabIndex = 1;
-            // 
-            // txtHiringManager
-            // 
-            this.txtHiringManager.Location = new System.Drawing.Point(119, 55);
-            this.txtHiringManager.Name = "txtHiringManager";
-            this.txtHiringManager.Size = new System.Drawing.Size(212, 20);
-            this.txtHiringManager.TabIndex = 3;
             // 
             // label2
             // 
@@ -171,11 +164,11 @@
             this.NumTarget.TabIndex = 13;
             this.NumTarget.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // cmbUBound
+            // cmbHBound
             // 
             this.cmbHBound.FormattingEnabled = true;
             this.cmbHBound.Location = new System.Drawing.Point(241, 113);
-            this.cmbHBound.Name = "cmbUBound";
+            this.cmbHBound.Name = "cmbHBound";
             this.cmbHBound.Size = new System.Drawing.Size(75, 21);
             this.cmbHBound.TabIndex = 14;
             // 
@@ -196,12 +189,21 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "----";
             // 
+            // cmbHiringManager
+            // 
+            this.cmbHiringManager.FormattingEnabled = true;
+            this.cmbHiringManager.Location = new System.Drawing.Point(120, 55);
+            this.cmbHiringManager.Name = "cmbHiringManager";
+            this.cmbHiringManager.Size = new System.Drawing.Size(211, 21);
+            this.cmbHiringManager.TabIndex = 17;
+            // 
             // frmPositionInit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(350, 284);
+            this.Controls.Add(this.cmbHiringManager);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cmbLBound);
             this.Controls.Add(this.cmbHBound);
@@ -215,7 +217,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbHiringType);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtHiringManager);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPosition);
             this.Controls.Add(this.label1);
@@ -235,7 +236,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPosition;
-        private System.Windows.Forms.TextBox txtHiringManager;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbHiringType;
@@ -250,5 +250,6 @@
         private System.Windows.Forms.ComboBox cmbHBound;
         private System.Windows.Forms.ComboBox cmbLBound;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cmbHiringManager;
     }
 }

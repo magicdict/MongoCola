@@ -110,14 +110,14 @@ namespace HRSystem
                 Rec.OnboardDate = Utility.GetDate(ActiveSheet.Cells(rowCount, ColPos.onboarddate));
                 Rec.RejectOfferReason = ActiveSheet.Cells(rowCount, ColPos.rejectofferreason).Text;
 
-                Rec.FinalStatus = Utility.GetEnum<HiringTracking.FinalStatusEnum>(ActiveSheet.Cells(rowCount, ColPos.rejectofferreason).Text, HiringTracking.FinalStatusEnum.UnderScreen);
+                Rec.FinalStatus = Utility.GetEnum<HiringTracking.FinalStatusEnum>(ActiveSheet.Cells(rowCount, ColPos.finalstatus).Text, HiringTracking.FinalStatusEnum.UnderScreen);
                 rawData.Add(Rec);
                 rowCount++;
             }
             XmlSerializer xml = new XmlSerializer(typeof(List<HiringTracking>));
             xml.Serialize(new StreamWriter(SystemManager.HiringTrackingXmlFilename), rawData);
-            CreatePositionReport.HiringTrackingDataSet = rawData;
-            CreatePositionReport.ReCompute();
+            DataCenter.HiringTrackingDataSet = rawData;
+            DataCenter.ReCompute();
         }
     }
 }

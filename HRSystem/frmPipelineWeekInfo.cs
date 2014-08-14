@@ -18,12 +18,12 @@ namespace HRSystem
 
         private void frmPipelineWeekInfo_Load(object sender, EventArgs e)
         {
-            ViewControl.FillHiringTrackingListView(lstHiringTracking, CreatePositionReport.GetHiringTrackByScreenDate(System.DateTime.Now,System.DateTime.Now));
+            ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByScreenDate(System.DateTime.Now,System.DateTime.Now));
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            ViewControl.FillHiringTrackingListView(lstHiringTracking, CreatePositionReport.GetHiringTrackByScreenDate(WeekStart.Value, WeekEnd.Value));
+            ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByScreenDate(WeekStart.Value, WeekEnd.Value));
         }
     }
 }

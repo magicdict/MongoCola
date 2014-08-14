@@ -46,14 +46,14 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.dateFirstInterview = new System.Windows.Forms.DateTimePicker();
+            this.dateSecondInterview = new System.Windows.Forms.DateTimePicker();
+            this.dateThirdInterview = new System.Windows.Forms.DateTimePicker();
+            this.dateScreen = new System.Windows.Forms.DateTimePicker();
             this.cmbFinalStatus = new System.Windows.Forms.ComboBox();
             this.cmbChannel = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.chkMarketBackground = new System.Windows.Forms.CheckBox();
+            this.chkITBackground = new System.Windows.Forms.CheckBox();
             this.cmbFirstInterviewResult = new System.Windows.Forms.ComboBox();
             this.cmbSecondInterviewResult = new System.Windows.Forms.ComboBox();
             this.cmbThirdInterviewResult = new System.Windows.Forms.ComboBox();
@@ -71,6 +71,9 @@
             this.chkJapanese = new System.Windows.Forms.CheckBox();
             this.chkOtherLanguage = new System.Windows.Forms.CheckBox();
             this.ctlFilePicker1 = new HRSystem.ctlFilePicker();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbPosition = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -148,7 +151,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(303, 214);
+            this.label11.Location = new System.Drawing.Point(302, 214);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(76, 13);
             this.label11.TabIndex = 10;
@@ -175,7 +178,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(303, 244);
+            this.label14.Location = new System.Drawing.Point(302, 244);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(80, 13);
             this.label14.TabIndex = 13;
@@ -235,33 +238,33 @@
             this.label20.TabIndex = 19;
             this.label20.Text = "Channel";
             // 
-            // dateTimePicker1
+            // dateFirstInterview
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(148, 214);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(145, 20);
-            this.dateTimePicker1.TabIndex = 21;
+            this.dateFirstInterview.Location = new System.Drawing.Point(148, 214);
+            this.dateFirstInterview.Name = "dateFirstInterview";
+            this.dateFirstInterview.Size = new System.Drawing.Size(145, 20);
+            this.dateFirstInterview.TabIndex = 21;
             // 
-            // dateTimePicker2
+            // dateSecondInterview
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(148, 240);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(145, 20);
-            this.dateTimePicker2.TabIndex = 21;
+            this.dateSecondInterview.Location = new System.Drawing.Point(148, 240);
+            this.dateSecondInterview.Name = "dateSecondInterview";
+            this.dateSecondInterview.Size = new System.Drawing.Size(145, 20);
+            this.dateSecondInterview.TabIndex = 21;
             // 
-            // dateTimePicker3
+            // dateThirdInterview
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(148, 266);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(145, 20);
-            this.dateTimePicker3.TabIndex = 21;
+            this.dateThirdInterview.Location = new System.Drawing.Point(148, 266);
+            this.dateThirdInterview.Name = "dateThirdInterview";
+            this.dateThirdInterview.Size = new System.Drawing.Size(145, 20);
+            this.dateThirdInterview.TabIndex = 21;
             // 
-            // dateTimePicker4
+            // dateScreen
             // 
-            this.dateTimePicker4.Location = new System.Drawing.Point(148, 185);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(145, 20);
-            this.dateTimePicker4.TabIndex = 22;
+            this.dateScreen.Location = new System.Drawing.Point(148, 185);
+            this.dateScreen.Name = "dateScreen";
+            this.dateScreen.Size = new System.Drawing.Size(145, 20);
+            this.dateScreen.TabIndex = 22;
             // 
             // cmbFinalStatus
             // 
@@ -279,25 +282,25 @@
             this.cmbChannel.Size = new System.Drawing.Size(145, 21);
             this.cmbChannel.TabIndex = 24;
             // 
-            // checkBox1
+            // chkMarketBackground
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(34, 127);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(120, 17);
-            this.checkBox1.TabIndex = 25;
-            this.checkBox1.Text = "Market Background";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkMarketBackground.AutoSize = true;
+            this.chkMarketBackground.Location = new System.Drawing.Point(34, 127);
+            this.chkMarketBackground.Name = "chkMarketBackground";
+            this.chkMarketBackground.Size = new System.Drawing.Size(120, 17);
+            this.chkMarketBackground.TabIndex = 25;
+            this.chkMarketBackground.Text = "Market Background";
+            this.chkMarketBackground.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // chkITBackground
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(160, 127);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(97, 17);
-            this.checkBox2.TabIndex = 26;
-            this.checkBox2.Text = "IT Background";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chkITBackground.AutoSize = true;
+            this.chkITBackground.Location = new System.Drawing.Point(160, 127);
+            this.chkITBackground.Name = "chkITBackground";
+            this.chkITBackground.Size = new System.Drawing.Size(97, 17);
+            this.chkITBackground.TabIndex = 26;
+            this.chkITBackground.Text = "IT Background";
+            this.chkITBackground.UseVisualStyleBackColor = true;
             // 
             // cmbFirstInterviewResult
             // 
@@ -442,12 +445,43 @@
             this.ctlFilePicker1.TabIndex = 41;
             this.ctlFilePicker1.Title = "Resume";
             // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnSave.Location = new System.Drawing.Point(642, 347);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(121, 23);
+            this.btnSave.TabIndex = 42;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(302, 189);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(44, 13);
+            this.label6.TabIndex = 43;
+            this.label6.Text = "Position";
+            // 
+            // cmbPosition
+            // 
+            this.cmbPosition.FormattingEnabled = true;
+            this.cmbPosition.Location = new System.Drawing.Point(385, 189);
+            this.cmbPosition.Name = "cmbPosition";
+            this.cmbPosition.Size = new System.Drawing.Size(146, 21);
+            this.cmbPosition.TabIndex = 44;
+            // 
             // frmCandidateEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(791, 390);
+            this.Controls.Add(this.cmbPosition);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.ctlFilePicker1);
             this.Controls.Add(this.chkOtherLanguage);
             this.Controls.Add(this.chkJapanese);
@@ -465,14 +499,14 @@
             this.Controls.Add(this.cmbThirdInterviewResult);
             this.Controls.Add(this.cmbSecondInterviewResult);
             this.Controls.Add(this.cmbFirstInterviewResult);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chkITBackground);
+            this.Controls.Add(this.chkMarketBackground);
             this.Controls.Add(this.cmbChannel);
             this.Controls.Add(this.cmbFinalStatus);
-            this.Controls.Add(this.dateTimePicker4);
-            this.Controls.Add(this.dateTimePicker3);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateScreen);
+            this.Controls.Add(this.dateThirdInterview);
+            this.Controls.Add(this.dateSecondInterview);
+            this.Controls.Add(this.dateFirstInterview);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label18);
@@ -491,7 +525,11 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmCandidateEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Candidate Editor";
             this.Load += new System.EventHandler(this.candidateEditor_Load);
             this.ResumeLayout(false);
@@ -519,14 +557,14 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.DateTimePicker dateFirstInterview;
+        private System.Windows.Forms.DateTimePicker dateSecondInterview;
+        private System.Windows.Forms.DateTimePicker dateThirdInterview;
+        private System.Windows.Forms.DateTimePicker dateScreen;
         private System.Windows.Forms.ComboBox cmbFinalStatus;
         private System.Windows.Forms.ComboBox cmbChannel;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox chkMarketBackground;
+        private System.Windows.Forms.CheckBox chkITBackground;
         private System.Windows.Forms.ComboBox cmbFirstInterviewResult;
         private System.Windows.Forms.ComboBox cmbSecondInterviewResult;
         private System.Windows.Forms.ComboBox cmbThirdInterviewResult;
@@ -544,5 +582,8 @@
         private System.Windows.Forms.CheckBox chkJapanese;
         private System.Windows.Forms.CheckBox chkOtherLanguage;
         private ctlFilePicker ctlFilePicker1;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbPosition;
     }
 }

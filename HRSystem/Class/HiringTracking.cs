@@ -111,6 +111,10 @@ namespace HRSystem
         /// 拒绝入职的原因
         /// </summary>
         public string RejectOfferReason = string.Empty;
+        /// <summary>
+        /// 删除标志
+        /// </summary>
+        public bool IsDel = false;
         [FlagsAttribute]
         public enum LanguageEnum : short
         {

@@ -42,16 +42,16 @@ namespace HRSystem
             {
                 XmlSerializer xml = new XmlSerializer(typeof(List<HiringTracking>));
                 List<HiringTracking> HiringTrackingList = (List<HiringTracking>)xml.Deserialize(new StreamReader(HiringTrackingXmlFilename));
-                CreatePositionReport.HiringTrackingDataSet = HiringTrackingList;
+                DataCenter.HiringTrackingDataSet = HiringTrackingList;
             }
             if (File.Exists(PositionBasicInfoXmlFilename))
             {
                 XmlSerializer xml = new XmlSerializer(typeof(List<PositionBasicInfo>));
                 List<PositionBasicInfo> PositionBasicList = (List<PositionBasicInfo>)xml.Deserialize(new StreamReader(PositionBasicInfoXmlFilename));
-                CreatePositionReport.PositionBasicDataSet  = PositionBasicList;
+                DataCenter.PositionBasicDataSet  = PositionBasicList;
             }
             ///Init UI
-            CreatePositionReport.ReCompute();
+            DataCenter.ReCompute();
         }
     }
 }

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
+
 namespace HRSystem
 {
-    public class CreatePositionReport
+    public class DataCenter
     {
         /// <summary>
         /// Hiring Track Data
@@ -25,9 +28,9 @@ namespace HRSystem
         public static List<HiringTracking> GetHiringTrackByPosition(string Position)
         {
             var pos = from p in HiringTrackingDataSet
-                      where p.Position == Position
+                      where p.Position == Position && !p.IsDel
                       select p;
-            return pos.ToList<HiringTracking>();
+            return pos.ToList();
         }
         /// <summary>
         /// 根据职位获得Hiring
@@ -37,33 +40,56 @@ namespace HRSystem
         public static List<HiringTracking> GetHiringTrackByFinalStatus(HiringTracking.FinalStatusEnum status)
         {
             var pos = from p in HiringTrackingDataSet
-                      where p.FinalStatus == status
+                      where p.FinalStatus == status && !p.IsDel
                       select p;
-            return pos.ToList<HiringTracking>();
+            return pos.ToList();
         }
         /// <summary>
         /// 根据职位获得Hiring
         /// </summary>
         /// <param name="Position"></param>
         /// <returns></returns>
-        public static List<HiringTracking> GetHiringTrackByPosition(string Position,HiringTracking.FinalStatusEnum FinalStatus)
+        public static List<HiringTracking> GetHiringTrackByPosition(string Position, HiringTracking.FinalStatusEnum FinalStatus)
         {
             var pos = from p in HiringTrackingDataSet
-                      where p.Position == Position && p.FinalStatus == FinalStatus
+                      where p.Position == Position && p.FinalStatus == FinalStatus && !p.IsDel
                       select p;
-            return pos.ToList<HiringTracking>();
+            return pos.ToList();
         }
+        /// <summary>
+        /// 没有删除的全部
+        /// </summary>
+        /// <returns></returns>
+        public static List<HiringTracking> GetHiringTrackingDataSet()
+        {
+            var pos = from p in HiringTrackingDataSet
+                      where !p.IsDel
+                      select p;
+            return pos.ToList();
+        }
+
         /// <summary>
         /// 根据职位获得Hiring
         /// </summary>
         /// <param name="Position"></param>
         /// <returns></returns>
-        public static List<HiringTracking> GetHiringTrackByScreenDate(DateTime Start,DateTime End)
+        public static List<HiringTracking> GetHiringTrackByScreenDate(DateTime Start, DateTime End)
         {
             var pos = from p in HiringTrackingDataSet
-                      where p.ScreenDate.Date >= Start.Date && p.ScreenDate.Date <= End.Date
+                      where p.ScreenDate.Date >= Start.Date && p.ScreenDate.Date <= End.Date && !p.IsDel
                       select p;
-            return pos.ToList<HiringTracking>();
+            return pos.ToList();
+        }
+        /// <summary>
+        /// 保存数据
+        /// </summary>
+        public static void SaveHiringTrack()
+        {
+            XmlSerializer xml = new XmlSerializer(typeof(List<HiringTracking>));
+            var writer = new StreamWriter(SystemManager.HiringTrackingXmlFilename);
+            xml.Serialize(writer, HiringTrackingDataSet);
+            writer.Close();
+            ReCompute();
         }
         /// <summary>
         /// Group By Position
@@ -85,8 +111,9 @@ namespace HRSystem
                 }
             });
             var pos = from p in HiringTrackingDataSet
+                      where !p.IsDel
                       select p;
-            Statistic(pos.ToList<HiringTracking>(), total);
+            Statistic(pos.ToList(), total);
             PositionStatisticDataSet.Add(total);
 
             foreach (var item in PositionBasicDataSet)
@@ -95,9 +122,9 @@ namespace HRSystem
                 PositionStatistic t = new PositionStatistic();
                 t.BasicInfo = item;
                 var posItems = from p in HiringTrackingDataSet
-                          where p.Position == item.Position
-                          select p;
-                Statistic(posItems.ToList<HiringTracking>(), t);
+                               where p.Position == item.Position && !p.IsDel
+                               select p;
+                Statistic(posItems.ToList(), t);
                 PositionStatisticDataSet.Add(t);
             }
         }
@@ -106,23 +133,23 @@ namespace HRSystem
         {
             t.Pipeline = pos.Count();
             var firstInterview = from p in pos
-                                 where p.FirstInterviewDate != System.DateTime.MinValue
+                                 where p.FirstInterviewDate != DateTime.MinValue && !p.IsDel
                                  select p;
             var secondInterview = from p in pos
-                                  where p.SecondInterviewDate != System.DateTime.MinValue
+                                  where p.SecondInterviewDate != DateTime.MinValue && !p.IsDel
                                   select p;
             var thirdInterview = from p in pos
-                                 where p.ThirdInterviewDate != System.DateTime.MinValue
+                                 where p.ThirdInterviewDate != DateTime.MinValue && !p.IsDel
                                  select p;
 
             var firstInterviewPass = from p in pos
-                                     where HiringTracking.InterviewPassCheck(p.FirstInterviewResult)
+                                     where HiringTracking.InterviewPassCheck(p.FirstInterviewResult) && !p.IsDel
                                      select p;
             var secondInterviewPass = from p in pos
-                                      where HiringTracking.InterviewPassCheck(p.SecondInterviewResult)
+                                      where HiringTracking.InterviewPassCheck(p.SecondInterviewResult) && !p.IsDel
                                       select p;
             var thirdInterviewPass = from p in pos
-                                     where HiringTracking.InterviewPassCheck(p.ThirdInterviewResult)
+                                     where HiringTracking.InterviewPassCheck(p.ThirdInterviewResult) && !p.IsDel
                                      select p;
 
 
@@ -138,17 +165,17 @@ namespace HRSystem
             t.ThirdPass = thirdInterviewPass.Count();
 
             var Onboard = from p in pos
-                          where p.FinalStatus == HiringTracking.FinalStatusEnum.Onboard
+                          where p.FinalStatus == HiringTracking.FinalStatusEnum.Onboard && !p.IsDel
                           select p;
             t.Onboard = Onboard.Count();
 
             var RejectOffer = from p in pos
-                              where p.FinalStatus == HiringTracking.FinalStatusEnum.RejectOffer
+                              where p.FinalStatus == HiringTracking.FinalStatusEnum.RejectOffer && !p.IsDel
                               select p;
             t.RejectOffer = RejectOffer.Count();
 
             var OpenOffer = from p in pos
-                            where p.FinalStatus == HiringTracking.FinalStatusEnum.OpenOffer
+                            where p.FinalStatus == HiringTracking.FinalStatusEnum.OpenOffer && !p.IsDel
                             select p;
             t.OpenOffer = OpenOffer.Count();
         }

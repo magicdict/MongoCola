@@ -17,7 +17,7 @@ namespace HRSystem.UserController
         /// </summary>
         public void RefreshData()
         {
-            ViewControl.FillPositionListView(lstPosition, CreatePositionReport.PositionStatisticDataSet);
+            ViewControl.FillPositionListView(lstPosition, DataCenter.PositionStatisticDataSet);
             InitPhaseChart();
             RefreshChanel("Channel");
         }
@@ -41,7 +41,7 @@ namespace HRSystem.UserController
         }
         private void InitPhaseChart()
         {
-            if (CreatePositionReport.HiringTrackingDataSet.Count == 0) return;
+            if (DataCenter.HiringTrackingDataSet.Count == 0) return;
             var QuerySeries = new Series("Pileline")
             {
                 ChartType = SeriesChartType.Line,
@@ -54,11 +54,11 @@ namespace HRSystem.UserController
             List<HiringTracking> Target;
             if (Position == SystemManager.strTotal)
             {
-                Target = CreatePositionReport.HiringTrackingDataSet;
+                Target = DataCenter.GetHiringTrackingDataSet();
             }
             else
             {
-                Target = CreatePositionReport.GetHiringTrackByPosition(Position);
+                Target = DataCenter.GetHiringTrackByPosition(Position);
             }
 
             var queryPoint = new DataPoint();
@@ -120,11 +120,11 @@ namespace HRSystem.UserController
             {
                 if (Position == SystemManager.strTotal)
                 {
-                    Target = CreatePositionReport.HiringTrackingDataSet;
+                    Target = DataCenter.HiringTrackingDataSet;
                 }
                 else
                 {
-                    Target = CreatePositionReport.GetHiringTrackByPosition(Position);
+                    Target = DataCenter.GetHiringTrackByPosition(Position);
                 }
             }
             else
@@ -132,11 +132,11 @@ namespace HRSystem.UserController
                 HiringTracking.FinalStatusEnum FinalStatus = (HiringTracking.FinalStatusEnum)cmbPhase.SelectedIndex - 1;
                 if (Position == SystemManager.strTotal)
                 {
-                    Target = CreatePositionReport.GetHiringTrackByFinalStatus(FinalStatus);
+                    Target = DataCenter.GetHiringTrackByFinalStatus(FinalStatus);
                 }
                 else
                 {
-                    Target = CreatePositionReport.GetHiringTrackByPosition(Position, FinalStatus);
+                    Target = DataCenter.GetHiringTrackByPosition(Position, FinalStatus);
                 }
             }
 
@@ -192,6 +192,7 @@ namespace HRSystem.UserController
                 Position = lstPosition.SelectedItems[0].SubItems[2].Text;
                 if (Position == string.Empty) Position = SystemManager.strTotal;
                 (new frmHiringTracking(Position)).ShowDialog();
+                RefreshData();
             }
         }
     }
