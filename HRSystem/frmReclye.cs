@@ -9,12 +9,20 @@ namespace HRSystem
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmReclye_Load(object sender, EventArgs e)
         {
             ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackingDataSet(true));
         }
-
+        /// <summary>
+        /// Restore
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRestore_Click(object sender, EventArgs e)
         {
             if (lstHiringTracking.SelectedItems.Count == 1)

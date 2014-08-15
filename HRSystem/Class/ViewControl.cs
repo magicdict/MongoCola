@@ -77,6 +77,7 @@ namespace HRSystem
                 }
                 lstView.Items.Add(item);
             }
+            Utility.ListViewColumnResize(lstView);
         }
         /// <summary>
         /// 数据绑定
@@ -231,6 +232,7 @@ namespace HRSystem
                 item.BackColor = Color.LightGray;
                 lstView.Items.Add(item);
             }
+            Utility.ListViewColumnResize(lstView);
         }
         /// <summary>
         /// 数据绑定

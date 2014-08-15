@@ -469,7 +469,8 @@ namespace MagicMongoDBTool.Module
                         }
                         lstData.Items.Add(lstItem);
                     }
-                    lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                    Common.Present.Utility.ListViewColumnResize(lstData);
+                    //lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                     break;
             }
         }
@@ -536,7 +537,8 @@ namespace MagicMongoDBTool.Module
                 lstItem.SubItems.Add(strReadOnly == null ? "N/A" : strReadOnly.ToString());
                 lstData.Items.Add(lstItem);
             }
-            lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Common.Present.Utility.ListViewColumnResize(lstData);
+            //lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         /// <summary>
@@ -593,7 +595,8 @@ namespace MagicMongoDBTool.Module
                 }
                 lstData.Items.Add(lstItem);
             }
-            lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Common.Present.Utility.ListViewColumnResize(lstData);
+            //lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             // 用新的排序方法对ListView排序
             var _lvwGFSColumnSorter = new lvwColumnSorter();
             lstData.ListViewItemSorter = _lvwGFSColumnSorter;

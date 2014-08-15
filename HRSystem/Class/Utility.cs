@@ -50,7 +50,7 @@ namespace HRSystem
         /// </summary>
         /// <param name="combox"></param>
         /// <param name="enumType"></param>
-        public static void FillComberWithEnum(ComboBox combox, Type enumType,Boolean IsEditMode = true)
+        public static void FillComberWithEnum(ComboBox combox, Type enumType, bool IsEditMode = true)
         {
             combox.Items.Clear();
             if (!IsEditMode) combox.Items.Add("<All>");
@@ -65,7 +65,7 @@ namespace HRSystem
         /// </summary>
         /// <param name="combox"></param>
         /// <param name="EnumList"></param>
-        public static void FillComberWithArray(ComboBox combox, String[] EnumList)
+        public static void FillComberWithArray(ComboBox combox, string[] EnumList)
         {
             combox.Items.Clear();
             foreach (var item in EnumList)
@@ -84,5 +84,25 @@ namespace HRSystem
         {
             return t.ToString().Substring(1, 1) + t.ToString().Substring(0, 1);
         }
+
+        public static void ListViewColumnResize(ListView lstview)
+        {
+            int[] ColumnWidth = new int[lstview.Columns.Count];
+            lstview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            for (int i = 0; i < lstview.Columns.Count; i++)
+            {
+                ColumnWidth[i] = lstview.Columns[i].Width;
+            }
+            lstview.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            for (int i = 0; i < lstview.Columns.Count; i++)
+            {
+                ColumnWidth[i] = Math.Max(lstview.Columns[i].Width, ColumnWidth[i]);
+            }
+            for (int i = 0; i < lstview.Columns.Count; i++)
+            {
+                lstview.Columns[i].Width = ColumnWidth[i];
+            }
+        }
+
     }
 }

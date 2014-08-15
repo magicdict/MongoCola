@@ -57,7 +57,8 @@ namespace MagicMongoDBTool
                     t.SubItems.Add(ReplArray);
                     lstConnection.Items.Add(t);
                 }
-                lstConnection.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                Common.Present.Utility.ListViewColumnResize(lstConnection);
+                //lstConnection.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
             lstConnection.Sort();
             SystemManager.ConfigHelperInstance.SaveToConfigFile(ConfigHelper._configFilename);

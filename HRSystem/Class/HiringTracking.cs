@@ -155,6 +155,7 @@ namespace HRSystem
             RPO,
             InternalTransfer,
             CareerPortal,
+            Conversion,
             Others
         }
         /// <summary>

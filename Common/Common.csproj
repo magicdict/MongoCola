@@ -63,6 +63,7 @@
     <Compile Include="Aggregation\Query.cs" />
     <Compile Include="Aggregation\Sql.cs" />
     <Compile Include="Present\MongoDBHelper_Status.cs" />
+    <Compile Include="Present\Utility.cs" />
     <Compile Include="Security\Action.cs" />
     <Compile Include="Security\Resource.cs" />
     <Compile Include="Security\User.cs" />

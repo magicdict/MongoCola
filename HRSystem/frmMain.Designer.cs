@@ -38,6 +38,7 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weeklyInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addCandidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recylceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,11 +46,13 @@
             this.SystemStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.recylceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnHiringTracking = new System.Windows.Forms.Button();
             this.ctlStatisticInfo1 = new HRSystem.UserController.ctlStatisticInfo();
+            this.btnOrgnization = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.AppStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -138,6 +141,13 @@
             this.addCandidateToolStripMenuItem.Text = "Add Candidate";
             this.addCandidateToolStripMenuItem.Click += new System.EventHandler(this.addCandidateToolStripMenuItem_Click);
             // 
+            // recylceToolStripMenuItem
+            // 
+            this.recylceToolStripMenuItem.Name = "recylceToolStripMenuItem";
+            this.recylceToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.recylceToolStripMenuItem.Text = "Recylce";
+            this.recylceToolStripMenuItem.Click += new System.EventHandler(this.recylceToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -192,6 +202,11 @@
             this.splitContainer1.Location = new System.Drawing.Point(0, 49);
             this.splitContainer1.Name = "splitContainer1";
             // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnOrgnization);
+            this.splitContainer1.Panel1.Controls.Add(this.btnHiringTracking);
+            // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.ctlStatisticInfo1);
@@ -199,12 +214,16 @@
             this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 4;
             // 
-            // recylceToolStripMenuItem
+            // btnHiringTracking
             // 
-            this.recylceToolStripMenuItem.Name = "recylceToolStripMenuItem";
-            this.recylceToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.recylceToolStripMenuItem.Text = "Recylce";
-            this.recylceToolStripMenuItem.Click += new System.EventHandler(this.recylceToolStripMenuItem_Click);
+            this.btnHiringTracking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnHiringTracking.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnHiringTracking.Location = new System.Drawing.Point(0, 0);
+            this.btnHiringTracking.Name = "btnHiringTracking";
+            this.btnHiringTracking.Size = new System.Drawing.Size(248, 40);
+            this.btnHiringTracking.TabIndex = 5;
+            this.btnHiringTracking.Text = "Hiring Tracking";
+            this.btnHiringTracking.UseVisualStyleBackColor = false;
             // 
             // ctlStatisticInfo1
             // 
@@ -214,6 +233,17 @@
             this.ctlStatisticInfo1.Name = "ctlStatisticInfo1";
             this.ctlStatisticInfo1.Size = new System.Drawing.Size(682, 298);
             this.ctlStatisticInfo1.TabIndex = 0;
+            // 
+            // btnOrgnization
+            // 
+            this.btnOrgnization.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnOrgnization.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnOrgnization.Location = new System.Drawing.Point(0, 40);
+            this.btnOrgnization.Name = "btnOrgnization";
+            this.btnOrgnization.Size = new System.Drawing.Size(248, 44);
+            this.btnOrgnization.TabIndex = 6;
+            this.btnOrgnization.Text = "Orgnization";
+            this.btnOrgnization.UseVisualStyleBackColor = false;
             // 
             // frmMain
             // 
@@ -235,6 +265,7 @@
             this.menuStrip1.PerformLayout();
             this.AppStatus.ResumeLayout(false);
             this.AppStatus.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -263,6 +294,8 @@
         private System.Windows.Forms.ToolStripMenuItem weeklyInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addCandidateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recylceToolStripMenuItem;
+        private System.Windows.Forms.Button btnHiringTracking;
+        private System.Windows.Forms.Button btnOrgnization;
     }
 }
 
