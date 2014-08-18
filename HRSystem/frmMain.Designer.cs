@@ -46,9 +46,10 @@
             this.SystemStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnOrgnization = new System.Windows.Forms.Button();
             this.btnHiringTracking = new System.Windows.Forms.Button();
             this.ctlStatisticInfo1 = new HRSystem.UserController.ctlStatisticInfo();
-            this.btnOrgnization = new System.Windows.Forms.Button();
+            this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.AppStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -74,6 +75,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importToolStripMenuItem,
+            this.backUpToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -82,7 +84,7 @@
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
@@ -90,7 +92,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -214,6 +216,17 @@
             this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 4;
             // 
+            // btnOrgnization
+            // 
+            this.btnOrgnization.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnOrgnization.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnOrgnization.Location = new System.Drawing.Point(0, 40);
+            this.btnOrgnization.Name = "btnOrgnization";
+            this.btnOrgnization.Size = new System.Drawing.Size(248, 44);
+            this.btnOrgnization.TabIndex = 6;
+            this.btnOrgnization.Text = "Orgnization";
+            this.btnOrgnization.UseVisualStyleBackColor = false;
+            // 
             // btnHiringTracking
             // 
             this.btnHiringTracking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -234,16 +247,12 @@
             this.ctlStatisticInfo1.Size = new System.Drawing.Size(682, 298);
             this.ctlStatisticInfo1.TabIndex = 0;
             // 
-            // btnOrgnization
+            // backUpToolStripMenuItem
             // 
-            this.btnOrgnization.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnOrgnization.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnOrgnization.Location = new System.Drawing.Point(0, 40);
-            this.btnOrgnization.Name = "btnOrgnization";
-            this.btnOrgnization.Size = new System.Drawing.Size(248, 44);
-            this.btnOrgnization.TabIndex = 6;
-            this.btnOrgnization.Text = "Orgnization";
-            this.btnOrgnization.UseVisualStyleBackColor = false;
+            this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.backUpToolStripMenuItem.Text = "BackUp";
+            this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -296,6 +305,7 @@
         private System.Windows.Forms.ToolStripMenuItem recylceToolStripMenuItem;
         private System.Windows.Forms.Button btnHiringTracking;
         private System.Windows.Forms.Button btnOrgnization;
+        private System.Windows.Forms.ToolStripMenuItem backUpToolStripMenuItem;
     }
 }
 

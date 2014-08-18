@@ -36,6 +36,7 @@ namespace HRSystem
             }
             if (!IsCreate)
             {
+                cmbPosition.Text = hiring.Position;
                 txtName.Text = hiring.Name;
                 txtContact.Text = hiring.Contact;
                 txtUniversity.Text = hiring.University;
@@ -53,20 +54,19 @@ namespace HRSystem
                 chkITBackground.Checked = hiring.ITBackground;
                 chkMarketBackground.Checked = hiring.MarketBackground;
 
-                dateScreen.Value = hiring.ScreenDate;
-                dateFirstInterview.Value = hiring.FirstInterviewDate;
-                dateSecondInterview.Value = hiring.SecondInterviewDate;
-                dateThirdInterview.Value = hiring.ThirdInterviewDate;
+                dateScreen.Value = hiring.ScreenDate == System.DateTime.MinValue ? System.DateTime.Now : hiring.ScreenDate; ;
+                dateFirstInterview.Value = hiring.FirstInterviewDate == System.DateTime.MinValue ? System.DateTime.Now : hiring.FirstInterviewDate;
+                dateSecondInterview.Value = hiring.SecondInterviewDate == System.DateTime.MinValue ? System.DateTime.Now : hiring.SecondInterviewDate;
+                dateThirdInterview.Value = hiring.ThirdInterviewDate == System.DateTime.MinValue ? System.DateTime.Now : hiring.ThirdInterviewDate;
+                dateOfferOffer.Value = hiring.OfferOfferDate == System.DateTime.MinValue?System.DateTime.Now : hiring.OfferOfferDate;
+                dateOnboard.Value = hiring.OnboardDate == System.DateTime.MinValue ? System.DateTime.Now : hiring.OnboardDate;
 
                 cmbChannel.SelectedIndex = hiring.Channel.GetHashCode();
                 cmbFinalStatus.SelectedIndex = hiring.FinalStatus.GetHashCode();
                 cmbFirstInterviewResult.SelectedIndex = hiring.FirstInterviewResult.GetHashCode();
                 cmbSecondInterviewResult.SelectedIndex = hiring.SecondInterviewResult.GetHashCode();
                 cmbThirdInterviewResult.SelectedIndex = hiring.ThirdInterviewResult.GetHashCode();
-
-                cmbPosition.Text = hiring.Position;
                 ListResume();
-
             }
         }
         /// <summary>
@@ -78,6 +78,7 @@ namespace HRSystem
         {
             //Set Data
             hiring.Name = txtName.Text;
+            hiring.Position = cmbPosition.Text;
             hiring.Contact = txtContact.Text;
             hiring.University = txtUniversity.Text;
             hiring.Major = txtMajor.Text;
@@ -99,14 +100,14 @@ namespace HRSystem
             hiring.FirstInterviewDate = dateFirstInterview.Value;
             hiring.SecondInterviewDate = dateSecondInterview.Value;
             hiring.ThirdInterviewDate = dateThirdInterview.Value;
+            hiring.OfferOfferDate = dateOfferOffer.Value;
+            hiring.OnboardDate = dateOnboard.Value;
 
             hiring.Channel = (HiringTracking.ChannelEnum)cmbChannel.SelectedIndex;
             hiring.FinalStatus = (HiringTracking.FinalStatusEnum)cmbFinalStatus.SelectedIndex;
             hiring.FirstInterviewResult = (HiringTracking.InterviewResultEnum)cmbFirstInterviewResult.SelectedIndex;
             hiring.SecondInterviewResult = (HiringTracking.InterviewResultEnum)cmbSecondInterviewResult.SelectedIndex;
             hiring.ThirdInterviewResult = (HiringTracking.InterviewResultEnum)cmbThirdInterviewResult.SelectedIndex;
-
-            hiring.Position = cmbPosition.Text;
 
             if (IsCreate)
             {

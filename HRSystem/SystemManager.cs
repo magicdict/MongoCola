@@ -24,6 +24,10 @@ namespace HRSystem
         /// </summary>
         public static string PositionBasicInfoXmlFilename = Application.StartupPath + "\\Data\\PositionBasicInfo.xml";
         /// <summary>
+        /// Hiring Tracking Xml Filename
+        /// </summary>
+        public static string CustomViewXmlFilename = Application.StartupPath + "\\Data\\CustomView.xml";
+        /// <summary>
         /// DataTime Format String
         /// </summary>
         public static string DataTimeFormat = "yyyy/MM/dd";

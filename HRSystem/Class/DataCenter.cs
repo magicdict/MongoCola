@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using MongoDB.Driver;
 
 namespace HRSystem
 {
@@ -20,6 +21,42 @@ namespace HRSystem
         /// PositionStatistic Data
         /// </summary>
         public static List<PositionStatistic> PositionStatisticDataSet = new List<PositionStatistic>();
+
+        /// <summary>
+        /// BackUp
+        /// </summary>
+        public static void BackUp()
+        {
+            MongoServer innerServer;
+            innerServer = MongoServer.Create(@"mongodb://121.199.16.71:28030");
+            innerServer.Connect();
+            MongoDatabase LogDB = innerServer.GetDatabase("HRSystem");
+            MongoCollection HiringTrackingCol = LogDB.GetCollection("HiringTracking");
+            HiringTrackingCol.RemoveAll();
+            HiringTrackingCol.InsertBatch<HiringTracking>(HiringTrackingDataSet);
+            MongoCollection PositionCol = LogDB.GetCollection("PositionBasic");
+            PositionCol.RemoveAll();
+            PositionCol.InsertBatch<PositionBasicInfo>(PositionBasicDataSet);
+        }
+
+        internal static PositionStatistic GetPositionStatisticInfo(string position)
+        {
+            PositionStatistic t = new PositionStatistic();
+            t = PositionStatisticDataSet.Find((x) => { return x.BasicInfo.isOpen && x.BasicInfo.Position == position; });
+            return t;
+        }
+
+        /// <summary>
+        /// 根据职位名称获得职位基本信息
+        /// </summary>
+        /// <param name="Position"></param>
+        /// <returns></returns>
+        public static PositionBasicInfo GetBasicPositionInfo(string Position)
+        {
+            PositionBasicInfo t = new PositionBasicInfo();
+            t = PositionBasicDataSet.Find((x) => { return x.isOpen && x.Position == Position; });
+            return t;
+        }
         /// <summary>
         /// 根据职位获得Hiring
         /// </summary>
@@ -56,6 +93,7 @@ namespace HRSystem
                       select p;
             return pos.ToList();
         }
+
         /// <summary>
         /// 没有删除的全部
         /// </summary>
@@ -63,7 +101,7 @@ namespace HRSystem
         public static List<HiringTracking> GetHiringTrackingDataSet(bool isDelete = false)
         {
             var pos = from p in HiringTrackingDataSet
-                      where p.IsDel ==  isDelete
+                      where p.IsDel == isDelete
                       select p;
             return pos.ToList();
         }
@@ -100,12 +138,14 @@ namespace HRSystem
             //Total Rec
             PositionStatistic total = new PositionStatistic();
             total.BasicInfo = new PositionBasicInfo();
-            total.BasicInfo.No = SystemManager.strTotal;
-            total.BasicInfo.Target = PositionBasicDataSet.Sum((x)=> {
+            total.BasicInfo.Position = SystemManager.strTotal;
+            total.BasicInfo.Target = PositionBasicDataSet.Sum((x) =>
+            {
                 if (x.isOpen)
                 {
                     return x.Target;
-                }else
+                }
+                else
                 {
                     return 0;
                 }
@@ -178,6 +218,13 @@ namespace HRSystem
                             where p.FinalStatus == HiringTracking.FinalStatusEnum.OpenOffer && !p.IsDel
                             select p;
             t.OpenOffer = OpenOffer.Count();
+
+            var ANOB = from p in pos
+                       where p.FinalStatus == HiringTracking.FinalStatusEnum.ANOB && !p.IsDel
+                       select p;
+            t.ANOB = ANOB.Count();
+
+
         }
     }
 }

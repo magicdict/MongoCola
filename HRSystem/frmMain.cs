@@ -59,5 +59,15 @@ namespace HRSystem
             (new frmReclye()).ShowDialog();
             ctlStatisticInfo1.RefreshData();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backUpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataCenter.BackUp();
+            MessageBox.Show("Complete");
+        }
     }
 }

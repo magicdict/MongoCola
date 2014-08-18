@@ -70,13 +70,17 @@
             this.chkKorea = new System.Windows.Forms.CheckBox();
             this.chkJapanese = new System.Windows.Forms.CheckBox();
             this.chkOtherLanguage = new System.Windows.Forms.CheckBox();
-            this.ctlResumeFilePicker = new HRSystem.ctlFilePicker();
             this.btnSave = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbPosition = new System.Windows.Forms.ComboBox();
             this.btnUpload = new System.Windows.Forms.Button();
             this.lstResume = new System.Windows.Forms.ListBox();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.ctlResumeFilePicker = new HRSystem.ctlFilePicker();
+            this.dateOfferOffer = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dateOnboard = new System.Windows.Forms.DateTimePicker();
+            this.label21 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -136,7 +140,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(34, 185);
+            this.label9.Location = new System.Drawing.Point(34, 191);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(67, 13);
             this.label9.TabIndex = 8;
@@ -226,7 +230,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(34, 301);
+            this.label19.Location = new System.Drawing.Point(34, 325);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(62, 13);
             this.label19.TabIndex = 18;
@@ -235,7 +239,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(34, 330);
+            this.label20.Location = new System.Drawing.Point(34, 354);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(46, 13);
             this.label20.TabIndex = 19;
@@ -272,7 +276,7 @@
             // cmbFinalStatus
             // 
             this.cmbFinalStatus.FormattingEnabled = true;
-            this.cmbFinalStatus.Location = new System.Drawing.Point(148, 298);
+            this.cmbFinalStatus.Location = new System.Drawing.Point(148, 322);
             this.cmbFinalStatus.Name = "cmbFinalStatus";
             this.cmbFinalStatus.Size = new System.Drawing.Size(145, 21);
             this.cmbFinalStatus.TabIndex = 23;
@@ -280,7 +284,7 @@
             // cmbChannel
             // 
             this.cmbChannel.FormattingEnabled = true;
-            this.cmbChannel.Location = new System.Drawing.Point(148, 330);
+            this.cmbChannel.Location = new System.Drawing.Point(148, 354);
             this.cmbChannel.Name = "cmbChannel";
             this.cmbChannel.Size = new System.Drawing.Size(145, 21);
             this.cmbChannel.TabIndex = 24;
@@ -435,23 +439,10 @@
             this.chkOtherLanguage.Text = "Other";
             this.chkOtherLanguage.UseVisualStyleBackColor = true;
             // 
-            // ctlResumeFilePicker
-            // 
-            this.ctlResumeFilePicker.BackColor = System.Drawing.Color.Transparent;
-            this.ctlResumeFilePicker.FileFilter = "";
-            this.ctlResumeFilePicker.FileName = "";
-            this.ctlResumeFilePicker.Location = new System.Drawing.Point(32, 347);
-            this.ctlResumeFilePicker.Name = "ctlResumeFilePicker";
-            this.ctlResumeFilePicker.PickerType = HRSystem.ctlFilePicker.DialogType.OpenFile;
-            this.ctlResumeFilePicker.SelectedPathOrFileName = "";
-            this.ctlResumeFilePicker.Size = new System.Drawing.Size(525, 31);
-            this.ctlResumeFilePicker.TabIndex = 41;
-            this.ctlResumeFilePicker.Title = "Resume";
-            // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnSave.Location = new System.Drawing.Point(678, 485);
+            this.btnSave.Location = new System.Drawing.Point(678, 509);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(85, 23);
             this.btnSave.TabIndex = 42;
@@ -479,7 +470,7 @@
             // btnUpload
             // 
             this.btnUpload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnUpload.Location = new System.Drawing.Point(563, 352);
+            this.btnUpload.Location = new System.Drawing.Point(563, 376);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(85, 23);
             this.btnUpload.TabIndex = 45;
@@ -490,7 +481,7 @@
             // lstResume
             // 
             this.lstResume.FormattingEnabled = true;
-            this.lstResume.Location = new System.Drawing.Point(37, 384);
+            this.lstResume.Location = new System.Drawing.Point(37, 408);
             this.lstResume.Name = "lstResume";
             this.lstResume.Size = new System.Drawing.Size(507, 95);
             this.lstResume.TabIndex = 46;
@@ -499,7 +490,7 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnDelete.Location = new System.Drawing.Point(563, 456);
+            this.btnDelete.Location = new System.Drawing.Point(563, 480);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(85, 23);
             this.btnDelete.TabIndex = 47;
@@ -507,12 +498,61 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // ctlResumeFilePicker
+            // 
+            this.ctlResumeFilePicker.BackColor = System.Drawing.Color.Transparent;
+            this.ctlResumeFilePicker.FileFilter = "";
+            this.ctlResumeFilePicker.FileName = "";
+            this.ctlResumeFilePicker.Location = new System.Drawing.Point(32, 371);
+            this.ctlResumeFilePicker.Name = "ctlResumeFilePicker";
+            this.ctlResumeFilePicker.PickerType = HRSystem.ctlFilePicker.DialogType.OpenFile;
+            this.ctlResumeFilePicker.SelectedPathOrFileName = "";
+            this.ctlResumeFilePicker.Size = new System.Drawing.Size(525, 31);
+            this.ctlResumeFilePicker.TabIndex = 41;
+            this.ctlResumeFilePicker.Title = "Resume";
+            // 
+            // dateOfferOffer
+            // 
+            this.dateOfferOffer.Location = new System.Drawing.Point(151, 294);
+            this.dateOfferOffer.Name = "dateOfferOffer";
+            this.dateOfferOffer.Size = new System.Drawing.Size(145, 20);
+            this.dateOfferOffer.TabIndex = 49;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(37, 300);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(79, 13);
+            this.label7.TabIndex = 48;
+            this.label7.Text = "OfferOffer Date";
+            // 
+            // dateOnboard
+            // 
+            this.dateOnboard.Location = new System.Drawing.Point(383, 295);
+            this.dateOnboard.Name = "dateOnboard";
+            this.dateOnboard.Size = new System.Drawing.Size(145, 20);
+            this.dateOnboard.TabIndex = 51;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(303, 301);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(74, 13);
+            this.label21.TabIndex = 50;
+            this.label21.Text = "Onboard Date";
+            // 
             // frmCandidateEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(791, 520);
+            this.ClientSize = new System.Drawing.Size(791, 566);
+            this.Controls.Add(this.dateOnboard);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.dateOfferOffer);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lstResume);
             this.Controls.Add(this.btnUpload);
@@ -625,5 +665,9 @@
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.ListBox lstResume;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.DateTimePicker dateOfferOffer;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker dateOnboard;
+        private System.Windows.Forms.Label label21;
     }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace HRSystem
 {
@@ -30,6 +33,7 @@ namespace HRSystem
             if (Position != SystemManager.strTotal)
             {
                 ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByPosition(Position));
+                btnClosePosition.Enabled = DataCenter.GetPositionStatisticInfo(Position).Gap == 0;
             }
             else
             {
@@ -91,6 +95,7 @@ namespace HRSystem
                 cmbFinalStatus_SelectedIndexChanged(null, null);
             }
         }
+
         private void lstHiringTracking_DoubleClick(object sender, EventArgs e)
         {
             if (lstHiringTracking.SelectedItems.Count == 1)
@@ -109,6 +114,19 @@ namespace HRSystem
         {
             string No = lstHiringTracking.SelectedItems[0].Text;
             (new frmCandidateEditor(No)).ShowDialog();
+        }
+        /// <summary>
+        /// Close Position
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClosePosition_Click(object sender, EventArgs e)
+        {
+            DataCenter.GetBasicPositionInfo(Position).isOpen = false;
+            XmlSerializer xml = new XmlSerializer(typeof(List<PositionBasicInfo>));
+            xml.Serialize(new StreamWriter(SystemManager.PositionBasicInfoXmlFilename), DataCenter.PositionBasicDataSet);
+            DataCenter.ReCompute();
+            Close();
         }
     }
 }

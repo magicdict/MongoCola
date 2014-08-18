@@ -34,7 +34,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSaveView = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbView = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -97,13 +97,14 @@
             this.btnSaveView.UseVisualStyleBackColor = false;
             this.btnSaveView.Click += new System.EventHandler(this.btnSaveView_Click);
             // 
-            // comboBox1
+            // cmbView
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(132, 17);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(156, 21);
-            this.comboBox1.TabIndex = 6;
+            this.cmbView.FormattingEnabled = true;
+            this.cmbView.Location = new System.Drawing.Point(132, 17);
+            this.cmbView.Name = "cmbView";
+            this.cmbView.Size = new System.Drawing.Size(156, 21);
+            this.cmbView.TabIndex = 6;
+            this.cmbView.SelectedIndexChanged += new System.EventHandler(this.cmbView_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -121,7 +122,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(300, 350);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbView);
             this.Controls.Add(this.btnSaveView);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOK);
@@ -147,7 +148,7 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSaveView;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbView;
         private System.Windows.Forms.Label label2;
     }
 }

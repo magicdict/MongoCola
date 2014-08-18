@@ -35,6 +35,7 @@ namespace HRSystem
             this.label1 = new System.Windows.Forms.Label();
             this.btnEditor = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnClosePosition = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstHiringTracking
@@ -74,7 +75,7 @@ namespace HRSystem
             // 
             this.btnEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEditor.BackColor = System.Drawing.SystemColors.Control;
-            this.btnEditor.Location = new System.Drawing.Point(641, 17);
+            this.btnEditor.Location = new System.Drawing.Point(383, 17);
             this.btnEditor.Name = "btnEditor";
             this.btnEditor.Size = new System.Drawing.Size(117, 28);
             this.btnEditor.TabIndex = 4;
@@ -86,7 +87,7 @@ namespace HRSystem
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelete.Location = new System.Drawing.Point(777, 17);
+            this.btnDelete.Location = new System.Drawing.Point(506, 17);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(117, 28);
             this.btnDelete.TabIndex = 3;
@@ -94,12 +95,25 @@ namespace HRSystem
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnClosePosition
+            // 
+            this.btnClosePosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClosePosition.BackColor = System.Drawing.SystemColors.Control;
+            this.btnClosePosition.Location = new System.Drawing.Point(772, 17);
+            this.btnClosePosition.Name = "btnClosePosition";
+            this.btnClosePosition.Size = new System.Drawing.Size(117, 28);
+            this.btnClosePosition.TabIndex = 5;
+            this.btnClosePosition.Text = "Close Position";
+            this.btnClosePosition.UseVisualStyleBackColor = false;
+            this.btnClosePosition.Click += new System.EventHandler(this.btnClosePosition_Click);
+            // 
             // frmHiringTracking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(925, 404);
+            this.Controls.Add(this.btnClosePosition);
             this.Controls.Add(this.lstHiringTracking);
             this.Controls.Add(this.btnEditor);
             this.Controls.Add(this.btnDelete);
@@ -121,5 +135,6 @@ namespace HRSystem
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnEditor;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnClosePosition;
     }
 }

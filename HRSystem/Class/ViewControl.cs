@@ -3,11 +3,56 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Drawing;
 using System;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace HRSystem
 {
     public class ViewControl
     {
+        /// <summary>
+        /// 自定义视图
+        /// </summary>
+        public struct Customerview
+        {
+            /// <summary>
+            /// 视图名称
+            /// </summary>
+            public string Name;
+            /// <summary>
+            /// 视图列表
+            /// </summary>
+            public string[] fields;
+            /// <summary>
+            /// 对于数据集
+            /// </summary>
+            public string DatasetName;
+        }
+        /// <summary>
+        /// 自定义视图列表
+        /// </summary>
+        public static List<Customerview> lstCustomerview = new List<Customerview>();
+        /// <summary>
+        /// 加载列表
+        /// </summary>
+        public static void LoadlstCustomerview()
+        {
+            if (File.Exists(SystemManager.CustomViewXmlFilename))
+            {
+                XmlSerializer xml = new XmlSerializer(typeof(List<Customerview>));
+                lstCustomerview = (List<Customerview>)xml.Deserialize(new StreamReader(SystemManager.CustomViewXmlFilename));
+            }
+        }
+        /// <summary>
+        /// 保存列表
+        /// </summary>
+        public static void SavelstCustomerview()
+        {
+            XmlSerializer xml = new XmlSerializer(typeof(List<Customerview>));
+            xml.Serialize(new StreamWriter(SystemManager.CustomViewXmlFilename), lstCustomerview);
+       }
+
+        #region"Position"
         /// <summary>
         /// 全字段列表
         /// </summary>
@@ -39,10 +84,12 @@ namespace HRSystem
             "Onboard",
             "Channel Mix"
         };
+        
         /// <summary>
         /// 当前视图Position
         /// </summary>
         public static string[] CurrentPositionViewFields = new string[] { };
+        
         /// <summary>
         /// 重置
         /// </summary>
@@ -54,6 +101,7 @@ namespace HRSystem
                 ViewControl.CurrentPositionViewFields[i] = ViewControl.FullPositionFields[i];
             }
         }
+        
         /// <summary>
         /// 视图设定【核心】
         /// </summary>
@@ -70,15 +118,34 @@ namespace HRSystem
             foreach (var Record in StatisticRecords)
             {
                 ListViewItem item = new ListViewItem();
-                BindPositionListViewItem(item, Record);
-                if (Record.BasicInfo.No == SystemManager.strTotal)
+                if (Record.BasicInfo.Position == SystemManager.strTotal)
                 {
+                    BindPositionListViewItem(item, Record);
                     item.BackColor = Color.LightYellow;
+                    lstView.Items.Add(item);
                 }
-                lstView.Items.Add(item);
+                else
+                {
+                    if (Record.Gap !=0)
+                    {
+                        BindPositionListViewItem(item, Record);
+                        lstView.Items.Add(item);
+                    }
+                }
+            }
+            foreach (var Record in StatisticRecords)
+            {
+                if (Record.Gap == 0 && Record.BasicInfo.Position != SystemManager.strTotal)
+                {
+                    ListViewItem item = new ListViewItem();
+                    BindPositionListViewItem(item, Record);
+                    item.BackColor = Color.LightGray;
+                    lstView.Items.Add(item);
+                }
             }
             Utility.ListViewColumnResize(lstView);
         }
+
         /// <summary>
         /// 数据绑定
         /// </summary>
@@ -101,7 +168,7 @@ namespace HRSystem
                 {
                     strBand = record.BasicInfo.BandLBound.ToDisplayString() + " - " + record.BasicInfo.BandHBound.ToDisplayString();
                 }
-                if (record.BasicInfo.No == SystemManager.strTotal) strBand = "-";
+                if (record.BasicInfo.Position == SystemManager.strTotal) strBand = "-";
                 item.SubItems.Add(strBand);
             }
             if (CurrentPositionViewFields.ToList().Contains("Target")) item.SubItems.Add(record.BasicInfo.Target.ToString());
@@ -109,7 +176,7 @@ namespace HRSystem
 
             if (CurrentPositionViewFields.ToList().Contains("Open Date"))
             {
-                if (record.BasicInfo.No == SystemManager.strTotal)
+                if (record.BasicInfo.Position == SystemManager.strTotal)
                 {
                     item.SubItems.Add("-");
                 }
@@ -120,7 +187,7 @@ namespace HRSystem
             }
             if (CurrentPositionViewFields.ToList().Contains("Approved Date"))
             {
-                if (record.BasicInfo.No == SystemManager.strTotal)
+                if (record.BasicInfo.Position == SystemManager.strTotal)
                 {
                     item.SubItems.Add("-");
                 }
@@ -156,7 +223,9 @@ namespace HRSystem
             if (CurrentPositionViewFields.ToList().Contains("Onboard")) item.SubItems.Add(record.Onboard.ToString());
             if (CurrentPositionViewFields.ToList().Contains("Channel Mix")) item.SubItems.Add(record.ChannelMix.ToString());
         }
+        #endregion
 
+        #region"HiringTracking"
         /// <summary>
         /// 
         /// </summary>
@@ -193,6 +262,7 @@ namespace HRSystem
         /// 当前视图HiringTracking
         /// </summary>
         public static string[] CurrentHiringTrackingFields = new string[] { };
+
         /// <summary>
         /// 重置
         /// </summary>
@@ -204,6 +274,7 @@ namespace HRSystem
                 ViewControl.CurrentHiringTrackingFields[i] = ViewControl.FullHiringTrackingFields[i];
             }
         }
+        
         /// <summary>
         /// 视图设定【核心】
         /// </summary>
@@ -234,6 +305,7 @@ namespace HRSystem
             }
             Utility.ListViewColumnResize(lstView);
         }
+        
         /// <summary>
         /// 数据绑定
         /// </summary>
@@ -268,5 +340,6 @@ namespace HRSystem
             if (CurrentHiringTrackingFields.ToList().Contains("Onboard date")) item.SubItems.Add(record.OnboardDate.ToString(SystemManager.DataTimeFormat));
             if (CurrentHiringTrackingFields.ToList().Contains("Reject offer reason")) item.SubItems.Add(record.RejectOfferReason.ToString());
         }
+        #endregion
     }
 }

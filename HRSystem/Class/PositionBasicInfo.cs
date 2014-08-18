@@ -166,7 +166,7 @@ namespace HRSystem
         {
             get
             {
-                return BasicInfo.Target - Onboard;
+                return BasicInfo.Target - OpenOffer - ANOB - Onboard;
             }
         }
         /// <summary>

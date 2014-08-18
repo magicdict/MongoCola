@@ -37,8 +37,11 @@ namespace HRSystem.UserController
         /// <param name="e"></param>
         private void cmbPhase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RefreshChanel("Channel");
+            InitPhaseChart();
         }
+        /// <summary>
+        /// Phase图
+        /// </summary>
         private void InitPhaseChart()
         {
             if (DataCenter.HiringTrackingDataSet.Count == 0) return;
@@ -69,7 +72,7 @@ namespace HRSystem.UserController
             queryPoint = new DataPoint();
             queryPoint.SetValueXY("ScreenPass", Target.Count((x) =>
             {
-                return !String.IsNullOrEmpty(x.FirstInterviewer);
+                return !string.IsNullOrEmpty(x.FirstInterviewer);
             }));
             PhaseChart.Series[0].Points.Add(queryPoint);
 
@@ -102,6 +105,42 @@ namespace HRSystem.UserController
                 return x.FinalStatus == HiringTracking.FinalStatusEnum.Onboard;
             }));
             PhaseChart.Series[0].Points.Add(queryPoint);
+        }
+
+        /// <summary>
+        /// Phase图
+        /// </summary>
+        private void InitHiringTrackingChart()
+        {
+            if (DataCenter.HiringTrackingDataSet.Count == 0) return;
+            var QuerySeries = new Series("Diary Onboard Count")
+            {
+                ChartType = SeriesChartType.Line,
+                XValueType = ChartValueType.String,
+                YValueType = ChartValueType.Int32
+            };
+            HiringTrackingchart.Series.Clear();
+            HiringTrackingchart.Series.Add(QuerySeries);
+
+            List<HiringTracking> Target;
+            if (Position == SystemManager.strTotal)
+            {
+                return;
+            }
+            else
+            {
+                Target = DataCenter.GetHiringTrackByPosition(Position);
+            }
+
+            DateTime EvaluteDate = DataCenter.GetBasicPositionInfo(Position).OpenDate;
+
+            while (EvaluteDate.Date <= DateTime.Now.Date)
+            {
+                var queryPoint = new DataPoint();
+                queryPoint.SetValueXY(EvaluteDate.Date.ToShortDateString(), Target.Count<HiringTracking>((x)=> { return x.OnboardDate.Date == EvaluteDate.Date;}));
+                HiringTrackingchart.Series[0].Points.Add(queryPoint);
+                EvaluteDate = EvaluteDate.Date.AddDays(1);
+            }
         }
 
         /// <summary>
@@ -177,6 +216,7 @@ namespace HRSystem.UserController
                 if (Position == string.Empty) Position = SystemManager.strTotal;
                 cmbPhase.SelectedIndex = 0;
                 InitPhaseChart();
+                InitHiringTrackingChart();
                 RefreshChanel("Channel");
             }
         }
