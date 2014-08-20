@@ -3,9 +3,10 @@ using System.Windows.Forms;
 
 namespace HRSystem
 {
-    public partial class frmReclye : Form
+    public partial class frmRecycle : Form
     {
-        public frmReclye()
+        ViewControl.HiringTrackingDelegate condition = (x) => { return true; };
+        public frmRecycle()
         {
             InitializeComponent();
         }
@@ -16,7 +17,7 @@ namespace HRSystem
         /// <param name="e"></param>
         private void frmReclye_Load(object sender, EventArgs e)
         {
-            ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackingDataSet(true));
+            ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackingDataSet(true), condition);
         }
         /// <summary>
         /// Restore
@@ -31,7 +32,7 @@ namespace HRSystem
                 var hiring = DataCenter.HiringTrackingDataSet.Find((x) => { return x.No == No; });
                 hiring.IsDel = false;
                 DataCenter.SaveHiringTrack();
-                ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackingDataSet(true));
+                ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackingDataSet(true),condition);
             }
         }
     }

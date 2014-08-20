@@ -38,7 +38,13 @@ namespace HRSystem
             PositionCol.RemoveAll();
             PositionCol.InsertBatch<PositionBasicInfo>(PositionBasicDataSet);
         }
-
+        public static void Init()
+        {
+            HiringTrackingDataSet.Clear();
+            SaveHiringTrack();
+            PositionBasicDataSet.Clear();
+            SaveBasicPosition();
+        }
         internal static PositionStatistic GetPositionStatisticInfo(string position)
         {
             PositionStatistic t = new PositionStatistic();
@@ -57,6 +63,14 @@ namespace HRSystem
             t = PositionBasicDataSet.Find((x) => { return x.isOpen && x.Position == Position; });
             return t;
         }
+
+        public static void SaveBasicPosition()
+        {
+            XmlSerializer xml = new XmlSerializer(typeof(List<PositionBasicInfo>));
+            xml.Serialize(new StreamWriter(SystemManager.PositionBasicInfoXmlFilename), DataCenter.PositionBasicDataSet);
+            DataCenter.ReCompute();
+        }
+
         /// <summary>
         /// 根据职位获得Hiring
         /// </summary>

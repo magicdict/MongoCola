@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -8,6 +9,7 @@ namespace HRSystem
 {
     public partial class frmHiringTracking : Form
     {
+        ViewControl.HiringTrackingDelegate condition = (x) => { return true; };
         /// <summary>
         /// Position
         /// </summary>
@@ -32,12 +34,13 @@ namespace HRSystem
         {
             if (Position != SystemManager.strTotal)
             {
-                ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByPosition(Position));
+                ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByPosition(Position), condition);
                 btnClosePosition.Enabled = DataCenter.GetPositionStatisticInfo(Position).Gap == 0;
             }
             else
             {
-                ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackingDataSet());
+                ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackingDataSet(), condition);
+                btnEditPosition.Enabled = false;
             }
         }
         /// <summary>
@@ -47,18 +50,8 @@ namespace HRSystem
         /// <param name="e"></param>
         private void cmbFinalStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbFinalStatus.SelectedIndex == 0)
-            {
-                if (Position != SystemManager.strTotal)
-                {
-                    ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByPosition(Position));
-                }
-                else
-                {
-                    ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackingDataSet());
-                }
-            }
-            else
+            var target = GetTarget();
+            if (cmbFinalStatus.SelectedIndex != 0)
             {
                 HiringTracking.FinalStatusEnum FinalStatus = (HiringTracking.FinalStatusEnum)cmbFinalStatus.SelectedIndex - 1;
                 ViewControl.ResetHiringTrackingField();
@@ -73,13 +66,33 @@ namespace HRSystem
                         ViewControl.CurrentHiringTrackingFields = ViewStyleSheet.HiringTracking_RejectOfferSytle;
                         break;
                 }
+            }
+            ViewControl.FillHiringTrackingListView(lstHiringTracking, target, condition);
+        }
+
+        private List<HiringTracking> GetTarget()
+        {
+            if (cmbFinalStatus.SelectedIndex == 0)
+            {
                 if (Position != SystemManager.strTotal)
                 {
-                    ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByPosition(Position, FinalStatus));
+                    return DataCenter.GetHiringTrackByPosition(Position);
                 }
                 else
                 {
-                    ViewControl.FillHiringTrackingListView(lstHiringTracking, DataCenter.GetHiringTrackByFinalStatus(FinalStatus));
+                    return DataCenter.GetHiringTrackingDataSet();
+                }
+            }
+            else
+            {
+                HiringTracking.FinalStatusEnum FinalStatus = (HiringTracking.FinalStatusEnum)cmbFinalStatus.SelectedIndex - 1;
+                if (Position != SystemManager.strTotal)
+                {
+                    return DataCenter.GetHiringTrackByPosition(Position, FinalStatus);
+                }
+                else
+                {
+                    return DataCenter.GetHiringTrackByFinalStatus(FinalStatus);
                 }
             }
         }
@@ -127,6 +140,44 @@ namespace HRSystem
             xml.Serialize(new StreamWriter(SystemManager.PositionBasicInfoXmlFilename), DataCenter.PositionBasicDataSet);
             DataCenter.ReCompute();
             Close();
+        }
+        /// <summary>
+        /// Edit Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEditPosition_Click(object sender, EventArgs e)
+        {
+            (new frmPositionInit(Position)).ShowDialog();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            string filename = string.Empty;
+            FileDialog saver = new SaveFileDialog();
+            saver.Filter = "(*.xls)|*.xls";
+            if (saver.ShowDialog() == DialogResult.OK)
+            {
+                filename = saver.FileName;
+                Utility.getResource(filename, "Template.xls");
+            }else
+            {
+                return;
+            }
+            List<HiringTracking> export = GetTarget();
+            dynamic excelObj = Interaction.CreateObject("Excel.Application");
+            excelObj.Visible = true;
+            dynamic workbook;
+            workbook = excelObj.Workbooks.Open(filename);
+            HiringTracking.ExportData(workbook, export);
+            workbook.Close();
+            excelObj.Quit();
+            excelObj = null;
+            MessageBox.Show("Export Complete!");
         }
     }
 }

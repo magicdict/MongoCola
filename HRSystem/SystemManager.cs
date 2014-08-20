@@ -2,9 +2,14 @@
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-
+/// <summary>
+/// 
+/// </summary>
 namespace HRSystem
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class SystemManager
     {
         /// <summary>
@@ -12,7 +17,7 @@ namespace HRSystem
         /// </summary>
         public static string AppName = "GMC DL Hiring system";
         /// <summary>
-        /// 
+        /// strTotal
         /// </summary>
         public static string strTotal = "Total";
         /// <summary>
@@ -31,6 +36,16 @@ namespace HRSystem
         /// DataTime Format String
         /// </summary>
         public static string DataTimeFormat = "yyyy/MM/dd";
+        /// <summary>
+        /// Hiring Manager List
+        /// </summary>
+        public static string[] HiringManagerArray = new string[] {
+                "Paul Ambraz",
+                "Li Ling",
+                "Hou Yan",
+                "Yi Shangmin",
+                "Jiang Meishan",
+                "Li Bing" };
         /// <summary>
         /// 初始化
         /// </summary>

@@ -30,11 +30,13 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.initDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hiringTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weeklyInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addCandidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,17 +47,14 @@
             this.AppStatus = new System.Windows.Forms.StatusStrip();
             this.SystemStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.MainContainer = new System.Windows.Forms.SplitContainer();
             this.btnOrgnization = new System.Windows.Forms.Button();
             this.btnHiringTracking = new System.Windows.Forms.Button();
-            this.ctlStatisticInfo1 = new HRSystem.UserController.ctlStatisticInfo();
-            this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.AppStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MainContainer)).BeginInit();
+            this.MainContainer.Panel1.SuspendLayout();
+            this.MainContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -74,25 +73,32 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importToolStripMenuItem,
+            this.initDataToolStripMenuItem,
             this.backUpToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // importToolStripMenuItem
+            // initDataToolStripMenuItem
             // 
-            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.importToolStripMenuItem.Text = "Import";
-            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
+            this.initDataToolStripMenuItem.Name = "initDataToolStripMenuItem";
+            this.initDataToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.initDataToolStripMenuItem.Text = "InitData";
+            this.initDataToolStripMenuItem.Click += new System.EventHandler(this.initDataToolStripMenuItem_Click);
+            // 
+            // backUpToolStripMenuItem
+            // 
+            this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
+            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.backUpToolStripMenuItem.Text = "BackUp";
+            this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -100,7 +106,8 @@
             // 
             this.hiringTrackingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newPositionToolStripMenuItem,
-            this.viewManagerToolStripMenuItem});
+            this.viewManagerToolStripMenuItem,
+            this.importToolStripMenuItem});
             this.hiringTrackingToolStripMenuItem.Name = "hiringTrackingToolStripMenuItem";
             this.hiringTrackingToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
             this.hiringTrackingToolStripMenuItem.Text = "Hiring Tracking";
@@ -118,6 +125,13 @@
             this.viewManagerToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.viewManagerToolStripMenuItem.Text = "View Manager";
             this.viewManagerToolStripMenuItem.Click += new System.EventHandler(this.viewManagerToolStripMenuItem_Click);
+            // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.importToolStripMenuItem.Text = "Import";
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -147,7 +161,7 @@
             // 
             this.recylceToolStripMenuItem.Name = "recylceToolStripMenuItem";
             this.recylceToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.recylceToolStripMenuItem.Text = "Recylce";
+            this.recylceToolStripMenuItem.Text = "Recycle";
             this.recylceToolStripMenuItem.Click += new System.EventHandler(this.recylceToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
@@ -197,24 +211,20 @@
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // splitContainer1
+            // MainContainer
             // 
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 49);
-            this.splitContainer1.Name = "splitContainer1";
+            this.MainContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainContainer.Location = new System.Drawing.Point(0, 49);
+            this.MainContainer.Name = "MainContainer";
             // 
-            // splitContainer1.Panel1
+            // MainContainer.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.btnOrgnization);
-            this.splitContainer1.Panel1.Controls.Add(this.btnHiringTracking);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.ctlStatisticInfo1);
-            this.splitContainer1.Size = new System.Drawing.Size(938, 300);
-            this.splitContainer1.SplitterDistance = 250;
-            this.splitContainer1.TabIndex = 4;
+            this.MainContainer.Panel1.Controls.Add(this.btnOrgnization);
+            this.MainContainer.Panel1.Controls.Add(this.btnHiringTracking);
+            this.MainContainer.Size = new System.Drawing.Size(938, 300);
+            this.MainContainer.SplitterDistance = 250;
+            this.MainContainer.TabIndex = 4;
             // 
             // btnOrgnization
             // 
@@ -226,6 +236,7 @@
             this.btnOrgnization.TabIndex = 6;
             this.btnOrgnization.Text = "Orgnization";
             this.btnOrgnization.UseVisualStyleBackColor = false;
+            this.btnOrgnization.Click += new System.EventHandler(this.btnOrgnization_Click);
             // 
             // btnHiringTracking
             // 
@@ -237,22 +248,7 @@
             this.btnHiringTracking.TabIndex = 5;
             this.btnHiringTracking.Text = "Hiring Tracking";
             this.btnHiringTracking.UseVisualStyleBackColor = false;
-            // 
-            // ctlStatisticInfo1
-            // 
-            this.ctlStatisticInfo1.AutoScroll = true;
-            this.ctlStatisticInfo1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctlStatisticInfo1.Location = new System.Drawing.Point(0, 0);
-            this.ctlStatisticInfo1.Name = "ctlStatisticInfo1";
-            this.ctlStatisticInfo1.Size = new System.Drawing.Size(682, 298);
-            this.ctlStatisticInfo1.TabIndex = 0;
-            // 
-            // backUpToolStripMenuItem
-            // 
-            this.backUpToolStripMenuItem.Name = "backUpToolStripMenuItem";
-            this.backUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.backUpToolStripMenuItem.Text = "BackUp";
-            this.backUpToolStripMenuItem.Click += new System.EventHandler(this.backUpToolStripMenuItem_Click);
+            this.btnHiringTracking.Click += new System.EventHandler(this.btnHiringTracking_Click);
             // 
             // frmMain
             // 
@@ -260,7 +256,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(938, 371);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.MainContainer);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.AppStatus);
             this.Controls.Add(this.menuStrip1);
@@ -274,10 +270,9 @@
             this.menuStrip1.PerformLayout();
             this.AppStatus.ResumeLayout(false);
             this.AppStatus.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.MainContainer.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MainContainer)).EndInit();
+            this.MainContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,10 +288,8 @@
         private System.Windows.Forms.ToolStripStatusLabel SystemStatus;
         private System.Windows.Forms.ToolStripMenuItem viewHelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer MainContainer;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
-        private UserController.ctlStatisticInfo ctlStatisticInfo1;
         private System.Windows.Forms.ToolStripMenuItem hiringTrackingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newPositionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewManagerToolStripMenuItem;
@@ -306,6 +299,8 @@
         private System.Windows.Forms.Button btnHiringTracking;
         private System.Windows.Forms.Button btnOrgnization;
         private System.Windows.Forms.ToolStripMenuItem backUpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem initDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
     }
 }
 

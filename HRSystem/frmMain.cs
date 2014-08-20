@@ -9,17 +9,48 @@ namespace HRSystem
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Hiring Tracking
+        /// </summary>
+        private ctlStatisticInfo HiringtrackingStatisticInfo = new ctlStatisticInfo();
+        /// <summary>
+        /// Hiring Tracking
+        /// </summary>
+        private ctlOrgChart OrgChartInfo = new ctlOrgChart();
+        /// <summary>
+        /// 视图切换
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnHiringTracking_Click(object sender, EventArgs e)
+        {
+            btnHiringTracking.Enabled = false;
+            btnOrgnization.Enabled = true;
+            MainContainer.Panel2.Controls.Clear();
+            MainContainer.Panel2.Controls.Add(HiringtrackingStatisticInfo);
+        }
+        /// <summary>
+        /// 视图切换
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOrgnization_Click(object sender, EventArgs e)
+        {
+            btnHiringTracking.Enabled = true;
+            btnOrgnization.Enabled = false;
+            MainContainer.Panel2.Controls.Clear();
+            MainContainer.Panel2.Controls.Add(OrgChartInfo);
+        }
         private void frmMain_Load(object sender, EventArgs e)
         {
             Text = SystemManager.AppName;
-            ctlStatisticInfo1.RefreshData();
+            HiringtrackingStatisticInfo.RefreshData();
             SystemStatus.Text = "Ready";
-        }
-        private void importToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            (new frmImport()).ShowDialog();
-            ctlStatisticInfo1.RefreshData();
+            btnHiringTracking.Enabled = false;
+            HiringtrackingStatisticInfo.Dock = DockStyle.Fill;
+            OrgChartInfo.Dock = DockStyle.Fill;
+            MainContainer.Panel2.Controls.Clear();
+            MainContainer.Panel2.Controls.Add(HiringtrackingStatisticInfo);
         }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -28,8 +59,8 @@ namespace HRSystem
 
         private void newPositionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new frmPositionInit()).ShowDialog();
-            ctlStatisticInfo1.RefreshData();
+            (new frmPositionInit(string.Empty)).ShowDialog();
+            HiringtrackingStatisticInfo.RefreshData();
         }
 
         private void weeklyInfoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -40,24 +71,24 @@ namespace HRSystem
         private void viewManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new frmViewMgr()).ShowDialog();
-            ctlStatisticInfo1.RefreshData();
+            HiringtrackingStatisticInfo.RefreshData();
         }
 
         private void MainFormResize(object sender, EventArgs e)
         {
-            splitContainer1.SplitterDistance = 250;
+            MainContainer.SplitterDistance = 250;
         }
 
         private void addCandidateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             (new frmCandidateEditor(String.Empty)).ShowDialog();
-            ctlStatisticInfo1.RefreshData();
+            HiringtrackingStatisticInfo.RefreshData();
         }
 
         private void recylceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new frmReclye()).ShowDialog();
-            ctlStatisticInfo1.RefreshData();
+            (new frmRecycle()).ShowDialog();
+            HiringtrackingStatisticInfo.RefreshData();
         }
         /// <summary>
         /// 
@@ -69,5 +100,24 @@ namespace HRSystem
             DataCenter.BackUp();
             MessageBox.Show("Complete");
         }
+        /// <summary>
+        /// Init Data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void initDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataCenter.Init();
+            MessageBox.Show("Complete");
+            HiringtrackingStatisticInfo.RefreshData();
+        }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new frmImport()).ShowDialog();
+            GC.Collect();
+            HiringtrackingStatisticInfo.RefreshData();
+        }
+
     }
 }

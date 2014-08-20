@@ -94,11 +94,11 @@
     <Compile Include="frmPipelineWeekInfo.Designer.cs">
       <DependentUpon>frmPipelineWeekInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmReclye.cs">
+    <Compile Include="frmRecycle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmReclye.Designer.cs">
-      <DependentUpon>frmReclye.cs</DependentUpon>
+    <Compile Include="frmRecycle.Designer.cs">
+      <DependentUpon>frmRecycle.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +114,18 @@
     </Compile>
     <Compile Include="UserController\ctlFilePicker.Designer.cs">
       <DependentUpon>ctlFilePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserController\ctlOrgChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ctlOrgChart.Designer.cs">
+      <DependentUpon>ctlOrgChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserController\ctlPersonal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserController\ctlPersonal.Designer.cs">
+      <DependentUpon>ctlPersonal.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\ctlStatisticInfo.cs">
       <SubType>UserControl</SubType>
@@ -139,8 +151,8 @@
     <EmbeddedResource Include="frmPipelineWeekInfo.resx">
       <DependentUpon>frmPipelineWeekInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmReclye.resx">
-      <DependentUpon>frmReclye.cs</DependentUpon>
+    <EmbeddedResource Include="frmRecycle.resx">
+      <DependentUpon>frmRecycle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -158,6 +170,12 @@
     <EmbeddedResource Include="UserController\ctlFilePicker.resx">
       <DependentUpon>ctlFilePicker.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserController\ctlOrgChart.resx">
+      <DependentUpon>ctlOrgChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserController\ctlPersonal.resx">
+      <DependentUpon>ctlPersonal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlStatisticInfo.resx">
       <DependentUpon>ctlStatisticInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,9 +188,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Resource\Template.xls" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Photo\Hou Yan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Photo\Jiang Mei Shan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Photo\Li Bing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Photo\Li Ling.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Photo\Paul Ambraz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Photo\Yi Sang Min.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

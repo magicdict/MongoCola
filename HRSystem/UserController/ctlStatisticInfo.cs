@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-namespace HRSystem.UserController
+namespace HRSystem
 {
     public partial class ctlStatisticInfo : UserControl
     {
         string Position = SystemManager.strTotal;
+        ViewControl.PositionDelegate condition = (x) => { return true; };
         public ctlStatisticInfo()
         {
             InitializeComponent();
@@ -17,9 +18,9 @@ namespace HRSystem.UserController
         /// </summary>
         public void RefreshData()
         {
-            ViewControl.FillPositionListView(lstPosition, DataCenter.PositionStatisticDataSet);
+            ViewControl.FillPositionListView(lstPosition, DataCenter.PositionStatisticDataSet, condition);
             InitPhaseChart();
-            RefreshChanel("Channel");
+            RefreshChanel(cmbPhase.Text);
         }
         /// <summary>
         /// Load
@@ -29,6 +30,8 @@ namespace HRSystem.UserController
         private void ctlLoad(object sender, EventArgs e)
         {
             Utility.FillComberWithEnum(cmbPhase, typeof(HiringTracking.FinalStatusEnum), false);
+            Utility.FillComberWithArray(cmbHiringManager, SystemManager.HiringManagerArray, false);
+            Utility.FillComberWithEnum(cmbHiringType, typeof(PositionBasicInfo.HiringTypeEnum), false);
         }
         /// <summary>
         /// SelectIndex Chanaged
@@ -37,7 +40,7 @@ namespace HRSystem.UserController
         /// <param name="e"></param>
         private void cmbPhase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            InitPhaseChart();
+            RefreshChanel(cmbPhase.Text);
         }
         /// <summary>
         /// Phase图
@@ -77,7 +80,7 @@ namespace HRSystem.UserController
             PhaseChart.Series[0].Points.Add(queryPoint);
 
             queryPoint = new DataPoint();
-            queryPoint.SetValueXY("FirstPass", Target.Count((x) =>
+            queryPoint.SetValueXY("1stPass", Target.Count((x) =>
             {
                 return HiringTracking.InterviewPassCheck(x.FirstInterviewResult);
             }));
@@ -85,7 +88,7 @@ namespace HRSystem.UserController
 
 
             queryPoint = new DataPoint();
-            queryPoint.SetValueXY("SecondPass", Target.Count((x) =>
+            queryPoint.SetValueXY("2ndPass", Target.Count((x) =>
             {
                 return HiringTracking.InterviewPassCheck(x.SecondInterviewResult);
             }));
@@ -93,14 +96,14 @@ namespace HRSystem.UserController
 
 
             queryPoint = new DataPoint();
-            queryPoint.SetValueXY("ThirdPass", Target.Count((x) =>
+            queryPoint.SetValueXY("3rdPass", Target.Count((x) =>
             {
                 return HiringTracking.InterviewPassCheck(x.ThirdInterviewResult);
             }));
             PhaseChart.Series[0].Points.Add(queryPoint);
 
             queryPoint = new DataPoint();
-            queryPoint.SetValueXY("Onboard", Target.Count((x) =>
+            queryPoint.SetValueXY("OB", Target.Count((x) =>
             {
                 return x.FinalStatus == HiringTracking.FinalStatusEnum.Onboard;
             }));
@@ -113,7 +116,7 @@ namespace HRSystem.UserController
         private void InitHiringTrackingChart()
         {
             if (DataCenter.HiringTrackingDataSet.Count == 0) return;
-            var QuerySeries = new Series("Diary Onboard Count")
+            var QuerySeries = new Series("First Date")
             {
                 ChartType = SeriesChartType.Line,
                 XValueType = ChartValueType.String,
@@ -132,15 +135,91 @@ namespace HRSystem.UserController
                 Target = DataCenter.GetHiringTrackByPosition(Position);
             }
 
-            DateTime EvaluteDate = DataCenter.GetBasicPositionInfo(Position).OpenDate;
+            DateTime BaseDate = DataCenter.GetBasicPositionInfo(Position).OpenDate;
 
-            while (EvaluteDate.Date <= DateTime.Now.Date)
+            var queryPoint = new DataPoint();
+            queryPoint.SetValueXY("Screen", Target.Min<HiringTracking>((x) =>
             {
-                var queryPoint = new DataPoint();
-                queryPoint.SetValueXY(EvaluteDate.Date.ToShortDateString(), Target.Count<HiringTracking>((x)=> { return x.OnboardDate.Date == EvaluteDate.Date;}));
-                HiringTrackingchart.Series[0].Points.Add(queryPoint);
-                EvaluteDate = EvaluteDate.Date.AddDays(1);
-            }
+                if (x.ScreenDate == DateTime.MinValue)
+                {
+                    return 999;
+                }
+                else
+                {
+                    return (x.ScreenDate.Date - BaseDate.Date).Days;
+                };
+            }));
+            HiringTrackingchart.Series[0].Points.Add(queryPoint);
+
+            queryPoint = new DataPoint();
+            queryPoint.SetValueXY("1st", Target.Min<HiringTracking>((x) =>
+            {
+                if (x.FirstInterviewDate == DateTime.MinValue)
+                {
+                    return 999;
+                }
+                else
+                {
+                    return (x.FirstInterviewDate.Date - BaseDate.Date).Days;
+                };
+            }));
+            HiringTrackingchart.Series[0].Points.Add(queryPoint);
+
+            queryPoint = new DataPoint();
+            queryPoint.SetValueXY("2nd", Target.Min<HiringTracking>((x) =>
+            {
+                if (x.SecondInterviewDate == DateTime.MinValue)
+                {
+                    return 999;
+                }
+                else
+                {
+                    return (x.SecondInterviewDate.Date - BaseDate.Date).Days;
+                };
+            }));
+            HiringTrackingchart.Series[0].Points.Add(queryPoint);
+
+            queryPoint = new DataPoint();
+            queryPoint.SetValueXY("3rd", Target.Min<HiringTracking>((x) =>
+            {
+                if (x.ThirdInterviewDate == DateTime.MinValue)
+                {
+                    return 999;
+                }
+                else
+                {
+                    return (x.ThirdInterviewDate.Date - BaseDate.Date).Days;
+                };
+            }));
+            HiringTrackingchart.Series[0].Points.Add(queryPoint);
+
+            queryPoint = new DataPoint();
+            queryPoint.SetValueXY("ANOB", Target.Min<HiringTracking>((x) =>
+            {
+                if (x.OfferOfferDate == DateTime.MinValue)
+                {
+                    return 999;
+                }
+                else
+                {
+                    return (x.OfferOfferDate.Date - BaseDate.Date).Days;
+                };
+            }));
+            HiringTrackingchart.Series[0].Points.Add(queryPoint);
+
+            queryPoint = new DataPoint();
+            queryPoint.SetValueXY("OB", Target.Min<HiringTracking>((x) =>
+            {
+                if (x.OnboardDate == DateTime.MinValue)
+                {
+                    return 999;
+                }
+                else
+                {
+                    return (x.OnboardDate.Date - BaseDate.Date).Days;
+                };
+            }));
+            HiringTrackingchart.Series[0].Points.Add(queryPoint);
         }
 
         /// <summary>
@@ -234,6 +313,37 @@ namespace HRSystem.UserController
                 (new frmHiringTracking(Position)).ShowDialog();
                 RefreshData();
             }
+        }
+        /// <summary>
+        /// Hiring Manager Filter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbHiringManager_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbHiringManager.SelectedIndex == 0)
+            {
+                condition = (x) => { return true; };
+            }
+            else
+            {
+                condition = (x) => { return x.BasicInfo.HiringManager == cmbHiringManager.Text; };
+            }
+            ViewControl.FillPositionListView(lstPosition, DataCenter.PositionStatisticDataSet, condition);
+        }
+
+        private void cmbHiringType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbHiringType.SelectedIndex == 0)
+            {
+                condition = (x) => { return true; };
+            }
+            else
+            {
+                condition = (x) => { return x.BasicInfo.HiringType.GetHashCode() == (cmbHiringType.SelectedIndex - 1); };
+            }
+            ViewControl.FillPositionListView(lstPosition, DataCenter.PositionStatisticDataSet, condition);
+
         }
     }
 }

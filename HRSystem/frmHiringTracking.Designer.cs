@@ -36,6 +36,8 @@ namespace HRSystem
             this.btnEditor = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClosePosition = new System.Windows.Forms.Button();
+            this.btnEditPosition = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstHiringTracking
@@ -56,7 +58,7 @@ namespace HRSystem
             // cmbFinalStatus
             // 
             this.cmbFinalStatus.FormattingEnabled = true;
-            this.cmbFinalStatus.Location = new System.Drawing.Point(95, 17);
+            this.cmbFinalStatus.Location = new System.Drawing.Point(126, 17);
             this.cmbFinalStatus.Name = "cmbFinalStatus";
             this.cmbFinalStatus.Size = new System.Drawing.Size(148, 21);
             this.cmbFinalStatus.TabIndex = 3;
@@ -65,7 +67,7 @@ namespace HRSystem
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 20);
+            this.label1.Location = new System.Drawing.Point(43, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 4;
@@ -75,9 +77,9 @@ namespace HRSystem
             // 
             this.btnEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEditor.BackColor = System.Drawing.SystemColors.Control;
-            this.btnEditor.Location = new System.Drawing.Point(383, 17);
+            this.btnEditor.Location = new System.Drawing.Point(499, 15);
             this.btnEditor.Name = "btnEditor";
-            this.btnEditor.Size = new System.Drawing.Size(117, 28);
+            this.btnEditor.Size = new System.Drawing.Size(97, 23);
             this.btnEditor.TabIndex = 4;
             this.btnEditor.Text = "Edit";
             this.btnEditor.UseVisualStyleBackColor = false;
@@ -87,9 +89,9 @@ namespace HRSystem
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnDelete.Location = new System.Drawing.Point(506, 17);
+            this.btnDelete.Location = new System.Drawing.Point(602, 15);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(117, 28);
+            this.btnDelete.Size = new System.Drawing.Size(97, 23);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -99,13 +101,37 @@ namespace HRSystem
             // 
             this.btnClosePosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClosePosition.BackColor = System.Drawing.SystemColors.Control;
-            this.btnClosePosition.Location = new System.Drawing.Point(772, 17);
+            this.btnClosePosition.Location = new System.Drawing.Point(814, 15);
             this.btnClosePosition.Name = "btnClosePosition";
-            this.btnClosePosition.Size = new System.Drawing.Size(117, 28);
+            this.btnClosePosition.Size = new System.Drawing.Size(97, 23);
             this.btnClosePosition.TabIndex = 5;
             this.btnClosePosition.Text = "Close Position";
             this.btnClosePosition.UseVisualStyleBackColor = false;
             this.btnClosePosition.Click += new System.EventHandler(this.btnClosePosition_Click);
+            // 
+            // btnEditPosition
+            // 
+            this.btnEditPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditPosition.BackColor = System.Drawing.SystemColors.Control;
+            this.btnEditPosition.Location = new System.Drawing.Point(705, 15);
+            this.btnEditPosition.Name = "btnEditPosition";
+            this.btnEditPosition.Size = new System.Drawing.Size(97, 23);
+            this.btnEditPosition.TabIndex = 6;
+            this.btnEditPosition.Text = "Edit Position";
+            this.btnEditPosition.UseVisualStyleBackColor = false;
+            this.btnEditPosition.Click += new System.EventHandler(this.btnEditPosition_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnExport.Location = new System.Drawing.Point(396, 15);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(97, 23);
+            this.btnExport.TabIndex = 7;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // frmHiringTracking
             // 
@@ -113,6 +139,8 @@ namespace HRSystem
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(925, 404);
+            this.Controls.Add(this.btnExport);
+            this.Controls.Add(this.btnEditPosition);
             this.Controls.Add(this.btnClosePosition);
             this.Controls.Add(this.lstHiringTracking);
             this.Controls.Add(this.btnEditor);
@@ -136,5 +164,7 @@ namespace HRSystem
         private System.Windows.Forms.Button btnEditor;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnClosePosition;
+        private System.Windows.Forms.Button btnEditPosition;
+        private System.Windows.Forms.Button btnExport;
     }
 }

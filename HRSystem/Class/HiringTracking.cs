@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HRSystem
 {
@@ -191,6 +192,61 @@ namespace HRSystem
                    FinalStatus == FinalStatusEnum.FirstFailed ||
                    FinalStatus == FinalStatusEnum.SecondFailed ||
                    FinalStatus == FinalStatusEnum.ThirdFailed;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <param name="lstHiring"></param>
+        public static void ExportData(dynamic workbook, List<HiringTracking> lstHiring)
+        {
+            List<HiringTracking> rawData = new List<HiringTracking>();
+            dynamic ActiveSheet = workbook.Sheets(1);
+            int rowCount = 4;
+            foreach (var Rec in lstHiring)
+            {
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.No).Value = Rec.No;
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.Name).Value = Rec.Name;
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.Position).Value = Rec.Position;
+
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.Channel).Value = Rec.Channel.ToString();
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.PhoneNumber).Value = Rec.Contact;
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.University).Value = Rec.University;
+
+
+                if ((Rec.Language & HiringTracking.LanguageEnum.CN) == HiringTracking.LanguageEnum.CN) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.Language_CN).Value = "○";
+                if ((Rec.Language & HiringTracking.LanguageEnum.EN) == HiringTracking.LanguageEnum.EN) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.Language_EN).Value = "○";
+                if ((Rec.Language & HiringTracking.LanguageEnum.JP) == HiringTracking.LanguageEnum.JP) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.Language_JP).Value = "○";
+                if ((Rec.Language & HiringTracking.LanguageEnum.KR) == HiringTracking.LanguageEnum.KR) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.Language_KR).Value = "○";
+                if ((Rec.Language & HiringTracking.LanguageEnum.Other) == HiringTracking.LanguageEnum.Other) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.Language_Other).Value = "○";
+
+                if (Rec.ITBackground) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.ITBakcground).Value = "○";
+                if (Rec.MarketBackground) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.MarketBackground).Value = "○";
+
+                if (Rec.ScreenDate != DateTime.MinValue) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.ScreenData).Value = Rec.ScreenDate.ToShortDateString();
+
+
+                if (Rec.FirstInterviewDate != DateTime.MinValue) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.firstInterviewDate).Value = Rec.FirstInterviewDate.ToShortDateString();
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.firstInterviewer).Value = Rec.FirstInterviewer;
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.firstInterviewresult).Value = Rec.FirstInterviewResult.ToString();
+
+                if (Rec.SecondInterviewDate != DateTime.MinValue) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.secondInterviewDate).Value = Rec.SecondInterviewDate.ToShortDateString();
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.secondInterviewer).Value = Rec.SecondInterviewer;
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.secondInterviewresult).Value = Rec.SecondInterviewResult.ToString();
+
+                if (Rec.ThirdInterviewDate != DateTime.MinValue) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.thirdInterviewDate).Value = Rec.ThirdInterviewDate.ToShortDateString();
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.thirdInterviewer).Value = Rec.ThirdInterviewer;
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.thirdInterviewresult).Value = Rec.ThirdInterviewResult.ToString();
+
+                if (Rec.OfferOfferDate != DateTime.MinValue) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.offerofferdate).Value = Rec.OfferOfferDate.ToShortDateString();
+                if (Rec.OnboardDate != DateTime.MinValue) ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.onboarddate).Value = Rec.OnboardDate.ToShortDateString();
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.rejectofferreason).Value = Rec.RejectOfferReason;
+
+                ActiveSheet.Cells(rowCount, ViewStyleSheet.ColPos.finalstatus).Value = Rec.FinalStatus.ToString();
+
+                rowCount++;
+            }
+            workbook.Save();
         }
         /// <summary>
         /// 招聘状态枚举

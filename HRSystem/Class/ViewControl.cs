@@ -50,7 +50,7 @@ namespace HRSystem
         {
             XmlSerializer xml = new XmlSerializer(typeof(List<Customerview>));
             xml.Serialize(new StreamWriter(SystemManager.CustomViewXmlFilename), lstCustomerview);
-       }
+        }
 
         #region"Position"
         /// <summary>
@@ -84,12 +84,12 @@ namespace HRSystem
             "Onboard",
             "Channel Mix"
         };
-        
+
         /// <summary>
         /// 当前视图Position
         /// </summary>
         public static string[] CurrentPositionViewFields = new string[] { };
-        
+
         /// <summary>
         /// 重置
         /// </summary>
@@ -101,13 +101,13 @@ namespace HRSystem
                 ViewControl.CurrentPositionViewFields[i] = ViewControl.FullPositionFields[i];
             }
         }
-        
+        public delegate bool PositionDelegate(PositionStatistic pos);
         /// <summary>
         /// 视图设定【核心】
         /// </summary>
         /// <param name="lstView">视图控件</param>
         /// <param name="StatisticRecords">统计数据集</param>
-        public static void FillPositionListView(ListView lstView, List<PositionStatistic> StatisticRecords)
+        public static void FillPositionListView(ListView lstView, List<PositionStatistic> StatisticRecords, PositionDelegate condition)
         {
             lstView.Clear();
             for (int i = 0; i < CurrentPositionViewFields.Length; i++)
@@ -117,17 +117,19 @@ namespace HRSystem
             }
             foreach (var Record in StatisticRecords)
             {
-                ListViewItem item = new ListViewItem();
+                if (!condition(Record)) continue;
                 if (Record.BasicInfo.Position == SystemManager.strTotal)
                 {
+                    ListViewItem item = new ListViewItem();
                     BindPositionListViewItem(item, Record);
                     item.BackColor = Color.LightYellow;
                     lstView.Items.Add(item);
                 }
                 else
                 {
-                    if (Record.Gap !=0)
+                    if (Record.Gap != 0)
                     {
+                        ListViewItem item = new ListViewItem();
                         BindPositionListViewItem(item, Record);
                         lstView.Items.Add(item);
                     }
@@ -135,6 +137,7 @@ namespace HRSystem
             }
             foreach (var Record in StatisticRecords)
             {
+                if (!condition(Record)) continue;
                 if (Record.Gap == 0 && Record.BasicInfo.Position != SystemManager.strTotal)
                 {
                     ListViewItem item = new ListViewItem();
@@ -156,7 +159,17 @@ namespace HRSystem
             if (CurrentPositionViewFields.ToList().Contains("No")) item.Text = record.BasicInfo.No;
             if (CurrentPositionViewFields.ToList().Contains("Hiring Manager")) item.SubItems.Add(record.BasicInfo.HiringManager);
             if (CurrentPositionViewFields.ToList().Contains("Position")) item.SubItems.Add(record.BasicInfo.Position.ToString());
-            if (CurrentPositionViewFields.ToList().Contains("Hiring Type")) item.SubItems.Add(record.BasicInfo.HiringType.ToString());
+            if (CurrentPositionViewFields.ToList().Contains("Hiring Type"))
+            {
+                if (record.BasicInfo.Position == SystemManager.strTotal)
+                {
+                    item.SubItems.Add("-");
+                }
+                else
+                {
+                    item.SubItems.Add(record.BasicInfo.HiringType.ToString());
+                }
+            }
             if (CurrentPositionViewFields.ToList().Contains("Band"))
             {
                 string strBand = string.Empty;
@@ -274,13 +287,13 @@ namespace HRSystem
                 ViewControl.CurrentHiringTrackingFields[i] = ViewControl.FullHiringTrackingFields[i];
             }
         }
-        
+        public delegate bool HiringTrackingDelegate(HiringTracking pos);
         /// <summary>
         /// 视图设定【核心】
         /// </summary>
         /// <param name="lstView">视图控件</param>
         /// <param name="StatisticRecords">统计数据集</param>
-        public static void FillHiringTrackingListView(ListView lstView, List<HiringTracking> StatisticRecords)
+        public static void FillHiringTrackingListView(ListView lstView, List<HiringTracking> StatisticRecords, HiringTrackingDelegate condition)
         {
             lstView.Clear();
             for (int i = 0; i < CurrentHiringTrackingFields.Length; i++)
@@ -290,6 +303,7 @@ namespace HRSystem
             }
             foreach (var Record in StatisticRecords)
             {
+                if (!condition(Record)) continue;
                 if (Record.IsFail()) continue;
                 ListViewItem item = new ListViewItem();
                 BindHiringTrackingListViewItem(item, Record);
@@ -297,6 +311,7 @@ namespace HRSystem
             }
             foreach (var Record in StatisticRecords)
             {
+                if (!condition(Record)) continue;
                 if (!Record.IsFail()) continue;
                 ListViewItem item = new ListViewItem();
                 BindHiringTrackingListViewItem(item, Record);
@@ -305,7 +320,7 @@ namespace HRSystem
             }
             Utility.ListViewColumnResize(lstView);
         }
-        
+
         /// <summary>
         /// 数据绑定
         /// </summary>

@@ -8,9 +8,21 @@ namespace HRSystem
 {
     public partial class frmPositionInit : Form
     {
-        public frmPositionInit()
+        string Position = string.Empty;
+        bool IsCreate = false;
+        PositionBasicInfo basic = new PositionBasicInfo();
+        public frmPositionInit(string position)
         {
             InitializeComponent();
+            if (!string.IsNullOrEmpty(position))
+            {
+                IsCreate = false;
+                basic = DataCenter.GetBasicPositionInfo(position);
+            }
+            else
+            {
+                IsCreate = true;
+            }
         }
         /// <summary>
         /// Load Form
@@ -20,17 +32,22 @@ namespace HRSystem
         private void frmPositionInit_Load(object sender, EventArgs e)
         {
             Utility.FillComberWithEnum(cmbHiringType, typeof(PositionBasicInfo.HiringTypeEnum));
-            String[] BandArray = new string[] { "6A","6B","7A","7B","8A","8B" };
+            string[] BandArray = new string[] { "6A", "6B", "7A", "7B", "8A", "8B" };
             Utility.FillComberWithArray(cmbLBound, BandArray);
             Utility.FillComberWithArray(cmbHBound, BandArray);
-            String[] HiringManagerArray = new string[] {
-                "Paul Ambraz",
-                "Li Ling",
-                "Hou Yan",
-                "Yi Shangmin",
-                "Jiang Meishan",
-                "Li Bing" };
-            Utility.FillComberWithArray(cmbHiringManager, HiringManagerArray);
+            Utility.FillComberWithArray(cmbHiringManager, SystemManager.HiringManagerArray);
+            if (!IsCreate)
+            {
+                txtPosition.Text = basic.Position;
+                txtPosition.Enabled = false;
+                cmbHiringManager.Text = basic.HiringManager;
+                cmbHiringType.SelectedIndex = basic.HiringType.GetHashCode();
+                cmbLBound.SelectedIndex = basic.BandLBound.GetHashCode();
+                cmbHBound.SelectedIndex = basic.BandHBound.GetHashCode();
+                NumTarget.Value = basic.Target;
+                DataPickerApprovedDate.Value = basic.ApprovedDate;
+                DataPickerOpenDate.Value = basic.OpenDate;
+            }
         }
         /// <summary>
         /// OK
@@ -39,7 +56,6 @@ namespace HRSystem
         /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
-            PositionBasicInfo basic = new PositionBasicInfo();
             basic.No = (DataCenter.PositionBasicDataSet.Count + 1).ToString();
             basic.Position = txtPosition.Text;
             basic.HiringManager = cmbHiringManager.Text;
@@ -50,10 +66,11 @@ namespace HRSystem
             basic.BandHBound = (PositionBasicInfo.BandEnum)cmbHBound.SelectedIndex;
             basic.BandLBound = (PositionBasicInfo.BandEnum)cmbLBound.SelectedIndex;
             basic.HiringType = (PositionBasicInfo.HiringTypeEnum)cmbHiringType.SelectedIndex;
-            DataCenter.PositionBasicDataSet.Add(basic);
-            XmlSerializer xml = new XmlSerializer(typeof(List<PositionBasicInfo>));
-            xml.Serialize(new StreamWriter(SystemManager.PositionBasicInfoXmlFilename), DataCenter.PositionBasicDataSet);
-            DataCenter.ReCompute();
+            if (IsCreate)
+            {
+                DataCenter.PositionBasicDataSet.Add(basic);
+            }
+            DataCenter.SaveBasicPosition();
             Close();
         }
     }

@@ -1,13 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Reflection;
 using System.Windows.Forms;
+using System.IO;
 
 namespace HRSystem
 {
     public static class Utility
     {
+        public static void getResource(String saveFilename,String ResFilename)
+        {
+            Assembly asm = Assembly.GetExecutingAssembly();
+            if (File.Exists(saveFilename))
+            {
+                File.Delete(saveFilename);
+            }
+            Stream Read = new FileStream(saveFilename, FileMode.Create);
+            asm.GetManifestResourceStream("HRSystem.Resource." + ResFilename).CopyTo(Read);
+            Read.Close();
+        }
         /// <summary>
         /// 获得字符枚举值
         /// </summary>
@@ -65,9 +75,10 @@ namespace HRSystem
         /// </summary>
         /// <param name="combox"></param>
         /// <param name="EnumList"></param>
-        public static void FillComberWithArray(ComboBox combox, string[] EnumList)
+        public static void FillComberWithArray(ComboBox combox, string[] EnumList, bool IsEditMode = true)
         {
             combox.Items.Clear();
+            if (!IsEditMode) combox.Items.Add("<All>");
             foreach (var item in EnumList)
             {
                 combox.Items.Add(item);

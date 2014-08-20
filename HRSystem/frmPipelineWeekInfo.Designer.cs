@@ -32,23 +32,26 @@
             this.WeekEnd = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnOK = new System.Windows.Forms.Button();
             this.lstHiringTracking = new System.Windows.Forms.ListView();
+            this.cmbPosition = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // WeekStart
             // 
             this.WeekStart.Location = new System.Drawing.Point(108, 12);
             this.WeekStart.Name = "WeekStart";
-            this.WeekStart.Size = new System.Drawing.Size(200, 20);
+            this.WeekStart.Size = new System.Drawing.Size(128, 20);
             this.WeekStart.TabIndex = 0;
+            this.WeekStart.ValueChanged += new System.EventHandler(this.WeekStart_ValueChanged);
             // 
             // WeekEnd
             // 
-            this.WeekEnd.Location = new System.Drawing.Point(422, 16);
+            this.WeekEnd.Location = new System.Drawing.Point(304, 12);
             this.WeekEnd.Name = "WeekEnd";
-            this.WeekEnd.Size = new System.Drawing.Size(200, 20);
+            this.WeekEnd.Size = new System.Drawing.Size(130, 20);
             this.WeekEnd.TabIndex = 1;
+            this.WeekEnd.ValueChanged += new System.EventHandler(this.WeekEnd_ValueChanged);
             // 
             // label1
             // 
@@ -62,22 +65,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(329, 18);
+            this.label2.Location = new System.Drawing.Point(246, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "End Date";
-            // 
-            // btnOK
-            // 
-            this.btnOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnOK.Location = new System.Drawing.Point(640, 13);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 5;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = false;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // lstHiringTracking
             // 
@@ -86,12 +78,30 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstHiringTracking.FullRowSelect = true;
             this.lstHiringTracking.GridLines = true;
-            this.lstHiringTracking.Location = new System.Drawing.Point(8, 59);
+            this.lstHiringTracking.Location = new System.Drawing.Point(8, 54);
             this.lstHiringTracking.Name = "lstHiringTracking";
-            this.lstHiringTracking.Size = new System.Drawing.Size(813, 379);
+            this.lstHiringTracking.Size = new System.Drawing.Size(813, 384);
             this.lstHiringTracking.TabIndex = 6;
             this.lstHiringTracking.UseCompatibleStateImageBehavior = false;
             this.lstHiringTracking.View = System.Windows.Forms.View.Details;
+            // 
+            // cmbPosition
+            // 
+            this.cmbPosition.FormattingEnabled = true;
+            this.cmbPosition.Location = new System.Drawing.Point(512, 11);
+            this.cmbPosition.Name = "cmbPosition";
+            this.cmbPosition.Size = new System.Drawing.Size(117, 21);
+            this.cmbPosition.TabIndex = 46;
+            this.cmbPosition.SelectedIndexChanged += new System.EventHandler(this.cmbPosition_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(451, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(44, 13);
+            this.label6.TabIndex = 45;
+            this.label6.Text = "Position";
             // 
             // frmPipelineWeekInfo
             // 
@@ -99,8 +109,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(833, 438);
+            this.Controls.Add(this.cmbPosition);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lstHiringTracking);
-            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.WeekEnd);
@@ -120,7 +131,8 @@
         private System.Windows.Forms.DateTimePicker WeekEnd;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.ListView lstHiringTracking;
+        private System.Windows.Forms.ComboBox cmbPosition;
+        private System.Windows.Forms.Label label6;
     }
 }
