@@ -70,7 +70,7 @@ namespace HRSystem
                 DataCenter.PositionBasicDataSet  = PositionBasicList;
             }
             ///Init UI
-            DataCenter.ReCompute();
+            DataCenter.ReCalulatePositionStatisti((x)=> { return true; });
         }
     }
 }

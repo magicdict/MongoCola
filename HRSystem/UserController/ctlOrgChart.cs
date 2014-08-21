@@ -36,15 +36,15 @@ namespace HRSystem
             Digital_Manager.Department = "Demand Programs";
 
             //Marketing & Campaign Specialist 
-            //Marketing_Campaign_Specialist.imgFace = Properties.Resources.Li_Ling;
+            Marketing_Campaign_Specialist.imgFace = Properties.Resources.NA;
             Marketing_Campaign_Specialist.Position = "Marketing & Campaign Specialist";
-            Marketing_Campaign_Specialist.PersonName = string.Empty;
+            Marketing_Campaign_Specialist.PersonName = "N/A";
             Marketing_Campaign_Specialist.Department = "Demand Programs";
 
             //Compain Planner
-            //Compain_Planner.imgFace = Properties.Resources.Li_Ling;
+            Compain_Planner.imgFace = Properties.Resources.NA;
             Compain_Planner.Position = "Compain Planner";
-            Compain_Planner.PersonName = string.Empty;
+            Compain_Planner.PersonName = "N/A";
             Compain_Planner.Department = "Demand Programs";
 
             //Market Segment Manager

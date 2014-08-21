@@ -101,7 +101,7 @@ namespace HRSystem
                 ViewControl.CurrentPositionViewFields[i] = ViewControl.FullPositionFields[i];
             }
         }
-        public delegate bool PositionDelegate(PositionStatistic pos);
+        public delegate bool PositionDelegate(PositionBasicInfo pos);
         /// <summary>
         /// 视图设定【核心】
         /// </summary>
@@ -115,21 +115,25 @@ namespace HRSystem
                 //pay attention the order!
                 lstView.Columns.Add(CurrentPositionViewFields[i]);
             }
+            int cnt = 0;
             foreach (var Record in StatisticRecords)
             {
-                if (!condition(Record)) continue;
                 if (Record.BasicInfo.Position == SystemManager.strTotal)
                 {
                     ListViewItem item = new ListViewItem();
+                    cnt++;
+                    Record.BasicInfo.No = cnt.ToString();
                     BindPositionListViewItem(item, Record);
                     item.BackColor = Color.LightYellow;
                     lstView.Items.Add(item);
                 }
                 else
                 {
-                    if (Record.Gap != 0)
+                    if (Record.Gap != 0 && condition(Record.BasicInfo))
                     {
                         ListViewItem item = new ListViewItem();
+                        cnt++;
+                        Record.BasicInfo.No = cnt.ToString();
                         BindPositionListViewItem(item, Record);
                         lstView.Items.Add(item);
                     }
@@ -137,10 +141,12 @@ namespace HRSystem
             }
             foreach (var Record in StatisticRecords)
             {
-                if (!condition(Record)) continue;
+                if (!condition(Record.BasicInfo)) continue;
                 if (Record.Gap == 0 && Record.BasicInfo.Position != SystemManager.strTotal)
                 {
                     ListViewItem item = new ListViewItem();
+                    cnt++;
+                    Record.BasicInfo.No = cnt.ToString();
                     BindPositionListViewItem(item, Record);
                     item.BackColor = Color.LightGray;
                     lstView.Items.Add(item);

@@ -79,9 +79,7 @@ namespace HRSystem
             XmlSerializer xml = new XmlSerializer(typeof(List<HiringTracking>));
             xml.Serialize(new StreamWriter(SystemManager.HiringTrackingXmlFilename), rawData);
             DataCenter.HiringTrackingDataSet = rawData;
-            DataCenter.ReCompute();
+            DataCenter.ReCalulatePositionStatisti((x)=> { return true; });
         }
-
-
     }
 }

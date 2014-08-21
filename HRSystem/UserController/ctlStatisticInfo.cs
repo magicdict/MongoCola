@@ -18,6 +18,7 @@ namespace HRSystem
         /// </summary>
         public void RefreshData()
         {
+            DataCenter.ReCalulatePositionStatisti(condition);
             ViewControl.FillPositionListView(lstPosition, DataCenter.PositionStatisticDataSet, condition);
             InitPhaseChart();
             RefreshChanel(cmbPhase.Text);
@@ -327,11 +328,16 @@ namespace HRSystem
             }
             else
             {
-                condition = (x) => { return x.BasicInfo.HiringManager == cmbHiringManager.Text; };
+                condition = (x) => { return x.HiringManager == cmbHiringManager.Text; };
             }
+            DataCenter.ReCalulatePositionStatisti(condition);
             ViewControl.FillPositionListView(lstPosition, DataCenter.PositionStatisticDataSet, condition);
         }
-
+        /// <summary>
+        /// cmbHiringType SelectedIndexChanged
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbHiringType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbHiringType.SelectedIndex == 0)
@@ -340,10 +346,10 @@ namespace HRSystem
             }
             else
             {
-                condition = (x) => { return x.BasicInfo.HiringType.GetHashCode() == (cmbHiringType.SelectedIndex - 1); };
+                condition = (x) => { return x.HiringType.GetHashCode() == (cmbHiringType.SelectedIndex - 1); };
             }
+            DataCenter.ReCalulatePositionStatisti(condition);
             ViewControl.FillPositionListView(lstPosition, DataCenter.PositionStatisticDataSet, condition);
-
         }
     }
 }

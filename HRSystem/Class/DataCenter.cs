@@ -18,11 +18,6 @@ namespace HRSystem
         /// </summary>
         public static List<PositionBasicInfo> PositionBasicDataSet = new List<PositionBasicInfo>();
         /// <summary>
-        /// PositionStatistic Data
-        /// </summary>
-        public static List<PositionStatistic> PositionStatisticDataSet = new List<PositionStatistic>();
-
-        /// <summary>
         /// BackUp
         /// </summary>
         public static void BackUp()
@@ -38,6 +33,9 @@ namespace HRSystem
             PositionCol.RemoveAll();
             PositionCol.InsertBatch<PositionBasicInfo>(PositionBasicDataSet);
         }
+        /// <summary>
+        /// Init
+        /// </summary>
         public static void Init()
         {
             HiringTrackingDataSet.Clear();
@@ -45,13 +43,6 @@ namespace HRSystem
             PositionBasicDataSet.Clear();
             SaveBasicPosition();
         }
-        internal static PositionStatistic GetPositionStatisticInfo(string position)
-        {
-            PositionStatistic t = new PositionStatistic();
-            t = PositionStatisticDataSet.Find((x) => { return x.BasicInfo.isOpen && x.BasicInfo.Position == position; });
-            return t;
-        }
-
         /// <summary>
         /// 根据职位名称获得职位基本信息
         /// </summary>
@@ -63,12 +54,15 @@ namespace HRSystem
             t = PositionBasicDataSet.Find((x) => { return x.isOpen && x.Position == Position; });
             return t;
         }
-
+        /// <summary>
+        /// Save Basic Position Info
+        /// </summary>
         public static void SaveBasicPosition()
         {
             XmlSerializer xml = new XmlSerializer(typeof(List<PositionBasicInfo>));
-            xml.Serialize(new StreamWriter(SystemManager.PositionBasicInfoXmlFilename), DataCenter.PositionBasicDataSet);
-            DataCenter.ReCompute();
+            var writer = new StreamWriter(SystemManager.PositionBasicInfoXmlFilename);
+            xml.Serialize(writer, DataCenter.PositionBasicDataSet);
+            writer.Close();
         }
 
         /// <summary>
@@ -141,22 +135,41 @@ namespace HRSystem
             var writer = new StreamWriter(SystemManager.HiringTrackingXmlFilename);
             xml.Serialize(writer, HiringTrackingDataSet);
             writer.Close();
-            ReCompute();
+        }
+        #region"Statistic Info"
+        /// <summary>
+        /// PositionStatistic Data
+        /// </summary>
+        public static List<PositionStatistic> PositionStatisticDataSet = new List<PositionStatistic>();
+        /// <summary>
+        /// Get StatisticInfo By Position
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        public static PositionStatistic GetPositionStatisticInfo(string position)
+        {
+            PositionStatistic t = new PositionStatistic();
+            t = PositionStatisticDataSet.Find((x) => { return x.BasicInfo.isOpen && x.BasicInfo.Position == position; });
+            return t;
         }
         /// <summary>
         /// Group By Position
         /// </summary>
-        public static void ReCompute()
+        public static void ReCalulatePositionStatisti(ViewControl.PositionDelegate condition)
         {
             PositionStatisticDataSet.Clear();
             //Total Rec
+            List<HiringTracking> candideate = new List<HiringTracking>();
             PositionStatistic total = new PositionStatistic();
             total.BasicInfo = new PositionBasicInfo();
             total.BasicInfo.Position = SystemManager.strTotal;
             total.BasicInfo.Target = PositionBasicDataSet.Sum((x) =>
             {
-                if (x.isOpen)
+                if (x.isOpen && condition(x))
                 {
+                    candideate.AddRange((from p in HiringTrackingDataSet
+                                         where !p.IsDel && p.Position == x.Position
+                                         select p).ToList());
                     return x.Target;
                 }
                 else
@@ -164,10 +177,8 @@ namespace HRSystem
                     return 0;
                 }
             });
-            var pos = from p in HiringTrackingDataSet
-                      where !p.IsDel
-                      select p;
-            Statistic(pos.ToList(), total);
+            ///Total Info Statistic 
+            Statistic(candideate.ToList(), total);
             PositionStatisticDataSet.Add(total);
 
             foreach (var item in PositionBasicDataSet)
@@ -178,31 +189,36 @@ namespace HRSystem
                 var posItems = from p in HiringTrackingDataSet
                                where p.Position == item.Position && !p.IsDel
                                select p;
+                ///Position Info Statistic 
                 Statistic(posItems.ToList(), t);
                 PositionStatisticDataSet.Add(t);
             }
         }
-
-        private static void Statistic(List<HiringTracking> pos, PositionStatistic t)
+        /// <summary>
+        /// Get Statistic Info
+        /// </summary>
+        /// <param name="candideate"></param>
+        /// <param name="t"></param>
+        private static void Statistic(List<HiringTracking> candideate, PositionStatistic t)
         {
-            t.Pipeline = pos.Count();
-            var firstInterview = from p in pos
+            t.Pipeline = candideate.Count();
+            var firstInterview = from p in candideate
                                  where p.FirstInterviewDate != DateTime.MinValue && !p.IsDel
                                  select p;
-            var secondInterview = from p in pos
+            var secondInterview = from p in candideate
                                   where p.SecondInterviewDate != DateTime.MinValue && !p.IsDel
                                   select p;
-            var thirdInterview = from p in pos
+            var thirdInterview = from p in candideate
                                  where p.ThirdInterviewDate != DateTime.MinValue && !p.IsDel
                                  select p;
 
-            var firstInterviewPass = from p in pos
+            var firstInterviewPass = from p in candideate
                                      where HiringTracking.InterviewPassCheck(p.FirstInterviewResult) && !p.IsDel
                                      select p;
-            var secondInterviewPass = from p in pos
+            var secondInterviewPass = from p in candideate
                                       where HiringTracking.InterviewPassCheck(p.SecondInterviewResult) && !p.IsDel
                                       select p;
-            var thirdInterviewPass = from p in pos
+            var thirdInterviewPass = from p in candideate
                                      where HiringTracking.InterviewPassCheck(p.ThirdInterviewResult) && !p.IsDel
                                      select p;
 
@@ -218,27 +234,26 @@ namespace HRSystem
             t.SecondPass = secondInterviewPass.Count();
             t.ThirdPass = thirdInterviewPass.Count();
 
-            var Onboard = from p in pos
+            var Onboard = from p in candideate
                           where p.FinalStatus == HiringTracking.FinalStatusEnum.Onboard && !p.IsDel
                           select p;
             t.Onboard = Onboard.Count();
 
-            var RejectOffer = from p in pos
+            var RejectOffer = from p in candideate
                               where p.FinalStatus == HiringTracking.FinalStatusEnum.RejectOffer && !p.IsDel
                               select p;
             t.RejectOffer = RejectOffer.Count();
 
-            var OpenOffer = from p in pos
+            var OpenOffer = from p in candideate
                             where p.FinalStatus == HiringTracking.FinalStatusEnum.OpenOffer && !p.IsDel
                             select p;
             t.OpenOffer = OpenOffer.Count();
 
-            var ANOB = from p in pos
+            var ANOB = from p in candideate
                        where p.FinalStatus == HiringTracking.FinalStatusEnum.ANOB && !p.IsDel
                        select p;
             t.ANOB = ANOB.Count();
-
-
         }
+        #endregion
     }
 }

@@ -138,7 +138,6 @@ namespace HRSystem
             DataCenter.GetBasicPositionInfo(Position).isOpen = false;
             XmlSerializer xml = new XmlSerializer(typeof(List<PositionBasicInfo>));
             xml.Serialize(new StreamWriter(SystemManager.PositionBasicInfoXmlFilename), DataCenter.PositionBasicDataSet);
-            DataCenter.ReCompute();
             Close();
         }
         /// <summary>
