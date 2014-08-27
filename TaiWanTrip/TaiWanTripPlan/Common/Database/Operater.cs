@@ -88,5 +88,30 @@ namespace Common.Database
             T rec = (T)TargetCollection.FindOneAs(typeof(T), query);
             return rec;
         }
+        /// <summary>
+        /// 获得件数
+        /// </summary>
+        /// <param name="CollectionName"></param>
+        /// <returns></returns>
+        public static int GetCollectionRecordCount(string CollectionName)
+        {
+            MongoCollection TargetCollection = innerDatabase.GetCollection(CollectionName);
+            return (int)TargetCollection.Count();
+        }
+
+        /// <summary>
+        /// 填充事件资料
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="updateUser"></param>
+        public static void FillBaseInfo(EntityBase obj, string createUser = EnumAndConst.SystemAdmin)
+        {
+            obj.CreateDateTime = System.DateTime.Now;
+            obj.UpdateDateTime = System.DateTime.Now;
+            obj.CreateUser = createUser;
+            obj.UpdateUser = createUser;
+            obj.IsDel = false;
+        }
+
     }
 }

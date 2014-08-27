@@ -1,6 +1,6 @@
 ﻿using System;
 using MongoDB.Bson;
-
+using MongoDB.Bson.Serialization.Attributes;
 namespace Common.Database
 {
     /// <summary>
@@ -11,6 +11,7 @@ namespace Common.Database
         /// <summary>
         /// MongoDB Key
         /// </summary>
+        [BsonId]
         public BsonObjectId _id;
         /// <summary>
         /// 创建时间
