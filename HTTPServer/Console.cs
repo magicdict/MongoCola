@@ -36,8 +36,8 @@ namespace HTTPServer
         private void lnkWebFormEntry_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Height = 500;
-            MagicMongoDBTool.HTTPServer.ServerPath = Application.StartupPath + "\\HTML";
-            var svr = new MagicMongoDBTool.HTTPServer();
+            MongoCola.HTTPServer.ServerPath = Application.StartupPath + "\\HTML";
+            var svr = new MongoCola.HTTPServer();
             svr.LogInfo += (x, y) =>
             {
                 if (txtInfo.InvokeRequired)

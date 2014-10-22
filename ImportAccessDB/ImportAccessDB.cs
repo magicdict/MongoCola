@@ -1,6 +1,6 @@
 ﻿using Common;
-using MagicMongoDBTool;
-using MagicMongoDBTool.Module;
+using MongoCola;
+using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;

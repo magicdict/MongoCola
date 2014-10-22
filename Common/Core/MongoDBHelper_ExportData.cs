@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     public static partial class MongoDbHelper
     {

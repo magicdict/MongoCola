@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using MagicMongoDBTool.Module;
+using MongoCola.Module;
 using MongoDB.Bson;
 
-namespace MagicMongoDBTool
+namespace MongoCola
 {
     public static class GetPage
     {

@@ -1,4 +1,4 @@
-﻿namespace MagicMongoDBTool.Module
+﻿namespace MongoCola.Module
 {
     public partial class StringResource
     {

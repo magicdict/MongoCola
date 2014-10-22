@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     public static class CloneMeunToolItem
     {
@@ -17,7 +17,7 @@ namespace MagicMongoDBTool.Module
                 return false;
             foreach (char c in str)
             {
-                if (!Char.IsNumber(c))
+                if (!char.IsNumber(c))
                 {
                     return false;
                 }
@@ -36,7 +36,7 @@ namespace MagicMongoDBTool.Module
             //!!!typeof的参数必须是ToolStripMenuItem的基类!!!如果使用Control则不能取到值!!!
             //感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
             //坑爹啊。。。。。。。。
-            Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof (ToolStripItem));
+            Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));
             if (!SystemManager.MonoMode)
             {
                 //悲催MONO不支持
@@ -75,7 +75,7 @@ namespace MagicMongoDBTool.Module
             //!!!typeof的参数必须是ToolStripMenuItem的基类!!!如果使用Control则不能取到值!!!
             //感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
             //坑爹啊。。。。。。。。
-            Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof (ToolStripItem));
+            Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));
             if (!SystemManager.MonoMode)
             {
                 //悲催MONO不支持
@@ -106,7 +106,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="eventName">事件名 EventClick EventDoubleClick  这个需要看control.事件 是哪个类的名字是什么</param>
         /// <param name="eventType">如果是WINFROM控件  使用typeof(Control)</param>
         /// <returns>委托列</returns>
-        public static Delegate[] GetObjectEventList(object obj, String eventName, Type eventType)
+        public static Delegate[] GetObjectEventList(object obj, string eventName, Type eventType)
         {
             PropertyInfo propertyInfo = obj.GetType()
                 .GetProperty("Events", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -115,7 +115,7 @@ namespace MagicMongoDBTool.Module
                 object eventList = propertyInfo.GetValue(obj, null);
                 if (eventList != null && eventList is EventHandlerList)
                 {
-                    var list = (EventHandlerList) eventList;
+                    var list = (EventHandlerList)eventList;
                     FieldInfo fieldInfo = eventType.GetField(eventName,
                         BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.IgnoreCase);
                     if (fieldInfo == null)

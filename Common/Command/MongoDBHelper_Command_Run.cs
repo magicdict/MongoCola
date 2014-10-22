@@ -4,7 +4,7 @@ using System.IO;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
 
     ///注意，有些db.XXXX(xxx) 这样的函数需要 mongoDb.Eval方法才能做

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using TreeViewColumnsProject;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     public static partial class UIHelper
     {

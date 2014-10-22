@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;
+using MongoCola.Module;
 
 namespace HTTPServer
 {

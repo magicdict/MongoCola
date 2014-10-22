@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using ResourceLib.Properties;
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     public class GetResource
     {

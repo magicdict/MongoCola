@@ -4,7 +4,7 @@ using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
-using MagicMongoDBTool.Module;
+using MongoCola.Module;
 namespace Common.Aggregation
 {
     public static class QueryHelper

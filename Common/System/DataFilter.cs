@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     /// <summary>
     ///     数据过滤器

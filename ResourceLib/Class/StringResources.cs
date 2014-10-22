@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     /// <summary>
     ///     String Resource

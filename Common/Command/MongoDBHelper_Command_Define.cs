@@ -4,7 +4,7 @@ using System.IO;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     public static partial class CommandHelper
     {

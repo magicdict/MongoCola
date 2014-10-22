@@ -1,4 +1,4 @@
-﻿namespace MagicMongoDBTool
+﻿namespace MongoCola
 {
     partial class frmMesssage
     {

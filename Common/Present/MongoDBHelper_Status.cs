@@ -1,13 +1,13 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using MongoDB.Bson;
-using MongoDB.Driver;
 using TreeViewColumnsProject;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     public static partial class MongoDbHelper
     {
@@ -20,7 +20,7 @@ namespace MagicMongoDBTool.Module
         public static void FillSrvStatusToList(TreeViewColumns trvSvrStatus)
         {
             var SrvDocList = new List<BsonDocument>();
-            foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
+            foreach (string mongoSvrKey in _mongoConnSvrLst.Keys)
             {
                 try
                 {
@@ -87,7 +87,7 @@ namespace MagicMongoDBTool.Module
                 lstSvr.Columns.Add(
                     SystemManager.MStringResource.GetText(StringResource.TextType.DataBase_Status_StorageSize));
             }
-            foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
+            foreach (string mongoSvrKey in _mongoConnSvrLst.Keys)
             {
                 try
                 {
@@ -98,8 +98,8 @@ namespace MagicMongoDBTool.Module
                     {
                         continue;
                     }
-                    List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList();
-                    foreach (String strDBName in databaseNameList)
+                    List<string> databaseNameList = mongoSvr.GetDatabaseNames().ToList();
+                    foreach (string strDBName in databaseNameList)
                     {
                         MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
                         DatabaseStatsResult dbStatus = mongoDB.GetStats();
@@ -180,7 +180,7 @@ namespace MagicMongoDBTool.Module
                 lstData.Columns.Add(
                     SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_PaddingFactor));
             }
-            foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
+            foreach (string mongoSvrKey in _mongoConnSvrLst.Keys)
             {
                 try
                 {
@@ -191,13 +191,13 @@ namespace MagicMongoDBTool.Module
                     {
                         continue;
                     }
-                    List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList();
-                    foreach (String strDBName in databaseNameList)
+                    List<string> databaseNameList = mongoSvr.GetDatabaseNames().ToList();
+                    foreach (string strDBName in databaseNameList)
                     {
                         MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
 
-                        List<String> colNameList = mongoDB.GetCollectionNames().ToList();
-                        foreach (String strColName in colNameList)
+                        List<string> colNameList = mongoDB.GetCollectionNames().ToList();
+                        foreach (string strColName in colNameList)
                         {
                             try
                             {
@@ -220,12 +220,12 @@ namespace MagicMongoDBTool.Module
                                 catch (Exception ex)
                                 {
                                     //溢出
-                                    lst.SubItems.Add(Int32.MaxValue.ToString());
+                                    lst.SubItems.Add(int.MaxValue.ToString());
                                     SystemManager.ExceptionLog(ex);
                                 }
 
                                 lst.SubItems.Add(CollectionStatus.ObjectCount != 0
-                                    ? GetSize((long) CollectionStatus.AverageObjectSize)
+                                    ? GetSize((long)CollectionStatus.AverageObjectSize)
                                     : "0");
 
                                 try
@@ -278,7 +278,7 @@ namespace MagicMongoDBTool.Module
             lstSrvOpr.Columns.Add("connectionId");
             lstSrvOpr.Columns.Add("numYields");
 
-            foreach (String mongoSvrKey in _mongoConnSvrLst.Keys)
+            foreach (string mongoSvrKey in _mongoConnSvrLst.Keys)
             {
                 try
                 {
@@ -289,8 +289,8 @@ namespace MagicMongoDBTool.Module
                     {
                         continue;
                     }
-                    List<String> databaseNameList = mongoSvr.GetDatabaseNames().ToList();
-                    foreach (String strDBName in databaseNameList)
+                    List<string> databaseNameList = mongoSvr.GetDatabaseNames().ToList();
+                    foreach (string strDBName in databaseNameList)
                     {
                         try
                         {
@@ -300,7 +300,7 @@ namespace MagicMongoDBTool.Module
                             foreach (BsonDocument item in doc)
                             {
                                 var lst = new ListViewItem(mongoSvrKey + "." + strDBName);
-                                foreach (String itemName in item.Names)
+                                foreach (string itemName in item.Names)
                                 {
                                     lst.SubItems.Add(item.GetValue(itemName).ToString());
                                 }
@@ -330,9 +330,9 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="Resultlst"></param>
         /// <returns></returns>
-        public static String ConvertCommandResultlstToString(List<CommandResult> Resultlst)
+        public static string ConvertCommandResultlstToString(List<CommandResult> Resultlst)
         {
-            String Details = String.Empty;
+            string Details = string.Empty;
             foreach (CommandResult item in Resultlst)
             {
                 Details += item.Response + Environment.NewLine;
@@ -345,13 +345,13 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="size"></param>
         /// <returns></returns>
-        private static String GetSize(BsonValue size)
+        private static string GetSize(BsonValue size)
         {
             if (size.IsInt32)
             {
-                return GetSize((Int32) size);
+                return GetSize((int)size);
             }
-            return GetSize((Int64) size);
+            return GetSize((long)size);
         }
 
         /// <summary>
@@ -359,9 +359,9 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="size"></param>
         /// <returns></returns>
-        private static String GetSize(long size)
+        private static string GetSize(long size)
         {
-            String[] Unit =
+            string[] Unit =
             {
                 "Byte", "KB", "MB", "GB", "TB"
             };
@@ -370,21 +370,21 @@ namespace MagicMongoDBTool.Module
                 return "0 Byte";
             }
             byte unitOrder = 2;
-            double tempSize = size/Math.Pow(2, 20);
+            double tempSize = size / Math.Pow(2, 20);
             while (!(tempSize > 0.1 & tempSize < 1000))
             {
                 if (tempSize < 0.1)
                 {
-                    tempSize = tempSize*1024;
+                    tempSize = tempSize * 1024;
                     unitOrder--;
                 }
                 else
                 {
-                    tempSize = tempSize/1024;
+                    tempSize = tempSize / 1024;
                     unitOrder++;
                 }
             }
-            return String.Format("{0:F2}", tempSize) + " " + Unit[unitOrder];
+            return string.Format("{0:F2}", tempSize) + " " + Unit[unitOrder];
         }
 
         /// <summary>
@@ -392,9 +392,9 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="size"></param>
         /// <returns></returns>
-        public static long ReconvSize(String size)
+        public static long ReconvSize(string size)
         {
-            String[] Unit =
+            string[] Unit =
             {
                 "Byte", "KB", "MB", "GB", "TB"
             };
@@ -406,8 +406,8 @@ namespace MagicMongoDBTool.Module
             {
                 if (size.EndsWith(Unit[i]))
                 {
-                    size = size.Replace(Unit[i], String.Empty).Trim();
-                    return (long) (Convert.ToDouble(size)*Math.Pow(2, (i*10)));
+                    size = size.Replace(Unit[i], string.Empty).Trim();
+                    return (long)(Convert.ToDouble(size) * Math.Pow(2, (i * 10)));
                 }
             }
             return 0;
@@ -482,10 +482,10 @@ namespace MagicMongoDBTool.Module
             /// <param name="x"></param>
             /// <param name="y"></param>
             /// <returns></returns>
-            public int Compare(Object x, Object y)
+            public int Compare(object x, object y)
             {
-                var lstX = (ListViewItem) x;
-                var lstY = (ListViewItem) y;
+                var lstX = (ListViewItem)x;
+                var lstY = (ListViewItem)y;
                 int rtnCompare = 0;
                 switch (mCompareMethod)
                 {
@@ -522,7 +522,7 @@ namespace MagicMongoDBTool.Module
                 }
                 if (OrderOfSort == SortOrder.Descending)
                 {
-                    rtnCompare = rtnCompare*-1;
+                    rtnCompare = rtnCompare * -1;
                 }
                 return rtnCompare;
             }

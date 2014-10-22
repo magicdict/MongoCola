@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common.Security;
-using MagicMongoDBTool.Module;
+using MongoCola.Module;
 
 namespace UnitTest
 {

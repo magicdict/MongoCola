@@ -8,24 +8,24 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     public static class SystemManager
     {
         /// <summary>
         ///     测试模式
         /// </summary>
-        public static Boolean DebugMode = false;
+        public static bool DebugMode = false;
 
         /// <summary>
         ///     是否为MONO
         /// </summary>
-        public static Boolean MonoMode = false;
+        public static bool MonoMode = false;
 
         /// <summary>
         ///     版本号
         /// </summary>
-        public static String Version = Application.ProductVersion;
+        public static string Version = Application.ProductVersion;
 
         /// <summary>
         ///     配置实例
@@ -35,17 +35,17 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     选择对象标签
         /// </summary>
-        public static String SelectObjectTag = String.Empty;
+        public static string SelectObjectTag = string.Empty;
 
         /// <summary>
         ///     驱动版本 MongoDB.Driver.DLL
         /// </summary>
-        public static String MongoDbDriverVersion;
+        public static string MongoDbDriverVersion;
 
         /// <summary>
         ///     驱动版本 MongoDB.Bson.DLL
         /// </summary>
-        public static String MongoDbBsonVersion;
+        public static string MongoDbBsonVersion;
 
         /// <summary>
         ///     文字资源
@@ -70,7 +70,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     获得当前对象的种类
         /// </summary>
-        public static String SelectTagType
+        public static string SelectTagType
         {
             get { return GetTagType(SelectObjectTag); }
         }
@@ -78,7 +78,7 @@ namespace MagicMongoDBTool.Module
         /// <summary>
         ///     获得当前对象的路径
         /// </summary>
-        public static String SelectTagData
+        public static string SelectTagData
         {
             get { return GetTagData(SelectObjectTag); }
         }
@@ -87,7 +87,7 @@ namespace MagicMongoDBTool.Module
         ///     是否使用默认语言
         /// </summary>
         /// <returns></returns>
-        public static Boolean IsUseDefaultLanguage
+        public static bool IsUseDefaultLanguage
         {
             get
             {
@@ -96,7 +96,7 @@ namespace MagicMongoDBTool.Module
                     return true;
                 }
                 return (ConfigHelperInstance.LanguageFileName == "English.xml" ||
-                        String.IsNullOrEmpty(ConfigHelperInstance.LanguageFileName));
+                        string.IsNullOrEmpty(ConfigHelperInstance.LanguageFileName));
             }
         }
 
@@ -116,7 +116,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="ex">异常</param>
         /// <param name="message">消息</param>
-        public static void ExceptionDeal(Exception ex, String message)
+        public static void ExceptionDeal(Exception ex, string message)
         {
             ExceptionDeal(ex, "Exception", message);
         }
@@ -127,9 +127,9 @@ namespace MagicMongoDBTool.Module
         /// <param name="ex">异常</param>
         /// <param name="Title">标题</param>
         /// <param name="Message">消息</param>
-        public static void ExceptionDeal(Exception ex, String Title, String Message)
+        public static void ExceptionDeal(Exception ex, string Title, string Message)
         {
-            String ExceptionString;
+            string ExceptionString;
             ExceptionString = "MongoDB.Driver.DLL:" + MongoDbDriverVersion + Environment.NewLine;
             ExceptionString += "MongoDB.Bson.DLL:" + MongoDbBsonVersion + Environment.NewLine;
             ExceptionString += ex.ToString();
@@ -141,7 +141,7 @@ namespace MagicMongoDBTool.Module
         ///     错误日志
         /// </summary>
         /// <param name="ExceptionString">异常文字</param>
-        public static void ExceptionLog(String ExceptionString)
+        public static void ExceptionLog(string ExceptionString)
         {
             var exLog = new StreamWriter("Exception.log", true);
             exLog.WriteLine("DateTime:" + DateTime.Now);
@@ -155,7 +155,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="ex">异常对象</param>
         public static void ExceptionLog(Exception ex)
         {
-            String ExceptionString;
+            string ExceptionString;
             ExceptionString = "MongoDB.Driver.DLL:" + MongoDbDriverVersion + Environment.NewLine;
             ExceptionString += "MongoDB.Bson.DLL:" + MongoDbBsonVersion + Environment.NewLine;
             ExceptionString += ex.ToString();
@@ -168,9 +168,9 @@ namespace MagicMongoDBTool.Module
         ///     获得对象的种类
         /// </summary>
         /// <returns></returns>
-        public static String GetTagType(String objectTag)
+        public static string GetTagType(string objectTag)
         {
-            if (objectTag == String.Empty)
+            if (objectTag == string.Empty)
             {
                 return string.Empty;
             }
@@ -181,9 +181,9 @@ namespace MagicMongoDBTool.Module
         ///     获得对象的路径
         /// </summary>
         /// <returns></returns>
-        public static String GetTagData(String objectTag)
+        public static string GetTagData(string objectTag)
         {
-            if (objectTag == String.Empty)
+            if (objectTag == string.Empty)
             {
                 return string.Empty;
             }
@@ -200,7 +200,7 @@ namespace MagicMongoDBTool.Module
         /// <param name="mfrm"></param>
         /// <param name="isDispose">有些时候需要使用被打开窗体产生的数据，所以不能Dispose</param>
         /// <param name="isUseAppIcon"></param>
-        public static void OpenForm(Form mfrm, Boolean isDispose, Boolean isUseAppIcon)
+        public static void OpenForm(Form mfrm, bool isDispose, bool isUseAppIcon)
         {
             mfrm.StartPosition = FormStartPosition.CenterParent;
             mfrm.BackColor = Color.White;
@@ -224,8 +224,8 @@ namespace MagicMongoDBTool.Module
         /// <returns></returns>
         public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfig()
         {
-            String ServerName = SelectObjectTag.Split(":".ToCharArray())[1];
-            ServerName = ServerName.Split("/".ToCharArray())[(int) MongoDbHelper.PathLv.ConnectionLv];
+            string ServerName = SelectObjectTag.Split(":".ToCharArray())[1];
+            ServerName = ServerName.Split("/".ToCharArray())[(int)MongoDbHelper.PathLv.ConnectionLv];
             var rtnMongoConnectionConfig = new ConfigHelper.MongoConnectionConfig();
             if (ConfigHelperInstance.ConnectionList.ContainsKey(ServerName))
             {
@@ -239,7 +239,7 @@ namespace MagicMongoDBTool.Module
         /// </summary>
         /// <param name="mongoSvrKey"></param>
         /// <returns></returns>
-        public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfig(String mongoSvrKey)
+        public static ConfigHelper.MongoConnectionConfig GetCurrentServerConfig(string mongoSvrKey)
         {
             var rtnMongoConnectionConfig = new ConfigHelper.MongoConnectionConfig();
             if (ConfigHelperInstance.ConnectionList.ContainsKey(mongoSvrKey))
@@ -294,7 +294,7 @@ namespace MagicMongoDBTool.Module
         public static void SetCurrentDocument(TreeNode currentNode)
         {
             TreeNode rootNode = FindRootNode(currentNode);
-            var selectDocId = (BsonValue) rootNode.Tag;
+            var selectDocId = (BsonValue)rootNode.Tag;
             MongoCollection mongoCol = GetCurrentCollection();
             var doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ(MongoDbHelper.KEY_ID, selectDocId));
             CurrentDocument = doc;
@@ -331,7 +331,7 @@ namespace MagicMongoDBTool.Module
         ///     Javascript文件的保存
         /// </summary>
         /// <param name="result"></param>
-        public static void SaveJavascriptFile(String result)
+        public static void SaveJavascriptFile(string result)
         {
             var dialog = new SaveFileDialog();
             dialog.Filter = MongoDbHelper.JsFilter;
@@ -342,11 +342,14 @@ namespace MagicMongoDBTool.Module
                 writer.Close();
             }
         }
-
-        public static String LoadFile()
+        /// <summary>
+        /// Load File
+        /// </summary>
+        /// <returns></returns>
+        public static string LoadFile()
         {
             var dialog = new OpenFileDialog();
-            String Context = String.Empty;
+            string Context = string.Empty;
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -367,7 +370,7 @@ namespace MagicMongoDBTool.Module
         ///     Javascript文件的保存
         /// </summary>
         /// <param name="Result"></param>
-        public static void SaveTextFile(String Result, String Filter)
+        public static void SaveTextFile(string Result, string Filter)
         {
             var dialog = new SaveFileDialog();
             dialog.Filter = Filter;
@@ -383,9 +386,9 @@ namespace MagicMongoDBTool.Module
         ///     获得JS名称列表
         /// </summary>
         /// <returns></returns>
-        public static List<String> GetJsNameList()
+        public static List<string> GetJsNameList()
         {
-            var jsNamelst = new List<String>();
+            var jsNamelst = new List<string>();
             foreach (BsonDocument item in GetCurrentJsCollection().FindAllAs<BsonDocument>())
             {
                 jsNamelst.Add(item.GetValue(MongoDbHelper.KEY_ID).ToString());
@@ -401,7 +404,7 @@ namespace MagicMongoDBTool.Module
             //语言的初始化
             if (!IsUseDefaultLanguage)
             {
-                String LanguageFile = "Language" + Path.DirectorySeparatorChar + ConfigHelperInstance.LanguageFileName;
+                string LanguageFile = "Language" + Path.DirectorySeparatorChar + ConfigHelperInstance.LanguageFileName;
                 if (File.Exists(LanguageFile))
                 {
                     MStringResource.InitLanguage(LanguageFile);

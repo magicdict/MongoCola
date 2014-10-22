@@ -1,5 +1,5 @@
-﻿using MagicMongoDBTool;
-using MagicMongoDBTool.Module;
+﻿using MongoCola;
+using MongoCola.Module;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
 using System;

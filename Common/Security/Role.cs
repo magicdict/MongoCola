@@ -1,4 +1,4 @@
-﻿using MagicMongoDBTool.Module;
+﻿using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;

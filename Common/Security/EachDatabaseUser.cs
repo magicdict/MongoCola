@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
-using MagicMongoDBTool.Module;
+using MongoCola.Module;
 
 namespace Common.Security
 {

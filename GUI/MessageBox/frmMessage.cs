@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MagicMongoDBTool
+namespace MongoCola
 {
     public partial class frmMesssage : Form
     {

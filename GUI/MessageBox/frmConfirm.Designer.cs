@@ -1,5 +1,5 @@
-﻿using MagicMongoDBTool.Module;
-namespace MagicMongoDBTool
+﻿using MongoCola.Module;
+namespace MongoCola
 {
     partial class frmConfirm
     {

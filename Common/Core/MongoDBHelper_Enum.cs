@@ -1,4 +1,4 @@
-﻿namespace MagicMongoDBTool.Module
+﻿namespace MongoCola.Module
 {
     public static partial class MongoDbHelper
     {

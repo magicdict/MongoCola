@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     public class PlugIn
     {

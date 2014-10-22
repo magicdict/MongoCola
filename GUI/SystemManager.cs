@@ -1,5 +1,5 @@
-﻿using MagicMongoDBTool;
-using MagicMongoDBTool.Module;
+﻿using MongoCola;
+using MongoCola.Module;
 using System;
 using System.Collections.Generic;
 using System.Linq;

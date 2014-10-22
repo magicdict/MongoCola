@@ -1,4 +1,4 @@
-﻿using MagicMongoDBTool.Module;
+﻿using MongoCola.Module;
 using System;
 using System.Windows.Forms;
 

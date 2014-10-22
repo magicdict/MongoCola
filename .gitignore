@@ -14,7 +14,8 @@
 *.pdb
 *.doc
 *.xml
-/MagicMongoDBTool/MagicMongoDBTool.sln.ide
+/MongoCola/.localhistory
+/MongoCola/MongoCola.sln.ide
 /GMC-HR/HRSystem/bin
 /GMC-HR/HRSystem/obj
 /GMC-HR/HRSystem.sln.ide
@@ -39,8 +40,8 @@
 /Common/obj
 /ExportToExcel/bin
 /ExportToExcel/obj
-/MagicMongoDBTool/bin
-/MagicMongoDBTool/obj
+/MongoCola/bin
+/MongoCola/obj
 /HTTPServer/bin
 /HTTPServer/obj
 /UnitTest/bin
@@ -58,7 +59,7 @@
 !DesignDocument/Card.xls
 !DesignDocument/Design.xls
 !DesignDocument/HearthStone.xlsx
-!MagicMongoDBTool/packages.config
+!MongoCola/packages.config
 !MongoCola.zip
 !Template.xls
 Thumbs.db

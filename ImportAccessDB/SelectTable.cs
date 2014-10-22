@@ -18,7 +18,7 @@ namespace ImportAccessDB
 
         private void SelectTable_Load(object sender, EventArgs e)
         {
-            AccessPicker.FileFilter = MagicMongoDBTool.Module.MongoDbHelper.MdbFilter;
+            AccessPicker.FileFilter = MongoCola.Module.MongoDbHelper.MdbFilter;
         }
 
         private void btnGetTabelList_Click(object sender, EventArgs e)

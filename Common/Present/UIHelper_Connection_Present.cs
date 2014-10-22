@@ -4,9 +4,9 @@ using System.Linq;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MagicMongoDBTool.Module;
+using MongoCola.Module;
 using Common.Security;
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     public static partial class UIHelper
     {

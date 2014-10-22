@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-namespace MagicMongoDBTool
+namespace MongoCola
 {
     partial class frmInputBox
     {

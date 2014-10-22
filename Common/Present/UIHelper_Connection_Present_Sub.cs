@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     public static partial class UIHelper
     {

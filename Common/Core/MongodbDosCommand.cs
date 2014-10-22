@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace MagicMongoDBTool.Module
+namespace MongoCola.Module
 {
     /// <summary>
     ///     DOS方式操作Mongodb的类

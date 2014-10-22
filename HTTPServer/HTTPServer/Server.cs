@@ -1,4 +1,4 @@
-﻿using MagicMongoDBTool.Module;
+﻿using MongoCola.Module;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Web;
 
-namespace MagicMongoDBTool
+namespace MongoCola
 {
     public class HTTPServer
     {

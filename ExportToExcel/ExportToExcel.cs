@@ -1,5 +1,5 @@
 ﻿using Common;
-using MagicMongoDBTool.Module;
+using MongoCola.Module;
 using Microsoft.VisualBasic;
 using MongoDB.Bson;
 using MongoDB.Driver;

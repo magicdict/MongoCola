@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
-using MagicMongoDBTool.Module;
+using MongoCola.Module;
 using MongoDB.Driver;
 
-namespace MagicMongoDBTool
+namespace MongoCola
 {
     public class ActionDoneEventArgs : EventArgs
     {

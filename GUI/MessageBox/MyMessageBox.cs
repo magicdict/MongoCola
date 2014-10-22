@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using MagicMongoDBTool.Module;
+using MongoCola.Module;
 
-namespace MagicMongoDBTool
+namespace MongoCola
 {
     public static class MyMessageBox
     {
