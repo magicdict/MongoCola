@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Windows.Forms;
 
 namespace ImportAccessDB
 {
@@ -18,9 +17,9 @@ namespace ImportAccessDB
         /// </summary>
         public ImportAccessDB()
         {
-            base.RunLv = PathLv.ConnectionLV;
-            base.PlugName = "从Access导入";
-            base.PlugFunction = "将数据从Access导入";
+            RunLv = PathLv.ConnectionLV;
+            PlugName = "从Access导入";
+            PlugFunction = "将数据从Access导入";
         }
         /// <summary>
         /// 
@@ -35,7 +34,7 @@ namespace ImportAccessDB
         /// <summary>
         ///     数据连接字符串
         /// </summary>
-        private const String ACCESS_CONNECTION_STRING =
+        private const string ACCESS_CONNECTION_STRING =
             @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=@AccessPath;Persist Security Info=True";
 
         /// <summary>
@@ -62,7 +61,7 @@ namespace ImportAccessDB
         /// <param name="numericPrecision"></param>
         /// <param name="numericScale"></param>
         /// <returns></returns>
-        private static String GetDataType(int oleDataType, long columnSize, int numericPrecision, int numericScale)
+        private static string GetDataType(int oleDataType, long columnSize, int numericPrecision, int numericScale)
         {
             switch (oleDataType)
             {
@@ -149,16 +148,16 @@ namespace ImportAccessDB
             //return null;
         }
 
-        public static List<String> GetTableList(String accessFileName)
+        public static List<string> GetTableList(string accessFileName)
         {
             var conn = new OleDbConnection(ACCESS_CONNECTION_STRING.Replace("@AccessPath", accessFileName));
-            var TableList = new List<String>();
+            var TableList = new List<string>();
             try
             {
                 conn.Open();
                 DataTable tblTableList = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables,
                     new object[] { null, null, null, "Table" });
-                String strCreateTableInfo = String.Empty;
+                string strCreateTableInfo = string.Empty;
                 foreach (DataRow recTable in tblTableList.Rows)
                 {
                     TableList.Add(recTable[2].ToString());
@@ -180,12 +179,12 @@ namespace ImportAccessDB
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static void ImportAccessDataBase(String accessFileName,List<String>Table)
+        public static void ImportAccessDataBase(string accessFileName, List<string> Table)
         {
             MongoServer mongoSvr = SystemManager.GetCurrentServer();
-            String[] fileName = accessFileName.Split(@"\".ToCharArray());
-            String fileMain = fileName[fileName.Length - 1];
-            String insertDBName = fileMain.Split(".".ToCharArray())[0];
+            string[] fileName = accessFileName.Split(@"\".ToCharArray());
+            string fileMain = fileName[fileName.Length - 1];
+            string insertDBName = fileMain.Split(".".ToCharArray())[0];
             MongoDatabase mongoDB = mongoSvr.GetDatabase(insertDBName);
             var conn = new OleDbConnection(ACCESS_CONNECTION_STRING.Replace("@AccessPath", accessFileName));
             try
@@ -194,15 +193,15 @@ namespace ImportAccessDB
                 int err = 0;
                 DataTable tblTableList = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables,
                     new object[] { null, null, null, "Table" });
-                String strCreateTableInfo = String.Empty;
+                string strCreateTableInfo = string.Empty;
                 foreach (DataRow recTable in tblTableList.Rows)
                 {
-                    String strTableName = recTable[2].ToString();
+                    string strTableName = recTable[2].ToString();
                     if (!Table.Contains(strTableName)) continue;
                     try
                     {
                         //不支持UTF....,执行会失败，但是Collection已经添加了
-                        String ErrMsg;
+                        string ErrMsg;
                         mongoDB.IsCollectionNameValid(strTableName, out ErrMsg);
                         if (ErrMsg != null)
                         {
@@ -230,8 +229,8 @@ namespace ImportAccessDB
                     MongoCollection mongoCollection = mongoDB.GetCollection(strTableName);
                     DataTable tblSchema = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Columns,
                         new object[] { null, null, strTableName, null });
-                    var colPro = new Dictionary<String, String>();
-                    var colName = new List<String>();
+                    var colPro = new Dictionary<string, string>();
+                    var colName = new List<string>();
                     foreach (DataRow item in tblSchema.Rows)
                     {
                         long columnWidth;
@@ -297,7 +296,7 @@ namespace ImportAccessDB
                                         insertDoc.Add(colName[i], new BsonDateTime((DateTime)itemRow[colName[i]]), true);
                                         break;
                                     case "Integer":
-                                        Int32 i32 = Convert.ToInt32(itemRow[colName[i]]);
+                                        int i32 = Convert.ToInt32(itemRow[colName[i]]);
                                         insertDoc.Add(colName[i], (BsonInt32)i32, true);
                                         break;
                                     case "Long":

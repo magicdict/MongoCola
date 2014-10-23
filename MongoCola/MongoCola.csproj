@@ -8,7 +8,7 @@
     <ProjectGuid>{08ED1E3B-366B-42EF-B795-0FF1BDAA0B7A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MagicMongoDBTool</RootNamespace>
+    <RootNamespace>MongoCola</RootNamespace>
     <AssemblyName>Mongo-Cola</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -60,7 +60,7 @@
     <ApplicationIcon>clody.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>MagicMongoDBTool.Program</StartupObject>
+    <StartupObject>MongoCola.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>C03DD545ACEE5496B879B9141D6141EE18840506</ManifestCertificateThumbprint>

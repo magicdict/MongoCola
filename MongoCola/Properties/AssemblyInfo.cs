@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration(".NET3.5")]
 [assembly: AssemblyCompany("IBM GDC")]
 [assembly: AssemblyProduct("MongoCola")]
-[assembly: AssemblyCopyright("Copyright © IBM 2011 - 2013")]
+[assembly: AssemblyCopyright("Copyright © IBM 2011 - 2014")]
 [assembly: AssemblyTrademark("MagicHu")]
 [assembly: AssemblyCulture("")]
 
