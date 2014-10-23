@@ -9,8 +9,8 @@ namespace MongoCola
 {
     public partial class frmCreateCollection : Form
     {
-        public Boolean Result = false;
-        public String strSvrPathWithTag;
+        public bool Result = false;
+        public string strSvrPathWithTag;
         public TreeNode treeNode;
 
         public frmCreateCollection()
@@ -57,10 +57,10 @@ namespace MongoCola
             //不支持中文 JIRA ticket is created : SERVER-4412
             //SERVER-4412已经在2013/03解决了
             //collection names are limited to 121 bytes after converting to UTF-8. 
-            if (txtCollectionName.Text == String.Empty) return;
+            if (txtCollectionName.Text == string.Empty) return;
             try
             {
-                String ErrMessage;
+                string ErrMessage;
                 SystemManager.GetCurrentDataBase().IsCollectionNameValid(txtCollectionName.Text, out ErrMessage);
                 if (ErrMessage != null)
                 {
@@ -71,8 +71,8 @@ namespace MongoCola
                 {
                     var option = new CollectionOptionsBuilder();
                     option.SetCapped(chkIsCapped.Checked);
-                    option.SetMaxSize((long) numMaxSize.Value);
-                    option.SetMaxDocuments((long) numMaxDocument.Value);
+                    option.SetMaxSize((long)numMaxSize.Value);
+                    option.SetMaxDocuments((long)numMaxDocument.Value);
                     //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
                     option.SetAutoIndexId(chkIsAutoIndexId.Checked);
                     Result = MongoDbHelper.CreateCollectionWithOptions(strSvrPathWithTag, treeNode,

@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace MongoCola
@@ -194,10 +193,26 @@ namespace MongoCola
         private void ExpandAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             trvsrvlst.BeginUpdate();
-            trvsrvlst.ExpandAll();
+            //trvsrvlst.ExpandAll();
+            //全部展开的时候，东西太多了，只展开到Collection
+            foreach (TreeNode node in trvsrvlst.Nodes)
+            {
+                ExpandNode(node);
+            }
             trvsrvlst.EndUpdate();
         }
-
+        private void ExpandNode(TreeNode node) {
+            if (node.Tag == null) return;
+            string strNodeType = SystemManager.GetTagType(node.Tag.ToString());
+            if (strNodeType != MongoDbHelper.COLLECTION_TAG && strNodeType != MongoDbHelper.GRID_FILE_SYSTEM_TAG) {
+                node.Expand();
+                if (node.Nodes.Count == 0) return;
+                foreach (TreeNode item in node.Nodes)
+                {
+                    ExpandNode(item);
+                }
+            } 
+        }
         /// <summary>
         ///     Collapse All
         /// </summary>

@@ -110,20 +110,18 @@ namespace MongoCola.UserController
                 tabCurrentOprInfo.Text =
                     SystemManager.MStringResource.GetText(StringResource.TextType.ServiceStatus_CurrentOperationInfo);
                 RefreshStripButton.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Refresh);
-                btnSwitch.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Stop_AutoRefresh);
+                btnSwitch.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh);
                 CloseStripButton.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
             refreshTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer*1000;
             refreshTimer.Tick += (x, y) => RefreshStatus(true);
             //
             ShortTimer.Interval = SystemManager.ConfigHelperInstance.RefreshStatusTimer*1000;
-            ;
             ShortTimer.Tick += (x, y) => RefreshCurrentOpr();
 
             refreshTimer.Enabled = false;
             ShortTimer.Enabled = false;
-            AutoRefresh = true;
+            AutoRefresh = false;
             // 用新的排序方法对ListView排序
             lstDBStatus.ListViewItemSorter = _lvwDBStatusColumnSorter;
             lstDBStatus.ColumnClick += lstDBStatus_ColumnClick;
@@ -260,7 +258,7 @@ namespace MongoCola.UserController
             ShortTimer.Enabled = true;
             btnSwitch.Enabled = true;
             RefreshStripButton.Enabled = true;
-            btnSwitch.Image = ResourceLib.Properties.Resources.Pause;
+            btnSwitch.Image = ResourceLib.Properties.Resources.Run;
         }
         /// <summary>
         /// 

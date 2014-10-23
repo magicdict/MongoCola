@@ -20,7 +20,7 @@ namespace MongoCola
         /// <summary>
         ///     修改模式中，原来的连接
         /// </summary>
-        public String OldConnectionName = String.Empty;
+        public string OldConnectionName = string.Empty;
 
         /// <summary>
         ///     初始化（新建）
@@ -35,7 +35,7 @@ namespace MongoCola
         ///     初始化（修改）
         /// </summary>
         /// <param name="ConnectionName"></param>
-        public frmAddConnection(String ConnectionName)
+        public frmAddConnection(string ConnectionName)
         {
             InitializeComponent();
             OldConnectionName = ConnectionName;
@@ -53,8 +53,8 @@ namespace MongoCola
             chkFsync.Checked = ModifyConn.fsync;
             chkJournal.Checked = ModifyConn.journal;
 
-            NumSocketTimeOut.Value = (decimal) ModifyConn.socketTimeoutMS;
-            NumConnectTimeOut.Value = (decimal) ModifyConn.connectTimeoutMS;
+            NumSocketTimeOut.Value = (decimal)ModifyConn.socketTimeoutMS;
+            NumConnectTimeOut.Value = (decimal)ModifyConn.connectTimeoutMS;
 
             txtReplsetName.Text = ModifyConn.ReplSetName;
             txtConnectionString.Text = ModifyConn.ConnectionString;
@@ -124,8 +124,8 @@ namespace MongoCola
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             CreateConnection();
-            String NewCollectionName = txtConnectionName.Text;
-            if (OldConnectionName != String.Empty)
+            string NewCollectionName = txtConnectionName.Text;
+            if (OldConnectionName != string.Empty)
             {
                 //如果有旧名称，说明是修改模式
                 if (OldConnectionName != NewCollectionName)
@@ -213,10 +213,10 @@ namespace MongoCola
             ModifyConn.ConnectionName = txtConnectionName.Text;
             //感谢 呆呆 的Bug 报告，不论txtConnectionString.Text是否存在都进行赋值，防止删除字符后，值还是保留的BUG
             ModifyConn.ConnectionString = txtConnectionString.Text;
-            if (txtConnectionString.Text != String.Empty)
+            if (txtConnectionString.Text != string.Empty)
             {
-                String strException = MongoDbHelper.FillConfigWithConnectionString(ref ModifyConn);
-                if (strException != String.Empty)
+                string strException = MongoDbHelper.FillConfigWithConnectionString(ref ModifyConn);
+                if (strException != string.Empty)
                 {
                     MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it", strException);
                 }
@@ -224,27 +224,27 @@ namespace MongoCola
             else
             {
                 ModifyConn.Host = txtHost.Text;
-                ModifyConn.Port = numPort.Text != String.Empty ? Convert.ToInt32(numPort.Text) : 0;
+                ModifyConn.Port = numPort.Text != string.Empty ? Convert.ToInt32(numPort.Text) : 0;
                 ModifyConn.UserName = txtUsername.Text;
                 ModifyConn.Password = txtPassword.Text;
                 ModifyConn.DataBaseName = txtDataBaseName.Text;
 
                 //仅有用户名或密码
-                if (txtUsername.Text != String.Empty && txtPassword.Text == String.Empty)
+                if (txtUsername.Text != string.Empty && txtPassword.Text == string.Empty)
                 {
                     MessageBox.Show("Please Input Password");
                     return;
                 }
-                if (txtUsername.Text == String.Empty && txtPassword.Text != String.Empty)
+                if (txtUsername.Text == string.Empty && txtPassword.Text != string.Empty)
                 {
                     MessageBox.Show("Please Input UserName");
                     return;
                 }
                 //数据库名称存在，则必须输入用户名和密码
-                if (txtDataBaseName.Text != String.Empty)
+                if (txtDataBaseName.Text != string.Empty)
                 {
                     //用户名或者密码为空
-                    if (txtUsername.Text == String.Empty || txtPassword.Text == String.Empty)
+                    if (txtUsername.Text == string.Empty || txtPassword.Text == string.Empty)
                     {
                         MessageBox.Show("Please Input UserName or Password");
                         return;
@@ -252,25 +252,27 @@ namespace MongoCola
                 }
 
                 ModifyConn.IsUseDefaultSetting = chkUseDefault.Checked;
-                if (ModifyConn.IsUseDefaultSetting) {
+                if (ModifyConn.IsUseDefaultSetting)
+                {
                     ModifyConn.wtimeoutMS = SystemManager.ConfigHelperInstance.wtimeoutMS;
                     ModifyConn.WaitQueueSize = SystemManager.ConfigHelperInstance.WaitQueueSize;
                     ModifyConn.WriteConcern = SystemManager.ConfigHelperInstance.WriteConcern;
                     ModifyConn.ReadPreference = SystemManager.ConfigHelperInstance.ReadPreference;
-                } else {
+                }                 else
+                {
                     ModifyConn.wtimeoutMS = (double)NumWTimeoutMS.Value;
                     ModifyConn.WaitQueueSize = (int)NumWaitQueueSize.Value;
                     ModifyConn.WriteConcern = cmbWriteConcern.Text;
                     ModifyConn.ReadPreference = cmbReadPreference.Text;
                 }
 
-                ModifyConn.socketTimeoutMS = (double) NumSocketTimeOut.Value;
-                ModifyConn.connectTimeoutMS = (double) NumConnectTimeOut.Value;
+                ModifyConn.socketTimeoutMS = (double)NumSocketTimeOut.Value;
+                ModifyConn.connectTimeoutMS = (double)NumConnectTimeOut.Value;
                 ModifyConn.journal = chkJournal.Checked;
                 ModifyConn.fsync = chkFsync.Checked;
                 ModifyConn.ReplSetName = txtReplsetName.Text;
                 ModifyConn.ReplsetList = new List<string>();
-                foreach (String item in lstHost.Items)
+                foreach (string item in lstHost.Items)
                 {
                     ModifyConn.ReplsetList.Add(item);
                 }
@@ -284,7 +286,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdAddHost_Click(object sender, EventArgs e)
         {
-            String strHost = String.Empty;
+            string strHost = string.Empty;
             if (string.IsNullOrEmpty(strHost)) return;
             strHost = txtReplHost.Text;
             if (NumReplPort.Value == 0) return;

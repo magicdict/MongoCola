@@ -15,13 +15,13 @@ namespace MongoCola
         /// <summary>
         ///     多文档视图管理
         /// </summary>
-        private readonly Dictionary<String, MongoDbHelper.DataViewInfo> _viewInfoList =
-            new Dictionary<String, MongoDbHelper.DataViewInfo>();
+        private readonly Dictionary<string, MongoDbHelper.DataViewInfo> _viewInfoList =
+            new Dictionary<string, MongoDbHelper.DataViewInfo>();
 
         /// <summary>
         ///     多文档视图管理
         /// </summary>
-        private readonly Dictionary<String, TabPage> _viewTabList = new Dictionary<String, TabPage>();
+        private readonly Dictionary<string, TabPage> _viewTabList = new Dictionary<string, TabPage>();
 
         /// <summary>
         ///     Current Connection Config
@@ -55,7 +55,7 @@ namespace MongoCola
                 Text += " MONO";
             }
             //长时间操作时候，实时提示进度在状态栏中
-            lblAction.Text = String.Empty;
+            lblAction.Text = string.Empty;
             MongoDbHelper.ActionDone += (x, y) =>
             {
                 //1.lblAction 没有InvokeRequired
@@ -65,16 +65,7 @@ namespace MongoCola
             };
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmMain_Resize(object sender, EventArgs e)
-        {
-
-        }
-        
+       
         /// <summary>
         ///     Load Form
         /// </summary>
@@ -97,7 +88,7 @@ namespace MongoCola
             }
             foreach (var plugin in PlugIn.PlugInList)
             {
-                String PlugInType = String.Empty;
+                string PlugInType = string.Empty;
                 switch (plugin.Value.RunLv)
                 {
                     case PlugBase.PathLv.ConnectionLV:
@@ -331,7 +322,7 @@ namespace MongoCola
         /// </summary>
         /// <param name="Sender"></param>
         /// <param name="e"></param>
-        private void CommandLog(Object Sender, RunCommandEventArgs e)
+        private void CommandLog(object Sender, RunCommandEventArgs e)
         {
             ctlShellCommandEditor.AppendLine("========================================================");
             ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  CommandName:" + e.Result.CommandName);
@@ -392,10 +383,10 @@ namespace MongoCola
             {
                 //选中节点的设置
                 trvsrvlst.SelectedNode = e.Node;
-                String strNodeType = SystemManager.GetTagType(e.Node.Tag.ToString());
-                String mongoSvrKey = SystemManager.GetTagData(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
+                string strNodeType = SystemManager.GetTagType(e.Node.Tag.ToString());
+                string mongoSvrKey = SystemManager.GetTagData(e.Node.Tag.ToString()).Split("/".ToCharArray())[0];
                 _config = SystemManager.ConfigHelperInstance.ConnectionList[mongoSvrKey];
-                if (String.IsNullOrEmpty(_config.UserName))
+                if (string.IsNullOrEmpty(_config.UserName))
                 {
                     lblUserInfo.Text = "UserInfo:Admin";
                 }
@@ -416,7 +407,7 @@ namespace MongoCola
                     //恢复数据：这个操作可以针对服务器，数据库，数据集，所以可以放在共通
                     RestoreMongoToolStripMenuItem.Enabled = true;
                 }
-                SystemManager.SelectObjectTag = String.Empty;
+                SystemManager.SelectObjectTag = string.Empty;
                 if (SystemManager.SelectObjectTag != null)
                 {
                     SystemManager.SelectObjectTag = e.Node.Tag.ToString();
@@ -625,7 +616,7 @@ namespace MongoCola
                     case MongoDbHelper.DATABASE_TAG:
                     case MongoDbHelper.SINGLE_DATABASE_TAG:
                         SystemManager.SelectObjectTag = e.Node.Tag.ToString();
-                        List<String> roles = User.GetCurrentDBRoles();
+                        List<string> roles = User.GetCurrentDBRoles();
                         if (SystemManager.IsUseDefaultLanguage)
                         {
                             statusStripMain.Items[0].Text = "Selected DataBase:" + SystemManager.SelectTagData;
@@ -1212,7 +1203,7 @@ namespace MongoCola
         /// </summary>
         private void ViewJavascript()
         {
-            String[] DataList = SystemManager.SelectTagData.Split("/".ToCharArray());
+            string[] DataList = SystemManager.SelectTagData.Split("/".ToCharArray());
 
             if (_viewTabList.ContainsKey(SystemManager.SelectTagData))
             {
@@ -1220,7 +1211,7 @@ namespace MongoCola
             }
             else
             {
-                String JsName = DataList[(int)MongoDbHelper.PathLv.DocumentLv];
+                string JsName = DataList[(int)MongoDbHelper.PathLv.DocumentLv];
                 var JsEditor = new ctlJsEditor { strDBtag = SystemManager.SelectObjectTag };
                 var DataTab = new TabPage(JsName) { Tag = SystemManager.SelectObjectTag, ImageIndex = 1 };
 
@@ -1254,7 +1245,7 @@ namespace MongoCola
         {
             //由于Collection 和 Document 都可以触发这个事件，所以，先把Tag以前的标题头去掉
             //Collectiong:XXXX 和 Document:XXXX 都统一成 XXXX
-            String DataKey = SystemManager.SelectTagData;
+            string DataKey = SystemManager.SelectTagData;
             if (_viewTabList.ContainsKey(DataKey))
             {
                 tabView.SelectTab(_viewTabList[DataKey]);

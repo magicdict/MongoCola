@@ -119,16 +119,21 @@
     <Compile Include="Form\frmAddRole.Designer.cs">
       <DependentUpon>frmAddRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserController\ctlTextMgr.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserController\ctlTextMgr.Designer.cs">
       <DependentUpon>ctlTextMgr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmTextSearch.cs">
+    <Compile Include="Form\Aggregation\frmTextSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmTextSearch.Designer.cs">
+    <Compile Include="Form\Aggregation\frmTextSearch.Designer.cs">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmValidate.cs">
@@ -137,10 +142,10 @@
     <Compile Include="Form\frmValidate.Designer.cs">
       <DependentUpon>frmValidate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmServerMonitor.cs">
+    <Compile Include="Form\Status\frmServerMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmServerMonitor.Designer.cs">
+    <Compile Include="Form\Status\frmServerMonitor.Designer.cs">
       <DependentUpon>frmServerMonitor.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\Aggregation\BsonValuePanel.cs">
@@ -149,10 +154,10 @@
     <Compile Include="UserController\Aggregation\BsonValuePanel.Designer.cs">
       <DependentUpon>BsonValuePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmArrayCreator.cs">
+    <Compile Include="Form\Operation\frmArrayCreator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmArrayCreator.Designer.cs">
+    <Compile Include="Form\Operation\frmArrayCreator.Designer.cs">
       <DependentUpon>frmArrayCreator.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\Aggregation\MatchPanel.cs">
@@ -191,16 +196,16 @@
     <Compile Include="UserController\Aggregation\FieldPicker.Designer.cs">
       <DependentUpon>FieldPicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmAggregation.cs">
+    <Compile Include="Form\Aggregation\frmAggregation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmAggregation.Designer.cs">
+    <Compile Include="Form\Aggregation\frmAggregation.Designer.cs">
       <DependentUpon>frmAggregation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmAggregationCondition.cs">
+    <Compile Include="Form\Aggregation\frmAggregationCondition.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmAggregationCondition.Designer.cs">
+    <Compile Include="Form\Aggregation\frmAggregationCondition.Designer.cs">
       <DependentUpon>frmAggregationCondition.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\UserRolesPanel.cs">
@@ -233,10 +238,10 @@
     <Compile Include="UserController\Views\ctlGFSView.Designer.cs">
       <DependentUpon>ctlGFSView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmElement.cs">
+    <Compile Include="Form\Operation\frmElement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmElement.Designer.cs">
+    <Compile Include="Form\Operation\frmElement.Designer.cs">
       <DependentUpon>frmElement.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmLanguage.cs">
@@ -245,10 +250,10 @@
     <Compile Include="Form\frmLanguage.Designer.cs">
       <DependentUpon>frmLanguage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmCreateCollection.cs">
+    <Compile Include="Form\Operation\frmCreateCollection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmCreateCollection.Designer.cs">
+    <Compile Include="Form\Operation\frmCreateCollection.Designer.cs">
       <DependentUpon>frmCreateCollection.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmMain.cs">
@@ -257,22 +262,22 @@
     <Compile Include="Form\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmProfilling.cs">
+    <Compile Include="Form\Status\frmProfilling.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmProfilling.Designer.cs">
+    <Compile Include="Form\Status\frmProfilling.Designer.cs">
       <DependentUpon>frmProfilling.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmStatus.cs">
+    <Compile Include="Form\Status\frmStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmStatus.Designer.cs">
+    <Compile Include="Form\Status\frmStatus.Designer.cs">
       <DependentUpon>frmStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmNewDocument.cs">
+    <Compile Include="Form\Operation\frmNewDocument.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmNewDocument.Designer.cs">
+    <Compile Include="Form\Operation\frmNewDocument.Designer.cs">
       <DependentUpon>frmNewDocument.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmGFSOption.cs">
@@ -323,16 +328,16 @@
     <Compile Include="UserController\ctlAddBsonEl.Designer.cs">
       <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmDistinct.cs">
+    <Compile Include="Form\Aggregation\frmDistinct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmDistinct.Designer.cs">
+    <Compile Include="Form\Aggregation\frmDistinct.Designer.cs">
       <DependentUpon>frmDistinct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmGroup.cs">
+    <Compile Include="Form\Aggregation\frmGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmGroup.Designer.cs">
+    <Compile Include="Form\Aggregation\frmGroup.Designer.cs">
       <DependentUpon>frmGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\Views\ctlDataView.cs">
@@ -365,10 +370,10 @@
     <Compile Include="Form\Connection\frmConnect.Designer.cs">
       <DependentUpon>frmConnect.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmCollectionIndex.cs">
+    <Compile Include="Form\Operation\frmCollectionIndex.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmCollectionIndex.Designer.cs">
+    <Compile Include="Form\Operation\frmCollectionIndex.Designer.cs">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmDosCommand.cs">
@@ -377,10 +382,10 @@
     <Compile Include="Form\frmDosCommand.Designer.cs">
       <DependentUpon>frmDosCommand.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmMapReduce.cs">
+    <Compile Include="Form\Aggregation\frmMapReduce.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmMapReduce.Designer.cs">
+    <Compile Include="Form\Aggregation\frmMapReduce.Designer.cs">
       <DependentUpon>frmMapReduce.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmOption.cs">
@@ -389,10 +394,10 @@
     <Compile Include="Form\frmOption.Designer.cs">
       <DependentUpon>frmOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmQuery.cs">
+    <Compile Include="Form\Aggregation\frmQuery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmQuery.Designer.cs">
+    <Compile Include="Form\Aggregation\frmQuery.Designer.cs">
       <DependentUpon>frmQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="UserController\Aggregation\ctlFieldInfo.cs">
@@ -448,19 +453,23 @@
     <EmbeddedResource Include="Form\frmUserRole.resx">
       <DependentUpon>frmUserRole.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserController\ctlTextMgr.resx">
       <DependentUpon>ctlTextMgr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmArrayCreator.resx">
+    <EmbeddedResource Include="Form\Operation\frmArrayCreator.resx">
       <DependentUpon>frmArrayCreator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmTextSearch.resx">
+    <EmbeddedResource Include="Form\Aggregation\frmTextSearch.resx">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmValidate.resx">
       <DependentUpon>frmValidate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmServerMonitor.resx">
+    <EmbeddedResource Include="Form\Status\frmServerMonitor.resx">
       <DependentUpon>frmServerMonitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\Aggregation\BsonValuePanel.resx">
@@ -478,10 +487,10 @@
     <EmbeddedResource Include="UserController\Aggregation\ConditionPanel.resx">
       <DependentUpon>ConditionPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmAggregation.resx">
+    <EmbeddedResource Include="Form\Aggregation\frmAggregation.resx">
       <DependentUpon>frmAggregation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmAggregationCondition.resx">
+    <EmbeddedResource Include="Form\Aggregation\frmAggregationCondition.resx">
       <DependentUpon>frmAggregationCondition.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\UserRolesPanel.resx">
@@ -496,10 +505,10 @@
     <EmbeddedResource Include="UserController\Views\ctlUserView.resx">
       <DependentUpon>ctlUserView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmCreateCollection.resx">
+    <EmbeddedResource Include="Form\Operation\frmCreateCollection.resx">
       <DependentUpon>frmCreateCollection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmElement.resx">
+    <EmbeddedResource Include="Form\Operation\frmElement.resx">
       <DependentUpon>frmElement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmLanguage.resx">
@@ -508,13 +517,13 @@
     <EmbeddedResource Include="Form\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmNewDocument.resx">
+    <EmbeddedResource Include="Form\Operation\frmNewDocument.resx">
       <DependentUpon>frmNewDocument.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmProfilling.resx">
+    <EmbeddedResource Include="Form\Status\frmProfilling.resx">
       <DependentUpon>frmProfilling.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmStatus.resx">
+    <EmbeddedResource Include="Form\Status\frmStatus.resx">
       <DependentUpon>frmStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmGFSOption.resx">
@@ -544,10 +553,10 @@
     <EmbeddedResource Include="UserController\ctlAddBsonEl.resx">
       <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmDistinct.resx">
+    <EmbeddedResource Include="Form\Aggregation\frmDistinct.resx">
       <DependentUpon>frmDistinct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmGroup.resx">
+    <EmbeddedResource Include="Form\Aggregation\frmGroup.resx">
       <DependentUpon>frmGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\Views\ctlDataView.resx">
@@ -566,19 +575,19 @@
     <EmbeddedResource Include="Form\Connection\frmConnect.resx">
       <DependentUpon>frmConnect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmCollectionIndex.resx">
+    <EmbeddedResource Include="Form\Operation\frmCollectionIndex.resx">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmDosCommand.resx">
       <DependentUpon>frmDosCommand.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmMapReduce.resx">
+    <EmbeddedResource Include="Form\Aggregation\frmMapReduce.resx">
       <DependentUpon>frmMapReduce.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmOption.resx">
       <DependentUpon>frmOption.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmQuery.resx">
+    <EmbeddedResource Include="Form\Aggregation\frmQuery.resx">
       <DependentUpon>frmQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserController\Aggregation\ctlFieldInfo.resx">

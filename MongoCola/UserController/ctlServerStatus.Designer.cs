@@ -40,10 +40,10 @@
             this.lstSrvOpr = new System.Windows.Forms.ListView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.RefreshStripButton = new System.Windows.Forms.ToolStripButton();
-            this.btnSwitch = new System.Windows.Forms.ToolStripButton();
-            this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
             this.ExpandAllStripButton = new System.Windows.Forms.ToolStripButton();
             this.CollapseAllStripButton = new System.Windows.Forms.ToolStripButton();
+            this.btnSwitch = new System.Windows.Forms.ToolStripButton();
+            this.CloseStripButton = new System.Windows.Forms.ToolStripButton();
             this.tabSvrStatus.SuspendLayout();
             this.tabSvrBasicInfo.SuspendLayout();
             this.tabDBBasicInfo.SuspendLayout();
@@ -179,26 +179,6 @@
             this.RefreshStripButton.Text = "Refresh";
             this.RefreshStripButton.Click += new System.EventHandler(this.RefreshStripButton_Click);
             // 
-            // btnSwitch
-            // 
-            this.btnSwitch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSwitch.Image = ((System.Drawing.Image)(resources.GetObject("btnSwitch.Image")));
-            this.btnSwitch.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSwitch.Name = "btnSwitch";
-            this.btnSwitch.Size = new System.Drawing.Size(23, 22);
-            this.btnSwitch.Text = "Switch";
-            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
-            // 
-            // CloseStripButton
-            // 
-            this.CloseStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CloseStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseStripButton.Image")));
-            this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CloseStripButton.Name = "CloseStripButton";
-            this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
-            this.CloseStripButton.Text = "Close";
-            this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
-            // 
             // ExpandAllStripButton
             // 
             this.ExpandAllStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -218,6 +198,26 @@
             this.CollapseAllStripButton.Size = new System.Drawing.Size(23, 22);
             this.CollapseAllStripButton.Text = "CollapseAll";
             this.CollapseAllStripButton.Click += new System.EventHandler(this.CollapseAllStripButton_Click);
+            // 
+            // btnSwitch
+            // 
+            this.btnSwitch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSwitch.Image = ((System.Drawing.Image)(resources.GetObject("btnSwitch.Image")));
+            this.btnSwitch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSwitch.Name = "btnSwitch";
+            this.btnSwitch.Size = new System.Drawing.Size(23, 22);
+            this.btnSwitch.Text = "Switch";
+            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
+            // 
+            // CloseStripButton
+            // 
+            this.CloseStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.CloseStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseStripButton.Image")));
+            this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CloseStripButton.Name = "CloseStripButton";
+            this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CloseStripButton.Text = "Close";
+            this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 
             // ctlServerStatus
             // 
