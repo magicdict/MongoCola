@@ -38,12 +38,13 @@
             this.colIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colHost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // cmdModifyCon
             // 
             this.cmdModifyCon.BackColor = System.Drawing.Color.Transparent;
-            this.cmdModifyCon.Location = new System.Drawing.Point(478, 321);
+            this.cmdModifyCon.Location = new System.Drawing.Point(346, 12);
             this.cmdModifyCon.Name = "cmdModifyCon";
             this.cmdModifyCon.Size = new System.Drawing.Size(90, 36);
             this.cmdModifyCon.TabIndex = 9;
@@ -54,7 +55,7 @@
             // cmdDelCon
             // 
             this.cmdDelCon.BackColor = System.Drawing.Color.Transparent;
-            this.cmdDelCon.Location = new System.Drawing.Point(574, 321);
+            this.cmdDelCon.Location = new System.Drawing.Point(442, 12);
             this.cmdDelCon.Name = "cmdDelCon";
             this.cmdDelCon.Size = new System.Drawing.Size(90, 36);
             this.cmdDelCon.TabIndex = 10;
@@ -65,7 +66,7 @@
             // cmdAddCon
             // 
             this.cmdAddCon.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAddCon.Location = new System.Drawing.Point(382, 321);
+            this.cmdAddCon.Location = new System.Drawing.Point(250, 12);
             this.cmdAddCon.Name = "cmdAddCon";
             this.cmdAddCon.Size = new System.Drawing.Size(90, 36);
             this.cmdAddCon.TabIndex = 8;
@@ -76,7 +77,7 @@
             // cmdClose
             // 
             this.cmdClose.BackColor = System.Drawing.Color.Transparent;
-            this.cmdClose.Location = new System.Drawing.Point(190, 321);
+            this.cmdClose.Location = new System.Drawing.Point(295, 332);
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(90, 36);
             this.cmdClose.TabIndex = 7;
@@ -87,7 +88,7 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(72, 321);
+            this.cmdOK.Location = new System.Drawing.Point(177, 332);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(90, 36);
             this.cmdOK.TabIndex = 6;
@@ -102,12 +103,13 @@
             this.colName,
             this.colIP,
             this.colPort,
-            this.colUser});
+            this.colUser,
+            this.colHost});
             this.lstConnection.FullRowSelect = true;
             this.lstConnection.GridLines = true;
-            this.lstConnection.Location = new System.Drawing.Point(12, 12);
+            this.lstConnection.Location = new System.Drawing.Point(12, 54);
             this.lstConnection.Name = "lstConnection";
-            this.lstConnection.Size = new System.Drawing.Size(678, 303);
+            this.lstConnection.Size = new System.Drawing.Size(520, 261);
             this.lstConnection.TabIndex = 11;
             this.lstConnection.UseCompatibleStateImageBehavior = false;
             this.lstConnection.View = System.Windows.Forms.View.Details;
@@ -130,14 +132,19 @@
             // colUser
             // 
             this.colUser.Text = "User";
-            this.colUser.Width = 92;
+            this.colUser.Width = 71;
+            // 
+            // colHost
+            // 
+            this.colHost.Text = "HostList";
+            this.colHost.Width = 249;
             // 
             // frmConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(714, 380);
+            this.ClientSize = new System.Drawing.Size(549, 380);
             this.Controls.Add(this.lstConnection);
             this.Controls.Add(this.cmdModifyCon);
             this.Controls.Add(this.cmdDelCon);
@@ -168,5 +175,6 @@
         private System.Windows.Forms.ColumnHeader colIP;
         private System.Windows.Forms.ColumnHeader colPort;
         private System.Windows.Forms.ColumnHeader colUser;
+        private System.Windows.Forms.ColumnHeader colHost;
     }
 }

@@ -36,20 +36,21 @@ namespace MongoCola
             foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values
                 )
             {
-                if (item.ReplSetName == String.Empty)
+                if (item.ReplSetName == string.Empty)
                 {
                     ListViewItem t = new ListViewItem(item.ConnectionName);
-                    t.SubItems.Add((item.Host == String.Empty ? "localhost" : item.Host));
-                    t.SubItems.Add((item.Port == 0 ? String.Empty : item.Port.ToString()));
+                    t.SubItems.Add((item.Host == string.Empty ? "localhost" : item.Host));
+                    t.SubItems.Add((item.Port == 0 ? string.Empty : item.Port.ToString()));
                     t.SubItems.Add(item.UserName);
                     lstConnection.Items.Add(t);
                 }
                 else
                 {
                     ListViewItem t = new ListViewItem(item.ConnectionName);
-                    t.SubItems.Add((item.Host == String.Empty ? "localhost" : item.Host));
-                    t.SubItems.Add((item.Port == 0 ? String.Empty : item.Port.ToString()));
-                    String ReplArray = String.Empty;
+                    t.SubItems.Add((item.Host == string.Empty ? "localhost" : item.Host));
+                    t.SubItems.Add((item.Port == 0 ? string.Empty : item.Port.ToString()));
+                    t.SubItems.Add(string.Empty);
+                    string ReplArray = string.Empty;
                     foreach (var Repl in item.ReplsetList)
                     {
                         ReplArray += Repl + ";";
@@ -58,7 +59,6 @@ namespace MongoCola
                     lstConnection.Items.Add(t);
                 }
                 Common.Present.Utility.ListViewColumnResize(lstConnection);
-                //lstConnection.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             }
             lstConnection.Sort();
             SystemManager.ConfigHelperInstance.SaveToConfigFile(ConfigHelper._configFilename);
@@ -103,7 +103,7 @@ namespace MongoCola
         {
             foreach (ListViewItem item in lstConnection.CheckedItems)
             {
-                String ConnectionName = item.Text;
+                string ConnectionName = item.Text;
                 if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ConnectionName))
                 {
                     SystemManager.ConfigHelperInstance.ConnectionList.Remove(ConnectionName);
@@ -120,7 +120,7 @@ namespace MongoCola
         private void cmdModifyCon_Click(object sender, EventArgs e)
         {
             if (lstConnection.CheckedItems.Count != 1) return;
-            String ConnectionName = lstConnection.CheckedItems[0].Text;
+            string ConnectionName = lstConnection.CheckedItems[0].Text;
             SystemManager.OpenForm(new frmAddConnection(ConnectionName), true, true);
             RefreshConnection();
         }

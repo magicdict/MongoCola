@@ -347,10 +347,10 @@
     <Compile Include="UserController\ctlIndexCreate.Designer.cs">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmAddConnection.cs">
+    <Compile Include="Form\Connection\frmAddConnection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmAddConnection.Designer.cs">
+    <Compile Include="Form\Connection\frmAddConnection.Designer.cs">
       <DependentUpon>frmAddConnection.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmShardingConfig.cs">
@@ -359,10 +359,10 @@
     <Compile Include="Form\frmShardingConfig.Designer.cs">
       <DependentUpon>frmShardingConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmConnect.cs">
+    <Compile Include="Form\Connection\frmConnect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmConnect.Designer.cs">
+    <Compile Include="Form\Connection\frmConnect.Designer.cs">
       <DependentUpon>frmConnect.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmCollectionIndex.cs">
@@ -557,13 +557,13 @@
     <EmbeddedResource Include="UserController\ctlIndexCreate.resx">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmAddConnection.resx">
+    <EmbeddedResource Include="Form\Connection\frmAddConnection.resx">
       <DependentUpon>frmAddConnection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmShardingConfig.resx">
       <DependentUpon>frmShardingConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmConnect.resx">
+    <EmbeddedResource Include="Form\Connection\frmConnect.resx">
       <DependentUpon>frmConnect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmCollectionIndex.resx">
