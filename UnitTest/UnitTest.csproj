@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -56,24 +56,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmUnitTest.cs">
+    <Compile Include="Lagacy\frmUnitTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmUnitTest.Designer.cs">
+    <Compile Include="Lagacy\frmUnitTest.Designer.cs">
       <DependentUpon>frmUnitTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="InitTestData.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SystemManager.cs" />
-    <Compile Include="UserRoleTest.cs">
+    <Compile Include="Lagacy\InitTestData.cs" />
+    <Compile Include="Lagacy\SystemManager.cs" />
+    <Compile Include="Lagacy\UserRoleTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserRoleTest.Designer.cs">
+    <Compile Include="Lagacy\UserRoleTest.Designer.cs">
       <DependentUpon>UserRoleTest.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmUnitTest.resx">
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Lagacy\frmUnitTest.resx">
       <DependentUpon>frmUnitTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lagacy\UserRoleTest.resx">
+      <DependentUpon>UserRoleTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -85,9 +88,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserRoleTest.resx">
-      <DependentUpon>UserRoleTest.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -103,9 +103,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{56d74944-4b20-4941-bc67-72a8e57e5a02}</Project>
-      <Name>Common</Name>
+    <Folder Include="Lagacy" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MongoGUICtl\MongoGUICtl.csproj">
+      <Project>{EC2826B3-7033-4F9B-B52A-BD1CA85F583B}</Project>
+      <Name>MongoGUICtl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoUtility\MongoUtility.csproj">
+      <Project>{56D74944-4B20-4941-BC67-72A8E57E5A02}</Project>
+      <Name>MongoUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
+      <Project>{5AC3B529-8E37-4D99-99E9-729603E3BB5E}</Project>
+      <Name>ResourceLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

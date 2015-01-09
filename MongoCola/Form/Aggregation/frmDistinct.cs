@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Common;
 using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Common.Aggregation;
+using MongoUtility.Aggregation;
 
 namespace MongoCola
 {
@@ -33,8 +34,8 @@ namespace MongoCola
 
         private void frmSelectKey_Load(object sender, EventArgs e)
         {
-            MongoCollection mongoCol = SystemManager.GetCurrentCollection();
-            List<String> MongoColumn = MongoDbHelper.GetCollectionSchame(mongoCol);
+            MongoCollection mongoCol = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection();
+            List<String> MongoColumn = MongoUtility.Basic.Utility.GetCollectionSchame(mongoCol);
             var _conditionPos = new Point(20, 20);
             foreach (String item in MongoColumn)
             {
@@ -45,9 +46,9 @@ namespace MongoCola
                 _conditionPos.Y += ctrItem.Height;
             }
             if (SystemManager.IsUseDefaultLanguage) return;
-            cmdQuery.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Distinct_Action_LoadQuery);
-            cmdRun.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
-            lblSelectField.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Distinct_SelectField);
+            cmdQuery.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_Action_LoadQuery);
+            cmdRun.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+            lblSelectField.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_SelectField);
         }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace MongoCola
             }
             var ResultArray =
                 (BsonArray)
-                    SystemManager.GetCurrentCollection().Distinct(strKey, QueryHelper.GetQuery(DistinctConditionList));
+                    MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().Distinct(strKey, QueryHelper.GetQuery(DistinctConditionList));
             var ResultList = new List<BsonValue>();
             foreach (BsonValue item in ResultArray)
             {
@@ -90,7 +91,7 @@ namespace MongoCola
                     strResult = "Too many result,Display first 1000 records" + Environment.NewLine + strResult;
                     break;
                 }
-                strResult += item.ToJson(SystemManager.JsonWriterSettings) + Environment.NewLine;
+                strResult += item.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings) + Environment.NewLine;
                 Count++;
             }
             strResult = "Distinct Count: " + ResultList.Count + Environment.NewLine + Environment.NewLine + strResult;

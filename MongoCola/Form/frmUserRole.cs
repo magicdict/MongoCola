@@ -17,8 +17,8 @@ namespace MongoCola
             otherDBRolesPanel.IsAdmin = false;
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
             }
         }
 

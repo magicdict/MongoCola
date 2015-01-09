@@ -328,7 +328,7 @@
   <Selected_Index>選らんたインデックス</Selected_Index>
   <Selected_GFS>選らんたファイルシステム</Selected_GFS>
   <Selected_UserList>選らんたユーザーリスト</Selected_UserList>
-  <!--Common-->
+  <!--MongoUtility-->
   <Common_Username>ユーザー名</Common_Username>
   <Common_Password>パスワード</Common_Password>
   <Common_ConfirmPassword>パスワード確認</Common_ConfirmPassword>

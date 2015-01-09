@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmArrayCreator
     {
@@ -30,7 +31,7 @@
         {
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.ArrayPanel = new MongoCola.BsonValuePanel();
+            this.ArrayPanel = new BsonValuePanel();
             this.btnOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 

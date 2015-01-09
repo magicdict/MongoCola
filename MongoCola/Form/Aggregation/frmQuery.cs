@@ -1,8 +1,9 @@
-﻿using Common.Aggregation;
+﻿using MongoUtility.Aggregation;
 using MongoCola.Module;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MongoUtility.Basic;
 
 namespace MongoCola
 {
@@ -11,17 +12,17 @@ namespace MongoCola
         /// <summary>
         ///     当前DataViewInfo
         /// </summary>
-        private readonly MongoDbHelper.DataViewInfo CurrentDataViewInfo;
+        private readonly MongoUtility.Aggregation.DataViewInfo CurrentDataViewInfo;
 
         /// <summary>
         ///     初始化
         /// </summary>
         /// <param name="mDataViewInfo">Filter也是DataViewInfo的一个属性，所以这里加上参数</param>
-        public frmQuery(MongoDbHelper.DataViewInfo mDataViewInfo)
+        public frmQuery(MongoUtility.Aggregation.DataViewInfo mDataViewInfo)
         {
             InitializeComponent();
             CurrentDataViewInfo = mDataViewInfo;
-            SystemManager.SelectObjectTag = mDataViewInfo.strDBTag;
+            MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
         }
 
         /// <summary>
@@ -49,16 +50,16 @@ namespace MongoCola
                 QueryFieldPicker.InitByCurrentCollection(true);
             }
             if (SystemManager.IsUseDefaultLanguage) return;
-            Text = SystemManager.MStringResource.GetText(StringResource.TextType.Query_Title);
-            tabFieldInfo.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Query_FieldInfo);
-            tabCondition.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Query_Filter);
-            tabSql.Text = SystemManager.MStringResource.GetText(StringResource.TextType.ConvertSql_Title);
+            Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Title);
+            tabFieldInfo.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Query_FieldInfo);
+            tabCondition.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Filter);
+            tabSql.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.ConvertSql_Title);
             cmdAddCondition.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.Query_Filter_AddCondition);
-            cmdLoad.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Query_Action_Load);
-            cmdSave.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save);
-            cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
-            cmdCancel.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Filter_AddCondition);
+            cmdLoad.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Action_Load);
+            cmdSave.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
+            cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+            cmdCancel.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
         }
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace MongoCola
             }
             else
             {
-                CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text);
+                CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
             }
             //按下OK，不论是否做更改都认为True
             CurrentDataViewInfo.IsUseFilter = true;
@@ -119,7 +120,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            var savefile = new SaveFileDialog {Filter = MongoDbHelper.XmlFilter};
+            var savefile = new SaveFileDialog {Filter = Common.Utility.XmlFilter};
             if (savefile.ShowDialog() != DialogResult.OK) return;
             // 设置DataFilter
             if (string.IsNullOrEmpty(txtSql.Text))
@@ -129,7 +130,7 @@ namespace MongoCola
             }
             else
             {
-                CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text);
+            	CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
             }
             CurrentDataViewInfo.mDataFilter.SaveFilter(savefile.FileName);
         }
@@ -141,8 +142,8 @@ namespace MongoCola
         {
             //清除以前的结果和内部变量，重要！
             CurrentDataViewInfo.mDataFilter.Clear();
-            CurrentDataViewInfo.mDataFilter.DBName = SystemManager.GetCurrentDataBase().Name;
-            CurrentDataViewInfo.mDataFilter.CollectionName = SystemManager.GetCurrentCollection().Name;
+            CurrentDataViewInfo.mDataFilter.DBName = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().Name;
+            CurrentDataViewInfo.mDataFilter.CollectionName = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().Name;
             CurrentDataViewInfo.mDataFilter.QueryFieldList = QueryFieldPicker.getQueryFieldList();
             ConditionPan.SetCurrDataFilter(CurrentDataViewInfo);
         }
@@ -154,7 +155,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdLoad_Click(object sender, EventArgs e)
         {
-            var openFile = new OpenFileDialog {Filter = MongoDbHelper.XmlFilter};
+            var openFile = new OpenFileDialog {Filter = Common.Utility.XmlFilter};
             if (openFile.ShowDialog() != DialogResult.OK) return;
             DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
             CurrentDataViewInfo.mDataFilter = NewDataFilter;

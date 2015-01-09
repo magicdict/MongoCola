@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Common;
 using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoUtility.Basic;
 
 namespace MongoCola
 {
@@ -36,46 +38,46 @@ namespace MongoCola
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
+                cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
                 cmdAddHost.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
                 cmdRemoveHost.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
-                lblReplHost.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Host);
-                lblReplPort.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Port);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+                lblReplHost.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Host);
+                lblReplPort.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
 
-                Text = SystemManager.MStringResource.GetText(StringResource.TextType.ShardingConfig_Title);
+                Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_Title);
                 tabAddSharding.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.ShardingConfig_AddSharding);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_AddSharding);
                 lblMainReplsetName.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.ShardingConfig_ReplsetName);
-                cmdAddSharding.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Add);
-                chkAdvance.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Advance_Option);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_ReplsetName);
+                cmdAddSharding.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
+                chkAdvance.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Advance_Option);
                 tabShardingConfig.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.ShardingConfig_EnableSharding);
-                lblDBName.Text = SystemManager.MStringResource.GetText(StringResource.TextType.ShardingConfig_DBName);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_EnableSharding);
+                lblDBName.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_DBName);
                 lblCollection.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.ShardingConfig_CollectionName);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_CollectionName);
                 lblIndexLName.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.ShardingConfig_FieldName);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_FieldName);
                 cmdEnableCollectionSharding.Text =
-                    SystemManager.MStringResource.GetText(
+                    SystemManager.guiConfig.MStringResource.GetText(
                         StringResource.TextType.ShardingConfig_Action_CollectionSharding);
                 cmdEnableDBSharding.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.ShardingConfig_Action_DBSharding);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_Action_DBSharding);
             }
-            _prmSvr = SystemManager.GetCurrentServer();
-            MongoDatabase mongoDB = _prmSvr.GetDatabase(MongoDbHelper.DATABASE_NAME_CONFIG);
+            _prmSvr = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer();
+            MongoDatabase mongoDB = _prmSvr.GetDatabase(ConstMgr.DATABASE_NAME_CONFIG);
             MongoCollection mongoCol = mongoDB.GetCollection("databases");
             foreach (BsonDocument item in mongoCol.FindAllAs<BsonDocument>())
             {
-                if (item.GetValue(MongoDbHelper.KEY_ID) != MongoDbHelper.DATABASE_NAME_ADMIN)
+                if (item.GetValue(ConstMgr.KEY_ID) != ConstMgr.DATABASE_NAME_ADMIN)
                 {
-                    cmbDataBase.Items.Add(item.GetValue(MongoDbHelper.KEY_ID));
-                    cmbShardKeyDB.Items.Add(item.GetValue(MongoDbHelper.KEY_ID));
+                    cmbDataBase.Items.Add(item.GetValue(ConstMgr.KEY_ID));
+                    cmbShardKeyDB.Items.Add(item.GetValue(ConstMgr.KEY_ID));
                 }
             }
-            foreach (var lst in MongoDbHelper.GetShardInfo(_prmSvr, MongoDbHelper.KEY_ID))
+            foreach (var lst in MongoDbHelper.GetShardInfo(_prmSvr, ConstMgr.KEY_ID))
             {
                 lstSharding.Items.Add(lst.Value);
             }
@@ -90,8 +92,8 @@ namespace MongoCola
                         //严格意义上说，不应该在同一个路由里面出现两个同名的标签。
                         if (!TagSet.ContainsKey(tag.ToString()))
                         {
-                            TagSet.Add(tag.ToString(), mShard.GetElement(MongoDbHelper.KEY_ID).Value.ToString());
-                            cmbTagList.Items.Add(mShard.GetElement(MongoDbHelper.KEY_ID).Value + "." + tag);
+                            TagSet.Add(tag.ToString(), mShard.GetElement(ConstMgr.KEY_ID).Value.ToString());
+                            cmbTagList.Items.Add(mShard.GetElement(ConstMgr.KEY_ID).Value + "." + tag);
                         }
                     }
                 }
@@ -164,7 +166,7 @@ namespace MongoCola
             }
             Resultlst.Add(Result);
             MyMessageBox.ShowMessage("Add Sharding", "Result:" + (Result.Ok ? "OK" : "Fail"),
-                MongoDbHelper.ConvertCommandResultlstToString(Resultlst));
+                MongoUtility.Basic.Utility.ConvertCommandResultlstToString(Resultlst));
             lstSharding.Items.Clear();
             foreach (var lst in MongoDbHelper.GetShardInfo(_prmSvr, "_id"))
             {
@@ -194,7 +196,7 @@ namespace MongoCola
             }
             catch (Exception ex)
             {
-                SystemManager.ExceptionDeal(ex);
+                Common.Utility.ExceptionDeal(ex);
             }
         }
 
@@ -216,7 +218,7 @@ namespace MongoCola
             }
             catch (Exception ex)
             {
-                SystemManager.ExceptionDeal(ex);
+                Common.Utility.ExceptionDeal(ex);
             }
         }
 
@@ -239,7 +241,7 @@ namespace MongoCola
                 }
                 cmbIndexList.Text = cmbIndexList.Items[0].ToString();
                 //Tag和数据集绑定，从系统数据集tags里面读取tag的信息
-                MongoDatabase mongoDBConfig = _prmSvr.GetDatabase(MongoDbHelper.DATABASE_NAME_CONFIG);
+                MongoDatabase mongoDBConfig = _prmSvr.GetDatabase(ConstMgr.DATABASE_NAME_CONFIG);
                 MongoCollection mongoCol = mongoDBConfig.GetCollection("tags");
                 lstExistShardTag.Items.Clear();
                 lstExistShardTag.Columns.Add("Tag");
@@ -265,7 +267,7 @@ namespace MongoCola
             }
             catch (Exception ex)
             {
-                SystemManager.ExceptionDeal(ex);
+                Common.Utility.ExceptionDeal(ex);
             }
         }
 
@@ -278,7 +280,7 @@ namespace MongoCola
         {
             var Resultlst = new List<CommandResult> { CommandHelper.EnableSharding(_prmSvr, cmbDataBase.Text) };
             MyMessageBox.ShowMessage("EnableSharding", "Result",
-                MongoDbHelper.ConvertCommandResultlstToString(Resultlst));
+                MongoUtility.Basic.Utility.ConvertCommandResultlstToString(Resultlst));
         }
 
         /// <summary>
@@ -294,7 +296,7 @@ namespace MongoCola
             BsonDocument IndexDoc = Result[cmbIndexList.SelectedIndex].Key;
             Resultlst.Add(CommandHelper.ShardCollection(_prmSvr, cmbDataBase.Text + "." + cmbCollection.Text, IndexDoc));
             MyMessageBox.ShowMessage("EnableSharding", "Result",
-                MongoDbHelper.ConvertCommandResultlstToString(Resultlst));
+                MongoUtility.Basic.Utility.ConvertCommandResultlstToString(Resultlst));
         }
 
         /// <summary>
@@ -308,7 +310,7 @@ namespace MongoCola
             {
                 var Resultlst = new List<CommandResult> { CommandHelper.RemoveSharding(_prmSvr, item) };
                 MyMessageBox.ShowMessage("Remove Sharding", "Result",
-                    MongoDbHelper.ConvertCommandResultlstToString(Resultlst));
+                    MongoUtility.Basic.Utility.ConvertCommandResultlstToString(Resultlst));
             }
             lstSharding.Items.Clear();
             foreach (var lst in MongoDbHelper.GetShardInfo(_prmSvr, "_id"))
@@ -328,7 +330,7 @@ namespace MongoCola
             {
                 CommandHelper.AddShardTag(_prmSvr, txtShardName.Text, txtTagShard.Text)
             };
-            MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoDbHelper.ConvertCommandResultlstToString(Resultlst));
+            MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoUtility.Basic.Utility.ConvertCommandResultlstToString(Resultlst));
         }
 
         /// <summary>
@@ -344,7 +346,7 @@ namespace MongoCola
                     ctlBsonValueShardKeyFrom.getValue(),
                     ctlBsonValueShardKeyTo.getValue(), cmbTagList.Text.Split(".".ToCharArray())[1])
             };
-            MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoDbHelper.ConvertCommandResultlstToString(Resultlst));
+            MyMessageBox.ShowMessage("Add Shard Tag", "Result", MongoUtility.Basic.Utility.ConvertCommandResultlstToString(Resultlst));
         }
 
         /// <summary>

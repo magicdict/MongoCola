@@ -9,10 +9,10 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MongoCola</RootNamespace>
-    <AssemblyName>Mongo-Cola</AssemblyName>
+    <AssemblyName>MongoCola</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <PublishUrl>C:\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,20 +29,25 @@
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG;NET</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Commandlineparameters>MONO</Commandlineparameters>
-    <DocumentationFile>
-    </DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -75,13 +80,22 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <BaseAddress>4194304</BaseAddress>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MongoDB.Bson">
-      <HintPath>packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
+      <HintPath>..\MongoDriver\MongoDB.Bson.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Driver">
-      <HintPath>packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\MongoDriver\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -98,14 +112,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Config.cs" />
+    <Compile Include="Controller\ConfigHelper.cs" />
+    <Compile Include="Controller\SystemManager.cs" />
     <Compile Include="Form\frmExport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\frmExport.Designer.cs">
       <DependentUpon>frmExport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmMain_MenuItem.cs">
+    <Compile Include="Form\frmMainHelper.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\frmMainMenuItem.cs">
       <SubType>Form</SubType>
+      <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\frmUserRole.cs">
       <SubType>Form</SubType>
@@ -119,16 +140,13 @@
     <Compile Include="Form\frmAddRole.Designer.cs">
       <DependentUpon>frmAddRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmMainTreeView.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\ctlTextMgr.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlTextMgr.Designer.cs">
-      <DependentUpon>ctlTextMgr.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Aggregation\frmTextSearch.cs">
       <SubType>Form</SubType>
@@ -148,53 +166,11 @@
     <Compile Include="Form\Status\frmServerMonitor.Designer.cs">
       <DependentUpon>frmServerMonitor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\Aggregation\BsonValuePanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Aggregation\BsonValuePanel.Designer.cs">
-      <DependentUpon>BsonValuePanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\Operation\frmArrayCreator.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\Operation\frmArrayCreator.Designer.cs">
       <DependentUpon>frmArrayCreator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\Aggregation\MatchPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Aggregation\MatchPanel.Designer.cs">
-      <DependentUpon>MatchPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\Aggregation\ctlMatchItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Aggregation\ctlMatchItem.Designer.cs">
-      <DependentUpon>ctlMatchItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\Aggregation\GroupItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Aggregation\GroupItem.Designer.cs">
-      <DependentUpon>GroupItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\Aggregation\GroupPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Aggregation\GroupPanel.Designer.cs">
-      <DependentUpon>GroupPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\Aggregation\ConditionPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Aggregation\ConditionPanel.Designer.cs">
-      <DependentUpon>ConditionPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\Aggregation\FieldPicker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Aggregation\FieldPicker.Designer.cs">
-      <DependentUpon>FieldPicker.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Aggregation\frmAggregation.cs">
       <SubType>Form</SubType>
@@ -207,36 +183,6 @@
     </Compile>
     <Compile Include="Form\Aggregation\frmAggregationCondition.Designer.cs">
       <DependentUpon>frmAggregationCondition.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\UserRolesPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\UserRolesPanel.Designer.cs">
-      <DependentUpon>UserRolesPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\Views\ctlDocumentView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Views\ctlDocumentView.Designer.cs">
-      <DependentUpon>ctlDocumentView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\ctlGeoNear.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlGeoNear.Designer.cs">
-      <DependentUpon>ctlGeoNear.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\Views\ctlUserView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Views\ctlUserView.Designer.cs">
-      <DependentUpon>ctlUserView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\Views\ctlGFSView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Views\ctlGFSView.Designer.cs">
-      <DependentUpon>ctlGFSView.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Operation\frmElement.cs">
       <SubType>Form</SubType>
@@ -292,24 +238,6 @@
     <Compile Include="Form\frmReplsetMgr.Designer.cs">
       <DependentUpon>frmReplsetMgr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmGenerateConfigIni.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\frmGenerateConfigIni.Designer.cs">
-      <DependentUpon>frmGenerateConfigIni.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\ctlJsEditor.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlJsEditor.Designer.cs">
-      <DependentUpon>ctlJsEditor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\ctlBsonValue.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlBsonValue.Designer.cs">
-      <DependentUpon>ctlBsonValue.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\frmEvalJS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -322,12 +250,6 @@
     <Compile Include="Form\frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlAddBsonEl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlAddBsonEl.Designer.cs">
-      <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\Aggregation\frmDistinct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -339,18 +261,6 @@
     </Compile>
     <Compile Include="Form\Aggregation\frmGroup.Designer.cs">
       <DependentUpon>frmGroup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\Views\ctlDataView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Views\ctlDataView.Designer.cs">
-      <DependentUpon>ctlDataView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\ctlIndexCreate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlIndexCreate.Designer.cs">
-      <DependentUpon>ctlIndexCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Connection\frmAddConnection.cs">
       <SubType>Form</SubType>
@@ -376,12 +286,6 @@
     <Compile Include="Form\Operation\frmCollectionIndex.Designer.cs">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmDosCommand.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form\frmDosCommand.Designer.cs">
-      <DependentUpon>frmDosCommand.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form\Aggregation\frmMapReduce.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -400,50 +304,8 @@
     <Compile Include="Form\Aggregation\frmQuery.Designer.cs">
       <DependentUpon>frmQuery.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\Aggregation\ctlFieldInfo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\Aggregation\ctlFieldInfo.Designer.cs">
-      <DependentUpon>ctlFieldInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\ctlQueryCondition.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlQueryCondition.Designer.cs">
-      <DependentUpon>ctlQueryCondition.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\ctlMongoImportExport.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlMongoImportExport.Designer.cs">
-      <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\ctlMongod.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlMongod.Designer.cs">
-      <DependentUpon>ctlMongod.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\ctllogLv.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctllogLv.Designer.cs">
-      <DependentUpon>ctllogLv.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserController\ctlMongodump.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlMongodump.Designer.cs">
-      <DependentUpon>ctlMongodump.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserController\ctlServerStatus.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserController\ctlServerStatus.Designer.cs">
-      <DependentUpon>ctlServerStatus.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form\frmAddRole.resx">
       <DependentUpon>frmAddRole.cs</DependentUpon>
     </EmbeddedResource>
@@ -457,9 +319,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlTextMgr.resx">
-      <DependentUpon>ctlTextMgr.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\Operation\frmArrayCreator.resx">
       <DependentUpon>frmArrayCreator.cs</DependentUpon>
     </EmbeddedResource>
@@ -472,38 +331,11 @@
     <EmbeddedResource Include="Form\Status\frmServerMonitor.resx">
       <DependentUpon>frmServerMonitor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\BsonValuePanel.resx">
-      <DependentUpon>BsonValuePanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\ctlMatchItem.resx">
-      <DependentUpon>ctlMatchItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\GroupItem.resx">
-      <DependentUpon>GroupItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\GroupPanel.resx">
-      <DependentUpon>GroupPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\ConditionPanel.resx">
-      <DependentUpon>ConditionPanel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\Aggregation\frmAggregation.resx">
       <DependentUpon>frmAggregation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Aggregation\frmAggregationCondition.resx">
       <DependentUpon>frmAggregationCondition.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\UserRolesPanel.resx">
-      <DependentUpon>UserRolesPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Views\ctlDocumentView.resx">
-      <DependentUpon>ctlDocumentView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlGeoNear.resx">
-      <DependentUpon>ctlGeoNear.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Views\ctlUserView.resx">
-      <DependentUpon>ctlUserView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Operation\frmCreateCollection.resx">
       <DependentUpon>frmCreateCollection.cs</DependentUpon>
@@ -532,39 +364,17 @@
     <EmbeddedResource Include="Form\frmReplsetMgr.resx">
       <DependentUpon>frmReplsetMgr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmGenerateConfigIni.resx">
-      <DependentUpon>frmGenerateConfigIni.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Views\ctlGFSView.resx">
-      <DependentUpon>ctlGFSView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlJsEditor.resx">
-      <DependentUpon>ctlJsEditor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlBsonValue.resx">
-      <DependentUpon>ctlBsonValue.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmEvalJS.resx">
       <DependentUpon>frmEvalJS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlAddBsonEl.resx">
-      <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\Aggregation\frmDistinct.resx">
       <DependentUpon>frmDistinct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Aggregation\frmGroup.resx">
       <DependentUpon>frmGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Views\ctlDataView.resx">
-      <DependentUpon>ctlDataView.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlIndexCreate.resx">
-      <DependentUpon>ctlIndexCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Connection\frmAddConnection.resx">
       <DependentUpon>frmAddConnection.cs</DependentUpon>
@@ -578,9 +388,6 @@
     <EmbeddedResource Include="Form\Operation\frmCollectionIndex.resx">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmDosCommand.resx">
-      <DependentUpon>frmDosCommand.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form\Aggregation\frmMapReduce.resx">
       <DependentUpon>frmMapReduce.cs</DependentUpon>
     </EmbeddedResource>
@@ -589,30 +396,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Aggregation\frmQuery.resx">
       <DependentUpon>frmQuery.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\ctlFieldInfo.resx">
-      <DependentUpon>ctlFieldInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlQueryCondition.resx">
-      <DependentUpon>ctlQueryCondition.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlMongoImportExport.resx">
-      <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctllogLv.resx">
-      <DependentUpon>ctllogLv.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlMongod.resx">
-      <DependentUpon>ctlMongod.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlMongodump.resx">
-      <DependentUpon>ctlMongodump.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlServerStatus.resx">
-      <DependentUpon>ctlServerStatus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\FieldPicker.resx">
-      <DependentUpon>FieldPicker.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
@@ -671,19 +454,33 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{56d74944-4b20-4941-bc67-72a8e57e5a02}</Project>
+      <Project>{40495682-C452-41C4-B2AE-8C60D7743BC9}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\GUI\GUI.csproj">
-      <Project>{8e604d46-99a8-47a0-a533-d83b2b6a83b9}</Project>
-      <Name>GUI</Name>
+    <ProjectReference Include="..\MongoGUICtl\MongoGUICtl.csproj">
+      <Project>{EC2826B3-7033-4F9B-B52A-BD1CA85F583B}</Project>
+      <Name>MongoGUICtl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoGUIView\MongoGUIView.csproj">
+      <Project>{E71AF267-0DFD-4E71-94A7-48F40793CEEF}</Project>
+      <Name>MongoGUIView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoUtility\MongoUtility.csproj">
+      <Project>{56D74944-4B20-4941-BC67-72A8E57E5A02}</Project>
+      <Name>MongoUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlugInPackage\PlugInPackage.csproj">
+      <Project>{0D765082-CFF4-4BDC-8106-9281DA9D0BB4}</Project>
+      <Name>PlugInPackage</Name>
     </ProjectReference>
     <ProjectReference Include="..\ResourceLib\ResourceLib.csproj">
       <Project>{5ac3b529-8e37-4d99-99e9-729603e3bb5e}</Project>
       <Name>ResourceLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controller" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

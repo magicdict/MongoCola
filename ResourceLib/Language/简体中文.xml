@@ -329,7 +329,7 @@
   <Selected_Index>选中索引</Selected_Index>
   <Selected_GFS>选中文件系统</Selected_GFS>
   <Selected_UserList>选中用户列表</Selected_UserList>
-  <!--Common-->
+  <!--MongoUtility-->
   <Common_Username>用户名</Common_Username>
   <Common_Password>密码</Common_Password>
   <Common_ConfirmPassword>密码确认</Common_ConfirmPassword>

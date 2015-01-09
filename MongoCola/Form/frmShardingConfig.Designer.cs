@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmShardingConfig
     {
@@ -72,8 +73,8 @@
             this.txtShardName = new System.Windows.Forms.TextBox();
             this.lblTagShard = new System.Windows.Forms.Label();
             this.lblShardName = new System.Windows.Forms.Label();
-            this.ctlBsonValueShardKeyTo = new MongoCola.ctlBsonValue();
-            this.ctlBsonValueShardKeyFrom = new MongoCola.ctlBsonValue();
+            this.ctlBsonValueShardKeyTo = new ctlBsonValue();
+            this.ctlBsonValueShardKeyFrom = new ctlBsonValue();
             this.tabRemoveSharding = new System.Windows.Forms.TabPage();
             this.lstSharding = new System.Windows.Forms.ListBox();
             this.cmdRemoveSharding = new System.Windows.Forms.Button();

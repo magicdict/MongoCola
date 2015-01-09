@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using MongoGUICtl;
 namespace MongoCola
 {
     partial class frmCollectionIndex
@@ -43,11 +44,11 @@ namespace MongoCola
             this.chkIsSparse = new System.Windows.Forms.CheckBox();
             this.chkIsDroppedDups = new System.Windows.Forms.CheckBox();
             this.chkIsBackground = new System.Windows.Forms.CheckBox();
-            this.ctlIndexCreate5 = new MongoCola.ctlIndexCreate();
-            this.ctlIndexCreate4 = new MongoCola.ctlIndexCreate();
-            this.ctlIndexCreate3 = new MongoCola.ctlIndexCreate();
-            this.ctlIndexCreate2 = new MongoCola.ctlIndexCreate();
-            this.ctlIndexCreate1 = new MongoCola.ctlIndexCreate();
+            this.ctlIndexCreate5 = new ctlIndexCreate();
+            this.ctlIndexCreate4 = new ctlIndexCreate();
+            this.ctlIndexCreate3 = new ctlIndexCreate();
+            this.ctlIndexCreate2 = new ctlIndexCreate();
+            this.ctlIndexCreate1 = new ctlIndexCreate();
             this.tabIndexMgr.SuspendLayout();
             this.tabCurrentIndex.SuspendLayout();
             this.tabIndexManager.SuspendLayout();

@@ -1,4 +1,6 @@
-﻿namespace MongoCola
+﻿using Common;
+using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmAggregationCondition
     {
@@ -30,15 +32,15 @@
         {
             this.tabAggregation = new System.Windows.Forms.TabControl();
             this.tabProject = new System.Windows.Forms.TabPage();
-            this.QueryFieldPicker = new MongoCola.FieldPicker();
+            this.QueryFieldPicker = new FieldPicker();
             this.tabMatch = new System.Windows.Forms.TabPage();
             this.btnClearMatch = new System.Windows.Forms.Button();
             this.btnAddMatch = new System.Windows.Forms.Button();
             this.tabGroup = new System.Windows.Forms.TabPage();
             this.btnClear = new System.Windows.Forms.Button();
             this.cmdAddGroupItem = new System.Windows.Forms.Button();
-            this.GroupFieldPicker = new MongoCola.FieldPicker();
-            this.groupPanelCreator = new MongoCola.GroupPanel();
+            this.GroupFieldPicker = new FieldPicker();
+            this.groupPanelCreator = new GroupPanel();
             this.lblID = new System.Windows.Forms.Label();
             this.tabOption = new System.Windows.Forms.TabPage();
             this.txtSkip = new System.Windows.Forms.TextBox();
@@ -46,7 +48,7 @@
             this.chkSkip = new System.Windows.Forms.CheckBox();
             this.chkLimit = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
-            this.MatchListPanel = new MongoCola.MatchPanel();
+            this.MatchListPanel = new MatchPanel();
             this.tabAggregation.SuspendLayout();
             this.tabProject.SuspendLayout();
             this.tabMatch.SuspendLayout();
@@ -82,7 +84,7 @@
             this.QueryFieldPicker.AutoScroll = true;
             this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
             this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryFieldPicker.FieldListMode = MongoCola.ctlFieldInfo.FieldMode.FieldProject;
+            this.QueryFieldPicker.FieldListMode = ctlFieldInfo.FieldMode.FieldProject;
             this.QueryFieldPicker.IsIDProtect = false;
             this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
             this.QueryFieldPicker.Name = "QueryFieldPicker";
@@ -161,7 +163,7 @@
             // 
             this.GroupFieldPicker.AutoScroll = true;
             this.GroupFieldPicker.BackColor = System.Drawing.Color.White;
-            this.GroupFieldPicker.FieldListMode = MongoCola.ctlFieldInfo.FieldMode.FieldProject;
+            this.GroupFieldPicker.FieldListMode = ctlFieldInfo.FieldMode.FieldProject;
             this.GroupFieldPicker.IsIDProtect = false;
             this.GroupFieldPicker.Location = new System.Drawing.Point(6, 30);
             this.GroupFieldPicker.Name = "GroupFieldPicker";

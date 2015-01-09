@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmTextSearch
     {
@@ -36,7 +37,7 @@
             this.lblLanguage = new System.Windows.Forms.Label();
             this.lblLimit = new System.Windows.Forms.Label();
             this.NUDLimit = new System.Windows.Forms.NumericUpDown();
-            this.trvResult = new TreeViewColumnsProject.TreeViewColumns();
+            this.trvResult = new ctlTreeViewColumns();
             this.lnkRef = new System.Windows.Forms.LinkLabel();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
@@ -197,7 +198,7 @@
 
         #endregion
 
-        private TreeViewColumnsProject.TreeViewColumns trvResult;
+        private MongoGUICtl.ctlTreeViewColumns trvResult;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label lblInput;
         private System.Windows.Forms.TextBox txtKey;

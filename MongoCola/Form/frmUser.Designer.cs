@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using MongoGUICtl.UserController;
 namespace MongoCola
 {
     partial class frmUser
@@ -48,7 +49,7 @@ namespace MongoCola
             this.lstOtherRoles = new System.Windows.Forms.ListView();
             this.colDataBase = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colRoles = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.userRoles = new MongoCola.UserController.UserRolesPanel();
+            this.userRoles = new ctlUserRolesPanel();
             this.cmdDelRole = new System.Windows.Forms.Button();
             this.cmdModifyRole = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -272,7 +273,7 @@ namespace MongoCola
         private TextBox txtUserName;
         private Label lblConfirmPsw;
         private TextBox txtConfirmPsw;
-        private UserController.UserRolesPanel userRoles;
+        private ctlUserRolesPanel userRoles;
         private Label lbluserSource;
         private TextBox txtuserSource;
         private Label lblotherDBRoles;

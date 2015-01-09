@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmElement
     {
@@ -30,7 +31,7 @@
         {
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
-            this.AddBsonElement = new MongoCola.ctlAddBsonEl();
+            this.AddBsonElement = new ctlAddBsonEl();
             this.SuspendLayout();
             // 
             // cmdCancel

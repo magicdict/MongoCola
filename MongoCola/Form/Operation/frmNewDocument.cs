@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MongoCola.Module;
 using MongoDB.Bson;
+using MongoUtility.Basic;
 
 namespace MongoCola
 {
@@ -32,19 +33,19 @@ namespace MongoCola
                 }
                 catch (Exception ex)
                 {
-                    SystemManager.ExceptionDeal(ex, "Error", "Format Error");
+                    Common.Utility.ExceptionDeal(ex, "Error", "Format Error");
                 }
             }
             else
             {
                 try
                 {
-                    MongoDbHelper.InsertEmptyDocument(SystemManager.GetCurrentCollection(), true);
+                    MongoDbHelper.InsertEmptyDocument(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection(), true);
                     Close();
                 }
                 catch (Exception ex)
                 {
-                    SystemManager.ExceptionDeal(ex, "Error", "InsertEmptyDocument Error");
+                    Common.Utility.ExceptionDeal(ex, "Error", "InsertEmptyDocument Error");
                 }
             }
         }
@@ -70,13 +71,13 @@ namespace MongoCola
             {
                 BsonDocument newdoc;
                 newdoc = BsonDocument.Parse(txtDocument.Text);
-                MongoDbHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
+                MongoGUICtl.UIHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
                 trvNewDocument.TreeView.ExpandAll();
-                txtDocument.Text = newdoc.ToJson(SystemManager.JsonWriterSettings);
+                txtDocument.Text = newdoc.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings);
             }
             catch (Exception ex)
             {
-                SystemManager.ExceptionDeal(ex);
+                Common.Utility.ExceptionDeal(ex);
             }
         }
 
@@ -89,7 +90,7 @@ namespace MongoCola
         {
             if (txtDocument.Text != string.Empty)
             {
-                SystemManager.SaveTextFile(txtDocument.Text, MongoDbHelper.TxtFilter);
+                Common.Utility.SaveTextFile(txtDocument.Text, Common.Utility.TxtFilter);
             }
         }
 
@@ -101,10 +102,10 @@ namespace MongoCola
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
             if (SystemManager.IsUseDefaultLanguage) return;
-            cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
-            cmdSaveAggregate.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save);
-            cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
-            //cmdPreview.Text = SystemManager.mStringResource.GetText();
+            cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+            cmdSaveAggregate.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
+            cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+            //cmdPreview.Text = SystemManager.guiConfig.MStringResource.GetText();
         }
     }
 }

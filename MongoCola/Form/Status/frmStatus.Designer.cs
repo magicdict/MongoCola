@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmStatus
     {
@@ -35,7 +36,7 @@
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbChartField = new System.Windows.Forms.ComboBox();
             this.btnOpCnt = new System.Windows.Forms.Button();
-            this.trvStatus = new TreeViewColumnsProject.TreeViewColumns();
+            this.trvStatus = new ctlTreeViewColumns();
             ((System.ComponentModel.ISupportInitialize)(this.chartResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,7 +118,7 @@
         #endregion
 
         private System.Windows.Forms.Button cmdClose;
-        private TreeViewColumnsProject.TreeViewColumns trvStatus;
+        private MongoGUICtl.ctlTreeViewColumns trvStatus;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartResult;
         private System.Windows.Forms.ComboBox cmbChartField;
         private System.Windows.Forms.Button btnOpCnt;

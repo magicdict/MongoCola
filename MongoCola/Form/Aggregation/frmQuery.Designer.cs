@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmQuery
     {
@@ -32,13 +33,13 @@
             this.cmdOK = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabFieldInfo = new System.Windows.Forms.TabPage();
-            this.QueryFieldPicker = new MongoCola.FieldPicker();
+            this.QueryFieldPicker = new FieldPicker();
             this.tabCondition = new System.Windows.Forms.TabPage();
             this.btnClear = new System.Windows.Forms.Button();
             this.panFilter = new System.Windows.Forms.Panel();
-            this.ConditionPan = new MongoCola.ConditionPanel();
+            this.ConditionPan = new ConditionPanel();
             this.tabGeoNear = new System.Windows.Forms.TabPage();
-            this.GeoNear = new MongoCola.ctlGeoNear();
+            this.GeoNear = new ctlGeoNear();
             this.tabSql = new System.Windows.Forms.TabPage();
             this.lblAttentionSelectOnly = new System.Windows.Forms.Label();
             this.txtSql = new System.Windows.Forms.TextBox();
@@ -104,7 +105,7 @@
             this.QueryFieldPicker.AutoScroll = true;
             this.QueryFieldPicker.BackColor = System.Drawing.Color.White;
             this.QueryFieldPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QueryFieldPicker.FieldListMode = MongoCola.ctlFieldInfo.FieldMode.FiledSort;
+            this.QueryFieldPicker.FieldListMode = ctlFieldInfo.FieldMode.FiledSort;
             this.QueryFieldPicker.IsIDProtect = true;
             this.QueryFieldPicker.Location = new System.Drawing.Point(3, 3);
             this.QueryFieldPicker.Name = "QueryFieldPicker";

@@ -26,12 +26,12 @@ namespace MongoCola
             if (!SystemManager.IsUseDefaultLanguage)
             {
                 ctlMapFunction.Title =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.MapReduce_MapFunction);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_MapFunction);
                 ctlReduceFunction.Title =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.MapReduce_ReduceFunction);
-                lblResult.Text = SystemManager.MStringResource.GetText(StringResource.TextType.MapReduce_Result);
-                cmdRun.Text = SystemManager.MStringResource.GetText(StringResource.TextType.MapReduce_Run);
-                cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_ReduceFunction);
+                lblResult.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_Result);
+                cmdRun.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_Run);
+                cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
             ctlMapFunction.Context =
                 @"function Map(){
@@ -62,8 +62,8 @@ namespace MongoCola
             MapReduceArgs args = new MapReduceArgs();
             args.MapFunction = map;
             args.ReduceFunction = reduce;
-            MapReduceResult mMapReduceResult = SystemManager.GetCurrentCollection().MapReduce(args);
-            MongoDbHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
+            MapReduceResult mMapReduceResult = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().MapReduce(args);
+            MongoGUICtl.UIHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
             trvResult.DatatreeView.BeginUpdate();
             trvResult.DatatreeView.ExpandAll();
             trvResult.DatatreeView.EndUpdate();

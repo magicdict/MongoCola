@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmEvalJS
     {
@@ -31,7 +32,7 @@
             this.cmdEval = new System.Windows.Forms.Button();
             this.txtParm = new System.Windows.Forms.TextBox();
             this.lblParm = new System.Windows.Forms.Label();
-            this.ctlEval = new MongoCola.ctlTextMgr();
+            this.ctlEval = new ctlTextMgr();
             this.SuspendLayout();
             // 
             // cmdEval
@@ -98,6 +99,6 @@
         private System.Windows.Forms.Button cmdEval;
         private System.Windows.Forms.Label lblParm;
         private System.Windows.Forms.TextBox txtParm;
-        private ctlTextMgr ctlEval;
+        private MongoGUICtl.ctlTextMgr ctlEval;
     }
 }

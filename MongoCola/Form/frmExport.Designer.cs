@@ -1,4 +1,4 @@
-﻿using GUI;
+﻿using Common;
 namespace MongoCola
 {
     partial class frmExport

@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmMapReduce
     {
@@ -30,9 +31,9 @@
         {
             this.lblResult = new System.Windows.Forms.Label();
             this.cmdRun = new System.Windows.Forms.Button();
-            this.ctlMapFunction = new MongoCola.ctlTextMgr();
-            this.trvResult = new TreeViewColumnsProject.TreeViewColumns();
-            this.ctlReduceFunction = new MongoCola.ctlTextMgr();
+            this.ctlMapFunction = new ctlTextMgr();
+            this.trvResult  = new ctlTreeViewColumns();
+            this.ctlReduceFunction = new ctlTextMgr();
             this.cmdClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -126,9 +127,10 @@
 
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Button cmdRun;
-        private TreeViewColumnsProject.TreeViewColumns trvResult;
-        private ctlTextMgr ctlMapFunction;
-        private ctlTextMgr ctlReduceFunction;
+        
+        private MongoGUICtl.ctlTreeViewColumns trvResult;
+        private MongoGUICtl.ctlTextMgr ctlMapFunction;
+        private MongoGUICtl.ctlTextMgr ctlReduceFunction;
         private System.Windows.Forms.Button cmdClose;
     }
 }

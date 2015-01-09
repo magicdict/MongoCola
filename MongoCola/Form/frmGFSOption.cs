@@ -2,7 +2,8 @@
 using System.IO;
 using System.Windows.Forms;
 using MongoCola.Module;
-using Common.GFS;
+using MongoUtility;
+
 
 namespace MongoCola
 {
@@ -63,27 +64,27 @@ namespace MongoCola
         {
             if (SystemManager.IsUseDefaultLanguage) return;
             grpFilename.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_RemoteFileName);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_RemoteFileName);
             radFilename.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_OnlyFilename);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_OnlyFilename);
             radFullPath.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FullPath);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FullPath);
             grpFileAlreadyExist.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FileAlreadyExist);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FileAlreadyExist);
             radAddIt.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_JustAddIt);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_JustAddIt);
             radOverwrite.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Overwrite);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Overwrite);
             radRenameIt.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Rename);
-            radSkipIt.Text = SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_SkipIt);
-            radStopIt.Text = SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Stop);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Rename);
+            radSkipIt.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_SkipIt);
+            radStopIt.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Stop);
             chkIgnore.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_IngoreSubFolder);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_IngoreSubFolder);
             lblSeperateChar.Text =
-                SystemManager.MStringResource.GetText(
+                SystemManager.guiConfig.MStringResource.GetText(
                     StringResource.TextType.GFS_Insert_Option_DirectorySeparatorChar);
-            cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
+            cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
         }
     }
 }

@@ -17,8 +17,8 @@ namespace MongoCola
             InitializeComponent();
             txtLimit.Enabled = chkLimit.Checked;
             txtSkip.Enabled = chkSkip.Checked;
-            txtLimit.KeyPress += MongoDbHelper.NumberTextInt_KeyPress;
-            txtSkip.KeyPress += MongoDbHelper.NumberTextInt_KeyPress;
+            txtLimit.KeyPress += Common.NumberTextBox.NumberTextInt_KeyPress;
+            txtSkip.KeyPress += Common.NumberTextBox.NumberTextInt_KeyPress;
 
             chkSkip.CheckedChanged += (x, y) => { txtSkip.Enabled = chkSkip.Checked; };
             chkLimit.CheckedChanged += (x, y) => { txtLimit.Enabled = chkLimit.Checked; };

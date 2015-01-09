@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmGroup
     {
@@ -47,8 +48,8 @@
             this.tabResult = new System.Windows.Forms.TabPage();
             this.chartResult = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmdQuery = new System.Windows.Forms.Button();
-            this.ctlReduce = new MongoCola.ctlTextMgr();
-            this.ctlFinalize = new MongoCola.ctlTextMgr();
+            this.ctlReduce = new ctlTextMgr();
+            this.ctlFinalize = new ctlTextMgr();
             this.tabGroup.SuspendLayout();
             this.tabReduce.SuspendLayout();
             this.tabFinalize.SuspendLayout();
@@ -307,7 +308,7 @@
         private System.Windows.Forms.TabPage tabResult;
         private System.Windows.Forms.Button cmdQuery;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartResult;
-        private ctlTextMgr ctlReduce;
-        private ctlTextMgr ctlFinalize;
+        private MongoGUICtl.ctlTextMgr ctlReduce;
+        private MongoGUICtl.ctlTextMgr ctlFinalize;
     }
 }

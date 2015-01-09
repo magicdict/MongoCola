@@ -12,7 +12,6 @@ namespace HTTPServer
         [STAThread]
         private static void Main()
         {
-            SystemManager.ConfigHelperInstance = ConfigHelper.LoadFromConfigFile(ConfigHelper._configFilename);
             GetSystemIcon.InitMainTreeImage();
             Application.Run(new Console());
         }

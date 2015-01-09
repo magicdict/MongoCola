@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmAggregation
     {
@@ -36,8 +37,8 @@
             this.lblAggregatePipeline = new System.Windows.Forms.Label();
             this.cmbForAggregatePipeline = new System.Windows.Forms.ComboBox();
             this.cmdClear = new System.Windows.Forms.Button();
-            this.trvCondition = new TreeViewColumnsProject.TreeViewColumns();
-            this.trvResult = new TreeViewColumnsProject.TreeViewColumns();
+            this.trvCondition  = new ctlTreeViewColumns();
+            this.trvResult = new ctlTreeViewColumns();
             this.btnAggrBuilder = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -176,10 +177,10 @@
 
         #endregion
 
-        private TreeViewColumnsProject.TreeViewColumns trvResult;
+        private MongoGUICtl.ctlTreeViewColumns trvResult;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Button cmdRun;
-        private TreeViewColumnsProject.TreeViewColumns trvCondition;
+        private MongoGUICtl.ctlTreeViewColumns trvCondition;
         private System.Windows.Forms.Button cmdAddCondition;
         private System.Windows.Forms.LinkLabel lnkReference;
         private System.Windows.Forms.Button cmdSaveAggregatePipeline;

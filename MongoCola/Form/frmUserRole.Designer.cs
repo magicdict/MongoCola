@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl.UserController;
+namespace MongoCola
 {
     partial class frmUserRole
     {
@@ -28,7 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.otherDBRolesPanel = new MongoCola.UserController.UserRolesPanel();
+            this.otherDBRolesPanel = new ctlUserRolesPanel();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -78,7 +79,7 @@
 
         #endregion
 
-        private UserController.UserRolesPanel otherDBRolesPanel;
+        private ctlUserRolesPanel otherDBRolesPanel;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.Button cmdCancel;
     }

@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmNewDocument
     {
@@ -32,7 +33,7 @@
             this.txtDocument = new System.Windows.Forms.TextBox();
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdClose = new System.Windows.Forms.Button();
-            this.trvNewDocument = new TreeViewColumnsProject.TreeViewColumns();
+            this.trvNewDocument  = new ctlTreeViewColumns();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdPreview = new System.Windows.Forms.Button();
             this.cmdSaveAggregate = new System.Windows.Forms.Button();
@@ -135,7 +136,7 @@
         private System.Windows.Forms.TextBox txtDocument;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.Button cmdClose;
-        private TreeViewColumnsProject.TreeViewColumns trvNewDocument;
+        private MongoGUICtl.ctlTreeViewColumns trvNewDocument;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button cmdPreview;
         private System.Windows.Forms.Button cmdSaveAggregate;

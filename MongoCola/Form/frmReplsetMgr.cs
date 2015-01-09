@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Windows.Forms;
+using Common;
 using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoUtility.Basic;
 
 namespace MongoCola
 {
     public partial class frmReplsetMgr : Form
     {
-        private ConfigHelper.MongoConnectionConfig _config;
+        private MongoUtility.Core.MongoConnectionConfig _config;
 
-        public frmReplsetMgr(ref ConfigHelper.MongoConnectionConfig config)
+        public frmReplsetMgr(ref MongoUtility.Core.MongoConnectionConfig config)
         {
             InitializeComponent();
-            _config = config;
+            MongoUtility.Core.RuntimeMongoDBContext._CurrentMongoConnectionconfig = config;
         }
 
         /// <summary>
@@ -24,11 +26,11 @@ namespace MongoCola
         {
             try
             {
-                CommandResult Result = CommandHelper.AddToReplsetServer(SystemManager.GetCurrentServer(),
+                CommandResult Result = CommandHelper.AddToReplsetServer(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer(),
                     txtReplHost.Text + ":" + NumReplPort.Value, (int) NumPriority.Value, chkArbiterOnly.Checked);
                 if (CommandHelper.IsShellOK(Result))
                 {
-                    _config.ReplsetList.Add(txtReplHost.Text + ":" + NumReplPort.Value);
+                    MongoUtility.Core.RuntimeMongoDBContext._CurrentMongoConnectionconfig.ReplsetList.Add(txtReplHost.Text + ":" + NumReplPort.Value);
                     MyMessageBox.ShowMessage("Add Memeber", "Result:OK");
                 }
                 else
@@ -38,7 +40,7 @@ namespace MongoCola
             }
             catch (Exception ex)
             {
-                SystemManager.ExceptionDeal(ex);
+                Common.Utility.ExceptionDeal(ex);
             }
         }
 
@@ -50,8 +52,8 @@ namespace MongoCola
         private void cmdRemoveHost_Click(object sender, EventArgs e)
         {
             //使用修改系统数据集和repleSetReconfig
-            MongoCollection replsetCol = SystemManager.GetCurrentServer().
-                GetDatabase(MongoDbHelper.DATABASE_NAME_LOCAL).GetCollection("system.replset");
+            MongoCollection replsetCol = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer().
+                GetDatabase(ConstMgr.DATABASE_NAME_LOCAL).GetCollection("system.replset");
             var ReplsetDoc = replsetCol.FindOneAs<BsonDocument>();
             BsonArray memberlist = ReplsetDoc.GetElement("members").Value.AsBsonArray;
             String strHost = lstHost.SelectedItem.ToString();
@@ -63,15 +65,15 @@ namespace MongoCola
             }
             try
             {
-                CommandHelper.ReconfigReplsetServer(SystemManager.GetCurrentServer(), ReplsetDoc);
+                CommandHelper.ReconfigReplsetServer(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer(), ReplsetDoc);
                 //由于这个命令会触发异常，所以没有Result可以获得
-                _config.ReplsetList.Remove(strHost);
+                MongoUtility.Core.RuntimeMongoDBContext._CurrentMongoConnectionconfig.ReplsetList.Remove(strHost);
                 lstHost.Items.Remove(lstHost.SelectedItem);
                 MyMessageBox.ShowMessage("Remove Memeber", "Please wait one minute and check the server list");
             }
             catch (Exception ex)
             {
-                SystemManager.ExceptionDeal(ex);
+                Common.Utility.ExceptionDeal(ex);
             }
         }
 
@@ -79,22 +81,22 @@ namespace MongoCola
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                Text = SystemManager.MStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ReplicaSet);
+                Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ReplicaSet);
                 grpAddHost.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
                 grpRemoveHost.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
-                cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+                cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
                 cmdAddHost.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
                 cmdRemoveHost.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
-                lblpriority.Text = SystemManager.MStringResource.GetText(StringResource.TextType.AddConnection_Priority);
-                lblReplHost.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Host);
-                lblReplPort.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Port);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+                lblpriority.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Priority);
+                lblReplHost.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Host);
+                lblReplPort.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
             }
 
-            MongoServer server = SystemManager.GetCurrentServer();
+            MongoServer server = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer();
             foreach (MongoServerInstance item in server.Instances)
             {
                 lstHost.Items.Add(item.Address.ToString());

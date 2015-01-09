@@ -1,4 +1,7 @@
-﻿using Common.Security;
+﻿using Common;
+using MongoGUIView;
+using MongoUtility.Basic;
+using MongoUtility.Security;
 using MongoCola.Module;
 using System;
 using System.Collections.Generic;
@@ -20,16 +23,16 @@ namespace MongoCola
         private void frmAddRole_Load(object sender, EventArgs e)
         {
             cmbResourceType.Items.Clear();
-            foreach (var item in Enum.GetNames(typeof(Common.Security.Resource.ResourceType)))
+            foreach (var item in Enum.GetNames(typeof(MongoUtility.Security.Resource.ResourceType)))
             {
                 cmbResourceType.Items.Add(item.ToString());
             }
             cmbDatabase.Items.Clear();
-            foreach (String item in SystemManager.GetCurrentServer().GetDatabaseNames())
+            foreach (String item in MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer().GetDatabaseNames())
             {
                 cmbDatabase.Items.Add(item);
             }
-            foreach (var item in System.Enum.GetValues(typeof(Common.Security.Action.ActionGroup)))
+            foreach (var item in System.Enum.GetValues(typeof(MongoUtility.Security.MongoDBAction.ActionGroup)))
             {
                 cmbActionGroup.Items.Add(item.ToString().Replace("_", " "));
             }
@@ -56,10 +59,10 @@ namespace MongoCola
         private void btnAddRole_Click(object sender, EventArgs e)
         {
             Role r = new Role();
-            if (SystemManager.GetCurrentDataBase() != null) {
-                r.database = SystemManager.GetCurrentDataBase().Name;
+            if (MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase() != null) {
+                r.database = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().Name;
             } else {
-                r.database = MongoDbHelper.DATABASE_NAME_ADMIN;
+                r.database = ConstMgr.DATABASE_NAME_ADMIN;
             }
             r.rolename = txtRolename.Text;
             r.privileges = new Role.privilege[PrivilegeList.Count];
@@ -72,9 +75,9 @@ namespace MongoCola
             {
                 r.roles[i] = RoleList[i];
             }
-            var result = Role.AddRole(SystemManager.GetCurrentDataBase(), r);
+            var result = Role.AddRole(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase(), r);
             if (result.IsBsonDocument) {
-                MyMessageBox.ShowMessage("Error", "Add Role Error",MongoDbHelper.ConvertToString(result));
+                MyMessageBox.ShowMessage("Error", "Add Role Error",ViewHelper.ConvertToString(result));
             }
             else
             {
@@ -98,7 +101,7 @@ namespace MongoCola
         {
             chklstAction.Items.Clear();
             string Prifix = cmbActionGroup.Text.Replace(" ", string.Empty);
-            foreach (var item in System.Enum.GetValues(typeof(Common.Security.Action.ActionType)))
+            foreach (var item in System.Enum.GetValues(typeof(MongoUtility.Security.MongoDBAction.ActionType)))
             {
                 if (item.ToString().StartsWith(Prifix)) chklstAction.Items.Add(item.ToString().Substring(Prifix.Length + 1));
             }
@@ -110,10 +113,10 @@ namespace MongoCola
         /// <param name="e"></param>
         private void btnAddPriviege_Click(object sender, EventArgs e)
         {
-            Common.Security.Action.ActionType[] actionlst = new Common.Security.Action.ActionType[chklstAction.CheckedItems.Count];
+            MongoUtility.Security.MongoDBAction.ActionType[] actionlst = new MongoUtility.Security.MongoDBAction.ActionType[chklstAction.CheckedItems.Count];
             for (int i = 0; i < chklstAction.CheckedItems.Count; i++)
             {
-                actionlst[i] = ((Common.Security.Action.ActionType)Enum.Parse(typeof(Common.Security.Action.ActionType),
+                actionlst[i] = ((MongoUtility.Security.MongoDBAction.ActionType)Enum.Parse(typeof(MongoUtility.Security.MongoDBAction.ActionType),
                                cmbActionGroup.Text.Replace(" ", String.Empty) + "_" + chklstAction.CheckedItems[i].ToString()));
             }
             PrivilegeList.Add(new Role.privilege()
@@ -124,7 +127,7 @@ namespace MongoCola
 
             ListViewItem t = new ListViewItem();
             t.Text = GetRoleResource().GetJsCode();
-            t.SubItems.Add(Common.Security.Action.GetActionListJs(actionlst));
+            t.SubItems.Add(MongoUtility.Security.MongoDBAction.GetActionListJs(actionlst));
             lstPriviege.Items.Add(t);
         }
         /// <summary>
@@ -136,7 +139,7 @@ namespace MongoCola
         {
             cmbCollection.Text = String.Empty;
             cmbCollection.Items.Clear();
-            foreach (var item in SystemManager.GetCurrentServer().GetDatabase(cmbDatabase.Text).GetCollectionNames())
+            foreach (var item in MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer().GetDatabase(cmbDatabase.Text).GetCollectionNames())
             {
                 cmbCollection.Items.Add(item);
             }

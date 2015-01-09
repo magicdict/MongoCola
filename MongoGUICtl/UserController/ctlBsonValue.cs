@@ -1,0 +1,174 @@
+﻿using System;
+using System.Windows.Forms;
+using MongoCola.Module;
+using MongoDB.Bson;
+
+namespace MongoGUICtl
+{
+	public partial class ctlBsonValue : UserControl
+	{
+		BsonArray mBsonArray = new BsonArray();
+		BsonDocument mBsonDocument = new BsonDocument();
+		/// <summary>
+		/// 获得一个新BSonArray的委托
+		/// </summary>
+		public Func<BsonArray> getArray;
+		/// <summary>
+		/// 获得一个新BSonDocument的委托
+		/// </summary>
+		public Func<BsonDocument> getDocument;
+		/// <summary>
+		/// 初始化，请确保 getArray 和 getDocument正确设定
+		/// </summary>
+		public ctlBsonValue()
+		{
+			InitializeComponent();
+			
+			
+			dateTimePicker.Location = txtBsonValue.Location;
+			dateTimePicker.Size = txtBsonValue.Size;
+
+			radTrue.Location = txtBsonValue.Location;
+			radFalse.Top = txtBsonValue.Top;
+			NumberPick.Location = txtBsonValue.Location;
+			NumberPick.Size = txtBsonValue.Size;
+			NumberPick.Minimum = Int32.MinValue;
+			NumberPick.Maximum = Int32.MaxValue;
+
+			txtBsonValue.Visible = true;
+			txtBsonValue.Text = String.Empty;
+			radTrue.Visible = false;
+			radFalse.Visible = false;
+			radFalse.Checked = true;
+			dateTimePicker.Visible = false;
+			NumberPick.Visible = false;
+
+			foreach (String item in BsonValueEx.GetBasicTypeList()) {
+				cmbDataType.Items.Add(item);
+			}
+		}
+
+		/// <summary>
+		///     使用属性会发生一些MONO上的移植问题
+		/// </summary>
+		/// <returns></returns>
+		public BsonValue getValue()
+		{
+			BsonValue mValue = null;
+			switch (cmbDataType.SelectedIndex) {
+				case 0:
+					mValue = new BsonString(txtBsonValue.Text);
+					break;
+				case 1:
+					mValue = new BsonInt32(Convert.ToInt32(NumberPick.Value));
+					break;
+				case 2:
+					mValue = new BsonDateTime(dateTimePicker.Value);
+					break;
+				case 3:
+					mValue = radTrue.Checked ? BsonBoolean.True : BsonBoolean.False;
+					break;
+				case 4:
+					mValue = mBsonArray;
+					break;
+				case 5:
+					mValue = mBsonDocument;
+					break;
+			}
+			return mValue;
+		}
+		/// <summary>
+		///     使用属性会发生一些MONO上的移植问题
+		/// </summary>
+		/// <returns></returns>
+		public void setValue(BsonValue value)
+		{
+			txtBsonValue.Visible = false;
+			txtBsonValue.Text = String.Empty;
+			txtBsonValue.ReadOnly = false;
+			radTrue.Visible = false;
+			radFalse.Visible = false;
+			radFalse.Checked = true;
+			dateTimePicker.Visible = false;
+			NumberPick.Visible = false;
+			if (value.IsString) {
+				cmbDataType.SelectedIndex = 0;
+				txtBsonValue.Visible = true;
+				txtBsonValue.Text = value.ToString();
+			}
+			if (value.IsInt32) {
+				cmbDataType.SelectedIndex = 1;
+				NumberPick.Visible = true;
+				NumberPick.Value = value.AsInt32;
+			}
+			if (value.IsValidDateTime) {
+				dateTimePicker.Visible = true;
+				dateTimePicker.Value = value.ToUniversalTime();
+				cmbDataType.SelectedIndex = 2;
+			}
+			if (value.IsBoolean) {
+				radTrue.Visible = true;
+				radFalse.Visible = true;
+				if (value.AsBoolean) {
+					radTrue.Checked = true;
+				} else {
+					radFalse.Checked = true;
+				}
+				cmbDataType.SelectedIndex = 3;
+			}
+			if (value.IsBsonArray) {
+				var t = getArray();
+				if (t != null) {
+					mBsonArray = t;
+					txtBsonValue.Visible = true;
+					txtBsonValue.Text = mBsonArray.ToString();
+					txtBsonValue.ReadOnly = true;
+					cmbDataType.SelectedIndex = 4;
+				}
+			}
+			if (value.IsBsonDocument) {
+				var t = getDocument();
+				if (t != null) {
+					mBsonDocument = t;
+					txtBsonValue.Visible = true;
+					txtBsonValue.Text = mBsonDocument.ToString();
+					txtBsonValue.ReadOnly = true;
+					cmbDataType.SelectedIndex = 5;
+				}
+			}
+		}
+
+		/// <summary>
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void cmbDataType_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			txtBsonValue.Visible = false;
+			radTrue.Visible = false;
+			radFalse.Visible = false;
+			switch (cmbDataType.SelectedIndex) {
+				case 0:
+					setValue(new BsonString(String.Empty));
+					break;
+				case 1:
+					setValue(new BsonInt32(0));
+					break;
+				case 2:
+					setValue(new BsonDateTime(DateTime.Now));
+					break;
+				case 3:
+					setValue(BsonBoolean.False);
+					break;
+				case 4:
+					setValue(new BsonArray());
+					break;
+				case 5:
+					setValue(new BsonDocument());
+					break;
+				default:
+					break;
+			}
+		}
+	}
+}

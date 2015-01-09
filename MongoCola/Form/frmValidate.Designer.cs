@@ -1,4 +1,5 @@
-﻿namespace MongoCola
+﻿using MongoGUICtl;
+namespace MongoCola
 {
     partial class frmValidate
     {
@@ -28,7 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.trvResult = new TreeViewColumnsProject.TreeViewColumns();
+            this.trvResult = new ctlTreeViewColumns();
             this.cmdClose = new System.Windows.Forms.Button();
             this.cmdValidate = new System.Windows.Forms.Button();
             this.chkFull = new System.Windows.Forms.CheckBox();
@@ -104,7 +105,7 @@
 
         #endregion
 
-        private TreeViewColumnsProject.TreeViewColumns trvResult;
+        private MongoGUICtl.ctlTreeViewColumns trvResult;
         private System.Windows.Forms.Button cmdClose;
         private System.Windows.Forms.Button cmdValidate;
         private System.Windows.Forms.CheckBox chkFull;

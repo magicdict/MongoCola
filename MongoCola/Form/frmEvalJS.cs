@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using Common;
 using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -23,10 +24,10 @@ namespace MongoCola
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                Text = SystemManager.MStringResource.GetText(StringResource.TextType.EvalJS_Title);
-                ctlEval.Title = SystemManager.MStringResource.GetText(StringResource.TextType.EvalJS_Method);
-                lblParm.Text = SystemManager.MStringResource.GetText(StringResource.TextType.EvalJS_Parameter);
-                cmdEval.Text = SystemManager.MStringResource.GetText(StringResource.TextType.EvalJS_Run);
+                Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Title);
+                ctlEval.Title = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Method);
+                lblParm.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Parameter);
+                cmdEval.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Run);
             }
             ctlEval.Context =
                 @"function eval(){
@@ -43,7 +44,7 @@ return i;
         /// <param name="e"></param>
         private void cmdEval_Click(object sender, EventArgs e)
         {
-            MongoDatabase mongoDB = SystemManager.GetCurrentDataBase();
+            MongoDatabase mongoDB = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase();
             var js = new BsonJavaScript(ctlEval.Context);
             var Params = new List<Object>();
             if (txtParm.Text != String.Empty)
@@ -73,7 +74,7 @@ return i;
                         }
                         catch (Exception ex)
                         {
-                            SystemManager.ExceptionDeal(ex, "Exception", "Parameter Exception");
+                            Common.Utility.ExceptionDeal(ex, "Exception", "Parameter Exception");
                         }
                     }
                 }
@@ -81,11 +82,11 @@ return i;
             try
             {
                 BsonValue result = mongoDB.Eval(js, Params.ToArray());
-                MyMessageBox.ShowMessage("Result", "Result", result.ToJson(SystemManager.JsonWriterSettings), true);
+                MyMessageBox.ShowMessage("Result", "Result", result.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings), true);
             }
             catch (Exception ex)
             {
-                SystemManager.ExceptionDeal(ex, "Exception", "Result");
+                Common.Utility.ExceptionDeal(ex, "Exception", "Result");
             }
         }
     }

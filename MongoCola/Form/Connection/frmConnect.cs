@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MongoUtility.Core;
 namespace MongoCola
 {
     public partial class frmConnect : Form
@@ -19,12 +20,12 @@ namespace MongoCola
         {
             RefreshConnection();
             if (SystemManager.IsUseDefaultLanguage) return;
-            cmdAddCon.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Add);
-            cmdDelCon.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Connect_Action_Del);
-            cmdModifyCon.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Modify);
-            cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
-            cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
-            Text = SystemManager.MStringResource.GetText(StringResource.TextType.Connect_Title);
+            cmdAddCon.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
+            cmdDelCon.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Connect_Action_Del);
+            cmdModifyCon.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Modify);
+            cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+            cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+            Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Connect_Title);
         }
 
         /// <summary>
@@ -33,12 +34,11 @@ namespace MongoCola
         private void RefreshConnection()
         {
             lstConnection.Items.Clear();
-            foreach (ConfigHelper.MongoConnectionConfig item in SystemManager.ConfigHelperInstance.ConnectionList.Values
-                )
+            foreach (MongoUtility.Core.MongoConnectionConfig item in SystemManager.config.ConnectionList.Values)
             {
                 if (item.ReplSetName == string.Empty)
                 {
-                    ListViewItem t = new ListViewItem(item.ConnectionName);
+                    var t = new ListViewItem(item.ConnectionName);
                     t.SubItems.Add((item.Host == string.Empty ? "localhost" : item.Host));
                     t.SubItems.Add((item.Port == 0 ? string.Empty : item.Port.ToString()));
                     t.SubItems.Add(item.UserName);
@@ -46,7 +46,7 @@ namespace MongoCola
                 }
                 else
                 {
-                    ListViewItem t = new ListViewItem(item.ConnectionName);
+                    var t = new ListViewItem(item.ConnectionName);
                     t.SubItems.Add((item.Host == string.Empty ? "localhost" : item.Host));
                     t.SubItems.Add((item.Port == 0 ? string.Empty : item.Port.ToString()));
                     t.SubItems.Add(string.Empty);
@@ -58,10 +58,10 @@ namespace MongoCola
                     t.SubItems.Add(ReplArray);
                     lstConnection.Items.Add(t);
                 }
-                Common.Present.Utility.ListViewColumnResize(lstConnection);
+                Common.Utility.ListViewColumnResize(lstConnection);
             }
             lstConnection.Sort();
-            SystemManager.ConfigHelperInstance.SaveToConfigFile(ConfigHelper._configFilename);
+            ConfigHelper.SaveToConfigFile();
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdAddCon_Click(object sender, EventArgs e)
         {
-            SystemManager.OpenForm(new frmAddConnection(), true, true);
+            Common.Utility.OpenForm(new frmAddConnection(), true, true);
             RefreshConnection();
         }
 
@@ -82,18 +82,17 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdConnect_Click(object sender, EventArgs e)
         {
-            var connLst = new List<ConfigHelper.MongoConnectionConfig>();
+            var connLst = new List<MongoUtility.Core.MongoConnectionConfig>();
             if (lstConnection.CheckedItems.Count > 0)
             {
                 foreach (ListViewItem item in lstConnection.CheckedItems)
                 {
-                    connLst.Add(SystemManager.ConfigHelperInstance.ConnectionList[item.Text]);
+                    connLst.Add(SystemManager.config.ConnectionList[item.Text]);
                 }
-                MongoDbHelper.AddServer(connLst);
+                RuntimeMongoDBContext.AddServer(connLst);
             }
             Close();
         }
-
         /// <summary>
         ///     删除
         /// </summary>
@@ -104,9 +103,9 @@ namespace MongoCola
             foreach (ListViewItem item in lstConnection.CheckedItems)
             {
                 string ConnectionName = item.Text;
-                if (SystemManager.ConfigHelperInstance.ConnectionList.ContainsKey(ConnectionName))
+                if (SystemManager.config.ConnectionList.ContainsKey(ConnectionName))
                 {
-                    SystemManager.ConfigHelperInstance.ConnectionList.Remove(ConnectionName);
+                    SystemManager.config.ConnectionList.Remove(ConnectionName);
                 }
             }
             RefreshConnection();
@@ -121,7 +120,7 @@ namespace MongoCola
         {
             if (lstConnection.CheckedItems.Count != 1) return;
             string ConnectionName = lstConnection.CheckedItems[0].Text;
-            SystemManager.OpenForm(new frmAddConnection(ConnectionName), true, true);
+            Common.Utility.OpenForm(new frmAddConnection(ConnectionName), true, true);
             RefreshConnection();
         }
 

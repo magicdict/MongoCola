@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using Common;
 using MongoCola.Module;
 using MongoDB.Driver.Builders;
 
@@ -22,20 +23,20 @@ namespace MongoCola
         {
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                Text = SystemManager.MStringResource.GetText(StringResource.TextType.Create_New_Collection);
+                Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Create_New_Collection);
                 lblCollectionName.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
-                chkAdvance.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Advance_Option);
-                cmdOK.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
+                chkAdvance.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Advance_Option);
+                cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
                 chkIsCapped.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped);
                 lblMaxDocument.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments);
                 lblMaxSize.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_MaxSize);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_MaxSize);
                 chkIsAutoIndexId.Text =
-                    SystemManager.MStringResource.GetText(StringResource.TextType.Collection_Status_IsAutoIndexId);
+                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_IsAutoIndexId);
             }
 
             //Difference between with long and decimal.....
@@ -61,7 +62,7 @@ namespace MongoCola
             try
             {
                 string ErrMessage;
-                SystemManager.GetCurrentDataBase().IsCollectionNameValid(txtCollectionName.Text, out ErrMessage);
+                MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().IsCollectionNameValid(txtCollectionName.Text, out ErrMessage);
                 if (ErrMessage != null)
                 {
                     MyMessageBox.ShowMessage("Create MongoDatabase", "Argument Exception", ErrMessage, true);
@@ -75,18 +76,17 @@ namespace MongoCola
                     option.SetMaxDocuments((long)numMaxDocument.Value);
                     //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
                     option.SetAutoIndexId(chkIsAutoIndexId.Checked);
-                    Result = MongoDbHelper.CreateCollectionWithOptions(strSvrPathWithTag, treeNode,
-                        txtCollectionName.Text, option);
+                    Result = MongoDbHelper.CreateCollectionWithOptions(strSvrPathWithTag, txtCollectionName.Text, option,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase());
                 }
                 else
                 {
-                    Result = MongoDbHelper.CreateCollection(strSvrPathWithTag, treeNode, txtCollectionName.Text);
+                    Result = MongoDbHelper.CreateCollection(strSvrPathWithTag, txtCollectionName.Text,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase());
                 }
                 Close();
             }
             catch (ArgumentException ex)
             {
-                SystemManager.ExceptionDeal(ex, "Create MongoDatabase", "Argument Exception");
+                Common.Utility.ExceptionDeal(ex, "Create MongoDatabase", "Argument Exception");
                 Result = false;
             }
         }

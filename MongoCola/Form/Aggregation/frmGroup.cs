@@ -6,7 +6,8 @@ using System.Windows.Forms.DataVisualization.Charting;
 using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Common.Aggregation;
+using MongoGUICtl;
+using MongoUtility.Aggregation;
 
 namespace MongoCola
 {
@@ -46,7 +47,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            MongoCollection mongoCol = SystemManager.GetCurrentCollection();
+            MongoCollection mongoCol = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection();
             IMongoQuery query = QueryHelper.GetQuery(GroupConditionList);
             var groupdoc = new GroupByDocument();
             String ChartTite = string.Empty;
@@ -94,7 +95,7 @@ namespace MongoCola
                     SeriesResult.Points.Add(dPoint);
                     Count++;
                 }
-                MongoDbHelper.FillJSONDataToTextBox(txtResult, resultlst, 0);
+                MongoGUIView.ViewHelper.FillJSONDataToTextBox(txtResult, resultlst, 0);
                 if (Count == 1001)
                 {
                     txtResult.Text = "Too many result,Display first 1000 records" + Environment.NewLine + txtResult.Text;
@@ -107,7 +108,7 @@ namespace MongoCola
             }
             catch (Exception ex)
             {
-                SystemManager.ExceptionDeal(ex, "Exception", "Exception is Happened");
+                Common.Utility.ExceptionDeal(ex, "Exception", "Exception is Happened");
             }
         }
 
@@ -118,8 +119,8 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmGroup_Load(object sender, EventArgs e)
         {
-            MongoCollection mongoCol = SystemManager.GetCurrentCollection();
-            List<String> MongoColumn = MongoDbHelper.GetCollectionSchame(mongoCol);
+            MongoCollection mongoCol = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection();
+            List<String> MongoColumn = MongoUtility.Basic.Utility.GetCollectionSchame(mongoCol);
             var _conditionPos = new Point(50, 20);
             foreach (String item in MongoColumn)
             {
@@ -136,17 +137,17 @@ namespace MongoCola
             panBsonEl.Controls.Add(firstAddBsonElCtl);
 
             if (SystemManager.IsUseDefaultLanguage) return;
-            ctlReduce.Title = SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_Reduce);
-            ctlFinalize.Title = SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_Finalize);
+            ctlReduce.Title = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Reduce);
+            ctlFinalize.Title = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Finalize);
             lblSelectGroupField.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_Group_Notes);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Group_Notes);
             lblAddInitField.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn_Note);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn_Note);
             cmdAddInitField.Text =
-                SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn);
-            lblResult.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Group_Tab_Result);
-            cmdQuery.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Group_LoadQuery);
-            cmdRun.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_OK);
+                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn);
+            lblResult.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Result);
+            cmdQuery.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_LoadQuery);
+            cmdRun.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
         }
 
         /// <summary>

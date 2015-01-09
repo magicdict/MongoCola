@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoUtility.Basic;
 
 namespace MongoCola
 {
@@ -15,10 +16,10 @@ namespace MongoCola
             InitializeComponent();
             if (!SystemManager.IsUseDefaultLanguage)
             {
-                cmdSave.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Save);
-                cmdClose.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Close);
-                Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Validate);
-                cmdValidate.Text = SystemManager.MStringResource.GetText(StringResource.TextType.Common_Validate);
+                cmdSave.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
+                cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Validate);
+                cmdValidate.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Validate);
             }
             cmdSave.Enabled = false;
         }
@@ -32,9 +33,9 @@ namespace MongoCola
         {
             BsonDocument TextSearchOption = new BsonDocument().Add(new BsonElement("full", chkFull.Checked.ToString()));
             CommandResult SearchResult = CommandHelper.ExecuteMongoColCommand("validate",
-                SystemManager.GetCurrentCollection(), TextSearchOption);
+                MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection(), TextSearchOption);
             Result = SearchResult.Response;
-            MongoDbHelper.FillDataToTreeView("Validate Result", trvResult, Result);
+            MongoGUICtl.UIHelper.FillDataToTreeView("Validate Result", trvResult, Result);
             cmdSave.Enabled = true;
         }
 
@@ -55,7 +56,11 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            SystemManager.SaveResultToJSonFile(Result);
+        	SaveFileDialog dialog = new SaveFileDialog();
+        	dialog.Filter = Common.Utility.JsFilter;
+        	if (dialog.ShowDialog() == DialogResult.OK){
+	            MongoUtility.Basic.Utility.SaveResultToJSonFile(Result,dialog.FileName);
+        	}
         }
     }
 }

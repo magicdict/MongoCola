@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using MongoCola.Module;
-using MongoCola.Properties;
 using MongoDB.Bson;
 
 namespace MongoCola
@@ -45,7 +44,7 @@ namespace MongoCola
         {
             BsonDocument DocStatus =
                 CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
-                    SystemManager.GetCurrentServer()).Response;
+                    MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer()).Response;
 
             var queryPoint = new DataPoint();
             queryPoint.SetValueXY(DateTime.Now.ToString(CultureInfo.InvariantCulture),
