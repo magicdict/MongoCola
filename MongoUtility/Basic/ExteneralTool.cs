@@ -289,7 +289,7 @@ namespace MongoUtility.ExteneralTool
         public static Boolean IsMongoPathExist()
         {
         	return true;
-            //return Directory.Exists(SystemManager.ConfigHelperInstance.MongoBinPath);
+            //return Directory.Exists(SystemConfig.configHelperInstance.MongoBinPath);
         }
 
         /// <summary>
@@ -300,7 +300,7 @@ namespace MongoUtility.ExteneralTool
         /// <param name="sb"></param>
         public static void RunDosCommand(String DosCommand, StringBuilder sb)
         {
-//            if (!SystemManager.MonoMode)
+//            if (!SystemConfig.MonoMode)
 //            {
                 var myProcess = new Process();
                 myProcess.StartInfo.FileName = "cmd";
@@ -318,7 +318,7 @@ namespace MongoUtility.ExteneralTool
                 //标准错误流
                 StreamReader streamReaderError = myProcess.StandardError;
                 //DOS控制平台上的命令
-                //stringWriter.Write(@"cd " + SystemManager.ConfigHelperInstance.MongoBinPath + Environment.NewLine);
+                //stringWriter.Write(@"cd " + SystemConfig.configHelperInstance.MongoBinPath + Environment.NewLine);
                 //DOS控制平台上的命令
                 stringWriter.Write(DosCommand + Environment.NewLine);
                 stringWriter.Write("exit" + Environment.NewLine);

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Common;
 using MongoCola.Module;
 using MongoDB.Driver.Builders;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -21,22 +22,22 @@ namespace MongoCola
 
         private void frmCreateCollection_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage)
+            if (!SystemConfig.IsUseDefaultLanguage)
             {
-                Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Create_New_Collection);
+                Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Create_New_Collection);
                 lblCollectionName.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
-                chkAdvance.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Advance_Option);
-                cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
+                chkAdvance.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Advance_Option);
+                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
                 chkIsCapped.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped);
                 lblMaxDocument.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_MaxDocuments);
                 lblMaxSize.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_MaxSize);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_MaxSize);
                 chkIsAutoIndexId.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_IsAutoIndexId);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_IsAutoIndexId);
             }
 
             //Difference between with long and decimal.....

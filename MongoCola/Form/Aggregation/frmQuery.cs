@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using MongoUtility.Basic;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -49,17 +50,17 @@ namespace MongoCola
                 //不使用过滤：字段初始化
                 QueryFieldPicker.InitByCurrentCollection(true);
             }
-            if (SystemManager.IsUseDefaultLanguage) return;
-            Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Title);
-            tabFieldInfo.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Query_FieldInfo);
-            tabCondition.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Filter);
-            tabSql.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.ConvertSql_Title);
+            if (SystemConfig.IsUseDefaultLanguage) return;
+            Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Title);
+            tabFieldInfo.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Query_FieldInfo);
+            tabCondition.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Filter);
+            tabSql.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.ConvertSql_Title);
             cmdAddCondition.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Filter_AddCondition);
-            cmdLoad.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Action_Load);
-            cmdSave.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
-            cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-            cmdCancel.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Filter_AddCondition);
+            cmdLoad.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Action_Load);
+            cmdSave.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
+            cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+            cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
         }
 
         /// <summary>

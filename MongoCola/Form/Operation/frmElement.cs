@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Common;
 using MongoCola.Module;
 using MongoDB.Bson;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -51,9 +52,9 @@ namespace MongoCola
 				AddBsonElement.switchToUpdateMode();
 				AddBsonElement.setElement(_selectNode.Tag);
 			}
-			if (!SystemManager.IsUseDefaultLanguage) {
-				cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-				cmdCancel.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+			if (!SystemConfig.IsUseDefaultLanguage) {
+				cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+				cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
 			}
 			if (!_isElement) {
 				//TODO:在这个模式，数组里面暂时不能添加数组或者文档

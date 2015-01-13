@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Common;
 using MongoCola.Module;
 using MongoUtility.Basic;
+using SystemUtility;
 
 
 namespace MongoCola
@@ -32,11 +33,11 @@ namespace MongoCola
 			optExcel.CheckedChanged += optExportType_CheckedChanged;
 			optText.CheckedChanged += optExportType_CheckedChanged;
 			optXML.CheckedChanged += optExportType_CheckedChanged;
-			if (SystemManager.IsUseDefaultLanguage)
+			if (SystemConfig.IsUseDefaultLanguage)
 				return;
-			btnSave.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
+			btnSave.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
 			Text =
-                SystemManager.guiConfig.MStringResource.GetText(
+                SystemConfig.guiConfig.MStringResource.GetText(
 				StringResource.TextType.Main_Menu_Operation_DataCollection_ExportToFile);
 		}
 

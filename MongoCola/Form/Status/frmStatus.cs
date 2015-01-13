@@ -4,6 +4,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using MongoCola.Module;
 using MongoDB.Bson;
 using MongoUtility.Basic;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -114,10 +115,10 @@ namespace MongoCola
                     }
                     break;
             }
-            if (!SystemManager.IsUseDefaultLanguage)
+            if (!SystemConfig.IsUseDefaultLanguage)
             {
-                Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
-                cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
             MongoGUICtl.UIHelper.FillDataToTreeView(strType, trvStatus, DocStatus);
             trvStatus.DatatreeView.Nodes[0].Expand();

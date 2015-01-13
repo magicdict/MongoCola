@@ -15,6 +15,7 @@ using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Security;
 using PlugInPackage;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -28,11 +29,11 @@ namespace MongoCola
 		private void ConnectionHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
 		{
 			//普通连接
-			if (SystemManager.IsUseDefaultLanguage) {
+			if (SystemConfig.IsUseDefaultLanguage) {
 				statusStripMain.Items[0].Text = "Selected Connection:" + MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			} else {
 				statusStripMain.Items[0].Text =
-                                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Server) + ":" +
+                                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Server) + ":" +
 				RuntimeMongoDBContext.SelectTagData;
 			}
 
@@ -53,7 +54,7 @@ namespace MongoCola
 			}
 			if (e.Button == MouseButtons.Right) {
 				contextMenuStripMain = new ContextMenuStrip();
-				if (SystemManager.MonoMode) {
+				if (SystemConfig.MonoMode) {
 					ToolStripMenuItem t1 = DisconnectToolStripMenuItem.Clone();
 					t1.Click += DisconnectToolStripMenuItem_Click;
 					contextMenuStripMain.Items.Add(t1);
@@ -96,7 +97,7 @@ namespace MongoCola
 			RestoreMongoToolStripMenuItem.Enabled = false;
 			if (e.Button == MouseButtons.Right) {
 				contextMenuStripMain = new ContextMenuStrip();
-				if (SystemManager.MonoMode) {
+				if (SystemConfig.MonoMode) {
 					//悲催MONO不支持
 					ToolStripMenuItem t1 = DisconnectToolStripMenuItem.Clone();
 					t1.Click += DisconnectToolStripMenuItem_Click;
@@ -117,11 +118,11 @@ namespace MongoCola
 		private void ServerHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
 		{
 			MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag = e.Node.Tag.ToString();
-			if (SystemManager.IsUseDefaultLanguage) {
+			if (SystemConfig.IsUseDefaultLanguage) {
 				statusStripMain.Items[0].Text = "Selected Server:" + MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			} else {
 				statusStripMain.Items[0].Text =
-                                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Server) + ":" +
+                                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Server) + ":" +
 				MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			}
 			//解禁 创建数据库,关闭服务器
@@ -140,7 +141,7 @@ namespace MongoCola
 
 			if (e.Button == MouseButtons.Right) {
 				contextMenuStripMain = new ContextMenuStrip();
-				if (SystemManager.MonoMode) {
+				if (SystemConfig.MonoMode) {
 					//悲催MONO不支持
 					ToolStripMenuItem t1 = CreateMongoDBToolStripMenuItem.Clone();
 					t1.Click += CreateMongoDBToolStripMenuItem_Click;
@@ -192,7 +193,7 @@ namespace MongoCola
 			MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag = e.Node.Tag.ToString();
 			if (e.Button == MouseButtons.Right) {
 				contextMenuStripMain = new ContextMenuStrip();
-				if (SystemManager.MonoMode) {
+				if (SystemConfig.MonoMode) {
 					//悲催MONO不支持
 					ToolStripMenuItem t1 = DisconnectToolStripMenuItem.Clone();
 					t1.Click += DisconnectToolStripMenuItem_Click;
@@ -215,11 +216,11 @@ namespace MongoCola
 		{
 			MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag = e.Node.Tag.ToString();
 			List<string> roles = User.GetCurrentDBRoles(RuntimeMongoDBContext._CurrentMongoConnectionconfig.ConnectionName, RuntimeMongoDBContext.GetCurrentDataBase().Name);
-			if (SystemManager.IsUseDefaultLanguage) {
+			if (SystemConfig.IsUseDefaultLanguage) {
 				statusStripMain.Items[0].Text = "Selected DataBase:" + MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			} else {
 				statusStripMain.Items[0].Text =
-                                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_DataBase) + ":" +
+                                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_DataBase) + ":" +
 				MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			}
 			//系统库不允许修改
@@ -256,7 +257,7 @@ namespace MongoCola
 			DBStatusToolStripMenuItem.Enabled = true;
 			if (e.Button == MouseButtons.Right) {
 				contextMenuStripMain = new ContextMenuStrip();
-				if (SystemManager.MonoMode) {
+				if (SystemConfig.MonoMode) {
 					//悲催MONO不支持
 					ToolStripMenuItem t1 = DelMongoDBToolStripMenuItem.Clone();
 					t1.Click += DelMongoDBToolStripMenuItem_Click;
@@ -322,11 +323,11 @@ namespace MongoCola
 		
 		private void CollectionHandler(string strNodeType, TreeNodeMouseClickEventArgs e)
 		{
-			if (SystemManager.IsUseDefaultLanguage) {
+			if (SystemConfig.IsUseDefaultLanguage) {
 				statusStripMain.Items[0].Text = "Selected Collection:" + MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			} else {
 				statusStripMain.Items[0].Text =
-                                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Collection) + ":" +
+                                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Collection) + ":" +
 				MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			}
 			//解禁 删除数据集
@@ -355,7 +356,7 @@ namespace MongoCola
 			ExportToFileToolStripMenuItem.Enabled = true;
 			if (e.Button == MouseButtons.Right) {
 				contextMenuStripMain = new ContextMenuStrip();
-				if (SystemManager.MonoMode) {
+				if (SystemConfig.MonoMode) {
 					//悲催MONO不支持
 					ToolStripMenuItem t1 = DelMongoCollectionToolStripMenuItem.Clone();
 					t1.Click += DelMongoCollectionToolStripMenuItem_Click;

@@ -8,6 +8,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoGUICtl;
 using MongoUtility.Basic;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -32,35 +33,35 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmCollectionIndex_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage)
+            if (!SystemConfig.IsUseDefaultLanguage)
             {
-                Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.CollectionIndex_Title);
+                Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.CollectionIndex_Title);
                 tabCurrentIndex.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current);
                 cmdDelIndex.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current_Del);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current_Del);
                 tabIndexManager.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Manager);
-                cmdAddIndex.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Manager);
+                cmdAddIndex.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
 
-                chkIsDroppedDups.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_RepeatDel);
-                chkIsBackground.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Background);
-                chkIsSparse.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Sparse);
-                chkIsUnique.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Unify);
+                chkIsDroppedDups.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_RepeatDel);
+                chkIsBackground.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Background);
+                chkIsSparse.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Sparse);
+                chkIsUnique.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Unify);
 
-                lblIndexName.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Name);
-                chkExpireData.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData);
+                lblIndexName.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Name);
+                chkExpireData.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData);
 
-                lstIndex.Columns.Add(SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Name));
-                lstIndex.Columns.Add(SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Version));
-                lstIndex.Columns.Add(SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Keys));
-                lstIndex.Columns.Add(SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_NameSpace));
+                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Name));
+                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Version));
+                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Keys));
+                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_NameSpace));
 
-                lstIndex.Columns.Add(SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Background));
-                lstIndex.Columns.Add(SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Sparse));
-                lstIndex.Columns.Add(SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Unify));
-                lstIndex.Columns.Add(SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_RepeatDel));
-                lstIndex.Columns.Add(SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData));
+                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Background));
+                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Sparse));
+                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Unify));
+                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_RepeatDel));
+                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData));
             }
             else
             {

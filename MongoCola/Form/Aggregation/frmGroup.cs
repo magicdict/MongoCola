@@ -8,6 +8,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl;
 using MongoUtility.Aggregation;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -136,18 +137,18 @@ namespace MongoCola
             firstAddBsonElCtl.setElement(el);
             panBsonEl.Controls.Add(firstAddBsonElCtl);
 
-            if (SystemManager.IsUseDefaultLanguage) return;
-            ctlReduce.Title = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Reduce);
-            ctlFinalize.Title = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Finalize);
+            if (SystemConfig.IsUseDefaultLanguage) return;
+            ctlReduce.Title = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Reduce);
+            ctlFinalize.Title = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Finalize);
             lblSelectGroupField.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Group_Notes);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Group_Notes);
             lblAddInitField.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn_Note);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn_Note);
             cmdAddInitField.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn);
-            lblResult.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Result);
-            cmdQuery.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Group_LoadQuery);
-            cmdRun.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn);
+            lblResult.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Result);
+            cmdQuery.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_LoadQuery);
+            cmdRun.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
         }
 
         /// <summary>

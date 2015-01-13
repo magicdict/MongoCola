@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using MongoCola.Module;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -36,7 +37,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            SystemManager.config.LanguageFileName = cmbLanguage.Text + ".xml";
+            SystemConfig.config.LanguageFileName = cmbLanguage.Text + ".xml";
             ConfigHelper.SaveToConfigFile();
             Close();
         }

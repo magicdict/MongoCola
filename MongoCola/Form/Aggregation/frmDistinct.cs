@@ -7,6 +7,7 @@ using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Aggregation;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -45,10 +46,10 @@ namespace MongoCola
                 //纵向位置的累加
                 _conditionPos.Y += ctrItem.Height;
             }
-            if (SystemManager.IsUseDefaultLanguage) return;
-            cmdQuery.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_Action_LoadQuery);
-            cmdRun.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-            lblSelectField.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_SelectField);
+            if (SystemConfig.IsUseDefaultLanguage) return;
+            cmdQuery.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_Action_LoadQuery);
+            cmdRun.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+            lblSelectField.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_SelectField);
         }
 
         /// <summary>

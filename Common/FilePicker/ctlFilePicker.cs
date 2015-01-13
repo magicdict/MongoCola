@@ -146,12 +146,11 @@ namespace Common
         /// <param name="e"></param>
         private void ctlFilePicker_Load(object sender, EventArgs e)
         {
-
+        	if (DesignMode) return;
+            cmdBrowse.Text = guiconfig.GetText("Browse",StringResource.TextType.Common_Browse);
+            cmdClearPath.Text = guiconfig.GetText("Clear",StringResource.TextType.Common_Clear);
         }
-        public static StringResource mString;
-        public void SwithLanguage(){
-            cmdBrowse.Text = mString.GetText(StringResource.TextType.Common_Browse);
-            cmdClearPath.Text = mString.GetText(StringResource.TextType.Common_Clear);
-        }
+        public static ResourceLib.GUIConfig guiconfig;
+        
     }
 }

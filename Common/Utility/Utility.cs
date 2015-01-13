@@ -6,12 +6,17 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
+using MongoCola.Module;
 
 namespace Common
 {
 	public static class Utility
 	{
-
+		public static ResourceLib.GUIConfig guiconfig = new ResourceLib.GUIConfig();
+		public static void Init(ResourceLib.GUIConfig _guiconfig){
+			guiconfig = _guiconfig;
+			MyMessageBox.SwitchLanguage();
+		}
 		#region"Excel"
 		/// <summary>
 		/// 获得数字，默认是0
@@ -400,27 +405,27 @@ namespace Common
 		/// Sql
 		/// </summary>
 		public static string SqlFilter = "*.sql(Sql files)|*.sql";
-        /// <summary>
-        ///     Excel文件选择过滤器
-        /// </summary>
-        public const String ExcelFilter = "Excel File(*.xls)|*.xls|*.*(All Files)|*.*";
-        /// <summary>
-        ///     Txt文件选择过滤器
-        /// </summary>
-        public const String TxtFilter = "Plan Text File(*.txt)|*.txt|*.*(All Files)|*.*";
-        /// <summary>
-        ///     LOG文件选择过滤器
-        /// </summary>
-        public const String LogFilter = "Log File(*.log)|*.log|*.*(All Files)|*.*";
-        /// <summary>
-        ///     MDB文件选择过滤器
-        /// </summary>
-        public const String MdbFilter = "Access File(*.mdb)|*.mdb|*.*(All Files)|*.*";
+		/// <summary>
+		///     Excel文件选择过滤器
+		/// </summary>
+		public const String ExcelFilter = "Excel File(*.xls)|*.xls|*.*(All Files)|*.*";
+		/// <summary>
+		///     Txt文件选择过滤器
+		/// </summary>
+		public const String TxtFilter = "Plan Text File(*.txt)|*.txt|*.*(All Files)|*.*";
+		/// <summary>
+		///     LOG文件选择过滤器
+		/// </summary>
+		public const String LogFilter = "Log File(*.log)|*.log|*.*(All Files)|*.*";
+		/// <summary>
+		///     MDB文件选择过滤器
+		/// </summary>
+		public const String MdbFilter = "Access File(*.mdb)|*.mdb|*.*(All Files)|*.*";
 
-        /// <summary>
-        ///     Conf文件选择过滤器
-        /// </summary>
-        public const String ConfFilter = "Config File(*.conf)|*.conf|*.*(All Files)|*.*";
+		/// <summary>
+		///     Conf文件选择过滤器
+		/// </summary>
+		public const String ConfFilter = "Config File(*.conf)|*.conf|*.*(All Files)|*.*";
 		/// <summary>
 		/// 选择文件夹
 		/// </summary>
@@ -463,7 +468,8 @@ namespace Common
 		public static void ExceptionDeal(Exception ex, string Title, string Message)
 		{
 			string ExceptionString = string.Empty;
-			if (!String.IsNullOrEmpty(ExceptionAppendInfo)) ExceptionString = ExceptionAppendInfo;
+			if (!String.IsNullOrEmpty(ExceptionAppendInfo))
+				ExceptionString = ExceptionAppendInfo;
 			ExceptionString += ex.ToString();
 			MyMessageBox.ShowMessage(Title, Message, ExceptionString, true);
 			ExceptionLog(ExceptionString);

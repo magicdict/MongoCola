@@ -9,8 +9,6 @@ using MongoDB.Bson;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
 
-
-
 namespace MongoGUIView
 {
     public partial class ctlDataView : UserControl
@@ -405,7 +403,7 @@ namespace MongoGUIView
             clear();
             mDataViewInfo.SkipCnt = 0;
             RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
-            List<BsonDocument> datalist = ViewHelper.GetDataList(ref mDataViewInfo,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
+            List<BsonDocument> datalist = DataViewInfo.GetDataList(ref mDataViewInfo,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
             ViewHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             InitControlsEnable();
             SetDataNav();
@@ -438,7 +436,7 @@ namespace MongoGUIView
             }
             clear();
             RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
-            List<BsonDocument> datalist = ViewHelper.GetDataList(ref mDataViewInfo,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
+            List<BsonDocument> datalist = DataViewInfo.GetDataList(ref mDataViewInfo,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
             ViewHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             SetDataNav();
             IsNeedRefresh = false;

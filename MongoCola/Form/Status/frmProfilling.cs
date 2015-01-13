@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MongoCola.Module;
 using MongoDB.Driver;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -21,12 +22,12 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmProfilling_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage)
+            if (!SystemConfig.IsUseDefaultLanguage)
             {
-                cmdCancel.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
-                cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
                 lblProfilingLevel.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
             }
 
             cmbProfillingLv.Items.Add("0-No Logging");

@@ -39,7 +39,7 @@
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>Full</DebugType>
     <Optimize>False</Optimize>
@@ -92,10 +92,10 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MongoDB.Bson">
-      <HintPath>..\MongoDriver\MongoDB.Bson.dll</HintPath>
+      <HintPath>packages\mongocsharpdriver.1.10.0-rc1\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Driver">
-      <HintPath>..\MongoDriver\MongoDB.Driver.dll</HintPath>
+      <HintPath>packages\mongocsharpdriver.1.10.0-rc1\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -112,9 +112,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\Config.cs" />
-    <Compile Include="Controller\ConfigHelper.cs" />
-    <Compile Include="Controller\SystemManager.cs" />
     <Compile Include="Form\frmExport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +120,7 @@
     </Compile>
     <Compile Include="Form\frmMainHelper.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form\frmMainMenuItem.cs">
       <SubType>Form</SubType>
@@ -142,6 +140,7 @@
     </Compile>
     <Compile Include="Form\frmMainTreeView.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -306,6 +305,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemManager.cs" />
     <EmbeddedResource Include="Form\frmAddRole.resx">
       <DependentUpon>frmAddRole.cs</DependentUpon>
     </EmbeddedResource>
@@ -477,9 +477,10 @@
       <Project>{5ac3b529-8e37-4d99-99e9-729603e3bb5e}</Project>
       <Name>ResourceLib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller" />
+    <ProjectReference Include="..\SystemUtility\SystemUtility.csproj">
+      <Project>{2F285CE0-729D-4388-9010-74C3B9862D69}</Project>
+      <Name>SystemUtility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,6 +7,7 @@ using Common;
 using MongoCola.Module;
 using MongoDB.Driver;
 using MongoUtility.Core;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -42,7 +43,7 @@ namespace MongoCola
             InitializeComponent();
             OldConnectionName = ConnectionName;
             //Modify Mode
-            ModifyConn = SystemManager.config.ConnectionList[ConnectionName];
+            ModifyConn = SystemConfig.config.ConnectionList[ConnectionName];
             OnLoad();
 
             txtConnectionName.Text = ModifyConn.ConnectionName;
@@ -66,9 +67,9 @@ namespace MongoCola
                 lstHost.Items.Add(item);
             }
 
-            cmdAdd.Text = SystemManager.IsUseDefaultLanguage
+            cmdAdd.Text = SystemConfig.IsUseDefaultLanguage
                 ? "Modify"
-                : SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Modify);
+                : SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Modify);
         }
 
         /// <summary>
@@ -82,40 +83,40 @@ namespace MongoCola
             NumSocketTimeOut.GotFocus += (x, y) => NumSocketTimeOut.Select(0, 5);
             NumConnectTimeOut.GotFocus += (x, y) => NumConnectTimeOut.Select(0, 5);
 
-            if (SystemManager.IsUseDefaultLanguage) return;
-            Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Title);
+            if (SystemConfig.IsUseDefaultLanguage) return;
+            Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Title);
             lblConnectionName.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionName);
-            lblHost.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Host);
-            lblPort.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
-            lblUsername.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Username);
-            lblPassword.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Password);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionName);
+            lblHost.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Host);
+            lblPort.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
+            lblUsername.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Username);
+            lblPassword.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Password);
             lblDataBaseName.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_DBName);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_DBName);
             lblConnectionString.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionString);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionString);
             lblAttentionPassword.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
 
 
             lblsocketTimeout.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_SocketTimeOut);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_SocketTimeOut);
             lblConnectTimeout.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionTimeOut);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionTimeOut);
 
 
             lblMainReplsetName.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName);
             lblReplHost.Text = lblHost.Text;
             lblReplPort.Text = lblPort.Text;
             cmdAddHost.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
             cmdRemoveHost.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
 
-            cmdAdd.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
-            cmdCancel.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
-            cmdTest.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Test);
+            cmdAdd.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
+            cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+            cmdTest.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Test);
         }
 
         /// <summary>
@@ -133,24 +134,24 @@ namespace MongoCola
                 if (OldConnectionName != NewCollectionName)
                 {
                     //修改了名称,检查一下新的名字是否存在
-                    if (SystemManager.config.ConnectionList.ContainsKey(NewCollectionName))
+                    if (SystemConfig.config.ConnectionList.ContainsKey(NewCollectionName))
                     {
                         //存在则警告
                         MyMessageBox.ShowMessage("Connection", "Connection Name Already Exist!");
                         return;
                     }
                     //不存在则删除旧的记录
-                    SystemManager.config.ConnectionList.Remove(OldConnectionName);
+                    SystemConfig.config.ConnectionList.Remove(OldConnectionName);
                 }
             }
             //保存配置
-            if (SystemManager.config.ConnectionList.ContainsKey(NewCollectionName))
+            if (SystemConfig.config.ConnectionList.ContainsKey(NewCollectionName))
             {
-                SystemManager.config.ConnectionList[NewCollectionName] = ModifyConn;
+                SystemConfig.config.ConnectionList[NewCollectionName] = ModifyConn;
             }
             else
             {
-                SystemManager.config.ConnectionList.Add(NewCollectionName, ModifyConn);
+                SystemConfig.config.ConnectionList.Add(NewCollectionName, ModifyConn);
             }
             Close();
         }
@@ -173,11 +174,11 @@ namespace MongoCola
             catch (MongoAuthenticationException ex)
             {
                 //需要验证的数据服务器，没有Admin权限无法获得数据库列表
-                if (!SystemManager.IsUseDefaultLanguage)
+                if (!SystemConfig.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
-                        SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
-                        SystemManager.guiConfig.MStringResource.GetText(
+                        SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
+                        SystemConfig.guiConfig.MStringResource.GetText(
                             StringResource.TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
                 }
                 else
@@ -192,11 +193,11 @@ namespace MongoCola
                 //无法连接的理由：
                 //1.服务器没有启动
                 //2.认证模式不正确
-                if (!SystemManager.IsUseDefaultLanguage)
+                if (!SystemConfig.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
-                        SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_NotConnected),
-                        SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note),
+                        SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                        SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note),
                         ex.ToString(), true);
                 }
                 else
@@ -255,10 +256,10 @@ namespace MongoCola
                 ModifyConn.IsUseDefaultSetting = chkUseDefault.Checked;
                 if (ModifyConn.IsUseDefaultSetting)
                 {
-                    ModifyConn.wtimeoutMS = SystemManager.config.wtimeoutMS;
-                    ModifyConn.WaitQueueSize = SystemManager.config.WaitQueueSize;
-                    ModifyConn.WriteConcern = SystemManager.config.WriteConcern;
-                    ModifyConn.ReadPreference = SystemManager.config.ReadPreference;
+                    ModifyConn.wtimeoutMS = SystemConfig.config.wtimeoutMS;
+                    ModifyConn.WaitQueueSize = SystemConfig.config.WaitQueueSize;
+                    ModifyConn.WriteConcern = SystemConfig.config.WriteConcern;
+                    ModifyConn.ReadPreference = SystemConfig.config.ReadPreference;
                 }                 else
                 {
                     ModifyConn.wtimeoutMS = (double)NumWTimeoutMS.Value;

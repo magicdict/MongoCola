@@ -5,14 +5,17 @@ using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
+using SystemUtility;
 
 namespace MongoCola
 {
     public partial class frmReplsetMgr : Form
     {
-        private MongoUtility.Core.MongoConnectionConfig _config;
-
-        public frmReplsetMgr(ref MongoUtility.Core.MongoConnectionConfig config)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="config"></param>
+    	public frmReplsetMgr(ref MongoUtility.Core.MongoConnectionConfig config)
         {
             InitializeComponent();
             MongoUtility.Core.RuntimeMongoDBContext._CurrentMongoConnectionconfig = config;
@@ -79,21 +82,21 @@ namespace MongoCola
 
         private void frmReplsetMgr_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage)
+            if (!SystemConfig.IsUseDefaultLanguage)
             {
-                Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ReplicaSet);
+                Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ReplicaSet);
                 grpAddHost.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
                 grpRemoveHost.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
-                cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
                 cmdAddHost.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
                 cmdRemoveHost.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
-                lblpriority.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Priority);
-                lblReplHost.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Host);
-                lblReplPort.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+                lblpriority.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Priority);
+                lblReplHost.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Host);
+                lblReplPort.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
             }
 
             MongoServer server = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer();

@@ -5,6 +5,7 @@ using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -15,10 +16,10 @@ namespace MongoCola
 		public frmTextSearch()
 		{
 			InitializeComponent();
-			if (!SystemManager.IsUseDefaultLanguage) {
-				btnSearch.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Search);
-				cmdSave.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
-				cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+			if (!SystemConfig.IsUseDefaultLanguage) {
+				btnSearch.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Search);
+				cmdSave.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
+				cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
 			}
 			//加载语言列表
 			cmbLanguage.Items.Clear();

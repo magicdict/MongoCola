@@ -6,6 +6,7 @@ using MongoDB.Bson;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using RazorEngine;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -16,6 +17,7 @@ namespace MongoCola
 		public static String FilePath { set; get; }
 
 		/// <summary>
+		/// 
 		/// </summary>
 		/// <returns></returns>
 		internal static string ConnectionList()
@@ -37,11 +39,9 @@ namespace MongoCola
 					"</a></li>" + Environment.NewLine;
 				}
 			}
+			content = Razor.Parse(content,new {ConnectionList = SystemConfig.config.SerializableConnectionList });
 			return content;
 		}
-		
-
-
 		/// <summary>
 		/// </summary>
 		/// <param name="ConnectionName"></param>
@@ -64,7 +64,6 @@ namespace MongoCola
 			content = content.Replace("<%=CollectionTag%>", ConstMgr.COLLECTION_TAG);
 			return content;
 		}
-
 		/// <summary>
 		/// </summary>
 		/// <param name="DBTag"></param>
@@ -78,7 +77,6 @@ namespace MongoCola
 				MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer()).Response;
 			return WEBUIHelper.ConvertBsonTozTreeJson("Connection Status", cr, true);
 		}
-
 		/// <summary>
 		/// </summary>
 		/// <param name="DBTag"></param>

@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -23,15 +24,15 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmMapReduce_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage)
+            if (!SystemConfig.IsUseDefaultLanguage)
             {
                 ctlMapFunction.Title =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_MapFunction);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_MapFunction);
                 ctlReduceFunction.Title =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_ReduceFunction);
-                lblResult.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_Result);
-                cmdRun.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_Run);
-                cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_ReduceFunction);
+                lblResult.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_Result);
+                cmdRun.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.MapReduce_Run);
+                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
             ctlMapFunction.Context =
                 @"function Map(){

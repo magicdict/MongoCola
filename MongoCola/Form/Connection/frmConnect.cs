@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using MongoUtility.Core;
+using SystemUtility;
 namespace MongoCola
 {
     public partial class frmConnect : Form
@@ -19,13 +20,13 @@ namespace MongoCola
         private void frmConnect_Load(object sender, EventArgs e)
         {
             RefreshConnection();
-            if (SystemManager.IsUseDefaultLanguage) return;
-            cmdAddCon.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
-            cmdDelCon.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Connect_Action_Del);
-            cmdModifyCon.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Modify);
-            cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
-            cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-            Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Connect_Title);
+            if (SystemConfig.IsUseDefaultLanguage) return;
+            cmdAddCon.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
+            cmdDelCon.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Connect_Action_Del);
+            cmdModifyCon.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Modify);
+            cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+            cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+            Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Connect_Title);
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace MongoCola
         private void RefreshConnection()
         {
             lstConnection.Items.Clear();
-            foreach (MongoUtility.Core.MongoConnectionConfig item in SystemManager.config.ConnectionList.Values)
+            foreach (MongoUtility.Core.MongoConnectionConfig item in SystemConfig.config.ConnectionList.Values)
             {
                 if (item.ReplSetName == string.Empty)
                 {
@@ -87,7 +88,7 @@ namespace MongoCola
             {
                 foreach (ListViewItem item in lstConnection.CheckedItems)
                 {
-                    connLst.Add(SystemManager.config.ConnectionList[item.Text]);
+                    connLst.Add(SystemConfig.config.ConnectionList[item.Text]);
                 }
                 RuntimeMongoDBContext.AddServer(connLst);
             }
@@ -103,9 +104,9 @@ namespace MongoCola
             foreach (ListViewItem item in lstConnection.CheckedItems)
             {
                 string ConnectionName = item.Text;
-                if (SystemManager.config.ConnectionList.ContainsKey(ConnectionName))
+                if (SystemConfig.config.ConnectionList.ContainsKey(ConnectionName))
                 {
-                    SystemManager.config.ConnectionList.Remove(ConnectionName);
+                    SystemConfig.config.ConnectionList.Remove(ConnectionName);
                 }
             }
             RefreshConnection();

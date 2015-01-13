@@ -14,6 +14,7 @@ using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.ExteneralTool;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -42,16 +43,16 @@ namespace MongoCola
 			if (MongoUtility.Core.RuntimeMongoDBContext.SelectTagType != ConstMgr.CONNECTION_EXCEPTION_TAG) {
 				//关闭相关的Tab
 				var CloseList = new List<string>();
-				foreach (string item in SystemManager._viewTabList.Keys) {
+				foreach (string item in _viewTabList.Keys) {
 					if (item.StartsWith(MongoUtility.Core.RuntimeMongoDBContext._CurrentMongoConnectionconfig.ConnectionName + "/")) {
 						CloseList.Add(item);
 					}
 				}
 				foreach (string CloseTabKey in CloseList) {
-					tabView.Controls.Remove(SystemManager._viewTabList[CloseTabKey]);
-					SystemManager._viewTabList[CloseTabKey] = null;
-					SystemManager._viewTabList.Remove(CloseTabKey);
-					SystemManager._viewInfoList.Remove(CloseTabKey);
+					tabView.Controls.Remove(_viewTabList[CloseTabKey]);
+					_viewTabList[CloseTabKey] = null;
+					_viewTabList.Remove(CloseTabKey);
+					_viewInfoList.Remove(CloseTabKey);
 					string MenuKey = string.Empty;
 					ToolStripMenuItem CloseMenuItem = null;
 					foreach (ToolStripMenuItem menuitem in collectionToolStripMenuItem.DropDownItems) {
@@ -103,13 +104,13 @@ namespace MongoCola
 		private void InitReplsetToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			string ReplSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :",
-				                     SystemManager.IsUseDefaultLanguage
+				                     SystemConfig.IsUseDefaultLanguage
                     ? "ReplSetName"
-                    : SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Replset_InitReplset));
+                    : SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Replset_InitReplset));
 			if (ReplSetName == string.Empty)
 				return;
 			CommandResult Result = CommandHelper.InitReplicaSet(ReplSetName,
-				                       MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServerConfig().ConnectionName, SystemManager.config.ConnectionList);
+				                       MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServerConfig().ConnectionName, SystemConfig.config.ConnectionList);
 			if (Result.Ok) {
 				//修改配置
 				MongoUtility.Core.MongoConnectionConfig newConfig = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServerConfig();
@@ -118,7 +119,7 @@ namespace MongoCola
 					newConfig.Host +
 					(newConfig.Port != 0 ? ":" + newConfig.Port : string.Empty)
 				};
-				SystemManager.config.ConnectionList[newConfig.ConnectionName] = newConfig;
+				SystemConfig.config.ConnectionList[newConfig.ConnectionName] = newConfig;
 				ConfigHelper.SaveToConfigFile();
 				MongoUtility.Core.RuntimeMongoDBContext._mongoConnSvrLst.Remove(newConfig.ConnectionName);
 				MongoUtility.Core.RuntimeMongoDBContext._mongoConnSvrLst.Add(MongoUtility.Core.RuntimeMongoDBContext._CurrentMongoConnectionconfig.ConnectionName,
@@ -140,7 +141,7 @@ namespace MongoCola
 		{
 			MongoUtility.Core.MongoConnectionConfig newConfig = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServerConfig();
 			Common.Utility.OpenForm(new frmReplsetMgr(ref newConfig), true, true);
-			SystemManager.config.ConnectionList[newConfig.ConnectionName] = newConfig;
+			SystemConfig.config.ConnectionList[newConfig.ConnectionName] = newConfig;
 			ConfigHelper.SaveToConfigFile();
 			MongoUtility.Core.RuntimeMongoDBContext._mongoConnSvrLst.Remove(newConfig.ConnectionName);
 			MongoUtility.Core.RuntimeMongoDBContext._mongoConnSvrLst.Add(MongoUtility.Core.RuntimeMongoDBContext._CurrentMongoConnectionconfig.ConnectionName, MongoUtility.Core.RuntimeMongoDBContext.CreateMongoServer(ref newConfig));
@@ -168,8 +169,8 @@ namespace MongoCola
 			Debug.WriteLine("RefreshToolStripMenuItem_Click" + Thread.CurrentThread.ManagedThreadId);
 			await RefreshConnectionAsync();
 			DisableAllOpr();
-			statusStripMain.Items[0].Text = !SystemManager.IsUseDefaultLanguage
-                ? SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready)
+			statusStripMain.Items[0].Text = !SystemConfig.IsUseDefaultLanguage
+                ? SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready)
                 : "Ready";
 		}
 		/// <summary>
@@ -180,7 +181,7 @@ namespace MongoCola
 		{
 			var ConnectionTreeNodes = new List<TreeNode>();
 			await Task.Run(() => {
-				ConnectionTreeNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst, SystemManager.config.ConnectionList);
+				ConnectionTreeNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst, SystemConfig.config.ConnectionList);
 			});
 			ServerStatusCtl.ResetCtl();
 			ServerStatusCtl.RefreshStatus(false);
@@ -255,13 +256,13 @@ namespace MongoCola
 		private void CreateMongoDBToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			string strDBName = string.Empty;
-			if (SystemManager.IsUseDefaultLanguage) {
+			if (SystemConfig.IsUseDefaultLanguage) {
 				strDBName = MyMessageBox.ShowInput("Please Input DataBaseName：", "Create Database");
 			} else {
 				strDBName =
                     MyMessageBox.ShowInput(
-					SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Create_New_DataBase_Input),
-					SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Create_New_DataBase));
+					SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Create_New_DataBase_Input),
+					SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Create_New_DataBase));
 			}
 			string ErrMessage;
 			MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer().IsDatabaseNameValid(strDBName, out ErrMessage);
@@ -308,12 +309,12 @@ namespace MongoCola
 			string info = RuntimeMongoDBContext._mongoUserLst[ConnectionName].ToString();
 			if (!string.IsNullOrEmpty(info)) {
 				MyMessageBox.ShowMessage(
-					SystemManager.IsUseDefaultLanguage
+					SystemConfig.IsUseDefaultLanguage
                         ? "UserInformation"
-                        : SystemManager.guiConfig.MStringResource.GetText(
+                        : SystemConfig.guiConfig.MStringResource.GetText(
 						StringResource.TextType.Main_Menu_Operation_Server_UserInfo),
 					"The User Information of：[" +
-					SystemManager.config.ConnectionList[ConnectionName].UserName + "]", info, true);
+					SystemConfig.config.ConnectionList[ConnectionName].UserName + "]", info, true);
 			}
 			//}
 		}
@@ -353,12 +354,12 @@ namespace MongoCola
 		/// <param name="e"></param>
 		private void ServePropertyToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			if (SystemManager.IsUseDefaultLanguage) {
+			if (SystemConfig.IsUseDefaultLanguage) {
 				MyMessageBox.ShowMessage("Server Property", "Server Property", MongoUtility.Basic.Utility.GetCurrentSvrInfo(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer()), true);
 			} else {
 				MyMessageBox.ShowMessage(
-					SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties),
-					SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties),
+					SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties),
+					SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties),
 					MongoUtility.Basic.Utility.GetCurrentSvrInfo(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer()), true);
 			}
 		}
@@ -386,9 +387,9 @@ namespace MongoCola
 		{
 			string strTitle = "Drop Database";
 			string strMessage = "Are you really want to Drop current Database?";
-			if (!SystemManager.IsUseDefaultLanguage) {
-				strTitle = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_DataBase);
-				strMessage = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_DataBase_Confirm);
+			if (!SystemConfig.IsUseDefaultLanguage) {
+				strTitle = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_DataBase);
+				strMessage = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_DataBase_Confirm);
 			}
 			if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
 				return;
@@ -404,8 +405,8 @@ namespace MongoCola
 				//关闭所有的相关视图
 				//foreach不能直接修改，需要一个备份
 				var tempTable = new Dictionary<string, TabPage>();
-				foreach (string item in SystemManager._viewTabList.Keys) {
-					tempTable.Add(item, SystemManager._viewTabList[item]);
+				foreach (string item in _viewTabList.Keys) {
+					tempTable.Add(item, _viewTabList[item]);
 				}
 
 				foreach (string KeyItem in tempTable.Keys) {
@@ -414,7 +415,7 @@ namespace MongoCola
 						ToolStripMenuItem DataMenuItem = null;
 						foreach (ToolStripMenuItem Menuitem in collectionToolStripMenuItem.DropDownItems) {
 							//菜单的寻找
-							if (Menuitem.Tag == SystemManager._viewTabList[KeyItem].Tag) {
+							if (Menuitem.Tag == _viewTabList[KeyItem].Tag) {
 								DataMenuItem = Menuitem;
 							}
 						}
@@ -423,10 +424,10 @@ namespace MongoCola
 							collectionToolStripMenuItem.DropDownItems.Remove(DataMenuItem);
 						}
 						//TabPage的删除
-						tabView.Controls.Remove(SystemManager._viewTabList[KeyItem]);
-						SystemManager._viewTabList.Remove(KeyItem);
-						SystemManager._viewInfoList.Remove(KeyItem);
-						SystemManager._viewTabList[KeyItem] = null;
+						tabView.Controls.Remove(_viewTabList[KeyItem]);
+						_viewTabList.Remove(KeyItem);
+						_viewInfoList.Remove(KeyItem);
+						_viewTabList[KeyItem] = null;
 					}
 				}
 				tempTable = null;
@@ -504,7 +505,7 @@ namespace MongoCola
 			trvsrvlst.Nodes.Clear();
 			var t = UIHelper.GetConnectionNodes(
 				        RuntimeMongoDBContext._mongoConnSvrLst,
-				        SystemManager.config.ConnectionList);
+				        SystemConfig.config.ConnectionList);
 			foreach (var element in t) {
 				trvsrvlst.Nodes.Add(element);
 			}
@@ -573,17 +574,17 @@ namespace MongoCola
 		{
 			string strTitle = "Drop Collection";
 			string strMessage = "Are you sure to drop this Collection?";
-			if (!SystemManager.IsUseDefaultLanguage) {
-				strTitle = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_Collection);
-				strMessage = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_Collection_Confirm);
+			if (!SystemConfig.IsUseDefaultLanguage) {
+				strTitle = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_Collection);
+				strMessage = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_Collection_Confirm);
 			}
 			if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
 				return;
 			if (!MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().DropCollection(trvsrvlst.SelectedNode.Text).Ok)
 				return;
 			string strNodeData = MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
-			if (SystemManager._viewTabList.ContainsKey(strNodeData)) {
-				TabPage DataTab = SystemManager._viewTabList[strNodeData];
+			if (_viewTabList.ContainsKey(strNodeData)) {
+				TabPage DataTab = _viewTabList[strNodeData];
 				foreach (ToolStripMenuItem item in collectionToolStripMenuItem.DropDownItems) {
 					if (item.Tag != DataTab.Tag)
 						continue;
@@ -591,8 +592,8 @@ namespace MongoCola
 					break;
 				}
 				tabView.Controls.Remove(DataTab);
-				SystemManager._viewTabList.Remove(strNodeData);
-				SystemManager._viewInfoList.Remove(strNodeData);
+				_viewTabList.Remove(strNodeData);
+				_viewInfoList.Remove(strNodeData);
 				DataTab = null;
 			}
 			trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
@@ -609,14 +610,14 @@ namespace MongoCola
 			string strPath = MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			string strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
 			string strNewCollectionName = string.Empty;
-			if (SystemManager.IsUseDefaultLanguage) {
+			if (SystemConfig.IsUseDefaultLanguage) {
 				strNewCollectionName = MyMessageBox.ShowInput("Please input new collection name：", "Rename collection",
 					strCollection);
 			} else {
 				strNewCollectionName =
                     MyMessageBox.ShowInput(
-					SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
-					SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Rename_Collection));
+					SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
+					SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Rename_Collection));
 			}
 			if (string.IsNullOrEmpty(strNewCollectionName) || !MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase()
                 .RenameCollection(trvsrvlst.SelectedNode.Text, strNewCollectionName)
@@ -627,8 +628,8 @@ namespace MongoCola
 				                       MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag.Length - MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().Name.Length);
 			strNewNodeTag += strNewCollectionName;
 			string strNewNodeData = Common.Utility.GetTagData(strNewNodeTag);
-			if (SystemManager._viewTabList.ContainsKey(strNodeData)) {
-				TabPage DataTab = SystemManager._viewTabList[strNodeData];
+			if (_viewTabList.ContainsKey(strNodeData)) {
+				TabPage DataTab = _viewTabList[strNodeData];
 				foreach (ToolStripMenuItem item in collectionToolStripMenuItem.DropDownItems) {
 					if (item.Tag == DataTab.Tag) {
 						item.Text = strNewCollectionName;
@@ -640,11 +641,11 @@ namespace MongoCola
 				DataTab.Tag = strNewNodeTag;
 
 				//Change trvsrvlst.SelectedNode
-				SystemManager._viewTabList.Add(strNewNodeData, SystemManager._viewTabList[strNodeData]);
-				SystemManager._viewTabList.Remove(strNodeData);
+				_viewTabList.Add(strNewNodeData, _viewTabList[strNodeData]);
+				_viewTabList.Remove(strNodeData);
 
-				SystemManager._viewInfoList.Add(strNewNodeData, SystemManager._viewInfoList[strNodeData]);
-				SystemManager._viewInfoList.Remove(strNodeData);
+				_viewInfoList.Add(strNewNodeData, _viewInfoList[strNodeData]);
+				_viewInfoList.Remove(strNodeData);
 			}
 			DisableAllOpr();
 			MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag = strNewNodeTag;
@@ -654,11 +655,11 @@ namespace MongoCola
 			trvsrvlst.SelectedNode.ToolTipText += "IsCapped:" +
 			MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().GetStats().IsCapped;
 
-			if (SystemManager.IsUseDefaultLanguage) {
+			if (SystemConfig.IsUseDefaultLanguage) {
 				statusStripMain.Items[0].Text = "selected Collection:" + MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			} else {
 				statusStripMain.Items[0].Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Collection) +
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Collection) +
 				":" + MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			}
 		}
@@ -703,8 +704,8 @@ namespace MongoCola
 			string Result = MongoDbHelper.DelJavascript(trvsrvlst.SelectedNode.Text, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
 			if (string.IsNullOrEmpty(Result)) {
 				string strNodeData = MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
-				if (SystemManager._viewTabList.ContainsKey(strNodeData)) {
-					TabPage DataTab = SystemManager._viewTabList[strNodeData];
+				if (_viewTabList.ContainsKey(strNodeData)) {
+					TabPage DataTab = _viewTabList[strNodeData];
 					foreach (ToolStripMenuItem item in JavaScriptStripMenuItem.DropDownItems) {
 						if (item.Tag != DataTab.Tag)
 							continue;
@@ -712,7 +713,7 @@ namespace MongoCola
 						break;
 					}
 					tabView.Controls.Remove(DataTab);
-					SystemManager._viewTabList.Remove(strNodeData);
+					_viewTabList.Remove(strNodeData);
 				}
 				trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
 				DisableAllOpr();
@@ -784,7 +785,7 @@ namespace MongoCola
 		{
 			string ColPath = MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			Common.Utility.OpenForm(
-				!SystemManager._viewInfoList.ContainsKey(ColPath) ? new frmExport() : new frmExport(SystemManager._viewInfoList[ColPath]), true,
+				!_viewInfoList.ContainsKey(ColPath) ? new frmExport() : new frmExport(_viewInfoList[ColPath]), true,
 				true);
 		}
 
@@ -802,7 +803,7 @@ namespace MongoCola
 				return true;
 			MyMessageBox.ShowMessage("Exception",
 				"Mongo Bin Path Can't be found",
-				"Mongo Bin Path[" + SystemManager.config.MongoBinPath + "]Can't be found");
+				"Mongo Bin Path[" + SystemConfig.config.MongoBinPath + "]Can't be found");
 			Common.Utility.OpenForm(new frmOption(), true, true);
 			return false;
 		}
@@ -827,11 +828,11 @@ namespace MongoCola
 		{
 			string strTitle = "Restore";
 			string strMessage = "Are you sure to Restore?";
-			if (!SystemManager.IsUseDefaultLanguage) {
+			if (!SystemConfig.IsUseDefaultLanguage) {
 				strTitle =
-                    SystemManager.guiConfig.MStringResource.GetText(
+                    SystemConfig.guiConfig.MStringResource.GetText(
 					StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Restore);
-				strMessage = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Restore_Connection_Confirm);
+				strMessage = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Restore_Connection_Confirm);
 			}
 			if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
 				return;
@@ -936,9 +937,9 @@ namespace MongoCola
 		{
 			string strTitle = "Import Collection";
 			string strMessage = "Are you sure to Import Collection?";
-			if (!SystemManager.IsUseDefaultLanguage) {
-				strTitle = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_Data);
-				strMessage = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
+			if (!SystemConfig.IsUseDefaultLanguage) {
+				strTitle = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_Data);
+				strMessage = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
 			}
 			if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
 				return;
@@ -974,9 +975,9 @@ namespace MongoCola
 			var Query = new DataFilter();
 			string ColPath = MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			bool IsUseFilter = false;
-			if (SystemManager._viewInfoList.ContainsKey(ColPath)) {
-				Query = SystemManager._viewInfoList[ColPath].mDataFilter;
-				IsUseFilter = SystemManager._viewInfoList[ColPath].IsUseFilter;
+			if (_viewInfoList.ContainsKey(ColPath)) {
+				Query = _viewInfoList[ColPath].mDataFilter;
+				IsUseFilter = _viewInfoList[ColPath].IsUseFilter;
 			}
 
 			if (Query.QueryConditionList.Count == 0 || !IsUseFilter) {
@@ -999,9 +1000,9 @@ namespace MongoCola
 			var Query = new DataFilter();
 			string ColPath = MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			bool IsUseFilter = false;
-			if (SystemManager._viewInfoList.ContainsKey(ColPath)) {
-				Query = SystemManager._viewInfoList[ColPath].mDataFilter;
-				IsUseFilter = SystemManager._viewInfoList[ColPath].IsUseFilter;
+			if (_viewInfoList.ContainsKey(ColPath)) {
+				Query = _viewInfoList[ColPath].mDataFilter;
+				IsUseFilter = _viewInfoList[ColPath].IsUseFilter;
 			}
 			Common.Utility.OpenForm(new frmDistinct(Query, IsUseFilter), true, true);
 		}
@@ -1016,9 +1017,9 @@ namespace MongoCola
 			var Query = new DataFilter();
 			string ColPath = MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			bool IsUseFilter = false;
-			if (SystemManager._viewInfoList.ContainsKey(ColPath)) {
-				Query = SystemManager._viewInfoList[ColPath].mDataFilter;
-				IsUseFilter = SystemManager._viewInfoList[ColPath].IsUseFilter;
+			if (_viewInfoList.ContainsKey(ColPath)) {
+				Query = _viewInfoList[ColPath].mDataFilter;
+				IsUseFilter = _viewInfoList[ColPath].IsUseFilter;
 			}
 			Common.Utility.OpenForm(new frmGroup(Query, IsUseFilter), true, true);
 		}
@@ -1065,8 +1066,8 @@ namespace MongoCola
 		private void OptionToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Common.Utility.OpenForm(new frmOption(), true, true);
-			SystemManager.InitLanguage();
-			if (SystemManager.IsUseDefaultLanguage) {
+			SystemConfig.InitLanguage();
+			if (SystemConfig.IsUseDefaultLanguage) {
 				MyMessageBox.ShowMessage("Language", "Language will change to \"English\" when you restart this tool");
 			} else {
 				SetMenuText();

@@ -137,13 +137,13 @@ namespace MongoUtility.Core
 				if (config.connectTimeoutMS != 0) {
 					mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int)(config.connectTimeoutMS / 1000));
 				}
-//                if (SystemManager.ConfigHelperInstance.wtimeoutMS != 0)
+//                if (SystemConfig.configHelperInstance.wtimeoutMS != 0)
 //                {
-//                    mongoClientSetting.WaitQueueTimeout = new TimeSpan(0, 0, (int)(SystemManager.ConfigHelperInstance.wtimeoutMS / 1000));
+//                    mongoClientSetting.WaitQueueTimeout = new TimeSpan(0, 0, (int)(SystemConfig.configHelperInstance.wtimeoutMS / 1000));
 //                }
-//                if (SystemManager.ConfigHelperInstance.WaitQueueSize != 0)
+//                if (SystemConfig.configHelperInstance.WaitQueueSize != 0)
 //                {
-//                    mongoClientSetting.WaitQueueSize = SystemManager.ConfigHelperInstance.WaitQueueSize;
+//                    mongoClientSetting.WaitQueueSize = SystemConfig.configHelperInstance.WaitQueueSize;
 //                }
 				//运行时LoginAsAdmin的设定
 				config.LoginAsAdmin = (config.DataBaseName == String.Empty);
@@ -340,11 +340,25 @@ namespace MongoUtility.Core
 					}
 					RuntimeMongoDBContext._mongoConnSvrLst.Add(config.ConnectionName, RuntimeMongoDBContext.CreateMongoServer(ref config));
 					//更新一些运行时的变量
-					//SystemManager.config.ConnectionList[config.ConnectionName] = config;
+					//SystemConfig.config.ConnectionList[config.ConnectionName] = config;
 				} catch (Exception ex) {
 					Common.Utility.ExceptionDeal(ex, "Exception", "Can't Connect to Server：" + config.ConnectionName);
 				}
 			}
+		}
+				/// <summary>
+		///     通过连接名称获得Host信息
+		/// </summary>
+		/// <param name="ConnectionName"></param>
+		/// <returns></returns>
+		public static MongoServerAddress GetMongoSvrAddrByConnectionName(String ConnectionName)
+		{
+			MongoServerAddress mongosrvAddr = null;
+			if (_mongoConnectionConfigList.ContainsKey(ConnectionName)) {
+				mongosrvAddr = new MongoServerAddress(_mongoConnectionConfigList[ConnectionName].Host,
+					_mongoConnectionConfigList[ConnectionName].Port);
+			}
+			return mongosrvAddr;
 		}
 		#endregion
 	}

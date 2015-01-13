@@ -1,15 +1,13 @@
-﻿using MongoCola.Module;
-using MongoDB.Bson.IO;
-using MongoUtility.Aggregation;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MongoCola.Module;
+using MongoDB.Bson;
 using MongoGUICtl;
+using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 
 namespace MongoGUIView
@@ -17,48 +15,6 @@ namespace MongoGUIView
 	public static class ViewHelper
 	{
 		#region"展示数据集内容[WebForm]"
-     	/// <summary>
-		///     获得展示数据
-		/// </summary>
-		/// <param name="CurrentDataViewInfo"></param>
-		public static List<BsonDocument> GetDataList(ref DataViewInfo CurrentDataViewInfo, MongoServer mServer)
-		{
-			string collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
-			string[] cp = collectionPath.Split("/".ToCharArray());
-			MongoCollection mongoCol =
-				mServer.GetDatabase(cp[(int)EnumMgr.PathLv.DatabaseLv]).GetCollection(cp[(int)EnumMgr.PathLv.CollectionLv]);
-
-
-			MongoCursor<BsonDocument> cursor;
-			//Query condition:
-			if (CurrentDataViewInfo.IsUseFilter) {
-				cursor = mongoCol.FindAs<BsonDocument>(QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
-                    .SetSkip(CurrentDataViewInfo.SkipCnt)
-                    .SetFields(QueryHelper.GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
-                    .SetSortOrder(QueryHelper.GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList))
-                    .SetLimit(CurrentDataViewInfo.LimitCnt);
-			} else {
-				cursor = mongoCol.FindAllAs<BsonDocument>()
-                    .SetSkip(CurrentDataViewInfo.SkipCnt)
-                    .SetLimit(CurrentDataViewInfo.LimitCnt);
-			}
-			CurrentDataViewInfo.Query = cursor.Query != null
-                ? cursor.Query.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings)
-                : string.Empty;
-			CurrentDataViewInfo.Explain = cursor.Explain().ToJson(MongoUtility.Basic.Utility.JsonWriterSettings);
-			List<BsonDocument> dataList = cursor.ToList();
-			if (CurrentDataViewInfo.SkipCnt == 0) {
-				if (CurrentDataViewInfo.IsUseFilter) {
-					//感谢cnblogs.com 网友Shadower
-					CurrentDataViewInfo.CurrentCollectionTotalCnt =
-                        (int)mongoCol.Count(QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList));
-				} else {
-					CurrentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count();
-				}
-			}
-			SetPageEnable(ref CurrentDataViewInfo);
-			return dataList;
-		}
 
 		/// <summary>
 		///     展示数据
@@ -87,8 +43,6 @@ namespace MongoGUIView
 				}
 			}
 		}
-
-
 		/// <summary>
 		///     字符转Bsonvalue
 		/// </summary>
@@ -102,7 +56,6 @@ namespace MongoGUIView
 			}
 			return new BsonString("");
 		}
-
 		/// <summary>
 		///     BsonValue转展示用字符
 		/// </summary>
@@ -163,7 +116,7 @@ namespace MongoGUIView
 		/// <param name="collectionName"></param>
 		/// <param name="lstData"></param>
 		/// <param name="dataList"></param>
-		public static void FillDataToListView(string collectionName, ListView lstData, List<BsonDocument> dataList, bool isSystem = false)
+		public static void FillDataToListView(string collectionName, ListView lstData, List<BsonDocument> dataList)
 		{
 			lstData.Clear();
 			lstData.SmallImageList = null;
@@ -174,59 +127,63 @@ namespace MongoGUIView
 				case ConstMgr.COLLECTION_NAME_USER:
 					SetUserListToListView(dataList, lstData);
 					break;
-			//case COLLECTION_NAME_ROLE:
-			//SetRoleListToListView(dataList, lstData);
-			//break;
 				default:
-					var _columnlist = new List<string>();
-                    //可以让_id 不在第一位，昏过去了,很多逻辑需要调整
-                    //bool isSystem = IsSystemCollection(mCollection);
-//                    if (!isSystem)
-//                    {
-//                        _columnlist.Add(ConstMgr.KEY_ID);
-//                        lstData.Columns.Add(ConstMgr.KEY_ID);
-//                    }
-					foreach (BsonDocument docItem in dataList) {
-						var lstItem = new ListViewItem();
-						foreach (string item in docItem.Names) {
-							if (!_columnlist.Contains(item)) {
-								_columnlist.Add(item);
-								lstData.Columns.Add(item);
-							}
-						}
-
-						//Key:_id
-						if (!isSystem) {
-							BsonElement id;
-							docItem.TryGetElement(ConstMgr.KEY_ID, out id);
-							if (id != null) {
-								lstItem.Text = docItem.GetValue(ConstMgr.KEY_ID).ToString();
-								//这里保存真实的主Key数据，删除的时候使用
-								lstItem.Tag = docItem.GetValue(ConstMgr.KEY_ID);
-							} else {
-								lstItem.Text = "[Empty]";
-								lstItem.Tag = docItem.GetElement(0).Value;
-							}
-						} else {
-							lstItem.Text = docItem.GetValue(_columnlist[0]).ToString();
-						}
-						//OtherItems
-						for (int i = isSystem ? 1 : 0; i < _columnlist.Count; i++) {
-							if (_columnlist[i] == ConstMgr.KEY_ID) {
-								continue;
-							}
-							BsonValue val;
-							docItem.TryGetValue(_columnlist[i], out val);
-							lstItem.SubItems.Add(val == null ? "" : ConvertToString(val));
-						}
-						lstData.Items.Add(lstItem);
-					}
-					Common.Utility.ListViewColumnResize(lstData);
-                    //lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+					//普通数据的加载
+					SetDataListToListView(dataList, lstData,collectionName);
 					break;
 			}
 		}
-
+		/// <summary>
+		/// 普通数据的加载
+		/// </summary>
+		/// <param name="dataList"></param>
+		/// <param name="lstData"></param>
+		/// <param name="collectionName"></param>
+		private static void SetDataListToListView(List<BsonDocument> dataList, ListView lstData,string collectionName)
+		{
+			var _columnlist = new List<string>();
+			//可以让_id 不在第一位，昏过去了,很多逻辑需要调整
+			bool isSystem = MongoDbHelper.IsSystemCollection(string.Empty, collectionName);
+			if (!isSystem) {
+				_columnlist.Add(ConstMgr.KEY_ID);
+				lstData.Columns.Add(ConstMgr.KEY_ID);
+			}
+			foreach (BsonDocument docItem in dataList) {
+				var lstItem = new ListViewItem();
+				foreach (string item in docItem.Names) {
+					if (!_columnlist.Contains(item)) {
+						_columnlist.Add(item);
+						lstData.Columns.Add(item);
+					}
+				}
+				//Key:_id
+				if (!isSystem) {
+					BsonElement id;
+					docItem.TryGetElement(ConstMgr.KEY_ID, out id);
+					if (id != null) {
+						lstItem.Text = docItem.GetValue(ConstMgr.KEY_ID).ToString();
+						//这里保存真实的主Key数据，删除的时候使用
+						lstItem.Tag = docItem.GetValue(ConstMgr.KEY_ID);
+					} else {
+						lstItem.Text = "[Empty]";
+						lstItem.Tag = docItem.GetElement(0).Value;
+					}
+				} else {
+					lstItem.Text = docItem.GetValue(_columnlist[0]).ToString();
+				}
+				//OtherItems
+				for (int i = isSystem ? 1 : 0; i < _columnlist.Count; i++) {
+					if (_columnlist[i] == ConstMgr.KEY_ID) {
+						continue;
+					}
+					BsonValue val;
+					docItem.TryGetValue(_columnlist[i], out val);
+					lstItem.SubItems.Add(val == null ? "" : ConvertToString(val));
+				}
+				lstData.Items.Add(lstItem);
+			}
+			Common.Utility.ListViewColumnResize(lstData);
+		}
 		/// <summary>
 		///     用户列表
 		/// </summary>
@@ -303,18 +260,16 @@ namespace MongoGUIView
 				lstData.Columns.Add(configuration.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_chunkSize));
 				lstData.Columns.Add(configuration.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_uploadDate));
 				lstData.Columns.Add(configuration.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_md5));
-				//if (!Init.SystemManager.MonoMode) {
+				//!MONO
 				lstData.Columns.Add("ContentType");
-				//}
 			} else {
 				lstData.Columns.Add("filename");
 				lstData.Columns.Add("length");
 				lstData.Columns.Add("chunkSize");
 				lstData.Columns.Add("uploadDate");
 				lstData.Columns.Add("MD5");
-				//if (!Init.SystemManager.MonoMode) {
+				//!MONO
 				lstData.Columns.Add("ContentType");
-				//}
 			}
 			lstData.SmallImageList = GetSystemIcon.IconImagelist;
 			lstData.LargeImageList = GetSystemIcon.IconImagelist;
@@ -330,14 +285,12 @@ namespace MongoGUIView
 				lstItem.SubItems.Add(Utility.GetBsonSize(docFile.GetValue("chunkSize")));
 				lstItem.SubItems.Add(ConvertToString(docFile.GetValue("uploadDate")));
 				lstItem.SubItems.Add(ConvertToString(docFile.GetValue("md5")));
-
-				//if (!Init.SystemManager.MonoMode) {
+				//!MONO
 				lstItem.SubItems.Add(GetSystemIcon.GetContentType(Filename));
-				//}
 				lstData.Items.Add(lstItem);
 			}
+			//自动调节列宽
 			Common.Utility.ListViewColumnResize(lstData);
-			//lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 			// 用新的排序方法对ListView排序
 			var _lvwGFSColumnSorter = new MongoGUICtl.FillMongoDB.lvwColumnSorter();
 			lstData.ListViewItemSorter = _lvwGFSColumnSorter;
@@ -345,10 +298,10 @@ namespace MongoGUIView
 				switch (e.Column) {
 					case 1:
 					case 2:
-						_lvwGFSColumnSorter.CompareMethod = MongoGUICtl.FillMongoDB.lvwColumnSorter.SortMethod.SizeCompare;
+						_lvwGFSColumnSorter.CompareMethod = FillMongoDB.lvwColumnSorter.SortMethod.SizeCompare;
 						break;
 					default:
-						_lvwGFSColumnSorter.CompareMethod = MongoGUICtl.FillMongoDB.lvwColumnSorter.SortMethod.StringCompare;
+						_lvwGFSColumnSorter.CompareMethod = FillMongoDB.lvwColumnSorter.SortMethod.StringCompare;
 						break;
 				}
 				// 检查点击的列是不是现在的排序列.
@@ -369,7 +322,6 @@ namespace MongoGUIView
 		#endregion
 
 		#region"数据导航"
-
 		/// <summary>
 		///     数据导航
 		/// </summary>
@@ -434,23 +386,9 @@ namespace MongoGUIView
 				default:
 					break;
 			}
-			List<BsonDocument> datalist = GetDataList(ref mDataViewInfo, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
+			List<BsonDocument> datalist = DataViewInfo.GetDataList(ref mDataViewInfo, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
 			FillDataToControl(datalist, dataShower, mDataViewInfo);
 		}
-
-		/// <summary>
-		///     设置导航状态
-		/// </summary>
-		/// <param name="mDataViewInfo">Data View Information(Structure,Must By Ref)</param>
-		public static void SetPageEnable(ref DataViewInfo mDataViewInfo)
-		{
-			mDataViewInfo.HasPrePage = mDataViewInfo.SkipCnt != 0;
-			mDataViewInfo.HasNextPage = (mDataViewInfo.SkipCnt + mDataViewInfo.LimitCnt) <
-			mDataViewInfo.CurrentCollectionTotalCnt;
-		}
-
-
-
 		#endregion
 	}
 }

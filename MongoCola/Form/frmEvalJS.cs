@@ -5,6 +5,7 @@ using Common;
 using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -22,12 +23,12 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmevalJS_Load(object sender, EventArgs e)
         {
-            if (!SystemManager.IsUseDefaultLanguage)
+            if (!SystemConfig.IsUseDefaultLanguage)
             {
-                Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Title);
-                ctlEval.Title = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Method);
-                lblParm.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Parameter);
-                cmdEval.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Run);
+                Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Title);
+                ctlEval.Title = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Method);
+                lblParm.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Parameter);
+                cmdEval.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Run);
             }
             ctlEval.Context =
                 @"function eval(){

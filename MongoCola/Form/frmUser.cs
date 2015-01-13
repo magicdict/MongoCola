@@ -7,6 +7,7 @@ using MongoDB.Bson;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
 using MongoUtility.Security;
+using SystemUtility;
 namespace MongoCola
 {
     public partial class frmUser : Form
@@ -135,12 +136,12 @@ namespace MongoCola
                 }
                 RefreshOtherDBRoles();
             }
-            if (!SystemManager.IsUseDefaultLanguage)
+            if (!SystemConfig.IsUseDefaultLanguage)
             {
                 if (_ModifyName == String.Empty)
                 {
                     Text =
-                        SystemManager.guiConfig.MStringResource.GetText(_IsAdmin
+                        SystemConfig.guiConfig.MStringResource.GetText(_IsAdmin
                             ? StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin
                             : StringResource.TextType.Main_Menu_Operation_Database_AddUser);
                     Icon = GetSystemIcon.ConvertImgToIcon(ResourceLib.Properties.Resources.AddUserToDB);
@@ -148,17 +149,17 @@ namespace MongoCola
                 else
                 {
                     Icon = GetSystemIcon.ConvertImgToIcon(ResourceLib.Properties.Resources.DBkey);
-                    Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_ChangePassword);
+                    Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_ChangePassword);
                 }
-                lblUserName.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Username);
-                lblPassword.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Password);
+                lblUserName.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Username);
+                lblPassword.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Password);
                 lblConfirmPsw.Text =
-                    SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_ConfirmPassword);
-                //chkReadOnly.Text = SystemManager.guiConfig.MStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_ReadOnly);
-                colRoles.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Roles);
-                colDataBase.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_DataBase);
-                cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_ConfirmPassword);
+                //chkReadOnly.Text = SystemConfig.guiConfig.MStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_ReadOnly);
+                colRoles.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Roles);
+                colDataBase.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_DataBase);
+                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
             }
         }
 

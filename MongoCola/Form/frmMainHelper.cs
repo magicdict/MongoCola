@@ -10,6 +10,7 @@ using System;
 using System.Windows.Forms;
 using MongoCola.Module;
 using PlugInPackage;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -25,149 +26,149 @@ namespace MongoCola
 		{
 			//管理
 			ManagerToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt);
 			DisconnectToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Disconnect);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Disconnect);
 			AddConnectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_AddConnection);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_AddConnection);
 			RefreshToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Refresh);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Refresh);
 
 			ExpandAllConnectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Expansion);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Expansion);
 			CollapseAllConnectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Collapse);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Collapse);
 			ExitToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Exit);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Exit);
 
 			//数据视图
 			ViewToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
 			ViewRefreshToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Refresh);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Refresh);
 			collectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Collection);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Collection);
 			statusToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
 
 
 			//Operation
 			OperationToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation);
 
 			connectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Connect);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Connect);
 			ReplicaSetToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ReplicaSet);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ReplicaSet);
 			ShardingConfigToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ShardingConfig);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Distributed_ShardingConfig);
 			InitReplsetToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Replset_InitReplset);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Replset_InitReplset);
 
 
 			ServerToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server);
 			CreateMongoDBToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_NewDB);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_NewDB);
 			UserInfoStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_UserInfo);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_UserInfo);
 			AddUserToAdminToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin);
 			slaveResyncToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_SlaveResync);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_SlaveResync);
 			ShutDownToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_CloseServer);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_CloseServer);
 			ServePropertyToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Server_Properties);
 			ServerStatusToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
 
 			DataBaseToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database);
 			DelMongoDBToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelDB);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelDB);
 			CreateMongoCollectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddDC);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddDC);
 			AddUserToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
 			EvalJSToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_EvalJs);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_EvalJs);
 			RepairDBToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(
+                SystemConfig.guiConfig.MStringResource.GetText(
 				StringResource.TextType.Main_Menu_Operation_Database_RepairDatabase);
 			DBStatusToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
 
 			DataCollectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection);
 			DelMongoCollectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DelDC);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_DelDC);
 			RenameCollectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Rename);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Rename);
 			IndexManageToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Index);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Index);
 			ReIndexToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_ReIndex);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_ReIndex);
 			CompactToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Compact);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_Compact);
 			CollectionStatusToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
 			InitGFSToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_InitGFS);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_FileSystem_InitGFS);
 			ProfillingLevelToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
 			AggregationToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Aggregation);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Aggregation);
 			ValidateToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Validate);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Validate);
 			ExportToFileToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(
+                SystemConfig.guiConfig.MStringResource.GetText(
 				StringResource.TextType.Main_Menu_Operation_DataCollection_ExportToFile);
 
 			DumpAndRestoreToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_BackupAndRestore);
 			RestoreMongoToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(
+                SystemConfig.guiConfig.MStringResource.GetText(
 				StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Restore);
 			DumpCollectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(
+                SystemConfig.guiConfig.MStringResource.GetText(
 				StringResource.TextType.Main_Menu_Operation_BackupAndRestore_BackupDC);
 			DumpDatabaseToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(
+                SystemConfig.guiConfig.MStringResource.GetText(
 				StringResource.TextType.Main_Menu_Operation_BackupAndRestore_BackupDB);
 			ImportCollectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(
+                SystemConfig.guiConfig.MStringResource.GetText(
 				StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Import);
 			ExportCollectionToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(
+                SystemConfig.guiConfig.MStringResource.GetText(
 				StringResource.TextType.Main_Menu_Operation_BackupAndRestore_Export);
 			creatJavaScriptToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(
+                SystemConfig.guiConfig.MStringResource.GetText(
 				StringResource.TextType.Main_Menu_Operation_DataCollection_CreateJavaScript);
 			ViewDataToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_View);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_DataCollection_View);
 			dropJavascriptToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(
+                SystemConfig.guiConfig.MStringResource.GetText(
 				StringResource.TextType.Main_Menu_Operation_DataCollection_DropJavaScript);
 
 			//Tool
-			ToolsToolStripMenuItem.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Tool);
+			ToolsToolStripMenuItem.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Tool);
 			OptionsToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Tool_Setting);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Tool_Setting);
 
 			//帮助
-			HelpToolStripMenuItem.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Help);
+			HelpToolStripMenuItem.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Help);
 			AboutToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Help_About);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Help_About);
 			ThanksToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Help_Thanks);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Help_Thanks);
 			UserGuideToolStripMenuItem.Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Help_UserGuide);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Help_UserGuide);
 
 			//其他控件
 			statusStripMain.Items[0].Text =
-                SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
-			tabSvrStatus.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready);
+			tabSvrStatus.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
 		}
 		/// <summary>
 		///     禁止所有操作

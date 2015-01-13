@@ -35,7 +35,7 @@ namespace Common
 			//感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
 			//坑爹啊。。。。。。。。
 			Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));
-//            if (!SystemManager.MonoMode)
+//            if (!SystemConfig.MonoMode)
 //            {
 			//悲催MONO不支持
 			if (_List != null && _List[0] != null) {
@@ -69,7 +69,7 @@ namespace Common
 			//感谢CSDN网友beargo在帖子【如何获取事件已定制方法名?】里面的提示，网上的例子没有说明这个问题
 			//坑爹啊。。。。。。。。
 			Delegate[] _List = GetObjectEventList(orgMenuItem, "EventClick", typeof(ToolStripItem));
-//            if (!SystemManager.MonoMode)
+//            if (!SystemConfig.MonoMode)
 //            {
 			//悲催MONO不支持
 			if (_List != null && _List[0] != null) {

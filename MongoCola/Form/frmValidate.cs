@@ -4,6 +4,7 @@ using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -14,12 +15,12 @@ namespace MongoCola
         public frmValidate()
         {
             InitializeComponent();
-            if (!SystemManager.IsUseDefaultLanguage)
+            if (!SystemConfig.IsUseDefaultLanguage)
             {
-                cmdSave.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
-                cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
-                Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Validate);
-                cmdValidate.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Validate);
+                cmdSave.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
+                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Validate);
+                cmdValidate.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Validate);
             }
             cmdSave.Enabled = false;
         }

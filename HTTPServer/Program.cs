@@ -13,7 +13,7 @@ namespace HTTPServer
         private static void Main()
         {
             GetSystemIcon.InitMainTreeImage();
-            Application.Run(new Console());
+            Application.Run(new frmConsole());
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MongoCola.Module;
 using MongoDB.Bson;
 using MongoUtility.Basic;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -101,11 +102,11 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmNewDocument_Load(object sender, EventArgs e)
         {
-            if (SystemManager.IsUseDefaultLanguage) return;
-            cmdClose.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
-            cmdSaveAggregate.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
-            cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-            //cmdPreview.Text = SystemManager.guiConfig.MStringResource.GetText();
+            if (SystemConfig.IsUseDefaultLanguage) return;
+            cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+            cmdSaveAggregate.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
+            cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+            //cmdPreview.Text = SystemConfig.guiConfig.MStringResource.GetText();
         }
     }
 }

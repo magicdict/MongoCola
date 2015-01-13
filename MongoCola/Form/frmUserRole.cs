@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MongoCola.Module;
 using MongoDB.Bson;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -15,10 +16,10 @@ namespace MongoCola
             Result = orgRoles;
             otherDBRolesPanel.setRoles(Result);
             otherDBRolesPanel.IsAdmin = false;
-            if (!SystemManager.IsUseDefaultLanguage)
+            if (!SystemConfig.IsUseDefaultLanguage)
             {
-                cmdOK.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemManager.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
             }
         }
 

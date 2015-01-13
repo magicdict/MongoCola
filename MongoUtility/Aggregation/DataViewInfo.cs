@@ -7,6 +7,10 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoCola.Module;
 using MongoUtility.Basic;
 
@@ -101,5 +105,59 @@ namespace MongoUtility.Aggregation
 					DataList[(int)EnumMgr.PathLv.CollectionLv]);
 			}
 		}
+		/// <summary>
+		///     获得展示数据
+		/// </summary>
+		/// <param name="CurrentDataViewInfo"></param>
+		public static List<BsonDocument> GetDataList(ref DataViewInfo CurrentDataViewInfo, MongoServer mServer)
+		{
+			string collectionPath = CurrentDataViewInfo.strDBTag.Split(":".ToCharArray())[1];
+			string[] cp = collectionPath.Split("/".ToCharArray());
+			MongoCollection mongoCol =
+				mServer.GetDatabase(cp[(int)EnumMgr.PathLv.DatabaseLv]).GetCollection(cp[(int)EnumMgr.PathLv.CollectionLv]);
+
+
+			MongoCursor<BsonDocument> cursor;
+			//Query condition:
+			if (CurrentDataViewInfo.IsUseFilter) {
+				cursor = mongoCol.FindAs<BsonDocument>(QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
+                    .SetSkip(CurrentDataViewInfo.SkipCnt)
+                    .SetFields(QueryHelper.GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
+                    .SetSortOrder(QueryHelper.GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList))
+                    .SetLimit(CurrentDataViewInfo.LimitCnt);
+			} else {
+				cursor = mongoCol.FindAllAs<BsonDocument>()
+                    .SetSkip(CurrentDataViewInfo.SkipCnt)
+                    .SetLimit(CurrentDataViewInfo.LimitCnt);
+			}
+			CurrentDataViewInfo.Query = cursor.Query != null
+                ? cursor.Query.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings)
+                : string.Empty;
+			CurrentDataViewInfo.Explain = cursor.Explain().ToJson(MongoUtility.Basic.Utility.JsonWriterSettings);
+			List<BsonDocument> dataList = cursor.ToList();
+			if (CurrentDataViewInfo.SkipCnt == 0) {
+				if (CurrentDataViewInfo.IsUseFilter) {
+					//感谢cnblogs.com 网友Shadower
+					CurrentDataViewInfo.CurrentCollectionTotalCnt =
+                        (int)mongoCol.Count(QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList));
+				} else {
+					CurrentDataViewInfo.CurrentCollectionTotalCnt = (int)mongoCol.Count();
+				}
+			}
+			SetPageEnable(ref CurrentDataViewInfo);
+			return dataList;
+		}
+		/// <summary>
+		///     设置导航状态
+		/// </summary>
+		/// <param name="mDataViewInfo">Data View Information(Structure,Must By Ref)</param>
+		public static void SetPageEnable(ref DataViewInfo mDataViewInfo)
+		{
+			mDataViewInfo.HasPrePage = mDataViewInfo.SkipCnt != 0;
+			mDataViewInfo.HasNextPage = (mDataViewInfo.SkipCnt + mDataViewInfo.LimitCnt) <
+			mDataViewInfo.CurrentCollectionTotalCnt;
+		}
+
+		
 	}
 }
