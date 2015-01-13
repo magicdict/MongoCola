@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Connection:<%=ConnectionName%></title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="css/demo.css" type="text/css" />
+        <link rel="stylesheet" href="css/zTreeStyle/zTreeStyle.css" type="text/css" />
+        <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.ztree.core-3.5.min.js"></script>
+        <script type="text/javascript">
+
+            //生词本的操作
+            function ShowData(TagType, TagData) {
+
+                if (TagType === "<%=CollectionTag%>") {
+                    $.getJSON("ASHX/GetCollection.ashx",
+                        {
+                            Tag: TagType,
+                            Data: TagData
+                        },
+                        function(data) {
+                            if (data != "") {
+                                $.fn.zTree.init($("#treeData"), setting, data);
+                            } else {
+                                alert("Error");
+                            }
+                        }
+                    );
+                }
+
+                if (TagType === "<%=ConnectionTag%>") {
+                    $.getJSON("ASHX/GetConnection.ashx",
+                        {
+                            Tag: TagType,
+                            Data: TagData
+                        },
+                        function(data) {
+                            if (data != "") {
+                                $.fn.zTree.init($("#treeData"), setting, data);
+                            } else {
+                                alert("Error");
+                            }
+                        }
+                    );
+                }
+
+                if (TagType === "<%=DataBaseTag%>") {
+                    $.getJSON("ASHX/GetDatabase.ashx",
+                        {
+                            Tag: TagType,
+                            Data: TagData
+                        },
+                        function(data) {
+                            if (data != "") {
+                                $.fn.zTree.init($("#treeData"), setting, data);
+                            } else {
+                                alert("Error");
+                            }
+                        }
+                    );
+                }
+
+
+            }
+
+            var setting = {};
+            var zNodes = <%=NodeJSon%> ;
+                $(document).ready(function() {
+                $.fn.zTree.init($("#treeServer"), setting, zNodes);
+                });
+
+              </script>
+    </head>
+    <body>
+        <h1>Connection:<%=ConnectionName%></h1>
+        <div style="float: left; width: 350px">
+            <ul id="treeServer" class="ztree" style="width: 350px"></ul>
+        </div>
+        <div style="float: left; width: 800px">
+            <ul id="treeData" class="ztree" style="width: 800px"></ul>
+        </div>
+    </body>
+</html>
