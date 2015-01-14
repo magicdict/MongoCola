@@ -34,6 +34,8 @@
 /MongoGUIView/obj
 /MongoUtility/bin
 /MongoUtility/obj
+/UserGuide/bin
+/UserGuide/obj
 /DesignDocument
 /ServerLoader
 !readme.txt
