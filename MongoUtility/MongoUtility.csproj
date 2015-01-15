@@ -92,7 +92,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Doc.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

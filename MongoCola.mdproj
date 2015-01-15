@@ -10,7 +10,7 @@
         <Package name="MongoCola">
           <Builder targetFile="MongoCola1.10(Beta).tar.gz" platform="Linux" configuration="Release" ctype="BinariesZipPackageBuilder">
             <ChildEntries>
-              <SolutionItemReference path="MagicMongoDBTool\MagicMongoDBTool.csproj" />
+              <SolutionItemReference path="MongoCola\MongoCola.csproj" />
             </ChildEntries>
             <RootEntry path="MagicMongoDBTool.sln" id=":root:" />
           </Builder>

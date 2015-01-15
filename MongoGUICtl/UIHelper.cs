@@ -23,7 +23,7 @@ namespace MongoGUICtl
         ///     将数据放入TreeView里进行展示
         /// </summary>
         /// <param name="collectionName"></param>
-        /// <param name="trvData"></param>
+        /// <param name="trvData" />
         /// <param name="dataList"></param>
         public static void FillDataToTreeView(string collectionName, ctlTreeViewColumns trvData, BsonDocument dataList)
         {
@@ -142,8 +142,7 @@ namespace MongoGUICtl
                     }
                     else
                     {
-                        var newSubItem = new TreeNode(ArrayName + "[" + Count + "]");
-                        newSubItem.Tag = SubItem;
+                        var newSubItem = new TreeNode(ArrayName + "[" + Count + "]") {Tag = SubItem};
                         newItem.Nodes.Add(newSubItem);
                     }
                 }
@@ -487,8 +486,7 @@ namespace MongoGUICtl
             var isReplsetMasterServer = mMasterServerInstace == null;
             //无论如何，都改为主要服务器读优先
             var svrInstanceNode = new TreeNode();
-            String connSvrKey;
-            connSvrKey = isReplsetMasterServer
+            var connSvrKey = isReplsetMasterServer
                 ? mongoConnKey + "/" + mongoConnKey
                 : mongoConnKey + "/" + mMasterServerInstace.Address.ToString().Replace(":", "@");
             svrInstanceNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
@@ -501,12 +499,10 @@ namespace MongoGUICtl
             }
             //获取ReadOnly
             config.IsReadOnly = false;
-            List<string> databaseNameList;
             if (!String.IsNullOrEmpty(config.DataBaseName))
             {
                 //单数据库模式
-                TreeNode mongoSingleDbNode;
-                mongoSingleDbNode = isReplsetMasterServer
+                var mongoSingleDbNode = isReplsetMasterServer
                     ? FillDataBaseInfoToTreeNode(config.DataBaseName, mServer,
                         mongoConnKey + "/" + mongoConnKey)
                     : FillDataBaseInfoToTreeNode(config.DataBaseName, mServer,
@@ -533,6 +529,7 @@ namespace MongoGUICtl
             else
             {
                 MongoServer instantSrv;
+                List<string> databaseNameList;
                 if (isReplsetMasterServer)
                 {
                     instantSrv = mServer;

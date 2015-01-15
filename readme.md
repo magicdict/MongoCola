@@ -1,4 +1,4 @@
-        欢迎您加入MagicMongoDBTool开发团队    
+        欢迎您加入MongoCola开发团队    
        
 MagicMongoDBTool工具立志于成为专业的MongoDB的DBMS工具。     
 任何对这个项目感兴趣的朋友，熟悉C#的Winform开发的朋友，都可以申请加入这个项目的开发。	 
