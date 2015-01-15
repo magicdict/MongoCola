@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--frmMain-->
+<Language Type="Chinese">
+  <Main_Menu_Mangt>管理(&amp;M)</Main_Menu_Mangt>
+  <Main_Menu_Mangt_AddConnection>新增連接(&amp;A)</Main_Menu_Mangt_AddConnection>
+  <Main_Menu_Mangt_Disconnect>切斷連接</Main_Menu_Mangt_Disconnect>
+  <Main_Menu_Mangt_Status>狀態</Main_Menu_Mangt_Status>
+  <Main_Menu_Mangt_Refresh>刷新</Main_Menu_Mangt_Refresh>
+  <Main_Menu_Mangt_Exit>退出</Main_Menu_Mangt_Exit>
+
+  <Main_Menu_DataView>數據視窗</Main_Menu_DataView>
+  <Main_Menu_DataView_Previous>前壹頁</Main_Menu_DataView_Previous>
+  <Main_Menu_DataView_Next>後壹頁</Main_Menu_DataView_Next>
+  <Main_Menu_DataView_First>第壹頁</Main_Menu_DataView_First>
+  <Main_Menu_DataView_Last>最後壹頁</Main_Menu_DataView_Last>
+  <Main_Menu_DataView_Query>查詢</Main_Menu_DataView_Query>
+  <Main_Menu_DataView_ConvertSql>Sql轉換</Main_Menu_DataView_ConvertSql>
+  <Main_Menu_DataView_Aggregation>聚合</Main_Menu_DataView_Aggregation>
+  <Main_Menu_DataView_DataFilter>數據過濾</Main_Menu_DataView_DataFilter>
+
+
+  <Main_Menu_Operation>操作</Main_Menu_Operation>
+  <Main_Menu_Operation_Server>服務器</Main_Menu_Operation_Server>
+  <Main_Menu_Operation_Server_NewDB>新建數據庫</Main_Menu_Operation_Server_NewDB>
+  <Main_Menu_Operation_Server_UserInfo>用戶信息</Main_Menu_Operation_Server_UserInfo>
+  <Main_Menu_Operation_Server_AddUserToAdmin>新增Admin用戶</Main_Menu_Operation_Server_AddUserToAdmin>
+  <Main_Menu_Operation_Server_DelFromAdmin>刪除Admin用戶</Main_Menu_Operation_Server_DelFromAdmin>
+  <Main_Menu_Operation_Server_SlaveResync>主從同步</Main_Menu_Operation_Server_SlaveResync>
+  <Main_Menu_Operation_Server_CloseServer>關閉服務器</Main_Menu_Operation_Server_CloseServer>
+  <Main_Menu_Operation_Server_Properties>服務器屬性</Main_Menu_Operation_Server_Properties>
+
+  <Main_Menu_Operation_Database>數據庫</Main_Menu_Operation_Database>
+  <Main_Menu_Operation_Database_DelDB>刪除數據庫</Main_Menu_Operation_Database_DelDB>
+  <Main_Menu_Operation_Database_AddDC>新增數據集</Main_Menu_Operation_Database_AddDC>
+  <Main_Menu_Operation_Database_AddUser>新增用戶</Main_Menu_Operation_Database_AddUser>
+  <Main_Menu_Operation_Database_DelUser>刪除用戶</Main_Menu_Operation_Database_DelUser>
+  <Main_Menu_Operation_Database_EvalJs>實行JavaScript</Main_Menu_Operation_Database_EvalJs>
+  <Main_Menu_Operation_Database_RepairDatabase>修複數據庫</Main_Menu_Operation_Database_RepairDatabase>
+  <Main_Menu_Operation_ProfillingLevel>日志等級</Main_Menu_Operation_ProfillingLevel>
+
+  <Main_Menu_Operation_DataCollection>數據集</Main_Menu_Operation_DataCollection>
+  <Main_Menu_Operation_DataCollection_DelDC>刪除數據集</Main_Menu_Operation_DataCollection_DelDC>
+  <Main_Menu_Operation_DataCollection_ReIndex>重新索引</Main_Menu_Operation_DataCollection_ReIndex>
+  <Main_Menu_Operation_DataCollection_Index>索引管理</Main_Menu_Operation_DataCollection_Index>
+  <Main_Menu_Operation_DataCollection_AddDocument>新增空文檔</Main_Menu_Operation_DataCollection_AddDocument>
+  <Main_Menu_Operation_DataCollection_DropDocument>刪除選中文檔</Main_Menu_Operation_DataCollection_DropDocument>
+  <Main_Menu_Operation_DataCollection_Rename>重命名</Main_Menu_Operation_DataCollection_Rename>
+  <Main_Menu_Operation_DataCollection_Compact>壓縮</Main_Menu_Operation_DataCollection_Compact>
+  <Main_Menu_Operation_DataCollection_CreateJavaScript>新建Javascript</Main_Menu_Operation_DataCollection_CreateJavaScript>
+  <Main_Menu_Operation_DataCollection_DropJavaScript>刪除Javascript</Main_Menu_Operation_DataCollection_DropJavaScript>
+  <Main_Menu_Operation_DataCollection_View>檢視數據</Main_Menu_Operation_DataCollection_View>
+  <Main_Menu_Operation_DataCollection_ExportToFile>導出到檔案</Main_Menu_Operation_DataCollection_ExportToFile>
+
+
+  <Main_Menu_Operation_DataDocument>文檔</Main_Menu_Operation_DataDocument>
+  <Main_Menu_Operation_DataDocument_AddElement>新增元素</Main_Menu_Operation_DataDocument_AddElement>
+  <Main_Menu_Operation_DataDocument_DropElement>刪除元素</Main_Menu_Operation_DataDocument_DropElement>
+  <Main_Menu_Operation_DataDocument_ModifyElement>修改元素</Main_Menu_Operation_DataDocument_ModifyElement>
+  <Main_Menu_Operation_DataDocument_CopyElement>複制元素</Main_Menu_Operation_DataDocument_CopyElement>
+  <Main_Menu_Operation_DataDocument_CutElement>剪下元素</Main_Menu_Operation_DataDocument_CutElement>
+  <Main_Menu_Operation_DataDocument_PasteElement>貼上元素</Main_Menu_Operation_DataDocument_PasteElement>
+
+
+  <Main_Menu_Operation_FileSystem>檔案系統</Main_Menu_Operation_FileSystem>
+  <Main_Menu_Operation_FileSystem_UploadFile>上傳檔案</Main_Menu_Operation_FileSystem_UploadFile>
+  <Main_Menu_Operation_FileSystem_UploadFolder>上傳檔案夾</Main_Menu_Operation_FileSystem_UploadFolder>
+  <Main_Menu_Operation_FileSystem_Download>下載檔案</Main_Menu_Operation_FileSystem_Download>
+  <Main_Menu_Operation_FileSystem_OpenFile>打開檔案</Main_Menu_Operation_FileSystem_OpenFile>
+  <Main_Menu_Operation_FileSystem_DelFile>刪除檔案</Main_Menu_Operation_FileSystem_DelFile>
+  <Main_Menu_Operation_FileSystem_InitGFS>初始化檔案系統</Main_Menu_Operation_FileSystem_InitGFS>
+
+  <Main_Menu_Operation_BackupAndRestore>備份和恢複</Main_Menu_Operation_BackupAndRestore>
+  <Main_Menu_Operation_BackupAndRestore_Restore>恢複</Main_Menu_Operation_BackupAndRestore_Restore>
+  <Main_Menu_Operation_BackupAndRestore_BackupDB>備份數據庫</Main_Menu_Operation_BackupAndRestore_BackupDB>
+  <Main_Menu_Operation_BackupAndRestore_BackupDC>備份數據集</Main_Menu_Operation_BackupAndRestore_BackupDC>
+  <Main_Menu_Operation_BackupAndRestore_Import>導入數據集</Main_Menu_Operation_BackupAndRestore_Import>
+  <Main_Menu_Operation_BackupAndRestore_Export>導出數據集</Main_Menu_Operation_BackupAndRestore_Export>
+
+  <Main_Menu_Tool>工具(&amp;T)</Main_Menu_Tool>
+  <Main_Menu_Tool_DOS>Dos命令</Main_Menu_Tool_DOS>
+  <Main_Menu_Tool_Access>導入Access數據庫</Main_Menu_Tool_Access>
+  <Main_Menu_Tool_Setting>配置</Main_Menu_Tool_Setting>
+
+  <Main_Menu_Distributed>分布式</Main_Menu_Distributed>
+  <Main_Menu_Distributed_ReplicaSet>副本設定</Main_Menu_Distributed_ReplicaSet>
+  <Main_Menu_Distributed_ShardingConfig>Sharding設定</Main_Menu_Distributed_ShardingConfig>
+
+  <Main_Menu_Help>幫助</Main_Menu_Help>
+  <Main_Menu_Help_About>關于</Main_Menu_Help_About>
+  <Main_Menu_Help_Thanks>感謝</Main_Menu_Help_Thanks>
+  <Main_Menu_Help_UserGuide>用戶手冊</Main_Menu_Help_UserGuide>
+
+  <Main_Tab_Tree>樹形視窗</Main_Tab_Tree>
+  <Main_Tab_Table>表格視窗</Main_Tab_Table>
+  <Main_Tab_Text>文本視窗</Main_Tab_Text>
+  <Main_Menu_Operation_DataDocument_OpenInNativeEditor>在文本編輯器中打開</Main_Menu_Operation_DataDocument_OpenInNativeEditor>
+  <Main_StatusBar_Text_Ready>就緒</Main_StatusBar_Text_Ready>
+
+  <!--frmAddConnection-->
+  <AddConnection_Title>連接管理</AddConnection_Title>
+  <AddConnection_ConnectionName>連接名稱</AddConnection_ConnectionName>
+  <AddConnection_Name_Description>Nick Name</AddConnection_Name_Description>
+  <AddConnection_Host_Description>Host or Ip</AddConnection_Host_Description>
+  <AddConnection_Port_Description>Server Port</AddConnection_Port_Description>
+  <AddConnection_DBName>數據庫名稱</AddConnection_DBName>
+  <AddConnection_DBName_Description>Database Name(Option)</AddConnection_DBName_Description>
+  <AddConnection_MainReplsetName>副本名稱</AddConnection_MainReplsetName>
+  <AddConnection_MainReplsetName_Description>ReplaceSet Name(Option)</AddConnection_MainReplsetName_Description>
+  <AddConnection_Priority>優先度</AddConnection_Priority>
+  <AddConnection_SocketTimeOut>Socket超時(ms)</AddConnection_SocketTimeOut>
+  <AddConnection_ConnectionTimeOut>Connection超時(ms)</AddConnection_ConnectionTimeOut>
+
+  <AddConnection_MasterSlave>SlaveOK</AddConnection_MasterSlave>
+  <AddConnection_SafeMode>Safe Mode</AddConnection_SafeMode>
+  <AddConnection_ShardingSvrType>服務器角色</AddConnection_ShardingSvrType>
+
+  <AddConnection_ServerType_Data>數據</AddConnection_ServerType_Data>
+  <AddConnection_ServerType_Configuration>配置(Config)</AddConnection_ServerType_Configuration>
+  <AddConnection_ServerType_Route>路由(Route)</AddConnection_ServerType_Route>
+  <AddConnection_ServerType_Arbitration>仲裁(Arbitration)</AddConnection_ServerType_Arbitration>
+
+  <AddConnection_Region_ReplaceSet>副本</AddConnection_Region_ReplaceSet>
+  <AddConnection_Region_ReplaceSetName>副本名稱</AddConnection_Region_ReplaceSetName>
+  <AddConnection_Region_ReplaceSetName_Description>ReplaceSet Name(Option)</AddConnection_Region_ReplaceSetName_Description>
+  <AddConnection_Region_ReplaceSetList>服務器列表</AddConnection_Region_ReplaceSetList>
+  <AddConnection_Region_AddHost>新增主機</AddConnection_Region_AddHost>
+  <AddConnection_Region_RemoveHost>移除主機</AddConnection_Region_RemoveHost>
+
+  <AddConnection_ConnectionString>直接使用ConnectionString</AddConnection_ConnectionString>
+  <AddConnection_Attention_Description>優先度爲0的服務器不可能成爲Master服務器</AddConnection_Attention_Description>
+  <AddConnection_Password_Description>密碼將于明文形式保存在Config檔案中</AddConnection_Password_Description>
+
+  <!--frmCollectionIndex-->
+  <CollectionIndex_Title>索引管理器</CollectionIndex_Title>
+  <CollectionIndex_Tab_Current>當前索引</CollectionIndex_Tab_Current>
+  <CollectionIndex_Tab_Current_Del>刪除選中</CollectionIndex_Tab_Current_Del>
+  <CollectionIndex_Tab_Manager>新增索引</CollectionIndex_Tab_Manager>
+
+
+  <!--frmConnect-->
+  <Connect_Title>連接</Connect_Title>
+  <Connect_Action_Del>刪除</Connect_Action_Del>
+
+  <!--ConvertSql-->
+  <ConvertSql_Title>Sql文轉換</ConvertSql_Title>
+
+  <!--frmDistinct-->
+  <Distinct_Action_LoadQuery>加載查詢</Distinct_Action_LoadQuery>
+  <Distinct_SelectField>選擇Distinct字段</Distinct_SelectField>
+
+  <!--frmDosCommand-->
+  <DosCommand_Tab_Deploy>裝配(Mongod)</DosCommand_Tab_Deploy>
+  <DosCommand_Tab_Deploy_Authentication>啓用認證</DosCommand_Tab_Deploy_Authentication>
+  <DosCommand_Tab_Deploy_MasterAddress>主機</DosCommand_Tab_Deploy_MasterAddress>
+  <DosCommand_Tab_Deploy_Port>端口</DosCommand_Tab_Deploy_Port>
+  <DosCommand_Tab_Deploy_Master>Master</DosCommand_Tab_Deploy_Master>
+  <DosCommand_Tab_Deploy_Slave>Slave</DosCommand_Tab_Deploy_Slave>
+  <DosCommand_Tab_Deploy_SlaveSource>Slave源</DosCommand_Tab_Deploy_SlaveSource>
+  <DosCommand_Tab_Deploy_DBPath>數據庫路徑</DosCommand_Tab_Deploy_DBPath>
+  <DosCommand_Tab_Deploy_LogPath>日志路徑</DosCommand_Tab_Deploy_LogPath>
+  <DosCommand_Tab_Deploy_Log>日志</DosCommand_Tab_Deploy_Log>
+  <DosCommand_Tab_Deploy_AppendMode>追加模式(默認爲覆蓋模式)</DosCommand_Tab_Deploy_AppendMode>
+
+  <DosCommand_Tab_Backup>備份和恢複(Mongodmp)</DosCommand_Tab_Backup>
+  <DosCommand_Tab_Backup_Server>主機</DosCommand_Tab_Backup_Server>
+  <DosCommand_Tab_Backup_Port>端口</DosCommand_Tab_Backup_Port>
+  <DosCommand_Tab_Backup_DBName>數據庫名稱</DosCommand_Tab_Backup_DBName>
+  <DosCommand_Tab_Backup_DCName>數據集名稱</DosCommand_Tab_Backup_DCName>
+  <DosCommand_Tab_Backup_Path>備份路徑</DosCommand_Tab_Backup_Path>
+
+  <DosCommand_Tab_ExIn>導入和導出(mongoImport/mongoExport)</DosCommand_Tab_ExIn>
+  <DosCommand_Tab_ExIn_Server>主機</DosCommand_Tab_ExIn_Server>
+  <DosCommand_Tab_ExIn_Port>端口</DosCommand_Tab_ExIn_Port>
+  <DosCommand_Tab_ExIn_DBName>數據庫名稱</DosCommand_Tab_ExIn_DBName>
+  <DosCommand_Tab_ExIn_DCName>數據集名稱</DosCommand_Tab_ExIn_DCName>
+  <DosCommand_Tab_ExIn_ColumnList>字段列表</DosCommand_Tab_ExIn_ColumnList>
+  <DosCommand_Tab_ExIn_Workfile>臨時檔案</DosCommand_Tab_ExIn_Workfile>
+  <DosCommand_Tab_ExIn_Import>導入</DosCommand_Tab_ExIn_Import>
+  <DosCommand_Tab_ExIn_Export>導出</DosCommand_Tab_ExIn_Export>
+  <DosCommand_Tab_ExIn_Operation>操作</DosCommand_Tab_ExIn_Operation>
+
+  <DosCommand_Run>運行</DosCommand_Run>
+  <DosCommand_Browse>浏覽</DosCommand_Browse>
+  <DosCommand_Clean>清除</DosCommand_Clean>
+  <DosCommand_LogLevel>日志等級</DosCommand_LogLevel>
+
+  <!--frmevalJS-->
+  <EvalJS_Title>實行Javascript</EvalJS_Title>
+  <EvalJS_Method>Js方法</EvalJS_Method>
+  <EvalJS_Run>運行</EvalJS_Run>
+  <EvalJS_Parameter>參數(用','分割)</EvalJS_Parameter>
+
+  <!--frmGroup-->
+  <Group_Tab_Reduce>Reduce</Group_Tab_Reduce>
+  <Group_Tab_Finalize>Finalize</Group_Tab_Finalize>
+  <Group_Tab_Group>Group字段</Group_Tab_Group>
+  <Group_Tab_Group_Notes>請選擇分組</Group_Tab_Group_Notes>
+  <Group_Tab_InitColumn>新增變量</Group_Tab_InitColumn>
+  <Group_Tab_InitColumn_Note>請新增初始化變量</Group_Tab_InitColumn_Note>
+  <Group_Tab_Result>結果</Group_Tab_Result>
+  <Group_LoadQuery>加載查詢</Group_LoadQuery>
+
+  <!--frmOption-->
+  <Option_Title>設定</Option_Title>
+  <Option_BinPath>Bin Path</Option_BinPath>
+  <Option_Language>Language</Option_Language>
+  <Option_RecordPerPage>每頁記錄數</Option_RecordPerPage>
+  <Option_RefreshInterval>刷新時間</Option_RefreshInterval>
+
+  <!--frmMapReduce-->
+  <MapReduce_MapFunction>Map Function</MapReduce_MapFunction>
+  <MapReduce_ReduceFunction>Reduce函數</MapReduce_ReduceFunction>
+  <MapReduce_Result>結果</MapReduce_Result>
+  <MapReduce_Run>運行</MapReduce_Run>
+
+  <!--frmQuery-->
+  <Query_Title>數據查詢</Query_Title>
+  <Query_Filter>過濾器</Query_Filter>
+  <Query_Filter_AddCondition>新增條件</Query_Filter_AddCondition>
+  <Query_FieldInfo>輸出字段</Query_FieldInfo>
+  <Query_Action_Load>加載</Query_Action_Load>
+
+  <!--frmReplset-->
+  <Replset_Title>副本管理</Replset_Title>
+  <Replset_AddServer>新增服務器</Replset_AddServer>
+  <Replset_RemoveServer>移除服務器</Replset_RemoveServer>
+  <Replset_Remove>移除</Replset_Remove>
+  <Replset_InitReplset>副本初始化</Replset_InitReplset>
+
+  <!--frmServiceStatus-->
+  <ServiceStatus_Title>服務器狀態</ServiceStatus_Title>
+  <ServiceStatus_ServerInfo>服務器信息[手動更新]</ServiceStatus_ServerInfo>
+  <ServiceStatus_DataBaseInfo>數據庫信息</ServiceStatus_DataBaseInfo>
+  <ServiceStatus_CollectionInfo>數據集信息</ServiceStatus_CollectionInfo>
+  <ServiceStatus_CurrentOperationInfo>當前操作</ServiceStatus_CurrentOperationInfo>
+
+  <!--frmShardingConfig-->
+  <ShardingConfig_Title>Sharding配置</ShardingConfig_Title>
+  <ShardingConfig_AddSharding>新增Sharding</ShardingConfig_AddSharding>
+  <ShardingConfig_ReplsetName>副本名稱</ShardingConfig_ReplsetName>
+
+  <ShardingConfig_EnableSharding>啓用Sharding</ShardingConfig_EnableSharding>
+  <ShardingConfig_Action_DBSharding>啓用數據庫Sharding</ShardingConfig_Action_DBSharding>
+  <ShardingConfig_Action_CollectionSharding>啓用數據集Sharding</ShardingConfig_Action_CollectionSharding>
+
+  <ShardingConfig_DBName>數據庫</ShardingConfig_DBName>
+  <ShardingConfig_CollectionName>數據集</ShardingConfig_CollectionName>
+  <ShardingConfig_FieldName>字段</ShardingConfig_FieldName>
+
+  <!--ctlIndexCreate-->
+  <ctlIndexCreate_Index>索引</ctlIndexCreate_Index>
+  <ctlIndexCreate_Description>Please input the column name here</ctlIndexCreate_Description>
+  <!--ctlFieldInfo-->
+  <ctlFieldInfo_Show>顯示</ctlFieldInfo_Show>
+
+  <!--DataBase_Status-->
+  <DataBase_Status_DataBaseName>數據庫名稱</DataBase_Status_DataBaseName>
+  <DataBase_Status_CollectionCount>數據集計數</DataBase_Status_CollectionCount>
+  <DataBase_Status_DataSize>數據大小</DataBase_Status_DataSize>
+  <DataBase_Status_FileSize>檔案大小</DataBase_Status_FileSize>
+  <DataBase_Status_IndexCount>索引計數</DataBase_Status_IndexCount>
+  <DataBase_Status_IndexSize>索引大小</DataBase_Status_IndexSize>
+  <DataBase_Status_ObjectCount>對象計數</DataBase_Status_ObjectCount>
+  <DataBase_Status_StorageSize>存儲大小</DataBase_Status_StorageSize>
+
+  <!--Collection_Status-->
+  <Collection_Status_CollectionName>數據集名稱</Collection_Status_CollectionName>
+  <Collection_Status_ObjectCount>對象計數</Collection_Status_ObjectCount>
+  <Collection_Status_DataSize>數據大小</Collection_Status_DataSize>
+  <Collection_Status_LastExtentSize>最後分配大小</Collection_Status_LastExtentSize>
+  <Collection_Status_StorageSize>存儲大小</Collection_Status_StorageSize>
+  <Collection_Status_TotalIndexSize>總索引大小</Collection_Status_TotalIndexSize>
+  <Collection_Status_AverageObjectSize>對象平均大小</Collection_Status_AverageObjectSize>
+  <Collection_Status_PaddingFactor>填充因子</Collection_Status_PaddingFactor>
+  <Collection_Status_MaxDocuments>最大文檔數</Collection_Status_MaxDocuments>
+  <Collection_Status_MaxSize>最大尺寸</Collection_Status_MaxSize>
+  <Collection_Status_IsCapped>容量限制</Collection_Status_IsCapped>
+  <Collection_Status_IsAutoIndexId>自動Id索引</Collection_Status_IsAutoIndexId>
+
+  <Collection_Resume_AutoRefresh>啓用自動刷新</Collection_Resume_AutoRefresh>
+  <Collection_Stop_AutoRefresh>禁止自動刷新</Collection_Stop_AutoRefresh>
+
+  <!--GFS-->
+  <GFS_filename>檔案名</GFS_filename>
+  <GFS_length>檔案大小</GFS_length>
+  <GFS_chunkSize>存儲空間</GFS_chunkSize>
+  <GFS_uploadDate>日期</GFS_uploadDate>
+  <GFS_md5>md5</GFS_md5>
+
+  <GFS_Insert_Option_RemoteFileName>服務器端的檔案名</GFS_Insert_Option_RemoteFileName>
+  <GFS_Insert_Option_OnlyFilename>僅檔案名(例如，readme.txt)</GFS_Insert_Option_OnlyFilename>
+  <GFS_Insert_Option_FullPath>全路徑(例如，C:\readme.txt)</GFS_Insert_Option_FullPath>
+  <GFS_Insert_Option_FileAlreadyExist>檔案已經存在</GFS_Insert_Option_FileAlreadyExist>
+  <GFS_Insert_Option_JustAddIt>新增</GFS_Insert_Option_JustAddIt>
+  <GFS_Insert_Option_Rename>重命名(例如readme1.txt)</GFS_Insert_Option_Rename>
+  <GFS_Insert_Option_SkipIt>跳過</GFS_Insert_Option_SkipIt>
+  <GFS_Insert_Option_Overwrite>覆蓋檔案</GFS_Insert_Option_Overwrite>
+  <GFS_Insert_Option_Stop>停止上傳</GFS_Insert_Option_Stop>
+  <GFS_Insert_Option_IngoreSubFolder>忽略子檔案夾</GFS_Insert_Option_IngoreSubFolder>
+  <GFS_Insert_Option_DirectorySeparatorChar>路徑分割符號</GFS_Insert_Option_DirectorySeparatorChar>
+
+  <!--Index-->
+  <Index_Background>背景</Index_Background>
+  <Index_RepeatDel>刪除重複</Index_RepeatDel>
+  <Index_Sparse>稀疏</Index_Sparse>
+  <Index_Unify>唯壹</Index_Unify>
+  <Index_Name>索引名稱</Index_Name>
+  <Index_Keys>索引鍵</Index_Keys>
+  <Index_Version>版本</Index_Version>
+  <Index_ExpireData>過期時效(秒)</Index_ExpireData>
+  <Index_NameSpace>名字空間</Index_NameSpace>
+  <Index_Asce>升序</Index_Asce>
+  <Index_Desc>降序</Index_Desc>
+  <Index_NoSort>不排序</Index_NoSort>
+
+  <!--Exception-->
+  <Exception_NotConnected>未連接</Exception_NotConnected>
+  <Exception_NotConnected_Note>服務器沒有啓動 或者 認證模式不正確</Exception_NotConnected_Note>
+  <Exception_AuthenticationException>認證錯誤</Exception_AuthenticationException>
+  <Exception_AuthenticationException_Note>請檢查用戶名和密碼</Exception_AuthenticationException_Note>
+
+  <!--StatusBar-->
+  <Selected_Server>選中服務器</Selected_Server>
+  <Selected_DataBase>選中數據庫</Selected_DataBase>
+  <Selected_Collection>選中數據集</Selected_Collection>
+  <Selected_Data>選中文檔</Selected_Data>
+  <Selected_Indexes>選中索引</Selected_Indexes>
+  <Selected_Index>選中索引</Selected_Index>
+  <Selected_GFS>選中檔案系統</Selected_GFS>
+  <Selected_UserList>選中用戶列表</Selected_UserList>
+  <!--MongoUtility-->
+  <Common_Username>用戶名</Common_Username>
+  <Common_Password>密碼</Common_Password>
+  <Common_ConfirmPassword>密碼確認</Common_ConfirmPassword>
+  <Common_ChangePassword>密碼變更</Common_ChangePassword>
+  <Common_ReadOnly>只讀</Common_ReadOnly>
+  <Common_OK>確定</Common_OK>
+  <Common_Close>關閉</Common_Close>
+  <Common_Cancel>取消</Common_Cancel>
+  <Common_Refresh>刷新</Common_Refresh>
+  <Common_Yes>是</Common_Yes>
+  <Common_No>否</Common_No>
+  <Common_Detail>細節</Common_Detail>
+  <Common_Save>保存</Common_Save>
+  <Common_Save_Local>本地保存</Common_Save_Local>
+  <Common_Edit>編輯</Common_Edit>
+  <Common_Modify>修改</Common_Modify>
+  <Common_Add>新增</Common_Add>
+
+  <Common_Server>服務器</Common_Server>
+  <Common_DataBase>數據庫</Common_DataBase>
+  <Common_Connect>連接</Common_Connect>
+  <Common_Collection>數據集</Common_Collection>
+  <Common_Host>主機</Common_Host>
+  <Common_Port>端口</Common_Port>
+
+  <Common_Collapse>折疊</Common_Collapse>
+  <Common_Expansion>展開</Common_Expansion>
+  <Common_Name>名稱</Common_Name>
+  <Common_Value>值</Common_Value>
+  <Common_Type>類型</Common_Type>
+  <Common_Roles>角色</Common_Roles>
+  <Common_Validate>驗證</Common_Validate>
+  <Common_Search>檢索</Common_Search>
+
+  <Common_Browse>浏覽</Common_Browse>
+  <Common_Clear>清除</Common_Clear>
+  <Common_Test>測試</Common_Test>
+  <Common_Advance_Option>高級選項</Common_Advance_Option>
+
+  <!--Create New DataBase-->
+  <Create_New_DataBase>新建數據庫</Create_New_DataBase>
+  <Create_New_DataBase_Input>請輸入數據庫名稱:</Create_New_DataBase_Input>
+  <Drop_DataBase>刪除數據庫</Drop_DataBase>
+  <Drop_DataBase_Confirm>確定是否要刪除數據庫?</Drop_DataBase_Confirm>
+  <Restore_Connection_Confirm>确定是否要恢复数据库?</Restore_Connection_Confirm>
+  <Create_New_Collection>新建數據集</Create_New_Collection>
+
+
+  <Drop_Collection>刪除數據集</Drop_Collection>
+  <Drop_Collection_Confirm>確定是否要刪除數據集?</Drop_Collection_Confirm>
+
+  <Rename_Collection>重命名數據集</Rename_Collection>
+  <Rename_Collection_Input>請輸入新數據集名稱:</Rename_Collection_Input>
+
+  <Drop_User>刪除用戶</Drop_User>
+  <Drop_User_Confirm>確定是否要刪除用戶?</Drop_User_Confirm>
+
+  <Drop_Data>刪除數據</Drop_Data>
+  <Drop_Data_Confirm>確定是否要刪除選中數據?</Drop_Data_Confirm>
+
+  <SYSTEMC_COLNAME_chunks>數據塊</SYSTEMC_COLNAME_chunks>
+  <SYSTEMC_COLNAME_collections>數據集</SYSTEMC_COLNAME_collections>
+  <SYSTEMC_COLNAME_changelog>變更日志</SYSTEMC_COLNAME_changelog>
+  <SYSTEMC_COLNAME_databases>數據庫</SYSTEMC_COLNAME_databases>
+  <SYSTEMC_COLNAME_lockpings>數據鎖</SYSTEMC_COLNAME_lockpings>
+  <SYSTEMC_COLNAME_locks>數據鎖</SYSTEMC_COLNAME_locks>
+  <SYSTEMC_COLNAME_mongos>路由服務器</SYSTEMC_COLNAME_mongos>
+  <SYSTEMC_COLNAME_settings>配置</SYSTEMC_COLNAME_settings>
+  <SYSTEMC_COLNAME_shards>分片</SYSTEMC_COLNAME_shards>
+  <SYSTEMC_COLNAME_tags>標簽</SYSTEMC_COLNAME_tags>
+  <SYSTEMC_COLNAME_version>版本</SYSTEMC_COLNAME_version>
+  <SYSTEMC_COLNAME_me>副本組[從屬機信息]</SYSTEMC_COLNAME_me>
+  <SYSTEMC_COLNAME_sources>主機地址</SYSTEMC_COLNAME_sources>
+  <SYSTEMC_COLNAME_slaves>副本組[主機信息]</SYSTEMC_COLNAME_slaves>
+  <COLLECTION_NAME_GFS_CHUNKS>數據塊</COLLECTION_NAME_GFS_CHUNKS>
+  <COLLECTION_NAME_GFS_FILES>檔案系統</COLLECTION_NAME_GFS_FILES>
+  <COLLECTION_NAME_OPERATION_LOG>操作結果</COLLECTION_NAME_OPERATION_LOG>
+  <COLLECTION_NAME_SYSTEM_INDEXES>索引</COLLECTION_NAME_SYSTEM_INDEXES>
+  <COLLECTION_NAME_JAVASCRIPT>存儲Javascript</COLLECTION_NAME_JAVASCRIPT>
+  <COLLECTION_NAME_SYSTEM_REPLSET>副本組</COLLECTION_NAME_SYSTEM_REPLSET>
+  <COLLECTION_NAME_REPLSET_MINVALID>初始化同步</COLLECTION_NAME_REPLSET_MINVALID>
+  <COLLECTION_NAME_USER>用戶列表</COLLECTION_NAME_USER>
+  <COLLECTION_NAME_ROLE>角色</COLLECTION_NAME_ROLE>
+  <COLLECTION_NAME_SYSTEM_PROFILE>日志</COLLECTION_NAME_SYSTEM_PROFILE>
+</Language>

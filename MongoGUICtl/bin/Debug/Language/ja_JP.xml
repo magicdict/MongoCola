@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--frmMain-->
+<Language Type="Japanese">
+  <Main_Menu_Mangt>コネクション(&amp;M)</Main_Menu_Mangt>
+  <Main_Menu_Mangt_AddConnection>コネクション管理 (&amp;A)</Main_Menu_Mangt_AddConnection>
+  <Main_Menu_Mangt_Disconnect>コネクション切断</Main_Menu_Mangt_Disconnect>
+  <Main_Menu_Mangt_Status>状態</Main_Menu_Mangt_Status>
+  <Main_Menu_Mangt_Refresh>更新</Main_Menu_Mangt_Refresh>
+  <Main_Menu_Mangt_Exit>終了</Main_Menu_Mangt_Exit>
+
+  <Main_Menu_DataView>データビュー</Main_Menu_DataView>
+  <Main_Menu_DataView_Previous>前ページ</Main_Menu_DataView_Previous>
+  <Main_Menu_DataView_Next>後ページ</Main_Menu_DataView_Next>
+  <Main_Menu_DataView_First>最初ページ</Main_Menu_DataView_First>
+  <Main_Menu_DataView_Last>最後ページ</Main_Menu_DataView_Last>
+  <Main_Menu_DataView_Query>クエリー </Main_Menu_DataView_Query>
+  <Main_Menu_DataView_ConvertSql>Sql変換</Main_Menu_DataView_ConvertSql>
+  <Main_Menu_DataView_Aggregation>集約</Main_Menu_DataView_Aggregation>
+  <Main_Menu_DataView_DataFilter>データフィルター</Main_Menu_DataView_DataFilter>
+
+
+  <Main_Menu_Operation>操作</Main_Menu_Operation>
+  <Main_Menu_Operation_Server>サーバー</Main_Menu_Operation_Server>
+  <Main_Menu_Operation_Server_NewDB>データベースの新規</Main_Menu_Operation_Server_NewDB>
+  <Main_Menu_Operation_Server_UserInfo>ユーザー情報</Main_Menu_Operation_Server_UserInfo>
+  <Main_Menu_Operation_Server_AddUserToAdmin>Adminユーザーの新規</Main_Menu_Operation_Server_AddUserToAdmin>
+  <Main_Menu_Operation_Server_DelFromAdmin>Adminユーザーの削除</Main_Menu_Operation_Server_DelFromAdmin>
+  <Main_Menu_Operation_Server_SlaveResync>同期</Main_Menu_Operation_Server_SlaveResync>
+  <Main_Menu_Operation_Server_CloseServer>停止</Main_Menu_Operation_Server_CloseServer>
+  <Main_Menu_Operation_Server_Properties>属性</Main_Menu_Operation_Server_Properties>
+
+  <Main_Menu_Operation_Database>データベース</Main_Menu_Operation_Database>
+  <Main_Menu_Operation_Database_DelDB>削除</Main_Menu_Operation_Database_DelDB>
+  <Main_Menu_Operation_Database_AddDC>コレクションの新規</Main_Menu_Operation_Database_AddDC>
+  <Main_Menu_Operation_Database_AddUser>ユーザーの新規</Main_Menu_Operation_Database_AddUser>
+  <Main_Menu_Operation_Database_DelUser>ユーザーの削除</Main_Menu_Operation_Database_DelUser>
+  <Main_Menu_Operation_Database_EvalJs>JavaScript実行</Main_Menu_Operation_Database_EvalJs>
+  <Main_Menu_Operation_Database_RepairDatabase>復元</Main_Menu_Operation_Database_RepairDatabase>
+  <Main_Menu_Operation_ProfillingLevel>ログレベル</Main_Menu_Operation_ProfillingLevel>
+
+  <Main_Menu_Operation_DataCollection>コレクション</Main_Menu_Operation_DataCollection>
+  <Main_Menu_Operation_DataCollection_DelDC>削除</Main_Menu_Operation_DataCollection_DelDC>
+  <Main_Menu_Operation_DataCollection_ReIndex>再索引</Main_Menu_Operation_DataCollection_ReIndex>
+  <Main_Menu_Operation_DataCollection_Index>索引管理</Main_Menu_Operation_DataCollection_Index>
+  <Main_Menu_Operation_DataCollection_AddDocument>ドキュメントの追加</Main_Menu_Operation_DataCollection_AddDocument>
+  <Main_Menu_Operation_DataCollection_DropDocument>ドキュメントの削除</Main_Menu_Operation_DataCollection_DropDocument>
+  <Main_Menu_Operation_DataCollection_Rename>リネーム</Main_Menu_Operation_DataCollection_Rename>
+  <Main_Menu_Operation_DataCollection_Compact>圧縮</Main_Menu_Operation_DataCollection_Compact>
+  <Main_Menu_Operation_DataCollection_CreateJavaScript>Javascriptの新規</Main_Menu_Operation_DataCollection_CreateJavaScript>
+  <Main_Menu_Operation_DataCollection_DropJavaScript>Javascriptの削除</Main_Menu_Operation_DataCollection_DropJavaScript>
+  <Main_Menu_Operation_DataCollection_View>ビュー</Main_Menu_Operation_DataCollection_View>
+  <Main_Menu_Operation_DataCollection_ExportToFile>导出到文件</Main_Menu_Operation_DataCollection_ExportToFile>
+
+  <Main_Menu_Operation_DataDocument>ドキュメント</Main_Menu_Operation_DataDocument>
+  <Main_Menu_Operation_DataDocument_AddElement>エレメントの追加</Main_Menu_Operation_DataDocument_AddElement>
+  <Main_Menu_Operation_DataDocument_DropElement>エレメントの削除</Main_Menu_Operation_DataDocument_DropElement>
+  <Main_Menu_Operation_DataDocument_ModifyElement>エレメントの修正</Main_Menu_Operation_DataDocument_ModifyElement>
+  <Main_Menu_Operation_DataDocument_CopyElement>エレメントのコピー</Main_Menu_Operation_DataDocument_CopyElement>
+  <Main_Menu_Operation_DataDocument_CutElement>エレメントのカット</Main_Menu_Operation_DataDocument_CutElement>
+  <Main_Menu_Operation_DataDocument_PasteElement>エレメントの貼り付け</Main_Menu_Operation_DataDocument_PasteElement>
+
+
+  <Main_Menu_Operation_FileSystem>ファイルシステム</Main_Menu_Operation_FileSystem>
+  <Main_Menu_Operation_FileSystem_UploadFile>アップロードファイル</Main_Menu_Operation_FileSystem_UploadFile>
+  <Main_Menu_Operation_FileSystem_UploadFolder>アップロードフォルダ</Main_Menu_Operation_FileSystem_UploadFolder>
+  <Main_Menu_Operation_FileSystem_Download>ダウンロード</Main_Menu_Operation_FileSystem_Download>
+  <Main_Menu_Operation_FileSystem_OpenFile>開く</Main_Menu_Operation_FileSystem_OpenFile>
+  <Main_Menu_Operation_FileSystem_DelFile>削除</Main_Menu_Operation_FileSystem_DelFile>
+  <Main_Menu_Operation_FileSystem_InitGFS>初期化</Main_Menu_Operation_FileSystem_InitGFS>
+
+  <Main_Menu_Operation_BackupAndRestore>バックアップと復元</Main_Menu_Operation_BackupAndRestore>
+  <Main_Menu_Operation_BackupAndRestore_Restore>復元</Main_Menu_Operation_BackupAndRestore_Restore>
+  <Main_Menu_Operation_BackupAndRestore_BackupDB>データベースのバックアップ</Main_Menu_Operation_BackupAndRestore_BackupDB>
+  <Main_Menu_Operation_BackupAndRestore_BackupDC>コレクションのバックアップ</Main_Menu_Operation_BackupAndRestore_BackupDC>
+  <Main_Menu_Operation_BackupAndRestore_Import>コレクションのインポート</Main_Menu_Operation_BackupAndRestore_Import>
+  <Main_Menu_Operation_BackupAndRestore_Export>コレクションのエクスポート</Main_Menu_Operation_BackupAndRestore_Export>
+
+  <Main_Menu_Tool>ツール(&amp;T)</Main_Menu_Tool>
+  <Main_Menu_Tool_DOS>Dosコマンド</Main_Menu_Tool_DOS>
+  <Main_Menu_Tool_Access>Accessからインポート</Main_Menu_Tool_Access>
+  <Main_Menu_Tool_Setting>設定</Main_Menu_Tool_Setting>
+
+  <Main_Menu_Distributed>分散式</Main_Menu_Distributed>
+  <Main_Menu_Distributed_ReplicaSet>レプリケーション設定</Main_Menu_Distributed_ReplicaSet>
+  <Main_Menu_Distributed_ShardingConfig>Sharding設定</Main_Menu_Distributed_ShardingConfig>
+
+  <Main_Menu_Help>ヘルプ</Main_Menu_Help>
+  <Main_Menu_Help_About>MongoColaについて</Main_Menu_Help_About>
+  <Main_Menu_Help_Thanks>感謝</Main_Menu_Help_Thanks>
+  <Main_Menu_Help_UserGuide>ユーザーガイド</Main_Menu_Help_UserGuide>
+
+  <Main_Tab_Tree>ツリービュー</Main_Tab_Tree>
+  <Main_Tab_Table>テーブルビュー</Main_Tab_Table>
+  <Main_Tab_Text>テクストビュー</Main_Tab_Text>
+  <Main_Menu_Operation_DataDocument_OpenInNativeEditor>外部TextEditorで開く</Main_Menu_Operation_DataDocument_OpenInNativeEditor>
+  <Main_StatusBar_Text_Ready>Ready</Main_StatusBar_Text_Ready>
+
+  <!--frmAddConnection-->
+  <AddConnection_Title>コネクション管理</AddConnection_Title>
+  <AddConnection_ConnectionName>コネクション名</AddConnection_ConnectionName>
+  <AddConnection_Name_Description>Nick Name</AddConnection_Name_Description>
+  <AddConnection_Host_Description>Host or Ip</AddConnection_Host_Description>
+  <AddConnection_Port_Description>Server Port</AddConnection_Port_Description>
+  <AddConnection_DBName>データベース</AddConnection_DBName>
+  <AddConnection_DBName_Description>Database Name(Option)</AddConnection_DBName_Description>
+  <AddConnection_MainReplsetName>レプリケーション</AddConnection_MainReplsetName>
+  <AddConnection_MainReplsetName_Description>ReplaceSet Name(Option)</AddConnection_MainReplsetName_Description>
+  <AddConnection_Priority>優先度</AddConnection_Priority>
+  <AddConnection_SocketTimeOut>Socketタイムアウト(ms)</AddConnection_SocketTimeOut>
+  <AddConnection_ConnectionTimeOut>Connectionタイムアウト(ms)</AddConnection_ConnectionTimeOut>
+
+  <AddConnection_MasterSlave>SlaveOK</AddConnection_MasterSlave>
+  <AddConnection_SafeMode>Safe Mode</AddConnection_SafeMode>
+  <AddConnection_ShardingSvrType>ロール</AddConnection_ShardingSvrType>
+
+  <AddConnection_ServerType_Data>データ</AddConnection_ServerType_Data>
+  <AddConnection_ServerType_Configuration>設定(Config)</AddConnection_ServerType_Configuration>
+  <AddConnection_ServerType_Route>ルート(Route)</AddConnection_ServerType_Route>
+  <AddConnection_ServerType_Arbitration>アービトレーション(Arbitration)</AddConnection_ServerType_Arbitration>
+
+  <AddConnection_Region_ReplaceSet>レプリケーション</AddConnection_Region_ReplaceSet>
+  <AddConnection_Region_ReplaceSetName>レプリケーション</AddConnection_Region_ReplaceSetName>
+  <AddConnection_Region_ReplaceSetName_Description>ReplaceSet Name(Option)</AddConnection_Region_ReplaceSetName_Description>
+  <AddConnection_Region_ReplaceSetList>ザーバーリスト</AddConnection_Region_ReplaceSetList>
+  <AddConnection_Region_AddHost>ホストの追加</AddConnection_Region_AddHost>
+  <AddConnection_Region_RemoveHost>ホストの削除</AddConnection_Region_RemoveHost>
+
+  <AddConnection_ConnectionString>ConnectionString</AddConnection_ConnectionString>
+  <AddConnection_Attention_Description>優先度は0のザーバーはマスターザーバーになりません</AddConnection_Attention_Description>
+  <AddConnection_Password_Description>パースワードは暗号化しないて、設定ファイルに格納します</AddConnection_Password_Description>
+
+  <!--frmCollectionIndex-->
+  <CollectionIndex_Title>インデックス管理</CollectionIndex_Title>
+  <CollectionIndex_Tab_Current>既存インデックス</CollectionIndex_Tab_Current>
+  <CollectionIndex_Tab_Current_Del>削除</CollectionIndex_Tab_Current_Del>
+  <CollectionIndex_Tab_Manager>インデックスの追加</CollectionIndex_Tab_Manager>
+
+
+  <!--frmConnect-->
+  <Connect_Title>接続</Connect_Title>
+  <Connect_Action_Del>削除</Connect_Action_Del>
+
+  <!--ConvertSql-->
+  <ConvertSql_Title>Sql文変換</ConvertSql_Title>
+
+  <!--frmDistinct-->
+  <Distinct_Action_LoadQuery>クエリーのロード</Distinct_Action_LoadQuery>
+  <Distinct_SelectField>Distinctフィールドを選んでください</Distinct_SelectField>
+
+  <!--frmDosCommand-->
+  <DosCommand_Tab_Deploy>配布(Mongod)</DosCommand_Tab_Deploy>
+  <DosCommand_Tab_Deploy_Authentication>認証モード</DosCommand_Tab_Deploy_Authentication>
+  <DosCommand_Tab_Deploy_MasterAddress>ホスト</DosCommand_Tab_Deploy_MasterAddress>
+  <DosCommand_Tab_Deploy_Port>ポート</DosCommand_Tab_Deploy_Port>
+  <DosCommand_Tab_Deploy_Master>Master</DosCommand_Tab_Deploy_Master>
+  <DosCommand_Tab_Deploy_Slave>Slave</DosCommand_Tab_Deploy_Slave>
+  <DosCommand_Tab_Deploy_SlaveSource>Slave元</DosCommand_Tab_Deploy_SlaveSource>
+  <DosCommand_Tab_Deploy_DBPath>データベース</DosCommand_Tab_Deploy_DBPath>
+  <DosCommand_Tab_Deploy_LogPath>ログファイル</DosCommand_Tab_Deploy_LogPath>
+  <DosCommand_Tab_Deploy_Log>ログ</DosCommand_Tab_Deploy_Log>
+  <DosCommand_Tab_Deploy_AppendMode>追加モード</DosCommand_Tab_Deploy_AppendMode>
+
+  <DosCommand_Tab_Backup>バックアップと復元(Mongodmp)</DosCommand_Tab_Backup>
+  <DosCommand_Tab_Backup_Server>ホスト</DosCommand_Tab_Backup_Server>
+  <DosCommand_Tab_Backup_Port>ポート</DosCommand_Tab_Backup_Port>
+  <DosCommand_Tab_Backup_DBName>データベース</DosCommand_Tab_Backup_DBName>
+  <DosCommand_Tab_Backup_DCName>コレクション</DosCommand_Tab_Backup_DCName>
+  <DosCommand_Tab_Backup_Path>バックアップ</DosCommand_Tab_Backup_Path>
+
+  <DosCommand_Tab_ExIn>インポートとエクスポート(mongoImport/mongoExport)</DosCommand_Tab_ExIn>
+  <DosCommand_Tab_ExIn_Server>ホスト</DosCommand_Tab_ExIn_Server>
+  <DosCommand_Tab_ExIn_Port>ポート</DosCommand_Tab_ExIn_Port>
+  <DosCommand_Tab_ExIn_DBName>データベース</DosCommand_Tab_ExIn_DBName>
+  <DosCommand_Tab_ExIn_DCName>コレクション</DosCommand_Tab_ExIn_DCName>
+  <DosCommand_Tab_ExIn_ColumnList>フィールド</DosCommand_Tab_ExIn_ColumnList>
+  <DosCommand_Tab_ExIn_Workfile>ワークファイル</DosCommand_Tab_ExIn_Workfile>
+  <DosCommand_Tab_ExIn_Import>インポート</DosCommand_Tab_ExIn_Import>
+  <DosCommand_Tab_ExIn_Export>エクスポート</DosCommand_Tab_ExIn_Export>
+  <DosCommand_Tab_ExIn_Operation>区別</DosCommand_Tab_ExIn_Operation>
+
+  <DosCommand_Run>実行</DosCommand_Run>
+  <DosCommand_Browse>参照</DosCommand_Browse>
+  <DosCommand_Clean>クリア</DosCommand_Clean>
+  <DosCommand_LogLevel>ログレベル</DosCommand_LogLevel>
+
+  <!--frmevalJS-->
+  <EvalJS_Title>Javascriptの実行</EvalJS_Title>
+  <EvalJS_Method>Js関数</EvalJS_Method>
+  <EvalJS_Run>実行</EvalJS_Run>
+  <EvalJS_Parameter>パラメータは','で区切り)</EvalJS_Parameter>
+
+  <!--frmGroup-->
+  <Group_Tab_Reduce>Reduce</Group_Tab_Reduce>
+  <Group_Tab_Finalize>Finalize</Group_Tab_Finalize>
+  <Group_Tab_Group>Groupフィールド</Group_Tab_Group>
+  <Group_Tab_Group_Notes>Groupフィールドを選らんでください</Group_Tab_Group_Notes>
+  <Group_Tab_InitColumn>初期変数</Group_Tab_InitColumn>
+  <Group_Tab_InitColumn_Note>初期変数を追加してください</Group_Tab_InitColumn_Note>
+  <Group_Tab_Result>結果</Group_Tab_Result>
+  <Group_LoadQuery>クエリーのロード</Group_LoadQuery>
+
+  <!--frmOption-->
+  <Option_Title>設定</Option_Title>
+  <Option_BinPath>Bin Path</Option_BinPath>
+  <Option_Language>Language</Option_Language>
+  <Option_RecordPerPage>1ページのレコード数</Option_RecordPerPage>
+  <Option_RefreshInterval>更新率(秒)</Option_RefreshInterval>
+
+  <!--frmMapReduce-->
+  <MapReduce_MapFunction>Map関数</MapReduce_MapFunction>
+  <MapReduce_ReduceFunction>Reduce関数</MapReduce_ReduceFunction>
+  <MapReduce_Result>結果</MapReduce_Result>
+  <MapReduce_Run>実行</MapReduce_Run>
+
+  <!--frmQuery-->
+  <Query_Title>クエリー</Query_Title>
+  <Query_Filter>フィルター</Query_Filter>
+  <Query_Filter_AddCondition>条件</Query_Filter_AddCondition>
+  <Query_FieldInfo>出力</Query_FieldInfo>
+  <Query_Action_Load>ロード</Query_Action_Load>
+
+  <!--frmReplset-->
+  <Replset_Title>レプリケーション管理</Replset_Title>
+  <Replset_AddServer>サーバーの追加</Replset_AddServer>
+  <Replset_RemoveServer>サーバーの削除</Replset_RemoveServer>
+  <Replset_Remove>削除</Replset_Remove>
+  <Replset_InitReplset>レプリケーションの初期化</Replset_InitReplset>
+
+  <!--frmServiceStatus-->
+  <ServiceStatus_Title>サーバー状態</ServiceStatus_Title>
+  <ServiceStatus_ServerInfo>サーバー情報</ServiceStatus_ServerInfo>
+  <ServiceStatus_DataBaseInfo>データベース情報</ServiceStatus_DataBaseInfo>
+  <ServiceStatus_CollectionInfo>コレクション情報</ServiceStatus_CollectionInfo>
+  <ServiceStatus_CurrentOperationInfo>操作情報</ServiceStatus_CurrentOperationInfo>
+
+  <!--frmShardingConfig-->
+  <ShardingConfig_Title>Sharding設定</ShardingConfig_Title>
+  <ShardingConfig_AddSharding>Shardingの追加</ShardingConfig_AddSharding>
+  <ShardingConfig_ReplsetName>レプリケーション</ShardingConfig_ReplsetName>
+
+  <ShardingConfig_EnableSharding>Sharding有効</ShardingConfig_EnableSharding>
+  <ShardingConfig_Action_DBSharding>データベースSharding有効</ShardingConfig_Action_DBSharding>
+  <ShardingConfig_Action_CollectionSharding>コレクションSharding有効</ShardingConfig_Action_CollectionSharding>
+
+  <ShardingConfig_DBName>データベース</ShardingConfig_DBName>
+  <ShardingConfig_CollectionName>コレクション</ShardingConfig_CollectionName>
+  <ShardingConfig_FieldName>フィールド</ShardingConfig_FieldName>
+
+  <!--ctlIndexCreate-->
+  <ctlIndexCreate_Index>インデックス</ctlIndexCreate_Index>
+  <ctlIndexCreate_Description>Please input the column name here</ctlIndexCreate_Description>
+  <!--ctlFieldInfo-->
+  <ctlFieldInfo_Show>表示</ctlFieldInfo_Show>
+
+  <!--DataBase_Status-->
+  <DataBase_Status_DataBaseName>データベース</DataBase_Status_DataBaseName>
+  <DataBase_Status_CollectionCount>コレクション数</DataBase_Status_CollectionCount>
+  <DataBase_Status_DataSize>データサイズ</DataBase_Status_DataSize>
+  <DataBase_Status_FileSize>ファイルサイズ</DataBase_Status_FileSize>
+  <DataBase_Status_IndexCount>インデックス数</DataBase_Status_IndexCount>
+  <DataBase_Status_IndexSize>インデックスサイズ</DataBase_Status_IndexSize>
+  <DataBase_Status_ObjectCount>対象数</DataBase_Status_ObjectCount>
+  <DataBase_Status_StorageSize>ストレージサイズ</DataBase_Status_StorageSize>
+
+  <!--Collection_Status-->
+  <Collection_Status_CollectionName>コレクション名</Collection_Status_CollectionName>
+  <Collection_Status_ObjectCount>対象数</Collection_Status_ObjectCount>
+  <Collection_Status_DataSize>データサイズ</Collection_Status_DataSize>
+  <Collection_Status_LastExtentSize>LastExtentSize</Collection_Status_LastExtentSize>
+  <Collection_Status_StorageSize>ストレージサイズ</Collection_Status_StorageSize>
+  <Collection_Status_TotalIndexSize>インデックスサイズ</Collection_Status_TotalIndexSize>
+  <Collection_Status_AverageObjectSize>AverageObjectSize</Collection_Status_AverageObjectSize>
+  <Collection_Status_PaddingFactor>PaddingFactor</Collection_Status_PaddingFactor>
+  <Collection_Status_MaxDocuments>最大ドキュメント数</Collection_Status_MaxDocuments>
+  <Collection_Status_MaxSize>最大サイズ</Collection_Status_MaxSize>
+  <Collection_Status_IsCapped>IsCapped</Collection_Status_IsCapped>
+  <Collection_Status_IsAutoIndexId>IsAutoIndexId</Collection_Status_IsAutoIndexId>
+
+  <Collection_Resume_AutoRefresh>自動更新開始</Collection_Resume_AutoRefresh>
+  <Collection_Stop_AutoRefresh>自動更新停止</Collection_Stop_AutoRefresh>
+
+  <!--GFS-->
+  <GFS_filename>ファイル名</GFS_filename>
+  <GFS_length>ファイルサイズ</GFS_length>
+  <GFS_chunkSize>ストレージサイズ</GFS_chunkSize>
+  <GFS_uploadDate>更新時間</GFS_uploadDate>
+  <GFS_md5>md5</GFS_md5>
+
+  <GFS_Insert_Option_RemoteFileName>サーバー側ファイル名</GFS_Insert_Option_RemoteFileName>
+  <GFS_Insert_Option_OnlyFilename>ファイル名(例えば，readme.txt)</GFS_Insert_Option_OnlyFilename>
+  <GFS_Insert_Option_FullPath>フルパス(例えば，C:\readme.txt)</GFS_Insert_Option_FullPath>
+  <GFS_Insert_Option_FileAlreadyExist>ファイルすでに存在の場合</GFS_Insert_Option_FileAlreadyExist>
+  <GFS_Insert_Option_JustAddIt>追加</GFS_Insert_Option_JustAddIt>
+  <GFS_Insert_Option_Rename>名前変更(例えば、readme1.txt)</GFS_Insert_Option_Rename>
+  <GFS_Insert_Option_SkipIt>スキップ</GFS_Insert_Option_SkipIt>
+  <GFS_Insert_Option_Overwrite>上書き</GFS_Insert_Option_Overwrite>
+  <GFS_Insert_Option_Stop>中止</GFS_Insert_Option_Stop>
+  <GFS_Insert_Option_IngoreSubFolder>サッブフォルダをスキップ</GFS_Insert_Option_IngoreSubFolder>
+  <GFS_Insert_Option_DirectorySeparatorChar>フォルダパス分割</GFS_Insert_Option_DirectorySeparatorChar>
+
+  <!--Index-->
+  <Index_Background>Background</Index_Background>
+  <Index_RepeatDel>Repeat Delete</Index_RepeatDel>
+  <Index_Sparse>Sparse</Index_Sparse>
+  <Index_Unify>Unify</Index_Unify>
+  <Index_Name>Index Name</Index_Name>
+  <Index_Keys>Keys</Index_Keys>
+  <Index_Version>Version</Index_Version>
+  <Index_ExpireData>Expire Data(Sec)</Index_ExpireData>
+  <Index_NameSpace>NameSpace</Index_NameSpace>
+  <Index_Asce>昇順</Index_Asce>
+  <Index_Desc>降順 </Index_Desc>
+  <Index_NoSort>None</Index_NoSort>
+
+  <!--Exception-->
+  <Exception_NotConnected>未接続</Exception_NotConnected>
+  <Exception_NotConnected_Note>サーバーは停止状態　または　認証モードが間違います</Exception_NotConnected_Note>
+  <Exception_AuthenticationException>認証エラー</Exception_AuthenticationException>
+  <Exception_AuthenticationException_Note>ユーザー名　と　パスワード　を確認してください</Exception_AuthenticationException_Note>
+
+  <!--StatusBar-->
+  <Selected_Server>選らんたサーバーr</Selected_Server>
+  <Selected_DataBase>選らんたデータベース</Selected_DataBase>
+  <Selected_Collection>選らんたコレクション</Selected_Collection>
+  <Selected_Data>選らんたドキュメント</Selected_Data>
+  <Selected_Indexes>選らんたインデックス</Selected_Indexes>
+  <Selected_Index>選らんたインデックス</Selected_Index>
+  <Selected_GFS>選らんたファイルシステム</Selected_GFS>
+  <Selected_UserList>選らんたユーザーリスト</Selected_UserList>
+  <!--MongoUtility-->
+  <Common_Username>ユーザー名</Common_Username>
+  <Common_Password>パスワード</Common_Password>
+  <Common_ConfirmPassword>パスワード確認</Common_ConfirmPassword>
+  <Common_ChangePassword>パスワード変更</Common_ChangePassword>
+
+  <Common_ReadOnly>読取り専用 </Common_ReadOnly>
+  <Common_OK>OK</Common_OK>
+  <Common_Close>閉じる</Common_Close>
+  <Common_Cancel>キャンセル</Common_Cancel>
+  <Common_Refresh>更新</Common_Refresh>
+  <Common_Yes>はい</Common_Yes>
+  <Common_No>いいえ</Common_No>
+  <Common_Detail>詳細情報</Common_Detail>
+  <Common_Save>保存</Common_Save>
+  <Common_Save_Local>保存（ローカル）</Common_Save_Local>
+  <Common_Edit>編集</Common_Edit>
+  <Common_Modify>変更</Common_Modify>
+  <Common_Add>追加</Common_Add>
+
+  <Common_Server>サーバー</Common_Server>
+  <Common_DataBase>データベース</Common_DataBase>
+  <Common_Connect>コネクション</Common_Connect>
+  <Common_Collection>コレクション </Common_Collection>
+  <Common_Host>ホスト</Common_Host>
+  <Common_Port>ポート</Common_Port>
+  <Common_Collapse>折り畳む</Common_Collapse>
+  <Common_Expansion>展開</Common_Expansion>
+  <Common_Name>名称</Common_Name>
+  <Common_Value>値</Common_Value>
+  <Common_Type>タイプ</Common_Type>
+  <Common_Roles>角色</Common_Roles>
+  <Common_Validate>立証</Common_Validate>
+  <Common_Search>检索</Common_Search>
+
+  <Common_Browse>参照</Common_Browse>
+  <Common_Clear>クリア</Common_Clear>
+  <Common_Test>テスト</Common_Test>
+  <Common_Advance_Option>高級設定</Common_Advance_Option>
+
+  <!--Create New DataBase-->
+  <Create_New_DataBase>データベースの新規</Create_New_DataBase>
+  <Create_New_DataBase_Input>データベース名を入力してください:</Create_New_DataBase_Input>
+  <Drop_DataBase>データベースの削除</Drop_DataBase>
+  <Drop_DataBase_Confirm>データベースを削除します?</Drop_DataBase_Confirm>
+
+  <Create_New_Collection>コレクションの新規</Create_New_Collection>
+
+  <Drop_Collection>コレクションの削除</Drop_Collection>
+  <Drop_Collection_Confirm>コレクションを削除します?</Drop_Collection_Confirm>
+  <Rename_Collection>コレクションのリネーム</Rename_Collection>
+  <Rename_Collection_Input>新たなコレクションを入力してください:</Rename_Collection_Input>
+
+  <Drop_User>ユーザーの削除</Drop_User>
+  <Drop_User_Confirm>ユーザーを削除します?</Drop_User_Confirm>
+
+  <Drop_Data>データの削除</Drop_Data>
+  <Drop_Data_Confirm>データを削除します?</Drop_Data_Confirm>
+  <Restore_Connection_Confirm>确定是否要恢复数据库?</Restore_Connection_Confirm>
+
+  <SYSTEMC_COLNAME_chunks>チャンク</SYSTEMC_COLNAME_chunks>
+  <SYSTEMC_COLNAME_collections>コレクション</SYSTEMC_COLNAME_collections>
+  <SYSTEMC_COLNAME_changelog>更新ログ</SYSTEMC_COLNAME_changelog>
+  <SYSTEMC_COLNAME_databases>データベース</SYSTEMC_COLNAME_databases>
+  <SYSTEMC_COLNAME_lockpings>ロック</SYSTEMC_COLNAME_lockpings>
+  <SYSTEMC_COLNAME_locks>ロック</SYSTEMC_COLNAME_locks>
+  <SYSTEMC_COLNAME_mongos>mongos</SYSTEMC_COLNAME_mongos>
+  <SYSTEMC_COLNAME_settings>設定</SYSTEMC_COLNAME_settings>
+  <SYSTEMC_COLNAME_shards>破片</SYSTEMC_COLNAME_shards>
+  <SYSTEMC_COLNAME_tags>タグ</SYSTEMC_COLNAME_tags>
+  <SYSTEMC_COLNAME_version>バージョン</SYSTEMC_COLNAME_version>
+  <SYSTEMC_COLNAME_me>me</SYSTEMC_COLNAME_me>
+  <SYSTEMC_COLNAME_sources>sources</SYSTEMC_COLNAME_sources>
+  <SYSTEMC_COLNAME_slaves>スレーブ</SYSTEMC_COLNAME_slaves>
+  <COLLECTION_NAME_GFS_CHUNKS>データブッロク</COLLECTION_NAME_GFS_CHUNKS>
+  <COLLECTION_NAME_GFS_FILES>ファイルシステム</COLLECTION_NAME_GFS_FILES>
+  <COLLECTION_NAME_OPERATION_LOG>操作ログ</COLLECTION_NAME_OPERATION_LOG>
+  <COLLECTION_NAME_SYSTEM_INDEXES>索引</COLLECTION_NAME_SYSTEM_INDEXES>
+  <COLLECTION_NAME_JAVASCRIPT>Javascript</COLLECTION_NAME_JAVASCRIPT>
+  <COLLECTION_NAME_SYSTEM_REPLSET>REPLSET</COLLECTION_NAME_SYSTEM_REPLSET>
+  <COLLECTION_NAME_REPLSET_MINVALID>初期化同期</COLLECTION_NAME_REPLSET_MINVALID>
+  <COLLECTION_NAME_USER>ユーザーリスト</COLLECTION_NAME_USER>
+  <COLLECTION_NAME_ROLE>ロール</COLLECTION_NAME_ROLE>
+  <COLLECTION_NAME_SYSTEM_PROFILE>ログ</COLLECTION_NAME_SYSTEM_PROFILE>
+</Language>

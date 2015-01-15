@@ -1,0 +1,10 @@
+C:\MongoCola\ResourceLib\bin\Debug\Language\ja_JP.xml
+C:\MongoCola\ResourceLib\bin\Debug\Language\zh_CN.xml
+C:\MongoCola\ResourceLib\bin\Debug\Language\zh_TW.xml
+C:\MongoCola\ResourceLib\bin\Debug\ResourceLib.dll
+C:\MongoCola\ResourceLib\bin\Debug\ResourceLib.pdb
+C:\MongoCola\ResourceLib\obj\Debug\ResourceLib.csprojResolveAssemblyReference.cache
+C:\MongoCola\ResourceLib\obj\Debug\ResourceLib.Properties.Resources.resources
+C:\MongoCola\ResourceLib\obj\Debug\ResourceLib.csproj.GenerateResource.Cache
+C:\MongoCola\ResourceLib\obj\Debug\ResourceLib.dll
+C:\MongoCola\ResourceLib\obj\Debug\ResourceLib.pdb
