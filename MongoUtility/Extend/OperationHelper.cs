@@ -6,10 +6,9 @@ using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
-using MongoUtility.Command;
-using Utility = Common.Utility.Utility;
+using Utility = Common.Logic.Utility;
 
-namespace MongoUtility.Core
+namespace MongoUtility.Extend
 {
     public static class OperationHelper
     {

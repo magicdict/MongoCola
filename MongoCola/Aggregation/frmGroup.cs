@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using SystemUtility;
-using Common.Utility;
+using Common.Logic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl;

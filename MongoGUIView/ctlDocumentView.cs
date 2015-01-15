@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using Common.Logic;
 using Common.UI;
-using Common.Utility;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -9,6 +9,7 @@ using MongoGUICtl;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using ResourceLib.Utility;
 
 namespace MongoGUIView

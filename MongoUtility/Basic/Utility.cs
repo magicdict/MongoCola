@@ -6,6 +6,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.IO;
 using MongoDB.Driver;
 using MongoUtility.Core;
+using MongoUtility.EventArgs;
 
 /*
  * Created by SharpDevelop.
@@ -266,8 +267,8 @@ namespace MongoUtility.Basic
         public static string GetBsonSize(BsonValue size)
         {
             return size.IsInt32
-                ? Common.Utility.Utility.GetSize((int) size)
-                : Common.Utility.Utility.GetSize((long) size);
+                ? Common.Logic.Utility.GetSize((int) size)
+                : Common.Logic.Utility.GetSize((long) size);
         }
     }
 }

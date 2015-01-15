@@ -6,6 +6,7 @@ using Common.UI;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
 using MongoUtility.Core;
+using MongoUtility.EventArgs;
 
 namespace MongoUtility.Basic
 {
@@ -107,7 +108,7 @@ namespace MongoUtility.Basic
             }
             catch (Exception ex)
             {
-                Common.Utility.Utility.ExceptionDeal(ex, "Error", "Exception happend when open file");
+                Common.Logic.Utility.ExceptionDeal(ex, "Error", "Exception happend when open file");
             }
         }
 
@@ -180,7 +181,7 @@ namespace MongoUtility.Basic
             }
             catch (Exception ex)
             {
-                Common.Utility.Utility.ExceptionDeal(ex);
+                Common.Logic.Utility.ExceptionDeal(ex);
                 return UploadResult.Exception;
             }
         }

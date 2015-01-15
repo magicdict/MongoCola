@@ -6,8 +6,8 @@ using Common.UI;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
-using MongoUtility.Command;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using ResourceLib.Utility;
 
 namespace MongoCola
@@ -203,7 +203,7 @@ namespace MongoCola
             }
             catch (Exception ex)
             {
-                Common.Utility.Utility.ExceptionDeal(ex);
+                Common.Logic.Utility.ExceptionDeal(ex);
             }
         }
 
@@ -225,7 +225,7 @@ namespace MongoCola
             }
             catch (Exception ex)
             {
-                Common.Utility.Utility.ExceptionDeal(ex);
+                Common.Logic.Utility.ExceptionDeal(ex);
             }
         }
 
@@ -274,7 +274,7 @@ namespace MongoCola
             }
             catch (Exception ex)
             {
-                Common.Utility.Utility.ExceptionDeal(ex);
+                Common.Logic.Utility.ExceptionDeal(ex);
             }
         }
 

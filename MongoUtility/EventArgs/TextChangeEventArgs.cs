@@ -1,11 +1,11 @@
 using System;
 
-namespace MongoUtility.Core
+namespace MongoUtility.EventArgs
 {
     /// <summary>
     ///     TextChangeEventArgs
     /// </summary>
-    public class TextChangeEventArgs : EventArgs
+    public class TextChangeEventArgs : System.EventArgs
     {
         private readonly String _NewString;
         private readonly String _OldString;

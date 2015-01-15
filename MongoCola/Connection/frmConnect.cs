@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using SystemUtility;
 using SystemUtility.Config;
-using Common.Utility;
+using Common.Logic;
 using MongoUtility.Core;
 using ResourceLib.Utility;
 

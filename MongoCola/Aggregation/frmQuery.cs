@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using SystemUtility;
-using Common.Utility;
+using Common.Logic;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
 using ResourceLib.Utility;

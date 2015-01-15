@@ -708,7 +708,7 @@ namespace MongoCola
         	// 
         	this.ExportToFileToolStripMenuItem.Name = "ExportToFileToolStripMenuItem";
         	this.ExportToFileToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-        	this.ExportToFileToolStripMenuItem.Text = "Export To File";
+        	this.ExportToFileToolStripMenuItem.Text = "ExportImport To File";
         	this.ExportToFileToolStripMenuItem.Click += new System.EventHandler(this.ExportToFileToolStripMenuItem_Click);
         	// 
         	// DumpAndRestoreToolStripMenuItem
@@ -761,7 +761,7 @@ namespace MongoCola
         	// 
         	this.ExportCollectionToolStripMenuItem.Name = "ExportCollectionToolStripMenuItem";
         	this.ExportCollectionToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
-        	this.ExportCollectionToolStripMenuItem.Text = "Export DataCollection";
+        	this.ExportCollectionToolStripMenuItem.Text = "ExportImport DataCollection";
         	this.ExportCollectionToolStripMenuItem.Click += new System.EventHandler(this.ExportCollectionToolStripMenuItem_Click);
         	// 
         	// ToolsToolStripMenuItem

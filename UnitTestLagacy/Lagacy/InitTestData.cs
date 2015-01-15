@@ -5,7 +5,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
 
-namespace UnitTest.Lagacy
+namespace UnitTestLagacy.Lagacy
 {
     public static class InitTestData
     {

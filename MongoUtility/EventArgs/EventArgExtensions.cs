@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace MongoUtility.Core
+namespace MongoUtility.EventArgs
 {
     /// <summary>
     ///     This Method Copy From CLR via C#
@@ -10,7 +10,7 @@ namespace MongoUtility.Core
     {
         public static void Raise<TEventArgs>(this TEventArgs e,
             Object sender, ref EventHandler<TEventArgs> eventDelegate)
-            where TEventArgs : EventArgs
+            where TEventArgs : System.EventArgs
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
             var temp =

@@ -27,9 +27,9 @@ namespace MongoCola
             SystemConfig.DebugMode = false;
             SystemConfig.MonoMode = Type.GetType("Mono.Runtime") != null;
             //异常处理器的初始化
-            Common.Utility.Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + Utility.MongoDbDriverVersion +
+            Common.Logic.Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + Utility.MongoDbDriverVersion +
                                                          Environment.NewLine;
-            Common.Utility.Utility.ExceptionAppendInfo += "MongoDbBsonVersion:" + Utility.MongoDbBsonVersion +
+            Common.Logic.Utility.ExceptionAppendInfo += "MongoDbBsonVersion:" + Utility.MongoDbBsonVersion +
                                                           Environment.NewLine;
             //config
             var localconfigfile = Application.StartupPath + "\\" + ConfigHelper._configFilename;

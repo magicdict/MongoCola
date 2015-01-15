@@ -7,6 +7,7 @@ using MongoGUICtl;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using ResourceLib.Utility;
 
 namespace MongoGUIView
@@ -212,7 +213,7 @@ namespace MongoGUIView
                 }
                 lstData.Items.Add(lstItem);
             }
-            Common.Utility.Utility.ListViewColumnResize(lstData);
+            Common.Logic.Utility.ListViewColumnResize(lstData);
         }
 
         /// <summary>
@@ -280,7 +281,7 @@ namespace MongoGUIView
                 lstItem.SubItems.Add(strReadOnly == null ? "N/A" : strReadOnly.ToString());
                 lstData.Items.Add(lstItem);
             }
-            Common.Utility.Utility.ListViewColumnResize(lstData);
+            Common.Logic.Utility.ListViewColumnResize(lstData);
             //lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
@@ -334,7 +335,7 @@ namespace MongoGUIView
                 lstData.Items.Add(lstItem);
             }
             //自动调节列宽
-            Common.Utility.Utility.ListViewColumnResize(lstData);
+            Common.Logic.Utility.ListViewColumnResize(lstData);
             // 用新的排序方法对ListView排序
             var _lvwGFSColumnSorter = new FillMongoDB.lvwColumnSorter();
             lstData.ListViewItemSorter = _lvwGFSColumnSorter;

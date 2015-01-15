@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using MongoDB.Bson;
+using MongoUtility.Basic;
 using MongoUtility.Core;
 
 namespace MongoGUICtl

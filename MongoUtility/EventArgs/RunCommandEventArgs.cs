@@ -2,12 +2,12 @@ using System;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 
-namespace MongoUtility.Core
+namespace MongoUtility.EventArgs
 {
     /// <summary>
     ///     RunCommandEventArgs
     /// </summary>
-    public class RunCommandEventArgs : EventArgs
+    public class RunCommandEventArgs : System.EventArgs
     {
         /// <summary>
         ///     CommandString

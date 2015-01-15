@@ -9,8 +9,9 @@ using MongoDB.Driver.Builders;
 using MongoGUICtl;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using ResourceLib.Utility;
-using Utility = Common.Utility.Utility;
+using Utility = Common.Logic.Utility;
 
 namespace MongoCola.Operation
 {

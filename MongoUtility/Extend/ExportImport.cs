@@ -7,10 +7,11 @@ using MongoDB.Bson.IO;
 using MongoDB.Driver;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
+using MongoUtility.EventArgs;
 
-namespace MongoUtility.Core
+namespace MongoUtility.Extend
 {
-    public static class Export
+    public static class ExportImport
     {
         /// <summary>
         ///     ExportToFile

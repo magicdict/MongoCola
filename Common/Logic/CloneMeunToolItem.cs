@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace Common.Utility
+namespace Common.Logic
 {
     public static class CloneMeunToolItem
     {

@@ -3,10 +3,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using SystemUtility;
+using Common.Logic;
 using Common.UI;
-using Common.Utility;
 using MongoDB.Driver.Builders;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using ResourceLib.Utility;
 
 namespace MongoCola.Operation

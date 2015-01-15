@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace UnitTest.Lagacy
+namespace UnitTestLagacy.Lagacy
 {
     public static class SystemManager
     {

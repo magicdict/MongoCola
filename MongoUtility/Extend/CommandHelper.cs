@@ -5,9 +5,10 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using Utility = Common.Utility.Utility;
+using MongoUtility.EventArgs;
+using Utility = Common.Logic.Utility;
 
-namespace MongoUtility.Command
+namespace MongoUtility.Extend
 {
     /// 注意，有些db.XXXX(xxx) 这样的函数需要 mongoDb.Eval方法才能做
     /// 有些RepairDatabase 这样的函数可以简单的执行

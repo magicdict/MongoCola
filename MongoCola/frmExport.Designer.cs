@@ -59,7 +59,7 @@ namespace MongoCola
             this.grpExportType.Size = new System.Drawing.Size(258, 65);
             this.grpExportType.TabIndex = 2;
             this.grpExportType.TabStop = false;
-            this.grpExportType.Text = "Export File Type";
+            this.grpExportType.Text = "ExportImport File Type";
             // 
             // optXML
             // 
@@ -120,7 +120,7 @@ namespace MongoCola
             this.Controls.Add(this.ctlExportFilePicker);
             this.Name = "frmExport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Export To File";
+            this.Text = "ExportImport To File";
             this.Load += new System.EventHandler(this.frmExport_Load);
             this.grpExportType.ResumeLayout(false);
             this.grpExportType.PerformLayout();

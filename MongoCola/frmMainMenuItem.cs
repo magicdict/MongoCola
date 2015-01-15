@@ -16,10 +16,10 @@ using MongoCola.Status;
 using MongoGUICtl;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
-using MongoUtility.Command;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using ResourceLib.Utility;
-using Utility = Common.Utility.Utility;
+using Utility = Common.Logic.Utility;
 
 namespace MongoCola
 {
@@ -1040,7 +1040,7 @@ namespace MongoCola
         }
 
         /// <summary>
-        ///     Export Collection
+        ///     ExportImport Collection
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

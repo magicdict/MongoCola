@@ -1,9 +1,8 @@
 ﻿using System;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoUtility.Basic;
 
-namespace MongoUtility.Core
+namespace MongoUtility.Basic
 {
     public static class ElementHelper
     {

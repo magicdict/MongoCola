@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Utility
+namespace Common.Logic
 {
     /// <summary>
     ///     数据库记录

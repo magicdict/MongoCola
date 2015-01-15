@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using SystemUtility;
 using Common.UI;
 using MongoDB.Bson;
+using MongoUtility.Basic;
 using MongoUtility.Core;
 using ResourceLib.Utility;
 

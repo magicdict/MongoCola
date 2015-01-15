@@ -6,7 +6,7 @@ using MongoGUICtl;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
-using Utility = Common.Utility.Utility;
+using Utility = Common.Logic.Utility;
 
 namespace HTTPServer
 {

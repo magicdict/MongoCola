@@ -7,8 +7,8 @@ using MongoCola.Operation;
 using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Basic;
-using MongoUtility.Command;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 
 namespace MongoCola.Aggregation
 {
@@ -78,13 +78,13 @@ namespace MongoCola.Aggregation
             try
             {
                 var frmInsertDoc = new frmNewDocument();
-                Common.Utility.Utility.OpenForm(frmInsertDoc, false, true);
+                Common.Logic.Utility.OpenForm(frmInsertDoc, false, true);
                 _AggrArray.Add(frmInsertDoc.mBsonDocument);
                 FillAggreationTreeview();
             }
             catch (Exception ex)
             {
-                Common.Utility.Utility.ExceptionDeal(ex);
+                Common.Logic.Utility.ExceptionDeal(ex);
             }
         }
 
@@ -148,7 +148,7 @@ namespace MongoCola.Aggregation
         private void btnAggrBuilder_Click(object sender, EventArgs e)
         {
             var frmAggregationBuilder = new frmAggregationCondition();
-            Common.Utility.Utility.OpenForm(frmAggregationBuilder, false, true);
+            Common.Logic.Utility.OpenForm(frmAggregationBuilder, false, true);
             foreach (var item in frmAggregationBuilder.Aggregation)
             {
                 _AggrArray.Add(item);

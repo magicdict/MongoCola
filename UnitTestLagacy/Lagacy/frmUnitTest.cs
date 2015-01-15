@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace UnitTest.Lagacy
+namespace UnitTestLagacy.Lagacy
 {
     public partial class frmUnitTest : Form
     {

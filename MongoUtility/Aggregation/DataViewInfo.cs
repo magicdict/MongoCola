@@ -13,6 +13,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 
 namespace MongoUtility.Aggregation
 {

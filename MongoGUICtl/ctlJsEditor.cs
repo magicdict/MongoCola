@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using ResourceLib.Properties;
 using ResourceLib.Utility;
 

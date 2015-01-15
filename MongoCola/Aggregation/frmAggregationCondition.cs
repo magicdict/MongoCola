@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Common.Utility;
+using Common.Logic;
 using MongoDB.Bson;
 
 namespace MongoCola.Aggregation

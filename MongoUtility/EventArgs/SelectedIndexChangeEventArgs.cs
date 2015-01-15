@@ -1,11 +1,9 @@
-using System;
-
-namespace MongoUtility.Core
+namespace MongoUtility.EventArgs
 {
     /// <summary>
     ///     SelectedIndexChangeEventArgs
     /// </summary>
-    public class SelectedIndexChangeEventArgs : EventArgs
+    public class SelectedIndexChangeEventArgs : System.EventArgs
     {
         private readonly int _NewIndex;
         private readonly int _OldIndex;

@@ -168,7 +168,7 @@ namespace MongoGUICtl
             this.radExport.Name = "radExport";
             this.radExport.Size = new System.Drawing.Size(55, 17);
             this.radExport.TabIndex = 1;
-            this.radExport.Text = "Export";
+            this.radExport.Text = "ExportImport";
             this.radExport.UseVisualStyleBackColor = true;
             this.radExport.CheckedChanged += new System.EventHandler(this.radExport_CheckedChanged);
             // 

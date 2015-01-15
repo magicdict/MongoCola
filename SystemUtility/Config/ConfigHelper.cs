@@ -1,5 +1,5 @@
 ﻿using System;
-using Common.Utility;
+using Common.Logic;
 using MongoUtility.Core;
 
 namespace SystemUtility.Config

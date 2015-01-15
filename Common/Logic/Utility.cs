@@ -10,7 +10,7 @@ using Common.UI;
 using Microsoft.VisualBasic;
 using ResourceLib.Utility;
 
-namespace Common.Utility
+namespace Common.Logic
 {
     public static class Utility
     {

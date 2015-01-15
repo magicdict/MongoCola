@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using Common.Logic;
 using Common.UI;
-using Common.Utility;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
 using MongoUtility.Security;

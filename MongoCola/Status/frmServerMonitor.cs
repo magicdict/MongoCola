@@ -2,8 +2,8 @@
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using MongoUtility.Command;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using ResourceLib.Properties;
 using ResourceLib.Utility;
 

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using SystemUtility;
+using Common.Logic;
 using Common.UI;
-using Common.Utility;
 using MongoDB.Bson;
 using MongoUtility.Core;
 using ResourceLib.Utility;

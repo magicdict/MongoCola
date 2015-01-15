@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using MongoUtility.Basic;
 using ResourceLib.Utility;
-using Utility = Common.Utility.Utility;
+using Utility = Common.Logic.Utility;
 
 namespace PlugInPackage.DosCommand
 {

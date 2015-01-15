@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace MongoUtility.Core
+namespace MongoUtility.EventArgs
 {
-    public class ActionDoneEventArgs : EventArgs
+    public class ActionDoneEventArgs : System.EventArgs
     {
         private readonly String _Message;
 

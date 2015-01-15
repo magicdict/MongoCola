@@ -49,11 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Utility\CloneMeunToolItem.cs" />
-    <Compile Include="Utility\Model.cs" />
-    <Compile Include="Utility\NumberTextBox.cs" />
-    <Compile Include="Utility\Utility.cs" />
-    <Compile Include="Utility\XmlDataBase.cs" />
+    <Compile Include="Logic\CloneMeunToolItem.cs" />
+    <Compile Include="Logic\Model.cs" />
+    <Compile Include="Logic\NumberTextBox.cs" />
+    <Compile Include="Logic\Utility.cs" />
+    <Compile Include="Logic\XmlDataBase.cs" />
     <Compile Include="UI\frmConfirm.cs">
       <SubType>Form</SubType>
     </Compile>

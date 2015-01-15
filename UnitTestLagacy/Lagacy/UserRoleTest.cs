@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using MongoGUICtl;
 using MongoUtility.Security;
 
-namespace UnitTest.Lagacy
+namespace UnitTestLagacy.Lagacy
 {
     public partial class UserRoleTest : Form
     {

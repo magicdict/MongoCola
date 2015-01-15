@@ -5,11 +5,11 @@ using SystemUtility;
 using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Basic;
-using MongoUtility.Command;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using ResourceLib.Properties;
 using ResourceLib.Utility;
-using Utility = Common.Utility.Utility;
+using Utility = Common.Logic.Utility;
 
 namespace MongoCola.Status
 {

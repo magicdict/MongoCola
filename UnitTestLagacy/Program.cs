@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using UnitTest.Lagacy;
+using UnitTestLagacy.Lagacy;
 
-namespace UnitTest
+namespace UnitTestLagacy
 {
     internal static class Program
     {

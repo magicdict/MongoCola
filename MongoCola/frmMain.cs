@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using SystemUtility;
-using Common.Utility;
+using Common.Logic;
 using MongoCola.Connection;
 using MongoGUICtl;
 using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
-using MongoUtility.Command;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using PlugInPackage;
 using ResourceLib.Properties;
 using ResourceLib.Utility;
-using Utility = Common.Utility.Utility;
+using Utility = Common.Logic.Utility;
 
 namespace MongoCola
 {

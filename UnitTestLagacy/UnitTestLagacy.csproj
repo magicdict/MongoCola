@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{56D74944-4B20-4941-BC67-72A8E57E5A02}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{8F04DBD3-A174-4E0D-B8FF-E99E8D969BC8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MongoUtility</RootNamespace>
-    <AssemblyName>MongoUtility</AssemblyName>
+    <RootNamespace>UnitTestLagacy</RootNamespace>
+    <AssemblyName>UnitTestLagacy</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -28,6 +28,9 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>UnitTestLagacy.Program</StartupObject>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
@@ -43,6 +46,9 @@
     <RegisterForComInterop>False</RegisterForComInterop>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\mongocsharpdriver.1.10.0-rc1\lib\net35\MongoDB.Bson.dll</HintPath>
@@ -53,48 +59,67 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.XML" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregation\AggregationHelper.cs" />
-    <Compile Include="Aggregation\DataFilter.cs" />
-    <Compile Include="Aggregation\DataViewInfo.cs" />
-    <Compile Include="Basic\MongodbDosCommand.cs" />
-    <Compile Include="Basic\GFS.cs" />
-    <Compile Include="Basic\Utility.cs" />
-    <Compile Include="Basic\ConstMgr.cs" />
-    <Compile Include="Basic\EnumMgr.cs" />
-    <Compile Include="Extend\CommandHelper.cs" />
-    <Compile Include="EventArgs\EventArgExtensions.cs" />
-    <Compile Include="EventArgs\ActionDoneEventArgs.cs" />
-    <Compile Include="Core\MongoConnectionConfig.cs" />
-    <Compile Include="Basic\ElementHelper.cs" />
-    <Compile Include="Extend\ExportImport.cs" />
-    <Compile Include="EventArgs\RunCommandEventArgs.cs" />
-    <Compile Include="Core\RuntimeMongoDBContext.cs" />
-    <Compile Include="Extend\OperationHelper.cs" />
-    <Compile Include="Aggregation\QueryHelper.cs" />
-    <Compile Include="Aggregation\Sql.cs" />
-    <Compile Include="EventArgs\SelectedIndexChangeEventArgs.cs" />
-    <Compile Include="EventArgs\TextChangeEventArgs.cs" />
-    <Compile Include="Security\MongoDBAction.cs" />
-    <Compile Include="Security\Resource.cs" />
-    <Compile Include="Security\User.cs" />
-    <Compile Include="Security\Role.cs" />
+    <Compile Include="Lagacy\frmUnitTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lagacy\frmUnitTest.Designer.cs">
+      <DependentUpon>frmUnitTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lagacy\InitTestData.cs" />
+    <Compile Include="Lagacy\SystemManager.cs" />
+    <Compile Include="Lagacy\UserRoleTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lagacy\UserRoleTest.Designer.cs">
+      <DependentUpon>UserRoleTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Basic\BsonValueEx.cs" />
-    <Compile Include="Security\EachDatabaseUser.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{40495682-C452-41C4-B2AE-8C60D7743BC9}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="Lagacy\frmUnitTest.resx">
+      <DependentUpon>frmUnitTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lagacy\UserRoleTest.resx">
+      <DependentUpon>UserRoleTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MongoGUICtl\MongoGUICtl.csproj">
+      <Project>{EC2826B3-7033-4F9B-B52A-BD1CA85F583B}</Project>
+      <Name>MongoGUICtl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MongoUtility\MongoUtility.csproj">
+      <Project>{56D74944-4B20-4941-BC67-72A8E57E5A02}</Project>
+      <Name>MongoUtility</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

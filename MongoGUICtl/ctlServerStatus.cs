@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Common.Utility;
+using Common.Logic;
 using MongoUtility.Core;
 using ResourceLib.Properties;
 using ResourceLib.Utility;

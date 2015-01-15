@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Common.Logic;
 using ResourceLib.Utility;
 
 namespace Common.UI
@@ -32,13 +33,13 @@ namespace Common.UI
         /// </summary>
         public static void SwitchLanguage()
         {
-            _frmConfirm.SetText(Utility.Utility.guiconfig.GetText("Yes", StringResource.TextType.Common_Yes),
-                Utility.Utility.guiconfig.GetText("No", StringResource.TextType.Common_No));
-            _frmMessage.SetText(Utility.Utility.guiconfig.GetText("Detail", StringResource.TextType.Common_Detail),
-                Utility.Utility.guiconfig.GetText("OK", StringResource.TextType.Common_OK));
-            _frmInputBox.SetText(Utility.Utility.guiconfig.GetText("Cancel", StringResource.TextType.Common_Cancel),
-                Utility.Utility.guiconfig.GetText("OK", StringResource.TextType.Common_OK));
-            _frmEasyMessage.SetText(Utility.Utility.guiconfig.GetText("OK", StringResource.TextType.Common_OK));
+            _frmConfirm.SetText(Utility.guiconfig.GetText("Yes", StringResource.TextType.Common_Yes),
+                Utility.guiconfig.GetText("No", StringResource.TextType.Common_No));
+            _frmMessage.SetText(Utility.guiconfig.GetText("Detail", StringResource.TextType.Common_Detail),
+                Utility.guiconfig.GetText("OK", StringResource.TextType.Common_OK));
+            _frmInputBox.SetText(Utility.guiconfig.GetText("Cancel", StringResource.TextType.Common_Cancel),
+                Utility.guiconfig.GetText("OK", StringResource.TextType.Common_OK));
+            _frmEasyMessage.SetText(Utility.guiconfig.GetText("OK", StringResource.TextType.Common_OK));
         }
 
         /// <summary>

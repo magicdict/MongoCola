@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Common.Utility;
+using Common.Logic;
 using MongoDB.Driver;
 
 namespace PlugInPackage.ImportAccessDB

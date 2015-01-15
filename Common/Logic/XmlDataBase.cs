@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Common.Utility
+namespace Common.Logic
 {
     /// <summary>
     ///     数据库引擎

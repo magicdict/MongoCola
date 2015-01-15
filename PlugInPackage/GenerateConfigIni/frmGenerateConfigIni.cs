@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using MongoUtility.Basic;
-using Utility = Common.Utility.Utility;
+using Utility = Common.Logic.Utility;
 
 namespace PlugInPackage.GenerateConfigIni
 {

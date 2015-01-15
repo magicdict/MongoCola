@@ -7,11 +7,11 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
-using MongoUtility.Command;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using MongoUtility.Security;
 using ResourceLib.Utility;
-using Utility = Common.Utility.Utility;
+using Utility = Common.Logic.Utility;
 
 namespace MongoGUICtl
 {

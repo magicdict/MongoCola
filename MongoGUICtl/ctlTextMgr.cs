@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Common.UI;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using ResourceLib.Utility;
 
 namespace MongoGUICtl
@@ -76,7 +77,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void cmdSaveLocal_Click(object sender, EventArgs e)
         {
-            Common.Utility.Utility.SaveJavascriptFile(txtContext.Text);
+            Common.Logic.Utility.SaveJavascriptFile(txtContext.Text);
         }
 
         /// <summary>
@@ -86,7 +87,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void cmdLoadLocal_Click(object sender, EventArgs e)
         {
-            txtContext.Text = Common.Utility.Utility.LoadFile();
+            txtContext.Text = Common.Logic.Utility.LoadFile();
         }
     }
 }

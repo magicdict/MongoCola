@@ -4,8 +4,9 @@ using System.Windows.Forms;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using MongoUtility.Extend;
 using ResourceLib.Utility;
-using Utility = Common.Utility.Utility;
+using Utility = Common.Logic.Utility;
 
 namespace MongoGUICtl
 {

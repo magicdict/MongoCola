@@ -1,6 +1,6 @@
 ﻿using MongoGUICtl;
 
-namespace UnitTest.Lagacy
+namespace UnitTestLagacy.Lagacy
 {
     partial class UserRoleTest
     {

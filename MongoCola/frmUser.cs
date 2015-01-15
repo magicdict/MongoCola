@@ -10,7 +10,7 @@ using MongoUtility.Core;
 using MongoUtility.Security;
 using ResourceLib.Properties;
 using ResourceLib.Utility;
-using Utility = Common.Utility.Utility;
+using Utility = Common.Logic.Utility;
 
 namespace MongoCola
 {
@@ -22,44 +22,45 @@ namespace MongoCola
         private readonly Boolean _IsAdmin;
 
         private readonly String _ModifyName = String.Empty;
-        private readonly Dictionary<String, BsonElement> OtherDBRolesDict = new Dictionary<string, BsonElement>();
+
+        private readonly Dictionary<String, BsonElement> _otherDbRolesDict = new Dictionary<string, BsonElement>();
 
         /// <summary>
         ///     frmUser
         /// </summary>
-        /// <param name="IsAdmin"></param>
-        public frmUser(Boolean IsAdmin)
+        /// <param name="isAdmin"></param>
+        public frmUser(Boolean isAdmin)
         {
             InitializeComponent();
-            _IsAdmin = IsAdmin;
+            _IsAdmin = isAdmin;
             foreach (var item in RuntimeMongoDBContext.GetCurrentServer().GetDatabaseNames())
             {
                 cmbDB.Items.Add(item);
             }
-            if (!IsAdmin)
+            if (!isAdmin)
             {
                 //Admin以外的不能有otherDBRoles
                 Width = Width/2;
             }
-            userRoles.IsAdmin = IsAdmin;
+            userRoles.IsAdmin = isAdmin;
         }
 
         /// <summary>
         ///     frmUser
         /// </summary>
-        /// <param name="IsAdmin"></param>
-        /// <param name="UserName"></param>
-        public frmUser(Boolean IsAdmin, String UserName)
+        /// <param name="isAdmin"></param>
+        /// <param name="userName"></param>
+        public frmUser(Boolean isAdmin, String userName)
         {
             InitializeComponent();
-            _IsAdmin = IsAdmin;
-            _ModifyName = UserName;
+            _IsAdmin = isAdmin;
+            _ModifyName = userName;
             cmbDB.Items.Clear();
             foreach (var item in RuntimeMongoDBContext.GetCurrentServer().GetDatabaseNames())
             {
                 cmbDB.Items.Add(item);
             }
-            if (!IsAdmin)
+            if (!isAdmin)
             {
                 //Admin以外的不能有otherDBRoles
                 Width = Width/2;
@@ -85,12 +86,12 @@ namespace MongoCola
                 Password = txtUserName.Text,
                 roles = userRoles.getRoles()
             };
-            var otherDBRoles = new BsonDocument();
-            foreach (var item in OtherDBRolesDict.Values)
+            var otherDbRoles = new BsonDocument();
+            foreach (var item in _otherDbRolesDict.Values)
             {
-                otherDBRoles.Add(item);
+                otherDbRoles.Add(item);
             }
-            user.otherDBRoles = otherDBRoles;
+            user.otherDBRoles = otherDbRoles;
             user.userSource = txtuserSource.Text;
             if (txtUserName.Text == String.Empty)
             {
@@ -131,12 +132,12 @@ namespace MongoCola
                 var userInfo = RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(ConstMgr.COLLECTION_NAME_USER)
                     .FindOneAs<BsonDocument>(Query.EQ("user", _ModifyName));
                 userRoles.setRoles(userInfo["roles"].AsBsonArray);
-                OtherDBRolesDict.Clear();
+                _otherDbRolesDict.Clear();
                 foreach (var item in userInfo["otherDBRoles"].AsBsonDocument)
                 {
-                    OtherDBRolesDict.Add(item.Name, item);
+                    _otherDbRolesDict.Add(item.Name, item);
                 }
-                RefreshOtherDBRoles();
+                RefreshOtherDbRoles();
             }
             if (!SystemConfig.IsUseDefaultLanguage)
             {
@@ -159,7 +160,7 @@ namespace MongoCola
                     SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Password);
                 lblConfirmPsw.Text =
                     SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_ConfirmPassword);
-                //chkReadOnly.Text = SystemConfig.guiConfig.MStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_ReadOnly);
+                //chkReadOnly.Text = SystemConfig.guiConfig.MStringResource.GetText(MongoCola.Module.StringResource.TextType.Common_ReadOnly);
                 colRoles.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Roles);
                 colDataBase.Text =
                     SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_DataBase);
@@ -171,12 +172,12 @@ namespace MongoCola
         /// <summary>
         ///     刷新角色
         /// </summary>
-        private void RefreshOtherDBRoles()
+        private void RefreshOtherDbRoles()
         {
             lstOtherRoles.Items.Clear();
-            foreach (var item in OtherDBRolesDict.Keys)
+            foreach (var item in _otherDbRolesDict.Keys)
             {
-                lstOtherRoles.Items.Add(new ListViewItem(new[] {item, OtherDBRolesDict[item].Value.ToString()}));
+                lstOtherRoles.Items.Add(new ListViewItem(new[] {item, _otherDbRolesDict[item].Value.ToString()}));
             }
         }
 
@@ -195,15 +196,15 @@ namespace MongoCola
             var mUserRole = new frmUserRole(new BsonArray());
             mUserRole.ShowDialog();
             var otherRole = new BsonElement(cmbDB.Text, mUserRole.Result);
-            if (OtherDBRolesDict.ContainsKey(cmbDB.Text))
+            if (_otherDbRolesDict.ContainsKey(cmbDB.Text))
             {
-                OtherDBRolesDict[cmbDB.Text] = otherRole;
+                _otherDbRolesDict[cmbDB.Text] = otherRole;
             }
             else
             {
-                OtherDBRolesDict.Add(cmbDB.Text, otherRole);
+                _otherDbRolesDict.Add(cmbDB.Text, otherRole);
             }
-            RefreshOtherDBRoles();
+            RefreshOtherDbRoles();
         }
 
         /// <summary>
@@ -219,8 +220,8 @@ namespace MongoCola
             }
             else
             {
-                OtherDBRolesDict.Remove(lstOtherRoles.SelectedItems[0].Text);
-                RefreshOtherDBRoles();
+                _otherDbRolesDict.Remove(lstOtherRoles.SelectedItems[0].Text);
+                RefreshOtherDbRoles();
             }
         }
 
@@ -237,12 +238,12 @@ namespace MongoCola
             }
             else
             {
-                var DBName = lstOtherRoles.SelectedItems[0].Text;
-                var mUserRole = new frmUserRole(OtherDBRolesDict[DBName].Value.AsBsonArray);
+                var dbName = lstOtherRoles.SelectedItems[0].Text;
+                var mUserRole = new frmUserRole(_otherDbRolesDict[dbName].Value.AsBsonArray);
                 mUserRole.ShowDialog();
                 var otherRole = new BsonElement(cmbDB.Text, mUserRole.Result);
-                OtherDBRolesDict[DBName] = otherRole;
-                RefreshOtherDBRoles();
+                _otherDbRolesDict[dbName] = otherRole;
+                RefreshOtherDbRoles();
             }
         }
     }
