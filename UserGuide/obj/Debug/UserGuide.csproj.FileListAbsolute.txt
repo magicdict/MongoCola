@@ -1,5 +1,0 @@
-C:\MongoCola\UserGuide\bin\Debug\UserGuide.dll
-C:\MongoCola\UserGuide\bin\Debug\UserGuide.pdb
-C:\MongoCola\UserGuide\obj\Debug\UserGuide.csprojResolveAssemblyReference.cache
-C:\MongoCola\UserGuide\obj\Debug\UserGuide.dll
-C:\MongoCola\UserGuide\obj\Debug\UserGuide.pdb
