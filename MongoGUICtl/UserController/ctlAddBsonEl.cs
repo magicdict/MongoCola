@@ -47,7 +47,7 @@ namespace MongoGUICtl
         /// </summary>
         public BsonElement getElement()
         {
-            BsonValue value = ElBsonValue.getValue();
+            var value = ElBsonValue.getValue();
             var el = new BsonElement(txtElName.Text, value);
             return el;
         }

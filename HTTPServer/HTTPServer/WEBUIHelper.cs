@@ -1,23 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl;
-using MongoGUIView;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using Utility = Common.Utility;
 
 namespace HTTPServer
 {
     public static class WEBUIHelper
     {
         #region"展示数据库结构 WebForm"
-		/// <summary>
-		///     唯一的网页展示数据的数据信息
-		/// </summary>
-		public static DataViewInfo WebDataViewInfo;
+
+        /// <summary>
+        ///     唯一的网页展示数据的数据信息
+        /// </summary>
+        public static DataViewInfo WebDataViewInfo;
+
         /// <summary>
         ///     获取JSON
         /// </summary>
@@ -25,30 +26,35 @@ namespace HTTPServer
         public static String GetConnectionzTreeJson()
         {
             var tree = new TreeView();
-            var nodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst, RuntimeMongoDBContext._mongoConnectionConfigList);
-            foreach (var element in nodes) {
-            	tree.Nodes.Add(element);
+            var nodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst,
+                RuntimeMongoDBContext._mongoConnectionConfigList);
+            foreach (var element in nodes)
+            {
+                tree.Nodes.Add(element);
             }
             return ConvertTreeViewTozTreeJson(tree);
         }
-		/// <summary>
-		/// </summary>
-		/// <returns></returns>
-		public static string GetCollectionzTreeJSON(MongoServer mServer)
-		{
-			//获得数据
-			WebDataViewInfo.LimitCnt = 100;
-            List<BsonDocument> dataList = DataViewInfo.GetDataList(ref WebDataViewInfo, mServer);
-			string collectionName =
-				Common.Utility.GetTagData(WebDataViewInfo.strDBTag).Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
-			var tree = new ctlTreeViewColumns();
-			UIHelper.FillDataToTreeView(collectionName, tree, dataList, WebDataViewInfo.SkipCnt);
-			var array = new BsonArray();
-			foreach (TreeNode item in tree.TreeView.Nodes) {
-				array.Add(ConvertTreeNodeTozTreeBsonDoc(item));
-			}
-			return array.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings);
-		}
+
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
+        public static string GetCollectionzTreeJSON(MongoServer mServer)
+        {
+            //获得数据
+            WebDataViewInfo.LimitCnt = 100;
+            var dataList = DataViewInfo.GetDataList(ref WebDataViewInfo, mServer);
+            var collectionName =
+                Utility.GetTagData(WebDataViewInfo.strDBTag).Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
+            var tree = new ctlTreeViewColumns();
+            UIHelper.FillDataToTreeView(collectionName, tree, dataList, WebDataViewInfo.SkipCnt);
+            var array = new BsonArray();
+            foreach (TreeNode item in tree.TreeView.Nodes)
+            {
+                array.Add(ConvertTreeNodeTozTreeBsonDoc(item));
+            }
+            return array.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings);
+        }
+
         /// <summary>
         /// </summary>
         /// <param name="RootName"></param>
@@ -109,8 +115,8 @@ namespace HTTPServer
             if (SubNode.Tag != null)
             {
                 SingleNode.Add("click",
-                    "ShowData('" + Common.Utility.GetTagType(SubNode.Tag.ToString()) + "','" +
-                    Common.Utility.GetTagData(SubNode.Tag.ToString()) + "')");
+                    "ShowData('" + Utility.GetTagType(SubNode.Tag.ToString()) + "','" +
+                    Utility.GetTagData(SubNode.Tag.ToString()) + "')");
             }
             return SingleNode;
         }
@@ -122,7 +128,7 @@ namespace HTTPServer
         /// <returns></returns>
         private static string GetTagText(TreeNode node)
         {
-            string strColumnText = String.Empty;
+            var strColumnText = String.Empty;
             var Element = node.Tag as BsonElement;
             if (Element != null && !Element.Value.IsBsonDocument && !Element.Value.IsBsonArray)
             {

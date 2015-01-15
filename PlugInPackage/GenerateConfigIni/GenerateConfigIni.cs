@@ -6,28 +6,31 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
+
+using Common;
 
 namespace PlugInPackage
 {
-	/// <summary>
-	/// Description of DosCommand.
-	/// </summary>
-	public class GenerateConfigIni: PlugInBase
-	{
-		public GenerateConfigIni()
-		{
-        	base.RunLv = PlugInBase.PathLv.Misc;
-            base.PlugName = "GenerateConfigIni";
-            base.PlugFunction = "GenerateConfigIni";
-		}
-		#region implemented abstract members of PlugInBase
+    /// <summary>
+    ///     Description of DosCommand.
+    /// </summary>
+    public class GenerateConfigIni : PlugInBase
+    {
+        public GenerateConfigIni()
+        {
+            RunLv = PathLv.Misc;
+            PlugName = "GenerateConfigIni";
+            PlugFunction = "GenerateConfigIni";
+        }
 
-		public override int Run()
-		{
-			Common.Utility.OpenForm(new frmGenerateConfigIni(),true,true);
-			return 0;
-		}
-		#endregion
-	}
+        #region implemented abstract members of PlugInBase
+
+        public override int Run()
+        {
+            Utility.OpenForm(new frmGenerateConfigIni(), true, true);
+            return 0;
+        }
+
+        #endregion
+    }
 }

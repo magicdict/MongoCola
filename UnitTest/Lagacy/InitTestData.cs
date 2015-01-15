@@ -19,8 +19,8 @@ namespace UnitTest
             var UT = new AggregationObject();
             UT.SerialID = mSerialID;
             var Ro = new Random();
-            int CountryCode = Ro.Next(3);
-            int AreaCode = Ro.Next(3);
+            var CountryCode = Ro.Next(3);
+            var AreaCode = Ro.Next(3);
             UT.Age = (byte) Ro.Next(20, 70);
             UT.Money = (short) Ro.Next(500, 5000);
             switch (CountryCode)
@@ -93,11 +93,11 @@ namespace UnitTest
         /// <param name="mongosvr"></param>
         internal static void FillDataForGeoObject(MongoServer mongosvr)
         {
-            MongoDatabase mongodb = mongosvr.GetDatabase("mongodb");
-            MongoCollection<User> mongoCol = mongodb.GetCollection<User>("GEO");
+            var mongodb = mongosvr.GetDatabase("mongodb");
+            var mongoCol = mongodb.GetCollection<User>("GEO");
             mongoCol.RemoveAll();
             var Ro = new Random();
-            for (int i = 0; i < 1000; i++)
+            for (var i = 0; i < 1000; i++)
             {
                 mongoCol.Insert(new GeoObject
                 {
@@ -114,12 +114,12 @@ namespace UnitTest
         /// <param name="mongosvr"></param>
         internal static void FillDataForTTL(MongoServer mongosvr)
         {
-            MongoDatabase mongodb = mongosvr.GetDatabase("mongodb");
-            MongoCollection<User> mongoCol = mongodb.GetCollection<User>("TTL");
+            var mongodb = mongosvr.GetDatabase("mongodb");
+            var mongoCol = mongodb.GetCollection<User>("TTL");
             mongoCol.RemoveAll();
             var Ro = new Random();
             ///HugeData
-            for (int i = 0; i < 1000; i++)
+            for (var i = 0; i < 1000; i++)
             {
                 mongoCol.Insert(new TLLObject
                 {
@@ -136,19 +136,19 @@ namespace UnitTest
         /// <param name="mongosvr"></param>
         internal static void FillDataForUser(MongoServer mongosvr)
         {
-            MongoDatabase mongodb = mongosvr.GetDatabase("mongodb");
+            var mongodb = mongosvr.GetDatabase("mongodb");
 
-            MongoCollection<BsonDocument> mongoJsCol = mongodb.GetCollection<BsonDocument>("system.js");
+            var mongoJsCol = mongodb.GetCollection<BsonDocument>("system.js");
             mongoJsCol.RemoveAll();
             mongoJsCol.Insert<BsonDocument>(
                 new BsonDocument().Add("_id", "sum")
                     .Add("value", "function (x, y) { return x + y; }"));
             mongodb.GetGridFS(new MongoGridFSSettings());
-            MongoCollection<User> mongoCol = mongodb.GetCollection<User>("User");
+            var mongoCol = mongodb.GetCollection<User>("User");
             mongoCol.RemoveAll();
             var Ro = new Random();
             ///HugeData
-            for (int i = 0; i < 1000; i++)
+            for (var i = 0; i < 1000; i++)
             {
                 mongoCol.Insert(new User
                 {
@@ -170,9 +170,9 @@ namespace UnitTest
                                 ID = "aaaa",
                                 Geo = new int[2] {1, 1}
                             }
-                        },
+                        }
                     },
-                    Pets = new[] {"Cat", "Dog"},
+                    Pets = new[] {"Cat", "Dog"}
                 });
             }
         }
@@ -183,10 +183,10 @@ namespace UnitTest
         /// <param name="mongoServer"></param>
         internal static void FillDataForAggregation(MongoServer mongoServer)
         {
-            MongoDatabase mongodb = mongoServer.GetDatabase("mongodb");
-            MongoCollection<AggregationObject> mongoCol = mongodb.GetCollection<AggregationObject>("Aggregation");
+            var mongodb = mongoServer.GetDatabase("mongodb");
+            var mongoCol = mongodb.GetCollection<AggregationObject>("Aggregation");
             mongoCol.RemoveAll();
-            for (int i = 0; i < 100000; i++)
+            for (var i = 0; i < 100000; i++)
             {
                 mongoCol.Insert(CreateAggregationObject(i.ToString()));
             }
@@ -194,10 +194,10 @@ namespace UnitTest
 
         internal static void FillDateForMapReduce(MongoServer mongoServer)
         {
-            MongoDatabase mongodb = mongoServer.GetDatabase("mongodb");
-            MongoCollection<Book> mongoCol = mongodb.GetCollection<Book>("Book");
+            var mongodb = mongoServer.GetDatabase("mongodb");
+            var mongoCol = mongodb.GetCollection<Book>("Book");
             mongoCol.RemoveAll();
-            for (int i = 0; i < 1000; i++)
+            for (var i = 0; i < 1000; i++)
             {
                 mongoCol.Insert(new Book {BookID = i.ToString(), UserID = i.ToString()});
             }
@@ -210,9 +210,9 @@ namespace UnitTest
         {
             public String City;
             public GeoObject[] GeoObj;
-            public int Zip;
             public String state;
             public String street;
+            public int Zip;
         }
 
         /// <summary>
@@ -257,13 +257,13 @@ namespace UnitTest
         /// </summary>
         internal class User
         {
+            public Address address;
             public Byte Age;
             public Byte Age2;
             public Byte Age3;
             [BsonId] public String ID;
             [BsonElement("fn")] public String Name;
             public string[] Pets;
-            public Address address;
         }
     }
 }

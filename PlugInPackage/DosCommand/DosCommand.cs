@@ -6,28 +6,31 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
+
+using Common;
 
 namespace PlugInPackage
 {
-	/// <summary>
-	/// Description of DosCommand.
-	/// </summary>
-	public class DosCommand: PlugInBase
-	{
-		public DosCommand()
-		{
-        	base.RunLv = PlugInBase.PathLv.Misc;
-            base.PlugName = "DosCommand";
-            base.PlugFunction = "DosCommand";
-		}
-		#region implemented abstract members of PlugInBase
+    /// <summary>
+    ///     Description of DosCommand.
+    /// </summary>
+    public class DosCommand : PlugInBase
+    {
+        public DosCommand()
+        {
+            RunLv = PathLv.Misc;
+            PlugName = "DosCommand";
+            PlugFunction = "DosCommand";
+        }
 
-		public override int Run()
-		{
-			Common.Utility.OpenForm(new frmDosCommand(),true,true);
-			return 0;
-		}
-		#endregion
-	}
+        #region implemented abstract members of PlugInBase
+
+        public override int Run()
+        {
+            Utility.OpenForm(new frmDosCommand(), true, true);
+            return 0;
+        }
+
+        #endregion
+    }
 }

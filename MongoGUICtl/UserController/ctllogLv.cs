@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoUtility.Operation;
 using MongoUtility.ExteneralTool;
 using ResourceLib;
 
@@ -8,7 +7,7 @@ namespace MongoGUICtl.Module
 {
     public partial class ctllogLv : UserControl
     {
-        public delegate void LogLvChangedHandler(MongoUtility.ExteneralTool.MongodbDosCommand.MongologLevel logLV);
+        public delegate void LogLvChangedHandler(MongodbDosCommand.MongologLevel logLV);
 
         public ctllogLv()
         {
@@ -21,7 +20,8 @@ namespace MongoGUICtl.Module
         {
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                lblLogLv.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_LogLevel);
+                lblLogLv.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_LogLevel);
             }
             cmbLogLevel.Items.Add("Quiet");
             cmbLogLevel.Items.Add("V");

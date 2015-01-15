@@ -1,11 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MongoUtility.Operation;
-using MongoUtility;
 using SystemUtility;
+using MongoUtility;
 using ResourceLib;
-
 
 namespace MongoCola
 {
@@ -72,15 +70,18 @@ namespace MongoCola
             radFullPath.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FullPath);
             grpFileAlreadyExist.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_FileAlreadyExist);
+                SystemConfig.guiConfig.MStringResource.GetText(
+                    StringResource.TextType.GFS_Insert_Option_FileAlreadyExist);
             radAddIt.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_JustAddIt);
             radOverwrite.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Overwrite);
             radRenameIt.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Rename);
-            radSkipIt.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_SkipIt);
-            radStopIt.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Stop);
+            radSkipIt.Text =
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_SkipIt);
+            radStopIt.Text =
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_Stop);
             chkIgnore.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.GFS_Insert_Option_IngoreSubFolder);
             lblSeperateChar.Text =

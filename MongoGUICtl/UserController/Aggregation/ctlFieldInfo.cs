@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using MongoUtility.Operation;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using ResourceLib;
@@ -46,11 +45,13 @@ namespace MongoGUICtl
             InitializeComponent();
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                lblFieldName.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
+                lblFieldName.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
                 radSortAcs.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Asce);
                 radSortDes.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Desc);
                 radNoSort.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_NoSort);
-                chkIsShow.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ctlFieldInfo_Show);
+                chkIsShow.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ctlFieldInfo_Show);
             }
         }
 

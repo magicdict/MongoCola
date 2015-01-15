@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MongoUtility.Operation;
 using SystemUtility;
 
 namespace MongoCola
@@ -23,7 +22,7 @@ namespace MongoCola
             cmbLanguage.Text = "English";
             cmbLanguage.Items.Add("English");
             if (!Directory.Exists("Language")) return;
-            foreach (String FileName in Directory.GetFiles("Language"))
+            foreach (var FileName in Directory.GetFiles("Language"))
             {
                 cmbLanguage.Items.Add(new FileInfo(FileName).Name.Substring(0,
                     new FileInfo(FileName).Name.Length - 4));

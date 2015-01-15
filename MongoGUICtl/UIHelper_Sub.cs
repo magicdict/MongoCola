@@ -1,12 +1,11 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using System.Linq;
+using System.Windows.Forms;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Operation;
 using ResourceLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
+using Utility = Common.Utility;
 
 namespace MongoGUICtl
 {
@@ -14,7 +13,7 @@ namespace MongoGUICtl
     {
         public static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongoSvr, String mongoSvrKey)
         {
-            String strShowDBName = strDBName;
+            var strShowDBName = strDBName;
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
                 if (configuration.guiConfig.MStringResource.LanguageType == "Chinese")
@@ -37,16 +36,18 @@ namespace MongoGUICtl
             }
             var mongoDBNode = new TreeNode(strShowDBName);
             mongoDBNode.Tag = ConstMgr.DATABASE_TAG + ":" + mongoSvrKey + "/" + strDBName;
-            MongoDatabase mongoDB = mongoSvr.GetDatabase(strDBName);
+            var mongoDB = mongoSvr.GetDatabase(strDBName);
 
             var UserNode = new TreeNode("User", (int) GetSystemIcon.MainTreeImageType.UserIcon,
                 (int) GetSystemIcon.MainTreeImageType.UserIcon);
-            UserNode.Tag = ConstMgr.USER_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + ConstMgr.COLLECTION_NAME_USER;
+            UserNode.Tag = ConstMgr.USER_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" +
+                           ConstMgr.COLLECTION_NAME_USER;
             mongoDBNode.Nodes.Add(UserNode);
 
             var JsNode = new TreeNode("JavaScript", (int) GetSystemIcon.MainTreeImageType.JavaScriptList,
                 (int) GetSystemIcon.MainTreeImageType.JavaScriptList);
-            JsNode.Tag = ConstMgr.JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" + ConstMgr.COLLECTION_NAME_JAVASCRIPT;
+            JsNode.Tag = ConstMgr.JAVASCRIPT_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name + "/" +
+                         ConstMgr.COLLECTION_NAME_JAVASCRIPT;
             mongoDBNode.Nodes.Add(JsNode);
 
             var GFSNode = new TreeNode("Grid File System", (int) GetSystemIcon.MainTreeImageType.GFS,
@@ -64,8 +65,8 @@ namespace MongoGUICtl
                 (int) GetSystemIcon.MainTreeImageType.CollectionList,
                 (int) GetSystemIcon.MainTreeImageType.CollectionList);
             mongoColListNode.Tag = ConstMgr.COLLECTION_LIST_TAG + ":" + mongoSvrKey + "/" + mongoDB.Name;
-            List<String> colNameList = mongoDB.GetCollectionNames().ToList();
-            foreach (String strColName in colNameList)
+            var colNameList = mongoDB.GetCollectionNames().ToList();
+            foreach (var strColName in colNameList)
             {
                 switch (strColName)
                 {
@@ -73,7 +74,7 @@ namespace MongoGUICtl
                         //system.users,fs,system.js这几个系统级别的Collection不需要放入
                         break;
                     case ConstMgr.COLLECTION_NAME_JAVASCRIPT:
-                        foreach (BsonDocument t in mongoDB.GetCollection(ConstMgr.COLLECTION_NAME_JAVASCRIPT).FindAll())
+                        foreach (var t in mongoDB.GetCollection(ConstMgr.COLLECTION_NAME_JAVASCRIPT).FindAll())
                         {
                             var js = new TreeNode(t.GetValue(ConstMgr.KEY_ID).ToString());
                             js.ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc;
@@ -94,7 +95,7 @@ namespace MongoGUICtl
                             mongoColNode = new TreeNode(strColName + "[exception:]");
                             mongoColNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Err;
                             mongoColNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Err;
-                            Common.Utility.ExceptionDeal(ex);
+                            Utility.ExceptionDeal(ex);
                         }
                         if (OperationHelper.IsSystemCollection(mongoDB.Name, strColName))
                         {
@@ -131,7 +132,7 @@ namespace MongoGUICtl
         public static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase mongoDB,
             String mongoConnSvrKey)
         {
-            String strShowColName = strColName;
+            var strShowColName = strColName;
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
                 switch (strShowColName)
@@ -140,7 +141,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_chunks) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_chunks) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -156,7 +158,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_changelog) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_changelog) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -164,7 +167,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_databases) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_databases) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -172,7 +176,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_lockpings) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_lockpings) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -180,7 +185,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_locks) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_locks) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -188,7 +194,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_mongos) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_mongos) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -196,7 +203,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_settings) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_settings) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -204,7 +212,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_shards) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_shards) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -213,7 +222,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_tags) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_tags) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -221,7 +231,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "config")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_version) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_version) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -229,7 +240,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "local")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_me) + "(" +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_me) + "(" +
                                 strShowColName + ")";
                         }
                         break;
@@ -237,7 +249,8 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "local")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_sources) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_sources) +
                                 "(" + strShowColName + ")";
                         }
                         break;
@@ -245,38 +258,45 @@ namespace MongoGUICtl
                         if (mongoDB.Name == "local")
                         {
                             strShowColName =
-                                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.SYSTEMC_COLNAME_slaves) +
+                                configuration.guiConfig.MStringResource.GetText(
+                                    StringResource.TextType.SYSTEMC_COLNAME_slaves) +
                                 "(" + strShowColName + ")";
                         }
                         break;
                     case ConstMgr.COLLECTION_NAME_GFS_CHUNKS:
                         strShowColName =
-                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_GFS_CHUNKS) +
+                            configuration.guiConfig.MStringResource.GetText(
+                                StringResource.TextType.COLLECTION_NAME_GFS_CHUNKS) +
                             "(" + strShowColName + ")";
                         break;
                     case ConstMgr.COLLECTION_NAME_GFS_FILES:
                         strShowColName =
-                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_GFS_FILES) +
+                            configuration.guiConfig.MStringResource.GetText(
+                                StringResource.TextType.COLLECTION_NAME_GFS_FILES) +
                             "(" + strShowColName + ")";
                         break;
                     case ConstMgr.COLLECTION_NAME_OPERATION_LOG:
                         strShowColName =
-                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_OPERATION_LOG) +
+                            configuration.guiConfig.MStringResource.GetText(
+                                StringResource.TextType.COLLECTION_NAME_OPERATION_LOG) +
                             "(" + strShowColName + ")";
                         break;
                     case ConstMgr.COLLECTION_NAME_SYSTEM_INDEXES:
                         strShowColName =
-                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_INDEXES) +
+                            configuration.guiConfig.MStringResource.GetText(
+                                StringResource.TextType.COLLECTION_NAME_SYSTEM_INDEXES) +
                             "(" + strShowColName + ")";
                         break;
                     case ConstMgr.COLLECTION_NAME_JAVASCRIPT:
                         strShowColName =
-                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_JAVASCRIPT) +
+                            configuration.guiConfig.MStringResource.GetText(
+                                StringResource.TextType.COLLECTION_NAME_JAVASCRIPT) +
                             "(" + strShowColName + ")";
                         break;
                     case ConstMgr.COLLECTION_NAME_SYSTEM_REPLSET:
                         strShowColName =
-                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_REPLSET) +
+                            configuration.guiConfig.MStringResource.GetText(
+                                StringResource.TextType.COLLECTION_NAME_SYSTEM_REPLSET) +
                             "(" + strShowColName + ")";
                         break;
                     case ConstMgr.COLLECTION_NAME_REPLSET_MINVALID:
@@ -286,18 +306,21 @@ namespace MongoGUICtl
                         break;
                     case ConstMgr.COLLECTION_NAME_USER:
                         strShowColName =
-                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_USER) + "(" +
+                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_USER) +
+                            "(" +
                             strShowColName + ")";
                         break;
                     case ConstMgr.COLLECTION_NAME_ROLE:
                         //New From 2.6 
                         strShowColName =
-                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_ROLE) + "(" +
+                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_ROLE) +
+                            "(" +
                             strShowColName + ")";
                         break;
                     case ConstMgr.COLLECTION_NAME_SYSTEM_PROFILE:
                         strShowColName =
-                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.COLLECTION_NAME_SYSTEM_PROFILE) +
+                            configuration.guiConfig.MStringResource.GetText(
+                                StringResource.TextType.COLLECTION_NAME_SYSTEM_PROFILE) +
                             "(" + strShowColName + ")";
                         break;
                     default:
@@ -313,13 +336,15 @@ namespace MongoGUICtl
                                        strColName;
                     break;
                 case ConstMgr.COLLECTION_NAME_USER:
-                    mongoColNode.Tag = ConstMgr.USER_LIST_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                    mongoColNode.Tag = ConstMgr.USER_LIST_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" +
+                                       strColName;
                     break;
                 //case COLLECTION_NAME_ROLE:
                 //    mongoColNode.Tag = USER_LIST_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
                 //    break;
                 default:
-                    mongoColNode.Tag = ConstMgr.COLLECTION_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName;
+                    mongoColNode.Tag = ConstMgr.COLLECTION_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" +
+                                       strColName;
                     break;
             }
 
@@ -327,14 +352,15 @@ namespace MongoGUICtl
 
             //Start ListIndex
             var mongoIndexes = new TreeNode("Indexes");
-            GetIndexesResult indexList = mongoCol.GetIndexes();
-            foreach (IndexInfo indexDoc in indexList.ToList())
+            var indexList = mongoCol.GetIndexes();
+            foreach (var indexDoc in indexList.ToList())
             {
                 var mongoIndex = new TreeNode();
                 if (!configuration.guiConfig.IsUseDefaultLanguage)
                 {
-                    mongoIndex.Text = (configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Name) + ":" +
-                                       indexDoc.Name);
+                    mongoIndex.Text =
+                        (configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Name) + ":" +
+                         indexDoc.Name);
                     mongoIndex.Nodes.Add(String.Empty,
                         configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Keys) + ":" +
                         GetKeyString(indexDoc.Key), (int) GetSystemIcon.MainTreeImageType.KeyInfo,
@@ -366,13 +392,15 @@ namespace MongoGUICtl
                     if (indexDoc.TimeToLive == TimeSpan.MaxValue)
                     {
                         mongoIndex.Nodes.Add(String.Empty,
-                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData) + ":Not Set",
+                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData) +
+                            ":Not Set",
                             (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     }
                     else
                     {
                         mongoIndex.Nodes.Add(String.Empty,
-                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData) + ":" +
+                            configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData) +
+                            ":" +
                             indexDoc.TimeToLive.TotalSeconds, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                             (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     }
@@ -419,7 +447,8 @@ namespace MongoGUICtl
                 }
                 mongoIndex.ImageIndex = (int) GetSystemIcon.MainTreeImageType.DBKey;
                 mongoIndex.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.DBKey;
-                mongoIndex.Tag = ConstMgr.INDEX_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName + "/" +
+                mongoIndex.Tag = ConstMgr.INDEX_TAG + ":" + mongoConnSvrKey + "/" + mongoDB.Name + "/" + strColName +
+                                 "/" +
                                  indexDoc.Name;
                 mongoIndexes.Nodes.Add(mongoIndex);
             }
@@ -453,8 +482,8 @@ namespace MongoGUICtl
         /// <returns></returns>
         public static string GetKeyString(IndexKeysDocument keys)
         {
-            String KeyString = string.Empty;
-            foreach (BsonElement key in keys.Elements)
+            var KeyString = string.Empty;
+            foreach (var key in keys.Elements)
             {
                 KeyString += key.Name + ":";
                 switch (key.Value.ToString())

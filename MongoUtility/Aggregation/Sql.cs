@@ -18,7 +18,7 @@ namespace MongoUtility.Aggregation
         /// </summary>
         /// <param name="Sql"></param>
         /// <returns></returns>
-        public static DataFilter ConvertQuerySql(String Sql,MongoCollection mongoCol)
+        public static DataFilter ConvertQuerySql(String Sql, MongoCollection mongoCol)
         {
             var rtnQuery = new DataFilter();
             Sql = Sql.Trim();
@@ -32,15 +32,15 @@ namespace MongoUtility.Aggregation
                 Sql = Sql.Replace("  ", " ");
             }
             //找出Select ，From ， Group 
-            String[] SqlToken = Sql.Split(" ".ToCharArray());
+            var SqlToken = Sql.Split(" ".ToCharArray());
 
-            int SelectStartIndex = -1;
-            int FromStartIndex = -1;
-            int WhereStartIndex = -1;
-            int GroupByStartIndex = -1;
-            int OrderByStartIndex = -1;
+            var SelectStartIndex = -1;
+            var FromStartIndex = -1;
+            var WhereStartIndex = -1;
+            var GroupByStartIndex = -1;
+            var OrderByStartIndex = -1;
 
-            for (int i = 0; i < SqlToken.Length; i++)
+            for (var i = 0; i < SqlToken.Length; i++)
             {
                 switch (SqlToken[i].ToLower())
                 {
@@ -68,19 +68,19 @@ namespace MongoUtility.Aggregation
 
             //From - > CollectionName
             GetKeyContent(FromStartIndex, SqlToken, KeyWords);
-            
+
             //Select 设定 必须项
             //Select - > FieldList
-            String strSelect = GetKeyContent(SelectStartIndex, SqlToken, KeyWords);
+            var strSelect = GetKeyContent(SelectStartIndex, SqlToken, KeyWords);
             if (strSelect == String.Empty)
             {
                 return null;
             }
-            List<String> ColumnNameLst = MongoUtility.Basic.Utility.GetCollectionSchame(mongoCol);
+            var ColumnNameLst = Utility.GetCollectionSchame(mongoCol);
             if (strSelect == "*")
             {
                 //Select * 
-                foreach (String item in ColumnNameLst)
+                foreach (var item in ColumnNameLst)
                 {
                     var field = new DataFilter.QueryFieldItem();
                     field.ColName = item;
@@ -92,7 +92,7 @@ namespace MongoUtility.Aggregation
             else
             {
                 //Select A,B,C 
-                foreach (String item in strSelect.Split(",".ToCharArray()))
+                foreach (var item in strSelect.Split(",".ToCharArray()))
                 {
                     var field = new DataFilter.QueryFieldItem();
                     field.ColName = item;
@@ -103,14 +103,14 @@ namespace MongoUtility.Aggregation
             }
 
             //Where 设定,可选项
-            String strWhere = GetKeyContent(WhereStartIndex, SqlToken, KeyWords);
+            var strWhere = GetKeyContent(WhereStartIndex, SqlToken, KeyWords);
             if (strWhere != String.Empty)
             {
                 rtnQuery.QueryConditionList = SetQueryCondition(strWhere, ColumnNameLst);
             }
 
             //Order 设定,可选项
-            String strOrder = GetKeyContent(OrderByStartIndex, SqlToken, KeyWords);
+            var strOrder = GetKeyContent(OrderByStartIndex, SqlToken, KeyWords);
             if (strOrder != String.Empty)
             {
                 SetQueryOrder(rtnQuery, strOrder);
@@ -118,7 +118,7 @@ namespace MongoUtility.Aggregation
 
 
             //Group 设定,可选项
-            String strGroup = GetKeyContent(GroupByStartIndex, SqlToken, KeyWords);
+            var strGroup = GetKeyContent(GroupByStartIndex, SqlToken, KeyWords);
             if (strGroup != String.Empty)
             {
                 //TODO:Group
@@ -136,10 +136,10 @@ namespace MongoUtility.Aggregation
         /// <returns></returns>
         private static String GetKeyContent(int KeyWordStartIndex, String[] SqlToken, String[] KeyWords)
         {
-            String strSelect = String.Empty;
+            var strSelect = String.Empty;
             if (KeyWordStartIndex != -1)
             {
-                for (int i = KeyWordStartIndex + 1; i < SqlToken.Length; i++)
+                for (var i = KeyWordStartIndex + 1; i < SqlToken.Length; i++)
                 {
                     if (KeyWords.Contains(SqlToken[i].ToLower()))
                     {
@@ -159,9 +159,9 @@ namespace MongoUtility.Aggregation
         /// <returns></returns>
         private static String Regular(String SqlContent)
         {
-            Boolean IsInQuote = false;
-            String LowerSql = String.Empty;
-            for (int i = 0; i < SqlContent.Length; i++)
+            var IsInQuote = false;
+            var LowerSql = String.Empty;
+            for (var i = 0; i < SqlContent.Length; i++)
             {
                 if (SqlContent[i].ToString() == "\"")
                 {
@@ -204,17 +204,17 @@ namespace MongoUtility.Aggregation
             //2.通过逗号分隔列表
             //A Asc , B Des ->  A Asc
             //                  B Des
-            String[] SortFieldLst = SqlContent.Split(",".ToCharArray());
+            var SortFieldLst = SqlContent.Split(",".ToCharArray());
             //3.分出 Field 和 Order
-            foreach (String SortField in SortFieldLst)
+            foreach (var SortField in SortFieldLst)
             {
-                String[] Sortfld = SortField.Trim().Split(" ".ToCharArray());
-                for (int i = 0; i < CurrentDataFilter.QueryFieldList.Count; i++)
+                var Sortfld = SortField.Trim().Split(" ".ToCharArray());
+                for (var i = 0; i < CurrentDataFilter.QueryFieldList.Count; i++)
                 {
                     if (CurrentDataFilter.QueryFieldList[i].ColName.ToLower() == Sortfld[0].ToLower())
                     {
                         //无参数时候，默认是升序[Can't Modify]QueryFieldList是一个结构体
-                        DataFilter.QueryFieldItem queryfld = CurrentDataFilter.QueryFieldList[i];
+                        var queryfld = CurrentDataFilter.QueryFieldList[i];
                         if (Sortfld.Length == 1)
                         {
                             queryfld.sortType = DataFilter.SortType.Ascending;
@@ -245,7 +245,7 @@ namespace MongoUtility.Aggregation
             // (a=1 or b="A") AND c="3" => ( a = 1 or b = "A" ) and c = "3"  
             //1. 除了引号里面的文字，全部小写
             String[] KeyWord = {"(", ")", "=", "or", "and", ">", ">=", "<", "<=", "<>"};
-            foreach (String Keyitem in KeyWord)
+            foreach (var Keyitem in KeyWord)
             {
                 SqlContent = SqlContent.Replace(Keyitem, " " + Keyitem + " ");
             }
@@ -257,14 +257,14 @@ namespace MongoUtility.Aggregation
             //从左到右  ( a = 1 or 
             //           b = "A" ) and 
             //           c = "3"  
-            String[] Token = SqlContent.Split(" ".ToCharArray());
+            var Token = SqlContent.Split(" ".ToCharArray());
             var mQueryConditionInputItem = new DataFilter.QueryConditionInputItem();
             mQueryConditionInputItem.StartMark = String.Empty;
             mQueryConditionInputItem.EndMark = String.Empty;
 
-            for (int i = 0; i < Token.Length; i++)
+            for (var i = 0; i < Token.Length; i++)
             {
-                String strToken = Token[i].Replace("&nbsp;", " ");
+                var strToken = Token[i].Replace("&nbsp;", " ");
                 switch (strToken)
                 {
                     case "(":
@@ -337,7 +337,7 @@ namespace MongoUtility.Aggregation
                     default:
                         if (mQueryConditionInputItem.ColName == null)
                         {
-                            foreach (String ColName in ColumnNameLst)
+                            foreach (var ColName in ColumnNameLst)
                             {
                                 if (ColName.ToLower() == strToken.ToLower())
                                 {

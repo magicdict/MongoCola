@@ -1,7 +1,6 @@
-﻿using MongoDB.Driver;
-using MongoUtility.Basic;
-using System;
+﻿using System;
 using System.Threading;
+using MongoDB.Driver;
 
 namespace MongoUtility.Basic
 {
@@ -101,7 +100,7 @@ namespace MongoUtility.Basic
             where TEventArgs : EventArgs
         {
             // Copy a reference to the delegate field now into a temporary field for thread safety
-            EventHandler<TEventArgs> temp =
+            var temp =
                 Interlocked.CompareExchange(ref eventDelegate, null, null);
             // If any methods registered interest with our event, notify them
             if (temp != null) temp(sender, e);

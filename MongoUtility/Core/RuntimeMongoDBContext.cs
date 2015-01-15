@@ -6,109 +6,27 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
+
 using System;
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Security;
+using Utility = Common.Utility;
 
 namespace MongoUtility.Core
 {
     /// <summary>
-    /// Description of RuntimeMongoDBContext.
+    ///     Description of RuntimeMongoDBContext.
     /// </summary>
     /// <summary>
-    /// MongoDB运行时环境
+    ///     MongoDB运行时环境
     /// </summary>
     public static class RuntimeMongoDBContext
     {
-        #region"系统状态"
         /// <summary>
-        ///     管理中连接列表
-        /// </summary>
-        public static Dictionary<String, MongoServer> _mongoConnSvrLst = new Dictionary<string, MongoServer>();
-        /// <summary>
-        ///     管理中服务器实例列表
-        /// </summary>
-        public static Dictionary<String, MongoServerInstance> _mongoInstanceLst = new Dictionary<string, MongoServerInstance>();
-        /// <summary>
-        ///     连接配置列表(管理用）
-        /// </summary>
-        public static Dictionary<String, MongoConnectionConfig> _mongoConnectionConfigList = new Dictionary<string, MongoConnectionConfig>();
-        /// <summary>
-        /// 用户列表
-        /// </summary>
-        public static Dictionary<String, EachDatabaseUser> _mongoUserLst = new Dictionary<string, EachDatabaseUser>();
-        /// <summary>
-        ///     获得当前服务器
-        /// </summary>
-        /// <returns></returns>
-        public static MongoServer GetCurrentServer()
-        {
-            return GetMongoServerBySvrPath(SelectObjectTag, _mongoConnSvrLst);
-        }
-        /// <summary>
-        ///     获得当前数据库
-        /// </summary>
-        /// <returns></returns>
-        public static MongoDatabase GetCurrentDataBase()
-        {
-            return GetMongoDBBySvrPath(SelectObjectTag, GetCurrentServer());
-        }
-        /// <summary>
-        ///     获得当前数据集
-        /// </summary>
-        /// <returns></returns>
-        public static MongoCollection GetCurrentCollection()
-        {
-            return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase());
-        }
-        /// <summary>
-        ///     获得当前服务器配置
-        /// </summary>
-        /// <returns></returns>
-        public static MongoConnectionConfig GetCurrentServerConfig()
-        {
-            string ServerName = MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag.Split(":".ToCharArray())[1];
-            ServerName = ServerName.Split("/".ToCharArray())[(int)EnumMgr.PathLv.ConnectionLv];
-            var rtnMongoConnectionConfig = new MongoUtility.Core.MongoConnectionConfig();
-            if (_mongoConnectionConfigList.ContainsKey(ServerName))
-            {
-                rtnMongoConnectionConfig = _mongoConnectionConfigList[ServerName];
-            }
-            return rtnMongoConnectionConfig;
-        }
-        /// <summary>
-        ///     Current selected document
-        /// </summary>
-        public static BsonDocument CurrentDocument;
-        /// <summary>
-        ///     系统当前连接状态
-        /// </summary>
-        public static MongoConnectionConfig _CurrentMongoConnectionconfig;
-        /// <summary>
-        ///     选择对象标签
-        /// </summary>
-        public static string SelectObjectTag = string.Empty;
-        /// <summary>
-        ///     获得当前对象的种类
-        /// </summary>
-        public static string SelectTagType
-        {
-            get { return Common.Utility.GetTagType(SelectObjectTag); }
-        }
-        /// <summary>
-        ///     获得当前对象的路径
-        /// </summary>
-        public static string SelectTagData
-        {
-            get { return Common.Utility.GetTagData(SelectObjectTag); }
-        }
-        #endregion
-
-        /// <summary>
-        /// CreateMongoServer
+        ///     CreateMongoServer
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
@@ -117,6 +35,7 @@ namespace MongoUtility.Core
             var masterMongoClient = new MongoClient(CreateMongoClientSettingsByConfig(ref config));
             return masterMongoClient.GetServer();
         }
+
         /// <summary>
         ///     根据config获得MongoClientSettings,同时更新一些运行时变量
         /// </summary>
@@ -137,11 +56,11 @@ namespace MongoUtility.Core
                 //The default value for SocketTimeout has been changed from 30 seconds to 0, 
                 if (config.socketTimeoutMS != 0)
                 {
-                    mongoClientSetting.SocketTimeout = new TimeSpan(0, 0, (int)(config.socketTimeoutMS / 1000));
+                    mongoClientSetting.SocketTimeout = new TimeSpan(0, 0, (int) (config.socketTimeoutMS/1000));
                 }
                 if (config.connectTimeoutMS != 0)
                 {
-                    mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int)(config.connectTimeoutMS / 1000));
+                    mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int) (config.connectTimeoutMS/1000));
                 }
                 //                if (SystemConfig.configHelperInstance.wtimeoutMS != 0)
                 //                {
@@ -158,17 +77,19 @@ namespace MongoUtility.Core
                     //认证的设定:注意，这里的密码是明文
                     if (string.IsNullOrEmpty(config.DataBaseName))
                     {
-                        mongoClientSetting.Credentials = new[] {
-							MongoCredential.CreateMongoCRCredential(ConstMgr.DATABASE_NAME_ADMIN, config.UserName,
-								config.Password)
-						};
+                        mongoClientSetting.Credentials = new[]
+                        {
+                            MongoCredential.CreateMongoCRCredential(ConstMgr.DATABASE_NAME_ADMIN, config.UserName,
+                                config.Password)
+                        };
                     }
                     else
                     {
-                        mongoClientSetting.Credentials = new[] {
-							MongoCredential.CreateMongoCRCredential(config.DataBaseName, config.UserName,
-								config.Password)
-						};
+                        mongoClientSetting.Credentials = new[]
+                        {
+                            MongoCredential.CreateMongoCRCredential(config.DataBaseName, config.UserName,
+                                config.Password)
+                        };
                     }
                 }
                 if (config.ReplSetName != String.Empty)
@@ -186,7 +107,7 @@ namespace MongoUtility.Core
                     mongoClientSetting.ConnectionMode = ConnectionMode.ReplicaSet;
                     //添加Replset服务器，注意，这里可能需要事先初始化副本
                     var ReplsetSvrList = new List<MongoServerAddress>();
-                    foreach (String item in config.ReplsetList)
+                    foreach (var item in config.ReplsetList)
                     {
                         //如果这里的服务器在启动的时候没有--Replset参数，将会出错，当然作为单体的服务器，启动是没有任何问题的
                         MongoServerAddress ReplSrv;
@@ -221,6 +142,7 @@ namespace MongoUtility.Core
             }
             return mongoClientSetting;
         }
+
         /// <summary>
         ///     Set ReadPreference And WriteConcern
         /// </summary>
@@ -277,18 +199,120 @@ namespace MongoUtility.Core
             }
             //Default WriteConcern is w=0
         }
+
+        #region"系统状态"
+
+        /// <summary>
+        ///     管理中连接列表
+        /// </summary>
+        public static Dictionary<String, MongoServer> _mongoConnSvrLst = new Dictionary<string, MongoServer>();
+
+        /// <summary>
+        ///     管理中服务器实例列表
+        /// </summary>
+        public static Dictionary<String, MongoServerInstance> _mongoInstanceLst =
+            new Dictionary<string, MongoServerInstance>();
+
+        /// <summary>
+        ///     连接配置列表(管理用）
+        /// </summary>
+        public static Dictionary<String, MongoConnectionConfig> _mongoConnectionConfigList =
+            new Dictionary<string, MongoConnectionConfig>();
+
+        /// <summary>
+        ///     用户列表
+        /// </summary>
+        public static Dictionary<String, EachDatabaseUser> _mongoUserLst = new Dictionary<string, EachDatabaseUser>();
+
+        /// <summary>
+        ///     获得当前服务器
+        /// </summary>
+        /// <returns></returns>
+        public static MongoServer GetCurrentServer()
+        {
+            return GetMongoServerBySvrPath(SelectObjectTag, _mongoConnSvrLst);
+        }
+
+        /// <summary>
+        ///     获得当前数据库
+        /// </summary>
+        /// <returns></returns>
+        public static MongoDatabase GetCurrentDataBase()
+        {
+            return GetMongoDBBySvrPath(SelectObjectTag, GetCurrentServer());
+        }
+
+        /// <summary>
+        ///     获得当前数据集
+        /// </summary>
+        /// <returns></returns>
+        public static MongoCollection GetCurrentCollection()
+        {
+            return GetMongoCollectionBySvrPath(SelectObjectTag, GetCurrentDataBase());
+        }
+
+        /// <summary>
+        ///     获得当前服务器配置
+        /// </summary>
+        /// <returns></returns>
+        public static MongoConnectionConfig GetCurrentServerConfig()
+        {
+            var ServerName = SelectObjectTag.Split(":".ToCharArray())[1];
+            ServerName = ServerName.Split("/".ToCharArray())[(int) EnumMgr.PathLv.ConnectionLv];
+            var rtnMongoConnectionConfig = new MongoConnectionConfig();
+            if (_mongoConnectionConfigList.ContainsKey(ServerName))
+            {
+                rtnMongoConnectionConfig = _mongoConnectionConfigList[ServerName];
+            }
+            return rtnMongoConnectionConfig;
+        }
+
+        /// <summary>
+        ///     Current selected document
+        /// </summary>
+        public static BsonDocument CurrentDocument;
+
+        /// <summary>
+        ///     系统当前连接状态
+        /// </summary>
+        public static MongoConnectionConfig _CurrentMongoConnectionconfig;
+
+        /// <summary>
+        ///     选择对象标签
+        /// </summary>
+        public static string SelectObjectTag = string.Empty;
+
+        /// <summary>
+        ///     获得当前对象的种类
+        /// </summary>
+        public static string SelectTagType
+        {
+            get { return Utility.GetTagType(SelectObjectTag); }
+        }
+
+        /// <summary>
+        ///     获得当前对象的路径
+        /// </summary>
+        public static string SelectTagData
+        {
+            get { return Utility.GetTagData(SelectObjectTag); }
+        }
+
+        #endregion
+
         #region"辅助方法 GetBySrvPath"
+
         /// <summary>
         ///     根据路径字符获得服务器
         /// </summary>
         /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
         /// <returns></returns>
-        /// <param name = "_mongoConnSvrLst"></param>
+        /// <param name="_mongoConnSvrLst"></param>
         public static MongoServer GetMongoServerBySvrPath(String strObjTag,
             Dictionary<String, MongoServer> _mongoConnSvrLst)
         {
-            String strSvrPath = Common.Utility.GetTagData(strObjTag);
-            String[] strPath = strSvrPath.Split("/".ToCharArray());
+            var strSvrPath = Utility.GetTagData(strObjTag);
+            var strPath = strSvrPath.Split("/".ToCharArray());
             if (strPath.Length == 1)
             {
                 //[Tag:Connection
@@ -297,7 +321,7 @@ namespace MongoUtility.Core
                     return _mongoConnSvrLst[strPath[0]];
                 }
             }
-            if (strPath.Length > (int)EnumMgr.PathLv.InstanceLv)
+            if (strPath.Length > (int) EnumMgr.PathLv.InstanceLv)
             {
                 if (strPath[0] == strPath[1])
                 {
@@ -305,11 +329,11 @@ namespace MongoUtility.Core
                     return _mongoConnSvrLst[strPath[0]];
                 }
                 //[Tag:Connection/Host@Port/DBName/Collection]
-                String strInstKey = String.Empty;
-                strInstKey = strPath[(int)EnumMgr.PathLv.ConnectionLv] + "/" + strPath[(int)EnumMgr.PathLv.InstanceLv];
+                var strInstKey = String.Empty;
+                strInstKey = strPath[(int) EnumMgr.PathLv.ConnectionLv] + "/" + strPath[(int) EnumMgr.PathLv.InstanceLv];
                 if (_mongoInstanceLst.ContainsKey(strInstKey))
                 {
-                    MongoServerInstance mongoInstance = _mongoInstanceLst[strInstKey];
+                    var mongoInstance = _mongoInstanceLst[strInstKey];
                     return MongoServer.Create(mongoInstance.Settings);
                 }
             }
@@ -326,15 +350,16 @@ namespace MongoUtility.Core
             MongoDatabase rtnMongoDB = null;
             if (mongoSvr != null)
             {
-                String strSvrPath = Common.Utility.GetTagData(strObjTag);
-                String[] strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > (int)EnumMgr.PathLv.DatabaseLv)
+                var strSvrPath = Utility.GetTagData(strObjTag);
+                var strPathArray = strSvrPath.Split("/".ToCharArray());
+                if (strPathArray.Length > (int) EnumMgr.PathLv.DatabaseLv)
                 {
-                    rtnMongoDB = mongoSvr.GetDatabase(strPathArray[(int)EnumMgr.PathLv.DatabaseLv]);
+                    rtnMongoDB = mongoSvr.GetDatabase(strPathArray[(int) EnumMgr.PathLv.DatabaseLv]);
                 }
             }
             return rtnMongoDB;
         }
+
         /// <summary>
         ///     通过路径获得数据集
         /// </summary>
@@ -345,15 +370,16 @@ namespace MongoUtility.Core
             MongoCollection rtnMongoCollection = null;
             if (mongoDB != null)
             {
-                String strSvrPath = Common.Utility.GetTagData(strObjTag);
-                String[] strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > (int)EnumMgr.PathLv.CollectionLv)
+                var strSvrPath = Utility.GetTagData(strObjTag);
+                var strPathArray = strSvrPath.Split("/".ToCharArray());
+                if (strPathArray.Length > (int) EnumMgr.PathLv.CollectionLv)
                 {
-                    rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int)EnumMgr.PathLv.CollectionLv]);
+                    rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int) EnumMgr.PathLv.CollectionLv]);
                 }
             }
             return rtnMongoCollection;
         }
+
         /// <summary>
         ///     根据服务器名称获取配置
         /// </summary>
@@ -368,6 +394,7 @@ namespace MongoUtility.Core
             }
             return rtnMongoConnectionConfig;
         }
+
         /// <summary>
         ///     更新连接参数列表
         /// </summary>
@@ -375,25 +402,26 @@ namespace MongoUtility.Core
         /// <returns></returns>
         public static void ResetConnectionList(List<MongoConnectionConfig> configLst)
         {
-            for (int i = 0; i < configLst.Count; i++)
+            for (var i = 0; i < configLst.Count; i++)
             {
-                MongoConnectionConfig config = configLst[i];
+                var config = configLst[i];
                 try
                 {
-                    if (RuntimeMongoDBContext._mongoConnSvrLst.ContainsKey(config.ConnectionName))
+                    if (_mongoConnSvrLst.ContainsKey(config.ConnectionName))
                     {
-                        RuntimeMongoDBContext._mongoConnSvrLst.Remove(config.ConnectionName);
+                        _mongoConnSvrLst.Remove(config.ConnectionName);
                     }
-                    RuntimeMongoDBContext._mongoConnSvrLst.Add(config.ConnectionName, RuntimeMongoDBContext.CreateMongoServer(ref config));
+                    _mongoConnSvrLst.Add(config.ConnectionName, CreateMongoServer(ref config));
                     //更新一些运行时的变量
                     //SystemConfig.config.ConnectionList[config.ConnectionName] = config;
                 }
                 catch (Exception ex)
                 {
-                    Common.Utility.ExceptionDeal(ex, "Exception", "Can't Connect to Server：" + config.ConnectionName);
+                    Utility.ExceptionDeal(ex, "Exception", "Can't Connect to Server：" + config.ConnectionName);
                 }
             }
         }
+
         /// <summary>
         ///     通过连接名称获得Host信息
         /// </summary>
@@ -409,6 +437,7 @@ namespace MongoUtility.Core
             }
             return mongosrvAddr;
         }
+
         #endregion
     }
 }

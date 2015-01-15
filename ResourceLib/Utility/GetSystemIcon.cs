@@ -5,8 +5,8 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using ResourceLib.Properties;
 using Microsoft.Win32;
+using ResourceLib.Properties;
 
 namespace ResourceLib
 {
@@ -70,8 +70,8 @@ namespace ResourceLib
         public static Icon ConvertImgToIcon(Image orgImg)
         {
             var bmp = new Bitmap(orgImg);
-            IntPtr h = bmp.GetHicon();
-            Icon icon = Icon.FromHandle(h);
+            var h = bmp.GetHicon();
+            var icon = Icon.FromHandle(h);
             // 释放IntPtr
             DeleteObject(h);
             return icon;
@@ -87,7 +87,7 @@ namespace ResourceLib
         public static Image byteArrayToImage(byte[] byteArrayIn)
         {
             var ms = new MemoryStream(byteArrayIn);
-            Image returnImage = Image.FromStream(ms);
+            var returnImage = Image.FromStream(ms);
             return returnImage;
         }
 
@@ -97,11 +97,11 @@ namespace ResourceLib
         /// <returns></returns>
         public static string GetContentType(string fileName)
         {
-            string contentType = "application/octetstream";
+            var contentType = "application/octetstream";
             try
             {
-                string ext = Path.GetExtension(fileName).ToLower();
-                RegistryKey registryKey = Registry.ClassesRoot.OpenSubKey(ext);
+                var ext = Path.GetExtension(fileName).ToLower();
+                var registryKey = Registry.ClassesRoot.OpenSubKey(ext);
                 if (registryKey != null && registryKey.GetValue("Content Type") != null)
                     contentType = registryKey.GetValue("Content Type").ToString();
             }
@@ -158,12 +158,12 @@ namespace ResourceLib
         /// <returns></returns>
         public static Int32 GetIconIndexByFileName(String fileName, bool isLarge)
         {
-            String GetIcon = new FileInfo(fileName).Extension;
+            var GetIcon = new FileInfo(fileName).Extension;
             if (IconList.ContainsKey(GetIcon))
             {
                 return IconList[GetIcon];
             }
-            Icon mIcon = GetIconByFileType(GetIcon, isLarge);
+            var mIcon = GetIconByFileType(GetIcon, isLarge);
             if (mIcon != null)
             {
                 IconImagelist.Images.Add(mIcon);
@@ -188,7 +188,7 @@ namespace ResourceLib
             Win32.SHGetFileInfo(fileName, 0, ref shInfo, (uint) Marshal.SizeOf(shInfo),
                 Win32.SHGFI_ICON | Win32.SHGFI_SMALLICON);
             //The icon is returned in the hIcon member of the shinfo struct
-            Icon myIcon = Icon.FromHandle(shInfo.hIcon);
+            var myIcon = Icon.FromHandle(shInfo.hIcon);
             return myIcon;
         }
 
@@ -206,7 +206,7 @@ namespace ResourceLib
                 RegistryKey regVersion = null;
                 String regFileType = null;
                 String regIconString = null;
-                String systemDirectory = Environment.SystemDirectory + "\\";
+                var systemDirectory = Environment.SystemDirectory + "\\";
 
                 if (fileType[0] != '.')
                 {
@@ -234,7 +234,7 @@ namespace ResourceLib
                         regIconString = systemDirectory + "shell32.dll,0";
                     }
                 }
-                String[] fileIcon = regIconString.Split(new[] {','});
+                var fileIcon = regIconString.Split(',');
                 if (fileIcon.Length != 2)
                 {
                     //系统注册表中注册的标图不能直接提取，则返回可执行文件的通用图标
@@ -261,7 +261,7 @@ namespace ResourceLib
                     {
                         //默认方案
                         regIconString = systemDirectory + "shell32.dll,0";
-                        fileIcon = regIconString.Split(new[] {','});
+                        fileIcon = regIconString.Split(',');
                         resultIcon = null;
                         //调用API方法读取图标
                         var phiconLarge = new int[1];
@@ -286,7 +286,7 @@ namespace ResourceLib
         {
             {
                 String sProg;
-                object tmp = Registry.ClassesRoot.OpenSubKey(sFileExt).GetValue(String.Empty);
+                var tmp = Registry.ClassesRoot.OpenSubKey(sFileExt).GetValue(String.Empty);
                 //Get the program that will open files with this extension
                 sProg =
                     Registry.ClassesRoot.OpenSubKey(tmp.ToString())
@@ -301,7 +301,7 @@ namespace ResourceLib
                     : sProg.Substring(0, sProg.IndexOf(" ", 2));
                 sProg = sProg.Replace("%1", String.Empty);
                 // Extract the icon from the program
-                Icon oIcon = Icon.ExtractAssociatedIcon(sProg);
+                var oIcon = Icon.ExtractAssociatedIcon(sProg);
                 return oIcon;
             }
         }

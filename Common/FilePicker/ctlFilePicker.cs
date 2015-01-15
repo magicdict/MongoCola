@@ -1,7 +1,6 @@
-﻿using ResourceLib;
-using System;
+﻿using System;
 using System.Windows.Forms;
-
+using ResourceLib;
 
 namespace Common
 {
@@ -19,9 +18,10 @@ namespace Common
             Directory
         }
 
-        String _FileFilter = String.Empty;
-        String _FileName = String.Empty;
-        DialogType _dialogType = DialogType.Directory;
+        public static GUIConfig guiconfig;
+        private DialogType _dialogType = DialogType.Directory;
+        private String _FileFilter = String.Empty;
+        private String _FileName = String.Empty;
 
         public ctlFilePicker()
         {
@@ -140,6 +140,7 @@ namespace Common
                 PathChanged(txtPathName.Text);
             }
         }
+
         /// <summary>
         ///     Load
         /// </summary>
@@ -147,12 +148,10 @@ namespace Common
         /// <param name="e"></param>
         private void ctlFilePicker_Load(object sender, EventArgs e)
         {
-        	if (DesignMode) return;
+            if (DesignMode) return;
             if (guiconfig == null) return;
-            cmdBrowse.Text = guiconfig.GetText("Browse",StringResource.TextType.Common_Browse);
-            cmdClearPath.Text = guiconfig.GetText("Clear",StringResource.TextType.Common_Clear);
+            cmdBrowse.Text = guiconfig.GetText("Browse", StringResource.TextType.Common_Browse);
+            cmdClearPath.Text = guiconfig.GetText("Clear", StringResource.TextType.Common_Clear);
         }
-        public static ResourceLib.GUIConfig guiconfig;
-        
     }
 }

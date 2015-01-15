@@ -1,12 +1,15 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using SystemUtility;
+using MongoDB.Bson;
+using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
 using RazorEngine;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using SystemUtility;
+using RazorEngine.Configuration;
+using RazorEngine.Templating;
 
 namespace HTTPServer
 {
@@ -17,56 +20,57 @@ namespace HTTPServer
         public static String FilePath { set; get; }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <returns></returns>
         internal static string ConnectionList()
         {
-            String fileName = FilePath + "\\ConnectionList.htm";
+            var fileName = FilePath + "\\ConnectionList.htm";
             String content;
             var stream = new StreamReader(fileName);
             content = stream.ReadToEnd();
-            String connectionList = String.Empty;
-            foreach (MongoConnectionConfig item in
-                     RuntimeMongoDBContext._mongoConnectionConfigList.Values)
+            var connectionList = String.Empty;
+            foreach (var item in
+                RuntimeMongoDBContext._mongoConnectionConfigList.Values)
             {
                 if (item.ReplSetName == String.Empty)
                 {
                     connectionList += "<li><a href = 'Connection?" + item.ConnectionName + "'>" + item.ConnectionName +
-                    "@" + (item.Host == String.Empty ? "localhost" : item.Host)
-                    + (item.Port == 0 ? String.Empty : ":" + item.Port) + "</a></li>" +
-                    Environment.NewLine;
+                                      "@" + (item.Host == String.Empty ? "localhost" : item.Host)
+                                      + (item.Port == 0 ? String.Empty : ":" + item.Port) + "</a></li>" +
+                                      Environment.NewLine;
                 }
                 else
                 {
                     connectionList += "<li><a href = 'Connection?" + item.ConnectionName + "'>" + item.ConnectionName +
-                    "</a></li>" + Environment.NewLine;
+                                      "</a></li>" + Environment.NewLine;
                 }
             }
-            RazorEngine.Configuration.TemplateServiceConfiguration config = new RazorEngine.Configuration.TemplateServiceConfiguration();
+            var config = new TemplateServiceConfiguration();
             //config.ReferenceResolver = (IReferenceResolver)((new UseCurrentAssembliesReferenceResolver()).GetReferences(null));
             config.Debug = true;
-            RazorEngine.Templating.TemplateService ser = new RazorEngine.Templating.TemplateService(config);
+            var ser = new TemplateService(config);
             ser.AddNamespace("MongoUtility.Core");
             ser.AddNamespace("SystemUtility");
             Razor.SetTemplateService(ser);
-            content = Razor.Parse(content, new { ConnectionList = SystemConfig.config.ConnectionList });
+            content = Razor.Parse(content, new {SystemConfig.config.ConnectionList});
             return content;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="ConnectionName"></param>
         /// <returns></returns>
         internal static string Connection(String ConnectionName)
         {
-            String FileName = FilePath + "\\Connection.htm";
-            String content = String.Empty;
+            var FileName = FilePath + "\\Connection.htm";
+            var content = String.Empty;
             var stream = new StreamReader(FileName);
             content = stream.ReadToEnd();
 
-            var connLst = new List<MongoUtility.Core.MongoConnectionConfig> {
-				RuntimeMongoDBContext._mongoConnectionConfigList[ConnectionName]
-			};
+            var connLst = new List<MongoConnectionConfig>
+            {
+                RuntimeMongoDBContext._mongoConnectionConfigList[ConnectionName]
+            };
             RuntimeMongoDBContext.ResetConnectionList(connLst);
             content = content.Replace("<%=NodeJSon%>", WEBUIHelper.GetConnectionzTreeJson());
             content = content.Replace("<%=ConnectionName%>", ConnectionName);
@@ -75,26 +79,28 @@ namespace HTTPServer
             content = content.Replace("<%=CollectionTag%>", ConstMgr.COLLECTION_TAG);
             return content;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="DBTag"></param>
         /// <returns></returns>
         public static string GetConnection(String DBTag)
         {
-            MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag = DBTag;
+            RuntimeMongoDBContext.SelectObjectTag = DBTag;
             var cr = CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
-                MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer()).Response;
+                RuntimeMongoDBContext.GetCurrentServer()).Response;
             return WEBUIHelper.ConvertBsonTozTreeJson("Connection Status", cr, true);
         }
+
         /// <summary>
         /// </summary>
         /// <param name="DBTag"></param>
         /// <returns></returns>
         public static string GetDatabase(String DBTag)
         {
-            MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag = DBTag;
+            RuntimeMongoDBContext.SelectObjectTag = DBTag;
             var cr = new BsonDocument();
-            cr = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
+            cr = RuntimeMongoDBContext.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
             return WEBUIHelper.ConvertBsonTozTreeJson("DataBase Status", cr, true);
         }
 
@@ -104,8 +110,8 @@ namespace HTTPServer
         /// <returns></returns>
         public static string GetCollection(String DBTag)
         {
-            WEBUIHelper.WebDataViewInfo = new MongoUtility.Aggregation.DataViewInfo { strDBTag = DBTag };
-            MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag = DBTag;
+            WEBUIHelper.WebDataViewInfo = new DataViewInfo {strDBTag = DBTag};
+            RuntimeMongoDBContext.SelectObjectTag = DBTag;
             return WEBUIHelper.GetCollectionzTreeJSON(RuntimeMongoDBContext.GetCurrentServer());
         }
     }

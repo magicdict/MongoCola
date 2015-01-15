@@ -1,8 +1,7 @@
-﻿using MongoUtility.Basic;
-using System;
+﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Text;
+using MongoUtility.Basic;
 
 namespace MongoUtility.ExteneralTool
 {
@@ -85,7 +84,7 @@ namespace MongoUtility.ExteneralTool
             //http://docs.mongodb.org/manual/reference/configuration-options/
             //http://www.cnblogs.com/think-first/archive/2013/03/22/2976553.html
             //Location of the database files 
-            string strIni = String.Empty;
+            var strIni = String.Empty;
 
             strIni = "#Basic database configuration" + Environment.NewLine;
 
@@ -136,7 +135,7 @@ namespace MongoUtility.ExteneralTool
         public static String GetMongodCommandLine(MongodConfig mongod)
         {
             //mongo.exe 客户端程序
-            String dosCommand = @"mongod --dbpath @dbpath --port @port ";
+            var dosCommand = @"mongod --dbpath @dbpath --port @port ";
             //数据库路径
             dosCommand = dosCommand.Replace("@dbpath", "\"" + mongod.DBPath + "\"");
             //端口号
@@ -208,7 +207,7 @@ namespace MongoUtility.ExteneralTool
         public static String GetMongodumpCommandLine(StruMongoDump mongoDump)
         {
             //mongodump.exe 备份程序
-            String dosCommand = @"mongodump -h @hostaddr:@port -d @dbname";
+            var dosCommand = @"mongodump -h @hostaddr:@port -d @dbname";
             dosCommand = dosCommand.Replace("@hostaddr", mongoDump.HostAddr);
             dosCommand = dosCommand.Replace("@port", mongoDump.Port.ToString());
             dosCommand = dosCommand.Replace("@dbname", mongoDump.DBName);
@@ -235,7 +234,7 @@ namespace MongoUtility.ExteneralTool
         public static String GetMongoRestoreCommandLine(StruMongoRestore MongoRestore)
         {
             //mongorestore.exe 恢复程序
-            String dosCommand = @"mongorestore -h @hostaddr:@port --directoryperdb @dbname";
+            var dosCommand = @"mongorestore -h @hostaddr:@port --directoryperdb @dbname";
             dosCommand = dosCommand.Replace("@hostaddr", MongoRestore.HostAddr);
             dosCommand = dosCommand.Replace("@port", MongoRestore.Port.ToString());
             dosCommand = dosCommand.Replace("@dbname", MongoRestore.DirectoryPerDB);
@@ -288,7 +287,7 @@ namespace MongoUtility.ExteneralTool
         /// <returns></returns>
         public static Boolean IsMongoPathExist()
         {
-        	return true;
+            return true;
             //return Directory.Exists(SystemConfig.configHelperInstance.MongoBinPath);
         }
 
@@ -302,40 +301,40 @@ namespace MongoUtility.ExteneralTool
         {
 //            if (!SystemConfig.MonoMode)
 //            {
-                var myProcess = new Process();
-                myProcess.StartInfo.FileName = "cmd";
-                myProcess.StartInfo.UseShellExecute = false;
-                myProcess.StartInfo.CreateNoWindow = true;
-                myProcess.StartInfo.RedirectStandardInput = true;
-                myProcess.StartInfo.RedirectStandardOutput = true;
-                myProcess.StartInfo.RedirectStandardError = true;
-                myProcess.Start();
-                //标准输出流
-                StreamWriter stringWriter = myProcess.StandardInput;
-                stringWriter.AutoFlush = true;
-                //标准输入流
-                StreamReader stringReader = myProcess.StandardOutput;
-                //标准错误流
-                StreamReader streamReaderError = myProcess.StandardError;
-                //DOS控制平台上的命令
-                //stringWriter.Write(@"cd " + SystemConfig.configHelperInstance.MongoBinPath + Environment.NewLine);
-                //DOS控制平台上的命令
-                stringWriter.Write(DosCommand + Environment.NewLine);
-                stringWriter.Write("exit" + Environment.NewLine);
-                //读取执行DOS命令后输出信息
-                String s = stringReader.ReadToEnd();
-                //读取执行DOS命令后错误信息
-                String er = streamReaderError.ReadToEnd();
-                sb.AppendLine(s);
-                sb.AppendLine(er);
-                if (myProcess.HasExited == false)
-                {
-                    myProcess.Kill();
-                }
-                stringWriter.Close();
-                stringReader.Close();
-                streamReaderError.Close();
-                myProcess.Close();
+            var myProcess = new Process();
+            myProcess.StartInfo.FileName = "cmd";
+            myProcess.StartInfo.UseShellExecute = false;
+            myProcess.StartInfo.CreateNoWindow = true;
+            myProcess.StartInfo.RedirectStandardInput = true;
+            myProcess.StartInfo.RedirectStandardOutput = true;
+            myProcess.StartInfo.RedirectStandardError = true;
+            myProcess.Start();
+            //标准输出流
+            var stringWriter = myProcess.StandardInput;
+            stringWriter.AutoFlush = true;
+            //标准输入流
+            var stringReader = myProcess.StandardOutput;
+            //标准错误流
+            var streamReaderError = myProcess.StandardError;
+            //DOS控制平台上的命令
+            //stringWriter.Write(@"cd " + SystemConfig.configHelperInstance.MongoBinPath + Environment.NewLine);
+            //DOS控制平台上的命令
+            stringWriter.Write(DosCommand + Environment.NewLine);
+            stringWriter.Write("exit" + Environment.NewLine);
+            //读取执行DOS命令后输出信息
+            var s = stringReader.ReadToEnd();
+            //读取执行DOS命令后错误信息
+            var er = streamReaderError.ReadToEnd();
+            sb.AppendLine(s);
+            sb.AppendLine(er);
+            if (myProcess.HasExited == false)
+            {
+                myProcess.Kill();
+            }
+            stringWriter.Close();
+            stringReader.Close();
+            streamReaderError.Close();
+            myProcess.Close();
 //            }
 //            else
 //            {
@@ -349,9 +348,30 @@ namespace MongoUtility.ExteneralTool
         public class MongodConfig
         {
             /// <summary>
+            ///     # 如果从库与主库同步数据差得多，自动重新同步，
+            /// </summary>
+            public bool autoresync = false;
+
+            /// <summary>
+            ///     # 绑定服务IP，若绑定127.0.0.1，则只能本机访问，不指定默认本地所有IP
+            /// </summary>
+            public String bind_ip = String.Empty;
+
+            /// <summary>
+            ///     # 声明这是一个集群的config服务,默认端口27019，默认目录/data/configdb
+            /// </summary>
+            public String configsvr = string.Empty;
+
+            /// <summary>
             ///     # 指定数据库路径
             /// </summary>
             public String DBPath = String.Empty;
+
+            /// Replicaton 参数
+            /// <summary>
+            ///     # 从一个dbpath里启用从库复制服务，该dbpath的数据库是主库的快照，可用于快速启用同步
+            /// </summary>
+            public bool fastsync = false;
 
             /// <summary>
             ///     是否采用认证模式
@@ -378,32 +398,6 @@ namespace MongoUtility.ExteneralTool
             /// </summary>
             public String LogPath = String.Empty;
 
-            /// <summary>
-            ///     # 指定服务端口号，默认端口27017
-            /// </summary>
-            public int Port = ConstMgr.MONGOD_DEFAULT_PORT;
-
-            /// <summary>
-            ///     # 如果从库与主库同步数据差得多，自动重新同步，
-            /// </summary>
-            public bool autoresync = false;
-
-            /// <summary>
-            ///     # 绑定服务IP，若绑定127.0.0.1，则只能本机访问，不指定默认本地所有IP
-            /// </summary>
-            public String bind_ip = String.Empty;
-
-            /// <summary>
-            ///     # 声明这是一个集群的config服务,默认端口27019，默认目录/data/configdb
-            /// </summary>
-            public String configsvr = string.Empty;
-
-            /// Replicaton 参数
-            /// <summary>
-            ///     # 从一个dbpath里启用从库复制服务，该dbpath的数据库是主库的快照，可用于快速启用同步
-            /// </summary>
-            public bool fastsync = false;
-
             /// 主/从参数
             /// <summary>
             ///     # 主库模式
@@ -424,6 +418,11 @@ namespace MongoUtility.ExteneralTool
             ///     # 设置oplog的大小(MB)
             /// </summary>
             public int oplogSize = 0;
+
+            /// <summary>
+            ///     # 指定服务端口号，默认端口27017
+            /// </summary>
+            public int Port = ConstMgr.MONGOD_DEFAULT_PORT;
 
             /// Replica set(副本集)选项
             /// <summary>

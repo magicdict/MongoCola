@@ -1,27 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using SystemUtility;
 using Common;
-using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
+using MongoUtility.Core;
 using MongoUtility.Security;
-using SystemUtility;
 using ResourceLib;
+using ResourceLib.Properties;
+using Utility = Common.Utility;
+
 namespace MongoCola
 {
     public partial class frmUser : Form
     {
-
-        private readonly Dictionary<String, BsonElement> OtherDBRolesDict = new Dictionary<string, BsonElement>();
-
         /// <summary>
         ///     是否作为Admin
         /// </summary>
         private readonly Boolean _IsAdmin;
 
         private readonly String _ModifyName = String.Empty;
+        private readonly Dictionary<String, BsonElement> OtherDBRolesDict = new Dictionary<string, BsonElement>();
 
         /// <summary>
         ///     frmUser
@@ -31,7 +32,7 @@ namespace MongoCola
         {
             InitializeComponent();
             _IsAdmin = IsAdmin;
-            foreach (string item in MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer().GetDatabaseNames())
+            foreach (var item in RuntimeMongoDBContext.GetCurrentServer().GetDatabaseNames())
             {
                 cmbDB.Items.Add(item);
             }
@@ -54,7 +55,7 @@ namespace MongoCola
             _IsAdmin = IsAdmin;
             _ModifyName = UserName;
             cmbDB.Items.Clear();
-            foreach (string item in MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer().GetDatabaseNames())
+            foreach (var item in RuntimeMongoDBContext.GetCurrentServer().GetDatabaseNames())
             {
                 cmbDB.Items.Add(item);
             }
@@ -85,7 +86,7 @@ namespace MongoCola
                 roles = userRoles.getRoles()
             };
             var otherDBRoles = new BsonDocument();
-            foreach (BsonElement item in OtherDBRolesDict.Values)
+            foreach (var item in OtherDBRolesDict.Values)
             {
                 otherDBRoles.Add(item);
             }
@@ -105,7 +106,7 @@ namespace MongoCola
             }
             catch (Exception ex)
             {
-                Common.Utility.ExceptionDeal(ex);
+                Utility.ExceptionDeal(ex);
             }
             Close();
         }
@@ -127,11 +128,11 @@ namespace MongoCola
                 Text = "Change User Config";
                 txtUserName.Enabled = false;
                 txtUserName.Text = _ModifyName;
-                var userInfo = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(ConstMgr.COLLECTION_NAME_USER)
+                var userInfo = RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(ConstMgr.COLLECTION_NAME_USER)
                     .FindOneAs<BsonDocument>(Query.EQ("user", _ModifyName));
                 userRoles.setRoles(userInfo["roles"].AsBsonArray);
                 OtherDBRolesDict.Clear();
-                foreach (BsonElement item in userInfo["otherDBRoles"].AsBsonDocument)
+                foreach (var item in userInfo["otherDBRoles"].AsBsonDocument)
                 {
                     OtherDBRolesDict.Add(item.Name, item);
                 }
@@ -145,20 +146,23 @@ namespace MongoCola
                         SystemConfig.guiConfig.MStringResource.GetText(_IsAdmin
                             ? StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin
                             : StringResource.TextType.Main_Menu_Operation_Database_AddUser);
-                    Icon = GetSystemIcon.ConvertImgToIcon(ResourceLib.Properties.Resources.AddUserToDB);
+                    Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
                 }
                 else
                 {
-                    Icon = GetSystemIcon.ConvertImgToIcon(ResourceLib.Properties.Resources.DBkey);
+                    Icon = GetSystemIcon.ConvertImgToIcon(Resources.DBkey);
                     Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_ChangePassword);
                 }
-                lblUserName.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Username);
-                lblPassword.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Password);
+                lblUserName.Text =
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Username);
+                lblPassword.Text =
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Password);
                 lblConfirmPsw.Text =
                     SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_ConfirmPassword);
                 //chkReadOnly.Text = SystemConfig.guiConfig.MStringResource.GetText(MagicMongoDBTool.Module.StringResource.TextType.Common_ReadOnly);
                 colRoles.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Roles);
-                colDataBase.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_DataBase);
+                colDataBase.Text =
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_DataBase);
                 cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
                 cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
             }
@@ -170,7 +174,7 @@ namespace MongoCola
         private void RefreshOtherDBRoles()
         {
             lstOtherRoles.Items.Clear();
-            foreach (string item in OtherDBRolesDict.Keys)
+            foreach (var item in OtherDBRolesDict.Keys)
             {
                 lstOtherRoles.Items.Add(new ListViewItem(new[] {item, OtherDBRolesDict[item].Value.ToString()}));
             }
@@ -233,7 +237,7 @@ namespace MongoCola
             }
             else
             {
-                String DBName = lstOtherRoles.SelectedItems[0].Text;
+                var DBName = lstOtherRoles.SelectedItems[0].Text;
                 var mUserRole = new frmUserRole(OtherDBRolesDict[DBName].Value.AsBsonArray);
                 mUserRole.ShowDialog();
                 var otherRole = new BsonElement(cmbDB.Text, mUserRole.Result);

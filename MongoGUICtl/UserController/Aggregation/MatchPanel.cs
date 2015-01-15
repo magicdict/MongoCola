@@ -44,13 +44,13 @@ namespace MongoGUICtl
             var Matchlist = new BsonDocument();
             foreach (ctlMatchItem item in Controls)
             {
-                BsonDocument match = item.getMatchItem();
+                var match = item.getMatchItem();
                 if (match != null)
                 {
-                    string MatchName = match.GetElement(0).Name;
+                    var MatchName = match.GetElement(0).Name;
                     if (Matchlist.Contains(MatchName))
                     {
-                        BsonDocument AddMatch = match.GetElement(0).Value.AsBsonDocument;
+                        var AddMatch = match.GetElement(0).Value.AsBsonDocument;
                         Matchlist.GetElement(MatchName).Value.AsBsonDocument.AddRange(AddMatch);
                     }
                     else

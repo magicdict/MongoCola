@@ -5,6 +5,7 @@ namespace MongoUtility.Basic
     public static class ConstMgr
     {
         #region"各种节点的Tag前缀"
+
         /// <summary>
         ///     普通连接
         /// </summary>

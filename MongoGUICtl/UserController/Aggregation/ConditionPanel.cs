@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Common;
-using MongoUtility.Operation;
 using MongoUtility.Aggregation;
+using MongoUtility.Core;
+using Utility = MongoUtility.Basic.Utility;
 
 namespace MongoGUICtl
 {
     public partial class ConditionPanel : UserControl
     {
-        /// <summary>
-        ///     当前数据集的字段列表
-        /// </summary>
-        public List<String> ColumnList = new List<String>();
-
         /// <summary>
         ///     条件输入器数量
         /// </summary>
@@ -25,12 +21,17 @@ namespace MongoGUICtl
         /// </summary>
         private Point _conditionPos = new Point(5, 0);
 
+        /// <summary>
+        ///     当前数据集的字段列表
+        /// </summary>
+        public List<String> ColumnList = new List<String>();
+
         public ConditionPanel()
         {
             InitializeComponent();
-            if (MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection() != null)
+            if (RuntimeMongoDBContext.GetCurrentCollection() != null)
             {
-                ColumnList = MongoUtility.Basic.Utility.GetCollectionSchame(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
+                ColumnList = Utility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection());
             }
         }
 
@@ -54,7 +55,7 @@ namespace MongoGUICtl
         public void SetCurrDataFilter(DataViewInfo CurrentDataViewInfo)
         {
             //过滤条件
-            for (int i = 0; i < _conditionCount; i++)
+            for (var i = 0; i < _conditionCount; i++)
             {
                 var ctl = (ctlQueryCondition) Controls.Find("Condition" + (i + 1), true)[0];
                 if (ctl.IsSeted)
@@ -70,15 +71,15 @@ namespace MongoGUICtl
         /// <param name="NewDataFilter"></param>
         public void PutQueryToUI(DataFilter NewDataFilter)
         {
-            String strErrMsg = String.Empty;
+            var strErrMsg = String.Empty;
             var ShowColumnList = new List<String>();
-            foreach (String item in ColumnList)
+            foreach (var item in ColumnList)
             {
                 ShowColumnList.Add(item);
             }
             //清除所有的控件
-            List<DataFilter.QueryFieldItem> FieldList = NewDataFilter.QueryFieldList;
-            foreach (DataFilter.QueryFieldItem queryFieldItem in NewDataFilter.QueryFieldList)
+            var FieldList = NewDataFilter.QueryFieldList;
+            foreach (var queryFieldItem in NewDataFilter.QueryFieldList)
             {
                 //动态加载控件
                 if (!ColumnList.Contains(queryFieldItem.ColName))
@@ -91,7 +92,7 @@ namespace MongoGUICtl
                     ShowColumnList.Remove(queryFieldItem.ColName);
                 }
             }
-            foreach (String item in ShowColumnList)
+            foreach (var item in ShowColumnList)
             {
                 strErrMsg += "New Field" + item + "Is Append" + Environment.NewLine;
                 //输出配置的初始化
@@ -100,7 +101,7 @@ namespace MongoGUICtl
             Controls.Clear();
             _conditionPos = new Point(5, 0);
             _conditionCount = 0;
-            foreach (DataFilter.QueryConditionInputItem queryConditionItem in NewDataFilter.QueryConditionList)
+            foreach (var queryConditionItem in NewDataFilter.QueryConditionList)
             {
                 var newCondition = new ctlQueryCondition();
                 newCondition.Init(ColumnList);

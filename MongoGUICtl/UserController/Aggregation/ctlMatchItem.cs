@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoUtility.Aggregation;
+using MongoUtility.Basic;
+using MongoUtility.Core;
 
 namespace MongoGUICtl
 {
@@ -29,13 +30,13 @@ namespace MongoGUICtl
 
         private void ctlMatchItem_Load(object sender, EventArgs e)
         {
-            foreach (string item in AggregationHelper.GetComparisonfunction())
+            foreach (var item in AggregationHelper.GetComparisonfunction())
             {
                 cmbComparisonfunction.Items.Add(item);
             }
-            if (MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection() != null)
+            if (RuntimeMongoDBContext.GetCurrentCollection() != null)
             {
-                foreach (string item in MongoUtility.Basic.Utility.GetCollectionSchame(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection()))
+                foreach (var item in Utility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
                 {
                     cmbField.Items.Add(item);
                 }

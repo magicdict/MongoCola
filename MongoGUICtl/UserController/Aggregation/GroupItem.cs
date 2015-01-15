@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoUtility.Aggregation;
+using MongoUtility.Basic;
+using MongoUtility.Core;
 
 namespace MongoGUICtl
 {
@@ -23,14 +25,14 @@ namespace MongoGUICtl
 
         private void GroupItem_Load(object sender, EventArgs e)
         {
-            foreach (string item in AggregationHelper.GetGroupfunction())
+            foreach (var item in AggregationHelper.GetGroupfunction())
             {
                 cmbGroupFunction.Items.Add(item);
             }
-            if (MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection() != null)
+            if (RuntimeMongoDBContext.GetCurrentCollection() != null)
             {
                 cmbGroupValue.Items.Add("1");
-                foreach (string item in MongoUtility.Basic.Utility.GetCollectionSchame(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection()))
+                foreach (var item in Utility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
                 {
                     cmbGroupFunction.Items.Add("$" + item);
                     cmbGroupValue.Items.Add("$" + item);

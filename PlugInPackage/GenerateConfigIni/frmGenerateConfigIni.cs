@@ -2,8 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using MongoUtility.Operation;
-using MongoUtility.Basic;
+using Common;
 using MongoUtility.ExteneralTool;
 
 namespace PlugInPackage
@@ -32,7 +31,7 @@ namespace PlugInPackage
         /// <param name="e"></param>
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            var savefile = new SaveFileDialog {Filter = Common.Utility.ConfFilter};
+            var savefile = new SaveFileDialog {Filter = Utility.ConfFilter};
             if (savefile.ShowDialog() != DialogResult.OK) return;
             var save = new StreamWriter(savefile.FileName);
             save.Write(MongodbDosCommand.GenerateIniFile(ctlGenerateMongod.MongodCommand));

@@ -2,10 +2,10 @@
 using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using MongoUtility.Operation;
-using MongoDB.Bson;
-using ResourceLib;
 using MongoUtility.Command;
+using MongoUtility.Core;
+using ResourceLib;
+using ResourceLib.Properties;
 
 namespace MongoCola
 {
@@ -20,7 +20,7 @@ namespace MongoCola
 
         private void frmServerMonitor_Load(object sender, EventArgs e)
         {
-            Icon = GetSystemIcon.ConvertImgToIcon(ResourceLib.Properties.Resources.KeyInfo);
+            Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
             M = new Timer {Interval = 3000};
             M.Tick += M_Tick;
             var QuerySeries = new Series("Query")
@@ -44,9 +44,9 @@ namespace MongoCola
 
         private void M_Tick(object sender, EventArgs e)
         {
-            BsonDocument DocStatus =
+            var DocStatus =
                 CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
-                    MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer()).Response;
+                    RuntimeMongoDBContext.GetCurrentServer()).Response;
 
             var queryPoint = new DataPoint();
             queryPoint.SetValueXY(DateTime.Now.ToString(CultureInfo.InvariantCulture),

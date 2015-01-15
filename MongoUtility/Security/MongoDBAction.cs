@@ -4,14 +4,27 @@ using System.Collections.Generic;
 namespace MongoUtility.Security
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class MongoDBAction
     {
-        //http://docs.mongodb.org/master/reference/privilege-actions/#security-user-actions
-        
         /// <summary>
-        /// Queryand Write Actions
+        /// </summary>
+        public enum ActionGroup
+        {
+            Query_and_Write_Actions,
+            Database_Management_Actions,
+            Deployment_Management_Actions,
+            Replication_Actions,
+            Sharding_Actions,
+            Server_Administration_Actions,
+            Diagnostic_Actions,
+            Internal_Actions
+        }
+
+        //http://docs.mongodb.org/master/reference/privilege-actions/#security-user-actions
+
+        /// <summary>
+        ///     Queryand Write Actions
         /// </summary>
         public enum ActionType
         {
@@ -20,7 +33,7 @@ namespace MongoUtility.Security
             QueryandWriteActions_insert,
             QueryandWriteActions_remove,
             QueryandWriteActions_update,
-            
+
             //Database Management
             DatabaseManagementActions_changeCustomData,
             DatabaseManagementActions_changeOwnCustomData,
@@ -116,46 +129,36 @@ namespace MongoUtility.Security
 
             //Tool Defined
             Misc_InitGFS,
-            Misc_EvalJS,
+            Misc_EvalJS
         }
+
         /// <summary>
-        /// 
-        /// </summary>
-        public enum ActionGroup {
-            Query_and_Write_Actions,
-            Database_Management_Actions,
-            Deployment_Management_Actions,
-            Replication_Actions,
-            Sharding_Actions,
-            Server_Administration_Actions,
-            Diagnostic_Actions,
-            Internal_Actions
-        }
-        /// <summary>
-        /// GetActionListJs
+        ///     GetActionListJs
         /// </summary>
         /// <param name="ActionList"></param>
         /// <returns></returns>
         public static String GetActionListJs(ActionType[] ActionList)
         {
-            String Result = String.Empty;
+            var Result = String.Empty;
             Result = "actions: [ ";
-            for (int i = 0; i < ActionList.Length; i++)
+            for (var i = 0; i < ActionList.Length; i++)
             {
-                Result += "'" + ActionList[i].ToString().Substring(ActionList[i].ToString().IndexOf("_") + 1) + "'" + ((i == ActionList.Length - 1) ? "" : ",");
+                Result += "'" + ActionList[i].ToString().Substring(ActionList[i].ToString().IndexOf("_") + 1) + "'" +
+                          ((i == ActionList.Length - 1) ? "" : ",");
             }
             Result += " ]";
             return Result;
         }
+
         /// <summary>
         ///     根据内置角色判断能否执行操作
         /// </summary>
         /// <param name="roles"></param>
         /// <returns></returns>
-		/// <param name = "action"></param>
+        /// <param name="action"></param>
         public static Boolean JudgeRightByBuildInRole(List<String> roles, ActionType action)
         {
-            Boolean CanDoIt = false;
+            var CanDoIt = false;
             switch (action)
             {
                 case ActionType.DatabaseManagementActions_dropCollection:

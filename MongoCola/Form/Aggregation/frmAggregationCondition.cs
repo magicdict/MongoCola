@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoUtility.Operation;
+using Common;
 using MongoDB.Bson;
 
 namespace MongoCola
@@ -17,8 +17,8 @@ namespace MongoCola
             InitializeComponent();
             txtLimit.Enabled = chkLimit.Checked;
             txtSkip.Enabled = chkSkip.Checked;
-            txtLimit.KeyPress += Common.NumberTextBox.NumberTextInt_KeyPress;
-            txtSkip.KeyPress += Common.NumberTextBox.NumberTextInt_KeyPress;
+            txtLimit.KeyPress += NumberTextBox.NumberTextInt_KeyPress;
+            txtSkip.KeyPress += NumberTextBox.NumberTextInt_KeyPress;
 
             chkSkip.CheckedChanged += (x, y) => { txtSkip.Enabled = chkSkip.Checked; };
             chkLimit.CheckedChanged += (x, y) => { txtLimit.Enabled = chkLimit.Checked; };
@@ -43,13 +43,13 @@ namespace MongoCola
         private void btnOK_Click(object sender, EventArgs e)
         {
             //Project
-            BsonDocument project = QueryFieldPicker.GetAggregation();
+            var project = QueryFieldPicker.GetAggregation();
             if (project[0].AsBsonDocument.ElementCount > 0)
             {
                 Aggregation.Add(project);
             }
             //match
-            BsonDocument match = MatchListPanel.GetMatchDocument();
+            var match = MatchListPanel.GetMatchDocument();
             if (match != null)
             {
                 Aggregation.Add(match);
@@ -65,10 +65,10 @@ namespace MongoCola
                 Aggregation.Add(new BsonDocument("$limit", int.Parse(txtLimit.Text)));
             }
             //Group
-            BsonDocument groupDetail = GroupFieldPicker.getGroupID();
+            var groupDetail = GroupFieldPicker.getGroupID();
             if (groupDetail.GetElement(0).Value.AsBsonDocument.ElementCount != 0)
             {
-                foreach (BsonElement item in groupPanelCreator.GetGroup())
+                foreach (var item in groupPanelCreator.GetGroup())
                 {
                     groupDetail.Add(item);
                 }

@@ -4,8 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
 using Common;
-using MongoUtility.Operation;
-using MongoDB.Bson;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
 using ResourceLib;
@@ -19,7 +17,7 @@ namespace MongoGUIView
         /// <summary>
         ///     Is Need Refresh after the element is modify
         /// </summary>
-        public Boolean IsNeedRefresh = false;
+        public Boolean IsNeedRefresh;
 
         /// <summary>
         ///     是否是一个数据容器
@@ -30,10 +28,12 @@ namespace MongoGUIView
         ///     Control for show Data
         /// </summary>
         public List<Control> _dataShower = new List<Control>();
+
         /// <summary>
         ///     DataView信息
         /// </summary>
         public DataViewInfo mDataViewInfo;
+
         /// <summary>
         ///     初始化
         /// </summary>
@@ -89,7 +89,8 @@ namespace MongoGUIView
             {
                 //数据显示区
                 tabTreeView.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Tab_Tree);
-                tabTableView.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Tab_Table);
+                tabTableView.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Tab_Table);
                 tabTextView.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Tab_Text);
                 PrePageStripButton.Text =
                     configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
@@ -102,14 +103,18 @@ namespace MongoGUIView
                 QueryStripButton.Text =
                     configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Query);
                 FilterStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_DataFilter);
-                RefreshStripButton.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Refresh);
-                CloseStripButton.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                    configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.Main_Menu_DataView_DataFilter);
+                RefreshStripButton.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Refresh);
+                CloseStripButton.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
                 ExpandAllStripButton.Text =
                     configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Expansion);
                 CollapseAllStripButton.Text =
                     configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Collapse);
-                HelpStripButton.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Help);
+                HelpStripButton.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Help);
             }
             InitControlsVisiableAndEvent();
             //加载数据
@@ -149,14 +154,14 @@ namespace MongoGUIView
         /// </summary>
         private void InitControlsEnable()
         {
-            foreach (object item in contextMenuStripMain.Items)
+            foreach (var item in contextMenuStripMain.Items)
             {
                 if (item is ToolStripMenuItem)
                 {
                     ((ToolStripMenuItem) item).Enabled = false;
                 }
             }
-            foreach (object item in ViewtoolStrip.Items)
+            foreach (var item in ViewtoolStrip.Items)
             {
                 if (item is ToolStripButton)
                 {
@@ -203,9 +208,9 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void HelpStripButton_Click(object sender, EventArgs e)
         {
-            String strType = GetType().ToString();
+            var strType = GetType().ToString();
             strType = strType.Split(".".ToCharArray())[1];
-            String strUrl = @"UserGuide\index.htm";
+            var strUrl = @"UserGuide\index.htm";
             switch (strType)
             {
                 case "ctlDataView":
@@ -262,7 +267,7 @@ namespace MongoGUIView
         {
             if (txtSkip.Text.IsNumeric())
             {
-                int skip = Convert.ToInt32(txtSkip.Text);
+                var skip = Convert.ToInt32(txtSkip.Text);
                 skip--;
                 if (skip >= 0)
                 {
@@ -379,7 +384,7 @@ namespace MongoGUIView
             LastPageStripButton.Enabled = mDataViewInfo.HasNextPage;
             FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
             QueryStripButton.Enabled = true;
-            String strTitle = "Records";
+            var strTitle = "Records";
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
                 strTitle = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
@@ -404,7 +409,7 @@ namespace MongoGUIView
             clear();
             mDataViewInfo.SkipCnt = 0;
             RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
-            List<BsonDocument> datalist = DataViewInfo.GetDataList(ref mDataViewInfo,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
+            var datalist = DataViewInfo.GetDataList(ref mDataViewInfo, RuntimeMongoDBContext.GetCurrentServer());
             ViewHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             InitControlsEnable();
             SetDataNav();
@@ -437,11 +442,12 @@ namespace MongoGUIView
             }
             clear();
             RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
-            List<BsonDocument> datalist = DataViewInfo.GetDataList(ref mDataViewInfo,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
+            var datalist = DataViewInfo.GetDataList(ref mDataViewInfo, RuntimeMongoDBContext.GetCurrentServer());
             ViewHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             SetDataNav();
             IsNeedRefresh = false;
         }
+
         /// <summary>
         ///     查询
         /// </summary>

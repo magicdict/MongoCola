@@ -6,17 +6,17 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
+
+using ResourceLib;
 
 namespace MongoGUICtl
 {
-	/// <summary>
-	/// Description of Init.SystemManager.
-	/// </summary>
-	public static class configuration
-	{
-		public static ResourceLib.GUIConfig guiConfig;
-		
-		public static int RefreshStatusTimer;
-	}
+    /// <summary>
+    ///     Description of Init.SystemManager.
+    /// </summary>
+    public static class configuration
+    {
+        public static GUIConfig guiConfig;
+        public static int RefreshStatusTimer;
+    }
 }

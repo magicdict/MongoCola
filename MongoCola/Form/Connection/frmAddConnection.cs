@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
+using SystemUtility;
 using Common;
-using MongoUtility.Operation;
 using MongoDB.Driver;
 using MongoUtility.Core;
-using SystemUtility;
 using ResourceLib;
+using Utility = MongoUtility.Basic.Utility;
 
 namespace MongoCola
 {
@@ -19,7 +19,7 @@ namespace MongoCola
         /// <summary>
         ///     连接配置
         /// </summary>
-        public MongoUtility.Core.MongoConnectionConfig ModifyConn = new MongoUtility.Core.MongoConnectionConfig();
+        public MongoConnectionConfig ModifyConn = new MongoConnectionConfig();
 
         /// <summary>
         ///     修改模式中，原来的连接
@@ -57,13 +57,13 @@ namespace MongoCola
             chkFsync.Checked = ModifyConn.fsync;
             chkJournal.Checked = ModifyConn.journal;
 
-            NumSocketTimeOut.Value = (decimal)ModifyConn.socketTimeoutMS;
-            NumConnectTimeOut.Value = (decimal)ModifyConn.connectTimeoutMS;
+            NumSocketTimeOut.Value = (decimal) ModifyConn.socketTimeoutMS;
+            NumConnectTimeOut.Value = (decimal) ModifyConn.connectTimeoutMS;
 
             txtReplsetName.Text = ModifyConn.ReplSetName;
             txtConnectionString.Text = ModifyConn.ConnectionString;
 
-            foreach (string item in ModifyConn.ReplsetList)
+            foreach (var item in ModifyConn.ReplsetList)
             {
                 lstHost.Items.Add(item);
             }
@@ -97,7 +97,8 @@ namespace MongoCola
             lblConnectionString.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionString);
             lblAttentionPassword.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Password_Description);
+                SystemConfig.guiConfig.MStringResource.GetText(
+                    StringResource.TextType.AddConnection_Password_Description);
 
 
             lblsocketTimeout.Text =
@@ -128,7 +129,7 @@ namespace MongoCola
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             CreateConnection();
-            string NewCollectionName = txtConnectionName.Text;
+            var NewCollectionName = txtConnectionName.Text;
             if (OldConnectionName != string.Empty)
             {
                 //如果有旧名称，说明是修改模式
@@ -167,7 +168,7 @@ namespace MongoCola
             CreateConnection();
             try
             {
-                MongoServer srv = RuntimeMongoDBContext.CreateMongoServer(ref ModifyConn);
+                var srv = RuntimeMongoDBContext.CreateMongoServer(ref ModifyConn);
                 srv.Connect();
                 srv.Disconnect();
                 MyMessageBox.ShowMessage("Connect Test", "Connected OK.");
@@ -178,7 +179,8 @@ namespace MongoCola
                 if (!SystemConfig.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
-                        SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_AuthenticationException),
+                        SystemConfig.guiConfig.MStringResource.GetText(
+                            StringResource.TextType.Exception_AuthenticationException),
                         SystemConfig.guiConfig.MStringResource.GetText(
                             StringResource.TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
                 }
@@ -198,7 +200,8 @@ namespace MongoCola
                 {
                     MyMessageBox.ShowMessage(
                         SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_NotConnected),
-                        SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note),
+                        SystemConfig.guiConfig.MStringResource.GetText(
+                            StringResource.TextType.Exception_NotConnected_Note),
                         ex.ToString(), true);
                 }
                 else
@@ -208,6 +211,7 @@ namespace MongoCola
                 }
             }
         }
+
         /// <summary>
         ///     新建连接
         /// </summary>
@@ -218,7 +222,7 @@ namespace MongoCola
             ModifyConn.ConnectionString = txtConnectionString.Text;
             if (txtConnectionString.Text != string.Empty)
             {
-                string strException = MongoUtility.Basic.Utility.FillConfigWithConnectionString(ref ModifyConn);
+                var strException = Utility.FillConfigWithConnectionString(ref ModifyConn);
                 if (strException != string.Empty)
                 {
                     MyMessageBox.ShowMessage("Url Exception", "Url Formation，please check it", strException);
@@ -261,16 +265,17 @@ namespace MongoCola
                     ModifyConn.WaitQueueSize = SystemConfig.config.WaitQueueSize;
                     ModifyConn.WriteConcern = SystemConfig.config.WriteConcern;
                     ModifyConn.ReadPreference = SystemConfig.config.ReadPreference;
-                }                 else
+                }
+                else
                 {
-                    ModifyConn.wtimeoutMS = (double)NumWTimeoutMS.Value;
-                    ModifyConn.WaitQueueSize = (int)NumWaitQueueSize.Value;
+                    ModifyConn.wtimeoutMS = (double) NumWTimeoutMS.Value;
+                    ModifyConn.WaitQueueSize = (int) NumWaitQueueSize.Value;
                     ModifyConn.WriteConcern = cmbWriteConcern.Text;
                     ModifyConn.ReadPreference = cmbReadPreference.Text;
                 }
 
-                ModifyConn.socketTimeoutMS = (double)NumSocketTimeOut.Value;
-                ModifyConn.connectTimeoutMS = (double)NumConnectTimeOut.Value;
+                ModifyConn.socketTimeoutMS = (double) NumSocketTimeOut.Value;
+                ModifyConn.connectTimeoutMS = (double) NumConnectTimeOut.Value;
                 ModifyConn.journal = chkJournal.Checked;
                 ModifyConn.fsync = chkFsync.Checked;
                 ModifyConn.ReplSetName = txtReplsetName.Text;
@@ -289,7 +294,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdAddHost_Click(object sender, EventArgs e)
         {
-            string strHost = string.Empty;
+            var strHost = string.Empty;
             if (string.IsNullOrEmpty(strHost)) return;
             strHost = txtReplHost.Text;
             if (NumReplPort.Value == 0) return;
@@ -326,6 +331,5 @@ namespace MongoCola
         {
             Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options");
         }
-
     }
 }

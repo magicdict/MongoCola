@@ -6,17 +6,16 @@
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
-using System;
+
+using ResourceLib;
 
 namespace MongoGUIView
 {
-	/// <summary>
-	/// Description of Init.SystemManager.
-	/// </summary>
-	public static class configuration
-	{
-		public static ResourceLib.GUIConfig guiConfig;
-		
-
-	}
+    /// <summary>
+    ///     Description of Init.SystemManager.
+    /// </summary>
+    public static class configuration
+    {
+        public static GUIConfig guiConfig;
+    }
 }

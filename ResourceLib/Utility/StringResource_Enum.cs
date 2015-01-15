@@ -7,8 +7,8 @@
         /// </summary>
         public enum TextType
         {
-        	UseDefaultLanguage,
-        	
+            UseDefaultLanguage,
+
             Main_Menu_Mangt,
             Main_Menu_Mangt_AddConnection,
             Main_Menu_Mangt_Disconnect,

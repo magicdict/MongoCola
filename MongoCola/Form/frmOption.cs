@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MongoUtility.Operation;
-using MongoDB.Driver;
 using SystemUtility;
+using MongoDB.Driver;
 using ResourceLib;
 
 namespace MongoCola
@@ -23,7 +22,7 @@ namespace MongoCola
             cmbLanguage.Items.Add("English");
             if (Directory.Exists("Language"))
             {
-                foreach (String FileName in Directory.GetFiles("Language"))
+                foreach (var FileName in Directory.GetFiles("Language"))
                 {
                     cmbLanguage.Items.Add(new FileInfo(FileName).Name.Substring(0,
                         new FileInfo(FileName).Name.Length - 4));
@@ -85,7 +84,7 @@ namespace MongoCola
             {
                 cmbWriteConcern.Text = SystemConfig.config.WriteConcern;
             }
-            NumWTimeoutMS.Value = (decimal)SystemConfig.config.wtimeoutMS;
+            NumWTimeoutMS.Value = (decimal) SystemConfig.config.wtimeoutMS;
             NumWaitQueueSize.Value = SystemConfig.config.WaitQueueSize;
 
 
@@ -108,8 +107,8 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            SystemConfig.config.wtimeoutMS = (double)NumWTimeoutMS.Value;
-            SystemConfig.config.WaitQueueSize = (int)NumWaitQueueSize.Value;
+            SystemConfig.config.wtimeoutMS = (double) NumWTimeoutMS.Value;
+            SystemConfig.config.WaitQueueSize = (int) NumWaitQueueSize.Value;
             SystemConfig.config.WriteConcern = cmbWriteConcern.Text;
             SystemConfig.config.ReadPreference = cmbReadPreference.Text;
 
@@ -117,7 +116,7 @@ namespace MongoCola
 
             SystemConfig.config.RefreshStatusTimer = (int) numRefreshForStatus.Value;
             SystemConfig.config.LanguageFileName = cmbLanguage.Text + ".xml";
-            
+
             ConfigHelper.SaveToConfigFile();
             Close();
         }

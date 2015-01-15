@@ -12,8 +12,8 @@ namespace HTTPServer
         {
             InitializeComponent();
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -23,9 +23,9 @@ namespace HTTPServer
             ServerPathPicker.SelectedPathOrFileName = @"C:\MongoCola\TemplatePackage\HTML";
             ConfigFile.SelectedPathOrFileName = @"C:\MongoCola\MongoCola\bin\Debug\config.xml";
             //TEST END
-            Control.CheckForIllegalCrossThreadCalls = false;
-
+            CheckForIllegalCrossThreadCalls = false;
         }
+
         /// <summary>
         /// </summary>
         /// <param name="Info"></param>
@@ -34,6 +34,7 @@ namespace HTTPServer
         {
             txtInfo.Text += Info + Environment.NewLine;
         }
+
         /// <summary>
         ///     Entry Of MongoCola@Browser
         /// </summary>
@@ -50,7 +51,7 @@ namespace HTTPServer
                 if (txtInfo.InvokeRequired)
                 {
                     WriteInfo t = Write;
-                    var o = new object[2] { y.Info, y.Level };
+                    var o = new object[2] {y.Info, y.Level};
                     Invoke(t, o);
                 }
                 Write(y.Info, y.Level);
@@ -59,6 +60,7 @@ namespace HTTPServer
             q.Start();
             Process.Start("http://localhost:13000/");
         }
+
         /// <summary>
         /// </summary>
         /// <param name="Info"></param>

@@ -1,180 +1,204 @@
 ﻿using System;
 using System.Windows.Forms;
 using Common;
-using MongoUtility.Operation;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
 using MongoUtility.Security;
-using MongoGUIView;
 using ResourceLib;
 
 namespace MongoGUIView
 {
-	public partial class ctlUserView : ctlDataView
-	{
-		public ctlUserView(DataViewInfo _DataViewInfo)
-		{
-			InitializeComponent();
-			InitToolAndMenu();
-			mDataViewInfo = _DataViewInfo;
-			_dataShower.Add(lstData);
-		}
+    public partial class ctlUserView : ctlDataView
+    {
+        public ctlUserView(DataViewInfo _DataViewInfo)
+        {
+            InitializeComponent();
+            InitToolAndMenu();
+            mDataViewInfo = _DataViewInfo;
+            _dataShower.Add(lstData);
+        }
 
-		private void ctlUserView_Load(object sender, EventArgs e)
-		{
-			if (!configuration.guiConfig.IsUseDefaultLanguage) {
-				AddUserStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_AddUser);
-				AddUserToolStripMenuItem.Text = AddUserStripButton.Text;
-				ChangePasswordStripButton.Text =
+        private void ctlUserView_Load(object sender, EventArgs e)
+        {
+            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            {
+                AddUserStripButton.Text =
+                    configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                AddUserToolStripMenuItem.Text = AddUserStripButton.Text;
+                ChangePasswordStripButton.Text =
                     configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_ChangePassword);
-				ChangePasswordToolStripMenuItem.Text = ChangePasswordStripButton.Text;
-				RemoveUserStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Operation_Database_DelUser);
-				RemoveUserToolStripMenuItem.Text = RemoveUserStripButton.Text;
-			}
-			AddUserStripButton.Enabled = true;
-			ChangePasswordStripButton.Enabled = false;
-			RemoveUserStripButton.Enabled = false;
-		}
+                ChangePasswordToolStripMenuItem.Text = ChangePasswordStripButton.Text;
+                RemoveUserStripButton.Text =
+                    configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.Main_Menu_Operation_Database_DelUser);
+                RemoveUserToolStripMenuItem.Text = RemoveUserStripButton.Text;
+            }
+            AddUserStripButton.Enabled = true;
+            ChangePasswordStripButton.Enabled = false;
+            RemoveUserStripButton.Enabled = false;
+        }
 
-		private void lstData_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if (lstData.SelectedItems.Count > 0 && !mDataViewInfo.IsReadOnly) {
-				AddUserToolStripMenuItem.Enabled = true;
-				AddUserStripButton.Enabled = true;
+        private void lstData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstData.SelectedItems.Count > 0 && !mDataViewInfo.IsReadOnly)
+            {
+                AddUserToolStripMenuItem.Enabled = true;
+                AddUserStripButton.Enabled = true;
 
-				RemoveUserStripButton.Enabled = true;
-				RemoveUserToolStripMenuItem.Enabled = true;
+                RemoveUserStripButton.Enabled = true;
+                RemoveUserToolStripMenuItem.Enabled = true;
 
-				if (lstData.SelectedItems.Count == 1) {
-					ChangePasswordStripButton.Enabled = true;
-					ChangePasswordToolStripMenuItem.Enabled = true;
-				}
-			}
-		}
+                if (lstData.SelectedItems.Count == 1)
+                {
+                    ChangePasswordStripButton.Enabled = true;
+                    ChangePasswordToolStripMenuItem.Enabled = true;
+                }
+            }
+        }
 
-		protected void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
-		{
-			ChangePasswordStripButton_Click(sender, e);
-		}
+        protected void lstData_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ChangePasswordStripButton_Click(sender, e);
+        }
 
-		protected void lstData_MouseClick(object sender, MouseEventArgs e)
-		{
-			RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
-			if (lstData.SelectedItems.Count > 0) {
-				if (e.Button == MouseButtons.Right) {
-					contextMenuStripMain = new ContextMenuStrip();
-					contextMenuStripMain.Items.Add(AddUserToolStripMenuItem.Clone());
-					contextMenuStripMain.Items.Add(ChangePasswordToolStripMenuItem.Clone());
-					contextMenuStripMain.Items.Add(RemoveUserToolStripMenuItem.Clone());
-					contextMenuStripMain.Show(lstData.PointToScreen(e.Location));
-				}
-			}
-		}
+        protected void lstData_MouseClick(object sender, MouseEventArgs e)
+        {
+            RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
+            if (lstData.SelectedItems.Count > 0)
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    contextMenuStripMain = new ContextMenuStrip();
+                    contextMenuStripMain.Items.Add(AddUserToolStripMenuItem.Clone());
+                    contextMenuStripMain.Items.Add(ChangePasswordToolStripMenuItem.Clone());
+                    contextMenuStripMain.Items.Add(RemoveUserToolStripMenuItem.Clone());
+                    contextMenuStripMain.Show(lstData.PointToScreen(e.Location));
+                }
+            }
+        }
 
-		#region"用户"
-		/// <summary>
-		/// 打开新用户
-		/// </summary>
-		public System.Action OpenAddNewUserForm;
-		/// <summary>
-		/// 更改密码
-		/// </summary>
-		public System.Action OpenChangePasswordForm;
-		/// <summary>
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void AddUserStripButton_Click(object sender, EventArgs e)
-		{
-			OpenAddNewUserForm();
-			RefreshGUI();
-		}
+        #region"用户"
 
-		/// <summary>
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void RemoveUserStripButton_Click(object sender, EventArgs e)
-		{
-			if (mDataViewInfo.IsAdminDB) {
-				RemoveUserFromAdmin();
-			} else {
-				RemoveUser();
-			}
-			RefreshGUI();
-		}
+        /// <summary>
+        ///     打开新用户
+        /// </summary>
+        public Action OpenAddNewUserForm;
 
-		/// <summary>
-		///     Drop User from Admin Group
-		/// </summary>
-		private void RemoveUserFromAdmin()
-		{
-			String strTitle = "Drop User";
-			String strMessage = "Are you sure to delete user(s) from Admin Group?";
-			if (!configuration.guiConfig.IsUseDefaultLanguage) {
-				strTitle = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User);
-				strMessage = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
-			}
+        /// <summary>
+        ///     更改密码
+        /// </summary>
+        public Action OpenChangePasswordForm;
 
-			//这里也可以使用普通的删除数据的方法来删除用户。
-			if (MyMessageBox.ShowConfirm(strTitle, strMessage)) {
-				if (tabDataShower.SelectedTab == tabTableView) {
-					//lstData
-					foreach (ListViewItem item in lstData.SelectedItems) {
-						User.RemoveUserFromSystem(item.SubItems[1].Text, true);
-					}
-					lstData.ContextMenuStrip = null;
-				} else {
-					User.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), true);
-					trvData.DatatreeView.ContextMenuStrip = null;
-				}
-				RefreshGUI();
-			}
-		}
+        /// <summary>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddUserStripButton_Click(object sender, EventArgs e)
+        {
+            OpenAddNewUserForm();
+            RefreshGUI();
+        }
 
-		/// <summary>
-		///     Delete User
-		/// </summary>
-		private void RemoveUser()
-		{
-			String strTitle = "Drop User";
-			String strMessage = "Are you sure to delete user(s) from this database";
-			if (!configuration.guiConfig.IsUseDefaultLanguage) {
-				strTitle = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User);
-				strMessage = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
-			}
-			if (MyMessageBox.ShowConfirm(strTitle, strMessage)) {
-				if (tabDataShower.SelectedTab == tabTableView) {
-					//lstData
-					foreach (ListViewItem item in lstData.SelectedItems) {
-						User.RemoveUserFromSystem(item.SubItems[1].Text, false);
-					}
-					lstData.ContextMenuStrip = null;
-				} else {
-					User.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), false);
-					trvData.DatatreeView.ContextMenuStrip = null;
-				}
-				RemoveUserToolStripMenuItem.Enabled = false;
-				RefreshGUI();
-			}
-		}
-		/// <summary>
-		///     密码变更
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void ChangePasswordStripButton_Click(object sender, EventArgs e)
-		{
+        /// <summary>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveUserStripButton_Click(object sender, EventArgs e)
+        {
+            if (mDataViewInfo.IsAdminDB)
+            {
+                RemoveUserFromAdmin();
+            }
+            else
+            {
+                RemoveUser();
+            }
+            RefreshGUI();
+        }
+
+        /// <summary>
+        ///     Drop User from Admin Group
+        /// </summary>
+        private void RemoveUserFromAdmin()
+        {
+            var strTitle = "Drop User";
+            var strMessage = "Are you sure to delete user(s) from Admin Group?";
+            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            {
+                strTitle = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User);
+                strMessage = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
+            }
+
+            //这里也可以使用普通的删除数据的方法来删除用户。
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
+            {
+                if (tabDataShower.SelectedTab == tabTableView)
+                {
+                    //lstData
+                    foreach (ListViewItem item in lstData.SelectedItems)
+                    {
+                        User.RemoveUserFromSystem(item.SubItems[1].Text, true);
+                    }
+                    lstData.ContextMenuStrip = null;
+                }
+                else
+                {
+                    User.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), true);
+                    trvData.DatatreeView.ContextMenuStrip = null;
+                }
+                RefreshGUI();
+            }
+        }
+
+        /// <summary>
+        ///     Delete User
+        /// </summary>
+        private void RemoveUser()
+        {
+            var strTitle = "Drop User";
+            var strMessage = "Are you sure to delete user(s) from this database";
+            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            {
+                strTitle = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User);
+                strMessage = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
+            }
+            if (MyMessageBox.ShowConfirm(strTitle, strMessage))
+            {
+                if (tabDataShower.SelectedTab == tabTableView)
+                {
+                    //lstData
+                    foreach (ListViewItem item in lstData.SelectedItems)
+                    {
+                        User.RemoveUserFromSystem(item.SubItems[1].Text, false);
+                    }
+                    lstData.ContextMenuStrip = null;
+                }
+                else
+                {
+                    User.RemoveUserFromSystem(trvData.DatatreeView.SelectedNode.Tag.ToString(), false);
+                    trvData.DatatreeView.ContextMenuStrip = null;
+                }
+                RemoveUserToolStripMenuItem.Enabled = false;
+                RefreshGUI();
+            }
+        }
+
+        /// <summary>
+        ///     密码变更
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChangePasswordStripButton_Click(object sender, EventArgs e)
+        {
 //            Common.Utility.OpenForm(mDataViewInfo.strDBTag.EndsWith(ConstMgr.DATABASE_NAME_ADMIN + "/" +
 //                                                                   ConstMgr.COLLECTION_NAME_USER)
 //                ? new frmUser(true, lstData.SelectedItems[0].SubItems[1].Text)
 //                : new frmUser(false, lstData.SelectedItems[0].SubItems[1].Text), true, true);
-			OpenChangePasswordForm();
-			RefreshGUI();
-		}
+            OpenChangePasswordForm();
+            RefreshGUI();
+        }
 
-		#endregion
-	}
+        #endregion
+    }
 }

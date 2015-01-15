@@ -48,7 +48,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\mongocsharpdriver.1.10.0-rc1\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
@@ -63,15 +62,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyIReferenceResolver.cs" />
@@ -95,10 +86,6 @@
     <ProjectReference Include="..\MongoGUICtl\MongoGUICtl.csproj">
       <Project>{EC2826B3-7033-4F9B-B52A-BD1CA85F583B}</Project>
       <Name>MongoGUICtl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MongoGUIView\MongoGUIView.csproj">
-      <Project>{E71AF267-0DFD-4E71-94A7-48F40793CEEF}</Project>
-      <Name>MongoGUIView</Name>
     </ProjectReference>
     <ProjectReference Include="..\MongoUtility\MongoUtility.csproj">
       <Project>{56D74944-4B20-4941-BC67-72A8E57E5A02}</Project>

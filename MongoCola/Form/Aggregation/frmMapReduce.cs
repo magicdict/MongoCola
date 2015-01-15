@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoUtility.Operation;
+using SystemUtility;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using SystemUtility;
+using MongoGUICtl;
+using MongoUtility.Core;
 using ResourceLib;
 
 namespace MongoCola
@@ -61,11 +62,11 @@ namespace MongoCola
             var reduce = new BsonJavaScript(ctlReduceFunction.Context);
             //TODO:这里可能会超时，失去响应
             //需要设置SocketTimeOut
-            MapReduceArgs args = new MapReduceArgs();
+            var args = new MapReduceArgs();
             args.MapFunction = map;
             args.ReduceFunction = reduce;
-            MapReduceResult mMapReduceResult = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().MapReduce(args);
-            MongoGUICtl.UIHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
+            var mMapReduceResult = RuntimeMongoDBContext.GetCurrentCollection().MapReduce(args);
+            UIHelper.FillDataToTreeView("MapReduce Result", trvResult, mMapReduceResult.Response);
             trvResult.DatatreeView.BeginUpdate();
             trvResult.DatatreeView.ExpandAll();
             trvResult.DatatreeView.EndUpdate();

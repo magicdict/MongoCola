@@ -8,7 +8,7 @@ namespace Common
         /// <summary>
         ///     Return Result
         /// </summary>
-        internal Boolean Result = false;
+        internal Boolean Result;
 
         /// <summary>
         ///     Init Form

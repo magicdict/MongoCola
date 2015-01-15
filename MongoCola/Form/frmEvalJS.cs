@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Common;
-using MongoUtility.Operation;
-using MongoDB.Bson;
-using MongoDB.Driver;
 using SystemUtility;
+using Common;
+using MongoDB.Bson;
+using MongoUtility.Core;
 using ResourceLib;
 
 namespace MongoCola
@@ -46,12 +45,12 @@ return i;
         /// <param name="e"></param>
         private void cmdEval_Click(object sender, EventArgs e)
         {
-            MongoDatabase mongoDB = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase();
+            var mongoDB = RuntimeMongoDBContext.GetCurrentDataBase();
             var js = new BsonJavaScript(ctlEval.Context);
             var Params = new List<Object>();
             if (txtParm.Text != String.Empty)
             {
-                foreach (String parm in txtParm.Text.Split(",".ToCharArray()))
+                foreach (var parm in txtParm.Text.Split(",".ToCharArray()))
                 {
                     if (parm.StartsWith("'") & parm.EndsWith("'"))
                     {
@@ -61,8 +60,8 @@ return i;
                     {
                         try
                         {
-                            Boolean isNuberic = true;
-                            for (int i = 0; i < parm.Length; i++)
+                            var isNuberic = true;
+                            for (var i = 0; i < parm.Length; i++)
                             {
                                 if (!char.IsNumber(parm, i))
                                 {
@@ -76,19 +75,20 @@ return i;
                         }
                         catch (Exception ex)
                         {
-                            Common.Utility.ExceptionDeal(ex, "Exception", "Parameter Exception");
+                            Utility.ExceptionDeal(ex, "Exception", "Parameter Exception");
                         }
                     }
                 }
             }
             try
             {
-                BsonValue result = mongoDB.Eval(js, Params.ToArray());
-                MyMessageBox.ShowMessage("Result", "Result", result.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings), true);
+                var result = mongoDB.Eval(js, Params.ToArray());
+                MyMessageBox.ShowMessage("Result", "Result",
+                    result.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings), true);
             }
             catch (Exception ex)
             {
-                Common.Utility.ExceptionDeal(ex, "Exception", "Result");
+                Utility.ExceptionDeal(ex, "Exception", "Result");
             }
         }
     }

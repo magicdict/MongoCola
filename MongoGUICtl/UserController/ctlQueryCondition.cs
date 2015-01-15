@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MongoUtility.Operation;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
@@ -63,12 +62,12 @@ namespace MongoGUICtl
             cmbEndMark.SelectedIndex = 0;
 
             //字段表的载入
-            foreach (string item in ColumnList)
+            foreach (var item in ColumnList)
             {
                 cmbColName.Items.Add(item);
             }
             //逻辑操作符号的载入
-            foreach (string item in Enum.GetNames(typeof (DataFilter.CompareEnum)))
+            foreach (var item in Enum.GetNames(typeof (DataFilter.CompareEnum)))
             {
                 cmbCompareOpr.Items.Add(item);
             }

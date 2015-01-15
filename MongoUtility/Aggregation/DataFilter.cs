@@ -66,7 +66,7 @@ namespace MongoUtility.Aggregation
             /// <summary>
             ///     降序
             /// </summary>
-            Descending,
+            Descending
         }
 
         /// <summary>

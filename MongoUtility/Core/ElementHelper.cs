@@ -1,15 +1,15 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
-using System;
 
 namespace MongoUtility.Core
 {
-    public static partial class ElementHelper
+    public static class ElementHelper
     {
         /// <summary>
         /// </summary>
-        public static Object _ClipElement = null;
+        public static Object _ClipElement;
 
         /// <summary>
         /// </summary>
@@ -42,11 +42,12 @@ namespace MongoUtility.Core
         ///     Paste
         /// </summary>
         /// <param name="ElementPath"></param>
-		/// <param name = "CurrentDocument"></param>
-        public static String PasteElement(String ElementPath,BsonDocument CurrentDocument,MongoCollection CurrentCollection)
+        /// <param name="CurrentDocument"></param>
+        public static String PasteElement(String ElementPath, BsonDocument CurrentDocument,
+            MongoCollection CurrentCollection)
         {
-            BsonDocument BaseDoc = CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
+            var BaseDoc = CurrentDocument;
+            var t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonDocument)
             {
                 try
@@ -68,10 +69,11 @@ namespace MongoUtility.Core
         /// <summary>
         /// </summary>
         /// <param name="ElementPath"></param>
-        public static void PasteValue(String ElementPath,BsonDocument CurrentDocument,MongoCollection CurrentCollection)
+        public static void PasteValue(String ElementPath, BsonDocument CurrentDocument,
+            MongoCollection CurrentCollection)
         {
-            BsonDocument BaseDoc = CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
+            var BaseDoc = CurrentDocument;
+            var t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonArray)
             {
                 t.AsBsonArray.Insert(t.AsBsonArray.Count, (BsonValue) _ClipElement);
@@ -106,22 +108,24 @@ namespace MongoUtility.Core
         ///     Cut Element
         /// </summary>
         /// <param name="ElementPath"></param>
-        public static void CutElement(String ElementPath, BsonElement El,BsonDocument CurrentDocument,MongoCollection CurrentCollection)
+        public static void CutElement(String ElementPath, BsonElement El, BsonDocument CurrentDocument,
+            MongoCollection CurrentCollection)
         {
             _ClipElement = El;
             _IsElementClip = true;
-            DropElement(ElementPath, El,CurrentDocument,CurrentCollection);
+            DropElement(ElementPath, El, CurrentDocument, CurrentCollection);
         }
 
         /// <summary>
         ///     Cut Array Value
         /// </summary>
         /// <param name="ElementPath"></param>
-        public static void CutValue(String ElementPath, int ValueIndex, BsonValue Val,BsonDocument CurrentDocument,MongoCollection CurrentCollection)
+        public static void CutValue(String ElementPath, int ValueIndex, BsonValue Val, BsonDocument CurrentDocument,
+            MongoCollection CurrentCollection)
         {
             _ClipElement = Val;
             _IsElementClip = false;
-            DropArrayValue(ElementPath, ValueIndex,CurrentDocument,CurrentCollection);
+            DropArrayValue(ElementPath, ValueIndex, CurrentDocument, CurrentCollection);
         }
 
         /// <summary>
@@ -129,11 +133,12 @@ namespace MongoUtility.Core
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="AddElement"></param>
-        public static String AddElement(String ElementPath, BsonElement AddElement,BsonDocument CurrentDocument,MongoCollection CurrentCollection)
+        public static String AddElement(String ElementPath, BsonElement AddElement, BsonDocument CurrentDocument,
+            MongoCollection CurrentCollection)
         {
-            BsonDocument BaseDoc = CurrentDocument;
+            var BaseDoc = CurrentDocument;
             WriteConcernResult rtn;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
+            var t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonDocument)
             {
                 try
@@ -157,10 +162,11 @@ namespace MongoUtility.Core
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="AddValue"></param>
-        public static void AddArrayValue(String ElementPath, BsonValue AddValue,BsonDocument CurrentDocument,MongoCollection CurrentCollection)
+        public static void AddArrayValue(String ElementPath, BsonValue AddValue, BsonDocument CurrentDocument,
+            MongoCollection CurrentCollection)
         {
-            BsonDocument BaseDoc = CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, true);
+            var BaseDoc = CurrentDocument;
+            var t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonArray)
             {
                 t.AsBsonArray.Insert(t.AsBsonArray.Count, AddValue);
@@ -176,10 +182,11 @@ namespace MongoUtility.Core
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="El"></param>
-        public static void DropElement(String ElementPath, BsonElement El,BsonDocument CurrentDocument,MongoCollection CurrentCollection)
+        public static void DropElement(String ElementPath, BsonElement El, BsonDocument CurrentDocument,
+            MongoCollection CurrentCollection)
         {
-            BsonDocument BaseDoc = CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, false);
+            var BaseDoc = CurrentDocument;
+            var t = GetLastParentDocument(BaseDoc, ElementPath, false);
             if (t.IsBsonDocument)
             {
                 t.AsBsonDocument.Remove(El.Name);
@@ -192,10 +199,11 @@ namespace MongoUtility.Core
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="ValueIndex"></param>
-        public static void DropArrayValue(String ElementPath, int ValueIndex,BsonDocument CurrentDocument,MongoCollection CurrentCollection)
+        public static void DropArrayValue(String ElementPath, int ValueIndex, BsonDocument CurrentDocument,
+            MongoCollection CurrentCollection)
         {
-            BsonDocument BaseDoc = CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, false);
+            var BaseDoc = CurrentDocument;
+            var t = GetLastParentDocument(BaseDoc, ElementPath, false);
             if (t.IsBsonArray)
             {
                 t.AsBsonArray.RemoveAt(ValueIndex);
@@ -212,10 +220,11 @@ namespace MongoUtility.Core
         /// <param name="ElementPath"></param>
         /// <param name="NewValue"></param>
         /// <param name="El"></param>
-        public static void ModifyElement(String ElementPath, BsonValue NewValue, BsonElement El,BsonDocument CurrentDocument,MongoCollection CurrentCollection)
+        public static void ModifyElement(String ElementPath, BsonValue NewValue, BsonElement El,
+            BsonDocument CurrentDocument, MongoCollection CurrentCollection)
         {
-            BsonDocument BaseDoc = CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, false);
+            var BaseDoc = CurrentDocument;
+            var t = GetLastParentDocument(BaseDoc, ElementPath, false);
             if (t.IsBsonDocument)
             {
                 t.AsBsonDocument.GetElement(El.Name).Value = NewValue;
@@ -232,10 +241,11 @@ namespace MongoUtility.Core
         /// <param name="ElementPath"></param>
         /// <param name="NewValue"></param>
         /// <param name="ValueIndex"></param>
-        public static void ModifyArrayValue(String ElementPath, BsonValue NewValue, int ValueIndex,BsonDocument CurrentDocument,MongoCollection CurrentCollection)
+        public static void ModifyArrayValue(String ElementPath, BsonValue NewValue, int ValueIndex,
+            BsonDocument CurrentDocument, MongoCollection CurrentCollection)
         {
-            BsonDocument BaseDoc = CurrentDocument;
-            BsonValue t = GetLastParentDocument(BaseDoc, ElementPath, false);
+            var BaseDoc = CurrentDocument;
+            var t = GetLastParentDocument(BaseDoc, ElementPath, false);
             if (t.IsBsonArray)
             {
                 t.AsBsonArray[ValueIndex] = NewValue;
@@ -245,7 +255,6 @@ namespace MongoUtility.Core
                 CurrentCollection.Save(BaseDoc);
             }
         }
-
 
         /// <summary>
         ///     Locate the Operation Place
@@ -259,7 +268,7 @@ namespace MongoUtility.Core
             BsonValue Current = BaseDoc;
             //JpCnWord[1]\Translations[ARRAY]\Translations[1]\Sentences[ARRAY]\Sentences[1]\Japanese:"ああいう文章はなかなか書けない"
             //1.将路径按照\分开
-            String[] strPath = ElementPath.Split(@"\".ToCharArray());
+            var strPath = ElementPath.Split(@"\".ToCharArray());
             //JpCnWord[1]                                    First
             //Translations[ARRAY]
             //Translations[1]
@@ -275,10 +284,10 @@ namespace MongoUtility.Core
             {
                 DeepLv = strPath.Length - 1;
             }
-            for (int i = 1; i < DeepLv; i++)
+            for (var i = 1; i < DeepLv; i++)
             {
-                String strTag = strPath[i];
-                Boolean IsArray = false;
+                var strTag = strPath[i];
+                var IsArray = false;
                 if (strTag.EndsWith(ConstMgr.Array_Mark))
                 {
                     //去除[Array]后缀
@@ -292,7 +301,7 @@ namespace MongoUtility.Core
                     {
                         //Array里面的Array,所以没有元素名称。
                         //TODO：正确做法是将元素的Index传入，这里暂时认为第一个数组就是目标数组
-                        foreach (BsonValue item in Current.AsBsonArray)
+                        foreach (var item in Current.AsBsonArray)
                         {
                             if (item.IsBsonArray)
                             {

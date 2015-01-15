@@ -1,7 +1,4 @@
-﻿using MongoUtility.Operation;
-using ResourceLib;
-using System;
-using System.Drawing;
+﻿using System;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
@@ -10,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Web;
+using ResourceLib;
 
 namespace HTTPServer
 {
@@ -49,8 +47,8 @@ namespace HTTPServer
             try
             {
                 // Set the TcpListener on port 13000.
-                Int32 port = 13000;
-                IPAddress localAddr = IPAddress.Parse("127.0.0.1");
+                var port = 13000;
+                var localAddr = IPAddress.Parse("127.0.0.1");
 
                 // TcpListener server = new TcpListener(port);
                 server = new TcpListener(localAddr, port);
@@ -62,7 +60,7 @@ namespace HTTPServer
                 while (true)
                 {
                     //对于每个请求创建一个线程，线程的参数是TcpClient对象
-                    TcpClient client = server.AcceptTcpClient();
+                    var client = server.AcceptTcpClient();
                     OutputLog("[Init]" + DateTime.Now + "Connected!", 0);
                     ParameterizedThreadStart ParStart = ProcessFun;
                     var t = new Thread(ParStart);
@@ -94,22 +92,22 @@ namespace HTTPServer
             OutputLog("[Init]Waiting for a connection... ", 0);
 
             // Get a stream object for reading and writing
-            NetworkStream stream = client.GetStream();
+            var stream = client.GetStream();
             int i;
             // Loop to receive all the data sent by the client.
             while ((client.Available != 0) && (i = stream.Read(bytes, 0, bytes.Length)) != 0)
             {
                 // Translate data bytes to a ASCII string.
-                String data = Encoding.ASCII.GetString(bytes, 0, i);
+                var data = Encoding.ASCII.GetString(bytes, 0, i);
                 //OutputLog("Received:" + data);
 
-                string[] OrgRequest = data.Split(Environment.NewLine.ToCharArray());
+                var OrgRequest = data.Split(Environment.NewLine.ToCharArray());
                 if (OrgRequest[0].StartsWith("GET"))
                 {
-                    String[] Request = OrgRequest[0].Split(" ".ToCharArray());
-                    String RequestItem = HttpUtility.UrlDecode(Request[1], Encoding.UTF8);
+                    var Request = OrgRequest[0].Split(" ".ToCharArray());
+                    var RequestItem = HttpUtility.UrlDecode(Request[1], Encoding.UTF8);
                     OutputLog("[RequestItem]Received : " + RequestItem, 0);
-                    String[] RequestPath = RequestItem.Split("?".ToCharArray());
+                    var RequestPath = RequestItem.Split("?".ToCharArray());
                     switch (RequestPath[0])
                     {
                         case "/":
@@ -122,9 +120,9 @@ namespace HTTPServer
                         case "/ASHX/GetCollection.ashx":
                         case "/ASHX/GetDatabase.ashx":
                         case "/ASHX/GetConnection.ashx":
-                            String[] Arg = RequestPath[1].Split("&".ToCharArray());
-                            String strTag = Arg[0].Substring("Tag=".Length);
-                            String strData = Arg[1].Substring("Data=".Length);
+                            var Arg = RequestPath[1].Split("&".ToCharArray());
+                            var strTag = Arg[0].Substring("Tag=".Length);
+                            var strData = Arg[1].Substring("Data=".Length);
                             switch (RequestPath[0])
                             {
                                 case "/ASHX/GetConnection.ashx":
@@ -164,8 +162,8 @@ namespace HTTPServer
         private void GETPage(NetworkStream stream, String PageContent)
         {
             byte[] msg = null;
-            byte[] bFile = Encoding.UTF8.GetBytes(PageContent);
-            String data = String.Empty;
+            var bFile = Encoding.UTF8.GetBytes(PageContent);
+            var data = String.Empty;
             data = "HTTP/1.1 200 OK" + Environment.NewLine;
             data += "Content-Type: text/html; charset=utf-8" + Environment.NewLine;
             data += "Content-Length: ";
@@ -202,8 +200,8 @@ namespace HTTPServer
         {
             byte[] msg = null;
             var bFile = new byte[0];
-            String data = String.Empty;
-            Boolean IsFound = false;
+            var data = String.Empty;
+            var IsFound = false;
             if (File.Exists(ServerPath + FileName))
             {
                 IsFound = true;
@@ -215,8 +213,8 @@ namespace HTTPServer
                 if (FileName.StartsWith("\\MainTreeImage"))
                 {
                     //MainTreeImage00.png -- 从MainTreeImage 里面获得
-                    int MainTreeImageIndex = Convert.ToInt32(FileName.Substring("\\MainTreeImage".Length, 2));
-                    Image img = GetSystemIcon.MainTreeImage.Images[MainTreeImageIndex];
+                    var MainTreeImageIndex = Convert.ToInt32(FileName.Substring("\\MainTreeImage".Length, 2));
+                    var img = GetSystemIcon.MainTreeImage.Images[MainTreeImageIndex];
                     bFile = GetSystemIcon.imageToByteArray(img, ImageFormat.Png);
                     IsFound = true;
                 }
@@ -226,7 +224,7 @@ namespace HTTPServer
                 // Process the data sent by the client.
                 data = "HTTP/1.1 200 OK" + Environment.NewLine;
                 //if content-type is wrong,FF can;t render it,but IE can
-                string filetype = String.Empty;
+                var filetype = String.Empty;
                 switch (new FileInfo(FileName).Extension)
                 {
                     case ".css":

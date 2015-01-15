@@ -3,41 +3,42 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUIView;
 using MongoUtility.Basic;
+using MongoUtility.Operation;
 
 namespace PlugInPackage
 {
     public class ExportToExcel : PlugInBase
     {
         /// <summary>
-        /// 内部变量
+        ///     内部变量
         /// </summary>
-        static MongoCollection ProcessCollection;
+        private static MongoCollection ProcessCollection;
 
         /// <summary>
-        /// 初始化设定
+        ///     初始化设定
         /// </summary>
         public ExportToExcel()
         {
-        	base.RunLv = PlugInBase.PathLv.CollectionLV;
-            base.PlugName = "导出到Excel工具";
-            base.PlugFunction = "将数据集导出到Excel";
+            RunLv = PathLv.CollectionLV;
+            PlugName = "导出到Excel工具";
+            PlugFunction = "将数据集导出到Excel";
         }
 
         /// <summary>
-        /// 运行
+        ///     运行
         /// </summary>
         /// <returns></returns>
         public override int Run()
         {
-            ProcessCollection = (MongoCollection)base.PlugObj;
+            ProcessCollection = (MongoCollection) PlugObj;
             MessageBox.Show(ProcessCollection.Name);
             return 0;
         }
+
         /// <summary>
         ///     导出到Excel
         /// </summary>
@@ -45,12 +46,12 @@ namespace PlugInPackage
         /// <param name="filename"></param>
         private static void T(List<BsonDocument> dataList, String filename)
         {
-            List<String> Schame = Utility.GetCollectionSchame(ProcessCollection);
+            var Schame = Utility.GetCollectionSchame(ProcessCollection);
             dynamic excelObj = Interaction.CreateObject("Excel.Application");
             excelObj.Visible = true;
             dynamic workbook;
             dynamic worksheet;
-            Boolean IsNew = false;
+            var IsNew = false;
             if (File.Exists(filename))
             {
                 workbook = excelObj.Workbooks.Open(filename);
@@ -64,18 +65,18 @@ namespace PlugInPackage
             }
             worksheet.Select();
             worksheet.Name = ProcessCollection.Name;
-            int rowCount = 1;
-            int colCount = 1;
-            foreach (string item in Schame)
+            var rowCount = 1;
+            var colCount = 1;
+            foreach (var item in Schame)
             {
                 worksheet.Cells(rowCount, colCount).Value = item;
                 colCount++;
             }
             rowCount++;
-            foreach (BsonDocument docItem in dataList)
+            foreach (var docItem in dataList)
             {
                 colCount = 1;
-                bool isSystem = OperationHelper.IsSystemCollection(ProcessCollection);
+                var isSystem = OperationHelper.IsSystemCollection(ProcessCollection);
                 if (!isSystem)
                 {
                     BsonElement id;
@@ -89,7 +90,7 @@ namespace PlugInPackage
                     worksheet.Cells(rowCount, colCount).Value = docItem.GetValue(Schame[0]).ToString();
                 }
                 //OtherItems
-                for (int i = isSystem ? 1 : 0; i < Schame.Count; i++)
+                for (var i = isSystem ? 1 : 0; i < Schame.Count; i++)
                 {
                     if (Schame[i] == ConstMgr.KEY_ID)
                     {

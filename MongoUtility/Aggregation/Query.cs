@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
+
 namespace MongoUtility.Aggregation
 {
     public static class QueryHelper
@@ -16,7 +17,7 @@ namespace MongoUtility.Aggregation
         public static String[] GetOutputFields(List<DataFilter.QueryFieldItem> FieldItemLst)
         {
             var outputFieldLst = new List<String>();
-            foreach (DataFilter.QueryFieldItem item in FieldItemLst)
+            foreach (var item in FieldItemLst)
             {
                 if (item.IsShow)
                 {
@@ -36,7 +37,7 @@ namespace MongoUtility.Aggregation
             var ascendingList = new List<String>();
             var descendingList = new List<String>();
             //_id将以文字的形式排序，所以不要排序_id!!
-            foreach (DataFilter.QueryFieldItem item in FieldItemLst)
+            foreach (var item in FieldItemLst)
             {
                 switch (item.sortType)
                 {
@@ -66,7 +67,7 @@ namespace MongoUtility.Aggregation
             //遍历所有条件，分组
             var conditiongrpList = new List<List<DataFilter.QueryConditionInputItem>>();
             List<DataFilter.QueryConditionInputItem> currGrp = null;
-            for (int i = 0; i < QueryCompareList.Count; i++)
+            for (var i = 0; i < QueryCompareList.Count; i++)
             {
                 if (i == 0 || QueryCompareList[i].StartMark == "(" || QueryCompareList[i - 1].EndMark.StartsWith(")"))
                 {
@@ -86,9 +87,9 @@ namespace MongoUtility.Aggregation
             {
                 return GetGroupQuery(conditiongrpList[0]);
             }
-            for (int i = 0; i < conditiongrpList.Count - 1; i++)
+            for (var i = 0; i < conditiongrpList.Count - 1; i++)
             {
-                String joinMark = conditiongrpList[i][conditiongrpList[i].Count() - 1].EndMark;
+                var joinMark = conditiongrpList[i][conditiongrpList[i].Count() - 1].EndMark;
                 if (joinMark == ConstMgr.EndMark_AND_T)
                 {
                     rtnQuery =
@@ -115,16 +116,16 @@ namespace MongoUtility.Aggregation
         /// <returns></returns>
         private static IMongoQuery GetGroupQuery(List<DataFilter.QueryConditionInputItem> conditionGroup)
         {
-            IMongoQuery rtnQuery = Query.Or(GetQuery(conditionGroup[0]));
-            for (int i = 1; i < conditionGroup.Count; i++)
+            var rtnQuery = Query.Or(GetQuery(conditionGroup[0]));
+            for (var i = 1; i < conditionGroup.Count; i++)
             {
                 if (conditionGroup[i - 1].EndMark == ConstMgr.EndMark_AND)
                 {
-                    rtnQuery = Query.And(new[] {rtnQuery, GetQuery(conditionGroup[i])});
+                    rtnQuery = Query.And(rtnQuery, GetQuery(conditionGroup[i]));
                 }
                 if (conditionGroup[i - 1].EndMark == ConstMgr.EndMark_OR)
                 {
-                    rtnQuery = Query.Or(new[] {rtnQuery, GetQuery(conditionGroup[i])});
+                    rtnQuery = Query.Or(rtnQuery, GetQuery(conditionGroup[i]));
                 }
             }
             return rtnQuery;
@@ -138,7 +139,7 @@ namespace MongoUtility.Aggregation
         private static IMongoQuery GetQuery(DataFilter.QueryConditionInputItem item)
         {
             IMongoQuery query;
-            BsonValue queryvalue = item.Value.GetBsonValue();
+            var queryvalue = item.Value.GetBsonValue();
             switch (item.Compare)
             {
                 case DataFilter.CompareEnum.EQ:

@@ -1,9 +1,9 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
-using System;
-using System.Collections.Generic;
 
 namespace MongoUtility.Security
 {
@@ -11,6 +11,7 @@ namespace MongoUtility.Security
     {
         public Dictionary<String, User> UserList =
             new Dictionary<string, User>();
+
         /// <summary>
         ///     获得数据库角色
         /// </summary>
@@ -25,7 +26,7 @@ namespace MongoUtility.Security
                 roles = UserList[DatabaseName].roles;
             }
             //Admin的OtherDBRoles和当前数据库角色合并
-            BsonArray adminRoles = GetOtherDBRoles(DatabaseName);
+            var adminRoles = GetOtherDBRoles(DatabaseName);
             foreach (String item in adminRoles)
             {
                 if (!roles.Contains(item))
@@ -105,8 +106,8 @@ namespace MongoUtility.Security
         /// <returns></returns>
         public override string ToString()
         {
-            String UserInfo = String.Empty;
-            foreach (string item in UserList.Keys)
+            var UserInfo = String.Empty;
+            foreach (var item in UserList.Keys)
             {
                 UserInfo += "DataBase:" + item + Environment.NewLine;
                 if (UserList[item].roles != null)

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoUtility.Operation;
 using MongoUtility.Basic;
+using MongoUtility.Core;
 using ResourceLib;
 
 namespace MongoGUICtl
@@ -16,13 +16,16 @@ namespace MongoGUICtl
             InitializeComponent();
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                lblKeyName.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
-                radAscendingKey.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Asce);
-                radDescendingKey.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Desc);
+                lblKeyName.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
+                radAscendingKey.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Asce);
+                radDescendingKey.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Desc);
             }
-            if (MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection() != null)
+            if (RuntimeMongoDBContext.GetCurrentCollection() != null)
             {
-                foreach (String FieldName in MongoUtility.Basic.Utility.GetCollectionSchame(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection()))
+                foreach (var FieldName in Utility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection()))
                 {
                     cmbKeyName.Items.Add(FieldName);
                 }

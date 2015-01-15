@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using Common;
-using ResourceLib;
 using MongoUtility.Operation;
+using ResourceLib;
+using Utility = MongoUtility.Basic.Utility;
 
 namespace MongoGUICtl
 {
@@ -36,17 +37,19 @@ namespace MongoGUICtl
         {
             if (!DesignMode)
             {
-                foreach (String item in MongoUtility.Basic.Utility.GetJsNameList())
+                foreach (var item in Utility.GetJsNameList())
                 {
                     cmbJsList.Items.Add(item);
                 }
                 cmbJsList.SelectedIndexChanged +=
-                    (x, y) => { txtContext.Text = OperationHelper.LoadJavascript(cmbJsList.Text,null); };
+                    (x, y) => { txtContext.Text = OperationHelper.LoadJavascript(cmbJsList.Text, null); };
                 if (!configuration.guiConfig.IsUseDefaultLanguage)
                 {
                     cmdSave.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
-                    cmdSaveLocal.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save_Local);
-                    cmdLoadLocal.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Action_Load);
+                    cmdSaveLocal.Text =
+                        configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save_Local);
+                    cmdLoadLocal.Text =
+                        configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Action_Load);
                 }
             }
         }
@@ -60,9 +63,9 @@ namespace MongoGUICtl
         {
             if (txtContext.Text != String.Empty)
             {
-                String strJsName = MyMessageBox.ShowInput("please Input Javascript Name：[Save at system.js]",
+                var strJsName = MyMessageBox.ShowInput("please Input Javascript Name：[Save at system.js]",
                     "Save Javascript");
-                OperationHelper.CreateNewJavascript(strJsName, txtContext.Text,null);
+                OperationHelper.CreateNewJavascript(strJsName, txtContext.Text, null);
             }
         }
 
@@ -83,7 +86,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void cmdLoadLocal_Click(object sender, EventArgs e)
         {
-        	txtContext.Text = Common.Utility.LoadFile();
+            txtContext.Text = Common.Utility.LoadFile();
         }
     }
 }

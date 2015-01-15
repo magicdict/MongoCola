@@ -5,15 +5,12 @@ using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
+using MongoUtility.Core;
 
 namespace MongoGUICtl
 {
     public partial class FieldPicker : UserControl
     {
-        private ctlFieldInfo.FieldMode mFieldListMode;
-
-        private bool mIDProtectMode;
-
         private List<DataFilter.QueryFieldItem> mQueryFieldList = new List<DataFilter.QueryFieldItem>();
 
         /// <summary>
@@ -24,20 +21,12 @@ namespace MongoGUICtl
             InitializeComponent();
         }
 
-        public ctlFieldInfo.FieldMode FieldListMode
-        {
-            get { return mFieldListMode; }
-            set { mFieldListMode = value; }
-        }
+        public ctlFieldInfo.FieldMode FieldListMode { get; set; }
 
         /// <summary>
         ///     ID的显示属性是否可变
         /// </summary>
-        public bool IsIDProtect
-        {
-            set { mIDProtectMode = value; }
-            get { return mIDProtectMode; }
-        }
+        public bool IsIDProtect { set; get; }
 
         /// <summary>
         ///     QueryFieldList
@@ -54,7 +43,7 @@ namespace MongoGUICtl
         public List<DataFilter.QueryFieldItem> getQueryFieldList()
         {
             var rtnList = new List<DataFilter.QueryFieldItem>();
-            foreach (DataFilter.QueryFieldItem item in mQueryFieldList)
+            foreach (var item in mQueryFieldList)
             {
                 rtnList.Add(((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).QueryFieldItem);
             }
@@ -66,9 +55,9 @@ namespace MongoGUICtl
         /// <param name="mIsShow"></param>
         public void InitByCurrentCollection(bool mIsShow)
         {
-            List<String> ColumnList = MongoUtility.Basic.Utility.GetCollectionSchame(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
+            var ColumnList = Utility.GetCollectionSchame(RuntimeMongoDBContext.GetCurrentCollection());
             var FieldList = new List<DataFilter.QueryFieldItem>();
-            foreach (String item in ColumnList)
+            foreach (var item in ColumnList)
             {
                 //输出配置的初始化
                 var queryFieldItem = new DataFilter.QueryFieldItem();
@@ -94,9 +83,9 @@ namespace MongoGUICtl
             var Aggregation = new BsonDocument();
             var project = new BsonDocument();
             var sort = new BsonDocument();
-            foreach (DataFilter.QueryFieldItem item in mQueryFieldList)
+            foreach (var item in mQueryFieldList)
             {
-                DataFilter.QueryFieldItem ctl = ((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).QueryFieldItem;
+                var ctl = ((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).QueryFieldItem;
                 if (ctl.ColName == ConstMgr.KEY_ID)
                 {
                     if (!ctl.IsShow)
@@ -145,9 +134,9 @@ namespace MongoGUICtl
         {
             var Aggregation = new BsonDocument();
             var project = new BsonDocument();
-            foreach (DataFilter.QueryFieldItem item in mQueryFieldList)
+            foreach (var item in mQueryFieldList)
             {
-                DataFilter.QueryFieldItem ctl = ((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).QueryFieldItem;
+                var ctl = ((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).QueryFieldItem;
                 if (ctl.IsShow)
                 {
                     project.Add(string.IsNullOrEmpty(ctl.ProjectName)
@@ -170,14 +159,14 @@ namespace MongoGUICtl
             Controls.Add(btnSelectAll);
             Controls.Add(btnUnSelectAll);
 
-            foreach (DataFilter.QueryFieldItem queryFieldItem in mQueryFieldList)
+            foreach (var queryFieldItem in mQueryFieldList)
             {
                 //动态加载控件
                 var ctrItem = new ctlFieldInfo();
-                ctrItem.Mode = mFieldListMode;
+                ctrItem.Mode = FieldListMode;
                 ctrItem.Name = queryFieldItem.ColName;
                 ctrItem.Location = _conditionPos;
-                ctrItem.IsIDProtect = mIDProtectMode;
+                ctrItem.IsIDProtect = IsIDProtect;
                 ctrItem.QueryFieldItem = queryFieldItem;
                 Controls.Add(ctrItem);
                 //纵向位置的累加
@@ -192,7 +181,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void btnSelectAll_Click(object sender, EventArgs e)
         {
-            foreach (DataFilter.QueryFieldItem item in mQueryFieldList)
+            foreach (var item in mQueryFieldList)
             {
                 ((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).IsShow = true;
             }
@@ -205,7 +194,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void btnUnSelectAll_Click(object sender, EventArgs e)
         {
-            foreach (DataFilter.QueryFieldItem item in mQueryFieldList)
+            foreach (var item in mQueryFieldList)
             {
                 ((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).IsShow = false;
             }
@@ -220,9 +209,9 @@ namespace MongoGUICtl
             // { _id : { author: '$author', pageViews: '$pageViews', posted: '$posted' } }
             var id = new BsonDocument();
             var member = new BsonDocument();
-            foreach (DataFilter.QueryFieldItem item in mQueryFieldList)
+            foreach (var item in mQueryFieldList)
             {
-                DataFilter.QueryFieldItem ctl = ((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).QueryFieldItem;
+                var ctl = ((ctlFieldInfo) Controls.Find(item.ColName, true)[0]).QueryFieldItem;
                 if (ctl.IsShow && ctl.ColName != "_id")
                 {
                     member.Add(string.IsNullOrEmpty(ctl.ProjectName)

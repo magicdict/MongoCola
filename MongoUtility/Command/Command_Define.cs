@@ -5,11 +5,23 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using Utility = Common.Utility;
 
 namespace MongoUtility.Command
 {
     public static partial class CommandHelper
     {
+        #region"DataBase Command"
+
+        /// 数据库命令 http://www.mongodb.org/display/DOCS/List+of+Database+Commands
+        /// <summary>
+        ///     修复数据库
+        ///     http://www.mongodb.org/display/DOCS/Durability+and+Repair
+        /// </summary>
+        public static MongoCommand repairDatabase_Command = new MongoCommand("repairDatabase", EnumMgr.PathLv.DatabaseLv);
+
+        #endregion
+
         #region"Collection Command"
 
         /// <summary>
@@ -23,8 +35,8 @@ namespace MongoUtility.Command
         /// </summary>
         /// <param name="AggregateDoc"></param>
         /// <returns></returns>
-		/// <param name = "CollectionName"></param>
-        public static CommandResult Aggregate(BsonArray AggregateDoc,String CollectionName)
+        /// <param name="CollectionName"></param>
+        public static CommandResult Aggregate(BsonArray AggregateDoc, String CollectionName)
         {
             //db.runCommand( { aggregate: "people", pipeline: [<pipeline>] } )
             try
@@ -39,19 +51,10 @@ namespace MongoUtility.Command
             }
             catch (Exception ex)
             {
-                Common.Utility.ExceptionDeal(ex);
+                Utility.ExceptionDeal(ex);
                 return new CommandResult(new BsonDocument());
             }
         }
-        #endregion
-
-        #region"DataBase Command"
-        /// 数据库命令 http://www.mongodb.org/display/DOCS/List+of+Database+Commands
-        /// <summary>
-        ///     修复数据库
-        ///     http://www.mongodb.org/display/DOCS/Durability+and+Repair
-        /// </summary>
-        public static MongoCommand repairDatabase_Command = new MongoCommand("repairDatabase", EnumMgr.PathLv.DatabaseLv);
 
         #endregion
 
@@ -81,7 +84,8 @@ namespace MongoUtility.Command
         /// <summary>
         ///     副本状态
         /// </summary>
-        public static MongoCommand replSetGetStatus_Command = new MongoCommand("replSetGetStatus", EnumMgr.PathLv.InstanceLv);
+        public static MongoCommand replSetGetStatus_Command = new MongoCommand("replSetGetStatus",
+            EnumMgr.PathLv.InstanceLv);
 
         //http://www.mongodb.org/display/DOCS/Master+Slave
         /// <summary>
@@ -173,8 +177,8 @@ namespace MongoUtility.Command
             String Name, Decimal MaxSize)
         {
             // replset/host:port,host:port
-            String cmdPara = replicaSetName == String.Empty ? String.Empty : (replicaSetName + "/");
-            foreach (String item in lstAddress)
+            var cmdPara = replicaSetName == String.Empty ? String.Empty : (replicaSetName + "/");
+            foreach (var item in lstAddress)
             {
                 cmdPara += item + ",";
             }
@@ -241,8 +245,8 @@ namespace MongoUtility.Command
             //                       );
             //    sh._checkLastError(config);
             //}
-            String maxValue = String.Empty;
-            String minValue = String.Empty;
+            var maxValue = String.Empty;
+            var minValue = String.Empty;
             if (Min.IsString)
             {
                 minValue = "'" + Min + "'";
@@ -308,8 +312,9 @@ namespace MongoUtility.Command
         /// </summary>
         /// <param name="replicaSetName">副本名称</param>
         /// <param name="hostList">从属服务器列表</param>
-		/// <param name = "Configs"></param>
-        public static CommandResult InitReplicaSet(String replicaSetName, String hostList,Dictionary<string,MongoConnectionConfig>  Configs)
+        /// <param name="Configs"></param>
+        public static CommandResult InitReplicaSet(String replicaSetName, String hostList,
+            Dictionary<string, MongoConnectionConfig> Configs)
         {
             //第一台服务器作为Primary服务器
             var PrimarySetting = new MongoClientSettings
@@ -320,7 +325,7 @@ namespace MongoUtility.Command
             };
             //如果不设置的话，会有错误：不是Primary服务器，SlaveOK 是 False
 
-            MongoServer PrimarySvr = new MongoClient(PrimarySetting).GetServer();
+            var PrimarySvr = new MongoClient(PrimarySetting).GetServer();
             var config = new BsonDocument();
             var hosts = new BsonArray();
             var replSetInitiateCmd = new BsonDocument();

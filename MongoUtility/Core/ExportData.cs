@@ -1,34 +1,35 @@
-﻿using MongoDB.Bson;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using MongoDB.Bson;
 using MongoDB.Bson.IO;
 using MongoDB.Driver;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace MongoUtility.Extend
 {
     public static class Export
     {
-		/// <summary>
-		/// ExportToFile
-		/// </summary>
-		/// <param name="CurrentDataViewInfo"></param>
-		/// <param name="ExcelFileName"></param>
-		/// <param name="exportType"></param>
-		/// <param name="mongoCol"></param>
-    	public static void ExportToFile(DataViewInfo CurrentDataViewInfo,
-                                 		String ExcelFileName,
-    	                                EnumMgr.ExportType exportType,
-    	                                MongoCollection mongoCol)
+        /// <summary>
+        ///     ExportToFile
+        /// </summary>
+        /// <param name="CurrentDataViewInfo"></param>
+        /// <param name="ExcelFileName"></param>
+        /// <param name="exportType"></param>
+        /// <param name="mongoCol"></param>
+        public static void ExportToFile(DataViewInfo CurrentDataViewInfo,
+            String ExcelFileName,
+            EnumMgr.ExportType exportType,
+            MongoCollection mongoCol)
         {
             MongoCursor<BsonDocument> cursor;
             //Query condition:
             if (CurrentDataViewInfo != null && CurrentDataViewInfo.IsUseFilter)
             {
-                cursor = mongoCol.FindAs<BsonDocument>(QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
+                cursor = mongoCol.FindAs<BsonDocument>(
+                    QueryHelper.GetQuery(CurrentDataViewInfo.mDataFilter.QueryConditionList))
                     .SetFields(QueryHelper.GetOutputFields(CurrentDataViewInfo.mDataFilter.QueryFieldList))
                     .SetSortOrder(QueryHelper.GetSort(CurrentDataViewInfo.mDataFilter.QueryFieldList));
             }
@@ -36,7 +37,7 @@ namespace MongoUtility.Extend
             {
                 cursor = mongoCol.FindAllAs<BsonDocument>();
             }
-            List<BsonDocument> dataList = cursor.ToList();
+            var dataList = cursor.ToList();
             switch (exportType)
             {
                 case EnumMgr.ExportType.Excel:
@@ -44,12 +45,12 @@ namespace MongoUtility.Extend
                     GC.Collect();
                     break;
                 case EnumMgr.ExportType.Text:
-                    ExportToJson(dataList, ExcelFileName,MongoUtility.Basic.Utility.JsonWriterSettings);
+                    ExportToJson(dataList, ExcelFileName, Utility.JsonWriterSettings);
                     break;
                 case EnumMgr.ExportType.Xml:
                     break;
             }
-            MongoUtility.Basic.Utility.OnActionDone(new ActionDoneEventArgs(" Completed "));
+            Utility.OnActionDone(new ActionDoneEventArgs(" Completed "));
         }
 
         /// <summary>
@@ -57,8 +58,8 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="dataList"></param>
         /// <param name="filename"></param>
-		/// <param name = "settings"></param>
-        private static void ExportToJson(List<BsonDocument> dataList, String filename,JsonWriterSettings settings)
+        /// <param name="settings"></param>
+        private static void ExportToJson(List<BsonDocument> dataList, String filename, JsonWriterSettings settings)
         {
             var sw = new StreamWriter(filename, false);
             sw.Write(dataList.ToJson(settings));

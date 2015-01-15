@@ -3,24 +3,20 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using MongoUtility.Operation;
+using SystemUtility;
+using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl;
+using MongoGUIView;
 using MongoUtility.Aggregation;
-using SystemUtility;
+using MongoUtility.Core;
 using ResourceLib;
 
 namespace MongoCola
 {
     public partial class frmGroup : Form
     {
-        /// <summary>
-        ///     Group条件
-        /// </summary>
-        public List<DataFilter.QueryConditionInputItem> GroupConditionList =
-            new List<DataFilter.QueryConditionInputItem>();
-
         /// <summary>
         ///     条件输入器数量
         /// </summary>
@@ -31,12 +27,18 @@ namespace MongoCola
         /// </summary>
         private Point _conditionPos = new Point(50, 20);
 
+        /// <summary>
+        ///     Group条件
+        /// </summary>
+        public List<DataFilter.QueryConditionInputItem> GroupConditionList =
+            new List<DataFilter.QueryConditionInputItem>();
+
         public frmGroup(DataFilter mDataFilter, Boolean IsUseFilter)
         {
             InitializeComponent();
             if (mDataFilter.QueryConditionList.Count <= 0 || !IsUseFilter) return;
             Text += "[With DataView Filter]";
-            foreach (DataFilter.QueryConditionInputItem item in mDataFilter.QueryConditionList)
+            foreach (var item in mDataFilter.QueryConditionList)
             {
                 GroupConditionList.Add(item);
             }
@@ -49,10 +51,10 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            MongoCollection mongoCol = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection();
-            IMongoQuery query = QueryHelper.GetQuery(GroupConditionList);
+            var mongoCol = RuntimeMongoDBContext.GetCurrentCollection();
+            var query = QueryHelper.GetQuery(GroupConditionList);
             var groupdoc = new GroupByDocument();
-            String ChartTite = string.Empty;
+            var ChartTite = string.Empty;
             foreach (CheckBox item in panColumn.Controls)
             {
                 if (!item.Checked) continue;
@@ -61,7 +63,7 @@ namespace MongoCola
             }
             ChartTite = ChartTite.TrimEnd(",".ToCharArray());
             var Initial = new BsonDocument();
-            for (int i = 0; i < _conditionCount; i++)
+            for (var i = 0; i < _conditionCount; i++)
             {
                 var ctl = (ctlAddBsonEl) Controls.Find("BsonEl" + (i + 1), true)[0];
                 if (ctl.IsSetted)
@@ -77,15 +79,15 @@ namespace MongoCola
             try
             {
                 //SkipCnt Reset
-                IEnumerable<BsonDocument> Result = mongoCol.Group(query, groupdoc, Initial, reduce, finalize);
+                var Result = mongoCol.Group(query, groupdoc, Initial, reduce, finalize);
                 //图形化初始化
                 chartResult.Series.Clear();
                 chartResult.Titles.Clear();
                 var SeriesResult = new Series("Result");
 
                 //防止错误的条件造成的海量数据
-                int Count = 0;
-                foreach (BsonDocument item in Result)
+                var Count = 0;
+                foreach (var item in Result)
                 {
                     if (Count == 1000)
                     {
@@ -97,7 +99,7 @@ namespace MongoCola
                     SeriesResult.Points.Add(dPoint);
                     Count++;
                 }
-                MongoGUIView.ViewHelper.FillJSONDataToTextBox(txtResult, resultlst, 0);
+                ViewHelper.FillJSONDataToTextBox(txtResult, resultlst, 0);
                 if (Count == 1001)
                 {
                     txtResult.Text = "Too many result,Display first 1000 records" + Environment.NewLine + txtResult.Text;
@@ -110,7 +112,7 @@ namespace MongoCola
             }
             catch (Exception ex)
             {
-                Common.Utility.ExceptionDeal(ex, "Exception", "Exception is Happened");
+                Utility.ExceptionDeal(ex, "Exception", "Exception is Happened");
             }
         }
 
@@ -121,10 +123,10 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmGroup_Load(object sender, EventArgs e)
         {
-            MongoCollection mongoCol = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection();
-            List<String> MongoColumn = MongoUtility.Basic.Utility.GetCollectionSchame(mongoCol);
+            var mongoCol = RuntimeMongoDBContext.GetCurrentCollection();
+            var MongoColumn = MongoUtility.Basic.Utility.GetCollectionSchame(mongoCol);
             var _conditionPos = new Point(50, 20);
-            foreach (String item in MongoColumn)
+            foreach (var item in MongoColumn)
             {
                 //动态加载控件
                 var ctrItem = new CheckBox {Name = item, Location = _conditionPos, Text = item};
@@ -140,7 +142,8 @@ namespace MongoCola
 
             if (SystemConfig.IsUseDefaultLanguage) return;
             ctlReduce.Title = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Reduce);
-            ctlFinalize.Title = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Finalize);
+            ctlFinalize.Title =
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Finalize);
             lblSelectGroupField.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Group_Notes);
             lblAddInitField.Text =
@@ -175,7 +178,7 @@ namespace MongoCola
         {
             var openFile = new OpenFileDialog();
             if (openFile.ShowDialog() != DialogResult.OK) return;
-            DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
+            var NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
             GroupConditionList.Clear();
             GroupConditionList = NewDataFilter.QueryConditionList;
         }

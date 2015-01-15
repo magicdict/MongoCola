@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
+using SystemUtility;
 using Common;
-using MongoUtility.Operation;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoGUICtl;
 using MongoUtility.Basic;
-using SystemUtility;
+using MongoUtility.Core;
+using MongoUtility.Operation;
 using ResourceLib;
+using Utility = Common.Utility;
 
 namespace MongoCola
 {
@@ -18,7 +20,7 @@ namespace MongoCola
         /// <summary>
         ///     当前数据集名称
         /// </summary>
-        private readonly MongoCollection _mongoCollection = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection();
+        private readonly MongoCollection _mongoCollection = RuntimeMongoDBContext.GetCurrentCollection();
 
         /// <summary>
         /// </summary>
@@ -40,29 +42,38 @@ namespace MongoCola
                 tabCurrentIndex.Text =
                     SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current);
                 cmdDelIndex.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Current_Del);
+                    SystemConfig.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.CollectionIndex_Tab_Current_Del);
                 tabIndexManager.Text =
                     SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.CollectionIndex_Tab_Manager);
                 cmdAddIndex.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
 
-                chkIsDroppedDups.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_RepeatDel);
-                chkIsBackground.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Background);
+                chkIsDroppedDups.Text =
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_RepeatDel);
+                chkIsBackground.Text =
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Background);
                 chkIsSparse.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Sparse);
                 chkIsUnique.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Unify);
 
                 lblIndexName.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Name);
-                chkExpireData.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData);
+                chkExpireData.Text =
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData);
 
                 lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Name));
-                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Version));
+                lstIndex.Columns.Add(
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Version));
                 lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Keys));
-                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_NameSpace));
+                lstIndex.Columns.Add(
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_NameSpace));
 
-                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Background));
+                lstIndex.Columns.Add(
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Background));
                 lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Sparse));
                 lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Unify));
-                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_RepeatDel));
-                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData));
+                lstIndex.Columns.Add(
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_RepeatDel));
+                lstIndex.Columns.Add(
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData));
             }
             else
             {
@@ -77,7 +88,7 @@ namespace MongoCola
                 lstIndex.Columns.Add("Expire Data");
             }
             //2.2.2 开始支持TTL索引
-            if (MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer().BuildInfo.Version < new Version(2, 2, 2, 0))
+            if (RuntimeMongoDBContext.GetCurrentServer().BuildInfo.Version < new Version(2, 2, 2, 0))
             {
                 chkExpireData.Enabled = false;
                 numTTL.Enabled = false;
@@ -100,7 +111,7 @@ namespace MongoCola
             }
             foreach (ListViewItem item in lstIndex.CheckedItems)
             {
-                OperationHelper.DropMongoIndex(item.SubItems[0].Text,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
+                OperationHelper.DropMongoIndex(item.SubItems[0].Text, RuntimeMongoDBContext.GetCurrentCollection());
             }
             RefreshList();
         }
@@ -114,10 +125,10 @@ namespace MongoCola
         {
             var AscendingKey = new List<String>();
             var DescendingKey = new List<String>();
-            String GeoSpatialKey = string.Empty;
-            String FirstKey = string.Empty;
-            String TextKey = String.Empty;
-            for (int i = 0; i < 5; i++)
+            var GeoSpatialKey = string.Empty;
+            var FirstKey = string.Empty;
+            var TextKey = String.Empty;
+            for (var i = 0; i < 5; i++)
             {
                 var ctl = (ctlIndexCreate) Controls.Find("ctlIndexCreate" + (i + 1), true)[0];
                 if (ctl.KeyName == String.Empty) continue;
@@ -150,7 +161,7 @@ namespace MongoCola
                 //TTL的限制条件很多
                 //http://docs.mongodb.org/manual/tutorial/expire-data/
                 //不能是组合键
-                Boolean CanUseTTL = true;
+                var CanUseTTL = true;
                 if ((AscendingKey.Count + DescendingKey.Count + (String.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1)) != 1)
                 {
                     MyMessageBox.ShowMessage("Can't Set TTL",
@@ -167,7 +178,7 @@ namespace MongoCola
                         CanUseTTL = false;
                     }
                 }
-                if (MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().IsCapped())
+                if (RuntimeMongoDBContext.GetCurrentCollection().IsCapped())
                 {
                     MyMessageBox.ShowMessage("Can't Set TTL",
                         "you cannot use a TTL index on a capped collection, because MongoDB cannot remove documents from a capped collection.");
@@ -184,7 +195,7 @@ namespace MongoCola
                 }
             }
             if (txtIndexName.Text != String.Empty &&
-                !MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().IndexExists(txtIndexName.Text) &&
+                !RuntimeMongoDBContext.GetCurrentCollection().IndexExists(txtIndexName.Text) &&
                 (AscendingKey.Count + DescendingKey.Count +
                  (String.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1) +
                  (String.IsNullOrEmpty(TextKey) ? 0 : 1)) != 0)
@@ -196,19 +207,19 @@ namespace MongoCola
                     if (!string.IsNullOrEmpty(TextKey))
                     {
                         var TextKeysDoc = new IndexKeysDocument {{TextKey, "text"}};
-                        MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().CreateIndex(TextKeysDoc, option);
+                        RuntimeMongoDBContext.GetCurrentCollection().CreateIndex(TextKeysDoc, option);
                     }
                     else
                     {
                         OperationHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), GeoSpatialKey,
-                            option,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
+                            option, RuntimeMongoDBContext.GetCurrentCollection());
                     }
                     MyMessageBox.ShowMessage("Index Add Completed!",
                         "IndexName:" + txtIndexName.Text + " is add to collection.");
                 }
                 catch (Exception ex)
                 {
-                    Common.Utility.ExceptionDeal(ex, "Index Add Failed!", "IndexName:" + txtIndexName.Text);
+                    Utility.ExceptionDeal(ex, "Index Add Failed!", "IndexName:" + txtIndexName.Text);
                 }
                 RefreshList();
             }
@@ -224,7 +235,7 @@ namespace MongoCola
         private void RefreshList()
         {
             lstIndex.Items.Clear();
-            foreach (IndexInfo item in _mongoCollection.GetIndexes())
+            foreach (var item in _mongoCollection.GetIndexes())
             {
                 var ListItem = new ListViewItem(item.Name);
                 ListItem.SubItems.Add(item.Version.ToString(CultureInfo.InvariantCulture));

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Common;
-using MongoUtility.Operation;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoUtility.Aggregation;
 using SystemUtility;
+using Common;
+using MongoDB.Bson;
+using MongoUtility.Aggregation;
+using MongoUtility.Core;
 using ResourceLib;
+using Utility = MongoUtility.Basic.Utility;
 
 namespace MongoCola
 {
@@ -28,7 +28,7 @@ namespace MongoCola
             //直接使用 DistinctConditionList = mDataFilter.QueryConditionList
             //DistinctConditionList是引用类型，在LoadQuery的时候，会改变mDataFilter.QueryConditionList的值
             //进而改变DataViewInfo在TabView上的值
-            foreach (DataFilter.QueryConditionInputItem item in mDataFilter.QueryConditionList)
+            foreach (var item in mDataFilter.QueryConditionList)
             {
                 DistinctConditionList.Add(item);
             }
@@ -36,10 +36,10 @@ namespace MongoCola
 
         private void frmSelectKey_Load(object sender, EventArgs e)
         {
-            MongoCollection mongoCol = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection();
-            List<String> MongoColumn = MongoUtility.Basic.Utility.GetCollectionSchame(mongoCol);
+            var mongoCol = RuntimeMongoDBContext.GetCurrentCollection();
+            var MongoColumn = Utility.GetCollectionSchame(mongoCol);
             var _conditionPos = new Point(20, 20);
-            foreach (String item in MongoColumn)
+            foreach (var item in MongoColumn)
             {
                 //动态加载控件
                 var ctrItem = new RadioButton {Name = item, Location = _conditionPos, Text = item};
@@ -48,9 +48,11 @@ namespace MongoCola
                 _conditionPos.Y += ctrItem.Height;
             }
             if (SystemConfig.IsUseDefaultLanguage) return;
-            cmdQuery.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_Action_LoadQuery);
+            cmdQuery.Text =
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_Action_LoadQuery);
             cmdRun.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-            lblSelectField.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_SelectField);
+            lblSelectField.Text =
+                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_SelectField);
         }
 
         /// <summary>
@@ -60,7 +62,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            String strKey = String.Empty;
+            var strKey = String.Empty;
 
             foreach (RadioButton item in panColumn.Controls)
             {
@@ -76,24 +78,25 @@ namespace MongoCola
             }
             var ResultArray =
                 (BsonArray)
-                    MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().Distinct(strKey, QueryHelper.GetQuery(DistinctConditionList));
+                    RuntimeMongoDBContext.GetCurrentCollection()
+                        .Distinct(strKey, QueryHelper.GetQuery(DistinctConditionList));
             var ResultList = new List<BsonValue>();
-            foreach (BsonValue item in ResultArray)
+            foreach (var item in ResultArray)
             {
                 ResultList.Add(item);
             }
             //防止错误的条件造成的海量数据
-            int Count = 0;
-            String strResult = String.Empty;
+            var Count = 0;
+            var strResult = String.Empty;
             ResultList.Sort();
-            foreach (BsonValue item in ResultList)
+            foreach (var item in ResultList)
             {
                 if (Count == 1000)
                 {
                     strResult = "Too many result,Display first 1000 records" + Environment.NewLine + strResult;
                     break;
                 }
-                strResult += item.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings) + Environment.NewLine;
+                strResult += item.ToJson(Utility.JsonWriterSettings) + Environment.NewLine;
                 Count++;
             }
             strResult = "Distinct Count: " + ResultList.Count + Environment.NewLine + Environment.NewLine + strResult;
@@ -104,7 +107,7 @@ namespace MongoCola
         {
             var openFile = new OpenFileDialog();
             if (openFile.ShowDialog() != DialogResult.OK) return;
-            DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
+            var NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
             DistinctConditionList.Clear();
             DistinctConditionList = NewDataFilter.QueryConditionList;
         }

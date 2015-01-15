@@ -1,8 +1,8 @@
-﻿using MongoUtility.Basic;
+﻿using System;
+using System.Windows.Forms;
+using MongoUtility.Basic;
 using MongoUtility.ExteneralTool;
 using ResourceLib;
-using System;
-using System.Windows.Forms;
 
 namespace MongoGUICtl.Module
 {
@@ -25,14 +25,18 @@ namespace MongoGUICtl.Module
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
                 lblCollectionName.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_CollectionName);
-                lblDBName.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_DBName);
+                    configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.Collection_Status_CollectionName);
+                lblDBName.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_DBName);
                 lblHost.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Host);
                 lblFieldList.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_ColumnList);
+                    configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.DosCommand_Tab_ExIn_ColumnList);
                 lblPort.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
                 grpDirect.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Operation);
+                    configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.DosCommand_Tab_ExIn_Operation);
                 radImport.Text =
                     configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Import);
                 radExport.Text =

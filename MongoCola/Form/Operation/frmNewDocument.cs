@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoUtility.Operation;
-using MongoDB.Bson;
-using MongoUtility.Basic;
 using SystemUtility;
+using Common;
+using MongoDB.Bson;
+using MongoGUICtl;
+using MongoUtility.Core;
+using MongoUtility.Operation;
 using ResourceLib;
 
 namespace MongoCola
@@ -35,19 +37,19 @@ namespace MongoCola
                 }
                 catch (Exception ex)
                 {
-                    Common.Utility.ExceptionDeal(ex, "Error", "Format Error");
+                    Utility.ExceptionDeal(ex, "Error", "Format Error");
                 }
             }
             else
             {
                 try
                 {
-                    OperationHelper.InsertEmptyDocument(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection(), true);
+                    OperationHelper.InsertEmptyDocument(RuntimeMongoDBContext.GetCurrentCollection(), true);
                     Close();
                 }
                 catch (Exception ex)
                 {
-                    Common.Utility.ExceptionDeal(ex, "Error", "InsertEmptyDocument Error");
+                    Utility.ExceptionDeal(ex, "Error", "InsertEmptyDocument Error");
                 }
             }
         }
@@ -73,13 +75,13 @@ namespace MongoCola
             {
                 BsonDocument newdoc;
                 newdoc = BsonDocument.Parse(txtDocument.Text);
-                MongoGUICtl.UIHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
+                UIHelper.FillDataToTreeView("InsertDocument", trvNewDocument, newdoc);
                 trvNewDocument.TreeView.ExpandAll();
                 txtDocument.Text = newdoc.ToJson(MongoUtility.Basic.Utility.JsonWriterSettings);
             }
             catch (Exception ex)
             {
-                Common.Utility.ExceptionDeal(ex);
+                Utility.ExceptionDeal(ex);
             }
         }
 
@@ -92,7 +94,7 @@ namespace MongoCola
         {
             if (txtDocument.Text != string.Empty)
             {
-                Common.Utility.SaveTextFile(txtDocument.Text, Common.Utility.TxtFilter);
+                Utility.SaveTextFile(txtDocument.Text, Utility.TxtFilter);
             }
         }
 

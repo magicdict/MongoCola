@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using MongoUtility.Operation;
-using MongoDB.Bson;
-using MongoUtility.Basic;
 using SystemUtility;
-using ResourceLib;
+using MongoDB.Bson;
+using MongoGUICtl;
+using MongoUtility.Basic;
 using MongoUtility.Command;
+using MongoUtility.Core;
+using ResourceLib;
+using ResourceLib.Properties;
+using Utility = Common.Utility;
 
 namespace MongoCola
 {
@@ -19,8 +22,8 @@ namespace MongoCola
 
         private void frmStatus_Load(object sender, EventArgs e)
         {
-            Icon = GetSystemIcon.ConvertImgToIcon(ResourceLib.Properties.Resources.KeyInfo);
-            String strType = MongoUtility.Core.RuntimeMongoDBContext.SelectTagType;
+            Icon = GetSystemIcon.ConvertImgToIcon(Resources.KeyInfo);
+            var strType = RuntimeMongoDBContext.SelectTagType;
             var DocStatus = new BsonDocument();
             cmbChartField.Visible = false;
             chartResult.Visible = false;
@@ -29,11 +32,11 @@ namespace MongoCola
             {
                 case ConstMgr.SERVER_TAG:
                 case ConstMgr.SINGLE_DB_SERVER_TAG:
-            		if (MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServerConfig().LoginAsAdmin)
+                    if (RuntimeMongoDBContext.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         DocStatus =
                             CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
-                                MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer()).Response;
+                                RuntimeMongoDBContext.GetCurrentServer()).Response;
                         trvStatus.Height = trvStatus.Height*2;
                     }
                     if (strType == ConstMgr.SERVER_TAG)
@@ -43,7 +46,7 @@ namespace MongoCola
                     break;
                 case ConstMgr.DATABASE_TAG:
                 case ConstMgr.SINGLE_DATABASE_TAG:
-                    DocStatus = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
+                    DocStatus = RuntimeMongoDBContext.GetCurrentDataBase().GetStats().Response.ToBsonDocument();
                     cmbChartField.Visible = true;
                     chartResult.Visible = true;
 
@@ -64,18 +67,18 @@ namespace MongoCola
                     }
                     catch (Exception ex)
                     {
-                        Common.Utility.ExceptionDeal(ex);
+                        Utility.ExceptionDeal(ex);
                     }
                     break;
                 case ConstMgr.COLLECTION_TAG:
-                    DocStatus = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().GetStats().Response.ToBsonDocument();
+                    DocStatus = RuntimeMongoDBContext.GetCurrentCollection().GetStats().Response.ToBsonDocument();
                     //图形化初始化
                     chartResult.Visible = true;
 
                     chartResult.Series.Clear();
                     chartResult.Titles.Clear();
                     var SeriesResult = new Series("Usage");
-                    var dpDataSize = new DataPoint(0, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().GetStats().DataSize)
+                    var dpDataSize = new DataPoint(0, RuntimeMongoDBContext.GetCurrentCollection().GetStats().DataSize)
                     {
                         LegendText = "DataSize",
                         LegendToolTip = "DataSize",
@@ -84,7 +87,7 @@ namespace MongoCola
                     SeriesResult.Points.Add(dpDataSize);
 
                     var dpTotalIndexSize = new DataPoint(0,
-                        MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().GetStats().TotalIndexSize)
+                        RuntimeMongoDBContext.GetCurrentCollection().GetStats().TotalIndexSize)
                     {
                         LegendText = "TotalIndexSize",
                         LegendToolTip = "TotalIndexSize",
@@ -92,9 +95,10 @@ namespace MongoCola
                     };
                     SeriesResult.Points.Add(dpTotalIndexSize);
 
-                    var dpFreeSize = new DataPoint(0, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().GetStats().StorageSize -
-                                                      MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().GetStats().TotalIndexSize -
-                                                      MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().GetStats().DataSize)
+                    var dpFreeSize = new DataPoint(0,
+                        RuntimeMongoDBContext.GetCurrentCollection().GetStats().StorageSize -
+                        RuntimeMongoDBContext.GetCurrentCollection().GetStats().TotalIndexSize -
+                        RuntimeMongoDBContext.GetCurrentCollection().GetStats().DataSize)
                     {
                         LegendText = "FreeSize",
                         LegendToolTip = "FreeSize",
@@ -108,11 +112,11 @@ namespace MongoCola
 
                     break;
                 default:
-                    if (MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServerConfig().LoginAsAdmin)
+                    if (RuntimeMongoDBContext.GetCurrentServerConfig().LoginAsAdmin)
                     {
                         DocStatus =
                             CommandHelper.ExecuteMongoSvrCommand(CommandHelper.serverStatus_Command,
-                                MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer()).Response;
+                                RuntimeMongoDBContext.GetCurrentServer()).Response;
                         trvStatus.Height = trvStatus.Height*2;
                     }
                     break;
@@ -122,13 +126,13 @@ namespace MongoCola
                 Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Mangt_Status);
                 cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
-            MongoGUICtl.UIHelper.FillDataToTreeView(strType, trvStatus, DocStatus);
+            UIHelper.FillDataToTreeView(strType, trvStatus, DocStatus);
             trvStatus.DatatreeView.Nodes[0].Expand();
         }
 
         private void btnOpCnt_Click(object sender, EventArgs e)
         {
-            Common.Utility.OpenForm(new frmServerMonitor(), true, true);
+            Utility.OpenForm(new frmServerMonitor(), true, true);
         }
 
         private void RefreshDBStatusChart(String strField)
@@ -137,7 +141,7 @@ namespace MongoCola
             chartResult.Series.Clear();
             chartResult.Titles.Clear();
             var SeriesResult = new Series(strField);
-            foreach (String colName in MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollectionNames())
+            foreach (var colName in RuntimeMongoDBContext.GetCurrentDataBase().GetCollectionNames())
             {
                 DataPoint ColPoint;
                 switch (strField)
@@ -147,52 +151,55 @@ namespace MongoCola
                         {
                             //如果没有任何对象的时候，平均值无法取得
                             ColPoint = new DataPoint(0,
-                                MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().AverageObjectSize);
+                                RuntimeMongoDBContext.GetCurrentDataBase()
+                                    .GetCollection(colName)
+                                    .GetStats()
+                                    .AverageObjectSize);
                         }
                         catch (Exception ex)
                         {
                             ColPoint = new DataPoint(0, 0);
-                            Common.Utility.ExceptionDeal(ex);
+                            Utility.ExceptionDeal(ex);
                         }
                         break;
                     case "DataSize":
                         ColPoint = new DataPoint(0,
-                            MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().DataSize);
+                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().DataSize);
                         break;
                     case "ExtentCount":
                         ColPoint = new DataPoint(0,
-                            MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().ExtentCount);
+                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().ExtentCount);
                         break;
-                        //case "Flags":
-                        //    ColPoint = new DataPoint(0, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().Flags);
-                        //    break;
+                    //case "Flags":
+                    //    ColPoint = new DataPoint(0, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().Flags);
+                    //    break;
                     case "IndexCount":
                         ColPoint = new DataPoint(0,
-                            MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().IndexCount);
+                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().IndexCount);
                         break;
                     case "LastExtentSize":
                         ColPoint = new DataPoint(0,
-                            MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().LastExtentSize);
+                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().LastExtentSize);
                         break;
-                        //case "MaxDocuments":
-                        //    仅在CappedCollection时候有效 
-                        //    ColPoint = new DataPoint(0, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().MaxDocuments);
-                        //    break;
+                    //case "MaxDocuments":
+                    //    仅在CappedCollection时候有效 
+                    //    ColPoint = new DataPoint(0, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().MaxDocuments);
+                    //    break;
                     case "ObjectCount":
                         ColPoint = new DataPoint(0,
-                            MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().ObjectCount);
+                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().ObjectCount);
                         break;
                     case "PaddingFactor":
                         ColPoint = new DataPoint(0,
-                            MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().PaddingFactor);
+                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().PaddingFactor);
                         break;
                     case "StorageSize":
                         ColPoint = new DataPoint(0,
-                            MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
+                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
                         break;
                     default:
                         ColPoint = new DataPoint(0,
-                            MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
+                            RuntimeMongoDBContext.GetCurrentDataBase().GetCollection(colName).GetStats().StorageSize);
                         break;
                 }
 
@@ -215,7 +222,7 @@ namespace MongoCola
 
         private void cmbChartField_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String strType = MongoUtility.Core.RuntimeMongoDBContext.SelectTagType;
+            var strType = RuntimeMongoDBContext.SelectTagType;
             switch (strType)
             {
                 case ConstMgr.DATABASE_TAG:
@@ -226,7 +233,7 @@ namespace MongoCola
                     }
                     catch (Exception ex)
                     {
-                        Common.Utility.ExceptionDeal(ex);
+                        Utility.ExceptionDeal(ex);
                     }
                     break;
             }

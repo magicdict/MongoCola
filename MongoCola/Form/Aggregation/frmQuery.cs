@@ -1,10 +1,10 @@
-﻿using MongoUtility.Aggregation;
-using MongoUtility.Operation;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MongoUtility.Basic;
 using SystemUtility;
+using Common;
+using MongoUtility.Aggregation;
+using MongoUtility.Core;
 using ResourceLib;
 
 namespace MongoCola
@@ -14,17 +14,17 @@ namespace MongoCola
         /// <summary>
         ///     当前DataViewInfo
         /// </summary>
-        private readonly MongoUtility.Aggregation.DataViewInfo CurrentDataViewInfo;
+        private readonly DataViewInfo CurrentDataViewInfo;
 
         /// <summary>
         ///     初始化
         /// </summary>
         /// <param name="mDataViewInfo">Filter也是DataViewInfo的一个属性，所以这里加上参数</param>
-        public frmQuery(MongoUtility.Aggregation.DataViewInfo mDataViewInfo)
+        public frmQuery(DataViewInfo mDataViewInfo)
         {
             InitializeComponent();
             CurrentDataViewInfo = mDataViewInfo;
-            MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
+            RuntimeMongoDBContext.SelectObjectTag = mDataViewInfo.strDBTag;
         }
 
         /// <summary>
@@ -98,7 +98,8 @@ namespace MongoCola
             }
             else
             {
-                CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
+                CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text,
+                    RuntimeMongoDBContext.GetCurrentCollection());
             }
             //按下OK，不论是否做更改都认为True
             CurrentDataViewInfo.IsUseFilter = true;
@@ -122,7 +123,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            var savefile = new SaveFileDialog {Filter = Common.Utility.XmlFilter};
+            var savefile = new SaveFileDialog {Filter = Utility.XmlFilter};
             if (savefile.ShowDialog() != DialogResult.OK) return;
             // 设置DataFilter
             if (string.IsNullOrEmpty(txtSql.Text))
@@ -132,7 +133,8 @@ namespace MongoCola
             }
             else
             {
-            	CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
+                CurrentDataViewInfo.mDataFilter = Sql.ConvertQuerySql(txtSql.Text,
+                    RuntimeMongoDBContext.GetCurrentCollection());
             }
             CurrentDataViewInfo.mDataFilter.SaveFilter(savefile.FileName);
         }
@@ -144,8 +146,8 @@ namespace MongoCola
         {
             //清除以前的结果和内部变量，重要！
             CurrentDataViewInfo.mDataFilter.Clear();
-            CurrentDataViewInfo.mDataFilter.DBName = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().Name;
-            CurrentDataViewInfo.mDataFilter.CollectionName = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().Name;
+            CurrentDataViewInfo.mDataFilter.DBName = RuntimeMongoDBContext.GetCurrentDataBase().Name;
+            CurrentDataViewInfo.mDataFilter.CollectionName = RuntimeMongoDBContext.GetCurrentCollection().Name;
             CurrentDataViewInfo.mDataFilter.QueryFieldList = QueryFieldPicker.getQueryFieldList();
             ConditionPan.SetCurrDataFilter(CurrentDataViewInfo);
         }
@@ -157,9 +159,9 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdLoad_Click(object sender, EventArgs e)
         {
-            var openFile = new OpenFileDialog {Filter = Common.Utility.XmlFilter};
+            var openFile = new OpenFileDialog {Filter = Utility.XmlFilter};
             if (openFile.ShowDialog() != DialogResult.OK) return;
-            DataFilter NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
+            var NewDataFilter = DataFilter.LoadFilter(openFile.FileName);
             CurrentDataViewInfo.mDataFilter = NewDataFilter;
         }
     }

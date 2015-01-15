@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Common;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoUtility.Core;
 
 namespace MongoGUICtl
 {
@@ -12,33 +13,35 @@ namespace MongoGUICtl
         public ctlGeoNear()
         {
             InitializeComponent();
-            NumGeoX.KeyPress += Common.NumberTextBox.NumberText_KeyPress;
-            NumGeoY.KeyPress += Common.NumberTextBox.NumberText_KeyPress;
-            NumDistanceMultiplier.KeyPress += Common.NumberTextBox.NumberText_KeyPress;
-            NumMaxDistance.KeyPress += Common.NumberTextBox.NumberText_KeyPress;
+            NumGeoX.KeyPress += NumberTextBox.NumberText_KeyPress;
+            NumGeoY.KeyPress += NumberTextBox.NumberText_KeyPress;
+            NumDistanceMultiplier.KeyPress += NumberTextBox.NumberText_KeyPress;
+            NumMaxDistance.KeyPress += NumberTextBox.NumberText_KeyPress;
         }
 
         private void lnkGeoNear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("http://docs.mongodb.org/manual/reference/commands/#geoNear");
         }
+
         private void cmdGeoNear_Click(object sender, EventArgs e)
         {
             var GeoOption = new GeoNearArgs();
             GeoOption.DistanceMultiplier = (double.Parse(NumDistanceMultiplier.Text));
             GeoOption.MaxDistance = (double.Parse(NumMaxDistance.Text));
             GeoOption.Spherical = (chkSpherical.Checked);
-            GeoOption.Limit = (int)(NumResultCount.Value);
+            GeoOption.Limit = (int) (NumResultCount.Value);
             GeoOption.Near = new XYPoint(double.Parse(NumGeoX.Text), double.Parse(NumGeoY.Text));
             try
             {
-                BsonDocument mGeoNearAs = MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().GeoNearAs<BsonDocument>(GeoOption).Response;
-                MongoGUICtl.UIHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
+                var mGeoNearAs =
+                    RuntimeMongoDBContext.GetCurrentCollection().GeoNearAs<BsonDocument>(GeoOption).Response;
+                UIHelper.FillDataToTreeView("Result", trvGeoResult, mGeoNearAs);
                 trvGeoResult.DatatreeView.Nodes[0].Expand();
             }
             catch (Exception ex)
             {
-                Common.Utility.ExceptionDeal(ex);
+                Utility.ExceptionDeal(ex);
             }
         }
 

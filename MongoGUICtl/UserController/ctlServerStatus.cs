@@ -1,28 +1,33 @@
 ﻿using System;
 using System.Windows.Forms;
+using Common;
 using MongoUtility.Core;
 using ResourceLib;
+using ResourceLib.Properties;
 
 namespace MongoGUICtl
 {
     public partial class ctlServerStatus : UserControl
     {
         /// <summary>
-        ///     短时间刷新
         /// </summary>
-        private readonly Timer ShortTimer = new Timer();
+        private readonly FillMongoDB.lvwColumnSorter _lvwCollectionStatusColumnSorter =
+            new FillMongoDB.lvwColumnSorter();
+
+        /// <summary>
+        /// </summary>
+        private readonly FillMongoDB.lvwColumnSorter _lvwDBStatusColumnSorter = new FillMongoDB.lvwColumnSorter();
+
         /// <summary>
         ///     常规刷新
         /// </summary>
         private readonly Timer refreshTimer = new Timer();
+
         /// <summary>
-        /// 
+        ///     短时间刷新
         /// </summary>
-        private readonly FillMongoDB.lvwColumnSorter _lvwCollectionStatusColumnSorter = new FillMongoDB.lvwColumnSorter();
-        /// <summary>
-        /// 
-        /// </summary>
-        private readonly FillMongoDB.lvwColumnSorter _lvwDBStatusColumnSorter = new FillMongoDB.lvwColumnSorter();
+        private readonly Timer ShortTimer = new Timer();
+
         /// <summary>
         ///     Auto Refresh Flag
         /// </summary>
@@ -48,24 +53,25 @@ namespace MongoGUICtl
             {
                 if (!IsAuto)
                 {
-                	//手动刷新
-                    FillMongoDB.FillSrvStatusToList(trvSvrStatus,RuntimeMongoDBContext._mongoConnSvrLst);
+                    //手动刷新
+                    FillMongoDB.FillSrvStatusToList(trvSvrStatus, RuntimeMongoDBContext._mongoConnSvrLst);
                 }
-                FillMongoDB.FillDataBaseStatusToList(lstDBStatus,RuntimeMongoDBContext._mongoConnSvrLst);
-                FillMongoDB.FillCollectionStatusToList(lstCollectionStatus,RuntimeMongoDBContext._mongoConnSvrLst);
+                FillMongoDB.FillDataBaseStatusToList(lstDBStatus, RuntimeMongoDBContext._mongoConnSvrLst);
+                FillMongoDB.FillCollectionStatusToList(lstCollectionStatus, RuntimeMongoDBContext._mongoConnSvrLst);
             }
             catch (Exception ex)
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
                 btnSwitch.Text = !configuration.guiConfig.IsUseDefaultLanguage
-                    ? configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh)
+                    ? configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.Collection_Resume_AutoRefresh)
                     : "Resume Auto Refresh";
-                btnSwitch.Image = ResourceLib.Properties.Resources.Run;
+                btnSwitch.Image = Resources.Run;
                 btnSwitch.Enabled = false;
                 RefreshStripButton.Enabled = false;
 
-                Common.Utility.ExceptionDeal(ex, "Refresh Status");
+                Utility.ExceptionDeal(ex, "Refresh Status");
             }
         }
 
@@ -76,20 +82,21 @@ namespace MongoGUICtl
         {
             try
             {
-                FillMongoDB.FillCurrentOprToList(lstSrvOpr,RuntimeMongoDBContext._mongoConnSvrLst);
+                FillMongoDB.FillCurrentOprToList(lstSrvOpr, RuntimeMongoDBContext._mongoConnSvrLst);
             }
             catch (Exception ex)
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
                 btnSwitch.Text = !configuration.guiConfig.IsUseDefaultLanguage
-                    ? configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh)
+                    ? configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.Collection_Resume_AutoRefresh)
                     : "Resume Auto Refresh";
-                btnSwitch.Image = ResourceLib.Properties.Resources.Run;
+                btnSwitch.Image = Resources.Run;
                 btnSwitch.Enabled = false;
                 RefreshStripButton.Enabled = false;
 
-                Common.Utility.ExceptionDeal(ex, "Refresh Current Opreation Exception");
+                Utility.ExceptionDeal(ex, "Refresh Current Opreation Exception");
             }
         }
 
@@ -99,7 +106,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void ctlServerStatus_Load(object sender, EventArgs e)
         {
-        	if (DesignMode) return;
+            if (DesignMode) return;
             //RefreshStatus(false);
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
@@ -111,15 +118,20 @@ namespace MongoGUICtl
                 tabCollectionInfo.Text =
                     configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ServiceStatus_CollectionInfo);
                 tabCurrentOprInfo.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ServiceStatus_CurrentOperationInfo);
-                RefreshStripButton.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Refresh);
-                btnSwitch.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh);
-                CloseStripButton.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                    configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.ServiceStatus_CurrentOperationInfo);
+                RefreshStripButton.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Refresh);
+                btnSwitch.Text =
+                    configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.Collection_Resume_AutoRefresh);
+                CloseStripButton.Text =
+                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
-            refreshTimer.Interval = configuration.RefreshStatusTimer * 1000;
+            refreshTimer.Interval = configuration.RefreshStatusTimer*1000;
             refreshTimer.Tick += (x, y) => RefreshStatus(true);
             //
-            ShortTimer.Interval = configuration.RefreshStatusTimer * 1000;
+            ShortTimer.Interval = configuration.RefreshStatusTimer*1000;
             ShortTimer.Tick += (x, y) => RefreshCurrentOpr();
 
             refreshTimer.Enabled = false;
@@ -240,18 +252,20 @@ namespace MongoGUICtl
                 refreshTimer.Start();
                 ShortTimer.Start();
                 btnSwitch.Text = !configuration.guiConfig.IsUseDefaultLanguage
-                    ? configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Stop_AutoRefresh)
+                    ? configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.Collection_Stop_AutoRefresh)
                     : "Stop Auto Refresh";
-                btnSwitch.Image = ResourceLib.Properties.Resources.Pause;
+                btnSwitch.Image = Resources.Pause;
             }
             else
             {
                 refreshTimer.Stop();
                 ShortTimer.Stop();
                 btnSwitch.Text = !configuration.guiConfig.IsUseDefaultLanguage
-                    ? configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Resume_AutoRefresh)
+                    ? configuration.guiConfig.MStringResource.GetText(
+                        StringResource.TextType.Collection_Resume_AutoRefresh)
                     : "Resume Auto Refresh";
-                btnSwitch.Image = ResourceLib.Properties.Resources.Run;
+                btnSwitch.Image = Resources.Run;
             }
         }
 
@@ -261,10 +275,10 @@ namespace MongoGUICtl
             ShortTimer.Enabled = true;
             btnSwitch.Enabled = true;
             RefreshStripButton.Enabled = true;
-            btnSwitch.Image = ResourceLib.Properties.Resources.Run;
+            btnSwitch.Image = Resources.Run;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -277,8 +291,8 @@ namespace MongoGUICtl
                 CloseTab(sender, e);
             }
         }
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
