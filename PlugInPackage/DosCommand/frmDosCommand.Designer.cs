@@ -1,6 +1,6 @@
 ﻿using MongoGUICtl;
-using MongoGUICtl.Module;
-namespace PlugInPackage
+
+namespace PlugInPackage.DosCommand
 {
     partial class frmDosCommand
     {

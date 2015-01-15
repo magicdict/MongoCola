@@ -1,5 +1,6 @@
 ﻿using MongoGUICtl;
-namespace PlugInPackage
+
+namespace PlugInPackage.GenerateConfigIni
 {
     partial class frmGenerateConfigIni
     {

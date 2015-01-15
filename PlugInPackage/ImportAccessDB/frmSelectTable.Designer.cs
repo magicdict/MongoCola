@@ -1,4 +1,6 @@
-﻿namespace PlugInPackage
+﻿using Common.UI;
+
+namespace PlugInPackage.ImportAccessDB
 {
     partial class frmSelectTable
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-        	this.AccessPicker = new Common.ctlFilePicker();
+        	this.AccessPicker = new ctlFilePicker();
         	this.btnGetTabelList = new System.Windows.Forms.Button();
         	this.chkTable = new System.Windows.Forms.CheckedListBox();
         	this.btnImport = new System.Windows.Forms.Button();
@@ -41,7 +43,7 @@
         	this.AccessPicker.FileName = "";
         	this.AccessPicker.Location = new System.Drawing.Point(35, 20);
         	this.AccessPicker.Name = "AccessPicker";
-        	this.AccessPicker.PickerType = Common.ctlFilePicker.DialogType.OpenFile;
+        	this.AccessPicker.PickerType = ctlFilePicker.DialogType.OpenFile;
         	this.AccessPicker.SelectedPathOrFileName = "";
         	this.AccessPicker.Size = new System.Drawing.Size(640, 29);
         	this.AccessPicker.TabIndex = 0;
@@ -94,7 +96,7 @@
 
         #endregion
 
-        private Common.ctlFilePicker AccessPicker;
+        private ctlFilePicker AccessPicker;
         private System.Windows.Forms.Button btnGetTabelList;
         private System.Windows.Forms.CheckedListBox chkTable;
         private System.Windows.Forms.Button btnImport;

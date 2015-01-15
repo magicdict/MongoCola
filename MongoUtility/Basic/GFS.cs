@@ -2,13 +2,12 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using Common;
+using Common.UI;
 using MongoDB.Driver;
 using MongoDB.Driver.GridFS;
-using MongoUtility.Basic;
-using Utility = Common.Utility;
+using MongoUtility.Core;
 
-namespace MongoUtility
+namespace MongoUtility.Basic
 {
     public static class GFS
     {
@@ -108,7 +107,7 @@ namespace MongoUtility
             }
             catch (Exception ex)
             {
-                Utility.ExceptionDeal(ex, "Error", "Exception happend when open file");
+                Common.Utility.Utility.ExceptionDeal(ex, "Error", "Exception happend when open file");
             }
         }
 
@@ -147,7 +146,7 @@ namespace MongoUtility
             }
             try
             {
-                Basic.Utility.OnActionDone(new ActionDoneEventArgs(RemoteName + " Uploading "));
+                Utility.OnActionDone(new ActionDoneEventArgs(RemoteName + " Uploading "));
                 if (!gfs.Exists(RemoteName))
                 {
                     gfs.Upload(strFileName, RemoteName);
@@ -181,7 +180,7 @@ namespace MongoUtility
             }
             catch (Exception ex)
             {
-                Utility.ExceptionDeal(ex);
+                Common.Utility.Utility.ExceptionDeal(ex);
                 return UploadResult.Exception;
             }
         }

@@ -1,4 +1,6 @@
-﻿namespace HTTPServer
+﻿using Common.UI;
+
+namespace HTTPServer
 {
     partial class frmConsole
     {
@@ -30,8 +32,8 @@
         {
             this.lnkWebFormEntry = new System.Windows.Forms.LinkLabel();
             this.txtInfo = new System.Windows.Forms.TextBox();
-            this.ServerPathPicker = new Common.ctlFilePicker();
-            this.ConfigFile = new Common.ctlFilePicker();
+            this.ServerPathPicker = new ctlFilePicker();
+            this.ConfigFile = new ctlFilePicker();
             this.SuspendLayout();
             // 
             // lnkWebFormEntry
@@ -60,7 +62,7 @@
             this.ServerPathPicker.FileName = "";
             this.ServerPathPicker.Location = new System.Drawing.Point(21, 12);
             this.ServerPathPicker.Name = "ServerPathPicker";
-            this.ServerPathPicker.PickerType = Common.ctlFilePicker.DialogType.Directory;
+            this.ServerPathPicker.PickerType = ctlFilePicker.DialogType.Directory;
             this.ServerPathPicker.SelectedPathOrFileName = "";
             this.ServerPathPicker.Size = new System.Drawing.Size(508, 29);
             this.ServerPathPicker.TabIndex = 14;
@@ -73,7 +75,7 @@
             this.ConfigFile.FileName = "";
             this.ConfigFile.Location = new System.Drawing.Point(21, 43);
             this.ConfigFile.Name = "ConfigFile";
-            this.ConfigFile.PickerType = Common.ctlFilePicker.DialogType.OpenFile;
+            this.ConfigFile.PickerType = ctlFilePicker.DialogType.OpenFile;
             this.ConfigFile.SelectedPathOrFileName = "";
             this.ConfigFile.Size = new System.Drawing.Size(508, 29);
             this.ConfigFile.TabIndex = 14;
@@ -101,7 +103,7 @@
 
         private System.Windows.Forms.LinkLabel lnkWebFormEntry;
         private System.Windows.Forms.TextBox txtInfo;
-        private Common.ctlFilePicker ServerPathPicker;
-        private Common.ctlFilePicker ConfigFile;
+        private ctlFilePicker ServerPathPicker;
+        private ctlFilePicker ConfigFile;
     }
 }

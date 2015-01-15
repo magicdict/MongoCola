@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using ResourceLib.Properties;
 
-namespace ResourceLib
+namespace ResourceLib.Utility
 {
     /// <summary>
     ///     提供从操作系统读取图标的方法

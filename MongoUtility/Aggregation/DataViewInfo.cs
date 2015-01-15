@@ -12,7 +12,7 @@ using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
-using MongoUtility.Operation;
+using MongoUtility.Core;
 
 namespace MongoUtility.Aggregation
 {

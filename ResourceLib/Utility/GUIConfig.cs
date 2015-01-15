@@ -9,7 +9,7 @@
 
 using System;
 
-namespace ResourceLib
+namespace ResourceLib.Utility
 {
     /// <summary>
     ///     Description of UIConfig.

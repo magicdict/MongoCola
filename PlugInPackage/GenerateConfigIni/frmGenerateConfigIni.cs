@@ -2,10 +2,10 @@
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using Common;
-using MongoUtility.ExteneralTool;
+using MongoUtility.Basic;
+using Utility = Common.Utility.Utility;
 
-namespace PlugInPackage
+namespace PlugInPackage.GenerateConfigIni
 {
     public partial class frmGenerateConfigIni : Form
     {

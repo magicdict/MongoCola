@@ -1,8 +1,8 @@
 ﻿using System;
-using Common;
+using Common.Utility;
 using MongoUtility.Core;
 
-namespace SystemUtility
+namespace SystemUtility.Config
 {
     public static class ConfigHelper
     {

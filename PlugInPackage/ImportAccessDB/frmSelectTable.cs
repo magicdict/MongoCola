@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Common;
+using Common.Utility;
 using MongoDB.Driver;
 
-namespace PlugInPackage
+namespace PlugInPackage.ImportAccessDB
 {
     internal partial class frmSelectTable : Form
     {

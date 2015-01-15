@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SystemUtility;
+using SystemUtility.Config;
 using MongoUtility.Core;
 using RazorEngine.Compilation;
 using RazorEngine.Compilation.ReferenceResolver;

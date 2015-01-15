@@ -7,9 +7,9 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUIView;
 using MongoUtility.Basic;
-using MongoUtility.Operation;
+using MongoUtility.Core;
 
-namespace PlugInPackage
+namespace PlugInPackage.ExportToExcel
 {
     public class ExportToExcel : PlugInBase
     {

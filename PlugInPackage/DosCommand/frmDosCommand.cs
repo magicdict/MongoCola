@@ -2,11 +2,11 @@
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using Common;
-using MongoUtility.ExteneralTool;
-using ResourceLib;
+using MongoUtility.Basic;
+using ResourceLib.Utility;
+using Utility = Common.Utility.Utility;
 
-namespace PlugInPackage
+namespace PlugInPackage.DosCommand
 {
     public partial class frmDosCommand : Form
     {

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using Common.Utility;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoUtility.Basic;
-using Utility = Common.Utility;
+using MongoUtility.Core;
 
-namespace PlugInPackage
+namespace PlugInPackage.ImportAccessDB
 {
     public class ImportAccessDB : PlugInBase
     {

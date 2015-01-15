@@ -13,7 +13,7 @@ using System.Security;
 using System.Xml.Serialization;
 using MongoUtility.Core;
 
-namespace SystemUtility
+namespace SystemUtility.Config
 {
     /// <summary>
     ///     Description of Config.

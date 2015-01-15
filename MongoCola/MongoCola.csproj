@@ -108,33 +108,33 @@
     <Reference Include="System.Windows.Forms.DataVisualization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form\frmExport.cs">
+    <Compile Include="frmExport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmExport.Designer.cs">
+    <Compile Include="frmExport.Designer.cs">
       <DependentUpon>frmExport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmMainHelper.cs">
+    <Compile Include="frmMainHelper.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmMainMenuItem.cs">
+    <Compile Include="frmMainMenuItem.cs">
       <SubType>Form</SubType>
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmUserRole.cs">
+    <Compile Include="frmUserRole.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmUserRole.Designer.cs">
+    <Compile Include="frmUserRole.Designer.cs">
       <DependentUpon>frmUserRole.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmAddRole.cs">
+    <Compile Include="frmAddRole.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmAddRole.Designer.cs">
+    <Compile Include="frmAddRole.Designer.cs">
       <DependentUpon>frmAddRole.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmMainTreeView.cs">
+    <Compile Include="frmMainTreeView.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -143,254 +143,254 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Form\Aggregation\frmTextSearch.cs">
+    <Compile Include="Aggregation\frmTextSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Aggregation\frmTextSearch.Designer.cs">
+    <Compile Include="Aggregation\frmTextSearch.Designer.cs">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmValidate.cs">
+    <Compile Include="frmValidate.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmValidate.Designer.cs">
+    <Compile Include="frmValidate.Designer.cs">
       <DependentUpon>frmValidate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Status\frmServerMonitor.cs">
+    <Compile Include="Status\frmServerMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Status\frmServerMonitor.Designer.cs">
+    <Compile Include="Status\frmServerMonitor.Designer.cs">
       <DependentUpon>frmServerMonitor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Operation\frmArrayCreator.cs">
+    <Compile Include="Operation\frmArrayCreator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Operation\frmArrayCreator.Designer.cs">
+    <Compile Include="Operation\frmArrayCreator.Designer.cs">
       <DependentUpon>frmArrayCreator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Aggregation\frmAggregation.cs">
+    <Compile Include="Aggregation\frmAggregation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Aggregation\frmAggregation.Designer.cs">
+    <Compile Include="Aggregation\frmAggregation.Designer.cs">
       <DependentUpon>frmAggregation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Aggregation\frmAggregationCondition.cs">
+    <Compile Include="Aggregation\frmAggregationCondition.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Aggregation\frmAggregationCondition.Designer.cs">
+    <Compile Include="Aggregation\frmAggregationCondition.Designer.cs">
       <DependentUpon>frmAggregationCondition.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Operation\frmElement.cs">
+    <Compile Include="Operation\frmElement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Operation\frmElement.Designer.cs">
+    <Compile Include="Operation\frmElement.Designer.cs">
       <DependentUpon>frmElement.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmLanguage.cs">
+    <Compile Include="frmLanguage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmLanguage.Designer.cs">
+    <Compile Include="frmLanguage.Designer.cs">
       <DependentUpon>frmLanguage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Operation\frmCreateCollection.cs">
+    <Compile Include="Operation\frmCreateCollection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Operation\frmCreateCollection.Designer.cs">
+    <Compile Include="Operation\frmCreateCollection.Designer.cs">
       <DependentUpon>frmCreateCollection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmMain.cs">
+    <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmMain.Designer.cs">
+    <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Status\frmProfilling.cs">
+    <Compile Include="Status\frmProfilling.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Status\frmProfilling.Designer.cs">
+    <Compile Include="Status\frmProfilling.Designer.cs">
       <DependentUpon>frmProfilling.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Status\frmStatus.cs">
+    <Compile Include="Status\frmStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Status\frmStatus.Designer.cs">
+    <Compile Include="Status\frmStatus.Designer.cs">
       <DependentUpon>frmStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Operation\frmNewDocument.cs">
+    <Compile Include="Operation\frmNewDocument.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Operation\frmNewDocument.Designer.cs">
+    <Compile Include="Operation\frmNewDocument.Designer.cs">
       <DependentUpon>frmNewDocument.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmGFSOption.cs">
+    <Compile Include="frmGFSOption.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmGFSOption.Designer.cs">
+    <Compile Include="frmGFSOption.Designer.cs">
       <DependentUpon>frmGFSOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmReplsetMgr.cs">
+    <Compile Include="frmReplsetMgr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmReplsetMgr.Designer.cs">
+    <Compile Include="frmReplsetMgr.Designer.cs">
       <DependentUpon>frmReplsetMgr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmEvalJS.cs">
+    <Compile Include="frmEvalJS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmEvalJS.Designer.cs">
+    <Compile Include="frmEvalJS.Designer.cs">
       <DependentUpon>frmEvalJS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmUser.cs">
+    <Compile Include="frmUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmUser.Designer.cs">
+    <Compile Include="frmUser.Designer.cs">
       <DependentUpon>frmUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Aggregation\frmDistinct.cs">
+    <Compile Include="Aggregation\frmDistinct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Aggregation\frmDistinct.Designer.cs">
+    <Compile Include="Aggregation\frmDistinct.Designer.cs">
       <DependentUpon>frmDistinct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Aggregation\frmGroup.cs">
+    <Compile Include="Aggregation\frmGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Aggregation\frmGroup.Designer.cs">
+    <Compile Include="Aggregation\frmGroup.Designer.cs">
       <DependentUpon>frmGroup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Connection\frmAddConnection.cs">
+    <Compile Include="Connection\frmAddConnection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Connection\frmAddConnection.Designer.cs">
+    <Compile Include="Connection\frmAddConnection.Designer.cs">
       <DependentUpon>frmAddConnection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmShardingConfig.cs">
+    <Compile Include="frmShardingConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmShardingConfig.Designer.cs">
+    <Compile Include="frmShardingConfig.Designer.cs">
       <DependentUpon>frmShardingConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Connection\frmConnect.cs">
+    <Compile Include="Connection\frmConnect.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Connection\frmConnect.Designer.cs">
+    <Compile Include="Connection\frmConnect.Designer.cs">
       <DependentUpon>frmConnect.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Operation\frmCollectionIndex.cs">
+    <Compile Include="Operation\frmCollectionIndex.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Operation\frmCollectionIndex.Designer.cs">
+    <Compile Include="Operation\frmCollectionIndex.Designer.cs">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Aggregation\frmMapReduce.cs">
+    <Compile Include="Aggregation\frmMapReduce.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Aggregation\frmMapReduce.Designer.cs">
+    <Compile Include="Aggregation\frmMapReduce.Designer.cs">
       <DependentUpon>frmMapReduce.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmOption.cs">
+    <Compile Include="frmOption.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmOption.Designer.cs">
+    <Compile Include="frmOption.Designer.cs">
       <DependentUpon>frmOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Aggregation\frmQuery.cs">
+    <Compile Include="Aggregation\frmQuery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Aggregation\frmQuery.Designer.cs">
+    <Compile Include="Aggregation\frmQuery.Designer.cs">
       <DependentUpon>frmQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemManager.cs" />
-    <EmbeddedResource Include="Form\frmAddRole.resx">
+    <EmbeddedResource Include="frmAddRole.resx">
       <DependentUpon>frmAddRole.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmExport.resx">
+    <EmbeddedResource Include="frmExport.resx">
       <DependentUpon>frmExport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmUserRole.resx">
+    <EmbeddedResource Include="frmUserRole.resx">
       <DependentUpon>frmUserRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Operation\frmArrayCreator.resx">
+    <EmbeddedResource Include="Operation\frmArrayCreator.resx">
       <DependentUpon>frmArrayCreator.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Aggregation\frmTextSearch.resx">
+    <EmbeddedResource Include="Aggregation\frmTextSearch.resx">
       <DependentUpon>frmTextSearch.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmValidate.resx">
+    <EmbeddedResource Include="frmValidate.resx">
       <DependentUpon>frmValidate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Status\frmServerMonitor.resx">
+    <EmbeddedResource Include="Status\frmServerMonitor.resx">
       <DependentUpon>frmServerMonitor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Aggregation\frmAggregation.resx">
+    <EmbeddedResource Include="Aggregation\frmAggregation.resx">
       <DependentUpon>frmAggregation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Aggregation\frmAggregationCondition.resx">
+    <EmbeddedResource Include="Aggregation\frmAggregationCondition.resx">
       <DependentUpon>frmAggregationCondition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Operation\frmCreateCollection.resx">
+    <EmbeddedResource Include="Operation\frmCreateCollection.resx">
       <DependentUpon>frmCreateCollection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Operation\frmElement.resx">
+    <EmbeddedResource Include="Operation\frmElement.resx">
       <DependentUpon>frmElement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmLanguage.resx">
+    <EmbeddedResource Include="frmLanguage.resx">
       <DependentUpon>frmLanguage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmMain.resx">
+    <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Operation\frmNewDocument.resx">
+    <EmbeddedResource Include="Operation\frmNewDocument.resx">
       <DependentUpon>frmNewDocument.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Status\frmProfilling.resx">
+    <EmbeddedResource Include="Status\frmProfilling.resx">
       <DependentUpon>frmProfilling.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Status\frmStatus.resx">
+    <EmbeddedResource Include="Status\frmStatus.resx">
       <DependentUpon>frmStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmGFSOption.resx">
+    <EmbeddedResource Include="frmGFSOption.resx">
       <DependentUpon>frmGFSOption.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmReplsetMgr.resx">
+    <EmbeddedResource Include="frmReplsetMgr.resx">
       <DependentUpon>frmReplsetMgr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmEvalJS.resx">
+    <EmbeddedResource Include="frmEvalJS.resx">
       <DependentUpon>frmEvalJS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmUser.resx">
+    <EmbeddedResource Include="frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Aggregation\frmDistinct.resx">
+    <EmbeddedResource Include="Aggregation\frmDistinct.resx">
       <DependentUpon>frmDistinct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Aggregation\frmGroup.resx">
+    <EmbeddedResource Include="Aggregation\frmGroup.resx">
       <DependentUpon>frmGroup.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Connection\frmAddConnection.resx">
+    <EmbeddedResource Include="Connection\frmAddConnection.resx">
       <DependentUpon>frmAddConnection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmShardingConfig.resx">
+    <EmbeddedResource Include="frmShardingConfig.resx">
       <DependentUpon>frmShardingConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Connection\frmConnect.resx">
+    <EmbeddedResource Include="Connection\frmConnect.resx">
       <DependentUpon>frmConnect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Operation\frmCollectionIndex.resx">
+    <EmbeddedResource Include="Operation\frmCollectionIndex.resx">
       <DependentUpon>frmCollectionIndex.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Aggregation\frmMapReduce.resx">
+    <EmbeddedResource Include="Aggregation\frmMapReduce.resx">
       <DependentUpon>frmMapReduce.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmOption.resx">
+    <EmbeddedResource Include="frmOption.resx">
       <DependentUpon>frmOption.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Aggregation\frmQuery.resx">
+    <EmbeddedResource Include="Aggregation\frmQuery.resx">
       <DependentUpon>frmQuery.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />

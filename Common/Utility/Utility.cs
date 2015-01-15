@@ -6,10 +6,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
+using Common.UI;
 using Microsoft.VisualBasic;
-using ResourceLib;
+using ResourceLib.Utility;
 
-namespace Common
+namespace Common.Utility
 {
     public static class Utility
     {

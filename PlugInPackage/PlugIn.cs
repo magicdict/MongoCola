@@ -5,7 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Utility;
 
 namespace PlugInPackage
 {

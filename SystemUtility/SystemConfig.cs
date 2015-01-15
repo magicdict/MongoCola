@@ -9,8 +9,8 @@
 
 using System.IO;
 using System.Security;
-using Common;
-using ResourceLib;
+using Common.UI;
+using ResourceLib.Utility;
 
 namespace SystemUtility
 {
@@ -24,7 +24,7 @@ namespace SystemUtility
 
         /// 配置
         /// </summary>
-        public static Config config = new Config();
+        public static Config.Config config = new Config.Config();
 
         /// <summary>
         ///     版本号

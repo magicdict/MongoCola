@@ -9,10 +9,9 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Command;
 using MongoUtility.Core;
-using MongoUtility.Operation;
 using MongoUtility.Security;
-using ResourceLib;
-using Utility = Common.Utility;
+using ResourceLib.Utility;
+using Utility = Common.Utility.Utility;
 
 namespace MongoGUICtl
 {

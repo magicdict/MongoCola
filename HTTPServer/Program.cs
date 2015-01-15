@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using ResourceLib;
+using ResourceLib.Utility;
 
 namespace HTTPServer
 {

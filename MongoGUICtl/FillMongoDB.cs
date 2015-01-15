@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Common;
+using Common.Utility;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Command;
 using MongoUtility.Core;
-using ResourceLib;
+using ResourceLib.Utility;
 
 namespace MongoGUICtl
 {

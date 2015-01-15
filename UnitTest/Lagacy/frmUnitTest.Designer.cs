@@ -1,4 +1,4 @@
-﻿namespace UnitTest
+﻿namespace UnitTest.Lagacy
 {
     partial class frmUnitTest
     {

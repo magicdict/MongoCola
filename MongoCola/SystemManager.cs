@@ -3,8 +3,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using SystemUtility;
+using SystemUtility.Config;
 using MongoGUICtl;
-using MongoUtility;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 
@@ -27,10 +27,10 @@ namespace MongoCola
             SystemConfig.DebugMode = false;
             SystemConfig.MonoMode = Type.GetType("Mono.Runtime") != null;
             //异常处理器的初始化
-            Common.Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + Utility.MongoDbDriverVersion +
-                                                 Environment.NewLine;
-            Common.Utility.ExceptionAppendInfo += "MongoDbBsonVersion:" + Utility.MongoDbBsonVersion +
-                                                  Environment.NewLine;
+            Common.Utility.Utility.ExceptionAppendInfo = "MongoDbDriverVersion:" + Utility.MongoDbDriverVersion +
+                                                         Environment.NewLine;
+            Common.Utility.Utility.ExceptionAppendInfo += "MongoDbBsonVersion:" + Utility.MongoDbBsonVersion +
+                                                          Environment.NewLine;
             //config
             var localconfigfile = Application.StartupPath + "\\" + ConfigHelper._configFilename;
             if (File.Exists(localconfigfile))

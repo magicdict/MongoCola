@@ -7,9 +7,9 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using Common;
+using Common.Utility;
 
-namespace PlugInPackage
+namespace PlugInPackage.DosCommand
 {
     /// <summary>
     ///     Description of DosCommand.

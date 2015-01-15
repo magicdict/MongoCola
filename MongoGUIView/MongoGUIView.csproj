@@ -49,43 +49,43 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="configuration.cs" />
-    <Compile Include="Views\ctlDataView.cs">
+    <Compile Include="ctlDataView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ctlDataView.Designer.cs">
+    <Compile Include="ctlDataView.Designer.cs">
       <DependentUpon>ctlDataView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ctlDocumentView.cs">
+    <Compile Include="ctlDocumentView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ctlDocumentView.Designer.cs">
+    <Compile Include="ctlDocumentView.Designer.cs">
       <DependentUpon>ctlDocumentView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ctlGFSView.cs">
+    <Compile Include="ctlGFSView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ctlGFSView.Designer.cs">
+    <Compile Include="ctlGFSView.Designer.cs">
       <DependentUpon>ctlGFSView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ctlUserView.cs">
+    <Compile Include="ctlUserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ctlUserView.Designer.cs">
+    <Compile Include="ctlUserView.Designer.cs">
       <DependentUpon>ctlUserView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewHelper.cs" />
+    <Compile Include="ViewHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ctlDataView.resx">
+    <EmbeddedResource Include="ctlDataView.resx">
       <DependentUpon>ctlDataView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ctlDocumentView.resx">
+    <EmbeddedResource Include="ctlDocumentView.resx">
       <DependentUpon>ctlDocumentView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ctlGFSView.resx">
+    <EmbeddedResource Include="ctlGFSView.resx">
       <DependentUpon>ctlGFSView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ctlUserView.resx">
+    <EmbeddedResource Include="ctlUserView.resx">
       <DependentUpon>ctlUserView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

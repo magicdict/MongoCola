@@ -91,7 +91,7 @@
     <Compile Include="ImportAccessDB\frmSelectTable.Designer.cs">
       <DependentUpon>frmSelectTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlugBase.cs" />
+    <Compile Include="PlugInBase.cs" />
     <Compile Include="PlugIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

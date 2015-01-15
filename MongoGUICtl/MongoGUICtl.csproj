@@ -54,201 +54,201 @@
     <Compile Include="UIHelper_Sub.cs">
       <DependentUpon>UIHelper.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\Aggregation\BsonValuePanel.cs">
+    <Compile Include="Aggregation\BsonValuePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\Aggregation\BsonValuePanel.Designer.cs">
+    <Compile Include="Aggregation\BsonValuePanel.Designer.cs">
       <DependentUpon>BsonValuePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\Aggregation\ConditionPanel.cs">
+    <Compile Include="Aggregation\ConditionPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\Aggregation\ConditionPanel.Designer.cs">
+    <Compile Include="Aggregation\ConditionPanel.Designer.cs">
       <DependentUpon>ConditionPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\Aggregation\ctlFieldInfo.cs">
+    <Compile Include="Aggregation\ctlFieldInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\Aggregation\ctlFieldInfo.Designer.cs">
+    <Compile Include="Aggregation\ctlFieldInfo.Designer.cs">
       <DependentUpon>ctlFieldInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\Aggregation\ctlMatchItem.cs">
+    <Compile Include="Aggregation\ctlMatchItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\Aggregation\ctlMatchItem.Designer.cs">
+    <Compile Include="Aggregation\ctlMatchItem.Designer.cs">
       <DependentUpon>ctlMatchItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\Aggregation\FieldPicker.cs">
+    <Compile Include="Aggregation\FieldPicker.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\Aggregation\FieldPicker.Designer.cs">
+    <Compile Include="Aggregation\FieldPicker.Designer.cs">
       <DependentUpon>FieldPicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\Aggregation\GroupItem.cs">
+    <Compile Include="Aggregation\GroupItem.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\Aggregation\GroupItem.Designer.cs">
+    <Compile Include="Aggregation\GroupItem.Designer.cs">
       <DependentUpon>GroupItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\Aggregation\GroupPanel.cs">
+    <Compile Include="Aggregation\GroupPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\Aggregation\GroupPanel.Designer.cs">
+    <Compile Include="Aggregation\GroupPanel.Designer.cs">
       <DependentUpon>GroupPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\Aggregation\MatchPanel.cs">
+    <Compile Include="Aggregation\MatchPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\Aggregation\MatchPanel.Designer.cs">
+    <Compile Include="Aggregation\MatchPanel.Designer.cs">
       <DependentUpon>MatchPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlAddBsonEl.cs">
+    <Compile Include="ctlAddBsonEl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlAddBsonEl.Designer.cs">
+    <Compile Include="ctlAddBsonEl.Designer.cs">
       <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlBsonValue.cs">
+    <Compile Include="ctlBsonValue.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlBsonValue.Designer.cs">
+    <Compile Include="ctlBsonValue.Designer.cs">
       <DependentUpon>ctlBsonValue.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlGeoNear.cs">
+    <Compile Include="ctlGeoNear.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlGeoNear.Designer.cs">
+    <Compile Include="ctlGeoNear.Designer.cs">
       <DependentUpon>ctlGeoNear.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlIndexCreate.cs">
+    <Compile Include="ctlIndexCreate.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlIndexCreate.Designer.cs">
+    <Compile Include="ctlIndexCreate.Designer.cs">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlJsEditor.cs">
+    <Compile Include="ctlJsEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlJsEditor.Designer.cs">
+    <Compile Include="ctlJsEditor.Designer.cs">
       <DependentUpon>ctlJsEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctllogLv.cs">
+    <Compile Include="ctllogLv.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctllogLv.Designer.cs">
+    <Compile Include="ctllogLv.Designer.cs">
       <DependentUpon>ctllogLv.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlMongod.cs">
+    <Compile Include="ctlMongod.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlMongod.Designer.cs">
+    <Compile Include="ctlMongod.Designer.cs">
       <DependentUpon>ctlMongod.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlMongodump.cs">
+    <Compile Include="ctlMongodump.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlMongodump.Designer.cs">
+    <Compile Include="ctlMongodump.Designer.cs">
       <DependentUpon>ctlMongodump.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlMongoImportExport.cs">
+    <Compile Include="ctlMongoImportExport.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlMongoImportExport.Designer.cs">
+    <Compile Include="ctlMongoImportExport.Designer.cs">
       <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlQueryCondition.cs">
+    <Compile Include="ctlQueryCondition.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlQueryCondition.Designer.cs">
+    <Compile Include="ctlQueryCondition.Designer.cs">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlServerStatus.cs">
+    <Compile Include="ctlServerStatus.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlServerStatus.Designer.cs">
+    <Compile Include="ctlServerStatus.Designer.cs">
       <DependentUpon>ctlServerStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlTextMgr.cs">
+    <Compile Include="ctlTextMgr.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlTextMgr.Designer.cs">
+    <Compile Include="ctlTextMgr.Designer.cs">
       <DependentUpon>ctlTextMgr.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlUserRolesPanel.cs">
+    <Compile Include="ctlUserRolesPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlUserRolesPanel.Designer.cs">
+    <Compile Include="ctlUserRolesPanel.Designer.cs">
       <DependentUpon>ctlUserRolesPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserController\ctlTreeViewColumns.cs">
+    <Compile Include="ctlTreeViewColumns.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserController\ctlTreeViewColumns.Designer.cs">
+    <Compile Include="ctlTreeViewColumns.Designer.cs">
       <DependentUpon>ctlTreeViewColumns.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UserController\Aggregation\BsonValuePanel.resx">
+    <EmbeddedResource Include="Aggregation\BsonValuePanel.resx">
       <DependentUpon>BsonValuePanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\ConditionPanel.resx">
+    <EmbeddedResource Include="Aggregation\ConditionPanel.resx">
       <DependentUpon>ConditionPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\ctlFieldInfo.resx">
+    <EmbeddedResource Include="Aggregation\ctlFieldInfo.resx">
       <DependentUpon>ctlFieldInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\ctlMatchItem.resx">
+    <EmbeddedResource Include="Aggregation\ctlMatchItem.resx">
       <DependentUpon>ctlMatchItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\FieldPicker.resx">
+    <EmbeddedResource Include="Aggregation\FieldPicker.resx">
       <DependentUpon>FieldPicker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\GroupItem.resx">
+    <EmbeddedResource Include="Aggregation\GroupItem.resx">
       <DependentUpon>GroupItem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\Aggregation\GroupPanel.resx">
+    <EmbeddedResource Include="Aggregation\GroupPanel.resx">
       <DependentUpon>GroupPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlAddBsonEl.resx">
+    <EmbeddedResource Include="ctlAddBsonEl.resx">
       <DependentUpon>ctlAddBsonEl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlBsonValue.resx">
+    <EmbeddedResource Include="ctlBsonValue.resx">
       <DependentUpon>ctlBsonValue.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlGeoNear.resx">
+    <EmbeddedResource Include="ctlGeoNear.resx">
       <DependentUpon>ctlGeoNear.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlIndexCreate.resx">
+    <EmbeddedResource Include="ctlIndexCreate.resx">
       <DependentUpon>ctlIndexCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlJsEditor.resx">
+    <EmbeddedResource Include="ctlJsEditor.resx">
       <DependentUpon>ctlJsEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctllogLv.resx">
+    <EmbeddedResource Include="ctllogLv.resx">
       <DependentUpon>ctllogLv.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlMongod.resx">
+    <EmbeddedResource Include="ctlMongod.resx">
       <DependentUpon>ctlMongod.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlMongodump.resx">
+    <EmbeddedResource Include="ctlMongodump.resx">
       <DependentUpon>ctlMongodump.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlMongoImportExport.resx">
+    <EmbeddedResource Include="ctlMongoImportExport.resx">
       <DependentUpon>ctlMongoImportExport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlQueryCondition.resx">
+    <EmbeddedResource Include="ctlQueryCondition.resx">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlServerStatus.resx">
+    <EmbeddedResource Include="ctlServerStatus.resx">
       <DependentUpon>ctlServerStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlTextMgr.resx">
+    <EmbeddedResource Include="ctlTextMgr.resx">
       <DependentUpon>ctlTextMgr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlUserRolesPanel.resx">
+    <EmbeddedResource Include="ctlUserRolesPanel.resx">
       <DependentUpon>ctlUserRolesPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserController\ctlTreeViewColumns.resx">
+    <EmbeddedResource Include="ctlTreeViewColumns.resx">
       <DependentUpon>ctlTreeViewColumns.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
