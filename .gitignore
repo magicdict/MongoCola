@@ -37,6 +37,10 @@
 /MongoUtility/obj
 /UserGuide/bin
 /UserGuide/obj
+/TemplatePackage/bin
+/TemplatePackage/obj
+/SystemUtility/bin
+/SystemUtility/obj
 /DesignDocument
 /ServerLoader
 !readme.txt
