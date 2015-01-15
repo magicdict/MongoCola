@@ -14,6 +14,7 @@
 *.pdb
 *.doc
 *.xml
+*.scc
 /MongoCola/.localhistory
 /MongoCola/MongoCola.sln.ide
 /MongoGUICtl/bin
@@ -48,4 +49,7 @@
 !MongoCola/packages.config
 !MongoCola.zip
 !Template.xls
+!zh_CN.xml
+!zh_TW.xml
+!ja_JP.xml
 Thumbs.db
