@@ -124,10 +124,12 @@ namespace Common
         /// <param name="rec"></param>
         public void AppendRec(T rec)
         {
-            var dbrec = new Model<T>();
-            dbrec.DBId = Guid.NewGuid().ToString();
-            dbrec.DataRec = Utility.DeepCopy(rec);
-            dbrec.LastUpdate = DateTime.Now;
+            var dbrec = new Model<T>
+            {
+                DBId = Guid.NewGuid().ToString(),
+                DataRec = Utility.DeepCopy(rec),
+                LastUpdate = DateTime.Now
+            };
             list.Add(dbrec);
         }
 

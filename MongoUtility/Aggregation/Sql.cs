@@ -82,10 +82,12 @@ namespace MongoUtility.Aggregation
                 //Select * 
                 foreach (var item in ColumnNameLst)
                 {
-                    var field = new DataFilter.QueryFieldItem();
-                    field.ColName = item;
-                    field.IsShow = true;
-                    field.sortType = DataFilter.SortType.NoSort;
+                    var field = new DataFilter.QueryFieldItem
+                    {
+                        ColName = item,
+                        IsShow = true,
+                        sortType = DataFilter.SortType.NoSort
+                    };
                     rtnQuery.QueryFieldList.Add(field);
                 }
             }
@@ -94,10 +96,12 @@ namespace MongoUtility.Aggregation
                 //Select A,B,C 
                 foreach (var item in strSelect.Split(",".ToCharArray()))
                 {
-                    var field = new DataFilter.QueryFieldItem();
-                    field.ColName = item;
-                    field.IsShow = true;
-                    field.sortType = DataFilter.SortType.NoSort;
+                    var field = new DataFilter.QueryFieldItem
+                    {
+                        ColName = item,
+                        IsShow = true,
+                        sortType = DataFilter.SortType.NoSort
+                    };
                     rtnQuery.QueryFieldList.Add(field);
                 }
             }
@@ -258,9 +262,11 @@ namespace MongoUtility.Aggregation
             //           b = "A" ) and 
             //           c = "3"  
             var Token = SqlContent.Split(" ".ToCharArray());
-            var mQueryConditionInputItem = new DataFilter.QueryConditionInputItem();
-            mQueryConditionInputItem.StartMark = String.Empty;
-            mQueryConditionInputItem.EndMark = String.Empty;
+            var mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
+            {
+                StartMark = String.Empty,
+                EndMark = String.Empty
+            };
 
             for (var i = 0; i < Token.Length; i++)
             {
@@ -291,17 +297,21 @@ namespace MongoUtility.Aggregation
                     case "or":
                         mQueryConditionInputItem.EndMark = ConstMgr.EndMark_OR;
                         Conditionlst.Add(mQueryConditionInputItem);
-                        mQueryConditionInputItem = new DataFilter.QueryConditionInputItem();
-                        mQueryConditionInputItem.StartMark = String.Empty;
-                        mQueryConditionInputItem.EndMark = String.Empty;
+                        mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
+                        {
+                            StartMark = String.Empty,
+                            EndMark = String.Empty
+                        };
 
                         break;
                     case "and":
                         mQueryConditionInputItem.EndMark = ConstMgr.EndMark_AND;
                         Conditionlst.Add(mQueryConditionInputItem);
-                        mQueryConditionInputItem = new DataFilter.QueryConditionInputItem();
-                        mQueryConditionInputItem.StartMark = String.Empty;
-                        mQueryConditionInputItem.EndMark = String.Empty;
+                        mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
+                        {
+                            StartMark = String.Empty,
+                            EndMark = String.Empty
+                        };
 
                         break;
                     case ")":
@@ -329,9 +339,11 @@ namespace MongoUtility.Aggregation
                         }
 
                         Conditionlst.Add(mQueryConditionInputItem);
-                        mQueryConditionInputItem = new DataFilter.QueryConditionInputItem();
-                        mQueryConditionInputItem.StartMark = String.Empty;
-                        mQueryConditionInputItem.EndMark = String.Empty;
+                        mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
+                        {
+                            StartMark = String.Empty,
+                            EndMark = String.Empty
+                        };
 
                         break;
                     default:

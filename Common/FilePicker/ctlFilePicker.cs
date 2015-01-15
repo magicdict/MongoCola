@@ -90,8 +90,7 @@ namespace Common
             switch (_dialogType)
             {
                 case DialogType.OpenFile:
-                    var openFile = new OpenFileDialog();
-                    openFile.FileName = _FileName;
+                    var openFile = new OpenFileDialog {FileName = _FileName};
                     if (_FileFilter != String.Empty)
                     {
                         openFile.Filter = _FileFilter;
@@ -102,8 +101,7 @@ namespace Common
                     }
                     break;
                 case DialogType.SaveFile:
-                    var saveFile = new SaveFileDialog();
-                    saveFile.FileName = _FileName;
+                    var saveFile = new SaveFileDialog {FileName = _FileName};
                     if (_FileFilter != String.Empty)
                     {
                         saveFile.Filter = _FileFilter;

@@ -189,12 +189,10 @@ namespace Common
         /// <param name="Obj"></param>
         public static void SaveObjAsXml<T>(string filename, T Obj)
         {
-            var settings = new XmlWriterSettings();
-            settings.Indent = true;
+            var settings = new XmlWriterSettings {Indent = true, NewLineChars = Environment.NewLine};
             //NewLineChars对于String属性的东西无效
             //这是对于XML中换行有效，
             //String的换行会变成Console的NewLine /n
-            settings.NewLineChars = Environment.NewLine;
             var xml = new XmlSerializer(typeof (T));
             var writer = XmlWriter.Create(filename, settings);
             var ns = new XmlSerializerNamespaces();
@@ -240,8 +238,7 @@ namespace Common
         /// <param name="result"></param>
         public static void SaveJavascriptFile(string result)
         {
-            var dialog = new SaveFileDialog();
-            dialog.Filter = JsFilter;
+            var dialog = new SaveFileDialog {Filter = JsFilter};
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var writer = new StreamWriter(dialog.FileName, false);

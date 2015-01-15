@@ -35,6 +35,7 @@ namespace PlugInPackage
         public override int Run()
         {
             ProcessCollection = (MongoCollection) PlugObj;
+            Export(null, null);
             MessageBox.Show(ProcessCollection.Name);
             return 0;
         }
@@ -44,7 +45,7 @@ namespace PlugInPackage
         /// </summary>
         /// <param name="dataList"></param>
         /// <param name="filename"></param>
-        private static void T(List<BsonDocument> dataList, String filename)
+        private static void Export(List<BsonDocument> dataList, String filename)
         {
             var Schame = Utility.GetCollectionSchame(ProcessCollection);
             dynamic excelObj = Interaction.CreateObject("Excel.Application");

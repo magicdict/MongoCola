@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("MongoCola")]
 [assembly: AssemblyDescription("MongoDB Administration Tool")]
 [assembly: AssemblyConfiguration(".NET3.5")]
-[assembly: AssemblyCompany("IBM GDC")]
+[assembly: AssemblyCompany("Shanghai Chuwa Software co.ltd")]
 [assembly: AssemblyProduct("MongoCola")]
-[assembly: AssemblyCopyright("Copyright © IBM 2011 - 2014")]
+[assembly: AssemblyCopyright("Copyright © 2011 - 2015")]
 [assembly: AssemblyTrademark("MagicHu")]
 [assembly: AssemblyCulture("")]
 
@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.3.2.0")]
-[assembly: AssemblyFileVersion("1.3.2.0")]
+[assembly: AssemblyVersion("1.4.0.0")]
+[assembly: AssemblyFileVersion("1.4.0.0")]

@@ -108,7 +108,6 @@ namespace MongoUtility.Operation
         {
             var rtnResult = String.Empty;
             var strSvrPath = Utility.GetTagData(strObjTag);
-            var svrKey = strSvrPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.InstanceLv];
             var result = new CommandResult(new BsonDocument());
             if (mongoSvr != null)
             {
@@ -176,8 +175,6 @@ namespace MongoUtility.Operation
             //collection names are limited to 121 bytes after converting to UTF-8. 
             var rtnResult = false;
             var strSvrPath = Utility.GetTagData(strObjTag);
-            var svrKey = strSvrPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.InstanceLv];
-            var ConKey = strSvrPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.ConnectionLv];
             if (mongoDB != null)
             {
                 if (!mongoDB.CollectionExists(collectionName))
@@ -210,8 +207,6 @@ namespace MongoUtility.Operation
             //collection names are limited to 121 bytes after converting to UTF-8. 
             var rtnResult = false;
             var strSvrPath = Utility.GetTagData(strObjTag);
-            var svrKey = strSvrPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.InstanceLv];
-            var ConKey = strSvrPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.ConnectionLv];
             if (mongoDB != null)
             {
                 if (!mongoDB.CollectionExists(collectionName))

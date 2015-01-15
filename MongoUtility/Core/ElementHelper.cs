@@ -137,7 +137,6 @@ namespace MongoUtility.Core
             MongoCollection CurrentCollection)
         {
             var BaseDoc = CurrentDocument;
-            WriteConcernResult rtn;
             var t = GetLastParentDocument(BaseDoc, ElementPath, true);
             if (t.IsBsonDocument)
             {
@@ -152,7 +151,7 @@ namespace MongoUtility.Core
             }
             if (!CurrentCollection.IsCapped())
             {
-                rtn = CurrentCollection.Save(BaseDoc);
+                CurrentCollection.Save(BaseDoc);
             }
             return String.Empty;
         }
