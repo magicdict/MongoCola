@@ -8,6 +8,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Xml.Serialization;
 
 namespace MongoUtility.Core
@@ -16,6 +17,7 @@ namespace MongoUtility.Core
 	///     连接结构体
 	/// </summary>
 	[Serializable]
+    [assembly: AllowPartiallyTrustedCallers]
 	public class MongoConnectionConfig
 	{
 		#region"固有属性"

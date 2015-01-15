@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoDB.Driver.Builders;
 using MongoUtility.Basic;
 using MongoUtility.Security;
 using SystemUtility;
+using ResourceLib;
 namespace MongoCola
 {
     public partial class frmUser : Form

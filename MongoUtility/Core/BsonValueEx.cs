@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 
-namespace MongoCola.Module
+namespace MongoUtility.Core
 {
     /// <summary>
     ///     用于BsonValue的序列化

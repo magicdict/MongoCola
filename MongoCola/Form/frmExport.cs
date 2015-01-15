@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoUtility.Basic;
 using SystemUtility;
+using ResourceLib;
 
 
 namespace MongoCola
@@ -70,7 +71,7 @@ namespace MongoCola
 		private void btnSave_Click(object sender, EventArgs e)
 		{
 			MongoUtility.Basic.Utility.ActionDone += (x, y) => MyMessageBox.ShowMessage("Export", y.Message);
-			MongoDbHelper.ExportToFile(_viewinfo, ctlExportFilePicker.SelectedPathOrFileName, _exportType, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
+            MongoUtility.Extend.Export.ExportToFile(_viewinfo, ctlExportFilePicker.SelectedPathOrFileName, _exportType, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
 		}
 	}
 }

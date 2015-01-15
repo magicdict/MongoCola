@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using ResourceLib.Properties;
 using Microsoft.Win32;
 
-namespace MongoCola.Module
+namespace ResourceLib
 {
     /// <summary>
     ///     提供从操作系统读取图标的方法

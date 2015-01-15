@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-namespace MongoCola
+namespace Common
 {
     partial class frmInputBox
     {

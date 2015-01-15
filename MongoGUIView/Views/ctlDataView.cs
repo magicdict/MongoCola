@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
+using ResourceLib;
 
 namespace MongoGUIView
 {

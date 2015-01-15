@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoUtility.Aggregation;
 using MongoUtility.Core;
 using MongoUtility.Security;
 using MongoGUIView;
+using ResourceLib;
 
 namespace MongoGUIView
 {

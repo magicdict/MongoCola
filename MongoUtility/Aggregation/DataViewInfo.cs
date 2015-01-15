@@ -11,8 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using MongoCola.Module;
 using MongoUtility.Basic;
+using MongoUtility.Operation;
 
 namespace MongoUtility.Aggregation
 {
@@ -101,7 +101,7 @@ namespace MongoUtility.Aggregation
 			get {
 				string strNodeData = strDBTag.Split(":".ToCharArray())[1];
 				string[] DataList = strNodeData.Split("/".ToCharArray());
-				return MongoDbHelper.IsSystemCollection(DataList[(int)EnumMgr.PathLv.DatabaseLv],
+				return OperationHelper.IsSystemCollection(DataList[(int)EnumMgr.PathLv.DatabaseLv],
 					DataList[(int)EnumMgr.PathLv.CollectionLv]);
 			}
 		}

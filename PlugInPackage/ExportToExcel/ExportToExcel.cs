@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUIView;
@@ -75,7 +75,7 @@ namespace PlugInPackage
             foreach (BsonDocument docItem in dataList)
             {
                 colCount = 1;
-                bool isSystem = MongoDbHelper.IsSystemCollection(ProcessCollection);
+                bool isSystem = OperationHelper.IsSystemCollection(ProcessCollection);
                 if (!isSystem)
                 {
                     BsonElement id;

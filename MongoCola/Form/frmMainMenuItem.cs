@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Driver;
 using MongoGUICtl;
 using MongoUtility.Aggregation;
@@ -15,6 +15,8 @@ using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.ExteneralTool;
 using SystemUtility;
+using ResourceLib;
+using MongoUtility.Command;
 
 namespace MongoCola
 {
@@ -268,8 +270,8 @@ namespace MongoCola
 			MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer().IsDatabaseNameValid(strDBName, out ErrMessage);
 			if (ErrMessage == null) {
 				try {
-					string strRusult = MongoDbHelper.DataBaseOpration(MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag, strDBName,
-						                   MongoDbHelper.Oprcode.Create, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
+					string strRusult = OperationHelper.DataBaseOpration(MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag, strDBName,
+						                   OperationHelper.Oprcode.Create, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
 					if (string.IsNullOrEmpty(strRusult)) {
 						DisableAllOpr();
 					} else {
@@ -398,8 +400,8 @@ namespace MongoCola
 			if (trvsrvlst.SelectedNode == null) {
 				trvsrvlst.SelectedNode = null;
 			}
-			string rtnResult = MongoDbHelper.DataBaseOpration(MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag, strDBName,
-				                   MongoDbHelper.Oprcode.Drop, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
+			string rtnResult = OperationHelper.DataBaseOpration(MongoUtility.Core.RuntimeMongoDBContext.SelectObjectTag, strDBName,
+				                   OperationHelper.Oprcode.Drop, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentServer());
 			if (string.IsNullOrEmpty(rtnResult)) {
 				DisableAllOpr();
 				//关闭所有的相关视图
@@ -543,7 +545,7 @@ namespace MongoCola
 			if (QueryHelper.IsExistByKey(jsCol, strJsName)) {
 				MyMessageBox.ShowMessage("Error", "javascript is already exist");
 			} else {
-				string Result = MongoDbHelper.CreateNewJavascript(strJsName, string.Empty, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
+				string Result = OperationHelper.CreateNewJavascript(strJsName, string.Empty, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
 				if (string.IsNullOrEmpty(Result)) {
 					var jsNode = new TreeNode(strJsName) {
 						ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
@@ -701,7 +703,7 @@ namespace MongoCola
 		/// <param name="e"></param>
 		private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			string Result = MongoDbHelper.DelJavascript(trvsrvlst.SelectedNode.Text, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
+			string Result = OperationHelper.DelJavascript(trvsrvlst.SelectedNode.Text, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
 			if (string.IsNullOrEmpty(Result)) {
 				string strNodeData = MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 				if (_viewTabList.ContainsKey(strNodeData)) {

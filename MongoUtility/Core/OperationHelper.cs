@@ -1,16 +1,16 @@
-﻿using MongoUtility.Aggregation;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
+using MongoUtility.Aggregation;
+using MongoUtility.Basic;
+using MongoUtility.Command;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MongoUtility.Basic;
 
-
-namespace MongoCola.Module
+namespace MongoUtility.Operation
 {
-	public static partial class MongoDbHelper
+	public static class OperationHelper
 	{
 		/// <summary>
 		///     操作模式

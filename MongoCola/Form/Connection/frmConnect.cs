@@ -1,9 +1,10 @@
-﻿using MongoCola.Module;
+﻿using MongoUtility.Operation;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using MongoUtility.Core;
 using SystemUtility;
+using ResourceLib;
 namespace MongoCola
 {
     public partial class frmConnect : Form
@@ -90,7 +91,7 @@ namespace MongoCola
                 {
                     connLst.Add(SystemConfig.config.ConnectionList[item.Text]);
                 }
-                RuntimeMongoDBContext.AddServer(connLst);
+                RuntimeMongoDBContext.ResetConnectionList(connLst);
             }
             Close();
         }

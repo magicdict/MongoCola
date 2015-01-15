@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-using MongoCola;
-using MongoCola.Module;
+﻿using MongoUtility.Basic;
 using MongoUtility.ExteneralTool;
+using ResourceLib;
+using System;
+using System.Windows.Forms;
 
 namespace MongoGUICtl.Module
 {

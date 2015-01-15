@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using SystemUtility;
+using ResourceLib;
+using MongoUtility.Command;
 
 namespace MongoCola
 {
@@ -78,7 +80,7 @@ namespace MongoCola
                     cmbShardKeyDB.Items.Add(item.GetValue(ConstMgr.KEY_ID));
                 }
             }
-            foreach (var lst in MongoDbHelper.GetShardInfo(_prmSvr, ConstMgr.KEY_ID))
+            foreach (var lst in OperationHelper.GetShardInfo(_prmSvr, ConstMgr.KEY_ID))
             {
                 lstSharding.Items.Add(lst.Value);
             }
@@ -169,7 +171,7 @@ namespace MongoCola
             MyMessageBox.ShowMessage("Add Sharding", "Result:" + (Result.Ok ? "OK" : "Fail"),
                 MongoUtility.Basic.Utility.ConvertCommandResultlstToString(Resultlst));
             lstSharding.Items.Clear();
-            foreach (var lst in MongoDbHelper.GetShardInfo(_prmSvr, "_id"))
+            foreach (var lst in OperationHelper.GetShardInfo(_prmSvr, "_id"))
             {
                 lstSharding.Items.Add(lst.Value);
             }
@@ -314,7 +316,7 @@ namespace MongoCola
                     MongoUtility.Basic.Utility.ConvertCommandResultlstToString(Resultlst));
             }
             lstSharding.Items.Clear();
-            foreach (var lst in MongoDbHelper.GetShardInfo(_prmSvr, "_id"))
+            foreach (var lst in OperationHelper.GetShardInfo(_prmSvr, "_id"))
             {
                 lstSharding.Items.Add(lst.Value);
             }

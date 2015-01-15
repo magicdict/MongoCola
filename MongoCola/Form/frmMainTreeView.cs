@@ -10,12 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Security;
 using PlugInPackage;
 using SystemUtility;
+using ResourceLib;
 
 namespace MongoCola
 {
@@ -224,7 +225,7 @@ namespace MongoCola
 				MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			}
 			//系统库不允许修改
-			if (!MongoDbHelper.IsSystemDataBase(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().Name)) {
+			if (!OperationHelper.IsSystemDataBase(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase().Name)) {
 				if (MongoUtility.Core.RuntimeMongoDBContext._CurrentMongoConnectionconfig.AuthMode) {
 					//根据Roles确定删除数据库/创建数据集等的权限
 					DelMongoDBToolStripMenuItem.Enabled = MongoUtility.Security.MongoDBAction.JudgeRightByBuildInRole(roles,
@@ -331,7 +332,7 @@ namespace MongoCola
 				MongoUtility.Core.RuntimeMongoDBContext.SelectTagData;
 			}
 			//解禁 删除数据集
-			if (!MongoDbHelper.IsSystemCollection(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection())) {
+			if (!OperationHelper.IsSystemCollection(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection())) {
 				//系统数据库无法删除！！
 				if (!MongoUtility.Core.RuntimeMongoDBContext._CurrentMongoConnectionconfig.IsReadOnly) {
 					DelMongoCollectionToolStripMenuItem.Enabled = true;
@@ -342,7 +343,7 @@ namespace MongoCola
 				ImportCollectionToolStripMenuItem.Enabled = true;
 				CompactToolStripMenuItem.Enabled = true;
 			}
-			if (!MongoDbHelper.IsSystemCollection(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection()) &&
+			if (!OperationHelper.IsSystemCollection(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection()) &&
 			       !MongoUtility.Core.RuntimeMongoDBContext._CurrentMongoConnectionconfig.IsReadOnly) {
 				IndexManageToolStripMenuItem.Enabled = true;
 				ReIndexToolStripMenuItem.Enabled = true;

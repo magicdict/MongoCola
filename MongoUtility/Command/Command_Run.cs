@@ -7,7 +7,7 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 
-namespace MongoCola.Module
+namespace MongoUtility.Command
 {
 
 	///注意，有些db.XXXX(xxx) 这样的函数需要 mongoDb.Eval方法才能做

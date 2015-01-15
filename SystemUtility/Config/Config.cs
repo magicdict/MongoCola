@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using MongoUtility.Core;
+using System.Security;
 
 namespace SystemUtility
 {
@@ -20,6 +21,7 @@ namespace SystemUtility
 	/// Config
 	/// </summary>
 	[Serializable]
+    [assembly: AllowPartiallyTrustedCallers]
 	public class Config
 	{
 		/// <summary>

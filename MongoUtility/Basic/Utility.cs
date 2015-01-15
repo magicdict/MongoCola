@@ -1,4 +1,8 @@
-﻿/*
+﻿using MongoDB.Bson;
+using MongoDB.Bson.IO;
+using MongoDB.Driver;
+using MongoUtility.Core;
+/*
  * Created by SharpDevelop.
  * User: scs
  * Date: 2015/1/5
@@ -10,11 +14,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using MongoCola;
-using MongoDB.Bson;
-using MongoDB.Bson.IO;
-using MongoDB.Driver;
-using MongoUtility.Core;
 
 namespace MongoUtility.Basic
 {

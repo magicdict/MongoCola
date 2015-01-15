@@ -4,11 +4,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
+using ResourceLib;
 
 namespace MongoGUIView
 {
@@ -143,7 +144,7 @@ namespace MongoGUIView
 		{
 			var _columnlist = new List<string>();
 			//可以让_id 不在第一位，昏过去了,很多逻辑需要调整
-			bool isSystem = MongoDbHelper.IsSystemCollection(string.Empty, collectionName);
+			bool isSystem = OperationHelper.IsSystemCollection(string.Empty, collectionName);
 			if (!isSystem) {
 				_columnlist.Add(ConstMgr.KEY_ID);
 				lstData.Columns.Add(ConstMgr.KEY_ID);

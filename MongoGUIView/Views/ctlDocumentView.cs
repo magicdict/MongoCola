@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -10,6 +10,7 @@ using MongoUtility;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
+using ResourceLib;
 
 
 namespace MongoGUIView
@@ -102,7 +103,7 @@ namespace MongoGUIView
 		private void trvData_AfterSelect_NotTop(object sender, TreeViewEventArgs e)
 		{
 			//非顶层可以删除的节点
-			if (!MongoDbHelper.IsSystemCollection(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection()) &&
+			if (!OperationHelper.IsSystemCollection(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection()) &&
 			    !mDataViewInfo.IsReadOnly &&
 			    !MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().IsCapped()) {
 				//普通数据:允许添加元素,不允许删除元素
@@ -117,13 +118,15 @@ namespace MongoGUIView
 					//2. Document
 					if (trvData.DatatreeView.SelectedNode.FullPath.EndsWith(ConstMgr.Array_Mark)) {
 						//列表的父节点
-						if (MongoDbHelper.CanPasteAsValue) {
+                        if (ElementHelper.CanPasteAsValue)
+                        {
 							PasteElementToolStripMenuItem.Enabled = true;
 							PasteElementStripButton.Enabled = true;
 						}
 					} else {
 						//文档的父节点
-						if (MongoDbHelper.CanPasteAsElement) {
+                        if (ElementHelper.CanPasteAsElement)
+                        {
 							PasteElementToolStripMenuItem.Enabled = true;
 							PasteElementStripButton.Enabled = true;
 						}
@@ -147,14 +150,16 @@ namespace MongoGUIView
 							AddElementToolStripMenuItem.Enabled = true;
 							if (t.IsBsonDocument) {
 								//3.空的文档
-								if (MongoDbHelper.CanPasteAsElement) {
+                                if (ElementHelper.CanPasteAsElement)
+                                {
 									PasteElementToolStripMenuItem.Enabled = true;
 									PasteElementStripButton.Enabled = true;
 								}
 							}
 							if (t.IsBsonArray) {
 								//3.Array
-								if (MongoDbHelper.CanPasteAsValue) {
+                                if (ElementHelper.CanPasteAsValue)
+                                {
 									PasteElementToolStripMenuItem.Enabled = true;
 									PasteElementStripButton.Enabled = true;
 								}
@@ -192,14 +197,15 @@ namespace MongoGUIView
 			if (trvData.DatatreeView.SelectedNode.Level == 0) {
 				//顶层可以删除的节点
 				if (!mDataViewInfo.IsReadOnly) {
-					if (!MongoDbHelper.IsSystemCollection(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection()) &&
+					if (!OperationHelper.IsSystemCollection(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection()) &&
 					    !MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection().IsCapped()) {
 						//普通数据
 						//在顶层的时候，允许添加元素,不允许删除元素和修改元素(删除选中记录)
 						DelSelectRecordToolToolStripMenuItem.Enabled = true;
 						DelSelectRecordToolStripButton.Enabled = true;
 						AddElementToolStripMenuItem.Enabled = true;
-						if (MongoDbHelper.CanPasteAsElement) {
+                        if (ElementHelper.CanPasteAsElement)
+                        {
 							PasteElementToolStripMenuItem.Enabled = true;
 							PasteElementStripButton.Enabled = true;
 						}
@@ -306,7 +312,7 @@ namespace MongoGUIView
 					//lstData
 					foreach (ListViewItem item in lstData.SelectedItems) {
 						if (item.Tag != null && ((BsonValue)item.Tag).IsObjectId) {
-							String Result = MongoDbHelper.DropDocument(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection(), item.Tag);
+							String Result = OperationHelper.DropDocument(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection(), item.Tag);
 							if (!String.IsNullOrEmpty(Result)) {
 								StrErrormsg = "Delete Error Key is:" + item.Tag;
 								MyMessageBox.ShowMessage("Delete Error", StrErrormsg, Result, true);
@@ -319,7 +325,7 @@ namespace MongoGUIView
 				} else {
 					if (trvData.DatatreeView.SelectedNode.Tag != null &&
 					    ((BsonValue)trvData.DatatreeView.SelectedNode.Tag).IsObjectId) {
-						String Result = MongoDbHelper.DropDocument(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection(),
+						String Result = OperationHelper.DropDocument(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection(),
 							                trvData.DatatreeView.SelectedNode.Tag);
 						if (!String.IsNullOrEmpty(Result)) {
 							StrErrormsg = "Delete Error Key is:" + trvData.DatatreeView.SelectedNode.Tag;
@@ -370,10 +376,10 @@ namespace MongoGUIView
 				return;
 			}
 			if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(ConstMgr.Array_Mark)) {
-				MongoDbHelper.DropArrayValue(trvData.DatatreeView.SelectedNode.FullPath,
+                ElementHelper.DropArrayValue(trvData.DatatreeView.SelectedNode.FullPath,
 					trvData.DatatreeView.SelectedNode.Index, null, null);
 			} else {
-				MongoDbHelper.DropElement(trvData.DatatreeView.SelectedNode.FullPath,
+                ElementHelper.DropElement(trvData.DatatreeView.SelectedNode.FullPath,
 					(BsonElement)trvData.DatatreeView.SelectedNode.Tag, null, null);
 			}
 			trvData.DatatreeView.Nodes.Remove(trvData.DatatreeView.SelectedNode);
@@ -406,11 +412,11 @@ namespace MongoGUIView
 		/// <param name="e"></param>
 		private void CopyElementToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			MongoDbHelper._ClipElement = trvData.DatatreeView.SelectedNode.Tag;
+            ElementHelper._ClipElement = trvData.DatatreeView.SelectedNode.Tag;
 			if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(ConstMgr.Array_Mark)) {
-				MongoDbHelper.CopyValue((BsonValue)trvData.DatatreeView.SelectedNode.Tag);
+                ElementHelper.CopyValue((BsonValue)trvData.DatatreeView.SelectedNode.Tag);
 			} else {
-				MongoDbHelper.CopyElement((BsonElement)trvData.DatatreeView.SelectedNode.Tag);
+                ElementHelper.CopyElement((BsonElement)trvData.DatatreeView.SelectedNode.Tag);
 			}
 		}
 
@@ -422,16 +428,16 @@ namespace MongoGUIView
 		private void PasteElementToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (trvData.DatatreeView.SelectedNode.FullPath.EndsWith(ConstMgr.Array_Mark)) {
-				MongoDbHelper.PasteValue(trvData.DatatreeView.SelectedNode.FullPath,null,null);
-				var NewValue = new TreeNode(ViewHelper.ConvertToString((BsonValue)MongoDbHelper._ClipElement));
-				NewValue.Tag = MongoDbHelper._ClipElement;
+                ElementHelper.PasteValue(trvData.DatatreeView.SelectedNode.FullPath, null, null);
+                var NewValue = new TreeNode(ViewHelper.ConvertToString((BsonValue)ElementHelper._ClipElement));
+                NewValue.Tag = ElementHelper._ClipElement;
 				trvData.DatatreeView.SelectedNode.Nodes.Add(NewValue);
 			} else {
-				String PasteMessage = MongoDbHelper.PasteElement(trvData.DatatreeView.SelectedNode.FullPath,null,null);
+                String PasteMessage = ElementHelper.PasteElement(trvData.DatatreeView.SelectedNode.FullPath, null, null);
 				if (String.IsNullOrEmpty(PasteMessage)) {
 					//GetCurrentDocument()的第一个元素是ID
 					UIHelper.AddBsonDocToTreeNode(trvData.DatatreeView.SelectedNode,
-						new BsonDocument().Add((BsonElement)MongoDbHelper._ClipElement));
+                        new BsonDocument().Add((BsonElement)ElementHelper._ClipElement));
 				} else {
 					MyMessageBox.ShowMessage("Exception", PasteMessage);
 				}
@@ -451,10 +457,10 @@ namespace MongoGUIView
 				return;
 			}
 			if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(ConstMgr.Array_Mark)) {
-				MongoDbHelper.CutValue(trvData.DatatreeView.SelectedNode.FullPath,
+                ElementHelper.CutValue(trvData.DatatreeView.SelectedNode.FullPath,
 					trvData.DatatreeView.SelectedNode.Index, (BsonValue)trvData.DatatreeView.SelectedNode.Tag, null, null);
 			} else {
-				MongoDbHelper.CutElement(trvData.DatatreeView.SelectedNode.FullPath,
+                ElementHelper.CutElement(trvData.DatatreeView.SelectedNode.FullPath,
 					(BsonElement)trvData.DatatreeView.SelectedNode.Tag, null, null);
 			}
 			trvData.DatatreeView.Nodes.Remove(trvData.DatatreeView.SelectedNode);

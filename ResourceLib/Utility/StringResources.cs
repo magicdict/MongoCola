@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 
-namespace MongoCola.Module
+namespace ResourceLib
 {
 	/// <summary>
 	///     String Resource

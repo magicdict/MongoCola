@@ -3,9 +3,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Driver.Builders;
 using SystemUtility;
+using ResourceLib;
 
 namespace MongoCola
 {
@@ -77,11 +78,11 @@ namespace MongoCola
                     option.SetMaxDocuments((long)numMaxDocument.Value);
                     //CappedCollection Default is AutoIndexId After MongoDB 2.2.2
                     option.SetAutoIndexId(chkIsAutoIndexId.Checked);
-                    Result = MongoDbHelper.CreateCollectionWithOptions(strSvrPathWithTag, txtCollectionName.Text, option,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase());
+                    Result = OperationHelper.CreateCollectionWithOptions(strSvrPathWithTag, txtCollectionName.Text, option,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase());
                 }
                 else
                 {
-                    Result = MongoDbHelper.CreateCollection(strSvrPathWithTag, txtCollectionName.Text,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase());
+                    Result = OperationHelper.CreateCollection(strSvrPathWithTag, txtCollectionName.Text,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentDataBase());
                 }
                 Close();
             }

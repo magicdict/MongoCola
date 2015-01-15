@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using SystemUtility;
+using ResourceLib;
+using MongoUtility.Core;
 
 namespace MongoCola
 {
@@ -71,12 +73,12 @@ namespace MongoCola
 		{
 			if (_isUpdateMode) {
 				if (_isElement) {
-					MongoDbHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value,
+                    ElementHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value,
 						(BsonElement)_selectNode.Tag,
 						MongoUtility.Core.RuntimeMongoDBContext.CurrentDocument,
 						MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
 				} else {
-					MongoDbHelper.ModifyArrayValue(_FullPath, AddBsonElement.getElement().Value, _selectNode.Index,
+                    ElementHelper.ModifyArrayValue(_FullPath, AddBsonElement.getElement().Value, _selectNode.Index,
 						MongoUtility.Core.RuntimeMongoDBContext.CurrentDocument,
 						MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
 				}
@@ -86,11 +88,11 @@ namespace MongoCola
 			} else {
 				String AddMessage = String.Empty;
 				if (_isElement) {
-					AddMessage = MongoDbHelper.AddElement(_FullPath, AddBsonElement.getElement(),
+                    AddMessage = ElementHelper.AddElement(_FullPath, AddBsonElement.getElement(),
 						MongoUtility.Core.RuntimeMongoDBContext.CurrentDocument,
 						MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
 				} else {
-					MongoDbHelper.AddArrayValue(_FullPath, AddBsonElement.getElement().Value,
+                    ElementHelper.AddArrayValue(_FullPath, AddBsonElement.getElement().Value,
 						MongoUtility.Core.RuntimeMongoDBContext.CurrentDocument,
 						MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
 				}

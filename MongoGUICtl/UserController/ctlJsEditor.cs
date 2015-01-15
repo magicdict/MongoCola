@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoUtility;
 using MongoUtility.Core;
+using ResourceLib;
 
 namespace MongoGUICtl
 {
@@ -41,7 +42,7 @@ namespace MongoGUICtl
 			}
 			SaveStripButton.Image = ResourceLib.Properties.Resources.save.ToBitmap();
 			if (JsName != null && JsName != String.Empty) {
-				txtJavaScript.Text = MongoDbHelper.LoadJavascript(JsName, null);
+                txtJavaScript.Text = OperationHelper.LoadJavascript(JsName, null);
 				txtJavaScript.Select(0, 0);
 			}
 			txtJavaScript.GotFocus += (x, y) => { 
@@ -78,7 +79,7 @@ namespace MongoGUICtl
 		private void SaveStripButton_Click(object sender, EventArgs e)
 		{
 			if (JsName != null && JsName != String.Empty) {
-				MongoDbHelper.SaveEditorJavascript(JsName, txtJavaScript.Text, null);
+                OperationHelper.SaveEditorJavascript(JsName, txtJavaScript.Text, null);
 			} else {
 				var mSave = new SaveFileDialog();
 				if (mSave.ShowDialog() == DialogResult.OK) {

@@ -1,4 +1,4 @@
-﻿namespace MongoCola.Module
+﻿namespace ResourceLib
 {
     public partial class StringResource
     {

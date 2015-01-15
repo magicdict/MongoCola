@@ -8,9 +8,11 @@
  */
 using System;
 using System.Windows.Forms;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using PlugInPackage;
 using SystemUtility;
+using ResourceLib;
+using MongoUtility.Basic;
 
 namespace MongoCola
 {

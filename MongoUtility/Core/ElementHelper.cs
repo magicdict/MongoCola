@@ -1,11 +1,11 @@
-﻿using System;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
+using System;
 
-namespace MongoCola.Module
+namespace MongoUtility.Core
 {
-    public static partial class MongoDbHelper
+    public static partial class ElementHelper
     {
         /// <summary>
         /// </summary>

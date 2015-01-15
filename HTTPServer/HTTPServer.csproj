@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyIReferenceResolver.cs" />
     <Compile Include="frmConsole.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,7 +83,7 @@
     </Compile>
     <Compile Include="HTTPServer\GetPage.cs" />
     <Compile Include="HTTPServer\Server.cs" />
-    <Compile Include="HTTPServer\WebPageUI.cs" />
+    <Compile Include="HTTPServer\WEBUIHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

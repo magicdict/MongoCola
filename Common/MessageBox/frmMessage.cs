@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MongoCola
+namespace Common
 {
     public partial class frmMesssage : Form
     {

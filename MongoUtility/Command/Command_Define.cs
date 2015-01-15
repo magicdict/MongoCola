@@ -6,7 +6,7 @@ using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 
-namespace MongoCola.Module
+namespace MongoUtility.Command
 {
     public static partial class CommandHelper
     {

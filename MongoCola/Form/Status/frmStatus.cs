@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoUtility.Basic;
 using SystemUtility;
+using ResourceLib;
+using MongoUtility.Command;
 
 namespace MongoCola
 {

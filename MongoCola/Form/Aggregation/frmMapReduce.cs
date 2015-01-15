@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using SystemUtility;
+using ResourceLib;
 
 namespace MongoCola
 {

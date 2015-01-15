@@ -19,9 +19,12 @@ namespace HTTPServer
         /// <param name="e"></param>
         private void Console_Load(object sender, EventArgs e)
         {
+            //TEST START
+            ServerPathPicker.SelectedPathOrFileName = @"C:\MongoCola\TemplatePackage\HTML";
+            ConfigFile.SelectedPathOrFileName = @"C:\MongoCola\MongoCola\bin\Debug\config.xml";
+            //TEST END
             Control.CheckForIllegalCrossThreadCalls = false;
-            //加载Config
-            ConfigHelper.LoadFromConfigFile(ConfigHelper._configFilename);
+
         }
         /// <summary>
         /// </summary>
@@ -38,9 +41,10 @@ namespace HTTPServer
         /// <param name="e"></param>
         private void lnkWebFormEntry_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Height = 500;
-            MongoCola.HTTPServer.ServerPath = Application.StartupPath + "\\HTML";
-            var svr = new MongoCola.HTTPServer();
+            //加载Config
+            ConfigHelper.LoadFromConfigFile(ConfigFile.SelectedPathOrFileName);
+            HTTPServer.ServerPath = ServerPathPicker.SelectedPathOrFileName;
+            var svr = new HTTPServer();
             svr.LogInfo += (x, y) =>
             {
                 if (txtInfo.InvokeRequired)

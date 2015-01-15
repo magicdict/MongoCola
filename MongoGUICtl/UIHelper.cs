@@ -4,12 +4,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using MongoCola.Module;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Security;
+using ResourceLib;
+using MongoUtility.Command;
+using MongoUtility.Operation;
 
 namespace MongoGUICtl
 {
@@ -180,7 +182,7 @@ namespace MongoGUICtl
 								SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
 								ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
 							};
-							foreach (var lst in MongoDbHelper.GetShardInfo(mongoSrv, "host")) {
+							foreach (var lst in OperationHelper.GetShardInfo(mongoSrv, "host")) {
 								var ShardNode = new TreeNode {
 									Text = lst.Key,
 									SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,

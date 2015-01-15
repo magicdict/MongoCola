@@ -1,4 +1,5 @@
-﻿using MongoCola.Module;
+﻿using MongoUtility.Operation;
+using ResourceLib;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -10,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Web;
 
-namespace MongoCola
+namespace HTTPServer
 {
     public class HTTPServer
     {

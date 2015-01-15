@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl;
+using MongoUtility.Command;
 
 namespace MongoCola
 {
@@ -55,7 +56,7 @@ namespace MongoCola
 			cmbForAggregatePipeline.SelectedIndexChanged += (x, y) => {
 				_AggrArray =
                     (BsonArray)
-                	BsonDocument.Parse(MongoDbHelper.LoadJavascript(cmbForAggregatePipeline.Text, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection())).GetValue(0);
+                	BsonDocument.Parse(OperationHelper.LoadJavascript(cmbForAggregatePipeline.Text, MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection())).GetValue(0);
 				FillAggreationTreeview();
 			};
 		}
@@ -124,7 +125,7 @@ namespace MongoCola
 				return;
 			String strJsName = MyMessageBox.ShowInput("pls Input Aggregate Pipeline Name ：",
 				                   "Save Aggregate Pipeline");
-			MongoDbHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _AggrArray).ToString(),MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
+			OperationHelper.CreateNewJavascript(strJsName, new BsonDocument("Pipeline:", _AggrArray).ToString(),MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
 		}
 
 		/// <summary>

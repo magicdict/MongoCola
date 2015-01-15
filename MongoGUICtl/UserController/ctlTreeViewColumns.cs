@@ -3,8 +3,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using MongoCola.Module;
 using MongoDB.Bson;
+using ResourceLib;
 namespace MongoGUICtl
 {
 	public partial class ctlTreeViewColumns : UserControl

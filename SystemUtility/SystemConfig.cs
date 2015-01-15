@@ -8,13 +8,15 @@
  */
 using System;
 using System.IO;
+using System.Security;
 
 namespace SystemUtility
 {
 	/// <summary>
 	/// Description of SystemManager.
 	/// </summary>
-	public static class SystemConfig
+    [assembly: AllowPartiallyTrustedCallers]
+    public static class SystemConfig
 	{
 		#region"通用"
 		/// 配置
@@ -33,6 +35,7 @@ namespace SystemUtility
 		/// </summary>
 		public static bool MonoMode = false;
 		#endregion
+
 		#region"多语言"
 		public static ResourceLib.GUIConfig guiConfig = new ResourceLib.GUIConfig();
 		/// <summary>

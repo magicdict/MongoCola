@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using ResourceLib.Properties;
-namespace MongoCola.Module
+namespace ResourceLib
 {
     public class GetResource
     {

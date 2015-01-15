@@ -1,6 +1,7 @@
-﻿using System;
+﻿using ResourceLib;
+using System;
 using System.Windows.Forms;
-using MongoCola.Module;
+
 
 namespace Common
 {
@@ -37,7 +38,7 @@ namespace Common
         }
 
         /// <summary>
-        ///     文件过滤
+        ///     文件名称
         /// </summary>
         public String FileName
         {
@@ -147,6 +148,7 @@ namespace Common
         private void ctlFilePicker_Load(object sender, EventArgs e)
         {
         	if (DesignMode) return;
+            if (guiconfig == null) return;
             cmdBrowse.Text = guiconfig.GetText("Browse",StringResource.TextType.Common_Browse);
             cmdClearPath.Text = guiconfig.GetText("Clear",StringResource.TextType.Common_Clear);
         }

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Threading;
-using MongoCola.Module;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using MongoUtility.Basic;
+using System;
+using System.Threading;
 
-namespace MongoCola
+namespace MongoUtility.Basic
 {
-	
-
-	
     public class ActionDoneEventArgs : EventArgs
     {
         private readonly String _Message;

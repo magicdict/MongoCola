@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoCola.Module;
 using MongoUtility.Core;
+using ResourceLib;
 
 namespace MongoGUICtl
 {

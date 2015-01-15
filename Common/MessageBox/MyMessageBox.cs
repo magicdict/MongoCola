@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using MongoCola;
-using MongoCola.Module;
+using ResourceLib;
+
 
 namespace Common
 {

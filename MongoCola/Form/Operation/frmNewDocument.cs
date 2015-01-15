@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoUtility.Basic;
 using SystemUtility;
+using ResourceLib;
 
 namespace MongoCola
 {
@@ -41,7 +42,7 @@ namespace MongoCola
             {
                 try
                 {
-                    MongoDbHelper.InsertEmptyDocument(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection(), true);
+                    OperationHelper.InsertEmptyDocument(MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection(), true);
                     Close();
                 }
                 catch (Exception ex)

@@ -9,9 +9,9 @@ using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 
-namespace MongoCola.Module
+namespace HTTPServer
 {
-    public static partial class WEBUIHelper
+    public static class WEBUIHelper
     {
         #region"展示数据库结构 WebForm"
 		/// <summary>

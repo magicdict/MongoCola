@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using MongoCola;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoUtility.Basic;
 using MongoUtility.ExteneralTool;
+using ResourceLib;
 
 namespace MongoGUICtl
 {

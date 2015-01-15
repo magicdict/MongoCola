@@ -1,4 +1,4 @@
-﻿namespace MongoCola
+﻿namespace Common
 {
     partial class frmEasyMessage
     {

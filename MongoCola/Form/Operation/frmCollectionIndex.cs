@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoGUICtl;
 using MongoUtility.Basic;
 using SystemUtility;
+using ResourceLib;
 
 namespace MongoCola
 {
@@ -99,7 +100,7 @@ namespace MongoCola
             }
             foreach (ListViewItem item in lstIndex.CheckedItems)
             {
-                MongoDbHelper.DropMongoIndex(item.SubItems[0].Text,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
+                OperationHelper.DropMongoIndex(item.SubItems[0].Text,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
             }
             RefreshList();
         }
@@ -199,7 +200,7 @@ namespace MongoCola
                     }
                     else
                     {
-                        MongoDbHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), GeoSpatialKey,
+                        OperationHelper.CreateMongoIndex(AscendingKey.ToArray(), DescendingKey.ToArray(), GeoSpatialKey,
                             option,MongoUtility.Core.RuntimeMongoDBContext.GetCurrentCollection());
                     }
                     MyMessageBox.ShowMessage("Index Add Completed!",

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoGUICtl;
 using MongoUtility.Aggregation;
 using SystemUtility;
+using ResourceLib;
 
 namespace MongoCola
 {

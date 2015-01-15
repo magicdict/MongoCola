@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
-using MongoCola.Module;
+
 
 namespace Common
 {

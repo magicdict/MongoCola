@@ -6,9 +6,11 @@
     <body>
         <font size = "+2"><b>Please select a mongodb connection：</b></font><br />
         <ul>
-         @foreach (var item in @Model.ConnectionList)
+         @foreach (var item in @Model.ConnectionList.Values)
          {
-             <li>@item.key</li>
+            <li>
+                @item.ConnectionName
+            </li>"
          }
         </ul>
     </body>

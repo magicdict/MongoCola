@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace MongoCola
+namespace Common
 {
     public partial class frmConfirm : Form
     {

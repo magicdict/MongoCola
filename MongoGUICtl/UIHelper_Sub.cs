@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using MongoUtility.Basic;
+using MongoUtility.Operation;
+using ResourceLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using MongoCola.Module;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using MongoUtility.Basic;
 
 namespace MongoGUICtl
 {
@@ -95,7 +96,7 @@ namespace MongoGUICtl
                             mongoColNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Err;
                             Common.Utility.ExceptionDeal(ex);
                         }
-                        if (MongoDbHelper.IsSystemCollection(mongoDB.Name, strColName))
+                        if (OperationHelper.IsSystemCollection(mongoDB.Name, strColName))
                         {
                             switch (strColName)
                             {

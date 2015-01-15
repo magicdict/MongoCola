@@ -4,10 +4,11 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
 using Common;
-using MongoCola.Module;
+using MongoUtility.Operation;
 using MongoDB.Driver;
 using MongoUtility.Core;
 using SystemUtility;
+using ResourceLib;
 
 namespace MongoCola
 {
