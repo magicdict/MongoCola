@@ -9,6 +9,18 @@ namespace Common.UI
     public static class MyMessageBox
     {
         /// <summary>
+        /// 成功提示色
+        /// </summary>
+        public static Color SuccessColor = Color.LightGreen;
+
+        public static Color FailColor = Color.Pink;
+
+        public static Color ActionColor = Color.LightBlue;
+
+        public static Color WarningColor = Color.LightYellow;
+
+
+        /// <summary>
         ///     消息窗体
         /// </summary>
         private static readonly frmMesssage _frmMessage = new frmMesssage();

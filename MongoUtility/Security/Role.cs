@@ -114,7 +114,7 @@ namespace MongoUtility.Security
             }
             catch (MongoCommandException ex)
             {
-                result = ex.CommandResult.Response;
+                result = ex.Result;
             }
             return result;
         }

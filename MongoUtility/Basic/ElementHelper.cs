@@ -225,7 +225,9 @@ namespace MongoUtility.Basic
             var t = GetLastParentDocument(BaseDoc, ElementPath, false);
             if (t.IsBsonDocument)
             {
-                t.AsBsonDocument.GetElement(El.Name).Value = NewValue;
+                //TODO:需要重新实现
+                throw new NotImplementedException();
+                //t.AsBsonDocument.GetElement(El.Name).Value = NewValue;
             }
             if (!CurrentCollection.IsCapped())
             {

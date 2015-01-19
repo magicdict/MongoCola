@@ -41,8 +41,8 @@ namespace MongoCola
             }
 
             DisconnectToolStripMenuItem.Enabled = true;
-            ShutDownToolStripMenuItem.Enabled = true;
-            ShutDownToolStripButton.Enabled = true;
+            //ShutDownToolStripMenuItem.Enabled = true;
+            //ShutDownToolStripButton.Enabled = true;
 
             switch (strNodeType)
             {
@@ -77,14 +77,14 @@ namespace MongoCola
                     t4.Click += ShardingConfigToolStripMenuItem_Click;
                     contextMenuStripMain.Items.Add(t4);
 
-                    var t5 = ShutDownToolStripMenuItem.Clone();
-                    t5.Click += ShutDownToolStripMenuItem_Click;
-                    contextMenuStripMain.Items.Add(t5);
+                    //var t5 = ShutDownToolStripMenuItem.Clone();
+                    //t5.Click += ShutDownToolStripMenuItem_Click;
+                    //contextMenuStripMain.Items.Add(t5);
                 }
                 else
                 {
                     contextMenuStripMain.Items.Add(DisconnectToolStripMenuItem.Clone());
-                    contextMenuStripMain.Items.Add(ShutDownToolStripMenuItem.Clone());
+                    //contextMenuStripMain.Items.Add(ShutDownToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(InitReplsetToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ReplicaSetToolStripMenuItem.Clone());
                     contextMenuStripMain.Items.Add(ShardingConfigToolStripMenuItem.Clone());

@@ -83,9 +83,9 @@ namespace MongoCola
             slaveResyncToolStripMenuItem.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(
                     StringResource.TextType.Main_Menu_Operation_Server_SlaveResync);
-            ShutDownToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    StringResource.TextType.Main_Menu_Operation_Server_CloseServer);
+            //ShutDownToolStripMenuItem.Text =
+            //    SystemConfig.guiConfig.MStringResource.GetText(
+            //        StringResource.TextType.Main_Menu_Operation_Server_CloseServer);
             ServePropertyToolStripMenuItem.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(
                     StringResource.TextType.Main_Menu_Operation_Server_Properties);
@@ -208,8 +208,8 @@ namespace MongoCola
             ServerStatusToolStripMenuItem.Enabled = false;
             ServePropertyToolStripMenuItem.Enabled = false;
             slaveResyncToolStripMenuItem.Enabled = false;
-            ShutDownToolStripMenuItem.Enabled = false;
-            ShutDownToolStripButton.Enabled = false;
+            //ShutDownToolStripMenuItem.Enabled = false;
+            //ShutDownToolStripButton.Enabled = false;
             InitReplsetToolStripMenuItem.Enabled = false;
             ReplicaSetToolStripMenuItem.Enabled = false;
             ShardingConfigToolStripMenuItem.Enabled = false;
@@ -266,8 +266,8 @@ namespace MongoCola
         private void CommandLog(object Sender, RunCommandEventArgs e)
         {
             ctlShellCommandEditor.AppendLine("========================================================");
-            ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  CommandName:" + e.Result.CommandName);
-            ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  Command:" + e.Result.Command);
+            ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  Response:" + e.Result.Response);
+            ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  Code:" + e.Result.Code);
             ctlShellCommandEditor.AppendLine("DateTime:" + DateTime.Now + "  OK:" + e.Result.Ok);
             ctlShellCommandEditor.AppendLine("========================================================");
         }

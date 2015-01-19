@@ -376,7 +376,7 @@ namespace MongoGUICtl
             string mongoConnKey)
         {
             //listDatabase命令错误，本质是用户名称错误
-            if (ex.CommandResult.Response["errmsg"] == "unauthorized")
+            if (ex.Result["errmsg"] == "unauthorized")
             {
                 if (!configuration.guiConfig.IsUseDefaultLanguage)
                 {

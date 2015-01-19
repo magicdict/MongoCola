@@ -72,7 +72,8 @@ namespace MongoUtility.Basic
             {
                 //Before mongo2.0.2 BuildInfo will be null
                 rtnSvrInfo += "VersionString：" + mongosvr.Instance.BuildInfo.VersionString + Environment.NewLine;
-                rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + Environment.NewLine;
+                //remove from mongodrvier 2.0.0
+                //rtnSvrInfo += "SysInfo：" + mongosvr.Instance.BuildInfo.SysInfo + Environment.NewLine;
             }
             return rtnSvrInfo;
         }

@@ -33,10 +33,10 @@
             this.cmdOK = new System.Windows.Forms.Button();
             this.lstConnection = new System.Windows.Forms.ListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colIP = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colHost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPort = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colHost = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colReplsetMember = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.cmdAddCon = new System.Windows.Forms.ToolStripButton();
             this.cmdModifyCon = new System.Windows.Forms.ToolStripButton();
@@ -58,7 +58,7 @@
             // cmdOK
             // 
             this.cmdOK.BackColor = System.Drawing.Color.Transparent;
-            this.cmdOK.Location = new System.Drawing.Point(177, 332);
+            this.cmdOK.Location = new System.Drawing.Point(153, 332);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(90, 36);
             this.cmdOK.TabIndex = 6;
@@ -71,10 +71,10 @@
             this.lstConnection.CheckBoxes = true;
             this.lstConnection.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName,
-            this.colIP,
+            this.colHost,
             this.colPort,
             this.colUser,
-            this.colHost});
+            this.colReplsetMember});
             this.lstConnection.FullRowSelect = true;
             this.lstConnection.GridLines = true;
             this.lstConnection.Location = new System.Drawing.Point(0, 28);
@@ -89,10 +89,10 @@
             this.colName.Text = "Name";
             this.colName.Width = 79;
             // 
-            // colIP
+            // colHost
             // 
-            this.colIP.Text = "IP";
-            this.colIP.Width = 132;
+            this.colHost.Text = "Host";
+            this.colHost.Width = 132;
             // 
             // colPort
             // 
@@ -104,10 +104,10 @@
             this.colUser.Text = "User";
             this.colUser.Width = 71;
             // 
-            // colHost
+            // colReplsetMember
             // 
-            this.colHost.Text = "HostList";
-            this.colHost.Width = 249;
+            this.colReplsetMember.Text = "ReplsetMember";
+            this.colReplsetMember.Width = 249;
             // 
             // toolStrip1
             // 
@@ -181,10 +181,10 @@
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.ListView lstConnection;
         private System.Windows.Forms.ColumnHeader colName;
-        private System.Windows.Forms.ColumnHeader colIP;
+        private System.Windows.Forms.ColumnHeader colHost;
         private System.Windows.Forms.ColumnHeader colPort;
         private System.Windows.Forms.ColumnHeader colUser;
-        private System.Windows.Forms.ColumnHeader colHost;
+        private System.Windows.Forms.ColumnHeader colReplsetMember;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton cmdAddCon;
         private System.Windows.Forms.ToolStripButton cmdModifyCon;

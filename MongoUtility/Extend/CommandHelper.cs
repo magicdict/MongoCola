@@ -116,7 +116,7 @@ namespace MongoUtility.Extend
             }
             catch (MongoCommandException ex)
             {
-                mCommandResult = ex.CommandResult;
+                mCommandResult = new CommandResult(ex.Result);
             }
             var e = new RunCommandEventArgs
             {
@@ -172,7 +172,7 @@ namespace MongoUtility.Extend
             }
             catch (MongoCommandException ex)
             {
-                mCommandResult = ex.CommandResult;
+                mCommandResult = new CommandResult(ex.Result);
             }
             var e = new RunCommandEventArgs
             {
@@ -199,7 +199,7 @@ namespace MongoUtility.Extend
             }
             catch (MongoCommandException ex)
             {
-                mCommandResult = ex.CommandResult;
+                mCommandResult = new CommandResult(ex.Result);
             }
             var e = new RunCommandEventArgs
             {
@@ -226,7 +226,7 @@ namespace MongoUtility.Extend
             }
             catch (MongoCommandException ex)
             {
-                mCommandResult = ex.CommandResult;
+                mCommandResult = new CommandResult(ex.Result);
             }
             var e = new RunCommandEventArgs
             {
@@ -269,7 +269,7 @@ namespace MongoUtility.Extend
             }
             catch (MongoCommandException ex)
             {
-                mCommandResult = ex.CommandResult;
+                mCommandResult = new CommandResult(ex.Result);
             }
             var e = new RunCommandEventArgs
             {
@@ -296,7 +296,7 @@ namespace MongoUtility.Extend
             }
             catch (MongoCommandException ex)
             {
-                mCommandResult = ex.CommandResult;
+                mCommandResult = new CommandResult(ex.Result);
             }
             var e = new RunCommandEventArgs
             {

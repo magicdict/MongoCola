@@ -299,11 +299,11 @@ namespace MongoUtility.Extend
                 var result = new CommandResult(new BsonDocument());
                 try
                 {
-                    result = jsCol.Insert(new BsonDocument().Add(ConstMgr.KEY_ID, jsName).Add("value", jsCode));
+                    result = new CommandResult(jsCol.Insert(new BsonDocument().Add(ConstMgr.KEY_ID, jsName).Add("value", jsCode)).Response);
                 }
                 catch (MongoCommandException ex)
                 {
-                    result = ex.CommandResult;
+                    result = new CommandResult(ex.Result);
                 }
                 if (result.Response["err"] == BsonNull.Value)
                 {
@@ -331,12 +331,12 @@ namespace MongoUtility.Extend
                     var resultCommand = new CommandResult(new BsonDocument());
                     try
                     {
-                        resultCommand =
-                            jsCol.Insert(new BsonDocument().Add(ConstMgr.KEY_ID, jsName).Add("value", jsCode));
+                        resultCommand = new CommandResult(
+                            jsCol.Insert(new BsonDocument().Add(ConstMgr.KEY_ID, jsName).Add("value", jsCode)).Response);
                     }
                     catch (MongoCommandException ex)
                     {
-                        resultCommand = ex.CommandResult;
+                        resultCommand = new CommandResult(ex.Result);
                     }
                     if (resultCommand.Response["err"] == BsonNull.Value)
                     {
@@ -390,11 +390,11 @@ namespace MongoUtility.Extend
             {
                 try
                 {
-                    result = mongoCol.Remove(Query.EQ(ConstMgr.KEY_ID, (BsonValue) strKey), WriteConcern.Acknowledged);
+                    result = new CommandResult(mongoCol.Remove(Query.EQ(ConstMgr.KEY_ID, (BsonValue) strKey), WriteConcern.Acknowledged).Response);
                 }
                 catch (MongoCommandException ex)
                 {
-                    result = ex.CommandResult;
+                    result = new CommandResult(ex.Result);
                 }
             }
             if (result.Response["err"] == BsonNull.Value)

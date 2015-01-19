@@ -189,10 +189,11 @@ namespace MongoUtility.Core
             {
                 mongoSvrSetting.WriteConcern = WriteConcern.W3;
             }
-            if (config.WriteConcern == WriteConcern.W4.ToString())
-            {
-                mongoSvrSetting.WriteConcern = WriteConcern.W4;
-            }
+            //remove from mongodrvier 2.0.0
+            //if (config.WriteConcern == WriteConcern.W4.ToString())
+            //{
+            //    mongoSvrSetting.WriteConcern = WriteConcern.W4;
+            //}
             if (config.WriteConcern == WriteConcern.WMajority.ToString())
             {
                 mongoSvrSetting.WriteConcern = WriteConcern.WMajority;
@@ -334,7 +335,7 @@ namespace MongoUtility.Core
                 if (_mongoInstanceLst.ContainsKey(strInstKey))
                 {
                     var mongoInstance = _mongoInstanceLst[strInstKey];
-                    return MongoServer.Create(mongoInstance.Settings);
+                    return _mongoConnSvrLst[strPath[0]];
                 }
             }
             return null;

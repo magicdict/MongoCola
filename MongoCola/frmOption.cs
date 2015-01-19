@@ -71,7 +71,7 @@ namespace MongoCola
             cmbWriteConcern.Items.Add(WriteConcern.Acknowledged.ToString());
             cmbWriteConcern.Items.Add(WriteConcern.W2.ToString());
             cmbWriteConcern.Items.Add(WriteConcern.W3.ToString());
-            cmbWriteConcern.Items.Add(WriteConcern.W4.ToString());
+            //cmbWriteConcern.Items.Add(WriteConcern.W4.ToString());
             cmbWriteConcern.Items.Add(WriteConcern.WMajority.ToString());
 
 

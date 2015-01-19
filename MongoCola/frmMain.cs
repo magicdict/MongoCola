@@ -434,9 +434,8 @@ namespace MongoCola
         private void SetMenuImage()
         {
             ExitToolStripMenuItem.Image = Resources.exit.ToBitmap();
-
-            ShutDownToolStripMenuItem.Image = GetResource.GetImage(ImageType.ShutDown);
-
+            //ExpandAllConnectionToolStripMenuItem.Image = GetResource.GetImage(ImageType.AccessDB)
+            //ShutDownToolStripMenuItem.Image = GetResource.GetImage(ImageType.ShutDown);
             DelMongoCollectionToolStripMenuItem.Image = GetResource.GetIcon(IconType.No).ToBitmap();
             DelMongoDBToolStripMenuItem.Image = GetResource.GetIcon(IconType.No).ToBitmap();
 
@@ -459,7 +458,7 @@ namespace MongoCola
             RefreshToolStripButton = RefreshToolStripMenuItem.CloneFromMenuItem();
             ExitToolStripButton = ExitToolStripMenuItem.CloneFromMenuItem();
 
-            ShutDownToolStripButton = ShutDownToolStripMenuItem.CloneFromMenuItem();
+            //ShutDownToolStripButton = ShutDownToolStripMenuItem.CloneFromMenuItem();
 
             OptionToolStripButton = OptionsToolStripMenuItem.CloneFromMenuItem();
             UserGuideToolStripButton = UserGuideToolStripMenuItem.CloneFromMenuItem();
@@ -467,7 +466,7 @@ namespace MongoCola
             if (SystemConfig.MonoMode)
             {
                 RefreshToolStripButton.Click += RefreshToolStripMenuItem_Click;
-                ShutDownToolStripButton.Click += ShutDownToolStripMenuItem_Click;
+                //ShutDownToolStripButton.Click += ShutDownToolStripMenuItem_Click;
                 OptionToolStripButton.Click += OptionToolStripMenuItem_Click;
                 UserGuideToolStripButton.Click += userGuideToolStripMenuItem_Click;
             }
@@ -477,7 +476,7 @@ namespace MongoCola
             toolStripMain.Items.Add(RefreshToolStripButton);
             toolStripMain.Items.Add(ExitToolStripButton);
             toolStripMain.Items.Add(new ToolStripSeparator());
-            toolStripMain.Items.Add(ShutDownToolStripButton);
+            //toolStripMain.Items.Add(ShutDownToolStripButton);
             toolStripMain.Items.Add(new ToolStripSeparator());
             toolStripMain.Items.Add(OptionToolStripButton);
             toolStripMain.Items.Add(UserGuideToolStripButton);
@@ -491,7 +490,7 @@ namespace MongoCola
             UserGuideToolStripButton.Enabled = true;
             RefreshToolStripButton.Enabled = true;
             OptionToolStripButton.Enabled = true;
-            ShutDownToolStripButton.Enabled = ShutDownToolStripMenuItem.Enabled;
+            //ShutDownToolStripButton.Enabled = ShutDownToolStripMenuItem.Enabled;
         }
 
         #endregion

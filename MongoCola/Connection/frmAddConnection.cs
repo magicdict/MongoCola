@@ -83,7 +83,11 @@ namespace MongoCola.Connection
             NumReplPort.GotFocus += (x, y) => NumReplPort.Select(0, 5);
             NumSocketTimeOut.GotFocus += (x, y) => NumSocketTimeOut.Select(0, 5);
             NumConnectTimeOut.GotFocus += (x, y) => NumConnectTimeOut.Select(0, 5);
-
+            //Color
+            cmdTest.BackColor = Common.UI.MyMessageBox.ActionColor;
+            cmdAdd.BackColor = Common.UI.MyMessageBox.SuccessColor;
+            cmdCancel.BackColor = Common.UI.MyMessageBox.FailColor;
+            //Language
             if (SystemConfig.IsUseDefaultLanguage) return;
             Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Title);
             lblConnectionName.Text =
@@ -330,6 +334,11 @@ namespace MongoCola.Connection
         private void lnkWriteConcern_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options");
+        }
+
+        private void frmAddConnection_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

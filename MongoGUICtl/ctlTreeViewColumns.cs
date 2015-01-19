@@ -135,7 +135,7 @@ namespace MongoGUICtl
                 e.Graphics.DrawString(TreeNameString, Font, new SolidBrush(Color.Black), StringRect);
             }
 
-            var mElement = e.Node.Tag as BsonElement;
+            var mElement = (BsonElement)e.Node.Tag;
             var mValue = e.Node.Tag as BsonValue;
 
             //画框

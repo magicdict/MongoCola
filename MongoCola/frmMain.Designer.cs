@@ -59,7 +59,7 @@ namespace MongoCola
         	this.ShardingConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.InitReplsetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-        	this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            //this.ShutDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.DisconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.ServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
         	this.CreateMongoDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -330,7 +330,7 @@ namespace MongoCola
 			this.ShardingConfigToolStripMenuItem,
 			this.InitReplsetToolStripMenuItem,
 			this.toolStripMenuItem2,
-			this.ShutDownToolStripMenuItem,
+			//this.ShutDownToolStripMenuItem,
 			this.DisconnectToolStripMenuItem});
         	this.connectionToolStripMenuItem.Name = "connectionToolStripMenuItem";
         	this.connectionToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
@@ -364,10 +364,10 @@ namespace MongoCola
         	// 
         	// ShutDownToolStripMenuItem
         	// 
-        	this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
-        	this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-        	this.ShutDownToolStripMenuItem.Text = "ShutDown Server";
-        	this.ShutDownToolStripMenuItem.Click += new System.EventHandler(this.ShutDownToolStripMenuItem_Click);
+            //this.ShutDownToolStripMenuItem.Name = "ShutDownToolStripMenuItem";
+            //this.ShutDownToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            //this.ShutDownToolStripMenuItem.Text = "ShutDown Server";
+            //this.ShutDownToolStripMenuItem.Click += new System.EventHandler(this.ShutDownToolStripMenuItem_Click);
         	// 
         	// DisconnectToolStripMenuItem
         	// 
@@ -990,7 +990,7 @@ namespace MongoCola
         private ToolStripButton ExitToolStripButton;
         private ToolStripButton OptionToolStripButton;
         private ToolStripButton UserGuideToolStripButton;
-        private ToolStripButton ShutDownToolStripButton;
+        //private ToolStripButton ShutDownToolStripButton;
 
 
 
@@ -1055,7 +1055,7 @@ namespace MongoCola
         private ToolStripMenuItem slaveResyncToolStripMenuItem;
         private ToolStripMenuItem ServePropertyToolStripMenuItem;
         private ToolStripMenuItem ServerStatusToolStripMenuItem;
-        private ToolStripMenuItem ShutDownToolStripMenuItem;
+        //private ToolStripMenuItem ShutDownToolStripMenuItem;
         private ToolStripStatusLabel lblAction;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem aggregateToolStripMenuItem;

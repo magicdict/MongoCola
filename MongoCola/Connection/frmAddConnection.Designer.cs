@@ -59,7 +59,7 @@ namespace MongoCola.Connection
             this.lblConnectTimeout = new System.Windows.Forms.Label();
             this.lblsocketTimeout = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.tabreplicaSet = new System.Windows.Forms.TabPage();
+            this.tabReplicaSet = new System.Windows.Forms.TabPage();
             this.cmdRemoveHost = new System.Windows.Forms.Button();
             this.NumReplPort = new System.Windows.Forms.NumericUpDown();
             this.lblReplPort = new System.Windows.Forms.Label();
@@ -70,8 +70,9 @@ namespace MongoCola.Connection
             this.lblReplsetNameDescription = new System.Windows.Forms.Label();
             this.lblMainReplsetName = new System.Windows.Forms.Label();
             this.txtReplsetName = new System.Windows.Forms.TextBox();
-            this.tabConnectionS = new System.Windows.Forms.TabPage();
+            this.tabConnString = new System.Windows.Forms.TabPage();
             this.tabReadWrite = new System.Windows.Forms.TabPage();
+            this.chkUseDefault = new System.Windows.Forms.CheckBox();
             this.lnkWriteConcern = new System.Windows.Forms.LinkLabel();
             this.lnkReadPreference = new System.Windows.Forms.LinkLabel();
             this.cmbWriteConcern = new System.Windows.Forms.ComboBox();
@@ -83,15 +84,14 @@ namespace MongoCola.Connection
             this.lblQueueSize = new System.Windows.Forms.Label();
             this.lblWTimeout = new System.Windows.Forms.Label();
             this.NumWaitQueueSize = new System.Windows.Forms.NumericUpDown();
-            this.chkUseDefault = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumConnectTimeOut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumSocketTimeOut)).BeginInit();
-            this.tabreplicaSet.SuspendLayout();
+            this.tabReplicaSet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).BeginInit();
-            this.tabConnectionS.SuspendLayout();
+            this.tabConnString.SuspendLayout();
             this.tabReadWrite.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumWTimeoutMS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumWaitQueueSize)).BeginInit();
@@ -100,7 +100,7 @@ namespace MongoCola.Connection
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(481, 253);
+            this.cmdCancel.Location = new System.Drawing.Point(633, 253);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(112, 33);
             this.cmdCancel.TabIndex = 3;
@@ -110,7 +110,7 @@ namespace MongoCola.Connection
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(185, 253);
+            this.cmdAdd.Location = new System.Drawing.Point(515, 253);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(112, 33);
             this.cmdAdd.TabIndex = 1;
@@ -257,19 +257,19 @@ namespace MongoCola.Connection
             // 
             // cmdTest
             // 
-            this.cmdTest.Location = new System.Drawing.Point(339, 253);
+            this.cmdTest.Location = new System.Drawing.Point(73, 253);
             this.cmdTest.Name = "cmdTest";
-            this.cmdTest.Size = new System.Drawing.Size(112, 33);
+            this.cmdTest.Size = new System.Drawing.Size(213, 33);
             this.cmdTest.TabIndex = 2;
-            this.cmdTest.Text = "Test";
+            this.cmdTest.Text = "Test Connection";
             this.cmdTest.UseVisualStyleBackColor = true;
             this.cmdTest.Click += new System.EventHandler(this.cmdTest_Click);
             // 
             // tabConnection
             // 
             this.tabConnection.Controls.Add(this.tabBasic);
-            this.tabConnection.Controls.Add(this.tabreplicaSet);
-            this.tabConnection.Controls.Add(this.tabConnectionS);
+            this.tabConnection.Controls.Add(this.tabReplicaSet);
+            this.tabConnection.Controls.Add(this.tabConnString);
             this.tabConnection.Controls.Add(this.tabReadWrite);
             this.tabConnection.Location = new System.Drawing.Point(14, 13);
             this.tabConnection.Name = "tabConnection";
@@ -403,24 +403,24 @@ namespace MongoCola.Connection
             this.label7.Text = "If you want to connect to a replSet please  fill  replset information at  replset" +
     " tab.";
             // 
-            // tabreplicaSet
+            // tabReplicaSet
             // 
-            this.tabreplicaSet.Controls.Add(this.cmdRemoveHost);
-            this.tabreplicaSet.Controls.Add(this.NumReplPort);
-            this.tabreplicaSet.Controls.Add(this.lblReplPort);
-            this.tabreplicaSet.Controls.Add(this.txtReplHost);
-            this.tabreplicaSet.Controls.Add(this.lblReplHost);
-            this.tabreplicaSet.Controls.Add(this.cmdAddHost);
-            this.tabreplicaSet.Controls.Add(this.lstHost);
-            this.tabreplicaSet.Controls.Add(this.lblReplsetNameDescription);
-            this.tabreplicaSet.Controls.Add(this.lblMainReplsetName);
-            this.tabreplicaSet.Controls.Add(this.txtReplsetName);
-            this.tabreplicaSet.Location = new System.Drawing.Point(4, 25);
-            this.tabreplicaSet.Name = "tabreplicaSet";
-            this.tabreplicaSet.Size = new System.Drawing.Size(761, 205);
-            this.tabreplicaSet.TabIndex = 3;
-            this.tabreplicaSet.Text = "replicaSet";
-            this.tabreplicaSet.UseVisualStyleBackColor = true;
+            this.tabReplicaSet.Controls.Add(this.cmdRemoveHost);
+            this.tabReplicaSet.Controls.Add(this.NumReplPort);
+            this.tabReplicaSet.Controls.Add(this.lblReplPort);
+            this.tabReplicaSet.Controls.Add(this.txtReplHost);
+            this.tabReplicaSet.Controls.Add(this.lblReplHost);
+            this.tabReplicaSet.Controls.Add(this.cmdAddHost);
+            this.tabReplicaSet.Controls.Add(this.lstHost);
+            this.tabReplicaSet.Controls.Add(this.lblReplsetNameDescription);
+            this.tabReplicaSet.Controls.Add(this.lblMainReplsetName);
+            this.tabReplicaSet.Controls.Add(this.txtReplsetName);
+            this.tabReplicaSet.Location = new System.Drawing.Point(4, 25);
+            this.tabReplicaSet.Name = "tabReplicaSet";
+            this.tabReplicaSet.Size = new System.Drawing.Size(761, 205);
+            this.tabReplicaSet.TabIndex = 3;
+            this.tabReplicaSet.Text = "ReplicaSet";
+            this.tabReplicaSet.UseVisualStyleBackColor = true;
             // 
             // cmdRemoveHost
             // 
@@ -518,17 +518,17 @@ namespace MongoCola.Connection
             this.txtReplsetName.Size = new System.Drawing.Size(170, 22);
             this.txtReplsetName.TabIndex = 0;
             // 
-            // tabConnectionS
+            // tabConnString
             // 
-            this.tabConnectionS.Controls.Add(this.lblConnectionString);
-            this.tabConnectionS.Controls.Add(this.txtConnectionString);
-            this.tabConnectionS.Location = new System.Drawing.Point(4, 25);
-            this.tabConnectionS.Name = "tabConnectionS";
-            this.tabConnectionS.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConnectionS.Size = new System.Drawing.Size(761, 205);
-            this.tabConnectionS.TabIndex = 1;
-            this.tabConnectionS.Text = "Connection String";
-            this.tabConnectionS.UseVisualStyleBackColor = true;
+            this.tabConnString.Controls.Add(this.lblConnectionString);
+            this.tabConnString.Controls.Add(this.txtConnectionString);
+            this.tabConnString.Location = new System.Drawing.Point(4, 25);
+            this.tabConnString.Name = "tabConnString";
+            this.tabConnString.Padding = new System.Windows.Forms.Padding(3);
+            this.tabConnString.Size = new System.Drawing.Size(761, 205);
+            this.tabConnString.TabIndex = 1;
+            this.tabConnString.Text = "Connection String";
+            this.tabConnString.UseVisualStyleBackColor = true;
             // 
             // tabReadWrite
             // 
@@ -551,6 +551,16 @@ namespace MongoCola.Connection
             this.tabReadWrite.TabIndex = 4;
             this.tabReadWrite.Text = "Read Write";
             this.tabReadWrite.UseVisualStyleBackColor = true;
+            // 
+            // chkUseDefault
+            // 
+            this.chkUseDefault.AutoSize = true;
+            this.chkUseDefault.Location = new System.Drawing.Point(43, 24);
+            this.chkUseDefault.Name = "chkUseDefault";
+            this.chkUseDefault.Size = new System.Drawing.Size(172, 20);
+            this.chkUseDefault.TabIndex = 64;
+            this.chkUseDefault.Text = "Use Tool Default Setting";
+            this.chkUseDefault.UseVisualStyleBackColor = true;
             // 
             // lnkWriteConcern
             // 
@@ -662,16 +672,6 @@ namespace MongoCola.Connection
             this.NumWaitQueueSize.TabIndex = 54;
             this.NumWaitQueueSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // chkUseDefault
-            // 
-            this.chkUseDefault.AutoSize = true;
-            this.chkUseDefault.Location = new System.Drawing.Point(43, 24);
-            this.chkUseDefault.Name = "chkUseDefault";
-            this.chkUseDefault.Size = new System.Drawing.Size(172, 20);
-            this.chkUseDefault.TabIndex = 64;
-            this.chkUseDefault.Text = "Use Tool Default Setting";
-            this.chkUseDefault.UseVisualStyleBackColor = true;
-            // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -689,17 +689,18 @@ namespace MongoCola.Connection
             this.Name = "frmAddConnection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Server Connection";
+            this.Load += new System.EventHandler(this.frmAddConnection_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();
             this.tabConnection.ResumeLayout(false);
             this.tabBasic.ResumeLayout(false);
             this.tabBasic.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumConnectTimeOut)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumSocketTimeOut)).EndInit();
-            this.tabreplicaSet.ResumeLayout(false);
-            this.tabreplicaSet.PerformLayout();
+            this.tabReplicaSet.ResumeLayout(false);
+            this.tabReplicaSet.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).EndInit();
-            this.tabConnectionS.ResumeLayout(false);
-            this.tabConnectionS.PerformLayout();
+            this.tabConnString.ResumeLayout(false);
+            this.tabConnString.PerformLayout();
             this.tabReadWrite.ResumeLayout(false);
             this.tabReadWrite.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumWTimeoutMS)).EndInit();
@@ -733,8 +734,8 @@ namespace MongoCola.Connection
         private Button cmdTest;
         private TabControl tabConnection;
         private TabPage tabBasic;
-        private TabPage tabConnectionS;
-        private TabPage tabreplicaSet;
+        private TabPage tabConnString;
+        private TabPage tabReplicaSet;
         private Label lblMainReplsetName;
         private TextBox txtReplsetName;
         private Label lblReplsetNameDescription;

@@ -31,6 +31,8 @@
 /HTTPServer/obj
 /UnitTest/bin
 /UnitTest/obj
+/UnitTestLagacy/bin
+/UnitTestLagacy/obj
 /MongoGUIView/bin
 /MongoGUIView/obj
 /MongoUtility/bin
