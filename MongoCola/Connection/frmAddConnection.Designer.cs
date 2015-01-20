@@ -100,9 +100,9 @@ namespace MongoCola.Connection
             // cmdCancel
             // 
             this.cmdCancel.BackColor = System.Drawing.Color.Transparent;
-            this.cmdCancel.Location = new System.Drawing.Point(633, 253);
+            this.cmdCancel.Location = new System.Drawing.Point(554, 237);
             this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(112, 33);
+            this.cmdCancel.Size = new System.Drawing.Size(98, 31);
             this.cmdCancel.TabIndex = 3;
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
@@ -110,9 +110,9 @@ namespace MongoCola.Connection
             // cmdAdd
             // 
             this.cmdAdd.BackColor = System.Drawing.Color.Transparent;
-            this.cmdAdd.Location = new System.Drawing.Point(515, 253);
+            this.cmdAdd.Location = new System.Drawing.Point(451, 237);
             this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(112, 33);
+            this.cmdAdd.Size = new System.Drawing.Size(98, 31);
             this.cmdAdd.TabIndex = 1;
             this.cmdAdd.Text = "Add";
             this.cmdAdd.UseVisualStyleBackColor = false;
@@ -122,9 +122,9 @@ namespace MongoCola.Connection
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lblPassword.Location = new System.Drawing.Point(261, 67);
+            this.lblPassword.Location = new System.Drawing.Point(228, 63);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(68, 16);
+            this.lblPassword.Size = new System.Drawing.Size(61, 15);
             this.lblPassword.TabIndex = 8;
             this.lblPassword.Text = "Password";
             // 
@@ -132,9 +132,9 @@ namespace MongoCola.Connection
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.BackColor = System.Drawing.Color.Transparent;
-            this.lblUsername.Location = new System.Drawing.Point(25, 70);
+            this.lblUsername.Location = new System.Drawing.Point(22, 66);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(74, 16);
+            this.lblUsername.Size = new System.Drawing.Size(67, 15);
             this.lblUsername.TabIndex = 6;
             this.lblUsername.Text = "UserName";
             // 
@@ -142,9 +142,9 @@ namespace MongoCola.Connection
             // 
             this.lblPort.AutoSize = true;
             this.lblPort.BackColor = System.Drawing.Color.Transparent;
-            this.lblPort.Location = new System.Drawing.Point(482, 32);
+            this.lblPort.Location = new System.Drawing.Point(422, 30);
             this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(32, 16);
+            this.lblPort.Size = new System.Drawing.Size(29, 15);
             this.lblPort.TabIndex = 4;
             this.lblPort.Text = "Port";
             // 
@@ -152,9 +152,9 @@ namespace MongoCola.Connection
             // 
             this.lblConnectionName.AutoSize = true;
             this.lblConnectionName.BackColor = System.Drawing.Color.Transparent;
-            this.lblConnectionName.Location = new System.Drawing.Point(23, 33);
+            this.lblConnectionName.Location = new System.Drawing.Point(20, 31);
             this.lblConnectionName.Name = "lblConnectionName";
-            this.lblConnectionName.Size = new System.Drawing.Size(75, 16);
+            this.lblConnectionName.Size = new System.Drawing.Size(69, 15);
             this.lblConnectionName.TabIndex = 0;
             this.lblConnectionName.Text = "Connection";
             // 
@@ -162,85 +162,85 @@ namespace MongoCola.Connection
             // 
             this.lblHost.AutoSize = true;
             this.lblHost.BackColor = System.Drawing.Color.Transparent;
-            this.lblHost.Location = new System.Drawing.Point(261, 29);
+            this.lblHost.Location = new System.Drawing.Point(228, 27);
             this.lblHost.Name = "lblHost";
-            this.lblHost.Size = new System.Drawing.Size(36, 16);
+            this.lblHost.Size = new System.Drawing.Size(32, 15);
             this.lblHost.TabIndex = 1;
             this.lblHost.Text = "Host";
             // 
             // txtConnectionName
             // 
-            this.txtConnectionName.Location = new System.Drawing.Point(117, 27);
+            this.txtConnectionName.Location = new System.Drawing.Point(102, 25);
             this.txtConnectionName.Name = "txtConnectionName";
-            this.txtConnectionName.Size = new System.Drawing.Size(135, 22);
+            this.txtConnectionName.Size = new System.Drawing.Size(119, 21);
             this.txtConnectionName.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(336, 62);
+            this.txtPassword.Location = new System.Drawing.Point(294, 58);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(135, 22);
+            this.txtPassword.Size = new System.Drawing.Size(119, 21);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(117, 61);
+            this.txtUsername.Location = new System.Drawing.Point(102, 57);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(135, 22);
+            this.txtUsername.Size = new System.Drawing.Size(119, 21);
             this.txtUsername.TabIndex = 3;
             // 
             // txtHost
             // 
             this.txtHost.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtHost.Location = new System.Drawing.Point(336, 22);
+            this.txtHost.Location = new System.Drawing.Point(294, 21);
             this.txtHost.Name = "txtHost";
-            this.txtHost.Size = new System.Drawing.Size(135, 22);
+            this.txtHost.Size = new System.Drawing.Size(119, 21);
             this.txtHost.TabIndex = 1;
             // 
             // lblDataBaseName
             // 
             this.lblDataBaseName.AutoSize = true;
-            this.lblDataBaseName.Location = new System.Drawing.Point(483, 68);
+            this.lblDataBaseName.Location = new System.Drawing.Point(423, 64);
             this.lblDataBaseName.Name = "lblDataBaseName";
-            this.lblDataBaseName.Size = new System.Drawing.Size(68, 16);
+            this.lblDataBaseName.Size = new System.Drawing.Size(60, 15);
             this.lblDataBaseName.TabIndex = 10;
             this.lblDataBaseName.Text = "Database";
             // 
             // txtDataBaseName
             // 
-            this.txtDataBaseName.Location = new System.Drawing.Point(574, 60);
+            this.txtDataBaseName.Location = new System.Drawing.Point(502, 56);
             this.txtDataBaseName.Name = "txtDataBaseName";
-            this.txtDataBaseName.Size = new System.Drawing.Size(135, 22);
+            this.txtDataBaseName.Size = new System.Drawing.Size(119, 21);
             this.txtDataBaseName.TabIndex = 5;
             // 
             // txtConnectionString
             // 
-            this.txtConnectionString.Location = new System.Drawing.Point(10, 33);
+            this.txtConnectionString.Location = new System.Drawing.Point(9, 31);
             this.txtConnectionString.Multiline = true;
             this.txtConnectionString.Name = "txtConnectionString";
-            this.txtConnectionString.Size = new System.Drawing.Size(730, 144);
+            this.txtConnectionString.Size = new System.Drawing.Size(639, 135);
             this.txtConnectionString.TabIndex = 0;
             // 
             // lblConnectionString
             // 
             this.lblConnectionString.AutoSize = true;
-            this.lblConnectionString.Location = new System.Drawing.Point(7, 14);
+            this.lblConnectionString.Location = new System.Drawing.Point(6, 13);
             this.lblConnectionString.Name = "lblConnectionString";
-            this.lblConnectionString.Size = new System.Drawing.Size(188, 16);
+            this.lblConnectionString.Size = new System.Drawing.Size(172, 15);
             this.lblConnectionString.TabIndex = 16;
             this.lblConnectionString.Text = "Use ConnectionString Directly:";
             // 
             // numPort
             // 
-            this.numPort.Location = new System.Drawing.Point(573, 21);
+            this.numPort.Location = new System.Drawing.Point(501, 20);
             this.numPort.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
             this.numPort.Name = "numPort";
-            this.numPort.Size = new System.Drawing.Size(135, 22);
+            this.numPort.Size = new System.Drawing.Size(118, 21);
             this.numPort.TabIndex = 2;
             this.numPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -249,7 +249,7 @@ namespace MongoCola.Connection
             this.lblAttentionPassword.AutoSize = true;
             this.lblAttentionPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttentionPassword.ForeColor = System.Drawing.Color.Red;
-            this.lblAttentionPassword.Location = new System.Drawing.Point(25, 103);
+            this.lblAttentionPassword.Location = new System.Drawing.Point(22, 97);
             this.lblAttentionPassword.Name = "lblAttentionPassword";
             this.lblAttentionPassword.Size = new System.Drawing.Size(295, 13);
             this.lblAttentionPassword.TabIndex = 18;
@@ -257,9 +257,9 @@ namespace MongoCola.Connection
             // 
             // cmdTest
             // 
-            this.cmdTest.Location = new System.Drawing.Point(73, 253);
+            this.cmdTest.Location = new System.Drawing.Point(64, 237);
             this.cmdTest.Name = "cmdTest";
-            this.cmdTest.Size = new System.Drawing.Size(213, 33);
+            this.cmdTest.Size = new System.Drawing.Size(186, 31);
             this.cmdTest.TabIndex = 2;
             this.cmdTest.Text = "Test Connection";
             this.cmdTest.UseVisualStyleBackColor = true;
@@ -271,10 +271,10 @@ namespace MongoCola.Connection
             this.tabConnection.Controls.Add(this.tabReplicaSet);
             this.tabConnection.Controls.Add(this.tabConnString);
             this.tabConnection.Controls.Add(this.tabReadWrite);
-            this.tabConnection.Location = new System.Drawing.Point(14, 13);
+            this.tabConnection.Location = new System.Drawing.Point(12, 12);
             this.tabConnection.Name = "tabConnection";
             this.tabConnection.SelectedIndex = 0;
-            this.tabConnection.Size = new System.Drawing.Size(769, 234);
+            this.tabConnection.Size = new System.Drawing.Size(673, 219);
             this.tabConnection.TabIndex = 0;
             // 
             // tabBasic
@@ -301,10 +301,10 @@ namespace MongoCola.Connection
             this.tabBasic.Controls.Add(this.lblHost);
             this.tabBasic.Controls.Add(this.txtPassword);
             this.tabBasic.Controls.Add(this.txtConnectionName);
-            this.tabBasic.Location = new System.Drawing.Point(4, 25);
+            this.tabBasic.Location = new System.Drawing.Point(4, 24);
             this.tabBasic.Name = "tabBasic";
             this.tabBasic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBasic.Size = new System.Drawing.Size(761, 205);
+            this.tabBasic.Size = new System.Drawing.Size(665, 191);
             this.tabBasic.TabIndex = 0;
             this.tabBasic.Text = "Basic";
             this.tabBasic.UseVisualStyleBackColor = true;
@@ -312,9 +312,9 @@ namespace MongoCola.Connection
             // chkVerifySslCertificate
             // 
             this.chkVerifySslCertificate.AutoSize = true;
-            this.chkVerifySslCertificate.Location = new System.Drawing.Point(440, 173);
+            this.chkVerifySslCertificate.Location = new System.Drawing.Point(385, 162);
             this.chkVerifySslCertificate.Name = "chkVerifySslCertificate";
-            this.chkVerifySslCertificate.Size = new System.Drawing.Size(139, 20);
+            this.chkVerifySslCertificate.Size = new System.Drawing.Size(126, 19);
             this.chkVerifySslCertificate.TabIndex = 43;
             this.chkVerifySslCertificate.Text = "VerifySslCertificate";
             this.chkVerifySslCertificate.UseVisualStyleBackColor = true;
@@ -322,9 +322,9 @@ namespace MongoCola.Connection
             // chkUseSsl
             // 
             this.chkUseSsl.AutoSize = true;
-            this.chkUseSsl.Location = new System.Drawing.Point(290, 173);
+            this.chkUseSsl.Location = new System.Drawing.Point(254, 162);
             this.chkUseSsl.Name = "chkUseSsl";
-            this.chkUseSsl.Size = new System.Drawing.Size(71, 20);
+            this.chkUseSsl.Size = new System.Drawing.Size(65, 19);
             this.chkUseSsl.TabIndex = 42;
             this.chkUseSsl.Text = "UseSsl";
             this.chkUseSsl.UseVisualStyleBackColor = true;
@@ -332,9 +332,9 @@ namespace MongoCola.Connection
             // chkJournal
             // 
             this.chkJournal.AutoSize = true;
-            this.chkJournal.Location = new System.Drawing.Point(178, 173);
+            this.chkJournal.Location = new System.Drawing.Point(156, 162);
             this.chkJournal.Name = "chkJournal";
-            this.chkJournal.Size = new System.Drawing.Size(67, 20);
+            this.chkJournal.Size = new System.Drawing.Size(64, 19);
             this.chkJournal.TabIndex = 39;
             this.chkJournal.Text = "journal";
             this.chkJournal.UseVisualStyleBackColor = true;
@@ -342,63 +342,63 @@ namespace MongoCola.Connection
             // chkFsync
             // 
             this.chkFsync.AutoSize = true;
-            this.chkFsync.Location = new System.Drawing.Point(29, 173);
+            this.chkFsync.Location = new System.Drawing.Point(25, 162);
             this.chkFsync.Name = "chkFsync";
-            this.chkFsync.Size = new System.Drawing.Size(58, 20);
+            this.chkFsync.Size = new System.Drawing.Size(53, 19);
             this.chkFsync.TabIndex = 38;
             this.chkFsync.Text = "fsync";
             this.chkFsync.UseVisualStyleBackColor = true;
             // 
             // NumConnectTimeOut
             // 
-            this.NumConnectTimeOut.Location = new System.Drawing.Point(440, 142);
+            this.NumConnectTimeOut.Location = new System.Drawing.Point(385, 133);
             this.NumConnectTimeOut.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.NumConnectTimeOut.Name = "NumConnectTimeOut";
-            this.NumConnectTimeOut.Size = new System.Drawing.Size(87, 22);
+            this.NumConnectTimeOut.Size = new System.Drawing.Size(76, 21);
             this.NumConnectTimeOut.TabIndex = 37;
             this.NumConnectTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // NumSocketTimeOut
             // 
-            this.NumSocketTimeOut.Location = new System.Drawing.Point(178, 140);
+            this.NumSocketTimeOut.Location = new System.Drawing.Point(156, 131);
             this.NumSocketTimeOut.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.NumSocketTimeOut.Name = "NumSocketTimeOut";
-            this.NumSocketTimeOut.Size = new System.Drawing.Size(87, 22);
+            this.NumSocketTimeOut.Size = new System.Drawing.Size(76, 21);
             this.NumSocketTimeOut.TabIndex = 36;
             this.NumSocketTimeOut.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblConnectTimeout
             // 
             this.lblConnectTimeout.AutoSize = true;
-            this.lblConnectTimeout.Location = new System.Drawing.Point(283, 142);
+            this.lblConnectTimeout.Location = new System.Drawing.Point(248, 133);
             this.lblConnectTimeout.Name = "lblConnectTimeout";
-            this.lblConnectTimeout.Size = new System.Drawing.Size(132, 16);
+            this.lblConnectTimeout.Size = new System.Drawing.Size(122, 15);
             this.lblConnectTimeout.TabIndex = 40;
             this.lblConnectTimeout.Text = "connectTimeout(MS)";
             // 
             // lblsocketTimeout
             // 
             this.lblsocketTimeout.AutoSize = true;
-            this.lblsocketTimeout.Location = new System.Drawing.Point(25, 145);
+            this.lblsocketTimeout.Location = new System.Drawing.Point(22, 136);
             this.lblsocketTimeout.Name = "lblsocketTimeout";
-            this.lblsocketTimeout.Size = new System.Drawing.Size(125, 16);
+            this.lblsocketTimeout.Size = new System.Drawing.Size(114, 15);
             this.lblsocketTimeout.TabIndex = 41;
             this.lblsocketTimeout.Text = "socketTimeout(MS)";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 117);
+            this.label7.Location = new System.Drawing.Point(22, 110);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(468, 16);
+            this.label7.Size = new System.Drawing.Size(433, 15);
             this.label7.TabIndex = 19;
             this.label7.Text = "If you want to connect to a replSet please  fill  replset information at  replset" +
     " tab.";
@@ -417,16 +417,16 @@ namespace MongoCola.Connection
             this.tabReplicaSet.Controls.Add(this.txtReplsetName);
             this.tabReplicaSet.Location = new System.Drawing.Point(4, 25);
             this.tabReplicaSet.Name = "tabReplicaSet";
-            this.tabReplicaSet.Size = new System.Drawing.Size(761, 205);
+            this.tabReplicaSet.Size = new System.Drawing.Size(665, 190);
             this.tabReplicaSet.TabIndex = 3;
             this.tabReplicaSet.Text = "ReplicaSet";
             this.tabReplicaSet.UseVisualStyleBackColor = true;
             // 
             // cmdRemoveHost
             // 
-            this.cmdRemoveHost.Location = new System.Drawing.Point(133, 163);
+            this.cmdRemoveHost.Location = new System.Drawing.Point(116, 153);
             this.cmdRemoveHost.Name = "cmdRemoveHost";
-            this.cmdRemoveHost.Size = new System.Drawing.Size(108, 27);
+            this.cmdRemoveHost.Size = new System.Drawing.Size(94, 25);
             this.cmdRemoveHost.TabIndex = 4;
             this.cmdRemoveHost.Text = "Remove Host";
             this.cmdRemoveHost.UseVisualStyleBackColor = true;
@@ -434,14 +434,14 @@ namespace MongoCola.Connection
             // 
             // NumReplPort
             // 
-            this.NumReplPort.Location = new System.Drawing.Point(107, 119);
+            this.NumReplPort.Location = new System.Drawing.Point(94, 112);
             this.NumReplPort.Maximum = new decimal(new int[] {
             65535,
             0,
             0,
             0});
             this.NumReplPort.Name = "NumReplPort";
-            this.NumReplPort.Size = new System.Drawing.Size(135, 22);
+            this.NumReplPort.Size = new System.Drawing.Size(118, 21);
             this.NumReplPort.TabIndex = 2;
             this.NumReplPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -449,35 +449,35 @@ namespace MongoCola.Connection
             // 
             this.lblReplPort.AutoSize = true;
             this.lblReplPort.BackColor = System.Drawing.Color.Transparent;
-            this.lblReplPort.Location = new System.Drawing.Point(31, 122);
+            this.lblReplPort.Location = new System.Drawing.Point(27, 114);
             this.lblReplPort.Name = "lblReplPort";
-            this.lblReplPort.Size = new System.Drawing.Size(32, 16);
+            this.lblReplPort.Size = new System.Drawing.Size(29, 15);
             this.lblReplPort.TabIndex = 35;
             this.lblReplPort.Text = "Port";
             // 
             // txtReplHost
             // 
             this.txtReplHost.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtReplHost.Location = new System.Drawing.Point(106, 92);
+            this.txtReplHost.Location = new System.Drawing.Point(93, 86);
             this.txtReplHost.Name = "txtReplHost";
-            this.txtReplHost.Size = new System.Drawing.Size(135, 22);
+            this.txtReplHost.Size = new System.Drawing.Size(119, 21);
             this.txtReplHost.TabIndex = 1;
             // 
             // lblReplHost
             // 
             this.lblReplHost.AutoSize = true;
             this.lblReplHost.BackColor = System.Drawing.Color.Transparent;
-            this.lblReplHost.Location = new System.Drawing.Point(31, 92);
+            this.lblReplHost.Location = new System.Drawing.Point(27, 86);
             this.lblReplHost.Name = "lblReplHost";
-            this.lblReplHost.Size = new System.Drawing.Size(36, 16);
+            this.lblReplHost.Size = new System.Drawing.Size(32, 15);
             this.lblReplHost.TabIndex = 33;
             this.lblReplHost.Text = "Host";
             // 
             // cmdAddHost
             // 
-            this.cmdAddHost.Location = new System.Drawing.Point(34, 161);
+            this.cmdAddHost.Location = new System.Drawing.Point(30, 151);
             this.cmdAddHost.Name = "cmdAddHost";
-            this.cmdAddHost.Size = new System.Drawing.Size(93, 31);
+            this.cmdAddHost.Size = new System.Drawing.Size(81, 29);
             this.cmdAddHost.TabIndex = 3;
             this.cmdAddHost.Text = "Add Host";
             this.cmdAddHost.UseVisualStyleBackColor = true;
@@ -486,17 +486,17 @@ namespace MongoCola.Connection
             // lstHost
             // 
             this.lstHost.FormattingEnabled = true;
-            this.lstHost.ItemHeight = 16;
-            this.lstHost.Location = new System.Drawing.Point(249, 92);
+            this.lstHost.ItemHeight = 15;
+            this.lstHost.Location = new System.Drawing.Point(218, 86);
             this.lstHost.Name = "lstHost";
-            this.lstHost.Size = new System.Drawing.Size(473, 100);
+            this.lstHost.Size = new System.Drawing.Size(414, 94);
             this.lstHost.TabIndex = 5;
             // 
             // lblReplsetNameDescription
             // 
-            this.lblReplsetNameDescription.Location = new System.Drawing.Point(31, 48);
+            this.lblReplsetNameDescription.Location = new System.Drawing.Point(27, 45);
             this.lblReplsetNameDescription.Name = "lblReplsetNameDescription";
-            this.lblReplsetNameDescription.Size = new System.Drawing.Size(707, 41);
+            this.lblReplsetNameDescription.Size = new System.Drawing.Size(619, 38);
             this.lblReplsetNameDescription.TabIndex = 30;
             this.lblReplsetNameDescription.Text = "The driver verifies that the name of the replica set it connects to matches this " +
     "name. Implies that the hosts given are a seed list, and the driver will attempt " +
@@ -505,17 +505,17 @@ namespace MongoCola.Connection
             // lblMainReplsetName
             // 
             this.lblMainReplsetName.AutoSize = true;
-            this.lblMainReplsetName.Location = new System.Drawing.Point(31, 27);
+            this.lblMainReplsetName.Location = new System.Drawing.Point(27, 25);
             this.lblMainReplsetName.Name = "lblMainReplsetName";
-            this.lblMainReplsetName.Size = new System.Drawing.Size(92, 16);
+            this.lblMainReplsetName.Size = new System.Drawing.Size(83, 15);
             this.lblMainReplsetName.TabIndex = 28;
             this.lblMainReplsetName.Text = "ReplsetName";
             // 
             // txtReplsetName
             // 
-            this.txtReplsetName.Location = new System.Drawing.Point(139, 25);
+            this.txtReplsetName.Location = new System.Drawing.Point(122, 23);
             this.txtReplsetName.Name = "txtReplsetName";
-            this.txtReplsetName.Size = new System.Drawing.Size(170, 22);
+            this.txtReplsetName.Size = new System.Drawing.Size(149, 21);
             this.txtReplsetName.TabIndex = 0;
             // 
             // tabConnString
@@ -525,7 +525,7 @@ namespace MongoCola.Connection
             this.tabConnString.Location = new System.Drawing.Point(4, 25);
             this.tabConnString.Name = "tabConnString";
             this.tabConnString.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConnString.Size = new System.Drawing.Size(761, 205);
+            this.tabConnString.Size = new System.Drawing.Size(665, 190);
             this.tabConnString.TabIndex = 1;
             this.tabConnString.Text = "Connection String";
             this.tabConnString.UseVisualStyleBackColor = true;
@@ -547,7 +547,7 @@ namespace MongoCola.Connection
             this.tabReadWrite.Location = new System.Drawing.Point(4, 25);
             this.tabReadWrite.Name = "tabReadWrite";
             this.tabReadWrite.Padding = new System.Windows.Forms.Padding(3);
-            this.tabReadWrite.Size = new System.Drawing.Size(761, 205);
+            this.tabReadWrite.Size = new System.Drawing.Size(665, 190);
             this.tabReadWrite.TabIndex = 4;
             this.tabReadWrite.Text = "Read Write";
             this.tabReadWrite.UseVisualStyleBackColor = true;
@@ -555,9 +555,9 @@ namespace MongoCola.Connection
             // chkUseDefault
             // 
             this.chkUseDefault.AutoSize = true;
-            this.chkUseDefault.Location = new System.Drawing.Point(43, 24);
+            this.chkUseDefault.Location = new System.Drawing.Point(38, 22);
             this.chkUseDefault.Name = "chkUseDefault";
-            this.chkUseDefault.Size = new System.Drawing.Size(172, 20);
+            this.chkUseDefault.Size = new System.Drawing.Size(158, 19);
             this.chkUseDefault.TabIndex = 64;
             this.chkUseDefault.Text = "Use Tool Default Setting";
             this.chkUseDefault.UseVisualStyleBackColor = true;
@@ -565,9 +565,9 @@ namespace MongoCola.Connection
             // lnkWriteConcern
             // 
             this.lnkWriteConcern.AutoSize = true;
-            this.lnkWriteConcern.Location = new System.Drawing.Point(360, 163);
+            this.lnkWriteConcern.Location = new System.Drawing.Point(315, 153);
             this.lnkWriteConcern.Name = "lnkWriteConcern";
-            this.lnkWriteConcern.Size = new System.Drawing.Size(127, 16);
+            this.lnkWriteConcern.Size = new System.Drawing.Size(115, 15);
             this.lnkWriteConcern.TabIndex = 63;
             this.lnkWriteConcern.TabStop = true;
             this.lnkWriteConcern.Text = "About WriteConcern";
@@ -575,9 +575,9 @@ namespace MongoCola.Connection
             // lnkReadPreference
             // 
             this.lnkReadPreference.AutoSize = true;
-            this.lnkReadPreference.Location = new System.Drawing.Point(361, 139);
+            this.lnkReadPreference.Location = new System.Drawing.Point(316, 130);
             this.lnkReadPreference.Name = "lnkReadPreference";
-            this.lnkReadPreference.Size = new System.Drawing.Size(146, 16);
+            this.lnkReadPreference.Size = new System.Drawing.Size(131, 15);
             this.lnkReadPreference.TabIndex = 62;
             this.lnkReadPreference.TabStop = true;
             this.lnkReadPreference.Text = "About ReadPreference";
@@ -586,17 +586,17 @@ namespace MongoCola.Connection
             // 
             this.cmbWriteConcern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWriteConcern.FormattingEnabled = true;
-            this.cmbWriteConcern.Location = new System.Drawing.Point(164, 163);
+            this.cmbWriteConcern.Location = new System.Drawing.Point(144, 153);
             this.cmbWriteConcern.Name = "cmbWriteConcern";
-            this.cmbWriteConcern.Size = new System.Drawing.Size(170, 24);
+            this.cmbWriteConcern.Size = new System.Drawing.Size(149, 23);
             this.cmbWriteConcern.TabIndex = 61;
             // 
             // lblWriteConcern
             // 
             this.lblWriteConcern.AutoSize = true;
-            this.lblWriteConcern.Location = new System.Drawing.Point(42, 163);
+            this.lblWriteConcern.Location = new System.Drawing.Point(37, 153);
             this.lblWriteConcern.Name = "lblWriteConcern";
-            this.lblWriteConcern.Size = new System.Drawing.Size(89, 16);
+            this.lblWriteConcern.Size = new System.Drawing.Size(81, 15);
             this.lblWriteConcern.TabIndex = 60;
             this.lblWriteConcern.Text = "WriteConcern";
             // 
@@ -604,85 +604,85 @@ namespace MongoCola.Connection
             // 
             this.cmbReadPreference.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReadPreference.FormattingEnabled = true;
-            this.cmbReadPreference.Location = new System.Drawing.Point(164, 136);
+            this.cmbReadPreference.Location = new System.Drawing.Point(144, 128);
             this.cmbReadPreference.Name = "cmbReadPreference";
-            this.cmbReadPreference.Size = new System.Drawing.Size(170, 24);
+            this.cmbReadPreference.Size = new System.Drawing.Size(149, 23);
             this.cmbReadPreference.TabIndex = 59;
             // 
             // lblReadPreference
             // 
             this.lblReadPreference.AutoSize = true;
-            this.lblReadPreference.Location = new System.Drawing.Point(42, 136);
+            this.lblReadPreference.Location = new System.Drawing.Point(37, 128);
             this.lblReadPreference.Name = "lblReadPreference";
-            this.lblReadPreference.Size = new System.Drawing.Size(108, 16);
+            this.lblReadPreference.Size = new System.Drawing.Size(97, 15);
             this.lblReadPreference.TabIndex = 58;
             this.lblReadPreference.Text = "ReadPreference";
             // 
             // lblWtimeoutDescript
             // 
             this.lblWtimeoutDescript.AutoSize = true;
-            this.lblWtimeoutDescript.Location = new System.Drawing.Point(167, 86);
+            this.lblWtimeoutDescript.Location = new System.Drawing.Point(146, 81);
             this.lblWtimeoutDescript.Name = "lblWtimeoutDescript";
-            this.lblWtimeoutDescript.Size = new System.Drawing.Size(480, 16);
+            this.lblWtimeoutDescript.Size = new System.Drawing.Size(444, 15);
             this.lblWtimeoutDescript.TabIndex = 57;
             this.lblWtimeoutDescript.Text = "The driver adds { wtimeout : ms } to the getlasterror command. Implies safe=true." +
     "";
             // 
             // NumWTimeoutMS
             // 
-            this.NumWTimeoutMS.Location = new System.Drawing.Point(164, 56);
+            this.NumWTimeoutMS.Location = new System.Drawing.Point(144, 52);
             this.NumWTimeoutMS.Maximum = new decimal(new int[] {
             999999,
             0,
             0,
             0});
             this.NumWTimeoutMS.Name = "NumWTimeoutMS";
-            this.NumWTimeoutMS.Size = new System.Drawing.Size(87, 22);
+            this.NumWTimeoutMS.Size = new System.Drawing.Size(76, 21);
             this.NumWTimeoutMS.TabIndex = 53;
             this.NumWTimeoutMS.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblQueueSize
             // 
             this.lblQueueSize.AutoSize = true;
-            this.lblQueueSize.Location = new System.Drawing.Point(40, 108);
+            this.lblQueueSize.Location = new System.Drawing.Point(35, 101);
             this.lblQueueSize.Name = "lblQueueSize";
-            this.lblQueueSize.Size = new System.Drawing.Size(101, 16);
+            this.lblQueueSize.Size = new System.Drawing.Size(92, 15);
             this.lblQueueSize.TabIndex = 55;
             this.lblQueueSize.Text = "WaitQueueSize";
             // 
             // lblWTimeout
             // 
             this.lblWTimeout.AutoSize = true;
-            this.lblWTimeout.Location = new System.Drawing.Point(42, 59);
+            this.lblWTimeout.Location = new System.Drawing.Point(37, 55);
             this.lblWTimeout.Name = "lblWTimeout";
-            this.lblWTimeout.Size = new System.Drawing.Size(88, 16);
+            this.lblWTimeout.Size = new System.Drawing.Size(84, 15);
             this.lblWTimeout.TabIndex = 56;
             this.lblWTimeout.Text = "wtimeout(MS)";
             // 
             // NumWaitQueueSize
             // 
-            this.NumWaitQueueSize.Location = new System.Drawing.Point(164, 106);
+            this.NumWaitQueueSize.Location = new System.Drawing.Point(144, 99);
             this.NumWaitQueueSize.Maximum = new decimal(new int[] {
             9999,
             0,
             0,
             0});
             this.NumWaitQueueSize.Name = "NumWaitQueueSize";
-            this.NumWaitQueueSize.Size = new System.Drawing.Size(87, 22);
+            this.NumWaitQueueSize.Size = new System.Drawing.Size(76, 21);
             this.NumWaitQueueSize.TabIndex = 54;
             this.NumWaitQueueSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // frmAddConnection
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(809, 304);
+            this.ClientSize = new System.Drawing.Size(708, 285);
             this.Controls.Add(this.tabConnection);
             this.Controls.Add(this.cmdTest);
             this.Controls.Add(this.cmdCancel);
             this.Controls.Add(this.cmdAdd);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

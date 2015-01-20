@@ -42,6 +42,12 @@
         DBKey,
         Document,
         User,
-        Smile
+        Smile,
+
+        Expand,
+        Collpse
+
+
+
     }
 }

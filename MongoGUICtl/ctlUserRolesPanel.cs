@@ -10,6 +10,7 @@ namespace MongoGUICtl
         public ctlUserRolesPanel()
         {
             InitializeComponent();
+            if (configuration.guiConfig == null) return;
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
                 grpRoles.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Roles);

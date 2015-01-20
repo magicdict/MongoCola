@@ -114,7 +114,7 @@
     <Content Include="Resources\save.ico" />
     <None Include="Resources\icon_delete_file.gif" />
     <None Include="Resources\compress.png" />
-    <None Include="Resources\1332159906_document_small_upload.png" />
+    <None Include="Resources\document_small_upload.png" />
     <None Include="Resources\%2826,29%29.png" />
     <None Include="Resources\%2815,43%29.png" />
     <None Include="Resources\%2814,28%29.png" />

@@ -37,7 +37,7 @@ namespace Common.Logic
                 return Default;
             try
             {
-                var EnumValue = (T) Enum.Parse(typeof (T), strEnum);
+                var EnumValue = (T)Enum.Parse(typeof(T), strEnum);
                 return EnumValue;
             }
             catch (Exception)
@@ -92,17 +92,17 @@ namespace Common.Logic
                 return "0 Byte";
             }
             byte unitOrder = 2;
-            var tempSize = size/Math.Pow(2, 20);
+            var tempSize = size / Math.Pow(2, 20);
             while (!(tempSize > 0.1 & tempSize < 1000))
             {
                 if (tempSize < 0.1)
                 {
-                    tempSize = tempSize*1024;
+                    tempSize = tempSize * 1024;
                     unitOrder--;
                 }
                 else
                 {
-                    tempSize = tempSize/1024;
+                    tempSize = tempSize / 1024;
                     unitOrder++;
                 }
             }
@@ -129,7 +129,7 @@ namespace Common.Logic
                 if (size.EndsWith(Unit[i]))
                 {
                     size = size.Replace(Unit[i], string.Empty).Trim();
-                    return (long) (Convert.ToDouble(size)*Math.Pow(2, (i*10)));
+                    return (long)(Convert.ToDouble(size) * Math.Pow(2, (i * 10)));
                 }
             }
             return 0;
@@ -190,11 +190,11 @@ namespace Common.Logic
         /// <param name="Obj"></param>
         public static void SaveObjAsXml<T>(string filename, T Obj)
         {
-            var settings = new XmlWriterSettings {Indent = true, NewLineChars = Environment.NewLine};
+            var settings = new XmlWriterSettings { Indent = true, NewLineChars = Environment.NewLine };
             //NewLineChars对于String属性的东西无效
             //这是对于XML中换行有效，
             //String的换行会变成Console的NewLine /n
-            var xml = new XmlSerializer(typeof (T));
+            var xml = new XmlSerializer(typeof(T));
             var writer = XmlWriter.Create(filename, settings);
             var ns = new XmlSerializerNamespaces();
             ns.Add("", "");
@@ -211,9 +211,9 @@ namespace Common.Logic
         public static T LoadObjFromXml<T>(string filename)
         {
             var setting = new XmlReaderSettings();
-            var xml = new XmlSerializer(typeof (T));
+            var xml = new XmlSerializer(typeof(T));
             var reader = XmlReader.Create(filename, setting);
-            var obj = (T) xml.Deserialize(reader);
+            var obj = (T)xml.Deserialize(reader);
             reader.Close();
             return obj;
         }
@@ -229,7 +229,7 @@ namespace Common.Logic
             var stream = new MemoryStream();
             bFormatter.Serialize(stream, obj);
             stream.Seek(0, SeekOrigin.Begin);
-            return (T) bFormatter.Deserialize(stream);
+            return (T)bFormatter.Deserialize(stream);
         }
 
 
@@ -239,7 +239,7 @@ namespace Common.Logic
         /// <param name="result"></param>
         public static void SaveJavascriptFile(string result)
         {
-            var dialog = new SaveFileDialog {Filter = JsFilter};
+            var dialog = new SaveFileDialog { Filter = JsFilter };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var writer = new StreamWriter(dialog.FileName, false);
@@ -390,6 +390,7 @@ namespace Common.Logic
             mfrm.BackColor = Color.White;
             mfrm.FormBorderStyle = FormBorderStyle.FixedSingle;
             mfrm.MaximizeBox = false;
+            mfrm.Font = new Font("微软雅黑", 9);
             if (isUseAppIcon)
             {
                 mfrm.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
@@ -569,8 +570,8 @@ namespace Common.Logic
         public static void ExceptionLog(Exception ex)
         {
             var ExceptionString = string.Empty;
-//			ExceptionString = "MongoDB.Driver.DLL:" + MongoDbDriverVersion + Environment.NewLine;
-//			ExceptionString += "MongoDB.Bson.DLL:" + MongoDbBsonVersion + Environment.NewLine;
+            //			ExceptionString = "MongoDB.Driver.DLL:" + MongoDbDriverVersion + Environment.NewLine;
+            //			ExceptionString += "MongoDB.Bson.DLL:" + MongoDbBsonVersion + Environment.NewLine;
             ExceptionString += ex.ToString();
             ExceptionLog(ExceptionString);
         }

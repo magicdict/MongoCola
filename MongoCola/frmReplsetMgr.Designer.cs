@@ -49,7 +49,7 @@
             // 
             // NumReplPort
             // 
-            this.NumReplPort.Location = new System.Drawing.Point(90, 56);
+            this.NumReplPort.Location = new System.Drawing.Point(79, 52);
             this.NumReplPort.Margin = new System.Windows.Forms.Padding(4);
             this.NumReplPort.Maximum = new decimal(new int[] {
             65535,
@@ -57,7 +57,7 @@
             0,
             0});
             this.NumReplPort.Name = "NumReplPort";
-            this.NumReplPort.Size = new System.Drawing.Size(122, 22);
+            this.NumReplPort.Size = new System.Drawing.Size(107, 21);
             this.NumReplPort.TabIndex = 3;
             this.NumReplPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -65,39 +65,39 @@
             // 
             this.lblReplPort.AutoSize = true;
             this.lblReplPort.BackColor = System.Drawing.Color.Transparent;
-            this.lblReplPort.Location = new System.Drawing.Point(30, 58);
+            this.lblReplPort.Location = new System.Drawing.Point(26, 54);
             this.lblReplPort.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblReplPort.Name = "lblReplPort";
-            this.lblReplPort.Size = new System.Drawing.Size(32, 16);
+            this.lblReplPort.Size = new System.Drawing.Size(29, 15);
             this.lblReplPort.TabIndex = 2;
             this.lblReplPort.Text = "Port";
             // 
             // txtReplHost
             // 
             this.txtReplHost.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.txtReplHost.Location = new System.Drawing.Point(90, 29);
+            this.txtReplHost.Location = new System.Drawing.Point(79, 27);
             this.txtReplHost.Margin = new System.Windows.Forms.Padding(4);
             this.txtReplHost.Name = "txtReplHost";
-            this.txtReplHost.Size = new System.Drawing.Size(121, 22);
+            this.txtReplHost.Size = new System.Drawing.Size(106, 21);
             this.txtReplHost.TabIndex = 1;
             // 
             // lblReplHost
             // 
             this.lblReplHost.AutoSize = true;
             this.lblReplHost.BackColor = System.Drawing.Color.Transparent;
-            this.lblReplHost.Location = new System.Drawing.Point(30, 28);
+            this.lblReplHost.Location = new System.Drawing.Point(26, 26);
             this.lblReplHost.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblReplHost.Name = "lblReplHost";
-            this.lblReplHost.Size = new System.Drawing.Size(36, 16);
+            this.lblReplHost.Size = new System.Drawing.Size(32, 15);
             this.lblReplHost.TabIndex = 0;
             this.lblReplHost.Text = "Host";
             // 
             // cmdAddHost
             // 
-            this.cmdAddHost.Location = new System.Drawing.Point(60, 147);
+            this.cmdAddHost.Location = new System.Drawing.Point(52, 138);
             this.cmdAddHost.Margin = new System.Windows.Forms.Padding(4);
             this.cmdAddHost.Name = "cmdAddHost";
-            this.cmdAddHost.Size = new System.Drawing.Size(124, 38);
+            this.cmdAddHost.Size = new System.Drawing.Size(108, 36);
             this.cmdAddHost.TabIndex = 7;
             this.cmdAddHost.Text = "Add Host";
             this.cmdAddHost.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             // 
             // NumPriority
             // 
-            this.NumPriority.Location = new System.Drawing.Point(90, 87);
+            this.NumPriority.Location = new System.Drawing.Point(79, 82);
             this.NumPriority.Margin = new System.Windows.Forms.Padding(4);
             this.NumPriority.Maximum = new decimal(new int[] {
             10,
@@ -113,7 +113,7 @@
             0,
             0});
             this.NumPriority.Name = "NumPriority";
-            this.NumPriority.Size = new System.Drawing.Size(122, 22);
+            this.NumPriority.Size = new System.Drawing.Size(107, 21);
             this.NumPriority.TabIndex = 5;
             this.NumPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.NumPriority.Value = new decimal(new int[] {
@@ -126,19 +126,19 @@
             // 
             this.lblpriority.AutoSize = true;
             this.lblpriority.BackColor = System.Drawing.Color.Transparent;
-            this.lblpriority.Location = new System.Drawing.Point(30, 89);
+            this.lblpriority.Location = new System.Drawing.Point(26, 83);
             this.lblpriority.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblpriority.Name = "lblpriority";
-            this.lblpriority.Size = new System.Drawing.Size(48, 16);
+            this.lblpriority.Size = new System.Drawing.Size(43, 15);
             this.lblpriority.TabIndex = 4;
             this.lblpriority.Text = "priority";
             // 
             // chkArbiterOnly
             // 
             this.chkArbiterOnly.AutoSize = true;
-            this.chkArbiterOnly.Location = new System.Drawing.Point(33, 120);
+            this.chkArbiterOnly.Location = new System.Drawing.Point(29, 112);
             this.chkArbiterOnly.Name = "chkArbiterOnly";
-            this.chkArbiterOnly.Size = new System.Drawing.Size(93, 20);
+            this.chkArbiterOnly.Size = new System.Drawing.Size(85, 19);
             this.chkArbiterOnly.TabIndex = 6;
             this.chkArbiterOnly.Text = "ArbiterOnly";
             this.chkArbiterOnly.UseVisualStyleBackColor = true;
@@ -153,18 +153,18 @@
             this.grpAddHost.Controls.Add(this.NumReplPort);
             this.grpAddHost.Controls.Add(this.lblReplPort);
             this.grpAddHost.Controls.Add(this.cmdAddHost);
-            this.grpAddHost.Location = new System.Drawing.Point(21, 12);
+            this.grpAddHost.Location = new System.Drawing.Point(18, 11);
             this.grpAddHost.Name = "grpAddHost";
-            this.grpAddHost.Size = new System.Drawing.Size(245, 212);
+            this.grpAddHost.Size = new System.Drawing.Size(214, 199);
             this.grpAddHost.TabIndex = 0;
             this.grpAddHost.TabStop = false;
             this.grpAddHost.Text = "Add Host Member";
             // 
             // cmdClose
             // 
-            this.cmdClose.Location = new System.Drawing.Point(216, 240);
+            this.cmdClose.Location = new System.Drawing.Point(189, 225);
             this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(124, 36);
+            this.cmdClose.Size = new System.Drawing.Size(108, 34);
             this.cmdClose.TabIndex = 2;
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
@@ -174,18 +174,18 @@
             // 
             this.grpRemoveHost.Controls.Add(this.cmdRemoveHost);
             this.grpRemoveHost.Controls.Add(this.lstHost);
-            this.grpRemoveHost.Location = new System.Drawing.Point(290, 12);
+            this.grpRemoveHost.Location = new System.Drawing.Point(254, 11);
             this.grpRemoveHost.Name = "grpRemoveHost";
-            this.grpRemoveHost.Size = new System.Drawing.Size(271, 212);
+            this.grpRemoveHost.Size = new System.Drawing.Size(237, 199);
             this.grpRemoveHost.TabIndex = 1;
             this.grpRemoveHost.TabStop = false;
             this.grpRemoveHost.Text = "Remove Host Member";
             // 
             // cmdRemoveHost
             // 
-            this.cmdRemoveHost.Location = new System.Drawing.Point(66, 147);
+            this.cmdRemoveHost.Location = new System.Drawing.Point(58, 138);
             this.cmdRemoveHost.Name = "cmdRemoveHost";
-            this.cmdRemoveHost.Size = new System.Drawing.Size(123, 38);
+            this.cmdRemoveHost.Size = new System.Drawing.Size(108, 36);
             this.cmdRemoveHost.TabIndex = 1;
             this.cmdRemoveHost.Text = "Remove Host";
             this.cmdRemoveHost.UseVisualStyleBackColor = true;
@@ -194,22 +194,22 @@
             // lstHost
             // 
             this.lstHost.FormattingEnabled = true;
-            this.lstHost.ItemHeight = 16;
-            this.lstHost.Location = new System.Drawing.Point(15, 29);
+            this.lstHost.ItemHeight = 15;
+            this.lstHost.Location = new System.Drawing.Point(13, 27);
             this.lstHost.Name = "lstHost";
-            this.lstHost.Size = new System.Drawing.Size(235, 100);
+            this.lstHost.Size = new System.Drawing.Size(206, 94);
             this.lstHost.TabIndex = 0;
             // 
             // frmReplsetMgr
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(587, 288);
+            this.ClientSize = new System.Drawing.Size(514, 270);
             this.Controls.Add(this.grpRemoveHost);
             this.Controls.Add(this.cmdClose);
             this.Controls.Add(this.grpAddHost);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmReplsetMgr";
             this.Text = "Add Replset Member";

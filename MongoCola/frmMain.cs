@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using SystemUtility;
-using Common.Logic;
+﻿using Common.Logic;
 using MongoCola.Connection;
 using MongoGUICtl;
 using MongoGUIView;
@@ -14,6 +9,11 @@ using MongoUtility.Extend;
 using PlugInPackage;
 using ResourceLib.Properties;
 using ResourceLib.Utility;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using SystemUtility;
 using Utility = Common.Logic.Utility;
 
 namespace MongoCola
@@ -434,8 +434,8 @@ namespace MongoCola
         private void SetMenuImage()
         {
             ExitToolStripMenuItem.Image = Resources.exit.ToBitmap();
-            //ExpandAllConnectionToolStripMenuItem.Image = GetResource.GetImage(ImageType.AccessDB)
-            //ShutDownToolStripMenuItem.Image = GetResource.GetImage(ImageType.ShutDown);
+            ExpandAllConnectionToolStripMenuItem.Image = GetResource.GetImage(ImageType.Expand);
+            CollapseAllConnectionToolStripMenuItem.Image = GetResource.GetImage(ImageType.Collpse);
             DelMongoCollectionToolStripMenuItem.Image = GetResource.GetIcon(IconType.No).ToBitmap();
             DelMongoDBToolStripMenuItem.Image = GetResource.GetIcon(IconType.No).ToBitmap();
 
@@ -475,7 +475,7 @@ namespace MongoCola
             toolStripMain.Items.Add(CollapseAllConnectionToolStripButton);
             toolStripMain.Items.Add(RefreshToolStripButton);
             toolStripMain.Items.Add(ExitToolStripButton);
-            toolStripMain.Items.Add(new ToolStripSeparator());
+            //toolStripMain.Items.Add(new ToolStripSeparator());
             //toolStripMain.Items.Add(ShutDownToolStripButton);
             toolStripMain.Items.Add(new ToolStripSeparator());
             toolStripMain.Items.Add(OptionToolStripButton);
@@ -552,8 +552,8 @@ namespace MongoCola
             }
             else
             {
-                var JsName = DataList[(int) EnumMgr.PathLv.DocumentLv];
-                var JsEditor = new ctlJsEditor {strDBtag = RuntimeMongoDBContext.SelectObjectTag};
+                var JsName = DataList[(int)EnumMgr.PathLv.DocumentLv];
+                var JsEditor = new ctlJsEditor { strDBtag = RuntimeMongoDBContext.SelectObjectTag };
                 var DataTab = new TabPage(JsName)
                 {
                     Tag = RuntimeMongoDBContext.SelectObjectTag,

@@ -93,6 +93,12 @@ namespace ResourceLib.Utility
                 case ImageType.User:
                     micon = Resources.User;
                     break;
+                case ImageType.Expand:
+                    micon = Resources.Expand;
+                    break;
+                case ImageType.Collpse:
+                    micon = Resources.Collpse;
+                    break;
                 default:
                     break;
             }

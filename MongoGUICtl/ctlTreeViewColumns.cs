@@ -109,7 +109,7 @@ namespace MongoGUICtl
             {
                 e.Graphics.FillRectangle(Brushes.White, rect);
             }
-            var IndentWidth = DatatreeView.Indent*e.Node.Level + 25;
+            var IndentWidth = DatatreeView.Indent * e.Node.Level + 25;
             e.Graphics.DrawRectangle(SystemPens.Control, rect);
             var StringRect = new Rectangle(e.Bounds.X + IndentWidth, e.Bounds.Y, colName.Width - IndentWidth,
                 e.Bounds.Height);
@@ -240,19 +240,20 @@ namespace MongoGUICtl
         }
 
         /// <summary>
+        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Control_SizeChanged(object sender, EventArgs e)
         {
-            colName.Width = Convert.ToInt32(Width*0.3);
-            colValue.Width = Convert.ToInt32(Width*0.45);
-            colType.Width = Convert.ToInt32(Width*0.2);
+            colName.Width = Convert.ToInt32(Width * 0.3);
+            colValue.Width = Convert.ToInt32(Width * 0.45);
+            colType.Width = Convert.ToInt32(Width * 0.2);
         }
 
         private void ctlTreeViewColumnsLoad(object sender, EventArgs e)
         {
-            if (DesignMode) return;
+            if (configuration.guiConfig == null) return;
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
                 colName.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Name);
