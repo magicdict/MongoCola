@@ -1,4 +1,5 @@
-﻿namespace MongoGUICtl
+﻿using MongoGUICtl;
+namespace MongoGUIView
 {
     partial class ctlServerStatus
     {

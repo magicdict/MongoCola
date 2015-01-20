@@ -60,8 +60,8 @@ namespace MongoGUICtl
             /// <returns></returns>
             public int Compare(object x, object y)
             {
-                var lstX = (ListViewItem) x;
-                var lstY = (ListViewItem) y;
+                var lstX = (ListViewItem)x;
+                var lstY = (ListViewItem)y;
                 var rtnCompare = 0;
                 switch (CompareMethod)
                 {
@@ -98,7 +98,7 @@ namespace MongoGUICtl
                 }
                 if (Order == SortOrder.Descending)
                 {
-                    rtnCompare = rtnCompare*-1;
+                    rtnCompare = rtnCompare * -1;
                 }
                 return rtnCompare;
             }
@@ -313,7 +313,7 @@ namespace MongoGUICtl
                                 }
 
                                 lst.SubItems.Add(CollectionStatus.ObjectCount != 0
-                                    ? MongoUtility.Basic.Utility.GetBsonSize((long) CollectionStatus.AverageObjectSize)
+                                    ? MongoUtility.Basic.Utility.GetBsonSize((long)CollectionStatus.AverageObjectSize)
                                     : "0");
 
                                 try
@@ -366,46 +366,46 @@ namespace MongoGUICtl
             lstSrvOpr.Columns.Add("desc");
             lstSrvOpr.Columns.Add("connectionId");
             lstSrvOpr.Columns.Add("numYields");
-
+            //调用的地方Try...Catch了,这里不能tryCatch
             foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)
             {
-                try
+                //try
+                //{
+                var mongoSvr = _mongoConnSvrLst[mongoSvrKey];
+                //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
+                //                    if (!Init.SystemManager.GetCurrentServerConfig(mongoSvrKey).Health ||
+                //                        !Init.SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin)
+                //                    {
+                //                        continue;
+                //                    }
+                var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
+                foreach (var strDBName in databaseNameList)
                 {
-                    var mongoSvr = _mongoConnSvrLst[mongoSvrKey];
-                    //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-//                    if (!Init.SystemManager.GetCurrentServerConfig(mongoSvrKey).Health ||
-//                        !Init.SystemManager.GetCurrentServerConfig(mongoSvrKey).LoginAsAdmin)
-//                    {
-//                        continue;
-//                    }
-                    var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
-                    foreach (var strDBName in databaseNameList)
+                    //try
+                    //{
+                    var mongoDB = mongoSvr.GetDatabase(strDBName);
+                    var dbStatus = mongoDB.GetCurrentOp();
+                    var doc = dbStatus.GetValue("inprog").AsBsonArray;
+                    foreach (BsonDocument item in doc)
                     {
-                        try
+                        var lst = new ListViewItem(mongoSvrKey + "." + strDBName);
+                        foreach (var itemName in item.Names)
                         {
-                            var mongoDB = mongoSvr.GetDatabase(strDBName);
-                            var dbStatus = mongoDB.GetCurrentOp();
-                            var doc = dbStatus.GetValue("inprog").AsBsonArray;
-                            foreach (BsonDocument item in doc)
-                            {
-                                var lst = new ListViewItem(mongoSvrKey + "." + strDBName);
-                                foreach (var itemName in item.Names)
-                                {
-                                    lst.SubItems.Add(item.GetValue(itemName).ToString());
-                                }
-                                lstSrvOpr.Items.Add(lst);
-                            }
+                            lst.SubItems.Add(item.GetValue(itemName).ToString());
                         }
-                        catch (Exception ex)
-                        {
-                            Utility.ExceptionDeal(ex);
-                        }
+                        lstSrvOpr.Items.Add(lst);
                     }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //Utility.ExceptionDeal(ex);
+                    //}
                 }
-                catch (Exception ex)
-                {
-                    Utility.ExceptionDeal(ex);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //Utility.ExceptionDeal(ex);
+                //}
             }
             lstSrvOpr.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }

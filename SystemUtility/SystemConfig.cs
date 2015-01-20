@@ -78,7 +78,7 @@ namespace SystemUtility
                 {
                     guiConfig.MStringResource.InitLanguage(LanguageFile);
                 }
-                MyMessageBox.SwitchLanguage();
+                Common.Logic.Utility.Init(guiConfig);
             }
         }
 

@@ -1,28 +1,19 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using ResourceLib.Utility;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using MongoDB.Bson;
-using ResourceLib.Utility;
+using MongoUtility.Basic;
 
 namespace MongoGUICtl
 {
+    /// <summary>
+    /// BsonDoc 展示控件
+    /// </summary>
     public partial class ctlTreeViewColumns : UserControl
     {
-        //TODO:这两个常量多元化管理了
-        //但是这里也没有必要引入整个MongoUtility，还需要适当拆分
-
-        /// <summary>
-        ///     在标识元素路径时候，这个后缀表示当前元素只是数组的开始标志
-        /// </summary>
-        public const String Array_Mark = "[ARRAY]";
-
-        /// <summary>
-        ///     在标识元素路径时候，这个后缀表示当前元素只是文档的开始标志
-        /// </summary>
-        public const String Document_Mark = "[DOCUMENT]";
-
         /// <summary>
         ///     初始化
         /// </summary>
@@ -115,15 +106,15 @@ namespace MongoGUICtl
                 e.Bounds.Height);
 
             var TreeNameString = e.Node.Text;
-            if (TreeNameString.EndsWith(Array_Mark))
+            if (TreeNameString.EndsWith(ConstMgr.Array_Mark))
             {
                 //Array_Mark 在计算路径的时候使用，不过，在表示的时候，则不能表示
-                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - Array_Mark.Length);
+                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - ConstMgr.Array_Mark.Length);
             }
-            if (TreeNameString.EndsWith(Document_Mark))
+            if (TreeNameString.EndsWith(ConstMgr.Document_Mark))
             {
                 //Document_Mark 在计算路径的时候使用，不过，在表示的时候，则不能表示
-                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - Document_Mark.Length);
+                TreeNameString = TreeNameString.Substring(0, TreeNameString.Length - ConstMgr.Document_Mark.Length);
             }
             //感谢cyrus的建议，选中节点的文字表示，底色变更
             if ((e.State & TreeNodeStates.Selected) != 0 && (e.State & TreeNodeStates.Focused) != 0)
@@ -134,13 +125,23 @@ namespace MongoGUICtl
             {
                 e.Graphics.DrawString(TreeNameString, Font, new SolidBrush(Color.Black), StringRect);
             }
-
-            var mElement = (BsonElement)e.Node.Tag;
+            //CSHARP-1066: Change BsonElement from a class to a struct. 
+            BsonElement mElement;
+            if (e.Node.Tag != null)
+            {
+                if (e.Node.Tag.GetType() != typeof(BsonElement))
+                {
+                    mElement = new BsonElement("", (BsonValue)e.Node.Tag);
+                }
+                else
+                {
+                    mElement = (BsonElement)e.Node.Tag;
+                }
+            }
             var mValue = e.Node.Tag as BsonValue;
-
             //画框
             if (e.Node.GetNodeCount(true) > 0 ||
-                (mElement != null && (mElement.Value.IsBsonDocument || mElement.Value.IsBsonArray)))
+                (mElement.Value != null && (mElement.Value.IsBsonDocument || mElement.Value.IsBsonArray)))
             {
                 //感谢Cyrus测试出来的问题：RenderWithVisualStyles应该加上去的。
                 if (VisualStyleRenderer.IsSupported && Application.RenderWithVisualStyles)
@@ -175,12 +176,12 @@ namespace MongoGUICtl
                 rect.Offset(listView.Columns[intColumn - 1].Width, 0);
                 rect.Width = listView.Columns[intColumn].Width;
                 e.Graphics.DrawRectangle(SystemPens.Control, rect);
-                if (mElement != null || mValue != null)
+                if (mElement.Value != null || mValue != null)
                 {
                     var strColumnText = String.Empty;
                     if (intColumn == 1)
                     {
-                        if (mElement != null)
+                        if (mElement.Value != null)
                         {
                             if (!mElement.Value.IsBsonDocument && !mElement.Value.IsBsonArray)
                             {
@@ -205,7 +206,7 @@ namespace MongoGUICtl
                     }
                     else
                     {
-                        strColumnText = mElement != null
+                        strColumnText = mElement.Value != null
                             ? mElement.Value.GetType().Name.Substring(4)
                             : mValue.GetType().Name.Substring(4);
                     }

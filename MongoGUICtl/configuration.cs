@@ -17,6 +17,6 @@ namespace MongoGUICtl
     public static class configuration
     {
         public static GUIConfig guiConfig;
-        public static int RefreshStatusTimer;
+
     }
 }

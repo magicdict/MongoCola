@@ -159,7 +159,6 @@ namespace MongoGUICtl
         public static List<TreeNode> GetConnectionNodes(Dictionary<String, MongoServer> _mongoConnSvrLst,
             Dictionary<String, MongoConnectionConfig> _mongoConConfigLst)
         {
-            Debug.WriteLine("GetConnectionNodes" + Thread.CurrentThread.ManagedThreadId);
             var ConnectionNodes = new List<TreeNode>();
             foreach (var mongoConnKey in _mongoConnSvrLst.Keys)
             {
@@ -269,7 +268,9 @@ namespace MongoGUICtl
                             //Master - Slave 的判断
                             BsonElement replElement;
                             ServerStatusDoc.TryGetElement("repl", out replElement);
-                            if (replElement == null)
+                            //CSHARP-1066: Change BsonElement from a class to a struct. 
+                            //if (replElement == null)
+                            if (replElement.Value == null)
                             {
                                 config.ServerRole = MongoConnectionConfig.SvrRoleType.DataSvr;
                             }

@@ -173,12 +173,6 @@
     <Compile Include="ctlQueryCondition.Designer.cs">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
     </Compile>
-    <Compile Include="ctlServerStatus.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ctlServerStatus.Designer.cs">
-      <DependentUpon>ctlServerStatus.cs</DependentUpon>
-    </Compile>
     <Compile Include="ctlTextMgr.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -249,9 +243,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctlQueryCondition.resx">
       <DependentUpon>ctlQueryCondition.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ctlServerStatus.resx">
-      <DependentUpon>ctlServerStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctlTextMgr.resx">
       <DependentUpon>ctlTextMgr.cs</DependentUpon>

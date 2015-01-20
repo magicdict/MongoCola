@@ -4,8 +4,9 @@ using Common.Logic;
 using MongoUtility.Core;
 using ResourceLib.Properties;
 using ResourceLib.Utility;
+using MongoGUICtl;
 
-namespace MongoGUICtl
+namespace MongoGUIView
 {
     public partial class ctlServerStatus : UserControl
     {
@@ -134,8 +135,7 @@ namespace MongoGUICtl
             ShortTimer.Interval = configuration.RefreshStatusTimer*1000;
             ShortTimer.Tick += (x, y) => RefreshCurrentOpr();
 
-            refreshTimer.Enabled = false;
-            ShortTimer.Enabled = false;
+            SetEnable(false);
             AutoRefresh = false;
             // 用新的排序方法对ListView排序
             lstDBStatus.ListViewItemSorter = _lvwDBStatusColumnSorter;

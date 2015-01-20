@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using MongoGUICtl;
+using MongoGUIView;
 
 namespace MongoCola
 {
@@ -126,7 +127,7 @@ namespace MongoCola
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabView = new System.Windows.Forms.TabControl();
             this.tabSvrStatus = new System.Windows.Forms.TabPage();
-            this.ServerStatusCtl = new MongoGUICtl.ctlServerStatus();
+            this.ServerStatusCtl = new MongoGUIView.ctlServerStatus();
             this.tabCommandShell = new System.Windows.Forms.TabPage();
             this.ctlShellCommandEditor = new MongoGUICtl.ctlJsEditor();
             this.splitter1 = new System.Windows.Forms.Splitter();

@@ -593,6 +593,8 @@ namespace MongoGUIView
         private static void SetCurrentDocument(TreeNode currentNode, MongoCollection mongoCol)
         {
             var rootNode = FindRootNode(currentNode);
+            //TODO:rootNode.Tag == null ???
+            if (rootNode.Tag == null) return;
             var selectDocId = (BsonValue) rootNode.Tag;
             var doc = mongoCol.FindOneAs<BsonDocument>(Query.EQ(ConstMgr.KEY_ID, selectDocId));
             RuntimeMongoDBContext.CurrentDocument = doc;
