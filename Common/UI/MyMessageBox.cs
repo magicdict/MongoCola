@@ -43,10 +43,11 @@ namespace Common.UI
         /// <summary>
         ///     语言切换
         /// </summary>
-        public static void SwitchLanguage()
+        public static void InitMsgBoxUI()
         {
             _frmConfirm.SetText(Utility.guiconfig.GetText("Yes", StringResource.TextType.Common_Yes),
                 Utility.guiconfig.GetText("No", StringResource.TextType.Common_No));
+
             _frmMessage.SetText(Utility.guiconfig.GetText("Detail", StringResource.TextType.Common_Detail),
                 Utility.guiconfig.GetText("OK", StringResource.TextType.Common_OK));
             _frmInputBox.SetText(Utility.guiconfig.GetText("Cancel", StringResource.TextType.Common_Cancel),
@@ -59,9 +60,8 @@ namespace Common.UI
         /// </summary>
         public static String ShowInput(String Message, String Title, String DefaultValue = "")
         {
-            _frmInputBox.Text = Title;
+            FormatMsgbox(_frmInputBox, Title);
             _frmInputBox.SetMessage(Message, DefaultValue);
-            _frmInputBox.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmInputBox.Visible == false)
             {
                 _frmInputBox.ShowDialog();
@@ -74,14 +74,20 @@ namespace Common.UI
         /// </summary>
         public static Boolean ShowConfirm(String Title, String Message)
         {
-            _frmConfirm.Text = Title;
+            FormatMsgbox(_frmConfirm,Title);
             _frmConfirm.SetMessage(Message);
-            _frmConfirm.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmConfirm.Visible == false)
             {
                 _frmConfirm.ShowDialog();
             }
             return _frmConfirm.Result;
+        }
+
+        private static void FormatMsgbox(Form _frmMsgbox,String Title)
+        {
+            _frmMsgbox.Text = Title;
+            _frmMsgbox.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            _frmMsgbox.Font = new Font("微软雅黑", 9);
         }
 
         public static void ShowMessage(String Title, String Message)
@@ -96,9 +102,8 @@ namespace Common.UI
         /// <param name="Details"></param>
         public static void ShowMessage(String Title, String Message, String Details)
         {
-            _frmMessage.Text = Title;
+            FormatMsgbox(_frmMessage, Title);
             _frmMessage.SetMessage(Message, Details, false);
-            _frmMessage.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmMessage.Visible == false)
             {
                 _frmMessage.ShowDialog();
@@ -112,9 +117,8 @@ namespace Common.UI
         /// <param name="Details"></param>
         public static void ShowMessage(String Title, String Message, String Details, Boolean IsShowDetail)
         {
-            _frmMessage.Text = Title;
+            FormatMsgbox(_frmMessage, Title);
             _frmMessage.SetMessage(Message, Details, IsShowDetail);
-            _frmMessage.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmMessage.Visible == false)
             {
                 _frmMessage.ShowDialog();
@@ -128,9 +132,8 @@ namespace Common.UI
         /// <param name="Details"></param>
         public static void ShowMessage(String Title, String Message, Image img, String Details)
         {
-            _frmMessage.Text = Title;
+            FormatMsgbox(_frmMessage, Title);
             _frmMessage.SetMessage(Message, img, Details);
-            _frmMessage.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmMessage.Visible == false)
             {
                 _frmMessage.ShowDialog();
@@ -144,9 +147,8 @@ namespace Common.UI
         /// <param name="Message"></param>
         public static void ShowEasyMessage(String Title, String Message)
         {
-            _frmEasyMessage.Text = Title;
+            FormatMsgbox(_frmEasyMessage, Title);
             _frmEasyMessage.SetMessage(Message);
-            _frmEasyMessage.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             if (_frmMessage.Visible == false)
             {
                 _frmEasyMessage.ShowDialog();

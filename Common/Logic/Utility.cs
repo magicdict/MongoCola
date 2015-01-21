@@ -19,7 +19,7 @@ namespace Common.Logic
         public static void Init(GUIConfig _guiconfig)
         {
             guiconfig = _guiconfig;
-            MyMessageBox.SwitchLanguage();
+            MyMessageBox.InitMsgBoxUI();
         }
 
         #region "类型"
