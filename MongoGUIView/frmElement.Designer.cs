@@ -1,6 +1,6 @@
 ﻿using MongoGUICtl;
 
-namespace MongoCola.Operation
+namespace MongoGUIView
 {
     partial class frmElement
     {

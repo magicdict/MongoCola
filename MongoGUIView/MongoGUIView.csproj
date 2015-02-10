@@ -64,6 +64,12 @@
     <Compile Include="ctlServerStatus.Designer.cs">
       <DependentUpon>ctlServerStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmElement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmElement.Designer.cs">
+      <DependentUpon>frmElement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="configuration.cs" />
     <Compile Include="ctlDataView.cs">
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctlUserView.resx">
       <DependentUpon>ctlUserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmElement.resx">
+      <DependentUpon>frmElement.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -182,12 +182,6 @@
     <Compile Include="Aggregation\frmAggregationCondition.Designer.cs">
       <DependentUpon>frmAggregationCondition.cs</DependentUpon>
     </Compile>
-    <Compile Include="Operation\frmElement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Operation\frmElement.Designer.cs">
-      <DependentUpon>frmElement.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmLanguage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,9 +332,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Operation\frmCreateCollection.resx">
       <DependentUpon>frmCreateCollection.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Operation\frmElement.resx">
-      <DependentUpon>frmElement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLanguage.resx">
       <DependentUpon>frmLanguage.cs</DependentUpon>

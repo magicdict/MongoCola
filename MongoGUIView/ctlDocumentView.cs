@@ -16,6 +16,8 @@ namespace MongoGUIView
 {
     public partial class ctlDocumentView : ctlDataView
     {
+
+        #region"UI"
         public ctlDocumentView(DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
@@ -26,6 +28,17 @@ namespace MongoGUIView
             _dataShower.Add(trvData);
         }
 
+        /// <summary>
+        ///     增加或者删除元素
+        ///     参数frmElement
+        /// </summary>
+        public Action<bool, TreeNode, bool> ElementOp = new Action<bool, TreeNode, bool>(
+            (isUpdate, SelectedNode, isElement) =>
+            {
+                frmElement f = new frmElement(isUpdate, SelectedNode, isElement);
+                f.ShowDialog();
+            }
+        );
         private void ctlDocumentView_Load(object sender, EventArgs e)
         {
             if (!configuration.guiConfig.IsUseDefaultLanguage)
@@ -302,6 +315,7 @@ namespace MongoGUIView
                 OpenDocInEditorToolStripMenuItem.Enabled = true;
             }
         }
+        #endregion
 
         #region"管理：元素操作"
 
@@ -388,12 +402,6 @@ namespace MongoGUIView
         }
 
         /// <summary>
-        ///     增加或者删除元素
-        ///     参数frmElement
-        /// </summary>
-        public Action<bool, TreeNode, bool> ModifyElement;
-
-        /// <summary>
         ///     添加元素
         /// </summary>
         /// <param name="sender"></param>
@@ -414,7 +422,7 @@ namespace MongoGUIView
             {
                 IsElement = false;
             }
-            ModifyElement(false, trvData.DatatreeView.SelectedNode, IsElement);
+            ElementOp(false, trvData.DatatreeView.SelectedNode, IsElement);
             IsNeedRefresh = true;
         }
 
@@ -458,11 +466,11 @@ namespace MongoGUIView
             }
             if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(ConstMgr.Array_Mark))
             {
-                ModifyElement(true, trvData.DatatreeView.SelectedNode, false);
+                ElementOp(true, trvData.DatatreeView.SelectedNode, false);
             }
             else
             {
-                ModifyElement(true, trvData.DatatreeView.SelectedNode, true);
+                ElementOp(true, trvData.DatatreeView.SelectedNode, true);
             }
             ;
             IsNeedRefresh = true;

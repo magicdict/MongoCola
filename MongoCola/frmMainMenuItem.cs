@@ -478,7 +478,7 @@ namespace MongoCola
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;
             var strPath = RuntimeMongoDBContext.SelectTagData;
-            var strDBName = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.DatabaseLv];
+            var strDBName = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.DatabaseLv];
             if (trvsrvlst.SelectedNode == null)
             {
                 trvsrvlst.SelectedNode = null;
@@ -652,8 +652,8 @@ namespace MongoCola
                 {
                     var jsNode = new TreeNode(strJsName)
                     {
-                        ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
-                        SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc
+                        ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
+                        SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc
                     };
                     var jsTag = RuntimeMongoDBContext.SelectTagData;
                     jsNode.Tag = ConstMgr.JAVASCRIPT_DOC_TAG + ":" + jsTag + "/" + strJsName;
@@ -724,20 +724,19 @@ namespace MongoCola
             var strNewCollectionName = string.Empty;
             if (SystemConfig.IsUseDefaultLanguage)
             {
-                strNewCollectionName = MyMessageBox.ShowInput("Please input new collection name：", "Rename collection",
-                    strCollection);
+                strNewCollectionName = MyMessageBox.ShowInput(
+                    "Please input new collection name：", 
+                    "Rename collection", strCollection);
             }
             else
             {
-                strNewCollectionName =
-                    MyMessageBox.ShowInput(
+                strNewCollectionName = MyMessageBox.ShowInput(
                         SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
-                        SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Rename_Collection));
+                        SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Rename_Collection), strCollection);
             }
-            if (string.IsNullOrEmpty(strNewCollectionName) || !RuntimeMongoDBContext.GetCurrentDataBase()
-                .RenameCollection(trvsrvlst.SelectedNode.Text, strNewCollectionName)
-                .Ok)
-                return;
+            if (string.IsNullOrEmpty(strNewCollectionName)) return;
+            var result = RuntimeMongoDBContext.GetCurrentDataBase().RenameCollection(trvsrvlst.SelectedNode.Text, strNewCollectionName).Ok;
+            if (!result) return;
             var strNodeData = RuntimeMongoDBContext.SelectTagData;
             var strNewNodeTag = RuntimeMongoDBContext.SelectObjectTag.Substring(0,
                 RuntimeMongoDBContext.SelectObjectTag.Length - RuntimeMongoDBContext.GetCurrentCollection().Name.Length);

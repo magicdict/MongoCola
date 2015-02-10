@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
-using SystemUtility;
 using Common.UI;
 using MongoDB.Bson;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using ResourceLib.Utility;
 
-namespace MongoCola.Operation
+namespace MongoGUIView
 {
     public partial class frmElement : Form
     {
@@ -55,10 +54,10 @@ namespace MongoCola.Operation
                 AddBsonElement.switchToUpdateMode();
                 AddBsonElement.setElement(_selectNode.Tag);
             }
-            if (!SystemConfig.IsUseDefaultLanguage)
+            if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                cmdOK.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
             }
             if (!_isElement)
             {
