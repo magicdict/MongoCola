@@ -366,7 +366,9 @@ namespace MongoGUIView
                     //lstData
                     foreach (ListViewItem item in lstData.SelectedItems)
                     {
-                        if (item.Tag != null && ((BsonValue) item.Tag).IsObjectId)
+                        //如果是自定义主键的情况下,这里IsObjectId就不可能成立
+                        if (item.Tag != null)
+                        //if (item.Tag != null && ((BsonValue) item.Tag).IsObjectId)
                         {
                             var Result = OperationHelper.DropDocument(RuntimeMongoDBContext.GetCurrentCollection(),
                                 item.Tag);
@@ -377,14 +379,15 @@ namespace MongoGUIView
                                 break;
                             }
                         }
-                        ;
                     }
                     lstData.ContextMenuStrip = null;
                 }
                 else
                 {
-                    if (trvData.DatatreeView.SelectedNode.Tag != null &&
-                        ((BsonValue) trvData.DatatreeView.SelectedNode.Tag).IsObjectId)
+                    //如果是自定义主键的情况下,这里IsObjectId就不可能成立
+                    if (trvData.DatatreeView.SelectedNode.Tag != null )
+                    //if (trvData.DatatreeView.SelectedNode.Tag != null &&
+                    //    ((BsonValue) trvData.DatatreeView.SelectedNode.Tag).IsObjectId)
                     {
                         var Result = OperationHelper.DropDocument(RuntimeMongoDBContext.GetCurrentCollection(),
                             trvData.DatatreeView.SelectedNode.Tag);

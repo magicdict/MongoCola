@@ -226,8 +226,7 @@ namespace MongoUtility.Basic
             if (t.IsBsonDocument)
             {
                 //TODO:需要重新实现
-                throw new NotImplementedException();
-                //t.AsBsonDocument.GetElement(El.Name).Value = NewValue;
+                t.AsBsonDocument.SetElement(new BsonElement(El.Name, NewValue));
             }
             if (!CurrentCollection.IsCapped())
             {

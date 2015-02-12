@@ -108,36 +108,6 @@ namespace MongoCola
             trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
             RefreshToolStripMenuItem_Click(sender, e);
         }
-
-        ///// <summary>
-        /////     Shut Down Server
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void ShutDownToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    if (!MyMessageBox.ShowConfirm("ShutDown Server", "Are you sure to shutDown the Server?"))
-        //        return;
-        //    var mongoSvr = RuntimeMongoDBContext.GetCurrentServer();
-        //    try
-        //    {
-        //        //the server will be  shutdown with exception
-        //        RuntimeMongoDBContext._mongoConnSvrLst.Remove(RuntimeMongoDBContext.SelectTagData);
-        //        //Can't shutdown by driver after driver 2.0.0   
-        //        //mongoSvr.Shutdown();
-        //    }
-        //    catch (IOException)
-        //    {
-        //        //if IOException,ignore it
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Utility.ExceptionDeal(ex);
-        //    }
-        //    trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
-        //    RefreshToolStripMenuItem_Click(sender, e);
-        //}
-
         /// <summary>
         ///     初始化ReplSet
         /// </summary>

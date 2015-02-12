@@ -397,11 +397,12 @@ namespace MongoUtility.Extend
                     result = new CommandResult(ex.Result);
                 }
             }
-            if (result.Response["err"] == BsonNull.Value)
+            BsonElement err;
+            if (!result.Response.TryGetElement("err", out err))
             {
                 return String.Empty;
             }
-            return result.Response["err"].ToString();
+            return err.ToString();
         }
 
         /// <summary>
