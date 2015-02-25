@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using Common.Logic;
+﻿using Common.Logic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Utility;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace MongoGUICtl
 {
@@ -381,25 +381,30 @@ namespace MongoGUICtl
                 var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
                 foreach (var strDBName in databaseNameList)
                 {
-                    //try
-                    //{
-                    var mongoDB = mongoSvr.GetDatabase(strDBName);
-                    var dbStatus = mongoDB.GetCurrentOp();
-                    var doc = dbStatus.GetValue("inprog").AsBsonArray;
-                    foreach (BsonDocument item in doc)
+                    try
                     {
-                        var lst = new ListViewItem(mongoSvrKey + "." + strDBName);
-                        foreach (var itemName in item.Names)
+                        var mongoDB = mongoSvr.GetDatabase(strDBName);
+                        var dbStatus = mongoDB.GetCurrentOp();
+                        var doc = dbStatus.GetValue("inprog").AsBsonArray;
+                        foreach (BsonDocument item in doc)
                         {
-                            lst.SubItems.Add(item.GetValue(itemName).ToString());
+                            var lst = new ListViewItem(mongoSvrKey + "." + strDBName);
+                            foreach (var itemName in item.Names)
+                            {
+                                lst.SubItems.Add(item.GetValue(itemName).ToString());
+                            }
+                            lstSrvOpr.Items.Add(lst);
                         }
-                        lstSrvOpr.Items.Add(lst);
                     }
-                    //}
-                    //catch (Exception ex)
-                    //{
-                    //Utility.ExceptionDeal(ex);
-                    //}
+                    catch (System.IO.EndOfStreamException ex)
+                    {
+                        //SkipIt
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+                        Utility.ExceptionDeal(ex);
+                    }
                 }
                 //}
                 //catch (Exception ex)

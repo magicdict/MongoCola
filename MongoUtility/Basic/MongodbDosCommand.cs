@@ -73,6 +73,10 @@ namespace MongoUtility.Basic
             /// </summary>
             VVVVV
         };
+        /// <summary>
+        /// Mongo Bin Paht
+        /// </summary>
+        public static string MongoBinPath;
 
         /// <summary>
         /// </summary>
@@ -279,17 +283,6 @@ namespace MongoUtility.Basic
             }
             return dosCommand;
         }
-
-        /// <summary>
-        ///     Mongo可执行文件目录的检查
-        /// </summary>
-        /// <returns></returns>
-        public static Boolean IsMongoPathExist()
-        {
-            return true;
-            //return Directory.Exists(SystemConfig.configHelperInstance.MongoBinPath);
-        }
-
         /// <summary>
         ///     执行Dos下的命令
         /// </summary>
@@ -316,7 +309,7 @@ namespace MongoUtility.Basic
             //标准错误流
             var streamReaderError = myProcess.StandardError;
             //DOS控制平台上的命令
-            //stringWriter.Write(@"cd " + SystemConfig.configHelperInstance.MongoBinPath + Environment.NewLine);
+            stringWriter.Write(@"cd " + MongoBinPath + Environment.NewLine);
             //DOS控制平台上的命令
             stringWriter.Write(DosCommand + Environment.NewLine);
             stringWriter.Write("exit" + Environment.NewLine);

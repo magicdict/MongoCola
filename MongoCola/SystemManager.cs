@@ -37,6 +37,7 @@ namespace MongoCola
             {
                 ConfigHelper.LoadFromConfigFile(localconfigfile);
                 SystemConfig.InitLanguage();
+                MongodbDosCommand.MongoBinPath = SystemConfig.config.MongoBinPath;
             }
             else
             {

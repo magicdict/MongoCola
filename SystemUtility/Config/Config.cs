@@ -22,7 +22,6 @@ namespace SystemUtility.Config
     ///     Config
     /// </summary>
     [Serializable]
-    [assembly: AllowPartiallyTrustedCallers]
     public class Config
     {
         /// <summary>

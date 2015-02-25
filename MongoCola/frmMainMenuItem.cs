@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SystemUtility;
-using SystemUtility.Config;
-using Common.UI;
+﻿using Common.UI;
 using MongoCola.Aggregation;
 using MongoCola.Connection;
 using MongoCola.Operation;
@@ -19,6 +9,16 @@ using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Utility;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using SystemUtility;
+using SystemUtility.Config;
 using Utility = Common.Logic.Utility;
 
 namespace MongoCola
@@ -690,12 +690,12 @@ namespace MongoCola
         private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDBContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
             var strNewCollectionName = string.Empty;
             if (SystemConfig.IsUseDefaultLanguage)
             {
                 strNewCollectionName = MyMessageBox.ShowInput(
-                    "Please input new collection name：", 
+                    "Please input new collection name：",
                     "Rename collection", strCollection);
             }
             else
@@ -901,8 +901,7 @@ namespace MongoCola
         /// <returns></returns>
         private bool MongoPathCheck()
         {
-            if (MongodbDosCommand.IsMongoPathExist())
-                return true;
+            if (Directory.Exists(SystemConfig.config.MongoBinPath)) return true;
             MyMessageBox.ShowMessage("Exception",
                 "Mongo Bin Path Can't be found",
                 "Mongo Bin Path[" + SystemConfig.config.MongoBinPath + "]Can't be found");
