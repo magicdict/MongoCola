@@ -221,8 +221,9 @@ namespace MongoUtility.Basic
             }
             if (mongoDump.OutPutPath != String.Empty)
             {
-                //-o CollectionName Or --out CollectionName
-                dosCommand += " --out \"" + mongoDump.OutPutPath + "\"";
+                //3.0.0 RC10 不允许带有空格的路径了?
+                //dosCommand += " --out \"" + mongoDump.OutPutPath + "\"";
+                dosCommand += " --out " + mongoDump.OutPutPath;
             }
             return dosCommand;
         }
