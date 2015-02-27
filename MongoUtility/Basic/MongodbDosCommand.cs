@@ -284,6 +284,9 @@ namespace MongoUtility.Basic
             }
             return dosCommand;
         }
+
+
+
         /// <summary>
         ///     执行Dos下的命令
         /// </summary>
@@ -292,8 +295,8 @@ namespace MongoUtility.Basic
         /// <param name="sb"></param>
         public static void RunDosCommand(String DosCommand, StringBuilder sb)
         {
-//            if (!SystemConfig.MonoMode)
-//            {
+            strOutPut = string.Empty;
+            strErrorPut = string.Empty;
             var myProcess = new Process();
             myProcess.StartInfo.FileName = "cmd";
             myProcess.StartInfo.UseShellExecute = false;
@@ -301,38 +304,48 @@ namespace MongoUtility.Basic
             myProcess.StartInfo.RedirectStandardInput = true;
             myProcess.StartInfo.RedirectStandardOutput = true;
             myProcess.StartInfo.RedirectStandardError = true;
+            myProcess.ErrorDataReceived += ErrorDataHandler;
+            myProcess.OutputDataReceived += OutputDataHandler;
             myProcess.Start();
+            myProcess.BeginErrorReadLine();
+            myProcess.BeginOutputReadLine();
             //标准输出流
             var stringWriter = myProcess.StandardInput;
             stringWriter.AutoFlush = true;
-            //标准输入流
-            var stringReader = myProcess.StandardOutput;
-            //标准错误流
-            var streamReaderError = myProcess.StandardError;
             //DOS控制平台上的命令
             stringWriter.Write(@"cd " + MongoBinPath + Environment.NewLine);
             //DOS控制平台上的命令
             stringWriter.Write(DosCommand + Environment.NewLine);
             stringWriter.Write("exit" + Environment.NewLine);
-            //读取执行DOS命令后输出信息
-            var s = stringReader.ReadToEnd();
-            //读取执行DOS命令后错误信息
-            var er = streamReaderError.ReadToEnd();
-            sb.AppendLine(s);
-            sb.AppendLine(er);
+            myProcess.WaitForExit();
+            sb.AppendLine(strOutPut);
+            sb.AppendLine(strErrorPut);
             if (myProcess.HasExited == false)
             {
                 myProcess.Kill();
             }
             stringWriter.Close();
-            stringReader.Close();
-            streamReaderError.Close();
             myProcess.Close();
-//            }
-//            else
-//            {
-//                sb.AppendLine("This method is not implement in Linux");
-//            }
+        }
+        /// <summary>
+        /// 标准输出
+        /// </summary>
+        public static string strOutPut = string.Empty;
+        /// <summary>
+        /// 标准错误
+        /// </summary>
+        public static string strErrorPut = string.Empty;
+        private static void ErrorDataHandler(object sendingProcess, DataReceivedEventArgs errLine)
+        {
+            if (errLine.Data == null)
+                return;
+            strErrorPut = strErrorPut + errLine.Data + System.Environment.NewLine;
+        }
+        private static void OutputDataHandler(object sendingProcess, DataReceivedEventArgs outputLine)
+        {
+            if (outputLine.Data == null)
+                return;
+            strOutPut = strOutPut + outputLine.Data + System.Environment.NewLine;
         }
 
         /// <summary>
