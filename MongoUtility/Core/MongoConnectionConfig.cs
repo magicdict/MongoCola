@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Security;
 using System.Xml.Serialization;
+using MongoUtility.Basic;
 
 namespace MongoUtility.Core
 {
@@ -18,7 +19,6 @@ namespace MongoUtility.Core
     ///     连接结构体
     /// </summary>
     [Serializable]
-    [assembly: AllowPartiallyTrustedCallers]
     public class MongoConnectionConfig
     {
         #region"固有属性"
@@ -27,6 +27,11 @@ namespace MongoUtility.Core
         ///     连接名称
         /// </summary>
         public String ConnectionName;
+
+        /// <summary>
+        ///     存储引擎
+        /// </summary>
+        public EnumMgr.StorageEngineType StorageEngine;
 
         /// <summary>
         ///     连接字符串

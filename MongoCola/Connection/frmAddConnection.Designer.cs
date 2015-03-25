@@ -84,6 +84,8 @@ namespace MongoCola.Connection
             this.lblQueueSize = new System.Windows.Forms.Label();
             this.lblWTimeout = new System.Windows.Forms.Label();
             this.NumWaitQueueSize = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbStorageEngine = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -279,6 +281,8 @@ namespace MongoCola.Connection
             // 
             // tabBasic
             // 
+            this.tabBasic.Controls.Add(this.cmbStorageEngine);
+            this.tabBasic.Controls.Add(this.label1);
             this.tabBasic.Controls.Add(this.chkVerifySslCertificate);
             this.tabBasic.Controls.Add(this.chkUseSsl);
             this.tabBasic.Controls.Add(this.chkJournal);
@@ -312,7 +316,7 @@ namespace MongoCola.Connection
             // chkVerifySslCertificate
             // 
             this.chkVerifySslCertificate.AutoSize = true;
-            this.chkVerifySslCertificate.Location = new System.Drawing.Point(385, 162);
+            this.chkVerifySslCertificate.Location = new System.Drawing.Point(251, 162);
             this.chkVerifySslCertificate.Name = "chkVerifySslCertificate";
             this.chkVerifySslCertificate.Size = new System.Drawing.Size(126, 19);
             this.chkVerifySslCertificate.TabIndex = 43;
@@ -322,7 +326,7 @@ namespace MongoCola.Connection
             // chkUseSsl
             // 
             this.chkUseSsl.AutoSize = true;
-            this.chkUseSsl.Location = new System.Drawing.Point(254, 162);
+            this.chkUseSsl.Location = new System.Drawing.Point(172, 162);
             this.chkUseSsl.Name = "chkUseSsl";
             this.chkUseSsl.Size = new System.Drawing.Size(65, 19);
             this.chkUseSsl.TabIndex = 42;
@@ -332,7 +336,7 @@ namespace MongoCola.Connection
             // chkJournal
             // 
             this.chkJournal.AutoSize = true;
-            this.chkJournal.Location = new System.Drawing.Point(156, 162);
+            this.chkJournal.Location = new System.Drawing.Point(102, 162);
             this.chkJournal.Name = "chkJournal";
             this.chkJournal.Size = new System.Drawing.Size(64, 19);
             this.chkJournal.TabIndex = 39;
@@ -415,9 +419,9 @@ namespace MongoCola.Connection
             this.tabReplicaSet.Controls.Add(this.lblReplsetNameDescription);
             this.tabReplicaSet.Controls.Add(this.lblMainReplsetName);
             this.tabReplicaSet.Controls.Add(this.txtReplsetName);
-            this.tabReplicaSet.Location = new System.Drawing.Point(4, 25);
+            this.tabReplicaSet.Location = new System.Drawing.Point(4, 24);
             this.tabReplicaSet.Name = "tabReplicaSet";
-            this.tabReplicaSet.Size = new System.Drawing.Size(665, 190);
+            this.tabReplicaSet.Size = new System.Drawing.Size(665, 191);
             this.tabReplicaSet.TabIndex = 3;
             this.tabReplicaSet.Text = "ReplicaSet";
             this.tabReplicaSet.UseVisualStyleBackColor = true;
@@ -522,10 +526,10 @@ namespace MongoCola.Connection
             // 
             this.tabConnString.Controls.Add(this.lblConnectionString);
             this.tabConnString.Controls.Add(this.txtConnectionString);
-            this.tabConnString.Location = new System.Drawing.Point(4, 25);
+            this.tabConnString.Location = new System.Drawing.Point(4, 24);
             this.tabConnString.Name = "tabConnString";
             this.tabConnString.Padding = new System.Windows.Forms.Padding(3);
-            this.tabConnString.Size = new System.Drawing.Size(665, 190);
+            this.tabConnString.Size = new System.Drawing.Size(665, 191);
             this.tabConnString.TabIndex = 1;
             this.tabConnString.Text = "Connection String";
             this.tabConnString.UseVisualStyleBackColor = true;
@@ -544,10 +548,10 @@ namespace MongoCola.Connection
             this.tabReadWrite.Controls.Add(this.lblQueueSize);
             this.tabReadWrite.Controls.Add(this.lblWTimeout);
             this.tabReadWrite.Controls.Add(this.NumWaitQueueSize);
-            this.tabReadWrite.Location = new System.Drawing.Point(4, 25);
+            this.tabReadWrite.Location = new System.Drawing.Point(4, 24);
             this.tabReadWrite.Name = "tabReadWrite";
             this.tabReadWrite.Padding = new System.Windows.Forms.Padding(3);
-            this.tabReadWrite.Size = new System.Drawing.Size(665, 190);
+            this.tabReadWrite.Size = new System.Drawing.Size(665, 191);
             this.tabReadWrite.TabIndex = 4;
             this.tabReadWrite.Text = "Read Write";
             this.tabReadWrite.UseVisualStyleBackColor = true;
@@ -672,6 +676,23 @@ namespace MongoCola.Connection
             this.NumWaitQueueSize.TabIndex = 54;
             this.NumWaitQueueSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(383, 163);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 15);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "StorageEngine";
+            // 
+            // cmbStorageEngine
+            // 
+            this.cmbStorageEngine.FormattingEnabled = true;
+            this.cmbStorageEngine.Location = new System.Drawing.Point(502, 157);
+            this.cmbStorageEngine.Name = "cmbStorageEngine";
+            this.cmbStorageEngine.Size = new System.Drawing.Size(121, 23);
+            this.cmbStorageEngine.TabIndex = 45;
+            // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -768,5 +789,7 @@ namespace MongoCola.Connection
         private Label lblQueueSize;
         private Label lblWTimeout;
         private NumericUpDown NumWaitQueueSize;
+        private Label label1;
+        private ComboBox cmbStorageEngine;
     }
 }

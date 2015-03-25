@@ -328,8 +328,9 @@ namespace MongoGUICtl
                         break;
                 }
             }
-            TreeNode mongoColNode;
-            mongoColNode = new TreeNode(strShowColName);
+            //Collection件数的表示
+            strShowColName = strShowColName + "(" + mongoDB.GetCollection(strColName).Count() + ")";
+            TreeNode mongoColNode = new TreeNode(strShowColName);
             switch (strColName)
             {
                 case ConstMgr.COLLECTION_NAME_GFS_FILES:

@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Common.UI;
+using MongoDB.Driver;
+using MongoUtility.Basic;
+using MongoUtility.Core;
+using ResourceLib.Utility;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
 using SystemUtility;
-using Common.UI;
-using MongoDB.Driver;
-using MongoUtility.Basic;
-using MongoUtility.Core;
-using ResourceLib.Utility;
 
 namespace MongoCola.Connection
 {
@@ -68,16 +68,38 @@ namespace MongoCola.Connection
                 lstHost.Items.Add(item);
             }
 
+            if (ModifyConn.StorageEngine == EnumMgr.StorageEngineType.MMAPv1)
+            {
+                cmbStorageEngine.SelectedIndex = 0;
+            }
+            else
+            {
+                cmbStorageEngine.SelectedIndex = 1;
+            }
+
             cmdAdd.Text = SystemConfig.IsUseDefaultLanguage
                 ? "Modify"
                 : SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Modify);
         }
+        /// <summary>
+        /// frmAddConnection_Load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmAddConnection_Load(object sender, EventArgs e)
+        {
 
+        }
         /// <summary>
         ///     加载
         /// </summary>
         private void OnLoad()
         {
+            foreach (var item in Enum.GetValues(typeof(EnumMgr.StorageEngineType)))
+            {
+                cmbStorageEngine.Items.Add(item);
+                cmbStorageEngine.SelectedIndex = 0;
+            }
             cmdCancel.Click += (x, y) => Close();
             numPort.GotFocus += (x, y) => numPort.Select(0, 5);
             NumReplPort.GotFocus += (x, y) => NumReplPort.Select(0, 5);
@@ -284,6 +306,14 @@ namespace MongoCola.Connection
                 ModifyConn.fsync = chkFsync.Checked;
                 ModifyConn.ReplSetName = txtReplsetName.Text;
                 ModifyConn.ReplsetList = new List<string>();
+                if (cmbStorageEngine.SelectedIndex == 0)
+                {
+                    ModifyConn.StorageEngine = EnumMgr.StorageEngineType.MMAPv1;
+                }
+                else
+                {
+                    ModifyConn.StorageEngine = EnumMgr.StorageEngineType.WiredTiger;
+                }
                 foreach (string item in lstHost.Items)
                 {
                     ModifyConn.ReplsetList.Add(item);
@@ -336,9 +366,6 @@ namespace MongoCola.Connection
             Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options");
         }
 
-        private void frmAddConnection_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }
