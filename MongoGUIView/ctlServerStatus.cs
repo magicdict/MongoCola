@@ -83,7 +83,8 @@ namespace MongoGUIView
         {
             try
             {
-                FillMongoDB.FillCurrentOprToList(lstSrvOpr, RuntimeMongoDBContext._mongoConnSvrLst);
+                //Mongo 3.0 Drvier2.0开始不稳定
+                //FillMongoDB.FillCurrentOprToList(lstSrvOpr, RuntimeMongoDBContext._mongoConnSvrLst);
             }
             catch (Exception ex)
             {
@@ -133,7 +134,7 @@ namespace MongoGUIView
             refreshTimer.Tick += (x, y) => RefreshStatus(true);
             //
             ShortTimer.Interval = configuration.RefreshStatusTimer*1000;
-            ShortTimer.Tick += (x, y) => RefreshCurrentOpr();
+            //ShortTimer.Tick += (x, y) => RefreshCurrentOpr();
 
             SetEnable(false);
             AutoRefresh = false;
@@ -236,7 +237,7 @@ namespace MongoGUIView
         private void RefreshStripButton_Click(object sender, EventArgs e)
         {
             RefreshStatus(false);
-            RefreshCurrentOpr();
+            //RefreshCurrentOpr();
         }
 
         /// <summary>

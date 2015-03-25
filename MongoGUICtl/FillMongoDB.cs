@@ -196,7 +196,15 @@ namespace MongoGUICtl
                             lst.SubItems.Add("0");
                         }
                         lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.DataSize));
-                        lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.FileSize));
+                        try
+                        {
+                            //WideTiger:FileSize
+                            lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.FileSize));
+                        }
+                        catch (Exception)
+                        {
+                            lst.SubItems.Add("N/A");
+                        }
                         lst.SubItems.Add(dbStatus.IndexCount.ToString());
                         lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.IndexSize));
                         lst.SubItems.Add(dbStatus.ObjectCount.ToString());
@@ -293,7 +301,16 @@ namespace MongoGUICtl
                                 var lst = new ListViewItem(mongoSvrKey + "." + strDBName + "." + strColName);
                                 lst.SubItems.Add(CollectionStatus.ObjectCount.ToString());
                                 lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.DataSize));
-                                lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.LastExtentSize));
+                                try
+                                {
+                                    //WideTiger:LastExtentSize
+                                    lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.LastExtentSize));
+                                }
+                                catch (Exception)
+                                {
+                                    lst.SubItems.Add("N/A");
+                                }
+                                
                                 lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.StorageSize));
                                 lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.TotalIndexSize));
 

@@ -210,7 +210,7 @@ namespace MongoCola
                     });
             ServerStatusCtl.ResetCtl();
             ServerStatusCtl.RefreshStatus(false);
-            ServerStatusCtl.RefreshCurrentOpr();
+            //ServerStatusCtl.RefreshCurrentOpr();
             trvsrvlst.Nodes.Clear();
             foreach (var element in ConnectionTreeNodes)
             {
