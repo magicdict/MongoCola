@@ -1,4 +1,9 @@
-﻿using Common.Logic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using SystemUtility;
+using Common.Logic;
 using MongoCola.Connection;
 using MongoGUICtl;
 using MongoGUIView;
@@ -9,11 +14,6 @@ using MongoUtility.Extend;
 using PlugInPackage;
 using ResourceLib.Properties;
 using ResourceLib.Utility;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using SystemUtility;
 using Utility = Common.Logic.Utility;
 
 namespace MongoCola
@@ -552,8 +552,8 @@ namespace MongoCola
             }
             else
             {
-                var JsName = DataList[(int)EnumMgr.PathLv.DocumentLv];
-                var JsEditor = new ctlJsEditor { strDBtag = RuntimeMongoDBContext.SelectObjectTag };
+                var JsName = DataList[(int) EnumMgr.PathLv.DocumentLv];
+                var JsEditor = new ctlJsEditor {strDBtag = RuntimeMongoDBContext.SelectObjectTag};
                 var DataTab = new TabPage(JsName)
                 {
                     Tag = RuntimeMongoDBContext.SelectObjectTag,

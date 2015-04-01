@@ -3,7 +3,6 @@ using System.Linq;
 using System.Windows.Forms;
 using MongoDB.Driver;
 using MongoUtility.Basic;
-using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Utility;
 using Utility = Common.Logic.Utility;
@@ -330,7 +329,7 @@ namespace MongoGUICtl
             }
             //Collection件数的表示
             strShowColName = strShowColName + "(" + mongoDB.GetCollection(strColName).Count() + ")";
-            TreeNode mongoColNode = new TreeNode(strShowColName);
+            var mongoColNode = new TreeNode(strShowColName);
             switch (strColName)
             {
                 case ConstMgr.COLLECTION_NAME_GFS_FILES:

@@ -8,7 +8,7 @@ namespace Common.UI
         public frmEasyMessage()
         {
             InitializeComponent();
-            cmdOK.BackColor = Common.UI.MyMessageBox.SuccessColor;
+            cmdOK.BackColor = MyMessageBox.SuccessColor;
         }
 
         /// <summary>

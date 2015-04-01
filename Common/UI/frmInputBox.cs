@@ -16,8 +16,8 @@ namespace Common.UI
         internal frmInputBox()
         {
             InitializeComponent();
-            cmdOK.BackColor = Common.UI.MyMessageBox.SuccessColor;
-            cmdCancel.BackColor = Common.UI.MyMessageBox.FailColor;
+            cmdOK.BackColor = MyMessageBox.SuccessColor;
+            cmdCancel.BackColor = MyMessageBox.FailColor;
         }
 
         /// <summary>

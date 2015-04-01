@@ -73,10 +73,21 @@ namespace MongoUtility.Basic
             /// </summary>
             VVVVV
         };
+
         /// <summary>
-        /// Mongo Bin Paht
+        ///     Mongo Bin Paht
         /// </summary>
         public static string MongoBinPath;
+
+        /// <summary>
+        ///     标准输出
+        /// </summary>
+        public static string strOutPut = string.Empty;
+
+        /// <summary>
+        ///     标准错误
+        /// </summary>
+        public static string strErrorPut = string.Empty;
 
         /// <summary>
         /// </summary>
@@ -285,8 +296,6 @@ namespace MongoUtility.Basic
             return dosCommand;
         }
 
-
-
         /// <summary>
         ///     执行Dos下的命令
         /// </summary>
@@ -327,25 +336,19 @@ namespace MongoUtility.Basic
             stringWriter.Close();
             myProcess.Close();
         }
-        /// <summary>
-        /// 标准输出
-        /// </summary>
-        public static string strOutPut = string.Empty;
-        /// <summary>
-        /// 标准错误
-        /// </summary>
-        public static string strErrorPut = string.Empty;
+
         private static void ErrorDataHandler(object sendingProcess, DataReceivedEventArgs errLine)
         {
             if (errLine.Data == null)
                 return;
-            strErrorPut = strErrorPut + errLine.Data + System.Environment.NewLine;
+            strErrorPut = strErrorPut + errLine.Data + Environment.NewLine;
         }
+
         private static void OutputDataHandler(object sendingProcess, DataReceivedEventArgs outputLine)
         {
             if (outputLine.Data == null)
                 return;
-            strOutPut = strOutPut + outputLine.Data + System.Environment.NewLine;
+            strOutPut = strOutPut + outputLine.Data + Environment.NewLine;
         }
 
         /// <summary>

@@ -16,8 +16,8 @@ namespace Common.UI
         public frmConfirm()
         {
             InitializeComponent();
-            cmdYes.BackColor = Common.UI.MyMessageBox.SuccessColor;
-            cmdNo.BackColor = Common.UI.MyMessageBox.FailColor;
+            cmdYes.BackColor = MyMessageBox.SuccessColor;
+            cmdNo.BackColor = MyMessageBox.FailColor;
         }
 
         /// <summary>

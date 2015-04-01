@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using MongoUtility.Basic;
-using MongoUtility.Core;
 using MongoUtility.EventArgs;
 using ResourceLib.Utility;
 

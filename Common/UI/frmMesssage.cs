@@ -15,8 +15,8 @@ namespace Common.UI
         {
             InitializeComponent();
             //系统图标
-            cmdOK.BackColor = Common.UI.MyMessageBox.SuccessColor;
-            cmdDetails.BackColor = Common.UI.MyMessageBox.ActionColor;
+            cmdOK.BackColor = MyMessageBox.SuccessColor;
+            cmdDetails.BackColor = MyMessageBox.ActionColor;
         }
 
         /// <summary>

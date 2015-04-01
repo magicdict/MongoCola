@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using Common.UI;
 using MongoUtility.Basic;
-using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Utility;
 

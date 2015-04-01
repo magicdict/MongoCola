@@ -8,8 +8,7 @@
  */
 
 using System.IO;
-using System.Security;
-using Common.UI;
+using Common.Logic;
 using ResourceLib.Utility;
 
 namespace SystemUtility
@@ -77,7 +76,7 @@ namespace SystemUtility
                 {
                     guiConfig.MStringResource.InitLanguage(LanguageFile);
                 }
-                Common.Logic.Utility.Init(guiConfig);
+                Utility.Init(guiConfig);
             }
         }
 

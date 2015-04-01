@@ -9,16 +9,13 @@ namespace Common.UI
     public static class MyMessageBox
     {
         /// <summary>
-        /// 成功提示色
+        ///     成功提示色
         /// </summary>
         public static Color SuccessColor = Color.LightGreen;
 
         public static Color FailColor = Color.Pink;
-
         public static Color ActionColor = Color.LightBlue;
-
         public static Color WarningColor = Color.LightYellow;
-
 
         /// <summary>
         ///     消息窗体
@@ -74,7 +71,7 @@ namespace Common.UI
         /// </summary>
         public static Boolean ShowConfirm(String Title, String Message)
         {
-            FormatMsgbox(_frmConfirm,Title);
+            FormatMsgbox(_frmConfirm, Title);
             _frmConfirm.SetMessage(Message);
             if (_frmConfirm.Visible == false)
             {
@@ -83,7 +80,7 @@ namespace Common.UI
             return _frmConfirm.Result;
         }
 
-        private static void FormatMsgbox(Form _frmMsgbox,String Title)
+        private static void FormatMsgbox(Form _frmMsgbox, String Title)
         {
             _frmMsgbox.Text = Title;
             _frmMsgbox.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);

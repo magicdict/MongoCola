@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using SystemUtility;
 using SystemUtility.Config;
 using Common.Logic;
+using Common.UI;
 using MongoUtility.Core;
 using ResourceLib.Utility;
 
@@ -23,8 +24,8 @@ namespace MongoCola.Connection
         private void frmConnect_Load(object sender, EventArgs e)
         {
             RefreshConnection();
-            cmdOK.BackColor = Common.UI.MyMessageBox.SuccessColor;
-            cmdClose.BackColor = Common.UI.MyMessageBox.FailColor;
+            cmdOK.BackColor = MyMessageBox.SuccessColor;
+            cmdClose.BackColor = MyMessageBox.FailColor;
             if (SystemConfig.IsUseDefaultLanguage) return;
             cmdAddCon.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
             cmdDelCon.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Connect_Action_Del);

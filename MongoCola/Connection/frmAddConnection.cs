@@ -1,14 +1,14 @@
-﻿using Common.UI;
-using MongoDB.Driver;
-using MongoUtility.Basic;
-using MongoUtility.Core;
-using ResourceLib.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
 using SystemUtility;
+using Common.UI;
+using MongoDB.Driver;
+using MongoUtility.Basic;
+using MongoUtility.Core;
+using ResourceLib.Utility;
 
 namespace MongoCola.Connection
 {
@@ -81,21 +81,22 @@ namespace MongoCola.Connection
                 ? "Modify"
                 : SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Modify);
         }
+
         /// <summary>
-        /// frmAddConnection_Load
+        ///     frmAddConnection_Load
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void frmAddConnection_Load(object sender, EventArgs e)
         {
-
         }
+
         /// <summary>
         ///     加载
         /// </summary>
         private void OnLoad()
         {
-            foreach (var item in Enum.GetValues(typeof(EnumMgr.StorageEngineType)))
+            foreach (var item in Enum.GetValues(typeof (EnumMgr.StorageEngineType)))
             {
                 cmbStorageEngine.Items.Add(item);
                 cmbStorageEngine.SelectedIndex = 0;
@@ -106,9 +107,9 @@ namespace MongoCola.Connection
             NumSocketTimeOut.GotFocus += (x, y) => NumSocketTimeOut.Select(0, 5);
             NumConnectTimeOut.GotFocus += (x, y) => NumConnectTimeOut.Select(0, 5);
             //Color
-            cmdTest.BackColor = Common.UI.MyMessageBox.ActionColor;
-            cmdAdd.BackColor = Common.UI.MyMessageBox.SuccessColor;
-            cmdCancel.BackColor = Common.UI.MyMessageBox.FailColor;
+            cmdTest.BackColor = MyMessageBox.ActionColor;
+            cmdAdd.BackColor = MyMessageBox.SuccessColor;
+            cmdCancel.BackColor = MyMessageBox.FailColor;
             //Language
             if (SystemConfig.IsUseDefaultLanguage) return;
             Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Title);
@@ -365,7 +366,5 @@ namespace MongoCola.Connection
         {
             Process.Start("http://docs.mongodb.org/manual/reference/connection-string/#write-concern-options");
         }
-
-
     }
 }

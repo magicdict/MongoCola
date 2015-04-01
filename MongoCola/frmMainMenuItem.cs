@@ -1,4 +1,14 @@
-﻿using Common.UI;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using SystemUtility;
+using SystemUtility.Config;
+using Common.UI;
 using MongoCola.Aggregation;
 using MongoCola.Connection;
 using MongoCola.Operation;
@@ -9,16 +19,6 @@ using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Utility;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SystemUtility;
-using SystemUtility.Config;
 using Utility = Common.Logic.Utility;
 
 namespace MongoCola
@@ -108,6 +108,7 @@ namespace MongoCola
             trvsrvlst.Nodes.Remove(trvsrvlst.SelectedNode);
             RefreshToolStripMenuItem_Click(sender, e);
         }
+
         /// <summary>
         ///     初始化ReplSet
         /// </summary>
@@ -448,7 +449,7 @@ namespace MongoCola
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;
             var strPath = RuntimeMongoDBContext.SelectTagData;
-            var strDBName = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.DatabaseLv];
+            var strDBName = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.DatabaseLv];
             if (trvsrvlst.SelectedNode == null)
             {
                 trvsrvlst.SelectedNode = null;
@@ -622,8 +623,8 @@ namespace MongoCola
                 {
                     var jsNode = new TreeNode(strJsName)
                     {
-                        ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
-                        SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc
+                        ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
+                        SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc
                     };
                     var jsTag = RuntimeMongoDBContext.SelectTagData;
                     jsNode.Tag = ConstMgr.JAVASCRIPT_DOC_TAG + ":" + jsTag + "/" + strJsName;
@@ -690,7 +691,7 @@ namespace MongoCola
         private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDBContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
+            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
             var strNewCollectionName = string.Empty;
             if (SystemConfig.IsUseDefaultLanguage)
             {
@@ -701,11 +702,15 @@ namespace MongoCola
             else
             {
                 strNewCollectionName = MyMessageBox.ShowInput(
-                        SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
-                        SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Rename_Collection), strCollection);
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Rename_Collection_Input),
+                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Rename_Collection),
+                    strCollection);
             }
             if (string.IsNullOrEmpty(strNewCollectionName)) return;
-            var result = RuntimeMongoDBContext.GetCurrentDataBase().RenameCollection(trvsrvlst.SelectedNode.Text, strNewCollectionName).Ok;
+            var result =
+                RuntimeMongoDBContext.GetCurrentDataBase()
+                    .RenameCollection(trvsrvlst.SelectedNode.Text, strNewCollectionName)
+                    .Ok;
             if (!result) return;
             var strNodeData = RuntimeMongoDBContext.SelectTagData;
             var strNewNodeTag = RuntimeMongoDBContext.SelectObjectTag.Substring(0,

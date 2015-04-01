@@ -1,16 +1,16 @@
-﻿using MongoDB.Bson;
-using ResourceLib.Utility;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using MongoDB.Bson;
 using MongoUtility.Basic;
+using ResourceLib.Utility;
 
 namespace MongoGUICtl
 {
     /// <summary>
-    /// BsonDoc 展示控件
+    ///     BsonDoc 展示控件
     /// </summary>
     public partial class ctlTreeViewColumns : UserControl
     {
@@ -100,7 +100,7 @@ namespace MongoGUICtl
             {
                 e.Graphics.FillRectangle(Brushes.White, rect);
             }
-            var IndentWidth = DatatreeView.Indent * e.Node.Level + 25;
+            var IndentWidth = DatatreeView.Indent*e.Node.Level + 25;
             e.Graphics.DrawRectangle(SystemPens.Control, rect);
             var StringRect = new Rectangle(e.Bounds.X + IndentWidth, e.Bounds.Y, colName.Width - IndentWidth,
                 e.Bounds.Height);
@@ -129,13 +129,13 @@ namespace MongoGUICtl
             BsonElement mElement;
             if (e.Node.Tag != null)
             {
-                if (e.Node.Tag.GetType() != typeof(BsonElement))
+                if (e.Node.Tag.GetType() != typeof (BsonElement))
                 {
-                    mElement = new BsonElement("", (BsonValue)e.Node.Tag);
+                    mElement = new BsonElement("", (BsonValue) e.Node.Tag);
                 }
                 else
                 {
-                    mElement = (BsonElement)e.Node.Tag;
+                    mElement = (BsonElement) e.Node.Tag;
                 }
             }
             var mValue = e.Node.Tag as BsonValue;
@@ -241,15 +241,14 @@ namespace MongoGUICtl
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Control_SizeChanged(object sender, EventArgs e)
         {
-            colName.Width = Convert.ToInt32(Width * 0.3);
-            colValue.Width = Convert.ToInt32(Width * 0.45);
-            colType.Width = Convert.ToInt32(Width * 0.2);
+            colName.Width = Convert.ToInt32(Width*0.3);
+            colValue.Width = Convert.ToInt32(Width*0.45);
+            colType.Width = Convert.ToInt32(Width*0.2);
         }
 
         private void ctlTreeViewColumnsLoad(object sender, EventArgs e)

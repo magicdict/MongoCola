@@ -3,21 +3,6 @@
     public static class EnumMgr
     {
         /// <summary>
-        ///     存储引擎
-        /// </summary>
-        public enum StorageEngineType
-        {
-            /// <summary>
-            /// MMAPv1
-            /// </summary>
-            MMAPv1,
-            /// <summary>
-            /// WiredTiger
-            /// </summary>
-            WiredTiger
-        }
-
-        /// <summary>
         ///     导出类型
         /// </summary>
         public enum ExportType
@@ -82,6 +67,22 @@
             ///     数据文档
             /// </summary>
             DocumentLv = 4
+        }
+
+        /// <summary>
+        ///     存储引擎
+        /// </summary>
+        public enum StorageEngineType
+        {
+            /// <summary>
+            ///     MMAPv1
+            /// </summary>
+            MMAPv1,
+
+            /// <summary>
+            ///     WiredTiger
+            /// </summary>
+            WiredTiger
         }
 
         /// <summary>

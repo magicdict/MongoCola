@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
-using MongoUtility.Core;
 
 namespace MongoGUICtl
 {

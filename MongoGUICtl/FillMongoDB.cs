@@ -1,14 +1,15 @@
-﻿using Common.Logic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using Common.Logic;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Utility;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 
 namespace MongoGUICtl
 {
@@ -60,8 +61,8 @@ namespace MongoGUICtl
             /// <returns></returns>
             public int Compare(object x, object y)
             {
-                var lstX = (ListViewItem)x;
-                var lstY = (ListViewItem)y;
+                var lstX = (ListViewItem) x;
+                var lstY = (ListViewItem) y;
                 var rtnCompare = 0;
                 switch (CompareMethod)
                 {
@@ -98,7 +99,7 @@ namespace MongoGUICtl
                 }
                 if (Order == SortOrder.Descending)
                 {
-                    rtnCompare = rtnCompare * -1;
+                    rtnCompare = rtnCompare*-1;
                 }
                 return rtnCompare;
             }
@@ -304,13 +305,14 @@ namespace MongoGUICtl
                                 try
                                 {
                                     //WideTiger:LastExtentSize
-                                    lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.LastExtentSize));
+                                    lst.SubItems.Add(
+                                        MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.LastExtentSize));
                                 }
                                 catch (Exception)
                                 {
                                     lst.SubItems.Add("N/A");
                                 }
-                                
+
                                 lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.StorageSize));
                                 lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.TotalIndexSize));
 
@@ -330,7 +332,7 @@ namespace MongoGUICtl
                                 }
 
                                 lst.SubItems.Add(CollectionStatus.ObjectCount != 0
-                                    ? MongoUtility.Basic.Utility.GetBsonSize((long)CollectionStatus.AverageObjectSize)
+                                    ? MongoUtility.Basic.Utility.GetBsonSize((long) CollectionStatus.AverageObjectSize)
                                     : "0");
 
                                 try
@@ -413,7 +415,7 @@ namespace MongoGUICtl
                             lstSrvOpr.Items.Add(lst);
                         }
                     }
-                    catch (System.IO.EndOfStreamException)
+                    catch (EndOfStreamException)
                     {
                         //SkipIt
                         return;

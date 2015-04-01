@@ -22,7 +22,6 @@ namespace MongoCola
         private readonly Boolean _IsAdmin;
 
         private readonly String _ModifyName = String.Empty;
-
         private readonly Dictionary<String, BsonElement> _otherDbRolesDict = new Dictionary<string, BsonElement>();
 
         /// <summary>

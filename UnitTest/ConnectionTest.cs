@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTest
 {
     /// <summary>
-    /// 针对数据库连接的测试
+    ///     针对数据库连接的测试
     /// </summary>
     [TestClass]
     public class ConnectionTest
@@ -12,7 +11,6 @@ namespace UnitTest
         [TestMethod]
         public void SimpleConnection()
         {
-
         }
     }
 }

@@ -16,8 +16,8 @@ namespace MongoGUIView
 {
     public partial class ctlDocumentView : ctlDataView
     {
-
         #region"UI"
+
         public ctlDocumentView(DataViewInfo _DataViewInfo)
         {
             InitializeComponent();
@@ -32,13 +32,12 @@ namespace MongoGUIView
         ///     增加或者删除元素
         ///     参数frmElement
         /// </summary>
-        public Action<bool, TreeNode, bool> ElementOp = new Action<bool, TreeNode, bool>(
-            (isUpdate, SelectedNode, isElement) =>
-            {
-                frmElement f = new frmElement(isUpdate, SelectedNode, isElement);
-                f.ShowDialog();
-            }
-        );
+        public Action<bool, TreeNode, bool> ElementOp = (isUpdate, SelectedNode, isElement) =>
+        {
+            var f = new frmElement(isUpdate, SelectedNode, isElement);
+            f.ShowDialog();
+        };
+
         private void ctlDocumentView_Load(object sender, EventArgs e)
         {
             if (!configuration.guiConfig.IsUseDefaultLanguage)
@@ -317,11 +316,12 @@ namespace MongoGUIView
                 OpenDocInEditorToolStripMenuItem.Enabled = true;
             }
         }
+
         #endregion
 
         #region"管理：元素操作"
 
-        private Func<BsonDocument> getDocument = null;
+        private readonly Func<BsonDocument> getDocument = null;
 
         /// <summary>
         ///     Add New Document
@@ -370,7 +370,7 @@ namespace MongoGUIView
                     {
                         //如果是自定义主键的情况下,这里IsObjectId就不可能成立
                         if (item.Tag != null)
-                        //if (item.Tag != null && ((BsonValue) item.Tag).IsObjectId)
+                            //if (item.Tag != null && ((BsonValue) item.Tag).IsObjectId)
                         {
                             var Result = OperationHelper.DropDocument(RuntimeMongoDBContext.GetCurrentCollection(),
                                 item.Tag);
@@ -387,9 +387,9 @@ namespace MongoGUIView
                 else
                 {
                     //如果是自定义主键的情况下,这里IsObjectId就不可能成立
-                    if (trvData.DatatreeView.SelectedNode.Tag != null )
-                    //if (trvData.DatatreeView.SelectedNode.Tag != null &&
-                    //    ((BsonValue) trvData.DatatreeView.SelectedNode.Tag).IsObjectId)
+                    if (trvData.DatatreeView.SelectedNode.Tag != null)
+                        //if (trvData.DatatreeView.SelectedNode.Tag != null &&
+                        //    ((BsonValue) trvData.DatatreeView.SelectedNode.Tag).IsObjectId)
                     {
                         var Result = OperationHelper.DropDocument(RuntimeMongoDBContext.GetCurrentCollection(),
                             trvData.DatatreeView.SelectedNode.Tag);

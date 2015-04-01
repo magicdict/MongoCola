@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -260,7 +258,8 @@ namespace MongoGUICtl
             return ConnectionNodes;
         }
 
-        private static void FillNormal(TreeNode ConnectionNode, MongoConnectionConfig config, BsonDocument ServerStatusDoc)
+        private static void FillNormal(TreeNode ConnectionNode, MongoConnectionConfig config,
+            BsonDocument ServerStatusDoc)
         {
             //Server Status mongod
             //Master - Slave 的判断
@@ -282,23 +281,24 @@ namespace MongoGUICtl
             ConnectionNode.Tag = ConstMgr.CONNECTION_TAG + ":" + config.ConnectionName;
         }
 
-        private static MongoConnectionConfig FillShards(string mongoConnKey, MongoServer mongoSrv, TreeNode ConnectionNode, EachDatabaseUser UserList, MongoConnectionConfig config)
+        private static MongoConnectionConfig FillShards(string mongoConnKey, MongoServer mongoSrv,
+            TreeNode ConnectionNode, EachDatabaseUser UserList, MongoConnectionConfig config)
         {
             //Shard的时候，必须将所有服务器的ReadPreferred设成可读
             config.ServerRole = MongoConnectionConfig.SvrRoleType.ShardSvr;
             ConnectionNode.Tag = ConstMgr.CONNECTION_CLUSTER_TAG + ":" + config.ConnectionName;
             var ShardListNode = new TreeNode("Shards")
             {
-                SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
-                ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
+                SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers,
+                ImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers
             };
             foreach (var lst in OperationHelper.GetShardInfo(mongoSrv, "host"))
             {
                 var ShardNode = new TreeNode
                 {
                     Text = lst.Key,
-                    SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
-                    ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
+                    SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers,
+                    ImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers
                 };
                 var strHostList = lst.Value;
                 var strAddress = strHostList.Split("/".ToCharArray());
@@ -344,13 +344,14 @@ namespace MongoGUICtl
             return config;
         }
 
-        private static MongoConnectionConfig FillReplset(string mongoConnKey, MongoServer mongoSrv, TreeNode ConnectionNode, EachDatabaseUser UserList, MongoConnectionConfig config)
+        private static MongoConnectionConfig FillReplset(string mongoConnKey, MongoServer mongoSrv,
+            TreeNode ConnectionNode, EachDatabaseUser UserList, MongoConnectionConfig config)
         {
             ConnectionNode.Tag = ConstMgr.CONNECTION_REPLSET_TAG + ":" + config.ConnectionName;
             var ServerListNode = new TreeNode("Servers")
             {
-                SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
-                ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
+                SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers,
+                ImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers
             };
             foreach (var ServerInstace in mongoSrv.Instances)
             {

@@ -209,6 +209,7 @@ namespace MongoUtility.Basic
         ///     查询条件构成控件用常量
         /// </summary>
         public const String EndMark_AND = " AND ";
+
         public const String EndMark_OR = " OR ";
         public const String EndMark_AND_T = ") AND ";
         public const String EndMark_OR_T = ") OR ";

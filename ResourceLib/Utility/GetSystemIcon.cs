@@ -1,12 +1,12 @@
-﻿using Microsoft.Win32;
-using ResourceLib.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Microsoft.Win32;
+using ResourceLib.Properties;
 
 namespace ResourceLib.Utility
 {
@@ -218,7 +218,6 @@ namespace ResourceLib.Utility
                     //读系统注册表中文件类型信息
                     try
                     {
-                        
                         regVersion = Registry.ClassesRoot.OpenSubKey(fileType, true);
                     }
                     catch

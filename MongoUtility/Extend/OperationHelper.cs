@@ -299,7 +299,9 @@ namespace MongoUtility.Extend
                 var result = new CommandResult(new BsonDocument());
                 try
                 {
-                    result = new CommandResult(jsCol.Insert(new BsonDocument().Add(ConstMgr.KEY_ID, jsName).Add("value", jsCode)).Response);
+                    result =
+                        new CommandResult(
+                            jsCol.Insert(new BsonDocument().Add(ConstMgr.KEY_ID, jsName).Add("value", jsCode)).Response);
                 }
                 catch (MongoCommandException ex)
                 {
@@ -390,7 +392,10 @@ namespace MongoUtility.Extend
             {
                 try
                 {
-                    result = new CommandResult(mongoCol.Remove(Query.EQ(ConstMgr.KEY_ID, (BsonValue) strKey), WriteConcern.Acknowledged).Response);
+                    result =
+                        new CommandResult(
+                            mongoCol.Remove(Query.EQ(ConstMgr.KEY_ID, (BsonValue) strKey), WriteConcern.Acknowledged)
+                                .Response);
                 }
                 catch (MongoCommandException ex)
                 {
