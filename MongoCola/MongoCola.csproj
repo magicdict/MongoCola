@@ -296,12 +296,6 @@
     <Compile Include="frmOption.Designer.cs">
       <DependentUpon>frmOption.cs</DependentUpon>
     </Compile>
-    <Compile Include="Aggregation\frmQuery.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Aggregation\frmQuery.Designer.cs">
-      <DependentUpon>frmQuery.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemManager.cs" />
@@ -389,9 +383,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmOption.resx">
       <DependentUpon>frmOption.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Aggregation\frmQuery.resx">
-      <DependentUpon>frmQuery.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />

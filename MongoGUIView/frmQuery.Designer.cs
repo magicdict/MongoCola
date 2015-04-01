@@ -1,7 +1,7 @@
 ﻿using MongoGUICtl;
 using MongoGUICtl.Aggregation;
 
-namespace MongoCola.Aggregation
+namespace MongoGUIView
 {
     partial class frmQuery
     {
