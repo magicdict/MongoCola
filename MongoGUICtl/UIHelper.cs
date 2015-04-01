@@ -67,7 +67,7 @@ namespace MongoGUICtl
                         //这里是为了操作顶层节点的删除，修改用的，所以必须要放item.GetElement(0).Value;
                         BsonElement id;
                         item.TryGetElement(ConstMgr.KEY_ID, out id);
-                        dataNode.Tag = id != null ? id.Value : item.GetElement(0).Value;
+                        dataNode.Tag = (id.Value != null) ? id.Value : item.GetElement(0).Value;
                         break;
                 }
                 AddBsonDocToTreeNode(dataNode, item);
@@ -182,19 +182,7 @@ namespace MongoGUICtl
                         UserList));
                     if (mongoSrv.ReplicaSetName != null)
                     {
-                        ConnectionNode.Tag = ConstMgr.CONNECTION_REPLSET_TAG + ":" + config.ConnectionName;
-                        var ServerListNode = new TreeNode("Servers")
-                        {
-                            SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers,
-                            ImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers
-                        };
-                        foreach (var ServerInstace in mongoSrv.Instances)
-                        {
-                            ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, ref config, mongoSrv, ServerInstace,
-                                null, UserList));
-                        }
-                        ConnectionNode.Nodes.Add(ServerListNode);
-                        config.ServerRole = MongoConnectionConfig.SvrRoleType.ReplsetSvr;
+                        config = FillReplset(mongoConnKey, mongoSrv, ConnectionNode, UserList, config);
                     }
                     else
                     {
@@ -204,84 +192,11 @@ namespace MongoGUICtl
                         if (ServerStatusDoc.Contains("process") &&
                             ServerStatusDoc.GetElement("process").Value == ConstMgr.ServerStatus_PROCESS_MONGOS)
                         {
-                            //Shard的时候，必须将所有服务器的ReadPreferred设成可读
-                            config.ServerRole = MongoConnectionConfig.SvrRoleType.ShardSvr;
-                            ConnectionNode.Tag = ConstMgr.CONNECTION_CLUSTER_TAG + ":" + config.ConnectionName;
-                            var ShardListNode = new TreeNode("Shards")
-                            {
-                                SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers,
-                                ImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers
-                            };
-                            foreach (var lst in OperationHelper.GetShardInfo(mongoSrv, "host"))
-                            {
-                                var ShardNode = new TreeNode
-                                {
-                                    Text = lst.Key,
-                                    SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers,
-                                    ImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers
-                                };
-                                var strHostList = lst.Value;
-                                var strAddress = strHostList.Split("/".ToCharArray());
-                                String strAddresslst;
-                                if (strAddress.Length == 2)
-                                {
-                                    //#1  replset/host:port,host:port
-                                    ShardNode.Text += "[Replset:" + strAddress[0] + "]";
-                                    strAddresslst = strAddress[1];
-                                }
-                                else
-                                {
-                                    //#2  host:port,host:port
-                                    strAddresslst = strHostList;
-                                }
-                                foreach (var item in strAddresslst.Split(",".ToCharArray()))
-                                {
-                                    var tinySetting = new MongoClientSettings
-                                    {
-                                        ConnectionMode = ConnectionMode.Direct,
-                                        ReadPreference = ReadPreference.PrimaryPreferred,
-                                        ReplicaSetName = strAddress[0]
-                                    };
-                                    //防止无法读取Sharding状态。Sharding可能是一个Slaver
-                                    MongoServerAddress SecondaryAddr;
-                                    if (item.Split(":".ToCharArray()).Length == 2)
-                                    {
-                                        SecondaryAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0],
-                                            Convert.ToInt32(item.Split(":".ToCharArray())[1]));
-                                    }
-                                    else
-                                    {
-                                        SecondaryAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0]);
-                                    }
-                                    tinySetting.Server = SecondaryAddr;
-                                    var ReplsetMember = new MongoClient(tinySetting).GetServer();
-                                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, ref config, mongoSrv,
-                                        ReplsetMember.Instance, null, UserList));
-                                }
-                                ShardListNode.Nodes.Add(ShardNode);
-                            }
-                            ConnectionNode.Nodes.Add(ShardListNode);
+                            config = FillShards(mongoConnKey, mongoSrv, ConnectionNode, UserList, config);
                         }
                         else
                         {
-                            //Server Status mongod
-                            //Master - Slave 的判断
-                            BsonElement replElement;
-                            ServerStatusDoc.TryGetElement("repl", out replElement);
-                            //CSHARP-1066: Change BsonElement from a class to a struct. 
-                            //if (replElement == null)
-                            if (replElement.Value == null)
-                            {
-                                config.ServerRole = MongoConnectionConfig.SvrRoleType.DataSvr;
-                            }
-                            else
-                            {
-                                config.ServerRole = replElement.Value.AsBsonDocument.GetElement("ismaster").Value ==
-                                                    BsonBoolean.True
-                                    ? MongoConnectionConfig.SvrRoleType.MasterSvr
-                                    : MongoConnectionConfig.SvrRoleType.SlaveSvr;
-                            }
-                            ConnectionNode.Tag = ConstMgr.CONNECTION_TAG + ":" + config.ConnectionName;
+                            FillNormal(ConnectionNode, config, ServerStatusDoc);
                         }
                     }
                     //设定是否可用
@@ -343,6 +258,108 @@ namespace MongoGUICtl
                 }
             }
             return ConnectionNodes;
+        }
+
+        private static void FillNormal(TreeNode ConnectionNode, MongoConnectionConfig config, BsonDocument ServerStatusDoc)
+        {
+            //Server Status mongod
+            //Master - Slave 的判断
+            BsonElement replElement;
+            ServerStatusDoc.TryGetElement("repl", out replElement);
+            //CSHARP-1066: Change BsonElement from a class to a struct. 
+            //if (replElement == null)
+            if (replElement.Value == null)
+            {
+                config.ServerRole = MongoConnectionConfig.SvrRoleType.DataSvr;
+            }
+            else
+            {
+                config.ServerRole = replElement.Value.AsBsonDocument.GetElement("ismaster").Value ==
+                                    BsonBoolean.True
+                    ? MongoConnectionConfig.SvrRoleType.MasterSvr
+                    : MongoConnectionConfig.SvrRoleType.SlaveSvr;
+            }
+            ConnectionNode.Tag = ConstMgr.CONNECTION_TAG + ":" + config.ConnectionName;
+        }
+
+        private static MongoConnectionConfig FillShards(string mongoConnKey, MongoServer mongoSrv, TreeNode ConnectionNode, EachDatabaseUser UserList, MongoConnectionConfig config)
+        {
+            //Shard的时候，必须将所有服务器的ReadPreferred设成可读
+            config.ServerRole = MongoConnectionConfig.SvrRoleType.ShardSvr;
+            ConnectionNode.Tag = ConstMgr.CONNECTION_CLUSTER_TAG + ":" + config.ConnectionName;
+            var ShardListNode = new TreeNode("Shards")
+            {
+                SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
+                ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
+            };
+            foreach (var lst in OperationHelper.GetShardInfo(mongoSrv, "host"))
+            {
+                var ShardNode = new TreeNode
+                {
+                    Text = lst.Key,
+                    SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
+                    ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
+                };
+                var strHostList = lst.Value;
+                var strAddress = strHostList.Split("/".ToCharArray());
+                String strAddresslst;
+                if (strAddress.Length == 2)
+                {
+                    //#1  replset/host:port,host:port
+                    ShardNode.Text += "[Replset:" + strAddress[0] + "]";
+                    strAddresslst = strAddress[1];
+                }
+                else
+                {
+                    //#2  host:port,host:port
+                    strAddresslst = strHostList;
+                }
+                foreach (var item in strAddresslst.Split(",".ToCharArray()))
+                {
+                    var tinySetting = new MongoClientSettings
+                    {
+                        ConnectionMode = ConnectionMode.Direct,
+                        ReadPreference = ReadPreference.PrimaryPreferred,
+                        ReplicaSetName = strAddress[0]
+                    };
+                    //防止无法读取Sharding状态。Sharding可能是一个Slaver
+                    MongoServerAddress SecondaryAddr;
+                    if (item.Split(":".ToCharArray()).Length == 2)
+                    {
+                        SecondaryAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0],
+                            Convert.ToInt32(item.Split(":".ToCharArray())[1]));
+                    }
+                    else
+                    {
+                        SecondaryAddr = new MongoServerAddress(item.Split(":".ToCharArray())[0]);
+                    }
+                    tinySetting.Server = SecondaryAddr;
+                    var ReplsetMember = new MongoClient(tinySetting).GetServer();
+                    ShardNode.Nodes.Add(GetInstanceNode(mongoConnKey, ref config, mongoSrv,
+                        ReplsetMember.Instance, null, UserList));
+                }
+                ShardListNode.Nodes.Add(ShardNode);
+            }
+            ConnectionNode.Nodes.Add(ShardListNode);
+            return config;
+        }
+
+        private static MongoConnectionConfig FillReplset(string mongoConnKey, MongoServer mongoSrv, TreeNode ConnectionNode, EachDatabaseUser UserList, MongoConnectionConfig config)
+        {
+            ConnectionNode.Tag = ConstMgr.CONNECTION_REPLSET_TAG + ":" + config.ConnectionName;
+            var ServerListNode = new TreeNode("Servers")
+            {
+                SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
+                ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
+            };
+            foreach (var ServerInstace in mongoSrv.Instances)
+            {
+                ServerListNode.Nodes.Add(GetInstanceNode(mongoConnKey, ref config, mongoSrv, ServerInstace,
+                    null, UserList));
+            }
+            ConnectionNode.Nodes.Add(ServerListNode);
+            config.ServerRole = MongoConnectionConfig.SvrRoleType.ReplsetSvr;
+            return config;
         }
 
         private static void AuthenticationExceptionHandler(MongoAuthenticationException ex,

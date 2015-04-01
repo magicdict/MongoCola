@@ -413,7 +413,7 @@ namespace MongoGUICtl
                             lstSrvOpr.Items.Add(lst);
                         }
                     }
-                    catch (System.IO.EndOfStreamException ex)
+                    catch (System.IO.EndOfStreamException)
                     {
                         //SkipIt
                         return;

@@ -91,6 +91,8 @@ namespace MongoGUIView
             }
 
             trvData.DatatreeView.MouseClick += trvData_MouseClick_Top;
+            //Double Click Modify Element
+            trvData.DatatreeView.MouseDoubleClick += ModifyElementToolStripMenuItem_Click;
             trvData.DatatreeView.AfterSelect += trvData_AfterSelect_Top;
             trvData.DatatreeView.KeyDown += trvData_KeyDown;
             trvData.DatatreeView.AfterExpand += trvData_AfterExpand;
@@ -319,7 +321,7 @@ namespace MongoGUIView
 
         #region"管理：元素操作"
 
-        private Func<BsonDocument> getDocument;
+        private Func<BsonDocument> getDocument = null;
 
         /// <summary>
         ///     Add New Document

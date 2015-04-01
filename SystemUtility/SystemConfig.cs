@@ -17,7 +17,6 @@ namespace SystemUtility
     /// <summary>
     ///     Description of SystemManager.
     /// </summary>
-    [assembly: AllowPartiallyTrustedCallers]
     public static class SystemConfig
     {
         #region"通用"
