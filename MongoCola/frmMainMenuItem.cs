@@ -449,7 +449,7 @@ namespace MongoCola
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;
             var strPath = RuntimeMongoDBContext.SelectTagData;
-            var strDBName = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.DatabaseLv];
+            var strDBName = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.DatabaseLv];
             if (trvsrvlst.SelectedNode == null)
             {
                 trvsrvlst.SelectedNode = null;
@@ -608,8 +608,7 @@ namespace MongoCola
         private void creatJavaScriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strJsName = MyMessageBox.ShowInput("pls Input Javascript Name", "Save Javascript");
-            if (strJsName == string.Empty)
-                return;
+            if (strJsName == string.Empty) return;
             var jsCol = MongoUtility.Basic.Utility.GetCurrentJsCollection(RuntimeMongoDBContext.GetCurrentDataBase());
             if (QueryHelper.IsExistByKey(jsCol, strJsName))
             {
@@ -623,8 +622,8 @@ namespace MongoCola
                 {
                     var jsNode = new TreeNode(strJsName)
                     {
-                        ImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc,
-                        SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.JsDoc
+                        ImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc,
+                        SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.JsDoc
                     };
                     var jsTag = RuntimeMongoDBContext.SelectTagData;
                     jsNode.Tag = ConstMgr.JAVASCRIPT_DOC_TAG + ":" + jsTag + "/" + strJsName;
@@ -659,10 +658,10 @@ namespace MongoCola
                 strMessage =
                     SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_Collection_Confirm);
             }
-            if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
-                return;
-            if (!RuntimeMongoDBContext.GetCurrentDataBase().DropCollection(trvsrvlst.SelectedNode.Text).Ok)
-                return;
+            if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
+            var strPath = RuntimeMongoDBContext.SelectTagData;
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
+            if (!RuntimeMongoDBContext.GetCurrentDataBase().DropCollection(strCollection).Ok) return;
             var strNodeData = RuntimeMongoDBContext.SelectTagData;
             if (_viewTabList.ContainsKey(strNodeData))
             {
@@ -691,7 +690,7 @@ namespace MongoCola
         private void RenameCollectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var strPath = RuntimeMongoDBContext.SelectTagData;
-            var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
             var strNewCollectionName = string.Empty;
             if (SystemConfig.IsUseDefaultLanguage)
             {
@@ -707,10 +706,8 @@ namespace MongoCola
                     strCollection);
             }
             if (string.IsNullOrEmpty(strNewCollectionName)) return;
-            var result =
-                RuntimeMongoDBContext.GetCurrentDataBase()
-                    .RenameCollection(trvsrvlst.SelectedNode.Text, strNewCollectionName)
-                    .Ok;
+            var result = RuntimeMongoDBContext.GetCurrentDataBase()
+                    .RenameCollection(strCollection, strNewCollectionName).Ok;
             if (!result) return;
             var strNodeData = RuntimeMongoDBContext.SelectTagData;
             var strNewNodeTag = RuntimeMongoDBContext.SelectObjectTag.Substring(0,
@@ -796,8 +793,9 @@ namespace MongoCola
         /// <param name="e"></param>
         private void dropJavascriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var Result = OperationHelper.DelJavascript(trvsrvlst.SelectedNode.Text,
-                RuntimeMongoDBContext.GetCurrentCollection());
+            var strPath = RuntimeMongoDBContext.SelectTagData;
+            var strCollection = strPath.Split("/".ToCharArray())[(int)EnumMgr.PathLv.CollectionLv];
+            var Result = OperationHelper.DelJavascript(strCollection, RuntimeMongoDBContext.GetCurrentCollection());
             if (string.IsNullOrEmpty(Result))
             {
                 var strNodeData = RuntimeMongoDBContext.SelectTagData;
