@@ -149,6 +149,88 @@ namespace MongoGUICtl
         }
 
         /// <summary>
+        ///     After Legacy
+        ///     获取将Mongodb的服务器在树形控件中展示的TreeNodes
+        /// </summary>
+        /// <param name="_mongoConnClientLst"></param>
+        /// <param name="_mongoConConfigLst"></param>
+        /// <returns></returns>
+        public static List<TreeNode> GetConnectionNodes(Dictionary<String, MongoClient> _mongoConnClientLst,
+            Dictionary<String, MongoConnectionConfig> _mongoConConfigLst)
+        {
+            var ConnectionNodes = new List<TreeNode>();
+            foreach (var mongoConnKey in _mongoConnClientLst.Keys)
+            {
+                var mongoSrv = _mongoConnClientLst[mongoConnKey];
+                var ConnectionNode = new TreeNode();
+                var UserList = new EachDatabaseUser();
+                try
+                {
+                    //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
+                    var config = _mongoConConfigLst[mongoConnKey];
+                    ConnectionNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
+                    ConnectionNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
+                    //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
+                    //不过现在改为全部显示的打开连接
+                    ConnectionNode.Text = mongoConnKey;
+                    //形成树型菜单的方法
+                    //ConnectionNode.Nodes.Add();
+                    config.ServerRole = MongoConnectionConfig.SvrRoleType.DataSvr;
+                    ConnectionNode.Tag = ConstMgr.CONNECTION_TAG + ":" + config.ConnectionName;
+                    //设定是否可用
+                    config.Health = true;
+                    _mongoConConfigLst[mongoConnKey] = config;
+                    switch (config.ServerRole)
+                    {
+                        case MongoConnectionConfig.SvrRoleType.DataSvr:
+                            ConnectionNode.Text = "[Data]  " + ConnectionNode.Text;
+                            break;
+                        case MongoConnectionConfig.SvrRoleType.ShardSvr:
+                            ConnectionNode.Text = "[Cluster]  " + ConnectionNode.Text;
+                            break;
+                        case MongoConnectionConfig.SvrRoleType.ReplsetSvr:
+                            ConnectionNode.Text = "[Replset]  " + ConnectionNode.Text;
+                            break;
+                        case MongoConnectionConfig.SvrRoleType.MasterSvr:
+                            ConnectionNode.Text = "[Master]  " + ConnectionNode.Text;
+                            break;
+                        case MongoConnectionConfig.SvrRoleType.SlaveSvr:
+                            ConnectionNode.Text = "[Slave]  " + ConnectionNode.Text;
+                            break;
+                    }
+                    ConnectionNodes.Add(ConnectionNode);
+                    if (RuntimeMongoDBContext._mongoUserLst.ContainsKey(mongoConnKey))
+                    {
+                        RuntimeMongoDBContext._mongoUserLst[mongoConnKey] = UserList;
+                    }
+                    else
+                    {
+                        RuntimeMongoDBContext._mongoUserLst.Add(mongoConnKey, UserList);
+                    }
+                }
+                catch (MongoAuthenticationException ex)
+                {
+                    AuthenticationExceptionHandler(ex, ConnectionNodes, ConnectionNode, mongoConnKey);
+                }
+                catch (MongoCommandException ex)
+                {
+                    MongoCommandExceptionHandle(ex, ConnectionNodes, ConnectionNode, mongoConnKey);
+                }
+                catch (MongoConnectionException ex)
+                {
+                    MongoConnectionExceptionHandle(ex, ConnectionNodes, ConnectionNode, mongoConnKey);
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandle(ex, ConnectionNodes, ConnectionNode, mongoConnKey);
+                }
+            }
+            return ConnectionNodes;
+        }
+
+
+        /// <summary>
+        ///     Legacy
         ///     获取将Mongodb的服务器在树形控件中展示的TreeNodes
         /// </summary>
         /// <param name="_mongoConnSvrLst"></param>
@@ -176,8 +258,9 @@ namespace MongoGUICtl
                     isConnected = true;
                     //mongoSvr.ReplicaSetName只有在连接后才有效，但是也可以使用Config.ReplsetName
                     ConnectionNode.Text = mongoConnKey;
-                    ConnectionNode.Nodes.Add(GetInstanceNode(mongoConnKey, ref config, mongoSrv, null, mongoSrv,
-                        UserList));
+                    //形成树型菜单
+                    var SingleConnection = GetInstanceNode(mongoConnKey, ref config, mongoSrv, null, mongoSrv, UserList);
+                    ConnectionNode.Nodes.Add(SingleConnection);
                     if (mongoSrv.ReplicaSetName != null)
                     {
                         config = FillReplset(mongoConnKey, mongoSrv, ConnectionNode, UserList, config);
@@ -487,6 +570,7 @@ namespace MongoGUICtl
 
         /// <summary>
         ///     获取实例节点
+        ///     这里将形成左侧的树型目录
         /// </summary>
         /// <param name="mongoConnKey"></param>
         /// <param name="config">由于是结构体，必须ref</param>

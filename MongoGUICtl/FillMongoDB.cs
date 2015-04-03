@@ -10,6 +10,8 @@ using MongoDB.Driver;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Utility;
+using MongoUtility.Basic;
+using Utility = Common.Logic.Utility;
 
 namespace MongoGUICtl
 {
@@ -110,6 +112,49 @@ namespace MongoGUICtl
         #region"展示状态"
 
         /// <summary>
+        ///     
+        /// </summary>
+        /// <param name="trvSvrStatus"></param>
+        /// <param name="_mongoConnClientLst"></param>
+        public static void FillClientStatusToList(ctlTreeViewColumns trvSvrStatus,
+            Dictionary<String, MongoClient> _mongoConnClientLst)
+        {
+            var SrvDocList = new List<BsonDocument>();
+            foreach (var mongoSvrKey in _mongoConnClientLst.Keys)
+            {
+                try
+                {
+                    var mongoClient = _mongoConnClientLst[mongoSvrKey];
+                    if (!RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).Health)
+                    {
+                        continue;
+                    }
+                    //flydreamer提供的代码
+                    // 感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
+                    if (RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
+                    {
+                        var adminDB  = mongoClient.GetDatabase(ConstMgr.DATABASE_NAME_ADMIN);
+                        //Can't Convert IMongoDB To MongoDB
+                        var ServerStatusDoc = CommandHelper.ExecuteMongoDBCommand(CommandHelper.serverStatus_Command, (MongoDatabase)adminDB).Response;
+                        SrvDocList.Add(ServerStatusDoc);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Utility.ExceptionDeal(ex);
+                }
+            }
+            UIHelper.FillDataToTreeView("Server Status", trvSvrStatus, SrvDocList, 0);
+            //打开第一层
+            foreach (TreeNode item in trvSvrStatus.DatatreeView.Nodes)
+            {
+                item.Expand();
+            }
+        }
+
+
+        /// <summary>
+        ///     Legacy:
         ///     Fill Server Status to treeview
         /// </summary>
         /// <param name="trvSvrStatus"></param>

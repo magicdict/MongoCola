@@ -19,6 +19,10 @@ Ver 1.40-rc0  2015/05/01 @ Shanghai China
 5.数据集操作的错误
 X.Legacy对应
 
+
+Legacy问题：
+1.IMongoDatabase -> MongoDatabase 很多功能无法使用
+
 ========================================================================
 
 Ver 1.32  2014/05/01 @ Dalian China

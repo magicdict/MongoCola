@@ -55,7 +55,9 @@ namespace MongoGUIView
                 if (!IsAuto)
                 {
                     //手动刷新
+                    //Lagacy
                     FillMongoDB.FillSrvStatusToList(trvSvrStatus, RuntimeMongoDBContext._mongoConnSvrLst);
+                    //FillMongoDB.FillClientStatusToList(trvSvrStatus, RuntimeMongoDBContext._mongoConnClientLst);
                 }
                 FillMongoDB.FillDataBaseStatusToList(lstDBStatus, RuntimeMongoDBContext._mongoConnSvrLst);
                 FillMongoDB.FillCollectionStatusToList(lstCollectionStatus, RuntimeMongoDBContext._mongoConnSvrLst);
