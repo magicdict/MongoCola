@@ -37,6 +37,17 @@ namespace MongoUtility.Core
         }
 
         /// <summary>
+        ///     CreateMongoClient
+        /// </summary>
+        /// <param name="config"></param>
+        /// <returns></returns>
+        public static MongoClient CreateMongoClient(ref MongoConnectionConfig config)
+        {
+            var masterMongoClient = new MongoClient(CreateMongoClientSettingsByConfig(ref config));
+            return masterMongoClient;
+        }
+
+        /// <summary>
         ///     根据config获得MongoClientSettings,同时更新一些运行时变量
         /// </summary>
         /// <param name="config"></param>
@@ -204,9 +215,14 @@ namespace MongoUtility.Core
         #region"系统状态"
 
         /// <summary>
-        ///     管理中连接列表
+        ///     管理中服务器列表
         /// </summary>
         public static Dictionary<String, MongoServer> _mongoConnSvrLst = new Dictionary<string, MongoServer>();
+
+        /// <summary>
+        ///     管理中客户端列表
+        /// </summary>
+        public static Dictionary<String, MongoClient> _mongoConnClientLst = new Dictionary<string, MongoClient>();
 
         /// <summary>
         ///     管理中服务器实例列表
@@ -408,11 +424,19 @@ namespace MongoUtility.Core
                 var config = configLst[i];
                 try
                 {
+                    //Legacy Server
                     if (_mongoConnSvrLst.ContainsKey(config.ConnectionName))
                     {
                         _mongoConnSvrLst.Remove(config.ConnectionName);
                     }
                     _mongoConnSvrLst.Add(config.ConnectionName, CreateMongoServer(ref config));
+                    //Client
+                    if (_mongoConnClientLst.ContainsKey(config.ConnectionName))
+                    {
+                        _mongoConnClientLst.Remove(config.ConnectionName);
+                    }
+                    _mongoConnClientLst.Add(config.ConnectionName, CreateMongoClient(ref config));
+
                     //更新一些运行时的变量
                     //SystemConfig.config.ConnectionList[config.ConnectionName] = config;
                 }
