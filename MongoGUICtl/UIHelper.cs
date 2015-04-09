@@ -319,18 +319,22 @@ namespace MongoGUICtl
                 catch (MongoAuthenticationException ex)
                 {
                     AuthenticationExceptionHandler(ex, ConnectionNodes, ConnectionNode, mongoConnKey);
+                    ConnectionNodes = null;
                 }
                 catch (MongoCommandException ex)
                 {
                     MongoCommandExceptionHandle(ex, ConnectionNodes, ConnectionNode, mongoConnKey);
+                    ConnectionNodes = null;
                 }
                 catch (MongoConnectionException ex)
                 {
                     MongoConnectionExceptionHandle(ex, ConnectionNodes, ConnectionNode, mongoConnKey);
+                    ConnectionNodes = null;
                 }
                 catch (Exception ex)
                 {
                     ExceptionHandle(ex, ConnectionNodes, ConnectionNode, mongoConnKey);
+                    ConnectionNodes = null;
                 }
                 finally
                 {

@@ -63,8 +63,8 @@ namespace MongoGUICtl
             /// <returns></returns>
             public int Compare(object x, object y)
             {
-                var lstX = (ListViewItem) x;
-                var lstY = (ListViewItem) y;
+                var lstX = (ListViewItem)x;
+                var lstY = (ListViewItem)y;
                 var rtnCompare = 0;
                 switch (CompareMethod)
                 {
@@ -101,7 +101,7 @@ namespace MongoGUICtl
                 }
                 if (Order == SortOrder.Descending)
                 {
-                    rtnCompare = rtnCompare*-1;
+                    rtnCompare = rtnCompare * -1;
                 }
                 return rtnCompare;
             }
@@ -133,7 +133,7 @@ namespace MongoGUICtl
                     // 感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
                     if (RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
                     {
-                        var adminDB  = mongoClient.GetDatabase(ConstMgr.DATABASE_NAME_ADMIN);
+                        var adminDB = mongoClient.GetDatabase(ConstMgr.DATABASE_NAME_ADMIN);
                         //Can't Convert IMongoDB To MongoDB
                         var ServerStatusDoc = CommandHelper.ExecuteMongoDBCommand(CommandHelper.serverStatus_Command, (MongoDatabase)adminDB).Response;
                         SrvDocList.Add(ServerStatusDoc);
@@ -218,50 +218,44 @@ namespace MongoGUICtl
                 StringResource.TextType.DataBase_Status_StorageSize));
             foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)
             {
-                try
+                var mongoSvr = _mongoConnSvrLst[mongoSvrKey];
+                //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
+                if (!RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).Health ||
+                    !RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
                 {
-                    var mongoSvr = _mongoConnSvrLst[mongoSvrKey];
-                    //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                    if (!RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).Health ||
-                        !RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
-                    {
-                        continue;
-                    }
-                    var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
-                    foreach (var strDBName in databaseNameList)
-                    {
-                        var mongoDB = mongoSvr.GetDatabase(strDBName);
-                        var dbStatus = mongoDB.GetStats();
-                        var lst = new ListViewItem(mongoSvrKey + "." + strDBName);
-                        try
-                        {
-                            lst.SubItems.Add(dbStatus.CollectionCount.ToString());
-                        }
-                        catch (Exception)
-                        {
-                            lst.SubItems.Add("0");
-                        }
-                        lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.DataSize));
-                        try
-                        {
-                            //WideTiger:FileSize
-                            lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.FileSize));
-                        }
-                        catch (Exception)
-                        {
-                            lst.SubItems.Add("N/A");
-                        }
-                        lst.SubItems.Add(dbStatus.IndexCount.ToString());
-                        lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.IndexSize));
-                        lst.SubItems.Add(dbStatus.ObjectCount.ToString());
-                        lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.StorageSize));
-                        lstSvr.Items.Add(lst);
-                    }
+                    continue;
                 }
-                catch (Exception ex)
+                var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
+                foreach (var strDBName in databaseNameList)
                 {
-                    Utility.ExceptionDeal(ex);
+                    var mongoDB = mongoSvr.GetDatabase(strDBName);
+                    var dbStatus = mongoDB.GetStats();
+                    var lst = new ListViewItem(mongoSvrKey + "." + strDBName);
+                    try
+                    {
+                        lst.SubItems.Add(dbStatus.CollectionCount.ToString());
+                    }
+                    catch (Exception)
+                    {
+                        lst.SubItems.Add("0");
+                    }
+                    lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.DataSize));
+                    try
+                    {
+                        //WideTiger:FileSize
+                        lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.FileSize));
+                    }
+                    catch (Exception)
+                    {
+                        lst.SubItems.Add("N/A");
+                    }
+                    lst.SubItems.Add(dbStatus.IndexCount.ToString());
+                    lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.IndexSize));
+                    lst.SubItems.Add(dbStatus.ObjectCount.ToString());
+                    lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.StorageSize));
+                    lstSvr.Items.Add(lst);
                 }
+
             }
             lstSvr.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
@@ -324,86 +318,79 @@ namespace MongoGUICtl
             }
             foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)
             {
-                try
+                var mongoSvr = _mongoConnSvrLst[mongoSvrKey];
+                //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
+                if (!RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).Health ||
+                    !RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
                 {
-                    var mongoSvr = _mongoConnSvrLst[mongoSvrKey];
-                    //感谢 魏琼东 的Bug信息,一些命令必须以Admin执行
-                    if (!RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).Health ||
-                        !RuntimeMongoDBContext.GetServerConfigBySvrPath(mongoSvrKey).LoginAsAdmin)
-                    {
-                        continue;
-                    }
-                    var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
-                    foreach (var strDBName in databaseNameList)
-                    {
-                        var mongoDB = mongoSvr.GetDatabase(strDBName);
+                    continue;
+                }
+                var databaseNameList = mongoSvr.GetDatabaseNames().ToList();
+                foreach (var strDBName in databaseNameList)
+                {
+                    var mongoDB = mongoSvr.GetDatabase(strDBName);
 
-                        var colNameList = mongoDB.GetCollectionNames().ToList();
-                        foreach (var strColName in colNameList)
+                    var colNameList = mongoDB.GetCollectionNames().ToList();
+                    foreach (var strColName in colNameList)
+                    {
+                        try
                         {
+                            var CollectionStatus = mongoDB.GetCollection(strColName).GetStats();
+                            var lst = new ListViewItem(mongoSvrKey + "." + strDBName + "." + strColName);
+                            lst.SubItems.Add(CollectionStatus.ObjectCount.ToString());
+                            lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.DataSize));
                             try
                             {
-                                var CollectionStatus = mongoDB.GetCollection(strColName).GetStats();
-                                var lst = new ListViewItem(mongoSvrKey + "." + strDBName + "." + strColName);
-                                lst.SubItems.Add(CollectionStatus.ObjectCount.ToString());
-                                lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.DataSize));
-                                try
-                                {
-                                    //WideTiger:LastExtentSize
-                                    lst.SubItems.Add(
-                                        MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.LastExtentSize));
-                                }
-                                catch (Exception)
-                                {
-                                    lst.SubItems.Add("N/A");
-                                }
+                                //WideTiger:LastExtentSize
+                                lst.SubItems.Add(
+                                    MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.LastExtentSize));
+                            }
+                            catch (Exception)
+                            {
+                                lst.SubItems.Add("N/A");
+                            }
 
-                                lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.StorageSize));
-                                lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.TotalIndexSize));
+                            lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.StorageSize));
+                            lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(CollectionStatus.TotalIndexSize));
 
-                                //2012-3-6
-                                lst.SubItems.Add(CollectionStatus.IsCapped.ToString());
-                                //https://jira.mongodb.org/browse/CSHARP-665
-                                try
-                                {
-                                    //注意：这个MaxDocuments只是在CappedCollection时候有效
-                                    lst.SubItems.Add(CollectionStatus.MaxDocuments.ToString());
-                                }
-                                catch (Exception ex)
-                                {
-                                    //溢出
-                                    lst.SubItems.Add(int.MaxValue.ToString());
-                                    Utility.ExceptionLog(ex);
-                                }
-
-                                lst.SubItems.Add(CollectionStatus.ObjectCount != 0
-                                    ? MongoUtility.Basic.Utility.GetBsonSize((long) CollectionStatus.AverageObjectSize)
-                                    : "0");
-
-                                try
-                                {
-                                    //在某些条件下，这个值会抛出异常，IndexKeyNotFound
-                                    lst.SubItems.Add(CollectionStatus.PaddingFactor.ToString());
-                                }
-                                catch (Exception)
-                                {
-                                    lst.SubItems.Add("0");
-                                }
-                                lstData.Items.Add(lst);
+                            //2012-3-6
+                            lst.SubItems.Add(CollectionStatus.IsCapped.ToString());
+                            //https://jira.mongodb.org/browse/CSHARP-665
+                            try
+                            {
+                                //注意：这个MaxDocuments只是在CappedCollection时候有效
+                                lst.SubItems.Add(CollectionStatus.MaxDocuments.ToString());
                             }
                             catch (Exception ex)
                             {
-                                //throw;
-                                //TODO:排序时候会发生错误，所以暂时不对应
-                                //lstData.Items.Add(new ListViewItem(strColName + "[Exception]"));
-                                Utility.ExceptionDeal(ex);
+                                //溢出
+                                lst.SubItems.Add(int.MaxValue.ToString());
+                                Utility.ExceptionLog(ex);
                             }
+
+                            lst.SubItems.Add(CollectionStatus.ObjectCount != 0
+                                ? MongoUtility.Basic.Utility.GetBsonSize((long)CollectionStatus.AverageObjectSize)
+                                : "0");
+
+                            try
+                            {
+                                //在某些条件下，这个值会抛出异常，IndexKeyNotFound
+                                lst.SubItems.Add(CollectionStatus.PaddingFactor.ToString());
+                            }
+                            catch (Exception)
+                            {
+                                lst.SubItems.Add("0");
+                            }
+                            lstData.Items.Add(lst);
+                        }
+                        catch (Exception ex)
+                        {
+                            //throw;
+                            //TODO:排序时候会发生错误，所以暂时不对应
+                            //lstData.Items.Add(new ListViewItem(strColName + "[Exception]"));
+                            Utility.ExceptionDeal(ex);
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    Utility.ExceptionDeal(ex);
                 }
             }
             lstData.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);

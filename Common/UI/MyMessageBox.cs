@@ -83,7 +83,14 @@ namespace Common.UI
         private static void FormatMsgbox(Form _frmMsgbox, String Title)
         {
             _frmMsgbox.Text = Title;
-            _frmMsgbox.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            try
+            {
+                _frmMsgbox.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            }
+            catch (Exception)
+            {
+                //线程间调用出错的屏蔽
+            }
             _frmMsgbox.Font = new Font("微软雅黑", 9);
         }
 

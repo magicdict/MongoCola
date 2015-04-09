@@ -187,9 +187,22 @@ namespace MongoCola
         /// <param name="e"></param>
         private async void RefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("RefreshToolStripMenuItem_Click" + Thread.CurrentThread.ManagedThreadId);
-            await RefreshConnectionAsync();
+            Debug.WriteLine("RefreshToolStripMenuItem_Click:" + Thread.CurrentThread.ManagedThreadId);
             DisableAllOpr();
+            int result = await RefreshConnectionAsync();
+            RefreshToolStripMenuItem.Enabled = false;
+            RefreshToolStripButton.Enabled = false;
+            if (result == -1)
+            {
+                Debug.WriteLine("Result:Error");
+                trvsrvlst.Nodes.Clear();
+                trvsrvlst.Nodes.Add("丢失与数据库的连接！");
+            }
+            else
+            {
+                RefreshToolStripMenuItem.Enabled = true;
+                RefreshToolStripButton.Enabled = true;
+            }
             statusStripMain.Items[0].Text = !SystemConfig.IsUseDefaultLanguage
                 ? SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Main_StatusBar_Text_Ready)
                 : "Ready";
@@ -201,23 +214,35 @@ namespace MongoCola
         /// <returns></returns>
         private async Task<int> RefreshConnectionAsync()
         {
-            var ConnectionTreeNodes = new List<TreeNode>();
-            await
-                Task.Run(
-                    () =>
-                    {
-                        ConnectionTreeNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst,
-                            SystemConfig.config.ConnectionList);
-                    });
-            ServerStatusCtl.ResetCtl();
-            ServerStatusCtl.RefreshStatus(false);
-            //ServerStatusCtl.RefreshCurrentOpr();
-            trvsrvlst.Nodes.Clear();
-            foreach (var element in ConnectionTreeNodes)
+            try
             {
-                trvsrvlst.Nodes.Add(element);
+                var ConnectionTreeNodes = new List<TreeNode>();
+                await Task.Run(() =>{
+                                ConnectionTreeNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst,
+                                SystemConfig.config.ConnectionList);
+                                  });
+                //如果第一个节点的字节点不为空
+                if (ConnectionTreeNodes != null)
+                {
+                    ServerStatusCtl.ResetCtl();
+                    ServerStatusCtl.RefreshStatus(false);
+                    //ServerStatusCtl.RefreshCurrentOpr();
+                    trvsrvlst.Nodes.Clear();
+                    foreach (var element in ConnectionTreeNodes)
+                    {
+                        trvsrvlst.Nodes.Add(element);
+                    }
+                }
+                else
+                {
+                    return -1;
+                }
+                return 0;
             }
-            return 0;
+            catch (Exception)
+            {
+                return -1;
+            }
         }
 
         /// <summary>

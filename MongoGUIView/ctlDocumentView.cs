@@ -469,7 +469,8 @@ namespace MongoGUIView
                 MyMessageBox.ShowMessage("Error", "_id can't be modify");
                 return;
             }
-            if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(ConstMgr.Array_Mark))
+            if (trvData.DatatreeView.SelectedNode.Parent != null && 
+                trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(ConstMgr.Array_Mark))
             {
                 ElementOp(true, trvData.DatatreeView.SelectedNode, false);
             }

@@ -532,7 +532,14 @@ namespace Common.Logic
         /// <param name="message">消息</param>
         public static void ExceptionDeal(Exception ex, string message)
         {
-            ExceptionDeal(ex, "Exception", message);
+            try
+            {
+                ExceptionDeal(ex, "Exception", message);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         /// <summary>

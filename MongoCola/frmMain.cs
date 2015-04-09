@@ -514,28 +514,36 @@ namespace MongoCola
         /// </summary>
         private void ViewDataObj()
         {
-            switch (RuntimeMongoDBContext.SelectTagType)
+            try
             {
-                case ConstMgr.USER_LIST_TAG:
-                    MongoUtility.Basic.Utility.InitDBUser(RuntimeMongoDBContext.GetCurrentDataBase());
-                    ViewDataRecord();
-                    break;
-                case ConstMgr.GRID_FILE_SYSTEM_TAG:
-                    MongoUtility.Basic.Utility.InitGFS(RuntimeMongoDBContext.GetCurrentDataBase());
-                    ViewDataRecord();
-                    break;
-                case ConstMgr.JAVASCRIPT_TAG:
-                    MongoUtility.Basic.Utility.InitJavascript(RuntimeMongoDBContext.GetCurrentDataBase());
-                    break;
-                case ConstMgr.JAVASCRIPT_DOC_TAG:
-                    ViewJavascript();
-                    break;
-                case ConstMgr.COLLECTION_TAG:
-                case ConstMgr.DOCUMENT_TAG:
-                    ViewDataRecord();
-                    break;
-                default:
-                    break;
+                switch (RuntimeMongoDBContext.SelectTagType)
+                {
+                    case ConstMgr.USER_LIST_TAG:
+                        MongoUtility.Basic.Utility.InitDBUser(RuntimeMongoDBContext.GetCurrentDataBase());
+                        ViewDataRecord();
+                        break;
+                    case ConstMgr.GRID_FILE_SYSTEM_TAG:
+                        MongoUtility.Basic.Utility.InitGFS(RuntimeMongoDBContext.GetCurrentDataBase());
+                        ViewDataRecord();
+                        break;
+                    case ConstMgr.JAVASCRIPT_TAG:
+                        MongoUtility.Basic.Utility.InitJavascript(RuntimeMongoDBContext.GetCurrentDataBase());
+                        break;
+                    case ConstMgr.JAVASCRIPT_DOC_TAG:
+                        ViewJavascript();
+                        break;
+                    case ConstMgr.COLLECTION_TAG:
+                    case ConstMgr.DOCUMENT_TAG:
+                        ViewDataRecord();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                trvsrvlst.Nodes.Clear();
+                trvsrvlst.Nodes.Add("丢失与数据库的连接！");
             }
         }
 

@@ -132,10 +132,10 @@ namespace MongoGUIView
                 CloseStripButton.Text =
                     configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
-            refreshTimer.Interval = configuration.RefreshStatusTimer*1000;
-            refreshTimer.Tick += (x, y) => RefreshStatus(true);
+            //refreshTimer.Interval = configuration.RefreshStatusTimer*1000;
+            //refreshTimer.Tick += (x, y) => RefreshStatus(false);
             //
-            ShortTimer.Interval = configuration.RefreshStatusTimer*1000;
+            //ShortTimer.Interval = configuration.RefreshStatusTimer*1000;
             //ShortTimer.Tick += (x, y) => RefreshCurrentOpr();
 
             SetEnable(false);
