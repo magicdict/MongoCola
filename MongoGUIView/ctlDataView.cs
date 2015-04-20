@@ -367,7 +367,7 @@ namespace MongoGUIView
         private void clear()
         {
             lstData.Clear();
-            txtData.Text = String.Empty;
+            txtData.Text = string.Empty;
             trvData.DatatreeView.Nodes.Clear();
             lstData.ContextMenuStrip = null;
             trvData.DatatreeView.ContextMenuStrip = null;
@@ -413,7 +413,7 @@ namespace MongoGUIView
             ViewHelper.FillDataToControl(datalist, _dataShower, mDataViewInfo);
             InitControlsEnable();
             SetDataNav();
-            if (mDataViewInfo.Query != String.Empty)
+            if (mDataViewInfo.Query != string.Empty)
             {
                 txtQuery.Text = mDataViewInfo.Query;
                 if (!tabDataShower.TabPages.Contains(tabQuery))

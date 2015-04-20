@@ -6,7 +6,7 @@ namespace Common.UI
 {
     public partial class ctlFilePicker : UserControl
     {
-        public delegate void PathChangedHandler(String FilePath);
+        public delegate void PathChangedHandler(string FilePath);
 
         /// <summary>
         ///     Dialog Type
@@ -20,8 +20,8 @@ namespace Common.UI
 
         public static GUIConfig guiconfig;
         private DialogType _dialogType = DialogType.Directory;
-        private String _FileFilter = String.Empty;
-        private String _FileName = String.Empty;
+        private string _FileFilter = string.Empty;
+        private string _FileName = string.Empty;
 
         public ctlFilePicker()
         {
@@ -31,7 +31,7 @@ namespace Common.UI
         /// <summary>
         ///     文件过滤
         /// </summary>
-        public String FileFilter
+        public string FileFilter
         {
             get { return _FileFilter; }
             set { _FileFilter = value; }
@@ -40,7 +40,7 @@ namespace Common.UI
         /// <summary>
         ///     文件名称
         /// </summary>
-        public String FileName
+        public string FileName
         {
             get { return _FileName; }
             set { _FileName = value; }
@@ -49,7 +49,7 @@ namespace Common.UI
         /// <summary>
         ///     标题
         /// </summary>
-        public String Title
+        public string Title
         {
             get { return lblTitle.Text; }
             set
@@ -72,7 +72,7 @@ namespace Common.UI
         /// <summary>
         ///     选中路径
         /// </summary>
-        public String SelectedPathOrFileName
+        public string SelectedPathOrFileName
         {
             get { return txtPathName.Text; }
             set { txtPathName.Text = value; }
@@ -91,7 +91,7 @@ namespace Common.UI
             {
                 case DialogType.OpenFile:
                     var openFile = new OpenFileDialog {FileName = _FileName};
-                    if (_FileFilter != String.Empty)
+                    if (_FileFilter != string.Empty)
                     {
                         openFile.Filter = _FileFilter;
                     }
@@ -102,7 +102,7 @@ namespace Common.UI
                     break;
                 case DialogType.SaveFile:
                     var saveFile = new SaveFileDialog {FileName = _FileName};
-                    if (_FileFilter != String.Empty)
+                    if (_FileFilter != string.Empty)
                     {
                         saveFile.Filter = _FileFilter;
                     }
@@ -132,7 +132,7 @@ namespace Common.UI
         /// <param name="e"></param>
         private void cmdClearPath_Click(object sender, EventArgs e)
         {
-            txtPathName.Text = String.Empty;
+            txtPathName.Text = string.Empty;
             if (PathChanged != null)
             {
                 PathChanged(txtPathName.Text);

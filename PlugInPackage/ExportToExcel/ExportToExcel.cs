@@ -45,7 +45,7 @@ namespace PlugInPackage.ExportToExcel
         /// </summary>
         /// <param name="dataList"></param>
         /// <param name="filename"></param>
-        private static void Export(List<BsonDocument> dataList, String filename)
+        private static void Export(List<BsonDocument> dataList, string filename)
         {
             var Schame = Utility.GetCollectionSchame(ProcessCollection);
             dynamic excelObj = Interaction.CreateObject("Excel.Application");

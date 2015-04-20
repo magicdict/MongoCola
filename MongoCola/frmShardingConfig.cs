@@ -17,7 +17,7 @@ namespace MongoCola
         /// <summary>
         ///     Tag和Set的字典
         /// </summary>
-        private readonly Dictionary<String, String> TagSet = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> TagSet = new Dictionary<string, string>();
 
         /// <summary>
         ///     Mongo服务器
@@ -124,7 +124,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdAddHost_Click(object sender, EventArgs e)
         {
-            var strHost = String.Empty;
+            var strHost = string.Empty;
             strHost = txtReplHost.Text;
             if (NumReplPort.Value != 0)
             {
@@ -155,8 +155,8 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdAddSharding_Click(object sender, EventArgs e)
         {
-            var lstAddress = new List<String>();
-            foreach (String item in lstHost.Items)
+            var lstAddress = new List<string>();
+            foreach (string item in lstHost.Items)
             {
                 lstAddress.Add(item.Trim());
             }
@@ -169,7 +169,7 @@ namespace MongoCola
             }
             else
             {
-                Result = CommandHelper.AddSharding(_prmSvr, txtReplsetName.Text, lstAddress, String.Empty, 0);
+                Result = CommandHelper.AddSharding(_prmSvr, txtReplsetName.Text, lstAddress, string.Empty, 0);
             }
             Resultlst.Add(Result);
             MyMessageBox.ShowMessage("Add Sharding", "Result:" + (Result.Ok ? "OK" : "Fail"),
@@ -193,7 +193,7 @@ namespace MongoCola
             {
                 var mongoDB = _prmSvr.GetDatabase(cmbDataBase.Text);
                 cmbCollection.Items.Clear();
-                cmbCollection.Text = String.Empty;
+                cmbCollection.Text = string.Empty;
                 foreach (var item in mongoDB.GetCollectionNames())
                 {
                     cmbCollection.Items.Add(item);
@@ -217,7 +217,7 @@ namespace MongoCola
             {
                 var mongoDB = _prmSvr.GetDatabase(cmbShardKeyDB.Text);
                 cmbShardKeyCol.Items.Clear();
-                cmbShardKeyCol.Text = String.Empty;
+                cmbShardKeyCol.Text = string.Empty;
                 foreach (var item in mongoDB.GetCollectionNames())
                 {
                     cmbShardKeyCol.Items.Add(item);
@@ -240,7 +240,7 @@ namespace MongoCola
             {
                 var mongoDB = _prmSvr.GetDatabase(cmbDataBase.Text);
                 cmbIndexList.Items.Clear();
-                cmbIndexList.Text = String.Empty;
+                cmbIndexList.Text = string.Empty;
                 //Sharding Must Index
                 foreach (var Indexitem in mongoDB.GetCollection(cmbCollection.Text).GetIndexes())
                 {
@@ -313,7 +313,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdRemoveSharding_Click(object sender, EventArgs e)
         {
-            foreach (String item in lstSharding.SelectedItems)
+            foreach (string item in lstSharding.SelectedItems)
             {
                 var Resultlst = new List<CommandResult> {CommandHelper.RemoveSharding(_prmSvr, item)};
                 MyMessageBox.ShowMessage("Remove Sharding", "Result",

@@ -89,7 +89,7 @@ namespace MongoUtility.Security
         ///     Remove A User From Admin database
         /// </summary>
         /// <param name="strUser">UserName</param>
-        public static void RemoveUserFromSystem(String strUser, Boolean IsAdmin)
+        public static void RemoveUserFromSystem(string strUser, Boolean IsAdmin)
         {
             MongoCollection users;
             users = IsAdmin
@@ -104,9 +104,9 @@ namespace MongoUtility.Security
         ///     获得用户当前角色
         /// </summary>
         /// <returns></returns>
-        public static List<String> GetCurrentDBRoles(String ConnectionName, String DBName)
+        public static List<string> GetCurrentDBRoles(string ConnectionName, string DBName)
         {
-            var Roles = new List<String>();
+            var Roles = new List<string>();
 //			foreach (BsonValue item in MongoDbHelper._mongoUserLst[ConnectionName].GetRolesByDBName(DBName)) {
 //				Roles.Add(item.ToString());
 //			}

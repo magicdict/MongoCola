@@ -59,7 +59,7 @@ namespace MongoGUICtl
         /// <summary>
         ///     键名称
         /// </summary>
-        public String KeyName
+        public string KeyName
         {
             get { return cmbKeyName.Text; }
         }

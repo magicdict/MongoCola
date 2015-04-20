@@ -155,8 +155,8 @@ namespace MongoGUICtl
         /// <param name="_mongoConnClientLst"></param>
         /// <param name="_mongoConConfigLst"></param>
         /// <returns></returns>
-        public static List<TreeNode> GetConnectionNodes(Dictionary<String, MongoClient> _mongoConnClientLst,
-            Dictionary<String, MongoConnectionConfig> _mongoConConfigLst)
+        public static List<TreeNode> GetConnectionNodes(Dictionary<string, MongoClient> _mongoConnClientLst,
+            Dictionary<string, MongoConnectionConfig> _mongoConConfigLst)
         {
             var ConnectionNodes = new List<TreeNode>();
             foreach (var mongoConnKey in _mongoConnClientLst.Keys)
@@ -236,8 +236,8 @@ namespace MongoGUICtl
         /// <param name="_mongoConnSvrLst"></param>
         /// <param name="_mongoConConfigLst"></param>
         /// <returns></returns>
-        public static List<TreeNode> GetConnectionNodes(Dictionary<String, MongoServer> _mongoConnSvrLst,
-            Dictionary<String, MongoConnectionConfig> _mongoConConfigLst)
+        public static List<TreeNode> GetConnectionNodes(Dictionary<string, MongoServer> _mongoConnSvrLst,
+            Dictionary<string, MongoConnectionConfig> _mongoConConfigLst)
         {
             var ConnectionNodes = new List<TreeNode>();
             foreach (var mongoConnKey in _mongoConnSvrLst.Keys)
@@ -389,7 +389,7 @@ namespace MongoGUICtl
                 };
                 var strHostList = lst.Value;
                 var strAddress = strHostList.Split("/".ToCharArray());
-                String strAddresslst;
+                string strAddresslst;
                 if (strAddress.Length == 2)
                 {
                     //#1  replset/host:port,host:port
@@ -583,7 +583,7 @@ namespace MongoGUICtl
         /// <param name="mServer"></param>
         /// <param name="UserList"></param>
         /// <returns></returns>
-        private static TreeNode GetInstanceNode(String mongoConnKey,
+        private static TreeNode GetInstanceNode(string mongoConnKey,
             ref MongoConnectionConfig config,
             MongoServer mongoConn,
             MongoServerInstance mMasterServerInstace,
@@ -599,14 +599,14 @@ namespace MongoGUICtl
             svrInstanceNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
             svrInstanceNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
             svrInstanceNode.Text = isReplsetMasterServer ? "Connection" : "Server[" + mMasterServerInstace.Address + "]";
-            if (!String.IsNullOrEmpty(config.UserName) & (!String.IsNullOrEmpty(config.Password)))
+            if (!string.IsNullOrEmpty(config.UserName) & (!string.IsNullOrEmpty(config.Password)))
             {
                 //是否是认证模式，应该取决于服务器！
                 config.AuthMode = true;
             }
             //获取ReadOnly
             config.IsReadOnly = false;
-            if (!String.IsNullOrEmpty(config.DataBaseName))
+            if (!string.IsNullOrEmpty(config.DataBaseName))
             {
                 //单数据库模式
                 var mongoSingleDbNode = isReplsetMasterServer

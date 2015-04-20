@@ -57,7 +57,7 @@ namespace MongoUtility.Core
         {
             //修改获得数据实例的方法
             var mongoClientSetting = new MongoClientSettings();
-            if (String.IsNullOrEmpty(config.ConnectionString))
+            if (string.IsNullOrEmpty(config.ConnectionString))
             {
                 mongoClientSetting.ConnectionMode = ConnectionMode.Direct;
                 SetReadPreferenceWriteConcern(mongoClientSetting, config);
@@ -82,8 +82,8 @@ namespace MongoUtility.Core
                 //                    mongoClientSetting.WaitQueueSize = SystemConfig.configHelperInstance.WaitQueueSize;
                 //                }
                 //运行时LoginAsAdmin的设定
-                config.LoginAsAdmin = (config.DataBaseName == String.Empty);
-                if (!(String.IsNullOrEmpty(config.UserName) || String.IsNullOrEmpty(config.Password)))
+                config.LoginAsAdmin = (config.DataBaseName == string.Empty);
+                if (!(string.IsNullOrEmpty(config.UserName) || string.IsNullOrEmpty(config.Password)))
                 {
                     //认证的设定:注意，这里的密码是明文
                     if (string.IsNullOrEmpty(config.DataBaseName))
@@ -103,7 +103,7 @@ namespace MongoUtility.Core
                         };
                     }
                 }
-                if (config.ReplSetName != String.Empty)
+                if (config.ReplSetName != string.Empty)
                 {
                     mongoClientSetting.ReplicaSetName = config.ReplSetName;
                     config.ServerRole = MongoConnectionConfig.SvrRoleType.ReplsetSvr;
@@ -217,29 +217,29 @@ namespace MongoUtility.Core
         /// <summary>
         ///     管理中服务器列表
         /// </summary>
-        public static Dictionary<String, MongoServer> _mongoConnSvrLst = new Dictionary<string, MongoServer>();
+        public static Dictionary<string, MongoServer> _mongoConnSvrLst = new Dictionary<string, MongoServer>();
 
         /// <summary>
         ///     管理中客户端列表
         /// </summary>
-        public static Dictionary<String, MongoClient> _mongoConnClientLst = new Dictionary<string, MongoClient>();
+        public static Dictionary<string, MongoClient> _mongoConnClientLst = new Dictionary<string, MongoClient>();
 
         /// <summary>
         ///     管理中服务器实例列表
         /// </summary>
-        public static Dictionary<String, MongoServerInstance> _mongoInstanceLst =
+        public static Dictionary<string, MongoServerInstance> _mongoInstanceLst =
             new Dictionary<string, MongoServerInstance>();
 
         /// <summary>
         ///     连接配置列表(管理用）
         /// </summary>
-        public static Dictionary<String, MongoConnectionConfig> _mongoConnectionConfigList =
+        public static Dictionary<string, MongoConnectionConfig> _mongoConnectionConfigList =
             new Dictionary<string, MongoConnectionConfig>();
 
         /// <summary>
         ///     用户列表
         /// </summary>
-        public static Dictionary<String, EachDatabaseUser> _mongoUserLst = new Dictionary<string, EachDatabaseUser>();
+        public static Dictionary<string, EachDatabaseUser> _mongoUserLst = new Dictionary<string, EachDatabaseUser>();
 
         /// <summary>
         ///     获得当前服务器
@@ -325,8 +325,8 @@ namespace MongoUtility.Core
         /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
         /// <returns></returns>
         /// <param name="_mongoConnSvrLst"></param>
-        public static MongoServer GetMongoServerBySvrPath(String strObjTag,
-            Dictionary<String, MongoServer> _mongoConnSvrLst)
+        public static MongoServer GetMongoServerBySvrPath(string strObjTag,
+            Dictionary<string, MongoServer> _mongoConnSvrLst)
         {
             var strSvrPath = Utility.GetTagData(strObjTag);
             var strPath = strSvrPath.Split("/".ToCharArray());
@@ -346,7 +346,7 @@ namespace MongoUtility.Core
                     return _mongoConnSvrLst[strPath[0]];
                 }
                 //[Tag:Connection/Host@Port/DBName/Collection]
-                var strInstKey = String.Empty;
+                var strInstKey = string.Empty;
                 strInstKey = strPath[(int) EnumMgr.PathLv.ConnectionLv] + "/" + strPath[(int) EnumMgr.PathLv.InstanceLv];
                 if (_mongoInstanceLst.ContainsKey(strInstKey))
                 {
@@ -362,7 +362,7 @@ namespace MongoUtility.Core
         /// </summary>
         /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
         /// <returns></returns>
-        public static MongoDatabase GetMongoDBBySvrPath(String strObjTag, MongoServer mongoSvr)
+        public static MongoDatabase GetMongoDBBySvrPath(string strObjTag, MongoServer mongoSvr)
         {
             MongoDatabase rtnMongoDB = null;
             if (mongoSvr != null)
@@ -382,7 +382,7 @@ namespace MongoUtility.Core
         /// </summary>
         /// <param name="strObjTag">[Tag:Connection/Host@Port/DBName/Collection]</param>
         /// <returns></returns>
-        public static MongoCollection GetMongoCollectionBySvrPath(String strObjTag, MongoDatabase mongoDB)
+        public static MongoCollection GetMongoCollectionBySvrPath(string strObjTag, MongoDatabase mongoDB)
         {
             MongoCollection rtnMongoCollection = null;
             if (mongoDB != null)
@@ -452,7 +452,7 @@ namespace MongoUtility.Core
         /// </summary>
         /// <param name="ConnectionName"></param>
         /// <returns></returns>
-        public static MongoServerAddress GetMongoSvrAddrByConnectionName(String ConnectionName)
+        public static MongoServerAddress GetMongoSvrAddrByConnectionName(string ConnectionName)
         {
             MongoServerAddress mongosrvAddr = null;
             if (_mongoConnectionConfigList.ContainsKey(ConnectionName))

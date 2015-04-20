@@ -14,7 +14,7 @@ namespace Common.UI
         /// <summary>
         ///     Set Text
         /// </summary>
-        internal void SetText(String OK)
+        internal void SetText(string OK)
         {
             cmdOK.Text = OK;
         }

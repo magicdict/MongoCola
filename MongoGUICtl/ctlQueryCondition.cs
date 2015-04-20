@@ -8,7 +8,7 @@ namespace MongoGUICtl
 {
     public partial class ctlQueryCondition : UserControl
     {
-        public List<String> ColumnList;
+        public List<string> ColumnList;
 
         public ctlQueryCondition()
         {
@@ -46,7 +46,7 @@ namespace MongoGUICtl
             }
         }
 
-        public void Init(List<String> ColumnList)
+        public void Init(List<string> ColumnList)
         {
             cmbStartMark.Items.Add(" ");
             cmbStartMark.Items.Add("(");

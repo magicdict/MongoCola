@@ -403,21 +403,21 @@ namespace ResourceLib.Utility
         /// <summary>
         ///     国际化文字字典
         /// </summary>
-        private readonly Dictionary<String, String> _stringDic = new Dictionary<String, String>();
+        private readonly Dictionary<string, string> _stringDic = new Dictionary<string, string>();
 
         /// <summary>
         ///     语种
         /// </summary>
-        public String LanguageType = String.Empty;
+        public string LanguageType = string.Empty;
 
         /// <summary>
         ///     字符资源
         /// </summary>
         /// <param name="LanguageFileName">当前语言文件</param>
-        public void InitLanguage(String LanguageFileName)
+        public void InitLanguage(string LanguageFileName)
         {
-            var tag = String.Empty;
-            var text = String.Empty;
+            var tag = string.Empty;
+            var text = string.Empty;
             var reader = new XmlTextReader(LanguageFileName);
             _stringDic.Clear();
             while (reader.Read())
@@ -433,7 +433,7 @@ namespace ResourceLib.Utility
                         }
                         tag = reader.Name.Trim();
                         text = reader.ReadInnerXml().Trim();
-                        if (!String.IsNullOrEmpty(tag) && !String.IsNullOrEmpty(text))
+                        if (!string.IsNullOrEmpty(tag) && !string.IsNullOrEmpty(text))
                         {
                             _stringDic.Add(tag, text);
                         }
@@ -449,11 +449,11 @@ namespace ResourceLib.Utility
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public String GetText(TextType tag)
+        public string GetText(TextType tag)
         {
-            var strText = String.Empty;
+            var strText = string.Empty;
             _stringDic.TryGetValue(tag.ToString(), out strText);
-            strText = String.IsNullOrEmpty(strText) ? tag.ToString() : strText.Replace("&amp;", "&");
+            strText = string.IsNullOrEmpty(strText) ? tag.ToString() : strText.Replace("&amp;", "&");
             return strText;
         }
     }

@@ -37,7 +37,7 @@ namespace PlugInPackage.ImportAccessDB
         /// <param name="e"></param>
         private void btnImport_Click(object sender, EventArgs e)
         {
-            var Table = new List<String>();
+            var Table = new List<string>();
             foreach (var item in chkTable.CheckedItems)
             {
                 Table.Add(item.ToString());

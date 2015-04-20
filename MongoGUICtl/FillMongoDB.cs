@@ -117,7 +117,7 @@ namespace MongoGUICtl
         /// <param name="trvSvrStatus"></param>
         /// <param name="_mongoConnClientLst"></param>
         public static void FillClientStatusToList(ctlTreeViewColumns trvSvrStatus,
-            Dictionary<String, MongoClient> _mongoConnClientLst)
+            Dictionary<string, MongoClient> _mongoConnClientLst)
         {
             var SrvDocList = new List<BsonDocument>();
             foreach (var mongoSvrKey in _mongoConnClientLst.Keys)
@@ -159,7 +159,7 @@ namespace MongoGUICtl
         /// </summary>
         /// <param name="trvSvrStatus"></param>
         public static void FillSrvStatusToList(ctlTreeViewColumns trvSvrStatus,
-            Dictionary<String, MongoServer> _mongoConnSvrLst)
+            Dictionary<string, MongoServer> _mongoConnSvrLst)
         {
             var SrvDocList = new List<BsonDocument>();
             foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)
@@ -197,7 +197,7 @@ namespace MongoGUICtl
         ///     Fill Database status to ListView
         /// </summary>
         /// <param name="lstSvr"></param>
-        public static void FillDataBaseStatusToList(ListView lstSvr, Dictionary<String, MongoServer> _mongoConnSvrLst)
+        public static void FillDataBaseStatusToList(ListView lstSvr, Dictionary<string, MongoServer> _mongoConnSvrLst)
         {
             lstSvr.Clear();
             lstSvr.Columns.Add(configuration.guiConfig.GetText("DataBaseName",
@@ -264,7 +264,7 @@ namespace MongoGUICtl
         ///     fill Collection status to ListView
         /// </summary>
         /// <param name="lstData"></param>
-        public static void FillCollectionStatusToList(ListView lstData, Dictionary<String, MongoServer> _mongoConnSvrLst)
+        public static void FillCollectionStatusToList(ListView lstData, Dictionary<string, MongoServer> _mongoConnSvrLst)
         {
             lstData.Clear();
 
@@ -401,7 +401,7 @@ namespace MongoGUICtl
         /// </summary>
         /// <param name="lstSrvOpr"></param>
         public static void FillCurrentOprToList(ListView lstSrvOpr,
-            Dictionary<String, MongoServer> _mongoConnSvrLst)
+            Dictionary<string, MongoServer> _mongoConnSvrLst)
         {
             lstSrvOpr.Clear();
             lstSrvOpr.Columns.Add("Name");

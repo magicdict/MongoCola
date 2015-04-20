@@ -61,9 +61,9 @@ namespace MongoUtility.Basic
         ///     get current Server Information
         /// </summary>
         /// <returns></returns>
-        public static String GetCurrentSvrInfo(MongoServer mongosvr)
+        public static string GetCurrentSvrInfo(MongoServer mongosvr)
         {
-            var rtnSvrInfo = String.Empty;
+            var rtnSvrInfo = string.Empty;
             rtnSvrInfo = "IsArbiter：" + mongosvr.Instance.IsArbiter + Environment.NewLine;
             rtnSvrInfo += "IsPrimary：" + mongosvr.Instance.IsPrimary + Environment.NewLine;
             rtnSvrInfo += "IsSecondary：" + mongosvr.Instance.IsSecondary + Environment.NewLine;
@@ -83,7 +83,7 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <remarks>http://www.mongodb.org/display/DOCS/Connections</remarks>
         /// <param name="config"></param>
-        public static String FillConfigWithConnectionString(ref MongoConnectionConfig config)
+        public static string FillConfigWithConnectionString(ref MongoConnectionConfig config)
         {
             var connectionString = config.ConnectionString;
             //mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
@@ -111,9 +111,9 @@ namespace MongoUtility.Basic
                 config.ReplSetName = mongourl.ReplicaSetName;
                 foreach (var item in mongourl.Servers)
                 {
-                    config.ReplsetList.Add(item.Host + (item.Port == 0 ? String.Empty : ":" + item.Port));
+                    config.ReplsetList.Add(item.Host + (item.Port == 0 ? string.Empty : ":" + item.Port));
                 }
-                return String.Empty;
+                return string.Empty;
             }
             catch (FormatException ex)
             {

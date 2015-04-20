@@ -362,7 +362,7 @@ namespace MongoGUIView
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
-                var StrErrormsg = String.Empty;
+                var StrErrormsg = string.Empty;
                 if (tabDataShower.SelectedTab == tabTableView)
                 {
                     //lstData
@@ -374,7 +374,7 @@ namespace MongoGUIView
                         {
                             var Result = OperationHelper.DropDocument(RuntimeMongoDBContext.GetCurrentCollection(),
                                 item.Tag);
-                            if (!String.IsNullOrEmpty(Result))
+                            if (!string.IsNullOrEmpty(Result))
                             {
                                 StrErrormsg = "Delete Error Key is:" + item.Tag;
                                 MyMessageBox.ShowMessage("Delete Error", StrErrormsg, Result, true);
@@ -393,7 +393,7 @@ namespace MongoGUIView
                     {
                         var Result = OperationHelper.DropDocument(RuntimeMongoDBContext.GetCurrentCollection(),
                             trvData.DatatreeView.SelectedNode.Tag);
-                        if (!String.IsNullOrEmpty(Result))
+                        if (!string.IsNullOrEmpty(Result))
                         {
                             StrErrormsg = "Delete Error Key is:" + trvData.DatatreeView.SelectedNode.Tag;
                             MyMessageBox.ShowMessage("Delete Error", StrErrormsg, Result, true);
@@ -518,7 +518,7 @@ namespace MongoGUIView
             else
             {
                 var PasteMessage = ElementHelper.PasteElement(trvData.DatatreeView.SelectedNode.FullPath, null, null);
-                if (String.IsNullOrEmpty(PasteMessage))
+                if (string.IsNullOrEmpty(PasteMessage))
                 {
                     //GetCurrentDocument()的第一个元素是ID
                     UIHelper.AddBsonDocToTreeNode(trvData.DatatreeView.SelectedNode,

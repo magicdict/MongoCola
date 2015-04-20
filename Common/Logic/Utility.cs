@@ -69,7 +69,7 @@ namespace Common.Logic
         /// <returns></returns>
         public static bool GetExcelBooleanValue(dynamic Cell)
         {
-            return !String.IsNullOrEmpty(Cell.Text);
+            return !string.IsNullOrEmpty(Cell.Text);
         }
 
         #endregion
@@ -171,7 +171,7 @@ namespace Common.Logic
         /// </summary>
         /// <param name="saveFilename"></param>
         /// <param name="ResFilename"></param>
-        public static void getResource(String saveFilename, String ResFilename)
+        public static void getResource(string saveFilename, string ResFilename)
         {
             var asm = Assembly.GetExecutingAssembly();
             if (File.Exists(saveFilename))
@@ -474,27 +474,27 @@ namespace Common.Logic
         /// <summary>
         ///     Excel文件选择过滤器
         /// </summary>
-        public const String ExcelFilter = "Excel File(*.xls)|*.xls|*.*(All Files)|*.*";
+        public const string ExcelFilter = "Excel File(*.xls)|*.xls|*.*(All Files)|*.*";
 
         /// <summary>
         ///     Txt文件选择过滤器
         /// </summary>
-        public const String TxtFilter = "Plan Text File(*.txt)|*.txt|*.*(All Files)|*.*";
+        public const string TxtFilter = "Plan Text File(*.txt)|*.txt|*.*(All Files)|*.*";
 
         /// <summary>
         ///     LOG文件选择过滤器
         /// </summary>
-        public const String LogFilter = "Log File(*.log)|*.log|*.*(All Files)|*.*";
+        public const string LogFilter = "Log File(*.log)|*.log|*.*(All Files)|*.*";
 
         /// <summary>
         ///     MDB文件选择过滤器
         /// </summary>
-        public const String MdbFilter = "Access File(*.mdb)|*.mdb|*.*(All Files)|*.*";
+        public const string MdbFilter = "Access File(*.mdb)|*.mdb|*.*(All Files)|*.*";
 
         /// <summary>
         ///     Conf文件选择过滤器
         /// </summary>
-        public const String ConfFilter = "Config File(*.conf)|*.conf|*.*(All Files)|*.*";
+        public const string ConfFilter = "Config File(*.conf)|*.conf|*.*(All Files)|*.*";
 
         /// <summary>
         ///     选择文件夹
@@ -551,7 +551,7 @@ namespace Common.Logic
         public static void ExceptionDeal(Exception ex, string Title, string Message)
         {
             var ExceptionString = string.Empty;
-            if (!String.IsNullOrEmpty(ExceptionAppendInfo))
+            if (!string.IsNullOrEmpty(ExceptionAppendInfo))
                 ExceptionString = ExceptionAppendInfo;
             ExceptionString += ex.ToString();
             MyMessageBox.ShowMessage(Title, Message, ExceptionString, true);

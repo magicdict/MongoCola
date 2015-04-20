@@ -14,7 +14,7 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     TempFileFolder
         /// </summary>
-        public const String TempFileFolder = "TempFile";
+        public const string TempFileFolder = "TempFile";
 
         #region"GFS操作"
 
@@ -62,7 +62,7 @@ namespace MongoUtility.Basic
         ///     Save And Open String As File
         /// </summary>
         /// <param name="strJson"></param>
-        public static void SaveAndOpenStringAsFile(String strJson)
+        public static void SaveAndOpenStringAsFile(string strJson)
         {
             if (!Directory.Exists(TempFileFolder))
             {
@@ -84,7 +84,7 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <param name="strRemoteFileName"></param>
         /// <param name="mongoDB"></param>
-        public static void OpenFile(String strRemoteFileName, MongoDatabase mongoDB)
+        public static void OpenFile(string strRemoteFileName, MongoDatabase mongoDB)
         {
             var gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
 
@@ -117,7 +117,7 @@ namespace MongoUtility.Basic
         /// <param name="strLocalFileName"></param>
         /// <param name="strRemoteFileName"></param>
         /// <param name="mongoDB"></param>
-        public static void DownloadFile(String strLocalFileName, String strRemoteFileName, MongoDatabase mongoDB)
+        public static void DownloadFile(string strLocalFileName, string strRemoteFileName, MongoDatabase mongoDB)
         {
             var gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
             gfs.Download(strLocalFileName, strRemoteFileName);
@@ -130,10 +130,10 @@ namespace MongoUtility.Basic
         /// <param name="strFileName"></param>
         /// <param name="Option"></param>
         /// <param name="mongoDB"></param>
-        public static UploadResult UpLoadFile(String strFileName, UpLoadFileOption Option, MongoDatabase mongoDB)
+        public static UploadResult UpLoadFile(string strFileName, UpLoadFileOption Option, MongoDatabase mongoDB)
         {
             var gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
-            var RemoteName = String.Empty;
+            var RemoteName = string.Empty;
             if (Option.FileNameOpt == enumGFSFileName.Filename)
             {
                 RemoteName = new FileInfo(strFileName).Name;
@@ -190,7 +190,7 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <param name="strFileName"></param>
         /// <param name="mongoDB"></param>
-        public static void DelFile(String strFileName, MongoDatabase mongoDB)
+        public static void DelFile(string strFileName, MongoDatabase mongoDB)
         {
             var gfs = mongoDB.GetGridFS(new MongoGridFSSettings());
             gfs.Delete(strFileName);

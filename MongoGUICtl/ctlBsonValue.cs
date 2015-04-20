@@ -39,7 +39,7 @@ namespace MongoGUICtl
             NumberPick.Maximum = Int32.MaxValue;
 
             txtBsonValue.Visible = true;
-            txtBsonValue.Text = String.Empty;
+            txtBsonValue.Text = string.Empty;
             radTrue.Visible = false;
             radFalse.Visible = false;
             radFalse.Checked = true;
@@ -90,7 +90,7 @@ namespace MongoGUICtl
         public void setValue(BsonValue value)
         {
             txtBsonValue.Visible = false;
-            txtBsonValue.Text = String.Empty;
+            txtBsonValue.Text = string.Empty;
             txtBsonValue.ReadOnly = false;
             radTrue.Visible = false;
             radFalse.Visible = false;
@@ -167,7 +167,7 @@ namespace MongoGUICtl
             switch (cmbDataType.SelectedIndex)
             {
                 case 0:
-                    setValue(new BsonString(String.Empty));
+                    setValue(new BsonString(string.Empty));
                     break;
                 case 1:
                     setValue(new BsonInt32(0));

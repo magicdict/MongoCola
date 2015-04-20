@@ -26,8 +26,8 @@ namespace SystemUtility.Config
         /// <summary>
         ///     连接配置列表(管理用）
         /// </summary>
-        [XmlIgnore] public Dictionary<String, MongoConnectionConfig> ConnectionList =
-            new Dictionary<String, MongoConnectionConfig>();
+        [XmlIgnore] public Dictionary<string, MongoConnectionConfig> ConnectionList =
+            new Dictionary<string, MongoConnectionConfig>();
 
         /// <summary>
         ///     连接配置列表(保存用）
@@ -39,7 +39,7 @@ namespace SystemUtility.Config
         /// <summary>
         ///     MongoBin的路径，用于Dos命令
         /// </summary>
-        public String MongoBinPath = String.Empty;
+        public string MongoBinPath = string.Empty;
 
         /// <summary>
         ///     Config Format Version
@@ -49,7 +49,7 @@ namespace SystemUtility.Config
         /// <summary>
         ///     语言
         /// </summary>
-        public String LanguageFileName = String.Empty;
+        public string LanguageFileName = string.Empty;
 
         /// <summary>
         ///     状态刷新间隔时间
@@ -63,12 +63,12 @@ namespace SystemUtility.Config
         /// <summary>
         ///     ReadPreference
         /// </summary>
-        public String ReadPreference;
+        public string ReadPreference;
 
         /// <summary>
         ///     WriteConcern
         /// </summary>
-        public String WriteConcern;
+        public string WriteConcern;
 
         /// <summary>
         ///     WaitQueueSize;

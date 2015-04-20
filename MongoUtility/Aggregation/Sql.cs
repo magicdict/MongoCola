@@ -17,7 +17,7 @@ namespace MongoUtility.Aggregation
         /// </summary>
         /// <param name="Sql"></param>
         /// <returns></returns>
-        public static DataFilter ConvertQuerySql(String Sql, MongoCollection mongoCol)
+        public static DataFilter ConvertQuerySql(string Sql, MongoCollection mongoCol)
         {
             var rtnQuery = new DataFilter();
             Sql = Sql.Trim();
@@ -63,7 +63,7 @@ namespace MongoUtility.Aggregation
                 }
             }
 
-            String[] KeyWords = {"select", "from", "where", "group", "order"};
+            string[] KeyWords = {"select", "from", "where", "group", "order"};
 
             //From - > CollectionName
             GetKeyContent(FromStartIndex, SqlToken, KeyWords);
@@ -71,7 +71,7 @@ namespace MongoUtility.Aggregation
             //Select 设定 必须项
             //Select - > FieldList
             var strSelect = GetKeyContent(SelectStartIndex, SqlToken, KeyWords);
-            if (strSelect == String.Empty)
+            if (strSelect == string.Empty)
             {
                 return null;
             }
@@ -107,14 +107,14 @@ namespace MongoUtility.Aggregation
 
             //Where 设定,可选项
             var strWhere = GetKeyContent(WhereStartIndex, SqlToken, KeyWords);
-            if (strWhere != String.Empty)
+            if (strWhere != string.Empty)
             {
                 rtnQuery.QueryConditionList = SetQueryCondition(strWhere, ColumnNameLst);
             }
 
             //Order 设定,可选项
             var strOrder = GetKeyContent(OrderByStartIndex, SqlToken, KeyWords);
-            if (strOrder != String.Empty)
+            if (strOrder != string.Empty)
             {
                 SetQueryOrder(rtnQuery, strOrder);
             }
@@ -122,7 +122,7 @@ namespace MongoUtility.Aggregation
 
             //Group 设定,可选项
             var strGroup = GetKeyContent(GroupByStartIndex, SqlToken, KeyWords);
-            if (strGroup != String.Empty)
+            if (strGroup != string.Empty)
             {
                 //TODO:Group
             }
@@ -137,9 +137,9 @@ namespace MongoUtility.Aggregation
         /// <param name="SqlToken"></param>
         /// <param name="KeyWords"></param>
         /// <returns></returns>
-        private static String GetKeyContent(int KeyWordStartIndex, String[] SqlToken, String[] KeyWords)
+        private static string GetKeyContent(int KeyWordStartIndex, string[] SqlToken, string[] KeyWords)
         {
-            var strSelect = String.Empty;
+            var strSelect = string.Empty;
             if (KeyWordStartIndex != -1)
             {
                 for (var i = KeyWordStartIndex + 1; i < SqlToken.Length; i++)
@@ -160,10 +160,10 @@ namespace MongoUtility.Aggregation
         /// </summary>
         /// <param name="SqlContent"></param>
         /// <returns></returns>
-        private static String Regular(String SqlContent)
+        private static string Regular(string SqlContent)
         {
             var IsInQuote = false;
-            var LowerSql = String.Empty;
+            var LowerSql = string.Empty;
             for (var i = 0; i < SqlContent.Length; i++)
             {
                 if (SqlContent[i].ToString() == "\"")
@@ -199,7 +199,7 @@ namespace MongoUtility.Aggregation
         /// </summary>
         /// <param name="CurrentDataFilter"></param>
         /// <param name="SqlContent"></param>
-        private static void SetQueryOrder(DataFilter CurrentDataFilter, String SqlContent)
+        private static void SetQueryOrder(DataFilter CurrentDataFilter, string SqlContent)
         {
             //如果获得了内容，应该是这个样子的 By A ASC,B DES
             //1.删除By By A ASC,B DES -> A Asc,B Des
@@ -241,13 +241,13 @@ namespace MongoUtility.Aggregation
         /// <param name="SqlContent">Where条件</param>
         /// <param name="ColumnNameLst">列名称</param>
         /// <returns></returns>
-        private static List<DataFilter.QueryConditionInputItem> SetQueryCondition(String SqlContent,
-            List<String> ColumnNameLst)
+        private static List<DataFilter.QueryConditionInputItem> SetQueryCondition(string SqlContent,
+            List<string> ColumnNameLst)
         {
             var Conditionlst = new List<DataFilter.QueryConditionInputItem>();
             // (a=1 or b="A") AND c="3" => ( a = 1 or b = "A" ) and c = "3"  
             //1. 除了引号里面的文字，全部小写
-            String[] KeyWord = {"(", ")", "=", "or", "and", ">", ">=", "<", "<=", "<>"};
+            string[] KeyWord = {"(", ")", "=", "or", "and", ">", ">=", "<", "<=", "<>"};
             foreach (var Keyitem in KeyWord)
             {
                 SqlContent = SqlContent.Replace(Keyitem, " " + Keyitem + " ");
@@ -263,8 +263,8 @@ namespace MongoUtility.Aggregation
             var Token = SqlContent.Split(" ".ToCharArray());
             var mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
             {
-                StartMark = String.Empty,
-                EndMark = String.Empty
+                StartMark = string.Empty,
+                EndMark = string.Empty
             };
 
             for (var i = 0; i < Token.Length; i++)
@@ -298,8 +298,8 @@ namespace MongoUtility.Aggregation
                         Conditionlst.Add(mQueryConditionInputItem);
                         mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
                         {
-                            StartMark = String.Empty,
-                            EndMark = String.Empty
+                            StartMark = string.Empty,
+                            EndMark = string.Empty
                         };
 
                         break;
@@ -308,8 +308,8 @@ namespace MongoUtility.Aggregation
                         Conditionlst.Add(mQueryConditionInputItem);
                         mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
                         {
-                            StartMark = String.Empty,
-                            EndMark = String.Empty
+                            StartMark = string.Empty,
+                            EndMark = string.Empty
                         };
 
                         break;
@@ -340,8 +340,8 @@ namespace MongoUtility.Aggregation
                         Conditionlst.Add(mQueryConditionInputItem);
                         mQueryConditionInputItem = new DataFilter.QueryConditionInputItem
                         {
-                            StartMark = String.Empty,
-                            EndMark = String.Empty
+                            StartMark = string.Empty,
+                            EndMark = string.Empty
                         };
 
                         break;

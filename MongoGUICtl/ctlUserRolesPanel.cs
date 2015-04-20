@@ -56,7 +56,7 @@ namespace MongoGUICtl
         public void setRoles(BsonArray value)
         {
             {
-                foreach (String item in value)
+                foreach (string item in value)
                 {
                     ((CheckBox) (grpRoles.Controls.Find("chk" + item, true)[0])).Checked = true;
                 }

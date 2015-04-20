@@ -8,15 +8,15 @@ namespace MongoUtility.Security
     {
         #region"用户角色"
 
-        public const String UserRole_read = "read";
-        public const String UserRole_readWrite = "readWrite";
-        public const String UserRole_dbAdmin = "dbAdmin";
-        public const String UserRole_userAdmin = "userAdmin";
-        public const String UserRole_clusterAdmin = "clusterAdmin";
-        public const String UserRole_readAnyDatabase = "readAnyDatabase";
-        public const String UserRole_readWriteAnyDatabase = "readWriteAnyDatabase";
-        public const String UserRole_userAdminAnyDatabase = "userAdminAnyDatabase";
-        public const String UserRole_dbAdminAnyDatabase = "dbAdminAnyDatabase";
+        public const string UserRole_read = "read";
+        public const string UserRole_readWrite = "readWrite";
+        public const string UserRole_dbAdmin = "dbAdmin";
+        public const string UserRole_userAdmin = "userAdmin";
+        public const string UserRole_clusterAdmin = "clusterAdmin";
+        public const string UserRole_readAnyDatabase = "readAnyDatabase";
+        public const string UserRole_readWriteAnyDatabase = "readWriteAnyDatabase";
+        public const string UserRole_userAdminAnyDatabase = "userAdminAnyDatabase";
+        public const string UserRole_dbAdminAnyDatabase = "dbAdminAnyDatabase";
 
         #endregion
 
@@ -25,16 +25,16 @@ namespace MongoUtility.Security
         /// <summary>
         ///     可以省略？？
         /// </summary>
-        public String _id;
+        public string _id;
 
         /// <summary>
         ///     rolename
         /// </summary>
-        public String rolename;
+        public string rolename;
 
         /// <summary>
         /// </summary>
-        public String database;
+        public string database;
 
         /// <summary>
         /// </summary>
@@ -65,11 +65,11 @@ namespace MongoUtility.Security
         {
             /// <summary>
             /// </summary>
-            public String db;
+            public string db;
 
             /// <summary>
             /// </summary>
-            public String mRole;
+            public string mRole;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace MongoUtility.Security
         /// </summary>
         public static BsonValue AddRole(MongoDatabase mongoDb, Role role)
         {
-            var RoleCommand = String.Empty;
+            var RoleCommand = string.Empty;
             var doc = new EvalArgs();
             RoleCommand = "db.createRole(" + Environment.NewLine;
             RoleCommand += "{" + Environment.NewLine;
@@ -125,7 +125,7 @@ namespace MongoUtility.Security
         /// <param name="mongoDb"></param>
         /// <param name="RoleName"></param>
         /// <returns></returns>
-        public static BsonDocument GetRole(MongoDatabase mongoDb, String RoleName)
+        public static BsonDocument GetRole(MongoDatabase mongoDb, string RoleName)
         {
             var doc = new EvalArgs();
             doc.Code = "db.getRole('" + RoleName + "',{showPrivileges:true})";

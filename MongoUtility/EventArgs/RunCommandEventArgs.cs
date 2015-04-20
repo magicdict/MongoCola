@@ -12,7 +12,7 @@ namespace MongoUtility.EventArgs
         /// <summary>
         ///     CommandString
         /// </summary>
-        public String CommandString;
+        public string CommandString;
 
         /// <summary>
         ///     Result

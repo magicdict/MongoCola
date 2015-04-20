@@ -25,12 +25,12 @@ namespace Common.UI
         /// <param name="Message">Message</param>
         /// <param name="Details">Details</param>
         /// <param name="IsShowDetails">Is Show Details</param>
-        internal void SetMessage(String Message, String Details, Boolean IsShowDetails)
+        internal void SetMessage(string Message, string Details, Boolean IsShowDetails)
         {
             lblMessage.Text = Message;
             txtException.Text = Details;
             txtException.Select(0, 0);
-            if (Details == String.Empty)
+            if (Details == string.Empty)
             {
                 IsShowDetails = false;
             }
@@ -73,7 +73,7 @@ namespace Common.UI
         /// <param name="Message"></param>
         /// <param name="img"></param>
         /// <param name="Details"></param>
-        internal void SetMessage(String Message, Image img, String Details)
+        internal void SetMessage(string Message, Image img, string Details)
         {
             picImage.Image = img;
             SetMessage(Message, Details, true);
@@ -84,7 +84,7 @@ namespace Common.UI
         /// </summary>
         /// <param name="Detail"></param>
         /// <param name="OK"></param>
-        internal void SetText(String Detail, String OK)
+        internal void SetText(string Detail, string OK)
         {
             cmdDetails.Text = Detail;
             cmdOK.Text = OK;

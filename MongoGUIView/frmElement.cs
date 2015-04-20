@@ -13,7 +13,7 @@ namespace MongoGUIView
         /// <summary>
         ///     路径
         /// </summary>
-        private readonly String _FullPath = String.Empty;
+        private readonly string _FullPath = string.Empty;
 
         /// <summary>
         /// </summary>
@@ -88,14 +88,14 @@ namespace MongoGUIView
                         RuntimeMongoDBContext.CurrentDocument,
                         RuntimeMongoDBContext.GetCurrentCollection());
                 }
-                _selectNode.Text = String.IsNullOrEmpty(AddBsonElement.getElement().Name)
-                    ? String.Empty
+                _selectNode.Text = string.IsNullOrEmpty(AddBsonElement.getElement().Name)
+                    ? string.Empty
                     : AddBsonElement.getElement().Name;
                 _selectNode.Tag = AddBsonElement.getElement().Value;
             }
             else
             {
-                var AddMessage = String.Empty;
+                var AddMessage = string.Empty;
                 if (_isElement)
                 {
                     AddMessage = ElementHelper.AddElement(_FullPath, AddBsonElement.getElement(),
@@ -108,13 +108,13 @@ namespace MongoGUIView
                         RuntimeMongoDBContext.CurrentDocument,
                         RuntimeMongoDBContext.GetCurrentCollection());
                 }
-                if (!String.IsNullOrEmpty(AddMessage))
+                if (!string.IsNullOrEmpty(AddMessage))
                 {
                     MyMessageBox.ShowMessage("Exception", AddMessage);
                     return;
                 }
                 TreeNode NewNode;
-                NewNode = String.IsNullOrEmpty(AddBsonElement.getElement().Name)
+                NewNode = string.IsNullOrEmpty(AddBsonElement.getElement().Name)
                     ? new TreeNode()
                     : new TreeNode(AddBsonElement.getElement().Name);
                 if (_isElement)

@@ -123,15 +123,15 @@ namespace MongoCola.Operation
         /// <param name="e"></param>
         private void cmdAddIndex_Click(object sender, EventArgs e)
         {
-            var AscendingKey = new List<String>();
-            var DescendingKey = new List<String>();
+            var AscendingKey = new List<string>();
+            var DescendingKey = new List<string>();
             var GeoSpatialKey = string.Empty;
             var FirstKey = string.Empty;
-            var TextKey = String.Empty;
+            var TextKey = string.Empty;
             for (var i = 0; i < 5; i++)
             {
                 var ctl = (ctlIndexCreate) Controls.Find("ctlIndexCreate" + (i + 1), true)[0];
-                if (ctl.KeyName == String.Empty) continue;
+                if (ctl.KeyName == string.Empty) continue;
                 FirstKey = ctl.KeyName.Trim();
                 switch (ctl.IndexKeyType)
                 {
@@ -162,7 +162,7 @@ namespace MongoCola.Operation
                 //http://docs.mongodb.org/manual/tutorial/expire-data/
                 //不能是组合键
                 var CanUseTTL = true;
-                if ((AscendingKey.Count + DescendingKey.Count + (String.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1)) != 1)
+                if ((AscendingKey.Count + DescendingKey.Count + (string.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1)) != 1)
                 {
                     MyMessageBox.ShowMessage("Can't Set TTL",
                         "the TTL index may not be compound (may not have multiple fields).");
@@ -194,11 +194,11 @@ namespace MongoCola.Operation
                     option.SetTimeToLive(new TimeSpan(0, 0, (int) numTTL.Value));
                 }
             }
-            if (txtIndexName.Text != String.Empty &&
+            if (txtIndexName.Text != string.Empty &&
                 !RuntimeMongoDBContext.GetCurrentCollection().IndexExists(txtIndexName.Text) &&
                 (AscendingKey.Count + DescendingKey.Count +
-                 (String.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1) +
-                 (String.IsNullOrEmpty(TextKey) ? 0 : 1)) != 0)
+                 (string.IsNullOrEmpty(GeoSpatialKey) ? 0 : 1) +
+                 (string.IsNullOrEmpty(TextKey) ? 0 : 1)) != 0)
             {
                 option.SetName(txtIndexName.Text);
                 try

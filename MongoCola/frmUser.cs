@@ -21,8 +21,8 @@ namespace MongoCola
         /// </summary>
         private readonly Boolean _IsAdmin;
 
-        private readonly String _ModifyName = String.Empty;
-        private readonly Dictionary<String, BsonElement> _otherDbRolesDict = new Dictionary<string, BsonElement>();
+        private readonly string _ModifyName = string.Empty;
+        private readonly Dictionary<string, BsonElement> _otherDbRolesDict = new Dictionary<string, BsonElement>();
 
         /// <summary>
         ///     frmUser
@@ -49,7 +49,7 @@ namespace MongoCola
         /// </summary>
         /// <param name="isAdmin"></param>
         /// <param name="userName"></param>
-        public frmUser(Boolean isAdmin, String userName)
+        public frmUser(Boolean isAdmin, string userName)
         {
             InitializeComponent();
             _IsAdmin = isAdmin;
@@ -92,7 +92,7 @@ namespace MongoCola
             }
             user.otherDBRoles = otherDbRoles;
             user.userSource = txtuserSource.Text;
-            if (txtUserName.Text == String.Empty)
+            if (txtUserName.Text == string.Empty)
             {
                 MyMessageBox.ShowMessage("Error", "Please fill username!");
                 return;
@@ -123,7 +123,7 @@ namespace MongoCola
 
         private void frmUser_Load(object sender, EventArgs e)
         {
-            if (_ModifyName != String.Empty)
+            if (_ModifyName != string.Empty)
             {
                 Text = "Change User Config";
                 txtUserName.Enabled = false;
@@ -140,7 +140,7 @@ namespace MongoCola
             }
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                if (_ModifyName == String.Empty)
+                if (_ModifyName == string.Empty)
                 {
                     Text =
                         SystemConfig.guiConfig.MStringResource.GetText(_IsAdmin
@@ -187,7 +187,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmdAddRole_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(cmbDB.Text))
+            if (string.IsNullOrEmpty(cmbDB.Text))
             {
                 MyMessageBox.ShowMessage("Error", "Please Select A Database");
                 return;

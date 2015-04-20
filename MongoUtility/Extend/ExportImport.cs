@@ -21,7 +21,7 @@ namespace MongoUtility.Extend
         /// <param name="exportType"></param>
         /// <param name="mongoCol"></param>
         public static void ExportToFile(DataViewInfo CurrentDataViewInfo,
-            String ExcelFileName,
+            string ExcelFileName,
             EnumMgr.ExportType exportType,
             MongoCollection mongoCol)
         {
@@ -60,7 +60,7 @@ namespace MongoUtility.Extend
         /// <param name="dataList"></param>
         /// <param name="filename"></param>
         /// <param name="settings"></param>
-        private static void ExportToJson(List<BsonDocument> dataList, String filename, JsonWriterSettings settings)
+        private static void ExportToJson(List<BsonDocument> dataList, string filename, JsonWriterSettings settings)
         {
             var sw = new StreamWriter(filename, false);
             sw.Write(dataList.ToJson(settings));

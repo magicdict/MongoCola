@@ -137,9 +137,9 @@ namespace MongoUtility.Security
         /// </summary>
         /// <param name="ActionList"></param>
         /// <returns></returns>
-        public static String GetActionListJs(ActionType[] ActionList)
+        public static string GetActionListJs(ActionType[] ActionList)
         {
-            var Result = String.Empty;
+            var Result = string.Empty;
             Result = "actions: [ ";
             for (var i = 0; i < ActionList.Length; i++)
             {
@@ -156,7 +156,7 @@ namespace MongoUtility.Security
         /// <param name="roles"></param>
         /// <returns></returns>
         /// <param name="action"></param>
-        public static Boolean JudgeRightByBuildInRole(List<String> roles, ActionType action)
+        public static Boolean JudgeRightByBuildInRole(List<string> roles, ActionType action)
         {
             var CanDoIt = false;
             switch (action)

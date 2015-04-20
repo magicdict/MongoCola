@@ -178,7 +178,7 @@ namespace MongoGUICtl
                 e.Graphics.DrawRectangle(SystemPens.Control, rect);
                 if (mElement.Value != null || mValue != null)
                 {
-                    var strColumnText = String.Empty;
+                    var strColumnText = string.Empty;
                     if (intColumn == 1)
                     {
                         if (mElement.Value != null)

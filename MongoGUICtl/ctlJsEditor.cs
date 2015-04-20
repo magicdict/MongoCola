@@ -13,7 +13,7 @@ namespace MongoGUICtl
     {
         /// <summary>
         /// </summary>
-        public String strDBtag;
+        public string strDBtag;
 
         /// <summary>
         /// </summary>
@@ -25,7 +25,7 @@ namespace MongoGUICtl
         /// <summary>
         ///     Js名称
         /// </summary>
-        public String JsName { set; get; }
+        public string JsName { set; get; }
 
         /// <summary>
         ///     关闭Tab事件
@@ -46,7 +46,7 @@ namespace MongoGUICtl
                     configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
             }
             SaveStripButton.Image = Resources.save.ToBitmap();
-            if (JsName != null && JsName != String.Empty)
+            if (JsName != null && JsName != string.Empty)
             {
                 txtJavaScript.Text = OperationHelper.LoadJavascript(JsName, null);
                 txtJavaScript.Select(0, 0);
@@ -58,7 +58,7 @@ namespace MongoGUICtl
         ///     添加行
         /// </summary>
         /// <param name="strText"></param>
-        public void AppendLine(String strText)
+        public void AppendLine(string strText)
         {
             txtJavaScript.Text += strText + Environment.NewLine;
         }
@@ -83,7 +83,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void SaveStripButton_Click(object sender, EventArgs e)
         {
-            if (JsName != null && JsName != String.Empty)
+            if (JsName != null && JsName != string.Empty)
             {
                 OperationHelper.SaveEditorJavascript(JsName, txtJavaScript.Text, null);
             }

@@ -123,7 +123,7 @@ namespace MongoCola
             for (var i = 0; i < chklstAction.CheckedItems.Count; i++)
             {
                 actionlst[i] = ((MongoDBAction.ActionType) Enum.Parse(typeof (MongoDBAction.ActionType),
-                    cmbActionGroup.Text.Replace(" ", String.Empty) + "_" + chklstAction.CheckedItems[i]));
+                    cmbActionGroup.Text.Replace(" ", string.Empty) + "_" + chklstAction.CheckedItems[i]));
             }
             PrivilegeList.Add(new Role.privilege
             {
@@ -143,7 +143,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void cmbDatabase_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbCollection.Text = String.Empty;
+            cmbCollection.Text = string.Empty;
             cmbCollection.Items.Clear();
             foreach (
                 var item in RuntimeMongoDBContext.GetCurrentServer().GetDatabase(cmbDatabase.Text).GetCollectionNames())

@@ -10,7 +10,7 @@ namespace PlugInPackage.DosCommand
 {
     public partial class frmDosCommand : Form
     {
-        public String StrSaveText = String.Empty;
+        public string StrSaveText = string.Empty;
 
         public frmDosCommand()
         {
@@ -37,7 +37,7 @@ namespace PlugInPackage.DosCommand
         ///     //命令参数变化
         /// </summary>
         /// <param name="strCommandLine"></param>
-        private void CommandChanged(String strCommandLine)
+        private void CommandChanged(string strCommandLine)
         {
             txtDosCommand.Text = strCommandLine;
             StrSaveText = strCommandLine;
@@ -51,7 +51,7 @@ namespace PlugInPackage.DosCommand
         private void cmdRunDos_Click(object sender, EventArgs e)
         {
             var sb = new StringBuilder();
-            if (txtDosCommand.Text == String.Empty)
+            if (txtDosCommand.Text == string.Empty)
                 return;
             MongodbDosCommand.RunDosCommand(txtDosCommand.Text, sb);
             txtDosCommand.Text += Environment.NewLine;

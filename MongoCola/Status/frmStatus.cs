@@ -135,7 +135,7 @@ namespace MongoCola.Status
             Utility.OpenForm(new frmServerMonitor(), true, true);
         }
 
-        private void RefreshDBStatusChart(String strField)
+        private void RefreshDBStatusChart(string strField)
         {
             //图形化初始化
             chartResult.Series.Clear();

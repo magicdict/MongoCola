@@ -16,7 +16,7 @@ namespace PlugInPackage
         /// <summary>
         ///     插件列表
         /// </summary>
-        public static Dictionary<String, PlugInBase> PlugInList = new Dictionary<string, PlugInBase>();
+        public static Dictionary<string, PlugInBase> PlugInList = new Dictionary<string, PlugInBase>();
 
         /// <summary>
         ///     运行插件
@@ -54,7 +54,7 @@ namespace PlugInPackage
             {
                 try
                 {
-                    var FileName = mFile.Replace(Application.StartupPath + @"\", String.Empty);
+                    var FileName = mFile.Replace(Application.StartupPath + @"\", string.Empty);
                     //正式版本中，应该不会有这些
                     if (FileName != "PlugInPackage.dll") continue;
                     var mAssem = Assembly.LoadFile(mFile);

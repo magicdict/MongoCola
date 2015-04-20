@@ -24,7 +24,7 @@ namespace MongoGUICtl.Aggregation
         /// <summary>
         ///     当前数据集的字段列表
         /// </summary>
-        public List<String> ColumnList = new List<String>();
+        public List<string> ColumnList = new List<string>();
 
         public ConditionPanel()
         {
@@ -71,8 +71,8 @@ namespace MongoGUICtl.Aggregation
         /// <param name="NewDataFilter"></param>
         public void PutQueryToUI(DataFilter NewDataFilter)
         {
-            var strErrMsg = String.Empty;
-            var ShowColumnList = new List<String>();
+            var strErrMsg = string.Empty;
+            var ShowColumnList = new List<string>();
             foreach (var item in ColumnList)
             {
                 ShowColumnList.Add(item);
@@ -119,7 +119,7 @@ namespace MongoGUICtl.Aggregation
                 }
             }
 
-            if (strErrMsg != String.Empty)
+            if (strErrMsg != string.Empty)
             {
                 MyMessageBox.ShowMessage("Load Exception", "A Exception is happened when loading", strErrMsg, true);
             }

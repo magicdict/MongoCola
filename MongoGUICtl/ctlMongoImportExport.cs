@@ -51,52 +51,52 @@ namespace MongoGUICtl
             e.Raise(this, ref CommandChanged);
         }
 
-        private void ctlFilePickerOutput_PathChanged(String FilePath)
+        private void ctlFilePickerOutput_PathChanged(string FilePath)
         {
             MongoImportExportCommand.FileName = FilePath;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
             MongoImportExportCommand.LogLV = logLv;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void txtHostAddr_TextChanged(object sender, EventArgs e)
         {
             MongoImportExportCommand.HostAddr = txtHostAddr.Text;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void txtDBName_TextChanged(object sender, EventArgs e)
         {
             MongoImportExportCommand.DBName = txtDBName.Text;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void txtCollectionName_TextChanged(object sender, EventArgs e)
         {
             MongoImportExportCommand.CollectionName = txtCollectionName.Text;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void numPort_ValueChanged(object sender, EventArgs e)
         {
             MongoImportExportCommand.Port = (int) numPort.Value;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
         private void txtFieldList_TextChanged(object sender, EventArgs e)
         {
             MongoImportExportCommand.FieldList = txtFieldList.Text;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
@@ -105,7 +105,7 @@ namespace MongoGUICtl
             MongoImportExportCommand.Direct = radExport.Checked
                 ? MongodbDosCommand.ImprotExport.Export
                 : MongodbDosCommand.ImprotExport.Import;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
 
@@ -114,7 +114,7 @@ namespace MongoGUICtl
             MongoImportExportCommand.Direct = radExport.Checked
                 ? MongodbDosCommand.ImprotExport.Export
                 : MongodbDosCommand.ImprotExport.Import;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongoImportExportCommandLine(MongoImportExportCommand)));
         }
     }

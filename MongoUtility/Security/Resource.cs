@@ -32,12 +32,12 @@ namespace MongoUtility.Security
         /// <summary>
         ///     数据集名称
         /// </summary>
-        public String CollectionName;
+        public string CollectionName;
 
         /// <summary>
         ///     数据库名称
         /// </summary>
-        public String DataBaseName;
+        public string DataBaseName;
 
         /// <summary>
         /// </summary>
@@ -46,9 +46,9 @@ namespace MongoUtility.Security
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        public String GetJsCode()
+        public string GetJsCode()
         {
-            var Result = String.Empty;
+            var Result = string.Empty;
             switch (Type)
             {
                 case ResourceType.DataBase:

@@ -8,7 +8,7 @@ namespace Common.UI
         /// <summary>
         ///     return result
         /// </summary>
-        internal String Result = String.Empty;
+        internal string Result = string.Empty;
 
         /// <summary>
         ///     Init
@@ -25,7 +25,7 @@ namespace Common.UI
         /// </summary>
         /// <param name="cancel"></param>
         /// <param name="OK"></param>
-        internal void SetText(String cancel, String OK)
+        internal void SetText(string cancel, string OK)
         {
             cmdCancel.Text = cancel;
             cmdOK.Text = OK;
@@ -35,7 +35,7 @@ namespace Common.UI
         ///     Set Message
         /// </summary>
         /// <param name="message"></param>
-        internal void SetMessage(String message, String DefaultValue)
+        internal void SetMessage(string message, string DefaultValue)
         {
             lblMessage.Text = message;
             txtResult.Text = DefaultValue;
@@ -57,7 +57,7 @@ namespace Common.UI
         /// <param name="e"></param>
         private void cmdCancel_Click(object sender, EventArgs e)
         {
-            Result = String.Empty;
+            Result = string.Empty;
             Close();
         }
     }

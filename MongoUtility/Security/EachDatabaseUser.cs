@@ -9,7 +9,7 @@ namespace MongoUtility.Security
 {
     public class EachDatabaseUser
     {
-        public Dictionary<String, User> UserList =
+        public Dictionary<string, User> UserList =
             new Dictionary<string, User>();
 
         /// <summary>
@@ -17,7 +17,7 @@ namespace MongoUtility.Security
         /// </summary>
         /// <param name="DatabaseName"></param>
         /// <returns></returns>
-        public BsonArray GetRolesByDBName(String DatabaseName)
+        public BsonArray GetRolesByDBName(string DatabaseName)
         {
             var roles = new BsonArray();
             //当前DB的System.user的角色
@@ -27,7 +27,7 @@ namespace MongoUtility.Security
             }
             //Admin的OtherDBRoles和当前数据库角色合并
             var adminRoles = GetOtherDBRoles(DatabaseName);
-            foreach (String item in adminRoles)
+            foreach (string item in adminRoles)
             {
                 if (!roles.Contains(item))
                 {
@@ -65,7 +65,7 @@ namespace MongoUtility.Security
         ///     获得Admin的otherDBRoles
         /// </summary>
         /// <returns></returns>
-        public BsonArray GetOtherDBRoles(String DataBaseName)
+        public BsonArray GetOtherDBRoles(string DataBaseName)
         {
             var roles = new BsonArray();
             var OtherDBRoles = new BsonDocument();
@@ -84,7 +84,7 @@ namespace MongoUtility.Security
         /// </summary>
         /// <param name="db"></param>
         /// <param name="Username"></param>
-        public void AddUser(MongoDatabase db, String Username)
+        public void AddUser(MongoDatabase db, string Username)
         {
             var userInfo =
                 db.GetCollection(ConstMgr.COLLECTION_NAME_USER).FindOneAs<BsonDocument>(Query.EQ("user", Username));
@@ -106,7 +106,7 @@ namespace MongoUtility.Security
         /// <returns></returns>
         public override string ToString()
         {
-            var UserInfo = String.Empty;
+            var UserInfo = string.Empty;
             foreach (var item in UserList.Keys)
             {
                 UserInfo += "DataBase:" + item + Environment.NewLine;

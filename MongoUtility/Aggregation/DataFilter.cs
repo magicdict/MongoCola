@@ -72,12 +72,12 @@ namespace MongoUtility.Aggregation
         /// <summary>
         ///     数据集名称
         /// </summary>
-        public String CollectionName = String.Empty;
+        public string CollectionName = string.Empty;
 
         /// <summary>
         ///     数据库名称
         /// </summary>
-        public String DBName = String.Empty;
+        public string DBName = string.Empty;
 
         /// <summary>
         ///     输出条件配置
@@ -93,7 +93,7 @@ namespace MongoUtility.Aggregation
         ///     保存数据过滤器
         /// </summary>
         /// <param name="FileName"></param>
-        public void SaveFilter(String FileName)
+        public void SaveFilter(string FileName)
         {
             FileStream fs = null;
             var xs = new XmlSerializer(typeof (DataFilter));
@@ -107,7 +107,7 @@ namespace MongoUtility.Aggregation
         /// </summary>
         /// <param name="FileName"></param>
         /// <returns></returns>
-        public static DataFilter LoadFilter(String FileName)
+        public static DataFilter LoadFilter(string FileName)
         {
             FileStream fs = null;
             var xs = new XmlSerializer(typeof (DataFilter));
@@ -135,7 +135,7 @@ namespace MongoUtility.Aggregation
             /// <summary>
             ///     字段名称
             /// </summary>
-            public String ColName;
+            public string ColName;
 
             /// <summary>
             ///     比较子
@@ -145,12 +145,12 @@ namespace MongoUtility.Aggregation
             /// <summary>
             ///     结束标志
             /// </summary>
-            public String EndMark;
+            public string EndMark;
 
             /// <summary>
             ///     开始标志
             /// </summary>
-            public String StartMark;
+            public string StartMark;
 
             /// <summary>
             ///     比较值
@@ -166,7 +166,7 @@ namespace MongoUtility.Aggregation
             /// <summary>
             ///     字段名称
             /// </summary>
-            public String ColName;
+            public string ColName;
 
             /// <summary>
             ///     是否表示
@@ -186,7 +186,7 @@ namespace MongoUtility.Aggregation
             ///     构造器
             /// </summary>
             /// <param name="mColName"></param>
-            public QueryFieldItem(String mColName)
+            public QueryFieldItem(string mColName)
             {
                 ProjectName = string.Empty;
                 ColName = mColName;

@@ -43,12 +43,12 @@ namespace PlugInPackage
         /// <summary>
         ///     插件功能简述
         /// </summary>
-        public string PlugFunction = String.Empty;
+        public string PlugFunction = string.Empty;
 
         /// <summary>
         ///     插件菜单表示名称
         /// </summary>
-        public string PlugName = String.Empty;
+        public string PlugName = string.Empty;
 
         /// <summary>
         ///     处理对象

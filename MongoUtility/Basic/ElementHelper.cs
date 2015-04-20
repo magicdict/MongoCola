@@ -42,7 +42,7 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="CurrentDocument"></param>
-        public static String PasteElement(String ElementPath, BsonDocument CurrentDocument,
+        public static string PasteElement(string ElementPath, BsonDocument CurrentDocument,
             MongoCollection CurrentCollection)
         {
             var BaseDoc = CurrentDocument;
@@ -62,13 +62,13 @@ namespace MongoUtility.Basic
             {
                 CurrentCollection.Save(BaseDoc);
             }
-            return String.Empty;
+            return string.Empty;
         }
 
         /// <summary>
         /// </summary>
         /// <param name="ElementPath"></param>
-        public static void PasteValue(String ElementPath, BsonDocument CurrentDocument,
+        public static void PasteValue(string ElementPath, BsonDocument CurrentDocument,
             MongoCollection CurrentCollection)
         {
             var BaseDoc = CurrentDocument;
@@ -107,7 +107,7 @@ namespace MongoUtility.Basic
         ///     Cut Element
         /// </summary>
         /// <param name="ElementPath"></param>
-        public static void CutElement(String ElementPath, BsonElement El, BsonDocument CurrentDocument,
+        public static void CutElement(string ElementPath, BsonElement El, BsonDocument CurrentDocument,
             MongoCollection CurrentCollection)
         {
             _ClipElement = El;
@@ -119,7 +119,7 @@ namespace MongoUtility.Basic
         ///     Cut Array Value
         /// </summary>
         /// <param name="ElementPath"></param>
-        public static void CutValue(String ElementPath, int ValueIndex, BsonValue Val, BsonDocument CurrentDocument,
+        public static void CutValue(string ElementPath, int ValueIndex, BsonValue Val, BsonDocument CurrentDocument,
             MongoCollection CurrentCollection)
         {
             _ClipElement = Val;
@@ -132,7 +132,7 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="AddElement"></param>
-        public static String AddElement(String ElementPath, BsonElement AddElement, BsonDocument CurrentDocument,
+        public static string AddElement(string ElementPath, BsonElement AddElement, BsonDocument CurrentDocument,
             MongoCollection CurrentCollection)
         {
             var BaseDoc = CurrentDocument;
@@ -152,7 +152,7 @@ namespace MongoUtility.Basic
             {
                 CurrentCollection.Save(BaseDoc);
             }
-            return String.Empty;
+            return string.Empty;
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="AddValue"></param>
-        public static void AddArrayValue(String ElementPath, BsonValue AddValue, BsonDocument CurrentDocument,
+        public static void AddArrayValue(string ElementPath, BsonValue AddValue, BsonDocument CurrentDocument,
             MongoCollection CurrentCollection)
         {
             var BaseDoc = CurrentDocument;
@@ -180,7 +180,7 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="El"></param>
-        public static void DropElement(String ElementPath, BsonElement El, BsonDocument CurrentDocument,
+        public static void DropElement(string ElementPath, BsonElement El, BsonDocument CurrentDocument,
             MongoCollection CurrentCollection)
         {
             var BaseDoc = CurrentDocument;
@@ -197,7 +197,7 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <param name="ElementPath"></param>
         /// <param name="ValueIndex"></param>
-        public static void DropArrayValue(String ElementPath, int ValueIndex, BsonDocument CurrentDocument,
+        public static void DropArrayValue(string ElementPath, int ValueIndex, BsonDocument CurrentDocument,
             MongoCollection CurrentCollection)
         {
             var BaseDoc = CurrentDocument;
@@ -218,7 +218,7 @@ namespace MongoUtility.Basic
         /// <param name="ElementPath"></param>
         /// <param name="NewValue"></param>
         /// <param name="El"></param>
-        public static void ModifyElement(String ElementPath, BsonValue NewValue, BsonElement El,
+        public static void ModifyElement(string ElementPath, BsonValue NewValue, BsonElement El,
             BsonDocument CurrentDocument, MongoCollection CurrentCollection)
         {
             var BaseDoc = CurrentDocument;
@@ -240,7 +240,7 @@ namespace MongoUtility.Basic
         /// <param name="ElementPath"></param>
         /// <param name="NewValue"></param>
         /// <param name="ValueIndex"></param>
-        public static void ModifyArrayValue(String ElementPath, BsonValue NewValue, int ValueIndex,
+        public static void ModifyArrayValue(string ElementPath, BsonValue NewValue, int ValueIndex,
             BsonDocument CurrentDocument, MongoCollection CurrentCollection)
         {
             var BaseDoc = CurrentDocument;
@@ -262,7 +262,7 @@ namespace MongoUtility.Basic
         /// <param name="ElementPath"></param>
         /// <param name="IsGetLast">T:GetOperationPlace F:GetOperationPlace Parent</param>
         /// <returns></returns>
-        public static BsonValue GetLastParentDocument(BsonDocument BaseDoc, String ElementPath, Boolean IsGetLast)
+        public static BsonValue GetLastParentDocument(BsonDocument BaseDoc, string ElementPath, Boolean IsGetLast)
         {
             BsonValue Current = BaseDoc;
             //JpCnWord[1]\Translations[ARRAY]\Translations[1]\Sentences[ARRAY]\Sentences[1]\Japanese:"ああいう文章はなかなか書けない"
@@ -296,7 +296,7 @@ namespace MongoUtility.Basic
                 if (IsArray)
                 {
                     //这里的Array是指一个列表的上层节点，在BSON里面没有相应的对象，只是个逻辑概念
-                    if (strTag == String.Empty)
+                    if (strTag == string.Empty)
                     {
                         //Array里面的Array,所以没有元素名称。
                         //TODO：正确做法是将元素的Index传入，这里暂时认为第一个数组就是目标数组

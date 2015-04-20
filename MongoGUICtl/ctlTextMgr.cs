@@ -18,7 +18,7 @@ namespace MongoGUICtl
         /// <summary>
         ///     标题
         /// </summary>
-        public String Title
+        public string Title
         {
             set { lblTitle.Text = value; }
             get { return lblTitle.Text; }
@@ -27,7 +27,7 @@ namespace MongoGUICtl
         /// <summary>
         ///     内容
         /// </summary>
-        public String Context
+        public string Context
         {
             set { txtContext.Text = value; }
             get { return txtContext.Text; }
@@ -61,7 +61,7 @@ namespace MongoGUICtl
         /// <param name="e"></param>
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            if (txtContext.Text != String.Empty)
+            if (txtContext.Text != string.Empty)
             {
                 var strJsName = MyMessageBox.ShowInput("please Input Javascript Name：[Save at system.js]",
                     "Save Javascript");

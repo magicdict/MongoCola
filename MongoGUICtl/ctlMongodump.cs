@@ -42,45 +42,45 @@ namespace MongoGUICtl
             e.Raise(this, ref CommandChanged);
         }
 
-        private void ctlFilePickerOutput_PathChanged(String FilePath)
+        private void ctlFilePickerOutput_PathChanged(string FilePath)
         {
             MongodumpCommand.OutPutPath = FilePath;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
 
         private void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
             MongodumpCommand.LogLV = logLv;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
 
         private void txtHostAddr_TextChanged(object sender, EventArgs e)
         {
             MongodumpCommand.HostAddr = txtHostAddr.Text;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
 
         private void txtDBName_TextChanged(object sender, EventArgs e)
         {
             MongodumpCommand.DBName = txtDBName.Text;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
 
         private void txtCollectionName_TextChanged(object sender, EventArgs e)
         {
             MongodumpCommand.CollectionName = txtCollectionName.Text;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
 
         private void numPort_ValueChanged(object sender, EventArgs e)
         {
             MongodumpCommand.Port = (int) numPort.Value;
-            OnCommandChange(new TextChangeEventArgs(String.Empty,
+            OnCommandChange(new TextChangeEventArgs(string.Empty,
                 MongodbDosCommand.GetMongodumpCommandLine(MongodumpCommand)));
         }
     }

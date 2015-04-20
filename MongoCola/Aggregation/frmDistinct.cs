@@ -62,7 +62,7 @@ namespace MongoCola.Aggregation
         /// <param name="e"></param>
         private void cmdOK_Click(object sender, EventArgs e)
         {
-            var strKey = String.Empty;
+            var strKey = string.Empty;
 
             foreach (RadioButton item in panColumn.Controls)
             {
@@ -71,7 +71,7 @@ namespace MongoCola.Aggregation
                     strKey = item.Name;
                 }
             }
-            if (strKey == String.Empty)
+            if (strKey == string.Empty)
             {
                 MyMessageBox.ShowMessage("Distinct", "Pick the field");
                 return;
@@ -87,7 +87,7 @@ namespace MongoCola.Aggregation
             }
             //防止错误的条件造成的海量数据
             var Count = 0;
-            var strResult = String.Empty;
+            var strResult = string.Empty;
             ResultList.Sort();
             foreach (var item in ResultList)
             {

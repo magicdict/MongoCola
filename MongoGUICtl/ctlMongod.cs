@@ -66,20 +66,20 @@ namespace MongoGUICtl
         ///     DB路径
         /// </summary>
         /// <param name="FilePath"></param>
-        private void ctlFilePickerDBPath_PathChanged(String FilePath)
+        private void ctlFilePickerDBPath_PathChanged(string FilePath)
         {
             MongodCommand.DBPath = FilePath;
-            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
+            OnCommandChange(new TextChangeEventArgs(string.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
 
         /// <summary>
         ///     路径
         /// </summary>
         /// <param name="FilePath"></param>
-        private void ctlFilePickerT_PathChanged(String FilePath)
+        private void ctlFilePickerT_PathChanged(string FilePath)
         {
             MongodCommand.LogPath = FilePath;
-            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
+            OnCommandChange(new TextChangeEventArgs(string.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace MongoGUICtl
         private void ctllogLvT_LoglvChanged(MongodbDosCommand.MongologLevel logLv)
         {
             MongodCommand.LogLV = logLv;
-            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
+            OnCommandChange(new TextChangeEventArgs(string.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace MongoGUICtl
         private void chkIsAppend_CheckedChanged(object sender, EventArgs e)
         {
             MongodCommand.Islogappend = chkIsAppend.Checked;
-            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
+            OnCommandChange(new TextChangeEventArgs(string.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace MongoGUICtl
         {
             MongodCommand.master = radMaster.Checked;
             MongodCommand.slave = radSlave.Checked;
-            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
+            OnCommandChange(new TextChangeEventArgs(string.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace MongoGUICtl
         private void chkAuth_CheckedChanged(object sender, EventArgs e)
         {
             MongodCommand.IsAuth = chkAuth.Checked;
-            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
+            OnCommandChange(new TextChangeEventArgs(string.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace MongoGUICtl
         private void numPort_ValueChanged(object sender, EventArgs e)
         {
             MongodCommand.Port = (int) numPort.Value;
-            OnCommandChange(new TextChangeEventArgs(String.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
+            OnCommandChange(new TextChangeEventArgs(string.Empty, MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace MongoGUICtl
             MongodCommand.source = txtSource.Text;
             if (MongodCommand != null)
             {
-                OnCommandChange(new TextChangeEventArgs(String.Empty,
+                OnCommandChange(new TextChangeEventArgs(string.Empty,
                     MongodbDosCommand.GetMongodCommandLine(MongodCommand)));
             }
         }

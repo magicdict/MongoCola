@@ -42,7 +42,7 @@ namespace ResourceLib.Utility
         /// <summary>
         ///     扩展名和图片下标关联
         /// </summary>
-        public static Dictionary<String, Int32> IconList = new Dictionary<String, Int32>();
+        public static Dictionary<string, Int32> IconList = new Dictionary<string, Int32>();
 
         /// <summary>
         ///     图片数组
@@ -156,7 +156,7 @@ namespace ResourceLib.Utility
         /// <param name="fileName"></param>
         /// <param name="isLarge"></param>
         /// <returns></returns>
-        public static Int32 GetIconIndexByFileName(String fileName, bool isLarge)
+        public static Int32 GetIconIndexByFileName(string fileName, bool isLarge)
         {
             var GetIcon = new FileInfo(fileName).Extension;
             if (IconList.ContainsKey(GetIcon))
@@ -179,9 +179,9 @@ namespace ResourceLib.Utility
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static Icon GetIconByFileName(String fileName)
+        public static Icon GetIconByFileName(string fileName)
         {
-            if (String.IsNullOrEmpty(fileName)) return null;
+            if (string.IsNullOrEmpty(fileName)) return null;
             if (!File.Exists(fileName)) return null;
             var shInfo = new SHFILEINFO();
             //Use this to get the small Icon
@@ -199,13 +199,13 @@ namespace ResourceLib.Utility
         /// <param name="fileType"></param>
         /// <param name="isLarge"></param>
         /// <returns></returns>
-        public static Icon GetIconByFileType(String fileType, bool isLarge)
+        public static Icon GetIconByFileType(string fileType, bool isLarge)
         {
-            if (!String.IsNullOrEmpty(fileType))
+            if (!string.IsNullOrEmpty(fileType))
             {
                 RegistryKey regVersion = null;
-                String regFileType = null;
-                String regIconString = null;
+                string regFileType = null;
+                string regIconString = null;
                 var systemDirectory = Environment.SystemDirectory + "\\";
 
                 if (fileType[0] != '.')
@@ -227,12 +227,12 @@ namespace ResourceLib.Utility
                     }
                     if (regVersion != null)
                     {
-                        regFileType = regVersion.GetValue(String.Empty) as String;
+                        regFileType = regVersion.GetValue(string.Empty) as string;
                         regVersion.Close();
                         regVersion = Registry.ClassesRoot.OpenSubKey(regFileType + @"\DefaultIcon", true);
                         if (regVersion != null)
                         {
-                            regIconString = regVersion.GetValue(String.Empty) as String;
+                            regIconString = regVersion.GetValue(string.Empty) as string;
                             regVersion.Close();
                         }
                     }
@@ -290,24 +290,24 @@ namespace ResourceLib.Utility
         /// </summary>
         /// <param name="sFileExt"></param>
         /// <returns></returns>
-        public static Icon GetIconByFileType(String sFileExt)
+        public static Icon GetIconByFileType(string sFileExt)
         {
             {
-                String sProg;
-                var tmp = Registry.ClassesRoot.OpenSubKey(sFileExt).GetValue(String.Empty);
+                string sProg;
+                var tmp = Registry.ClassesRoot.OpenSubKey(sFileExt).GetValue(string.Empty);
                 //Get the program that will open files with this extension
                 sProg =
                     Registry.ClassesRoot.OpenSubKey(tmp.ToString())
                         .OpenSubKey("shell")
                         .OpenSubKey("open")
                         .OpenSubKey("command")
-                        .GetValue(String.Empty)
+                        .GetValue(string.Empty)
                         .ToString();
                 //strip the filename
                 sProg = sProg.Substring(0, 1) == Convert.ToChar(34).ToString()
                     ? sProg.Substring(1, sProg.IndexOf(Convert.ToChar(34), 2) - 1)
                     : sProg.Substring(0, sProg.IndexOf(" ", 2));
-                sProg = sProg.Replace("%1", String.Empty);
+                sProg = sProg.Replace("%1", string.Empty);
                 // Extract the icon from the program
                 var oIcon = Icon.ExtractAssociatedIcon(sProg);
                 return oIcon;
@@ -322,8 +322,8 @@ namespace ResourceLib.Utility
             public IntPtr hIcon;
             private readonly IntPtr iIcon;
             public uint dwAttributes;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)] public String szDisplayName;
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)] public String szTypeName;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)] public string szDisplayName;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)] public string szTypeName;
         };
 
         /// 定义调用的API方法
@@ -334,11 +334,11 @@ namespace ResourceLib.Utility
             public const uint SHGFI_SMALLICON = 0x1; // 'Small icon
 
             [DllImport("shell32.dll")]
-            public static extern IntPtr SHGetFileInfo(String pszPath, uint dwFileAttributes, ref SHFILEINFO psfi,
+            public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi,
                 uint cbSizeFileInfo, uint uFlags);
 
             [DllImport("shell32.dll")]
-            public static extern uint ExtractIconEx(String lpszFile, int nIconIndex, int[] phiconLarge,
+            public static extern uint ExtractIconEx(string lpszFile, int nIconIndex, int[] phiconLarge,
                 int[] phiconSmall, uint nIcons);
         }
     }

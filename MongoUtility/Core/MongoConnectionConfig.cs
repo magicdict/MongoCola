@@ -25,7 +25,7 @@ namespace MongoUtility.Core
         /// <summary>
         ///     连接名称
         /// </summary>
-        public String ConnectionName;
+        public string ConnectionName;
 
         /// <summary>
         ///     存储引擎
@@ -35,27 +35,27 @@ namespace MongoUtility.Core
         /// <summary>
         ///     连接字符串
         /// </summary>
-        public String ConnectionString;
+        public string ConnectionString;
 
         /// <summary>
         ///     数据库名称
         /// </summary>
-        public String DataBaseName;
+        public string DataBaseName;
 
         /// <summary>
         ///     副本名称
         /// </summary>
-        public String ReplSetName;
+        public string ReplSetName;
 
         /// <summary>
         ///     副本服务器列表
         /// </summary>
-        public List<String> ReplsetList;
+        public List<string> ReplsetList;
 
         /// <summary>
         ///     IP地址
         /// </summary>
-        public String Host;
+        public string Host;
 
         /// <summary>
         ///     端口号
@@ -70,12 +70,12 @@ namespace MongoUtility.Core
         /// <summary>
         ///     用户名
         /// </summary>
-        public String UserName;
+        public string UserName;
 
         /// <summary>
         ///     密码
         /// </summary>
-        public String Password;
+        public string Password;
 
         /// <summary>
         ///     VerifySslCertificate
@@ -180,12 +180,12 @@ namespace MongoUtility.Core
         /// <summary>
         ///     ReadPreference
         /// </summary>
-        public String ReadPreference;
+        public string ReadPreference;
 
         /// <summary>
         ///     WriteConcern
         /// </summary>
-        public String WriteConcern;
+        public string WriteConcern;
 
         /// <summary>
         ///     WaitQueueSize;

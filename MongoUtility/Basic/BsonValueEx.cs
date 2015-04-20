@@ -30,12 +30,12 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     文字值
         /// </summary>
-        public String mBsonString;
+        public string mBsonString;
 
         /// <summary>
         ///     类型
         /// </summary>
-        public String mBsonType;
+        public string mBsonType;
 
         /// <summary>
         ///     为了序列化，必须要写这个方法
@@ -75,9 +75,9 @@ namespace MongoUtility.Basic
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        public static List<String> GetBasicTypeList()
+        public static List<string> GetBasicTypeList()
         {
-            var typelst = new List<String>();
+            var typelst = new List<string>();
             typelst.Add("BsonString");
             typelst.Add("BsonInt32");
             typelst.Add("BsonDateTime");
@@ -93,7 +93,7 @@ namespace MongoUtility.Basic
         /// <returns></returns>
         public BsonValue GetBsonValue()
         {
-            BsonValue Value = new BsonString(String.Empty);
+            BsonValue Value = new BsonString(string.Empty);
             switch (mBsonType)
             {
                 case "BsonString":

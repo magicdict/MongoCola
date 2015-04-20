@@ -7,21 +7,21 @@ namespace MongoUtility.EventArgs
     /// </summary>
     public class TextChangeEventArgs : System.EventArgs
     {
-        private readonly String _NewString;
-        private readonly String _OldString;
+        private readonly string _NewString;
+        private readonly string _OldString;
 
-        public TextChangeEventArgs(String OldString, String NewString)
+        public TextChangeEventArgs(string OldString, string NewString)
         {
             _OldString = OldString;
             _NewString = NewString;
         }
 
-        public String OldString
+        public string OldString
         {
             get { return _OldString; }
         }
 
-        public String NewString
+        public string NewString
         {
             get { return _NewString; }
         }

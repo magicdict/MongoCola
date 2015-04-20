@@ -14,9 +14,9 @@ namespace MongoUtility.Aggregation
         ///     �������ֶ�����
         /// </summary>
         /// <returns></returns>
-        public static String[] GetOutputFields(List<DataFilter.QueryFieldItem> FieldItemLst)
+        public static string[] GetOutputFields(List<DataFilter.QueryFieldItem> FieldItemLst)
         {
-            var outputFieldLst = new List<String>();
+            var outputFieldLst = new List<string>();
             foreach (var item in FieldItemLst)
             {
                 if (item.IsShow)
@@ -34,8 +34,8 @@ namespace MongoUtility.Aggregation
         public static SortByBuilder GetSort(List<DataFilter.QueryFieldItem> FieldItemLst)
         {
             var sort = new SortByBuilder();
-            var ascendingList = new List<String>();
-            var descendingList = new List<String>();
+            var ascendingList = new List<string>();
+            var descendingList = new List<string>();
             //_id�������ֵ���ʽ�������Բ�Ҫ����_id!!
             foreach (var item in FieldItemLst)
             {

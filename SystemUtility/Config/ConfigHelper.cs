@@ -9,7 +9,7 @@ namespace SystemUtility.Config
         /// <summary>
         ///     配置文件名称
         /// </summary>
-        public static String _configFilename = "config.xml";
+        public static string _configFilename = "config.xml";
 
         /// <summary>
         ///     添加链接
@@ -28,7 +28,7 @@ namespace SystemUtility.Config
         /// <param name="Addr"></param>
         /// <param name="port"></param>
         /// <returns></returns>
-        public static String GetConnectionNameByHost(String Addr, int port)
+        public static string GetConnectionNameByHost(string Addr, int port)
         {
             foreach (var item in SystemConfig.config.ConnectionList.Values)
             {
@@ -37,7 +37,7 @@ namespace SystemUtility.Config
                     return item.ConnectionName;
                 }
             }
-            return String.Empty;
+            return string.Empty;
         }
 
         #region"读写配置"
@@ -54,7 +54,7 @@ namespace SystemUtility.Config
         ///     写入配置
         /// </summary>
         /// <param name="configFileName"></param>
-        public static void SaveToConfigFile(String configFileName)
+        public static void SaveToConfigFile(string configFileName)
         {
             SystemConfig.config.SerializableConnectionList.Clear();
             foreach (var item in SystemConfig.config.ConnectionList.Values)
@@ -69,7 +69,7 @@ namespace SystemUtility.Config
         /// </summary>
         /// <param name="configFileName"></param>
         /// <returns></returns>
-        public static void LoadFromConfigFile(String configFileName)
+        public static void LoadFromConfigFile(string configFileName)
         {
             SystemConfig.config = Utility.LoadObjFromXml<Config>(configFileName);
             SystemConfig.config.ConnectionList.Clear();

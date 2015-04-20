@@ -46,7 +46,7 @@ namespace Common.UI
         ///     set the message
         /// </summary>
         /// <param name="strMessage"></param>
-        internal void SetMessage(String strMessage)
+        internal void SetMessage(string strMessage)
         {
             Result = false;
             lblMessage.Text = strMessage;
@@ -57,7 +57,7 @@ namespace Common.UI
         /// </summary>
         /// <param name="Yes"></param>
         /// <param name="No"></param>
-        internal void SetText(String Yes, String No)
+        internal void SetText(string Yes, string No)
         {
             cmdYes.Text = Yes;
             cmdNo.Text = No;

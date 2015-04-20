@@ -48,7 +48,7 @@ namespace MongoCola
             var mongoDB = RuntimeMongoDBContext.GetCurrentDataBase();
             var js = new BsonJavaScript(ctlEval.Context);
             var Params = new List<Object>();
-            if (txtParm.Text != String.Empty)
+            if (txtParm.Text != string.Empty)
             {
                 foreach (var parm in txtParm.Text.Split(",".ToCharArray()))
                 {

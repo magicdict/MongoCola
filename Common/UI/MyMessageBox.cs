@@ -55,7 +55,7 @@ namespace Common.UI
         /// <summary>
         ///     确认信息表示
         /// </summary>
-        public static String ShowInput(String Message, String Title, String DefaultValue = "")
+        public static string ShowInput(string Message, string Title, string DefaultValue = "")
         {
             FormatMsgbox(_frmInputBox, Title);
             _frmInputBox.SetMessage(Message, DefaultValue);
@@ -69,7 +69,7 @@ namespace Common.UI
         /// <summary>
         ///     确认信息表示
         /// </summary>
-        public static Boolean ShowConfirm(String Title, String Message)
+        public static Boolean ShowConfirm(string Title, string Message)
         {
             FormatMsgbox(_frmConfirm, Title);
             _frmConfirm.SetMessage(Message);
@@ -80,7 +80,7 @@ namespace Common.UI
             return _frmConfirm.Result;
         }
 
-        private static void FormatMsgbox(Form _frmMsgbox, String Title)
+        private static void FormatMsgbox(Form _frmMsgbox, string Title)
         {
             _frmMsgbox.Text = Title;
             try
@@ -94,9 +94,9 @@ namespace Common.UI
             _frmMsgbox.Font = new Font("微软雅黑", 9);
         }
 
-        public static void ShowMessage(String Title, String Message)
+        public static void ShowMessage(string Title, string Message)
         {
-            ShowMessage(Title, Message, String.Empty);
+            ShowMessage(Title, Message, string.Empty);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Common.UI
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Details"></param>
-        public static void ShowMessage(String Title, String Message, String Details)
+        public static void ShowMessage(string Title, string Message, string Details)
         {
             FormatMsgbox(_frmMessage, Title);
             _frmMessage.SetMessage(Message, Details, false);
@@ -119,7 +119,7 @@ namespace Common.UI
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Details"></param>
-        public static void ShowMessage(String Title, String Message, String Details, Boolean IsShowDetail)
+        public static void ShowMessage(string Title, string Message, string Details, Boolean IsShowDetail)
         {
             FormatMsgbox(_frmMessage, Title);
             _frmMessage.SetMessage(Message, Details, IsShowDetail);
@@ -134,7 +134,7 @@ namespace Common.UI
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Details"></param>
-        public static void ShowMessage(String Title, String Message, Image img, String Details)
+        public static void ShowMessage(string Title, string Message, Image img, string Details)
         {
             FormatMsgbox(_frmMessage, Title);
             _frmMessage.SetMessage(Message, img, Details);
@@ -149,7 +149,7 @@ namespace Common.UI
         /// </summary>
         /// <param name="Title"></param>
         /// <param name="Message"></param>
-        public static void ShowEasyMessage(String Title, String Message)
+        public static void ShowEasyMessage(string Title, string Message)
         {
             FormatMsgbox(_frmEasyMessage, Title);
             _frmEasyMessage.SetMessage(Message);

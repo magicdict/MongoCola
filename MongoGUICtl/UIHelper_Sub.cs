@@ -11,7 +11,7 @@ namespace MongoGUICtl
 {
     public static partial class UIHelper
     {
-        public static TreeNode FillDataBaseInfoToTreeNode(String strDBName, MongoServer mongoSvr, String mongoSvrKey)
+        public static TreeNode FillDataBaseInfoToTreeNode(string strDBName, MongoServer mongoSvr, string mongoSvrKey)
         {
             var strShowDBName = strDBName;
             if (!configuration.guiConfig.IsUseDefaultLanguage)
@@ -129,8 +129,8 @@ namespace MongoGUICtl
         /// <param name="mongoDB"></param>
         /// <param name="mongoConnSvrKey"></param>
         /// <returns></returns>
-        public static TreeNode FillCollectionInfoToTreeNode(String strColName, MongoDatabase mongoDB,
-            String mongoConnSvrKey)
+        public static TreeNode FillCollectionInfoToTreeNode(string strColName, MongoDatabase mongoDB,
+            string mongoConnSvrKey)
         {
             var strShowColName = strColName;
             if (!configuration.guiConfig.IsUseDefaultLanguage)
@@ -362,44 +362,44 @@ namespace MongoGUICtl
                     mongoIndex.Text =
                         (configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Name) + ":" +
                          indexDoc.Name);
-                    mongoIndex.Nodes.Add(String.Empty,
+                    mongoIndex.Nodes.Add(string.Empty,
                         configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Keys) + ":" +
                         GetKeyString(indexDoc.Key), (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty,
+                    mongoIndex.Nodes.Add(string.Empty,
                         configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_RepeatDel) + ":" +
                         indexDoc.DroppedDups, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty,
+                    mongoIndex.Nodes.Add(string.Empty,
                         configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Background) + ":" +
                         indexDoc.IsBackground, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty,
+                    mongoIndex.Nodes.Add(string.Empty,
                         configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Sparse) + ":" +
                         indexDoc.IsSparse, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty,
+                    mongoIndex.Nodes.Add(string.Empty,
                         configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Unify) + ":" +
                         indexDoc.IsUnique, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty,
+                    mongoIndex.Nodes.Add(string.Empty,
                         configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_NameSpace) + ":" +
                         indexDoc.Namespace, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty,
+                    mongoIndex.Nodes.Add(string.Empty,
                         configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Version) + ":" +
                         indexDoc.Version, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     if (indexDoc.TimeToLive == TimeSpan.MaxValue)
                     {
-                        mongoIndex.Nodes.Add(String.Empty,
+                        mongoIndex.Nodes.Add(string.Empty,
                             configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData) +
                             ":Not Set",
                             (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     }
                     else
                     {
-                        mongoIndex.Nodes.Add(String.Empty,
+                        mongoIndex.Nodes.Add(string.Empty,
                             configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_ExpireData) +
                             ":" +
                             indexDoc.TimeToLive.TotalSeconds, (int) GetSystemIcon.MainTreeImageType.KeyInfo,
@@ -409,41 +409,41 @@ namespace MongoGUICtl
                 else
                 {
                     mongoIndex.Text = "IndexName:" + indexDoc.Name;
-                    mongoIndex.Nodes.Add(String.Empty, "Keys:" + GetKeyString(indexDoc.Key),
+                    mongoIndex.Nodes.Add(string.Empty, "Keys:" + GetKeyString(indexDoc.Key),
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty, "DroppedDups :" + indexDoc.DroppedDups,
+                    mongoIndex.Nodes.Add(string.Empty, "DroppedDups :" + indexDoc.DroppedDups,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty, "IsBackground:" + indexDoc.IsBackground,
+                    mongoIndex.Nodes.Add(string.Empty, "IsBackground:" + indexDoc.IsBackground,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty, "IsSparse:" + indexDoc.IsSparse,
+                    mongoIndex.Nodes.Add(string.Empty, "IsSparse:" + indexDoc.IsSparse,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty, "IsUnique:" + indexDoc.IsUnique,
+                    mongoIndex.Nodes.Add(string.Empty, "IsUnique:" + indexDoc.IsUnique,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty, "NameSpace:" + indexDoc.Namespace,
+                    mongoIndex.Nodes.Add(string.Empty, "NameSpace:" + indexDoc.Namespace,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty, "Version:" + indexDoc.Version,
+                    mongoIndex.Nodes.Add(string.Empty, "Version:" + indexDoc.Version,
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     if (indexDoc.TimeToLive == TimeSpan.MaxValue)
                     {
-                        mongoIndex.Nodes.Add(String.Empty, "Expire Data:Not Set",
+                        mongoIndex.Nodes.Add(string.Empty, "Expire Data:Not Set",
                             (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     }
                     else
                     {
-                        mongoIndex.Nodes.Add(String.Empty, "Expire Data(sec):" + indexDoc.TimeToLive.TotalSeconds,
+                        mongoIndex.Nodes.Add(string.Empty, "Expire Data(sec):" + indexDoc.TimeToLive.TotalSeconds,
                             (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                     }
                 }
                 if (indexDoc.RawDocument.Contains("default_language"))
                 {
                     //TextIndex
-                    mongoIndex.Nodes.Add(String.Empty, "weights:" + indexDoc.RawDocument["weights"],
+                    mongoIndex.Nodes.Add(string.Empty, "weights:" + indexDoc.RawDocument["weights"],
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty, "default_language:" + indexDoc.RawDocument["default_language"],
+                    mongoIndex.Nodes.Add(string.Empty, "default_language:" + indexDoc.RawDocument["default_language"],
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty, "language_override:" + indexDoc.RawDocument["language_override"],
+                    mongoIndex.Nodes.Add(string.Empty, "language_override:" + indexDoc.RawDocument["language_override"],
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
-                    mongoIndex.Nodes.Add(String.Empty, "textIndexVersion:" + indexDoc.RawDocument["textIndexVersion"],
+                    mongoIndex.Nodes.Add(string.Empty, "textIndexVersion:" + indexDoc.RawDocument["textIndexVersion"],
                         (int) GetSystemIcon.MainTreeImageType.KeyInfo, (int) GetSystemIcon.MainTreeImageType.KeyInfo);
                 }
                 mongoIndex.ImageIndex = (int) GetSystemIcon.MainTreeImageType.DBKey;

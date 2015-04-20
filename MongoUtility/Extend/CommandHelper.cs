@@ -61,7 +61,7 @@ namespace MongoUtility.Extend
                 switch (mMongoCommand.RunLevel)
                 {
                     case EnumMgr.PathLv.CollectionLv:
-                        if (String.IsNullOrEmpty(mMongoCommand.CommandString))
+                        if (string.IsNullOrEmpty(mMongoCommand.CommandString))
                         {
                             mCommandResult = ExecuteMongoColCommand(mMongoCommand.cmdDocument,
                                 RuntimeMongoDBContext.GetCurrentCollection());
@@ -104,7 +104,7 @@ namespace MongoUtility.Extend
         /// <param name="CommandString"></param>
         /// <param name="mongoCol"></param>
         /// <returns></returns>
-        public static CommandResult ExecuteMongoColCommand(String CommandString, MongoCollection mongoCol)
+        public static CommandResult ExecuteMongoColCommand(string CommandString, MongoCollection mongoCol)
         {
             CommandResult mCommandResult;
             var BaseCommand = new BsonDocument {{CommandString, mongoCol.Name}};
@@ -135,7 +135,7 @@ namespace MongoUtility.Extend
         /// <param name="mongoCol">数据集</param>
         /// <param name="ExtendInfo">命令参数</param>
         /// <returns></returns>
-        public static CommandResult ExecuteMongoColCommand(String Command, MongoCollection mongoCol,
+        public static CommandResult ExecuteMongoColCommand(string Command, MongoCollection mongoCol,
             BsonDocument ExtendInfo)
         {
             var ExecuteCommand = new CommandDocument
@@ -190,7 +190,7 @@ namespace MongoUtility.Extend
         /// <param name="mongoCmd"></param>
         /// <param name="mongoDB"></param>
         /// <returns></returns>
-        public static CommandResult ExecuteMongoDBCommand(String mongoCmd, MongoDatabase mongoDB)
+        public static CommandResult ExecuteMongoDBCommand(string mongoCmd, MongoDatabase mongoDB)
         {
             CommandResult mCommandResult;
             try
@@ -260,7 +260,7 @@ namespace MongoUtility.Extend
         /// <param name="mongoCmd">命令Command</param>
         /// <param name="mongoSvr">目标服务器</param>
         /// <returns></returns>
-        public static CommandResult ExecuteMongoSvrCommand(String mongoCmd, MongoServer mongoSvr)
+        public static CommandResult ExecuteMongoSvrCommand(string mongoCmd, MongoServer mongoSvr)
         {
             CommandResult mCommandResult;
             try
@@ -336,7 +336,7 @@ namespace MongoUtility.Extend
             /// <summary>
             ///     命令文
             /// </summary>
-            public String CommandString;
+            public string CommandString;
 
             /// <summary>
             ///     对象等级
@@ -348,7 +348,7 @@ namespace MongoUtility.Extend
             /// </summary>
             /// <param name="_CommandString"></param>
             /// <param name="_RunLevel"></param>
-            public MongoCommand(String _CommandString, EnumMgr.PathLv _RunLevel)
+            public MongoCommand(string _CommandString, EnumMgr.PathLv _RunLevel)
             {
                 CommandString = _CommandString;
                 RunLevel = _RunLevel;
@@ -364,7 +364,7 @@ namespace MongoUtility.Extend
             {
                 cmdDocument = _CommandDocument;
                 RunLevel = _RunLevel;
-                CommandString = String.Empty;
+                CommandString = string.Empty;
             }
         }
 
@@ -377,7 +377,7 @@ namespace MongoUtility.Extend
         /// <param name="JsShell"></param>
         /// <param name="mongoSvr"></param>
         /// <returns></returns>
-        public static CommandResult ExecuteJsShell(String JsShell, MongoServer mongoSvr)
+        public static CommandResult ExecuteJsShell(string JsShell, MongoServer mongoSvr)
         {
             var ShellCmd = new BsonDocument
             {
@@ -430,7 +430,7 @@ namespace MongoUtility.Extend
         /// <param name="AggregateDoc"></param>
         /// <returns></returns>
         /// <param name="CollectionName"></param>
-        public static CommandResult Aggregate(BsonArray AggregateDoc, String CollectionName)
+        public static CommandResult Aggregate(BsonArray AggregateDoc, string CollectionName)
         {
             //db.runCommand( { aggregate: "people", pipeline: [<pipeline>] } )
             try
@@ -494,7 +494,7 @@ namespace MongoUtility.Extend
         /// <param name="HostPort">服务器信息</param>
         /// <param name="IsArb">是否为仲裁服务器</param>
         /// <returns></returns>
-        public static CommandResult AddToReplsetServer(MongoServer mongoSvr, String HostPort, int priority,
+        public static CommandResult AddToReplsetServer(MongoServer mongoSvr, string HostPort, int priority,
             Boolean IsArb)
         {
             var mCommandResult = new CommandResult(new BsonDocument());
@@ -526,7 +526,7 @@ namespace MongoUtility.Extend
         /// <param name="HostPort">服务器信息</param>
         /// <remarks>这个命令C#无法正确执行</remarks>
         /// <returns></returns>
-        public static CommandResult RemoveFromReplsetServer(MongoServer mongoSvr, String HostPort)
+        public static CommandResult RemoveFromReplsetServer(MongoServer mongoSvr, string HostPort)
         {
             var mCommandResult = new CommandResult(new BsonDocument());
             try
@@ -567,11 +567,11 @@ namespace MongoUtility.Extend
         /// <param name="lstAddress"></param>
         /// <remarks>注意：有个命令可能只能用在mongos上面</remarks>
         /// <returns></returns>
-        public static CommandResult AddSharding(MongoServer routeSvr, String replicaSetName, List<String> lstAddress,
-            String Name, Decimal MaxSize)
+        public static CommandResult AddSharding(MongoServer routeSvr, string replicaSetName, List<string> lstAddress,
+            string Name, Decimal MaxSize)
         {
             // replset/host:port,host:port
-            var cmdPara = replicaSetName == String.Empty ? String.Empty : (replicaSetName + "/");
+            var cmdPara = replicaSetName == string.Empty ? string.Empty : (replicaSetName + "/");
             foreach (var item in lstAddress)
             {
                 cmdPara += item + ",";
@@ -582,7 +582,7 @@ namespace MongoUtility.Extend
             {
                 mongoCmd.Add("maxSize", (BsonValue) MaxSize);
             }
-            if (Name != String.Empty)
+            if (Name != string.Empty)
             {
                 mongoCmd.Add("name", Name);
             }
@@ -597,7 +597,7 @@ namespace MongoUtility.Extend
         /// <param name="ShardName">Shard名称</param>
         /// <param name="TagName">Tag名称</param>
         /// <returns></returns>
-        public static CommandResult AddShardTag(MongoServer routeSvr, String ShardName, String TagName)
+        public static CommandResult AddShardTag(MongoServer routeSvr, string ShardName, string TagName)
         {
             //mongos> sh.addShardTag
             //function (shard, tag) {
@@ -620,8 +620,8 @@ namespace MongoUtility.Extend
         /// <param name="Max">最大值</param>
         /// <param name="Tag">标签</param>
         /// <returns></returns>
-        public static CommandResult AddTagRange(MongoServer routeSvr, String NameSpace, BsonValue Min, BsonValue Max,
-            String Tag)
+        public static CommandResult AddTagRange(MongoServer routeSvr, string NameSpace, BsonValue Min, BsonValue Max,
+            string Tag)
         {
             //mongos> sh.addTagRange
             //function (ns, min, max, tag) {
@@ -639,8 +639,8 @@ namespace MongoUtility.Extend
             //                       );
             //    sh._checkLastError(config);
             //}
-            var maxValue = String.Empty;
-            var minValue = String.Empty;
+            var maxValue = string.Empty;
+            var minValue = string.Empty;
             if (Min.IsString)
             {
                 minValue = "'" + Min + "'";
@@ -668,7 +668,7 @@ namespace MongoUtility.Extend
         /// <param name="routeSvr"></param>
         /// <param name="ShardName">Shard名称</param>
         /// <returns></returns>
-        public static CommandResult RemoveSharding(MongoServer routeSvr, String ShardName)
+        public static CommandResult RemoveSharding(MongoServer routeSvr, string ShardName)
         {
             var mongoCmd = new CommandDocument {{"removeshard", ShardName}};
             return ExecuteMongoSvrCommand(mongoCmd, routeSvr);
@@ -680,7 +680,7 @@ namespace MongoUtility.Extend
         /// <param name="routeSvr"></param>
         /// <param name="shardingDB"></param>
         /// <returns></returns>
-        public static CommandResult EnableSharding(MongoServer routeSvr, String shardingDB)
+        public static CommandResult EnableSharding(MongoServer routeSvr, string shardingDB)
         {
             var mongoCmd = new CommandDocument();
             mongoCmd = new CommandDocument {{"enablesharding", shardingDB}};
@@ -694,7 +694,7 @@ namespace MongoUtility.Extend
         /// <param name="sharingCollection"></param>
         /// <param name="shardingKey"></param>
         /// <returns></returns>
-        public static CommandResult ShardCollection(MongoServer routeSvr, String sharingCollection,
+        public static CommandResult ShardCollection(MongoServer routeSvr, string sharingCollection,
             BsonDocument shardingKey)
         {
             var mongoCmd = new CommandDocument {{"shardCollection", sharingCollection}, {"key", shardingKey}};
@@ -707,7 +707,7 @@ namespace MongoUtility.Extend
         /// <param name="replicaSetName">副本名称</param>
         /// <param name="hostList">从属服务器列表</param>
         /// <param name="Configs"></param>
-        public static CommandResult InitReplicaSet(String replicaSetName, String hostList,
+        public static CommandResult InitReplicaSet(string replicaSetName, string hostList,
             Dictionary<string, MongoConnectionConfig> Configs)
         {
             //第一台服务器作为Primary服务器

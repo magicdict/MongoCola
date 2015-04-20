@@ -19,7 +19,7 @@ namespace MongoGUICtl
         {
             get
             {
-                if (txtElName.Text == String.Empty | ElBsonValue.getValue() == null)
+                if (txtElName.Text == string.Empty | ElBsonValue.getValue() == null)
                 {
                     return false;
                 }

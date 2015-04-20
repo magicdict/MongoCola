@@ -4,9 +4,9 @@ namespace MongoUtility.EventArgs
 {
     public class ActionDoneEventArgs : System.EventArgs
     {
-        private readonly String _Message;
+        private readonly string _Message;
 
-        public ActionDoneEventArgs(String Message)
+        public ActionDoneEventArgs(string Message)
         {
             _Message = Message;
         }

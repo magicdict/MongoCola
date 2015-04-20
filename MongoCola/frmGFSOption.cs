@@ -47,7 +47,7 @@ namespace MongoCola
             {
                 option = GFS.enumGFSAlready.Stop;
             }
-            if (txtSeperateChar.Text != String.Empty)
+            if (txtSeperateChar.Text != string.Empty)
             {
                 DirectorySeparatorChar = txtSeperateChar.Text.ToCharArray()[0];
             }

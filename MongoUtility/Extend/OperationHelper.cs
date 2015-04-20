@@ -55,7 +55,7 @@ namespace MongoUtility.Extend
         /// <param name="mongoDBName"></param>
         /// <param name="mongoColName"></param>
         /// <returns></returns>
-        public static Boolean IsSystemCollection(String mongoDBName, String mongoColName)
+        public static Boolean IsSystemCollection(string mongoDBName, string mongoColName)
         {
             //config数据库,默认为系统
             //local数据库,默认为系统
@@ -72,7 +72,7 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="mongoDB"></param>
         /// <returns></returns>
-        public static Boolean IsSystemDataBase(String DataBaseName)
+        public static Boolean IsSystemDataBase(string DataBaseName)
         {
             //local数据库,默认为系统
             if (DataBaseName == ConstMgr.DATABASE_NAME_LOCAL)
@@ -100,12 +100,12 @@ namespace MongoUtility.Extend
         /// <param name="func"></param>
         /// <param name="tr"></param>
         /// <returns></returns>
-        public static String DataBaseOpration(String strObjTag,
-            String dbName,
+        public static string DataBaseOpration(string strObjTag,
+            string dbName,
             Oprcode func,
             MongoServer mongoSvr)
         {
-            var rtnResult = String.Empty;
+            var rtnResult = string.Empty;
             var strSvrPath = Utility.GetTagData(strObjTag);
             var result = new CommandResult(new BsonDocument());
             if (mongoSvr != null)
@@ -141,7 +141,7 @@ namespace MongoUtility.Extend
 //                            }
                             if (!result.Response.Contains("err"))
                             {
-                                return String.Empty;
+                                return string.Empty;
                             }
                             return result.Response["err"].ToString();
                         }
@@ -166,7 +166,7 @@ namespace MongoUtility.Extend
         /// <param name="collectionName"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public static Boolean CreateCollectionWithOptions(String strObjTag, String collectionName,
+        public static Boolean CreateCollectionWithOptions(string strObjTag, string collectionName,
             CollectionOptionsBuilder option, MongoDatabase mongoDB)
         {
             //不支持中文 JIRA ticket is created : SERVER-4412
@@ -199,7 +199,7 @@ namespace MongoUtility.Extend
         /// <param name="treeNode"></param>
         /// <param name="collectionName"></param>
         /// <returns></returns>
-        public static Boolean CreateCollection(String strObjTag, String collectionName, MongoDatabase mongoDB)
+        public static Boolean CreateCollection(string strObjTag, string collectionName, MongoDatabase mongoDB)
         {
             //不支持中文 JIRA ticket is created : SERVER-4412
             //SERVER-4412已经在2013/03解决了
@@ -228,9 +228,9 @@ namespace MongoUtility.Extend
         ///     获得Shard情报
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<String, String> GetShardInfo(MongoServer server, String Key)
+        public static Dictionary<string, string> GetShardInfo(MongoServer server, string Key)
         {
-            var ShardInfo = new Dictionary<String, String>();
+            var ShardInfo = new Dictionary<string, string>();
             if (server.DatabaseExists(ConstMgr.DATABASE_NAME_CONFIG))
             {
                 var configdb = server.GetDatabase(ConstMgr.DATABASE_NAME_CONFIG);
@@ -253,12 +253,12 @@ namespace MongoUtility.Extend
         /// <param name="DescendingKey"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public static Boolean CreateMongoIndex(String[] AscendingKey, String[] DescendingKey, String GeoSpatialKey,
+        public static Boolean CreateMongoIndex(string[] AscendingKey, string[] DescendingKey, string GeoSpatialKey,
             IndexOptionsBuilder option, MongoCollection CurrentCollection)
         {
             var mongoCol = CurrentCollection;
             var indexkeys = new IndexKeysBuilder();
-            if (!String.IsNullOrEmpty(GeoSpatialKey))
+            if (!string.IsNullOrEmpty(GeoSpatialKey))
             {
                 indexkeys.GeoSpatial(GeoSpatialKey);
             }
@@ -273,7 +273,7 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="indexName"></param>
         /// <returns></returns>
-        public static Boolean DropMongoIndex(String indexName, MongoCollection mongoCol)
+        public static Boolean DropMongoIndex(string indexName, MongoCollection mongoCol)
         {
             if (indexName == ConstMgr.KEY_ID)
             {
@@ -291,7 +291,7 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="jsName"></param>
         /// <param name="jsCode"></param>
-        public static String CreateNewJavascript(String jsName, String jsCode, MongoCollection jsCol)
+        public static string CreateNewJavascript(string jsName, string jsCode, MongoCollection jsCol)
         {
             //标准的JS库格式未知
             if (!QueryHelper.IsExistByKey(jsCol, jsName))
@@ -309,11 +309,11 @@ namespace MongoUtility.Extend
                 }
                 if (result.Response["err"] == BsonNull.Value)
                 {
-                    return String.Empty;
+                    return string.Empty;
                 }
                 return result.Response["err"].ToString();
             }
-            return String.Empty;
+            return string.Empty;
         }
 
         /// <summary>
@@ -322,13 +322,13 @@ namespace MongoUtility.Extend
         /// <param name="jsName"></param>
         /// <param name="jsCode"></param>
         /// <returns></returns>
-        public static String SaveEditorJavascript(String jsName, String jsCode, MongoCollection jsCol)
+        public static string SaveEditorJavascript(string jsName, string jsCode, MongoCollection jsCol)
         {
             //标准的JS库格式未知
             if (QueryHelper.IsExistByKey(jsCol, jsName))
             {
                 var result = DropDocument(jsCol, (BsonString) jsName);
-                if (String.IsNullOrEmpty(result))
+                if (string.IsNullOrEmpty(result))
                 {
                     var resultCommand = new CommandResult(new BsonDocument());
                     try
@@ -342,13 +342,13 @@ namespace MongoUtility.Extend
                     }
                     if (resultCommand.Response["err"] == BsonNull.Value)
                     {
-                        return String.Empty;
+                        return string.Empty;
                     }
                     return resultCommand.Response["err"].ToString();
                 }
                 return result;
             }
-            return String.Empty;
+            return string.Empty;
         }
 
         /// <summary>
@@ -356,13 +356,13 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="jsName"></param>
         /// <returns></returns>
-        public static String DelJavascript(String jsName, MongoCollection jsCol)
+        public static string DelJavascript(string jsName, MongoCollection jsCol)
         {
             if (QueryHelper.IsExistByKey(jsCol, jsName))
             {
                 return DropDocument(jsCol, (BsonString) jsName);
             }
-            return String.Empty;
+            return string.Empty;
         }
 
         /// <summary>
@@ -370,13 +370,13 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="jsName"></param>
         /// <returns></returns>
-        public static String LoadJavascript(String jsName, MongoCollection jsCol)
+        public static string LoadJavascript(string jsName, MongoCollection jsCol)
         {
             if (QueryHelper.IsExistByKey(jsCol, jsName))
             {
                 return jsCol.FindOneAs<BsonDocument>(Query.EQ(ConstMgr.KEY_ID, jsName)).GetValue("value").ToString();
             }
-            return String.Empty;
+            return string.Empty;
         }
 
         /// <summary>
@@ -385,7 +385,7 @@ namespace MongoUtility.Extend
         /// <param name="mongoCol"></param>
         /// <param name="strKey"></param>
         /// <returns></returns>
-        public static String DropDocument(MongoCollection mongoCol, object strKey)
+        public static string DropDocument(MongoCollection mongoCol, object strKey)
         {
             var result = new CommandResult(new BsonDocument());
             if (QueryHelper.IsExistByKey(mongoCol, (BsonValue) strKey))
@@ -405,7 +405,7 @@ namespace MongoUtility.Extend
             BsonElement err;
             if (!result.Response.TryGetElement("err", out err))
             {
-                return String.Empty;
+                return string.Empty;
             }
             return err.ToString();
         }
