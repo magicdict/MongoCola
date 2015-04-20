@@ -322,7 +322,9 @@ namespace MongoUtility.Basic
             var stringWriter = myProcess.StandardInput;
             stringWriter.AutoFlush = true;
             //DOS控制平台上的命令
-            stringWriter.Write(@"cd " + MongoBinPath + Environment.NewLine);
+            //如果MongoUtility和本程序不在一个驱动器的话，需要先切换驱动器
+            stringWriter.Write(MongoBinPath.Substring(0,1) + ":" + Environment.NewLine);
+            stringWriter.Write("cd " + MongoBinPath + Environment.NewLine);
             //DOS控制平台上的命令
             stringWriter.Write(DosCommand + Environment.NewLine);
             stringWriter.Write("exit" + Environment.NewLine);
