@@ -78,7 +78,7 @@ namespace MongoGUIView
                 if (_isElement)
                 {
                     ElementHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value,
-                        (BsonElement) _selectNode.Tag,
+                        (BsonElement)_selectNode.Tag,
                         RuntimeMongoDBContext.CurrentDocument,
                         RuntimeMongoDBContext.GetCurrentCollection());
                 }
@@ -91,6 +91,7 @@ namespace MongoGUIView
                 _selectNode.Text = String.IsNullOrEmpty(AddBsonElement.getElement().Name)
                     ? String.Empty
                     : AddBsonElement.getElement().Name;
+                _selectNode.Tag = AddBsonElement.getElement().Value;
             }
             else
             {

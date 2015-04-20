@@ -59,3 +59,9 @@
 !zh_TW.xml
 !ja_JP.xml
 Thumbs.db
+/.vs/MongoCola/v14/vbcs.cache
+/packages/mongocsharpdriver.2.0.0
+/packages/MongoDB.Bson.2.0.0
+/packages/MongoDB.Driver.2.0.0/lib/net45
+/packages/MongoDB.Driver.Core.2.0.0
+/packages/MongoDB.Driver.2.0.0/MongoDB.Driver.2.0.0.nupkg

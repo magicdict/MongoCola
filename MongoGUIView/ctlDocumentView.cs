@@ -446,12 +446,14 @@ namespace MongoGUIView
             if (trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(ConstMgr.Array_Mark))
             {
                 ElementHelper.DropArrayValue(trvData.DatatreeView.SelectedNode.FullPath,
-                    trvData.DatatreeView.SelectedNode.Index, null, null);
+                    trvData.DatatreeView.SelectedNode.Index, RuntimeMongoDBContext.CurrentDocument,
+                        RuntimeMongoDBContext.GetCurrentCollection());
             }
             else
             {
                 ElementHelper.DropElement(trvData.DatatreeView.SelectedNode.FullPath,
-                    (BsonElement) trvData.DatatreeView.SelectedNode.Tag, null, null);
+                    (BsonElement) trvData.DatatreeView.SelectedNode.Tag, RuntimeMongoDBContext.CurrentDocument,
+                        RuntimeMongoDBContext.GetCurrentCollection());
             }
             trvData.DatatreeView.Nodes.Remove(trvData.DatatreeView.SelectedNode);
             IsNeedRefresh = true;
@@ -478,7 +480,6 @@ namespace MongoGUIView
             {
                 ElementOp(true, trvData.DatatreeView.SelectedNode, true);
             }
-            ;
             IsNeedRefresh = true;
         }
 
