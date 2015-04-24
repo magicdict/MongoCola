@@ -209,6 +209,7 @@ namespace MongoCola
             this.ExitToolStripMenuItem});
             this.ManagerToolStripMenuItem.Name = "ManagerToolStripMenuItem";
             this.ManagerToolStripMenuItem.Size = new System.Drawing.Size(97, 21);
+            this.ManagerToolStripMenuItem.Tag = "Main_Menu_Mangt";
             this.ManagerToolStripMenuItem.Text = "&Management";
             // 
             // AddConnectionToolStripMenuItem
@@ -216,6 +217,7 @@ namespace MongoCola
             this.AddConnectionToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.AddConnectionToolStripMenuItem.Name = "AddConnectionToolStripMenuItem";
             this.AddConnectionToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.AddConnectionToolStripMenuItem.Tag = "Main_Menu_Mangt_AddConnection";
             this.AddConnectionToolStripMenuItem.Text = "&Connection Manager";
             this.AddConnectionToolStripMenuItem.Click += new System.EventHandler(this.AddConnectionToolStripMenuItem_Click);
             // 
@@ -224,6 +226,7 @@ namespace MongoCola
             this.RefreshToolStripMenuItem.Name = "RefreshToolStripMenuItem";
             this.RefreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.RefreshToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.RefreshToolStripMenuItem.Tag = "Main_Menu_Mangt_Refresh";
             this.RefreshToolStripMenuItem.Text = "Refresh Connections";
             this.RefreshToolStripMenuItem.Click += new System.EventHandler(this.RefreshToolStripMenuItem_Click);
             // 
@@ -236,6 +239,7 @@ namespace MongoCola
             // 
             this.ExpandAllConnectionToolStripMenuItem.Name = "ExpandAllConnectionToolStripMenuItem";
             this.ExpandAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.ExpandAllConnectionToolStripMenuItem.Tag = "Common_Expansion";
             this.ExpandAllConnectionToolStripMenuItem.Text = "Expansion";
             this.ExpandAllConnectionToolStripMenuItem.Click += new System.EventHandler(this.ExpandAllToolStripMenuItem_Click);
             // 
@@ -243,6 +247,7 @@ namespace MongoCola
             // 
             this.CollapseAllConnectionToolStripMenuItem.Name = "CollapseAllConnectionToolStripMenuItem";
             this.CollapseAllConnectionToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.CollapseAllConnectionToolStripMenuItem.Tag = "Common_Collapse";
             this.CollapseAllConnectionToolStripMenuItem.Text = "Collapse";
             this.CollapseAllConnectionToolStripMenuItem.Click += new System.EventHandler(this.CollapseAllToolStripMenuItem_Click);
             // 
@@ -256,6 +261,7 @@ namespace MongoCola
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
             this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
             this.ExitToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.ExitToolStripMenuItem.Tag = "Main_Menu_Mangt_Exit";
             this.ExitToolStripMenuItem.Text = "Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -270,12 +276,14 @@ namespace MongoCola
             this.ViewRefreshToolStripMenuItem});
             this.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem";
             this.ViewToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
+            this.ViewToolStripMenuItem.Tag = "Main_Menu_DataView";
             this.ViewToolStripMenuItem.Text = "&View";
             // 
             // statusToolStripMenuItem
             // 
             this.statusToolStripMenuItem.Name = "statusToolStripMenuItem";
             this.statusToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.statusToolStripMenuItem.Tag = "Main_Menu_Mangt_Status";
             this.statusToolStripMenuItem.Text = "Server Status";
             this.statusToolStripMenuItem.Click += new System.EventHandler(this.statusToolStripMenuItem_Click);
             // 
@@ -290,6 +298,7 @@ namespace MongoCola
             // 
             this.collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
             this.collectionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.collectionToolStripMenuItem.Tag = "Common_Collection";
             this.collectionToolStripMenuItem.Text = "Collection Data";
             // 
             // JavaScriptStripMenuItem
@@ -308,6 +317,7 @@ namespace MongoCola
             this.ViewRefreshToolStripMenuItem.Name = "ViewRefreshToolStripMenuItem";
             this.ViewRefreshToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F5)));
             this.ViewRefreshToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ViewRefreshToolStripMenuItem.Tag = "Main_Menu_Mangt_Refresh";
             this.ViewRefreshToolStripMenuItem.Text = "Refresh";
             this.ViewRefreshToolStripMenuItem.Click += new System.EventHandler(this.ViewRefreshToolStripMenuItem_Click);
             // 
@@ -764,23 +774,25 @@ namespace MongoCola
             this.OptionsToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(52, 21);
+            this.ToolsToolStripMenuItem.Tag = "Main_Menu_Tool";
             this.ToolsToolStripMenuItem.Text = "&Tools";
             // 
             // plugInToolStripMenuItem
             // 
             this.plugInToolStripMenuItem.Name = "plugInToolStripMenuItem";
-            this.plugInToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.plugInToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.plugInToolStripMenuItem.Text = "PlugIn";
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(119, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(149, 6);
             // 
             // OptionsToolStripMenuItem
             // 
             this.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem";
-            this.OptionsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.OptionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.OptionsToolStripMenuItem.Tag = "Main_Menu_Tool_Setting";
             this.OptionsToolStripMenuItem.Text = "&Options";
             this.OptionsToolStripMenuItem.Click += new System.EventHandler(this.OptionToolStripMenuItem_Click);
             // 
@@ -793,12 +805,14 @@ namespace MongoCola
             this.AboutToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
             this.HelpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
+            this.HelpToolStripMenuItem.Tag = "Main_Menu_Help";
             this.HelpToolStripMenuItem.Text = "&Help";
             // 
             // ThanksToolStripMenuItem
             // 
             this.ThanksToolStripMenuItem.Name = "ThanksToolStripMenuItem";
             this.ThanksToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.ThanksToolStripMenuItem.Tag = "Main_Menu_Help_Thanks";
             this.ThanksToolStripMenuItem.Text = "&Thanks";
             this.ThanksToolStripMenuItem.Click += new System.EventHandler(this.ThanksToolStripMenuItem_Click);
             // 
@@ -807,6 +821,7 @@ namespace MongoCola
             this.UserGuideToolStripMenuItem.Name = "UserGuideToolStripMenuItem";
             this.UserGuideToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this.UserGuideToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.UserGuideToolStripMenuItem.Tag = "Main_Menu_Help_UserGuide";
             this.UserGuideToolStripMenuItem.Text = "UserGuide";
             this.UserGuideToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
             // 
@@ -819,6 +834,7 @@ namespace MongoCola
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
             this.AboutToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.AboutToolStripMenuItem.Tag = "Main_Menu_Help_About";
             this.AboutToolStripMenuItem.Text = "&About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -892,10 +908,10 @@ namespace MongoCola
             // tabCommandShell
             // 
             this.tabCommandShell.Controls.Add(this.ctlShellCommandEditor);
-            this.tabCommandShell.Location = new System.Drawing.Point(4, 24);
+            this.tabCommandShell.Location = new System.Drawing.Point(4, 26);
             this.tabCommandShell.Name = "tabCommandShell";
             this.tabCommandShell.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCommandShell.Size = new System.Drawing.Size(766, 636);
+            this.tabCommandShell.Size = new System.Drawing.Size(766, 644);
             this.tabCommandShell.TabIndex = 1;
             this.tabCommandShell.Text = "Shell Command";
             this.tabCommandShell.UseVisualStyleBackColor = true;
@@ -907,7 +923,7 @@ namespace MongoCola
             this.ctlShellCommandEditor.Location = new System.Drawing.Point(3, 3);
             this.ctlShellCommandEditor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ctlShellCommandEditor.Name = "ctlShellCommandEditor";
-            this.ctlShellCommandEditor.Size = new System.Drawing.Size(760, 630);
+            this.ctlShellCommandEditor.Size = new System.Drawing.Size(760, 638);
             this.ctlShellCommandEditor.TabIndex = 0;
             // 
             // splitter1

@@ -26,33 +26,7 @@ namespace MongoCola
         /// </summary>
         private void SetMenuText()
         {
-            //管理
-            ManagerToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt);
-            DisconnectToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Disconnect);
-            AddConnectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_AddConnection);
-            RefreshToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Refresh);
-
-            ExpandAllConnectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Expansion);
-            CollapseAllConnectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Collapse);
-            ExitToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Exit);
-
-            //数据视图
-            ViewToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView);
-            ViewRefreshToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Refresh);
-            collectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Collection);
-            statusToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Status);
-
+            SystemConfig.guiConfig.Translateform(this);
 
             //Operation
             OperationToolStripMenuItem.Text =
@@ -82,9 +56,7 @@ namespace MongoCola
             slaveResyncToolStripMenuItem.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(
                     TextType.Main_Menu_Operation_Server_SlaveResync);
-            //ShutDownToolStripMenuItem.Text =
-            //    SystemConfig.guiConfig.MStringResource.GetText(
-            //        ResourceLib.Utility.TextType.Main_Menu_Operation_Server_CloseServer);
+
             ServePropertyToolStripMenuItem.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(
                     TextType.Main_Menu_Operation_Server_Properties);
@@ -173,27 +145,14 @@ namespace MongoCola
                 SystemConfig.guiConfig.MStringResource.GetText(
                     TextType.Main_Menu_Operation_DataCollection_DropJavaScript);
 
-            //Tool
-            ToolsToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Tool);
-            OptionsToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Tool_Setting);
-
-            //帮助
-            HelpToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Help);
-            AboutToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Help_About);
-            ThanksToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Help_Thanks);
-            UserGuideToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Help_UserGuide);
-
             //其他控件
             statusStripMain.Items[0].Text =
                 SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_StatusBar_Text_Ready);
             tabSvrStatus.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Status);
+            DisconnectToolStripMenuItem.Text = 
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Disconnect);
+
         }
 
         /// <summary>

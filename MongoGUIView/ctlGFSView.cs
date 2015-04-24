@@ -142,8 +142,6 @@ namespace MongoGUIView
 
         #region"管理：GFS"
 
-        public Func<GFS.UpLoadFileOption> getOpt;
-
         /// <summary>
         ///     Upload File
         /// </summary>
@@ -152,7 +150,13 @@ namespace MongoGUIView
             var upfile = new OpenFileDialog();
             if (upfile.ShowDialog() == DialogResult.OK)
             {
-                var opt = getOpt();
+                var opt = new GFS.UpLoadFileOption();
+                var frm = new frmGFSOption();
+                frm.ShowDialog();
+                opt.AlreadyOpt = frm.option;
+                opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
+                opt.FileNameOpt = frm.filename;
+                opt.IgnoreSubFolder = frm.ignoreSubFolder;
                 GFS.UpLoadFile(upfile.FileName, opt, null);
                 RefreshGUI();
             }
@@ -168,7 +172,13 @@ namespace MongoGUIView
             var upfolder = new FolderBrowserDialog();
             if (upfolder.ShowDialog() == DialogResult.OK)
             {
-                var opt = getOpt();
+                var opt = new GFS.UpLoadFileOption();
+                var frm = new frmGFSOption();
+                frm.ShowDialog();
+                opt.AlreadyOpt = frm.option;
+                opt.DirectorySeparatorChar = frm.DirectorySeparatorChar;
+                opt.FileNameOpt = frm.filename;
+                opt.IgnoreSubFolder = frm.ignoreSubFolder;
                 var uploadDir = new DirectoryInfo(upfolder.SelectedPath);
                 var count = 0;
                 UploadFolder(uploadDir, ref count, opt);
@@ -187,7 +197,7 @@ namespace MongoGUIView
         {
             foreach (var file in uploadDir.GetFiles())
             {
-                var rtn = GFS.UpLoadFile(file.FullName, opt, null);
+                var rtn = GFS.UpLoadFile(file.FullName, opt, RuntimeMongoDBContext.GetCurrentDataBase());
                 switch (rtn)
                 {
                     case GFS.UploadResult.Complete:

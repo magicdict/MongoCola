@@ -1,11 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using SystemUtility;
 using MongoUtility.Basic;
-using ResourceLib.Utility;
 
-namespace MongoCola
+namespace MongoGUIView
 {
     public partial class frmGFSOption : Form
     {
@@ -62,32 +60,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmGFSOption_Load(object sender, EventArgs e)
         {
-            if (SystemConfig.IsUseDefaultLanguage) return;
-            grpFilename.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.GFS_Insert_Option_RemoteFileName);
-            radFilename.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.GFS_Insert_Option_OnlyFilename);
-            radFullPath.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.GFS_Insert_Option_FullPath);
-            grpFileAlreadyExist.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.GFS_Insert_Option_FileAlreadyExist);
-            radAddIt.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.GFS_Insert_Option_JustAddIt);
-            radOverwrite.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.GFS_Insert_Option_Overwrite);
-            radRenameIt.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.GFS_Insert_Option_Rename);
-            radSkipIt.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.GFS_Insert_Option_SkipIt);
-            radStopIt.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.GFS_Insert_Option_Stop);
-            chkIgnore.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.GFS_Insert_Option_IngoreSubFolder);
-            lblSeperateChar.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.GFS_Insert_Option_DirectorySeparatorChar);
-            cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_OK);
+           configuration.guiConfig.Translateform(this);
         }
     }
 }
