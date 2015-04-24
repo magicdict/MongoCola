@@ -49,10 +49,10 @@ namespace MongoCola.Aggregation
             }
             if (SystemConfig.IsUseDefaultLanguage) return;
             cmdQuery.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_Action_LoadQuery);
-            cmdRun.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.Distinct_Action_LoadQuery);
+            cmdRun.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_OK);
             lblSelectField.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Distinct_SelectField);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.Distinct_SelectField);
         }
 
         /// <summary>

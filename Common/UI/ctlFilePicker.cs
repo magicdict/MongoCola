@@ -148,8 +148,8 @@ namespace Common.UI
         {
             if (DesignMode) return;
             if (guiconfig == null) return;
-            cmdBrowse.Text = guiconfig.GetText("Browse", StringResource.TextType.Common_Browse);
-            cmdClearPath.Text = guiconfig.GetText("Clear", StringResource.TextType.Common_Clear);
+            cmdBrowse.Text = guiconfig.GetText("Browse", TextType.Common_Browse);
+            cmdClearPath.Text = guiconfig.GetText("Clear", TextType.Common_Clear);
         }
     }
 }

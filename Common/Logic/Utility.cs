@@ -538,7 +538,6 @@ namespace Common.Logic
             }
             catch (Exception)
             {
-
             }
         }
 

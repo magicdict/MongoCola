@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MongoUtility.Security
+﻿namespace MongoUtility.Security
 {
     /// <summary>
     ///     资源

@@ -1,5 +1,3 @@
-using System;
-
 namespace MongoUtility.EventArgs
 {
     /// <summary>

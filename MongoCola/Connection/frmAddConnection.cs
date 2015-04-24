@@ -79,7 +79,7 @@ namespace MongoCola.Connection
 
             cmdAdd.Text = SystemConfig.IsUseDefaultLanguage
                 ? "Modify"
-                : SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Modify);
+                : SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Modify);
         }
 
         /// <summary>
@@ -112,40 +112,40 @@ namespace MongoCola.Connection
             cmdCancel.BackColor = MyMessageBox.FailColor;
             //Language
             if (SystemConfig.IsUseDefaultLanguage) return;
-            Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Title);
+            Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Title);
             lblConnectionName.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionName);
-            lblHost.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Host);
-            lblPort.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
-            lblUsername.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Username);
-            lblPassword.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Password);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_ConnectionName);
+            lblHost.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Host);
+            lblPort.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Port);
+            lblUsername.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Username);
+            lblPassword.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Password);
             lblDataBaseName.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_DBName);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_DBName);
             lblConnectionString.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionString);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_ConnectionString);
             lblAttentionPassword.Text =
                 SystemConfig.guiConfig.MStringResource.GetText(
-                    StringResource.TextType.AddConnection_Password_Description);
+                    TextType.AddConnection_Password_Description);
 
 
             lblsocketTimeout.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_SocketTimeOut);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_SocketTimeOut);
             lblConnectTimeout.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_ConnectionTimeOut);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_ConnectionTimeOut);
 
 
             lblMainReplsetName.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_MainReplsetName);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_MainReplsetName);
             lblReplHost.Text = lblHost.Text;
             lblReplPort.Text = lblPort.Text;
             cmdAddHost.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Region_AddHost);
             cmdRemoveHost.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_RemoveHost);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Region_RemoveHost);
 
-            cmdAdd.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
-            cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
-            cmdTest.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Test);
+            cmdAdd.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Add);
+            cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
+            cmdTest.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Test);
         }
 
         /// <summary>
@@ -207,9 +207,9 @@ namespace MongoCola.Connection
                 {
                     MyMessageBox.ShowMessage(
                         SystemConfig.guiConfig.MStringResource.GetText(
-                            StringResource.TextType.Exception_AuthenticationException),
+                            TextType.Exception_AuthenticationException),
                         SystemConfig.guiConfig.MStringResource.GetText(
-                            StringResource.TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
+                            TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
                 }
                 else
                 {
@@ -226,9 +226,9 @@ namespace MongoCola.Connection
                 if (!SystemConfig.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
-                        SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                        SystemConfig.guiConfig.MStringResource.GetText(TextType.Exception_NotConnected),
                         SystemConfig.guiConfig.MStringResource.GetText(
-                            StringResource.TextType.Exception_NotConnected_Note),
+                            TextType.Exception_NotConnected_Note),
                         ex.ToString(), true);
                 }
                 else

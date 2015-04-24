@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Common.Logic;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Utility;
-using MongoUtility.Basic;
 using Utility = Common.Logic.Utility;
 
 namespace MongoGUICtl
@@ -63,8 +62,8 @@ namespace MongoGUICtl
             /// <returns></returns>
             public int Compare(object x, object y)
             {
-                var lstX = (ListViewItem)x;
-                var lstY = (ListViewItem)y;
+                var lstX = (ListViewItem) x;
+                var lstY = (ListViewItem) y;
                 var rtnCompare = 0;
                 switch (CompareMethod)
                 {
@@ -101,7 +100,7 @@ namespace MongoGUICtl
                 }
                 if (Order == SortOrder.Descending)
                 {
-                    rtnCompare = rtnCompare * -1;
+                    rtnCompare = rtnCompare*-1;
                 }
                 return rtnCompare;
             }
@@ -112,7 +111,6 @@ namespace MongoGUICtl
         #region"展示状态"
 
         /// <summary>
-        ///     
         /// </summary>
         /// <param name="trvSvrStatus"></param>
         /// <param name="_mongoConnClientLst"></param>
@@ -135,7 +133,9 @@ namespace MongoGUICtl
                     {
                         var adminDB = mongoClient.GetDatabase(ConstMgr.DATABASE_NAME_ADMIN);
                         //Can't Convert IMongoDB To MongoDB
-                        var ServerStatusDoc = CommandHelper.ExecuteMongoDBCommand(CommandHelper.serverStatus_Command, (MongoDatabase)adminDB).Response;
+                        var ServerStatusDoc =
+                            CommandHelper.ExecuteMongoDBCommand(CommandHelper.serverStatus_Command,
+                                (MongoDatabase) adminDB).Response;
                         SrvDocList.Add(ServerStatusDoc);
                     }
                 }
@@ -201,21 +201,21 @@ namespace MongoGUICtl
         {
             lstSvr.Clear();
             lstSvr.Columns.Add(configuration.guiConfig.GetText("DataBaseName",
-                StringResource.TextType.DataBase_Status_DataBaseName));
+                TextType.DataBase_Status_DataBaseName));
             lstSvr.Columns.Add(configuration.guiConfig.GetText("CollectionCount",
-                StringResource.TextType.DataBase_Status_CollectionCount));
+                TextType.DataBase_Status_CollectionCount));
             lstSvr.Columns.Add(configuration.guiConfig.GetText("DataSize",
-                StringResource.TextType.DataBase_Status_DataSize));
+                TextType.DataBase_Status_DataSize));
             lstSvr.Columns.Add(configuration.guiConfig.GetText("FileSize",
-                StringResource.TextType.DataBase_Status_FileSize));
+                TextType.DataBase_Status_FileSize));
             lstSvr.Columns.Add(configuration.guiConfig.GetText("IndexCount",
-                StringResource.TextType.DataBase_Status_IndexCount));
+                TextType.DataBase_Status_IndexCount));
             lstSvr.Columns.Add(configuration.guiConfig.GetText("IndexSize",
-                StringResource.TextType.DataBase_Status_IndexSize));
+                TextType.DataBase_Status_IndexSize));
             lstSvr.Columns.Add(configuration.guiConfig.GetText("ObjectCount",
-                StringResource.TextType.DataBase_Status_ObjectCount));
+                TextType.DataBase_Status_ObjectCount));
             lstSvr.Columns.Add(configuration.guiConfig.GetText("StorageSize",
-                StringResource.TextType.DataBase_Status_StorageSize));
+                TextType.DataBase_Status_StorageSize));
             foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)
             {
                 var mongoSvr = _mongoConnSvrLst[mongoSvrKey];
@@ -255,7 +255,6 @@ namespace MongoGUICtl
                     lst.SubItems.Add(MongoUtility.Basic.Utility.GetBsonSize(dbStatus.StorageSize));
                     lstSvr.Items.Add(lst);
                 }
-
             }
             lstSvr.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
@@ -285,36 +284,36 @@ namespace MongoGUICtl
             {
                 lstData.Columns.Add(
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Status_CollectionName));
+                        TextType.Collection_Status_CollectionName));
                 lstData.Columns.Add(
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Status_ObjectCount));
+                        TextType.Collection_Status_ObjectCount));
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_DataSize));
-                lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Status_LastExtentSize));
+                    configuration.guiConfig.MStringResource.GetText(TextType.Collection_Status_DataSize));
                 lstData.Columns.Add(
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Status_StorageSize));
+                        TextType.Collection_Status_LastExtentSize));
                 lstData.Columns.Add(
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Status_TotalIndexSize));
+                        TextType.Collection_Status_StorageSize));
+                lstData.Columns.Add(
+                    configuration.guiConfig.MStringResource.GetText(
+                        TextType.Collection_Status_TotalIndexSize));
 
                 //2012-3-6
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Collection_Status_IsCapped));
+                    configuration.guiConfig.MStringResource.GetText(TextType.Collection_Status_IsCapped));
                 lstData.Columns.Add(
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Status_MaxDocuments));
+                        TextType.Collection_Status_MaxDocuments));
 
 
                 lstData.Columns.Add(
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Status_AverageObjectSize));
+                        TextType.Collection_Status_AverageObjectSize));
                 lstData.Columns.Add(
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Status_PaddingFactor));
+                        TextType.Collection_Status_PaddingFactor));
             }
             foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)
             {
@@ -369,7 +368,7 @@ namespace MongoGUICtl
                             }
 
                             lst.SubItems.Add(CollectionStatus.ObjectCount != 0
-                                ? MongoUtility.Basic.Utility.GetBsonSize((long)CollectionStatus.AverageObjectSize)
+                                ? MongoUtility.Basic.Utility.GetBsonSize((long) CollectionStatus.AverageObjectSize)
                                 : "0");
 
                             try

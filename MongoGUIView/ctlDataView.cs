@@ -88,33 +88,33 @@ namespace MongoGUIView
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
                 //数据显示区
-                tabTreeView.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Tab_Tree);
+                tabTreeView.Text = configuration.guiConfig.MStringResource.GetText(TextType.Main_Tab_Tree);
                 tabTableView.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Tab_Table);
-                tabTextView.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Tab_Text);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Tab_Table);
+                tabTextView.Text = configuration.guiConfig.MStringResource.GetText(TextType.Main_Tab_Text);
                 PrePageStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Previous);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Previous);
                 NextPageStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Next);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Next);
                 FirstPageStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_First);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView_First);
                 LastPageStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Last);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Last);
                 QueryStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView_Query);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Query);
                 FilterStripButton.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_DataView_DataFilter);
+                        TextType.Main_Menu_DataView_DataFilter);
                 RefreshStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Refresh);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Refresh);
                 CloseStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Close);
                 ExpandAllStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Expansion);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Expansion);
                 CollapseAllStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Collapse);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Collapse);
                 HelpStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_Help);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_Help);
             }
             InitControlsVisiableAndEvent();
             //加载数据
@@ -387,7 +387,7 @@ namespace MongoGUIView
             var strTitle = "Records";
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                strTitle = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Main_Menu_DataView);
+                strTitle = configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView);
             }
             if (mDataViewInfo.CurrentCollectionTotalCnt == 0)
             {

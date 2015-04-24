@@ -27,12 +27,12 @@ namespace MongoCola.Connection
             cmdOK.BackColor = MyMessageBox.SuccessColor;
             cmdClose.BackColor = MyMessageBox.FailColor;
             if (SystemConfig.IsUseDefaultLanguage) return;
-            cmdAddCon.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
-            cmdDelCon.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Connect_Action_Del);
-            cmdModifyCon.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Modify);
-            cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
-            cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-            Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Connect_Title);
+            cmdAddCon.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Add);
+            cmdDelCon.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Connect_Action_Del);
+            cmdModifyCon.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Modify);
+            cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Close);
+            cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_OK);
+            Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Connect_Title);
         }
 
         /// <summary>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MongoUtility.Basic
+﻿namespace MongoUtility.Basic
 {
     public static class ConstMgr
     {

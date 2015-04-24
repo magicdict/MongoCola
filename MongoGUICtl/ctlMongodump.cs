@@ -19,15 +19,15 @@ namespace MongoGUICtl
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
                 lblCollectionName.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_DCName);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_DCName);
                 lblDBName.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_DBName);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_DBName);
                 lblHostAddr.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_Server);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_Server);
                 lblPort.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_Port);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_Port);
                 ctlFilePickerOutput.Title =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Backup_Path);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_Path);
             }
         }
 

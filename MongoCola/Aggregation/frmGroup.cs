@@ -141,18 +141,18 @@ namespace MongoCola.Aggregation
             panBsonEl.Controls.Add(firstAddBsonElCtl);
 
             if (SystemConfig.IsUseDefaultLanguage) return;
-            ctlReduce.Title = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Reduce);
+            ctlReduce.Title = SystemConfig.guiConfig.MStringResource.GetText(TextType.Group_Tab_Reduce);
             ctlFinalize.Title =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Finalize);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.Group_Tab_Finalize);
             lblSelectGroupField.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Group_Notes);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.Group_Tab_Group_Notes);
             lblAddInitField.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn_Note);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.Group_Tab_InitColumn_Note);
             cmdAddInitField.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_InitColumn);
-            lblResult.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_Tab_Result);
-            cmdQuery.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Group_LoadQuery);
-            cmdRun.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.Group_Tab_InitColumn);
+            lblResult.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Group_Tab_Result);
+            cmdQuery.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Group_LoadQuery);
+            cmdRun.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_OK);
         }
 
         /// <summary>

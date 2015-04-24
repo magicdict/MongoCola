@@ -68,7 +68,7 @@ namespace MongoGUIView
                 ShortTimer.Stop();
                 btnSwitch.Text = !configuration.guiConfig.IsUseDefaultLanguage
                     ? configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Resume_AutoRefresh)
+                        TextType.Collection_Resume_AutoRefresh)
                     : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
                 btnSwitch.Enabled = false;
@@ -94,7 +94,7 @@ namespace MongoGUIView
                 ShortTimer.Stop();
                 btnSwitch.Text = !configuration.guiConfig.IsUseDefaultLanguage
                     ? configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Resume_AutoRefresh)
+                        TextType.Collection_Resume_AutoRefresh)
                     : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
                 btnSwitch.Enabled = false;
@@ -114,23 +114,23 @@ namespace MongoGUIView
             //RefreshStatus(false);
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ServiceStatus_Title);
+                Text = configuration.guiConfig.MStringResource.GetText(TextType.ServiceStatus_Title);
                 tabSvrBasicInfo.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ServiceStatus_ServerInfo);
+                    configuration.guiConfig.MStringResource.GetText(TextType.ServiceStatus_ServerInfo);
                 tabDBBasicInfo.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ServiceStatus_DataBaseInfo);
+                    configuration.guiConfig.MStringResource.GetText(TextType.ServiceStatus_DataBaseInfo);
                 tabCollectionInfo.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ServiceStatus_CollectionInfo);
+                    configuration.guiConfig.MStringResource.GetText(TextType.ServiceStatus_CollectionInfo);
                 tabCurrentOprInfo.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.ServiceStatus_CurrentOperationInfo);
+                        TextType.ServiceStatus_CurrentOperationInfo);
                 RefreshStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Refresh);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Refresh);
                 btnSwitch.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Resume_AutoRefresh);
+                        TextType.Collection_Resume_AutoRefresh);
                 CloseStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Close);
             }
             //refreshTimer.Interval = configuration.RefreshStatusTimer*1000;
             //refreshTimer.Tick += (x, y) => RefreshStatus(false);
@@ -256,7 +256,7 @@ namespace MongoGUIView
                 ShortTimer.Start();
                 btnSwitch.Text = !configuration.guiConfig.IsUseDefaultLanguage
                     ? configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Stop_AutoRefresh)
+                        TextType.Collection_Stop_AutoRefresh)
                     : "Stop Auto Refresh";
                 btnSwitch.Image = Resources.Pause;
             }
@@ -266,7 +266,7 @@ namespace MongoGUIView
                 ShortTimer.Stop();
                 btnSwitch.Text = !configuration.guiConfig.IsUseDefaultLanguage
                     ? configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Resume_AutoRefresh)
+                        TextType.Collection_Resume_AutoRefresh)
                     : "Resume Auto Refresh";
                 btnSwitch.Image = Resources.Run;
             }

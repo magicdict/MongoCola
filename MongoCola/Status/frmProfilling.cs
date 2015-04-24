@@ -25,11 +25,11 @@ namespace MongoCola.Status
         {
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
-                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
+                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
+                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_OK);
                 lblProfilingLevel.Text =
                     SystemConfig.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_ProfillingLevel);
+                        TextType.Main_Menu_Operation_ProfillingLevel);
             }
 
             cmbProfillingLv.Items.Add("0-No Logging");

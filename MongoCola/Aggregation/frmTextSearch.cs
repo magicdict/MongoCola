@@ -21,9 +21,9 @@ namespace MongoCola.Aggregation
             InitializeComponent();
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                btnSearch.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Search);
-                cmdSave.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
-                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                btnSearch.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Search);
+                cmdSave.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Save);
+                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Close);
             }
             //加载语言列表
             cmbLanguage.Items.Clear();

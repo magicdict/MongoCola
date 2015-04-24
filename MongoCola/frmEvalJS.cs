@@ -26,16 +26,16 @@ namespace MongoCola
         {
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                this.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Title);
-                ctlEval.Title = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Method);
-                lblParm.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Parameter);
-                cmdEval.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.EvalJS_Run);
+                Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.EvalJS_Title);
+                ctlEval.Title = SystemConfig.guiConfig.MStringResource.GetText(TextType.EvalJS_Method);
+                lblParm.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.EvalJS_Parameter);
+                cmdEval.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.EvalJS_Run);
             }
-            ctlEval.Context = "function eval(){" + System.Environment.NewLine;
-            ctlEval.Context += "    var i = 0;" + System.Environment.NewLine;
-            ctlEval.Context += "    i++;" + System.Environment.NewLine;
-            ctlEval.Context += "    return i;" + System.Environment.NewLine;
-            ctlEval.Context += "}" + System.Environment.NewLine;
+            ctlEval.Context = "function eval(){" + Environment.NewLine;
+            ctlEval.Context += "    var i = 0;" + Environment.NewLine;
+            ctlEval.Context += "    i++;" + Environment.NewLine;
+            ctlEval.Context += "    return i;" + Environment.NewLine;
+            ctlEval.Context += "}" + Environment.NewLine;
         }
 
         /// <summary>

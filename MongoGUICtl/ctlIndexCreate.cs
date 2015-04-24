@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using ResourceLib.Utility;
@@ -17,11 +16,11 @@ namespace MongoGUICtl
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
                 lblKeyName.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
+                    configuration.guiConfig.MStringResource.GetText(TextType.ctlIndexCreate_Index);
                 radAscendingKey.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Asce);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Index_Asce);
                 radDescendingKey.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Desc);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Index_Desc);
             }
             if (RuntimeMongoDBContext.GetCurrentCollection() != null)
             {

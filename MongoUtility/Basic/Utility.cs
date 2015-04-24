@@ -175,7 +175,9 @@ namespace MongoUtility.Basic
         public static List<string> GetJsNameList()
         {
             var jsNamelst = new List<string>();
-            foreach (var item in GetCurrentJsCollection(null).FindAllAs<BsonDocument>())
+            foreach (
+                var item in GetCurrentJsCollection(RuntimeMongoDBContext.GetCurrentDataBase()).FindAllAs<BsonDocument>()
+                )
             {
                 jsNamelst.Add(item.GetValue(ConstMgr.KEY_ID).ToString());
             }

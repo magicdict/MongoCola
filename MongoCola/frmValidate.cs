@@ -17,14 +17,7 @@ namespace MongoCola
         public frmValidate()
         {
             InitializeComponent();
-            if (!SystemConfig.IsUseDefaultLanguage)
-            {
-                cmdSave.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
-                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
-                Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Validate);
-                cmdValidate.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Validate);
-            }
+            SystemConfig.guiConfig.Translateform(this);
             cmdSave.Enabled = false;
         }
 

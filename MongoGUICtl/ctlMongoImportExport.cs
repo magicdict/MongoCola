@@ -26,23 +26,23 @@ namespace MongoGUICtl
             {
                 lblCollectionName.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Collection_Status_CollectionName);
+                        TextType.Collection_Status_CollectionName);
                 lblDBName.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_DBName);
-                lblHost.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Host);
+                    configuration.guiConfig.MStringResource.GetText(TextType.AddConnection_DBName);
+                lblHost.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Host);
                 lblFieldList.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.DosCommand_Tab_ExIn_ColumnList);
-                lblPort.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
+                        TextType.DosCommand_Tab_ExIn_ColumnList);
+                lblPort.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Port);
                 grpDirect.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.DosCommand_Tab_ExIn_Operation);
+                        TextType.DosCommand_Tab_ExIn_Operation);
                 radImport.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Import);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_ExIn_Import);
                 radExport.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Export);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_ExIn_Export);
                 ctlFilePickerOutput.Title =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_ExIn_Workfile);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_ExIn_Workfile);
             }
         }
 

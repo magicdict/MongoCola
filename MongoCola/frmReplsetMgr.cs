@@ -89,22 +89,22 @@ namespace MongoCola
             {
                 Text =
                     SystemConfig.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Distributed_ReplicaSet);
+                        TextType.Main_Menu_Distributed_ReplicaSet);
                 grpAddHost.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Region_AddHost);
                 grpRemoveHost.Text =
                     SystemConfig.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.AddConnection_Region_RemoveHost);
-                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                        TextType.AddConnection_Region_RemoveHost);
+                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Close);
                 cmdAddHost.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Region_AddHost);
                 cmdRemoveHost.Text =
                     SystemConfig.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.AddConnection_Region_RemoveHost);
+                        TextType.AddConnection_Region_RemoveHost);
                 lblpriority.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Priority);
-                lblReplHost.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Host);
-                lblReplPort.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Priority);
+                lblReplHost.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Host);
+                lblReplPort.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Port);
             }
 
             var server = RuntimeMongoDBContext.GetCurrentServer();

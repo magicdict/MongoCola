@@ -21,7 +21,7 @@ namespace MongoGUICtl
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
                 lblLogLv.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_LogLevel);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_LogLevel);
             }
             cmbLogLevel.Items.Add("Quiet");
             cmbLogLevel.Items.Add("V");

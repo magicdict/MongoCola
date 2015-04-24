@@ -44,37 +44,37 @@ namespace MongoGUIView
             {
                 NewDocumentToolStripMenuItem.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_DataCollection_AddDocument);
+                        TextType.Main_Menu_Operation_DataCollection_AddDocument);
                 DelSelectRecordToolToolStripMenuItem.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_DataCollection_DropDocument);
+                        TextType.Main_Menu_Operation_DataCollection_DropDocument);
 
                 AddElementToolStripMenuItem.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_DataDocument_AddElement);
+                        TextType.Main_Menu_Operation_DataDocument_AddElement);
                 DropElementToolStripMenuItem.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_DataDocument_DropElement);
+                        TextType.Main_Menu_Operation_DataDocument_DropElement);
                 ModifyElementToolStripMenuItem.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_DataDocument_ModifyElement);
+                        TextType.Main_Menu_Operation_DataDocument_ModifyElement);
 
                 NewDocumentStripButton.Text = NewDocumentToolStripMenuItem.Text;
                 OpenDocInEditorStripButton.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_DataDocument_OpenInNativeEditor);
+                        TextType.Main_Menu_Operation_DataDocument_OpenInNativeEditor);
                 DelSelectRecordToolStripButton.Text = DelSelectRecordToolToolStripMenuItem.Text;
                 CopyElementToolStripMenuItem.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_DataDocument_CopyElement);
+                        TextType.Main_Menu_Operation_DataDocument_CopyElement);
                 CopyElementStripButton.Text = CopyElementToolStripMenuItem.Text;
                 CutElementToolStripMenuItem.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_DataDocument_CutElement);
+                        TextType.Main_Menu_Operation_DataDocument_CutElement);
                 CutElementStripButton.Text = CutElementToolStripMenuItem.Text;
                 PasteElementToolStripMenuItem.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_DataDocument_PasteElement);
+                        TextType.Main_Menu_Operation_DataDocument_PasteElement);
                 PasteElementStripButton.Text = PasteElementToolStripMenuItem.Text;
             }
 
@@ -357,8 +357,8 @@ namespace MongoGUIView
             var strMessage = "Are you sure to delete selected document(s)?";
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                strTitle = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_Data);
-                strMessage = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_Data_Confirm);
+                strTitle = configuration.guiConfig.MStringResource.GetText(TextType.Drop_Data);
+                strMessage = configuration.guiConfig.MStringResource.GetText(TextType.Drop_Data_Confirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
@@ -447,13 +447,13 @@ namespace MongoGUIView
             {
                 ElementHelper.DropArrayValue(trvData.DatatreeView.SelectedNode.FullPath,
                     trvData.DatatreeView.SelectedNode.Index, RuntimeMongoDBContext.CurrentDocument,
-                        RuntimeMongoDBContext.GetCurrentCollection());
+                    RuntimeMongoDBContext.GetCurrentCollection());
             }
             else
             {
                 ElementHelper.DropElement(trvData.DatatreeView.SelectedNode.FullPath,
                     (BsonElement) trvData.DatatreeView.SelectedNode.Tag, RuntimeMongoDBContext.CurrentDocument,
-                        RuntimeMongoDBContext.GetCurrentCollection());
+                    RuntimeMongoDBContext.GetCurrentCollection());
             }
             trvData.DatatreeView.Nodes.Remove(trvData.DatatreeView.SelectedNode);
             IsNeedRefresh = true;
@@ -471,7 +471,7 @@ namespace MongoGUIView
                 MyMessageBox.ShowMessage("Error", "_id can't be modify");
                 return;
             }
-            if (trvData.DatatreeView.SelectedNode.Parent != null && 
+            if (trvData.DatatreeView.SelectedNode.Parent != null &&
                 trvData.DatatreeView.SelectedNode.Parent.Text.EndsWith(ConstMgr.Array_Mark))
             {
                 ElementOp(true, trvData.DatatreeView.SelectedNode, false);

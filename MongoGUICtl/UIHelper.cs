@@ -168,8 +168,8 @@ namespace MongoGUICtl
                 {
                     //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
                     var config = _mongoConConfigLst[mongoConnKey];
-                    ConnectionNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
-                    ConnectionNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
+                    ConnectionNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Connection;
+                    ConnectionNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Connection;
                     //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
                     //不过现在改为全部显示的打开连接
                     ConnectionNode.Text = mongoConnKey;
@@ -460,12 +460,12 @@ namespace MongoGUICtl
             {
                 ConnectionNode.Text += "[" +
                                        configuration.guiConfig.MStringResource.GetText(
-                                           StringResource.TextType.Exception_AuthenticationException) + "]";
+                                           TextType.Exception_AuthenticationException) + "]";
                 Utility.ExceptionDeal(ex,
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Exception_AuthenticationException),
+                        TextType.Exception_AuthenticationException),
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Exception_AuthenticationException_Note));
+                        TextType.Exception_AuthenticationException_Note));
             }
             else
             {
@@ -488,12 +488,12 @@ namespace MongoGUICtl
                 {
                     ConnectionNode.Text += "[" +
                                            configuration.guiConfig.MStringResource.GetText(
-                                               StringResource.TextType.Exception_AuthenticationException) + "]";
+                                               TextType.Exception_AuthenticationException) + "]";
                     Utility.ExceptionDeal(ex,
                         configuration.guiConfig.MStringResource.GetText(
-                            StringResource.TextType.Exception_AuthenticationException),
+                            TextType.Exception_AuthenticationException),
                         configuration.guiConfig.MStringResource.GetText(
-                            StringResource.TextType.Exception_AuthenticationException_Note));
+                            TextType.Exception_AuthenticationException_Note));
                 }
                 else
                 {
@@ -507,9 +507,9 @@ namespace MongoGUICtl
                 {
                     ConnectionNode.Text += "[" +
                                            configuration.guiConfig.MStringResource.GetText(
-                                               StringResource.TextType.Exception_NotConnected) + "]";
+                                               TextType.Exception_NotConnected) + "]";
                     Utility.ExceptionDeal(ex,
-                        configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                        configuration.guiConfig.MStringResource.GetText(TextType.Exception_NotConnected),
                         "Unknown Exception");
                 }
                 else
@@ -535,10 +535,10 @@ namespace MongoGUICtl
             {
                 ConnectionNode.Text += "[" +
                                        configuration.guiConfig.MStringResource.GetText(
-                                           StringResource.TextType.Exception_NotConnected) + "]";
+                                           TextType.Exception_NotConnected) + "]";
                 Utility.ExceptionDeal(ex,
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_NotConnected),
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_NotConnected_Note));
+                    configuration.guiConfig.MStringResource.GetText(TextType.Exception_NotConnected),
+                    configuration.guiConfig.MStringResource.GetText(TextType.Exception_NotConnected_Note));
             }
             else
             {
@@ -558,9 +558,9 @@ namespace MongoGUICtl
             {
                 ConnectionNode.Text += "[" +
                                        configuration.guiConfig.MStringResource.GetText(
-                                           StringResource.TextType.Exception_NotConnected) + "]";
+                                           TextType.Exception_NotConnected) + "]";
                 Utility.ExceptionDeal(ex,
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Exception_NotConnected),
+                    configuration.guiConfig.MStringResource.GetText(TextType.Exception_NotConnected),
                     "Unknown Exception");
             }
             else

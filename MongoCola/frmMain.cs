@@ -283,7 +283,7 @@ namespace MongoCola
                         else
                         {
                             statusStripMain.Items[0].Text =
-                                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Index) +
+                                SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_Index) +
                                 ":" +
                                 RuntimeMongoDBContext.SelectTagData;
                         }
@@ -296,7 +296,7 @@ namespace MongoCola
                         else
                         {
                             statusStripMain.Items[0].Text =
-                                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Indexes) +
+                                SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_Indexes) +
                                 ":" +
                                 RuntimeMongoDBContext.SelectTagData;
                         }
@@ -309,7 +309,7 @@ namespace MongoCola
                         else
                         {
                             statusStripMain.Items[0].Text =
-                                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_UserList) +
+                                SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_UserList) +
                                 ":" +
                                 RuntimeMongoDBContext.SelectTagData;
                         }
@@ -341,7 +341,7 @@ namespace MongoCola
                         else
                         {
                             statusStripMain.Items[0].Text =
-                                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_GFS) +
+                                SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_GFS) +
                                 ":" +
                                 RuntimeMongoDBContext.SelectTagData;
                         }

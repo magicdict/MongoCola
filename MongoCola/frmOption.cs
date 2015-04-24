@@ -91,14 +91,14 @@ namespace MongoCola
 
             if (SystemConfig.IsUseDefaultLanguage) return;
             //国际化
-            Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Option_Title);
-            cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-            cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+            Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Option_Title);
+            cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_OK);
+            cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
             ctlFilePickerMongoBinPath.Title =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Option_BinPath);
-            lblLanguage.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Option_Language);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.Option_BinPath);
+            lblLanguage.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Option_Language);
             lblRefreshIntervalForStatus.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Option_RefreshInterval);
+                SystemConfig.guiConfig.MStringResource.GetText(TextType.Option_RefreshInterval);
         }
 
         /// <summary>

@@ -25,14 +25,14 @@ namespace MongoGUIView
             {
                 AddUserStripButton.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                        TextType.Main_Menu_Operation_Database_AddUser);
                 AddUserToolStripMenuItem.Text = AddUserStripButton.Text;
                 ChangePasswordStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_ChangePassword);
+                    configuration.guiConfig.MStringResource.GetText(TextType.Common_ChangePassword);
                 ChangePasswordToolStripMenuItem.Text = ChangePasswordStripButton.Text;
                 RemoveUserStripButton.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.Main_Menu_Operation_Database_DelUser);
+                        TextType.Main_Menu_Operation_Database_DelUser);
                 RemoveUserToolStripMenuItem.Text = RemoveUserStripButton.Text;
             }
             AddUserStripButton.Enabled = true;
@@ -127,8 +127,8 @@ namespace MongoGUIView
             var strMessage = "Are you sure to delete user(s) from Admin Group?";
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                strTitle = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User);
-                strMessage = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
+                strTitle = configuration.guiConfig.MStringResource.GetText(TextType.Drop_User);
+                strMessage = configuration.guiConfig.MStringResource.GetText(TextType.Drop_User_Confirm);
             }
 
             //这里也可以使用普通的删除数据的方法来删除用户。
@@ -161,8 +161,8 @@ namespace MongoGUIView
             var strMessage = "Are you sure to delete user(s) from this database";
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                strTitle = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User);
-                strMessage = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Drop_User_Confirm);
+                strTitle = configuration.guiConfig.MStringResource.GetText(TextType.Drop_User);
+                strMessage = configuration.guiConfig.MStringResource.GetText(TextType.Drop_User_Confirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {

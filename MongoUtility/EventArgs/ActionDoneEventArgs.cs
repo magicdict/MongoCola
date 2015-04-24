@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MongoUtility.EventArgs
+﻿namespace MongoUtility.EventArgs
 {
     public class ActionDoneEventArgs : System.EventArgs
     {

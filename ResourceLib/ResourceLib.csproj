@@ -49,6 +49,7 @@
     <Compile Include="Utility\GetResource_Icon.cs" />
     <Compile Include="Utility\GetSystemIcon.cs" />
     <Compile Include="Utility\StringResource.cs" />
+    <Compile Include="Utility\TextType.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

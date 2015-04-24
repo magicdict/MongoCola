@@ -8,6 +8,7 @@
  */
 
 using System;
+using System.Windows.Forms;
 
 namespace ResourceLib.Utility
 {
@@ -33,10 +34,43 @@ namespace ResourceLib.Utility
         /// <param name="tag"></param>
         /// <returns></returns>
         public string GetText(string DefaultText,
-            StringResource.TextType tag = StringResource.TextType.UseDefaultLanguage)
+            TextType tag = TextType.UseDefaultLanguage)
         {
-            if (IsUseDefaultLanguage || tag == StringResource.TextType.UseDefaultLanguage) return DefaultText;
+            if (IsUseDefaultLanguage || tag == TextType.UseDefaultLanguage) return DefaultText;
             return MStringResource.GetText(tag);
+        }
+
+        /// <summary>
+        ///     自动化多语言
+        /// </summary>
+        /// <param name="frm"></param>
+        public void Translateform(Form frm)
+        {
+            if (IsUseDefaultLanguage) return;
+            if (frm.Tag != null)
+            {
+                frm.Text = MStringResource.GetText(frm.Tag.ToString());
+            }
+            //遍历所有控件
+            foreach (Control ctrlItem in frm.Controls)
+            {
+                if (ctrlItem.Tag == null) continue;
+                var Display = MStringResource.GetText(ctrlItem.Tag.ToString());
+                if (string.IsNullOrEmpty(Display)) continue;
+
+                if (ctrlItem.GetType().FullName == typeof (Label).FullName)
+                {
+                    ((Label) ctrlItem).Text = Display;
+                }
+                if (ctrlItem.GetType().FullName == typeof(Button).FullName)
+                {
+                    ((Button)ctrlItem).Text = Display;
+                }
+                if (ctrlItem.GetType().FullName == typeof(CheckBox).FullName)
+                {
+                    ((CheckBox)ctrlItem).Text = Display;
+                }
+            }
         }
     }
 }

@@ -256,9 +256,9 @@ namespace MongoGUICtl
             if (configuration.guiConfig == null) return;
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                colName.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Name);
-                colValue.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Value);
-                colType.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Type);
+                colName.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Name);
+                colValue.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Value);
+                colType.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Type);
             }
         }
     }

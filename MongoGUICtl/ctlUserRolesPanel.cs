@@ -13,7 +13,7 @@ namespace MongoGUICtl
             if (configuration.guiConfig == null) return;
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                grpRoles.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Roles);
+                grpRoles.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Roles);
             }
         }
 

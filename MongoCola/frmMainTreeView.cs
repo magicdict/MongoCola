@@ -36,7 +36,7 @@ namespace MongoCola
             else
             {
                 statusStripMain.Items[0].Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Server) + ":" +
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_Server) + ":" +
                     RuntimeMongoDBContext.SelectTagData;
             }
 
@@ -139,7 +139,7 @@ namespace MongoCola
             else
             {
                 statusStripMain.Items[0].Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Server) + ":" +
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_Server) + ":" +
                     RuntimeMongoDBContext.SelectTagData;
             }
             //解禁 创建数据库,关闭服务器
@@ -255,7 +255,7 @@ namespace MongoCola
             else
             {
                 statusStripMain.Items[0].Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_DataBase) + ":" +
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_DataBase) + ":" +
                     RuntimeMongoDBContext.SelectTagData;
             }
             //系统库不允许修改
@@ -374,7 +374,7 @@ namespace MongoCola
             else
             {
                 statusStripMain.Items[0].Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Selected_Collection) + ":" +
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_Collection) + ":" +
                     RuntimeMongoDBContext.SelectTagData;
             }
             //解禁 删除数据集

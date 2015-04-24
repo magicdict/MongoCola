@@ -46,12 +46,12 @@ namespace MongoGUICtl.Aggregation
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
                 lblFieldName.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ctlIndexCreate_Index);
-                radSortAcs.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Asce);
-                radSortDes.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_Desc);
-                radNoSort.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Index_NoSort);
+                    configuration.guiConfig.MStringResource.GetText(TextType.ctlIndexCreate_Index);
+                radSortAcs.Text = configuration.guiConfig.MStringResource.GetText(TextType.Index_Asce);
+                radSortDes.Text = configuration.guiConfig.MStringResource.GetText(TextType.Index_Desc);
+                radNoSort.Text = configuration.guiConfig.MStringResource.GetText(TextType.Index_NoSort);
                 chkIsShow.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ctlFieldInfo_Show);
+                    configuration.guiConfig.MStringResource.GetText(TextType.ctlFieldInfo_Show);
             }
         }
 

@@ -51,16 +51,16 @@ namespace MongoGUIView
                 QueryFieldPicker.InitByCurrentCollection(true);
             }
             if (configuration.guiConfig.IsUseDefaultLanguage) return;
-            Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Title);
-            tabFieldInfo.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Query_FieldInfo);
-            tabCondition.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Filter);
-            tabSql.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.ConvertSql_Title);
+            Text = configuration.guiConfig.MStringResource.GetText(TextType.Query_Title);
+            tabFieldInfo.Text = configuration.guiConfig.MStringResource.GetText(TextType.Query_FieldInfo);
+            tabCondition.Text = configuration.guiConfig.MStringResource.GetText(TextType.Query_Filter);
+            tabSql.Text = configuration.guiConfig.MStringResource.GetText(TextType.ConvertSql_Title);
             cmdAddCondition.Text =
-                configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Filter_AddCondition);
-            cmdLoad.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Query_Action_Load);
-            cmdSave.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Save);
-            cmdOK.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-            cmdCancel.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                configuration.guiConfig.MStringResource.GetText(TextType.Query_Filter_AddCondition);
+            cmdLoad.Text = configuration.guiConfig.MStringResource.GetText(TextType.Query_Action_Load);
+            cmdSave.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Save);
+            cmdOK.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_OK);
+            cmdCancel.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
         }
 
         /// <summary>

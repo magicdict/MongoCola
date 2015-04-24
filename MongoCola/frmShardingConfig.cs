@@ -41,37 +41,37 @@ namespace MongoCola
         {
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Close);
+                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Close);
                 cmdAddHost.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.AddConnection_Region_AddHost);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Region_AddHost);
                 cmdRemoveHost.Text =
                     SystemConfig.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.AddConnection_Region_RemoveHost);
-                lblReplHost.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Host);
-                lblReplPort.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
+                        TextType.AddConnection_Region_RemoveHost);
+                lblReplHost.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Host);
+                lblReplPort.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Port);
 
-                Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_Title);
+                Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_Title);
                 tabAddSharding.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_AddSharding);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_AddSharding);
                 lblMainReplsetName.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_ReplsetName);
-                cmdAddSharding.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Add);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_ReplsetName);
+                cmdAddSharding.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Add);
                 chkAdvance.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Advance_Option);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Advance_Option);
                 tabShardingConfig.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_EnableSharding);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_EnableSharding);
                 lblDBName.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_DBName);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_DBName);
                 lblCollection.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_CollectionName);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_CollectionName);
                 lblIndexLName.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.ShardingConfig_FieldName);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_FieldName);
                 cmdEnableCollectionSharding.Text =
                     SystemConfig.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.ShardingConfig_Action_CollectionSharding);
+                        TextType.ShardingConfig_Action_CollectionSharding);
                 cmdEnableDBSharding.Text =
                     SystemConfig.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.ShardingConfig_Action_DBSharding);
+                        TextType.ShardingConfig_Action_DBSharding);
             }
             _prmSvr = RuntimeMongoDBContext.GetCurrentServer();
             var mongoDB = _prmSvr.GetDatabase(ConstMgr.DATABASE_NAME_CONFIG);

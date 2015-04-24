@@ -21,27 +21,27 @@ namespace MongoGUICtl
             ctlFilePickerLogPath.FileFilter = Utility.LogFilter;
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                lblPort.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Port);
+                lblPort.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Port);
                 lblSource.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.DosCommand_Tab_Deploy_SlaveSource);
+                        TextType.DosCommand_Tab_Deploy_SlaveSource);
                 chkAuth.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.DosCommand_Tab_Deploy_Authentication);
+                        TextType.DosCommand_Tab_Deploy_Authentication);
                 chkIsAppend.Text =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.DosCommand_Tab_Deploy_AppendMode);
+                        TextType.DosCommand_Tab_Deploy_AppendMode);
                 ctlFilePickerDBPath.Title =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_DBPath);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Deploy_DBPath);
                 ctlFilePickerLogPath.Title =
                     configuration.guiConfig.MStringResource.GetText(
-                        StringResource.TextType.DosCommand_Tab_Deploy_LogPath);
+                        TextType.DosCommand_Tab_Deploy_LogPath);
                 radMaster.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_Master);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Deploy_Master);
                 radSlave.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_Slave);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Deploy_Slave);
                 grpLog.Text =
-                    configuration.guiConfig.MStringResource.GetText(StringResource.TextType.DosCommand_Tab_Deploy_Log);
+                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Deploy_Log);
             }
         }
 

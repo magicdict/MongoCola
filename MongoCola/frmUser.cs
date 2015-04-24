@@ -144,27 +144,27 @@ namespace MongoCola
                 {
                     Text =
                         SystemConfig.guiConfig.MStringResource.GetText(_IsAdmin
-                            ? StringResource.TextType.Main_Menu_Operation_Server_AddUserToAdmin
-                            : StringResource.TextType.Main_Menu_Operation_Database_AddUser);
+                            ? TextType.Main_Menu_Operation_Server_AddUserToAdmin
+                            : TextType.Main_Menu_Operation_Database_AddUser);
                     Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
                 }
                 else
                 {
                     Icon = GetSystemIcon.ConvertImgToIcon(Resources.DBkey);
-                    Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_ChangePassword);
+                    Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_ChangePassword);
                 }
                 lblUserName.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Username);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Username);
                 lblPassword.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Password);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Password);
                 lblConfirmPsw.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_ConfirmPassword);
-                //chkReadOnly.Text = SystemConfig.guiConfig.MStringResource.GetText(MongoCola.Module.StringResource.TextType.Common_ReadOnly);
-                colRoles.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Roles);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_ConfirmPassword);
+                //chkReadOnly.Text = SystemConfig.guiConfig.MStringResource.GetText(MongoCola.Module.ResourceLib.Utility.TextType.Common_ReadOnly);
+                colRoles.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Roles);
                 colDataBase.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_DataBase);
-                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_DataBase);
+                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_OK);
+                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
             }
         }
 

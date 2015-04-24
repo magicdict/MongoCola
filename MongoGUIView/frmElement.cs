@@ -56,8 +56,8 @@ namespace MongoGUIView
             }
             if (!configuration.guiConfig.IsUseDefaultLanguage)
             {
-                cmdOK.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_OK);
-                cmdCancel.Text = configuration.guiConfig.MStringResource.GetText(StringResource.TextType.Common_Cancel);
+                cmdOK.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_OK);
+                cmdCancel.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
             }
             if (!_isElement)
             {
@@ -78,7 +78,7 @@ namespace MongoGUIView
                 if (_isElement)
                 {
                     ElementHelper.ModifyElement(_FullPath, AddBsonElement.getElement().Value,
-                        (BsonElement)_selectNode.Tag,
+                        (BsonElement) _selectNode.Tag,
                         RuntimeMongoDBContext.CurrentDocument,
                         RuntimeMongoDBContext.GetCurrentCollection());
                 }
