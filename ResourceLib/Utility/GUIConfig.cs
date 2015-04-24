@@ -59,6 +59,19 @@ namespace ResourceLib.Utility
             Translateform(frm.Controls);
         }
 
+        public void Translateform(ToolStripItemCollection Controls)
+        {
+            foreach (ToolStripItem menuItem in Controls)
+            {
+                if (menuItem.GetType().FullName == typeof(ToolStripSeparator).FullName) continue;
+                if (((ToolStripMenuItem)menuItem).Tag == null) continue;
+                var Display = MStringResource.GetText(((ToolStripMenuItem)menuItem).Tag.ToString());
+                if (string.IsNullOrEmpty(Display)) continue;
+                ((ToolStripMenuItem)menuItem).Text = Display;
+                if (((ToolStripMenuItem)menuItem).DropDownItems.Count > 0) Translateform(((ToolStripMenuItem)menuItem).DropDownItems);
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -70,20 +83,7 @@ namespace ResourceLib.Utility
             {
                 if (ctrlItem.GetType().FullName == typeof(MenuStrip).FullName)
                 {
-                    foreach (ToolStripMenuItem menuItem in ((MenuStrip)ctrlItem).Items)
-                    {
-                        if (menuItem.Tag == null) continue;
-                        Display = MStringResource.GetText(menuItem.Tag.ToString());
-                        if (string.IsNullOrEmpty(Display)) continue;
-                        menuItem.Text = Display;
-                        foreach (ToolStripItem SubmenuItem in menuItem.DropDownItems)
-                        {
-                            if (SubmenuItem.Tag == null) continue;
-                            Display = MStringResource.GetText(SubmenuItem.Tag.ToString());
-                            if (string.IsNullOrEmpty(Display)) continue;
-                            SubmenuItem.Text = Display;
-                        }
-                    }
+                    if (((MenuStrip)ctrlItem).Items.Count > 0) Translateform(((MenuStrip)ctrlItem).Items);
                 }
 
                 if (ctrlItem.Tag == null) continue;

@@ -331,6 +331,7 @@ namespace MongoCola
             this.DumpAndRestoreToolStripMenuItem});
             this.OperationToolStripMenuItem.Name = "OperationToolStripMenuItem";
             this.OperationToolStripMenuItem.Size = new System.Drawing.Size(79, 21);
+            this.OperationToolStripMenuItem.Tag = "Main_Menu_Operation";
             this.OperationToolStripMenuItem.Text = "&Operation";
             // 
             // connectionToolStripMenuItem
@@ -343,12 +344,14 @@ namespace MongoCola
             this.DisconnectToolStripMenuItem});
             this.connectionToolStripMenuItem.Name = "connectionToolStripMenuItem";
             this.connectionToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.connectionToolStripMenuItem.Tag = "Common_Connect";
             this.connectionToolStripMenuItem.Text = "Connection";
             // 
             // ReplicaSetToolStripMenuItem
             // 
             this.ReplicaSetToolStripMenuItem.Name = "ReplicaSetToolStripMenuItem";
             this.ReplicaSetToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.ReplicaSetToolStripMenuItem.Tag = "Main_Menu_Distributed_ReplicaSet";
             this.ReplicaSetToolStripMenuItem.Text = "Replset Manager";
             this.ReplicaSetToolStripMenuItem.Click += new System.EventHandler(this.ReplicaSetToolStripMenuItem_Click);
             // 
@@ -356,6 +359,7 @@ namespace MongoCola
             // 
             this.ShardingConfigToolStripMenuItem.Name = "ShardingConfigToolStripMenuItem";
             this.ShardingConfigToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.ShardingConfigToolStripMenuItem.Tag = "Main_Menu_Distributed_ShardingConfig";
             this.ShardingConfigToolStripMenuItem.Text = "&Sharding Config";
             this.ShardingConfigToolStripMenuItem.Click += new System.EventHandler(this.ShardingConfigToolStripMenuItem_Click);
             // 
@@ -363,6 +367,7 @@ namespace MongoCola
             // 
             this.InitReplsetToolStripMenuItem.Name = "InitReplsetToolStripMenuItem";
             this.InitReplsetToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.InitReplsetToolStripMenuItem.Tag = "Replset_InitReplset";
             this.InitReplsetToolStripMenuItem.Text = "Initiate Replset";
             this.InitReplsetToolStripMenuItem.Click += new System.EventHandler(this.InitReplsetToolStripMenuItem_Click);
             // 
@@ -375,6 +380,7 @@ namespace MongoCola
             // 
             this.DisconnectToolStripMenuItem.Name = "DisconnectToolStripMenuItem";
             this.DisconnectToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.DisconnectToolStripMenuItem.Tag = "Main_Menu_Mangt_Disconnect";
             this.DisconnectToolStripMenuItem.Text = "Disconnect";
             this.DisconnectToolStripMenuItem.Click += new System.EventHandler(this.DisconnectToolStripMenuItem_Click);
             // 
@@ -392,12 +398,14 @@ namespace MongoCola
             this.ServerStatusToolStripMenuItem});
             this.ServerToolStripMenuItem.Name = "ServerToolStripMenuItem";
             this.ServerToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.ServerToolStripMenuItem.Tag = "Main_Menu_Operation_Server";
             this.ServerToolStripMenuItem.Text = "Server";
             // 
             // CreateMongoDBToolStripMenuItem
             // 
             this.CreateMongoDBToolStripMenuItem.Name = "CreateMongoDBToolStripMenuItem";
             this.CreateMongoDBToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.CreateMongoDBToolStripMenuItem.Tag = "Main_Menu_Operation_Server_NewDB";
             this.CreateMongoDBToolStripMenuItem.Text = "New Database";
             this.CreateMongoDBToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoDBToolStripMenuItem_Click);
             // 
@@ -410,6 +418,7 @@ namespace MongoCola
             // 
             this.AddUserToAdminToolStripMenuItem.Name = "AddUserToAdminToolStripMenuItem";
             this.AddUserToAdminToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.AddUserToAdminToolStripMenuItem.Tag = "Main_Menu_Operation_Server_AddUserToAdmin";
             this.AddUserToAdminToolStripMenuItem.Text = "Add User To Admin Group";
             this.AddUserToAdminToolStripMenuItem.Click += new System.EventHandler(this.AddUserToAdminToolStripMenuItem_Click);
             // 
@@ -424,6 +433,7 @@ namespace MongoCola
             // 
             this.UserInfoStripMenuItem.Name = "UserInfoStripMenuItem";
             this.UserInfoStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.UserInfoStripMenuItem.Tag = "Main_Menu_Operation_Server_UserInfo";
             this.UserInfoStripMenuItem.Text = "User Information";
             this.UserInfoStripMenuItem.Click += new System.EventHandler(this.UserInfoStripMenuItem_Click);
             // 
@@ -436,6 +446,7 @@ namespace MongoCola
             // 
             this.slaveResyncToolStripMenuItem.Name = "slaveResyncToolStripMenuItem";
             this.slaveResyncToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.slaveResyncToolStripMenuItem.Tag = "Main_Menu_Operation_Server_SlaveResync";
             this.slaveResyncToolStripMenuItem.Text = "Slave Resync";
             this.slaveResyncToolStripMenuItem.Click += new System.EventHandler(this.slaveResyncToolStripMenuItem_Click);
             // 
@@ -443,6 +454,7 @@ namespace MongoCola
             // 
             this.ServePropertyToolStripMenuItem.Name = "ServePropertyToolStripMenuItem";
             this.ServePropertyToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.ServePropertyToolStripMenuItem.Tag = "Main_Menu_Operation_Server_Properties";
             this.ServePropertyToolStripMenuItem.Text = "Serve Info";
             this.ServePropertyToolStripMenuItem.Click += new System.EventHandler(this.ServePropertyToolStripMenuItem_Click);
             // 
@@ -450,6 +462,7 @@ namespace MongoCola
             // 
             this.ServerStatusToolStripMenuItem.Name = "ServerStatusToolStripMenuItem";
             this.ServerStatusToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.ServerStatusToolStripMenuItem.Tag = "Main_Menu_Mangt_Status";
             this.ServerStatusToolStripMenuItem.Text = "Status";
             this.ServerStatusToolStripMenuItem.Click += new System.EventHandler(this.SvrStatusToolStripMenuItem_Click);
             // 
@@ -472,12 +485,14 @@ namespace MongoCola
             this.DBStatusToolStripMenuItem});
             this.DataBaseToolStripMenuItem.Name = "DataBaseToolStripMenuItem";
             this.DataBaseToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.DataBaseToolStripMenuItem.Tag = "Main_Menu_Operation_Database";
             this.DataBaseToolStripMenuItem.Text = "Database";
             // 
             // CreateMongoCollectionToolStripMenuItem
             // 
             this.CreateMongoCollectionToolStripMenuItem.Name = "CreateMongoCollectionToolStripMenuItem";
             this.CreateMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.CreateMongoCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_Database_AddDC";
             this.CreateMongoCollectionToolStripMenuItem.Text = "New Collection";
             this.CreateMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.CreateMongoCollectionToolStripMenuItem_Click);
             // 
@@ -492,6 +507,7 @@ namespace MongoCola
             // 
             this.DelMongoDBToolStripMenuItem.Name = "DelMongoDBToolStripMenuItem";
             this.DelMongoDBToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.DelMongoDBToolStripMenuItem.Tag = "Main_Menu_Operation_Database_DelDB";
             this.DelMongoDBToolStripMenuItem.Text = "Del Database";
             this.DelMongoDBToolStripMenuItem.Click += new System.EventHandler(this.DelMongoDBToolStripMenuItem_Click);
             // 
@@ -504,6 +520,7 @@ namespace MongoCola
             // 
             this.AddUserToolStripMenuItem.Name = "AddUserToolStripMenuItem";
             this.AddUserToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.AddUserToolStripMenuItem.Tag = "Main_Menu_Operation_Database_AddUser";
             this.AddUserToolStripMenuItem.Text = "Add User";
             this.AddUserToolStripMenuItem.Click += new System.EventHandler(this.AddUserToolStripMenuItem_Click);
             // 
@@ -523,6 +540,7 @@ namespace MongoCola
             // 
             this.EvalJSToolStripMenuItem.Name = "EvalJSToolStripMenuItem";
             this.EvalJSToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.EvalJSToolStripMenuItem.Tag = "Main_Menu_Operation_Database_EvalJs";
             this.EvalJSToolStripMenuItem.Text = "Eval Javascript";
             this.EvalJSToolStripMenuItem.Click += new System.EventHandler(this.evalJSToolStripMenuItem_Click);
             // 
@@ -530,6 +548,7 @@ namespace MongoCola
             // 
             this.creatJavaScriptToolStripMenuItem.Name = "creatJavaScriptToolStripMenuItem";
             this.creatJavaScriptToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.creatJavaScriptToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_CreateJavaScript";
             this.creatJavaScriptToolStripMenuItem.Text = "Creat JavaScript";
             this.creatJavaScriptToolStripMenuItem.Click += new System.EventHandler(this.creatJavaScriptToolStripMenuItem_Click);
             // 
@@ -542,6 +561,7 @@ namespace MongoCola
             // 
             this.RepairDBToolStripMenuItem.Name = "RepairDBToolStripMenuItem";
             this.RepairDBToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.RepairDBToolStripMenuItem.Tag = "Main_Menu_Operation_Database_RepairDatabase";
             this.RepairDBToolStripMenuItem.Text = "Repair Database";
             this.RepairDBToolStripMenuItem.Click += new System.EventHandler(this.RepairDBToolStripMenuItem_Click);
             // 
@@ -549,12 +569,14 @@ namespace MongoCola
             // 
             this.InitGFSToolStripMenuItem.Name = "InitGFSToolStripMenuItem";
             this.InitGFSToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.InitGFSToolStripMenuItem.Tag = "Main_Menu_Operation_FileSystem_InitGFS";
             this.InitGFSToolStripMenuItem.Text = "Init GFS";
             // 
             // ProfillingLevelToolStripMenuItem
             // 
             this.ProfillingLevelToolStripMenuItem.Name = "ProfillingLevelToolStripMenuItem";
             this.ProfillingLevelToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.ProfillingLevelToolStripMenuItem.Tag = "Main_Menu_Operation_ProfillingLevel";
             this.ProfillingLevelToolStripMenuItem.Text = "Profilling Level";
             this.ProfillingLevelToolStripMenuItem.Click += new System.EventHandler(this.profillingLevelToolStripMenuItem_Click);
             // 
@@ -562,6 +584,7 @@ namespace MongoCola
             // 
             this.DBStatusToolStripMenuItem.Name = "DBStatusToolStripMenuItem";
             this.DBStatusToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.DBStatusToolStripMenuItem.Tag = "Main_Menu_Mangt_Status";
             this.DBStatusToolStripMenuItem.Text = "Status";
             this.DBStatusToolStripMenuItem.Click += new System.EventHandler(this.DBStatusToolStripMenuItem_Click);
             // 
@@ -582,12 +605,14 @@ namespace MongoCola
             this.ExportToFileToolStripMenuItem});
             this.DataCollectionToolStripMenuItem.Name = "DataCollectionToolStripMenuItem";
             this.DataCollectionToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.DataCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection";
             this.DataCollectionToolStripMenuItem.Text = "Collection";
             // 
             // DelMongoCollectionToolStripMenuItem
             // 
             this.DelMongoCollectionToolStripMenuItem.Name = "DelMongoCollectionToolStripMenuItem";
             this.DelMongoCollectionToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.DelMongoCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_DelDC";
             this.DelMongoCollectionToolStripMenuItem.Text = "Drop Collection";
             this.DelMongoCollectionToolStripMenuItem.Click += new System.EventHandler(this.DelMongoCollectionToolStripMenuItem_Click);
             // 
@@ -595,6 +620,7 @@ namespace MongoCola
             // 
             this.RenameCollectionToolStripMenuItem.Name = "RenameCollectionToolStripMenuItem";
             this.RenameCollectionToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.RenameCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_Rename";
             this.RenameCollectionToolStripMenuItem.Text = "Rename Collection";
             this.RenameCollectionToolStripMenuItem.Click += new System.EventHandler(this.RenameCollectionToolStripMenuItem_Click);
             // 
@@ -602,6 +628,7 @@ namespace MongoCola
             // 
             this.IndexManageToolStripMenuItem.Name = "IndexManageToolStripMenuItem";
             this.IndexManageToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.IndexManageToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_Index";
             this.IndexManageToolStripMenuItem.Text = "Index Management";
             this.IndexManageToolStripMenuItem.Click += new System.EventHandler(this.IndexManageToolStripMenuItem_Click);
             // 
@@ -609,6 +636,7 @@ namespace MongoCola
             // 
             this.ReIndexToolStripMenuItem.Name = "ReIndexToolStripMenuItem";
             this.ReIndexToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.ReIndexToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_ReIndex";
             this.ReIndexToolStripMenuItem.Text = "ReIndex";
             this.ReIndexToolStripMenuItem.Click += new System.EventHandler(this.ReIndexToolStripMenuItem_Click);
             // 
@@ -616,6 +644,7 @@ namespace MongoCola
             // 
             this.CompactToolStripMenuItem.Name = "CompactToolStripMenuItem";
             this.CompactToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.CompactToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_Compact";
             this.CompactToolStripMenuItem.Text = "Compact";
             this.CompactToolStripMenuItem.Click += new System.EventHandler(this.CompactToolStripMenuItem_Click);
             // 
@@ -635,6 +664,7 @@ namespace MongoCola
             this.textSearchToolStripMenuItem});
             this.AggregationToolStripMenuItem.Name = "AggregationToolStripMenuItem";
             this.AggregationToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.AggregationToolStripMenuItem.Tag = "Main_Menu_DataView_Aggregation";
             this.AggregationToolStripMenuItem.Text = "Aggregation";
             // 
             // countToolStripMenuItem
@@ -683,12 +713,14 @@ namespace MongoCola
             // 
             this.ViewDataToolStripMenuItem.Name = "ViewDataToolStripMenuItem";
             this.ViewDataToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.ViewDataToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_View";
             this.ViewDataToolStripMenuItem.Text = "ViewData";
             // 
             // dropJavascriptToolStripMenuItem
             // 
             this.dropJavascriptToolStripMenuItem.Name = "dropJavascriptToolStripMenuItem";
             this.dropJavascriptToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.dropJavascriptToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_DropJavaScript";
             this.dropJavascriptToolStripMenuItem.Text = "Drop Javascript";
             this.dropJavascriptToolStripMenuItem.Click += new System.EventHandler(this.dropJavascriptToolStripMenuItem_Click);
             // 
@@ -696,6 +728,7 @@ namespace MongoCola
             // 
             this.CollectionStatusToolStripMenuItem.Name = "CollectionStatusToolStripMenuItem";
             this.CollectionStatusToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.CollectionStatusToolStripMenuItem.Tag = "Main_Menu_Mangt_Status";
             this.CollectionStatusToolStripMenuItem.Text = "Status";
             this.CollectionStatusToolStripMenuItem.Click += new System.EventHandler(this.CollectionStatusToolStripMenuItem_Click);
             // 
@@ -703,6 +736,7 @@ namespace MongoCola
             // 
             this.ValidateToolStripMenuItem.Name = "ValidateToolStripMenuItem";
             this.ValidateToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.ValidateToolStripMenuItem.Tag = "Common_Validate";
             this.ValidateToolStripMenuItem.Text = "Validate";
             this.ValidateToolStripMenuItem.Click += new System.EventHandler(this.validateToolStripMenuItem_Click);
             // 
@@ -710,6 +744,7 @@ namespace MongoCola
             // 
             this.ExportToFileToolStripMenuItem.Name = "ExportToFileToolStripMenuItem";
             this.ExportToFileToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.ExportToFileToolStripMenuItem.Tag = "Main_Menu_Operation_DataCollection_ExportToFile";
             this.ExportToFileToolStripMenuItem.Text = "ExportImport To File";
             this.ExportToFileToolStripMenuItem.Click += new System.EventHandler(this.ExportToFileToolStripMenuItem_Click);
             // 
@@ -724,12 +759,14 @@ namespace MongoCola
             this.ExportCollectionToolStripMenuItem});
             this.DumpAndRestoreToolStripMenuItem.Name = "DumpAndRestoreToolStripMenuItem";
             this.DumpAndRestoreToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.DumpAndRestoreToolStripMenuItem.Tag = "Main_Menu_Operation_BackupAndRestore";
             this.DumpAndRestoreToolStripMenuItem.Text = "Dump And Restore";
             // 
             // RestoreMongoToolStripMenuItem
             // 
             this.RestoreMongoToolStripMenuItem.Name = "RestoreMongoToolStripMenuItem";
             this.RestoreMongoToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.RestoreMongoToolStripMenuItem.Tag = "Main_Menu_Operation_BackupAndRestore_Restore";
             this.RestoreMongoToolStripMenuItem.Text = "Restore";
             this.RestoreMongoToolStripMenuItem.Click += new System.EventHandler(this.RestoreMongoToolStripMenuItem_Click);
             // 
@@ -737,6 +774,7 @@ namespace MongoCola
             // 
             this.DumpDatabaseToolStripMenuItem.Name = "DumpDatabaseToolStripMenuItem";
             this.DumpDatabaseToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.DumpDatabaseToolStripMenuItem.Tag = "Main_Menu_Operation_BackupAndRestore_BackupDB";
             this.DumpDatabaseToolStripMenuItem.Text = "Dump DataBase";
             this.DumpDatabaseToolStripMenuItem.Click += new System.EventHandler(this.DumpDatabaseToolStripMenuItem_Click);
             // 
@@ -744,6 +782,7 @@ namespace MongoCola
             // 
             this.DumpCollectionToolStripMenuItem.Name = "DumpCollectionToolStripMenuItem";
             this.DumpCollectionToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.DumpCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_BackupAndRestore_BackupDC";
             this.DumpCollectionToolStripMenuItem.Text = "Dump Collection";
             this.DumpCollectionToolStripMenuItem.Click += new System.EventHandler(this.DumpCollectionToolStripMenuItem_Click);
             // 
@@ -756,6 +795,7 @@ namespace MongoCola
             // 
             this.ImportCollectionToolStripMenuItem.Name = "ImportCollectionToolStripMenuItem";
             this.ImportCollectionToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.ImportCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_BackupAndRestore_Import";
             this.ImportCollectionToolStripMenuItem.Text = "Import DataCollection";
             this.ImportCollectionToolStripMenuItem.Click += new System.EventHandler(this.ImportCollectionToolStripMenuItem_Click);
             // 
@@ -763,6 +803,7 @@ namespace MongoCola
             // 
             this.ExportCollectionToolStripMenuItem.Name = "ExportCollectionToolStripMenuItem";
             this.ExportCollectionToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.ExportCollectionToolStripMenuItem.Tag = "Main_Menu_Operation_BackupAndRestore_Export";
             this.ExportCollectionToolStripMenuItem.Text = "ExportImport DataCollection";
             this.ExportCollectionToolStripMenuItem.Click += new System.EventHandler(this.ExportCollectionToolStripMenuItem_Click);
             // 
@@ -780,18 +821,18 @@ namespace MongoCola
             // plugInToolStripMenuItem
             // 
             this.plugInToolStripMenuItem.Name = "plugInToolStripMenuItem";
-            this.plugInToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.plugInToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.plugInToolStripMenuItem.Text = "PlugIn";
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(119, 6);
             // 
             // OptionsToolStripMenuItem
             // 
             this.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem";
-            this.OptionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.OptionsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.OptionsToolStripMenuItem.Tag = "Main_Menu_Tool_Setting";
             this.OptionsToolStripMenuItem.Text = "&Options";
             this.OptionsToolStripMenuItem.Click += new System.EventHandler(this.OptionToolStripMenuItem_Click);
@@ -944,7 +985,7 @@ namespace MongoCola
             this.Controls.Add(this.statusStripMain);
             this.Controls.Add(this.toolStripMain);
             this.Controls.Add(this.menuStripMain);
-            this.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mongo-Cola";

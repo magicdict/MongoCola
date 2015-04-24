@@ -7,12 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
-using System;
-using System.Windows.Forms;
-using SystemUtility;
 using MongoUtility.EventArgs;
 using PlugInPackage;
 using ResourceLib.Utility;
+using System;
+using System.Windows.Forms;
+using SystemUtility;
 
 namespace MongoCola
 {
@@ -21,140 +21,6 @@ namespace MongoCola
     /// </summary>
     public partial class frmMain : Form
     {
-        /// <summary>
-        ///     Set Menu Text
-        /// </summary>
-        private void SetMenuText()
-        {
-            SystemConfig.guiConfig.Translateform(this);
-
-            //Operation
-            OperationToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Operation);
-
-            connectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Connect);
-            ReplicaSetToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Distributed_ReplicaSet);
-            ShardingConfigToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Distributed_ShardingConfig);
-            InitReplsetToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Replset_InitReplset);
-
-
-            ServerToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Operation_Server);
-            CreateMongoDBToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Operation_Server_NewDB);
-            UserInfoStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_Server_UserInfo);
-            AddUserToAdminToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_Server_AddUserToAdmin);
-            slaveResyncToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_Server_SlaveResync);
-
-            ServePropertyToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_Server_Properties);
-            ServerStatusToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Status);
-
-            DataBaseToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Operation_Database);
-            DelMongoDBToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_Database_DelDB);
-            CreateMongoCollectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_Database_AddDC);
-            AddUserToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_Database_AddUser);
-            EvalJSToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_Database_EvalJs);
-            RepairDBToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_Database_RepairDatabase);
-            DBStatusToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Status);
-
-            DataCollectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_DataCollection);
-            DelMongoCollectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_DataCollection_DelDC);
-            RenameCollectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_DataCollection_Rename);
-            IndexManageToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_DataCollection_Index);
-            ReIndexToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_DataCollection_ReIndex);
-            CompactToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_DataCollection_Compact);
-            CollectionStatusToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Status);
-            InitGFSToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_FileSystem_InitGFS);
-            ProfillingLevelToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_ProfillingLevel);
-            AggregationToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Aggregation);
-            ValidateToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Validate);
-            ExportToFileToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_DataCollection_ExportToFile);
-
-            DumpAndRestoreToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_BackupAndRestore);
-            RestoreMongoToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_BackupAndRestore_Restore);
-            DumpCollectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_BackupAndRestore_BackupDC);
-            DumpDatabaseToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_BackupAndRestore_BackupDB);
-            ImportCollectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_BackupAndRestore_Import);
-            ExportCollectionToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_BackupAndRestore_Export);
-            creatJavaScriptToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_DataCollection_CreateJavaScript);
-            ViewDataToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_DataCollection_View);
-            dropJavascriptToolStripMenuItem.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
-                    TextType.Main_Menu_Operation_DataCollection_DropJavaScript);
-
-            //其他控件
-            statusStripMain.Items[0].Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_StatusBar_Text_Ready);
-            tabSvrStatus.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Status);
-            DisconnectToolStripMenuItem.Text = 
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Disconnect);
-
-        }
-
         /// <summary>
         ///     禁止所有操作
         /// </summary>

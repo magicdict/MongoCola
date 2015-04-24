@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using SystemUtility;
-using Common.Logic;
+﻿using Common.Logic;
 using MongoCola.Connection;
 using MongoGUICtl;
 using MongoGUIView;
@@ -14,6 +9,11 @@ using MongoUtility.Extend;
 using PlugInPackage;
 using ResourceLib.Properties;
 using ResourceLib.Utility;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using SystemUtility;
 using Utility = Common.Logic.Utility;
 
 namespace MongoCola
@@ -33,10 +33,14 @@ namespace MongoCola
             trvsrvlst.ImageList = GetSystemIcon.MainTreeImage;
             tabView.ImageList = GetSystemIcon.TabViewImage;
             SetMenuImage();
+            SystemConfig.guiConfig.Translateform(this);
             if (!SystemConfig.guiConfig.IsUseDefaultLanguage)
             {
-                //Set Menu Text
-                SetMenuText();
+                //其他控件
+                statusStripMain.Items[0].Text =
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_StatusBar_Text_Ready);
+                tabSvrStatus.Text =
+                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Status);
             }
             //Init ToolBar
             InitToolBar();

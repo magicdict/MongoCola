@@ -42,7 +42,15 @@ namespace MongoCola
             }
             else
             {
-                SetMenuText();
+                SystemConfig.guiConfig.Translateform(this);
+                if (!SystemConfig.guiConfig.IsUseDefaultLanguage)
+                {
+                    //其他控件
+                    statusStripMain.Items[0].Text =
+                        SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_StatusBar_Text_Ready);
+                    tabSvrStatus.Text =
+                        SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Status);
+                }
             }
         }
 
