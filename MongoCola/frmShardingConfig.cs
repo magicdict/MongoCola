@@ -39,40 +39,7 @@ namespace MongoCola
         /// <param name="e"></param>
         private void frmAddSharding_Load(object sender, EventArgs e)
         {
-            if (!SystemConfig.IsUseDefaultLanguage)
-            {
-                cmdClose.Text = GUIConfig.GetText(TextType.Common_Close);
-                cmdAddHost.Text =
-                    GUIConfig.GetText(TextType.AddConnection_Region_AddHost);
-                cmdRemoveHost.Text =
-                    GUIConfig.GetText(
-                        TextType.AddConnection_Region_RemoveHost);
-                lblReplHost.Text = GUIConfig.GetText(TextType.Common_Host);
-                lblReplPort.Text = GUIConfig.GetText(TextType.Common_Port);
-
-                Text = GUIConfig.GetText(TextType.ShardingConfig_Title);
-                tabAddSharding.Text =
-                    GUIConfig.GetText(TextType.ShardingConfig_AddSharding);
-                lblMainReplsetName.Text =
-                    GUIConfig.GetText(TextType.ShardingConfig_ReplsetName);
-                cmdAddSharding.Text = GUIConfig.GetText(TextType.Common_Add);
-                chkAdvance.Text =
-                    GUIConfig.GetText(TextType.Common_Advance_Option);
-                tabShardingConfig.Text =
-                    GUIConfig.GetText(TextType.ShardingConfig_EnableSharding);
-                lblDBName.Text =
-                    GUIConfig.GetText(TextType.ShardingConfig_DBName);
-                lblCollection.Text =
-                    GUIConfig.GetText(TextType.ShardingConfig_CollectionName);
-                lblIndexLName.Text =
-                    GUIConfig.GetText(TextType.ShardingConfig_FieldName);
-                cmdEnableCollectionSharding.Text =
-                    GUIConfig.GetText(
-                        TextType.ShardingConfig_Action_CollectionSharding);
-                cmdEnableDBSharding.Text =
-                    GUIConfig.GetText(
-                        TextType.ShardingConfig_Action_DBSharding);
-            }
+            GUIConfig.Translateform(this);
             _prmSvr = RuntimeMongoDBContext.GetCurrentServer();
             var mongoDB = _prmSvr.GetDatabase(ConstMgr.DATABASE_NAME_CONFIG);
             MongoCollection mongoCol = mongoDB.GetCollection("databases");

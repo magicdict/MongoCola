@@ -85,28 +85,7 @@ namespace MongoCola
 
         private void frmReplsetMgr_Load(object sender, EventArgs e)
         {
-            if (!SystemConfig.IsUseDefaultLanguage)
-            {
-                Text =
-                    GUIConfig.GetText(
-                        TextType.Main_Menu_Distributed_ReplicaSet);
-                grpAddHost.Text =
-                    GUIConfig.GetText(TextType.AddConnection_Region_AddHost);
-                grpRemoveHost.Text =
-                    GUIConfig.GetText(
-                        TextType.AddConnection_Region_RemoveHost);
-                cmdClose.Text = GUIConfig.GetText(TextType.Common_Close);
-                cmdAddHost.Text =
-                    GUIConfig.GetText(TextType.AddConnection_Region_AddHost);
-                cmdRemoveHost.Text =
-                    GUIConfig.GetText(
-                        TextType.AddConnection_Region_RemoveHost);
-                lblpriority.Text =
-                    GUIConfig.GetText(TextType.AddConnection_Priority);
-                lblReplHost.Text = GUIConfig.GetText(TextType.Common_Host);
-                lblReplPort.Text = GUIConfig.GetText(TextType.Common_Port);
-            }
-
+            GUIConfig.Translateform(this);
             var server = RuntimeMongoDBContext.GetCurrentServer();
             foreach (var item in server.Instances)
             {

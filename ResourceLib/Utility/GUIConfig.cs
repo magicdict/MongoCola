@@ -68,11 +68,22 @@ namespace ResourceLib.Utility
             foreach (ToolStripItem menuItem in Controls)
             {
                 if (menuItem.GetType().FullName == typeof(ToolStripSeparator).FullName) continue;
-                if (((ToolStripMenuItem)menuItem).Tag == null) continue;
-                var Display = MStringResource.GetText(((ToolStripMenuItem)menuItem).Tag.ToString());
-                if (string.IsNullOrEmpty(Display)) continue;
-                ((ToolStripMenuItem)menuItem).Text = Display;
-                if (((ToolStripMenuItem)menuItem).DropDownItems.Count > 0) Translateform(((ToolStripMenuItem)menuItem).DropDownItems);
+                if (menuItem.GetType().FullName == typeof(ToolStripMenuItem).FullName)
+                {
+                    if (((ToolStripMenuItem)menuItem).Tag == null) continue;
+                    var Display = MStringResource.GetText(((ToolStripMenuItem)menuItem).Tag.ToString());
+                    if (string.IsNullOrEmpty(Display)) continue;
+                    ((ToolStripMenuItem)menuItem).Text = Display;
+                    if (((ToolStripMenuItem)menuItem).DropDownItems.Count > 0) Translateform(((ToolStripMenuItem)menuItem).DropDownItems);
+                }
+                if (menuItem.GetType().FullName == typeof(ToolStripButton).FullName)
+                {
+                    if (((ToolStripButton)menuItem).Tag == null) continue;
+                    var Display = MStringResource.GetText(((ToolStripButton)menuItem).Tag.ToString());
+                    if (string.IsNullOrEmpty(Display)) continue;
+                    ((ToolStripButton)menuItem).Text = Display;
+                }
+
             }
         }
 
@@ -89,7 +100,27 @@ namespace ResourceLib.Utility
                 {
                     if (((MenuStrip)ctrlItem).Items.Count > 0) Translateform(((MenuStrip)ctrlItem).Items);
                 }
-
+                if (ctrlItem.GetType().FullName == typeof(ToolStrip).FullName)
+                {
+                    if (((ToolStrip)ctrlItem).Items.Count > 0) Translateform(((ToolStrip)ctrlItem).Items);
+                }
+                if (ctrlItem.GetType().FullName == typeof(TabControl).FullName)
+                {
+                    foreach (TabPage tab in ((TabControl)ctrlItem).TabPages)
+                    {
+                        if (tab.Tag != null)
+                        {
+                            Display = MStringResource.GetText(tab.Tag.ToString());
+                            tab.Text = Display;
+                        }
+                        Translateform(tab.Controls);
+                    }
+                }
+                if (ctrlItem.GetType().FullName == typeof(GroupBox).FullName)
+                {
+                    ((GroupBox)ctrlItem).Text = Display;
+                    Translateform(ctrlItem.Controls);
+                }
                 if (ctrlItem.Tag == null) continue;
                 Display = MStringResource.GetText(ctrlItem.Tag.ToString());
                 if (string.IsNullOrEmpty(Display)) continue;
@@ -109,11 +140,6 @@ namespace ResourceLib.Utility
                 if (ctrlItem.GetType().FullName == typeof(RadioButton).FullName)
                 {
                     ((RadioButton)ctrlItem).Text = Display;
-                }
-                if (ctrlItem.GetType().FullName == typeof(GroupBox).FullName)
-                {
-                    ((GroupBox)ctrlItem).Text = Display;
-                    Translateform(((GroupBox)ctrlItem).Controls);
                 }
             }
         }

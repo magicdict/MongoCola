@@ -44,9 +44,10 @@ namespace MongoGUICtl
             this.radAscendingKey.Checked = true;
             this.radAscendingKey.Location = new System.Drawing.Point(301, 6);
             this.radAscendingKey.Name = "radAscendingKey";
-            this.radAscendingKey.Size = new System.Drawing.Size(43, 17);
+            this.radAscendingKey.Size = new System.Drawing.Size(41, 16);
             this.radAscendingKey.TabIndex = 1;
             this.radAscendingKey.TabStop = true;
+            this.radAscendingKey.Tag = "Index_Asce";
             this.radAscendingKey.Text = "Asc";
             this.radAscendingKey.UseVisualStyleBackColor = true;
             // 
@@ -55,18 +56,20 @@ namespace MongoGUICtl
             this.radDescendingKey.AutoSize = true;
             this.radDescendingKey.Location = new System.Drawing.Point(356, 6);
             this.radDescendingKey.Name = "radDescendingKey";
-            this.radDescendingKey.Size = new System.Drawing.Size(44, 17);
+            this.radDescendingKey.Size = new System.Drawing.Size(41, 16);
             this.radDescendingKey.TabIndex = 2;
+            this.radDescendingKey.Tag = "Index_Desc";
             this.radDescendingKey.Text = "Des";
             this.radDescendingKey.UseVisualStyleBackColor = true;
             // 
             // lblKeyName
             // 
             this.lblKeyName.AutoSize = true;
-            this.lblKeyName.Location = new System.Drawing.Point(8, 7);
+            this.lblKeyName.Location = new System.Drawing.Point(8, 6);
             this.lblKeyName.Name = "lblKeyName";
-            this.lblKeyName.Size = new System.Drawing.Size(55, 13);
+            this.lblKeyName.Size = new System.Drawing.Size(65, 12);
             this.lblKeyName.TabIndex = 3;
+            this.lblKeyName.Tag = "ctlIndexCreate_Index";
             this.lblKeyName.Text = "IndexFiled";
             // 
             // radGeoSpatial
@@ -74,7 +77,7 @@ namespace MongoGUICtl
             this.radGeoSpatial.AutoSize = true;
             this.radGeoSpatial.Location = new System.Drawing.Point(406, 6);
             this.radGeoSpatial.Name = "radGeoSpatial";
-            this.radGeoSpatial.Size = new System.Drawing.Size(45, 17);
+            this.radGeoSpatial.Size = new System.Drawing.Size(41, 16);
             this.radGeoSpatial.TabIndex = 5;
             this.radGeoSpatial.TabStop = true;
             this.radGeoSpatial.Text = "Geo";
@@ -86,15 +89,15 @@ namespace MongoGUICtl
             this.cmbKeyName.FormattingEnabled = true;
             this.cmbKeyName.Location = new System.Drawing.Point(82, 2);
             this.cmbKeyName.Name = "cmbKeyName";
-            this.cmbKeyName.Size = new System.Drawing.Size(213, 21);
+            this.cmbKeyName.Size = new System.Drawing.Size(213, 20);
             this.cmbKeyName.TabIndex = 6;
             // 
             // radText
             // 
             this.radText.AutoSize = true;
-            this.radText.Location = new System.Drawing.Point(457, 7);
+            this.radText.Location = new System.Drawing.Point(457, 6);
             this.radText.Name = "radText";
-            this.radText.Size = new System.Drawing.Size(46, 17);
+            this.radText.Size = new System.Drawing.Size(47, 16);
             this.radText.TabIndex = 7;
             this.radText.TabStop = true;
             this.radText.Text = "Text";
@@ -102,7 +105,7 @@ namespace MongoGUICtl
             // 
             // ctlIndexCreate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.radText);
@@ -112,7 +115,7 @@ namespace MongoGUICtl
             this.Controls.Add(this.radDescendingKey);
             this.Controls.Add(this.radAscendingKey);
             this.Name = "ctlIndexCreate";
-            this.Size = new System.Drawing.Size(524, 30);
+            this.Size = new System.Drawing.Size(524, 28);
             this.ResumeLayout(false);
             this.PerformLayout();
 

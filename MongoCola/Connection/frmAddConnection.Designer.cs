@@ -50,6 +50,8 @@ namespace MongoCola.Connection
             this.cmdTest = new System.Windows.Forms.Button();
             this.tabConnection = new System.Windows.Forms.TabControl();
             this.tabBasic = new System.Windows.Forms.TabPage();
+            this.cmbStorageEngine = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.chkVerifySslCertificate = new System.Windows.Forms.CheckBox();
             this.chkUseSsl = new System.Windows.Forms.CheckBox();
             this.chkJournal = new System.Windows.Forms.CheckBox();
@@ -84,8 +86,6 @@ namespace MongoCola.Connection
             this.lblQueueSize = new System.Windows.Forms.Label();
             this.lblWTimeout = new System.Windows.Forms.Label();
             this.NumWaitQueueSize = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbStorageEngine = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
             this.tabConnection.SuspendLayout();
             this.tabBasic.SuspendLayout();
@@ -106,6 +106,7 @@ namespace MongoCola.Connection
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(98, 31);
             this.cmdCancel.TabIndex = 3;
+            this.cmdCancel.Tag = "Common_Cancel";
             this.cmdCancel.Text = "Cancel";
             this.cmdCancel.UseVisualStyleBackColor = false;
             // 
@@ -116,6 +117,7 @@ namespace MongoCola.Connection
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(98, 31);
             this.cmdAdd.TabIndex = 1;
+            this.cmdAdd.Tag = "Common_Add";
             this.cmdAdd.Text = "Add";
             this.cmdAdd.UseVisualStyleBackColor = false;
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
@@ -128,6 +130,7 @@ namespace MongoCola.Connection
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(61, 15);
             this.lblPassword.TabIndex = 8;
+            this.lblPassword.Tag = "Common_Password";
             this.lblPassword.Text = "Password";
             // 
             // lblUsername
@@ -138,6 +141,7 @@ namespace MongoCola.Connection
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(67, 15);
             this.lblUsername.TabIndex = 6;
+            this.lblUsername.Tag = "Common_Username";
             this.lblUsername.Text = "UserName";
             // 
             // lblPort
@@ -148,6 +152,7 @@ namespace MongoCola.Connection
             this.lblPort.Name = "lblPort";
             this.lblPort.Size = new System.Drawing.Size(29, 15);
             this.lblPort.TabIndex = 4;
+            this.lblPort.Tag = "Common_Port";
             this.lblPort.Text = "Port";
             // 
             // lblConnectionName
@@ -158,6 +163,7 @@ namespace MongoCola.Connection
             this.lblConnectionName.Name = "lblConnectionName";
             this.lblConnectionName.Size = new System.Drawing.Size(69, 15);
             this.lblConnectionName.TabIndex = 0;
+            this.lblConnectionName.Tag = "AddConnection_ConnectionName";
             this.lblConnectionName.Text = "Connection";
             // 
             // lblHost
@@ -168,6 +174,7 @@ namespace MongoCola.Connection
             this.lblHost.Name = "lblHost";
             this.lblHost.Size = new System.Drawing.Size(32, 15);
             this.lblHost.TabIndex = 1;
+            this.lblHost.Tag = "Common_Host";
             this.lblHost.Text = "Host";
             // 
             // txtConnectionName
@@ -207,6 +214,7 @@ namespace MongoCola.Connection
             this.lblDataBaseName.Name = "lblDataBaseName";
             this.lblDataBaseName.Size = new System.Drawing.Size(60, 15);
             this.lblDataBaseName.TabIndex = 10;
+            this.lblDataBaseName.Tag = "AddConnection_DBName";
             this.lblDataBaseName.Text = "Database";
             // 
             // txtDataBaseName
@@ -231,6 +239,7 @@ namespace MongoCola.Connection
             this.lblConnectionString.Name = "lblConnectionString";
             this.lblConnectionString.Size = new System.Drawing.Size(172, 15);
             this.lblConnectionString.TabIndex = 16;
+            this.lblConnectionString.Tag = "AddConnection_ConnectionString";
             this.lblConnectionString.Text = "Use ConnectionString Directly:";
             // 
             // numPort
@@ -255,6 +264,7 @@ namespace MongoCola.Connection
             this.lblAttentionPassword.Name = "lblAttentionPassword";
             this.lblAttentionPassword.Size = new System.Drawing.Size(295, 13);
             this.lblAttentionPassword.TabIndex = 18;
+            this.lblAttentionPassword.Tag = "AddConnection_Password_Description";
             this.lblAttentionPassword.Text = "Password is saved in config file without Encryption";
             // 
             // cmdTest
@@ -263,6 +273,7 @@ namespace MongoCola.Connection
             this.cmdTest.Name = "cmdTest";
             this.cmdTest.Size = new System.Drawing.Size(186, 31);
             this.cmdTest.TabIndex = 2;
+            this.cmdTest.Tag = "Common_Test";
             this.cmdTest.Text = "Test Connection";
             this.cmdTest.UseVisualStyleBackColor = true;
             this.cmdTest.Click += new System.EventHandler(this.cmdTest_Click);
@@ -312,6 +323,23 @@ namespace MongoCola.Connection
             this.tabBasic.TabIndex = 0;
             this.tabBasic.Text = "Basic";
             this.tabBasic.UseVisualStyleBackColor = true;
+            // 
+            // cmbStorageEngine
+            // 
+            this.cmbStorageEngine.FormattingEnabled = true;
+            this.cmbStorageEngine.Location = new System.Drawing.Point(502, 157);
+            this.cmbStorageEngine.Name = "cmbStorageEngine";
+            this.cmbStorageEngine.Size = new System.Drawing.Size(121, 23);
+            this.cmbStorageEngine.TabIndex = 45;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(383, 163);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 15);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "StorageEngine";
             // 
             // chkVerifySslCertificate
             // 
@@ -386,6 +414,7 @@ namespace MongoCola.Connection
             this.lblConnectTimeout.Name = "lblConnectTimeout";
             this.lblConnectTimeout.Size = new System.Drawing.Size(122, 15);
             this.lblConnectTimeout.TabIndex = 40;
+            this.lblConnectTimeout.Tag = "AddConnection_ConnectionTimeOut";
             this.lblConnectTimeout.Text = "connectTimeout(MS)";
             // 
             // lblsocketTimeout
@@ -395,6 +424,7 @@ namespace MongoCola.Connection
             this.lblsocketTimeout.Name = "lblsocketTimeout";
             this.lblsocketTimeout.Size = new System.Drawing.Size(114, 15);
             this.lblsocketTimeout.TabIndex = 41;
+            this.lblsocketTimeout.Tag = "AddConnection_SocketTimeOut";
             this.lblsocketTimeout.Text = "socketTimeout(MS)";
             // 
             // label7
@@ -432,6 +462,7 @@ namespace MongoCola.Connection
             this.cmdRemoveHost.Name = "cmdRemoveHost";
             this.cmdRemoveHost.Size = new System.Drawing.Size(94, 25);
             this.cmdRemoveHost.TabIndex = 4;
+            this.cmdRemoveHost.Tag = "AddConnection_Region_RemoveHost";
             this.cmdRemoveHost.Text = "Remove Host";
             this.cmdRemoveHost.UseVisualStyleBackColor = true;
             this.cmdRemoveHost.Click += new System.EventHandler(this.cmdRemoveHost_Click);
@@ -457,6 +488,7 @@ namespace MongoCola.Connection
             this.lblReplPort.Name = "lblReplPort";
             this.lblReplPort.Size = new System.Drawing.Size(29, 15);
             this.lblReplPort.TabIndex = 35;
+            this.lblReplPort.Tag = "Common_Port";
             this.lblReplPort.Text = "Port";
             // 
             // txtReplHost
@@ -475,6 +507,7 @@ namespace MongoCola.Connection
             this.lblReplHost.Name = "lblReplHost";
             this.lblReplHost.Size = new System.Drawing.Size(32, 15);
             this.lblReplHost.TabIndex = 33;
+            this.lblReplHost.Tag = "Common_Host";
             this.lblReplHost.Text = "Host";
             // 
             // cmdAddHost
@@ -483,6 +516,7 @@ namespace MongoCola.Connection
             this.cmdAddHost.Name = "cmdAddHost";
             this.cmdAddHost.Size = new System.Drawing.Size(81, 29);
             this.cmdAddHost.TabIndex = 3;
+            this.cmdAddHost.Tag = "AddConnection_Region_AddHost";
             this.cmdAddHost.Text = "Add Host";
             this.cmdAddHost.UseVisualStyleBackColor = true;
             this.cmdAddHost.Click += new System.EventHandler(this.cmdAddHost_Click);
@@ -513,6 +547,7 @@ namespace MongoCola.Connection
             this.lblMainReplsetName.Name = "lblMainReplsetName";
             this.lblMainReplsetName.Size = new System.Drawing.Size(83, 15);
             this.lblMainReplsetName.TabIndex = 28;
+            this.lblMainReplsetName.Tag = "AddConnection_MainReplsetName";
             this.lblMainReplsetName.Text = "ReplsetName";
             // 
             // txtReplsetName
@@ -676,23 +711,6 @@ namespace MongoCola.Connection
             this.NumWaitQueueSize.TabIndex = 54;
             this.NumWaitQueueSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(383, 163);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 15);
-            this.label1.TabIndex = 44;
-            this.label1.Text = "StorageEngine";
-            // 
-            // cmbStorageEngine
-            // 
-            this.cmbStorageEngine.FormattingEnabled = true;
-            this.cmbStorageEngine.Location = new System.Drawing.Point(502, 157);
-            this.cmbStorageEngine.Name = "cmbStorageEngine";
-            this.cmbStorageEngine.Size = new System.Drawing.Size(121, 23);
-            this.cmbStorageEngine.TabIndex = 45;
-            // 
             // frmAddConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -709,6 +727,7 @@ namespace MongoCola.Connection
             this.MinimizeBox = false;
             this.Name = "frmAddConnection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "AddConnection_Title";
             this.Text = "Server Connection";
             this.Load += new System.EventHandler(this.frmAddConnection_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).EndInit();

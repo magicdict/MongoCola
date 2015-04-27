@@ -70,6 +70,7 @@
             this.lblReplPort.Name = "lblReplPort";
             this.lblReplPort.Size = new System.Drawing.Size(29, 15);
             this.lblReplPort.TabIndex = 2;
+            this.lblReplPort.Tag = "Common_Port";
             this.lblReplPort.Text = "Port";
             // 
             // txtReplHost
@@ -90,6 +91,7 @@
             this.lblReplHost.Name = "lblReplHost";
             this.lblReplHost.Size = new System.Drawing.Size(32, 15);
             this.lblReplHost.TabIndex = 0;
+            this.lblReplHost.Tag = "Common_Host";
             this.lblReplHost.Text = "Host";
             // 
             // cmdAddHost
@@ -99,6 +101,7 @@
             this.cmdAddHost.Name = "cmdAddHost";
             this.cmdAddHost.Size = new System.Drawing.Size(108, 36);
             this.cmdAddHost.TabIndex = 7;
+            this.cmdAddHost.Tag = "AddConnection_Region_AddHost";
             this.cmdAddHost.Text = "Add Host";
             this.cmdAddHost.UseVisualStyleBackColor = true;
             this.cmdAddHost.Click += new System.EventHandler(this.cmdAddHost_Click);
@@ -131,6 +134,7 @@
             this.lblpriority.Name = "lblpriority";
             this.lblpriority.Size = new System.Drawing.Size(43, 15);
             this.lblpriority.TabIndex = 4;
+            this.lblpriority.Tag = "AddConnection_Priority";
             this.lblpriority.Text = "priority";
             // 
             // chkArbiterOnly
@@ -158,6 +162,7 @@
             this.grpAddHost.Size = new System.Drawing.Size(214, 199);
             this.grpAddHost.TabIndex = 0;
             this.grpAddHost.TabStop = false;
+            this.grpAddHost.Tag = "AddConnection_Region_AddHost";
             this.grpAddHost.Text = "Add Host Member";
             // 
             // cmdClose
@@ -166,6 +171,7 @@
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(108, 34);
             this.cmdClose.TabIndex = 2;
+            this.cmdClose.Tag = "Common_Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
@@ -179,6 +185,7 @@
             this.grpRemoveHost.Size = new System.Drawing.Size(237, 199);
             this.grpRemoveHost.TabIndex = 1;
             this.grpRemoveHost.TabStop = false;
+            this.grpRemoveHost.Tag = "AddConnection_Region_RemoveHost";
             this.grpRemoveHost.Text = "Remove Host Member";
             // 
             // cmdRemoveHost
@@ -187,6 +194,7 @@
             this.cmdRemoveHost.Name = "cmdRemoveHost";
             this.cmdRemoveHost.Size = new System.Drawing.Size(108, 36);
             this.cmdRemoveHost.TabIndex = 1;
+            this.cmdRemoveHost.Tag = "AddConnection_Region_RemoveHost";
             this.cmdRemoveHost.Text = "Remove Host";
             this.cmdRemoveHost.UseVisualStyleBackColor = true;
             this.cmdRemoveHost.Click += new System.EventHandler(this.cmdRemoveHost_Click);
@@ -212,6 +220,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmReplsetMgr";
+            this.Tag = "Main_Menu_Distributed_ReplicaSet";
             this.Text = "Add Replset Member";
             this.Load += new System.EventHandler(this.frmReplsetMgr_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NumReplPort)).EndInit();

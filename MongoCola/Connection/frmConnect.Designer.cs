@@ -51,6 +51,7 @@
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(90, 36);
             this.cmdClose.TabIndex = 7;
+            this.cmdClose.Tag = "Common_Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = false;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
@@ -62,6 +63,7 @@
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(90, 36);
             this.cmdOK.TabIndex = 6;
+            this.cmdOK.Tag = "Common_OK";
             this.cmdOK.Text = "OK";
             this.cmdOK.UseVisualStyleBackColor = false;
             this.cmdOK.Click += new System.EventHandler(this.cmdConnect_Click);
@@ -128,6 +130,7 @@
             this.cmdAddCon.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdAddCon.Name = "cmdAddCon";
             this.cmdAddCon.Size = new System.Drawing.Size(23, 22);
+            this.cmdAddCon.Tag = "Common_Add";
             this.cmdAddCon.Text = "New";
             this.cmdAddCon.Click += new System.EventHandler(this.cmdAddCon_Click);
             // 
@@ -138,6 +141,7 @@
             this.cmdModifyCon.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdModifyCon.Name = "cmdModifyCon";
             this.cmdModifyCon.Size = new System.Drawing.Size(23, 22);
+            this.cmdModifyCon.Tag = "Common_Modify";
             this.cmdModifyCon.Text = "Modify";
             this.cmdModifyCon.Click += new System.EventHandler(this.cmdModifyCon_Click);
             // 
@@ -148,6 +152,7 @@
             this.cmdDelCon.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cmdDelCon.Name = "cmdDelCon";
             this.cmdDelCon.Size = new System.Drawing.Size(23, 22);
+            this.cmdDelCon.Tag = "Connect_Action_Del";
             this.cmdDelCon.Text = "Drop";
             this.cmdDelCon.Click += new System.EventHandler(this.cmdDelCon_Click);
             // 
@@ -167,6 +172,7 @@
             this.MinimizeBox = false;
             this.Name = "frmConnect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "Connect_Title";
             this.Text = "Server Connection";
             this.Load += new System.EventHandler(this.frmConnect_Load);
             this.toolStrip1.ResumeLayout(false);

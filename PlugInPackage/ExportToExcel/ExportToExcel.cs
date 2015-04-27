@@ -81,9 +81,8 @@ namespace PlugInPackage.ExportToExcel
                 {
                     BsonElement id;
                     docItem.TryGetElement(ConstMgr.KEY_ID, out id);
-                    worksheet.Cells(rowCount, colCount).Value = id != null
-                        ? docItem.GetValue(ConstMgr.KEY_ID).ToString()
-                        : "[Empty]";
+                    worksheet.Cells(rowCount, colCount).Value = !(id.Value is BsonNull)
+                        ? docItem.GetValue(ConstMgr.KEY_ID).ToString() : "[Empty]";
                 }
                 else
                 {
@@ -98,7 +97,7 @@ namespace PlugInPackage.ExportToExcel
                     }
                     BsonValue val;
                     docItem.TryGetValue(Schame[i], out val);
-                    worksheet.Cells(rowCount, i + 1).Value = val == null ? "" : ViewHelper.ConvertToString(val);
+                    worksheet.Cells(rowCount, i + 1).Value = val == null ? string.Empty : ViewHelper.ConvertToString(val);
                 }
                 rowCount++;
             }

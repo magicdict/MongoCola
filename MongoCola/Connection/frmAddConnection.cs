@@ -57,8 +57,8 @@ namespace MongoCola.Connection
             chkFsync.Checked = ModifyConn.fsync;
             chkJournal.Checked = ModifyConn.journal;
 
-            NumSocketTimeOut.Value = (decimal) ModifyConn.socketTimeoutMS;
-            NumConnectTimeOut.Value = (decimal) ModifyConn.connectTimeoutMS;
+            NumSocketTimeOut.Value = (decimal)ModifyConn.socketTimeoutMS;
+            NumConnectTimeOut.Value = (decimal)ModifyConn.connectTimeoutMS;
 
             txtReplsetName.Text = ModifyConn.ReplSetName;
             txtConnectionString.Text = ModifyConn.ConnectionString;
@@ -78,8 +78,7 @@ namespace MongoCola.Connection
             }
 
             cmdAdd.Text = SystemConfig.IsUseDefaultLanguage
-                ? "Modify"
-                : GUIConfig.GetText(TextType.Common_Modify);
+                ? "Modify" : GUIConfig.GetText(TextType.Common_Modify);
         }
 
         /// <summary>
@@ -89,6 +88,7 @@ namespace MongoCola.Connection
         /// <param name="e"></param>
         private void frmAddConnection_Load(object sender, EventArgs e)
         {
+
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace MongoCola.Connection
         /// </summary>
         private void OnLoad()
         {
-            foreach (var item in Enum.GetValues(typeof (EnumMgr.StorageEngineType)))
+            foreach (var item in Enum.GetValues(typeof(EnumMgr.StorageEngineType)))
             {
                 cmbStorageEngine.Items.Add(item);
                 cmbStorageEngine.SelectedIndex = 0;
@@ -110,42 +110,7 @@ namespace MongoCola.Connection
             cmdTest.BackColor = MyMessageBox.ActionColor;
             cmdAdd.BackColor = MyMessageBox.SuccessColor;
             cmdCancel.BackColor = MyMessageBox.FailColor;
-            //Language
-            if (SystemConfig.IsUseDefaultLanguage) return;
-            Text = GUIConfig.GetText(TextType.AddConnection_Title);
-            lblConnectionName.Text =
-                GUIConfig.GetText(TextType.AddConnection_ConnectionName);
-            lblHost.Text = GUIConfig.GetText(TextType.Common_Host);
-            lblPort.Text = GUIConfig.GetText(TextType.Common_Port);
-            lblUsername.Text = GUIConfig.GetText(TextType.Common_Username);
-            lblPassword.Text = GUIConfig.GetText(TextType.Common_Password);
-            lblDataBaseName.Text =
-                GUIConfig.GetText(TextType.AddConnection_DBName);
-            lblConnectionString.Text =
-                GUIConfig.GetText(TextType.AddConnection_ConnectionString);
-            lblAttentionPassword.Text =
-                GUIConfig.GetText(
-                    TextType.AddConnection_Password_Description);
-
-
-            lblsocketTimeout.Text =
-                GUIConfig.GetText(TextType.AddConnection_SocketTimeOut);
-            lblConnectTimeout.Text =
-                GUIConfig.GetText(TextType.AddConnection_ConnectionTimeOut);
-
-
-            lblMainReplsetName.Text =
-                GUIConfig.GetText(TextType.AddConnection_MainReplsetName);
-            lblReplHost.Text = lblHost.Text;
-            lblReplPort.Text = lblPort.Text;
-            cmdAddHost.Text =
-                GUIConfig.GetText(TextType.AddConnection_Region_AddHost);
-            cmdRemoveHost.Text =
-                GUIConfig.GetText(TextType.AddConnection_Region_RemoveHost);
-
-            cmdAdd.Text = GUIConfig.GetText(TextType.Common_Add);
-            cmdCancel.Text = GUIConfig.GetText(TextType.Common_Cancel);
-            cmdTest.Text = GUIConfig.GetText(TextType.Common_Test);
+            GUIConfig.Translateform(this);
         }
 
         /// <summary>
@@ -295,14 +260,14 @@ namespace MongoCola.Connection
                 }
                 else
                 {
-                    ModifyConn.wtimeoutMS = (double) NumWTimeoutMS.Value;
-                    ModifyConn.WaitQueueSize = (int) NumWaitQueueSize.Value;
+                    ModifyConn.wtimeoutMS = (double)NumWTimeoutMS.Value;
+                    ModifyConn.WaitQueueSize = (int)NumWaitQueueSize.Value;
                     ModifyConn.WriteConcern = cmbWriteConcern.Text;
                     ModifyConn.ReadPreference = cmbReadPreference.Text;
                 }
 
-                ModifyConn.socketTimeoutMS = (double) NumSocketTimeOut.Value;
-                ModifyConn.connectTimeoutMS = (double) NumConnectTimeOut.Value;
+                ModifyConn.socketTimeoutMS = (double)NumSocketTimeOut.Value;
+                ModifyConn.connectTimeoutMS = (double)NumConnectTimeOut.Value;
                 ModifyConn.journal = chkJournal.Checked;
                 ModifyConn.fsync = chkFsync.Checked;
                 ModifyConn.ReplSetName = txtReplsetName.Text;

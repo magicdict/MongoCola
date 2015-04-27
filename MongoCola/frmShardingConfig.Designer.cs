@@ -31,7 +31,7 @@ namespace MongoCola
         private void InitializeComponent()
         {
             this.cmdAddSharding = new System.Windows.Forms.Button();
-            this.lblIndexLName = new System.Windows.Forms.Label();
+            this.lblIndexName = new System.Windows.Forms.Label();
             this.cmbIndexList = new System.Windows.Forms.ComboBox();
             this.cmdEnableCollectionSharding = new System.Windows.Forms.Button();
             this.cmdEnableDBSharding = new System.Windows.Forms.Button();
@@ -74,8 +74,8 @@ namespace MongoCola
             this.txtShardName = new System.Windows.Forms.TextBox();
             this.lblTagShard = new System.Windows.Forms.Label();
             this.lblShardName = new System.Windows.Forms.Label();
-            this.ctlBsonValueShardKeyTo = new ctlBsonValue();
-            this.ctlBsonValueShardKeyFrom = new ctlBsonValue();
+            this.ctlBsonValueShardKeyTo = new MongoGUICtl.ctlBsonValue();
+            this.ctlBsonValueShardKeyFrom = new MongoGUICtl.ctlBsonValue();
             this.tabRemoveSharding = new System.Windows.Forms.TabPage();
             this.lstSharding = new System.Windows.Forms.ListBox();
             this.cmdRemoveSharding = new System.Windows.Forms.Button();
@@ -102,15 +102,16 @@ namespace MongoCola
             this.cmdAddSharding.UseVisualStyleBackColor = false;
             this.cmdAddSharding.Click += new System.EventHandler(this.cmdAddSharding_Click);
             // 
-            // lblIndexLName
+            // lblIndexName
             // 
-            this.lblIndexLName.AutoSize = true;
-            this.lblIndexLName.BackColor = System.Drawing.Color.Transparent;
-            this.lblIndexLName.Location = new System.Drawing.Point(27, 89);
-            this.lblIndexLName.Name = "lblIndexLName";
-            this.lblIndexLName.Size = new System.Drawing.Size(71, 15);
-            this.lblIndexLName.TabIndex = 6;
-            this.lblIndexLName.Text = "IndexName";
+            this.lblIndexName.AutoSize = true;
+            this.lblIndexName.BackColor = System.Drawing.Color.Transparent;
+            this.lblIndexName.Location = new System.Drawing.Point(27, 89);
+            this.lblIndexName.Name = "lblIndexName";
+            this.lblIndexName.Size = new System.Drawing.Size(71, 15);
+            this.lblIndexName.TabIndex = 6;
+            this.lblIndexName.Tag = "ShardingConfig_FieldName";
+            this.lblIndexName.Text = "IndexName";
             // 
             // cmbIndexList
             // 
@@ -128,6 +129,7 @@ namespace MongoCola
             this.cmdEnableCollectionSharding.Name = "cmdEnableCollectionSharding";
             this.cmdEnableCollectionSharding.Size = new System.Drawing.Size(172, 30);
             this.cmdEnableCollectionSharding.TabIndex = 5;
+            this.cmdEnableCollectionSharding.Tag = "ShardingConfig_Action_CollectionSharding";
             this.cmdEnableCollectionSharding.Text = "Sharding Collection";
             this.cmdEnableCollectionSharding.UseVisualStyleBackColor = false;
             this.cmdEnableCollectionSharding.Click += new System.EventHandler(this.cmdEnableCollectionSharding_Click);
@@ -139,6 +141,7 @@ namespace MongoCola
             this.cmdEnableDBSharding.Name = "cmdEnableDBSharding";
             this.cmdEnableDBSharding.Size = new System.Drawing.Size(172, 29);
             this.cmdEnableDBSharding.TabIndex = 2;
+            this.cmdEnableDBSharding.Tag = "ShardingConfig_Action_DBSharding";
             this.cmdEnableDBSharding.Text = "Sharding DataBase";
             this.cmdEnableDBSharding.UseVisualStyleBackColor = false;
             this.cmdEnableDBSharding.Click += new System.EventHandler(this.cmdEnableSharding_Click);
@@ -171,6 +174,7 @@ namespace MongoCola
             this.lblCollection.Name = "lblCollection";
             this.lblCollection.Size = new System.Drawing.Size(95, 15);
             this.lblCollection.TabIndex = 3;
+            this.lblCollection.Tag = "ShardingConfig_CollectionName";
             this.lblCollection.Text = "CollectionName";
             // 
             // lblDBName
@@ -181,6 +185,7 @@ namespace MongoCola
             this.lblDBName.Name = "lblDBName";
             this.lblDBName.Size = new System.Drawing.Size(95, 15);
             this.lblDBName.TabIndex = 0;
+            this.lblDBName.Tag = "ShardingConfig_DBName";
             this.lblDBName.Text = "DataBaseName";
             // 
             // tabSharding
@@ -194,6 +199,7 @@ namespace MongoCola
             this.tabSharding.SelectedIndex = 0;
             this.tabSharding.Size = new System.Drawing.Size(525, 314);
             this.tabSharding.TabIndex = 0;
+            this.tabSharding.Tag = "";
             // 
             // tabAddSharding
             // 
@@ -214,6 +220,7 @@ namespace MongoCola
             this.tabAddSharding.Padding = new System.Windows.Forms.Padding(3);
             this.tabAddSharding.Size = new System.Drawing.Size(517, 286);
             this.tabAddSharding.TabIndex = 0;
+            this.tabAddSharding.Tag = "ShardingConfig_AddSharding";
             this.tabAddSharding.Text = "Add Sharding";
             this.tabAddSharding.UseVisualStyleBackColor = true;
             // 
@@ -224,6 +231,7 @@ namespace MongoCola
             this.chkAdvance.Name = "chkAdvance";
             this.chkAdvance.Size = new System.Drawing.Size(118, 19);
             this.chkAdvance.TabIndex = 9;
+            this.chkAdvance.Tag = "Common_Advance_Option";
             this.chkAdvance.Text = "Advanced Option";
             this.chkAdvance.UseVisualStyleBackColor = true;
             this.chkAdvance.CheckedChanged += new System.EventHandler(this.chkAdvance_CheckedChanged);
@@ -286,6 +294,7 @@ namespace MongoCola
             this.cmdRemoveHost.Name = "cmdRemoveHost";
             this.cmdRemoveHost.Size = new System.Drawing.Size(108, 33);
             this.cmdRemoveHost.TabIndex = 8;
+            this.cmdRemoveHost.Tag = "AddConnection_Region_RemoveHost";
             this.cmdRemoveHost.Text = "Remove Host";
             this.cmdRemoveHost.UseVisualStyleBackColor = true;
             this.cmdRemoveHost.Click += new System.EventHandler(this.cmdRemoveHost_Click);
@@ -296,6 +305,7 @@ namespace MongoCola
             this.cmdAddHost.Name = "cmdAddHost";
             this.cmdAddHost.Size = new System.Drawing.Size(93, 31);
             this.cmdAddHost.TabIndex = 7;
+            this.cmdAddHost.Tag = "AddConnection_Region_AddHost";
             this.cmdAddHost.Text = "Add Host";
             this.cmdAddHost.UseVisualStyleBackColor = true;
             this.cmdAddHost.Click += new System.EventHandler(this.cmdAddHost_Click);
@@ -330,6 +340,7 @@ namespace MongoCola
             this.lblReplPort.Name = "lblReplPort";
             this.lblReplPort.Size = new System.Drawing.Size(29, 15);
             this.lblReplPort.TabIndex = 4;
+            this.lblReplPort.Tag = "Common_Port";
             this.lblReplPort.Text = "Port";
             // 
             // txtReplHost
@@ -348,6 +359,7 @@ namespace MongoCola
             this.lblReplHost.Name = "lblReplHost";
             this.lblReplHost.Size = new System.Drawing.Size(32, 15);
             this.lblReplHost.TabIndex = 2;
+            this.lblReplHost.Tag = "Common_Host";
             this.lblReplHost.Text = "Host";
             // 
             // lblMainReplsetName
@@ -357,6 +369,7 @@ namespace MongoCola
             this.lblMainReplsetName.Name = "lblMainReplsetName";
             this.lblMainReplsetName.Size = new System.Drawing.Size(83, 15);
             this.lblMainReplsetName.TabIndex = 0;
+            this.lblMainReplsetName.Tag = "ShardingConfig_ReplsetName";
             this.lblMainReplsetName.Text = "ReplsetName";
             // 
             // txtReplsetName
@@ -370,7 +383,7 @@ namespace MongoCola
             // 
             this.tabShardingConfig.Controls.Add(this.lstExistShardTag);
             this.tabShardingConfig.Controls.Add(this.lblExistShardTag);
-            this.tabShardingConfig.Controls.Add(this.lblIndexLName);
+            this.tabShardingConfig.Controls.Add(this.lblIndexName);
             this.tabShardingConfig.Controls.Add(this.lblDBName);
             this.tabShardingConfig.Controls.Add(this.cmbIndexList);
             this.tabShardingConfig.Controls.Add(this.lblCollection);
@@ -383,6 +396,7 @@ namespace MongoCola
             this.tabShardingConfig.Padding = new System.Windows.Forms.Padding(3);
             this.tabShardingConfig.Size = new System.Drawing.Size(517, 286);
             this.tabShardingConfig.TabIndex = 1;
+            this.tabShardingConfig.Tag = "ShardingConfig_EnableSharding";
             this.tabShardingConfig.Text = "Sharding Setting";
             this.tabShardingConfig.UseVisualStyleBackColor = true;
             // 
@@ -522,6 +536,7 @@ namespace MongoCola
             this.btnAddShardTag.Name = "btnAddShardTag";
             this.btnAddShardTag.Size = new System.Drawing.Size(169, 33);
             this.btnAddShardTag.TabIndex = 4;
+            this.btnAddShardTag.Tag = "Common_Add";
             this.btnAddShardTag.Text = "Add Shard Tag";
             this.btnAddShardTag.UseVisualStyleBackColor = true;
             this.btnAddShardTag.Click += new System.EventHandler(this.btnAddShardTag_Click);
@@ -609,6 +624,7 @@ namespace MongoCola
             this.cmdClose.Name = "cmdClose";
             this.cmdClose.Size = new System.Drawing.Size(121, 32);
             this.cmdClose.TabIndex = 0;
+            this.cmdClose.Tag = "Common_Close";
             this.cmdClose.Text = "Close";
             this.cmdClose.UseVisualStyleBackColor = true;
             this.cmdClose.Click += new System.EventHandler(this.cmdClose_Click);
@@ -627,6 +643,7 @@ namespace MongoCola
             this.MinimizeBox = false;
             this.Name = "frmShardingConfig";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Tag = "ShardingConfig_Title";
             this.Text = "Sharding Config";
             this.Load += new System.EventHandler(this.frmAddSharding_Load);
             this.tabSharding.ResumeLayout(false);
@@ -648,7 +665,7 @@ namespace MongoCola
         #endregion
 
         private System.Windows.Forms.Button cmdAddSharding;
-        private System.Windows.Forms.Label lblIndexLName;
+        private System.Windows.Forms.Label lblIndexName;
         private System.Windows.Forms.ComboBox cmbIndexList;
         private System.Windows.Forms.Button cmdEnableCollectionSharding;
         private System.Windows.Forms.Button cmdEnableDBSharding;

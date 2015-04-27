@@ -52,10 +52,11 @@
             // EditDocStripButton
             // 
             this.EditDocStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.EditDocStripButton.Image = global::ResourceLib.Properties.Resources.Edit;
+            this.EditDocStripButton.Image = ((System.Drawing.Image)(resources.GetObject("EditDocStripButton.Image")));
             this.EditDocStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EditDocStripButton.Name = "EditDocStripButton";
             this.EditDocStripButton.Size = new System.Drawing.Size(23, 22);
+            this.EditDocStripButton.Tag = "Common_Edit";
             this.EditDocStripButton.Text = "Editor";
             this.EditDocStripButton.Click += new System.EventHandler(this.EditDocStripButton_Click);
             // 
@@ -66,16 +67,18 @@
             this.SaveStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.SaveStripButton.Name = "SaveStripButton";
             this.SaveStripButton.Size = new System.Drawing.Size(23, 22);
+            this.SaveStripButton.Tag = "Common_Save";
             this.SaveStripButton.Text = "Save";
             this.SaveStripButton.Click += new System.EventHandler(this.SaveStripButton_Click);
             // 
             // CloseStripButton
             // 
             this.CloseStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.CloseStripButton.Image = global::ResourceLib.Properties.Resources.ShutDown;
+            this.CloseStripButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseStripButton.Image")));
             this.CloseStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CloseStripButton.Name = "CloseStripButton";
             this.CloseStripButton.Size = new System.Drawing.Size(23, 22);
+            this.CloseStripButton.Tag = "Common_Close";
             this.CloseStripButton.Text = "Close";
             this.CloseStripButton.Click += new System.EventHandler(this.CloseStripButton_Click);
             // 
@@ -86,17 +89,17 @@
             this.txtJavaScript.Multiline = true;
             this.txtJavaScript.Name = "txtJavaScript";
             this.txtJavaScript.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtJavaScript.Size = new System.Drawing.Size(696, 362);
+            this.txtJavaScript.Size = new System.Drawing.Size(696, 332);
             this.txtJavaScript.TabIndex = 1;
             // 
             // ctlJsEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtJavaScript);
             this.Controls.Add(this.toolStrip1);
             this.Name = "ctlJsEditor";
-            this.Size = new System.Drawing.Size(696, 387);
+            this.Size = new System.Drawing.Size(696, 357);
             this.Load += new System.EventHandler(this.JsEditor_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
