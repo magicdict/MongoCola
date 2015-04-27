@@ -63,13 +63,12 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FillCollectionInfoToTreeNode.cs" />
+    <Compile Include="FillDataBaseInfoToTreeNode.cs" />
     <Compile Include="FillMongoDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="configuration.cs" />
     <Compile Include="UIHelper.cs" />
-    <Compile Include="UIHelper_Sub.cs">
-      <DependentUpon>UIHelper.cs</DependentUpon>
-    </Compile>
     <Compile Include="Aggregation\BsonValuePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -227,8 +227,7 @@ namespace MongoCola
                 var ConnectionTreeNodes = new List<TreeNode>();
                 await Task.Run(() =>
                 {
-                    ConnectionTreeNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst,
-                        SystemConfig.config.ConnectionList);
+                    ConnectionTreeNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst,SystemConfig.config.ConnectionList);
                 });
                 //如果第一个节点的字节点不为空
                 if (ConnectionTreeNodes != null)
@@ -606,10 +605,8 @@ namespace MongoCola
             MongoUtility.Basic.Utility.InitGFS(RuntimeMongoDBContext.GetCurrentDataBase());
             DisableAllOpr();
             trvsrvlst.Nodes.Clear();
-            var t = UIHelper.GetConnectionNodes(
-                RuntimeMongoDBContext._mongoConnSvrLst,
-                SystemConfig.config.ConnectionList);
-            foreach (var element in t)
+            var connectNodes = UIHelper.GetConnectionNodes(RuntimeMongoDBContext._mongoConnSvrLst,SystemConfig.config.ConnectionList);
+            foreach (var element in connectNodes)
             {
                 trvsrvlst.Nodes.Add(element);
             }

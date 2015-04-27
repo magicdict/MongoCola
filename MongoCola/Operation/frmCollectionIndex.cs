@@ -239,7 +239,7 @@ namespace MongoCola.Operation
             {
                 var ListItem = new ListViewItem(item.Name);
                 ListItem.SubItems.Add(item.Version.ToString(CultureInfo.InvariantCulture));
-                ListItem.SubItems.Add(UIHelper.GetKeyString(item.Key));
+                ListItem.SubItems.Add(EnumMgr.GetKeyString(item.Key));
                 ListItem.SubItems.Add(item.Namespace);
                 ListItem.SubItems.Add(item.IsBackground.ToString());
                 ListItem.SubItems.Add(item.IsSparse.ToString());

@@ -1,4 +1,7 @@
-﻿namespace MongoUtility.Basic
+﻿using MongoDB.Driver;
+using System.Linq;
+
+namespace MongoUtility.Basic
 {
     public static class EnumMgr
     {
@@ -11,6 +14,41 @@
             Text,
             Xml
         }
+
+        /// <summary>
+        ///     Key String
+        /// </summary>
+        /// <param name="keys"></param>
+        /// <returns></returns>
+        public static string GetKeyString(IndexKeysDocument keys)
+        {
+            var KeyString = string.Empty;
+            foreach (var key in keys.Elements)
+            {
+                KeyString += key.Name + ":";
+                switch (key.Value.ToString())
+                {
+                    case "1":
+                        KeyString += EnumMgr.IndexType.Ascending.ToString();
+                        break;
+                    case "-1":
+                        KeyString += EnumMgr.IndexType.Descending.ToString();
+                        break;
+                    case "2d":
+                        KeyString += EnumMgr.IndexType.GeoSpatial.ToString();
+                        break;
+                    case "text":
+                        KeyString += EnumMgr.IndexType.Text.ToString();
+                        break;
+                    default:
+                        break;
+                }
+                KeyString += ";";
+            }
+            KeyString = "[" + KeyString.TrimEnd(";".ToArray()) + "]";
+            return KeyString;
+        }
+
 
         /// <summary>
         ///     索引类型
