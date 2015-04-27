@@ -11,23 +11,21 @@ namespace MongoGUICtl
         private readonly MongodbDosCommand.StruMongoDump MongodumpCommand = new MongodbDosCommand.StruMongoDump();
         public EventHandler<TextChangeEventArgs> CommandChanged;
 
-        public ctlMongodump(GUIConfig GUIConfig = null)
+        public ctlMongodump()
         {
             InitializeComponent();
-            if (GUIConfig == null)
-                return;
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 lblCollectionName.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_DCName);
+                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_DCName);
                 lblDBName.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_DBName);
+                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_DBName);
                 lblHostAddr.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_Server);
+                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_Server);
                 lblPort.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_Port);
+                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_Port);
                 ctlFilePickerOutput.Title =
-                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_Path);
+                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup_Path);
             }
         }
 

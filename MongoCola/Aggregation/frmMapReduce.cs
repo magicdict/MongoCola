@@ -29,12 +29,12 @@ namespace MongoCola.Aggregation
             if (!SystemConfig.IsUseDefaultLanguage)
             {
                 ctlMapFunction.Title =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.MapReduce_MapFunction);
+                    GUIConfig.GetText(TextType.MapReduce_MapFunction);
                 ctlReduceFunction.Title =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.MapReduce_ReduceFunction);
-                lblResult.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.MapReduce_Result);
-                cmdRun.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.MapReduce_Run);
-                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Close);
+                    GUIConfig.GetText(TextType.MapReduce_ReduceFunction);
+                lblResult.Text = GUIConfig.GetText(TextType.MapReduce_Result);
+                cmdRun.Text = GUIConfig.GetText(TextType.MapReduce_Run);
+                cmdClose.Text = GUIConfig.GetText(TextType.Common_Close);
             }
             ctlMapFunction.Context =
                 @"function Map(){

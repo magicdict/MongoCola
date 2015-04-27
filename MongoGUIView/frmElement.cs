@@ -54,10 +54,10 @@ namespace MongoGUIView
                 AddBsonElement.switchToUpdateMode();
                 AddBsonElement.setElement(_selectNode.Tag);
             }
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
-                cmdOK.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_OK);
-                cmdCancel.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
+                cmdOK.Text = GUIConfig.MStringResource.GetText(TextType.Common_OK);
+                cmdCancel.Text = GUIConfig.MStringResource.GetText(TextType.Common_Cancel);
             }
             if (!_isElement)
             {

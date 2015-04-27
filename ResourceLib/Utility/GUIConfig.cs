@@ -15,17 +15,17 @@ namespace ResourceLib.Utility
     /// <summary>
     ///     Description of UIConfig.
     /// </summary>
-    public class GUIConfig
+    public static class GUIConfig
     {
         /// <summary>
         ///     是否使用默认语言
         /// </summary>
-        public Boolean IsUseDefaultLanguage = false;
+        public static Boolean IsUseDefaultLanguage = false;
 
         /// <summary>
         ///     字符串
         /// </summary>
-        public StringResource MStringResource = new StringResource();
+        public static StringResource MStringResource = new StringResource();
 
         /// <summary>
         ///     获得文字
@@ -33,18 +33,22 @@ namespace ResourceLib.Utility
         /// <param name="DefaultText"></param>
         /// <param name="tag"></param>
         /// <returns></returns>
-        public string GetText(string DefaultText,
+        public static string GetText(string DefaultText,
             TextType tag = TextType.UseDefaultLanguage)
         {
             if (IsUseDefaultLanguage || tag == TextType.UseDefaultLanguage) return DefaultText;
             return MStringResource.GetText(tag);
         }
-
+        public static string GetText(TextType TextType)
+        {
+            if (IsUseDefaultLanguage) return TextType.ToString();
+            return MStringResource.GetText(TextType);
+        }
         /// <summary>
         ///     自动化多语言
         /// </summary>
         /// <param name="frm"></param>
-        public void Translateform(Form frm)
+        public static void Translateform(Form frm)
         {
             if (IsUseDefaultLanguage) return;
             if (frm.Tag != null)
@@ -59,7 +63,7 @@ namespace ResourceLib.Utility
             Translateform(frm.Controls);
         }
 
-        public void Translateform(ToolStripItemCollection Controls)
+        public static void Translateform(ToolStripItemCollection Controls)
         {
             foreach (ToolStripItem menuItem in Controls)
             {
@@ -76,7 +80,7 @@ namespace ResourceLib.Utility
         /// 
         /// </summary>
         /// <param name="Controls"></param>
-        public void Translateform(Control.ControlCollection Controls)
+        public static void Translateform(Control.ControlCollection Controls)
         {
             var Display = string.Empty;
             foreach (Control ctrlItem in Controls)

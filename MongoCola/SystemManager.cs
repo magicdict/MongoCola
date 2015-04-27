@@ -52,9 +52,7 @@ namespace MongoCola
             //设定MongoUtility
             RuntimeMongoDBContext._mongoConnectionConfigList = SystemConfig.config.ConnectionList;
             //各个子系统的多语言设定
-            configuration.guiConfig = SystemConfig.guiConfig;
             MongoGUIView.configuration.RefreshStatusTimer = SystemConfig.config.RefreshStatusTimer;
-            MongoGUIView.configuration.guiConfig = SystemConfig.guiConfig;
             Application.Run(new frmMain());
             //delete tempfile directory when exit
             if (Directory.Exists(GFS.TempFileFolder))

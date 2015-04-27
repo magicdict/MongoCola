@@ -42,14 +42,14 @@ namespace MongoCola
             }
             else
             {
-                SystemConfig.guiConfig.Translateform(this);
-                if (!SystemConfig.guiConfig.IsUseDefaultLanguage)
+                GUIConfig.Translateform(this);
+                if (!GUIConfig.IsUseDefaultLanguage)
                 {
                     //其他控件
                     statusStripMain.Items[0].Text =
-                        SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_StatusBar_Text_Ready);
+                        GUIConfig.GetText(TextType.Main_StatusBar_Text_Ready);
                     tabSvrStatus.Text =
-                        SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Status);
+                        GUIConfig.GetText(TextType.Main_Menu_Mangt_Status);
                 }
             }
         }
@@ -127,7 +127,7 @@ namespace MongoCola
             var ReplSetName = MyMessageBox.ShowInput("Please Fill ReplSetName :",
                 SystemConfig.IsUseDefaultLanguage
                     ? "ReplSetName"
-                    : SystemConfig.guiConfig.MStringResource.GetText(TextType.Replset_InitReplset));
+                    : GUIConfig.GetText(TextType.Replset_InitReplset));
             if (ReplSetName == string.Empty)
                 return;
             var Result = CommandHelper.InitReplicaSet(ReplSetName,
@@ -212,7 +212,7 @@ namespace MongoCola
                 RefreshToolStripButton.Enabled = true;
             }
             statusStripMain.Items[0].Text = !SystemConfig.IsUseDefaultLanguage
-                ? SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_StatusBar_Text_Ready)
+                ? GUIConfig.GetText(TextType.Main_StatusBar_Text_Ready)
                 : "Ready";
         }
 
@@ -329,8 +329,8 @@ namespace MongoCola
             {
                 strDBName =
                     MyMessageBox.ShowInput(
-                        SystemConfig.guiConfig.MStringResource.GetText(TextType.Create_New_DataBase_Input),
-                        SystemConfig.guiConfig.MStringResource.GetText(TextType.Create_New_DataBase));
+                        GUIConfig.GetText(TextType.Create_New_DataBase_Input),
+                        GUIConfig.GetText(TextType.Create_New_DataBase));
             }
             string ErrMessage;
             RuntimeMongoDBContext.GetCurrentServer().IsDatabaseNameValid(strDBName, out ErrMessage);
@@ -389,7 +389,7 @@ namespace MongoCola
                 MyMessageBox.ShowMessage(
                     SystemConfig.IsUseDefaultLanguage
                         ? "UserInformation"
-                        : SystemConfig.guiConfig.MStringResource.GetText(
+                        : GUIConfig.GetText(
                             TextType.Main_Menu_Operation_Server_UserInfo),
                     "The User Information of：[" +
                     SystemConfig.config.ConnectionList[ConnectionName].UserName + "]", info, true);
@@ -442,9 +442,9 @@ namespace MongoCola
             else
             {
                 MyMessageBox.ShowMessage(
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.Main_Menu_Operation_Server_Properties),
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.Main_Menu_Operation_Server_Properties),
                     MongoUtility.Basic.Utility.GetCurrentSvrInfo(RuntimeMongoDBContext.GetCurrentServer()), true);
             }
@@ -475,9 +475,9 @@ namespace MongoCola
             var strMessage = "Are you really want to Drop current Database?";
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                strTitle = SystemConfig.guiConfig.MStringResource.GetText(TextType.Drop_DataBase);
+                strTitle = GUIConfig.GetText(TextType.Drop_DataBase);
                 strMessage =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Drop_DataBase_Confirm);
+                    GUIConfig.GetText(TextType.Drop_DataBase_Confirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;
@@ -685,9 +685,9 @@ namespace MongoCola
             var strMessage = "Are you sure to drop this Collection?";
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                strTitle = SystemConfig.guiConfig.MStringResource.GetText(TextType.Drop_Collection);
+                strTitle = GUIConfig.GetText(TextType.Drop_Collection);
                 strMessage =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Drop_Collection_Confirm);
+                    GUIConfig.GetText(TextType.Drop_Collection_Confirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage)) return;
             var strPath = RuntimeMongoDBContext.SelectTagData;
@@ -732,8 +732,8 @@ namespace MongoCola
             else
             {
                 strNewCollectionName = MyMessageBox.ShowInput(
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Rename_Collection_Input),
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Rename_Collection),
+                    GUIConfig.GetText(TextType.Rename_Collection_Input),
+                    GUIConfig.GetText(TextType.Rename_Collection),
                     strCollection);
             }
             if (string.IsNullOrEmpty(strNewCollectionName)) return;
@@ -782,7 +782,7 @@ namespace MongoCola
             else
             {
                 statusStripMain.Items[0].Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_Collection) +
+                    GUIConfig.GetText(TextType.Selected_Collection) +
                     ":" + RuntimeMongoDBContext.SelectTagData;
             }
         }
@@ -966,10 +966,10 @@ namespace MongoCola
             if (!SystemConfig.IsUseDefaultLanguage)
             {
                 strTitle =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.Main_Menu_Operation_BackupAndRestore_Restore);
                 strMessage =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Restore_Connection_Confirm);
+                    GUIConfig.GetText(TextType.Restore_Connection_Confirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;
@@ -1085,8 +1085,8 @@ namespace MongoCola
             var strMessage = "Are you sure to Import Collection?";
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                strTitle = SystemConfig.guiConfig.MStringResource.GetText(TextType.Drop_Data);
-                strMessage = SystemConfig.guiConfig.MStringResource.GetText(TextType.Drop_Data_Confirm);
+                strTitle = GUIConfig.GetText(TextType.Drop_Data);
+                strMessage = GUIConfig.GetText(TextType.Drop_Data_Confirm);
             }
             if (!MyMessageBox.ShowConfirm(strTitle, strMessage))
                 return;

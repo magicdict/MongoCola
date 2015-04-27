@@ -227,18 +227,18 @@ namespace MongoGUIView
             //这里为了向前兼容暂时保持ReadOnle属性
             //Ref:http://docs.mongodb.org/manual/reference/method/db.addUser/
             lstData.Clear();
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 lstData.Columns.Add("ID");
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Username));
-                lstData.Columns.Add(configuration.guiConfig.MStringResource.GetText(TextType.Common_Roles));
+                    GUIConfig.MStringResource.GetText(TextType.Common_Username));
+                lstData.Columns.Add(GUIConfig.MStringResource.GetText(TextType.Common_Roles));
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Password));
+                    GUIConfig.MStringResource.GetText(TextType.Common_Password));
                 lstData.Columns.Add("userSource");
                 lstData.Columns.Add("otherDBRoles");
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(TextType.Common_ReadOnly));
+                    GUIConfig.MStringResource.GetText(TextType.Common_ReadOnly));
             }
             else
             {
@@ -293,15 +293,15 @@ namespace MongoGUIView
         private static void SetGridFileToListView(List<BsonDocument> dataList, ListView lstData)
         {
             lstData.Clear();
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
-                lstData.Columns.Add(configuration.guiConfig.MStringResource.GetText(TextType.GFS_filename));
-                lstData.Columns.Add(configuration.guiConfig.MStringResource.GetText(TextType.GFS_length));
+                lstData.Columns.Add(GUIConfig.MStringResource.GetText(TextType.GFS_filename));
+                lstData.Columns.Add(GUIConfig.MStringResource.GetText(TextType.GFS_length));
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(TextType.GFS_chunkSize));
+                    GUIConfig.MStringResource.GetText(TextType.GFS_chunkSize));
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(TextType.GFS_uploadDate));
-                lstData.Columns.Add(configuration.guiConfig.MStringResource.GetText(TextType.GFS_md5));
+                    GUIConfig.MStringResource.GetText(TextType.GFS_uploadDate));
+                lstData.Columns.Add(GUIConfig.MStringResource.GetText(TextType.GFS_md5));
                 //!MONO
                 lstData.Columns.Add("ContentType");
             }

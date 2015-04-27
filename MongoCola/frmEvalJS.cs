@@ -26,10 +26,10 @@ namespace MongoCola
         {
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.EvalJS_Title);
-                ctlEval.Title = SystemConfig.guiConfig.MStringResource.GetText(TextType.EvalJS_Method);
-                lblParm.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.EvalJS_Parameter);
-                cmdEval.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.EvalJS_Run);
+                Text = GUIConfig.GetText(TextType.EvalJS_Title);
+                ctlEval.Title = GUIConfig.GetText(TextType.EvalJS_Method);
+                lblParm.Text = GUIConfig.GetText(TextType.EvalJS_Parameter);
+                cmdEval.Text = GUIConfig.GetText(TextType.EvalJS_Run);
             }
             ctlEval.Context = "function eval(){" + Environment.NewLine;
             ctlEval.Context += "    var i = 0;" + Environment.NewLine;

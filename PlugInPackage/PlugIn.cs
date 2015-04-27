@@ -11,8 +11,6 @@ namespace PlugInPackage
 {
     public static class PlugIn
     {
-        public static GUIConfig guiConfig;
-
         /// <summary>
         ///     插件列表
         /// </summary>

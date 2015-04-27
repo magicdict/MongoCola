@@ -200,21 +200,21 @@ namespace MongoGUICtl
         public static void FillDataBaseStatusToList(ListView lstSvr, Dictionary<string, MongoServer> _mongoConnSvrLst)
         {
             lstSvr.Clear();
-            lstSvr.Columns.Add(configuration.guiConfig.GetText("DataBaseName",
+            lstSvr.Columns.Add(GUIConfig.GetText("DataBaseName",
                 TextType.DataBase_Status_DataBaseName));
-            lstSvr.Columns.Add(configuration.guiConfig.GetText("CollectionCount",
+            lstSvr.Columns.Add(GUIConfig.GetText("CollectionCount",
                 TextType.DataBase_Status_CollectionCount));
-            lstSvr.Columns.Add(configuration.guiConfig.GetText("DataSize",
+            lstSvr.Columns.Add(GUIConfig.GetText("DataSize",
                 TextType.DataBase_Status_DataSize));
-            lstSvr.Columns.Add(configuration.guiConfig.GetText("FileSize",
+            lstSvr.Columns.Add(GUIConfig.GetText("FileSize",
                 TextType.DataBase_Status_FileSize));
-            lstSvr.Columns.Add(configuration.guiConfig.GetText("IndexCount",
+            lstSvr.Columns.Add(GUIConfig.GetText("IndexCount",
                 TextType.DataBase_Status_IndexCount));
-            lstSvr.Columns.Add(configuration.guiConfig.GetText("IndexSize",
+            lstSvr.Columns.Add(GUIConfig.GetText("IndexSize",
                 TextType.DataBase_Status_IndexSize));
-            lstSvr.Columns.Add(configuration.guiConfig.GetText("ObjectCount",
+            lstSvr.Columns.Add(GUIConfig.GetText("ObjectCount",
                 TextType.DataBase_Status_ObjectCount));
-            lstSvr.Columns.Add(configuration.guiConfig.GetText("StorageSize",
+            lstSvr.Columns.Add(GUIConfig.GetText("StorageSize",
                 TextType.DataBase_Status_StorageSize));
             foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)
             {
@@ -267,7 +267,7 @@ namespace MongoGUICtl
         {
             lstData.Clear();
 
-            if (configuration.guiConfig.IsUseDefaultLanguage)
+            if (GUIConfig.IsUseDefaultLanguage)
             {
                 lstData.Columns.Add("CollectionName");
                 lstData.Columns.Add("ObjectCount");
@@ -283,36 +283,36 @@ namespace MongoGUICtl
             else
             {
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Collection_Status_CollectionName));
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Collection_Status_ObjectCount));
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(TextType.Collection_Status_DataSize));
+                    GUIConfig.MStringResource.GetText(TextType.Collection_Status_DataSize));
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Collection_Status_LastExtentSize));
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Collection_Status_StorageSize));
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Collection_Status_TotalIndexSize));
 
                 //2012-3-6
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(TextType.Collection_Status_IsCapped));
+                    GUIConfig.MStringResource.GetText(TextType.Collection_Status_IsCapped));
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Collection_Status_MaxDocuments));
 
 
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Collection_Status_AverageObjectSize));
                 lstData.Columns.Add(
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Collection_Status_PaddingFactor));
             }
             foreach (var mongoSvrKey in _mongoConnSvrLst.Keys)

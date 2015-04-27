@@ -18,7 +18,6 @@ namespace Common.UI
             Directory
         }
 
-        public static GUIConfig guiconfig;
         private DialogType _dialogType = DialogType.Directory;
         private string _FileFilter = string.Empty;
         private string _FileName = string.Empty;
@@ -147,9 +146,8 @@ namespace Common.UI
         private void ctlFilePicker_Load(object sender, EventArgs e)
         {
             if (DesignMode) return;
-            if (guiconfig == null) return;
-            cmdBrowse.Text = guiconfig.GetText("Browse", TextType.Common_Browse);
-            cmdClearPath.Text = guiconfig.GetText("Clear", TextType.Common_Clear);
+            cmdBrowse.Text = GUIConfig.GetText("Browse", TextType.Common_Browse);
+            cmdClearPath.Text = GUIConfig.GetText("Clear", TextType.Common_Clear);
         }
     }
 }

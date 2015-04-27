@@ -22,9 +22,9 @@ namespace MongoGUICtl
         public static TreeNode FillDataBaseInfoToTreeNode(string strDBName, string mongoSvrKey, MongoClient client = null)
         {
             var strShowDBName = strDBName;
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
-                if (configuration.guiConfig.MStringResource.LanguageType == "Chinese")
+                if (GUIConfig.MStringResource.LanguageType == "Chinese")
                 {
                     switch (strDBName)
                     {

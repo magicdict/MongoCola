@@ -21,17 +21,17 @@ namespace MongoGUIView
 
         private void ctlUserView_Load(object sender, EventArgs e)
         {
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 AddUserStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_Database_AddUser);
                 AddUserToolStripMenuItem.Text = AddUserStripButton.Text;
                 ChangePasswordStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Common_ChangePassword);
+                    GUIConfig.MStringResource.GetText(TextType.Common_ChangePassword);
                 ChangePasswordToolStripMenuItem.Text = ChangePasswordStripButton.Text;
                 RemoveUserStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_Database_DelUser);
                 RemoveUserToolStripMenuItem.Text = RemoveUserStripButton.Text;
             }
@@ -125,10 +125,10 @@ namespace MongoGUIView
         {
             var strTitle = "Drop User";
             var strMessage = "Are you sure to delete user(s) from Admin Group?";
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
-                strTitle = configuration.guiConfig.MStringResource.GetText(TextType.Drop_User);
-                strMessage = configuration.guiConfig.MStringResource.GetText(TextType.Drop_User_Confirm);
+                strTitle = GUIConfig.MStringResource.GetText(TextType.Drop_User);
+                strMessage = GUIConfig.MStringResource.GetText(TextType.Drop_User_Confirm);
             }
 
             //这里也可以使用普通的删除数据的方法来删除用户。
@@ -159,10 +159,10 @@ namespace MongoGUIView
         {
             var strTitle = "Drop User";
             var strMessage = "Are you sure to delete user(s) from this database";
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
-                strTitle = configuration.guiConfig.MStringResource.GetText(TextType.Drop_User);
-                strMessage = configuration.guiConfig.MStringResource.GetText(TextType.Drop_User_Confirm);
+                strTitle = GUIConfig.MStringResource.GetText(TextType.Drop_User);
+                strMessage = GUIConfig.MStringResource.GetText(TextType.Drop_User_Confirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {

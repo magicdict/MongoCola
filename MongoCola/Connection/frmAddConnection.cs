@@ -79,7 +79,7 @@ namespace MongoCola.Connection
 
             cmdAdd.Text = SystemConfig.IsUseDefaultLanguage
                 ? "Modify"
-                : SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Modify);
+                : GUIConfig.GetText(TextType.Common_Modify);
         }
 
         /// <summary>
@@ -112,40 +112,40 @@ namespace MongoCola.Connection
             cmdCancel.BackColor = MyMessageBox.FailColor;
             //Language
             if (SystemConfig.IsUseDefaultLanguage) return;
-            Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Title);
+            Text = GUIConfig.GetText(TextType.AddConnection_Title);
             lblConnectionName.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_ConnectionName);
-            lblHost.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Host);
-            lblPort.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Port);
-            lblUsername.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Username);
-            lblPassword.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Password);
+                GUIConfig.GetText(TextType.AddConnection_ConnectionName);
+            lblHost.Text = GUIConfig.GetText(TextType.Common_Host);
+            lblPort.Text = GUIConfig.GetText(TextType.Common_Port);
+            lblUsername.Text = GUIConfig.GetText(TextType.Common_Username);
+            lblPassword.Text = GUIConfig.GetText(TextType.Common_Password);
             lblDataBaseName.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_DBName);
+                GUIConfig.GetText(TextType.AddConnection_DBName);
             lblConnectionString.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_ConnectionString);
+                GUIConfig.GetText(TextType.AddConnection_ConnectionString);
             lblAttentionPassword.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
+                GUIConfig.GetText(
                     TextType.AddConnection_Password_Description);
 
 
             lblsocketTimeout.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_SocketTimeOut);
+                GUIConfig.GetText(TextType.AddConnection_SocketTimeOut);
             lblConnectTimeout.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_ConnectionTimeOut);
+                GUIConfig.GetText(TextType.AddConnection_ConnectionTimeOut);
 
 
             lblMainReplsetName.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_MainReplsetName);
+                GUIConfig.GetText(TextType.AddConnection_MainReplsetName);
             lblReplHost.Text = lblHost.Text;
             lblReplPort.Text = lblPort.Text;
             cmdAddHost.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Region_AddHost);
+                GUIConfig.GetText(TextType.AddConnection_Region_AddHost);
             cmdRemoveHost.Text =
-                SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Region_RemoveHost);
+                GUIConfig.GetText(TextType.AddConnection_Region_RemoveHost);
 
-            cmdAdd.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Add);
-            cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
-            cmdTest.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Test);
+            cmdAdd.Text = GUIConfig.GetText(TextType.Common_Add);
+            cmdCancel.Text = GUIConfig.GetText(TextType.Common_Cancel);
+            cmdTest.Text = GUIConfig.GetText(TextType.Common_Test);
         }
 
         /// <summary>
@@ -206,9 +206,9 @@ namespace MongoCola.Connection
                 if (!SystemConfig.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
-                        SystemConfig.guiConfig.MStringResource.GetText(
+                        GUIConfig.GetText(
                             TextType.Exception_AuthenticationException),
-                        SystemConfig.guiConfig.MStringResource.GetText(
+                        GUIConfig.GetText(
                             TextType.Exception_AuthenticationException_Note), ex.ToString(), true);
                 }
                 else
@@ -226,8 +226,8 @@ namespace MongoCola.Connection
                 if (!SystemConfig.IsUseDefaultLanguage)
                 {
                     MyMessageBox.ShowMessage(
-                        SystemConfig.guiConfig.MStringResource.GetText(TextType.Exception_NotConnected),
-                        SystemConfig.guiConfig.MStringResource.GetText(
+                        GUIConfig.GetText(TextType.Exception_NotConnected),
+                        GUIConfig.GetText(
                             TextType.Exception_NotConnected_Note),
                         ex.ToString(), true);
                 }

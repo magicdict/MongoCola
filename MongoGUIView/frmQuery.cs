@@ -50,17 +50,17 @@ namespace MongoGUIView
                 //不使用过滤：字段初始化
                 QueryFieldPicker.InitByCurrentCollection(true);
             }
-            if (configuration.guiConfig.IsUseDefaultLanguage) return;
-            Text = configuration.guiConfig.MStringResource.GetText(TextType.Query_Title);
-            tabFieldInfo.Text = configuration.guiConfig.MStringResource.GetText(TextType.Query_FieldInfo);
-            tabCondition.Text = configuration.guiConfig.MStringResource.GetText(TextType.Query_Filter);
-            tabSql.Text = configuration.guiConfig.MStringResource.GetText(TextType.ConvertSql_Title);
+            if (GUIConfig.IsUseDefaultLanguage) return;
+            Text = GUIConfig.MStringResource.GetText(TextType.Query_Title);
+            tabFieldInfo.Text = GUIConfig.MStringResource.GetText(TextType.Query_FieldInfo);
+            tabCondition.Text = GUIConfig.MStringResource.GetText(TextType.Query_Filter);
+            tabSql.Text = GUIConfig.MStringResource.GetText(TextType.ConvertSql_Title);
             cmdAddCondition.Text =
-                configuration.guiConfig.MStringResource.GetText(TextType.Query_Filter_AddCondition);
-            cmdLoad.Text = configuration.guiConfig.MStringResource.GetText(TextType.Query_Action_Load);
-            cmdSave.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Save);
-            cmdOK.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_OK);
-            cmdCancel.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
+                GUIConfig.MStringResource.GetText(TextType.Query_Filter_AddCondition);
+            cmdLoad.Text = GUIConfig.MStringResource.GetText(TextType.Query_Action_Load);
+            cmdSave.Text = GUIConfig.MStringResource.GetText(TextType.Common_Save);
+            cmdOK.Text = GUIConfig.MStringResource.GetText(TextType.Common_OK);
+            cmdCancel.Text = GUIConfig.MStringResource.GetText(TextType.Common_Cancel);
         }
 
         /// <summary>

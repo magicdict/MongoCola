@@ -18,10 +18,10 @@ namespace MongoGUICtl
 
         private void ctllogLv_Load(object sender, EventArgs e)
         {
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 lblLogLv.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_LogLevel);
+                    GUIConfig.MStringResource.GetText(TextType.DosCommand_LogLevel);
             }
             cmbLogLevel.Items.Add("Quiet");
             cmbLogLevel.Items.Add("V");

@@ -35,15 +35,15 @@ namespace MongoGUICtl
         private void JsEditor_Load(object sender, EventArgs e)
         {
             if (DesignMode) return;
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
-                Text = configuration.guiConfig.MStringResource.GetText(TextType.ServiceStatus_Title);
+                Text = GUIConfig.MStringResource.GetText(TextType.ServiceStatus_Title);
                 SaveStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Save);
+                    GUIConfig.MStringResource.GetText(TextType.Common_Save);
                 EditDocStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Edit);
+                    GUIConfig.MStringResource.GetText(TextType.Common_Edit);
                 CloseStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Close);
+                    GUIConfig.MStringResource.GetText(TextType.Common_Close);
             }
             SaveStripButton.Image = Resources.save.ToBitmap();
             if (JsName != null && JsName != string.Empty)

@@ -88,23 +88,23 @@ namespace MongoCola
             if (!SystemConfig.IsUseDefaultLanguage)
             {
                 Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.Main_Menu_Distributed_ReplicaSet);
                 grpAddHost.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Region_AddHost);
+                    GUIConfig.GetText(TextType.AddConnection_Region_AddHost);
                 grpRemoveHost.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.AddConnection_Region_RemoveHost);
-                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Close);
+                cmdClose.Text = GUIConfig.GetText(TextType.Common_Close);
                 cmdAddHost.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Region_AddHost);
+                    GUIConfig.GetText(TextType.AddConnection_Region_AddHost);
                 cmdRemoveHost.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.AddConnection_Region_RemoveHost);
                 lblpriority.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Priority);
-                lblReplHost.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Host);
-                lblReplPort.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Port);
+                    GUIConfig.GetText(TextType.AddConnection_Priority);
+                lblReplHost.Text = GUIConfig.GetText(TextType.Common_Host);
+                lblReplPort.Text = GUIConfig.GetText(TextType.Common_Port);
             }
 
             var server = RuntimeMongoDBContext.GetCurrentServer();

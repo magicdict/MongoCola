@@ -40,40 +40,40 @@ namespace MongoGUIView
 
         private void ctlDocumentView_Load(object sender, EventArgs e)
         {
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 NewDocumentToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_DataCollection_AddDocument);
                 DelSelectRecordToolToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_DataCollection_DropDocument);
 
                 AddElementToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_DataDocument_AddElement);
                 DropElementToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_DataDocument_DropElement);
                 ModifyElementToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_DataDocument_ModifyElement);
 
                 NewDocumentStripButton.Text = NewDocumentToolStripMenuItem.Text;
                 OpenDocInEditorStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_DataDocument_OpenInNativeEditor);
                 DelSelectRecordToolStripButton.Text = DelSelectRecordToolToolStripMenuItem.Text;
                 CopyElementToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_DataDocument_CopyElement);
                 CopyElementStripButton.Text = CopyElementToolStripMenuItem.Text;
                 CutElementToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_DataDocument_CutElement);
                 CutElementStripButton.Text = CutElementToolStripMenuItem.Text;
                 PasteElementToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_DataDocument_PasteElement);
                 PasteElementStripButton.Text = PasteElementToolStripMenuItem.Text;
             }
@@ -355,10 +355,10 @@ namespace MongoGUIView
         {
             var strTitle = "Delete Document";
             var strMessage = "Are you sure to delete selected document(s)?";
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
-                strTitle = configuration.guiConfig.MStringResource.GetText(TextType.Drop_Data);
-                strMessage = configuration.guiConfig.MStringResource.GetText(TextType.Drop_Data_Confirm);
+                strTitle = GUIConfig.MStringResource.GetText(TextType.Drop_Data);
+                strMessage = GUIConfig.MStringResource.GetText(TextType.Drop_Data_Confirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {

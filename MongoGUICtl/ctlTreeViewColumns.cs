@@ -253,12 +253,11 @@ namespace MongoGUICtl
 
         private void ctlTreeViewColumnsLoad(object sender, EventArgs e)
         {
-            if (configuration.guiConfig == null) return;
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
-                colName.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Name);
-                colValue.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Value);
-                colType.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Type);
+                colName.Text = GUIConfig.MStringResource.GetText(TextType.Common_Name);
+                colValue.Text = GUIConfig.MStringResource.GetText(TextType.Common_Value);
+                colType.Text = GUIConfig.MStringResource.GetText(TextType.Common_Type);
             }
         }
     }

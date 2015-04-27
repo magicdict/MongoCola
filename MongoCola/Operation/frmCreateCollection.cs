@@ -27,23 +27,23 @@ namespace MongoCola.Operation
         {
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Create_New_Collection);
+                Text = GUIConfig.GetText(TextType.Create_New_Collection);
                 lblCollectionName.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.Collection_Status_CollectionName);
                 chkAdvance.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Advance_Option);
-                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_OK);
-                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
+                    GUIConfig.GetText(TextType.Common_Advance_Option);
+                cmdOK.Text = GUIConfig.GetText(TextType.Common_OK);
+                cmdCancel.Text = GUIConfig.GetText(TextType.Common_Cancel);
                 chkIsCapped.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Collection_Status_IsCapped);
+                    GUIConfig.GetText(TextType.Collection_Status_IsCapped);
                 lblMaxDocument.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.Collection_Status_MaxDocuments);
                 lblMaxSize.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Collection_Status_MaxSize);
+                    GUIConfig.GetText(TextType.Collection_Status_MaxSize);
                 chkIsAutoIndexId.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.Collection_Status_IsAutoIndexId);
             }
 

@@ -38,42 +38,42 @@ namespace MongoCola.Operation
         {
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.CollectionIndex_Title);
+                Text = GUIConfig.GetText(TextType.CollectionIndex_Title);
                 tabCurrentIndex.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.CollectionIndex_Tab_Current);
+                    GUIConfig.GetText(TextType.CollectionIndex_Tab_Current);
                 cmdDelIndex.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.CollectionIndex_Tab_Current_Del);
                 tabIndexManager.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.CollectionIndex_Tab_Manager);
-                cmdAddIndex.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Add);
+                    GUIConfig.GetText(TextType.CollectionIndex_Tab_Manager);
+                cmdAddIndex.Text = GUIConfig.GetText(TextType.Common_Add);
 
                 chkIsDroppedDups.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_RepeatDel);
+                    GUIConfig.GetText(TextType.Index_RepeatDel);
                 chkIsBackground.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_Background);
-                chkIsSparse.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_Sparse);
-                chkIsUnique.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_Unify);
+                    GUIConfig.GetText(TextType.Index_Background);
+                chkIsSparse.Text = GUIConfig.GetText(TextType.Index_Sparse);
+                chkIsUnique.Text = GUIConfig.GetText(TextType.Index_Unify);
 
-                lblIndexName.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_Name);
+                lblIndexName.Text = GUIConfig.GetText(TextType.Index_Name);
                 chkExpireData.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_ExpireData);
+                    GUIConfig.GetText(TextType.Index_ExpireData);
 
-                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_Name));
+                lstIndex.Columns.Add(GUIConfig.GetText(TextType.Index_Name));
                 lstIndex.Columns.Add(
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_Version));
-                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_Keys));
+                    GUIConfig.GetText(TextType.Index_Version));
+                lstIndex.Columns.Add(GUIConfig.GetText(TextType.Index_Keys));
                 lstIndex.Columns.Add(
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_NameSpace));
+                    GUIConfig.GetText(TextType.Index_NameSpace));
 
                 lstIndex.Columns.Add(
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_Background));
-                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_Sparse));
-                lstIndex.Columns.Add(SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_Unify));
+                    GUIConfig.GetText(TextType.Index_Background));
+                lstIndex.Columns.Add(GUIConfig.GetText(TextType.Index_Sparse));
+                lstIndex.Columns.Add(GUIConfig.GetText(TextType.Index_Unify));
                 lstIndex.Columns.Add(
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_RepeatDel));
+                    GUIConfig.GetText(TextType.Index_RepeatDel));
                 lstIndex.Columns.Add(
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Index_ExpireData));
+                    GUIConfig.GetText(TextType.Index_ExpireData));
             }
             else
             {

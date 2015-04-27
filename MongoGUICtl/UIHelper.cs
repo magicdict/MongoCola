@@ -455,15 +455,15 @@ namespace MongoGUICtl
             string mongoConnKey)
         {
             //需要验证的数据服务器，没有Admin权限无法获得数据库列表
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 ConnectionNode.Text += "[" +
-                                       configuration.guiConfig.MStringResource.GetText(
+                                       GUIConfig.MStringResource.GetText(
                                            TextType.Exception_AuthenticationException) + "]";
                 Utility.ExceptionDeal(ex,
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Exception_AuthenticationException),
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Exception_AuthenticationException_Note));
             }
             else
@@ -483,15 +483,15 @@ namespace MongoGUICtl
             //listDatabase命令错误，本质是用户名称错误
             if (ex.Result["errmsg"] == "unauthorized")
             {
-                if (!configuration.guiConfig.IsUseDefaultLanguage)
+                if (!GUIConfig.IsUseDefaultLanguage)
                 {
                     ConnectionNode.Text += "[" +
-                                           configuration.guiConfig.MStringResource.GetText(
+                                           GUIConfig.MStringResource.GetText(
                                                TextType.Exception_AuthenticationException) + "]";
                     Utility.ExceptionDeal(ex,
-                        configuration.guiConfig.MStringResource.GetText(
+                        GUIConfig.MStringResource.GetText(
                             TextType.Exception_AuthenticationException),
-                        configuration.guiConfig.MStringResource.GetText(
+                        GUIConfig.MStringResource.GetText(
                             TextType.Exception_AuthenticationException_Note));
                 }
                 else
@@ -502,13 +502,13 @@ namespace MongoGUICtl
             }
             else
             {
-                if (!configuration.guiConfig.IsUseDefaultLanguage)
+                if (!GUIConfig.IsUseDefaultLanguage)
                 {
                     ConnectionNode.Text += "[" +
-                                           configuration.guiConfig.MStringResource.GetText(
+                                           GUIConfig.MStringResource.GetText(
                                                TextType.Exception_NotConnected) + "]";
                     Utility.ExceptionDeal(ex,
-                        configuration.guiConfig.MStringResource.GetText(TextType.Exception_NotConnected),
+                        GUIConfig.MStringResource.GetText(TextType.Exception_NotConnected),
                         "Unknown Exception");
                 }
                 else
@@ -530,14 +530,14 @@ namespace MongoGUICtl
             //无法连接的理由：
             //1.服务器没有启动
             //2.认证模式不正确
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 ConnectionNode.Text += "[" +
-                                       configuration.guiConfig.MStringResource.GetText(
+                                       GUIConfig.MStringResource.GetText(
                                            TextType.Exception_NotConnected) + "]";
                 Utility.ExceptionDeal(ex,
-                    configuration.guiConfig.MStringResource.GetText(TextType.Exception_NotConnected),
-                    configuration.guiConfig.MStringResource.GetText(TextType.Exception_NotConnected_Note));
+                    GUIConfig.MStringResource.GetText(TextType.Exception_NotConnected),
+                    GUIConfig.MStringResource.GetText(TextType.Exception_NotConnected_Note));
             }
             else
             {
@@ -553,13 +553,13 @@ namespace MongoGUICtl
             List<TreeNode> trvMongoDB,
             TreeNode ConnectionNode, string mongoConnKey)
         {
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 ConnectionNode.Text += "[" +
-                                       configuration.guiConfig.MStringResource.GetText(
+                                       GUIConfig.MStringResource.GetText(
                                            TextType.Exception_NotConnected) + "]";
                 Utility.ExceptionDeal(ex,
-                    configuration.guiConfig.MStringResource.GetText(TextType.Exception_NotConnected),
+                    GUIConfig.MStringResource.GetText(TextType.Exception_NotConnected),
                     "Unknown Exception");
             }
             else

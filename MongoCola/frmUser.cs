@@ -143,7 +143,7 @@ namespace MongoCola
                 if (_ModifyName == string.Empty)
                 {
                     Text =
-                        SystemConfig.guiConfig.MStringResource.GetText(_IsAdmin
+                        GUIConfig.GetText(_IsAdmin
                             ? TextType.Main_Menu_Operation_Server_AddUserToAdmin
                             : TextType.Main_Menu_Operation_Database_AddUser);
                     Icon = GetSystemIcon.ConvertImgToIcon(Resources.AddUserToDB);
@@ -151,20 +151,20 @@ namespace MongoCola
                 else
                 {
                     Icon = GetSystemIcon.ConvertImgToIcon(Resources.DBkey);
-                    Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_ChangePassword);
+                    Text = GUIConfig.GetText(TextType.Common_ChangePassword);
                 }
                 lblUserName.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Username);
+                    GUIConfig.GetText(TextType.Common_Username);
                 lblPassword.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Password);
+                    GUIConfig.GetText(TextType.Common_Password);
                 lblConfirmPsw.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_ConfirmPassword);
-                //chkReadOnly.Text = SystemConfig.guiConfig.MStringResource.GetText(MongoCola.Module.ResourceLib.Utility.TextType.Common_ReadOnly);
-                colRoles.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Roles);
+                    GUIConfig.GetText(TextType.Common_ConfirmPassword);
+                //chkReadOnly.Text = GUIConfig.GetText(MongoCola.Module.ResourceLib.Utility.TextType.Common_ReadOnly);
+                colRoles.Text = GUIConfig.GetText(TextType.Common_Roles);
                 colDataBase.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_DataBase);
-                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_OK);
-                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
+                    GUIConfig.GetText(TextType.Common_DataBase);
+                cmdOK.Text = GUIConfig.GetText(TextType.Common_OK);
+                cmdCancel.Text = GUIConfig.GetText(TextType.Common_Cancel);
             }
         }
 

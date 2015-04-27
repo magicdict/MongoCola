@@ -33,14 +33,14 @@ namespace MongoCola
             trvsrvlst.ImageList = GetSystemIcon.MainTreeImage;
             tabView.ImageList = GetSystemIcon.TabViewImage;
             SetMenuImage();
-            SystemConfig.guiConfig.Translateform(this);
-            if (!SystemConfig.guiConfig.IsUseDefaultLanguage)
+            GUIConfig.Translateform(this);
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 //其他控件
                 statusStripMain.Items[0].Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_StatusBar_Text_Ready);
+                    GUIConfig.GetText(TextType.Main_StatusBar_Text_Ready);
                 tabSvrStatus.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Main_Menu_Mangt_Status);
+                    GUIConfig.GetText(TextType.Main_Menu_Mangt_Status);
             }
             //Init ToolBar
             InitToolBar();
@@ -287,7 +287,7 @@ namespace MongoCola
                         else
                         {
                             statusStripMain.Items[0].Text =
-                                SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_Index) +
+                                GUIConfig.GetText(TextType.Selected_Index) +
                                 ":" +
                                 RuntimeMongoDBContext.SelectTagData;
                         }
@@ -300,7 +300,7 @@ namespace MongoCola
                         else
                         {
                             statusStripMain.Items[0].Text =
-                                SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_Indexes) +
+                                GUIConfig.GetText(TextType.Selected_Indexes) +
                                 ":" +
                                 RuntimeMongoDBContext.SelectTagData;
                         }
@@ -313,7 +313,7 @@ namespace MongoCola
                         else
                         {
                             statusStripMain.Items[0].Text =
-                                SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_UserList) +
+                                GUIConfig.GetText(TextType.Selected_UserList) +
                                 ":" +
                                 RuntimeMongoDBContext.SelectTagData;
                         }
@@ -345,7 +345,7 @@ namespace MongoCola
                         else
                         {
                             statusStripMain.Items[0].Text =
-                                SystemConfig.guiConfig.MStringResource.GetText(TextType.Selected_GFS) +
+                                GUIConfig.GetText(TextType.Selected_GFS) +
                                 ":" +
                                 RuntimeMongoDBContext.SelectTagData;
                         }

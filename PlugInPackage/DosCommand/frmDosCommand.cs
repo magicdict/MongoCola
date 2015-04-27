@@ -23,14 +23,14 @@ namespace PlugInPackage.DosCommand
             ctlMongodPanel.CommandChanged += (x, y) => CommandChanged(y.NewString);
             ctlMongodumpPanel.CommandChanged += (x, y) => CommandChanged(y.NewString);
             ctlMongoImportExportPanel.CommandChanged += (x, y) => CommandChanged(y.NewString);
-            if (PlugIn.guiConfig.IsUseDefaultLanguage)
+            if (GUIConfig.IsUseDefaultLanguage)
                 return;
-            cmdSave.Text = PlugIn.guiConfig.MStringResource.GetText(TextType.Common_Save);
-            cmdRunDos.Text = PlugIn.guiConfig.MStringResource.GetText(TextType.DosCommand_Run);
-            tabMongod.Text = PlugIn.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Deploy);
-            tabMongoDump.Text = PlugIn.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_Backup);
+            cmdSave.Text = GUIConfig.GetText(TextType.Common_Save);
+            cmdRunDos.Text = GUIConfig.GetText(TextType.DosCommand_Run);
+            tabMongod.Text = GUIConfig.GetText(TextType.DosCommand_Tab_Deploy);
+            tabMongoDump.Text = GUIConfig.GetText(TextType.DosCommand_Tab_Backup);
             tabMongoImportExport.Text =
-                PlugIn.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_ExIn);
+                GUIConfig.GetText(TextType.DosCommand_Tab_ExIn);
         }
 
         /// <summary>

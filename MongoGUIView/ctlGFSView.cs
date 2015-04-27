@@ -18,30 +18,30 @@ namespace MongoGUIView
             InitTool();
             mDataViewInfo = _DataViewInfo;
             _dataShower.Add(lstData);
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 DeleteFileToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_FileSystem_DelFile);
                 DeleteFileStripButton.Text = DeleteFileToolStripMenuItem.Text;
 
                 UploadFileToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_FileSystem_UploadFile);
                 UploadFileStripButton.Text = UploadFileToolStripMenuItem.Text;
 
                 UploadFolderToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_FileSystem_UploadFolder);
                 UpLoadFolderStripButton.Text = UploadFolderToolStripMenuItem.Text;
 
                 DownloadFileToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_FileSystem_Download);
                 DownloadFileStripButton.Text = DownloadFileToolStripMenuItem.Text;
 
                 OpenFileToolStripMenuItem.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_Operation_FileSystem_OpenFile);
                 OpenFileStripButton.Text = OpenFileToolStripMenuItem.Text;
             }
@@ -266,10 +266,10 @@ namespace MongoGUIView
         {
             var strTitle = "Delete Files";
             var strMessage = "Are you sure to delete selected File(s)?";
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
-                strTitle = configuration.guiConfig.MStringResource.GetText(TextType.Drop_Data);
-                strMessage = configuration.guiConfig.MStringResource.GetText(TextType.Drop_Data_Confirm);
+                strTitle = GUIConfig.MStringResource.GetText(TextType.Drop_Data);
+                strMessage = GUIConfig.MStringResource.GetText(TextType.Drop_Data_Confirm);
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {

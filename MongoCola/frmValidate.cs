@@ -17,7 +17,7 @@ namespace MongoCola
         public frmValidate()
         {
             InitializeComponent();
-            SystemConfig.guiConfig.Translateform(this);
+            GUIConfig.Translateform(this);
             cmdSave.Enabled = false;
         }
 

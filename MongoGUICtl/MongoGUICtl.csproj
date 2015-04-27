@@ -67,7 +67,6 @@
     <Compile Include="FillDataBaseInfoToTreeNode.cs" />
     <Compile Include="FillMongoDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="configuration.cs" />
     <Compile Include="UIHelper.cs" />
     <Compile Include="Aggregation\BsonValuePanel.cs">
       <SubType>UserControl</SubType>

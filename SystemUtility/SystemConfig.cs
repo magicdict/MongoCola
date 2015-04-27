@@ -43,7 +43,7 @@ namespace SystemUtility
 
         #region"多语言"
 
-        public static GUIConfig guiConfig = new GUIConfig();
+
 
         /// <summary>
         ///     是否使用默认语言
@@ -67,16 +67,16 @@ namespace SystemUtility
         /// </summary>
         public static void InitLanguage()
         {
-            guiConfig.IsUseDefaultLanguage = IsUseDefaultLanguage;
+            GUIConfig.IsUseDefaultLanguage = IsUseDefaultLanguage;
             //语言的初始化
             if (!IsUseDefaultLanguage)
             {
                 var LanguageFile = "Language" + Path.DirectorySeparatorChar + config.LanguageFileName;
                 if (File.Exists(LanguageFile))
                 {
-                    guiConfig.MStringResource.InitLanguage(LanguageFile);
+                    GUIConfig.MStringResource.InitLanguage(LanguageFile);
                 }
-                Utility.Init(guiConfig);
+                Utility.Init();
             }
         }
 

@@ -38,9 +38,9 @@ namespace MongoCola
             optXML.CheckedChanged += optExportType_CheckedChanged;
             if (SystemConfig.IsUseDefaultLanguage)
                 return;
-            btnSave.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Save);
+            btnSave.Text = GUIConfig.GetText(TextType.Common_Save);
             Text =
-                SystemConfig.guiConfig.MStringResource.GetText(
+                GUIConfig.GetText(
                     TextType.Main_Menu_Operation_DataCollection_ExportToFile);
         }
 

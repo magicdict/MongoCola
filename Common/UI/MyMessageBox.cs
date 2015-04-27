@@ -42,14 +42,14 @@ namespace Common.UI
         /// </summary>
         public static void InitMsgBoxUI()
         {
-            _frmConfirm.SetText(Utility.guiconfig.GetText("Yes", TextType.Common_Yes),
-                Utility.guiconfig.GetText("No", TextType.Common_No));
+            _frmConfirm.SetText(GUIConfig.GetText("Yes", TextType.Common_Yes),
+                GUIConfig.GetText("No", TextType.Common_No));
 
-            _frmMessage.SetText(Utility.guiconfig.GetText("Detail", TextType.Common_Detail),
-                Utility.guiconfig.GetText("OK", TextType.Common_OK));
-            _frmInputBox.SetText(Utility.guiconfig.GetText("Cancel", TextType.Common_Cancel),
-                Utility.guiconfig.GetText("OK", TextType.Common_OK));
-            _frmEasyMessage.SetText(Utility.guiconfig.GetText("OK", TextType.Common_OK));
+            _frmMessage.SetText(GUIConfig.GetText("Detail", TextType.Common_Detail),
+                GUIConfig.GetText("OK", TextType.Common_OK));
+            _frmInputBox.SetText(GUIConfig.GetText("Cancel", TextType.Common_Cancel),
+                GUIConfig.GetText("OK", TextType.Common_OK));
+            _frmEasyMessage.SetText(GUIConfig.GetText("OK", TextType.Common_OK));
         }
 
         /// <summary>

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using MongoUtility.Basic;
+using ResourceLib.Utility;
 
 namespace MongoGUIView
 {
@@ -60,7 +61,7 @@ namespace MongoGUIView
         /// <param name="e"></param>
         private void frmGFSOption_Load(object sender, EventArgs e)
         {
-           configuration.guiConfig.Translateform(this);
+           GUIConfig.Translateform(this);
         }
     }
 }

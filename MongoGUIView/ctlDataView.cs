@@ -85,36 +85,36 @@ namespace MongoGUIView
             }
             cmbRecPerPage.SelectedIndex = 1;
             mDataViewInfo.LimitCnt = 100;
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 //数据显示区
-                tabTreeView.Text = configuration.guiConfig.MStringResource.GetText(TextType.Main_Tab_Tree);
+                tabTreeView.Text = GUIConfig.MStringResource.GetText(TextType.Main_Tab_Tree);
                 tabTableView.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Tab_Table);
-                tabTextView.Text = configuration.guiConfig.MStringResource.GetText(TextType.Main_Tab_Text);
+                    GUIConfig.MStringResource.GetText(TextType.Main_Tab_Table);
+                tabTextView.Text = GUIConfig.MStringResource.GetText(TextType.Main_Tab_Text);
                 PrePageStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Previous);
+                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Previous);
                 NextPageStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Next);
+                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Next);
                 FirstPageStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView_First);
+                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView_First);
                 LastPageStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Last);
+                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Last);
                 QueryStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Query);
+                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView_Query);
                 FilterStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Main_Menu_DataView_DataFilter);
                 RefreshStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Refresh);
+                    GUIConfig.MStringResource.GetText(TextType.Common_Refresh);
                 CloseStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Close);
+                    GUIConfig.MStringResource.GetText(TextType.Common_Close);
                 ExpandAllStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Expansion);
+                    GUIConfig.MStringResource.GetText(TextType.Common_Expansion);
                 CollapseAllStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Common_Collapse);
+                    GUIConfig.MStringResource.GetText(TextType.Common_Collapse);
                 HelpStripButton.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_Help);
+                    GUIConfig.MStringResource.GetText(TextType.Main_Menu_Help);
             }
             InitControlsVisiableAndEvent();
             //加载数据
@@ -385,9 +385,9 @@ namespace MongoGUIView
             FilterStripButton.Checked = mDataViewInfo.IsUseFilter;
             QueryStripButton.Enabled = true;
             var strTitle = "Records";
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
-                strTitle = configuration.guiConfig.MStringResource.GetText(TextType.Main_Menu_DataView);
+                strTitle = GUIConfig.MStringResource.GetText(TextType.Main_Menu_DataView);
             }
             if (mDataViewInfo.CurrentCollectionTotalCnt == 0)
             {

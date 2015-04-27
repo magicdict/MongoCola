@@ -13,14 +13,14 @@ namespace MongoGUICtl
         public ctlIndexCreate()
         {
             InitializeComponent();
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 lblKeyName.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.ctlIndexCreate_Index);
+                    GUIConfig.MStringResource.GetText(TextType.ctlIndexCreate_Index);
                 radAscendingKey.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Index_Asce);
+                    GUIConfig.MStringResource.GetText(TextType.Index_Asce);
                 radDescendingKey.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.Index_Desc);
+                    GUIConfig.MStringResource.GetText(TextType.Index_Desc);
             }
             if (RuntimeMongoDBContext.GetCurrentCollection() != null)
             {

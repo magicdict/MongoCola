@@ -14,11 +14,8 @@ namespace Common.Logic
 {
     public static class Utility
     {
-        public static GUIConfig guiconfig = new GUIConfig();
-
-        public static void Init(GUIConfig _guiconfig)
+        public static void Init()
         {
-            guiconfig = _guiconfig;
             MyMessageBox.InitMsgBoxUI();
         }
 

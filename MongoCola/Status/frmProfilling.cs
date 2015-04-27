@@ -25,10 +25,10 @@ namespace MongoCola.Status
         {
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                cmdCancel.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Cancel);
-                cmdOK.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_OK);
+                cmdCancel.Text = GUIConfig.GetText(TextType.Common_Cancel);
+                cmdOK.Text = GUIConfig.GetText(TextType.Common_OK);
                 lblProfilingLevel.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.Main_Menu_Operation_ProfillingLevel);
             }
 

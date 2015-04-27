@@ -41,36 +41,36 @@ namespace MongoCola
         {
             if (!SystemConfig.IsUseDefaultLanguage)
             {
-                cmdClose.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Close);
+                cmdClose.Text = GUIConfig.GetText(TextType.Common_Close);
                 cmdAddHost.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.AddConnection_Region_AddHost);
+                    GUIConfig.GetText(TextType.AddConnection_Region_AddHost);
                 cmdRemoveHost.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.AddConnection_Region_RemoveHost);
-                lblReplHost.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Host);
-                lblReplPort.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Port);
+                lblReplHost.Text = GUIConfig.GetText(TextType.Common_Host);
+                lblReplPort.Text = GUIConfig.GetText(TextType.Common_Port);
 
-                Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_Title);
+                Text = GUIConfig.GetText(TextType.ShardingConfig_Title);
                 tabAddSharding.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_AddSharding);
+                    GUIConfig.GetText(TextType.ShardingConfig_AddSharding);
                 lblMainReplsetName.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_ReplsetName);
-                cmdAddSharding.Text = SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Add);
+                    GUIConfig.GetText(TextType.ShardingConfig_ReplsetName);
+                cmdAddSharding.Text = GUIConfig.GetText(TextType.Common_Add);
                 chkAdvance.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.Common_Advance_Option);
+                    GUIConfig.GetText(TextType.Common_Advance_Option);
                 tabShardingConfig.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_EnableSharding);
+                    GUIConfig.GetText(TextType.ShardingConfig_EnableSharding);
                 lblDBName.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_DBName);
+                    GUIConfig.GetText(TextType.ShardingConfig_DBName);
                 lblCollection.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_CollectionName);
+                    GUIConfig.GetText(TextType.ShardingConfig_CollectionName);
                 lblIndexLName.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(TextType.ShardingConfig_FieldName);
+                    GUIConfig.GetText(TextType.ShardingConfig_FieldName);
                 cmdEnableCollectionSharding.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.ShardingConfig_Action_CollectionSharding);
                 cmdEnableDBSharding.Text =
-                    SystemConfig.guiConfig.MStringResource.GetText(
+                    GUIConfig.GetText(
                         TextType.ShardingConfig_Action_DBSharding);
             }
             _prmSvr = RuntimeMongoDBContext.GetCurrentServer();

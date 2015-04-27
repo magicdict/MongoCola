@@ -22,27 +22,27 @@ namespace MongoGUICtl
         {
             ctllogLvT.LoglvChanged += ctllogLvT_LoglvChanged;
             ctlFilePickerOutput.PathChanged += ctlFilePickerOutput_PathChanged;
-            if (!configuration.guiConfig.IsUseDefaultLanguage)
+            if (!GUIConfig.IsUseDefaultLanguage)
             {
                 lblCollectionName.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.Collection_Status_CollectionName);
                 lblDBName.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.AddConnection_DBName);
-                lblHost.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Host);
+                    GUIConfig.MStringResource.GetText(TextType.AddConnection_DBName);
+                lblHost.Text = GUIConfig.MStringResource.GetText(TextType.Common_Host);
                 lblFieldList.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.DosCommand_Tab_ExIn_ColumnList);
-                lblPort.Text = configuration.guiConfig.MStringResource.GetText(TextType.Common_Port);
+                lblPort.Text = GUIConfig.MStringResource.GetText(TextType.Common_Port);
                 grpDirect.Text =
-                    configuration.guiConfig.MStringResource.GetText(
+                    GUIConfig.MStringResource.GetText(
                         TextType.DosCommand_Tab_ExIn_Operation);
                 radImport.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_ExIn_Import);
+                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_ExIn_Import);
                 radExport.Text =
-                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_ExIn_Export);
+                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_ExIn_Export);
                 ctlFilePickerOutput.Title =
-                    configuration.guiConfig.MStringResource.GetText(TextType.DosCommand_Tab_ExIn_Workfile);
+                    GUIConfig.MStringResource.GetText(TextType.DosCommand_Tab_ExIn_Workfile);
             }
         }
 
