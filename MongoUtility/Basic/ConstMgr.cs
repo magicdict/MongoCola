@@ -206,8 +206,8 @@
         /// <summary>
         ///     查询条件构成控件用常量
         /// </summary>
+        public const string StartMark_T = "(";
         public const string EndMark_AND = " AND ";
-
         public const string EndMark_OR = " OR ";
         public const string EndMark_AND_T = ") AND ";
         public const string EndMark_OR_T = ") OR ";

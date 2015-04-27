@@ -94,7 +94,8 @@ namespace MongoCola.Connection
             {
                 foreach (ListViewItem item in lstConnection.CheckedItems)
                 {
-                    connLst.Add(SystemConfig.config.ConnectionList[item.Text]);
+                    var config = SystemConfig.config.ConnectionList[item.Text];
+                    connLst.Add(config);
                 }
                 RuntimeMongoDBContext.ResetConnectionList(connLst);
             }

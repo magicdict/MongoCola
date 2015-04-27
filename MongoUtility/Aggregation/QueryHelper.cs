@@ -69,7 +69,8 @@ namespace MongoUtility.Aggregation
             List<DataFilter.QueryConditionInputItem> currGrp = null;
             for (var i = 0; i < QueryCompareList.Count; i++)
             {
-                if (i == 0 || QueryCompareList[i].StartMark == "(" || QueryCompareList[i - 1].EndMark.StartsWith(")"))
+                if (i == 0 || QueryCompareList[i].StartMark == ConstMgr.StartMark_T ||
+                              QueryCompareList[i - 1].EndMark.StartsWith(ConstMgr.EndMark_T))
                 {
                     var newGroup = new List<DataFilter.QueryConditionInputItem>();
                     conditiongrpList.Add(newGroup);

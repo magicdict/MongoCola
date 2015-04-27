@@ -94,6 +94,7 @@
     <Compile Include="Aggregation\Sql.cs" />
     <Compile Include="EventArgs\SelectedIndexChangeEventArgs.cs" />
     <Compile Include="EventArgs\TextChangeEventArgs.cs" />
+    <Compile Include="NewUtility\GetConnectionInfo.cs" />
     <Compile Include="Security\MongoDBAction.cs" />
     <Compile Include="Security\Resource.cs" />
     <Compile Include="Security\User.cs" />

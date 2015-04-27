@@ -140,7 +140,7 @@ namespace MongoGUICtl
                     }
                     else
                     {
-                        var newSubItem = new TreeNode(ArrayName + "[" + Count + "]") {Tag = SubItem};
+                        var newSubItem = new TreeNode(ArrayName + "[" + Count + "]") { Tag = SubItem };
                         newItem.Nodes.Add(newSubItem);
                     }
                 }
@@ -168,8 +168,8 @@ namespace MongoGUICtl
                 {
                     //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
                     var config = _mongoConConfigLst[mongoConnKey];
-                    ConnectionNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Connection;
-                    ConnectionNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Connection;
+                    ConnectionNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
+                    ConnectionNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
                     //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
                     //不过现在改为全部显示的打开连接
                     ConnectionNode.Text = mongoConnKey;
@@ -250,8 +250,8 @@ namespace MongoGUICtl
                 {
                     //ReplSetName只能使用在虚拟的Replset服务器，Sharding体系等无效。虽然一个Sharding可以看做一个ReplSet
                     var config = _mongoConConfigLst[mongoConnKey];
-                    ConnectionNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Connection;
-                    ConnectionNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Connection;
+                    ConnectionNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
+                    ConnectionNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Connection;
                     //ReplSet服务器需要Connect才能连接。可能因为这个是虚拟的服务器，没有Mongod实体。
                     //不过现在改为全部显示的打开连接
                     mongoSrv.Connect();
@@ -376,16 +376,16 @@ namespace MongoGUICtl
             ConnectionNode.Tag = ConstMgr.CONNECTION_CLUSTER_TAG + ":" + config.ConnectionName;
             var ShardListNode = new TreeNode("Shards")
             {
-                SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers,
-                ImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers
+                SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
+                ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
             };
             foreach (var lst in OperationHelper.GetShardInfo(mongoSrv, "host"))
             {
                 var ShardNode = new TreeNode
                 {
                     Text = lst.Key,
-                    SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers,
-                    ImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers
+                    SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
+                    ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
                 };
                 var strHostList = lst.Value;
                 var strAddress = strHostList.Split("/".ToCharArray());
@@ -437,8 +437,8 @@ namespace MongoGUICtl
             ConnectionNode.Tag = ConstMgr.CONNECTION_REPLSET_TAG + ":" + config.ConnectionName;
             var ServerListNode = new TreeNode("Servers")
             {
-                SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers,
-                ImageIndex = (int) GetSystemIcon.MainTreeImageType.Servers
+                SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers,
+                ImageIndex = (int)GetSystemIcon.MainTreeImageType.Servers
             };
             foreach (var ServerInstace in mongoSrv.Instances)
             {
@@ -596,8 +596,8 @@ namespace MongoGUICtl
             var connSvrKey = isReplsetMasterServer
                 ? mongoConnKey + "/" + mongoConnKey
                 : mongoConnKey + "/" + mMasterServerInstace.Address.ToString().Replace(":", "@");
-            svrInstanceNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
-            svrInstanceNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.WebServer;
+            svrInstanceNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
+            svrInstanceNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.WebServer;
             svrInstanceNode.Text = isReplsetMasterServer ? "Connection" : "Server[" + mMasterServerInstace.Address + "]";
             if (!string.IsNullOrEmpty(config.UserName) & (!string.IsNullOrEmpty(config.Password)))
             {
@@ -610,13 +610,11 @@ namespace MongoGUICtl
             {
                 //单数据库模式
                 var mongoSingleDbNode = isReplsetMasterServer
-                    ? FillDataBaseInfoToTreeNode(config.DataBaseName, mServer,
-                        mongoConnKey + "/" + mongoConnKey)
-                    : FillDataBaseInfoToTreeNode(config.DataBaseName, mServer,
-                        mongoConnKey + "/" + mMasterServerInstace.Address);
+                    ? FillDataBaseInfoToTreeNode(config.DataBaseName, mongoConnKey + "/" + mongoConnKey, null)
+                    : FillDataBaseInfoToTreeNode(config.DataBaseName, mongoConnKey + "/" + mMasterServerInstace.Address, null);
                 mongoSingleDbNode.Tag = ConstMgr.SINGLE_DATABASE_TAG + ":" + connSvrKey + "/" + config.DataBaseName;
-                mongoSingleDbNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
-                mongoSingleDbNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
+                mongoSingleDbNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                mongoSingleDbNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                 svrInstanceNode.Nodes.Add(mongoSingleDbNode);
                 svrInstanceNode.Tag = ConstMgr.SINGLE_DB_SERVER_TAG + ":" + connSvrKey;
                 //获取User信息
@@ -635,39 +633,41 @@ namespace MongoGUICtl
             }
             else
             {
-                MongoServer instantSrv;
-                List<string> databaseNameList;
-                if (isReplsetMasterServer)
-                {
-                    instantSrv = mServer;
-                    databaseNameList = mServer.GetDatabaseNames().ToList();
-                }
-                else
-                {
-                    var setting = RuntimeMongoDBContext.CreateMongoClientSettingsByConfig(ref config);
-                    setting.ConnectionMode = ConnectionMode.Direct;
-                    //When Replset Case,Application need to read admin DB information
-                    //if Primary,there will be exception
-                    setting.ReadPreference = ReadPreference.PrimaryPreferred;
-                    setting.Server = mMasterServerInstace.Address;
-                    instantSrv = new MongoClient(setting).GetServer();
-                    databaseNameList = instantSrv.GetDatabaseNames().ToList();
-                }
-                foreach (var strDbName in databaseNameList)
+                List<BsonDocument> databaseNameList;
+                var setting = RuntimeMongoDBContext.CreateMongoClientSettingsByConfig(ref config);
+                var client = new MongoClient(setting);
+                //if (isReplsetMasterServer)
+                //{
+                //    MongoServer instantSrv;
+                //    instantSrv = mServer;
+                //    //databaseNameList = mServer.GetDatabaseNames().ToList();
+                //}
+                //else
+                //{
+                //var setting = RuntimeMongoDBContext.CreateMongoClientSettingsByConfig(ref config);
+                //setting.ConnectionMode = ConnectionMode.Direct;
+                //When Replset Case,Application need to read admin DB information
+                //if Primary,there will be exception
+                //setting.ReadPreference = ReadPreference.PrimaryPreferred;
+                //setting.Server = mMasterServerInstace.Address;
+                databaseNameList = MongoUtility.NewUtility.GetConnectionInfo.GetDatabaseList(client);
+                //}
+                foreach (BsonDocument strDbName in databaseNameList)
                 {
                     TreeNode mongoDbNode;
                     try
                     {
-                        mongoDbNode = FillDataBaseInfoToTreeNode(strDbName, instantSrv, connSvrKey);
-                        mongoDbNode.ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
-                        mongoDbNode.SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database;
+                        string DBName = strDbName.GetElement("name").Value.ToString();
+                        mongoDbNode = FillDataBaseInfoToTreeNode(DBName, connSvrKey, client);
+                        mongoDbNode.ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
+                        mongoDbNode.SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database;
                         svrInstanceNode.Nodes.Add(mongoDbNode);
                         if (config.AuthMode)
                         {
                             try
                             {
                                 //尝试添加用户信息
-                                UserList.AddUser(mongoConn.GetDatabase(strDbName), config.UserName);
+                                UserList.AddUser(mongoConn.GetDatabase(DBName), config.UserName);
                             }
                             catch
                             {
@@ -680,8 +680,8 @@ namespace MongoGUICtl
                         Utility.ExceptionDeal(ex, strDbName + "Exception", strDbName + "Exception");
                         mongoDbNode = new TreeNode(strDbName + " (Exception)")
                         {
-                            ImageIndex = (int) GetSystemIcon.MainTreeImageType.Database,
-                            SelectedImageIndex = (int) GetSystemIcon.MainTreeImageType.Database
+                            ImageIndex = (int)GetSystemIcon.MainTreeImageType.Database,
+                            SelectedImageIndex = (int)GetSystemIcon.MainTreeImageType.Database
                         };
                         svrInstanceNode.Nodes.Add(mongoDbNode);
                     }
@@ -699,12 +699,12 @@ namespace MongoGUICtl
                     }
                 }
             }
-//			if (MongoDbHelper._mongoInstanceLst.ContainsKey(connSvrKey)) {
-//				MongoDbHelper._mongoInstanceLst.Remove(connSvrKey);
-//			}
-//			if (!isReplsetMasterServer) {
-//				MongoDbHelper._mongoInstanceLst.Add(connSvrKey, mMasterServerInstace);
-//			}
+            //			if (MongoDbHelper._mongoInstanceLst.ContainsKey(connSvrKey)) {
+            //				MongoDbHelper._mongoInstanceLst.Remove(connSvrKey);
+            //			}
+            //			if (!isReplsetMasterServer) {
+            //				MongoDbHelper._mongoInstanceLst.Add(connSvrKey, mMasterServerInstace);
+            //			}
             return svrInstanceNode;
         }
 

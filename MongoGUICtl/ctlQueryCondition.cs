@@ -48,11 +48,10 @@ namespace MongoGUICtl
 
         public void Init(List<string> ColumnList)
         {
-            cmbStartMark.Items.Add(" ");
-            cmbStartMark.Items.Add("(");
+            cmbStartMark.Items.Add(string.Empty);
+            cmbStartMark.Items.Add(ConstMgr.StartMark_T);
             cmbStartMark.SelectedIndex = 0;
-
-            cmbEndMark.Items.Add(" ");
+            cmbEndMark.Items.Add(string.Empty);
             cmbEndMark.Items.Add(ConstMgr.EndMark_AND);
             cmbEndMark.Items.Add(ConstMgr.EndMark_OR);
             cmbEndMark.Items.Add(ConstMgr.EndMark_AND_T);

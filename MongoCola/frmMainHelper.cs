@@ -9,10 +9,8 @@
 
 using MongoUtility.EventArgs;
 using PlugInPackage;
-using ResourceLib.Utility;
 using System;
 using System.Windows.Forms;
-using SystemUtility;
 
 namespace MongoCola
 {
