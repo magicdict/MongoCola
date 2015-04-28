@@ -204,7 +204,7 @@ namespace MongoUtility.Basic
             public enumGFSAlready AlreadyOpt;
             public Char DirectorySeparatorChar;
             public enumGFSFileName FileNameOpt;
-            public Boolean IgnoreSubFolder;
+            public bool IgnoreSubFolder;
         }
 
         #endregion

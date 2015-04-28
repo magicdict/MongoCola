@@ -15,7 +15,7 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     Boolean
         /// </summary>
-        public Boolean mBsonBoolean;
+        public bool mBsonBoolean;
 
         /// <summary>
         ///     DateTime

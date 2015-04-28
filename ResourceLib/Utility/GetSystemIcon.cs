@@ -60,7 +60,7 @@ namespace ResourceLib.Utility
         public static ImageList TabViewImage = new ImageList();
 
         [DllImport("gdi32.dll")]
-        private static extern Boolean DeleteObject(IntPtr hObject);
+        private static extern bool DeleteObject(IntPtr hObject);
 
         /// <summary>
         ///     Image转换为Icon

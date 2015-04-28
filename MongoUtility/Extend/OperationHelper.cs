@@ -43,7 +43,7 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="mongoCol"></param>
         /// <returns></returns>
-        public static Boolean IsSystemCollection(MongoCollection mongoCol)
+        public static bool IsSystemCollection(MongoCollection mongoCol)
         {
             //http://docs.mongodb.org/manual/reference/system-collections/
             return IsSystemCollection(mongoCol.Database.Name, mongoCol.Name);
@@ -55,7 +55,7 @@ namespace MongoUtility.Extend
         /// <param name="mongoDBName"></param>
         /// <param name="mongoColName"></param>
         /// <returns></returns>
-        public static Boolean IsSystemCollection(string mongoDBName, string mongoColName)
+        public static bool IsSystemCollection(string mongoDBName, string mongoColName)
         {
             //config数据库,默认为系统
             //local数据库,默认为系统
@@ -72,7 +72,7 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="mongoDB"></param>
         /// <returns></returns>
-        public static Boolean IsSystemDataBase(string DataBaseName)
+        public static bool IsSystemDataBase(string DataBaseName)
         {
             //local数据库,默认为系统
             if (DataBaseName == ConstMgr.DATABASE_NAME_LOCAL)
@@ -166,7 +166,7 @@ namespace MongoUtility.Extend
         /// <param name="collectionName"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public static Boolean CreateCollectionWithOptions(string strObjTag, string collectionName,
+        public static bool CreateCollectionWithOptions(string strObjTag, string collectionName,
             CollectionOptionsBuilder option, MongoDatabase mongoDB)
         {
             //不支持中文 JIRA ticket is created : SERVER-4412
@@ -199,7 +199,7 @@ namespace MongoUtility.Extend
         /// <param name="treeNode"></param>
         /// <param name="collectionName"></param>
         /// <returns></returns>
-        public static Boolean CreateCollection(string strObjTag, string collectionName, MongoDatabase mongoDB)
+        public static bool CreateCollection(string strObjTag, string collectionName, MongoDatabase mongoDB)
         {
             //不支持中文 JIRA ticket is created : SERVER-4412
             //SERVER-4412已经在2013/03解决了
@@ -253,7 +253,7 @@ namespace MongoUtility.Extend
         /// <param name="DescendingKey"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public static Boolean CreateMongoIndex(string[] AscendingKey, string[] DescendingKey, string GeoSpatialKey,
+        public static bool CreateMongoIndex(string[] AscendingKey, string[] DescendingKey, string GeoSpatialKey,
             IndexOptionsBuilder option, MongoCollection CurrentCollection)
         {
             var mongoCol = CurrentCollection;
@@ -273,7 +273,7 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="indexName"></param>
         /// <returns></returns>
-        public static Boolean DropMongoIndex(string indexName, MongoCollection mongoCol)
+        public static bool DropMongoIndex(string indexName, MongoCollection mongoCol)
         {
             if (indexName == ConstMgr.KEY_ID)
             {
@@ -415,7 +415,7 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="mongoCol"></param>
         /// <returns>插入记录的ID</returns>
-        public static BsonValue InsertEmptyDocument(MongoCollection mongoCol, Boolean safeMode)
+        public static BsonValue InsertEmptyDocument(MongoCollection mongoCol, bool safeMode)
         {
             var document = new BsonDocument();
             if (safeMode)

@@ -85,7 +85,7 @@ namespace Common.Logic
         public void Compress()
         {
             var Compresslist = new List<Model<T>>();
-            Func<Model<T>, Boolean> inner = x => (!x.IsDel);
+            Func<Model<T>, bool> inner = x => (!x.IsDel);
             Compresslist = list.FindAll(new Predicate<Model<T>>(inner));
             list = Compresslist;
             Commit();
@@ -174,10 +174,10 @@ namespace Common.Logic
         /// </summary>
         /// <param name="SearchMethod"></param>
         /// <returns>数据对象的深拷贝</returns>
-        public List<Model<T>> SearchAsDBRecord(Func<T, Boolean> SearchMethod)
+        public List<Model<T>> SearchAsDBRecord(Func<T, bool> SearchMethod)
         {
             Refresh();
-            Func<Model<T>, Boolean> inner = x => (SearchMethod(x.DataRec) && !x.IsDel);
+            Func<Model<T>, bool> inner = x => (SearchMethod(x.DataRec) && !x.IsDel);
             var t = new List<Model<T>>();
             foreach (var element in list.FindAll(new Predicate<Model<T>>(inner)))
             {
@@ -192,10 +192,10 @@ namespace Common.Logic
         /// </summary>
         /// <param name="SearchMethod"></param>
         /// <returns>数据对象的深拷贝</returns>
-        public List<T> SearchAsSimpleRecord(Func<T, Boolean> SearchMethod)
+        public List<T> SearchAsSimpleRecord(Func<T, bool> SearchMethod)
         {
             Refresh();
-            Func<Model<T>, Boolean> inner = x => (SearchMethod(x.DataRec) && !x.IsDel);
+            Func<Model<T>, bool> inner = x => (SearchMethod(x.DataRec) && !x.IsDel);
             var t = new List<T>();
             foreach (var element in list.FindAll(new Predicate<Model<T>>(inner)))
             {
@@ -224,9 +224,9 @@ namespace Common.Logic
         /// </summary>
         /// <param name="SearchMethod"></param>
         /// <returns></returns>
-        public bool IsRecordExists(Func<T, Boolean> SearchMethod)
+        public bool IsRecordExists(Func<T, bool> SearchMethod)
         {
-            Func<Model<T>, Boolean> inner = x => (SearchMethod(x.DataRec) && !x.IsDel);
+            Func<Model<T>, bool> inner = x => (SearchMethod(x.DataRec) && !x.IsDel);
             return list.FindAll(new Predicate<Model<T>>(inner)).Count != 0;
         }
 
@@ -237,7 +237,7 @@ namespace Common.Logic
         /// <returns></returns>
         public bool IsRecordExistsByDBID(string DBID)
         {
-            Func<Model<T>, Boolean> inner = x => (x.DBId == DBID && !x.IsDel);
+            Func<Model<T>, bool> inner = x => (x.DBId == DBID && !x.IsDel);
             return list.FindAll(new Predicate<Model<T>>(inner)).Count != 0;
         }
 

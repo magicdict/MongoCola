@@ -10,7 +10,7 @@ namespace Common.UI
         /// <summary>
         ///     Is Show Details
         /// </summary>
-        private Boolean _ShowDetails;
+        private bool _ShowDetails;
 
         internal frmMesssage()
         {
@@ -25,7 +25,7 @@ namespace Common.UI
         /// <param name="Message">Message</param>
         /// <param name="Details">Details</param>
         /// <param name="IsShowDetails">Is Show Details</param>
-        internal void SetMessage(string Message, string Details, Boolean IsShowDetails)
+        internal void SetMessage(string Message, string Details, bool IsShowDetails)
         {
             lblMessage.Text = Message;
             txtException.Text = Details;

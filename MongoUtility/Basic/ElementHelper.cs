@@ -12,12 +12,12 @@ namespace MongoUtility.Basic
 
         /// <summary>
         /// </summary>
-        public static Boolean _IsElementClip = true;
+        public static bool _IsElementClip = true;
 
         /// <summary>
         ///     Can Paste As Value
         /// </summary>
-        public static Boolean CanPasteAsValue
+        public static bool CanPasteAsValue
         {
             get { return (_ClipElement != null && !_IsElementClip); }
         }
@@ -25,7 +25,7 @@ namespace MongoUtility.Basic
         /// <summary>
         ///     Can Paste As Element
         /// </summary>
-        public static Boolean CanPasteAsElement
+        public static bool CanPasteAsElement
         {
             get { return (_ClipElement != null && _IsElementClip); }
         }
@@ -262,7 +262,7 @@ namespace MongoUtility.Basic
         /// <param name="ElementPath"></param>
         /// <param name="IsGetLast">T:GetOperationPlace F:GetOperationPlace Parent</param>
         /// <returns></returns>
-        public static BsonValue GetLastParentDocument(BsonDocument BaseDoc, string ElementPath, Boolean IsGetLast)
+        public static BsonValue GetLastParentDocument(BsonDocument BaseDoc, string ElementPath, bool IsGetLast)
         {
             BsonValue Current = BaseDoc;
             //JpCnWord[1]\Translations[ARRAY]\Translations[1]\Sentences[ARRAY]\Sentences[1]\Japanese:"ああいう文章はなかなか書けない"

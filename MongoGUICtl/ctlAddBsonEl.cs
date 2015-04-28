@@ -15,7 +15,7 @@ namespace MongoGUICtl
         /// <summary>
         ///     是否设定
         /// </summary>
-        public Boolean IsSetted
+        public bool IsSetted
         {
             get
             {

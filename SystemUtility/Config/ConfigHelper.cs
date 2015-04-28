@@ -16,7 +16,7 @@ namespace SystemUtility.Config
         /// </summary>
         /// <param name="con"></param>
         /// <returns></returns>
-        public static Boolean AddConnection(MongoConnectionConfig con)
+        public static bool AddConnection(MongoConnectionConfig con)
         {
             SystemConfig.config.ConnectionList.Add(con.ConnectionName, con);
             return true;

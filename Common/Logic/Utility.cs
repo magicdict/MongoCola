@@ -361,7 +361,7 @@ namespace Common.Logic
         /// <param name="orgForm"></param>
         /// <returns></returns>
         /// <param name="ShowDialog"></param>
-        public static void SetUp(Form orgForm, Boolean ShowDialog = true)
+        public static void SetUp(Form orgForm, bool ShowDialog = true)
         {
             orgForm.Text += " - 中和软件";
             orgForm.StartPosition = FormStartPosition.CenterParent;

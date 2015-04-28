@@ -18,13 +18,12 @@ using Utility = Common.Logic.Utility;
 namespace MongoUtility.Core
 {
     /// <summary>
-    ///     Description of RuntimeMongoDBContext.
-    /// </summary>
-    /// <summary>
     ///     MongoDB运行时环境
     /// </summary>
     public static class RuntimeMongoDBContext
     {
+
+        #region 实例准备
         /// <summary>
         ///     CreateMongoServer
         /// </summary>
@@ -52,8 +51,7 @@ namespace MongoUtility.Core
         /// </summary>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static MongoClientSettings CreateMongoClientSettingsByConfig(
-            ref MongoConnectionConfig config)
+        public static MongoClientSettings CreateMongoClientSettingsByConfig(ref MongoConnectionConfig config)
         {
             //修改获得数据实例的方法
             var mongoClientSetting = new MongoClientSettings();
@@ -67,11 +65,11 @@ namespace MongoUtility.Core
                 //The default value for SocketTimeout has been changed from 30 seconds to 0, 
                 if (config.socketTimeoutMS != 0)
                 {
-                    mongoClientSetting.SocketTimeout = new TimeSpan(0, 0, (int) (config.socketTimeoutMS/1000));
+                    mongoClientSetting.SocketTimeout = new TimeSpan(0, 0, (int)(config.socketTimeoutMS / 1000));
                 }
                 if (config.connectTimeoutMS != 0)
                 {
-                    mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int) (config.connectTimeoutMS/1000));
+                    mongoClientSetting.ConnectTimeout = new TimeSpan(0, 0, (int)(config.connectTimeoutMS / 1000));
                 }
                 //                if (SystemConfig.configHelperInstance.wtimeoutMS != 0)
                 //                {
@@ -157,48 +155,47 @@ namespace MongoUtility.Core
         /// <summary>
         ///     Set ReadPreference And WriteConcern
         /// </summary>
-        /// <param name="mongoSvrSetting"></param>
+        /// <param name="clientsettings"></param>
         /// <param name="config"></param>
-        private static void SetReadPreferenceWriteConcern(MongoClientSettings mongoSvrSetting,
-            MongoConnectionConfig config)
+        private static void SetReadPreferenceWriteConcern(MongoClientSettings clientsettings, MongoConnectionConfig config)
         {
             if (config.ReadPreference == ReadPreference.Primary.ToString())
             {
-                mongoSvrSetting.ReadPreference = ReadPreference.Primary;
+                clientsettings.ReadPreference = ReadPreference.Primary;
             }
             if (config.ReadPreference == ReadPreference.PrimaryPreferred.ToString())
             {
-                mongoSvrSetting.ReadPreference = ReadPreference.PrimaryPreferred;
+                clientsettings.ReadPreference = ReadPreference.PrimaryPreferred;
             }
             if (config.ReadPreference == ReadPreference.Secondary.ToString())
             {
-                mongoSvrSetting.ReadPreference = ReadPreference.Secondary;
+                clientsettings.ReadPreference = ReadPreference.Secondary;
             }
             if (config.ReadPreference == ReadPreference.SecondaryPreferred.ToString())
             {
-                mongoSvrSetting.ReadPreference = ReadPreference.SecondaryPreferred;
+                clientsettings.ReadPreference = ReadPreference.SecondaryPreferred;
             }
             if (config.ReadPreference == ReadPreference.Nearest.ToString())
             {
-                mongoSvrSetting.ReadPreference = ReadPreference.Nearest;
+                clientsettings.ReadPreference = ReadPreference.Nearest;
             }
             //Default ReadPreference is Primary
             //安全模式
             if (config.WriteConcern == WriteConcern.Unacknowledged.ToString())
             {
-                mongoSvrSetting.WriteConcern = WriteConcern.Unacknowledged;
+                clientsettings.WriteConcern = WriteConcern.Unacknowledged;
             }
             if (config.WriteConcern == WriteConcern.Acknowledged.ToString())
             {
-                mongoSvrSetting.WriteConcern = WriteConcern.Acknowledged;
+                clientsettings.WriteConcern = WriteConcern.Acknowledged;
             }
             if (config.WriteConcern == WriteConcern.W2.ToString())
             {
-                mongoSvrSetting.WriteConcern = WriteConcern.W2;
+                clientsettings.WriteConcern = WriteConcern.W2;
             }
             if (config.WriteConcern == WriteConcern.W3.ToString())
             {
-                mongoSvrSetting.WriteConcern = WriteConcern.W3;
+                clientsettings.WriteConcern = WriteConcern.W3;
             }
             //remove from mongodrvier 2.0.0
             //if (config.WriteConcern == WriteConcern.W4.ToString())
@@ -207,10 +204,12 @@ namespace MongoUtility.Core
             //}
             if (config.WriteConcern == WriteConcern.WMajority.ToString())
             {
-                mongoSvrSetting.WriteConcern = WriteConcern.WMajority;
+                clientsettings.WriteConcern = WriteConcern.WMajority;
             }
             //Default WriteConcern is w=0
         }
+
+        #endregion
 
         #region"系统状态"
 
@@ -275,7 +274,7 @@ namespace MongoUtility.Core
         public static MongoConnectionConfig GetCurrentServerConfig()
         {
             var ServerName = SelectObjectTag.Split(":".ToCharArray())[1];
-            ServerName = ServerName.Split("/".ToCharArray())[(int) EnumMgr.PathLv.ConnectionLv];
+            ServerName = ServerName.Split("/".ToCharArray())[(int)EnumMgr.PathLv.ConnectionLv];
             var rtnMongoConnectionConfig = new MongoConnectionConfig();
             if (_mongoConnectionConfigList.ContainsKey(ServerName))
             {
@@ -317,7 +316,7 @@ namespace MongoUtility.Core
 
         #endregion
 
-        #region"辅助方法 GetBySrvPath"
+        #region"辅助方法： GetObjBySrvPath"
 
         /// <summary>
         ///     根据路径字符获得服务器
@@ -338,7 +337,7 @@ namespace MongoUtility.Core
                     return _mongoConnSvrLst[strPath[0]];
                 }
             }
-            if (strPath.Length > (int) EnumMgr.PathLv.InstanceLv)
+            if (strPath.Length > (int)EnumMgr.PathLv.InstanceLv)
             {
                 if (strPath[0] == strPath[1])
                 {
@@ -347,7 +346,7 @@ namespace MongoUtility.Core
                 }
                 //[Tag:Connection/Host@Port/DBName/Collection]
                 var strInstKey = string.Empty;
-                strInstKey = strPath[(int) EnumMgr.PathLv.ConnectionLv] + "/" + strPath[(int) EnumMgr.PathLv.InstanceLv];
+                strInstKey = strPath[(int)EnumMgr.PathLv.ConnectionLv] + "/" + strPath[(int)EnumMgr.PathLv.InstanceLv];
                 if (_mongoInstanceLst.ContainsKey(strInstKey))
                 {
                     var mongoInstance = _mongoInstanceLst[strInstKey];
@@ -407,9 +406,9 @@ namespace MongoUtility.Core
             {
                 var strSvrPath = Utility.GetTagData(strObjTag);
                 var strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > (int) EnumMgr.PathLv.DatabaseLv)
+                if (strPathArray.Length > (int)EnumMgr.PathLv.DatabaseLv)
                 {
-                    rtnMongoDB = mongoSvr.GetDatabase(strPathArray[(int) EnumMgr.PathLv.DatabaseLv]);
+                    rtnMongoDB = mongoSvr.GetDatabase(strPathArray[(int)EnumMgr.PathLv.DatabaseLv]);
                 }
             }
             return rtnMongoDB;
@@ -447,9 +446,9 @@ namespace MongoUtility.Core
             {
                 var strSvrPath = Utility.GetTagData(strObjTag);
                 var strPathArray = strSvrPath.Split("/".ToCharArray());
-                if (strPathArray.Length > (int) EnumMgr.PathLv.CollectionLv)
+                if (strPathArray.Length > (int)EnumMgr.PathLv.CollectionLv)
                 {
-                    rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int) EnumMgr.PathLv.CollectionLv]);
+                    rtnMongoCollection = mongoDB.GetCollection(strPathArray[(int)EnumMgr.PathLv.CollectionLv]);
                 }
             }
             return rtnMongoCollection;
@@ -543,5 +542,6 @@ namespace MongoUtility.Core
         }
 
         #endregion
+
     }
 }

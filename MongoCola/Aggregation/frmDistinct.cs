@@ -20,7 +20,7 @@ namespace MongoCola.Aggregation
         public List<DataFilter.QueryConditionInputItem> DistinctConditionList =
             new List<DataFilter.QueryConditionInputItem>();
 
-        public frmDistinct(DataFilter mDataFilter, Boolean IsUseFilter)
+        public frmDistinct(DataFilter mDataFilter, bool IsUseFilter)
         {
             InitializeComponent();
             if (mDataFilter.QueryConditionList.Count <= 0 || !IsUseFilter) return;

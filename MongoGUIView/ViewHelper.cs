@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoGUICtl;
 using MongoUtility.Aggregation;
 using MongoUtility.Basic;
 using MongoUtility.Core;
 using MongoUtility.Extend;
 using ResourceLib.Utility;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
 
 namespace MongoGUIView
 {
@@ -184,7 +184,7 @@ namespace MongoGUIView
                 {
                     BsonElement id;
                     docItem.TryGetElement(ConstMgr.KEY_ID, out id);
-                    if (id != null)
+                    if (!(id.Value is BsonNull))
                     {
                         lstItem.Text = docItem.GetValue(ConstMgr.KEY_ID).ToString();
                         //这里保存真实的主Key数据，删除的时候使用

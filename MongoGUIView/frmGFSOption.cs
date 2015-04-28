@@ -10,7 +10,7 @@ namespace MongoGUIView
     {
         public Char DirectorySeparatorChar = Path.PathSeparator;
         public GFS.enumGFSFileName filename;
-        public Boolean ignoreSubFolder;
+        public bool ignoreSubFolder;
         public GFS.enumGFSAlready option;
 
         public frmGFSOption()

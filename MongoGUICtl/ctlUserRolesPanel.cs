@@ -16,7 +16,7 @@ namespace MongoGUICtl
             }
         }
 
-        public Boolean IsAdmin
+        public bool IsAdmin
         {
             set
             {

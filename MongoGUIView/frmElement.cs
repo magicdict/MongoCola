@@ -17,12 +17,12 @@ namespace MongoGUIView
 
         /// <summary>
         /// </summary>
-        private readonly Boolean _isElement = true;
+        private readonly bool _isElement = true;
 
         /// <summary>
         ///     是否为更新模式
         /// </summary>
-        private readonly Boolean _isUpdateMode;
+        private readonly bool _isUpdateMode;
 
         /// <summary>
         /// </summary>
@@ -33,7 +33,7 @@ namespace MongoGUIView
         /// <param name="IsUpdateMode"></param>
         /// <param name="SelectNode"></param>
         /// <param name="IsElement"></param>
-        public frmElement(Boolean IsUpdateMode, TreeNode SelectNode, Boolean IsElement)
+        public frmElement(bool IsUpdateMode, TreeNode SelectNode, bool IsElement)
         {
             InitializeComponent();
             _isUpdateMode = IsUpdateMode;

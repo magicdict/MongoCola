@@ -156,7 +156,7 @@ namespace MongoUtility.Security
         /// <param name="roles"></param>
         /// <returns></returns>
         /// <param name="action"></param>
-        public static Boolean JudgeRightByBuildInRole(List<string> roles, ActionType action)
+        public static bool JudgeRightByBuildInRole(List<string> roles, ActionType action)
         {
             var CanDoIt = false;
             switch (action)

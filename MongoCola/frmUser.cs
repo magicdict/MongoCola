@@ -19,7 +19,7 @@ namespace MongoCola
         /// <summary>
         ///     是否作为Admin
         /// </summary>
-        private readonly Boolean _IsAdmin;
+        private readonly bool _IsAdmin;
 
         private readonly string _ModifyName = string.Empty;
         private readonly Dictionary<string, BsonElement> _otherDbRolesDict = new Dictionary<string, BsonElement>();
@@ -28,7 +28,7 @@ namespace MongoCola
         ///     frmUser
         /// </summary>
         /// <param name="isAdmin"></param>
-        public frmUser(Boolean isAdmin)
+        public frmUser(bool isAdmin)
         {
             InitializeComponent();
             _IsAdmin = isAdmin;
@@ -49,7 +49,7 @@ namespace MongoCola
         /// </summary>
         /// <param name="isAdmin"></param>
         /// <param name="userName"></param>
-        public frmUser(Boolean isAdmin, string userName)
+        public frmUser(bool isAdmin, string userName)
         {
             InitializeComponent();
             _IsAdmin = isAdmin;

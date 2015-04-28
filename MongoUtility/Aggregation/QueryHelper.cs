@@ -174,7 +174,7 @@ namespace MongoUtility.Aggregation
         /// <param name="mongoCol">Collection</param>
         /// <param name="KeyValue">KeyValue</param>
         /// <returns></returns>
-        public static Boolean IsExistByKey(MongoCollection mongoCol, BsonValue KeyValue)
+        public static bool IsExistByKey(MongoCollection mongoCol, BsonValue KeyValue)
         {
             return mongoCol.FindAs<BsonDocument>(Query.EQ(ConstMgr.KEY_ID, KeyValue)).Count() > 0;
         }

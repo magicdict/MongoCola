@@ -65,7 +65,7 @@ namespace MongoUtility.Core
         /// <summary>
         ///     使用SSL初始化连接
         /// </summary>
-        public Boolean UseSsl;
+        public bool UseSsl;
 
         /// <summary>
         ///     用户名
@@ -80,7 +80,7 @@ namespace MongoUtility.Core
         /// <summary>
         ///     VerifySslCertificate
         /// </summary>
-        public Boolean VerifySslCertificate;
+        public bool VerifySslCertificate;
 
         /// <summary>
         ///     connect TimeOut (Sec)
@@ -144,12 +144,12 @@ namespace MongoUtility.Core
         /// <summary>
         ///     只读[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public Boolean IsReadOnly;
+        [XmlIgnore] public bool IsReadOnly;
 
         /// <summary>
         ///     当前连接是否可以使用[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public Boolean Health;
+        [XmlIgnore] public bool Health;
 
         /// <summary>
         ///     作为Admin登陆[这个属性是运行时决定的]
@@ -164,7 +164,7 @@ namespace MongoUtility.Core
         /// <summary>
         ///     认证模式[这个属性是运行时决定的]
         /// </summary>
-        [XmlIgnore] public Boolean AuthMode;
+        [XmlIgnore] public bool AuthMode;
 
         /// <summary>
         ///     服务器角色[这个属性是运行时决定的]
@@ -175,7 +175,7 @@ namespace MongoUtility.Core
 
         #region"Default ReadWrite"
 
-        public Boolean IsUseDefaultSetting;
+        public bool IsUseDefaultSetting;
 
         /// <summary>
         ///     ReadPreference

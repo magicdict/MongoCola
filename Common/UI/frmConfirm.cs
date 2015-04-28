@@ -9,7 +9,7 @@ namespace Common.UI
         /// <summary>
         ///     Return Result
         /// </summary>
-        internal Boolean Result;
+        internal bool Result;
 
         /// <summary>
         ///     Init Form

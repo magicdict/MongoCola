@@ -47,7 +47,7 @@ namespace Common.UI
         /// <summary>
         ///     确认信息表示
         /// </summary>
-        public static Boolean ShowConfirm(string Title, string Message)
+        public static bool ShowConfirm(string Title, string Message)
         {
             FormatMsgbox(_frmConfirm, Title);
             _frmConfirm.SetMessage(Message);
@@ -97,7 +97,7 @@ namespace Common.UI
         /// </summary>
         /// <param name="Message"></param>
         /// <param name="Details"></param>
-        public static void ShowMessage(string Title, string Message, string Details, Boolean IsShowDetail)
+        public static void ShowMessage(string Title, string Message, string Details, bool IsShowDetail)
         {
             FormatMsgbox(_frmMessage, Title);
             _frmMessage.SetMessage(Message, Details, IsShowDetail);

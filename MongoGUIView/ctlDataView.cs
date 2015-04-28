@@ -17,12 +17,12 @@ namespace MongoGUIView
         /// <summary>
         ///     Is Need Refresh after the element is modify
         /// </summary>
-        public Boolean IsNeedRefresh;
+        public bool IsNeedRefresh;
 
         /// <summary>
         ///     是否是一个数据容器
         /// </summary>
-        private Boolean _IsDataView = true;
+        private bool _IsDataView = true;
 
         /// <summary>
         ///     Control for show Data
@@ -56,7 +56,7 @@ namespace MongoGUIView
         ///     是否是一个数据容器
         /// </summary>
         [Description("Is used for display a data collection")]
-        public Boolean IsDocumentView
+        public bool IsDocumentView
         {
             set
             {

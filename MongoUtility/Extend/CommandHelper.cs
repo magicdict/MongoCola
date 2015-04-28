@@ -401,7 +401,7 @@ namespace MongoUtility.Extend
         /// </summary>
         /// <param name="Result"></param>
         /// <returns></returns>
-        public static Boolean IsShellOK(CommandResult Result)
+        public static bool IsShellOK(CommandResult Result)
         {
             if (!Result.Response.ToBsonDocument().GetElement("retval").Value.IsBsonDocument)
             {
@@ -495,7 +495,7 @@ namespace MongoUtility.Extend
         /// <param name="IsArb">是否为仲裁服务器</param>
         /// <returns></returns>
         public static CommandResult AddToReplsetServer(MongoServer mongoSvr, string HostPort, int priority,
-            Boolean IsArb)
+            bool IsArb)
         {
             var mCommandResult = new CommandResult(new BsonDocument());
             try

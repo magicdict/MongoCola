@@ -37,7 +37,7 @@ namespace MongoUtility.Security
         /// </summary>
         /// <param name="newUserEx">用户信息</param>
         /// <param name="IsAdmin">是否是Admin</param>
-        public static void AddUserToSystem(User newUserEx, Boolean IsAdmin)
+        public static void AddUserToSystem(User newUserEx, bool IsAdmin)
         {
             //必须使用MongoCredentials来添加用户,不然的话，Password将使用明文登入到数据库中！
             //这样的话，在使用MongoCredentials登入的时候，会发生密码错误引发的认证失败
@@ -89,7 +89,7 @@ namespace MongoUtility.Security
         ///     Remove A User From Admin database
         /// </summary>
         /// <param name="strUser">UserName</param>
-        public static void RemoveUserFromSystem(string strUser, Boolean IsAdmin)
+        public static void RemoveUserFromSystem(string strUser, bool IsAdmin)
         {
             MongoCollection users;
             users = IsAdmin

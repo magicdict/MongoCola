@@ -15,7 +15,7 @@ namespace MongoGUICtl
             InitializeComponent();
         }
 
-        public Boolean IsSeted
+        public bool IsSeted
         {
             get { return (cmbCompareOpr.SelectedIndex != -1); }
         }

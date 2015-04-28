@@ -567,7 +567,7 @@ namespace MongoGUIView
         /// <summary>
         ///     是否需要改变选中节点
         /// </summary>
-        private Boolean IsNeedChangeNode = true;
+        private bool IsNeedChangeNode = true;
 
         /// <summary>
         ///     鼠标动作（非顶层）

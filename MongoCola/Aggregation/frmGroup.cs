@@ -33,7 +33,7 @@ namespace MongoCola.Aggregation
         public List<DataFilter.QueryConditionInputItem> GroupConditionList =
             new List<DataFilter.QueryConditionInputItem>();
 
-        public frmGroup(DataFilter mDataFilter, Boolean IsUseFilter)
+        public frmGroup(DataFilter mDataFilter, bool IsUseFilter)
         {
             InitializeComponent();
             if (mDataFilter.QueryConditionList.Count <= 0 || !IsUseFilter) return;

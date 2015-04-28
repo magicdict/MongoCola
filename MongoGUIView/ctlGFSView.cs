@@ -193,7 +193,7 @@ namespace MongoGUIView
         /// <param name="fileCount"></param>
         /// <param name="opt"></param>
         /// <returns>是否继续执行后续的所有操作</returns>
-        private Boolean UploadFolder(DirectoryInfo uploadDir, ref int fileCount, GFS.UpLoadFileOption opt)
+        private bool UploadFolder(DirectoryInfo uploadDir, ref int fileCount, GFS.UpLoadFileOption opt)
         {
             foreach (var file in uploadDir.GetFiles())
             {

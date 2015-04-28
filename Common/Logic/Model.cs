@@ -21,7 +21,7 @@ namespace Common.Logic
         /// <summary>
         ///     删除标志
         /// </summary>
-        public Boolean IsDel;
+        public bool IsDel;
 
         /// <summary>
         ///     最后更新时间

@@ -31,7 +31,7 @@ namespace ResourceLib.Utility
         /// <summary>
         ///     是否使用默认语言
         /// </summary>
-        public static Boolean IsUseDefaultLanguage = false;
+        public static bool IsUseDefaultLanguage = false;
 
         /// <summary>
         ///     字符串
