@@ -117,7 +117,7 @@ namespace MongoGUIView
         ///// </summary>
         ///// <param name="sender"></param>
         ///// <param name="e"></param>
-        private void trvData_AfterSelect_NotTop(object sender, TreeViewEventArgs e)
+        private void trvData_AfterSelect_NotTop()
         {
             //非顶层可以删除的节点
             if (!OperationHelper.IsSystemCollection(RuntimeMongoDbContext.GetCurrentCollection()) &&
@@ -258,7 +258,7 @@ namespace MongoGUIView
             else
             {
                 //非顶层元素
-                trvData_AfterSelect_NotTop(sender, e);
+                trvData_AfterSelect_NotTop();
             }
         }
 
@@ -362,7 +362,7 @@ namespace MongoGUIView
             }
             if (MyMessageBox.ShowConfirm(strTitle, strMessage))
             {
-                var strErrormsg = string.Empty;
+                string strErrormsg;
                 if (tabDataShower.SelectedTab == tabTableView)
                 {
                     //lstData
@@ -571,22 +571,19 @@ namespace MongoGUIView
         /// <summary>
         ///     鼠标动作（非顶层）
         /// </summary>
-        /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void trvData_MouseClick_NotTop(object sender, MouseEventArgs e)
+        private void trvData_MouseClick_NotTop(MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                contextMenuStripMain = new ContextMenuStrip();
-                contextMenuStripMain.Items.Add(AddElementToolStripMenuItem.Clone());
-                contextMenuStripMain.Items.Add(ModifyElementToolStripMenuItem.Clone());
-                contextMenuStripMain.Items.Add(DropElementToolStripMenuItem.Clone());
-                contextMenuStripMain.Items.Add(CopyElementToolStripMenuItem.Clone());
-                contextMenuStripMain.Items.Add(CutElementToolStripMenuItem.Clone());
-                contextMenuStripMain.Items.Add(PasteElementToolStripMenuItem.Clone());
-                trvData.DatatreeView.ContextMenuStrip = contextMenuStripMain;
-                contextMenuStripMain.Show(trvData.DatatreeView.PointToScreen(e.Location));
-            }
+            if (e.Button != MouseButtons.Right) return;
+            contextMenuStripMain = new ContextMenuStrip();
+            contextMenuStripMain.Items.Add(AddElementToolStripMenuItem.Clone());
+            contextMenuStripMain.Items.Add(ModifyElementToolStripMenuItem.Clone());
+            contextMenuStripMain.Items.Add(DropElementToolStripMenuItem.Clone());
+            contextMenuStripMain.Items.Add(CopyElementToolStripMenuItem.Clone());
+            contextMenuStripMain.Items.Add(CutElementToolStripMenuItem.Clone());
+            contextMenuStripMain.Items.Add(PasteElementToolStripMenuItem.Clone());
+            trvData.DatatreeView.ContextMenuStrip = contextMenuStripMain;
+            contextMenuStripMain.Show(trvData.DatatreeView.PointToScreen(e.Location));
         }
 
         /// <summary>
@@ -596,15 +593,14 @@ namespace MongoGUIView
         /// <returns></returns>
         private static TreeNode FindRootNode(TreeNode node)
         {
-            if (node.Parent != null)
-                return FindRootNode(node.Parent);
-            return node;
+            return node.Parent != null ? FindRootNode(node.Parent) : node;
         }
 
         /// <summary>
         ///     Set Current Document
         /// </summary>
         /// <param name="currentNode"></param>
+        /// <param name="mongoCol"></param>
         private static void SetCurrentDocument(TreeNode currentNode, MongoCollection mongoCol)
         {
             var rootNode = FindRootNode(currentNode);
@@ -677,7 +673,7 @@ namespace MongoGUIView
             else
             {
                 //非顶层元素
-                trvData_MouseClick_NotTop(sender, e);
+                trvData_MouseClick_NotTop(e);
             }
         }
 

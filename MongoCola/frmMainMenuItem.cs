@@ -22,7 +22,7 @@ using ResourceLib.UI;
 
 namespace MongoCola
 {
-    public partial class FrmMain : Form
+    public partial class FrmMain
     {
         #region"工具"
 
@@ -523,7 +523,6 @@ namespace MongoCola
                         MutliTabManger.TabInfo.Remove(keyItem);
                     }
                 }
-                tempTable = null;
             }
             else
             {
@@ -705,7 +704,6 @@ namespace MongoCola
                 }
                 tabView.Controls.Remove(dataTab);
                 MutliTabManger.RemoveTab(strNodeData);
-                dataTab = null;
             }
             trvsrvlst.SelectedNode.Parent.Nodes.Remove(trvsrvlst.SelectedNode);
             DisableAllOpr();
@@ -720,7 +718,7 @@ namespace MongoCola
         {
             var strPath = RuntimeMongoDbContext.SelectTagData;
             var strCollection = strPath.Split("/".ToCharArray())[(int) EnumMgr.PathLv.CollectionLv];
-            var strNewCollectionName = string.Empty;
+            string strNewCollectionName;
             if (GuiConfig.IsUseDefaultLanguage)
             {
                 strNewCollectionName = MyMessageBox.ShowInput(

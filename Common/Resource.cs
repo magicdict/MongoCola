@@ -26,7 +26,9 @@ namespace Common
                 File.Delete(saveFilename);
             }
             Stream read = new FileStream(saveFilename, FileMode.Create);
-            asm.GetManifestResourceStream("DevKit.Common.Resources." + resFilename).CopyTo(read);
+            var manifestResourceStream = asm.GetManifestResourceStream("DevKit.Common.Resources." + resFilename);
+            if (manifestResourceStream != null)
+                manifestResourceStream.CopyTo(read);
             read.Close();
         }
 

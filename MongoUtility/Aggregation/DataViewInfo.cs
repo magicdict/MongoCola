@@ -116,6 +116,7 @@ namespace MongoUtility.Aggregation
         ///     获得展示数据
         /// </summary>
         /// <param name="currentDataViewInfo"></param>
+        /// <param name="mServer"></param>
         public static List<BsonDocument> GetDataList(ref DataViewInfo currentDataViewInfo, MongoServer mServer)
         {
             var collectionPath = currentDataViewInfo.StrDbTag.Split(":".ToCharArray())[1];

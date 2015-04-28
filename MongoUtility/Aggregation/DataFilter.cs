@@ -95,9 +95,8 @@ namespace MongoUtility.Aggregation
         /// <param name="fileName"></param>
         public void SaveFilter(string fileName)
         {
-            FileStream fs = null;
             var xs = new XmlSerializer(typeof (DataFilter));
-            fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+            var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
             xs.Serialize(fs, this);
             fs.Close();
         }
@@ -109,9 +108,8 @@ namespace MongoUtility.Aggregation
         /// <returns></returns>
         public static DataFilter LoadFilter(string fileName)
         {
-            FileStream fs = null;
             var xs = new XmlSerializer(typeof (DataFilter));
-            fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+            var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             var t = (DataFilter) xs.Deserialize(fs);
             fs.Close();
             return t;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -15,14 +16,7 @@ namespace ResourceLib.UI
         {
             if (string.IsNullOrEmpty(str))
                 return false;
-            foreach (var c in str)
-            {
-                if (!char.IsNumber(c))
-                {
-                    return false;
-                }
-            }
-            return true;
+            return str.All(char.IsNumber);
         }
 
         /// <summary>
@@ -46,7 +40,7 @@ namespace ResourceLib.UI
                 {
                     cloneMenuItem.Click += (x, y) => list[0].DynamicInvoke(x, y);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //Utility.ExceptionDeal(ex, cloneMenuItem.Text);
                 }
@@ -85,7 +79,7 @@ namespace ResourceLib.UI
                 {
                     cloneButton.Click += (x, y) => list[0].DynamicInvoke(x, y);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     //Utility.ExceptionDeal(ex);
                 }

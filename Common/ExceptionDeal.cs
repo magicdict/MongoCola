@@ -32,6 +32,7 @@ namespace Common
             }
             catch (Exception)
             {
+                // ignored
             }
         }
 

@@ -48,8 +48,6 @@ namespace MongoUtility.Aggregation
                     case DataFilter.SortType.Descending:
                         descendingList.Add(item.ColName);
                         break;
-                    default:
-                        break;
                 }
             }
             sort.Ascending(ascendingList.ToArray());
@@ -78,7 +76,7 @@ namespace MongoUtility.Aggregation
                 }
                 else
                 {
-                    currGrp.Add(queryCompareList[i]);
+                    if (currGrp != null) currGrp.Add(queryCompareList[i]);
                 }
             }
             //��ÿ�������ܽ�Ϊ1��IMongoQuery��1�����ӷ���

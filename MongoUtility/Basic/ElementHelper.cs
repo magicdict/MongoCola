@@ -42,6 +42,7 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <param name="elementPath"></param>
         /// <param name="currentDocument"></param>
+        /// <param name="currentCollection"></param>
         public static string PasteElement(string elementPath, BsonDocument currentDocument,
             MongoCollection currentCollection)
         {
@@ -51,7 +52,7 @@ namespace MongoUtility.Basic
             {
                 try
                 {
-                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, (BsonElement) ClipElement);
+                    t.AsBsonDocument.InsertAt(t.AsBsonDocument.ElementCount, (BsonElement)ClipElement);
                 }
                 catch (InvalidOperationException ex)
                 {
@@ -68,6 +69,8 @@ namespace MongoUtility.Basic
         /// <summary>
         /// </summary>
         /// <param name="elementPath"></param>
+        /// <param name="currentDocument"></param>
+        /// <param name="currentCollection"></param>
         public static void PasteValue(string elementPath, BsonDocument currentDocument,
             MongoCollection currentCollection)
         {
@@ -75,7 +78,7 @@ namespace MongoUtility.Basic
             var t = GetLastParentDocument(baseDoc, elementPath, true);
             if (t.IsBsonArray)
             {
-                t.AsBsonArray.Insert(t.AsBsonArray.Count, (BsonValue) ClipElement);
+                t.AsBsonArray.Insert(t.AsBsonArray.Count, (BsonValue)ClipElement);
             }
             if (!currentCollection.IsCapped())
             {
@@ -107,6 +110,9 @@ namespace MongoUtility.Basic
         ///     Cut Element
         /// </summary>
         /// <param name="elementPath"></param>
+        /// <param name="el"></param>
+        /// <param name="currentDocument"></param>
+        /// <param name="currentCollection"></param>
         public static void CutElement(string elementPath, BsonElement el, BsonDocument currentDocument,
             MongoCollection currentCollection)
         {
@@ -119,6 +125,10 @@ namespace MongoUtility.Basic
         ///     Cut Array Value
         /// </summary>
         /// <param name="elementPath"></param>
+        /// <param name="valueIndex"></param>
+        /// <param name="val"></param>
+        /// <param name="currentDocument"></param>
+        /// <param name="currentCollection"></param>
         public static void CutValue(string elementPath, int valueIndex, BsonValue val, BsonDocument currentDocument,
             MongoCollection currentCollection)
         {
@@ -132,6 +142,7 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <param name="elementPath"></param>
         /// <param name="addElement"></param>
+        /// <param name="currentCollection"></param>
         public static string AddElement(string elementPath, BsonElement addElement, BsonDocument currentDocument,
             MongoCollection currentCollection)
         {
@@ -160,6 +171,7 @@ namespace MongoUtility.Basic
         /// </summary>
         /// <param name="elementPath"></param>
         /// <param name="addValue"></param>
+        /// <param name="currentCollection"></param>
         public static void AddArrayValue(string elementPath, BsonValue addValue, BsonDocument currentDocument,
             MongoCollection currentCollection)
         {
@@ -225,7 +237,6 @@ namespace MongoUtility.Basic
             var t = GetLastParentDocument(baseDoc, elementPath, false);
             if (t.IsBsonDocument)
             {
-                //TODO:需要重新实现
                 t.AsBsonDocument.SetElement(new BsonElement(el.Name, newValue));
             }
             if (!currentCollection.IsCapped())
@@ -318,9 +329,7 @@ namespace MongoUtility.Basic
                     if (current.IsBsonArray)
                     {
                         //当前的如果是数组，获得当前下标。
-                        int index =
-                            Convert.ToInt16(strTag.Substring(strTag.IndexOf("[") + 1,
-                                strTag.Length - strTag.IndexOf("[") - 2));
+                        int index = Convert.ToInt16(strTag.Substring(strTag.IndexOf("[") + 1, strTag.Length - strTag.IndexOf("[") - 2));
                         current = current.AsBsonArray[index - 1];
                     }
                     else

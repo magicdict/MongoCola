@@ -87,7 +87,6 @@ namespace Common
         /// <param name="showDialog"></param>
         public static void SetUp(Form orgForm, bool showDialog = true)
         {
-            orgForm.Text += " - 中和软件";
             orgForm.StartPosition = FormStartPosition.CenterParent;
             orgForm.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             if (showDialog)

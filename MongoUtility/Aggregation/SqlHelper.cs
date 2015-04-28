@@ -16,6 +16,7 @@ namespace MongoUtility.Aggregation
         ///     Convert Query SqlHelper To DataFilter
         /// </summary>
         /// <param name="sql"></param>
+        /// <param name="mongoCol"></param>
         /// <returns></returns>
         public static DataFilter ConvertQuerySql(string sql, MongoCollection mongoCol)
         {
@@ -57,8 +58,6 @@ namespace MongoUtility.Aggregation
                         break;
                     case "order":
                         orderByStartIndex = i;
-                        break;
-                    default:
                         break;
                 }
             }
@@ -156,7 +155,7 @@ namespace MongoUtility.Aggregation
         }
 
         /// <summary>
-        ///     引号中的空格用&nbsp;代替，引号以外的东西小写
+        ///     引号中的空格用代替，引号以外的东西小写
         /// </summary>
         /// <param name="sqlContent"></param>
         /// <returns></returns>
